@@ -1,0 +1,11 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.COMPARTMENT_TYPE;
+
+public interface CompartmentType {
+  public static final COMPARTMENT_TYPE DEVICE = COMPARTMENT_TYPE.DEVICE$.MODULE$;
+  public static final COMPARTMENT_TYPE ENCOUNTER = COMPARTMENT_TYPE.ENCOUNTER$.MODULE$;
+  public static final COMPARTMENT_TYPE PATIENT = COMPARTMENT_TYPE.PATIENT$.MODULE$;
+  public static final COMPARTMENT_TYPE PRACTITIONER = COMPARTMENT_TYPE.PRACTITIONER$.MODULE$;
+  public static final COMPARTMENT_TYPE RELATEDPERSON = COMPARTMENT_TYPE.RELATEDPERSON$.MODULE$;
+}

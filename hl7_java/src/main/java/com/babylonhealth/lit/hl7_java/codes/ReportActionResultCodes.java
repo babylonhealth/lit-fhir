@@ -1,0 +1,12 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.REPORT_ACTION_RESULT_CODES;
+
+public interface ReportActionResultCodes {
+  public static final REPORT_ACTION_RESULT_CODES ERROR = REPORT_ACTION_RESULT_CODES.ERROR$.MODULE$;
+  public static final REPORT_ACTION_RESULT_CODES FAIL = REPORT_ACTION_RESULT_CODES.FAIL$.MODULE$;
+  public static final REPORT_ACTION_RESULT_CODES PASS = REPORT_ACTION_RESULT_CODES.PASS$.MODULE$;
+  public static final REPORT_ACTION_RESULT_CODES SKIP = REPORT_ACTION_RESULT_CODES.SKIP$.MODULE$;
+  public static final REPORT_ACTION_RESULT_CODES WARNING =
+      REPORT_ACTION_RESULT_CODES.WARNING$.MODULE$;
+}

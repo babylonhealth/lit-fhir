@@ -1,0 +1,12 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.MEDICATIONKNOWLEDGE_STATUS;
+
+public interface MedicationknowledgeStatus {
+  public static final MEDICATIONKNOWLEDGE_STATUS ACTIVE =
+      MEDICATIONKNOWLEDGE_STATUS.ACTIVE$.MODULE$;
+  public static final MEDICATIONKNOWLEDGE_STATUS ENTERED_IN_ERROR =
+      MEDICATIONKNOWLEDGE_STATUS.ENTERED_IN_ERROR$.MODULE$;
+  public static final MEDICATIONKNOWLEDGE_STATUS INACTIVE =
+      MEDICATIONKNOWLEDGE_STATUS.INACTIVE$.MODULE$;
+}

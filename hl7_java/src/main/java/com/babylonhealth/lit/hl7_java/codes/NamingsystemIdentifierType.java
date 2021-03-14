@@ -1,0 +1,12 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.NAMINGSYSTEM_IDENTIFIER_TYPE;
+
+public interface NamingsystemIdentifierType {
+  public static final NAMINGSYSTEM_IDENTIFIER_TYPE OID = NAMINGSYSTEM_IDENTIFIER_TYPE.OID$.MODULE$;
+  public static final NAMINGSYSTEM_IDENTIFIER_TYPE OTHER =
+      NAMINGSYSTEM_IDENTIFIER_TYPE.OTHER$.MODULE$;
+  public static final NAMINGSYSTEM_IDENTIFIER_TYPE URI = NAMINGSYSTEM_IDENTIFIER_TYPE.URI$.MODULE$;
+  public static final NAMINGSYSTEM_IDENTIFIER_TYPE UUID =
+      NAMINGSYSTEM_IDENTIFIER_TYPE.UUID$.MODULE$;
+}

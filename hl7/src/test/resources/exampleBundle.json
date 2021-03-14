@@ -1,0 +1,1345 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "total": 53,
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "9ba5a48a6d146ce712324ee8964f6e98",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XaEJK",
+              "display": "Blood sample taken"
+            },
+            {
+              "system": "SNOMED",
+              "code": "313334002"
+            }
+          ],
+          "text": "Blood sample taken"
+        },
+        "effectiveDateTime": "2019-11-07T17:25:29Z"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "0d13737d919177443588b9e03ac5782f",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "X74UW",
+              "display": "Venous blood sampling"
+            },
+            {
+              "system": "SNOMED",
+              "code": "28520004"
+            }
+          ],
+          "text": "Venous blood sampling"
+        },
+        "effectiveDateTime": "2019-11-07T17:25:29Z"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d5644877a93d67718934595d67f6eb98",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "Y001d",
+              "display": "Consent obtained"
+            }
+          ],
+          "text": "Consent obtained"
+        },
+        "effectiveDateTime": "2019-11-07T17:25:29Z"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "17fb8ef8fa5f50d0e96ea12797509d09",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XE2pf",
+              "display": "Serum vitamin B12 level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "993391000000108"
+            }
+          ],
+          "text": "Serum vitamin B12 level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 584,
+          "unit": "ng/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "9c4ba3d2f99d610439372f27fb2e6004",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42K..",
+              "display": "Eosinophil count - observation"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022561000000101"
+            }
+          ],
+          "text": "Eosinophil count - observation"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 0.2,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ec1e238ceaa0f0e21342e5993d9bc1f5",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42L..",
+              "display": "Basophil count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022571000000108"
+            }
+          ],
+          "text": "Basophil count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 0,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "39c6032df81b3ad7db7c8f105b2a694e",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42J..",
+              "display": "Neutrophil count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022551000000104"
+            }
+          ],
+          "text": "Neutrophil count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 4.9,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "81a418f698896f8b60c8620c06eb7eb6",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42M..",
+              "display": "Lymphocyte count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022581000000105"
+            }
+          ],
+          "text": "Lymphocyte count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 2.2,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4e627e26b74b633389563cac1b80fdcd",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42N..",
+              "display": "Monocyte count - observation"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022591000000107"
+            }
+          ],
+          "text": "Monocyte count - observation"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 0.6,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d69171386938b63d05f31d30f0a2600e",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "4266.",
+              "display": "Nucleated red blood cell count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022461000000100"
+            }
+          ],
+          "text": "Nucleated red blood cell count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 0,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "f91cd505b5acf7f05393986d58c27b70",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "426..",
+              "display": "Red blood cell count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022451000000103"
+            }
+          ],
+          "text": "Red blood cell count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 4.24,
+          "unit": "10^12/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "9dc4aef8f262f6bbb833bd145d8e1710",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "Xa96v",
+              "display": "Haemoglobin concentration"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022431000000105"
+            }
+          ],
+          "text": "Haemoglobin concentration"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 125,
+          "unit": "g/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "1b9f1277acba247e12cb30d9017c6414",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "X76tb",
+              "display": "Haematocrit"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022291000000105"
+            }
+          ],
+          "text": "Haematocrit"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "0f58a36be6efa98fb21ddb20634d629a",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "424..",
+              "display": "Full blood count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022441000000101"
+            }
+          ],
+          "text": "Full blood count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "514bfd186a37bb87994abc38399e40a9",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XaIdY",
+              "display": "Total white blood count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022541000000102"
+            }
+          ],
+          "text": "Total white blood count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 7.9,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "67beef80b20c52d396640b99e3ed46b9",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XE2mO",
+              "display": "Red blood cell distribution width"
+            },
+            {
+              "system": "SNOMED",
+              "code": "993501000000105"
+            }
+          ],
+          "text": "Red blood cell distribution width"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 10,
+          "unit": "%"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "030cfd1231eb76c279236ebcc419341c",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42P..",
+              "display": "Platelet count - observation"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022651000000100"
+            }
+          ],
+          "text": "Platelet count - observation"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 283,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "b6a1f9863743ea2388ced325963c34fc",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42Z5.",
+              "display": "Mean platelet volume"
+            },
+            {
+              "system": "SNOMED",
+              "code": "993481000000101"
+            }
+          ],
+          "text": "Mean platelet volume"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 7.2,
+          "unit": "fL"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e9e732ff59e5220a245efb610b42026a",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42A..",
+              "display": "Mean cell volume"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022491000000106"
+            }
+          ],
+          "text": "Mean cell volume"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 89.4,
+          "unit": "fL"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "8dd13009ce04161e4971a42f95813016",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XE2pb",
+              "display": "Mean cell haemoglobin level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022471000000107"
+            }
+          ],
+          "text": "Mean cell haemoglobin level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 29.5,
+          "unit": "pg"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "270e5bbd68b0363d3915af95d44011c8",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "429..",
+              "display": "Mean cell haemoglobin concentration"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022481000000109"
+            }
+          ],
+          "text": "Mean cell haemoglobin concentration"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 33,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "05529a158137d69a812c3d1cb27e1637",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XE2dy",
+              "display": "Plasma C-reactive protein level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "999651000000107"
+            }
+          ],
+          "text": "Plasma C-reactive protein level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 7.5,
+          "unit": "mg/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "55e907404e9ee3883752055639966bc8",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XE2pz",
+              "display": "Serum potassium level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1000651000000109"
+            }
+          ],
+          "text": "Serum potassium level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 4.2,
+          "unit": "mmol/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "3a3f18460a90252e8c9e1bea69a1d6c2",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XE2q5",
+              "display": "Serum creatinine level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1000731000000107"
+            }
+          ],
+          "text": "Serum creatinine level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 49,
+          "unit": "umol/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "2dca5218e3a79b70a1dcf55fecf35109",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XacUK",
+              "display": "eGFR using creatinine (CKD-EPI) per 1.73 square metres"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1011481000000105"
+            }
+          ],
+          "text": "eGFR using creatinine (CKD-EPI) per 1.73 square metres"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 90,
+          "unit": "mL/min"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "6e4ed9dcecd0d80aeada0142d2f02f9c",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XE2q0",
+              "display": "Serum sodium level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1000661000000107"
+            }
+          ],
+          "text": "Serum sodium level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 138,
+          "unit": "mmol/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ca42d14f02f262435cb7b95f5723f222",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "451..",
+              "display": "Renal function tests"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1015971000000100"
+            }
+          ],
+          "text": "Renal function tests"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "8dd13009ce04161e4971a42f95813016",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XE2pb",
+              "display": "Mean cell haemoglobin level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022471000000107"
+            }
+          ],
+          "text": "Mean cell haemoglobin level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 29.5,
+          "unit": "pg"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "b6a1f9863743ea2388ced325963c34fc",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42Z5.",
+              "display": "Mean platelet volume"
+            },
+            {
+              "system": "SNOMED",
+              "code": "993481000000101"
+            }
+          ],
+          "text": "Mean platelet volume"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 7.2,
+          "unit": "fL"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d69171386938b63d05f31d30f0a2600e",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "4266.",
+              "display": "Nucleated red blood cell count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022461000000100"
+            }
+          ],
+          "text": "Nucleated red blood cell count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 0,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "39c6032df81b3ad7db7c8f105b2a694e",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42J..",
+              "display": "Neutrophil count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022551000000104"
+            }
+          ],
+          "text": "Neutrophil count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 4.9,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "270e5bbd68b0363d3915af95d44011c8",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "429..",
+              "display": "Mean cell haemoglobin concentration"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022481000000109"
+            }
+          ],
+          "text": "Mean cell haemoglobin concentration"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 33,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "67beef80b20c52d396640b99e3ed46b9",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XE2mO",
+              "display": "Red blood cell distribution width"
+            },
+            {
+              "system": "SNOMED",
+              "code": "993501000000105"
+            }
+          ],
+          "text": "Red blood cell distribution width"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 10,
+          "unit": "%"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "030cfd1231eb76c279236ebcc419341c",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42P..",
+              "display": "Platelet count - observation"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022651000000100"
+            }
+          ],
+          "text": "Platelet count - observation"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 283,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ec1e238ceaa0f0e21342e5993d9bc1f5",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42L..",
+              "display": "Basophil count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022571000000108"
+            }
+          ],
+          "text": "Basophil count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 0,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "0f58a36be6efa98fb21ddb20634d629a",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "424..",
+              "display": "Full blood count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022441000000101"
+            }
+          ],
+          "text": "Full blood count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "514bfd186a37bb87994abc38399e40a9",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XaIdY",
+              "display": "Total white blood count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022541000000102"
+            }
+          ],
+          "text": "Total white blood count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 7.9,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "81a418f698896f8b60c8620c06eb7eb6",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42M..",
+              "display": "Lymphocyte count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022581000000105"
+            }
+          ],
+          "text": "Lymphocyte count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 2.2,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4e627e26b74b633389563cac1b80fdcd",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42N..",
+              "display": "Monocyte count - observation"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022591000000107"
+            }
+          ],
+          "text": "Monocyte count - observation"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 0.6,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "9c4ba3d2f99d610439372f27fb2e6004",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42K..",
+              "display": "Eosinophil count - observation"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022561000000101"
+            }
+          ],
+          "text": "Eosinophil count - observation"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 0.2,
+          "unit": "10^9/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e9e732ff59e5220a245efb610b42026a",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "42A..",
+              "display": "Mean cell volume"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022491000000106"
+            }
+          ],
+          "text": "Mean cell volume"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 89.4,
+          "unit": "fL"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "f91cd505b5acf7f05393986d58c27b70",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "426..",
+              "display": "Red blood cell count"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022451000000103"
+            }
+          ],
+          "text": "Red blood cell count"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 4.24,
+          "unit": "10^12/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "9dc4aef8f262f6bbb833bd145d8e1710",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "Xa96v",
+              "display": "Haemoglobin concentration"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022431000000105"
+            }
+          ],
+          "text": "Haemoglobin concentration"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 125,
+          "unit": "g/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "1b9f1277acba247e12cb30d9017c6414",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "X76tb",
+              "display": "Haematocrit"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022291000000105"
+            }
+          ],
+          "text": "Haematocrit"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d15b93628cff6754cf5a0a04d52dd1b6",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XaELV",
+              "display": "Serum TSH level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1022791000000101"
+            }
+          ],
+          "text": "Serum TSH level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 1.99,
+          "unit": "miu/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "fb198dad03a1eec0fb780473cf4da05f",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XE2px",
+              "display": "Serum alkaline phosphatase level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1000621000000104"
+            }
+          ],
+          "text": "Serum alkaline phosphatase level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 50,
+          "unit": "iu/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "87a25dc309584fcbb76c0a411492e6b9",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XE2eA",
+              "display": "Serum albumin level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1000821000000103"
+            }
+          ],
+          "text": "Serum albumin level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 42,
+          "unit": "g/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "f3c72d5f8df7f2d435abe19442735611",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "X77WP",
+              "display": "Liver function tests"
+            },
+            {
+              "system": "SNOMED",
+              "code": "997531000000108"
+            }
+          ],
+          "text": "Liver function tests"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cde5b91396f0e3fc66ac9adaa7e34189",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XaLJx",
+              "display": "Serum alanine aminotransferase level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1018251000000107"
+            }
+          ],
+          "text": "Serum alanine aminotransferase level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 18,
+          "unit": "iu/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "9f6ba48aa7ed06534520c16546df36fa",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "44E..",
+              "display": "Serum bilirubin level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "999691000000104"
+            }
+          ],
+          "text": "Serum bilirubin level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 5,
+          "unit": "umol/L"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "1e25e7a96a48b57e401ed66222fe9f5d",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XE24r",
+              "display": "Serum ferritin level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "993381000000106"
+            }
+          ],
+          "text": "Serum ferritin level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 47,
+          "unit": "ng/ml"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "a536357aaa69fd61a564ee562d01d584",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XaPbt",
+              "display": "Haemoglobin A1c level - IFCC standardised"
+            },
+            {
+              "system": "SNOMED",
+              "code": "999791000000106"
+            }
+          ],
+          "text": "Haemoglobin A1c level - IFCC standardised"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 33,
+          "unit": "mmol/mol"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "db4614ce1be93ff3239fb35334a81b49",
+        "status": "unknown",
+        "code": {
+          "coding": [
+            {
+              "system": "CTV3",
+              "code": "XM0ly",
+              "display": "Plasma glucose level"
+            },
+            {
+              "system": "SNOMED",
+              "code": "1010671000000102"
+            }
+          ],
+          "text": "Plasma glucose level"
+        },
+        "effectiveDateTime": "2019-11-07T17:27:00Z",
+        "valueQuantity": {
+          "value": 4.6,
+          "unit": "mmol/L"
+        }
+      }
+    }
+  ]
+}

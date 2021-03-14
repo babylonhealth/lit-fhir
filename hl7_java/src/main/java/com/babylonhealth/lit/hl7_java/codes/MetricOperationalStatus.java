@@ -1,0 +1,12 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.METRIC_OPERATIONAL_STATUS;
+
+public interface MetricOperationalStatus {
+  public static final METRIC_OPERATIONAL_STATUS ENTERED_IN_ERROR =
+      METRIC_OPERATIONAL_STATUS.ENTERED_IN_ERROR$.MODULE$;
+  public static final METRIC_OPERATIONAL_STATUS OFF = METRIC_OPERATIONAL_STATUS.OFF$.MODULE$;
+  public static final METRIC_OPERATIONAL_STATUS ON = METRIC_OPERATIONAL_STATUS.ON$.MODULE$;
+  public static final METRIC_OPERATIONAL_STATUS STANDBY =
+      METRIC_OPERATIONAL_STATUS.STANDBY$.MODULE$;
+}

@@ -1,0 +1,12 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.ALLERGY_INTOLERANCE_CRITICALITY;
+
+public interface AllergyIntoleranceCriticality {
+  public static final ALLERGY_INTOLERANCE_CRITICALITY HIGH =
+      ALLERGY_INTOLERANCE_CRITICALITY.HIGH$.MODULE$;
+  public static final ALLERGY_INTOLERANCE_CRITICALITY LOW =
+      ALLERGY_INTOLERANCE_CRITICALITY.LOW$.MODULE$;
+  public static final ALLERGY_INTOLERANCE_CRITICALITY UNABLE_TO_ASSESS_RISK =
+      ALLERGY_INTOLERANCE_CRITICALITY.UNABLE_TO_ASSESS_RISK$.MODULE$;
+}

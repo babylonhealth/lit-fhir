@@ -1,0 +1,12 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.ACTION_PARTICIPANT_TYPE;
+
+public interface ActionParticipantType {
+  public static final ACTION_PARTICIPANT_TYPE DEVICE = ACTION_PARTICIPANT_TYPE.DEVICE$.MODULE$;
+  public static final ACTION_PARTICIPANT_TYPE PATIENT = ACTION_PARTICIPANT_TYPE.PATIENT$.MODULE$;
+  public static final ACTION_PARTICIPANT_TYPE PRACTITIONER =
+      ACTION_PARTICIPANT_TYPE.PRACTITIONER$.MODULE$;
+  public static final ACTION_PARTICIPANT_TYPE RELATED_PERSON =
+      ACTION_PARTICIPANT_TYPE.RELATED_PERSON$.MODULE$;
+}

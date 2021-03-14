@@ -1,0 +1,12 @@
+package com.babylonhealth.lit.usbase_java.codes;
+
+import com.babylonhealth.lit.usbase.STANDARDS_STATUS;
+
+public interface StandardsStatus {
+  public static final STANDARDS_STATUS DEPRECATED = STANDARDS_STATUS.DEPRECATED$.MODULE$;
+  public static final STANDARDS_STATUS DRAFT = STANDARDS_STATUS.DRAFT$.MODULE$;
+  public static final STANDARDS_STATUS EXTERNAL = STANDARDS_STATUS.EXTERNAL$.MODULE$;
+  public static final STANDARDS_STATUS INFORMATIVE = STANDARDS_STATUS.INFORMATIVE$.MODULE$;
+  public static final STANDARDS_STATUS NORMATIVE = STANDARDS_STATUS.NORMATIVE$.MODULE$;
+  public static final STANDARDS_STATUS TRIAL_USE = STANDARDS_STATUS.TRIAL_USE$.MODULE$;
+}

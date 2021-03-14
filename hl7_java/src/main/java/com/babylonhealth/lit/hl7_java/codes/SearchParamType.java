@@ -1,0 +1,15 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.SEARCH_PARAM_TYPE;
+
+public interface SearchParamType {
+  public static final SEARCH_PARAM_TYPE COMPOSITE = SEARCH_PARAM_TYPE.COMPOSITE$.MODULE$;
+  public static final SEARCH_PARAM_TYPE DATE = SEARCH_PARAM_TYPE.DATE$.MODULE$;
+  public static final SEARCH_PARAM_TYPE NUMBER = SEARCH_PARAM_TYPE.NUMBER$.MODULE$;
+  public static final SEARCH_PARAM_TYPE QUANTITY = SEARCH_PARAM_TYPE.QUANTITY$.MODULE$;
+  public static final SEARCH_PARAM_TYPE REFERENCE = SEARCH_PARAM_TYPE.REFERENCE$.MODULE$;
+  public static final SEARCH_PARAM_TYPE SPECIAL = SEARCH_PARAM_TYPE.SPECIAL$.MODULE$;
+  public static final SEARCH_PARAM_TYPE STRING = SEARCH_PARAM_TYPE.STRING$.MODULE$;
+  public static final SEARCH_PARAM_TYPE TOKEN = SEARCH_PARAM_TYPE.TOKEN$.MODULE$;
+  public static final SEARCH_PARAM_TYPE URI = SEARCH_PARAM_TYPE.URI$.MODULE$;
+}

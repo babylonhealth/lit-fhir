@@ -1,0 +1,15 @@
+package com.babylonhealth.lit.hl7_java.codes;
+
+import com.babylonhealth.lit.hl7.DEVICE_NAMETYPE;
+
+public interface DeviceNametype {
+  public static final DEVICE_NAMETYPE MANUFACTURER_NAME =
+      DEVICE_NAMETYPE.MANUFACTURER_NAME$.MODULE$;
+  public static final DEVICE_NAMETYPE MODEL_NAME = DEVICE_NAMETYPE.MODEL_NAME$.MODULE$;
+  public static final DEVICE_NAMETYPE OTHER = DEVICE_NAMETYPE.OTHER$.MODULE$;
+  public static final DEVICE_NAMETYPE PATIENT_REPORTED_NAME =
+      DEVICE_NAMETYPE.PATIENT_REPORTED_NAME$.MODULE$;
+  public static final DEVICE_NAMETYPE UDI_LABEL_NAME = DEVICE_NAMETYPE.UDI_LABEL_NAME$.MODULE$;
+  public static final DEVICE_NAMETYPE USER_FRIENDLY_NAME =
+      DEVICE_NAMETYPE.USER_FRIENDLY_NAME$.MODULE$;
+}
