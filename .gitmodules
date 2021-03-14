@@ -1,0 +1,3 @@
+[submodule "fhir"]
+	path = fhir
+	url = git@github.com:google/fhir.git
