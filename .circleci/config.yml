@@ -239,5 +239,3 @@ workflows:
           filters:
             tags:
               only: /g^\d+\.\d+\.\d+$/
-          requires:
-            - build
