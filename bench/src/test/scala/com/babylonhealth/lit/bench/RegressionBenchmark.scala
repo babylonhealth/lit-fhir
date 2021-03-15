@@ -20,7 +20,6 @@ abstract class RegressionBenchmark extends Bench.OfflineRegressionReport {
   def index: Int
 
   /* inputs */
-  val bigOldJson                    = Source.fromResource("page3.json").mkString
   val rawBundlejson                 = Source.fromResource("exampleBundle.json").mkString
   val rawPatientJson                = Source.fromResource("Patient.Profile.json").mkString
   val sampleBundle                  = decode[Bundle](rawBundlejson).right.get

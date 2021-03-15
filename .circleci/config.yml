@@ -234,7 +234,7 @@ workflows:
             - benchmark14
   publish-generator:
     jobs:
-      - build:
+      - publish-generator:
           context: babylon
           filters:
             tags:

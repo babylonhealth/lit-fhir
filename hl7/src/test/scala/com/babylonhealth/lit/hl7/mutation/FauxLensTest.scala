@@ -4,7 +4,6 @@ import java.time.{ LocalTime, ZonedDateTime }
 
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
-import shapeless.test.illTyped
 
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.PseudoLenses._
@@ -123,7 +122,7 @@ class FauxLensTest extends AnyFreeSpec with Matchers {
       res_bundle shouldEqual bundle2
     }
     "typeSafety" in {
-      illTyped("""observation1.updateValueIfExists(_.mapValue((_: Double) + 123).run)""")
+      assertTypeError("""observation1.updateValueIfExists(_.mapValue((_: Double) + 123).run)""")
     }
   }
   "fold on a ref" - {
@@ -151,18 +150,18 @@ class FauxLensTest extends AnyFreeSpec with Matchers {
           .run
     }
     "can't do if partial" in {
-      illTyped("""def fold(r: Choice[Int \/ String]): Double = r.fold((_: Int).toDouble).run""")
+      assertTypeError("""def fold(r: Choice[Int \/ String]): Double = r.fold((_: Int).toDouble).run""")
     }
     "can't do if wrong type" in {
-      illTyped(
+      assertTypeError(
         """def fold(r: Choice[Int \/ String]): Double = r.fold((_: Int).toDouble).and((_: Array[_]).length.toDouble).run""")
     }
     "can't do if wrong order" in {
-      illTyped(
+      assertTypeError(
         """def fold(r: Choice[Int \/ String]): Double = r.fold((_: String).length.toDouble).and((_: Int).toDouble).run""")
     }
     "can't do if too many" in {
-      illTyped(
+      assertTypeError(
         """def fold(r: Choice[Int \/ String]): Double = r.fold((_: Int).toDouble).and((_: String).length.toDouble).and((_: String).length.toDouble).run""")
     }
   }
