@@ -3,8 +3,8 @@ package com.babylonhealth.lit
 import java.io.File
 
 import com.babylonhealth.lit.common.CodegenUtils
-import com.babylonhealth.lit.core.BINDING_STRENGTH.EXTENSIBLE
-import com.babylonhealth.lit.core.{ BINDING_STRENGTH, NonEmptyLitSeq, UriStr }
+import com.babylonhealth.lit.core.{ NonEmptyLitSeq, UriStr }
+import com.babylonhealth.lit.hl7.BINDING_STRENGTH
 import com.babylonhealth.lit.hl7.model.{ ElementDefinition, StructureDefinition }
 
 case class TargetContents(filepath: String, contents: String)

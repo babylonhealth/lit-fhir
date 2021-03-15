@@ -1,8 +1,5 @@
 package com.babylonhealth.lit.languages
 
-import java.util.concurrent.atomic.AtomicInteger
-
-import scala.collection.concurrent.TrieMap
 import scala.collection.immutable.ListMap
 import scala.util.Try
 
@@ -11,8 +8,8 @@ import com.babylonhealth.lit.Cardinality._
 import com.babylonhealth.lit.CardinalityImplicits._
 import com.babylonhealth.lit.common.CodegenUtils
 import com.babylonhealth.lit.hl7.model.ValueSet
-import com.babylonhealth.lit.core.BINDING_STRENGTH
-import com.babylonhealth.lit.fhirpath.genScala.{ ExactlyOne, Optional => FPOptional }
+import com.babylonhealth.lit.hl7.BINDING_STRENGTH
+import com.babylonhealth.lit.fhirpath.genScala.ExactlyOne
 
 trait BaseFieldImplicits {
   implicit class RichTopLevelClass(topLevelClass: TopLevelClass) {
