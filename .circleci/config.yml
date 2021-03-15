@@ -1,0 +1,241 @@
+version: 2.1
+    
+orbs:
+  slack: circleci/slack@3.4.2
+
+commands:
+  save_build_cache:
+    description: "Save the build cache"
+    steps:
+      - run:
+          name: Tar classfiles
+          command: find -name target -exec tar -zcf targets.tar.gz -H posix {} + && find -name target -exec rm -r {} +
+      - save_cache:
+          name: Saving build cache
+          key: build-cache-v3-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - "~/.ivy2"
+            - "~/project/targets.tar.gz"
+            - "~/.cache/coursier"
+            - "~/.sbt"
+  restore_build_cache:
+    description: "Restore the build cache"
+    steps:
+      - restore_cache:
+          name: Restoring build cache
+          keys:
+            - build-cache-v3-{{ .Branch }}-{{ .Revision }}
+            - build-cache-v3-{{ .Branch }}-
+            - build-cache-v3-
+      - run:
+          name: untar classfiles
+          command: if [ -f targets.tar.gz ]; then tar -xf targets.tar.gz; fi
+
+
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    working_directory: ~/project
+    resource_class: large
+    steps:
+      - checkout
+      - run:
+          name: Build prerequisites
+          command: |
+            sudo apt-get update && sudo apt-get upgrade -y
+            sudo apt-get install -y make git
+      - restore_cache:
+          keys:
+            - sbt-cache-v2-{{ checksum "build.sbt" }}
+            - sbt-cache-v2-
+          paths:
+            - "~/.ivy2"
+            - "~/.coursier"
+            - "~/.sbt"
+            - "~/.sbt-launch.jar"
+            - "~/.cache/coursier"
+      - run:
+          name: Build Dependencies
+          command: make download-deps
+      - save_cache:
+          key: sbt-cache-v2-{{ checksum "build.sbt" }}
+          paths:
+            - "~/.ivy2"
+            - "~/.coursier"
+            - "~/.sbt"
+            - "~/.sbt-launch.jar"
+            - "~/.cache/coursier"
+      - restore_build_cache
+      - run:
+          name: Build service
+          command: make compile
+          no_output_timeout: 30m
+      - save_build_cache
+  publish_template: &publish_template
+    docker:
+      - image: circleci/openjdk:11-jdk
+    working_directory: ~/project
+    resource_class: large
+    steps:
+      - checkout
+      - restore_build_cache
+      - run:
+          name: Build service
+          command: make ${CIRCLE_JOB}
+          no_output_timeout: 30m
+  publish-local-core: *publish_template
+  publish-local-java: *publish_template
+  publish-local-generator: *publish_template
+  publish-local-gproto: *publish_template
+  test_unit:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    working_directory: ~/project
+    resource_class: large
+    steps:
+      - checkout
+      - restore_build_cache
+      - run:
+          name: Build service
+          command: make compile-core compile-java compile-proto test
+          no_output_timeout: 30m
+  benchmark_template: &benchmark_template
+    docker:
+      - image: circleci/openjdk:11-jdk
+    working_directory: ~/project
+    resource_class: medium+
+    steps:
+      - checkout
+      - restore_build_cache
+      - restore_cache:
+          keys:
+            - bench-v5-{{ .Environment.CIRCLE_JOB }}-{{ .Revision }}
+            - bench-v5-{{ .Environment.CIRCLE_JOB }}-
+          paths:
+            - "~/project/bench/target/benchmarks"
+      - run:
+          name: Run performance regression tests {{ .Environment.CIRCLE_JOB }}
+          command: git apply bench.patch && make benchmark
+      - save_cache:
+          key: bench-v5-{{ .Environment.CIRCLE_JOB }}-{{ .Revision }}
+          paths:
+            - "~/project/bench/target/benchmarks"
+      - store_artifacts:
+          path: "~/project/bench/target/benchmarks"
+          destination: bench-{{ .Environment.CIRCLE_JOB }}
+  benchmark1: *benchmark_template
+  benchmark2: *benchmark_template
+  benchmark3: *benchmark_template
+  benchmark4: *benchmark_template
+  benchmark5: *benchmark_template
+  benchmark6: *benchmark_template
+  benchmark7: *benchmark_template
+  benchmark8: *benchmark_template
+  benchmark9: *benchmark_template
+  benchmark10: *benchmark_template
+  benchmark11: *benchmark_template
+  benchmark12: *benchmark_template
+  benchmark13: *benchmark_template
+  benchmark14: *benchmark_template
+  deploy:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    working_directory: ~/project
+    resource_class: large
+
+    steps:
+      - checkout
+      - restore_build_cache
+      - deploy:
+          name: Deploy
+          command: |
+            if [ "${CIRCLE_TAG}" ];
+              then VERSION="${CIRCLE_TAG}" make publish;
+            elif [ "${CIRCLE_BRANCH}" == "master" ];
+              then VERSION="dev-$(git rev-parse HEAD)" make publish;
+            else
+              echo Nothing to deploy
+            fi;
+          no_output_timeout: 30m
+  publish-generator:
+    docker:
+      - image: circleci/openjdk:11-jdk
+    working_directory: ~/project
+    steps:
+      - checkout
+      - restore_build_cache
+      - deploy:
+          name: Deploy
+          command: |
+            if [ "${CIRCLE_TAG::1}" = g ];
+              then G_VERSION="${CIRCLE_TAG#?}" make publish-generator;
+            elif [ "${CIRCLE_BRANCH}" == "master" ];
+              then VERSION="dev-$(git rev-parse HEAD)-gen" make publish-generator;
+            else
+              echo Nothing to deploy
+            fi;
+          no_output_timeout: 30m
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build:
+          context: babylon
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+      - publish-local-java: &requires-build
+          context: babylon
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+          requires:
+            - build
+      - publish-local-core: *requires-build
+      - test_unit: *requires-build
+      - benchmark1: *requires-build
+      - benchmark2: *requires-build
+      - benchmark3: *requires-build
+      - benchmark4: *requires-build
+      - benchmark5: *requires-build
+      - benchmark6: *requires-build
+      - benchmark7: *requires-build
+      - benchmark8: *requires-build
+      - benchmark9: *requires-build
+      - benchmark10: *requires-build
+      - benchmark11: *requires-build
+      - benchmark12: *requires-build
+      - benchmark13: *requires-build
+      - benchmark14: *requires-build
+      - deploy:
+          context: babylon
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+          requires:
+            - publish-local-core
+            - publish-local-java
+            - test_unit
+            - benchmark1
+            - benchmark2
+            - benchmark3
+            - benchmark4
+            - benchmark5
+            - benchmark6
+            - benchmark7
+            - benchmark8
+            - benchmark9
+            - benchmark10
+            - benchmark11
+            - benchmark12
+            - benchmark13
+            - benchmark14
+  publish-generator:
+    jobs:
+      - build:
+          context: babylon
+          filters:
+            tags:
+              only: /g^\d+\.\d+\.\d+$/

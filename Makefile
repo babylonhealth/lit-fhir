@@ -81,8 +81,8 @@ build-hl7-class-models:
 		"./generated_typescript" \
 		"" \
 		true'
-	$(SBT) $(foreach i,$(ALL_MODULES),$i/scalafmtAll)
-	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/javafmt)
+	$(SBT) $(foreach i,$(CORE_MODULES),$i/scalafmtAll)
+	$(SBT) $(foreach i,$(CORE_MODULES),$iJava/javafmt)
 	./apply_patches.sh
 
 build-all-class-models:
