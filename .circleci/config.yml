@@ -234,11 +234,6 @@ workflows:
             - benchmark14
   publish-generator:
     jobs:
-      - build:
-          context: babylon
-          filters:
-            tags:
-              only: /g^\d+\.\d+\.\d+$/
       - publish-generator:
           context: babylon
           filters:
