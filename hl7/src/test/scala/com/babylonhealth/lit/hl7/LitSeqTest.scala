@@ -2,7 +2,6 @@ package com.babylonhealth.lit.hl7
 
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
-import shapeless.test.illTyped
 
 import com.babylonhealth.lit.core.{ LitSeq, NonEmptyLitSeq }
 
@@ -51,6 +50,6 @@ class LitSeqTest extends AnyFreeSpec with Matchers {
     val seq5: NonEmptyLitSeq[(Int, Int)] = seq1 zip seq2
     val seq6: NonEmptyLitSeq[Int]        = seq1 map (_ * 2)
     val maybeEmpty: LitSeq[Int]          = seq1
-    illTyped("""val seqN1: NonEmptyLitSeq[Int] = seq ++ maybeEmpty""")
+    assertTypeError("""val seqN1: NonEmptyLitSeq[Int] = seq ++ maybeEmpty""")
   }
 }

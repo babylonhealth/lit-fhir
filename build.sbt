@@ -7,11 +7,16 @@ val thisVersion = sys.props.get("version") getOrElse "local"
 
 val fullScalaVersion = "2.13.3"
 val V = new {
-  val circe             = "0.13.0"
-  val logback           = "1.2.3"
-  val enumeratum        = "1.5.15"
-  val scalaMeterVersion = "0.20-BBL"
-  val izumiReflect      = "1.0.0-M12"
+  val circe                  = "0.13.0"
+  val logback                = "1.2.3"
+  val enumeratum             = "1.5.15"
+  val scalaMeterVersion      = "0.20-BBL"
+  val izumiReflect           = "1.0.0-M12"
+  val litVersionForGenerator = "0.10.3"
+  val scalaTest              = "3.2.3"
+  val jsonassert             = "1.5.0"
+  val lombok                 = "1.16.22"
+  val jUnit = "5.6.0"
 }
 
 val commonSettings = Seq(
@@ -31,7 +36,7 @@ val javaSettings = Seq(
   resolvers += Resolver.jcenterRepo,
   libraryDependencies ++= Seq(
     "dev.zio"          %% "izumi-reflect" % V.izumiReflect, // Sad times that we need to include this here...
-    "org.projectlombok" % "lombok"        % "1.16.22"
+    "org.projectlombok" % "lombok"        % V.lombok
   )
 )
 val publishSettings = Seq(
@@ -66,12 +71,12 @@ lazy val generator = project
   .settings(
     libraryDependencies ++= Seq(
       // Runtime deps
-      "com.babylonhealth.lit" %% "hl7"                    % "0.10.3",
-      "com.babylonhealth.lit" %% "fhirpath"               % "0.10.3",
-      "org.typelevel" %% "cats-effect"    % "2.3.1",
+      "com.babylonhealth.lit" %% "hl7"         % V.litVersionForGenerator,
+      "com.babylonhealth.lit" %% "fhirpath"    % V.litVersionForGenerator,
+      "org.typelevel"         %% "cats-effect" % "2.3.1",
       // Test deps
-      "org.scalatest"  %% "scalatest"  % "3.2.3" % Test,
-      "org.skyscreamer" % "jsonassert" % "1.5.0" % Test
+      "org.scalatest"  %% "scalatest"  % V.scalaTest  % Test,
+      "org.skyscreamer" % "jsonassert" % V.jsonassert % Test
     )
   )
   .dependsOn(common)
@@ -95,10 +100,9 @@ lazy val core = project
       "org.scala-lang.modules" %% "scala-parallel-collections" % "0.2.0",
       "dev.zio"                %% "izumi-reflect"              % V.izumiReflect,
       // Test
-      "org.scalatest"    %% "scalatest"         % "3.2.3" % Test,
-      "org.skyscreamer"   % "jsonassert"        % "1.5.0" % Test,
-      "org.junit.jupiter" % "junit-jupiter-api" % "5.6.0" % Test,
-      "com.chuusai"      %% "shapeless"         % "2.3.3" % Test
+      "org.scalatest"    %% "scalatest"         % V.scalaTest  % Test,
+      "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
+      "org.junit.jupiter" % "junit-jupiter-api" % V.jUnit      % Test
     )
   )
   .dependsOn(macros, common)
@@ -112,10 +116,9 @@ lazy val hl7 = project
     libraryDependencies ++= Seq(
       "dev.zio" %% "izumi-reflect" % V.izumiReflect,
       // Test
-      "org.scalatest"    %% "scalatest"         % "3.2.3" % Test,
-      "org.skyscreamer"   % "jsonassert"        % "1.5.0" % Test,
-      "org.junit.jupiter" % "junit-jupiter-api" % "5.6.0" % Test,
-      "com.chuusai"      %% "shapeless"         % "2.3.3" % Test
+      "org.scalatest"    %% "scalatest"         % V.scalaTest  % Test,
+      "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
+      "org.junit.jupiter" % "junit-jupiter-api" % V.jUnit      % Test
     )
   )
   .dependsOn(core, macros)
@@ -128,8 +131,8 @@ lazy val uscore = project
     scalacOptions += "-Ymacro-annotations",
     libraryDependencies ++= Seq(
       "dev.zio"        %% "izumi-reflect" % V.izumiReflect,
-      "org.scalatest"  %% "scalatest"     % "3.2.3" % Test,
-      "org.skyscreamer" % "jsonassert"    % "1.5.0" % Test)
+      "org.scalatest"  %% "scalatest"     % V.scalaTest  % Test,
+      "org.skyscreamer" % "jsonassert"    % V.jsonassert % Test)
   )
   .dependsOn(core, hl7, usbase, macros)
 
@@ -153,7 +156,7 @@ lazy val fhirpath = project
       "dev.zio"  %% "izumi-reflect" % V.izumiReflect,
       "org.slf4j" % "slf4j-api"     % "1.7.30",
       // Test
-      "org.scalatest" %% "scalatest" % "3.2.3" % Test
+      "org.scalatest" %% "scalatest" % V.scalaTest % Test
     )
   )
   .dependsOn(core, hl7, macros)
@@ -169,7 +172,7 @@ lazy val bench = project
       "ca.uhn.hapi.fhir"   % "hapi-fhir-structures-r4" % "4.0.3"             % Test,
       "org.jline"          % "jline"                   % "3.14.1"            % Test,
       "com.storm-enroute" %% "scalameter"              % V.scalaMeterVersion % Test,
-      "org.scalatest"     %% "scalatest"               % "3.2.3"             % Test
+      "org.scalatest"     %% "scalatest"               % V.scalaTest         % Test
     ),
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework"),
     logBuffered := false,
@@ -187,9 +190,9 @@ lazy val coreJava = project
     resolvers += Resolver.jcenterRepo,
     libraryDependencies ++= Seq(
       "dev.zio"          %% "izumi-reflect"     % V.izumiReflect, // Sad times that we need to include this here...
-      "org.projectlombok" % "lombok"            % "1.16.22",
+      "org.projectlombok" % "lombok"            % V.lombok,
       "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
-      "org.skyscreamer"   % "jsonassert"        % "1.5.0"                          % Test,
+      "org.skyscreamer"   % "jsonassert"        % V.jsonassert                     % Test,
       "org.junit.jupiter" % "junit-jupiter"     % "5.5.2"                          % Test
     )
   )
@@ -231,7 +234,7 @@ lazy val gproto = project
       "com.beust"           % "jcommander"         % "1.78",
       "org.reflections"     % "reflections"        % "0.9.12",
       "com.google.guava"    % "guava"              % "29.0-jre",
-      "org.scalatest"      %% "scalatest"          % "3.2.3" % Test
+      "org.scalatest"      %% "scalatest"          % V.scalaTest % Test
     ),
     javafmtOnCompile := false,
     crossPaths := false
@@ -244,7 +247,7 @@ lazy val protoshim = project
   .settings(
     libraryDependencies ++= Seq(
       "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
-      "org.scalatest" %% "scalatest"     % "3.2.3" % Test
+      "org.scalatest" %% "scalatest"     % V.scalaTest % Test
     )
   )
   .dependsOn(core, hl7, uscore, gproto)
