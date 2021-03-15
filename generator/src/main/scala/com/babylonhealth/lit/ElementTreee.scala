@@ -2,7 +2,8 @@ package com.babylonhealth.lit
 
 import scala.collection.concurrent.TrieMap
 
-import com.babylonhealth.lit.core.{ BINDING_STRENGTH, LitSeq }
+import com.babylonhealth.lit.core.LitSeq
+import com.babylonhealth.lit.hl7.BINDING_STRENGTH
 import com.babylonhealth.lit.hl7.model.ElementDefinition
 
 object ElementTreee extends Commonish with Logging {

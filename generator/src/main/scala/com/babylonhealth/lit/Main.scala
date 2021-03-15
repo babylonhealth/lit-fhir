@@ -2,8 +2,9 @@ package com.babylonhealth.lit
 
 import cats.effect.{ ConcurrentEffect, ExitCode, IO, IOApp, Timer }
 
-import com.babylonhealth.lit.core.{ BINDING_STRENGTH, LitSeq, UriStr }
+import com.babylonhealth.lit.core.LitSeq
 import com.babylonhealth.lit.core.serdes._
+import com.babylonhealth.lit.hl7.BINDING_STRENGTH
 import com.babylonhealth.lit.hl7.model.{ CodeSystem, ValueSet }
 
 trait RawGenerator extends Logging with FileUtils {

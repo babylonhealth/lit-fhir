@@ -10,7 +10,7 @@ import io.circe.parser.decode
 
 import com.babylonhealth.lit.ElementTreee._
 import com.babylonhealth.lit.core.serdes.objectDecoder
-import com.babylonhealth.lit.core.BINDING_STRENGTH
+import com.babylonhealth.lit.hl7.BINDING_STRENGTH
 import com.babylonhealth.lit.hl7.model.{ElementDefinition, StructureDefinition}
 import com.babylonhealth.lit.languages.{JavaGenerator, ScalaCodegen, TypescriptCodegen}
 
