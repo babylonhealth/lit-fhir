@@ -190,9 +190,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
       throwable.getMessage shouldEqual "Cannot ascribe type String \\/ Boolean \\/ Int to type LTag(Double)"
     }
     "choice won't even compile if type is unascribable" in {
-      assertTypeError(
-        "TestUnionWrapper2(choice(0.3))",
-        "Cannot prove that Double is a viable type for union String \\\\/ Boolean \\\\/ Int")
+      assertTypeError("TestUnionWrapper2(choice(0.3))")
     }
   }
 
