@@ -2,7 +2,6 @@
 .vscode/
 .bloop/
 .metals/
-project/
 .DS_Store
 **/target
 .commit-id
