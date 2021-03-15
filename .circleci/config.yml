@@ -239,3 +239,10 @@ workflows:
           filters:
             tags:
               only: /g^\d+\.\d+\.\d+$/
+      - publish-generator:
+          context: babylon
+          filters:
+            tags:
+              only: /g^\d+\.\d+\.\d+$/
+          requires:
+            - build
