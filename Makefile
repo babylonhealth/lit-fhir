@@ -52,7 +52,8 @@ publish:
 	$(SBT) protoshim/publish
 
 publish-generator:
-	$(SBT_G) common/publish generator/publish
+	$(SBT_G) common/publish || echo "cannot publish commmon. Continuing anyway"
+	$(SBT_G) generator/publish
 publish-local-generator:
 	$(SBT_G) common/publishLocal generator/publishLocal
 
