@@ -48,8 +48,8 @@ A tag of the form `g\d+.\d+.\d+` will publish the generator module with that sem
 
 ## Maintainers
 
+Hugh Simpson (hugh.simpson@babylonhealth.com)
+
 Felix Chapman (felix.chapman@babylonhealth.com)
 
 Greg McKay (gregory.mckay@babylonhealth.com)
-
-Hugh Simpson (hugh.simpson@babylonhealth.com)
