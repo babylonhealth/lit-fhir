@@ -6,6 +6,7 @@ import java.nio.file.Files
 
 import scala.util.Try
 
+import cats.effect.IO
 import io.circe.Json
 import io.circe.parser.parse
 
@@ -22,18 +23,15 @@ trait FileUtils extends common.FileUtils {
 
   def getAsJson(filename: String): Json = parse(slurpRsc(filename)).fold(throw _, identity)
 
-  def expandGlob(filePathWithGlob: String): Seq[File] = filePathWithGlob.split("/").foldLeft(Seq.empty[File]) {
-    case (Nil, ".") => Seq(new File(System.getProperty("user.dir")))
-    case (fs, ".") => fs
-    case (Nil, "..") => Seq(new File(System.getProperty("user.dir")).getParentFile)
+  def expandGlob(filePathWithGlob: String): IO[Seq[File]] = IO(filePathWithGlob.split("/").foldLeft(Seq.empty[File]) {
+    case (Nil, ".")   => Seq(new File(System.getProperty("user.dir")))
+    case (fs, ".")    => fs
+    case (Nil, "..")  => Seq(new File(System.getProperty("user.dir")).getParentFile)
     case (file, "..") => file.map(_.getParentFile).distinct
     case (Nil, next) if !next.contains("*") =>
       val file = new File(next)
       if (file.exists()) Seq(file)
-      else {
-        println(s"Couldn't expand path $filePathWithGlob -- $next does not exist")
-        sys.exit(1)
-      }
+      else throw new RuntimeException(s"Couldn't expand path $filePathWithGlob -- $next does not exist")
     case (files, "*")  => files.filter(_.isDirectory).flatMap(_.listFiles)
     case (files, "**") => ??? // TODO: handle this? Or not bother?
     case (files, next) if !next.contains("*") =>
@@ -43,7 +41,7 @@ trait FileUtils extends common.FileUtils {
         .filter(_.isDirectory)
         .flatMap(_.listFiles)
         .filter(_.getName.matches(globbyFilename.replaceAllLiterally("*", ".*")))
-  }
+  })
 
   def emptyCreate(dirName: String): Unit = {
     val dir = new File(dirName)

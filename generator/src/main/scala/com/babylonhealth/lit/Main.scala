@@ -1,6 +1,9 @@
 package com.babylonhealth.lit
 
+import scala.util.Try
+
 import cats.effect.{ ConcurrentEffect, ExitCode, IO, IOApp, Timer }
+import cats.syntax.traverse._
 
 import com.babylonhealth.lit.core.LitSeq
 import com.babylonhealth.lit.core.serdes._
@@ -28,6 +31,8 @@ trait DefaultPlugins extends FileUtils {
     })
   private lazy val defaultCodeSystems: Map[String, CodeSystem] =
     expandGlob("./fhir/spec/hl7.fhir.core/4.0.1/package/CodeSystem-*")
+      .handleErrorWith { _ => println("Could not find code systems"); sys.exit(1) }
+      .unsafeRunSync()
       .map(getFileAsJson)
       .map(_.as[CodeSystem].fold(throw _, identity))
       .map(vs => vs.url.get -> vs)
@@ -72,6 +77,8 @@ trait DefaultPlugins extends FileUtils {
   }
   private lazy val defaultValueSets: Map[String, CodeValueSet] =
     expandGlob("./fhir/spec/hl7.fhir.core/4.0.1/package/ValueSet-*")
+      .handleErrorWith { _ => println("Could not find value sets"); sys.exit(1) }
+      .unsafeRunSync()
       .map(getFileAsJson)
       .map(_.as[ValueSet].fold(throw _, identity))
       .flatMap(toCodeValueSet)
@@ -92,8 +99,11 @@ trait DefaultPlugins extends FileUtils {
 object Main extends IOApp with IOGenerator with DefaultPlugins
 
 case class MainArgs(
-    modelOverrides: Seq[SourceFile] = ArgParser.modelsFromString(
-      "core=generator/src/main/resources/resourceModel/core/*.json;hl7=generator/src/main/resources/resourceModel/hl7/*.json"),
+    modelOverrides: Seq[SourceFile] = ArgParser
+      .modelsFromString(
+        "core=generator/src/main/resources/resourceModel/core/*.json;hl7=generator/src/main/resources/resourceModel/hl7/*.json")
+      .handleErrorWith(t => IO(println("Could not find default model overrides", t)).as(Nil))
+      .unsafeRunSync(),
     models: Seq[SourceFile] = Nil,
     javaPackageSuffix: Option[String] = None,
     typescriptDir: Option[String] = None,
@@ -102,31 +112,39 @@ case class MainArgs(
 
 object ArgParser extends ArgParser
 trait ArgParser {
-  def expandPaths(target: String, s: String): Seq[SourceFile] = s
+  def expandPaths(target: String, s: String): IO[Vector[SourceFile]] = s
     .split(',')
-    .flatMap(FileUtils.expandGlob)
-    .map(SourceFile(target, _))
-    .flatMap {
-      case x if x.file.isDirectory => x.file.listFiles().filter(!_.isDirectory).map(SourceFile(x.targetModule, _))
-      case x                       => Array(x)
-    }
-    .filter(_.file.getName.endsWith(".json"))
+    .toVector
+    .flatTraverse(FileUtils.expandGlob(_).map(_.toVector))
+    .map(
+      _.map(SourceFile(target, _))
+        .flatMap {
+          case x if x.file.isDirectory => x.file.listFiles().filter(!_.isDirectory).map(SourceFile(x.targetModule, _))
+          case x                       => Array(x)
+        }
+        .filter(_.file.getName.endsWith(".json")))
   private def moduleDependenciesFromString(s: String): ModuleDependencies =
     ModuleDependencies(s.split(";").filter(_.contains('<')).map { _.split("<", 2) }.map { case Array(l, r) =>
       l.trim -> r.trim
     })
-  def modelsFromString(s: String): Seq[SourceFile] = s
+  def modelsFromString(s: String): IO[Seq[SourceFile]] = s
     .split(";")
-    .flatMap { targetNPath =>
+    .toVector
+    .flatTraverse { targetNPath =>
       val Array(target, pathstr) = targetNPath.split("=", 2)
       expandPaths(target, pathstr)
     }
+  def modelsFromStringUnsafe(s: String): Seq[SourceFile] =
+    modelsFromString(s)
+      .handleErrorWith { t => println("Cannot locate models", t); sys.exit(1) }
+      .unsafeRunSync()
+
   private val argRegex   = """^--(\w+)=["']?([^"']+)["']?$""".r
   private val noArgRegex = """^--(\w+)$""".r
   def parseArgs(args: Seq[String]): MainArgs = args.foldLeft(MainArgs()) { (args, next) =>
     next match {
-      case argRegex("modelOverrides", s)     => args.copy(modelOverrides = modelsFromString(s))
-      case argRegex("models", s)             => args.copy(models = modelsFromString(s))
+      case argRegex("modelOverrides", s)     => args.copy(modelOverrides = modelsFromStringUnsafe(s))
+      case argRegex("models", s)             => args.copy(models = modelsFromStringUnsafe(s))
       case argRegex("javaPackageSuffix", s)  => args.copy(javaPackageSuffix = Some(s))
       case argRegex("typescriptDir", s)      => args.copy(typescriptDir = Some(s))
       case argRegex("moduleDependencies", s) => args.copy(moduleDependencies = moduleDependenciesFromString(s))
