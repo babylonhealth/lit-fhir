@@ -88,9 +88,9 @@ case class BaseField(
     case squareReg(n) => n
     case n            => n
   }
-  def capitalName   = noParensName.capitalize
-  val backtickRegex = """`(.+)`""".r
-  def javaName: String = CodegenUtils.fieldJavaName(noParensName)
+  def capitalName            = noParensName.capitalize
+  val backtickRegex          = """`(.+)`""".r
+  def javaName: String       = CodegenUtils.fieldJavaName(noParensName)
   def scalaClassName: String = CodegenUtils.profileScalaName(className)
   def getAllEnumerations: Map[String, CodeValueSet] =
     valueEnumeration.map(x => x.valueSet -> x).toMap ++ childFields.flatMap(_.getAllEnumerations)
@@ -193,7 +193,7 @@ case class JavaClassGenInfo(builders: Seq[ClassGenInfo], codes: Seq[ClassGenInfo
 
 case class AllGeneratedFiles(
     scalaClassGenInfo: Seq[ClassGenInfo],
-    javaClassGenInfo: JavaClassGenInfo,
+    javaClassGenInfo: Option[JavaClassGenInfo],
     typescriptClassGenInfo: Option[Seq[ClassGenInfo]])
 
 case class ElementWithSlices(

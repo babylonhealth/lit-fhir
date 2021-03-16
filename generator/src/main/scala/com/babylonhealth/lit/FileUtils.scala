@@ -9,6 +9,7 @@ import scala.util.Try
 import io.circe.Json
 import io.circe.parser.parse
 
+object FileUtils extends FileUtils
 trait FileUtils extends common.FileUtils {
   def getFileAsJson(file: File): Json =
     if (!file.exists()) {
