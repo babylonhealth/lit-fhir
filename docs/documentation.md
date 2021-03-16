@@ -220,7 +220,18 @@ Observation rsc = LitUtils.decodeWithParams(Observation.class, json, decoderPara
 ### Choice construction
 Generally choices are not directly constructed in Java, and are instead the raw values are fed directly into the builders.
 Because Java doesn't have Scala's notion of witness implicits, we cannot infer typesafety of choice construction at compile time - a choice constructed with an invalid value with throw at runtime. Adding more typesafety to the Java builders via more codegen to create disambiguation targets is under consideration
-Since we subtype primitives in our representation of certain FHIR types, we attempt to disambiguate based on the runtime type and there are occasional ambiguities. To pick the desired choice type in such instances you will have to use the `ParamDistinguisher` class to explicitly specify the desired type when passing the value to the builder. e.g `ParamDistinguisher.choose(42, "PositiveInt")`. This is fairly rare in practice, and manifests more often in optional fields. In that case, we generate two methods on the builder - one that takes a suffix for ambiguous runtime types, and one that does not. 
+Since we subtype primitives in our representation of certain FHIR types, we attempt to disambiguate based on the runtime type and there are occasional ambiguities. To pick the desired choice type in such instances you will have to use the `ParamDistinguisher` class to explicitly specify the desired type when passing the value to the builder. e.g `ParamDistinguisher.choose(42, "PositiveInt")`. This is fairly rare in practice, and manifests more often in optional fields. In that case, we generate two methods on the builder - one that takes a suffix for ambiguous runtime types, and one that does not.
+Examples: 
+```
+// optional non-ambiguous param
+new ObservationBuilder(new CodeableConceptBuilder().withText("code for observation").build(), ObservationStatus.UNKNOWN)
+    .withEffective(FHIRDateTime.now()) // this one is the choice field
+    .build();
+// optional ambiguous param
+new ValueSet_Expansion_ParameterBuilder("foo").withValue("Code", "1234567").build();
+// required ambiguous param
+new Contract_Term_Offer_AnswerBuilder(ParamDistinguisher.choose("http://foo.bar", "Uri")).build();
+```
 
 ### Choice extraction
 To get the value within a choice, whereas in scala you would use `c.as[FHIRDateTime]` (for example), in java we would call `c.valueToClass(FHIRDateTime.class)`. This will extract any value with a matching runtime class, which can prove in some instances to be too liberal. The workaround in such cases is to perform a check on the suffix -- e.g. `c.suffix().equals("PositiveInt") ? (Integer) c.value() : null`
