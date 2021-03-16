@@ -218,8 +218,12 @@ Observation rsc = LitUtils.decodeWithParams(Observation.class, json, decoderPara
 ```
 
 ### Choice construction
-Because Java doesn't have Scala's notion of witness implicits, we cannot infer typesafety of choice construction at compile time - a choice constructed with an invalid value with throw at runtime.
-Since we subtype primitives in our representation of certain FHIR types, we attempt to disambiguate based on the runtime type and there are occasional ambiguities. To pick the desired choice type in such instances you will have to use the `ParamDistinguisher` class to explicitly specify the desired type when passing the value to the builder. e.g `ParamDistinguisher.choose(42, "PositiveInt")`. This is fairly rare in practice, with only 11 classes (at time of writing) requiring this construction, and the vast majority of classes are able to infer the FHIR type based entirely on the runtime class without the boilerplate 
+Generally choices are not directly constructed in Java, and are instead the raw values are fed directly into the builders.
+Because Java doesn't have Scala's notion of witness implicits, we cannot infer typesafety of choice construction at compile time - a choice constructed with an invalid value with throw at runtime. Adding more typesafety to the Java builders via more codegen to create disambiguation targets is under consideration
+Since we subtype primitives in our representation of certain FHIR types, we attempt to disambiguate based on the runtime type and there are occasional ambiguities. To pick the desired choice type in such instances you will have to use the `ParamDistinguisher` class to explicitly specify the desired type when passing the value to the builder. e.g `ParamDistinguisher.choose(42, "PositiveInt")`. This is fairly rare in practice, and manifests more often in optional fields. In that case, we generate two methods on the builder - one that takes a suffix for ambiguous runtime types, and one that does not. 
+
+### Choice extraction
+To get the value within a choice, whereas in scala you would use `c.as[FHIRDateTime]` (for example), in java we would call `c.valueToClass(FHIRDateTime.class)`. This will extract any value with a matching runtime class, which can prove in some instances to be too liberal. The workaround in such cases is to perform a check on the suffix -- e.g. `c.suffix().equals("PositiveInt") ? (Integer) c.value() : null`
 
 ### Other warts with no good workaround (yet?)
 
