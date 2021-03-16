@@ -228,4 +228,26 @@ If you're using intelliJ the highlighting is misleading here, since it will info
 
 ## Generation
 
-Lit can be used to generate new class models from your existing fhir profiles. Simply specify the module name and the location of the profiles in the args for the generator, when running it. Module dependencies can also be specified, in case your profiles depend on ones defined outside of the core and hl7 modules.  
+Lit can be used to generate new class models from your existing fhir profiles. Simply specify the module name and the location of the profiles in the args for the generator, when running it. Module dependencies can also be specified, in case your profiles depend on ones defined outside of the core and hl7 modules. e.g.
+// TODO: this really hammers home the issues with how the generator is currently called. At the very least we need to have a saner directory structure the core files, named args, and default arguments.
+```
+# Should just be generator/src/main/resources/resourceModel/core/*.json 
+CORE_FILES=$(for i in address Age annotation attachment backboneElement codeableConcept coding contactDetail contactPoint Contributor Count DataRequirement Distance dosage duration element Expression extension humanName identifier meta money ParameterDefinition period quantity range ratio reference RelatedArtifact Resource SampledData Signature timing TriggerDefinition UsageContext; do echo "./generator/src/main/resources/resourceModel/$${i}.json"; done | xargs | sed 's/ /,/g')
+# Should just be generator/src/main/resources/resourceModel/hl7/*.json
+HL7_FILES=$(ls generator/src/main/resources/resourceModel/*.json | grep -vE '/(address|Age|annotation|attachment|backboneElement|codeableConcept|coding|contactDetail|contactPoint|Contributor|Count|DataRequirement|Distance|dosage|duration|element|Expression|extension|humanName|identifier|meta|money|ParameterDefinition|period|quantity|range|ratio|reference|RelatedArtifact|Resource|SampledData|Signature|timing|TriggerDefinition|UsageContext).json'  | xargs | sed -E 's:(^| ):\1./:g' | sed 's/ /,/g')
+'project generator' 'run \
+        # might be redundant, but might not. Not too bad. Think I'll keep it
+        "generate" \
+        # should be --modelOverrides="core=$(CORE_FILES);hl7=$(HL7_FILES)" and also be the default, and thus be omittable.
+        "$(CORE_FILES)" "$(HL7_FILES)" \
+        # should be --models="..."
+		"usbase=fhir/spec/hl7.fhir.r4.examples/4.0.1/package/StructureDefinition-*;uscore=fhir/spec/hl7.fhir.us.core/3.1.0/package/StructureDefinition-*" \
+		# should be --javaPackageSuffix=_java, and when unspecified we shouldn't generate java code
+		"_java" \
+		# should be --typescriptDir=...; when unspecified, we shouldn't generate typescript code -- this .ignore hack shouldn't be necessary
+		"./.ignore/typescript" \
+		# should be --modelDependencies="usbase<uscore"; should default to empty string
+		"usbase<uscore" \
+		# should be inverted as `--dryRun=false`, default to false, and be specifiable as just `--dryRun`
+		true'
+```

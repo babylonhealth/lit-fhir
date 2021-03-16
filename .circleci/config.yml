@@ -238,4 +238,4 @@ workflows:
           context: babylon
           filters:
             tags:
-              only: /^g\d+\.\d+\.\d+$/
+              only: /^g\d+\.\d+\.\d+(-\d+)?$/

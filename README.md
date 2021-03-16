@@ -1,6 +1,9 @@
 # lit
 
-Opinionated experimental library for easily constructing v4.0.1 compatible FHIR resources. [About Lit](https://github.com/babylonhealth/lit-fhir/blob/master/docs/documentation.md)
+Opinionated experimental library for easily constructing v4.0.1 compatible FHIR resources.
+Supports generating Scala and Java from FHIR structureDefinition and valueSet jsons, with _extremely early days and very tentative_ support for transforming from the model at [Google's open-sourced FHIR stuff](https://github.com/google/fhir).
+
+[About Lit](https://github.com/babylonhealth/lit-fhir/blob/master/docs/documentation.md)
 
 ---
 
@@ -29,7 +32,7 @@ make test
 ## Releasing
 
 A tag of the form `\d+.\d+.\d+` will publish the generated modules with that semver
-A tag of the form `g\d+.\d+.\d+` will publish the generator module with that semver (and the common module, if not already released with that semver. For that reason, generator module should always be tagged with whatever version of the generated libs it currently depends on)
+A tag of the form `g\d+.\d+.\d+(-\d+)?` will publish the generator module with that semver (and the common module, if not already released with that semver. For that reason, generator module should always be tagged with whatever version of the generated libs it currently depends on)
 
 
 ---
