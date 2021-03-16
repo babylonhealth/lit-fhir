@@ -147,7 +147,85 @@ Extensions and ids on primitive fields are held on the parent class, rather than
 - `setExtensions` -- e.g. `chol.setExtensions(_.effective)(LitSeq(myExtension))`
 - `updateExtensions` -- e.g. `chol.updateExtensions(_.effective)(_.map(modifyExtension))`
 
+### Warts with no good workaround (yet?)
+
+IntelliJ no longer correctly finds implicit witnesses for `choice(..)` construction since we moved from scala's TypeTag to izumi's LightTypeTag. Type inference from scalac still works, but this can be a source of annoyance nonetheless.
+
 ## Java interop
 
 Most functionality of this library is available from Java without much hassle - however, there are some key differences in the approach:
- 
+
+### Dependencies
+
+There are corresponding dependencies that're specific to Java to enable a nicer experience. These are published as ${module}java, and depend on the scala module, as well as any parent java modules - so the dependency for hl7 java in gradle is "com.babylonhealth.lit:hl7java:$litVersion", and depends on "com.babylonhealth.lit:hl7:$litVersion" and "com.babylonhealth.lit:corejava:$litVersion"
+
+### Enumerations for value sets
+
+The enumeratum objects in Scala can't be easily referenced by Java without nasty `.FOO$.MODULE$` syntax, so we provide some static aliases. i.e. instead of
+```
+import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
+...
+var foo = OBSERVATION_STATUS.AMENDED$.MODULE$;
+``` 
+you can instead use
+```
+import com.babylonhealth.lit.hl7_java.codes.ObservationStatus;
+...
+var foo = ObservationStatus.AMENDED;
+``` 
+
+### Classes and builders
+
+Due to the lack of default arguments in Java, classes have builders defined in the companion java module. Non-optional arguments are required in the builder contructor, and optional arguments can be passed via methods on the constructor. So to build an Observation, you would do something like:
+```
+import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.hl7_java.codes.ObservationStatus;
+...
+var observation = new ObservationBuilder(
+                new CodeableConceptBuilder().withText("code for observation").build(),
+                ObservationStatus.UNKNOWN)
+            .withIssued(issued)
+            .withValue(new QuantityBuilder().build())
+            .withCategory(
+                new CodeableConceptBuilder().withText("Cat 1").build(),
+                new CodeableConceptBuilder().withText("Cat 2").build())
+            .build();
+```
+
+### Encoding and decoding
+
+The corejava module contains a `LitUtils` class with some convenience methods since `circe` is an implicit-dependent serde lib and can't be trivially used from Java.
+```
+import com.babylonhealth.lit.core_java.LitUtils;
+...
+// Decode
+Resource rsc = LitUtils.decodeResource(json);
+// Decode with specific target type
+Observation obs = LitUtils.decode(Observation.class, json);
+// Encode
+String encoded = LitUtils.encode(obs);
+// Decode with local params
+DecoderParams decoderParams =
+      new DecoderParams(
+          Config.tolerantBundleDecoding(),
+          Config.tolerateProfileErrors(),
+          Config.flexibleCardinality(),
+          Config.decodePrimitiveExtensions(),
+          Config.createPhantomValues(),
+          Config.ignoreUnknownFields(),
+          Config.logOnBadProfile());
+Observation rsc = LitUtils.decodeWithParams(Observation.class, json, decoderParams);
+```
+
+### Choice construction
+Because Java doesn't have Scala's notion of witness implicits, we cannot infer typesafety of choice construction at compile time - a choice constructed with an invalid value with throw at runtime.
+Since we subtype primitives in our representation of certain FHIR types, we attempt to disambiguate based on the runtime type and there are occasional ambiguities. To pick the desired choice type in such instances you will have to use the `ParamDistinguisher` class to explicitly specify the desired type when passing the value to the builder. e.g `ParamDistinguisher.choose(42, "PositiveInt")`. This is fairly rare in practice, with only 11 classes (at time of writing) requiring this construction, and the vast majority of classes are able to infer the FHIR type based entirely on the runtime class without the boilerplate 
+
+### Other warts with no good workaround (yet?)
+
+Structural elements for profiles are defined within the companion object, and scalac munges the names for this interestingly... an entry for a bundle has type `Bundle.Entry` in both Java and Scala, however once you get beyond a single level of nesting, this changes, so the 'response' field for a Bundle.entry has type `Bundle.Entry.Response` in Scala, but `Bundle$Entry$Response` in Java.
+If you're using intelliJ the highlighting is misleading here, since it will inform you that `Bundle$Entry$Response` doesn't exist and `Bundle.Entry.Response` is the correct type. This is untrue, do not be misled. To avoid highlighting errors when using lit from Java, prefer `var foo` over `Bundle$Entry$Response foo` where possible. For function return or argument types, there's no really nice solution... 
+
+## Generation
+
+Lit can be used to generate new class models from your existing fhir profiles. Simply specify the module name and the location of the profiles in the args for the generator, when running it. Module dependencies can also be specified, in case your profiles depend on ones defined outside of the core and hl7 modules.  
