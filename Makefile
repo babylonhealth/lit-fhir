@@ -4,8 +4,6 @@ SBT=sbt -DARTIFACTORY_USER="${ARTIFACTORY_USER}" -DARTIFACTORY_PWD="${ARTIFACTOR
 SBT_G=sbt -DARTIFACTORY_USER="${ARTIFACTORY_USER}" -DARTIFACTORY_PWD="${ARTIFACTORY_PWD}" -Dversion="${G_VERSION}"
 # Why sed and not grep, you ask? Because grep on mac takes the -E flag, but takes -P on *nix
 BENCH_NUMBER=$(shell echo ${CIRCLE_JOB} | sed 's/benchmark//')
-CORE_FILES=$(shell for i in address Age annotation attachment backboneElement codeableConcept coding contactDetail contactPoint Contributor Count DataRequirement Distance dosage duration element Expression extension humanName identifier meta money ParameterDefinition period quantity range ratio reference RelatedArtifact Resource SampledData Signature timing TriggerDefinition UsageContext; do echo "./generator/src/main/resources/resourceModel/$${i}.json"; done | xargs | sed 's/ /,/g')
-HL7_FILES=$(shell ls generator/src/main/resources/resourceModel/*.json | grep -vE '/(address|Age|annotation|attachment|backboneElement|codeableConcept|coding|contactDetail|contactPoint|Contributor|Count|DataRequirement|Distance|dosage|duration|element|Expression|extension|humanName|identifier|meta|money|ParameterDefinition|period|quantity|range|ratio|reference|RelatedArtifact|Resource|SampledData|Signature|timing|TriggerDefinition|UsageContext).json'  | xargs | sed -E 's:(^| ):\1./:g' | sed 's/ /,/g')
 CORE_MODULES=core hl7
 US_MODULES=usbase uscore
 ALL_MODULES=$(CORE_MODULES) $(US_MODULES)
@@ -76,23 +74,18 @@ publish-all-local:
 	$(SBT) common/publishLocal common/publishM2 macros/publishLocal macros/publishM2 $(foreach i,$(ALL_MODULES),$i/publishLocal $i/publishM2 $iJava/publishLocal $iJava/publishM2)
 
 build-hl7-class-models:
-	$(SBT) 'project generator' 'run "generate" "$(CORE_FILES)" "$(HL7_FILES)" \
-		"./.ignore/dummy=" \
-		"_java" \
-		"./generated_typescript" \
-		"" \
-		true'
+	$(SBT) 'project generator' 'run "generate" \
+		--javaPackageSuffix=_java \
+		--typescriptDir="./generated_typescript"'
 	$(SBT) $(foreach i,$(CORE_MODULES),$i/scalafmtAll)
 	$(SBT) $(foreach i,$(CORE_MODULES),$iJava/javafmt)
 	./apply_patches.sh
 
 build-all-class-models:
-	$(SBT) 'project generator' 'run "generate" "$(CORE_FILES)" "$(HL7_FILES)" \
-		"usbase=fhir/spec/hl7.fhir.r4.examples/4.0.1/package/StructureDefinition-*;uscore=fhir/spec/hl7.fhir.us.core/3.1.0/package/StructureDefinition-*" \
-		"_java" \
-		"./.ignore/typescript" \
-		"usbase<uscore" \
-		true'
+	$(SBT) 'project generator' 'run "generate" \
+		--models="usbase=fhir/spec/hl7.fhir.r4.examples/4.0.1/package/StructureDefinition-*;uscore=fhir/spec/hl7.fhir.us.core/3.1.0/package/StructureDefinition-*" \
+		--javaPackageSuffix=_java \
+		--moduleDependencies="usbase<uscore"'
 	$(SBT) $(foreach i,$(ALL_MODULES),$i/scalafmtAll)
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/javafmt)
 	./apply_patches.sh

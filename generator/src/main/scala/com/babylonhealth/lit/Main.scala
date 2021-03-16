@@ -8,47 +8,23 @@ import com.babylonhealth.lit.hl7.BINDING_STRENGTH
 import com.babylonhealth.lit.hl7.model.{ CodeSystem, ValueSet }
 
 trait RawGenerator extends Logging with FileUtils {
-  def expandPaths(target: String, s: String): Seq[SourceFile] = s
-    .split(',')
-    .flatMap(expandGlob)
-    .map(SourceFile(target, _))
-    .flatMap {
-      case x if x.file.isDirectory => x.file.listFiles().filter(!_.isDirectory).map(SourceFile(x.targetModule, _))
-      case x                       => Array(x)
-    }
-    .filter(_.file.getName.endsWith(".json"))
   def doRawGen(
-      coreFiles: String,
-      hl7Files: String,
-      modelLocations: String,
-      javaDirSuffix: Option[String],
-      typescriptOutputLocation: Option[String],
-      moduleDependencies: ModuleDependencies,
-      writeCode: Boolean,
+      args: MainArgs,
       extensions: Map[String, Seq[ClassGenInfo]],
       fetchValueSet: (String, BINDING_STRENGTH) => Option[CodeValueSet]): Unit = {
-//    println(s"|-> modelLocations = $modelLocations")
-    val coreModels: Seq[SourceFile] = expandPaths("core", coreFiles)
-    val hl7Models: Seq[SourceFile]  = expandPaths("hl7", hl7Files)
-    val allModels: Seq[SourceFile] = modelLocations
-      .split(";")
-      .flatMap { targetNPath =>
-        val Array(target, pathstr) = targetNPath.split("=", 2)
-        expandPaths(target, pathstr)
-      }
-    val overridingModels = coreModels ++ hl7Models
-    println(s"${overridingModels size} core models (including ${overridingModels.take(2).mkString(" & ")})")
-    println(s"${allModels.size} domain models (including ${allModels.take(2).mkString(" & ")})")
+    println(s"${args.modelOverrides.size} core models (including ${args.modelOverrides.take(2).mkString(" & ")})")
+    println(s"${args.models.size} domain models (including ${args.models.take(2).mkString(" & ")})")
     Thread.sleep(5000L)
     Autogenerator.generateAndWriteOutput(
-      overridingModels,
-      allModels,
-      javaDirSuffix.getOrElse("_java"),
-      typescriptOutputLocation,
-      moduleDependencies,
-      writeCode = writeCode,
+      args.modelOverrides,
+      args.models,
+      args.javaPackageSuffix,
+      args.typescriptDir,
+      args.moduleDependencies,
+      writeCode = !args.dryRun,
       extensions,
-      fetchValueSet)
+      fetchValueSet
+    )
   }
 }
 
@@ -80,10 +56,12 @@ trait DefaultPlugins extends FileUtils {
       i.concept.map(c => CodeEnum(c.code, c.display, i.system))
     }
     val allConcepts = (enums ++ concepts ++ enums2)
-    /// not all references will contain all the same information if, for example, one is from the codesystem and one from the valueset.
-    // prefer ones with more information
+      /// not all references will contain all the same information if, for example, one is from the codesystem and one from the valueset.
+      // prefer ones with more information
       .sortBy { x => (if (x.system.isDefined) -2 else 0) + (if (x.name.isDefined) -1 else 0) }
-      .map{ if (Config.useLabelAsDisplayNameForEnums) c => c.copy(name = c.name.orElse(Some(c.stringValue))) else identity }
+      .map {
+        if (Config.useLabelAsDisplayNameForEnums) c => c.copy(name = c.name.orElse(Some(c.stringValue))) else identity
+      }
       .distinctBy(_.stringValue)
       .filterNot(c => c.system.exists(excludedSystems) || excludedCodes(c.stringValue))
     if (allConcepts.isEmpty) {
@@ -122,7 +100,52 @@ trait DefaultPlugins extends FileUtils {
 
 object Main extends IOApp with IOGenerator with DefaultPlugins
 
-trait IOGenerator extends RawGenerator { this: IOApp =>
+case class MainArgs(
+    modelOverrides: Seq[SourceFile] = ArgParser.modelsFromString(
+      "core=generator/src/main/resources/resourceModel/core/*.json;hl7=generator/src/main/resources/resourceModel/hl7/*.json"),
+    models: Seq[SourceFile] = Nil,
+    javaPackageSuffix: Option[String] = None,
+    typescriptDir: Option[String] = None,
+    moduleDependencies: ModuleDependencies = ModuleDependencies(Nil),
+    dryRun: Boolean = false)
+
+object ArgParser extends ArgParser
+trait ArgParser {
+  def expandPaths(target: String, s: String): Seq[SourceFile] = s
+    .split(',')
+    .flatMap(FileUtils.expandGlob)
+    .map(SourceFile(target, _))
+    .flatMap {
+      case x if x.file.isDirectory => x.file.listFiles().filter(!_.isDirectory).map(SourceFile(x.targetModule, _))
+      case x                       => Array(x)
+    }
+    .filter(_.file.getName.endsWith(".json"))
+  private def moduleDependenciesFromString(s: String): ModuleDependencies =
+    ModuleDependencies(s.split(";").filter(_.contains('<')).map { _.split("<", 2) }.map { case Array(l, r) =>
+      l.trim -> r.trim
+    })
+  def modelsFromString(s: String): Seq[SourceFile] = s
+    .split(";")
+    .flatMap { targetNPath =>
+      val Array(target, pathstr) = targetNPath.split("=", 2)
+      expandPaths(target, pathstr)
+    }
+  private val argRegex   = """^--(\w+)=["']?([^"']+)["']?$""".r
+  private val noArgRegex = """^--(\w)$""".r
+  def parseArgs(args: Seq[String]): MainArgs = args.foldLeft(MainArgs()) { (args, next) =>
+    next match {
+      case argRegex("modelOverrides", s)     => args.copy(modelOverrides = modelsFromString(s))
+      case argRegex("models", s)             => args.copy(models = modelsFromString(s))
+      case argRegex("javaPackageSuffix", s)  => args.copy(javaPackageSuffix = Some(s))
+      case argRegex("typescriptDir", s)      => args.copy(typescriptDir = Some(s))
+      case argRegex("moduleDependencies", s) => args.copy(moduleDependencies = moduleDependenciesFromString(s))
+      case argRegex("dryRun", b)             => args.copy(dryRun = b.toBoolean)
+      case noArgRegex("dryRun")              => args.copy(dryRun = true)
+      case x                                 => println(s"Could not parse arg $x"); args
+    }
+  }
+}
+trait IOGenerator extends RawGenerator with ArgParser { this: IOApp =>
   def genPlugins(implicit
       ce: ConcurrentEffect[IO],
       T: Timer[IO]
@@ -133,55 +156,9 @@ trait IOGenerator extends RawGenerator { this: IOApp =>
   override def run(args: List[String]): IO[ExitCode] = {
     val (extensions, fetchValueSets) = genPlugins
     args match {
-      case List("generate", modelLocation) => // todo: named args
-        doRawGen("", "", modelLocation, None, None, ModuleDependencies(Nil), true, extensions, fetchValueSets)
-      case List("generate", modelLocation, javaOutputLocation) =>
-        doRawGen(
-          "",
-          "",
-          modelLocation,
-          Some(javaOutputLocation),
-          None,
-          ModuleDependencies(Nil),
-          true,
-          extensions,
-          fetchValueSets)
-      case List("generate", modelLocation, javaOutputLocation, typescriptOutputLocation) =>
-        doRawGen(
-          "",
-          "",
-          modelLocation,
-          Some(javaOutputLocation),
-          Some(typescriptOutputLocation),
-          ModuleDependencies(Nil),
-          true,
-          extensions,
-          fetchValueSets)
-      case List(
-            "generate",
-            coreFiles,
-            hl7Files,
-            modelLocation,
-            javaOutputLocation,
-            typescriptOutputLocation,
-            moduleDependencies,
-            writeCode) =>
-        doRawGen(
-          coreFiles,
-          hl7Files,
-          modelLocation,
-          Some(javaOutputLocation),
-          Some(typescriptOutputLocation),
-          ModuleDependencies(
-            moduleDependencies.split(";").filter(_.contains('<')).map { _.split("<", 2) }.map { case Array(l, r) =>
-              l.trim -> r.trim
-            }),
-          writeCode.toBoolean,
-          extensions,
-          fetchValueSets
-        )
-      case _ =>
-        doRawGen("", "", defaultModelLocations, None, None, ModuleDependencies(Nil), true, extensions, fetchValueSets)
+      case "generate" +: args =>
+        doRawGen(parseArgs(args), extensions, fetchValueSets)
+      case other => println(s"cannot parse args $other")
     }
     IO(ExitCode.Success)
   }

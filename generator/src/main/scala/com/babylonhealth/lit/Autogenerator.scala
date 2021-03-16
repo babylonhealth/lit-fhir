@@ -11,8 +11,8 @@ import io.circe.parser.decode
 import com.babylonhealth.lit.ElementTreee._
 import com.babylonhealth.lit.core.serdes.objectDecoder
 import com.babylonhealth.lit.hl7.BINDING_STRENGTH
-import com.babylonhealth.lit.hl7.model.{ElementDefinition, StructureDefinition}
-import com.babylonhealth.lit.languages.{JavaGenerator, ScalaCodegen, TypescriptCodegen}
+import com.babylonhealth.lit.hl7.model.{ ElementDefinition, StructureDefinition }
+import com.babylonhealth.lit.languages.{ JavaGenerator, ScalaCodegen, TypescriptCodegen }
 
 trait FHIRFetcher {}
 
@@ -128,7 +128,7 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
   def getStrings(
       overridingModels: Seq[SourceFile],
       resourceModels: Seq[SourceFile],
-      javaDirSuffix: String,
+      javaDirSuffix: Option[String],
       typescriptOutputLocation: Option[String],
       moduleDependencies: ModuleDependencies,
       extensions: Map[String, Seq[ClassGenInfo]],
@@ -203,21 +203,15 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       ScalaCodegen.genPackageObjectFiles(moduleDependencies, ElementTreee.getUnionTypes)
     }
 
-    val javaClassGenInfo: JavaClassGenInfo = {
+    val javaClassGenInfo: Option[JavaClassGenInfo] = javaDirSuffix.map { j =>
       val bar: Seq[ClassGenInfo] = valueSetEarliestDeclarations.byPackage.flatMap { case (pkg, ps) =>
-        generateCodeAliases(pkg, javaDirSuffix, ps.toMap)
+        generateCodeAliases(pkg, j, ps.toMap)
       }.toSeq
       JavaClassGenInfo(
         topLevelClasses.classes.toSeq.flatMap { case (o, m) =>
           m.flatMap { case (p, k) =>
-            val javaPackageStr = (s"com.babylonhealth.lit.$p$javaDirSuffix")
-            try genTheJavaForClass(
-              k,
-              javaPackageStr,
-              p,
-              valueSetEarliestDeclarations,
-              moduleDependencies,
-              javaDirSuffix)
+            val javaPackageStr = (s"com.babylonhealth.lit.$p$j")
+            try genTheJavaForClass(k, javaPackageStr, p, valueSetEarliestDeclarations, moduleDependencies, j)
             catch {
               case NonFatal(ex) =>
                 log.error(s"Unable to gen Java file for $p.$o", ex)
@@ -247,7 +241,7 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
   def generateAndWriteOutput(
       overridingModels: Seq[SourceFile],
       resourceModels: Seq[SourceFile],
-      javaDirSuffix: String,
+      javaDirSuffix: Option[String],
       typescriptOutputLocation: Option[String],
       moduleDependencies: ModuleDependencies,
       writeCode: Boolean,
@@ -263,12 +257,10 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
         moduleDependencies,
         extensions,
         fetchValueSet)
-    def javaOutputLocation(pkg: String): String =
-      s"./$pkg$javaDirSuffix/src/main/java/com/babylonhealth/lit/$pkg$javaDirSuffix"
-    def javaOutputLocations(pkg: String): Seq[String] = {
-      val dir = javaOutputLocation(pkg)
-      Seq(s"$dir/builders", s"$dir/codes")
-    }
+    def javaOutputLocation(pkg: String): Option[String] =
+      javaDirSuffix.map(j => s"./$pkg$j/src/main/java/com/babylonhealth/lit/$pkg$j")
+    def javaOutputLocations(pkg: String): Seq[String] =
+      javaOutputLocation(pkg).toSeq.flatMap(dir => Seq(s"$dir/builders", s"$dir/codes"))
     println("Successfully generated files")
     if (writeCode) { // create the directories fresh
       scalaClassGenInfo
@@ -281,15 +273,11 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       scalaClassGenInfo foreach { case ClassGenInfo(fc, fileName, pkg) =>
         write(s"$pkg/src/main/scala/com/babylonhealth/lit/$pkg/model/$fileName.scala", fc)
       }
-      javaClassGenInfo.builders foreach { case ClassGenInfo(fc, fileName, pkg) =>
-        if (pkg == null) println(s"NULL WAT??? 111 ${fileName} :: ${pkg}")
-        else
-          write(s"${javaOutputLocation(pkg)}/builders/$fileName.java", fc)
+      javaClassGenInfo.toSeq.flatMap(_.builders) foreach { case ClassGenInfo(fc, fileName, pkg) =>
+        write(s"${javaOutputLocation(pkg).get}/builders/$fileName.java", fc)
       }
-      javaClassGenInfo.codes foreach { case ClassGenInfo(fc, fileName, pkg) =>
-        if (pkg == null) println(s"NULL WAT 222 ${fileName} :: ${pkg}??? ")
-        else
-          write(s"${javaOutputLocation(pkg)}/codes/$fileName.java", fc)
+      javaClassGenInfo.toSeq.flatMap(_.codes) foreach { case ClassGenInfo(fc, fileName, pkg) =>
+        write(s"${javaOutputLocation(pkg).get}/codes/$fileName.java", fc)
       }
       if (typescriptClassGenInfo.nonEmpty) new File(typescriptOutputLocation.get).mkdirs()
       typescriptClassGenInfo.foreach(c =>
