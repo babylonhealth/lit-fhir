@@ -126,15 +126,11 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
   }
 
   def getStrings(
-      overridingModels: Seq[SourceFile],
-      resourceModels: Seq[SourceFile],
-      javaDirSuffix: Option[String],
-      typescriptOutputLocation: Option[String],
-      moduleDependencies: ModuleDependencies,
+      args: MainArgs,
       extensions: Map[String, Seq[ClassGenInfo]],
       fetchValueSet: (String, BINDING_STRENGTH) => Option[CodeValueSet]): AllGeneratedFiles = {
 
-    val sortedLocations = sortLocationsByBase(overridingModels, resourceModels)
+    val sortedLocations = sortLocationsByBase(args.modelOverrides, args.models)
     println("Sorted models")
     val modules = sortedLocations.foldLeft(Seq.empty[String]) { (acc, n) =>
       val currModule = acc.lastOption contains n.targetModule
@@ -166,7 +162,7 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
     val valueSetDecls: ValueSetDecls = ValueSetDecls(topLevelClasses.classes.flatMap {
       _._2.flatMap { case (pkg, x) => x.valueSets.map { case (k, v) => (pkg, k, v) } }
     }.toSeq).stripVersions
-    val valueSetEarliestDeclarations: ValueSetDecls = valueSetDecls.earliestDeclarations(moduleDependencies)
+    val valueSetEarliestDeclarations: ValueSetDecls = valueSetDecls.earliestDeclarations(args.moduleDependencies)
 
     val scalaClassGenInfo: Seq[ClassGenInfo] = {
 
@@ -187,9 +183,9 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
                 element,
                 backboneElement,
                 topLevelClasses,
-                moduleDependencies,
+                args.moduleDependencies,
                 pkgAndValueSet,
-                ElementTreee.getUnionTypes.values.map(moduleDependencies leastCommon _._1.toSet).toSet
+                ElementTreee.getUnionTypes.values.map(args.moduleDependencies leastCommon _._1.toSet).toSet
               ))
           catch {
             case NonFatal(ex) =>
@@ -200,10 +196,10 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
         }.toSeq
       }
       allFHIRClasses ++ valueSetFiles ++ extensions("scala") ++
-      ScalaCodegen.genPackageObjectFiles(moduleDependencies, ElementTreee.getUnionTypes)
+      ScalaCodegen.genPackageObjectFiles(args.moduleDependencies, ElementTreee.getUnionTypes)
     }
 
-    val javaClassGenInfo: Option[JavaClassGenInfo] = javaDirSuffix.map { j =>
+    val javaClassGenInfo: Option[JavaClassGenInfo] = args.javaPackageSuffix.map { j =>
       val bar: Seq[ClassGenInfo] = valueSetEarliestDeclarations.byPackage.flatMap { case (pkg, ps) =>
         generateCodeAliases(pkg, j, ps.toMap)
       }.toSeq
@@ -211,7 +207,7 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
         topLevelClasses.classes.toSeq.flatMap { case (o, m) =>
           m.flatMap { case (p, k) =>
             val javaPackageStr = (s"com.babylonhealth.lit.$p$j")
-            try genTheJavaForClass(k, javaPackageStr, p, valueSetEarliestDeclarations, moduleDependencies, j)
+            try genTheJavaForClass(k, javaPackageStr, p, valueSetEarliestDeclarations, args.moduleDependencies, j)
             catch {
               case NonFatal(ex) =>
                 log.error(s"Unable to gen Java file for $p.$o", ex)
@@ -223,7 +219,7 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       )
     }
 
-    val typescriptClassGenInfo: Option[Seq[ClassGenInfo]] = typescriptOutputLocation.map { o =>
+    val typescriptClassGenInfo: Option[Seq[ClassGenInfo]] = args.typescriptDir.map { o =>
       topLevelClasses.classes.toSeq.flatMap { case (o, m) =>
         m.flatMap { case (p, k) =>
           try TypescriptCodegen.genTypescriptForClass(k)
@@ -239,30 +235,18 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
     AllGeneratedFiles(scalaClassGenInfo, javaClassGenInfo, typescriptClassGenInfo)
   }
   def generateAndWriteOutput(
-      overridingModels: Seq[SourceFile],
-      resourceModels: Seq[SourceFile],
-      javaDirSuffix: Option[String],
-      typescriptOutputLocation: Option[String],
-      moduleDependencies: ModuleDependencies,
-      writeCode: Boolean,
+      args: MainArgs,
       extensions: Map[String, Seq[ClassGenInfo]],
       fetchValueSet: (String, BINDING_STRENGTH) => Option[CodeValueSet]): Unit = {
     println("Trying to generate files")
     val AllGeneratedFiles(scalaClassGenInfo, javaClassGenInfo, typescriptClassGenInfo) =
-      getStrings(
-        overridingModels,
-        resourceModels,
-        javaDirSuffix,
-        typescriptOutputLocation,
-        moduleDependencies,
-        extensions,
-        fetchValueSet)
+      getStrings(args, extensions, fetchValueSet)
     def javaOutputLocation(pkg: String): Option[String] =
-      javaDirSuffix.map(j => s"./$pkg$j/src/main/java/com/babylonhealth/lit/$pkg$j")
+      args.javaPackageSuffix.map(j => s"./$pkg$j/src/main/java/com/babylonhealth/lit/$pkg$j")
     def javaOutputLocations(pkg: String): Seq[String] =
       javaOutputLocation(pkg).toSeq.flatMap(dir => Seq(s"$dir/builders", s"$dir/codes"))
     println("Successfully generated files")
-    if (writeCode) { // create the directories fresh
+    if (!args.dryRun) { // create the directories fresh
       scalaClassGenInfo
         .map(_.pkg)
         .distinct
@@ -279,9 +263,9 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       javaClassGenInfo.toSeq.flatMap(_.codes) foreach { case ClassGenInfo(fc, fileName, pkg) =>
         write(s"${javaOutputLocation(pkg).get}/codes/$fileName.java", fc)
       }
-      if (typescriptClassGenInfo.nonEmpty) new File(typescriptOutputLocation.get).mkdirs()
+      if (typescriptClassGenInfo.nonEmpty) new File(args.typescriptDir.get).mkdirs()
       typescriptClassGenInfo.foreach(c =>
-        write(s"${typescriptOutputLocation.get}/DomainModel.ts", c.map(_.fileContents).mkString("\n\n")))
+        write(s"${args.typescriptDir.get}/DomainModel.ts", c.map(_.fileContents).mkString("\n\n")))
     }
   }
 }

@@ -15,16 +15,7 @@ trait RawGenerator extends Logging with FileUtils {
     println(s"${args.modelOverrides.size} core models (including ${args.modelOverrides.take(2).mkString(" & ")})")
     println(s"${args.models.size} domain models (including ${args.models.take(2).mkString(" & ")})")
     Thread.sleep(5000L)
-    Autogenerator.generateAndWriteOutput(
-      args.modelOverrides,
-      args.models,
-      args.javaPackageSuffix,
-      args.typescriptDir,
-      args.moduleDependencies,
-      writeCode = !args.dryRun,
-      extensions,
-      fetchValueSet
-    )
+    Autogenerator.generateAndWriteOutput(args, extensions, fetchValueSet)
   }
 }
 
@@ -131,7 +122,7 @@ trait ArgParser {
       expandPaths(target, pathstr)
     }
   private val argRegex   = """^--(\w+)=["']?([^"']+)["']?$""".r
-  private val noArgRegex = """^--(\w)$""".r
+  private val noArgRegex = """^--(\w+)$""".r
   def parseArgs(args: Seq[String]): MainArgs = args.foldLeft(MainArgs()) { (args, next) =>
     next match {
       case argRegex("modelOverrides", s)     => args.copy(modelOverrides = modelsFromString(s))
@@ -141,7 +132,7 @@ trait ArgParser {
       case argRegex("moduleDependencies", s) => args.copy(moduleDependencies = moduleDependenciesFromString(s))
       case argRegex("dryRun", b)             => args.copy(dryRun = b.toBoolean)
       case noArgRegex("dryRun")              => args.copy(dryRun = true)
-      case x                                 => println(s"Could not parse arg $x"); args
+      case x                                 => println(s"Could not parse arg $x"); sys.exit(1)
     }
   }
 }

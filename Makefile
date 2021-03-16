@@ -81,6 +81,12 @@ build-hl7-class-models:
 	$(SBT) $(foreach i,$(CORE_MODULES),$iJava/javafmt)
 	./apply_patches.sh
 
+build-all-class-models-dry:
+	$(SBT) 'project generator' 'run "generate" \
+		--models="usbase=fhir/spec/hl7.fhir.r4.examples/4.0.1/package/StructureDefinition-*;uscore=fhir/spec/hl7.fhir.us.core/3.1.0/package/StructureDefinition-*" \
+		--javaPackageSuffix=_java \
+		--moduleDependencies="usbase<uscore" \
+		--dryRun'
 build-all-class-models:
 	$(SBT) 'project generator' 'run "generate" \
 		--models="usbase=fhir/spec/hl7.fhir.r4.examples/4.0.1/package/StructureDefinition-*;uscore=fhir/spec/hl7.fhir.us.core/3.1.0/package/StructureDefinition-*" \
