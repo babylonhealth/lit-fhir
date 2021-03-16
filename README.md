@@ -4,6 +4,12 @@ Opinionated experimental library for easily constructing v4.0.1 compatible FHIR 
 
 ---
 
+## Bugs, questions or suggestions?
+
+Please make a new issue! 
+
+---
+
 ## Building and testing
 
 First you may want to generate the classes:
@@ -32,7 +38,8 @@ A tag of the form `g\d+.\d+.\d+` will publish the generator module with that sem
 
 - Better support for protobuf models (current approach just round-trips through json, which is dog-slow)
 - Support future versions of FHIR spec
-- Slice support
+- Better support for slices
+- Better support for extensions
 - Scala 3 support
 - Support for typescript and python
 
