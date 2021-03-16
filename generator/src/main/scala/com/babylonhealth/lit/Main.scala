@@ -1,7 +1,5 @@
 package com.babylonhealth.lit
 
-import scala.util.Try
-
 import cats.effect.{ ConcurrentEffect, ExitCode, IO, IOApp, Timer }
 import cats.syntax.traverse._
 
@@ -154,14 +152,12 @@ trait ArgParser {
     }
   }
 }
+
 trait IOGenerator extends RawGenerator with ArgParser { this: IOApp =>
   def genPlugins(implicit
       ce: ConcurrentEffect[IO],
       T: Timer[IO]
   ): (Map[String, Seq[ClassGenInfo]], (String, BINDING_STRENGTH) => Option[CodeValueSet])
-  val defaultModelLocations: String = "generated=./generator/src/main/resources/resourceModel"
-  val defaultOutputLocation: String =
-    "./generated/src/main/scala/com/babylonhealth/lit/generated/autogen"
   override def run(args: List[String]): IO[ExitCode] = {
     val (extensions, fetchValueSets) = genPlugins
     args match {
