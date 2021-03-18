@@ -40,7 +40,7 @@ object OpenEHR_location extends CompanionFor[OpenEHR_location] {
   val value: FHIRComponentFieldMeta[CodeableConcept] =
     FHIRComponentFieldMeta("value", lTagOf[CodeableConcept], true, lTagOf[CodeableConcept])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: OpenEHR_location): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
   )

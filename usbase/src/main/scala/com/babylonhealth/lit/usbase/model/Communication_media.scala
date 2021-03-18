@@ -40,7 +40,7 @@ object Communication_media extends CompanionFor[Communication_media] {
   val value: FHIRComponentFieldMeta[Attachment] =
     FHIRComponentFieldMeta("value", lTagOf[Attachment], true, lTagOf[Attachment])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Communication_media): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Attachment](value, t.value.get.toSubRefNonUnion[Attachment])
   )

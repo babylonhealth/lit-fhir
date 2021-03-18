@@ -194,7 +194,7 @@ object Vitalspanel extends CompanionFor[Vitalspanel] {
     component,
     referenceRange
   )
-  override def fields(t: Observation): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Vitalspanel): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

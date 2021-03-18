@@ -40,7 +40,7 @@ object Organization_period extends CompanionFor[Organization_period] {
   val value: FHIRComponentFieldMeta[Period] =
     FHIRComponentFieldMeta("value", lTagOf[Period], true, lTagOf[Period])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Organization_period): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Period](value, t.value.get.toSubRefNonUnion[Period])
   )

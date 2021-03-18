@@ -40,7 +40,7 @@ object Coding_sctdescid extends CompanionFor[Coding_sctdescid] {
   val value: FHIRComponentFieldMeta[Id] =
     FHIRComponentFieldMeta("value", lTagOf[Id], true, lTagOf[Id])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Coding_sctdescid): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Id](value, t.value.get.toSubRefNonUnion[Id])
   )

@@ -41,7 +41,7 @@ object Structuredefinition_fhir_type extends CompanionFor[Structuredefinition_fh
   val value: FHIRComponentFieldMeta[UrlStr] =
     FHIRComponentFieldMeta("value", lTagOf[UrlStr], true, lTagOf[UrlStr])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Structuredefinition_fhir_type): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[UrlStr](value, t.value.get.toSubRefNonUnion[UrlStr])
   )

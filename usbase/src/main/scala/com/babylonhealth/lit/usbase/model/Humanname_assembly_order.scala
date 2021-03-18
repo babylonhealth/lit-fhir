@@ -40,7 +40,7 @@ object Humanname_assembly_order extends CompanionFor[Humanname_assembly_order] {
   val value: FHIRComponentFieldMeta[NAME_ASSEMBLY_ORDER] =
     FHIRComponentFieldMeta("value", lTagOf[NAME_ASSEMBLY_ORDER], true, lTagOf[NAME_ASSEMBLY_ORDER])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Humanname_assembly_order): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[NAME_ASSEMBLY_ORDER](value, NAME_ASSEMBLY_ORDER.withName(t.value.get.toSubRefNonUnion[Code]))
   )

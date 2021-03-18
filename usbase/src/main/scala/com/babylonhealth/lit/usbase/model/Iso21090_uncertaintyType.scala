@@ -40,7 +40,7 @@ object Iso21090_uncertaintyType extends CompanionFor[Iso21090_uncertaintyType] {
   val value: FHIRComponentFieldMeta[PROBABILITY_DISTRIBUTION_TYPE] =
     FHIRComponentFieldMeta("value", lTagOf[PROBABILITY_DISTRIBUTION_TYPE], true, lTagOf[PROBABILITY_DISTRIBUTION_TYPE])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Iso21090_uncertaintyType): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[PROBABILITY_DISTRIBUTION_TYPE](
       value,

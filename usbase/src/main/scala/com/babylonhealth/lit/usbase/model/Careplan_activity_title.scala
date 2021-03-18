@@ -40,7 +40,7 @@ object Careplan_activity_title extends CompanionFor[Careplan_activity_title] {
   val value: FHIRComponentFieldMeta[String] =
     FHIRComponentFieldMeta("value", lTagOf[String], true, lTagOf[String])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Careplan_activity_title): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
   )

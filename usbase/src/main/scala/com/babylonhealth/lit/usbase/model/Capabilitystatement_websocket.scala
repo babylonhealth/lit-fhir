@@ -41,7 +41,7 @@ object Capabilitystatement_websocket extends CompanionFor[Capabilitystatement_we
   val value: FHIRComponentFieldMeta[UriStr] =
     FHIRComponentFieldMeta("value", lTagOf[UriStr], true, lTagOf[UriStr])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Capabilitystatement_websocket): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
   )

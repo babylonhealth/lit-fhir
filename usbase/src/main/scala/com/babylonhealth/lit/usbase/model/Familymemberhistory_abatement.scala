@@ -42,7 +42,7 @@ object Familymemberhistory_abatement extends CompanionFor[Familymemberhistory_ab
   val value: FHIRComponentFieldMeta[Familymemberhistory_abatement.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Familymemberhistory_abatement.ValueChoice], true, lTagOf[Union00813350082])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Familymemberhistory_abatement): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Familymemberhistory_abatement.ValueChoice](value, t.value.get.toSubRef)
   )

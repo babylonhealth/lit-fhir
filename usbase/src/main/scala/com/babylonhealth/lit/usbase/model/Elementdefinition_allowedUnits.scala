@@ -42,7 +42,7 @@ object Elementdefinition_allowedUnits extends CompanionFor[Elementdefinition_all
   val value: FHIRComponentFieldMeta[Elementdefinition_allowedUnits.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_allowedUnits.ValueChoice], true, lTagOf[Union01054268719])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Elementdefinition_allowedUnits): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Elementdefinition_allowedUnits.ValueChoice](value, t.value.get.toSubRef)
   )

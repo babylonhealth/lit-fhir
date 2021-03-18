@@ -419,7 +419,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     val fieldsMetaImpl =
       fields.map(_.scalaName).mkString("val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(", ", ", ")")
     val getFieldsImpl =
-      s"""override def fields(t: ${topLevelClass.scalaBaseClassName}): Seq[FHIRComponentField[_]] = Seq(
+      s"""override def fields(t: $className): Seq[FHIRComponentField[_]] = Seq(
          |  ${fields.map(f => f.field(allClashingTypes)).mkString(",\n    ")}
          |)""".stripMargin
     def extractFieldsImpl                  = fields.map(f => f.getField(allClashingTypes)).mkString("\n    ")

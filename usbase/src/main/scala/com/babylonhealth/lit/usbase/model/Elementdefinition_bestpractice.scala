@@ -42,7 +42,7 @@ object Elementdefinition_bestpractice extends CompanionFor[Elementdefinition_bes
   val value: FHIRComponentFieldMeta[Elementdefinition_bestpractice.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_bestpractice.ValueChoice], true, lTagOf[Union_1768247138])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Elementdefinition_bestpractice): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Elementdefinition_bestpractice.ValueChoice](value, t.value.get.toSubRef)
   )

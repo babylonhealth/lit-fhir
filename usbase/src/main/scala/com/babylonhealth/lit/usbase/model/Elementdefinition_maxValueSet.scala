@@ -42,7 +42,7 @@ object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxV
   val value: FHIRComponentFieldMeta[Elementdefinition_maxValueSet.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_maxValueSet.ValueChoice], true, lTagOf[Union00545979821])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Elementdefinition_maxValueSet): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Elementdefinition_maxValueSet.ValueChoice](value, t.value.get.toSubRef)
   )

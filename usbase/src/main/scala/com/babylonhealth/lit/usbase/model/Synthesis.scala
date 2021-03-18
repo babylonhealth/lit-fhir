@@ -214,7 +214,7 @@ object Synthesis extends CompanionFor[Synthesis] {
     modifierExtension,
     exposureBackground
   )
-  override def fields(t: Evidence): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Synthesis): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),
     FHIRComponentField[Option[Meta]](meta, t.meta),

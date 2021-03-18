@@ -41,7 +41,7 @@ object Iso21090_AD_use extends CompanionFor[Iso21090_AD_use] {
   val value: FHIRComponentFieldMeta[POSTAL_ADDRESS_USE] =
     FHIRComponentFieldMeta("value", lTagOf[POSTAL_ADDRESS_USE], true, lTagOf[POSTAL_ADDRESS_USE])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Iso21090_AD_use): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[POSTAL_ADDRESS_USE](value, POSTAL_ADDRESS_USE.withName(t.value.get.toSubRefNonUnion[Code]))
   )

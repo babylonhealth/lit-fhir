@@ -41,7 +41,7 @@ object _11179_permitted_value_valueset extends CompanionFor[_11179_permitted_val
   val value: FHIRComponentFieldMeta[Canonical] =
     FHIRComponentFieldMeta("value", lTagOf[Canonical], true, lTagOf[Canonical])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: _11179_permitted_value_valueset): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Canonical](value, t.value.get.toSubRefNonUnion[Canonical])
   )

@@ -129,7 +129,7 @@ object Ehrsrle_provenance extends CompanionFor[Ehrsrle_provenance] {
     agent,
     entity
   )
-  override def fields(t: Provenance): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Ehrsrle_provenance): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

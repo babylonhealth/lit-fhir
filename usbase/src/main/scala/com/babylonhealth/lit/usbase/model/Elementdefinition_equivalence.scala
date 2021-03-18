@@ -41,7 +41,7 @@ object Elementdefinition_equivalence extends CompanionFor[Elementdefinition_equi
   val value: FHIRComponentFieldMeta[CONCEPT_MAP_EQUIVALENCE] =
     FHIRComponentFieldMeta("value", lTagOf[CONCEPT_MAP_EQUIVALENCE], true, lTagOf[CONCEPT_MAP_EQUIVALENCE])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Elementdefinition_equivalence): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[CONCEPT_MAP_EQUIVALENCE](
       value,

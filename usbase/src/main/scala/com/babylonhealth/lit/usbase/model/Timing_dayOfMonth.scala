@@ -40,7 +40,7 @@ object Timing_dayOfMonth extends CompanionFor[Timing_dayOfMonth] {
   val value: FHIRComponentFieldMeta[PositiveInt] =
     FHIRComponentFieldMeta("value", lTagOf[PositiveInt], true, lTagOf[PositiveInt])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Timing_dayOfMonth): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[PositiveInt](value, t.value.get.toSubRefNonUnion[PositiveInt])
   )

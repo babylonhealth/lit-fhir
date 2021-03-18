@@ -199,7 +199,7 @@ object Oxygensat extends CompanionFor[Oxygensat] {
     component,
     referenceRange
   )
-  override def fields(t: Observation): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Oxygensat): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

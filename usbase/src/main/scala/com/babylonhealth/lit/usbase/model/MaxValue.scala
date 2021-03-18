@@ -41,7 +41,7 @@ object MaxValue extends CompanionFor[MaxValue] {
   val value: FHIRComponentFieldMeta[MaxValue.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[MaxValue.ValueChoice], true, lTagOf[Union00315627715])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: MaxValue): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[MaxValue.ValueChoice](value, t.value.get.toSubRef)
   )

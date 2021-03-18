@@ -41,7 +41,7 @@ object Structuredefinition_template_status extends CompanionFor[Structuredefinit
   val value: FHIRComponentFieldMeta[TEMPLATE_STATUS_CODE] =
     FHIRComponentFieldMeta("value", lTagOf[TEMPLATE_STATUS_CODE], true, lTagOf[TEMPLATE_STATUS_CODE])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Structuredefinition_template_status): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[TEMPLATE_STATUS_CODE](value, TEMPLATE_STATUS_CODE.withName(t.value.get.toSubRefNonUnion[Code]))
   )

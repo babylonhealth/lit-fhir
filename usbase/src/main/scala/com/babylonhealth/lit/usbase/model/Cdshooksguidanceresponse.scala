@@ -150,7 +150,7 @@ object Cdshooksguidanceresponse extends CompanionFor[Cdshooksguidanceresponse] {
     evaluationMessage,
     occurrenceDateTime
   )
-  override def fields(t: GuidanceResponse): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Cdshooksguidanceresponse): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

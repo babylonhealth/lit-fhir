@@ -206,7 +206,7 @@ object Pediatric_weight_for_height extends CompanionFor[Pediatric_weight_for_hei
     component,
     referenceRange
   )
-  override def fields(t: Observation): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Pediatric_weight_for_height): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

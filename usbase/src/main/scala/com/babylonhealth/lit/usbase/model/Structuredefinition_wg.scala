@@ -40,7 +40,7 @@ object Structuredefinition_wg extends CompanionFor[Structuredefinition_wg] {
   val value: FHIRComponentFieldMeta[HL7_WORK_GROUP] =
     FHIRComponentFieldMeta("value", lTagOf[HL7_WORK_GROUP], true, lTagOf[HL7_WORK_GROUP])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Structuredefinition_wg): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[HL7_WORK_GROUP](value, HL7_WORK_GROUP.withName(t.value.get.toSubRefNonUnion[Code]))
   )

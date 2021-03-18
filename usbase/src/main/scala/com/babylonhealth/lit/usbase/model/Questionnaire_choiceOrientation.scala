@@ -41,7 +41,7 @@ object Questionnaire_choiceOrientation extends CompanionFor[Questionnaire_choice
   val value: FHIRComponentFieldMeta[CHOICE_LIST_ORIENTATION] =
     FHIRComponentFieldMeta("value", lTagOf[CHOICE_LIST_ORIENTATION], true, lTagOf[CHOICE_LIST_ORIENTATION])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Questionnaire_choiceOrientation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[CHOICE_LIST_ORIENTATION](
       value,

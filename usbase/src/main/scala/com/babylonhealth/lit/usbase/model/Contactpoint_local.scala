@@ -40,7 +40,7 @@ object Contactpoint_local extends CompanionFor[Contactpoint_local] {
   val value: FHIRComponentFieldMeta[String] =
     FHIRComponentFieldMeta("value", lTagOf[String], true, lTagOf[String])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Contactpoint_local): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
   )

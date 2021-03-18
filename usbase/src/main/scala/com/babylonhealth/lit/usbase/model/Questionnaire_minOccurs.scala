@@ -40,7 +40,7 @@ object Questionnaire_minOccurs extends CompanionFor[Questionnaire_minOccurs] {
   val value: FHIRComponentFieldMeta[Int] =
     FHIRComponentFieldMeta("value", lTagOf[Int], true, lTagOf[Int])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Questionnaire_minOccurs): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
   )

@@ -41,7 +41,7 @@ object Capabilities extends CompanionFor[Capabilities] {
   val value: FHIRComponentFieldMeta[SMART_CAPABILITIES] =
     FHIRComponentFieldMeta("value", lTagOf[SMART_CAPABILITIES], true, lTagOf[SMART_CAPABILITIES])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Capabilities): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[SMART_CAPABILITIES](value, SMART_CAPABILITIES.withName(t.value.get.toSubRefNonUnion[Code]))
   )

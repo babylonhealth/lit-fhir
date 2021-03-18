@@ -41,7 +41,7 @@ object MinValue extends CompanionFor[MinValue] {
   val value: FHIRComponentFieldMeta[MinValue.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[MinValue.ValueChoice], true, lTagOf[Union01613806391])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: MinValue): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[MinValue.ValueChoice](value, t.value.get.toSubRef)
   )

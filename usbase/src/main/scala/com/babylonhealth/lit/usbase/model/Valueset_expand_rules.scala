@@ -40,7 +40,7 @@ object Valueset_expand_rules extends CompanionFor[Valueset_expand_rules] {
   val value: FHIRComponentFieldMeta[EXPANSION_PROCESSING_RULE] =
     FHIRComponentFieldMeta("value", lTagOf[EXPANSION_PROCESSING_RULE], true, lTagOf[EXPANSION_PROCESSING_RULE])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Valueset_expand_rules): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[EXPANSION_PROCESSING_RULE](
       value,

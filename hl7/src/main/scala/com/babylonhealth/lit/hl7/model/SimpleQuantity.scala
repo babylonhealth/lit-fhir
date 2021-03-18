@@ -55,7 +55,7 @@ object SimpleQuantity extends CompanionFor[SimpleQuantity] {
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, unit, code, value, system, extension)
-  override def fields(t: Quantity): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: SimpleQuantity): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[String]](unit, t.unit),
     FHIRComponentField[Option[Code]](code, t.code),

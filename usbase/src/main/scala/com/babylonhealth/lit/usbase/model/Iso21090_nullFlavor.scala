@@ -40,7 +40,7 @@ object Iso21090_nullFlavor extends CompanionFor[Iso21090_nullFlavor] {
   val value: FHIRComponentFieldMeta[V3_NULLFLAVOR] =
     FHIRComponentFieldMeta("value", lTagOf[V3_NULLFLAVOR], true, lTagOf[V3_NULLFLAVOR])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Iso21090_nullFlavor): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[V3_NULLFLAVOR](value, V3_NULLFLAVOR.withName(t.value.get.toSubRefNonUnion[Code]))
   )

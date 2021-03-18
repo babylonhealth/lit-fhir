@@ -45,7 +45,7 @@ object Messageheader_response_request extends CompanionFor[Messageheader_respons
       true,
       lTagOf[MESSAGEHEADER_RESPONSE_REQUEST])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Messageheader_response_request): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[MESSAGEHEADER_RESPONSE_REQUEST](
       value,

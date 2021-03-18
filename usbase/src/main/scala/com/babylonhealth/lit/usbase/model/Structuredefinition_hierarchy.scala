@@ -41,7 +41,7 @@ object Structuredefinition_hierarchy extends CompanionFor[Structuredefinition_hi
   val value: FHIRComponentFieldMeta[Boolean] =
     FHIRComponentFieldMeta("value", lTagOf[Boolean], true, lTagOf[Boolean])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Structuredefinition_hierarchy): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
   )

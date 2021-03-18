@@ -59,7 +59,7 @@ object MoneyQuantity extends CompanionFor[MoneyQuantity] {
   val comparator: FHIRComponentFieldMeta[Option[QUANTITY_COMPARATOR]] =
     FHIRComponentFieldMeta("comparator", lTagOf[Option[QUANTITY_COMPARATOR]], false, lTagOf[QUANTITY_COMPARATOR])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, unit, code, value, system, extension, comparator)
-  override def fields(t: Quantity): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: MoneyQuantity): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[String]](unit, t.unit),
     FHIRComponentField[Option[Code]](code, t.code),

@@ -40,7 +40,7 @@ object Codesystem_expirationDate extends CompanionFor[Codesystem_expirationDate]
   val value: FHIRComponentFieldMeta[FHIRDate] =
     FHIRComponentFieldMeta("value", lTagOf[FHIRDate], true, lTagOf[FHIRDate])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Codesystem_expirationDate): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[FHIRDate](value, t.value.get.toSubRefNonUnion[FHIRDate])
   )

@@ -40,7 +40,7 @@ object Iso21090_EN_representation extends CompanionFor[Iso21090_EN_representatio
   val value: FHIRComponentFieldMeta[NAME_V3_REPRESENTATION] =
     FHIRComponentFieldMeta("value", lTagOf[NAME_V3_REPRESENTATION], true, lTagOf[NAME_V3_REPRESENTATION])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Iso21090_EN_representation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[NAME_V3_REPRESENTATION](
       value,

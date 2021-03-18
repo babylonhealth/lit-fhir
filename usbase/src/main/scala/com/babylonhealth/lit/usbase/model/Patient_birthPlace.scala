@@ -40,7 +40,7 @@ object Patient_birthPlace extends CompanionFor[Patient_birthPlace] {
   val value: FHIRComponentFieldMeta[Address] =
     FHIRComponentFieldMeta("value", lTagOf[Address], true, lTagOf[Address])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Patient_birthPlace): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Address](value, t.value.get.toSubRefNonUnion[Address])
   )

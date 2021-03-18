@@ -41,7 +41,7 @@ object DiagnosticReport_geneticsAssessedCondition extends CompanionFor[Diagnosti
   val value: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("value", lTagOf[Reference], true, lTagOf[Reference])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: DiagnosticReport_geneticsAssessedCondition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
   )

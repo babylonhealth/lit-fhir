@@ -40,7 +40,7 @@ object Rendering_markdown extends CompanionFor[Rendering_markdown] {
   val value: FHIRComponentFieldMeta[Markdown] =
     FHIRComponentFieldMeta("value", lTagOf[Markdown], true, lTagOf[Markdown])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Rendering_markdown): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Markdown](value, t.value.get.toSubRefNonUnion[Markdown])
   )

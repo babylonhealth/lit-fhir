@@ -40,7 +40,7 @@ object Data_absent_reason extends CompanionFor[Data_absent_reason] {
   val value: FHIRComponentFieldMeta[DATA_ABSENT_REASON] =
     FHIRComponentFieldMeta("value", lTagOf[DATA_ABSENT_REASON], true, lTagOf[DATA_ABSENT_REASON])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Data_absent_reason): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[DATA_ABSENT_REASON](value, DATA_ABSENT_REASON.withName(t.value.get.toSubRefNonUnion[Code]))
   )

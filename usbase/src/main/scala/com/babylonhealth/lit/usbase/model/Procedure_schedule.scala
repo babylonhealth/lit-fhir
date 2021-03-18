@@ -40,7 +40,7 @@ object Procedure_schedule extends CompanionFor[Procedure_schedule] {
   val value: FHIRComponentFieldMeta[Timing] =
     FHIRComponentFieldMeta("value", lTagOf[Timing], true, lTagOf[Timing])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Procedure_schedule): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Timing](value, t.value.get.toSubRefNonUnion[Timing])
   )

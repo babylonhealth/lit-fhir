@@ -40,7 +40,7 @@ object Location_distance extends CompanionFor[Location_distance] {
   val value: FHIRComponentFieldMeta[Distance] =
     FHIRComponentFieldMeta("value", lTagOf[Distance], true, lTagOf[Distance])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Location_distance): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Distance](value, t.value.get.toSubRefNonUnion[Distance])
   )

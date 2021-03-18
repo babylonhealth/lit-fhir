@@ -40,7 +40,7 @@ object OpenEHR_exposureDuration extends CompanionFor[OpenEHR_exposureDuration] {
   val value: FHIRComponentFieldMeta[Duration] =
     FHIRComponentFieldMeta("value", lTagOf[Duration], true, lTagOf[Duration])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: OpenEHR_exposureDuration): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Duration](value, t.value.get.toSubRefNonUnion[Duration])
   )

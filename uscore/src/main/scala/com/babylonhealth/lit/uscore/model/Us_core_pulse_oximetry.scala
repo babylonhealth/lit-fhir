@@ -202,7 +202,7 @@ object Us_core_pulse_oximetry extends CompanionFor[Us_core_pulse_oximetry] {
     component,
     referenceRange
   )
-  override def fields(t: Observation): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Us_core_pulse_oximetry): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

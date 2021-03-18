@@ -40,7 +40,7 @@ object Auditevent_MPPS extends CompanionFor[Auditevent_MPPS] {
   val value: FHIRComponentFieldMeta[Identifier] =
     FHIRComponentFieldMeta("value", lTagOf[Identifier], true, lTagOf[Identifier])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Auditevent_MPPS): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Identifier](value, t.value.get.toSubRefNonUnion[Identifier])
   )

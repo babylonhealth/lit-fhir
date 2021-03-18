@@ -40,7 +40,7 @@ object Structuredefinition_summary extends CompanionFor[Structuredefinition_summ
   val value: FHIRComponentFieldMeta[Markdown] =
     FHIRComponentFieldMeta("value", lTagOf[Markdown], true, lTagOf[Markdown])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Structuredefinition_summary): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Markdown](value, t.value.get.toSubRefNonUnion[Markdown])
   )

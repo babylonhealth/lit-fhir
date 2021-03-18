@@ -211,7 +211,7 @@ object Us_core_implantable_device extends CompanionFor[Us_core_implantable_devic
     deviceName,
     specialization
   )
-  override def fields(t: Device): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Us_core_implantable_device): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),
     FHIRComponentField[Option[Meta]](meta, t.meta),

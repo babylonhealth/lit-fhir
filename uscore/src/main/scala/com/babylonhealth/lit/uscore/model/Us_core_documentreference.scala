@@ -165,7 +165,7 @@ object Us_core_documentreference extends CompanionFor[Us_core_documentreference]
     relatesTo,
     content
   )
-  override def fields(t: DocumentReference): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Us_core_documentreference): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

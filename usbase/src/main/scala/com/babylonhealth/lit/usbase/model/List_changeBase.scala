@@ -40,7 +40,7 @@ object List_changeBase extends CompanionFor[List_changeBase] {
   val value: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("value", lTagOf[Reference], true, lTagOf[Reference])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: List_changeBase): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
   )

@@ -40,7 +40,7 @@ object Questionnaire_usageMode extends CompanionFor[Questionnaire_usageMode] {
   val value: FHIRComponentFieldMeta[QUESTIONNAIRE_USAGE_MODE] =
     FHIRComponentFieldMeta("value", lTagOf[QUESTIONNAIRE_USAGE_MODE], true, lTagOf[QUESTIONNAIRE_USAGE_MODE])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Questionnaire_usageMode): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[QUESTIONNAIRE_USAGE_MODE](
       value,

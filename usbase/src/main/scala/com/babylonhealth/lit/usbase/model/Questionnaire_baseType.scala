@@ -40,7 +40,7 @@ object Questionnaire_baseType extends CompanionFor[Questionnaire_baseType] {
   val value: FHIRComponentFieldMeta[DATA_TYPES] =
     FHIRComponentFieldMeta("value", lTagOf[DATA_TYPES], true, lTagOf[DATA_TYPES])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Questionnaire_baseType): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[DATA_TYPES](value, DATA_TYPES.withName(t.value.get.toSubRefNonUnion[Code]))
   )

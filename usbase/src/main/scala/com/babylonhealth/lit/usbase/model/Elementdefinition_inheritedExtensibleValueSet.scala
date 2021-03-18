@@ -47,7 +47,7 @@ object Elementdefinition_inheritedExtensibleValueSet
       true,
       lTagOf[Union00545979821])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Elementdefinition_inheritedExtensibleValueSet): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Elementdefinition_inheritedExtensibleValueSet.ValueChoice](value, t.value.get.toSubRef)
   )

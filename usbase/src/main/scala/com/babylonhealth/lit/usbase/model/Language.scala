@@ -40,7 +40,7 @@ object Language extends CompanionFor[Language] {
   val value: FHIRComponentFieldMeta[LANGUAGES] =
     FHIRComponentFieldMeta("value", lTagOf[LANGUAGES], true, lTagOf[LANGUAGES])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Language): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[LANGUAGES](value, LANGUAGES.withName(t.value.get.toSubRefNonUnion[Code]))
   )

@@ -40,7 +40,7 @@ object Cqf_library extends CompanionFor[Cqf_library] {
   val value: FHIRComponentFieldMeta[Canonical] =
     FHIRComponentFieldMeta("value", lTagOf[Canonical], true, lTagOf[Canonical])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Cqf_library): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Canonical](value, t.value.get.toSubRefNonUnion[Canonical])
   )

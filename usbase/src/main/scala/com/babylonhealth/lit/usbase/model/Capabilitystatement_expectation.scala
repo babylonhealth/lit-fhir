@@ -41,7 +41,7 @@ object Capabilitystatement_expectation extends CompanionFor[Capabilitystatement_
   val value: FHIRComponentFieldMeta[CONFORMANCE_EXPECTATION] =
     FHIRComponentFieldMeta("value", lTagOf[CONFORMANCE_EXPECTATION], true, lTagOf[CONFORMANCE_EXPECTATION])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Capabilitystatement_expectation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[CONFORMANCE_EXPECTATION](
       value,

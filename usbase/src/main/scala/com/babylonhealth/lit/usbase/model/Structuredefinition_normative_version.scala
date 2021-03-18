@@ -41,7 +41,7 @@ object Structuredefinition_normative_version extends CompanionFor[Structuredefin
   val value: FHIRComponentFieldMeta[FHIR_VERSION] =
     FHIRComponentFieldMeta("value", lTagOf[FHIR_VERSION], true, lTagOf[FHIR_VERSION])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Structuredefinition_normative_version): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[FHIR_VERSION](value, FHIR_VERSION.withName(t.value.get.toSubRefNonUnion[Code]))
   )

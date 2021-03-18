@@ -119,7 +119,7 @@ object Groupdefinition extends CompanionFor[Groupdefinition] {
     modifierExtension,
     characteristic
   )
-  override def fields(t: Group): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Groupdefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

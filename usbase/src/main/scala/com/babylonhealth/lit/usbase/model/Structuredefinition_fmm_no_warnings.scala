@@ -41,7 +41,7 @@ object Structuredefinition_fmm_no_warnings extends CompanionFor[Structuredefinit
   val value: FHIRComponentFieldMeta[Int] =
     FHIRComponentFieldMeta("value", lTagOf[Int], true, lTagOf[Int])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Structuredefinition_fmm_no_warnings): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
   )

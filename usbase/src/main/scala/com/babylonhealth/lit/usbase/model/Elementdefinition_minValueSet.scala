@@ -42,7 +42,7 @@ object Elementdefinition_minValueSet extends CompanionFor[Elementdefinition_minV
   val value: FHIRComponentFieldMeta[Elementdefinition_minValueSet.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_minValueSet.ValueChoice], true, lTagOf[Union00545979821])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Elementdefinition_minValueSet): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Elementdefinition_minValueSet.ValueChoice](value, t.value.get.toSubRef)
   )
