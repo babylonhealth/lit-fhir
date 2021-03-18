@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Account extends CompanionFor[Account] {
   override val baseType: CompanionFor[Account] = Account
+  override val profileUrl: Option[String]      = Some("http://hl7.org/fhir/StructureDefinition/Account")
   object Guarantor extends CompanionFor[Guarantor] {
     def apply(
         id: Option[String] = None,

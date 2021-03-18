@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Request_insurance extends CompanionFor[Request_insurance] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/request-insurance")
   def apply(
       id: Option[String] = None,
       url: String,

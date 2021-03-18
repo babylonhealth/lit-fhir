@@ -26,6 +26,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_genetics extends CompanionFor[Observation_genetics] {
   override val baseType: CompanionFor[Observation] = Observation
+  override val profileUrl: Option[String]          = Some("http://hl7.org/fhir/StructureDefinition/observation-genetics")
   type ValueChoice     = Choice[Union_0802685816]
   type EffectiveChoice = Choice[Union01473702374]
   def apply(

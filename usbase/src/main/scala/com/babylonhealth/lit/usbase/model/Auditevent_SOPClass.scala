@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Auditevent_SOPClass extends CompanionFor[Auditevent_SOPClass] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/auditevent-SOPClass")
   def apply(
       id: Option[String] = None,
       url: String,

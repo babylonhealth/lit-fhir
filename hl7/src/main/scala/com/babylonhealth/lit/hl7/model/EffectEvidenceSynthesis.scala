@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
   override val baseType: CompanionFor[EffectEvidenceSynthesis] = EffectEvidenceSynthesis
+  override val profileUrl: Option[String]                      = Some("http://hl7.org/fhir/StructureDefinition/EffectEvidenceSynthesis")
   object EffectEstimate extends CompanionFor[EffectEstimate] {
     object PrecisionEstimate extends CompanionFor[PrecisionEstimate] {
       def apply(

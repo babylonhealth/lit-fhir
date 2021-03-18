@@ -26,6 +26,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablelibrary extends CompanionFor[Shareablelibrary] {
   override val baseType: CompanionFor[Library] = Library
+  override val profileUrl: Option[String]      = Some("http://hl7.org/fhir/StructureDefinition/shareablelibrary")
   type SubjectChoice = Choice[Union01025009075]
   def apply(
       id: Option[String] = None,

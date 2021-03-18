@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Request_performerOrder extends CompanionFor[Request_performerOrder] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/request-performerOrder")
   def apply(
       id: Option[String] = None,
       url: String,

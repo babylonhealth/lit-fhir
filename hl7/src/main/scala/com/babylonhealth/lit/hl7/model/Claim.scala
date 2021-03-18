@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Claim extends CompanionFor[Claim] {
   override val baseType: CompanionFor[Claim] = Claim
+  override val profileUrl: Option[String]    = Some("http://hl7.org/fhir/StructureDefinition/Claim")
   object Item extends CompanionFor[Item] {
     object Detail extends CompanionFor[Detail] {
       object SubDetail extends CompanionFor[SubDetail] {

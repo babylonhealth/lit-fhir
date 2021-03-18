@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_display_hint extends CompanionFor[Structuredefinition_display_hint] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-display-hint")
   def apply(
       id: Option[String] = None,
       url: String,

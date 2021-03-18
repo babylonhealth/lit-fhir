@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_bestpractice extends CompanionFor[Elementdefinition_bestpractice] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice")
   type ValueChoice = Choice[Union_1768247138]
   def apply(
       id: Option[String] = None,

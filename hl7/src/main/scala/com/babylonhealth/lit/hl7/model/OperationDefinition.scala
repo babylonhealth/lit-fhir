@@ -31,6 +31,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object OperationDefinition extends CompanionFor[OperationDefinition] {
   override val baseType: CompanionFor[OperationDefinition] = OperationDefinition
+  override val profileUrl: Option[String]                  = Some("http://hl7.org/fhir/StructureDefinition/OperationDefinition")
   object Parameter extends CompanionFor[Parameter] {
     object Binding extends CompanionFor[Binding] {
       def apply(

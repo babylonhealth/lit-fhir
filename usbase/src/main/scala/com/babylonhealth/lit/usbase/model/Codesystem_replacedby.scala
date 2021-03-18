@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_replacedby extends CompanionFor[Codesystem_replacedby] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/codesystem-replacedby")
   def apply(
       id: Option[String] = None,
       url: String,

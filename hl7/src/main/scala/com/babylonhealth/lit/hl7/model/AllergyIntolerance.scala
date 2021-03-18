@@ -30,6 +30,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
   override val baseType: CompanionFor[AllergyIntolerance] = AllergyIntolerance
+  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/AllergyIntolerance")
   object Reaction extends CompanionFor[Reaction] {
     def apply(
         id: Option[String] = None,

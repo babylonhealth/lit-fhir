@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Allergyintolerance_assertedDate extends CompanionFor[Allergyintolerance_assertedDate] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/allergyintolerance-assertedDate")
   def apply(
       id: Option[String] = None,
       url: String,

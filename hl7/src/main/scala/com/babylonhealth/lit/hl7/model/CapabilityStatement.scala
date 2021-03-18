@@ -40,6 +40,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CapabilityStatement extends CompanionFor[CapabilityStatement] {
   override val baseType: CompanionFor[CapabilityStatement] = CapabilityStatement
+  override val profileUrl: Option[String]                  = Some("http://hl7.org/fhir/StructureDefinition/CapabilityStatement")
   object Messaging extends CompanionFor[Messaging] {
     object Endpoint extends CompanionFor[Endpoint] {
       def apply(

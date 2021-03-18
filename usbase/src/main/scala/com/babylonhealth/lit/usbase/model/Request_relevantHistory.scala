@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Request_relevantHistory extends CompanionFor[Request_relevantHistory] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/request-relevantHistory")
   def apply(
       id: Option[String] = None,
       url: String,

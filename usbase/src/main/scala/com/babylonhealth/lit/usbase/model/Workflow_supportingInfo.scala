@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Workflow_supportingInfo extends CompanionFor[Workflow_supportingInfo] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/workflow-supportingInfo")
   def apply(
       id: Option[String] = None,
       url: String,

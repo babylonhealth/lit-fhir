@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Composition_clinicaldocument_versionNumber extends CompanionFor[Composition_clinicaldocument_versionNumber] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/composition-clinicaldocument-versionNumber")
   def apply(
       id: Option[String] = None,
       url: String,

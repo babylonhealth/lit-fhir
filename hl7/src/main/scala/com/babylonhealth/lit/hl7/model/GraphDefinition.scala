@@ -31,6 +31,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object GraphDefinition extends CompanionFor[GraphDefinition] {
   override val baseType: CompanionFor[GraphDefinition] = GraphDefinition
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/GraphDefinition")
   object Link extends CompanionFor[Link] {
     object Target extends CompanionFor[Target] {
       object Compartment extends CompanionFor[Compartment] {

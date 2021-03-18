@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_encounterType extends CompanionFor[Cqf_encounterType] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/cqf-encounterType")
   def apply(
       id: Option[String] = None,
       url: String,

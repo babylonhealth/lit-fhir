@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Workflow_instantiatesCanonical extends CompanionFor[Workflow_instantiatesCanonical] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/workflow-instantiatesCanonical")
   def apply(
       id: Option[String] = None,
       url: String,

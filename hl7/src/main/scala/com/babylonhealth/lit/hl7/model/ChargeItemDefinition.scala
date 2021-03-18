@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ChargeItemDefinition extends CompanionFor[ChargeItemDefinition] {
   override val baseType: CompanionFor[ChargeItemDefinition] = ChargeItemDefinition
+  override val profileUrl: Option[String]                   = Some("http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition")
   object PropertyGroup extends CompanionFor[PropertyGroup] {
     object PriceComponent extends CompanionFor[PriceComponent] {
       def apply(

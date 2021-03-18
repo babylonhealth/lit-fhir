@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ValueSet extends CompanionFor[ValueSet] {
   override val baseType: CompanionFor[ValueSet] = ValueSet
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/ValueSet")
   object Compose extends CompanionFor[Compose] {
     object Include extends CompanionFor[Include] {
       object Filter extends CompanionFor[Filter] {

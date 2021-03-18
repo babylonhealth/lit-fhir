@@ -24,6 +24,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductPharmaceutical extends CompanionFor[MedicinalProductPharmaceutical] {
   override val baseType: CompanionFor[MedicinalProductPharmaceutical] = MedicinalProductPharmaceutical
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/MedicinalProductPharmaceutical")
   object RouteOfAdministration extends CompanionFor[RouteOfAdministration] {
     object TargetSpecies extends CompanionFor[TargetSpecies] {
       object WithdrawalPeriod extends CompanionFor[WithdrawalPeriod] {

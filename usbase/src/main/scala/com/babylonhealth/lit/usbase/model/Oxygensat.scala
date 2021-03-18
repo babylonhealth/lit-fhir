@@ -26,6 +26,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Oxygensat extends CompanionFor[Oxygensat] {
   override val baseType: CompanionFor[Observation] = Observation
+  override val profileUrl: Option[String]          = Some("http://hl7.org/fhir/StructureDefinition/oxygensat")
   type EffectiveChoice = Choice[Union_0934386166]
   def apply(
       id: Option[String] = None,

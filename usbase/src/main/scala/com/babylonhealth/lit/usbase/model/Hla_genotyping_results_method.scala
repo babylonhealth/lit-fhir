@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Hla_genotyping_results_method extends CompanionFor[Hla_genotyping_results_method] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/hla-genotyping-results-method")
   def apply(
       id: Option[String] = None,
       url: String,

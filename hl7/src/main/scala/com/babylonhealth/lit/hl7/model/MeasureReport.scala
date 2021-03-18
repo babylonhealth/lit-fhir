@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MeasureReport extends CompanionFor[MeasureReport] {
   override val baseType: CompanionFor[MeasureReport] = MeasureReport
+  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/MeasureReport")
   object Group extends CompanionFor[Group] {
     object Population extends CompanionFor[Population] {
       def apply(

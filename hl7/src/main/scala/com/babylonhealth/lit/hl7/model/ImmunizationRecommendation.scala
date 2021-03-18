@@ -24,6 +24,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendation] {
   override val baseType: CompanionFor[ImmunizationRecommendation] = ImmunizationRecommendation
+  override val profileUrl: Option[String]                         = Some("http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation")
   object Recommendation extends CompanionFor[Recommendation] {
     object DateCriterion extends CompanionFor[DateCriterion] {
       def apply(

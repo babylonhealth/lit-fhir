@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Attachment extends CompanionFor[Attachment] {
   override val baseType: CompanionFor[Attachment] = Attachment
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/Attachment")
   def apply(
       id: Option[String] = None,
       url: Option[UrlStr] = None,

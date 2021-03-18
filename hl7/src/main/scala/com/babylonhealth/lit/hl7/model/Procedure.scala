@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Procedure extends CompanionFor[Procedure] {
   override val baseType: CompanionFor[Procedure] = Procedure
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/Procedure")
   object FocalDevice extends CompanionFor[FocalDevice] {
     def apply(
         id: Option[String] = None,

@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_geneticsAncestry extends CompanionFor[Observation_geneticsAncestry] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/observation-geneticsAncestry")
   def apply(
       id: Option[String] = None,
       url: String,

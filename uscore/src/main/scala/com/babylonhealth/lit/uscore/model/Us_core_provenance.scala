@@ -26,6 +26,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_provenance extends CompanionFor[Us_core_provenance] {
   override val baseType: CompanionFor[Provenance] = Provenance
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance")
   type OccurredChoice = Choice[Union_0934386166]
   def apply(
       id: Option[String] = None,

@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Distance extends CompanionFor[Distance] {
   override val baseType: CompanionFor[Distance] = Distance
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/Distance")
   def apply(
       id: Option[String] = None,
       unit: Option[String] = None,

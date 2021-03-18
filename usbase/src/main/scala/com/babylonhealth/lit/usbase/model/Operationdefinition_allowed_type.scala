@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Operationdefinition_allowed_type extends CompanionFor[Operationdefinition_allowed_type] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type")
   def apply(
       id: Option[String] = None,
       url: String,

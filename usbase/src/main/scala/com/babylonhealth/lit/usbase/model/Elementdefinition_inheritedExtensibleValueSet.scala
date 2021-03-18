@@ -26,6 +26,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 object Elementdefinition_inheritedExtensibleValueSet
     extends CompanionFor[Elementdefinition_inheritedExtensibleValueSet] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-inheritedExtensibleValueSet")
   type ValueChoice = Choice[Union00545979821]
   def apply(
       id: Option[String] = None,

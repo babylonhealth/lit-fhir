@@ -26,6 +26,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 object Capabilitystatement_search_parameter_combination
     extends CompanionFor[Capabilitystatement_search_parameter_combination] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination")
   def apply(
       id: Option[String] = None,
       url: String,

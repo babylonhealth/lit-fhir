@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Duration extends CompanionFor[Duration] {
   override val baseType: CompanionFor[Duration] = Duration
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/Duration")
   def apply(
       id: Option[String] = None,
       unit: Option[String] = None,

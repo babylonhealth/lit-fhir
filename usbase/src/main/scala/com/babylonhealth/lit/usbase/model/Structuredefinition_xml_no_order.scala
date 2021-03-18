@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_xml_no_order extends CompanionFor[Structuredefinition_xml_no_order] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-xml-no-order")
   def apply(
       id: Option[String] = None,
       url: String,

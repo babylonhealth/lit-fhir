@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ContactDetail extends CompanionFor[ContactDetail] {
   override val baseType: CompanionFor[ContactDetail] = ContactDetail
+  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/ContactDetail")
   def apply(
       id: Option[String] = None,
       name: Option[String] = None,

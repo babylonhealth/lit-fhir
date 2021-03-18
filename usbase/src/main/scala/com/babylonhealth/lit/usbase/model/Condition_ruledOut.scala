@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Condition_ruledOut extends CompanionFor[Condition_ruledOut] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/condition-ruledOut")
   def apply(
       id: Option[String] = None,
       url: String,

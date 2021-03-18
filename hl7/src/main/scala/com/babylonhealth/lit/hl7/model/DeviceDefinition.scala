@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceDefinition extends CompanionFor[DeviceDefinition] {
   override val baseType: CompanionFor[DeviceDefinition] = DeviceDefinition
+  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/DeviceDefinition")
   object UdiDeviceIdentifier extends CompanionFor[UdiDeviceIdentifier] {
     def apply(
         id: Option[String] = None,

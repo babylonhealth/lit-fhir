@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Population extends CompanionFor[Population] {
   override val baseType: CompanionFor[Population] = Population
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/Population")
   type AgeChoice = Choice[Union_1946587936]
   def apply(
       id: Option[String] = None,

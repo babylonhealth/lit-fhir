@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MolecularSequence extends CompanionFor[MolecularSequence] {
   override val baseType: CompanionFor[MolecularSequence] = MolecularSequence
+  override val profileUrl: Option[String]                = Some("http://hl7.org/fhir/StructureDefinition/MolecularSequence")
   object StructureVariant extends CompanionFor[StructureVariant] {
     object Outer extends CompanionFor[Outer] {
       def apply(

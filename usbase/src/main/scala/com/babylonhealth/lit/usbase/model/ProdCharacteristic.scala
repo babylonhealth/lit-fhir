@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ProdCharacteristic extends CompanionFor[ProdCharacteristic] {
   override val baseType: CompanionFor[ProdCharacteristic] = ProdCharacteristic
+  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/ProdCharacteristic")
   def apply(
       id: Option[String] = None,
       width: Option[Quantity] = None,

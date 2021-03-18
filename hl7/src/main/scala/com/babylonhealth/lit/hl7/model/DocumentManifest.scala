@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DocumentManifest extends CompanionFor[DocumentManifest] {
   override val baseType: CompanionFor[DocumentManifest] = DocumentManifest
+  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/DocumentManifest")
   object Related extends CompanionFor[Related] {
     def apply(
         id: Option[String] = None,

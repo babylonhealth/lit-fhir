@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Parameters_fullUrl extends CompanionFor[Parameters_fullUrl] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/parameters-fullUrl")
   def apply(
       id: Option[String] = None,
       url: String,

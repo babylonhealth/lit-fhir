@@ -24,6 +24,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SimpleQuantity extends CompanionFor[SimpleQuantity] {
   override val baseType: CompanionFor[Quantity] = Quantity
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/SimpleQuantity")
   def apply(
       id: Option[String] = None,
       unit: Option[String] = None,

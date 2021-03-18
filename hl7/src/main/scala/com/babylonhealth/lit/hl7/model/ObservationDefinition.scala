@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ObservationDefinition extends CompanionFor[ObservationDefinition] {
   override val baseType: CompanionFor[ObservationDefinition] = ObservationDefinition
+  override val profileUrl: Option[String]                    = Some("http://hl7.org/fhir/StructureDefinition/ObservationDefinition")
   object QuantitativeDetails extends CompanionFor[QuantitativeDetails] {
     def apply(
         id: Option[String] = None,

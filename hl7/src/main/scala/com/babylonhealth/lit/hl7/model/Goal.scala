@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Goal extends CompanionFor[Goal] {
   override val baseType: CompanionFor[Goal] = Goal
+  override val profileUrl: Option[String]   = Some("http://hl7.org/fhir/StructureDefinition/Goal")
   object Target extends CompanionFor[Target] {
     type DueChoice    = Choice[Union01219602913]
     type DetailChoice = Choice[Union01056080496]

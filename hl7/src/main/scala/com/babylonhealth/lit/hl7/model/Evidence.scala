@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Evidence extends CompanionFor[Evidence] {
   override val baseType: CompanionFor[Evidence] = Evidence
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/Evidence")
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,

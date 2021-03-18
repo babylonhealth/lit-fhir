@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_namespace extends CompanionFor[Elementdefinition_namespace] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-namespace")
   def apply(
       id: Option[String] = None,
       url: String,

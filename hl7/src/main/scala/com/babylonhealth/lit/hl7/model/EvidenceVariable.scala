@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EvidenceVariable extends CompanionFor[EvidenceVariable] {
   override val baseType: CompanionFor[EvidenceVariable] = EvidenceVariable
+  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/EvidenceVariable")
   object Characteristic extends CompanionFor[Characteristic] {
     type DefinitionChoice           = Choice[Union_0358050020]
     type ParticipantEffectiveChoice = Choice[Union00607514014]

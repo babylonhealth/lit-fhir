@@ -26,6 +26,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Triglyceride extends CompanionFor[Triglyceride] {
   override val baseType: CompanionFor[Observation] = Observation
+  override val profileUrl: Option[String]          = Some("http://hl7.org/fhir/StructureDefinition/triglyceride")
   type EffectiveChoice = Choice[Union01473702374]
   def apply(
       id: Option[String] = None,

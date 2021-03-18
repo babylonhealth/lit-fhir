@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Subscription extends CompanionFor[Subscription] {
   override val baseType: CompanionFor[Subscription] = Subscription
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Subscription")
   object Channel extends CompanionFor[Channel] {
     def apply(
         id: Option[String] = None,

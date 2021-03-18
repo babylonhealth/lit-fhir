@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Specimen extends CompanionFor[Specimen] {
   override val baseType: CompanionFor[Specimen] = Specimen
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/Specimen")
   object Processing extends CompanionFor[Processing] {
     type TimeChoice = Choice[Union_0934386166]
     def apply(

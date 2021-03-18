@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object OperationOutcome extends CompanionFor[OperationOutcome] {
   override val baseType: CompanionFor[OperationOutcome] = OperationOutcome
+  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/OperationOutcome")
   object Issue extends CompanionFor[Issue] {
     def apply(
         id: Option[String] = None,

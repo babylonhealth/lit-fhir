@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Invoice extends CompanionFor[Invoice] {
   override val baseType: CompanionFor[Invoice] = Invoice
+  override val profileUrl: Option[String]      = Some("http://hl7.org/fhir/StructureDefinition/Invoice")
   object LineItem extends CompanionFor[LineItem] {
     object PriceComponent extends CompanionFor[PriceComponent] {
       def apply(

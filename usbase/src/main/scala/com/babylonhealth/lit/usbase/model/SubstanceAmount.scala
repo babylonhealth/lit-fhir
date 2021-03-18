@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceAmount extends CompanionFor[SubstanceAmount] {
   override val baseType: CompanionFor[SubstanceAmount] = SubstanceAmount
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/SubstanceAmount")
   object ReferenceRange extends CompanionFor[ReferenceRange] {
     def apply(
         id: Option[String] = None,

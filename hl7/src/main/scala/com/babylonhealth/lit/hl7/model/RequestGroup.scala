@@ -36,6 +36,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RequestGroup extends CompanionFor[RequestGroup] {
   override val baseType: CompanionFor[RequestGroup] = RequestGroup
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RequestGroup")
   object Action extends CompanionFor[Action] {
     object Condition extends CompanionFor[Condition] {
       def apply(

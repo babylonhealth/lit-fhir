@@ -59,8 +59,9 @@ case class TestUnionWrapper3(field: Choice[String \/ Boolean \/ Int], fieldCode:
 }
 
 object TestUnionWrapper1 extends CompanionFor[TestUnionWrapper1] {
-  val baseType         = TestUnionWrapper1
-  val thisName: String = "TestUnionWrapper1"
+  val baseType                            = TestUnionWrapper1
+  val thisName: String                    = "TestUnionWrapper1"
+  override val profileUrl: Option[String] = Some(thisName)
   val field: FHIRComponentFieldMeta[Choice[String \/ Boolean]] =
     FHIRComponentFieldMeta("field", lTagOf[Choice[String \/ Boolean]], true, lTagOf[Choice[String \/ Boolean]])
   val fieldsMeta = Seq(field)
@@ -73,8 +74,9 @@ object TestUnionWrapper1 extends CompanionFor[TestUnionWrapper1] {
 }
 
 object TestUnionWrapper2 extends CompanionFor[TestUnionWrapper2] {
-  val baseType         = TestUnionWrapper2
-  val thisName: String = "TestUnionWrapper2"
+  val baseType                            = TestUnionWrapper2
+  val thisName: String                    = "TestUnionWrapper2"
+  override val profileUrl: Option[String] = Some(thisName)
   val field: FHIRComponentFieldMeta[Choice[String \/ Boolean \/ Int]] =
     FHIRComponentFieldMeta(
       "field",
@@ -91,8 +93,9 @@ object TestUnionWrapper2 extends CompanionFor[TestUnionWrapper2] {
 }
 
 object TestUnionWrapper3 extends CompanionFor[TestUnionWrapper3] {
-  val baseType         = TestUnionWrapper3
-  val thisName: String = "TestUnionWrapper3"
+  val baseType                            = TestUnionWrapper3
+  val thisName: String                    = "TestUnionWrapper3"
+  override val profileUrl: Option[String] = Some(thisName)
   val field: FHIRComponentFieldMeta[Choice[String \/ Boolean \/ Int]] =
     FHIRComponentFieldMeta(
       "field",

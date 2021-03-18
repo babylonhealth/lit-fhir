@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Familymemberhistory_abatement extends CompanionFor[Familymemberhistory_abatement] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/familymemberhistory-abatement")
   type ValueChoice = Choice[Union00813350082]
   def apply(
       id: Option[String] = None,

@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Communication extends CompanionFor[Communication] {
   override val baseType: CompanionFor[Communication] = Communication
+  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/Communication")
   object Payload extends CompanionFor[Payload] {
     type ContentChoice = Choice[Union_1750183386]
     def apply(

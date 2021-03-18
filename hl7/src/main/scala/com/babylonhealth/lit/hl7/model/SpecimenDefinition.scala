@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
   override val baseType: CompanionFor[SpecimenDefinition] = SpecimenDefinition
+  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/SpecimenDefinition")
   object TypeTested extends CompanionFor[TypeTested] {
     object Handling extends CompanionFor[Handling] {
       def apply(

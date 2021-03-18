@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_activityStatusDate extends CompanionFor[Valueset_activityStatusDate] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/valueset-activityStatusDate")
   def apply(
       id: Option[String] = None,
       url: String,

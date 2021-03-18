@@ -27,6 +27,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_medication extends CompanionFor[Us_core_medication] {
   override val baseType: CompanionFor[Medication] = Medication
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(

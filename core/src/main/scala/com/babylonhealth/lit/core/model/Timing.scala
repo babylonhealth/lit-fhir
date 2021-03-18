@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Timing extends CompanionFor[Timing] {
   override val baseType: CompanionFor[Timing] = Timing
+  override val profileUrl: Option[String]     = Some("http://hl7.org/fhir/StructureDefinition/Timing")
   object Repeat extends CompanionFor[Repeat] {
     type BoundsChoice = Choice[Union_0731860109]
     def apply(

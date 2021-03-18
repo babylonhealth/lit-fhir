@@ -26,6 +26,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Clinicaldocument extends CompanionFor[Clinicaldocument] {
   override val baseType: CompanionFor[Composition] = Composition
+  override val profileUrl: Option[String]          = Some("http://hl7.org/fhir/StructureDefinition/clinicaldocument")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/clinicaldocument"))),

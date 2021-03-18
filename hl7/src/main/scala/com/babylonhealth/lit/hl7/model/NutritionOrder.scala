@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object NutritionOrder extends CompanionFor[NutritionOrder] {
   override val baseType: CompanionFor[NutritionOrder] = NutritionOrder
+  override val profileUrl: Option[String]             = Some("http://hl7.org/fhir/StructureDefinition/NutritionOrder")
   object EnteralFormula extends CompanionFor[EnteralFormula] {
     object Administration extends CompanionFor[Administration] {
       type RateChoice = Choice[Union_0964108894]

@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Procedure_targetBodyStructure extends CompanionFor[Procedure_targetBodyStructure] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/procedure-targetBodyStructure")
   def apply(
       id: Option[String] = None,
       url: String,

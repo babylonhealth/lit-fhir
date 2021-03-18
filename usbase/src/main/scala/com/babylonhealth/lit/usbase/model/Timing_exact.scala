@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Timing_exact extends CompanionFor[Timing_exact] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/timing-exact")
   def apply(
       id: Option[String] = None,
       url: String,

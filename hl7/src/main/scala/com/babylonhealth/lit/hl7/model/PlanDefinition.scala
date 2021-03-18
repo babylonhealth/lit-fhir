@@ -36,6 +36,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PlanDefinition extends CompanionFor[PlanDefinition] {
   override val baseType: CompanionFor[PlanDefinition] = PlanDefinition
+  override val profileUrl: Option[String]             = Some("http://hl7.org/fhir/StructureDefinition/PlanDefinition")
   object Action extends CompanionFor[Action] {
     object Condition extends CompanionFor[Condition] {
       def apply(

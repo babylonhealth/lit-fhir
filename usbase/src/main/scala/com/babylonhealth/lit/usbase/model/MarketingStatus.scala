@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MarketingStatus extends CompanionFor[MarketingStatus] {
   override val baseType: CompanionFor[MarketingStatus] = MarketingStatus
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/MarketingStatus")
   def apply(
       id: Option[String] = None,
       status: CodeableConcept,

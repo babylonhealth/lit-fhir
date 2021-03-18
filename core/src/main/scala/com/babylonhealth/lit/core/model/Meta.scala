@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Meta extends CompanionFor[Meta] {
   override val baseType: CompanionFor[Meta] = Meta
+  override val profileUrl: Option[String]   = Some("http://hl7.org/fhir/StructureDefinition/Meta")
   def apply(
       id: Option[String] = None,
       tag: LitSeq[Coding] = LitSeq.empty,

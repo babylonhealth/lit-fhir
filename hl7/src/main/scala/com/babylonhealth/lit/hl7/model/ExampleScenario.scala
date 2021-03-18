@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ExampleScenario extends CompanionFor[ExampleScenario] {
   override val baseType: CompanionFor[ExampleScenario] = ExampleScenario
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/ExampleScenario")
   object Instance extends CompanionFor[Instance] {
     object Version extends CompanionFor[Version] {
       def apply(

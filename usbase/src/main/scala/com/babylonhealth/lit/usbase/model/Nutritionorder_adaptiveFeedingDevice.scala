@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Nutritionorder_adaptiveFeedingDevice extends CompanionFor[Nutritionorder_adaptiveFeedingDevice] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/nutritionorder-adaptiveFeedingDevice")
   def apply(
       id: Option[String] = None,
       url: String,

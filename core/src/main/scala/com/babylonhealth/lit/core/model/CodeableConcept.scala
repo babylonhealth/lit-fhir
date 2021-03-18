@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CodeableConcept extends CompanionFor[CodeableConcept] {
   override val baseType: CompanionFor[CodeableConcept] = CodeableConcept
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/CodeableConcept")
   def apply(
       id: Option[String] = None,
       text: Option[String] = None,

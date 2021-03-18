@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object VisionPrescription extends CompanionFor[VisionPrescription] {
   override val baseType: CompanionFor[VisionPrescription] = VisionPrescription
+  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/VisionPrescription")
   object LensSpecification extends CompanionFor[LensSpecification] {
     object Prism extends CompanionFor[Prism] {
       def apply(

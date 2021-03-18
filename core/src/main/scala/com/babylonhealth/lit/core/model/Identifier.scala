@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Identifier extends CompanionFor[Identifier] {
   override val baseType: CompanionFor[Identifier] = Identifier
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/Identifier")
   def apply(
       id: Option[String] = None,
       use: Option[IDENTIFIER_USE] = None,

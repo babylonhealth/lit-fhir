@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxValueSet] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet")
   type ValueChoice = Choice[Union00545979821]
   def apply(
       id: Option[String] = None,

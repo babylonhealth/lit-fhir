@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Event_performerFunction extends CompanionFor[Event_performerFunction] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/event-performerFunction")
   def apply(
       id: Option[String] = None,
       url: String,

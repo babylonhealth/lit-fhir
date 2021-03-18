@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RiskEvidenceSynthesis extends CompanionFor[RiskEvidenceSynthesis] {
   override val baseType: CompanionFor[RiskEvidenceSynthesis] = RiskEvidenceSynthesis
+  override val profileUrl: Option[String]                    = Some("http://hl7.org/fhir/StructureDefinition/RiskEvidenceSynthesis")
   object Certainty extends CompanionFor[Certainty] {
     object CertaintySubcomponent extends CompanionFor[CertaintySubcomponent] {
       def apply(

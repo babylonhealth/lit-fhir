@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Contactpoint_local extends CompanionFor[Contactpoint_local] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/contactpoint-local")
   def apply(
       id: Option[String] = None,
       url: String,

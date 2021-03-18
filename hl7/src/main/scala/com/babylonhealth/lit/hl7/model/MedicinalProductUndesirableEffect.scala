@@ -24,6 +24,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductUndesirableEffect extends CompanionFor[MedicinalProductUndesirableEffect] {
   override val baseType: CompanionFor[MedicinalProductUndesirableEffect] = MedicinalProductUndesirableEffect
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/MedicinalProductUndesirableEffect")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,

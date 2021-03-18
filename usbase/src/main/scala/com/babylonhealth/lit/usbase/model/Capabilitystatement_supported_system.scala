@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Capabilitystatement_supported_system extends CompanionFor[Capabilitystatement_supported_system] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/capabilitystatement-supported-system")
   def apply(
       id: Option[String] = None,
       url: String,

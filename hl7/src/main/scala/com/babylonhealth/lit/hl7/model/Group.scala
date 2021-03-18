@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Group extends CompanionFor[Group] {
   override val baseType: CompanionFor[Group] = Group
+  override val profileUrl: Option[String]    = Some("http://hl7.org/fhir/StructureDefinition/Group")
   object Characteristic extends CompanionFor[Characteristic] {
     type ValueChoice = Choice[Union01646729908]
     def apply(

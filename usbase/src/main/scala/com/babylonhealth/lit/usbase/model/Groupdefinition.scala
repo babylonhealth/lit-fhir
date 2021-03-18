@@ -26,6 +26,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Groupdefinition extends CompanionFor[Groupdefinition] {
   override val baseType: CompanionFor[Group] = Group
+  override val profileUrl: Option[String]    = Some("http://hl7.org/fhir/StructureDefinition/groupdefinition")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/groupdefinition"))),

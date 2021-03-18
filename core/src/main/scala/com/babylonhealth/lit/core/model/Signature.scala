@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Signature extends CompanionFor[Signature] {
   override val baseType: CompanionFor[Signature] = Signature
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/Signature")
   def apply(
       id: Option[String] = None,
       who: Reference,

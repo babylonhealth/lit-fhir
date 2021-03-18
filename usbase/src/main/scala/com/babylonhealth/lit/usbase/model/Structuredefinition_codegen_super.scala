@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_codegen_super extends CompanionFor[Structuredefinition_codegen_super] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-codegen-super")
   def apply(
       id: Option[String] = None,
       url: String,

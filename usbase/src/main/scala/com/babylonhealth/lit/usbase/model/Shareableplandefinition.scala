@@ -26,6 +26,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareableplandefinition extends CompanionFor[Shareableplandefinition] {
   override val baseType: CompanionFor[PlanDefinition] = PlanDefinition
+  override val profileUrl: Option[String]             = Some("http://hl7.org/fhir/StructureDefinition/shareableplandefinition")
   type SubjectChoice = Choice[Union01025009075]
   def apply(
       id: Option[String] = None,

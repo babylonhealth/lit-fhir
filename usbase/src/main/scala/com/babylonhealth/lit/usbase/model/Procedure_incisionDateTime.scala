@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Procedure_incisionDateTime extends CompanionFor[Procedure_incisionDateTime] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/procedure-incisionDateTime")
   def apply(
       id: Option[String] = None,
       url: String,
