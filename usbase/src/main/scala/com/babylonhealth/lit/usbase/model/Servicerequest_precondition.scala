@@ -28,40 +28,33 @@ object Servicerequest_precondition extends CompanionFor[Servicerequest_precondit
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/servicerequest-precondition")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: CodeableConcept,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Servicerequest_precondition = new Servicerequest_precondition(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[CodeableConcept] =
     FHIRComponentFieldMeta("value", lTagOf[CodeableConcept], true, lTagOf[CodeableConcept])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Servicerequest_precondition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
   )
   def extractId(t: Servicerequest_precondition): Option[String]                   = t.id
-  def extractUrl(t: Servicerequest_precondition): String                          = t.url
   def extractValue(t: Servicerequest_precondition): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                                   = "Servicerequest_precondition"
   override val searchParams: Map[String, Servicerequest_precondition => Seq[Any]] = Extension.searchParams
-  def unapply(o: Servicerequest_precondition): Option[(Option[String], String, CodeableConcept)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[CodeableConcept]))
+  def unapply(o: Servicerequest_precondition): Option[(Option[String], CodeableConcept)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Servicerequest_precondition] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Servicerequest_precondition(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[CodeableConcept]("valueCodeableConcept", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object Servicerequest_precondition extends CompanionFor[Servicerequest_precondit
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object Servicerequest_precondition extends CompanionFor[Servicerequest_precondit
 @POJOBoilerplate
 class Servicerequest_precondition(
     override val id: Option[String] = None,
-    override val url: String,
     value: CodeableConcept,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/servicerequest-precondition",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

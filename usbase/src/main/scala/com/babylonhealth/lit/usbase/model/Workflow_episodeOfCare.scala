@@ -28,40 +28,33 @@ object Workflow_episodeOfCare extends CompanionFor[Workflow_episodeOfCare] {
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/workflow-episodeOfCare")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: Reference,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Workflow_episodeOfCare = new Workflow_episodeOfCare(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("value", lTagOf[Reference], true, lTagOf[Reference])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Workflow_episodeOfCare): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
   )
   def extractId(t: Workflow_episodeOfCare): Option[String]                   = t.id
-  def extractUrl(t: Workflow_episodeOfCare): String                          = t.url
   def extractValue(t: Workflow_episodeOfCare): Reference                     = t.value.get.toSubRefNonUnion[Reference]
   override val thisName: String                                              = "Workflow_episodeOfCare"
   override val searchParams: Map[String, Workflow_episodeOfCare => Seq[Any]] = Extension.searchParams
-  def unapply(o: Workflow_episodeOfCare): Option[(Option[String], String, Reference)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[Reference]))
+  def unapply(o: Workflow_episodeOfCare): Option[(Option[String], Reference)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Workflow_episodeOfCare] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Workflow_episodeOfCare(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[Reference]("valueReference", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object Workflow_episodeOfCare extends CompanionFor[Workflow_episodeOfCare] {
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object Workflow_episodeOfCare extends CompanionFor[Workflow_episodeOfCare] {
 @POJOBoilerplate
 class Workflow_episodeOfCare(
     override val id: Option[String] = None,
-    override val url: String,
     value: Reference,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/workflow-episodeOfCare",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

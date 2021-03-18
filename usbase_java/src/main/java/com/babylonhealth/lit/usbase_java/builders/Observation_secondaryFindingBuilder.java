@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Observation_secondaryFindingBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private CodeableConcept value;
 
   /**
    * Required fields for {@link Observation_secondaryFinding}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Observation_secondaryFindingBuilder(String url, CodeableConcept value) {
-    this.url = url;
+  public Observation_secondaryFindingBuilder(CodeableConcept value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Observation_secondaryFindingBuilder {
 
   public Observation_secondaryFinding build() {
     return new Observation_secondaryFinding(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

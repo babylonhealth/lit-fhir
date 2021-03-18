@@ -28,43 +28,36 @@ object Iso21090_uncertaintyType extends CompanionFor[Iso21090_uncertaintyType] {
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/iso21090-uncertaintyType")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: PROBABILITY_DISTRIBUTION_TYPE,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Iso21090_uncertaintyType = new Iso21090_uncertaintyType(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[PROBABILITY_DISTRIBUTION_TYPE] =
     FHIRComponentFieldMeta("value", lTagOf[PROBABILITY_DISTRIBUTION_TYPE], true, lTagOf[PROBABILITY_DISTRIBUTION_TYPE])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Iso21090_uncertaintyType): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[PROBABILITY_DISTRIBUTION_TYPE](
       value,
       t.value.get.toSubRefNonUnion[PROBABILITY_DISTRIBUTION_TYPE])
   )
   def extractId(t: Iso21090_uncertaintyType): Option[String] = t.id
-  def extractUrl(t: Iso21090_uncertaintyType): String        = t.url
   def extractValue(t: Iso21090_uncertaintyType): PROBABILITY_DISTRIBUTION_TYPE =
     t.value.get.toSubRefNonUnion[PROBABILITY_DISTRIBUTION_TYPE]
   override val thisName: String                                                = "Iso21090_uncertaintyType"
   override val searchParams: Map[String, Iso21090_uncertaintyType => Seq[Any]] = Extension.searchParams
-  def unapply(o: Iso21090_uncertaintyType): Option[(Option[String], String, PROBABILITY_DISTRIBUTION_TYPE)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[PROBABILITY_DISTRIBUTION_TYPE]))
+  def unapply(o: Iso21090_uncertaintyType): Option[(Option[String], PROBABILITY_DISTRIBUTION_TYPE)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[PROBABILITY_DISTRIBUTION_TYPE]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_uncertaintyType] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Iso21090_uncertaintyType(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[PROBABILITY_DISTRIBUTION_TYPE]("valueCode", None),
           decodeAttributes(cursor)
         )
@@ -79,6 +72,7 @@ object Iso21090_uncertaintyType extends CompanionFor[Iso21090_uncertaintyType] {
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -86,9 +80,12 @@ object Iso21090_uncertaintyType extends CompanionFor[Iso21090_uncertaintyType] {
 @POJOBoilerplate
 class Iso21090_uncertaintyType(
     override val id: Option[String] = None,
-    override val url: String,
     value: PROBABILITY_DISTRIBUTION_TYPE,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/iso21090-uncertaintyType",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

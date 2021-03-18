@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class _11179_objectClassBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Coding value;
 
   /**
    * Required fields for {@link _11179_objectClass}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public _11179_objectClassBuilder(String url, Coding value) {
-    this.url = url;
+  public _11179_objectClassBuilder(Coding value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class _11179_objectClassBuilder {
   }
 
   public _11179_objectClass build() {
-    return new _11179_objectClass(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new _11179_objectClass(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

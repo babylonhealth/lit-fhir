@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Match_gradeBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private MATCH_GRADE value;
 
   /**
    * Required fields for {@link Match_grade}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Match_gradeBuilder(String url, MATCH_GRADE value) {
-    this.url = url;
+  public Match_gradeBuilder(MATCH_GRADE value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class Match_gradeBuilder {
   }
 
   public Match_grade build() {
-    return new Match_grade(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Match_grade(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

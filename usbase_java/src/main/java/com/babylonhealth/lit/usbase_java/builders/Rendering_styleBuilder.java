@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Rendering_styleBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Rendering_style}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Rendering_styleBuilder(String url, String value) {
-    this.url = url;
+  public Rendering_styleBuilder(String value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class Rendering_styleBuilder {
   }
 
   public Rendering_style build() {
-    return new Rendering_style(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Rendering_style(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

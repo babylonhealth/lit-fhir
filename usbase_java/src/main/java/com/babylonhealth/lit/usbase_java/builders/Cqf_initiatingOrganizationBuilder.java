@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Cqf_initiatingOrganizationBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Cqf_initiatingOrganization}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Cqf_initiatingOrganizationBuilder(String url, Reference value) {
-    this.url = url;
+  public Cqf_initiatingOrganizationBuilder(Reference value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Cqf_initiatingOrganizationBuilder {
 
   public Cqf_initiatingOrganization build() {
     return new Cqf_initiatingOrganization(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

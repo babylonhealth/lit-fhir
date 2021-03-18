@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Questionnaire_itemControlBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private CodeableConcept value;
 
   /**
    * Required fields for {@link Questionnaire_itemControl}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Questionnaire_itemControlBuilder(String url, CodeableConcept value) {
-    this.url = url;
+  public Questionnaire_itemControlBuilder(CodeableConcept value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Questionnaire_itemControlBuilder {
 
   public Questionnaire_itemControl build() {
     return new Questionnaire_itemControl(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

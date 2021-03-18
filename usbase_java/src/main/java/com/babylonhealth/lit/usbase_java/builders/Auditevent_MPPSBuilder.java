@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Auditevent_MPPSBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Identifier value;
 
   /**
    * Required fields for {@link Auditevent_MPPS}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Auditevent_MPPSBuilder(String url, Identifier value) {
-    this.url = url;
+  public Auditevent_MPPSBuilder(Identifier value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class Auditevent_MPPSBuilder {
   }
 
   public Auditevent_MPPS build() {
-    return new Auditevent_MPPS(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Auditevent_MPPS(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

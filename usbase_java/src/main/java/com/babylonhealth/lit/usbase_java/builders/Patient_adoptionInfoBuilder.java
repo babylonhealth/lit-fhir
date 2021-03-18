@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Patient_adoptionInfoBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private CodeableConcept value;
 
   /**
    * Required fields for {@link Patient_adoptionInfo}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Patient_adoptionInfoBuilder(String url, CodeableConcept value) {
-    this.url = url;
+  public Patient_adoptionInfoBuilder(CodeableConcept value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Patient_adoptionInfoBuilder {
   }
 
   public Patient_adoptionInfo build() {
-    return new Patient_adoptionInfo(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Patient_adoptionInfo(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

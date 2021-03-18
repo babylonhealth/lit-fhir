@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Consent_WitnessBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Consent_Witness}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Consent_WitnessBuilder(String url, Reference value) {
-    this.url = url;
+  public Consent_WitnessBuilder(Reference value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class Consent_WitnessBuilder {
   }
 
   public Consent_Witness build() {
-    return new Consent_Witness(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Consent_Witness(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

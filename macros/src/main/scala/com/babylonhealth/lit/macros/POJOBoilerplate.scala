@@ -24,14 +24,11 @@ trait EqMethods {
   def withClassName(tpe: TypeName): Tree = q"""override val thisClassName: String = ${tpe.toString}"""
 
   def withHashCode(params: Seq[ValDef], pparams: Seq[NamedArg]): Option[Tree] = {
-    val newParams: Seq[TermName] = pparams
-      .foldLeft(params) { case (acc, next) =>
-        acc.find(_.name.decodedName.toString == toPlainName(next.lhs)) match {
-          case None           => c.abort(c.enclosingPosition, "Can't find matching constructor val")
-          case Some(matching) => acc.filterNot(_ eq matching)
-        }
-      }
-      .map(_.name.toTermName)
+    val pparamNames: Set[String] = pparams.map(p => toPlainName(p.lhs)).toSet
+    val newParams: Seq[TermName] =
+      params
+        .filterNot(pparamNames contains _.name.decodedName.toString)
+        .map(_.name.toTermName)
     if (newParams.isEmpty) None
     else {
       val baseCode = if (pparams.size == 1) q"primitiveAttributes.##" else q"super.hashCode()"

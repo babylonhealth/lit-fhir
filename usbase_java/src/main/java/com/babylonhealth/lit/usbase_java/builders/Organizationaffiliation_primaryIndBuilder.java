@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Organizationaffiliation_primaryIndBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Boolean value;
 
   /**
    * Required fields for {@link Organizationaffiliation_primaryInd}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Organizationaffiliation_primaryIndBuilder(String url, Boolean value) {
-    this.url = url;
+  public Organizationaffiliation_primaryIndBuilder(Boolean value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Organizationaffiliation_primaryIndBuilder {
 
   public Organizationaffiliation_primaryInd build() {
     return new Organizationaffiliation_primaryInd(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

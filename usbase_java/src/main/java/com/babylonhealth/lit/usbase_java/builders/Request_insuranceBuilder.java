@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Request_insuranceBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Request_insurance}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Request_insuranceBuilder(String url, Reference value) {
-    this.url = url;
+  public Request_insuranceBuilder(Reference value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Request_insuranceBuilder {
   }
 
   public Request_insurance build() {
-    return new Request_insurance(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Request_insurance(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

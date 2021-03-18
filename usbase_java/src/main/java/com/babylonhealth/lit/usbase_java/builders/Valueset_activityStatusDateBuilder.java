@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Valueset_activityStatusDateBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private FHIRDate value;
 
   /**
    * Required fields for {@link Valueset_activityStatusDate}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Valueset_activityStatusDateBuilder(String url, FHIRDate value) {
-    this.url = url;
+  public Valueset_activityStatusDateBuilder(FHIRDate value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Valueset_activityStatusDateBuilder {
 
   public Valueset_activityStatusDate build() {
     return new Valueset_activityStatusDate(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

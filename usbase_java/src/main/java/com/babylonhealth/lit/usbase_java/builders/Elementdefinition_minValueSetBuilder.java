@@ -45,13 +45,11 @@ import static java.util.stream.Collectors.toList;
 
 public class Elementdefinition_minValueSetBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Choice<$bslash$div<String, String>> value;
 
   /**
    * Required fields for {@link Elementdefinition_minValueSet}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
    *     field. Type should be one of String. There are multiple valid json suffixes which
@@ -59,8 +57,7 @@ public class Elementdefinition_minValueSetBuilder {
    *     $value wrapped in ParamDistinguisher.choose("foo". $value), where foo is one of: Canonical,
    *     Uri
    */
-  public Elementdefinition_minValueSetBuilder(String url, @NonNull ParamDistinguisher value) {
-    this.url = url;
+  public Elementdefinition_minValueSetBuilder(@NonNull ParamDistinguisher value) {
     this.value =
         (Choice)
             Choice$.MODULE$.fromSuffix(
@@ -78,6 +75,6 @@ public class Elementdefinition_minValueSetBuilder {
 
   public Elementdefinition_minValueSet build() {
     return new Elementdefinition_minValueSet(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

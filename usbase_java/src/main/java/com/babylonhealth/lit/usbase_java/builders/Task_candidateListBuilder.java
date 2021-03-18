@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Task_candidateListBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Task_candidateList}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Task_candidateListBuilder(String url, Reference value) {
-    this.url = url;
+  public Task_candidateListBuilder(Reference value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Task_candidateListBuilder {
   }
 
   public Task_candidateList build() {
-    return new Task_candidateList(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Task_candidateList(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

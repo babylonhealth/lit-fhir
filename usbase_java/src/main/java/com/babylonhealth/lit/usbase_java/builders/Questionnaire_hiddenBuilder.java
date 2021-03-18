@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Questionnaire_hiddenBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Boolean value;
 
   /**
    * Required fields for {@link Questionnaire_hidden}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Questionnaire_hiddenBuilder(String url, Boolean value) {
-    this.url = url;
+  public Questionnaire_hiddenBuilder(Boolean value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Questionnaire_hiddenBuilder {
   }
 
   public Questionnaire_hidden build() {
-    return new Questionnaire_hidden(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Questionnaire_hidden(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -28,40 +28,33 @@ object Valueset_toocostly extends CompanionFor[Valueset_toocostly] {
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/valueset-toocostly")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: Boolean,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Valueset_toocostly = new Valueset_toocostly(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Boolean] =
     FHIRComponentFieldMeta("value", lTagOf[Boolean], true, lTagOf[Boolean])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Valueset_toocostly): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
   )
   def extractId(t: Valueset_toocostly): Option[String]                   = t.id
-  def extractUrl(t: Valueset_toocostly): String                          = t.url
   def extractValue(t: Valueset_toocostly): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                          = "Valueset_toocostly"
   override val searchParams: Map[String, Valueset_toocostly => Seq[Any]] = Extension.searchParams
-  def unapply(o: Valueset_toocostly): Option[(Option[String], String, Boolean)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[Boolean]))
+  def unapply(o: Valueset_toocostly): Option[(Option[String], Boolean)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_toocostly] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Valueset_toocostly(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[Boolean]("valueBoolean", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object Valueset_toocostly extends CompanionFor[Valueset_toocostly] {
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object Valueset_toocostly extends CompanionFor[Valueset_toocostly] {
 @POJOBoilerplate
 class Valueset_toocostly(
     override val id: Option[String] = None,
-    override val url: String,
     value: Boolean,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/valueset-toocostly",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

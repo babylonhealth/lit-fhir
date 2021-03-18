@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Valueset_authorBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private ContactDetail value;
 
   /**
    * Required fields for {@link Valueset_author}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Valueset_authorBuilder(String url, ContactDetail value) {
-    this.url = url;
+  public Valueset_authorBuilder(ContactDetail value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class Valueset_authorBuilder {
   }
 
   public Valueset_author build() {
-    return new Valueset_author(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Valueset_author(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -45,17 +45,10 @@ import static java.util.stream.Collectors.toList;
 
 public class Observation_geneticsAlleleBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Collection<Extension> extension = Collections.emptyList();
 
-  /**
-   * Required fields for {@link Observation_geneticsAllele}
-   *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
-   */
-  public Observation_geneticsAlleleBuilder(String url) {
-    this.url = url;
-  }
+  /** Required fields for {@link Observation_geneticsAllele} */
+  public Observation_geneticsAlleleBuilder() {}
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -91,7 +84,6 @@ public class Observation_geneticsAlleleBuilder {
   public Observation_geneticsAllele build() {
     return new Observation_geneticsAllele(
         OptionConverters.toScala(id),
-        url,
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

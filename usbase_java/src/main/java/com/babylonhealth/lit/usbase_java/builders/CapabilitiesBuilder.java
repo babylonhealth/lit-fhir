@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class CapabilitiesBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private SMART_CAPABILITIES value;
 
   /**
    * Required fields for {@link Capabilities}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public CapabilitiesBuilder(String url, SMART_CAPABILITIES value) {
-    this.url = url;
+  public CapabilitiesBuilder(SMART_CAPABILITIES value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class CapabilitiesBuilder {
   }
 
   public Capabilities build() {
-    return new Capabilities(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Capabilities(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -28,41 +28,34 @@ object Iso21090_EN_representation extends CompanionFor[Iso21090_EN_representatio
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/iso21090-EN-representation")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: NAME_V3_REPRESENTATION,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Iso21090_EN_representation = new Iso21090_EN_representation(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[NAME_V3_REPRESENTATION] =
     FHIRComponentFieldMeta("value", lTagOf[NAME_V3_REPRESENTATION], true, lTagOf[NAME_V3_REPRESENTATION])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Iso21090_EN_representation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[NAME_V3_REPRESENTATION](value, t.value.get.toSubRefNonUnion[NAME_V3_REPRESENTATION])
   )
   def extractId(t: Iso21090_EN_representation): Option[String] = t.id
-  def extractUrl(t: Iso21090_EN_representation): String        = t.url
   def extractValue(t: Iso21090_EN_representation): NAME_V3_REPRESENTATION =
     t.value.get.toSubRefNonUnion[NAME_V3_REPRESENTATION]
   override val thisName: String                                                  = "Iso21090_EN_representation"
   override val searchParams: Map[String, Iso21090_EN_representation => Seq[Any]] = Extension.searchParams
-  def unapply(o: Iso21090_EN_representation): Option[(Option[String], String, NAME_V3_REPRESENTATION)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[NAME_V3_REPRESENTATION]))
+  def unapply(o: Iso21090_EN_representation): Option[(Option[String], NAME_V3_REPRESENTATION)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[NAME_V3_REPRESENTATION]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_EN_representation] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Iso21090_EN_representation(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[NAME_V3_REPRESENTATION]("valueCode", None),
           decodeAttributes(cursor)
         )
@@ -77,6 +70,7 @@ object Iso21090_EN_representation extends CompanionFor[Iso21090_EN_representatio
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -84,9 +78,12 @@ object Iso21090_EN_representation extends CompanionFor[Iso21090_EN_representatio
 @POJOBoilerplate
 class Iso21090_EN_representation(
     override val id: Option[String] = None,
-    override val url: String,
     value: NAME_V3_REPRESENTATION,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/iso21090-EN-representation",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

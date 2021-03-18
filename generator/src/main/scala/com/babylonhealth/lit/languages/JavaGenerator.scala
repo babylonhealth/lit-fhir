@@ -30,7 +30,8 @@ trait JavaGenerator extends Commonish {
     val lookupPkg            = valueSets.byEnum.map(s => s._1 -> moduleDependencies.leastCommon(s._2.map(_._1).toSet))
     val fields =
       topLevelClass.fields
-        .filter(_.cardinality != Zero)
+        .filter(f =>
+          f.cardinality != Zero && !(topLevelClass.parentClass.exists(_.className == "Extension") && f.javaName == "url"))
         .map { bf =>
           val default: Option[String] = // TODO Should this list include parents? Should it have a priority ordering?
             if (bf.javaName == "meta" && bf.types.head == "Meta" && topLevelClass.isProfile)

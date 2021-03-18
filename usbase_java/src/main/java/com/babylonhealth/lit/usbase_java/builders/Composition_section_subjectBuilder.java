@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Composition_section_subjectBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Composition_section_subject}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Composition_section_subjectBuilder(String url, String value) {
-    this.url = url;
+  public Composition_section_subjectBuilder(String value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Composition_section_subjectBuilder {
 
   public Composition_section_subject build() {
     return new Composition_section_subject(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Codesystem_effectiveDateBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private FHIRDate value;
 
   /**
    * Required fields for {@link Codesystem_effectiveDate}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Codesystem_effectiveDateBuilder(String url, FHIRDate value) {
-    this.url = url;
+  public Codesystem_effectiveDateBuilder(FHIRDate value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Codesystem_effectiveDateBuilder {
 
   public Codesystem_effectiveDate build() {
     return new Codesystem_effectiveDate(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

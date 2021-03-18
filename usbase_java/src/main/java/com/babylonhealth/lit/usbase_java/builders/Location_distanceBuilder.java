@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Location_distanceBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Distance value;
 
   /**
    * Required fields for {@link Location_distance}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Location_distanceBuilder(String url, Distance value) {
-    this.url = url;
+  public Location_distanceBuilder(Distance value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Location_distanceBuilder {
   }
 
   public Location_distance build() {
-    return new Location_distance(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Location_distance(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -28,40 +28,33 @@ object Codesystem_expirationDate extends CompanionFor[Codesystem_expirationDate]
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/codesystem-expirationDate")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: FHIRDate,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Codesystem_expirationDate = new Codesystem_expirationDate(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[FHIRDate] =
     FHIRComponentFieldMeta("value", lTagOf[FHIRDate], true, lTagOf[FHIRDate])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Codesystem_expirationDate): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[FHIRDate](value, t.value.get.toSubRefNonUnion[FHIRDate])
   )
   def extractId(t: Codesystem_expirationDate): Option[String]                   = t.id
-  def extractUrl(t: Codesystem_expirationDate): String                          = t.url
   def extractValue(t: Codesystem_expirationDate): FHIRDate                      = t.value.get.toSubRefNonUnion[FHIRDate]
   override val thisName: String                                                 = "Codesystem_expirationDate"
   override val searchParams: Map[String, Codesystem_expirationDate => Seq[Any]] = Extension.searchParams
-  def unapply(o: Codesystem_expirationDate): Option[(Option[String], String, FHIRDate)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[FHIRDate]))
+  def unapply(o: Codesystem_expirationDate): Option[(Option[String], FHIRDate)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[FHIRDate]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Codesystem_expirationDate] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Codesystem_expirationDate(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[FHIRDate]("valueDate", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object Codesystem_expirationDate extends CompanionFor[Codesystem_expirationDate]
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object Codesystem_expirationDate extends CompanionFor[Codesystem_expirationDate]
 @POJOBoilerplate
 class Codesystem_expirationDate(
     override val id: Option[String] = None,
-    override val url: String,
     value: FHIRDate,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/codesystem-expirationDate",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

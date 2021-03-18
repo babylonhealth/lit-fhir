@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class EntryFormatBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link EntryFormat}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public EntryFormatBuilder(String url, String value) {
-    this.url = url;
+  public EntryFormatBuilder(String value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class EntryFormatBuilder {
   }
 
   public EntryFormat build() {
-    return new EntryFormat(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new EntryFormat(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Procedure_causedByBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Procedure_causedBy}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Procedure_causedByBuilder(String url, Reference value) {
-    this.url = url;
+  public Procedure_causedByBuilder(Reference value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Procedure_causedByBuilder {
   }
 
   public Procedure_causedBy build() {
-    return new Procedure_causedBy(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Procedure_causedBy(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

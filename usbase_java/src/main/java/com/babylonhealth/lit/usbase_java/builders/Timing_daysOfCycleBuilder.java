@@ -45,21 +45,18 @@ import static java.util.stream.Collectors.toList;
 
 public class Timing_daysOfCycleBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Collection<Extension> extension;
 
   /**
    * Required fields for {@link Timing_daysOfCycle}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param extension - May be used to represent additional information that is not part of the
    *     basic definition of the element. To make the use of extensions safe and manageable, there
    *     is a strict set of governance applied to the definition and use of extensions. Though any
    *     implementer can define an extension, there is a set of requirements that SHALL be met as
    *     part of the definition of the extension.
    */
-  public Timing_daysOfCycleBuilder(String url, Collection<Extension> extension) {
-    this.url = url;
+  public Timing_daysOfCycleBuilder(Collection<Extension> extension) {
     this.extension = extension;
   }
 
@@ -75,7 +72,6 @@ public class Timing_daysOfCycleBuilder {
   public Timing_daysOfCycle build() {
     return new Timing_daysOfCycle(
         OptionConverters.toScala(id),
-        url,
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

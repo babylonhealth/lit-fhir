@@ -29,40 +29,33 @@ object _11179_permitted_value_valueset extends CompanionFor[_11179_permitted_val
     "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-valueset")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: Canonical,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): _11179_permitted_value_valueset = new _11179_permitted_value_valueset(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Canonical] =
     FHIRComponentFieldMeta("value", lTagOf[Canonical], true, lTagOf[Canonical])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: _11179_permitted_value_valueset): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[Canonical](value, t.value.get.toSubRefNonUnion[Canonical])
   )
   def extractId(t: _11179_permitted_value_valueset): Option[String]                   = t.id
-  def extractUrl(t: _11179_permitted_value_valueset): String                          = t.url
   def extractValue(t: _11179_permitted_value_valueset): Canonical                     = t.value.get.toSubRefNonUnion[Canonical]
   override val thisName: String                                                       = "_11179_permitted_value_valueset"
   override val searchParams: Map[String, _11179_permitted_value_valueset => Seq[Any]] = Extension.searchParams
-  def unapply(o: _11179_permitted_value_valueset): Option[(Option[String], String, Canonical)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[Canonical]))
+  def unapply(o: _11179_permitted_value_valueset): Option[(Option[String], Canonical)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[Canonical]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[_11179_permitted_value_valueset] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new _11179_permitted_value_valueset(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[Canonical]("valueCanonical", None),
           decodeAttributes(cursor)
         )
@@ -77,6 +70,7 @@ object _11179_permitted_value_valueset extends CompanionFor[_11179_permitted_val
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -84,9 +78,12 @@ object _11179_permitted_value_valueset extends CompanionFor[_11179_permitted_val
 @POJOBoilerplate
 class _11179_permitted_value_valueset(
     override val id: Option[String] = None,
-    override val url: String,
     value: Canonical,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-valueset",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

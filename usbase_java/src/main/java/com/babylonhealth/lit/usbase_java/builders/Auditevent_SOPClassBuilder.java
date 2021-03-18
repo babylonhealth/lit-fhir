@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Auditevent_SOPClassBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Auditevent_SOPClass}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Auditevent_SOPClassBuilder(String url, Reference value) {
-    this.url = url;
+  public Auditevent_SOPClassBuilder(Reference value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Auditevent_SOPClassBuilder {
   }
 
   public Auditevent_SOPClass build() {
-    return new Auditevent_SOPClass(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Auditevent_SOPClass(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Capabilitystatement_expectationBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private CONFORMANCE_EXPECTATION value;
 
   /**
    * Required fields for {@link Capabilitystatement_expectation}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Capabilitystatement_expectationBuilder(String url, CONFORMANCE_EXPECTATION value) {
-    this.url = url;
+  public Capabilitystatement_expectationBuilder(CONFORMANCE_EXPECTATION value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Capabilitystatement_expectationBuilder {
 
   public Capabilitystatement_expectation build() {
     return new Capabilitystatement_expectation(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

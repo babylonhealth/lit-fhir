@@ -45,17 +45,10 @@ import static java.util.stream.Collectors.toList;
 
 public class Observation_geneticsAminoAcidChangeBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Collection<Extension> extension = Collections.emptyList();
 
-  /**
-   * Required fields for {@link Observation_geneticsAminoAcidChange}
-   *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
-   */
-  public Observation_geneticsAminoAcidChangeBuilder(String url) {
-    this.url = url;
-  }
+  /** Required fields for {@link Observation_geneticsAminoAcidChange} */
+  public Observation_geneticsAminoAcidChangeBuilder() {}
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -92,7 +85,6 @@ public class Observation_geneticsAminoAcidChangeBuilder {
   public Observation_geneticsAminoAcidChange build() {
     return new Observation_geneticsAminoAcidChange(
         OptionConverters.toScala(id),
-        url,
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

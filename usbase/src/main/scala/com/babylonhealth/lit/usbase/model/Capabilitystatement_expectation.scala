@@ -29,41 +29,34 @@ object Capabilitystatement_expectation extends CompanionFor[Capabilitystatement_
     "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: CONFORMANCE_EXPECTATION,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Capabilitystatement_expectation = new Capabilitystatement_expectation(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[CONFORMANCE_EXPECTATION] =
     FHIRComponentFieldMeta("value", lTagOf[CONFORMANCE_EXPECTATION], true, lTagOf[CONFORMANCE_EXPECTATION])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Capabilitystatement_expectation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[CONFORMANCE_EXPECTATION](value, t.value.get.toSubRefNonUnion[CONFORMANCE_EXPECTATION])
   )
   def extractId(t: Capabilitystatement_expectation): Option[String] = t.id
-  def extractUrl(t: Capabilitystatement_expectation): String        = t.url
   def extractValue(t: Capabilitystatement_expectation): CONFORMANCE_EXPECTATION =
     t.value.get.toSubRefNonUnion[CONFORMANCE_EXPECTATION]
   override val thisName: String                                                       = "Capabilitystatement_expectation"
   override val searchParams: Map[String, Capabilitystatement_expectation => Seq[Any]] = Extension.searchParams
-  def unapply(o: Capabilitystatement_expectation): Option[(Option[String], String, CONFORMANCE_EXPECTATION)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[CONFORMANCE_EXPECTATION]))
+  def unapply(o: Capabilitystatement_expectation): Option[(Option[String], CONFORMANCE_EXPECTATION)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[CONFORMANCE_EXPECTATION]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Capabilitystatement_expectation] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Capabilitystatement_expectation(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[CONFORMANCE_EXPECTATION]("valueCode", None),
           decodeAttributes(cursor)
         )
@@ -78,6 +71,7 @@ object Capabilitystatement_expectation extends CompanionFor[Capabilitystatement_
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -85,9 +79,12 @@ object Capabilitystatement_expectation extends CompanionFor[Capabilitystatement_
 @POJOBoilerplate
 class Capabilitystatement_expectation(
     override val id: Option[String] = None,
-    override val url: String,
     value: CONFORMANCE_EXPECTATION,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

@@ -28,40 +28,33 @@ object Timing_dayOfMonth extends CompanionFor[Timing_dayOfMonth] {
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/timing-dayOfMonth")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: PositiveInt,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Timing_dayOfMonth = new Timing_dayOfMonth(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[PositiveInt] =
     FHIRComponentFieldMeta("value", lTagOf[PositiveInt], true, lTagOf[PositiveInt])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Timing_dayOfMonth): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[PositiveInt](value, t.value.get.toSubRefNonUnion[PositiveInt])
   )
   def extractId(t: Timing_dayOfMonth): Option[String]                   = t.id
-  def extractUrl(t: Timing_dayOfMonth): String                          = t.url
   def extractValue(t: Timing_dayOfMonth): PositiveInt                   = t.value.get.toSubRefNonUnion[PositiveInt]
   override val thisName: String                                         = "Timing_dayOfMonth"
   override val searchParams: Map[String, Timing_dayOfMonth => Seq[Any]] = Extension.searchParams
-  def unapply(o: Timing_dayOfMonth): Option[(Option[String], String, PositiveInt)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[PositiveInt]))
+  def unapply(o: Timing_dayOfMonth): Option[(Option[String], PositiveInt)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[PositiveInt]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Timing_dayOfMonth] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Timing_dayOfMonth(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[PositiveInt]("valuePositiveInt", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object Timing_dayOfMonth extends CompanionFor[Timing_dayOfMonth] {
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object Timing_dayOfMonth extends CompanionFor[Timing_dayOfMonth] {
 @POJOBoilerplate
 class Timing_dayOfMonth(
     override val id: Option[String] = None,
-    override val url: String,
     value: PositiveInt,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/timing-dayOfMonth",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Codesystem_authorBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Codesystem_author}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Codesystem_authorBuilder(String url, String value) {
-    this.url = url;
+  public Codesystem_authorBuilder(String value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Codesystem_authorBuilder {
   }
 
   public Codesystem_author build() {
-    return new Codesystem_author(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Codesystem_author(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -28,40 +28,33 @@ object Structuredefinition_category extends CompanionFor[Structuredefinition_cat
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/structuredefinition-category")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: String,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Structuredefinition_category = new Structuredefinition_category(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[String] =
     FHIRComponentFieldMeta("value", lTagOf[String], true, lTagOf[String])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Structuredefinition_category): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
   )
   def extractId(t: Structuredefinition_category): Option[String]                   = t.id
-  def extractUrl(t: Structuredefinition_category): String                          = t.url
   def extractValue(t: Structuredefinition_category): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                    = "Structuredefinition_category"
   override val searchParams: Map[String, Structuredefinition_category => Seq[Any]] = Extension.searchParams
-  def unapply(o: Structuredefinition_category): Option[(Option[String], String, String)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[String]))
+  def unapply(o: Structuredefinition_category): Option[(Option[String], String)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Structuredefinition_category] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Structuredefinition_category(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[String]("valueString", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object Structuredefinition_category extends CompanionFor[Structuredefinition_cat
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object Structuredefinition_category extends CompanionFor[Structuredefinition_cat
 @POJOBoilerplate
 class Structuredefinition_category(
     override val id: Option[String] = None,
-    override val url: String,
     value: String,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

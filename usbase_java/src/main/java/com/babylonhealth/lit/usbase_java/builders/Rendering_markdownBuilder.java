@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Rendering_markdownBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Rendering_markdown}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Rendering_markdownBuilder(String url, String value) {
-    this.url = url;
+  public Rendering_markdownBuilder(String value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Rendering_markdownBuilder {
   }
 
   public Rendering_markdown build() {
-    return new Rendering_markdown(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Rendering_markdown(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

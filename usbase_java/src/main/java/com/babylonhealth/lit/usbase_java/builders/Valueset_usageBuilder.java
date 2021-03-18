@@ -45,21 +45,18 @@ import static java.util.stream.Collectors.toList;
 
 public class Valueset_usageBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Collection<Extension> extension;
 
   /**
    * Required fields for {@link Valueset_usage}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param extension - May be used to represent additional information that is not part of the
    *     basic definition of the element. To make the use of extensions safe and manageable, there
    *     is a strict set of governance applied to the definition and use of extensions. Though any
    *     implementer can define an extension, there is a set of requirements that SHALL be met as
    *     part of the definition of the extension.
    */
-  public Valueset_usageBuilder(String url, Collection<Extension> extension) {
-    this.url = url;
+  public Valueset_usageBuilder(Collection<Extension> extension) {
     this.extension = extension;
   }
 
@@ -75,7 +72,6 @@ public class Valueset_usageBuilder {
   public Valueset_usage build() {
     return new Valueset_usage(
         OptionConverters.toScala(id),
-        url,
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

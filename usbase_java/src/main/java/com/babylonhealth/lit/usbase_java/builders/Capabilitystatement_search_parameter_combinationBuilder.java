@@ -45,22 +45,18 @@ import static java.util.stream.Collectors.toList;
 
 public class Capabilitystatement_search_parameter_combinationBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Collection<Extension> extension;
 
   /**
    * Required fields for {@link Capabilitystatement_search_parameter_combination}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param extension - May be used to represent additional information that is not part of the
    *     basic definition of the element. To make the use of extensions safe and manageable, there
    *     is a strict set of governance applied to the definition and use of extensions. Though any
    *     implementer can define an extension, there is a set of requirements that SHALL be met as
    *     part of the definition of the extension.
    */
-  public Capabilitystatement_search_parameter_combinationBuilder(
-      String url, Collection<Extension> extension) {
-    this.url = url;
+  public Capabilitystatement_search_parameter_combinationBuilder(Collection<Extension> extension) {
     this.extension = extension;
   }
 
@@ -76,7 +72,6 @@ public class Capabilitystatement_search_parameter_combinationBuilder {
   public Capabilitystatement_search_parameter_combination build() {
     return new Capabilitystatement_search_parameter_combination(
         OptionConverters.toScala(id),
-        url,
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

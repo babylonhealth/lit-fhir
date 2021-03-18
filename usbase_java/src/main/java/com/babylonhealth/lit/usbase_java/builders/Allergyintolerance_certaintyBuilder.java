@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Allergyintolerance_certaintyBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private CodeableConcept value;
 
   /**
    * Required fields for {@link Allergyintolerance_certainty}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Allergyintolerance_certaintyBuilder(String url, CodeableConcept value) {
-    this.url = url;
+  public Allergyintolerance_certaintyBuilder(CodeableConcept value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Allergyintolerance_certaintyBuilder {
 
   public Allergyintolerance_certainty build() {
     return new Allergyintolerance_certainty(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

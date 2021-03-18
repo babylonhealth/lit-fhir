@@ -29,40 +29,33 @@ object Capabilitystatement_supported_system extends CompanionFor[Capabilitystate
     "http://hl7.org/fhir/StructureDefinition/capabilitystatement-supported-system")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: UriStr,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Capabilitystatement_supported_system = new Capabilitystatement_supported_system(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[UriStr] =
     FHIRComponentFieldMeta("value", lTagOf[UriStr], true, lTagOf[UriStr])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Capabilitystatement_supported_system): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
   )
   def extractId(t: Capabilitystatement_supported_system): Option[String]                   = t.id
-  def extractUrl(t: Capabilitystatement_supported_system): String                          = t.url
   def extractValue(t: Capabilitystatement_supported_system): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                                            = "Capabilitystatement_supported_system"
   override val searchParams: Map[String, Capabilitystatement_supported_system => Seq[Any]] = Extension.searchParams
-  def unapply(o: Capabilitystatement_supported_system): Option[(Option[String], String, UriStr)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[UriStr]))
+  def unapply(o: Capabilitystatement_supported_system): Option[(Option[String], UriStr)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Capabilitystatement_supported_system] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Capabilitystatement_supported_system(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[UriStr]("valueUri", None),
           decodeAttributes(cursor)
         )
@@ -77,6 +70,7 @@ object Capabilitystatement_supported_system extends CompanionFor[Capabilitystate
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -84,9 +78,12 @@ object Capabilitystatement_supported_system extends CompanionFor[Capabilitystate
 @POJOBoilerplate
 class Capabilitystatement_supported_system(
     override val id: Option[String] = None,
-    override val url: String,
     value: UriStr,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-supported-system",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

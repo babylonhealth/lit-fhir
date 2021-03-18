@@ -28,40 +28,33 @@ object Questionnaire_baseType extends CompanionFor[Questionnaire_baseType] {
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/questionnaire-baseType")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: DATA_TYPES,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Questionnaire_baseType = new Questionnaire_baseType(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[DATA_TYPES] =
     FHIRComponentFieldMeta("value", lTagOf[DATA_TYPES], true, lTagOf[DATA_TYPES])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Questionnaire_baseType): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[DATA_TYPES](value, t.value.get.toSubRefNonUnion[DATA_TYPES])
   )
   def extractId(t: Questionnaire_baseType): Option[String]                   = t.id
-  def extractUrl(t: Questionnaire_baseType): String                          = t.url
   def extractValue(t: Questionnaire_baseType): DATA_TYPES                    = t.value.get.toSubRefNonUnion[DATA_TYPES]
   override val thisName: String                                              = "Questionnaire_baseType"
   override val searchParams: Map[String, Questionnaire_baseType => Seq[Any]] = Extension.searchParams
-  def unapply(o: Questionnaire_baseType): Option[(Option[String], String, DATA_TYPES)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[DATA_TYPES]))
+  def unapply(o: Questionnaire_baseType): Option[(Option[String], DATA_TYPES)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[DATA_TYPES]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_baseType] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Questionnaire_baseType(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[DATA_TYPES]("valueCode", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object Questionnaire_baseType extends CompanionFor[Questionnaire_baseType] {
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object Questionnaire_baseType extends CompanionFor[Questionnaire_baseType] {
 @POJOBoilerplate
 class Questionnaire_baseType(
     override val id: Option[String] = None,
-    override val url: String,
     value: DATA_TYPES,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/questionnaire-baseType",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

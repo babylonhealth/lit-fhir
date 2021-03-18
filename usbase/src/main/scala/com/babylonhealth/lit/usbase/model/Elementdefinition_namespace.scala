@@ -28,40 +28,33 @@ object Elementdefinition_namespace extends CompanionFor[Elementdefinition_namesp
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-namespace")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: UriStr,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Elementdefinition_namespace = new Elementdefinition_namespace(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[UriStr] =
     FHIRComponentFieldMeta("value", lTagOf[UriStr], true, lTagOf[UriStr])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Elementdefinition_namespace): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
   )
   def extractId(t: Elementdefinition_namespace): Option[String]                   = t.id
-  def extractUrl(t: Elementdefinition_namespace): String                          = t.url
   def extractValue(t: Elementdefinition_namespace): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                                   = "Elementdefinition_namespace"
   override val searchParams: Map[String, Elementdefinition_namespace => Seq[Any]] = Extension.searchParams
-  def unapply(o: Elementdefinition_namespace): Option[(Option[String], String, UriStr)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[UriStr]))
+  def unapply(o: Elementdefinition_namespace): Option[(Option[String], UriStr)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Elementdefinition_namespace] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Elementdefinition_namespace(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[UriStr]("valueUri", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object Elementdefinition_namespace extends CompanionFor[Elementdefinition_namesp
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object Elementdefinition_namespace extends CompanionFor[Elementdefinition_namesp
 @POJOBoilerplate
 class Elementdefinition_namespace(
     override val id: Option[String] = None,
-    override val url: String,
     value: UriStr,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-namespace",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

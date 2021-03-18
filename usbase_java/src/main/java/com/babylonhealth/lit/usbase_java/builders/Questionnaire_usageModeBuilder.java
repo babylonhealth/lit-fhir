@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Questionnaire_usageModeBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private QUESTIONNAIRE_USAGE_MODE value;
 
   /**
    * Required fields for {@link Questionnaire_usageMode}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Questionnaire_usageModeBuilder(String url, QUESTIONNAIRE_USAGE_MODE value) {
-    this.url = url;
+  public Questionnaire_usageModeBuilder(QUESTIONNAIRE_USAGE_MODE value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Questionnaire_usageModeBuilder {
 
   public Questionnaire_usageMode build() {
     return new Questionnaire_usageMode(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

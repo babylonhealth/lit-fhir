@@ -28,40 +28,33 @@ object Cqf_expression extends CompanionFor[Cqf_expression] {
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/cqf-expression")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: Expression,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Cqf_expression = new Cqf_expression(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Expression] =
     FHIRComponentFieldMeta("value", lTagOf[Expression], true, lTagOf[Expression])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Cqf_expression): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[Expression](value, t.value.get.toSubRefNonUnion[Expression])
   )
   def extractId(t: Cqf_expression): Option[String]                   = t.id
-  def extractUrl(t: Cqf_expression): String                          = t.url
   def extractValue(t: Cqf_expression): Expression                    = t.value.get.toSubRefNonUnion[Expression]
   override val thisName: String                                      = "Cqf_expression"
   override val searchParams: Map[String, Cqf_expression => Seq[Any]] = Extension.searchParams
-  def unapply(o: Cqf_expression): Option[(Option[String], String, Expression)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[Expression]))
+  def unapply(o: Cqf_expression): Option[(Option[String], Expression)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[Expression]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Cqf_expression] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Cqf_expression(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[Expression]("valueExpression", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object Cqf_expression extends CompanionFor[Cqf_expression] {
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object Cqf_expression extends CompanionFor[Cqf_expression] {
 @POJOBoilerplate
 class Cqf_expression(
     override val id: Option[String] = None,
-    override val url: String,
     value: Expression,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

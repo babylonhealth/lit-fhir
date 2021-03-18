@@ -28,40 +28,33 @@ object Codesystem_otherName extends CompanionFor[Codesystem_otherName] {
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/codesystem-otherName")
   def apply(
       id: Option[String] = None,
-      url: String,
       extension: NonEmptyLitSeq[Extension],
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Codesystem_otherName = new Codesystem_otherName(
     id,
-    url,
     extension,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val extension: FHIRComponentFieldMeta[NonEmptyLitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[NonEmptyLitSeq[Extension]], false, lTagOf[Extension])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, extension)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension)
   override def fields(t: Codesystem_otherName): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
   )
   def extractId(t: Codesystem_otherName): Option[String]                   = t.id
-  def extractUrl(t: Codesystem_otherName): String                          = t.url
   def extractExtension(t: Codesystem_otherName): NonEmptyLitSeq[Extension] = t.extension.asNonEmpty
   override val thisName: String                                            = "Codesystem_otherName"
   override val searchParams: Map[String, Codesystem_otherName => Seq[Any]] = Extension.searchParams
-  def unapply(o: Codesystem_otherName): Option[(Option[String], String, NonEmptyLitSeq[Extension])] = Some(
-    (o.id, o.url, o.extension.asNonEmpty))
+  def unapply(o: Codesystem_otherName): Option[(Option[String], NonEmptyLitSeq[Extension])] = Some(
+    (o.id, o.extension.asNonEmpty))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Codesystem_otherName] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Codesystem_otherName(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[NonEmptyLitSeq[Extension]]("extension", None),
           decodeAttributes(cursor)
         )
@@ -75,6 +68,7 @@ object Codesystem_otherName extends CompanionFor[Codesystem_otherName] {
   * @constructor Inherits all params from parent.
   *              Requires the following fields which were optional in the parent: extension.
   *              Forbids the use of the following fields which were optional in the parent: value.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
@@ -82,9 +76,12 @@ object Codesystem_otherName extends CompanionFor[Codesystem_otherName] {
 @POJOBoilerplate
 class Codesystem_otherName(
     override val id: Option[String] = None,
-    override val url: String,
     extension: NonEmptyLitSeq[Extension],
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, extension = extension.refine, primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      extension = extension.refine,
+      url = "http://hl7.org/fhir/StructureDefinition/codesystem-otherName",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

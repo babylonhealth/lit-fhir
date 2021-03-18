@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Quantity_precisionBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Integer value;
 
   /**
    * Required fields for {@link Quantity_precision}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Quantity_precisionBuilder(String url, Integer value) {
-    this.url = url;
+  public Quantity_precisionBuilder(Integer value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Quantity_precisionBuilder {
   }
 
   public Quantity_precision build() {
-    return new Quantity_precision(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Quantity_precision(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

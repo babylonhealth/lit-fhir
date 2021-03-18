@@ -29,40 +29,32 @@ object MinValue extends CompanionFor[MinValue] {
   type ValueChoice = Choice[Union01613806391]
   def apply(
       id: Option[String] = None,
-      url: String,
       value: MinValue.ValueChoice,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): MinValue = new MinValue(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[MinValue.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[MinValue.ValueChoice], true, lTagOf[Union01613806391])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: MinValue): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[MinValue.ValueChoice](value, t.value.get.toSubRef)
   )
-  def extractId(t: MinValue): Option[String]                   = t.id
-  def extractUrl(t: MinValue): String                          = t.url
-  def extractValue(t: MinValue): MinValue.ValueChoice          = t.value.get.toSubRef
-  override val thisName: String                                = "MinValue"
-  override val searchParams: Map[String, MinValue => Seq[Any]] = Extension.searchParams
-  def unapply(o: MinValue): Option[(Option[String], String, MinValue.ValueChoice)] = Some(
-    (o.id, o.url, o.value.get.toSubRef))
+  def extractId(t: MinValue): Option[String]                               = t.id
+  def extractValue(t: MinValue): MinValue.ValueChoice                      = t.value.get.toSubRef
+  override val thisName: String                                            = "MinValue"
+  override val searchParams: Map[String, MinValue => Seq[Any]]             = Extension.searchParams
+  def unapply(o: MinValue): Option[(Option[String], MinValue.ValueChoice)] = Some((o.id, o.value.get.toSubRef))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[MinValue] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new MinValue(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeRef[Union01613806391]("value"),
           decodeAttributes(cursor)
         )
@@ -77,6 +69,7 @@ object MinValue extends CompanionFor[MinValue] {
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -84,9 +77,12 @@ object MinValue extends CompanionFor[MinValue] {
 @POJOBoilerplate
 class MinValue(
     override val id: Option[String] = None,
-    override val url: String,
     value: MinValue.ValueChoice,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(value.toSuperRef), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(value.toSuperRef),
+      url = "http://hl7.org/fhir/StructureDefinition/minValue",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Iso21090_uncertaintyBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private BigDecimal value;
 
   /**
    * Required fields for {@link Iso21090_uncertainty}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Iso21090_uncertaintyBuilder(String url, BigDecimal value) {
-    this.url = url;
+  public Iso21090_uncertaintyBuilder(BigDecimal value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Iso21090_uncertaintyBuilder {
   }
 
   public Iso21090_uncertainty build() {
-    return new Iso21090_uncertainty(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Iso21090_uncertainty(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

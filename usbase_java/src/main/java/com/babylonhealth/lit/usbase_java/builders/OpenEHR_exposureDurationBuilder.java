@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class OpenEHR_exposureDurationBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Duration value;
 
   /**
    * Required fields for {@link OpenEHR_exposureDuration}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public OpenEHR_exposureDurationBuilder(String url, Duration value) {
-    this.url = url;
+  public OpenEHR_exposureDurationBuilder(Duration value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class OpenEHR_exposureDurationBuilder {
 
   public OpenEHR_exposureDuration build() {
     return new OpenEHR_exposureDuration(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

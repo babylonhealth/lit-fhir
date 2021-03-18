@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class OpenEHR_exposureDateBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private FHIRDateTime value;
 
   /**
    * Required fields for {@link OpenEHR_exposureDate}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public OpenEHR_exposureDateBuilder(String url, FHIRDateTime value) {
-    this.url = url;
+  public OpenEHR_exposureDateBuilder(FHIRDateTime value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class OpenEHR_exposureDateBuilder {
   }
 
   public OpenEHR_exposureDate build() {
-    return new OpenEHR_exposureDate(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new OpenEHR_exposureDate(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }
