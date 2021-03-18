@@ -40,7 +40,7 @@ object Codesystem_alternate extends CompanionFor[Codesystem_alternate] {
   val extension: FHIRComponentFieldMeta[NonEmptyLitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[NonEmptyLitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension)
-  override def fields(t: Codesystem_alternate): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
   )

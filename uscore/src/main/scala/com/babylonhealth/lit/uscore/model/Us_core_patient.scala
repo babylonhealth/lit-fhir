@@ -162,7 +162,7 @@ object Us_core_patient extends CompanionFor[Us_core_patient] {
     contact,
     communication
   )
-  override def fields(t: Us_core_patient): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Patient): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

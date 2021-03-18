@@ -130,7 +130,7 @@ object Us_core_provenance extends CompanionFor[Us_core_provenance] {
     agent,
     entity
   )
-  override def fields(t: Us_core_provenance): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Provenance): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

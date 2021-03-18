@@ -40,7 +40,7 @@ object Valueset_author extends CompanionFor[Valueset_author] {
   val value: FHIRComponentFieldMeta[ContactDetail] =
     FHIRComponentFieldMeta("value", lTagOf[ContactDetail], true, lTagOf[ContactDetail])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Valueset_author): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[ContactDetail](value, t.value.get.toSubRefNonUnion[ContactDetail])
   )

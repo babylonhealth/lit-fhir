@@ -130,7 +130,7 @@ object Ehrsrle_auditevent extends CompanionFor[Ehrsrle_auditevent] {
     agent,
     entity
   )
-  override def fields(t: Ehrsrle_auditevent): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: AuditEvent): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

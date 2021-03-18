@@ -235,7 +235,7 @@ object Computableplandefinition extends CompanionFor[Computableplandefinition] {
     goal,
     action
   )
-  override def fields(t: Computableplandefinition): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: PlanDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),
     FHIRComponentField[Option[Meta]](meta, t.meta),

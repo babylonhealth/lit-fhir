@@ -40,7 +40,7 @@ object Valueset_expression extends CompanionFor[Valueset_expression] {
   val value: FHIRComponentFieldMeta[Expression] =
     FHIRComponentFieldMeta("value", lTagOf[Expression], true, lTagOf[Expression])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Valueset_expression): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Expression](value, t.value.get.toSubRefNonUnion[Expression])
   )

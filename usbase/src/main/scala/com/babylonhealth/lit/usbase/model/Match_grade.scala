@@ -40,7 +40,7 @@ object Match_grade extends CompanionFor[Match_grade] {
   val value: FHIRComponentFieldMeta[MATCH_GRADE] =
     FHIRComponentFieldMeta("value", lTagOf[MATCH_GRADE], true, lTagOf[MATCH_GRADE])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Match_grade): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[MATCH_GRADE](value, MATCH_GRADE.withName(t.value.get.toSubRefNonUnion[Code]))
   )

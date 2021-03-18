@@ -40,7 +40,7 @@ object Iso21090_uncertainty extends CompanionFor[Iso21090_uncertainty] {
   val value: FHIRComponentFieldMeta[BigDecimal] =
     FHIRComponentFieldMeta("value", lTagOf[BigDecimal], true, lTagOf[BigDecimal])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Iso21090_uncertainty): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[BigDecimal](value, t.value.get.toSubRefNonUnion[BigDecimal])
   )

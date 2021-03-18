@@ -41,7 +41,7 @@ object Allergyintolerance_resolutionAge extends CompanionFor[Allergyintolerance_
   val value: FHIRComponentFieldMeta[Age] =
     FHIRComponentFieldMeta("value", lTagOf[Age], true, lTagOf[Age])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Allergyintolerance_resolutionAge): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Age](value, t.value.get.toSubRefNonUnion[Age])
   )

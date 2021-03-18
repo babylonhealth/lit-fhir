@@ -40,7 +40,7 @@ object Iso21090_TEL_address extends CompanionFor[Iso21090_TEL_address] {
   val value: FHIRComponentFieldMeta[UrlStr] =
     FHIRComponentFieldMeta("value", lTagOf[UrlStr], true, lTagOf[UrlStr])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Iso21090_TEL_address): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[UrlStr](value, t.value.get.toSubRefNonUnion[UrlStr])
   )

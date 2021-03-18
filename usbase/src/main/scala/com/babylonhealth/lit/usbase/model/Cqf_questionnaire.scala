@@ -185,7 +185,7 @@ object Cqf_questionnaire extends CompanionFor[Cqf_questionnaire] {
     modifierExtension,
     item
   )
-  override def fields(t: Cqf_questionnaire): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Questionnaire): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),
     FHIRComponentField[Option[Meta]](meta, t.meta),

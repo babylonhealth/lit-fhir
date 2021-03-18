@@ -40,7 +40,7 @@ object Valueset_trusted_expansion extends CompanionFor[Valueset_trusted_expansio
   val value: FHIRComponentFieldMeta[UriStr] =
     FHIRComponentFieldMeta("value", lTagOf[UriStr], true, lTagOf[UriStr])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Valueset_trusted_expansion): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
   )

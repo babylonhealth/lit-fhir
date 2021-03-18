@@ -40,7 +40,7 @@ object Workflow_relatedArtifact extends CompanionFor[Workflow_relatedArtifact] {
   val value: FHIRComponentFieldMeta[RelatedArtifact] =
     FHIRComponentFieldMeta("value", lTagOf[RelatedArtifact], true, lTagOf[RelatedArtifact])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Workflow_relatedArtifact): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[RelatedArtifact](value, t.value.get.toSubRefNonUnion[RelatedArtifact])
   )

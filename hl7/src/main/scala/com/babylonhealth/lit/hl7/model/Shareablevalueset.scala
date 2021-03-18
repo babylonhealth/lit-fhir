@@ -164,7 +164,7 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
     expansion,
     compose
   )
-  override def fields(t: Shareablevalueset): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: ValueSet): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[UriStr](url, t.url.get),
     FHIRComponentField[Option[Meta]](meta, t.meta),

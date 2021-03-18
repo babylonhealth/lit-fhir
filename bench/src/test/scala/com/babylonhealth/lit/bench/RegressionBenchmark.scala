@@ -66,6 +66,8 @@ object RegressionBenchmarks4 extends RegressionBenchmark {
   def index: Int = 4
 }
 object RegressionBenchmarks5 extends RegressionBenchmark {
+
+//  println(decode[StructureDefinition](rawPatientJson))
   performance of "lit_profile" in {
     measure method "decode" in {
       using(singleTest) in (_ => decode[StructureDefinition](rawPatientJson))

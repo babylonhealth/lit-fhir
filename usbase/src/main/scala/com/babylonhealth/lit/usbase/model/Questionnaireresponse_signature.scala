@@ -41,7 +41,7 @@ object Questionnaireresponse_signature extends CompanionFor[Questionnairerespons
   val value: FHIRComponentFieldMeta[Signature] =
     FHIRComponentFieldMeta("value", lTagOf[Signature], true, lTagOf[Signature])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Questionnaireresponse_signature): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Signature](value, t.value.get.toSubRefNonUnion[Signature])
   )

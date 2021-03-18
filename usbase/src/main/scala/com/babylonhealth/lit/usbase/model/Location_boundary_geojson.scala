@@ -40,7 +40,7 @@ object Location_boundary_geojson extends CompanionFor[Location_boundary_geojson]
   val value: FHIRComponentFieldMeta[Attachment] =
     FHIRComponentFieldMeta("value", lTagOf[Attachment], true, lTagOf[Attachment])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Location_boundary_geojson): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Attachment](value, t.value.get.toSubRefNonUnion[Attachment])
   )

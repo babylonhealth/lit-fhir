@@ -40,7 +40,7 @@ object Device_implantStatus extends CompanionFor[Device_implantStatus] {
   val value: FHIRComponentFieldMeta[IMPLANTSTATUS] =
     FHIRComponentFieldMeta("value", lTagOf[IMPLANTSTATUS], true, lTagOf[IMPLANTSTATUS])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Device_implantStatus): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[IMPLANTSTATUS](value, IMPLANTSTATUS.withName(t.value.get.toSubRefNonUnion[Code]))
   )

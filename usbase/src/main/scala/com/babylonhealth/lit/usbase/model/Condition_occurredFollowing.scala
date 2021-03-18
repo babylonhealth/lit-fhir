@@ -41,7 +41,7 @@ object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollow
   val value: FHIRComponentFieldMeta[Condition_occurredFollowing.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Condition_occurredFollowing.ValueChoice], true, lTagOf[Union01025009075])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Condition_occurredFollowing): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Condition_occurredFollowing.ValueChoice](value, t.value.get.toSubRef)
   )

@@ -236,7 +236,7 @@ object Cdshooksserviceplandefinition extends CompanionFor[Cdshooksserviceplandef
     goal,
     action
   )
-  override def fields(t: Cdshooksserviceplandefinition): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: PlanDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),
     FHIRComponentField[Option[Meta]](meta, t.meta),

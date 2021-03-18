@@ -41,7 +41,7 @@ object Observation_geneticsDNARegionName extends CompanionFor[Observation_geneti
   val value: FHIRComponentFieldMeta[String] =
     FHIRComponentFieldMeta("value", lTagOf[String], true, lTagOf[String])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Observation_geneticsDNARegionName): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
   )

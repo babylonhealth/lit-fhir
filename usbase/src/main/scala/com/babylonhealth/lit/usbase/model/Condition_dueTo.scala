@@ -41,7 +41,7 @@ object Condition_dueTo extends CompanionFor[Condition_dueTo] {
   val value: FHIRComponentFieldMeta[Condition_dueTo.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Condition_dueTo.ValueChoice], true, lTagOf[Union01025009075])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Condition_dueTo): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Condition_dueTo.ValueChoice](value, t.value.get.toSubRef)
   )

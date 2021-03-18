@@ -45,7 +45,7 @@ object Us_core_direct extends CompanionFor[Us_core_direct] {
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value, extension)
-  override def fields(t: Us_core_direct): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Boolean]](value, t.value.map(_.toSubRefNonUnion[Boolean])),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension)

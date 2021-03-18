@@ -209,7 +209,7 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
     binding,
     constraint
   )
-  override def fields(t: Elementdefinition_de): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: ElementDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UnsignedInt]](min, t.min),
     FHIRComponentField[Option[String]](max, t.max),

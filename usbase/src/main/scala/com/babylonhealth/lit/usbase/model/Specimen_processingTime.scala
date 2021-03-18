@@ -41,7 +41,7 @@ object Specimen_processingTime extends CompanionFor[Specimen_processingTime] {
   val value: FHIRComponentFieldMeta[Specimen_processingTime.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Specimen_processingTime.ValueChoice], true, lTagOf[Union00284192631])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Specimen_processingTime): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Specimen_processingTime.ValueChoice](value, t.value.get.toSubRef)
   )

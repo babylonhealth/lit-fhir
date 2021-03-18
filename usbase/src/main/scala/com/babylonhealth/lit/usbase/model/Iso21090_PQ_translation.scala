@@ -40,7 +40,7 @@ object Iso21090_PQ_translation extends CompanionFor[Iso21090_PQ_translation] {
   val value: FHIRComponentFieldMeta[Quantity] =
     FHIRComponentFieldMeta("value", lTagOf[Quantity], true, lTagOf[Quantity])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Iso21090_PQ_translation): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Quantity](value, t.value.get.toSubRefNonUnion[Quantity])
   )

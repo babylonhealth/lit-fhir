@@ -40,7 +40,7 @@ object Iso21090_EN_qualifier extends CompanionFor[Iso21090_EN_qualifier] {
   val value: FHIRComponentFieldMeta[NAME_PART_QUALIFIER] =
     FHIRComponentFieldMeta("value", lTagOf[NAME_PART_QUALIFIER], true, lTagOf[NAME_PART_QUALIFIER])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Iso21090_EN_qualifier): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[NAME_PART_QUALIFIER](value, NAME_PART_QUALIFIER.withName(t.value.get.toSubRefNonUnion[Code]))
   )

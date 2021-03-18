@@ -230,7 +230,7 @@ object Cqllibrary extends CompanionFor[Cqllibrary] {
     dataRequirement,
     modifierExtension
   )
-  override def fields(t: Cqllibrary): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Library): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),
     FHIRComponentField[Option[Meta]](meta, t.meta),

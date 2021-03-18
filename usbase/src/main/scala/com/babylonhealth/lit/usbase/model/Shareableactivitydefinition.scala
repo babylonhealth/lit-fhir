@@ -334,7 +334,7 @@ object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinit
     participant,
     dynamicValue
   )
-  override def fields(t: Shareableactivitydefinition): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: ActivityDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[UriStr](url, t.url.get),
     FHIRComponentField[Option[Meta]](meta, t.meta),

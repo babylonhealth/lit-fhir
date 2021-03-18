@@ -191,7 +191,7 @@ object Us_core_careplan extends CompanionFor[Us_core_careplan] {
     instantiatesCanonical,
     activity
   )
-  override def fields(t: Us_core_careplan): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: CarePlan): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[LitSeq[Reference]](goal, t.goal),

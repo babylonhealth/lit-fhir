@@ -40,7 +40,7 @@ object Valueset_parameterSource extends CompanionFor[Valueset_parameterSource] {
   val value: FHIRComponentFieldMeta[EXPANSION_PARAMETER_SOURCE] =
     FHIRComponentFieldMeta("value", lTagOf[EXPANSION_PARAMETER_SOURCE], true, lTagOf[EXPANSION_PARAMETER_SOURCE])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Valueset_parameterSource): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[EXPANSION_PARAMETER_SOURCE](
       value,

@@ -118,7 +118,7 @@ object Actualgroup extends CompanionFor[Actualgroup] {
     managingEntity,
     modifierExtension,
     member)
-  override def fields(t: Actualgroup): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Group): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

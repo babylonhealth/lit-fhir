@@ -40,7 +40,7 @@ object _11179_objectClass extends CompanionFor[_11179_objectClass] {
   val value: FHIRComponentFieldMeta[Coding] =
     FHIRComponentFieldMeta("value", lTagOf[Coding], true, lTagOf[Coding])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: _11179_objectClass): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Extension): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Coding](value, t.value.get.toSubRefNonUnion[Coding])
   )

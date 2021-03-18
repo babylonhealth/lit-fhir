@@ -213,7 +213,7 @@ object Picoelement extends CompanionFor[Picoelement] {
     modifierExtension,
     characteristic
   )
-  override def fields(t: Picoelement): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: EvidenceVariable): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),
     FHIRComponentField[Option[Meta]](meta, t.meta),

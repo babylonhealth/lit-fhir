@@ -165,7 +165,7 @@ object Diagnosticreport_genetics extends CompanionFor[Diagnosticreport_genetics]
     resultsInterpreter,
     media
   )
-  override def fields(t: Diagnosticreport_genetics): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: DiagnosticReport): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

@@ -217,7 +217,7 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
     performer,
     focalDevice
   )
-  override def fields(t: Us_core_procedure): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Procedure): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),

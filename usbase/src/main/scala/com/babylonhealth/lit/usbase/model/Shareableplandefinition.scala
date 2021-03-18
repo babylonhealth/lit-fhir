@@ -235,7 +235,7 @@ object Shareableplandefinition extends CompanionFor[Shareableplandefinition] {
     goal,
     action
   )
-  override def fields(t: Shareableplandefinition): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: PlanDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[UriStr](url, t.url.get),
     FHIRComponentField[Option[Meta]](meta, t.meta),

@@ -284,7 +284,7 @@ object Shareablemeasure extends CompanionFor[Shareablemeasure] {
     supplementalData,
     group
   )
-  override def fields(t: Shareablemeasure): Seq[FHIRComponentField[_]] = Seq(
+  override def fields(t: Measure): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[UriStr](url, t.url.get),
     FHIRComponentField[Option[Meta]](meta, t.meta),
