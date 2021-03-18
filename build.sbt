@@ -16,7 +16,7 @@ val V = new {
   val scalaTest              = "3.2.3"
   val jsonassert             = "1.5.0"
   val lombok                 = "1.16.22"
-  val jUnit = "5.6.0"
+  val jUnit                  = "5.6.0"
 }
 
 val commonSettings = Seq(
@@ -142,7 +142,10 @@ lazy val usbase = project
   .settings(publishSettings: _*)
   .settings(
     scalacOptions += "-Ymacro-annotations",
-    libraryDependencies += "dev.zio" %% "izumi-reflect" % V.izumiReflect
+    libraryDependencies ++= Seq(
+      "dev.zio"        %% "izumi-reflect" % V.izumiReflect,
+      "org.scalatest"  %% "scalatest"     % V.scalaTest  % Test,
+      "org.skyscreamer" % "jsonassert"    % V.jsonassert % Test)
   )
   .dependsOn(core, hl7, macros)
 
