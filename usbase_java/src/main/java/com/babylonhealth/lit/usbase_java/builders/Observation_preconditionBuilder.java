@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Observation_preconditionBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Observation_precondition}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Observation_preconditionBuilder(String url, Reference value) {
-    this.url = url;
+  public Observation_preconditionBuilder(Reference value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Observation_preconditionBuilder {
 
   public Observation_precondition build() {
     return new Observation_precondition(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

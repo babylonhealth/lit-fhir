@@ -45,19 +45,16 @@ import static java.util.stream.Collectors.toList;
 
 public class Elementdefinition_bestpracticeBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Choice value;
 
   /**
    * Required fields for {@link Elementdefinition_bestpractice}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
    *     field. Type should be one of Boolean, CodeableConcept.
    */
-  public Elementdefinition_bestpracticeBuilder(String url, @NonNull Object value) {
-    this.url = url;
+  public Elementdefinition_bestpracticeBuilder(@NonNull Object value) {
     this.value =
         (Choice)
             Choice$.MODULE$.fromSuffix(
@@ -79,6 +76,6 @@ public class Elementdefinition_bestpracticeBuilder {
 
   public Elementdefinition_bestpractice build() {
     return new Elementdefinition_bestpractice(
-        OptionConverters.toScala(id), url, (Choice) value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
   }
 }

@@ -45,17 +45,10 @@ import static java.util.stream.Collectors.toList;
 
 public class Patient_citizenshipBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Collection<Extension> extension = Collections.emptyList();
 
-  /**
-   * Required fields for {@link Patient_citizenship}
-   *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
-   */
-  public Patient_citizenshipBuilder(String url) {
-    this.url = url;
-  }
+  /** Required fields for {@link Patient_citizenship} */
+  public Patient_citizenshipBuilder() {}
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -91,7 +84,6 @@ public class Patient_citizenshipBuilder {
   public Patient_citizenship build() {
     return new Patient_citizenship(
         OptionConverters.toScala(id),
-        url,
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

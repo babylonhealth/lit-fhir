@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Elementdefinition_bestpractice_explanationBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Elementdefinition_bestpractice_explanation}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Elementdefinition_bestpractice_explanationBuilder(String url, String value) {
-    this.url = url;
+  public Elementdefinition_bestpractice_explanationBuilder(String value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Elementdefinition_bestpractice_explanationBuilder {
 
   public Elementdefinition_bestpractice_explanation build() {
     return new Elementdefinition_bestpractice_explanation(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

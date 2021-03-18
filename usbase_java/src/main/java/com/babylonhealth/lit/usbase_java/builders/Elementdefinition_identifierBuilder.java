@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Elementdefinition_identifierBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Identifier value;
 
   /**
    * Required fields for {@link Elementdefinition_identifier}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Elementdefinition_identifierBuilder(String url, Identifier value) {
-    this.url = url;
+  public Elementdefinition_identifierBuilder(Identifier value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Elementdefinition_identifierBuilder {
 
   public Elementdefinition_identifier build() {
     return new Elementdefinition_identifier(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

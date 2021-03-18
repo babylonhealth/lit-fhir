@@ -45,19 +45,16 @@ import static java.util.stream.Collectors.toList;
 
 public class Elementdefinition_allowedUnitsBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Choice<$bslash$div<String, CodeableConcept>> value;
 
   /**
    * Required fields for {@link Elementdefinition_allowedUnits}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
    *     field. Type should be one of String, CodeableConcept.
    */
-  public Elementdefinition_allowedUnitsBuilder(String url, @NonNull Object value) {
-    this.url = url;
+  public Elementdefinition_allowedUnitsBuilder(@NonNull Object value) {
     this.value =
         (Choice)
             Choice$.MODULE$.fromSuffix(
@@ -79,6 +76,6 @@ public class Elementdefinition_allowedUnitsBuilder {
 
   public Elementdefinition_allowedUnits build() {
     return new Elementdefinition_allowedUnits(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

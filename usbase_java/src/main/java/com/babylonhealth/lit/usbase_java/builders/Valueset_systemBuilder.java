@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Valueset_systemBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Valueset_system}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Valueset_systemBuilder(String url, String value) {
-    this.url = url;
+  public Valueset_systemBuilder(String value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class Valueset_systemBuilder {
   }
 
   public Valueset_system build() {
-    return new Valueset_system(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Valueset_system(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

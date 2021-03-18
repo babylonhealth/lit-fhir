@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Resource_pertainsToGoalBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Resource_pertainsToGoal}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Resource_pertainsToGoalBuilder(String url, Reference value) {
-    this.url = url;
+  public Resource_pertainsToGoalBuilder(Reference value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Resource_pertainsToGoalBuilder {
 
   public Resource_pertainsToGoal build() {
     return new Resource_pertainsToGoal(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

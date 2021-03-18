@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class LanguageBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private LANGUAGES value;
 
   /**
    * Required fields for {@link Language}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public LanguageBuilder(String url, LANGUAGES value) {
-    this.url = url;
+  public LanguageBuilder(LANGUAGES value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class LanguageBuilder {
   }
 
   public Language build() {
-    return new Language(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Language(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

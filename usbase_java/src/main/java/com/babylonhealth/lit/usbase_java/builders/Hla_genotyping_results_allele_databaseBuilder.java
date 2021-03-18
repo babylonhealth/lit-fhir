@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Hla_genotyping_results_allele_databaseBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private CodeableConcept value;
 
   /**
    * Required fields for {@link Hla_genotyping_results_allele_database}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Hla_genotyping_results_allele_databaseBuilder(String url, CodeableConcept value) {
-    this.url = url;
+  public Hla_genotyping_results_allele_databaseBuilder(CodeableConcept value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Hla_genotyping_results_allele_databaseBuilder {
 
   public Hla_genotyping_results_allele_database build() {
     return new Hla_genotyping_results_allele_database(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

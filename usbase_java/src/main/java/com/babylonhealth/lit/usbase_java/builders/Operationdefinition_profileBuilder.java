@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Operationdefinition_profileBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Operationdefinition_profile}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Operationdefinition_profileBuilder(String url, String value) {
-    this.url = url;
+  public Operationdefinition_profileBuilder(String value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Operationdefinition_profileBuilder {
 
   public Operationdefinition_profile build() {
     return new Operationdefinition_profile(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

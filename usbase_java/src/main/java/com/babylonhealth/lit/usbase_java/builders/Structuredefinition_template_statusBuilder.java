@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Structuredefinition_template_statusBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private TEMPLATE_STATUS_CODE value;
 
   /**
    * Required fields for {@link Structuredefinition_template_status}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Structuredefinition_template_statusBuilder(String url, TEMPLATE_STATUS_CODE value) {
-    this.url = url;
+  public Structuredefinition_template_statusBuilder(TEMPLATE_STATUS_CODE value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Structuredefinition_template_statusBuilder {
 
   public Structuredefinition_template_status build() {
     return new Structuredefinition_template_status(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Communicationrequest_initiatingLocationBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Communicationrequest_initiatingLocation}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Communicationrequest_initiatingLocationBuilder(String url, Reference value) {
-    this.url = url;
+  public Communicationrequest_initiatingLocationBuilder(Reference value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Communicationrequest_initiatingLocationBuilder {
 
   public Communicationrequest_initiatingLocation build() {
     return new Communicationrequest_initiatingLocation(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

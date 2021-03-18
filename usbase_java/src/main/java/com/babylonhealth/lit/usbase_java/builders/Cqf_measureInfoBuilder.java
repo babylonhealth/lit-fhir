@@ -45,17 +45,10 @@ import static java.util.stream.Collectors.toList;
 
 public class Cqf_measureInfoBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Collection<Extension> extension = Collections.emptyList();
 
-  /**
-   * Required fields for {@link Cqf_measureInfo}
-   *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
-   */
-  public Cqf_measureInfoBuilder(String url) {
-    this.url = url;
-  }
+  /** Required fields for {@link Cqf_measureInfo} */
+  public Cqf_measureInfoBuilder() {}
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -91,7 +84,6 @@ public class Cqf_measureInfoBuilder {
   public Cqf_measureInfo build() {
     return new Cqf_measureInfo(
         OptionConverters.toScala(id),
-        url,
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

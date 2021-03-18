@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Event_partOfBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Event_partOf}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Event_partOfBuilder(String url, Reference value) {
-    this.url = url;
+  public Event_partOfBuilder(Reference value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class Event_partOfBuilder {
   }
 
   public Event_partOf build() {
-    return new Event_partOf(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Event_partOf(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

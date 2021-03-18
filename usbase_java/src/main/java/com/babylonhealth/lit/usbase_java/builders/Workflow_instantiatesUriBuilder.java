@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Workflow_instantiatesUriBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Workflow_instantiatesUri}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Workflow_instantiatesUriBuilder(String url, String value) {
-    this.url = url;
+  public Workflow_instantiatesUriBuilder(String value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Workflow_instantiatesUriBuilder {
 
   public Workflow_instantiatesUri build() {
     return new Workflow_instantiatesUri(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

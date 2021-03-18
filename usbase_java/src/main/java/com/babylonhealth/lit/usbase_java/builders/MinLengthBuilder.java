@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class MinLengthBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Integer value;
 
   /**
    * Required fields for {@link MinLength}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public MinLengthBuilder(String url, Integer value) {
-    this.url = url;
+  public MinLengthBuilder(Integer value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class MinLengthBuilder {
   }
 
   public MinLength build() {
-    return new MinLength(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new MinLength(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

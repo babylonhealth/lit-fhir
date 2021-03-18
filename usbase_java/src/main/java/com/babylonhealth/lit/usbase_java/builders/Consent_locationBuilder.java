@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Consent_locationBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Consent_location}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Consent_locationBuilder(String url, Reference value) {
-    this.url = url;
+  public Consent_locationBuilder(Reference value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Consent_locationBuilder {
   }
 
   public Consent_location build() {
-    return new Consent_location(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Consent_location(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

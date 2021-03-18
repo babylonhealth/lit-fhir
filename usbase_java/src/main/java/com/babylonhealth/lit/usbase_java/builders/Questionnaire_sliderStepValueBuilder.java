@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Questionnaire_sliderStepValueBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Integer value;
 
   /**
    * Required fields for {@link Questionnaire_sliderStepValue}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Questionnaire_sliderStepValueBuilder(String url, Integer value) {
-    this.url = url;
+  public Questionnaire_sliderStepValueBuilder(Integer value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Questionnaire_sliderStepValueBuilder {
 
   public Questionnaire_sliderStepValue build() {
     return new Questionnaire_sliderStepValue(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

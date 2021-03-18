@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Event_eventHistoryBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Event_eventHistory}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Event_eventHistoryBuilder(String url, Reference value) {
-    this.url = url;
+  public Event_eventHistoryBuilder(Reference value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Event_eventHistoryBuilder {
   }
 
   public Event_eventHistory build() {
-    return new Event_eventHistory(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Event_eventHistory(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

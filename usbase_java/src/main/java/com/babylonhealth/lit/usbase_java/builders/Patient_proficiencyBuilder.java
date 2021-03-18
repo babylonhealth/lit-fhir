@@ -45,17 +45,10 @@ import static java.util.stream.Collectors.toList;
 
 public class Patient_proficiencyBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Collection<Extension> extension = Collections.emptyList();
 
-  /**
-   * Required fields for {@link Patient_proficiency}
-   *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
-   */
-  public Patient_proficiencyBuilder(String url) {
-    this.url = url;
-  }
+  /** Required fields for {@link Patient_proficiency} */
+  public Patient_proficiencyBuilder() {}
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -91,7 +84,6 @@ public class Patient_proficiencyBuilder {
   public Patient_proficiency build() {
     return new Patient_proficiency(
         OptionConverters.toScala(id),
-        url,
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

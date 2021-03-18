@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Codesystem_conceptOrderBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Integer value;
 
   /**
    * Required fields for {@link Codesystem_conceptOrder}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Codesystem_conceptOrderBuilder(String url, Integer value) {
-    this.url = url;
+  public Codesystem_conceptOrderBuilder(Integer value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Codesystem_conceptOrderBuilder {
 
   public Codesystem_conceptOrder build() {
     return new Codesystem_conceptOrder(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

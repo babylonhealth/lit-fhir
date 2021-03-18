@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Iso21090_EN_representationBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private NAME_V3_REPRESENTATION value;
 
   /**
    * Required fields for {@link Iso21090_EN_representation}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Iso21090_EN_representationBuilder(String url, NAME_V3_REPRESENTATION value) {
-    this.url = url;
+  public Iso21090_EN_representationBuilder(NAME_V3_REPRESENTATION value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Iso21090_EN_representationBuilder {
 
   public Iso21090_EN_representation build() {
     return new Iso21090_EN_representation(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

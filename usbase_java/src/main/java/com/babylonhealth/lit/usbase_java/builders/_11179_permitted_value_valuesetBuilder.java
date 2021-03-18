@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class _11179_permitted_value_valuesetBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link _11179_permitted_value_valueset}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public _11179_permitted_value_valuesetBuilder(String url, String value) {
-    this.url = url;
+  public _11179_permitted_value_valuesetBuilder(String value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class _11179_permitted_value_valuesetBuilder {
 
   public _11179_permitted_value_valueset build() {
     return new _11179_permitted_value_valueset(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Humanname_assembly_orderBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private NAME_ASSEMBLY_ORDER value;
 
   /**
    * Required fields for {@link Humanname_assembly_order}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Humanname_assembly_orderBuilder(String url, NAME_ASSEMBLY_ORDER value) {
-    this.url = url;
+  public Humanname_assembly_orderBuilder(NAME_ASSEMBLY_ORDER value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Humanname_assembly_orderBuilder {
 
   public Humanname_assembly_order build() {
     return new Humanname_assembly_order(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

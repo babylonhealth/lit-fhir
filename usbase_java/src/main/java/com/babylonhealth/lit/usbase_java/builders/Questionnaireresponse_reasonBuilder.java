@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Questionnaireresponse_reasonBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private CodeableConcept value;
 
   /**
    * Required fields for {@link Questionnaireresponse_reason}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Questionnaireresponse_reasonBuilder(String url, CodeableConcept value) {
-    this.url = url;
+  public Questionnaireresponse_reasonBuilder(CodeableConcept value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Questionnaireresponse_reasonBuilder {
 
   public Questionnaireresponse_reason build() {
     return new Questionnaireresponse_reason(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

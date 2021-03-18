@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Cqf_encounterClassBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private CodeableConcept value;
 
   /**
    * Required fields for {@link Cqf_encounterClass}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Cqf_encounterClassBuilder(String url, CodeableConcept value) {
-    this.url = url;
+  public Cqf_encounterClassBuilder(CodeableConcept value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Cqf_encounterClassBuilder {
   }
 
   public Cqf_encounterClass build() {
-    return new Cqf_encounterClass(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Cqf_encounterClass(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

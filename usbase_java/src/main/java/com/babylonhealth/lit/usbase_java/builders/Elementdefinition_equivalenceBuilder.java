@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Elementdefinition_equivalenceBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private CONCEPT_MAP_EQUIVALENCE value;
 
   /**
    * Required fields for {@link Elementdefinition_equivalence}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Elementdefinition_equivalenceBuilder(String url, CONCEPT_MAP_EQUIVALENCE value) {
-    this.url = url;
+  public Elementdefinition_equivalenceBuilder(CONCEPT_MAP_EQUIVALENCE value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Elementdefinition_equivalenceBuilder {
 
   public Elementdefinition_equivalence build() {
     return new Elementdefinition_equivalence(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

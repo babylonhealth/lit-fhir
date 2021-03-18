@@ -47,18 +47,11 @@ import static java.util.stream.Collectors.toList;
 
 public class Us_core_directBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Optional<Boolean> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
 
-  /**
-   * Required fields for {@link Us_core_direct}
-   *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
-   */
-  public Us_core_directBuilder(String url) {
-    this.url = url;
-  }
+  /** Required fields for {@link Us_core_direct} */
+  public Us_core_directBuilder() {}
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -102,7 +95,6 @@ public class Us_core_directBuilder {
   public Us_core_direct build() {
     return new Us_core_direct(
         OptionConverters.toScala(id),
-        url,
         OptionConverters.toScala(value.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Condition_ruledOutBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Reference value;
 
   /**
    * Required fields for {@link Condition_ruledOut}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Condition_ruledOutBuilder(String url, Reference value) {
-    this.url = url;
+  public Condition_ruledOutBuilder(Reference value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Condition_ruledOutBuilder {
   }
 
   public Condition_ruledOut build() {
-    return new Condition_ruledOut(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Condition_ruledOut(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Communication_mediaBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Attachment value;
 
   /**
    * Required fields for {@link Communication_media}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Communication_mediaBuilder(String url, Attachment value) {
-    this.url = url;
+  public Communication_mediaBuilder(Attachment value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Communication_mediaBuilder {
   }
 
   public Communication_media build() {
-    return new Communication_media(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Communication_media(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

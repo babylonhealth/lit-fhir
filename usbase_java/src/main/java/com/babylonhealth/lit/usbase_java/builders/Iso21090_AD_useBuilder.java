@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Iso21090_AD_useBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private POSTAL_ADDRESS_USE value;
 
   /**
    * Required fields for {@link Iso21090_AD_use}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Iso21090_AD_useBuilder(String url, POSTAL_ADDRESS_USE value) {
-    this.url = url;
+  public Iso21090_AD_useBuilder(POSTAL_ADDRESS_USE value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class Iso21090_AD_useBuilder {
   }
 
   public Iso21090_AD_use build() {
-    return new Iso21090_AD_use(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Iso21090_AD_use(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Capabilitystatement_supported_systemBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Capabilitystatement_supported_system}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Capabilitystatement_supported_systemBuilder(String url, String value) {
-    this.url = url;
+  public Capabilitystatement_supported_systemBuilder(String value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Capabilitystatement_supported_systemBuilder {
 
   public Capabilitystatement_supported_system build() {
     return new Capabilitystatement_supported_system(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Observation_geneticsGeneBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private CodeableConcept value;
 
   /**
    * Required fields for {@link Observation_geneticsGene}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Observation_geneticsGeneBuilder(String url, CodeableConcept value) {
-    this.url = url;
+  public Observation_geneticsGeneBuilder(CodeableConcept value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Observation_geneticsGeneBuilder {
 
   public Observation_geneticsGene build() {
     return new Observation_geneticsGene(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

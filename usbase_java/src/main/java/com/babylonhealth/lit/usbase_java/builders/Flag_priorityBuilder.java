@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Flag_priorityBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private CodeableConcept value;
 
   /**
    * Required fields for {@link Flag_priority}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Flag_priorityBuilder(String url, CodeableConcept value) {
-    this.url = url;
+  public Flag_priorityBuilder(CodeableConcept value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class Flag_priorityBuilder {
   }
 
   public Flag_priority build() {
-    return new Flag_priority(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Flag_priority(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

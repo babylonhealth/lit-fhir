@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Request_performerOrderBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Integer value;
 
   /**
    * Required fields for {@link Request_performerOrder}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Request_performerOrderBuilder(String url, Integer value) {
-    this.url = url;
+  public Request_performerOrderBuilder(Integer value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Request_performerOrderBuilder {
 
   public Request_performerOrder build() {
     return new Request_performerOrder(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

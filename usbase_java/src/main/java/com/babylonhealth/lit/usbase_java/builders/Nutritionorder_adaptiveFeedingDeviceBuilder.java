@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Nutritionorder_adaptiveFeedingDeviceBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private CodeableConcept value;
 
   /**
    * Required fields for {@link Nutritionorder_adaptiveFeedingDevice}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Nutritionorder_adaptiveFeedingDeviceBuilder(String url, CodeableConcept value) {
-    this.url = url;
+  public Nutritionorder_adaptiveFeedingDeviceBuilder(CodeableConcept value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Nutritionorder_adaptiveFeedingDeviceBuilder {
 
   public Nutritionorder_adaptiveFeedingDevice build() {
     return new Nutritionorder_adaptiveFeedingDevice(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

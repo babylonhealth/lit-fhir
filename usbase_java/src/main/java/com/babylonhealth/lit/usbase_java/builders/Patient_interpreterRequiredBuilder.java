@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Patient_interpreterRequiredBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Boolean value;
 
   /**
    * Required fields for {@link Patient_interpreterRequired}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Patient_interpreterRequiredBuilder(String url, Boolean value) {
-    this.url = url;
+  public Patient_interpreterRequiredBuilder(Boolean value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Patient_interpreterRequiredBuilder {
 
   public Patient_interpreterRequired build() {
     return new Patient_interpreterRequired(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

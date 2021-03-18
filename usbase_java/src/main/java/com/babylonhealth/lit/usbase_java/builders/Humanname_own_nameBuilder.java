@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Humanname_own_nameBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Humanname_own_name}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Humanname_own_nameBuilder(String url, String value) {
-    this.url = url;
+  public Humanname_own_nameBuilder(String value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Humanname_own_nameBuilder {
   }
 
   public Humanname_own_name build() {
-    return new Humanname_own_name(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Humanname_own_name(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

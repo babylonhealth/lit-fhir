@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Data_absent_reasonBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private DATA_ABSENT_REASON value;
 
   /**
    * Required fields for {@link Data_absent_reason}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Data_absent_reasonBuilder(String url, DATA_ABSENT_REASON value) {
-    this.url = url;
+  public Data_absent_reasonBuilder(DATA_ABSENT_REASON value) {
     this.value = value;
   }
 
@@ -70,7 +67,6 @@ public class Data_absent_reasonBuilder {
   }
 
   public Data_absent_reason build() {
-    return new Data_absent_reason(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Data_absent_reason(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

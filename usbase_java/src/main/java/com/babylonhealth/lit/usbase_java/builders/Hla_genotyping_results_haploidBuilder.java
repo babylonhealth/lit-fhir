@@ -45,17 +45,10 @@ import static java.util.stream.Collectors.toList;
 
 public class Hla_genotyping_results_haploidBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Collection<Extension> extension = Collections.emptyList();
 
-  /**
-   * Required fields for {@link Hla_genotyping_results_haploid}
-   *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
-   */
-  public Hla_genotyping_results_haploidBuilder(String url) {
-    this.url = url;
-  }
+  /** Required fields for {@link Hla_genotyping_results_haploid} */
+  public Hla_genotyping_results_haploidBuilder() {}
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -92,7 +85,6 @@ public class Hla_genotyping_results_haploidBuilder {
   public Hla_genotyping_results_haploid build() {
     return new Hla_genotyping_results_haploid(
         OptionConverters.toScala(id),
-        url,
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

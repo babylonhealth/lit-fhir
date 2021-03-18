@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Patient_mothersMaidenNameBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Patient_mothersMaidenName}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Patient_mothersMaidenNameBuilder(String url, String value) {
-    this.url = url;
+  public Patient_mothersMaidenNameBuilder(String value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Patient_mothersMaidenNameBuilder {
 
   public Patient_mothersMaidenName build() {
     return new Patient_mothersMaidenName(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

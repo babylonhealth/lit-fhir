@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class OrdinalValueBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private BigDecimal value;
 
   /**
    * Required fields for {@link OrdinalValue}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public OrdinalValueBuilder(String url, BigDecimal value) {
-    this.url = url;
+  public OrdinalValueBuilder(BigDecimal value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class OrdinalValueBuilder {
   }
 
   public OrdinalValue build() {
-    return new OrdinalValue(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new OrdinalValue(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

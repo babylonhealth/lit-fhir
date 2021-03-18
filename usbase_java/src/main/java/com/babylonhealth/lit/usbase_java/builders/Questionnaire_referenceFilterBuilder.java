@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Questionnaire_referenceFilterBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Questionnaire_referenceFilter}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Questionnaire_referenceFilterBuilder(String url, String value) {
-    this.url = url;
+  public Questionnaire_referenceFilterBuilder(String value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Questionnaire_referenceFilterBuilder {
 
   public Questionnaire_referenceFilter build() {
     return new Questionnaire_referenceFilter(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

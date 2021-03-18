@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Auditevent_ParticipantObjectContainsStudyBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private Identifier value;
 
   /**
    * Required fields for {@link Auditevent_ParticipantObjectContainsStudy}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Auditevent_ParticipantObjectContainsStudyBuilder(String url, Identifier value) {
-    this.url = url;
+  public Auditevent_ParticipantObjectContainsStudyBuilder(Identifier value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Auditevent_ParticipantObjectContainsStudyBuilder {
 
   public Auditevent_ParticipantObjectContainsStudy build() {
     return new Auditevent_ParticipantObjectContainsStudy(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

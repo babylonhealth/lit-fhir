@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Workflow_relatedArtifactBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private RelatedArtifact value;
 
   /**
    * Required fields for {@link Workflow_relatedArtifact}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Workflow_relatedArtifactBuilder(String url, RelatedArtifact value) {
-    this.url = url;
+  public Workflow_relatedArtifactBuilder(RelatedArtifact value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Workflow_relatedArtifactBuilder {
 
   public Workflow_relatedArtifact build() {
     return new Workflow_relatedArtifact(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

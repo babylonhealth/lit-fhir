@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Workflow_instantiatesCanonicalBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Workflow_instantiatesCanonical}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Workflow_instantiatesCanonicalBuilder(String url, String value) {
-    this.url = url;
+  public Workflow_instantiatesCanonicalBuilder(String value) {
     this.value = value;
   }
 
@@ -71,6 +68,6 @@ public class Workflow_instantiatesCanonicalBuilder {
 
   public Workflow_instantiatesCanonical build() {
     return new Workflow_instantiatesCanonical(
-        OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

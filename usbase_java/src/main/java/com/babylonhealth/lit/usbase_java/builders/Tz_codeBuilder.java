@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Tz_codeBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Tz_code}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Tz_codeBuilder(String url, String value) {
-    this.url = url;
+  public Tz_codeBuilder(String value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class Tz_codeBuilder {
   }
 
   public Tz_code build() {
-    return new Tz_code(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Tz_code(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

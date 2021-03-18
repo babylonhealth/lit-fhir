@@ -45,18 +45,15 @@ import static java.util.stream.Collectors.toList;
 
 public class Cqf_libraryBuilder {
   private Optional<String> id = Optional.empty();
-  private String url;
   private String value;
 
   /**
    * Required fields for {@link Cqf_library}
    *
-   * @param url - Source of the definition for the extension code - a logical name or a URL.
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
    */
-  public Cqf_libraryBuilder(String url, String value) {
-    this.url = url;
+  public Cqf_libraryBuilder(String value) {
     this.value = value;
   }
 
@@ -70,6 +67,6 @@ public class Cqf_libraryBuilder {
   }
 
   public Cqf_library build() {
-    return new Cqf_library(OptionConverters.toScala(id), url, value, LitUtils.emptyMetaElMap());
+    return new Cqf_library(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }
