@@ -31,33 +31,27 @@ object Elementdefinition_inheritedExtensibleValueSet
   type ValueChoice = Choice[Union00545979821]
   def apply(
       id: Option[String] = None,
-      url: String,
       value: Elementdefinition_inheritedExtensibleValueSet.ValueChoice,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Elementdefinition_inheritedExtensibleValueSet = new Elementdefinition_inheritedExtensibleValueSet(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Elementdefinition_inheritedExtensibleValueSet.ValueChoice] =
     FHIRComponentFieldMeta(
       "value",
       lTagOf[Elementdefinition_inheritedExtensibleValueSet.ValueChoice],
       true,
       lTagOf[Union00545979821])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Elementdefinition_inheritedExtensibleValueSet): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[Elementdefinition_inheritedExtensibleValueSet.ValueChoice](value, t.value.get.toSubRef)
   )
   def extractId(t: Elementdefinition_inheritedExtensibleValueSet): Option[String] = t.id
-  def extractUrl(t: Elementdefinition_inheritedExtensibleValueSet): String        = t.url
   def extractValue(
       t: Elementdefinition_inheritedExtensibleValueSet): Elementdefinition_inheritedExtensibleValueSet.ValueChoice =
     t.value.get.toSubRef
@@ -65,14 +59,13 @@ object Elementdefinition_inheritedExtensibleValueSet
   override val searchParams: Map[String, Elementdefinition_inheritedExtensibleValueSet => Seq[Any]] =
     Extension.searchParams
   def unapply(
-      o: Elementdefinition_inheritedExtensibleValueSet): Option[(Option[String], String, Elementdefinition_inheritedExtensibleValueSet.ValueChoice)] =
-    Some((o.id, o.url, o.value.get.toSubRef))
+      o: Elementdefinition_inheritedExtensibleValueSet): Option[(Option[String], Elementdefinition_inheritedExtensibleValueSet.ValueChoice)] =
+    Some((o.id, o.value.get.toSubRef))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Elementdefinition_inheritedExtensibleValueSet] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Elementdefinition_inheritedExtensibleValueSet(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeRef[Union00545979821]("value"),
           decodeAttributes(cursor)
         )
@@ -87,6 +80,7 @@ object Elementdefinition_inheritedExtensibleValueSet
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -94,9 +88,12 @@ object Elementdefinition_inheritedExtensibleValueSet
 @POJOBoilerplate
 class Elementdefinition_inheritedExtensibleValueSet(
     override val id: Option[String] = None,
-    override val url: String,
     value: Elementdefinition_inheritedExtensibleValueSet.ValueChoice,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(value.toSuperRef), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(value.toSuperRef),
+      url = "http://hl7.org/fhir/StructureDefinition/elementdefinition-inheritedExtensibleValueSet",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

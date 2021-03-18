@@ -29,41 +29,34 @@ object Observation_geneticsCopyNumberEvent extends CompanionFor[Observation_gene
     "http://hl7.org/fhir/StructureDefinition/observation-geneticsCopyNumberEvent")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: CodeableConcept,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Observation_geneticsCopyNumberEvent = new Observation_geneticsCopyNumberEvent(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[CodeableConcept] =
     FHIRComponentFieldMeta("value", lTagOf[CodeableConcept], true, lTagOf[CodeableConcept])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Observation_geneticsCopyNumberEvent): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
   )
   def extractId(t: Observation_geneticsCopyNumberEvent): Option[String] = t.id
-  def extractUrl(t: Observation_geneticsCopyNumberEvent): String        = t.url
   def extractValue(t: Observation_geneticsCopyNumberEvent): CodeableConcept =
     t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                                           = "Observation_geneticsCopyNumberEvent"
   override val searchParams: Map[String, Observation_geneticsCopyNumberEvent => Seq[Any]] = Extension.searchParams
-  def unapply(o: Observation_geneticsCopyNumberEvent): Option[(Option[String], String, CodeableConcept)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[CodeableConcept]))
+  def unapply(o: Observation_geneticsCopyNumberEvent): Option[(Option[String], CodeableConcept)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Observation_geneticsCopyNumberEvent] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Observation_geneticsCopyNumberEvent(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[CodeableConcept]("valueCodeableConcept", None),
           decodeAttributes(cursor)
         )
@@ -78,6 +71,7 @@ object Observation_geneticsCopyNumberEvent extends CompanionFor[Observation_gene
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -85,9 +79,12 @@ object Observation_geneticsCopyNumberEvent extends CompanionFor[Observation_gene
 @POJOBoilerplate
 class Observation_geneticsCopyNumberEvent(
     override val id: Option[String] = None,
-    override val url: String,
     value: CodeableConcept,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/observation-geneticsCopyNumberEvent",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

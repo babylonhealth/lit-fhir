@@ -28,40 +28,33 @@ object Iso21090_PQ_translation extends CompanionFor[Iso21090_PQ_translation] {
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: Quantity,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Iso21090_PQ_translation = new Iso21090_PQ_translation(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Quantity] =
     FHIRComponentFieldMeta("value", lTagOf[Quantity], true, lTagOf[Quantity])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Iso21090_PQ_translation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[Quantity](value, t.value.get.toSubRefNonUnion[Quantity])
   )
   def extractId(t: Iso21090_PQ_translation): Option[String]                   = t.id
-  def extractUrl(t: Iso21090_PQ_translation): String                          = t.url
   def extractValue(t: Iso21090_PQ_translation): Quantity                      = t.value.get.toSubRefNonUnion[Quantity]
   override val thisName: String                                               = "Iso21090_PQ_translation"
   override val searchParams: Map[String, Iso21090_PQ_translation => Seq[Any]] = Extension.searchParams
-  def unapply(o: Iso21090_PQ_translation): Option[(Option[String], String, Quantity)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[Quantity]))
+  def unapply(o: Iso21090_PQ_translation): Option[(Option[String], Quantity)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[Quantity]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_PQ_translation] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Iso21090_PQ_translation(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[Quantity]("valueQuantity", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object Iso21090_PQ_translation extends CompanionFor[Iso21090_PQ_translation] {
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object Iso21090_PQ_translation extends CompanionFor[Iso21090_PQ_translation] {
 @POJOBoilerplate
 class Iso21090_PQ_translation(
     override val id: Option[String] = None,
-    override val url: String,
     value: Quantity,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

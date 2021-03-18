@@ -28,40 +28,33 @@ object _11179_objectClass extends CompanionFor[_11179_objectClass] {
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/11179-objectClass")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: Coding,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): _11179_objectClass = new _11179_objectClass(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Coding] =
     FHIRComponentFieldMeta("value", lTagOf[Coding], true, lTagOf[Coding])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: _11179_objectClass): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[Coding](value, t.value.get.toSubRefNonUnion[Coding])
   )
   def extractId(t: _11179_objectClass): Option[String]                   = t.id
-  def extractUrl(t: _11179_objectClass): String                          = t.url
   def extractValue(t: _11179_objectClass): Coding                        = t.value.get.toSubRefNonUnion[Coding]
   override val thisName: String                                          = "_11179_objectClass"
   override val searchParams: Map[String, _11179_objectClass => Seq[Any]] = Extension.searchParams
-  def unapply(o: _11179_objectClass): Option[(Option[String], String, Coding)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[Coding]))
+  def unapply(o: _11179_objectClass): Option[(Option[String], Coding)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[Coding]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[_11179_objectClass] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new _11179_objectClass(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[Coding]("valueCoding", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object _11179_objectClass extends CompanionFor[_11179_objectClass] {
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object _11179_objectClass extends CompanionFor[_11179_objectClass] {
 @POJOBoilerplate
 class _11179_objectClass(
     override val id: Option[String] = None,
-    override val url: String,
     value: Coding,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/11179-objectClass",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

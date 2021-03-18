@@ -28,40 +28,32 @@ object Timing_exact extends CompanionFor[Timing_exact] {
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/timing-exact")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: Boolean,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Timing_exact = new Timing_exact(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Boolean] =
     FHIRComponentFieldMeta("value", lTagOf[Boolean], true, lTagOf[Boolean])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Timing_exact): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
   )
   def extractId(t: Timing_exact): Option[String]                   = t.id
-  def extractUrl(t: Timing_exact): String                          = t.url
   def extractValue(t: Timing_exact): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                    = "Timing_exact"
   override val searchParams: Map[String, Timing_exact => Seq[Any]] = Extension.searchParams
-  def unapply(o: Timing_exact): Option[(Option[String], String, Boolean)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[Boolean]))
+  def unapply(o: Timing_exact): Option[(Option[String], Boolean)]  = Some((o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Timing_exact] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Timing_exact(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[Boolean]("valueBoolean", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +68,7 @@ object Timing_exact extends CompanionFor[Timing_exact] {
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +76,12 @@ object Timing_exact extends CompanionFor[Timing_exact] {
 @POJOBoilerplate
 class Timing_exact(
     override val id: Option[String] = None,
-    override val url: String,
     value: Boolean,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/timing-exact",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

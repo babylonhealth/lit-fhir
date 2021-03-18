@@ -28,40 +28,33 @@ object Device_implantStatus extends CompanionFor[Device_implantStatus] {
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/device-implantStatus")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: IMPLANTSTATUS,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Device_implantStatus = new Device_implantStatus(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[IMPLANTSTATUS] =
     FHIRComponentFieldMeta("value", lTagOf[IMPLANTSTATUS], true, lTagOf[IMPLANTSTATUS])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Device_implantStatus): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[IMPLANTSTATUS](value, t.value.get.toSubRefNonUnion[IMPLANTSTATUS])
   )
   def extractId(t: Device_implantStatus): Option[String]                   = t.id
-  def extractUrl(t: Device_implantStatus): String                          = t.url
   def extractValue(t: Device_implantStatus): IMPLANTSTATUS                 = t.value.get.toSubRefNonUnion[IMPLANTSTATUS]
   override val thisName: String                                            = "Device_implantStatus"
   override val searchParams: Map[String, Device_implantStatus => Seq[Any]] = Extension.searchParams
-  def unapply(o: Device_implantStatus): Option[(Option[String], String, IMPLANTSTATUS)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[IMPLANTSTATUS]))
+  def unapply(o: Device_implantStatus): Option[(Option[String], IMPLANTSTATUS)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[IMPLANTSTATUS]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Device_implantStatus] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Device_implantStatus(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[IMPLANTSTATUS]("valueCode", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object Device_implantStatus extends CompanionFor[Device_implantStatus] {
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object Device_implantStatus extends CompanionFor[Device_implantStatus] {
 @POJOBoilerplate
 class Device_implantStatus(
     override val id: Option[String] = None,
-    override val url: String,
     value: IMPLANTSTATUS,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/device-implantStatus",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

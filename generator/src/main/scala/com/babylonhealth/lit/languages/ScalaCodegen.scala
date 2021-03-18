@@ -14,7 +14,9 @@ trait BaseFieldImplicits {
   implicit class RichTopLevelClass(topLevelClass: TopLevelClass) {
     def modifiedFields: Seq[BaseField] = {
       topLevelClass.fields
-        .filter(_.cardinality != Zero)
+        .filter(f =>
+          f.cardinality != Zero && !(topLevelClass.parentClass.exists(
+            _.className == "Extension") && f.scalaName == "url"))
         .map { bf =>
           val default: Option[String] = // TODO Should this list include parents? Should it have a priority ordering?
             if (bf.scalaName == "meta" && bf.types == Seq("Meta") && topLevelClass.isProfile)
@@ -396,7 +398,10 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         println(s"--> $className is a base class")
         " extends FHIRObject(primitiveAttributes = primitiveAttributes)"
       case Some(bd) =>
-        bd.fields
+        val urlField =
+          if (topLevelClass.parentClass.exists(_.className == "Extension")) Seq(s"""url = "${topLevelClass.url}"""")
+          else Nil
+        (bd.fields
           .flatMap(f => fields.find(_.scalaName == f.scalaName))
           .filter(f => f.parent.map(_.cardinality).getOrElse(f.cardinality) != Cardinality.Zero)
           .map { f =>
@@ -404,7 +409,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
               if (f.parent.exists(_.cardinality != Zero) && f.cardinality == Zero) f.cardinality.defaultValue.get
               else wrapIfParentIsOptional(f)
             s"${f.scalaName} = $foo"
-          }
+          } ++ urlField)
           .mkString(s" extends ${bd.scalaClassName}(", ", ", ", primitiveAttributes = primitiveAttributes)")
     }
     val allClashingTypes   = fields.filter(_.isGenerated).map(_.capitalName).toSet
@@ -527,12 +532,18 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         Set[Cardinality](AtLeastOne, One)(n.cardinality) && Set[Cardinality](Optional, Many)(o.cardinality)
       }
       val forbidden = oldFieldsWithParent.filter { case (n, o) => n.cardinality == Zero && o.cardinality != Zero }
+      val hardCoded =
+        if (topLevelClass.parentClass.exists(_.className == "Extension"))
+          oldFieldsWithParent.find(_._1.name == "url").toSeq
+        else Nil
       s"@constructor ${if (newFields.isEmpty) s"Inherits all params from parent. "
       else s"Introduces the fields ${newFields.map(_.scalaName).mkString(", ")}. "}${if (refinedTypes.nonEmpty)
         s"\n  *              Refines the types of: ${refinedTypes.map(_._2.scalaName).mkString(", ")}. "
       else ""}${if (newlyRequired.nonEmpty)
         s"\n  *              Requires the following fields which were optional in the parent: ${newlyRequired.map(_._2.scalaName).mkString(", ")}. "
       else ""}${if (forbidden.nonEmpty) s"\n  *              Forbids the use of the following fields which were optional in the parent: ${forbidden.map(_._2.scalaName).mkString(", ")}. "
+      else ""}${if (hardCoded.nonEmpty)
+        s"\n  *              Hardcodes the value of the following fields: ${hardCoded.map(_._2.scalaName).mkString(", ")}. "
       else ""}"
     }
     def descFromTLC(f: BaseField, t: TopLevelClass): Option[String] =

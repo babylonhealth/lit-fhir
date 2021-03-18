@@ -29,40 +29,33 @@ object Questionnaire_referenceResource extends CompanionFor[Questionnaire_refere
     "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceResource")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: RESOURCE_TYPES,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Questionnaire_referenceResource = new Questionnaire_referenceResource(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[RESOURCE_TYPES] =
     FHIRComponentFieldMeta("value", lTagOf[RESOURCE_TYPES], true, lTagOf[RESOURCE_TYPES])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Questionnaire_referenceResource): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[RESOURCE_TYPES](value, t.value.get.toSubRefNonUnion[RESOURCE_TYPES])
   )
   def extractId(t: Questionnaire_referenceResource): Option[String]                   = t.id
-  def extractUrl(t: Questionnaire_referenceResource): String                          = t.url
   def extractValue(t: Questionnaire_referenceResource): RESOURCE_TYPES                = t.value.get.toSubRefNonUnion[RESOURCE_TYPES]
   override val thisName: String                                                       = "Questionnaire_referenceResource"
   override val searchParams: Map[String, Questionnaire_referenceResource => Seq[Any]] = Extension.searchParams
-  def unapply(o: Questionnaire_referenceResource): Option[(Option[String], String, RESOURCE_TYPES)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[RESOURCE_TYPES]))
+  def unapply(o: Questionnaire_referenceResource): Option[(Option[String], RESOURCE_TYPES)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[RESOURCE_TYPES]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_referenceResource] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Questionnaire_referenceResource(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[RESOURCE_TYPES]("valueCode", None),
           decodeAttributes(cursor)
         )
@@ -77,6 +70,7 @@ object Questionnaire_referenceResource extends CompanionFor[Questionnaire_refere
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -84,9 +78,12 @@ object Questionnaire_referenceResource extends CompanionFor[Questionnaire_refere
 @POJOBoilerplate
 class Questionnaire_referenceResource(
     override val id: Option[String] = None,
-    override val url: String,
     value: RESOURCE_TYPES,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceResource",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

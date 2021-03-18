@@ -28,40 +28,33 @@ object Valueset_steward extends CompanionFor[Valueset_steward] {
   override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/valueset-steward")
   def apply(
       id: Option[String] = None,
-      url: String,
       value: ContactDetail,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Valueset_steward = new Valueset_steward(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[ContactDetail] =
     FHIRComponentFieldMeta("value", lTagOf[ContactDetail], true, lTagOf[ContactDetail])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Valueset_steward): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[ContactDetail](value, t.value.get.toSubRefNonUnion[ContactDetail])
   )
   def extractId(t: Valueset_steward): Option[String]                   = t.id
-  def extractUrl(t: Valueset_steward): String                          = t.url
   def extractValue(t: Valueset_steward): ContactDetail                 = t.value.get.toSubRefNonUnion[ContactDetail]
   override val thisName: String                                        = "Valueset_steward"
   override val searchParams: Map[String, Valueset_steward => Seq[Any]] = Extension.searchParams
-  def unapply(o: Valueset_steward): Option[(Option[String], String, ContactDetail)] = Some(
-    (o.id, o.url, o.value.get.toSubRefNonUnion[ContactDetail]))
+  def unapply(o: Valueset_steward): Option[(Option[String], ContactDetail)] = Some(
+    (o.id, o.value.get.toSubRefNonUnion[ContactDetail]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_steward] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Valueset_steward(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeAs[ContactDetail]("valueContactDetail", None),
           decodeAttributes(cursor)
         )
@@ -76,6 +69,7 @@ object Valueset_steward extends CompanionFor[Valueset_steward] {
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -83,9 +77,12 @@ object Valueset_steward extends CompanionFor[Valueset_steward] {
 @POJOBoilerplate
 class Valueset_steward(
     override val id: Option[String] = None,
-    override val url: String,
     value: ContactDetail,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(choice(value)), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(choice(value)),
+      url = "http://hl7.org/fhir/StructureDefinition/valueset-steward",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }

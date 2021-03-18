@@ -29,41 +29,33 @@ object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollow
   type ValueChoice = Choice[Union01025009075]
   def apply(
       id: Option[String] = None,
-      url: String,
       value: Condition_occurredFollowing.ValueChoice,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Condition_occurredFollowing = new Condition_occurredFollowing(
     id,
-    url,
     value,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val url: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("url", lTagOf[String], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Condition_occurredFollowing.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Condition_occurredFollowing.ValueChoice], true, lTagOf[Union01025009075])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, value)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Condition_occurredFollowing): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](url, t.url),
     FHIRComponentField[Condition_occurredFollowing.ValueChoice](value, t.value.get.toSubRef)
   )
   def extractId(t: Condition_occurredFollowing): Option[String]                             = t.id
-  def extractUrl(t: Condition_occurredFollowing): String                                    = t.url
   def extractValue(t: Condition_occurredFollowing): Condition_occurredFollowing.ValueChoice = t.value.get.toSubRef
   override val thisName: String                                                             = "Condition_occurredFollowing"
   override val searchParams: Map[String, Condition_occurredFollowing => Seq[Any]]           = Extension.searchParams
-  def unapply(
-      o: Condition_occurredFollowing): Option[(Option[String], String, Condition_occurredFollowing.ValueChoice)] = Some(
-    (o.id, o.url, o.value.get.toSubRef))
+  def unapply(o: Condition_occurredFollowing): Option[(Option[String], Condition_occurredFollowing.ValueChoice)] = Some(
+    (o.id, o.value.get.toSubRef))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Condition_occurredFollowing] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Condition_occurredFollowing(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[String]("url", None),
           cursor.decodeRef[Union01025009075]("value"),
           decodeAttributes(cursor)
         )
@@ -78,6 +70,7 @@ object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollow
   *              Refines the types of: value.
   *              Requires the following fields which were optional in the parent: value.
   *              Forbids the use of the following fields which were optional in the parent: extension.
+  *              Hardcodes the value of the following fields: url.
   * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
   * @param url - Source of the definition for the extension code - a logical name or a URL.
   * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
@@ -85,9 +78,12 @@ object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollow
 @POJOBoilerplate
 class Condition_occurredFollowing(
     override val id: Option[String] = None,
-    override val url: String,
     value: Condition_occurredFollowing.ValueChoice,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Extension(id = id, url = url, value = Some(value.toSuperRef), primitiveAttributes = primitiveAttributes) {
+) extends Extension(
+      id = id,
+      value = Some(value.toSuperRef),
+      url = "http://hl7.org/fhir/StructureDefinition/condition-occurredFollowing",
+      primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
 }
