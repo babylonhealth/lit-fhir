@@ -27,7 +27,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
     with OptionSugar {
   private val log: Logger = LoggerFactory.getLogger(getClass)
   val thisName: String
-  val profileUrl: Option[String]
+  val profileUrl: Option[String] = None
 
   //  private val m = runtimeMirror(getClass.getClassLoader)
   //  lazy val classConstructor: Constructor[_] =
