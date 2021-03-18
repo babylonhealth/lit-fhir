@@ -702,7 +702,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |      val companions = extractCompanionsFromPath(classPathResults.toSeq).toList
       |
       |      lookups = companions.flatMap {
-      |        case x if x.profileUrl.isEmpty => println("FATAL ERROR: Some resource companions are missing the profileUrl field (${x.thisName})"); sys.exit(5)
+      |        case x if x.profileUrl.isEmpty => println(s"FATAL ERROR: Some resource companions are missing the profileUrl field (${x.thisName})"); sys.exit(5)
       |        case x if x eq x.baseType      => Seq(x.thisName -> x) ++ x.profileUrl.toSeq.map(_ -> x)
       |        case x                         => x.profileUrl.toSeq.map(_ -> x)
       |      }.toMap
