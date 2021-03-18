@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Reference extends CompanionFor[Reference] {
   override val baseType: CompanionFor[Reference] = Reference
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/Reference")
   def apply(
       id: Option[String] = None,
       `type`: Option[UriStr] = None,

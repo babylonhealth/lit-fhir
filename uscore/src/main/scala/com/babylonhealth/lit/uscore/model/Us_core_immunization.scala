@@ -27,6 +27,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_immunization extends CompanionFor[Us_core_immunization] {
   override val baseType: CompanionFor[Immunization] = Immunization
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization")
   type OccurrenceChoice = Choice[Union_1715923163]
   def apply(
       id: Option[String] = None,

@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Consent extends CompanionFor[Consent] {
   override val baseType: CompanionFor[Consent] = Consent
+  override val profileUrl: Option[String]      = Some("http://hl7.org/fhir/StructureDefinition/Consent")
   object Provision extends CompanionFor[Provision] {
     object Data extends CompanionFor[Data] {
       def apply(

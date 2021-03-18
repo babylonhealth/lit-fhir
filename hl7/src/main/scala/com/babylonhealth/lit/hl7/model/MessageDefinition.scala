@@ -30,6 +30,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MessageDefinition extends CompanionFor[MessageDefinition] {
   override val baseType: CompanionFor[MessageDefinition] = MessageDefinition
+  override val profileUrl: Option[String]                = Some("http://hl7.org/fhir/StructureDefinition/MessageDefinition")
   object AllowedResponse extends CompanionFor[AllowedResponse] {
     def apply(
         id: Option[String] = None,

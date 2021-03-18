@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Match_grade extends CompanionFor[Match_grade] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/match-grade")
   def apply(
       id: Option[String] = None,
       url: String,

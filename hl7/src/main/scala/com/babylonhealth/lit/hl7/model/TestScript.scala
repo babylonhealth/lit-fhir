@@ -33,6 +33,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TestScript extends CompanionFor[TestScript] {
   override val baseType: CompanionFor[TestScript] = TestScript
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/TestScript")
   object Setup extends CompanionFor[Setup] {
     object Action extends CompanionFor[Action] {
       object Assert extends CompanionFor[Assert] {

@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_allowedUnits extends CompanionFor[Elementdefinition_allowedUnits] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-allowedUnits")
   type ValueChoice = Choice[Union01054268719]
   def apply(
       id: Option[String] = None,

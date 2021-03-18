@@ -26,6 +26,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Hdlcholesterol extends CompanionFor[Hdlcholesterol] {
   override val baseType: CompanionFor[Observation] = Observation
+  override val profileUrl: Option[String]          = Some("http://hl7.org/fhir/StructureDefinition/hdlcholesterol")
   type EffectiveChoice = Choice[Union01473702374]
   def apply(
       id: Option[String] = None,

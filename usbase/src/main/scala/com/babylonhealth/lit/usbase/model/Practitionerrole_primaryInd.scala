@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Practitionerrole_primaryInd extends CompanionFor[Practitionerrole_primaryInd] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/practitionerrole-primaryInd")
   def apply(
       id: Option[String] = None,
       url: String,

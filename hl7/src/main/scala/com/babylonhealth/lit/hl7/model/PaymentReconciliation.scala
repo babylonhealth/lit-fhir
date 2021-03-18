@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
   override val baseType: CompanionFor[PaymentReconciliation] = PaymentReconciliation
+  override val profileUrl: Option[String]                    = Some("http://hl7.org/fhir/StructureDefinition/PaymentReconciliation")
   object ProcessNote extends CompanionFor[ProcessNote] {
     def apply(
         id: Option[String] = None,

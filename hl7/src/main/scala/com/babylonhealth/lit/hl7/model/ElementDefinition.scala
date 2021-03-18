@@ -32,6 +32,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ElementDefinition extends CompanionFor[ElementDefinition] {
   override val baseType: CompanionFor[ElementDefinition] = ElementDefinition
+  override val profileUrl: Option[String]                = Some("http://hl7.org/fhir/StructureDefinition/ElementDefinition")
   object Slicing extends CompanionFor[Slicing] {
     object Discriminator extends CompanionFor[Discriminator] {
       def apply(

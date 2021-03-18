@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object VerificationResult extends CompanionFor[VerificationResult] {
   override val baseType: CompanionFor[VerificationResult] = VerificationResult
+  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/VerificationResult")
   object Attestation extends CompanionFor[Attestation] {
     def apply(
         id: Option[String] = None,

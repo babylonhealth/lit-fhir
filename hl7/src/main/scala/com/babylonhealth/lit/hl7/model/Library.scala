@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Library extends CompanionFor[Library] {
   override val baseType: CompanionFor[Library] = Library
+  override val profileUrl: Option[String]      = Some("http://hl7.org/fhir/StructureDefinition/Library")
   type SubjectChoice = Choice[Union01025009075]
   def apply(
       id: Option[String] = None,

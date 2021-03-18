@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire_hidden extends CompanionFor[Questionnaire_hidden] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/questionnaire-hidden")
   def apply(
       id: Option[String] = None,
       url: String,

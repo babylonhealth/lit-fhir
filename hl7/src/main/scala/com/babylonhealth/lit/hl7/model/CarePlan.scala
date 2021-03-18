@@ -30,6 +30,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CarePlan extends CompanionFor[CarePlan] {
   override val baseType: CompanionFor[CarePlan] = CarePlan
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/CarePlan")
   object Activity extends CompanionFor[Activity] {
     object Detail extends CompanionFor[Detail] {
       type ProductChoice   = Choice[Union01025009075]

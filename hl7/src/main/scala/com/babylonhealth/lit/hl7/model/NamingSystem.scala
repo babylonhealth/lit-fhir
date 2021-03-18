@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object NamingSystem extends CompanionFor[NamingSystem] {
   override val baseType: CompanionFor[NamingSystem] = NamingSystem
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/NamingSystem")
   object UniqueId extends CompanionFor[UniqueId] {
     def apply(
         id: Option[String] = None,

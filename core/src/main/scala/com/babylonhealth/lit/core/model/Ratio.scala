@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Ratio extends CompanionFor[Ratio] {
   override val baseType: CompanionFor[Ratio] = Ratio
+  override val profileUrl: Option[String]    = Some("http://hl7.org/fhir/StructureDefinition/Ratio")
   def apply(
       id: Option[String] = None,
       extension: LitSeq[Extension] = LitSeq.empty,

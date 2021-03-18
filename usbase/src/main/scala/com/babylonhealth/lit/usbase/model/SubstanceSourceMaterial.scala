@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceSourceMaterial extends CompanionFor[SubstanceSourceMaterial] {
   override val baseType: CompanionFor[SubstanceSourceMaterial] = SubstanceSourceMaterial
+  override val profileUrl: Option[String]                      = Some("http://hl7.org/fhir/StructureDefinition/SubstanceSourceMaterial")
   object Organism extends CompanionFor[Organism] {
     object Author extends CompanionFor[Author] {
       def apply(

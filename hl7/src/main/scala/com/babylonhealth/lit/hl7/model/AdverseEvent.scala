@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object AdverseEvent extends CompanionFor[AdverseEvent] {
   override val baseType: CompanionFor[AdverseEvent] = AdverseEvent
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/AdverseEvent")
   object SuspectEntity extends CompanionFor[SuspectEntity] {
     object Causality extends CompanionFor[Causality] {
       def apply(

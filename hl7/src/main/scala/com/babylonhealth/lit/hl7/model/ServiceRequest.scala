@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ServiceRequest extends CompanionFor[ServiceRequest] {
   override val baseType: CompanionFor[ServiceRequest] = ServiceRequest
+  override val profileUrl: Option[String]             = Some("http://hl7.org/fhir/StructureDefinition/ServiceRequest")
   type QuantityChoice   = Choice[Union_0575082635]
   type AsNeededChoice   = Choice[Union_1768247138]
   type OccurrenceChoice = Choice[Union00609373412]

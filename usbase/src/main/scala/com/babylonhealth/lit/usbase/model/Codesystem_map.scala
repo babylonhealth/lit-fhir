@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_map extends CompanionFor[Codesystem_map] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/codesystem-map")
   def apply(
       id: Option[String] = None,
       url: String,

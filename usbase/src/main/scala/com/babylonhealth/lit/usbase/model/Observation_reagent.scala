@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_reagent extends CompanionFor[Observation_reagent] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/observation-reagent")
   def apply(
       id: Option[String] = None,
       url: String,

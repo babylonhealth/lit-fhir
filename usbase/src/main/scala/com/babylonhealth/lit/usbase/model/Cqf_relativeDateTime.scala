@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_relativeDateTime extends CompanionFor[Cqf_relativeDateTime] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/cqf-relativeDateTime")
   def apply(
       id: Option[String] = None,
       url: String,

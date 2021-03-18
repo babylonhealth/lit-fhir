@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CoverageEligibilityRequest extends CompanionFor[CoverageEligibilityRequest] {
   override val baseType: CompanionFor[CoverageEligibilityRequest] = CoverageEligibilityRequest
+  override val profileUrl: Option[String]                         = Some("http://hl7.org/fhir/StructureDefinition/CoverageEligibilityRequest")
   object Item extends CompanionFor[Item] {
     object Diagnosis extends CompanionFor[Diagnosis] {
       type DiagnosisChoice = Choice[Union01025009075]

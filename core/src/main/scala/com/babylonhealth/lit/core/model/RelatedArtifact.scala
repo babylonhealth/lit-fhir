@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RelatedArtifact extends CompanionFor[RelatedArtifact] {
   override val baseType: CompanionFor[RelatedArtifact] = RelatedArtifact
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/RelatedArtifact")
   def apply(
       id: Option[String] = None,
       url: Option[UrlStr] = None,

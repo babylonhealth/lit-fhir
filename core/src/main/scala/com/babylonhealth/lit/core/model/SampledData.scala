@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SampledData extends CompanionFor[SampledData] {
   override val baseType: CompanionFor[SampledData] = SampledData
+  override val profileUrl: Option[String]          = Some("http://hl7.org/fhir/StructureDefinition/SampledData")
   def apply(
       id: Option[String] = None,
       data: Option[String] = None,

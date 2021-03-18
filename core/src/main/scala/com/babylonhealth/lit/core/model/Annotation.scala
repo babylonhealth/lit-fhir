@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Annotation extends CompanionFor[Annotation] {
   override val baseType: CompanionFor[Annotation] = Annotation
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/Annotation")
   type AuthorChoice = Choice[Union_1128709984]
   def apply(
       id: Option[String] = None,

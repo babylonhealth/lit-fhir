@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_ADXP_deliveryInstallationType extends CompanionFor[Iso21090_ADXP_deliveryInstallationType] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-deliveryInstallationType")
   def apply(
       id: Option[String] = None,
       url: String,

@@ -24,6 +24,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Schedule extends CompanionFor[Schedule] {
   override val baseType: CompanionFor[Schedule] = Schedule
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/Schedule")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,

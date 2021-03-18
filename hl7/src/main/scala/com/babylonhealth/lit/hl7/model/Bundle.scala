@@ -26,6 +26,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Bundle extends CompanionFor[Bundle] {
   override val baseType: CompanionFor[Bundle] = Bundle
+  override val profileUrl: Option[String]     = Some("http://hl7.org/fhir/StructureDefinition/Bundle")
   object Entry extends CompanionFor[Entry] {
     object Search extends CompanionFor[Search] {
       def apply(

@@ -27,6 +27,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_observation_lab extends CompanionFor[Us_core_observation_lab] {
   override val baseType: CompanionFor[Observation] = Observation
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab")
   type ValueChoice     = Choice[Union_0802685816]
   type EffectiveChoice = Choice[Union_0934386166]
   def apply(

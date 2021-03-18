@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_authoritativeSource extends CompanionFor[Valueset_authoritativeSource] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/valueset-authoritativeSource")
   def apply(
       id: Option[String] = None,
       url: String,

@@ -9,7 +9,14 @@ Lit provides a class model that as much as possible represents the relationships
 - subtyped primitives are represented that way -- e.g. the definition of `PositiveInt` is `type PositiveInt <: Int`
 
 ### Choices
-FHIR defines various fields which can be one of many values (e.g. a `value[x]` that could be a `valueString` or a `valueInteger`). These are represented in Lit with a combination of a union type (represented with `\/` -- e.g. `Int \/ Boolean \/ String`) and a `Choice[_]` type wrapper to avoid having to reify these union types at runtime -- so a field `value[x]` which is defined in the corresponding structure definition as being either an `Int` or a `String` would be represented as a field `value: Choice[Int \/ String]`
+FHIR defines various fields which can be one of many values (e.g. a `value[x]` that could be a `valueString` or a `valueInteger`). These are represented in Lit with a combination of a union type (represented with `\/` -- e.g. `Int \/ Boolean \/ String`) and a `Choice[_]` type wrapper to avoid having to reify these union types at runtime -- so a field `value[x]` which is defined in the corresponding structure definition as being either an `Int` or a `String` would be represented as a field `value: Choice[Int \/ String]`.
+A choice object will be created either in the constructor call (where its type will be inferred) or outside (where the intended representation would use the named type from the companion object). Thus:
+```
+Extension(url = "http://fooo.com/version", value = Some(choice("asd123": UriStr)))
+...
+val uriStrChoice: Extension.ValueChoice = choice("asd123": UriStr)
+Extension(url = "http://fooo.com/version", value = Some(uriStrChoice))
+```
 
 #### Type safety
 Choice fields have a few convenience methods to make working with them ~~a joy~~ possible:

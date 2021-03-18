@@ -31,6 +31,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceMetric extends CompanionFor[DeviceMetric] {
   override val baseType: CompanionFor[DeviceMetric] = DeviceMetric
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceMetric")
   object Calibration extends CompanionFor[Calibration] {
     def apply(
         id: Option[String] = None,

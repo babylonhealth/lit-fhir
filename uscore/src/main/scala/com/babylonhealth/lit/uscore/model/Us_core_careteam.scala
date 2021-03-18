@@ -27,6 +27,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_careteam extends CompanionFor[Us_core_careteam] {
   override val baseType: CompanionFor[CareTeam] = CareTeam
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(

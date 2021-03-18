@@ -32,6 +32,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImplementationGuide extends CompanionFor[ImplementationGuide] {
   override val baseType: CompanionFor[ImplementationGuide] = ImplementationGuide
+  override val profileUrl: Option[String]                  = Some("http://hl7.org/fhir/StructureDefinition/ImplementationGuide")
   object Definition extends CompanionFor[Definition] {
     object Page extends CompanionFor[Page] {
       type NameChoice = Choice[Union01831019594]

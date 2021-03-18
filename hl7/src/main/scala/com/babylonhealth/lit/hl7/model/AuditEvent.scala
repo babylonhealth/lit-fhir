@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object AuditEvent extends CompanionFor[AuditEvent] {
   override val baseType: CompanionFor[AuditEvent] = AuditEvent
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/AuditEvent")
   object Entity extends CompanionFor[Entity] {
     object Detail extends CompanionFor[Detail] {
       type ValueChoice = Choice[Union00483057553]

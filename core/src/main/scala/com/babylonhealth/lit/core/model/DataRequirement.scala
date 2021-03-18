@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DataRequirement extends CompanionFor[DataRequirement] {
   override val baseType: CompanionFor[DataRequirement] = DataRequirement
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/DataRequirement")
   object DateFilter extends CompanionFor[DateFilter] {
     type ValueChoice = Choice[Union_1947777294]
     def apply(

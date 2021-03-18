@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_fmm_no_warnings extends CompanionFor[Structuredefinition_fmm_no_warnings] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm-no-warnings")
   def apply(
       id: Option[String] = None,
       url: String,

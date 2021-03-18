@@ -31,6 +31,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CodeSystem extends CompanionFor[CodeSystem] {
   override val baseType: CompanionFor[CodeSystem] = CodeSystem
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/CodeSystem")
   object Concept extends CompanionFor[Concept] {
     object Property extends CompanionFor[Property] {
       type ValueChoice = Choice[Union_1489367071]

@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Period extends CompanionFor[Period] {
   override val baseType: CompanionFor[Period] = Period
+  override val profileUrl: Option[String]     = Some("http://hl7.org/fhir/StructureDefinition/Period")
   def apply(
       id: Option[String] = None,
       end: Option[FHIRDateTime] = None,

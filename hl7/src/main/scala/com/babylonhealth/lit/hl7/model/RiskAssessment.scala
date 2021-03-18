@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RiskAssessment extends CompanionFor[RiskAssessment] {
   override val baseType: CompanionFor[RiskAssessment] = RiskAssessment
+  override val profileUrl: Option[String]             = Some("http://hl7.org/fhir/StructureDefinition/RiskAssessment")
   object Prediction extends CompanionFor[Prediction] {
     type WhenChoice        = Choice[Union01200936722]
     type ProbabilityChoice = Choice[Union_0831630297]

@@ -31,6 +31,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_allergyintolerance extends CompanionFor[Us_core_allergyintolerance] {
   override val baseType: CompanionFor[AllergyIntolerance] = AllergyIntolerance
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance")
   type OnsetChoice = Choice[Union01352864625]
   def apply(
       id: Option[String] = None,

@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_geneticsPhaseSet extends CompanionFor[Observation_geneticsPhaseSet] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/observation-geneticsPhaseSet")
   def apply(
       id: Option[String] = None,
       url: String,

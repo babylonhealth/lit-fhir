@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Auditevent_MPPS extends CompanionFor[Auditevent_MPPS] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/auditevent-MPPS")
   def apply(
       id: Option[String] = None,
       url: String,

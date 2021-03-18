@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Range extends CompanionFor[Range] {
   override val baseType: CompanionFor[Range] = Range
+  override val profileUrl: Option[String]    = Some("http://hl7.org/fhir/StructureDefinition/Range")
   def apply(
       id: Option[String] = None,
       low: Option[Quantity] = None,

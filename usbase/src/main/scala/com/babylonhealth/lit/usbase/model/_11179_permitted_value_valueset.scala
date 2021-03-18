@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object _11179_permitted_value_valueset extends CompanionFor[_11179_permitted_value_valueset] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-valueset")
   def apply(
       id: Option[String] = None,
       url: String,

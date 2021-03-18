@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaireresponse_reason extends CompanionFor[Questionnaireresponse_reason] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/questionnaireresponse-reason")
   def apply(
       id: Option[String] = None,
       url: String,

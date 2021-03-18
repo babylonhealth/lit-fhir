@@ -31,6 +31,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Composition extends CompanionFor[Composition] {
   override val baseType: CompanionFor[Composition] = Composition
+  override val profileUrl: Option[String]          = Some("http://hl7.org/fhir/StructureDefinition/Composition")
   object RelatesTo extends CompanionFor[RelatesTo] {
     type TargetChoice = Choice[Union_0983418289]
     def apply(

@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DetectedIssue extends CompanionFor[DetectedIssue] {
   override val baseType: CompanionFor[DetectedIssue] = DetectedIssue
+  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/DetectedIssue")
   object Mitigation extends CompanionFor[Mitigation] {
     def apply(
         id: Option[String] = None,

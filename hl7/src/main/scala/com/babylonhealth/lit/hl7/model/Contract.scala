@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Contract extends CompanionFor[Contract] {
   override val baseType: CompanionFor[Contract] = Contract
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/Contract")
   object Term extends CompanionFor[Term] {
     object Offer extends CompanionFor[Offer] {
       object Party extends CompanionFor[Party] {

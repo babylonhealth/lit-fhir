@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Task extends CompanionFor[Task] {
   override val baseType: CompanionFor[Task] = Task
+  override val profileUrl: Option[String]   = Some("http://hl7.org/fhir/StructureDefinition/Task")
   object Restriction extends CompanionFor[Restriction] {
     def apply(
         id: Option[String] = None,

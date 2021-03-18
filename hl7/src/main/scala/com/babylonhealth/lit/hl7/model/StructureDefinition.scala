@@ -31,6 +31,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object StructureDefinition extends CompanionFor[StructureDefinition] {
   override val baseType: CompanionFor[StructureDefinition] = StructureDefinition
+  override val profileUrl: Option[String]                  = Some("http://hl7.org/fhir/StructureDefinition/StructureDefinition")
   object Differential extends CompanionFor[Differential] {
     def apply(
         id: Option[String] = None,

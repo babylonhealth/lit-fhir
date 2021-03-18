@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object FamilyMemberHistory extends CompanionFor[FamilyMemberHistory] {
   override val baseType: CompanionFor[FamilyMemberHistory] = FamilyMemberHistory
+  override val profileUrl: Option[String]                  = Some("http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory")
   object Condition extends CompanionFor[Condition] {
     type OnsetChoice = Choice[Union01727798874]
     def apply(

@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Event_partOf extends CompanionFor[Event_partOf] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/event-partOf")
   def apply(
       id: Option[String] = None,
       url: String,

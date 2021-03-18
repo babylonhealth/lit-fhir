@@ -61,7 +61,13 @@ package object model {
         .filter(!_.getSimpleName.contains('$'))
         .asScala
       val companions = extractCompanionsFromPath(classPathResults.toSeq).toList
-      lookups = companions.map(x => x.thisName -> x).toMap
+
+      lookups = companions.flatMap {
+        case x if x.profileUrl.isEmpty =>
+          println("FATAL ERROR: Some resource companions are missing the profileUrl field"); sys.exit(5)
+        case x if x eq x.baseType => Seq(x.thisName -> x) ++ x.profileUrl.toSeq.map(_ -> x)
+        case x                    => x.profileUrl.toSeq.map(_ -> x)
+      }.toMap
     } finally if (scanResult != null) scanResult.close()
     if (lookups == null || lookups.size < 35) { // 35 classes inherit from FHIRObject just in core alone...
       println("FATAL ERROR: Unable to instantiate companionLookup map")

@@ -27,6 +27,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
     with OptionSugar {
   private val log: Logger = LoggerFactory.getLogger(getClass)
   val thisName: String
+  val profileUrl: Option[String]
 
   //  private val m = runtimeMirror(getClass.getClassLoader)
   //  lazy val classConstructor: Constructor[_] =
@@ -83,12 +84,8 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
   private def getTargetByName(target: String): Option[CompanionFor[_]] = companionLookup.get(target)
 
   // TODO: Consider how we might determine a priority ordering for meta.profile
-  private def getTargetType(targets: Seq[String]): Option[CompanionFor[_]] = {
-    val targetsShortName = targets.map(_.split("/").last)
-    targetsShortName
-      .flatMap(companionLookup.get)
-      .headOption
-  }
+  private def getTargetType(targets: Seq[String]): Option[CompanionFor[_]] =
+    targets.flatMap(companionLookup.get).headOption
 
   def parameterisedDecode(x: HCursor, params: DecoderParams): Try[T @uncheckedVariance] = {
     def decodeThisAsThis: Try[T @uncheckedVariance] = decodeThis(x)(params)
@@ -135,9 +132,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
     x.downField("meta").downField("profile").as[Seq[String]] match {
       case Left(_) | Right(Nil) => decodeWithResourceType
       case Right(profiles) =>
-        def profileNameToClassName(s: String): String = s.split('/').last.capitalize
-
-        getTargetType(profiles.map(profileNameToClassName)) match {
+        getTargetType(profiles) match {
           case None =>
             if (params.logOnBadProfile)
               log.warn(

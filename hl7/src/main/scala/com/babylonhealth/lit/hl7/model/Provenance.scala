@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Provenance extends CompanionFor[Provenance] {
   override val baseType: CompanionFor[Provenance] = Provenance
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/Provenance")
   object Entity extends CompanionFor[Entity] {
     def apply(
         id: Option[String] = None,

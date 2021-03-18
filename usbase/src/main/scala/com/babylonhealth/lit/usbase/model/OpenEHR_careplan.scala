@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object OpenEHR_careplan extends CompanionFor[OpenEHR_careplan] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/openEHR-careplan")
   def apply(
       id: Option[String] = None,
       url: String,

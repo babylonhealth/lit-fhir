@@ -30,6 +30,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TestReport extends CompanionFor[TestReport] {
   override val baseType: CompanionFor[TestReport] = TestReport
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/TestReport")
   object Setup extends CompanionFor[Setup] {
     object Action extends CompanionFor[Action] {
       object Assert extends CompanionFor[Assert] {

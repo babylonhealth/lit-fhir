@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MessageHeader extends CompanionFor[MessageHeader] {
   override val baseType: CompanionFor[MessageHeader] = MessageHeader
+  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/MessageHeader")
   object Destination extends CompanionFor[Destination] {
     def apply(
         id: Option[String] = None,

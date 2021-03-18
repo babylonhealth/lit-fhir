@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ChargeItem extends CompanionFor[ChargeItem] {
   override val baseType: CompanionFor[ChargeItem] = ChargeItem
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/ChargeItem")
   object Performer extends CompanionFor[Performer] {
     def apply(
         id: Option[String] = None,

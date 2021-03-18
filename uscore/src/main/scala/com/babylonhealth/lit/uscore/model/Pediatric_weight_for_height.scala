@@ -27,6 +27,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Pediatric_weight_for_height extends CompanionFor[Pediatric_weight_for_height] {
   override val baseType: CompanionFor[Observation] = Observation
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height")
   type EffectiveChoice = Choice[Union_0934386166]
   def apply(
       id: Option[String] = None,

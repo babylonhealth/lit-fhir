@@ -24,6 +24,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Binary extends CompanionFor[Binary] {
   override val baseType: CompanionFor[Binary] = Binary
+  override val profileUrl: Option[String]     = Some("http://hl7.org/fhir/StructureDefinition/Binary")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,

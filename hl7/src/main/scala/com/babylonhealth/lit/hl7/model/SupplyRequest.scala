@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SupplyRequest extends CompanionFor[SupplyRequest] {
   override val baseType: CompanionFor[SupplyRequest] = SupplyRequest
+  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/SupplyRequest")
   object Parameter extends CompanionFor[Parameter] {
     type ValueChoice = Choice[Union_1516277229]
     def apply(

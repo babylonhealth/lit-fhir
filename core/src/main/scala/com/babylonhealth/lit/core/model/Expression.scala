@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Expression extends CompanionFor[Expression] {
   override val baseType: CompanionFor[Expression] = Expression
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/Expression")
   def apply(
       id: Option[String] = None,
       name: Option[Id] = None,

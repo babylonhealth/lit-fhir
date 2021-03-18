@@ -27,6 +27,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_diagnosticreport_lab extends CompanionFor[Us_core_diagnosticreport_lab] {
   override val baseType: CompanionFor[DiagnosticReport] = DiagnosticReport
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab")
   type EffectiveChoice = Choice[Union_0934386166]
   def apply(
       id: Option[String] = None,

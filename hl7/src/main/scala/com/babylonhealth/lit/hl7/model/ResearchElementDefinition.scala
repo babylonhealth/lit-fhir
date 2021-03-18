@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition] {
   override val baseType: CompanionFor[ResearchElementDefinition] = ResearchElementDefinition
+  override val profileUrl: Option[String]                        = Some("http://hl7.org/fhir/StructureDefinition/ResearchElementDefinition")
   object Characteristic extends CompanionFor[Characteristic] {
     type DefinitionChoice           = Choice[Union_1750128470]
     type StudyEffectiveChoice       = Choice[Union00607514014]

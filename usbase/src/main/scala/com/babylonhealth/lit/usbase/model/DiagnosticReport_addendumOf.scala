@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DiagnosticReport_addendumOf extends CompanionFor[DiagnosticReport_addendumOf] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/diagnosticReport-addendumOf")
   def apply(
       id: Option[String] = None,
       url: String,

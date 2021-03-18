@@ -31,6 +31,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire extends CompanionFor[Questionnaire] {
   override val baseType: CompanionFor[Questionnaire] = Questionnaire
+  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/Questionnaire")
   object Item extends CompanionFor[Item] {
     object Initial extends CompanionFor[Initial] {
       type ValueChoice = Choice[Union_2101127777]

@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationDispense extends CompanionFor[MedicationDispense] {
   override val baseType: CompanionFor[MedicationDispense] = MedicationDispense
+  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/MedicationDispense")
   object Substitution extends CompanionFor[Substitution] {
     def apply(
         id: Option[String] = None,

@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_keyWord extends CompanionFor[Codesystem_keyWord] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/codesystem-keyWord")
   def apply(
       id: Option[String] = None,
       url: String,

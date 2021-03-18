@@ -24,6 +24,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteraction] {
   override val baseType: CompanionFor[MedicinalProductInteraction] = MedicinalProductInteraction
+  override val profileUrl: Option[String]                          = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductInteraction")
   object Interactant extends CompanionFor[Interactant] {
     type ItemChoice = Choice[Union01025009075]
     def apply(

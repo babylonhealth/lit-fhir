@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
   override val baseType: CompanionFor[TerminologyCapabilities] = TerminologyCapabilities
+  override val profileUrl: Option[String]                      = Some("http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities")
   object CodeSystem extends CompanionFor[CodeSystem] {
     object Version extends CompanionFor[Version] {
       object Filter extends CompanionFor[Filter] {

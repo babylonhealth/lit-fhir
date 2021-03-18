@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_concept_definition extends CompanionFor[Valueset_concept_definition] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/valueset-concept-definition")
   def apply(
       id: Option[String] = None,
       url: String,

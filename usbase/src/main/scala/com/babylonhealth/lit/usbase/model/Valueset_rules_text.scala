@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_rules_text extends CompanionFor[Valueset_rules_text] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/valueset-rules-text")
   def apply(
       id: Option[String] = None,
       url: String,

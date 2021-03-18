@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_standards_status extends CompanionFor[Structuredefinition_standards_status] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status")
   def apply(
       id: Option[String] = None,
       url: String,

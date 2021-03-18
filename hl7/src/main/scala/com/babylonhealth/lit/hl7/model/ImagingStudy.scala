@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImagingStudy extends CompanionFor[ImagingStudy] {
   override val baseType: CompanionFor[ImagingStudy] = ImagingStudy
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImagingStudy")
   object Series extends CompanionFor[Series] {
     object Instance extends CompanionFor[Instance] {
       def apply(

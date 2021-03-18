@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
   override val baseType: CompanionFor[CompartmentDefinition] = CompartmentDefinition
+  override val profileUrl: Option[String]                    = Some("http://hl7.org/fhir/StructureDefinition/CompartmentDefinition")
   object Resource extends CompanionFor[Resource] {
     def apply(
         id: Option[String] = None,

@@ -26,6 +26,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Synthesis extends CompanionFor[Synthesis] {
   override val baseType: CompanionFor[Evidence] = Evidence
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/synthesis")
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,

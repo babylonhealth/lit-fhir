@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Patient_nationality extends CompanionFor[Patient_nationality] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/patient-nationality")
   def apply(
       id: Option[String] = None,
       url: String,

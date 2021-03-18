@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_trusted_expansion extends CompanionFor[Valueset_trusted_expansion] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/valueset-trusted-expansion")
   def apply(
       id: Option[String] = None,
       url: String,

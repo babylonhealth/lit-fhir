@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Linkage extends CompanionFor[Linkage] {
   override val baseType: CompanionFor[Linkage] = Linkage
+  override val profileUrl: Option[String]      = Some("http://hl7.org/fhir/StructureDefinition/Linkage")
   object Item extends CompanionFor[Item] {
     def apply(
         id: Option[String] = None,

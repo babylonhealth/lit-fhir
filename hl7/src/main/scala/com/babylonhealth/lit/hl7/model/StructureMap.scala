@@ -36,6 +36,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object StructureMap extends CompanionFor[StructureMap] {
   override val baseType: CompanionFor[StructureMap] = StructureMap
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/StructureMap")
   object Group extends CompanionFor[Group] {
     object Input extends CompanionFor[Input] {
       def apply(

@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Provenance_relevant_history extends CompanionFor[Provenance_relevant_history] {
   override val baseType: CompanionFor[Provenance] = Provenance
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/provenance-relevant-history")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(

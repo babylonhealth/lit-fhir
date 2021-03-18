@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_recipientType extends CompanionFor[Cqf_recipientType] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/cqf-recipientType")
   def apply(
       id: Option[String] = None,
       url: String,

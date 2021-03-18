@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Rendering_styleSensitive extends CompanionFor[Rendering_styleSensitive] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/rendering-styleSensitive")
   def apply(
       id: Option[String] = None,
       url: String,

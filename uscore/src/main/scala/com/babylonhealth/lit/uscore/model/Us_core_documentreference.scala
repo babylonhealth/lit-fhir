@@ -27,6 +27,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_documentreference extends CompanionFor[Us_core_documentreference] {
   override val baseType: CompanionFor[DocumentReference] = DocumentReference
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(

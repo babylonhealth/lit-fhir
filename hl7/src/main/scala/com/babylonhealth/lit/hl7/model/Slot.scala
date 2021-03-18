@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Slot extends CompanionFor[Slot] {
   override val baseType: CompanionFor[Slot] = Slot
+  override val profileUrl: Option[String]   = Some("http://hl7.org/fhir/StructureDefinition/Slot")
   def apply(
       id: Option[String] = None,
       end: ZonedDateTime,

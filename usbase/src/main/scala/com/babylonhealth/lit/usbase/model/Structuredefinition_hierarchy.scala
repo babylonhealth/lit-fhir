@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_hierarchy extends CompanionFor[Structuredefinition_hierarchy] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-hierarchy")
   def apply(
       id: Option[String] = None,
       url: String,

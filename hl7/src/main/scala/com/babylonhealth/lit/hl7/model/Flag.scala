@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Flag extends CompanionFor[Flag] {
   override val baseType: CompanionFor[Flag] = Flag
+  override val profileUrl: Option[String]   = Some("http://hl7.org/fhir/StructureDefinition/Flag")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,

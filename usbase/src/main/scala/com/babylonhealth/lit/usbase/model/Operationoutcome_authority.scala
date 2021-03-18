@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Operationoutcome_authority extends CompanionFor[Operationoutcome_authority] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/operationoutcome-authority")
   def apply(
       id: Option[String] = None,
       url: String,

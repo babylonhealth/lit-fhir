@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire_signatureRequired extends CompanionFor[Questionnaire_signatureRequired] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/questionnaire-signatureRequired")
   def apply(
       id: Option[String] = None,
       url: String,

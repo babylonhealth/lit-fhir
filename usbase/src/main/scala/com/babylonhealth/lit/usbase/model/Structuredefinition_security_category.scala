@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_security_category extends CompanionFor[Structuredefinition_security_category] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category")
   def apply(
       id: Option[String] = None,
       url: String,

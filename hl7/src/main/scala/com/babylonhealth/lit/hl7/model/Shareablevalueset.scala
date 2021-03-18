@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablevalueset extends CompanionFor[Shareablevalueset] {
   override val baseType: CompanionFor[ValueSet] = ValueSet
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/shareablevalueset")
   def apply(
       id: Option[String] = None,
       url: UriStr,

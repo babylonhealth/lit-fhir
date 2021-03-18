@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Endpoint extends CompanionFor[Endpoint] {
   override val baseType: CompanionFor[Endpoint] = Endpoint
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/Endpoint")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,

@@ -26,6 +26,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cdshooksguidanceresponse extends CompanionFor[Cdshooksguidanceresponse] {
   override val baseType: CompanionFor[GuidanceResponse] = GuidanceResponse
+  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/cdshooksguidanceresponse")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(

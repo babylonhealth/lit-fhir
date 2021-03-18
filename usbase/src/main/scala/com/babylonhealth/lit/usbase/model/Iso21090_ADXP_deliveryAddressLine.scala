@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_ADXP_deliveryAddressLine extends CompanionFor[Iso21090_ADXP_deliveryAddressLine] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-deliveryAddressLine")
   def apply(
       id: Option[String] = None,
       url: String,

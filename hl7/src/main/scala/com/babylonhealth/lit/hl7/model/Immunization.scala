@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Immunization extends CompanionFor[Immunization] {
   override val baseType: CompanionFor[Immunization] = Immunization
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Immunization")
   object ProtocolApplied extends CompanionFor[ProtocolApplied] {
     type DoseNumberChoice  = Choice[Union_0839638734]
     type SeriesDosesChoice = Choice[Union_0839638734]

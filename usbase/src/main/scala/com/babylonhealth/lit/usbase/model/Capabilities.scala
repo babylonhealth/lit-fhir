@@ -25,6 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Capabilities extends CompanionFor[Capabilities] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String] = Some(
+    "http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities")
   def apply(
       id: Option[String] = None,
       url: String,

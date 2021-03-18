@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_expirationDate extends CompanionFor[Codesystem_expirationDate] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/codesystem-expirationDate")
   def apply(
       id: Option[String] = None,
       url: String,

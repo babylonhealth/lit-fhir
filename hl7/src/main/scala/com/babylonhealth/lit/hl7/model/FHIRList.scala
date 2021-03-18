@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object FHIRList extends CompanionFor[FHIRList] {
   override val baseType: CompanionFor[FHIRList] = FHIRList
+  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/List")
   object Entry extends CompanionFor[Entry] {
     def apply(
         id: Option[String] = None,

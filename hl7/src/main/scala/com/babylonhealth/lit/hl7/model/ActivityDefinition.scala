@@ -32,6 +32,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ActivityDefinition extends CompanionFor[ActivityDefinition] {
   override val baseType: CompanionFor[ActivityDefinition] = ActivityDefinition
+  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/ActivityDefinition")
   object DynamicValue extends CompanionFor[DynamicValue] {
     def apply(
         id: Option[String] = None,

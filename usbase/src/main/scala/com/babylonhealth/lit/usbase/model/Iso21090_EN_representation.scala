@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_EN_representation extends CompanionFor[Iso21090_EN_representation] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/iso21090-EN-representation")
   def apply(
       id: Option[String] = None,
       url: String,

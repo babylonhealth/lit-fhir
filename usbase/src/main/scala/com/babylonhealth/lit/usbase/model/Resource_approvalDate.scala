@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Resource_approvalDate extends CompanionFor[Resource_approvalDate] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/resource-approvalDate")
   def apply(
       id: Option[String] = None,
       url: String,

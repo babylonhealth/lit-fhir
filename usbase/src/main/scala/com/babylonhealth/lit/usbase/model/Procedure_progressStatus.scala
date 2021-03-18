@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Procedure_progressStatus extends CompanionFor[Procedure_progressStatus] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/procedure-progressStatus")
   def apply(
       id: Option[String] = None,
       url: String,

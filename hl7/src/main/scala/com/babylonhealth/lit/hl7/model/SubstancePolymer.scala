@@ -24,6 +24,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstancePolymer extends CompanionFor[SubstancePolymer] {
   override val baseType: CompanionFor[SubstancePolymer] = SubstancePolymer
+  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/SubstancePolymer")
   object Repeat extends CompanionFor[Repeat] {
     object RepeatUnit extends CompanionFor[RepeatUnit] {
       object DegreeOfPolymerisation extends CompanionFor[DegreeOfPolymerisation] {

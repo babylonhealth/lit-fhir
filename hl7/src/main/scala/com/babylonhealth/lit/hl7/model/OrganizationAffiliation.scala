@@ -24,6 +24,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object OrganizationAffiliation extends CompanionFor[OrganizationAffiliation] {
   override val baseType: CompanionFor[OrganizationAffiliation] = OrganizationAffiliation
+  override val profileUrl: Option[String]                      = Some("http://hl7.org/fhir/StructureDefinition/OrganizationAffiliation")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,

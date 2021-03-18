@@ -31,6 +31,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationRequest extends CompanionFor[MedicationRequest] {
   override val baseType: CompanionFor[MedicationRequest] = MedicationRequest
+  override val profileUrl: Option[String]                = Some("http://hl7.org/fhir/StructureDefinition/MedicationRequest")
   object DispenseRequest extends CompanionFor[DispenseRequest] {
     object InitialFill extends CompanionFor[InitialFill] {
       def apply(

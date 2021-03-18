@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ConceptMap extends CompanionFor[ConceptMap] {
   override val baseType: CompanionFor[ConceptMap] = ConceptMap
+  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/ConceptMap")
   object Group extends CompanionFor[Group] {
     object Unmapped extends CompanionFor[Unmapped] {
       def apply(

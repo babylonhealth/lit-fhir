@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DocumentReference extends CompanionFor[DocumentReference] {
   override val baseType: CompanionFor[DocumentReference] = DocumentReference
+  override val profileUrl: Option[String]                = Some("http://hl7.org/fhir/StructureDefinition/DocumentReference")
   object RelatesTo extends CompanionFor[RelatesTo] {
     def apply(
         id: Option[String] = None,

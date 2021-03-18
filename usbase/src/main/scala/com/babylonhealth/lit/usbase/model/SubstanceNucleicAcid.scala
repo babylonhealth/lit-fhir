@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
   override val baseType: CompanionFor[SubstanceNucleicAcid] = SubstanceNucleicAcid
+  override val profileUrl: Option[String]                   = Some("http://hl7.org/fhir/StructureDefinition/SubstanceNucleicAcid")
   object Subunit extends CompanionFor[Subunit] {
     object Sugar extends CompanionFor[Sugar] {
       def apply(

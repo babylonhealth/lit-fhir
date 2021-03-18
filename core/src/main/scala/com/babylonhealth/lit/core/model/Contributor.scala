@@ -22,6 +22,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Contributor extends CompanionFor[Contributor] {
   override val baseType: CompanionFor[Contributor] = Contributor
+  override val profileUrl: Option[String]          = Some("http://hl7.org/fhir/StructureDefinition/Contributor")
   def apply(
       id: Option[String] = None,
       `type`: CONTRIBUTOR_TYPE,

@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Allergyintolerance_certainty extends CompanionFor[Allergyintolerance_certainty] {
   override val baseType: CompanionFor[Extension] = Extension
+  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/allergyintolerance-certainty")
   def apply(
       id: Option[String] = None,
       url: String,

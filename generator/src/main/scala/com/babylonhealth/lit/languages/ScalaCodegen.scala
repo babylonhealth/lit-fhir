@@ -7,7 +7,6 @@ import com.babylonhealth.lit._
 import com.babylonhealth.lit.Cardinality._
 import com.babylonhealth.lit.CardinalityImplicits._
 import com.babylonhealth.lit.common.CodegenUtils
-import com.babylonhealth.lit.hl7.model.ValueSet
 import com.babylonhealth.lit.hl7.BINDING_STRENGTH
 import com.babylonhealth.lit.fhirpath.genScala.ExactlyOne
 
@@ -562,6 +561,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     val fileStr =
       s"""object $className extends CompanionFor[$className] {
          |  override val baseType: CompanionFor[${topLevelClass.scalaBaseClassName}] = ${topLevelClass.scalaBaseClassName}
+         |  override val profileUrl: Option[String] = Some("${topLevelClass.url}")
          |  $otherClassDefs
          |  $choiceAliases
          |  $applyImpl
@@ -700,7 +700,12 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |        .filter(!_.getSimpleName.contains('$'))
       |        .asScala
       |      val companions = extractCompanionsFromPath(classPathResults.toSeq).toList
-      |      lookups = companions.map(x => x.thisName -> x).toMap
+      |
+      |      lookups = companions.flatMap {
+      |        case x if x.profileUrl.isEmpty => println("FATAL ERROR: Some resource companions are missing the profileUrl field"); sys.exit(5)
+      |        case x if x eq x.baseType      => Seq(x.thisName -> x) ++ x.profileUrl.toSeq.map(_ -> x)
+      |        case x                         => x.profileUrl.toSeq.map(_ -> x)
+      |      }.toMap
       |    } finally if (scanResult != null) scanResult.close()
       |    if (lookups == null || lookups.size < 35) { // 35 classes inherit from FHIRObject just in core alone...
       |      println("FATAL ERROR: Unable to instantiate companionLookup map")

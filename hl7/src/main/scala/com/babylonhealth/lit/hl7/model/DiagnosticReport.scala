@@ -25,6 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DiagnosticReport extends CompanionFor[DiagnosticReport] {
   override val baseType: CompanionFor[DiagnosticReport] = DiagnosticReport
+  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/DiagnosticReport")
   object Media extends CompanionFor[Media] {
     def apply(
         id: Option[String] = None,
