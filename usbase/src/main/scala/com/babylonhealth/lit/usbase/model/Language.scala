@@ -42,13 +42,14 @@ object Language extends CompanionFor[Language] {
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Language): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[LANGUAGES](value, t.value.get.toSubRefNonUnion[LANGUAGES])
+    FHIRComponentField[LANGUAGES](value, LANGUAGES.withName(t.value.get.toSubRefNonUnion[Code]))
   )
-  def extractId(t: Language): Option[String]                    = t.id
-  def extractValue(t: Language): LANGUAGES                      = t.value.get.toSubRefNonUnion[LANGUAGES]
-  override val thisName: String                                 = "Language"
-  override val searchParams: Map[String, Language => Seq[Any]]  = Extension.searchParams
-  def unapply(o: Language): Option[(Option[String], LANGUAGES)] = Some((o.id, o.value.get.toSubRefNonUnion[LANGUAGES]))
+  def extractId(t: Language): Option[String]                   = t.id
+  def extractValue(t: Language): LANGUAGES                     = LANGUAGES.withName(t.value.get.toSubRefNonUnion[Code])
+  override val thisName: String                                = "Language"
+  override val searchParams: Map[String, Language => Seq[Any]] = Extension.searchParams
+  def unapply(o: Language): Option[(Option[String], LANGUAGES)] = Some(
+    (o.id, LANGUAGES.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Language] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -42,14 +42,14 @@ object Iso21090_nullFlavor extends CompanionFor[Iso21090_nullFlavor] {
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Iso21090_nullFlavor): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[V3_NULLFLAVOR](value, t.value.get.toSubRefNonUnion[V3_NULLFLAVOR])
+    FHIRComponentField[V3_NULLFLAVOR](value, V3_NULLFLAVOR.withName(t.value.get.toSubRefNonUnion[Code]))
   )
   def extractId(t: Iso21090_nullFlavor): Option[String]                   = t.id
-  def extractValue(t: Iso21090_nullFlavor): V3_NULLFLAVOR                 = t.value.get.toSubRefNonUnion[V3_NULLFLAVOR]
+  def extractValue(t: Iso21090_nullFlavor): V3_NULLFLAVOR                 = V3_NULLFLAVOR.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                           = "Iso21090_nullFlavor"
   override val searchParams: Map[String, Iso21090_nullFlavor => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_nullFlavor): Option[(Option[String], V3_NULLFLAVOR)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[V3_NULLFLAVOR]))
+    (o.id, V3_NULLFLAVOR.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_nullFlavor] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

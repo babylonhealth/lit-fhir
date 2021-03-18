@@ -42,14 +42,14 @@ object Questionnaire_baseType extends CompanionFor[Questionnaire_baseType] {
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Questionnaire_baseType): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[DATA_TYPES](value, t.value.get.toSubRefNonUnion[DATA_TYPES])
+    FHIRComponentField[DATA_TYPES](value, DATA_TYPES.withName(t.value.get.toSubRefNonUnion[Code]))
   )
   def extractId(t: Questionnaire_baseType): Option[String]                   = t.id
-  def extractValue(t: Questionnaire_baseType): DATA_TYPES                    = t.value.get.toSubRefNonUnion[DATA_TYPES]
+  def extractValue(t: Questionnaire_baseType): DATA_TYPES                    = DATA_TYPES.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                              = "Questionnaire_baseType"
   override val searchParams: Map[String, Questionnaire_baseType => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_baseType): Option[(Option[String], DATA_TYPES)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[DATA_TYPES]))
+    (o.id, DATA_TYPES.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_baseType] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

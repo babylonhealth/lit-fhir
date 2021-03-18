@@ -42,15 +42,17 @@ object Valueset_expand_rules extends CompanionFor[Valueset_expand_rules] {
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Valueset_expand_rules): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[EXPANSION_PROCESSING_RULE](value, t.value.get.toSubRefNonUnion[EXPANSION_PROCESSING_RULE])
+    FHIRComponentField[EXPANSION_PROCESSING_RULE](
+      value,
+      EXPANSION_PROCESSING_RULE.withName(t.value.get.toSubRefNonUnion[Code]))
   )
   def extractId(t: Valueset_expand_rules): Option[String] = t.id
   def extractValue(t: Valueset_expand_rules): EXPANSION_PROCESSING_RULE =
-    t.value.get.toSubRefNonUnion[EXPANSION_PROCESSING_RULE]
+    EXPANSION_PROCESSING_RULE.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                             = "Valueset_expand_rules"
   override val searchParams: Map[String, Valueset_expand_rules => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_expand_rules): Option[(Option[String], EXPANSION_PROCESSING_RULE)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[EXPANSION_PROCESSING_RULE]))
+    (o.id, EXPANSION_PROCESSING_RULE.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_expand_rules] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

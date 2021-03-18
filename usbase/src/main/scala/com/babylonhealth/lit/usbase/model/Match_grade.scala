@@ -42,14 +42,14 @@ object Match_grade extends CompanionFor[Match_grade] {
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Match_grade): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[MATCH_GRADE](value, t.value.get.toSubRefNonUnion[MATCH_GRADE])
+    FHIRComponentField[MATCH_GRADE](value, MATCH_GRADE.withName(t.value.get.toSubRefNonUnion[Code]))
   )
   def extractId(t: Match_grade): Option[String]                   = t.id
-  def extractValue(t: Match_grade): MATCH_GRADE                   = t.value.get.toSubRefNonUnion[MATCH_GRADE]
+  def extractValue(t: Match_grade): MATCH_GRADE                   = MATCH_GRADE.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                   = "Match_grade"
   override val searchParams: Map[String, Match_grade => Seq[Any]] = Extension.searchParams
   def unapply(o: Match_grade): Option[(Option[String], MATCH_GRADE)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[MATCH_GRADE]))
+    (o.id, MATCH_GRADE.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Match_grade] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

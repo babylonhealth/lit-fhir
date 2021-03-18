@@ -42,14 +42,15 @@ object Humanname_assembly_order extends CompanionFor[Humanname_assembly_order] {
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Humanname_assembly_order): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[NAME_ASSEMBLY_ORDER](value, t.value.get.toSubRefNonUnion[NAME_ASSEMBLY_ORDER])
+    FHIRComponentField[NAME_ASSEMBLY_ORDER](value, NAME_ASSEMBLY_ORDER.withName(t.value.get.toSubRefNonUnion[Code]))
   )
-  def extractId(t: Humanname_assembly_order): Option[String]                   = t.id
-  def extractValue(t: Humanname_assembly_order): NAME_ASSEMBLY_ORDER           = t.value.get.toSubRefNonUnion[NAME_ASSEMBLY_ORDER]
+  def extractId(t: Humanname_assembly_order): Option[String] = t.id
+  def extractValue(t: Humanname_assembly_order): NAME_ASSEMBLY_ORDER =
+    NAME_ASSEMBLY_ORDER.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                = "Humanname_assembly_order"
   override val searchParams: Map[String, Humanname_assembly_order => Seq[Any]] = Extension.searchParams
   def unapply(o: Humanname_assembly_order): Option[(Option[String], NAME_ASSEMBLY_ORDER)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[NAME_ASSEMBLY_ORDER]))
+    (o.id, NAME_ASSEMBLY_ORDER.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Humanname_assembly_order] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

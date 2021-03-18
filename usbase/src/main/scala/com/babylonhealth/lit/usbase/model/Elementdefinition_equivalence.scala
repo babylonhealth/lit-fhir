@@ -43,15 +43,17 @@ object Elementdefinition_equivalence extends CompanionFor[Elementdefinition_equi
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Elementdefinition_equivalence): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[CONCEPT_MAP_EQUIVALENCE](value, t.value.get.toSubRefNonUnion[CONCEPT_MAP_EQUIVALENCE])
+    FHIRComponentField[CONCEPT_MAP_EQUIVALENCE](
+      value,
+      CONCEPT_MAP_EQUIVALENCE.withName(t.value.get.toSubRefNonUnion[Code]))
   )
   def extractId(t: Elementdefinition_equivalence): Option[String] = t.id
   def extractValue(t: Elementdefinition_equivalence): CONCEPT_MAP_EQUIVALENCE =
-    t.value.get.toSubRefNonUnion[CONCEPT_MAP_EQUIVALENCE]
+    CONCEPT_MAP_EQUIVALENCE.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                     = "Elementdefinition_equivalence"
   override val searchParams: Map[String, Elementdefinition_equivalence => Seq[Any]] = Extension.searchParams
   def unapply(o: Elementdefinition_equivalence): Option[(Option[String], CONCEPT_MAP_EQUIVALENCE)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[CONCEPT_MAP_EQUIVALENCE]))
+    (o.id, CONCEPT_MAP_EQUIVALENCE.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Elementdefinition_equivalence] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
