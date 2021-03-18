@@ -16,7 +16,7 @@ case class DecoderParams(
     ignoreUnknownFields: Boolean = Config.ignoreUnknownFields,
     logOnBadProfile: Boolean = Config.logOnBadProfile,
     logOnMissingExtension: Boolean = Config.logOnMissingExtension,
-    tolerateExtensionErrors: Boolean = Config.tolerateExtensionErrors,
+    tolerateExtensionErrors: Boolean = Config.tolerateExtensionErrors
 )
 case class EncoderParams(
     addMissingMeta: Boolean = true,
