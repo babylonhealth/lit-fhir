@@ -73,7 +73,8 @@ object Extension extends CompanionFor[Extension] {
             decodeAttributes(cursor)
           )
         )
-        if (!params.decodeSpecificExtensions) genericExtension else {
+        if (!params.decodeSpecificExtensions) genericExtension
+        else {
           val specificExtension = companionLookup.get(url)
           specificExtension match {
             case None =>

@@ -20,10 +20,11 @@
 >             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
 >             decodeAttributes(cursor)
 >           )
-72c76,91
+72c76,92
 <       ))
 ---
->         if (!params.decodeSpecificExtensions) genericExtension else {
+>         if (!params.decodeSpecificExtensions) genericExtension
+>         else {
 >           val specificExtension = companionLookup.get(url)
 >           specificExtension match {
 >             case None =>
