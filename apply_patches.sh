@@ -10,7 +10,7 @@
 # - Deleting uscore_java/src/main/java/com/babylonhealth/lit/uscore_java/builders/Us_core_smokingstatusBuilder.java 'cause we don't automatically convert the unspecified 'Code' type to the parent enum value
 patch hl7/src/main/scala/com/babylonhealth/lit/hl7/model/Bundle.scala bundle_decoding.patch
 patch core/src/main/scala/com/babylonhealth/lit/core/model/Resource.scala resource_identifier.patch
-#patch core/src/main/scala/com/babylonhealth/lit/core/model/Extension.scala Extension.scala.patch
+patch core/src/main/scala/com/babylonhealth/lit/core/model/Extension.scala Extension.scala.patch
 rm -f hl7/src/main/scala/com/babylonhealth/lit/hl7/model/Bundle.scala.orig \
 core/src/main/scala/com/babylonhealth/lit/core/model/Resource.scala.orig \
 core/src/main/scala/com/babylonhealth/lit/core/model/Extension.scala.orig \

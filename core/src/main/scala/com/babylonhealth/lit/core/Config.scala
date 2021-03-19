@@ -13,5 +13,6 @@ object Config {
   val logOnBadProfile                  = config.getBoolean("logOnBadProfile")
   val logOnMissingExtension            = config.getBoolean("logOnMissingExtension")
   val tolerateExtensionErrors          = config.getBoolean("tolerateExtensionErrors")
+  val decodeSpecificExtensions         = config.getBoolean("decodeSpecificExtensions")
   val generatedNamespaces: Seq[String] = config.getString("generatedNamespaces").split(",")
 }
