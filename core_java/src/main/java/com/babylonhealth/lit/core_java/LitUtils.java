@@ -50,7 +50,8 @@ public class LitUtils {
           Config.ignoreUnknownFields(),
           Config.logOnBadProfile(),
           Config.logOnMissingExtension(),
-          Config.tolerateExtensionErrors());
+          Config.tolerateExtensionErrors(),
+          Config.decodeSpecificExtensions());
   public static EncoderParams defaultEncoderParams = new EncoderParams(true, false, true);
 
   /** @throws FhirDecodeError when the string cannot be decoded to the given type */

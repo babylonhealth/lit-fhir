@@ -20,20 +20,23 @@
 >             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
 >             decodeAttributes(cursor)
 >           )
-72c76,89
+72c76,92
 <       ))
 ---
->         val specificExtension = companionLookup.get(url)
->         specificExtension match {
->           case None =>
->             if (params.logOnMissingExtension) log.warn(s"Missing extension $url")
->             genericExtension
->           case Some(ext) =>
->             Try(ext.decodeThis(cursor).asInstanceOf[Try[Extension]]).flatten.recoverWith {
->               case t if params.tolerateExtensionErrors =>
->                 log.warn(s"Failed to decode extension $url", t)
->                 genericExtension
->             }
+>         if (!params.decodeSpecificExtensions) genericExtension
+>         else {
+>           val specificExtension = companionLookup.get(url)
+>           specificExtension match {
+>             case None =>
+>               if (params.logOnMissingExtension) log.warn(s"Missing extension $url")
+>               genericExtension
+>             case Some(ext) =>
+>               Try(ext.decodeThis(cursor).asInstanceOf[Try[Extension]]).flatten.recoverWith {
+>                 case t if params.tolerateExtensionErrors =>
+>                   log.warn(s"Failed to decode extension $url", t)
+>                   genericExtension
+>               }
+>           }
 >         }
 >       })
 > 

@@ -34,7 +34,7 @@ class EncodeAndDecodeExtensions extends AnyFreeSpec with Matchers {
     val output = decode[Extension](ext1Json).fold(throw _, identity)
     output shouldEqual ext1
   }
-  "decodes an extension with the right url to the right type" ignore {
+  "decodes an extension with the right url to the right type" in {
     val output = decode[Extension](ext1Json).fold(throw _, identity)
     output.companion shouldEqual Workflow_reasonCode
   }
@@ -46,7 +46,7 @@ class EncodeAndDecodeExtensions extends AnyFreeSpec with Matchers {
     val output = decode[Extension](ext2Json).fold(throw _, identity)
     output shouldEqual ext2
   }
-  "decodes an extension with the right url and an enum value to the right type" ignore {
+  "decodes an extension with the right url and an enum value to the right type" in {
     val output = decode[Extension](ext2Json).fold(throw _, identity)
     output.companion shouldEqual Data_absent_reason
   }
@@ -86,7 +86,7 @@ class EncodeAndDecodeExtensions extends AnyFreeSpec with Matchers {
   }
   "when extension errors are forbidden" - {
     implicit val params = DecoderParams(tolerateExtensionErrors = false)
-    "fails to decode an extension if value is illegal in enum Code field" ignore {
+    "fails to decode an extension if value is illegal in enum Code field" in {
       val extJson =
         """{
           |  "url" : "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
@@ -96,7 +96,7 @@ class EncodeAndDecodeExtensions extends AnyFreeSpec with Matchers {
       output.isLeft shouldEqual true
       output.left.get.getMessage shouldEqual "'idksorry' is not in http://hl7.org/fhir/ValueSet/data-absent-reason.: DownField(valueCode)"
     }
-    "fails to decode an extension if value is wrong type" ignore {
+    "fails to decode an extension if value is wrong type" in {
       val extJson =
         """{
           |  "url" : "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
@@ -106,7 +106,7 @@ class EncodeAndDecodeExtensions extends AnyFreeSpec with Matchers {
       output.isLeft shouldEqual true
       output.left.get.getMessage shouldEqual "No value found for required field 'valueCode'"
     }
-    "still decodes to a generic extension if url is unknown" ignore {
+    "still decodes to a generic extension if url is unknown" in {
       val extJson =
         """{
           |  "url" : "http://hl7.org/fhir/StructureDefinition/idksorry",
