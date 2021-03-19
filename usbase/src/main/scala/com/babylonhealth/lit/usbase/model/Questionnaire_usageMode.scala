@@ -42,15 +42,17 @@ object Questionnaire_usageMode extends CompanionFor[Questionnaire_usageMode] {
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Questionnaire_usageMode): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[QUESTIONNAIRE_USAGE_MODE](value, t.value.get.toSubRefNonUnion[QUESTIONNAIRE_USAGE_MODE])
+    FHIRComponentField[QUESTIONNAIRE_USAGE_MODE](
+      value,
+      QUESTIONNAIRE_USAGE_MODE.withName(t.value.get.toSubRefNonUnion[Code]))
   )
   def extractId(t: Questionnaire_usageMode): Option[String] = t.id
   def extractValue(t: Questionnaire_usageMode): QUESTIONNAIRE_USAGE_MODE =
-    t.value.get.toSubRefNonUnion[QUESTIONNAIRE_USAGE_MODE]
+    QUESTIONNAIRE_USAGE_MODE.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                               = "Questionnaire_usageMode"
   override val searchParams: Map[String, Questionnaire_usageMode => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_usageMode): Option[(Option[String], QUESTIONNAIRE_USAGE_MODE)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[QUESTIONNAIRE_USAGE_MODE]))
+    (o.id, QUESTIONNAIRE_USAGE_MODE.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_usageMode] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -11,5 +11,7 @@ object Config {
   val createPhantomValues              = config.getBoolean("createPhantomValues")
   val ignoreUnknownFields              = config.getBoolean("ignoreUnknownFields")
   val logOnBadProfile                  = config.getBoolean("logOnBadProfile")
+  val logOnMissingExtension            = config.getBoolean("logOnMissingExtension")
+  val tolerateExtensionErrors          = config.getBoolean("tolerateExtensionErrors")
   val generatedNamespaces: Seq[String] = config.getString("generatedNamespaces").split(",")
 }

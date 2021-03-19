@@ -90,7 +90,9 @@ trait BaseFieldImplicits {
         if (baseField.firstBase.forall(_.types.sizeCompare(baseField.types) == 0)) {
           arg
         } else if (baseField.types.size == 1) {
-          s"$arg.toSubRefNonUnion[$tpe]"
+          if (baseField.types.head == "Code" && baseField.valueEnumeration.isDefined)
+            s"$tpe.withName($arg.toSubRefNonUnion[Code])"
+          else s"$arg.toSubRefNonUnion[$tpe]"
         } else {
           s"$arg.toSubRef"
         }

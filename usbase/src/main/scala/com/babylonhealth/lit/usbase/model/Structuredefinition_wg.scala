@@ -42,14 +42,15 @@ object Structuredefinition_wg extends CompanionFor[Structuredefinition_wg] {
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Structuredefinition_wg): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[HL7_WORK_GROUP](value, t.value.get.toSubRefNonUnion[HL7_WORK_GROUP])
+    FHIRComponentField[HL7_WORK_GROUP](value, HL7_WORK_GROUP.withName(t.value.get.toSubRefNonUnion[Code]))
   )
-  def extractId(t: Structuredefinition_wg): Option[String]                   = t.id
-  def extractValue(t: Structuredefinition_wg): HL7_WORK_GROUP                = t.value.get.toSubRefNonUnion[HL7_WORK_GROUP]
+  def extractId(t: Structuredefinition_wg): Option[String] = t.id
+  def extractValue(t: Structuredefinition_wg): HL7_WORK_GROUP =
+    HL7_WORK_GROUP.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                              = "Structuredefinition_wg"
   override val searchParams: Map[String, Structuredefinition_wg => Seq[Any]] = Extension.searchParams
   def unapply(o: Structuredefinition_wg): Option[(Option[String], HL7_WORK_GROUP)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[HL7_WORK_GROUP]))
+    (o.id, HL7_WORK_GROUP.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Structuredefinition_wg] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

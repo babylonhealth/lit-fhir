@@ -48,7 +48,9 @@ public class LitUtils {
           Config.decodePrimitiveExtensions(),
           Config.createPhantomValues(),
           Config.ignoreUnknownFields(),
-          Config.logOnBadProfile());
+          Config.logOnBadProfile(),
+          Config.logOnMissingExtension(),
+          Config.tolerateExtensionErrors());
   public static EncoderParams defaultEncoderParams = new EncoderParams(true, false, true);
 
   /** @throws FhirDecodeError when the string cannot be decoded to the given type */

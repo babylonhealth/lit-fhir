@@ -93,7 +93,8 @@ case class Choice[T](suffix: String, value: Any)(implicit val tt: LTag[T]) {
 
   def toSubRef[Sub <: _ \/ _](implicit subT: LTag[Sub]): Choice[Sub] = Choice[Sub](suffix, value)
   def toSubRefNonUnion[Sub](implicit subT: LTag[Sub]): Sub =
-    if (subT.tag =:= elTT.tag) value.asInstanceOf[Sub] else throw new RuntimeException("!!! _____")
+    if (subT.tag =:= elTT.tag) value.asInstanceOf[Sub]
+    else throw new RuntimeException(s"requested value type ${subT.tag} didn't match choice type ${elTT.tag}")
 
   def toSuperRef[Sup <: _ \/ _](implicit supT: LTag[Sup]): Choice[Sup] = Choice[Sup](suffix, value)
 

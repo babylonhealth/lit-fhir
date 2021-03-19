@@ -43,15 +43,15 @@ object Structuredefinition_standards_status extends CompanionFor[Structuredefini
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Structuredefinition_standards_status): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[STANDARDS_STATUS](value, t.value.get.toSubRefNonUnion[STANDARDS_STATUS])
+    FHIRComponentField[STANDARDS_STATUS](value, STANDARDS_STATUS.withName(t.value.get.toSubRefNonUnion[Code]))
   )
   def extractId(t: Structuredefinition_standards_status): Option[String] = t.id
   def extractValue(t: Structuredefinition_standards_status): STANDARDS_STATUS =
-    t.value.get.toSubRefNonUnion[STANDARDS_STATUS]
+    STANDARDS_STATUS.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                            = "Structuredefinition_standards_status"
   override val searchParams: Map[String, Structuredefinition_standards_status => Seq[Any]] = Extension.searchParams
   def unapply(o: Structuredefinition_standards_status): Option[(Option[String], STANDARDS_STATUS)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[STANDARDS_STATUS]))
+    (o.id, STANDARDS_STATUS.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Structuredefinition_standards_status] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

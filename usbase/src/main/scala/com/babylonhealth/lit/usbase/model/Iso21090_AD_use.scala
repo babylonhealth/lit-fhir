@@ -43,14 +43,15 @@ object Iso21090_AD_use extends CompanionFor[Iso21090_AD_use] {
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Iso21090_AD_use): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[POSTAL_ADDRESS_USE](value, t.value.get.toSubRefNonUnion[POSTAL_ADDRESS_USE])
+    FHIRComponentField[POSTAL_ADDRESS_USE](value, POSTAL_ADDRESS_USE.withName(t.value.get.toSubRefNonUnion[Code]))
   )
-  def extractId(t: Iso21090_AD_use): Option[String]                   = t.id
-  def extractValue(t: Iso21090_AD_use): POSTAL_ADDRESS_USE            = t.value.get.toSubRefNonUnion[POSTAL_ADDRESS_USE]
+  def extractId(t: Iso21090_AD_use): Option[String] = t.id
+  def extractValue(t: Iso21090_AD_use): POSTAL_ADDRESS_USE =
+    POSTAL_ADDRESS_USE.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                       = "Iso21090_AD_use"
   override val searchParams: Map[String, Iso21090_AD_use => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_AD_use): Option[(Option[String], POSTAL_ADDRESS_USE)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[POSTAL_ADDRESS_USE]))
+    (o.id, POSTAL_ADDRESS_USE.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_AD_use] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

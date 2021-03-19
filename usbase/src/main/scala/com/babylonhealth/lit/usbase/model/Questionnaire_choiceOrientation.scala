@@ -43,15 +43,17 @@ object Questionnaire_choiceOrientation extends CompanionFor[Questionnaire_choice
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Questionnaire_choiceOrientation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[CHOICE_LIST_ORIENTATION](value, t.value.get.toSubRefNonUnion[CHOICE_LIST_ORIENTATION])
+    FHIRComponentField[CHOICE_LIST_ORIENTATION](
+      value,
+      CHOICE_LIST_ORIENTATION.withName(t.value.get.toSubRefNonUnion[Code]))
   )
   def extractId(t: Questionnaire_choiceOrientation): Option[String] = t.id
   def extractValue(t: Questionnaire_choiceOrientation): CHOICE_LIST_ORIENTATION =
-    t.value.get.toSubRefNonUnion[CHOICE_LIST_ORIENTATION]
+    CHOICE_LIST_ORIENTATION.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                       = "Questionnaire_choiceOrientation"
   override val searchParams: Map[String, Questionnaire_choiceOrientation => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_choiceOrientation): Option[(Option[String], CHOICE_LIST_ORIENTATION)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[CHOICE_LIST_ORIENTATION]))
+    (o.id, CHOICE_LIST_ORIENTATION.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_choiceOrientation] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

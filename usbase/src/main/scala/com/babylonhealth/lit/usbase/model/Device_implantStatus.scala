@@ -42,14 +42,14 @@ object Device_implantStatus extends CompanionFor[Device_implantStatus] {
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Device_implantStatus): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[IMPLANTSTATUS](value, t.value.get.toSubRefNonUnion[IMPLANTSTATUS])
+    FHIRComponentField[IMPLANTSTATUS](value, IMPLANTSTATUS.withName(t.value.get.toSubRefNonUnion[Code]))
   )
   def extractId(t: Device_implantStatus): Option[String]                   = t.id
-  def extractValue(t: Device_implantStatus): IMPLANTSTATUS                 = t.value.get.toSubRefNonUnion[IMPLANTSTATUS]
+  def extractValue(t: Device_implantStatus): IMPLANTSTATUS                 = IMPLANTSTATUS.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                            = "Device_implantStatus"
   override val searchParams: Map[String, Device_implantStatus => Seq[Any]] = Extension.searchParams
   def unapply(o: Device_implantStatus): Option[(Option[String], IMPLANTSTATUS)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[IMPLANTSTATUS]))
+    (o.id, IMPLANTSTATUS.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Device_implantStatus] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

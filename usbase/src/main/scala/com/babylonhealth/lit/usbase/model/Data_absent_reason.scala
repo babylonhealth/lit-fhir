@@ -42,14 +42,15 @@ object Data_absent_reason extends CompanionFor[Data_absent_reason] {
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Data_absent_reason): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[DATA_ABSENT_REASON](value, t.value.get.toSubRefNonUnion[DATA_ABSENT_REASON])
+    FHIRComponentField[DATA_ABSENT_REASON](value, DATA_ABSENT_REASON.withName(t.value.get.toSubRefNonUnion[Code]))
   )
-  def extractId(t: Data_absent_reason): Option[String]                   = t.id
-  def extractValue(t: Data_absent_reason): DATA_ABSENT_REASON            = t.value.get.toSubRefNonUnion[DATA_ABSENT_REASON]
+  def extractId(t: Data_absent_reason): Option[String] = t.id
+  def extractValue(t: Data_absent_reason): DATA_ABSENT_REASON =
+    DATA_ABSENT_REASON.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                          = "Data_absent_reason"
   override val searchParams: Map[String, Data_absent_reason => Seq[Any]] = Extension.searchParams
   def unapply(o: Data_absent_reason): Option[(Option[String], DATA_ABSENT_REASON)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[DATA_ABSENT_REASON]))
+    (o.id, DATA_ABSENT_REASON.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Data_absent_reason] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

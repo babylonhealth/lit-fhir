@@ -42,14 +42,15 @@ object Iso21090_EN_qualifier extends CompanionFor[Iso21090_EN_qualifier] {
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Iso21090_EN_qualifier): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[NAME_PART_QUALIFIER](value, t.value.get.toSubRefNonUnion[NAME_PART_QUALIFIER])
+    FHIRComponentField[NAME_PART_QUALIFIER](value, NAME_PART_QUALIFIER.withName(t.value.get.toSubRefNonUnion[Code]))
   )
-  def extractId(t: Iso21090_EN_qualifier): Option[String]                   = t.id
-  def extractValue(t: Iso21090_EN_qualifier): NAME_PART_QUALIFIER           = t.value.get.toSubRefNonUnion[NAME_PART_QUALIFIER]
+  def extractId(t: Iso21090_EN_qualifier): Option[String] = t.id
+  def extractValue(t: Iso21090_EN_qualifier): NAME_PART_QUALIFIER =
+    NAME_PART_QUALIFIER.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                             = "Iso21090_EN_qualifier"
   override val searchParams: Map[String, Iso21090_EN_qualifier => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_EN_qualifier): Option[(Option[String], NAME_PART_QUALIFIER)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[NAME_PART_QUALIFIER]))
+    (o.id, NAME_PART_QUALIFIER.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_EN_qualifier] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

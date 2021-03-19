@@ -43,15 +43,17 @@ object Capabilitystatement_expectation extends CompanionFor[Capabilitystatement_
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fields(t: Capabilitystatement_expectation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[CONFORMANCE_EXPECTATION](value, t.value.get.toSubRefNonUnion[CONFORMANCE_EXPECTATION])
+    FHIRComponentField[CONFORMANCE_EXPECTATION](
+      value,
+      CONFORMANCE_EXPECTATION.withName(t.value.get.toSubRefNonUnion[Code]))
   )
   def extractId(t: Capabilitystatement_expectation): Option[String] = t.id
   def extractValue(t: Capabilitystatement_expectation): CONFORMANCE_EXPECTATION =
-    t.value.get.toSubRefNonUnion[CONFORMANCE_EXPECTATION]
+    CONFORMANCE_EXPECTATION.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                       = "Capabilitystatement_expectation"
   override val searchParams: Map[String, Capabilitystatement_expectation => Seq[Any]] = Extension.searchParams
   def unapply(o: Capabilitystatement_expectation): Option[(Option[String], CONFORMANCE_EXPECTATION)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[CONFORMANCE_EXPECTATION]))
+    (o.id, CONFORMANCE_EXPECTATION.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Capabilitystatement_expectation] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
