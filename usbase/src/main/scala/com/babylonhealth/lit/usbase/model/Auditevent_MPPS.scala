@@ -44,15 +44,15 @@ object Auditevent_MPPS extends CompanionFor[Auditevent_MPPS] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Identifier](value, t.value.get.toSubRefNonUnion[Identifier])
+      FHIRComponentField[Identifier](value, t.value.get.value.asInstanceOf[Identifier])
     ))
   override def fields(t: Auditevent_MPPS): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Auditevent_MPPS): Option[String]                   = t.id
-  def extractValue(t: Auditevent_MPPS): Identifier                    = t.value.get.toSubRefNonUnion[Identifier]
+  def extractValue(t: Auditevent_MPPS): Identifier                    = t.value.get.value.asInstanceOf[Identifier]
   override val thisName: String                                       = "Auditevent_MPPS"
   override val searchParams: Map[String, Auditevent_MPPS => Seq[Any]] = Extension.searchParams
   def unapply(o: Auditevent_MPPS): Option[(Option[String], Identifier)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Identifier]))
+    (o.id, o.value.get.value.asInstanceOf[Identifier]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Auditevent_MPPS] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -44,14 +44,14 @@ object MinLength extends CompanionFor[MinLength] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
+      FHIRComponentField[Int](value, t.value.get.value.asInstanceOf[Int])
     ))
   override def fields(t: MinLength): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: MinLength): Option[String]                   = t.id
-  def extractValue(t: MinLength): Int                           = t.value.get.toSubRefNonUnion[Int]
+  def extractValue(t: MinLength): Int                           = t.value.get.value.asInstanceOf[Int]
   override val thisName: String                                 = "MinLength"
   override val searchParams: Map[String, MinLength => Seq[Any]] = Extension.searchParams
-  def unapply(o: MinLength): Option[(Option[String], Int)]      = Some((o.id, o.value.get.toSubRefNonUnion[Int]))
+  def unapply(o: MinLength): Option[(Option[String], Int)]      = Some((o.id, o.value.get.value.asInstanceOf[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[MinLength] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

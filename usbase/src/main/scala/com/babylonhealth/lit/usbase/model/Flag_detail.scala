@@ -44,15 +44,15 @@ object Flag_detail extends CompanionFor[Flag_detail] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
+      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
     ))
   override def fields(t: Flag_detail): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Flag_detail): Option[String]                   = t.id
-  def extractValue(t: Flag_detail): Reference                     = t.value.get.toSubRefNonUnion[Reference]
+  def extractValue(t: Flag_detail): Reference                     = t.value.get.value.asInstanceOf[Reference]
   override val thisName: String                                   = "Flag_detail"
   override val searchParams: Map[String, Flag_detail => Seq[Any]] = Extension.searchParams
   def unapply(o: Flag_detail): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+    (o.id, o.value.get.value.asInstanceOf[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Flag_detail] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

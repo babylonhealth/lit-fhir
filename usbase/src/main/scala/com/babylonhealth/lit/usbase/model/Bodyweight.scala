@@ -216,7 +216,7 @@ object Bodyweight extends CompanionFor[Bodyweight] {
       FHIRComponentField[Reference](subject, t.subject.get),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-      FHIRComponentField[Option[Quantity]](value, t.value.map(_.toSubRefNonUnion[Quantity])),
+      FHIRComponentField[Option[Quantity]](value, t.value.map(_.value.asInstanceOf[Quantity])),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[Option[Reference]](specimen, t.specimen),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -250,7 +250,7 @@ object Bodyweight extends CompanionFor[Bodyweight] {
   def extractSubject(t: Bodyweight): Reference                                 = t.subject.get
   def extractLanguage(t: Bodyweight): Option[LANGUAGES]                        = t.language
   def extractCategory(t: Bodyweight): NonEmptyLitSeq[CodeableConcept]          = t.category.asNonEmpty
-  def extractValue(t: Bodyweight): Option[Quantity]                            = t.value.map(_.toSubRefNonUnion[Quantity])
+  def extractValue(t: Bodyweight): Option[Quantity]                            = t.value.map(_.value.asInstanceOf[Quantity])
   def extractBodySite(t: Bodyweight): Option[CodeableConcept]                  = t.bodySite
   def extractSpecimen(t: Bodyweight): Option[Reference]                        = t.specimen
   def extractContained(t: Bodyweight): LitSeq[Resource]                        = t.contained

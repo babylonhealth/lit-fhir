@@ -44,15 +44,15 @@ object Valueset_activityStatusDate extends CompanionFor[Valueset_activityStatusD
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[FHIRDate](value, t.value.get.toSubRefNonUnion[FHIRDate])
+      FHIRComponentField[FHIRDate](value, t.value.get.value.asInstanceOf[FHIRDate])
     ))
   override def fields(t: Valueset_activityStatusDate): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_activityStatusDate): Option[String]                   = t.id
-  def extractValue(t: Valueset_activityStatusDate): FHIRDate                      = t.value.get.toSubRefNonUnion[FHIRDate]
+  def extractValue(t: Valueset_activityStatusDate): FHIRDate                      = t.value.get.value.asInstanceOf[FHIRDate]
   override val thisName: String                                                   = "Valueset_activityStatusDate"
   override val searchParams: Map[String, Valueset_activityStatusDate => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_activityStatusDate): Option[(Option[String], FHIRDate)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[FHIRDate]))
+    (o.id, o.value.get.value.asInstanceOf[FHIRDate]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_activityStatusDate] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

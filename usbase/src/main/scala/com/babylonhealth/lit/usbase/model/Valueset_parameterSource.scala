@@ -46,16 +46,16 @@ object Valueset_parameterSource extends CompanionFor[Valueset_parameterSource] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[EXPANSION_PARAMETER_SOURCE](
         value,
-        EXPANSION_PARAMETER_SOURCE.withName(t.value.get.toSubRefNonUnion[Code]))
+        EXPANSION_PARAMETER_SOURCE.withName(t.value.get.value.asInstanceOf[Code]))
     ))
   override def fields(t: Valueset_parameterSource): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_parameterSource): Option[String]                   = t.id
   def extractValue(t: Valueset_parameterSource): EXPANSION_PARAMETER_SOURCE =
-    EXPANSION_PARAMETER_SOURCE.withName(t.value.get.toSubRefNonUnion[Code])
+    EXPANSION_PARAMETER_SOURCE.withName(t.value.get.value.asInstanceOf[Code])
   override val thisName: String                                                = "Valueset_parameterSource"
   override val searchParams: Map[String, Valueset_parameterSource => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_parameterSource): Option[(Option[String], EXPANSION_PARAMETER_SOURCE)] = Some(
-    (o.id, EXPANSION_PARAMETER_SOURCE.withName(o.value.get.toSubRefNonUnion[Code])))
+    (o.id, EXPANSION_PARAMETER_SOURCE.withName(o.value.get.value.asInstanceOf[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_parameterSource] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

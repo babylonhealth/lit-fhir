@@ -44,15 +44,15 @@ object Auditevent_SOPClass extends CompanionFor[Auditevent_SOPClass] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
+      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
     ))
   override def fields(t: Auditevent_SOPClass): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Auditevent_SOPClass): Option[String]                   = t.id
-  def extractValue(t: Auditevent_SOPClass): Reference                     = t.value.get.toSubRefNonUnion[Reference]
+  def extractValue(t: Auditevent_SOPClass): Reference                     = t.value.get.value.asInstanceOf[Reference]
   override val thisName: String                                           = "Auditevent_SOPClass"
   override val searchParams: Map[String, Auditevent_SOPClass => Seq[Any]] = Extension.searchParams
   def unapply(o: Auditevent_SOPClass): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+    (o.id, o.value.get.value.asInstanceOf[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Auditevent_SOPClass] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

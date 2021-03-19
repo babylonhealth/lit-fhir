@@ -45,16 +45,16 @@ object Structuredefinition_applicable_version extends CompanionFor[Structuredefi
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[FHIR_VERSION](value, FHIR_VERSION.withName(t.value.get.toSubRefNonUnion[Code]))
+      FHIRComponentField[FHIR_VERSION](value, FHIR_VERSION.withName(t.value.get.value.asInstanceOf[Code]))
     ))
   override def fields(t: Structuredefinition_applicable_version): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Structuredefinition_applicable_version): Option[String]                   = t.id
   def extractValue(t: Structuredefinition_applicable_version): FHIR_VERSION =
-    FHIR_VERSION.withName(t.value.get.toSubRefNonUnion[Code])
+    FHIR_VERSION.withName(t.value.get.value.asInstanceOf[Code])
   override val thisName: String                                                              = "Structuredefinition_applicable_version"
   override val searchParams: Map[String, Structuredefinition_applicable_version => Seq[Any]] = Extension.searchParams
   def unapply(o: Structuredefinition_applicable_version): Option[(Option[String], FHIR_VERSION)] = Some(
-    (o.id, FHIR_VERSION.withName(o.value.get.toSubRefNonUnion[Code])))
+    (o.id, FHIR_VERSION.withName(o.value.get.value.asInstanceOf[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Structuredefinition_applicable_version] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

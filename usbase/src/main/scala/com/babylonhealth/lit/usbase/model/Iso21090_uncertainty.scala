@@ -44,15 +44,15 @@ object Iso21090_uncertainty extends CompanionFor[Iso21090_uncertainty] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[BigDecimal](value, t.value.get.toSubRefNonUnion[BigDecimal])
+      FHIRComponentField[BigDecimal](value, t.value.get.value.asInstanceOf[BigDecimal])
     ))
   override def fields(t: Iso21090_uncertainty): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Iso21090_uncertainty): Option[String]                   = t.id
-  def extractValue(t: Iso21090_uncertainty): BigDecimal                    = t.value.get.toSubRefNonUnion[BigDecimal]
+  def extractValue(t: Iso21090_uncertainty): BigDecimal                    = t.value.get.value.asInstanceOf[BigDecimal]
   override val thisName: String                                            = "Iso21090_uncertainty"
   override val searchParams: Map[String, Iso21090_uncertainty => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_uncertainty): Option[(Option[String], BigDecimal)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[BigDecimal]))
+    (o.id, o.value.get.value.asInstanceOf[BigDecimal]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_uncertainty] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

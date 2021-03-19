@@ -44,14 +44,14 @@ object Replaces extends CompanionFor[Replaces] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Canonical](value, t.value.get.toSubRefNonUnion[Canonical])
+      FHIRComponentField[Canonical](value, t.value.get.value.asInstanceOf[Canonical])
     ))
   override def fields(t: Replaces): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
   def extractId(t: Replaces): Option[String]                    = t.id
-  def extractValue(t: Replaces): Canonical                      = t.value.get.toSubRefNonUnion[Canonical]
+  def extractValue(t: Replaces): Canonical                      = t.value.get.value.asInstanceOf[Canonical]
   override val thisName: String                                 = "Replaces"
   override val searchParams: Map[String, Replaces => Seq[Any]]  = Extension.searchParams
-  def unapply(o: Replaces): Option[(Option[String], Canonical)] = Some((o.id, o.value.get.toSubRefNonUnion[Canonical]))
+  def unapply(o: Replaces): Option[(Option[String], Canonical)] = Some((o.id, o.value.get.value.asInstanceOf[Canonical]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Replaces] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

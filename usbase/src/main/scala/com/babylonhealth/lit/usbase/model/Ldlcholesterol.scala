@@ -207,7 +207,7 @@ object Ldlcholesterol extends CompanionFor[Ldlcholesterol] {
       FHIRComponentField[Option[Reference]](subject, t.subject),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
-      FHIRComponentField[Option[Quantity]](value, t.value.map(_.toSubRefNonUnion[Quantity])),
+      FHIRComponentField[Option[Quantity]](value, t.value.map(_.value.asInstanceOf[Quantity])),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[Option[Reference]](specimen, t.specimen),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -239,7 +239,7 @@ object Ldlcholesterol extends CompanionFor[Ldlcholesterol] {
   def extractSubject(t: Ldlcholesterol): Option[Reference]                        = t.subject
   def extractLanguage(t: Ldlcholesterol): Option[LANGUAGES]                       = t.language
   def extractCategory(t: Ldlcholesterol): LitSeq[CodeableConcept]                 = t.category
-  def extractValue(t: Ldlcholesterol): Option[Quantity]                           = t.value.map(_.toSubRefNonUnion[Quantity])
+  def extractValue(t: Ldlcholesterol): Option[Quantity]                           = t.value.map(_.value.asInstanceOf[Quantity])
   def extractBodySite(t: Ldlcholesterol): Option[CodeableConcept]                 = t.bodySite
   def extractSpecimen(t: Ldlcholesterol): Option[Reference]                       = t.specimen
   def extractContained(t: Ldlcholesterol): LitSeq[Resource]                       = t.contained

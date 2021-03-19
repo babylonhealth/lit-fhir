@@ -44,15 +44,15 @@ object Consent_NotificationEndpoint extends CompanionFor[Consent_NotificationEnd
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
     ))
   override def fields(t: Consent_NotificationEndpoint): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Consent_NotificationEndpoint): Option[String]                   = t.id
-  def extractValue(t: Consent_NotificationEndpoint): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
+  def extractValue(t: Consent_NotificationEndpoint): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
   override val thisName: String                                                    = "Consent_NotificationEndpoint"
   override val searchParams: Map[String, Consent_NotificationEndpoint => Seq[Any]] = Extension.searchParams
   def unapply(o: Consent_NotificationEndpoint): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
+    (o.id, o.value.get.value.asInstanceOf[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Consent_NotificationEndpoint] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

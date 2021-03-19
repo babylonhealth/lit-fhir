@@ -44,15 +44,15 @@ object Communication_media extends CompanionFor[Communication_media] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Attachment](value, t.value.get.toSubRefNonUnion[Attachment])
+      FHIRComponentField[Attachment](value, t.value.get.value.asInstanceOf[Attachment])
     ))
   override def fields(t: Communication_media): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Communication_media): Option[String]                   = t.id
-  def extractValue(t: Communication_media): Attachment                    = t.value.get.toSubRefNonUnion[Attachment]
+  def extractValue(t: Communication_media): Attachment                    = t.value.get.value.asInstanceOf[Attachment]
   override val thisName: String                                           = "Communication_media"
   override val searchParams: Map[String, Communication_media => Seq[Any]] = Extension.searchParams
   def unapply(o: Communication_media): Option[(Option[String], Attachment)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Attachment]))
+    (o.id, o.value.get.value.asInstanceOf[Attachment]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Communication_media] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

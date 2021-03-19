@@ -44,15 +44,15 @@ object Valueset_rules_text extends CompanionFor[Valueset_rules_text] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Markdown](value, t.value.get.toSubRefNonUnion[Markdown])
+      FHIRComponentField[Markdown](value, t.value.get.value.asInstanceOf[Markdown])
     ))
   override def fields(t: Valueset_rules_text): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_rules_text): Option[String]                   = t.id
-  def extractValue(t: Valueset_rules_text): Markdown                      = t.value.get.toSubRefNonUnion[Markdown]
+  def extractValue(t: Valueset_rules_text): Markdown                      = t.value.get.value.asInstanceOf[Markdown]
   override val thisName: String                                           = "Valueset_rules_text"
   override val searchParams: Map[String, Valueset_rules_text => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_rules_text): Option[(Option[String], Markdown)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Markdown]))
+    (o.id, o.value.get.value.asInstanceOf[Markdown]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_rules_text] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -44,15 +44,15 @@ object Familymemberhistory_type extends CompanionFor[Familymemberhistory_type] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
     ))
   override def fields(t: Familymemberhistory_type): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Familymemberhistory_type): Option[String]                   = t.id
-  def extractValue(t: Familymemberhistory_type): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
+  def extractValue(t: Familymemberhistory_type): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
   override val thisName: String                                                = "Familymemberhistory_type"
   override val searchParams: Map[String, Familymemberhistory_type => Seq[Any]] = Extension.searchParams
   def unapply(o: Familymemberhistory_type): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
+    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Familymemberhistory_type] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -45,17 +45,17 @@ object Elementdefinition_bestpractice_explanation extends CompanionFor[Elementde
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Markdown](value, t.value.get.toSubRefNonUnion[Markdown])
+      FHIRComponentField[Markdown](value, t.value.get.value.asInstanceOf[Markdown])
     ))
   override def fields(t: Elementdefinition_bestpractice_explanation): Seq[FHIRComponentField[_]] = fieldsFromParent(
     t).get
   def extractId(t: Elementdefinition_bestpractice_explanation): Option[String] = t.id
-  def extractValue(t: Elementdefinition_bestpractice_explanation): Markdown    = t.value.get.toSubRefNonUnion[Markdown]
+  def extractValue(t: Elementdefinition_bestpractice_explanation): Markdown    = t.value.get.value.asInstanceOf[Markdown]
   override val thisName: String                                                = "Elementdefinition_bestpractice_explanation"
   override val searchParams: Map[String, Elementdefinition_bestpractice_explanation => Seq[Any]] =
     Extension.searchParams
   def unapply(o: Elementdefinition_bestpractice_explanation): Option[(Option[String], Markdown)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Markdown]))
+    (o.id, o.value.get.value.asInstanceOf[Markdown]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Elementdefinition_bestpractice_explanation] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

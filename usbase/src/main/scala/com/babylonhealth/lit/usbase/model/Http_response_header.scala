@@ -44,15 +44,15 @@ object Http_response_header extends CompanionFor[Http_response_header] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
+      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
     ))
   override def fields(t: Http_response_header): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Http_response_header): Option[String]                   = t.id
-  def extractValue(t: Http_response_header): String                        = t.value.get.toSubRefNonUnion[String]
+  def extractValue(t: Http_response_header): String                        = t.value.get.value.asInstanceOf[String]
   override val thisName: String                                            = "Http_response_header"
   override val searchParams: Map[String, Http_response_header => Seq[Any]] = Extension.searchParams
   def unapply(o: Http_response_header): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[String]))
+    (o.id, o.value.get.value.asInstanceOf[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Http_response_header] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

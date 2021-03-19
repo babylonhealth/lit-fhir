@@ -45,15 +45,15 @@ object Questionnaire_referenceProfile extends CompanionFor[Questionnaire_referen
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Canonical](value, t.value.get.toSubRefNonUnion[Canonical])
+      FHIRComponentField[Canonical](value, t.value.get.value.asInstanceOf[Canonical])
     ))
   override def fields(t: Questionnaire_referenceProfile): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_referenceProfile): Option[String]                   = t.id
-  def extractValue(t: Questionnaire_referenceProfile): Canonical                     = t.value.get.toSubRefNonUnion[Canonical]
+  def extractValue(t: Questionnaire_referenceProfile): Canonical                     = t.value.get.value.asInstanceOf[Canonical]
   override val thisName: String                                                      = "Questionnaire_referenceProfile"
   override val searchParams: Map[String, Questionnaire_referenceProfile => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_referenceProfile): Option[(Option[String], Canonical)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Canonical]))
+    (o.id, o.value.get.value.asInstanceOf[Canonical]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_referenceProfile] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

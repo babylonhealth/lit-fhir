@@ -44,15 +44,15 @@ object Variable extends CompanionFor[Variable] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Expression](value, t.value.get.toSubRefNonUnion[Expression])
+      FHIRComponentField[Expression](value, t.value.get.value.asInstanceOf[Expression])
     ))
   override def fields(t: Variable): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Variable): Option[String]                   = t.id
-  def extractValue(t: Variable): Expression                    = t.value.get.toSubRefNonUnion[Expression]
+  def extractValue(t: Variable): Expression                    = t.value.get.value.asInstanceOf[Expression]
   override val thisName: String                                = "Variable"
   override val searchParams: Map[String, Variable => Seq[Any]] = Extension.searchParams
   def unapply(o: Variable): Option[(Option[String], Expression)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Expression]))
+    (o.id, o.value.get.value.asInstanceOf[Expression]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Variable] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

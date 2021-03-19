@@ -45,15 +45,15 @@ object Allergyintolerance_reasonRefuted extends CompanionFor[Allergyintolerance_
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
     ))
   override def fields(t: Allergyintolerance_reasonRefuted): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Allergyintolerance_reasonRefuted): Option[String]                   = t.id
-  def extractValue(t: Allergyintolerance_reasonRefuted): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
+  def extractValue(t: Allergyintolerance_reasonRefuted): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
   override val thisName: String                                                        = "Allergyintolerance_reasonRefuted"
   override val searchParams: Map[String, Allergyintolerance_reasonRefuted => Seq[Any]] = Extension.searchParams
   def unapply(o: Allergyintolerance_reasonRefuted): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
+    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Allergyintolerance_reasonRefuted] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

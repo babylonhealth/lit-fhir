@@ -45,15 +45,15 @@ object Questionnaire_signatureRequired extends CompanionFor[Questionnaire_signat
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
     ))
   override def fields(t: Questionnaire_signatureRequired): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_signatureRequired): Option[String]                   = t.id
-  def extractValue(t: Questionnaire_signatureRequired): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
+  def extractValue(t: Questionnaire_signatureRequired): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
   override val thisName: String                                                       = "Questionnaire_signatureRequired"
   override val searchParams: Map[String, Questionnaire_signatureRequired => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_signatureRequired): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
+    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_signatureRequired] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -44,15 +44,15 @@ object Careplan_activity_title extends CompanionFor[Careplan_activity_title] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
+      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
     ))
   override def fields(t: Careplan_activity_title): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Careplan_activity_title): Option[String]                   = t.id
-  def extractValue(t: Careplan_activity_title): String                        = t.value.get.toSubRefNonUnion[String]
+  def extractValue(t: Careplan_activity_title): String                        = t.value.get.value.asInstanceOf[String]
   override val thisName: String                                               = "Careplan_activity_title"
   override val searchParams: Map[String, Careplan_activity_title => Seq[Any]] = Extension.searchParams
   def unapply(o: Careplan_activity_title): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[String]))
+    (o.id, o.value.get.value.asInstanceOf[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Careplan_activity_title] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

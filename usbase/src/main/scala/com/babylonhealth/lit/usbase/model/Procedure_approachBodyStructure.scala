@@ -45,15 +45,15 @@ object Procedure_approachBodyStructure extends CompanionFor[Procedure_approachBo
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
+      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
     ))
   override def fields(t: Procedure_approachBodyStructure): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Procedure_approachBodyStructure): Option[String]                   = t.id
-  def extractValue(t: Procedure_approachBodyStructure): Reference                     = t.value.get.toSubRefNonUnion[Reference]
+  def extractValue(t: Procedure_approachBodyStructure): Reference                     = t.value.get.value.asInstanceOf[Reference]
   override val thisName: String                                                       = "Procedure_approachBodyStructure"
   override val searchParams: Map[String, Procedure_approachBodyStructure => Seq[Any]] = Extension.searchParams
   def unapply(o: Procedure_approachBodyStructure): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+    (o.id, o.value.get.value.asInstanceOf[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Procedure_approachBodyStructure] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

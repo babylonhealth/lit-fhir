@@ -44,15 +44,15 @@ object Rendering_markdown extends CompanionFor[Rendering_markdown] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Markdown](value, t.value.get.toSubRefNonUnion[Markdown])
+      FHIRComponentField[Markdown](value, t.value.get.value.asInstanceOf[Markdown])
     ))
   override def fields(t: Rendering_markdown): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Rendering_markdown): Option[String]                   = t.id
-  def extractValue(t: Rendering_markdown): Markdown                      = t.value.get.toSubRefNonUnion[Markdown]
+  def extractValue(t: Rendering_markdown): Markdown                      = t.value.get.value.asInstanceOf[Markdown]
   override val thisName: String                                          = "Rendering_markdown"
   override val searchParams: Map[String, Rendering_markdown => Seq[Any]] = Extension.searchParams
   def unapply(o: Rendering_markdown): Option[(Option[String], Markdown)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Markdown]))
+    (o.id, o.value.get.value.asInstanceOf[Markdown]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Rendering_markdown] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

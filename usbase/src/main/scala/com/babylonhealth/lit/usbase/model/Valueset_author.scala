@@ -44,15 +44,15 @@ object Valueset_author extends CompanionFor[Valueset_author] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[ContactDetail](value, t.value.get.toSubRefNonUnion[ContactDetail])
+      FHIRComponentField[ContactDetail](value, t.value.get.value.asInstanceOf[ContactDetail])
     ))
   override def fields(t: Valueset_author): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_author): Option[String]                   = t.id
-  def extractValue(t: Valueset_author): ContactDetail                 = t.value.get.toSubRefNonUnion[ContactDetail]
+  def extractValue(t: Valueset_author): ContactDetail                 = t.value.get.value.asInstanceOf[ContactDetail]
   override val thisName: String                                       = "Valueset_author"
   override val searchParams: Map[String, Valueset_author => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_author): Option[(Option[String], ContactDetail)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[ContactDetail]))
+    (o.id, o.value.get.value.asInstanceOf[ContactDetail]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_author] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

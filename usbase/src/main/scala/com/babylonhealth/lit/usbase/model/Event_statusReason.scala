@@ -44,15 +44,15 @@ object Event_statusReason extends CompanionFor[Event_statusReason] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
     ))
   override def fields(t: Event_statusReason): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Event_statusReason): Option[String]                   = t.id
-  def extractValue(t: Event_statusReason): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
+  def extractValue(t: Event_statusReason): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
   override val thisName: String                                          = "Event_statusReason"
   override val searchParams: Map[String, Event_statusReason => Seq[Any]] = Extension.searchParams
   def unapply(o: Event_statusReason): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
+    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Event_statusReason] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

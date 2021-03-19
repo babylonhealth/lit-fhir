@@ -44,14 +44,14 @@ object Timing_exact extends CompanionFor[Timing_exact] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
     ))
   override def fields(t: Timing_exact): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Timing_exact): Option[String]                   = t.id
-  def extractValue(t: Timing_exact): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
+  def extractValue(t: Timing_exact): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
   override val thisName: String                                    = "Timing_exact"
   override val searchParams: Map[String, Timing_exact => Seq[Any]] = Extension.searchParams
-  def unapply(o: Timing_exact): Option[(Option[String], Boolean)]  = Some((o.id, o.value.get.toSubRefNonUnion[Boolean]))
+  def unapply(o: Timing_exact): Option[(Option[String], Boolean)]  = Some((o.id, o.value.get.value.asInstanceOf[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Timing_exact] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

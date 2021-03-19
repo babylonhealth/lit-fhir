@@ -44,14 +44,14 @@ object NarrativeLink extends CompanionFor[NarrativeLink] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UrlStr](value, t.value.get.toSubRefNonUnion[UrlStr])
+      FHIRComponentField[UrlStr](value, t.value.get.value.asInstanceOf[UrlStr])
     ))
   override def fields(t: NarrativeLink): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: NarrativeLink): Option[String]                   = t.id
-  def extractValue(t: NarrativeLink): UrlStr                        = t.value.get.toSubRefNonUnion[UrlStr]
+  def extractValue(t: NarrativeLink): UrlStr                        = t.value.get.value.asInstanceOf[UrlStr]
   override val thisName: String                                     = "NarrativeLink"
   override val searchParams: Map[String, NarrativeLink => Seq[Any]] = Extension.searchParams
-  def unapply(o: NarrativeLink): Option[(Option[String], UrlStr)]   = Some((o.id, o.value.get.toSubRefNonUnion[UrlStr]))
+  def unapply(o: NarrativeLink): Option[(Option[String], UrlStr)]   = Some((o.id, o.value.get.value.asInstanceOf[UrlStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[NarrativeLink] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

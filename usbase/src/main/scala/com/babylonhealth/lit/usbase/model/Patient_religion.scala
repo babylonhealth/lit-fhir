@@ -44,15 +44,15 @@ object Patient_religion extends CompanionFor[Patient_religion] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
     ))
   override def fields(t: Patient_religion): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Patient_religion): Option[String]                   = t.id
-  def extractValue(t: Patient_religion): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
+  def extractValue(t: Patient_religion): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
   override val thisName: String                                        = "Patient_religion"
   override val searchParams: Map[String, Patient_religion => Seq[Any]] = Extension.searchParams
   def unapply(o: Patient_religion): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
+    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Patient_religion] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

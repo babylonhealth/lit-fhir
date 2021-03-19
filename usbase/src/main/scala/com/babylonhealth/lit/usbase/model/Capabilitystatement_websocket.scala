@@ -45,15 +45,15 @@ object Capabilitystatement_websocket extends CompanionFor[Capabilitystatement_we
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
     ))
   override def fields(t: Capabilitystatement_websocket): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Capabilitystatement_websocket): Option[String]                   = t.id
-  def extractValue(t: Capabilitystatement_websocket): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
+  def extractValue(t: Capabilitystatement_websocket): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
   override val thisName: String                                                     = "Capabilitystatement_websocket"
   override val searchParams: Map[String, Capabilitystatement_websocket => Seq[Any]] = Extension.searchParams
   def unapply(o: Capabilitystatement_websocket): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
+    (o.id, o.value.get.value.asInstanceOf[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Capabilitystatement_websocket] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

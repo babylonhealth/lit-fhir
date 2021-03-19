@@ -216,7 +216,7 @@ object Oxygensat extends CompanionFor[Oxygensat] {
       FHIRComponentField[Reference](subject, t.subject.get),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-      FHIRComponentField[Option[Quantity]](value, t.value.map(_.toSubRefNonUnion[Quantity])),
+      FHIRComponentField[Option[Quantity]](value, t.value.map(_.value.asInstanceOf[Quantity])),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[Option[Reference]](specimen, t.specimen),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -250,7 +250,7 @@ object Oxygensat extends CompanionFor[Oxygensat] {
   def extractSubject(t: Oxygensat): Reference                                 = t.subject.get
   def extractLanguage(t: Oxygensat): Option[LANGUAGES]                        = t.language
   def extractCategory(t: Oxygensat): NonEmptyLitSeq[CodeableConcept]          = t.category.asNonEmpty
-  def extractValue(t: Oxygensat): Option[Quantity]                            = t.value.map(_.toSubRefNonUnion[Quantity])
+  def extractValue(t: Oxygensat): Option[Quantity]                            = t.value.map(_.value.asInstanceOf[Quantity])
   def extractBodySite(t: Oxygensat): Option[CodeableConcept]                  = t.bodySite
   def extractSpecimen(t: Oxygensat): Option[Reference]                        = t.specimen
   def extractContained(t: Oxygensat): LitSeq[Resource]                        = t.contained

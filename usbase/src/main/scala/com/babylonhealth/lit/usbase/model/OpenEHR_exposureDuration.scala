@@ -44,15 +44,15 @@ object OpenEHR_exposureDuration extends CompanionFor[OpenEHR_exposureDuration] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Duration](value, t.value.get.toSubRefNonUnion[Duration])
+      FHIRComponentField[Duration](value, t.value.get.value.asInstanceOf[Duration])
     ))
   override def fields(t: OpenEHR_exposureDuration): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: OpenEHR_exposureDuration): Option[String]                   = t.id
-  def extractValue(t: OpenEHR_exposureDuration): Duration                      = t.value.get.toSubRefNonUnion[Duration]
+  def extractValue(t: OpenEHR_exposureDuration): Duration                      = t.value.get.value.asInstanceOf[Duration]
   override val thisName: String                                                = "OpenEHR_exposureDuration"
   override val searchParams: Map[String, OpenEHR_exposureDuration => Seq[Any]] = Extension.searchParams
   def unapply(o: OpenEHR_exposureDuration): Option[(Option[String], Duration)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Duration]))
+    (o.id, o.value.get.value.asInstanceOf[Duration]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[OpenEHR_exposureDuration] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

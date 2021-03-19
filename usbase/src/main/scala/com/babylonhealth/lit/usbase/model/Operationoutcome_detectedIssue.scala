@@ -45,15 +45,15 @@ object Operationoutcome_detectedIssue extends CompanionFor[Operationoutcome_dete
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
+      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
     ))
   override def fields(t: Operationoutcome_detectedIssue): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Operationoutcome_detectedIssue): Option[String]                   = t.id
-  def extractValue(t: Operationoutcome_detectedIssue): Reference                     = t.value.get.toSubRefNonUnion[Reference]
+  def extractValue(t: Operationoutcome_detectedIssue): Reference                     = t.value.get.value.asInstanceOf[Reference]
   override val thisName: String                                                      = "Operationoutcome_detectedIssue"
   override val searchParams: Map[String, Operationoutcome_detectedIssue => Seq[Any]] = Extension.searchParams
   def unapply(o: Operationoutcome_detectedIssue): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+    (o.id, o.value.get.value.asInstanceOf[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Operationoutcome_detectedIssue] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

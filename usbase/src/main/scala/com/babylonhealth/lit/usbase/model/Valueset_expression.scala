@@ -44,15 +44,15 @@ object Valueset_expression extends CompanionFor[Valueset_expression] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Expression](value, t.value.get.toSubRefNonUnion[Expression])
+      FHIRComponentField[Expression](value, t.value.get.value.asInstanceOf[Expression])
     ))
   override def fields(t: Valueset_expression): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_expression): Option[String]                   = t.id
-  def extractValue(t: Valueset_expression): Expression                    = t.value.get.toSubRefNonUnion[Expression]
+  def extractValue(t: Valueset_expression): Expression                    = t.value.get.value.asInstanceOf[Expression]
   override val thisName: String                                           = "Valueset_expression"
   override val searchParams: Map[String, Valueset_expression => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_expression): Option[(Option[String], Expression)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Expression]))
+    (o.id, o.value.get.value.asInstanceOf[Expression]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_expression] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -44,15 +44,15 @@ object Encounter_modeOfArrival extends CompanionFor[Encounter_modeOfArrival] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Coding](value, t.value.get.toSubRefNonUnion[Coding])
+      FHIRComponentField[Coding](value, t.value.get.value.asInstanceOf[Coding])
     ))
   override def fields(t: Encounter_modeOfArrival): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Encounter_modeOfArrival): Option[String]                   = t.id
-  def extractValue(t: Encounter_modeOfArrival): Coding                        = t.value.get.toSubRefNonUnion[Coding]
+  def extractValue(t: Encounter_modeOfArrival): Coding                        = t.value.get.value.asInstanceOf[Coding]
   override val thisName: String                                               = "Encounter_modeOfArrival"
   override val searchParams: Map[String, Encounter_modeOfArrival => Seq[Any]] = Extension.searchParams
   def unapply(o: Encounter_modeOfArrival): Option[(Option[String], Coding)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Coding]))
+    (o.id, o.value.get.value.asInstanceOf[Coding]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Encounter_modeOfArrival] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

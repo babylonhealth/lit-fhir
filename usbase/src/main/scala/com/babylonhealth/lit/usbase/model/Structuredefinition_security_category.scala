@@ -47,16 +47,16 @@ object Structuredefinition_security_category extends CompanionFor[Structuredefin
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[RESOURCE_SECURITY_CATEGORY](
         value,
-        RESOURCE_SECURITY_CATEGORY.withName(t.value.get.toSubRefNonUnion[Code]))
+        RESOURCE_SECURITY_CATEGORY.withName(t.value.get.value.asInstanceOf[Code]))
     ))
   override def fields(t: Structuredefinition_security_category): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Structuredefinition_security_category): Option[String]                   = t.id
   def extractValue(t: Structuredefinition_security_category): RESOURCE_SECURITY_CATEGORY =
-    RESOURCE_SECURITY_CATEGORY.withName(t.value.get.toSubRefNonUnion[Code])
+    RESOURCE_SECURITY_CATEGORY.withName(t.value.get.value.asInstanceOf[Code])
   override val thisName: String                                                             = "Structuredefinition_security_category"
   override val searchParams: Map[String, Structuredefinition_security_category => Seq[Any]] = Extension.searchParams
   def unapply(o: Structuredefinition_security_category): Option[(Option[String], RESOURCE_SECURITY_CATEGORY)] = Some(
-    (o.id, RESOURCE_SECURITY_CATEGORY.withName(o.value.get.toSubRefNonUnion[Code])))
+    (o.id, RESOURCE_SECURITY_CATEGORY.withName(o.value.get.value.asInstanceOf[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Structuredefinition_security_category] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

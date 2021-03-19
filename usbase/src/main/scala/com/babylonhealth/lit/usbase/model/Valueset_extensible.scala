@@ -44,15 +44,15 @@ object Valueset_extensible extends CompanionFor[Valueset_extensible] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
     ))
   override def fields(t: Valueset_extensible): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_extensible): Option[String]                   = t.id
-  def extractValue(t: Valueset_extensible): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
+  def extractValue(t: Valueset_extensible): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
   override val thisName: String                                           = "Valueset_extensible"
   override val searchParams: Map[String, Valueset_extensible => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_extensible): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
+    (o.id, o.value.get.value.asInstanceOf[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_extensible] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

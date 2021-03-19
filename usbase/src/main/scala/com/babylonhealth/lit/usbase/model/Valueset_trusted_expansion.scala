@@ -44,15 +44,15 @@ object Valueset_trusted_expansion extends CompanionFor[Valueset_trusted_expansio
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
     ))
   override def fields(t: Valueset_trusted_expansion): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_trusted_expansion): Option[String]                   = t.id
-  def extractValue(t: Valueset_trusted_expansion): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
+  def extractValue(t: Valueset_trusted_expansion): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
   override val thisName: String                                                  = "Valueset_trusted_expansion"
   override val searchParams: Map[String, Valueset_trusted_expansion => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_trusted_expansion): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
+    (o.id, o.value.get.value.asInstanceOf[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_trusted_expansion] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

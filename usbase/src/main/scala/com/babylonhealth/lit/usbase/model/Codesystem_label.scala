@@ -44,15 +44,15 @@ object Codesystem_label extends CompanionFor[Codesystem_label] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
+      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
     ))
   override def fields(t: Codesystem_label): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Codesystem_label): Option[String]                   = t.id
-  def extractValue(t: Codesystem_label): String                        = t.value.get.toSubRefNonUnion[String]
+  def extractValue(t: Codesystem_label): String                        = t.value.get.value.asInstanceOf[String]
   override val thisName: String                                        = "Codesystem_label"
   override val searchParams: Map[String, Codesystem_label => Seq[Any]] = Extension.searchParams
   def unapply(o: Codesystem_label): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[String]))
+    (o.id, o.value.get.value.asInstanceOf[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Codesystem_label] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

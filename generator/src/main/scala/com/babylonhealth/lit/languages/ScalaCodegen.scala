@@ -91,7 +91,7 @@ trait BaseFieldImplicits {
           arg
         } else if (baseField.types.size == 1) {
           if (baseField.types.head == "Code" && baseField.valueEnumeration.isDefined)
-            s"$tpe.withName($arg.toSubRefNonUnion[Code])"
+            s"$tpe.withName($arg.value.asInstanceOf[Code])"
           else s"$arg.toSubRefNonUnion[$tpe]"
         } else {
           s"$arg.toSubRef"

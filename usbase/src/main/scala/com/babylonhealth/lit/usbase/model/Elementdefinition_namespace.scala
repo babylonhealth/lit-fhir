@@ -44,15 +44,15 @@ object Elementdefinition_namespace extends CompanionFor[Elementdefinition_namesp
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
     ))
   override def fields(t: Elementdefinition_namespace): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Elementdefinition_namespace): Option[String]                   = t.id
-  def extractValue(t: Elementdefinition_namespace): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
+  def extractValue(t: Elementdefinition_namespace): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
   override val thisName: String                                                   = "Elementdefinition_namespace"
   override val searchParams: Map[String, Elementdefinition_namespace => Seq[Any]] = Extension.searchParams
   def unapply(o: Elementdefinition_namespace): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
+    (o.id, o.value.get.value.asInstanceOf[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Elementdefinition_namespace] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -44,15 +44,15 @@ object Cqf_encounterClass extends CompanionFor[Cqf_encounterClass] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
     ))
   override def fields(t: Cqf_encounterClass): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Cqf_encounterClass): Option[String]                   = t.id
-  def extractValue(t: Cqf_encounterClass): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
+  def extractValue(t: Cqf_encounterClass): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
   override val thisName: String                                          = "Cqf_encounterClass"
   override val searchParams: Map[String, Cqf_encounterClass => Seq[Any]] = Extension.searchParams
   def unapply(o: Cqf_encounterClass): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
+    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Cqf_encounterClass] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

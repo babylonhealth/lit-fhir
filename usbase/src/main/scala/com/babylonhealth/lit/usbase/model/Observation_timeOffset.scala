@@ -44,15 +44,15 @@ object Observation_timeOffset extends CompanionFor[Observation_timeOffset] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
+      FHIRComponentField[Int](value, t.value.get.value.asInstanceOf[Int])
     ))
   override def fields(t: Observation_timeOffset): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Observation_timeOffset): Option[String]                   = t.id
-  def extractValue(t: Observation_timeOffset): Int                           = t.value.get.toSubRefNonUnion[Int]
+  def extractValue(t: Observation_timeOffset): Int                           = t.value.get.value.asInstanceOf[Int]
   override val thisName: String                                              = "Observation_timeOffset"
   override val searchParams: Map[String, Observation_timeOffset => Seq[Any]] = Extension.searchParams
   def unapply(o: Observation_timeOffset): Option[(Option[String], Int)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Int]))
+    (o.id, o.value.get.value.asInstanceOf[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Observation_timeOffset] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

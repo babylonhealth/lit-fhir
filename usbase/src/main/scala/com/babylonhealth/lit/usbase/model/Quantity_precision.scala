@@ -44,14 +44,14 @@ object Quantity_precision extends CompanionFor[Quantity_precision] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
+      FHIRComponentField[Int](value, t.value.get.value.asInstanceOf[Int])
     ))
   override def fields(t: Quantity_precision): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Quantity_precision): Option[String]                   = t.id
-  def extractValue(t: Quantity_precision): Int                           = t.value.get.toSubRefNonUnion[Int]
+  def extractValue(t: Quantity_precision): Int                           = t.value.get.value.asInstanceOf[Int]
   override val thisName: String                                          = "Quantity_precision"
   override val searchParams: Map[String, Quantity_precision => Seq[Any]] = Extension.searchParams
-  def unapply(o: Quantity_precision): Option[(Option[String], Int)]      = Some((o.id, o.value.get.toSubRefNonUnion[Int]))
+  def unapply(o: Quantity_precision): Option[(Option[String], Int)]      = Some((o.id, o.value.get.value.asInstanceOf[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Quantity_precision] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

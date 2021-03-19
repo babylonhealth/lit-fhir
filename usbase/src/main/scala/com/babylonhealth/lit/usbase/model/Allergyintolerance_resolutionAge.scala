@@ -45,15 +45,15 @@ object Allergyintolerance_resolutionAge extends CompanionFor[Allergyintolerance_
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Age](value, t.value.get.toSubRefNonUnion[Age])
+      FHIRComponentField[Age](value, t.value.get.value.asInstanceOf[Age])
     ))
   override def fields(t: Allergyintolerance_resolutionAge): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Allergyintolerance_resolutionAge): Option[String]                   = t.id
-  def extractValue(t: Allergyintolerance_resolutionAge): Age                           = t.value.get.toSubRefNonUnion[Age]
+  def extractValue(t: Allergyintolerance_resolutionAge): Age                           = t.value.get.value.asInstanceOf[Age]
   override val thisName: String                                                        = "Allergyintolerance_resolutionAge"
   override val searchParams: Map[String, Allergyintolerance_resolutionAge => Seq[Any]] = Extension.searchParams
   def unapply(o: Allergyintolerance_resolutionAge): Option[(Option[String], Age)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Age]))
+    (o.id, o.value.get.value.asInstanceOf[Age]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Allergyintolerance_resolutionAge] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

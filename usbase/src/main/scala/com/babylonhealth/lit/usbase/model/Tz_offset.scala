@@ -44,14 +44,14 @@ object Tz_offset extends CompanionFor[Tz_offset] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
+      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
     ))
   override def fields(t: Tz_offset): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Tz_offset): Option[String]                   = t.id
-  def extractValue(t: Tz_offset): String                        = t.value.get.toSubRefNonUnion[String]
+  def extractValue(t: Tz_offset): String                        = t.value.get.value.asInstanceOf[String]
   override val thisName: String                                 = "Tz_offset"
   override val searchParams: Map[String, Tz_offset => Seq[Any]] = Extension.searchParams
-  def unapply(o: Tz_offset): Option[(Option[String], String)]   = Some((o.id, o.value.get.toSubRefNonUnion[String]))
+  def unapply(o: Tz_offset): Option[(Option[String], String)]   = Some((o.id, o.value.get.value.asInstanceOf[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Tz_offset] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

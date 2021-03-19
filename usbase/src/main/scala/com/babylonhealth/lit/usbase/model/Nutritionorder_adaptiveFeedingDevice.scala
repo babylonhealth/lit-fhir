@@ -45,16 +45,16 @@ object Nutritionorder_adaptiveFeedingDevice extends CompanionFor[Nutritionorder_
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
     ))
   override def fields(t: Nutritionorder_adaptiveFeedingDevice): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Nutritionorder_adaptiveFeedingDevice): Option[String]                   = t.id
   def extractValue(t: Nutritionorder_adaptiveFeedingDevice): CodeableConcept =
-    t.value.get.toSubRefNonUnion[CodeableConcept]
+    t.value.get.value.asInstanceOf[CodeableConcept]
   override val thisName: String                                                            = "Nutritionorder_adaptiveFeedingDevice"
   override val searchParams: Map[String, Nutritionorder_adaptiveFeedingDevice => Seq[Any]] = Extension.searchParams
   def unapply(o: Nutritionorder_adaptiveFeedingDevice): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
+    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Nutritionorder_adaptiveFeedingDevice] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

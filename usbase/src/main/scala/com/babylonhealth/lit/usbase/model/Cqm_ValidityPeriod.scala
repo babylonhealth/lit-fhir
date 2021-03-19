@@ -44,15 +44,15 @@ object Cqm_ValidityPeriod extends CompanionFor[Cqm_ValidityPeriod] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[FHIRDateTime](value, t.value.get.toSubRefNonUnion[FHIRDateTime])
+      FHIRComponentField[FHIRDateTime](value, t.value.get.value.asInstanceOf[FHIRDateTime])
     ))
   override def fields(t: Cqm_ValidityPeriod): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Cqm_ValidityPeriod): Option[String]                   = t.id
-  def extractValue(t: Cqm_ValidityPeriod): FHIRDateTime                  = t.value.get.toSubRefNonUnion[FHIRDateTime]
+  def extractValue(t: Cqm_ValidityPeriod): FHIRDateTime                  = t.value.get.value.asInstanceOf[FHIRDateTime]
   override val thisName: String                                          = "Cqm_ValidityPeriod"
   override val searchParams: Map[String, Cqm_ValidityPeriod => Seq[Any]] = Extension.searchParams
   def unapply(o: Cqm_ValidityPeriod): Option[(Option[String], FHIRDateTime)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[FHIRDateTime]))
+    (o.id, o.value.get.value.asInstanceOf[FHIRDateTime]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Cqm_ValidityPeriod] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

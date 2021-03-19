@@ -220,7 +220,7 @@ object Pediatric_bmi_for_age extends CompanionFor[Pediatric_bmi_for_age] {
       FHIRComponentField[Reference](subject, t.subject.get),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-      FHIRComponentField[Quantity](value, t.value.get.toSubRefNonUnion[Quantity]),
+      FHIRComponentField[Quantity](value, t.value.get.value.asInstanceOf[Quantity]),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[Option[Reference]](specimen, t.specimen),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -254,7 +254,7 @@ object Pediatric_bmi_for_age extends CompanionFor[Pediatric_bmi_for_age] {
   def extractSubject(t: Pediatric_bmi_for_age): Reference                                 = t.subject.get
   def extractLanguage(t: Pediatric_bmi_for_age): Option[LANGUAGES]                        = t.language
   def extractCategory(t: Pediatric_bmi_for_age): NonEmptyLitSeq[CodeableConcept]          = t.category.asNonEmpty
-  def extractValue(t: Pediatric_bmi_for_age): Quantity                                    = t.value.get.toSubRefNonUnion[Quantity]
+  def extractValue(t: Pediatric_bmi_for_age): Quantity                                    = t.value.get.value.asInstanceOf[Quantity]
   def extractBodySite(t: Pediatric_bmi_for_age): Option[CodeableConcept]                  = t.bodySite
   def extractSpecimen(t: Pediatric_bmi_for_age): Option[Reference]                        = t.specimen
   def extractContained(t: Pediatric_bmi_for_age): LitSeq[Resource]                        = t.contained

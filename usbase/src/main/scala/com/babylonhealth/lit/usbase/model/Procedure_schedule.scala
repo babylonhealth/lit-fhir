@@ -44,15 +44,15 @@ object Procedure_schedule extends CompanionFor[Procedure_schedule] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Timing](value, t.value.get.toSubRefNonUnion[Timing])
+      FHIRComponentField[Timing](value, t.value.get.value.asInstanceOf[Timing])
     ))
   override def fields(t: Procedure_schedule): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Procedure_schedule): Option[String]                   = t.id
-  def extractValue(t: Procedure_schedule): Timing                        = t.value.get.toSubRefNonUnion[Timing]
+  def extractValue(t: Procedure_schedule): Timing                        = t.value.get.value.asInstanceOf[Timing]
   override val thisName: String                                          = "Procedure_schedule"
   override val searchParams: Map[String, Procedure_schedule => Seq[Any]] = Extension.searchParams
   def unapply(o: Procedure_schedule): Option[(Option[String], Timing)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Timing]))
+    (o.id, o.value.get.value.asInstanceOf[Timing]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Procedure_schedule] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -44,15 +44,15 @@ object Iso21090_PQ_translation extends CompanionFor[Iso21090_PQ_translation] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Quantity](value, t.value.get.toSubRefNonUnion[Quantity])
+      FHIRComponentField[Quantity](value, t.value.get.value.asInstanceOf[Quantity])
     ))
   override def fields(t: Iso21090_PQ_translation): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Iso21090_PQ_translation): Option[String]                   = t.id
-  def extractValue(t: Iso21090_PQ_translation): Quantity                      = t.value.get.toSubRefNonUnion[Quantity]
+  def extractValue(t: Iso21090_PQ_translation): Quantity                      = t.value.get.value.asInstanceOf[Quantity]
   override val thisName: String                                               = "Iso21090_PQ_translation"
   override val searchParams: Map[String, Iso21090_PQ_translation => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_PQ_translation): Option[(Option[String], Quantity)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Quantity]))
+    (o.id, o.value.get.value.asInstanceOf[Quantity]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_PQ_translation] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

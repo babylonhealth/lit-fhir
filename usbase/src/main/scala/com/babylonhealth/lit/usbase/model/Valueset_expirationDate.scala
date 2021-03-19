@@ -44,15 +44,15 @@ object Valueset_expirationDate extends CompanionFor[Valueset_expirationDate] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[FHIRDate](value, t.value.get.toSubRefNonUnion[FHIRDate])
+      FHIRComponentField[FHIRDate](value, t.value.get.value.asInstanceOf[FHIRDate])
     ))
   override def fields(t: Valueset_expirationDate): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_expirationDate): Option[String]                   = t.id
-  def extractValue(t: Valueset_expirationDate): FHIRDate                      = t.value.get.toSubRefNonUnion[FHIRDate]
+  def extractValue(t: Valueset_expirationDate): FHIRDate                      = t.value.get.value.asInstanceOf[FHIRDate]
   override val thisName: String                                               = "Valueset_expirationDate"
   override val searchParams: Map[String, Valueset_expirationDate => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_expirationDate): Option[(Option[String], FHIRDate)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[FHIRDate]))
+    (o.id, o.value.get.value.asInstanceOf[FHIRDate]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_expirationDate] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -45,15 +45,15 @@ object Structuredefinition_hierarchy extends CompanionFor[Structuredefinition_hi
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
     ))
   override def fields(t: Structuredefinition_hierarchy): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Structuredefinition_hierarchy): Option[String]                   = t.id
-  def extractValue(t: Structuredefinition_hierarchy): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
+  def extractValue(t: Structuredefinition_hierarchy): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
   override val thisName: String                                                     = "Structuredefinition_hierarchy"
   override val searchParams: Map[String, Structuredefinition_hierarchy => Seq[Any]] = Extension.searchParams
   def unapply(o: Structuredefinition_hierarchy): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
+    (o.id, o.value.get.value.asInstanceOf[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Structuredefinition_hierarchy] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

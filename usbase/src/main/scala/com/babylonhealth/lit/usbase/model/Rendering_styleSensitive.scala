@@ -44,15 +44,15 @@ object Rendering_styleSensitive extends CompanionFor[Rendering_styleSensitive] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
     ))
   override def fields(t: Rendering_styleSensitive): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Rendering_styleSensitive): Option[String]                   = t.id
-  def extractValue(t: Rendering_styleSensitive): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
+  def extractValue(t: Rendering_styleSensitive): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
   override val thisName: String                                                = "Rendering_styleSensitive"
   override val searchParams: Map[String, Rendering_styleSensitive => Seq[Any]] = Extension.searchParams
   def unapply(o: Rendering_styleSensitive): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
+    (o.id, o.value.get.value.asInstanceOf[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Rendering_styleSensitive] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

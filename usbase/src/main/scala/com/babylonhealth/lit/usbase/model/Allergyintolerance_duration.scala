@@ -44,15 +44,15 @@ object Allergyintolerance_duration extends CompanionFor[Allergyintolerance_durat
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Duration](value, t.value.get.toSubRefNonUnion[Duration])
+      FHIRComponentField[Duration](value, t.value.get.value.asInstanceOf[Duration])
     ))
   override def fields(t: Allergyintolerance_duration): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Allergyintolerance_duration): Option[String]                   = t.id
-  def extractValue(t: Allergyintolerance_duration): Duration                      = t.value.get.toSubRefNonUnion[Duration]
+  def extractValue(t: Allergyintolerance_duration): Duration                      = t.value.get.value.asInstanceOf[Duration]
   override val thisName: String                                                   = "Allergyintolerance_duration"
   override val searchParams: Map[String, Allergyintolerance_duration => Seq[Any]] = Extension.searchParams
   def unapply(o: Allergyintolerance_duration): Option[(Option[String], Duration)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Duration]))
+    (o.id, o.value.get.value.asInstanceOf[Duration]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Allergyintolerance_duration] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

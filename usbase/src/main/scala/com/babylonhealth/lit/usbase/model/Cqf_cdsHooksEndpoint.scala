@@ -44,15 +44,15 @@ object Cqf_cdsHooksEndpoint extends CompanionFor[Cqf_cdsHooksEndpoint] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
     ))
   override def fields(t: Cqf_cdsHooksEndpoint): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Cqf_cdsHooksEndpoint): Option[String]                   = t.id
-  def extractValue(t: Cqf_cdsHooksEndpoint): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
+  def extractValue(t: Cqf_cdsHooksEndpoint): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
   override val thisName: String                                            = "Cqf_cdsHooksEndpoint"
   override val searchParams: Map[String, Cqf_cdsHooksEndpoint => Seq[Any]] = Extension.searchParams
   def unapply(o: Cqf_cdsHooksEndpoint): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
+    (o.id, o.value.get.value.asInstanceOf[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Cqf_cdsHooksEndpoint] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

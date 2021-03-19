@@ -44,15 +44,15 @@ object Codesystem_conceptOrder extends CompanionFor[Codesystem_conceptOrder] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
+      FHIRComponentField[Int](value, t.value.get.value.asInstanceOf[Int])
     ))
   override def fields(t: Codesystem_conceptOrder): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Codesystem_conceptOrder): Option[String]                   = t.id
-  def extractValue(t: Codesystem_conceptOrder): Int                           = t.value.get.toSubRefNonUnion[Int]
+  def extractValue(t: Codesystem_conceptOrder): Int                           = t.value.get.value.asInstanceOf[Int]
   override val thisName: String                                               = "Codesystem_conceptOrder"
   override val searchParams: Map[String, Codesystem_conceptOrder => Seq[Any]] = Extension.searchParams
   def unapply(o: Codesystem_conceptOrder): Option[(Option[String], Int)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Int]))
+    (o.id, o.value.get.value.asInstanceOf[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Codesystem_conceptOrder] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

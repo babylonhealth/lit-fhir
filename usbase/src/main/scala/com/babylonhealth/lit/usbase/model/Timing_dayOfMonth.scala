@@ -44,15 +44,15 @@ object Timing_dayOfMonth extends CompanionFor[Timing_dayOfMonth] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[PositiveInt](value, t.value.get.toSubRefNonUnion[PositiveInt])
+      FHIRComponentField[PositiveInt](value, t.value.get.value.asInstanceOf[PositiveInt])
     ))
   override def fields(t: Timing_dayOfMonth): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Timing_dayOfMonth): Option[String]                   = t.id
-  def extractValue(t: Timing_dayOfMonth): PositiveInt                   = t.value.get.toSubRefNonUnion[PositiveInt]
+  def extractValue(t: Timing_dayOfMonth): PositiveInt                   = t.value.get.value.asInstanceOf[PositiveInt]
   override val thisName: String                                         = "Timing_dayOfMonth"
   override val searchParams: Map[String, Timing_dayOfMonth => Seq[Any]] = Extension.searchParams
   def unapply(o: Timing_dayOfMonth): Option[(Option[String], PositiveInt)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[PositiveInt]))
+    (o.id, o.value.get.value.asInstanceOf[PositiveInt]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Timing_dayOfMonth] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

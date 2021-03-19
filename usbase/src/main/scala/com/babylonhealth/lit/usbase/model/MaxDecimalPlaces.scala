@@ -44,14 +44,14 @@ object MaxDecimalPlaces extends CompanionFor[MaxDecimalPlaces] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
+      FHIRComponentField[Int](value, t.value.get.value.asInstanceOf[Int])
     ))
   override def fields(t: MaxDecimalPlaces): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: MaxDecimalPlaces): Option[String]                   = t.id
-  def extractValue(t: MaxDecimalPlaces): Int                           = t.value.get.toSubRefNonUnion[Int]
+  def extractValue(t: MaxDecimalPlaces): Int                           = t.value.get.value.asInstanceOf[Int]
   override val thisName: String                                        = "MaxDecimalPlaces"
   override val searchParams: Map[String, MaxDecimalPlaces => Seq[Any]] = Extension.searchParams
-  def unapply(o: MaxDecimalPlaces): Option[(Option[String], Int)]      = Some((o.id, o.value.get.toSubRefNonUnion[Int]))
+  def unapply(o: MaxDecimalPlaces): Option[(Option[String], Int)]      = Some((o.id, o.value.get.value.asInstanceOf[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[MaxDecimalPlaces] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -44,14 +44,14 @@ object MaxSize extends CompanionFor[MaxSize] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[BigDecimal](value, t.value.get.toSubRefNonUnion[BigDecimal])
+      FHIRComponentField[BigDecimal](value, t.value.get.value.asInstanceOf[BigDecimal])
     ))
   override def fields(t: MaxSize): Seq[FHIRComponentField[_]]   = fieldsFromParent(t).get
   def extractId(t: MaxSize): Option[String]                     = t.id
-  def extractValue(t: MaxSize): BigDecimal                      = t.value.get.toSubRefNonUnion[BigDecimal]
+  def extractValue(t: MaxSize): BigDecimal                      = t.value.get.value.asInstanceOf[BigDecimal]
   override val thisName: String                                 = "MaxSize"
   override val searchParams: Map[String, MaxSize => Seq[Any]]   = Extension.searchParams
-  def unapply(o: MaxSize): Option[(Option[String], BigDecimal)] = Some((o.id, o.value.get.toSubRefNonUnion[BigDecimal]))
+  def unapply(o: MaxSize): Option[(Option[String], BigDecimal)] = Some((o.id, o.value.get.value.asInstanceOf[BigDecimal]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[MaxSize] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -44,15 +44,15 @@ object Condition_ruledOut extends CompanionFor[Condition_ruledOut] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
+      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
     ))
   override def fields(t: Condition_ruledOut): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Condition_ruledOut): Option[String]                   = t.id
-  def extractValue(t: Condition_ruledOut): Reference                     = t.value.get.toSubRefNonUnion[Reference]
+  def extractValue(t: Condition_ruledOut): Reference                     = t.value.get.value.asInstanceOf[Reference]
   override val thisName: String                                          = "Condition_ruledOut"
   override val searchParams: Map[String, Condition_ruledOut => Seq[Any]] = Extension.searchParams
   def unapply(o: Condition_ruledOut): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+    (o.id, o.value.get.value.asInstanceOf[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Condition_ruledOut] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

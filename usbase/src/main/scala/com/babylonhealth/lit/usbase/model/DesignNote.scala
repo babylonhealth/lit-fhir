@@ -44,14 +44,14 @@ object DesignNote extends CompanionFor[DesignNote] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Markdown](value, t.value.get.toSubRefNonUnion[Markdown])
+      FHIRComponentField[Markdown](value, t.value.get.value.asInstanceOf[Markdown])
     ))
   override def fields(t: DesignNote): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: DesignNote): Option[String]                   = t.id
-  def extractValue(t: DesignNote): Markdown                      = t.value.get.toSubRefNonUnion[Markdown]
+  def extractValue(t: DesignNote): Markdown                      = t.value.get.value.asInstanceOf[Markdown]
   override val thisName: String                                  = "DesignNote"
   override val searchParams: Map[String, DesignNote => Seq[Any]] = Extension.searchParams
-  def unapply(o: DesignNote): Option[(Option[String], Markdown)] = Some((o.id, o.value.get.toSubRefNonUnion[Markdown]))
+  def unapply(o: DesignNote): Option[(Option[String], Markdown)] = Some((o.id, o.value.get.value.asInstanceOf[Markdown]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[DesignNote] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

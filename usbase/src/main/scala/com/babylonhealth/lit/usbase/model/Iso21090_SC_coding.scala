@@ -44,15 +44,15 @@ object Iso21090_SC_coding extends CompanionFor[Iso21090_SC_coding] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Coding](value, t.value.get.toSubRefNonUnion[Coding])
+      FHIRComponentField[Coding](value, t.value.get.value.asInstanceOf[Coding])
     ))
   override def fields(t: Iso21090_SC_coding): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Iso21090_SC_coding): Option[String]                   = t.id
-  def extractValue(t: Iso21090_SC_coding): Coding                        = t.value.get.toSubRefNonUnion[Coding]
+  def extractValue(t: Iso21090_SC_coding): Coding                        = t.value.get.value.asInstanceOf[Coding]
   override val thisName: String                                          = "Iso21090_SC_coding"
   override val searchParams: Map[String, Iso21090_SC_coding => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_SC_coding): Option[(Option[String], Coding)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Coding]))
+    (o.id, o.value.get.value.asInstanceOf[Coding]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_SC_coding] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

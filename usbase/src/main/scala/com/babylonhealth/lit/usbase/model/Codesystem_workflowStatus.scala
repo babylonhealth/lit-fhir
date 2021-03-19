@@ -44,15 +44,15 @@ object Codesystem_workflowStatus extends CompanionFor[Codesystem_workflowStatus]
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
+      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
     ))
   override def fields(t: Codesystem_workflowStatus): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Codesystem_workflowStatus): Option[String]                   = t.id
-  def extractValue(t: Codesystem_workflowStatus): String                        = t.value.get.toSubRefNonUnion[String]
+  def extractValue(t: Codesystem_workflowStatus): String                        = t.value.get.value.asInstanceOf[String]
   override val thisName: String                                                 = "Codesystem_workflowStatus"
   override val searchParams: Map[String, Codesystem_workflowStatus => Seq[Any]] = Extension.searchParams
   def unapply(o: Codesystem_workflowStatus): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[String]))
+    (o.id, o.value.get.value.asInstanceOf[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Codesystem_workflowStatus] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

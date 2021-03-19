@@ -44,15 +44,15 @@ object DiagnosticReport_summaryOf extends CompanionFor[DiagnosticReport_summaryO
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
+      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
     ))
   override def fields(t: DiagnosticReport_summaryOf): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: DiagnosticReport_summaryOf): Option[String]                   = t.id
-  def extractValue(t: DiagnosticReport_summaryOf): Reference                     = t.value.get.toSubRefNonUnion[Reference]
+  def extractValue(t: DiagnosticReport_summaryOf): Reference                     = t.value.get.value.asInstanceOf[Reference]
   override val thisName: String                                                  = "DiagnosticReport_summaryOf"
   override val searchParams: Map[String, DiagnosticReport_summaryOf => Seq[Any]] = Extension.searchParams
   def unapply(o: DiagnosticReport_summaryOf): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+    (o.id, o.value.get.value.asInstanceOf[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[DiagnosticReport_summaryOf] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

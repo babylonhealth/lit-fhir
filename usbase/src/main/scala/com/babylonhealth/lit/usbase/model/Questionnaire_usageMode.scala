@@ -46,16 +46,16 @@ object Questionnaire_usageMode extends CompanionFor[Questionnaire_usageMode] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[QUESTIONNAIRE_USAGE_MODE](
         value,
-        QUESTIONNAIRE_USAGE_MODE.withName(t.value.get.toSubRefNonUnion[Code]))
+        QUESTIONNAIRE_USAGE_MODE.withName(t.value.get.value.asInstanceOf[Code]))
     ))
   override def fields(t: Questionnaire_usageMode): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_usageMode): Option[String]                   = t.id
   def extractValue(t: Questionnaire_usageMode): QUESTIONNAIRE_USAGE_MODE =
-    QUESTIONNAIRE_USAGE_MODE.withName(t.value.get.toSubRefNonUnion[Code])
+    QUESTIONNAIRE_USAGE_MODE.withName(t.value.get.value.asInstanceOf[Code])
   override val thisName: String                                               = "Questionnaire_usageMode"
   override val searchParams: Map[String, Questionnaire_usageMode => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_usageMode): Option[(Option[String], QUESTIONNAIRE_USAGE_MODE)] = Some(
-    (o.id, QUESTIONNAIRE_USAGE_MODE.withName(o.value.get.toSubRefNonUnion[Code])))
+    (o.id, QUESTIONNAIRE_USAGE_MODE.withName(o.value.get.value.asInstanceOf[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_usageMode] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

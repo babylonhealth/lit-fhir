@@ -46,16 +46,16 @@ object Iso21090_uncertaintyType extends CompanionFor[Iso21090_uncertaintyType] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[PROBABILITY_DISTRIBUTION_TYPE](
         value,
-        PROBABILITY_DISTRIBUTION_TYPE.withName(t.value.get.toSubRefNonUnion[Code]))
+        PROBABILITY_DISTRIBUTION_TYPE.withName(t.value.get.value.asInstanceOf[Code]))
     ))
   override def fields(t: Iso21090_uncertaintyType): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Iso21090_uncertaintyType): Option[String]                   = t.id
   def extractValue(t: Iso21090_uncertaintyType): PROBABILITY_DISTRIBUTION_TYPE =
-    PROBABILITY_DISTRIBUTION_TYPE.withName(t.value.get.toSubRefNonUnion[Code])
+    PROBABILITY_DISTRIBUTION_TYPE.withName(t.value.get.value.asInstanceOf[Code])
   override val thisName: String                                                = "Iso21090_uncertaintyType"
   override val searchParams: Map[String, Iso21090_uncertaintyType => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_uncertaintyType): Option[(Option[String], PROBABILITY_DISTRIBUTION_TYPE)] = Some(
-    (o.id, PROBABILITY_DISTRIBUTION_TYPE.withName(o.value.get.toSubRefNonUnion[Code])))
+    (o.id, PROBABILITY_DISTRIBUTION_TYPE.withName(o.value.get.value.asInstanceOf[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_uncertaintyType] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

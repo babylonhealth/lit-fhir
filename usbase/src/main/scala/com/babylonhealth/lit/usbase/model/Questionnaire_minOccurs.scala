@@ -44,15 +44,15 @@ object Questionnaire_minOccurs extends CompanionFor[Questionnaire_minOccurs] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
+      FHIRComponentField[Int](value, t.value.get.value.asInstanceOf[Int])
     ))
   override def fields(t: Questionnaire_minOccurs): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_minOccurs): Option[String]                   = t.id
-  def extractValue(t: Questionnaire_minOccurs): Int                           = t.value.get.toSubRefNonUnion[Int]
+  def extractValue(t: Questionnaire_minOccurs): Int                           = t.value.get.value.asInstanceOf[Int]
   override val thisName: String                                               = "Questionnaire_minOccurs"
   override val searchParams: Map[String, Questionnaire_minOccurs => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_minOccurs): Option[(Option[String], Int)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Int]))
+    (o.id, o.value.get.value.asInstanceOf[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_minOccurs] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

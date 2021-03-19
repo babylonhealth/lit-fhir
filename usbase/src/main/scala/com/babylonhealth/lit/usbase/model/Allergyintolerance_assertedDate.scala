@@ -45,15 +45,15 @@ object Allergyintolerance_assertedDate extends CompanionFor[Allergyintolerance_a
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[FHIRDateTime](value, t.value.get.toSubRefNonUnion[FHIRDateTime])
+      FHIRComponentField[FHIRDateTime](value, t.value.get.value.asInstanceOf[FHIRDateTime])
     ))
   override def fields(t: Allergyintolerance_assertedDate): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Allergyintolerance_assertedDate): Option[String]                   = t.id
-  def extractValue(t: Allergyintolerance_assertedDate): FHIRDateTime                  = t.value.get.toSubRefNonUnion[FHIRDateTime]
+  def extractValue(t: Allergyintolerance_assertedDate): FHIRDateTime                  = t.value.get.value.asInstanceOf[FHIRDateTime]
   override val thisName: String                                                       = "Allergyintolerance_assertedDate"
   override val searchParams: Map[String, Allergyintolerance_assertedDate => Seq[Any]] = Extension.searchParams
   def unapply(o: Allergyintolerance_assertedDate): Option[(Option[String], FHIRDateTime)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[FHIRDateTime]))
+    (o.id, o.value.get.value.asInstanceOf[FHIRDateTime]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Allergyintolerance_assertedDate] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

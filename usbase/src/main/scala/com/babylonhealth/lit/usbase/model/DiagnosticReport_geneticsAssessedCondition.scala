@@ -45,17 +45,17 @@ object DiagnosticReport_geneticsAssessedCondition extends CompanionFor[Diagnosti
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
+      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
     ))
   override def fields(t: DiagnosticReport_geneticsAssessedCondition): Seq[FHIRComponentField[_]] = fieldsFromParent(
     t).get
   def extractId(t: DiagnosticReport_geneticsAssessedCondition): Option[String] = t.id
-  def extractValue(t: DiagnosticReport_geneticsAssessedCondition): Reference   = t.value.get.toSubRefNonUnion[Reference]
+  def extractValue(t: DiagnosticReport_geneticsAssessedCondition): Reference   = t.value.get.value.asInstanceOf[Reference]
   override val thisName: String                                                = "DiagnosticReport_geneticsAssessedCondition"
   override val searchParams: Map[String, DiagnosticReport_geneticsAssessedCondition => Seq[Any]] =
     Extension.searchParams
   def unapply(o: DiagnosticReport_geneticsAssessedCondition): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+    (o.id, o.value.get.value.asInstanceOf[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[DiagnosticReport_geneticsAssessedCondition] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

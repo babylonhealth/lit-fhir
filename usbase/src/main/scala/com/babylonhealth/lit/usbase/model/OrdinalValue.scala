@@ -44,15 +44,15 @@ object OrdinalValue extends CompanionFor[OrdinalValue] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[BigDecimal](value, t.value.get.toSubRefNonUnion[BigDecimal])
+      FHIRComponentField[BigDecimal](value, t.value.get.value.asInstanceOf[BigDecimal])
     ))
   override def fields(t: OrdinalValue): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: OrdinalValue): Option[String]                   = t.id
-  def extractValue(t: OrdinalValue): BigDecimal                    = t.value.get.toSubRefNonUnion[BigDecimal]
+  def extractValue(t: OrdinalValue): BigDecimal                    = t.value.get.value.asInstanceOf[BigDecimal]
   override val thisName: String                                    = "OrdinalValue"
   override val searchParams: Map[String, OrdinalValue => Seq[Any]] = Extension.searchParams
   def unapply(o: OrdinalValue): Option[(Option[String], BigDecimal)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[BigDecimal]))
+    (o.id, o.value.get.value.asInstanceOf[BigDecimal]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[OrdinalValue] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

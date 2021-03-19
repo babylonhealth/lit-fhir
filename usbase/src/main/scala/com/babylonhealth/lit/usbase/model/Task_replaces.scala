@@ -44,15 +44,15 @@ object Task_replaces extends CompanionFor[Task_replaces] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
+      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
     ))
   override def fields(t: Task_replaces): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Task_replaces): Option[String]                   = t.id
-  def extractValue(t: Task_replaces): Reference                     = t.value.get.toSubRefNonUnion[Reference]
+  def extractValue(t: Task_replaces): Reference                     = t.value.get.value.asInstanceOf[Reference]
   override val thisName: String                                     = "Task_replaces"
   override val searchParams: Map[String, Task_replaces => Seq[Any]] = Extension.searchParams
   def unapply(o: Task_replaces): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+    (o.id, o.value.get.value.asInstanceOf[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Task_replaces] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

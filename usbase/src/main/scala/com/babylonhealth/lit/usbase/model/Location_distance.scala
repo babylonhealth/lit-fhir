@@ -44,15 +44,15 @@ object Location_distance extends CompanionFor[Location_distance] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Distance](value, t.value.get.toSubRefNonUnion[Distance])
+      FHIRComponentField[Distance](value, t.value.get.value.asInstanceOf[Distance])
     ))
   override def fields(t: Location_distance): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Location_distance): Option[String]                   = t.id
-  def extractValue(t: Location_distance): Distance                      = t.value.get.toSubRefNonUnion[Distance]
+  def extractValue(t: Location_distance): Distance                      = t.value.get.value.asInstanceOf[Distance]
   override val thisName: String                                         = "Location_distance"
   override val searchParams: Map[String, Location_distance => Seq[Any]] = Extension.searchParams
   def unapply(o: Location_distance): Option[(Option[String], Distance)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Distance]))
+    (o.id, o.value.get.value.asInstanceOf[Distance]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Location_distance] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

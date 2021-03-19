@@ -45,15 +45,15 @@ object Servicerequest_questionnaireRequest extends CompanionFor[Servicerequest_q
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
+      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
     ))
   override def fields(t: Servicerequest_questionnaireRequest): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Servicerequest_questionnaireRequest): Option[String]                   = t.id
-  def extractValue(t: Servicerequest_questionnaireRequest): Reference                     = t.value.get.toSubRefNonUnion[Reference]
+  def extractValue(t: Servicerequest_questionnaireRequest): Reference                     = t.value.get.value.asInstanceOf[Reference]
   override val thisName: String                                                           = "Servicerequest_questionnaireRequest"
   override val searchParams: Map[String, Servicerequest_questionnaireRequest => Seq[Any]] = Extension.searchParams
   def unapply(o: Servicerequest_questionnaireRequest): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+    (o.id, o.value.get.value.asInstanceOf[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Servicerequest_questionnaireRequest] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
