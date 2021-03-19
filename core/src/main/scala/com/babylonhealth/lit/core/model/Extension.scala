@@ -86,6 +86,7 @@ object Extension extends CompanionFor[Extension] {
                   genericExtension
               }
           }
+        }
       })
 
 }

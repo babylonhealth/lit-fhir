@@ -20,7 +20,7 @@
 >             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
 >             decodeAttributes(cursor)
 >           )
-72c76,90
+72c76,91
 <       ))
 ---
 >         if (!params.decodeSpecificExtensions) genericExtension else {
@@ -36,5 +36,6 @@
 >                   genericExtension
 >               }
 >           }
+>         }
 >       })
 > 
