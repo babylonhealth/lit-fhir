@@ -45,16 +45,16 @@ object Auditevent_ParticipantObjectContainsStudy extends CompanionFor[Auditevent
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Identifier](value, t.value.get.value.asInstanceOf[Identifier])
+      FHIRComponentField[Identifier](value, t.value.get.toSubRefNonUnion[Identifier])
     ))
   override def fields(t: Auditevent_ParticipantObjectContainsStudy): Seq[FHIRComponentField[_]] = fieldsFromParent(
     t).get
   def extractId(t: Auditevent_ParticipantObjectContainsStudy): Option[String]                   = t.id
-  def extractValue(t: Auditevent_ParticipantObjectContainsStudy): Identifier                    = t.value.get.value.asInstanceOf[Identifier]
+  def extractValue(t: Auditevent_ParticipantObjectContainsStudy): Identifier                    = t.value.get.toSubRefNonUnion[Identifier]
   override val thisName: String                                                                 = "Auditevent_ParticipantObjectContainsStudy"
   override val searchParams: Map[String, Auditevent_ParticipantObjectContainsStudy => Seq[Any]] = Extension.searchParams
   def unapply(o: Auditevent_ParticipantObjectContainsStudy): Option[(Option[String], Identifier)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Identifier]))
+    (o.id, o.value.get.toSubRefNonUnion[Identifier]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Auditevent_ParticipantObjectContainsStudy] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

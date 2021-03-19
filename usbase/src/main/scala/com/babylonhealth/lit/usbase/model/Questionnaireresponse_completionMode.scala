@@ -45,16 +45,16 @@ object Questionnaireresponse_completionMode extends CompanionFor[Questionnairere
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
     ))
   override def fields(t: Questionnaireresponse_completionMode): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaireresponse_completionMode): Option[String]                   = t.id
   def extractValue(t: Questionnaireresponse_completionMode): CodeableConcept =
-    t.value.get.value.asInstanceOf[CodeableConcept]
+    t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                                            = "Questionnaireresponse_completionMode"
   override val searchParams: Map[String, Questionnaireresponse_completionMode => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaireresponse_completionMode): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaireresponse_completionMode] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

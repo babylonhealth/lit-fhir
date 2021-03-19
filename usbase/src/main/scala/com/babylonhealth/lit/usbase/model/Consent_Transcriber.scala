@@ -44,15 +44,15 @@ object Consent_Transcriber extends CompanionFor[Consent_Transcriber] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
+      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
   override def fields(t: Consent_Transcriber): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Consent_Transcriber): Option[String]                   = t.id
-  def extractValue(t: Consent_Transcriber): Reference                     = t.value.get.value.asInstanceOf[Reference]
+  def extractValue(t: Consent_Transcriber): Reference                     = t.value.get.toSubRefNonUnion[Reference]
   override val thisName: String                                           = "Consent_Transcriber"
   override val searchParams: Map[String, Consent_Transcriber => Seq[Any]] = Extension.searchParams
   def unapply(o: Consent_Transcriber): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Reference]))
+    (o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Consent_Transcriber] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -140,7 +140,7 @@ object Provenance_relevant_history extends CompanionFor[Provenance_relevant_hist
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
       FHIRComponentField[LitSeq[Signature]](signature, t.signature),
-      FHIRComponentField[FHIRDateTime](occurred, t.occurred.get.value.asInstanceOf[FHIRDateTime]),
+      FHIRComponentField[FHIRDateTime](occurred, t.occurred.get.toSubRefNonUnion[FHIRDateTime]),
       FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
       FHIRComponentField[NonEmptyLitSeq[Provenance.Agent]](agent, t.agent),
@@ -160,7 +160,7 @@ object Provenance_relevant_history extends CompanionFor[Provenance_relevant_hist
   def extractContained(t: Provenance_relevant_history): LitSeq[Resource]             = t.contained
   def extractExtension(t: Provenance_relevant_history): LitSeq[Extension]            = t.extension
   def extractSignature(t: Provenance_relevant_history): LitSeq[Signature]            = t.signature
-  def extractOccurred(t: Provenance_relevant_history): FHIRDateTime                  = t.occurred.get.value.asInstanceOf[FHIRDateTime]
+  def extractOccurred(t: Provenance_relevant_history): FHIRDateTime                  = t.occurred.get.toSubRefNonUnion[FHIRDateTime]
   def extractImplicitRules(t: Provenance_relevant_history): Option[UriStr]           = t.implicitRules
   def extractModifierExtension(t: Provenance_relevant_history): LitSeq[Extension]    = t.modifierExtension
   def extractAgent(t: Provenance_relevant_history): NonEmptyLitSeq[Provenance.Agent] = t.agent
@@ -184,7 +184,7 @@ object Provenance_relevant_history extends CompanionFor[Provenance_relevant_hist
         o.contained,
         o.extension,
         o.signature,
-        o.occurred.get.value.asInstanceOf[FHIRDateTime],
+        o.occurred.get.toSubRefNonUnion[FHIRDateTime],
         o.implicitRules,
         o.modifierExtension,
         o.agent,

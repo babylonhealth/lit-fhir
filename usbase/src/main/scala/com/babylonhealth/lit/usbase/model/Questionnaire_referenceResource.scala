@@ -45,16 +45,16 @@ object Questionnaire_referenceResource extends CompanionFor[Questionnaire_refere
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[RESOURCE_TYPES](value, RESOURCE_TYPES.withName(t.value.get.value.asInstanceOf[Code]))
+      FHIRComponentField[RESOURCE_TYPES](value, RESOURCE_TYPES.withName(t.value.get.toSubRefNonUnion[Code]))
     ))
   override def fields(t: Questionnaire_referenceResource): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_referenceResource): Option[String]                   = t.id
   def extractValue(t: Questionnaire_referenceResource): RESOURCE_TYPES =
-    RESOURCE_TYPES.withName(t.value.get.value.asInstanceOf[Code])
+    RESOURCE_TYPES.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                       = "Questionnaire_referenceResource"
   override val searchParams: Map[String, Questionnaire_referenceResource => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_referenceResource): Option[(Option[String], RESOURCE_TYPES)] = Some(
-    (o.id, RESOURCE_TYPES.withName(o.value.get.value.asInstanceOf[Code])))
+    (o.id, RESOURCE_TYPES.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_referenceResource] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

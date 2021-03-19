@@ -44,16 +44,16 @@ object Humanname_assembly_order extends CompanionFor[Humanname_assembly_order] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[NAME_ASSEMBLY_ORDER](value, NAME_ASSEMBLY_ORDER.withName(t.value.get.value.asInstanceOf[Code]))
+      FHIRComponentField[NAME_ASSEMBLY_ORDER](value, NAME_ASSEMBLY_ORDER.withName(t.value.get.toSubRefNonUnion[Code]))
     ))
   override def fields(t: Humanname_assembly_order): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Humanname_assembly_order): Option[String]                   = t.id
   def extractValue(t: Humanname_assembly_order): NAME_ASSEMBLY_ORDER =
-    NAME_ASSEMBLY_ORDER.withName(t.value.get.value.asInstanceOf[Code])
+    NAME_ASSEMBLY_ORDER.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                = "Humanname_assembly_order"
   override val searchParams: Map[String, Humanname_assembly_order => Seq[Any]] = Extension.searchParams
   def unapply(o: Humanname_assembly_order): Option[(Option[String], NAME_ASSEMBLY_ORDER)] = Some(
-    (o.id, NAME_ASSEMBLY_ORDER.withName(o.value.get.value.asInstanceOf[Code])))
+    (o.id, NAME_ASSEMBLY_ORDER.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Humanname_assembly_order] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

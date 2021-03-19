@@ -44,15 +44,15 @@ object Codesystem_warning extends CompanionFor[Codesystem_warning] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Markdown](value, t.value.get.value.asInstanceOf[Markdown])
+      FHIRComponentField[Markdown](value, t.value.get.toSubRefNonUnion[Markdown])
     ))
   override def fields(t: Codesystem_warning): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Codesystem_warning): Option[String]                   = t.id
-  def extractValue(t: Codesystem_warning): Markdown                      = t.value.get.value.asInstanceOf[Markdown]
+  def extractValue(t: Codesystem_warning): Markdown                      = t.value.get.toSubRefNonUnion[Markdown]
   override val thisName: String                                          = "Codesystem_warning"
   override val searchParams: Map[String, Codesystem_warning => Seq[Any]] = Extension.searchParams
   def unapply(o: Codesystem_warning): Option[(Option[String], Markdown)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Markdown]))
+    (o.id, o.value.get.toSubRefNonUnion[Markdown]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Codesystem_warning] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -205,7 +205,7 @@ object Devicemetricobservation extends CompanionFor[Devicemetricobservation] {
       FHIRComponentField[LitSeq[Reference]](hasMember, t.hasMember),
       FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
       FHIRComponentField[LitSeq[Reference]](derivedFrom, t.derivedFrom),
-      FHIRComponentField[FHIRDateTime](effective, t.effective.get.value.asInstanceOf[FHIRDateTime]),
+      FHIRComponentField[FHIRDateTime](effective, t.effective.get.toSubRefNonUnion[FHIRDateTime]),
       FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
       FHIRComponentField[Option[CodeableConcept]](interpretation, t.interpretation.headOption),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
@@ -235,7 +235,7 @@ object Devicemetricobservation extends CompanionFor[Devicemetricobservation] {
   def extractHasMember(t: Devicemetricobservation): LitSeq[Reference]                       = t.hasMember
   def extractIdentifier(t: Devicemetricobservation): LitSeq[Identifier]                     = t.identifier
   def extractDerivedFrom(t: Devicemetricobservation): LitSeq[Reference]                     = t.derivedFrom
-  def extractEffective(t: Devicemetricobservation): FHIRDateTime                            = t.effective.get.value.asInstanceOf[FHIRDateTime]
+  def extractEffective(t: Devicemetricobservation): FHIRDateTime                            = t.effective.get.toSubRefNonUnion[FHIRDateTime]
   def extractImplicitRules(t: Devicemetricobservation): Option[UriStr]                      = t.implicitRules
   def extractInterpretation(t: Devicemetricobservation): Option[CodeableConcept]            = t.interpretation.headOption
   def extractModifierExtension(t: Devicemetricobservation): LitSeq[Extension]               = t.modifierExtension

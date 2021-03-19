@@ -44,14 +44,14 @@ object BodySite extends CompanionFor[BodySite] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
+      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
   override def fields(t: BodySite): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
   def extractId(t: BodySite): Option[String]                    = t.id
-  def extractValue(t: BodySite): Reference                      = t.value.get.value.asInstanceOf[Reference]
+  def extractValue(t: BodySite): Reference                      = t.value.get.toSubRefNonUnion[Reference]
   override val thisName: String                                 = "BodySite"
   override val searchParams: Map[String, BodySite => Seq[Any]]  = Extension.searchParams
-  def unapply(o: BodySite): Option[(Option[String], Reference)] = Some((o.id, o.value.get.value.asInstanceOf[Reference]))
+  def unapply(o: BodySite): Option[(Option[String], Reference)] = Some((o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[BodySite] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

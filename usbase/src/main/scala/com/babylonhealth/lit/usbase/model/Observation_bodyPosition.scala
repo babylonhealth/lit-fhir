@@ -44,15 +44,15 @@ object Observation_bodyPosition extends CompanionFor[Observation_bodyPosition] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
     ))
   override def fields(t: Observation_bodyPosition): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Observation_bodyPosition): Option[String]                   = t.id
-  def extractValue(t: Observation_bodyPosition): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
+  def extractValue(t: Observation_bodyPosition): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                                = "Observation_bodyPosition"
   override val searchParams: Map[String, Observation_bodyPosition => Seq[Any]] = Extension.searchParams
   def unapply(o: Observation_bodyPosition): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Observation_bodyPosition] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

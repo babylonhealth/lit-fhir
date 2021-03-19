@@ -44,15 +44,15 @@ object Cqf_recipientLanguage extends CompanionFor[Cqf_recipientLanguage] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
     ))
   override def fields(t: Cqf_recipientLanguage): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Cqf_recipientLanguage): Option[String]                   = t.id
-  def extractValue(t: Cqf_recipientLanguage): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
+  def extractValue(t: Cqf_recipientLanguage): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                             = "Cqf_recipientLanguage"
   override val searchParams: Map[String, Cqf_recipientLanguage => Seq[Any]] = Extension.searchParams
   def unapply(o: Cqf_recipientLanguage): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Cqf_recipientLanguage] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

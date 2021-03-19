@@ -44,15 +44,15 @@ object Servicerequest_precondition extends CompanionFor[Servicerequest_precondit
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
     ))
   override def fields(t: Servicerequest_precondition): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Servicerequest_precondition): Option[String]                   = t.id
-  def extractValue(t: Servicerequest_precondition): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
+  def extractValue(t: Servicerequest_precondition): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                                   = "Servicerequest_precondition"
   override val searchParams: Map[String, Servicerequest_precondition => Seq[Any]] = Extension.searchParams
   def unapply(o: Servicerequest_precondition): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Servicerequest_precondition] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

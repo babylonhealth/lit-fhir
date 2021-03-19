@@ -44,15 +44,15 @@ object Structuredefinition_fmm extends CompanionFor[Structuredefinition_fmm] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Int](value, t.value.get.value.asInstanceOf[Int])
+      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
     ))
   override def fields(t: Structuredefinition_fmm): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Structuredefinition_fmm): Option[String]                   = t.id
-  def extractValue(t: Structuredefinition_fmm): Int                           = t.value.get.value.asInstanceOf[Int]
+  def extractValue(t: Structuredefinition_fmm): Int                           = t.value.get.toSubRefNonUnion[Int]
   override val thisName: String                                               = "Structuredefinition_fmm"
   override val searchParams: Map[String, Structuredefinition_fmm => Seq[Any]] = Extension.searchParams
   def unapply(o: Structuredefinition_fmm): Option[(Option[String], Int)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Int]))
+    (o.id, o.value.get.toSubRefNonUnion[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Structuredefinition_fmm] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

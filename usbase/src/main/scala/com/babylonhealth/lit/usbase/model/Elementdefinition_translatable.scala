@@ -45,15 +45,15 @@ object Elementdefinition_translatable extends CompanionFor[Elementdefinition_tra
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
     ))
   override def fields(t: Elementdefinition_translatable): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Elementdefinition_translatable): Option[String]                   = t.id
-  def extractValue(t: Elementdefinition_translatable): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
+  def extractValue(t: Elementdefinition_translatable): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                                      = "Elementdefinition_translatable"
   override val searchParams: Map[String, Elementdefinition_translatable => Seq[Any]] = Extension.searchParams
   def unapply(o: Elementdefinition_translatable): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Boolean]))
+    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Elementdefinition_translatable] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

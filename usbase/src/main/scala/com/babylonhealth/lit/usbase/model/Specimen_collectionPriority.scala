@@ -44,15 +44,15 @@ object Specimen_collectionPriority extends CompanionFor[Specimen_collectionPrior
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
     ))
   override def fields(t: Specimen_collectionPriority): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Specimen_collectionPriority): Option[String]                   = t.id
-  def extractValue(t: Specimen_collectionPriority): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
+  def extractValue(t: Specimen_collectionPriority): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                                   = "Specimen_collectionPriority"
   override val searchParams: Map[String, Specimen_collectionPriority => Seq[Any]] = Extension.searchParams
   def unapply(o: Specimen_collectionPriority): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Specimen_collectionPriority] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

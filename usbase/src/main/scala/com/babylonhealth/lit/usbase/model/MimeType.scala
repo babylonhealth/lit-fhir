@@ -44,14 +44,14 @@ object MimeType extends CompanionFor[MimeType] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Code](value, t.value.get.value.asInstanceOf[Code])
+      FHIRComponentField[Code](value, t.value.get.toSubRefNonUnion[Code])
     ))
   override def fields(t: MimeType): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: MimeType): Option[String]                   = t.id
-  def extractValue(t: MimeType): Code                          = t.value.get.value.asInstanceOf[Code]
+  def extractValue(t: MimeType): Code                          = t.value.get.toSubRefNonUnion[Code]
   override val thisName: String                                = "MimeType"
   override val searchParams: Map[String, MimeType => Seq[Any]] = Extension.searchParams
-  def unapply(o: MimeType): Option[(Option[String], Code)]     = Some((o.id, o.value.get.value.asInstanceOf[Code]))
+  def unapply(o: MimeType): Option[(Option[String], Code)]     = Some((o.id, o.value.get.toSubRefNonUnion[Code]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[MimeType] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -44,15 +44,15 @@ object Request_statusReason extends CompanionFor[Request_statusReason] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
     ))
   override def fields(t: Request_statusReason): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Request_statusReason): Option[String]                   = t.id
-  def extractValue(t: Request_statusReason): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
+  def extractValue(t: Request_statusReason): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                            = "Request_statusReason"
   override val searchParams: Map[String, Request_statusReason => Seq[Any]] = Extension.searchParams
   def unapply(o: Request_statusReason): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Request_statusReason] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

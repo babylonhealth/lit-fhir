@@ -44,15 +44,15 @@ object Resource_lastReviewDate extends CompanionFor[Resource_lastReviewDate] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[FHIRDate](value, t.value.get.value.asInstanceOf[FHIRDate])
+      FHIRComponentField[FHIRDate](value, t.value.get.toSubRefNonUnion[FHIRDate])
     ))
   override def fields(t: Resource_lastReviewDate): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Resource_lastReviewDate): Option[String]                   = t.id
-  def extractValue(t: Resource_lastReviewDate): FHIRDate                      = t.value.get.value.asInstanceOf[FHIRDate]
+  def extractValue(t: Resource_lastReviewDate): FHIRDate                      = t.value.get.toSubRefNonUnion[FHIRDate]
   override val thisName: String                                               = "Resource_lastReviewDate"
   override val searchParams: Map[String, Resource_lastReviewDate => Seq[Any]] = Extension.searchParams
   def unapply(o: Resource_lastReviewDate): Option[(Option[String], FHIRDate)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[FHIRDate]))
+    (o.id, o.value.get.toSubRefNonUnion[FHIRDate]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Resource_lastReviewDate] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

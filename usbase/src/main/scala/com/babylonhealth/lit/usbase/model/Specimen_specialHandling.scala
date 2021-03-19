@@ -44,15 +44,15 @@ object Specimen_specialHandling extends CompanionFor[Specimen_specialHandling] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
     ))
   override def fields(t: Specimen_specialHandling): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Specimen_specialHandling): Option[String]                   = t.id
-  def extractValue(t: Specimen_specialHandling): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
+  def extractValue(t: Specimen_specialHandling): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                                = "Specimen_specialHandling"
   override val searchParams: Map[String, Specimen_specialHandling => Seq[Any]] = Extension.searchParams
   def unapply(o: Specimen_specialHandling): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Specimen_specialHandling] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

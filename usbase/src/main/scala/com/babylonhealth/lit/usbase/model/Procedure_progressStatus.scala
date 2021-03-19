@@ -44,15 +44,15 @@ object Procedure_progressStatus extends CompanionFor[Procedure_progressStatus] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
     ))
   override def fields(t: Procedure_progressStatus): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Procedure_progressStatus): Option[String]                   = t.id
-  def extractValue(t: Procedure_progressStatus): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
+  def extractValue(t: Procedure_progressStatus): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                                = "Procedure_progressStatus"
   override val searchParams: Map[String, Procedure_progressStatus => Seq[Any]] = Extension.searchParams
   def unapply(o: Procedure_progressStatus): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Procedure_progressStatus] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -45,16 +45,16 @@ object Capabilities extends CompanionFor[Capabilities] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[SMART_CAPABILITIES](value, SMART_CAPABILITIES.withName(t.value.get.value.asInstanceOf[Code]))
+      FHIRComponentField[SMART_CAPABILITIES](value, SMART_CAPABILITIES.withName(t.value.get.toSubRefNonUnion[Code]))
     ))
   override def fields(t: Capabilities): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Capabilities): Option[String]                   = t.id
   def extractValue(t: Capabilities): SMART_CAPABILITIES =
-    SMART_CAPABILITIES.withName(t.value.get.value.asInstanceOf[Code])
+    SMART_CAPABILITIES.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                    = "Capabilities"
   override val searchParams: Map[String, Capabilities => Seq[Any]] = Extension.searchParams
   def unapply(o: Capabilities): Option[(Option[String], SMART_CAPABILITIES)] = Some(
-    (o.id, SMART_CAPABILITIES.withName(o.value.get.value.asInstanceOf[Code])))
+    (o.id, SMART_CAPABILITIES.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Capabilities] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

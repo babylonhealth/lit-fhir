@@ -44,15 +44,15 @@ object Workflow_instantiatesUri extends CompanionFor[Workflow_instantiatesUri] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
     ))
   override def fields(t: Workflow_instantiatesUri): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Workflow_instantiatesUri): Option[String]                   = t.id
-  def extractValue(t: Workflow_instantiatesUri): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
+  def extractValue(t: Workflow_instantiatesUri): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                                = "Workflow_instantiatesUri"
   override val searchParams: Map[String, Workflow_instantiatesUri => Seq[Any]] = Extension.searchParams
   def unapply(o: Workflow_instantiatesUri): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[UriStr]))
+    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Workflow_instantiatesUri] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

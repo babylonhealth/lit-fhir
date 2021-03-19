@@ -44,15 +44,15 @@ object Patient_genderIdentity extends CompanionFor[Patient_genderIdentity] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
     ))
   override def fields(t: Patient_genderIdentity): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Patient_genderIdentity): Option[String]                   = t.id
-  def extractValue(t: Patient_genderIdentity): CodeableConcept               = t.value.get.value.asInstanceOf[CodeableConcept]
+  def extractValue(t: Patient_genderIdentity): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                              = "Patient_genderIdentity"
   override val searchParams: Map[String, Patient_genderIdentity => Seq[Any]] = Extension.searchParams
   def unapply(o: Patient_genderIdentity): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Patient_genderIdentity] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

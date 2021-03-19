@@ -45,15 +45,15 @@ object Capabilitystatement_supported_system extends CompanionFor[Capabilitystate
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
     ))
   override def fields(t: Capabilitystatement_supported_system): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Capabilitystatement_supported_system): Option[String]                   = t.id
-  def extractValue(t: Capabilitystatement_supported_system): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
+  def extractValue(t: Capabilitystatement_supported_system): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                                            = "Capabilitystatement_supported_system"
   override val searchParams: Map[String, Capabilitystatement_supported_system => Seq[Any]] = Extension.searchParams
   def unapply(o: Capabilitystatement_supported_system): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[UriStr]))
+    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Capabilitystatement_supported_system] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

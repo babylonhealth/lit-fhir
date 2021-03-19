@@ -44,14 +44,14 @@ object EntryFormat extends CompanionFor[EntryFormat] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: EntryFormat): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: EntryFormat): Option[String]                   = t.id
-  def extractValue(t: EntryFormat): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: EntryFormat): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                   = "EntryFormat"
   override val searchParams: Map[String, EntryFormat => Seq[Any]] = Extension.searchParams
-  def unapply(o: EntryFormat): Option[(Option[String], String)]   = Some((o.id, o.value.get.value.asInstanceOf[String]))
+  def unapply(o: EntryFormat): Option[(Option[String], String)]   = Some((o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[EntryFormat] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

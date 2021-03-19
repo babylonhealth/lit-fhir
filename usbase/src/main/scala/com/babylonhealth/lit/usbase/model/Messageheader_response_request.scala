@@ -51,16 +51,16 @@ object Messageheader_response_request extends CompanionFor[Messageheader_respons
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[MESSAGEHEADER_RESPONSE_REQUEST](
         value,
-        MESSAGEHEADER_RESPONSE_REQUEST.withName(t.value.get.value.asInstanceOf[Code]))
+        MESSAGEHEADER_RESPONSE_REQUEST.withName(t.value.get.toSubRefNonUnion[Code]))
     ))
   override def fields(t: Messageheader_response_request): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Messageheader_response_request): Option[String]                   = t.id
   def extractValue(t: Messageheader_response_request): MESSAGEHEADER_RESPONSE_REQUEST =
-    MESSAGEHEADER_RESPONSE_REQUEST.withName(t.value.get.value.asInstanceOf[Code])
+    MESSAGEHEADER_RESPONSE_REQUEST.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                      = "Messageheader_response_request"
   override val searchParams: Map[String, Messageheader_response_request => Seq[Any]] = Extension.searchParams
   def unapply(o: Messageheader_response_request): Option[(Option[String], MESSAGEHEADER_RESPONSE_REQUEST)] = Some(
-    (o.id, MESSAGEHEADER_RESPONSE_REQUEST.withName(o.value.get.value.asInstanceOf[Code])))
+    (o.id, MESSAGEHEADER_RESPONSE_REQUEST.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Messageheader_response_request] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

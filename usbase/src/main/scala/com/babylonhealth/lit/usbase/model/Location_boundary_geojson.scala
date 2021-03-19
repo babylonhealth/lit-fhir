@@ -44,15 +44,15 @@ object Location_boundary_geojson extends CompanionFor[Location_boundary_geojson]
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Attachment](value, t.value.get.value.asInstanceOf[Attachment])
+      FHIRComponentField[Attachment](value, t.value.get.toSubRefNonUnion[Attachment])
     ))
   override def fields(t: Location_boundary_geojson): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Location_boundary_geojson): Option[String]                   = t.id
-  def extractValue(t: Location_boundary_geojson): Attachment                    = t.value.get.value.asInstanceOf[Attachment]
+  def extractValue(t: Location_boundary_geojson): Attachment                    = t.value.get.toSubRefNonUnion[Attachment]
   override val thisName: String                                                 = "Location_boundary_geojson"
   override val searchParams: Map[String, Location_boundary_geojson => Seq[Any]] = Extension.searchParams
   def unapply(o: Location_boundary_geojson): Option[(Option[String], Attachment)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Attachment]))
+    (o.id, o.value.get.toSubRefNonUnion[Attachment]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Location_boundary_geojson] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -45,16 +45,16 @@ object Structuredefinition_template_status extends CompanionFor[Structuredefinit
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[TEMPLATE_STATUS_CODE](value, TEMPLATE_STATUS_CODE.withName(t.value.get.value.asInstanceOf[Code]))
+      FHIRComponentField[TEMPLATE_STATUS_CODE](value, TEMPLATE_STATUS_CODE.withName(t.value.get.toSubRefNonUnion[Code]))
     ))
   override def fields(t: Structuredefinition_template_status): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Structuredefinition_template_status): Option[String]                   = t.id
   def extractValue(t: Structuredefinition_template_status): TEMPLATE_STATUS_CODE =
-    TEMPLATE_STATUS_CODE.withName(t.value.get.value.asInstanceOf[Code])
+    TEMPLATE_STATUS_CODE.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                           = "Structuredefinition_template_status"
   override val searchParams: Map[String, Structuredefinition_template_status => Seq[Any]] = Extension.searchParams
   def unapply(o: Structuredefinition_template_status): Option[(Option[String], TEMPLATE_STATUS_CODE)] = Some(
-    (o.id, TEMPLATE_STATUS_CODE.withName(o.value.get.value.asInstanceOf[Code])))
+    (o.id, TEMPLATE_STATUS_CODE.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Structuredefinition_template_status] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

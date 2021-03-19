@@ -45,16 +45,16 @@ object Hla_genotyping_results_allele_database extends CompanionFor[Hla_genotypin
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
     ))
   override def fields(t: Hla_genotyping_results_allele_database): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Hla_genotyping_results_allele_database): Option[String]                   = t.id
   def extractValue(t: Hla_genotyping_results_allele_database): CodeableConcept =
-    t.value.get.value.asInstanceOf[CodeableConcept]
+    t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                                              = "Hla_genotyping_results_allele_database"
   override val searchParams: Map[String, Hla_genotyping_results_allele_database => Seq[Any]] = Extension.searchParams
   def unapply(o: Hla_genotyping_results_allele_database): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Hla_genotyping_results_allele_database] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

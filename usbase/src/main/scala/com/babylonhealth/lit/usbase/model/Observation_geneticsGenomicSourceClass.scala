@@ -45,16 +45,16 @@ object Observation_geneticsGenomicSourceClass extends CompanionFor[Observation_g
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept])
+      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept])
     ))
   override def fields(t: Observation_geneticsGenomicSourceClass): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Observation_geneticsGenomicSourceClass): Option[String]                   = t.id
   def extractValue(t: Observation_geneticsGenomicSourceClass): CodeableConcept =
-    t.value.get.value.asInstanceOf[CodeableConcept]
+    t.value.get.toSubRefNonUnion[CodeableConcept]
   override val thisName: String                                                              = "Observation_geneticsGenomicSourceClass"
   override val searchParams: Map[String, Observation_geneticsGenomicSourceClass => Seq[Any]] = Extension.searchParams
   def unapply(o: Observation_geneticsGenomicSourceClass): Option[(Option[String], CodeableConcept)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[CodeableConcept]))
+    (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Observation_geneticsGenomicSourceClass] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

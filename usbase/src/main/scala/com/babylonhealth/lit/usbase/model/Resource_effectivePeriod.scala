@@ -44,15 +44,15 @@ object Resource_effectivePeriod extends CompanionFor[Resource_effectivePeriod] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Period](value, t.value.get.value.asInstanceOf[Period])
+      FHIRComponentField[Period](value, t.value.get.toSubRefNonUnion[Period])
     ))
   override def fields(t: Resource_effectivePeriod): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Resource_effectivePeriod): Option[String]                   = t.id
-  def extractValue(t: Resource_effectivePeriod): Period                        = t.value.get.value.asInstanceOf[Period]
+  def extractValue(t: Resource_effectivePeriod): Period                        = t.value.get.toSubRefNonUnion[Period]
   override val thisName: String                                                = "Resource_effectivePeriod"
   override val searchParams: Map[String, Resource_effectivePeriod => Seq[Any]] = Extension.searchParams
   def unapply(o: Resource_effectivePeriod): Option[(Option[String], Period)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Period]))
+    (o.id, o.value.get.toSubRefNonUnion[Period]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Resource_effectivePeriod] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

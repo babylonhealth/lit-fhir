@@ -49,17 +49,17 @@ object Us_core_birthsex extends CompanionFor[Us_core_birthsex] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Option[Code]](value, t.value.map(_.value.asInstanceOf[Code])),
+      FHIRComponentField[Option[Code]](value, t.value.map(_.toSubRefNonUnion[Code])),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension)
     ))
   override def fields(t: Us_core_birthsex): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Us_core_birthsex): Option[String]                   = t.id
-  def extractValue(t: Us_core_birthsex): Option[Code]                  = t.value.map(_.value.asInstanceOf[Code])
+  def extractValue(t: Us_core_birthsex): Option[Code]                  = t.value.map(_.toSubRefNonUnion[Code])
   def extractExtension(t: Us_core_birthsex): LitSeq[Extension]         = t.extension
   override val thisName: String                                        = "Us_core_birthsex"
   override val searchParams: Map[String, Us_core_birthsex => Seq[Any]] = Extension.searchParams
   def unapply(o: Us_core_birthsex): Option[(Option[String], Option[Code], LitSeq[Extension])] = Some(
-    (o.id, o.value.map(_.value.asInstanceOf[Code]), o.extension))
+    (o.id, o.value.map(_.toSubRefNonUnion[Code]), o.extension))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Us_core_birthsex] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

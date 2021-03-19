@@ -44,15 +44,15 @@ object Codesystem_trusted_expansion extends CompanionFor[Codesystem_trusted_expa
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
     ))
   override def fields(t: Codesystem_trusted_expansion): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Codesystem_trusted_expansion): Option[String]                   = t.id
-  def extractValue(t: Codesystem_trusted_expansion): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
+  def extractValue(t: Codesystem_trusted_expansion): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                                    = "Codesystem_trusted_expansion"
   override val searchParams: Map[String, Codesystem_trusted_expansion => Seq[Any]] = Extension.searchParams
   def unapply(o: Codesystem_trusted_expansion): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[UriStr]))
+    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Codesystem_trusted_expansion] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -216,7 +216,7 @@ object Bmi extends CompanionFor[Bmi] {
       FHIRComponentField[Reference](subject, t.subject.get),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-      FHIRComponentField[Quantity](value, t.value.get.value.asInstanceOf[Quantity]),
+      FHIRComponentField[Quantity](value, t.value.get.toSubRefNonUnion[Quantity]),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[Option[Reference]](specimen, t.specimen),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -250,7 +250,7 @@ object Bmi extends CompanionFor[Bmi] {
   def extractSubject(t: Bmi): Reference                                 = t.subject.get
   def extractLanguage(t: Bmi): Option[LANGUAGES]                        = t.language
   def extractCategory(t: Bmi): NonEmptyLitSeq[CodeableConcept]          = t.category.asNonEmpty
-  def extractValue(t: Bmi): Quantity                                    = t.value.get.value.asInstanceOf[Quantity]
+  def extractValue(t: Bmi): Quantity                                    = t.value.get.toSubRefNonUnion[Quantity]
   def extractBodySite(t: Bmi): Option[CodeableConcept]                  = t.bodySite
   def extractSpecimen(t: Bmi): Option[Reference]                        = t.specimen
   def extractContained(t: Bmi): LitSeq[Resource]                        = t.contained

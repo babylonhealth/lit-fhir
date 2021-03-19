@@ -44,14 +44,14 @@ object OriginalText extends CompanionFor[OriginalText] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: OriginalText): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: OriginalText): Option[String]                   = t.id
-  def extractValue(t: OriginalText): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: OriginalText): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                    = "OriginalText"
   override val searchParams: Map[String, OriginalText => Seq[Any]] = Extension.searchParams
-  def unapply(o: OriginalText): Option[(Option[String], String)]   = Some((o.id, o.value.get.value.asInstanceOf[String]))
+  def unapply(o: OriginalText): Option[(Option[String], String)]   = Some((o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[OriginalText] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

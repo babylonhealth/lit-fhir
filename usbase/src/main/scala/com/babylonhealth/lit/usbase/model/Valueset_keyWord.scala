@@ -44,15 +44,15 @@ object Valueset_keyWord extends CompanionFor[Valueset_keyWord] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Valueset_keyWord): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_keyWord): Option[String]                   = t.id
-  def extractValue(t: Valueset_keyWord): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Valueset_keyWord): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                        = "Valueset_keyWord"
   override val searchParams: Map[String, Valueset_keyWord => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_keyWord): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_keyWord] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

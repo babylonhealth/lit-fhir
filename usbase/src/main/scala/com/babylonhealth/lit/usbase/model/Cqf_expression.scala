@@ -44,15 +44,15 @@ object Cqf_expression extends CompanionFor[Cqf_expression] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Expression](value, t.value.get.value.asInstanceOf[Expression])
+      FHIRComponentField[Expression](value, t.value.get.toSubRefNonUnion[Expression])
     ))
   override def fields(t: Cqf_expression): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Cqf_expression): Option[String]                   = t.id
-  def extractValue(t: Cqf_expression): Expression                    = t.value.get.value.asInstanceOf[Expression]
+  def extractValue(t: Cqf_expression): Expression                    = t.value.get.toSubRefNonUnion[Expression]
   override val thisName: String                                      = "Cqf_expression"
   override val searchParams: Map[String, Cqf_expression => Seq[Any]] = Extension.searchParams
   def unapply(o: Cqf_expression): Option[(Option[String], Expression)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Expression]))
+    (o.id, o.value.get.toSubRefNonUnion[Expression]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Cqf_expression] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

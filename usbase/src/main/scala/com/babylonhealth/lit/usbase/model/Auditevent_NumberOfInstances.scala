@@ -44,15 +44,15 @@ object Auditevent_NumberOfInstances extends CompanionFor[Auditevent_NumberOfInst
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Int](value, t.value.get.value.asInstanceOf[Int])
+      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
     ))
   override def fields(t: Auditevent_NumberOfInstances): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Auditevent_NumberOfInstances): Option[String]                   = t.id
-  def extractValue(t: Auditevent_NumberOfInstances): Int                           = t.value.get.value.asInstanceOf[Int]
+  def extractValue(t: Auditevent_NumberOfInstances): Int                           = t.value.get.toSubRefNonUnion[Int]
   override val thisName: String                                                    = "Auditevent_NumberOfInstances"
   override val searchParams: Map[String, Auditevent_NumberOfInstances => Seq[Any]] = Extension.searchParams
   def unapply(o: Auditevent_NumberOfInstances): Option[(Option[String], Int)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Int]))
+    (o.id, o.value.get.toSubRefNonUnion[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Auditevent_NumberOfInstances] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -45,15 +45,15 @@ object Capabilitystatement_prohibited extends CompanionFor[Capabilitystatement_p
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
     ))
   override def fields(t: Capabilitystatement_prohibited): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Capabilitystatement_prohibited): Option[String]                   = t.id
-  def extractValue(t: Capabilitystatement_prohibited): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
+  def extractValue(t: Capabilitystatement_prohibited): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                                      = "Capabilitystatement_prohibited"
   override val searchParams: Map[String, Capabilitystatement_prohibited => Seq[Any]] = Extension.searchParams
   def unapply(o: Capabilitystatement_prohibited): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Boolean]))
+    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Capabilitystatement_prohibited] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

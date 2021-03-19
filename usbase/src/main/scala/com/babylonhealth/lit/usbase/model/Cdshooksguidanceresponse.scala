@@ -163,7 +163,7 @@ object Cdshooksguidanceresponse extends CompanionFor[Cdshooksguidanceresponse] {
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
       FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty),
-      FHIRComponentField[UriStr](module, t.module.value.asInstanceOf[UriStr]),
+      FHIRComponentField[UriStr](module, t.module.toSubRefNonUnion[UriStr]),
       FHIRComponentField[Option[Reference]](encounter, t.encounter),
       FHIRComponentField[Option[Reference]](performer, t.performer),
       FHIRComponentField[Identifier](identifier, t.identifier.head),
@@ -188,7 +188,7 @@ object Cdshooksguidanceresponse extends CompanionFor[Cdshooksguidanceresponse] {
   def extractLanguage(t: Cdshooksguidanceresponse): Option[LANGUAGES]              = t.language
   def extractContained(t: Cdshooksguidanceresponse): LitSeq[Resource]              = t.contained
   def extractExtension(t: Cdshooksguidanceresponse): NonEmptyLitSeq[Extension]     = t.extension.asNonEmpty
-  def extractModule(t: Cdshooksguidanceresponse): UriStr                           = t.module.value.asInstanceOf[UriStr]
+  def extractModule(t: Cdshooksguidanceresponse): UriStr                           = t.module.toSubRefNonUnion[UriStr]
   def extractEncounter(t: Cdshooksguidanceresponse): Option[Reference]             = t.encounter
   def extractPerformer(t: Cdshooksguidanceresponse): Option[Reference]             = t.performer
   def extractIdentifier(t: Cdshooksguidanceresponse): Identifier                   = t.identifier.head

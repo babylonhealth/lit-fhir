@@ -216,7 +216,7 @@ object Resprate extends CompanionFor[Resprate] {
       FHIRComponentField[Reference](subject, t.subject.get),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-      FHIRComponentField[Option[Quantity]](value, t.value.map(_.value.asInstanceOf[Quantity])),
+      FHIRComponentField[Option[Quantity]](value, t.value.map(_.toSubRefNonUnion[Quantity])),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[Option[Reference]](specimen, t.specimen),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -250,7 +250,7 @@ object Resprate extends CompanionFor[Resprate] {
   def extractSubject(t: Resprate): Reference                                 = t.subject.get
   def extractLanguage(t: Resprate): Option[LANGUAGES]                        = t.language
   def extractCategory(t: Resprate): NonEmptyLitSeq[CodeableConcept]          = t.category.asNonEmpty
-  def extractValue(t: Resprate): Option[Quantity]                            = t.value.map(_.value.asInstanceOf[Quantity])
+  def extractValue(t: Resprate): Option[Quantity]                            = t.value.map(_.toSubRefNonUnion[Quantity])
   def extractBodySite(t: Resprate): Option[CodeableConcept]                  = t.bodySite
   def extractSpecimen(t: Resprate): Option[Reference]                        = t.specimen
   def extractContained(t: Resprate): LitSeq[Resource]                        = t.contained

@@ -44,15 +44,15 @@ object Language extends CompanionFor[Language] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[LANGUAGES](value, LANGUAGES.withName(t.value.get.value.asInstanceOf[Code]))
+      FHIRComponentField[LANGUAGES](value, LANGUAGES.withName(t.value.get.toSubRefNonUnion[Code]))
     ))
   override def fields(t: Language): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Language): Option[String]                   = t.id
-  def extractValue(t: Language): LANGUAGES                     = LANGUAGES.withName(t.value.get.value.asInstanceOf[Code])
+  def extractValue(t: Language): LANGUAGES                     = LANGUAGES.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                = "Language"
   override val searchParams: Map[String, Language => Seq[Any]] = Extension.searchParams
   def unapply(o: Language): Option[(Option[String], LANGUAGES)] = Some(
-    (o.id, LANGUAGES.withName(o.value.get.value.asInstanceOf[Code])))
+    (o.id, LANGUAGES.withName(o.value.get.toSubRefNonUnion[Code])))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Language] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

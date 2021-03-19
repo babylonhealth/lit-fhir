@@ -45,17 +45,17 @@ object Composition_clinicaldocument_versionNumber extends CompanionFor[Compositi
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Composition_clinicaldocument_versionNumber): Seq[FHIRComponentField[_]] = fieldsFromParent(
     t).get
   def extractId(t: Composition_clinicaldocument_versionNumber): Option[String] = t.id
-  def extractValue(t: Composition_clinicaldocument_versionNumber): String      = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Composition_clinicaldocument_versionNumber): String      = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                = "Composition_clinicaldocument_versionNumber"
   override val searchParams: Map[String, Composition_clinicaldocument_versionNumber => Seq[Any]] =
     Extension.searchParams
   def unapply(o: Composition_clinicaldocument_versionNumber): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Composition_clinicaldocument_versionNumber] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

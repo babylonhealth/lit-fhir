@@ -44,14 +44,14 @@ object Valueset_conceptOrder extends CompanionFor[Valueset_conceptOrder] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Int](value, t.value.get.value.asInstanceOf[Int])
+      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
     ))
   override def fields(t: Valueset_conceptOrder): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_conceptOrder): Option[String]                   = t.id
-  def extractValue(t: Valueset_conceptOrder): Int                           = t.value.get.value.asInstanceOf[Int]
+  def extractValue(t: Valueset_conceptOrder): Int                           = t.value.get.toSubRefNonUnion[Int]
   override val thisName: String                                             = "Valueset_conceptOrder"
   override val searchParams: Map[String, Valueset_conceptOrder => Seq[Any]] = Extension.searchParams
-  def unapply(o: Valueset_conceptOrder): Option[(Option[String], Int)]      = Some((o.id, o.value.get.value.asInstanceOf[Int]))
+  def unapply(o: Valueset_conceptOrder): Option[(Option[String], Int)]      = Some((o.id, o.value.get.toSubRefNonUnion[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_conceptOrder] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

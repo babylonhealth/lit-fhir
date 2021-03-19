@@ -44,15 +44,15 @@ object Codesystem_author extends CompanionFor[Codesystem_author] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Codesystem_author): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Codesystem_author): Option[String]                   = t.id
-  def extractValue(t: Codesystem_author): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Codesystem_author): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                         = "Codesystem_author"
   override val searchParams: Map[String, Codesystem_author => Seq[Any]] = Extension.searchParams
   def unapply(o: Codesystem_author): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Codesystem_author] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

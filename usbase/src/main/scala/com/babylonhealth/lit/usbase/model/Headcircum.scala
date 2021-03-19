@@ -216,7 +216,7 @@ object Headcircum extends CompanionFor[Headcircum] {
       FHIRComponentField[Reference](subject, t.subject.get),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-      FHIRComponentField[Option[Quantity]](value, t.value.map(_.value.asInstanceOf[Quantity])),
+      FHIRComponentField[Option[Quantity]](value, t.value.map(_.toSubRefNonUnion[Quantity])),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[Option[Reference]](specimen, t.specimen),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -250,7 +250,7 @@ object Headcircum extends CompanionFor[Headcircum] {
   def extractSubject(t: Headcircum): Reference                                 = t.subject.get
   def extractLanguage(t: Headcircum): Option[LANGUAGES]                        = t.language
   def extractCategory(t: Headcircum): NonEmptyLitSeq[CodeableConcept]          = t.category.asNonEmpty
-  def extractValue(t: Headcircum): Option[Quantity]                            = t.value.map(_.value.asInstanceOf[Quantity])
+  def extractValue(t: Headcircum): Option[Quantity]                            = t.value.map(_.toSubRefNonUnion[Quantity])
   def extractBodySite(t: Headcircum): Option[CodeableConcept]                  = t.bodySite
   def extractSpecimen(t: Headcircum): Option[Reference]                        = t.specimen
   def extractContained(t: Headcircum): LitSeq[Resource]                        = t.contained

@@ -44,15 +44,15 @@ object Workflow_reasonReference extends CompanionFor[Workflow_reasonReference] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
+      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
   override def fields(t: Workflow_reasonReference): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Workflow_reasonReference): Option[String]                   = t.id
-  def extractValue(t: Workflow_reasonReference): Reference                     = t.value.get.value.asInstanceOf[Reference]
+  def extractValue(t: Workflow_reasonReference): Reference                     = t.value.get.toSubRefNonUnion[Reference]
   override val thisName: String                                                = "Workflow_reasonReference"
   override val searchParams: Map[String, Workflow_reasonReference => Seq[Any]] = Extension.searchParams
   def unapply(o: Workflow_reasonReference): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Reference]))
+    (o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Workflow_reasonReference] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -44,15 +44,15 @@ object Elementdefinition_question extends CompanionFor[Elementdefinition_questio
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Elementdefinition_question): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Elementdefinition_question): Option[String]                   = t.id
-  def extractValue(t: Elementdefinition_question): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Elementdefinition_question): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                  = "Elementdefinition_question"
   override val searchParams: Map[String, Elementdefinition_question => Seq[Any]] = Extension.searchParams
   def unapply(o: Elementdefinition_question): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Elementdefinition_question] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

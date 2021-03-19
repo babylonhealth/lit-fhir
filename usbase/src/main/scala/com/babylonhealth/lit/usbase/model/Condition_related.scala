@@ -44,15 +44,15 @@ object Condition_related extends CompanionFor[Condition_related] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
+      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
   override def fields(t: Condition_related): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Condition_related): Option[String]                   = t.id
-  def extractValue(t: Condition_related): Reference                     = t.value.get.value.asInstanceOf[Reference]
+  def extractValue(t: Condition_related): Reference                     = t.value.get.toSubRefNonUnion[Reference]
   override val thisName: String                                         = "Condition_related"
   override val searchParams: Map[String, Condition_related => Seq[Any]] = Extension.searchParams
   def unapply(o: Condition_related): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Reference]))
+    (o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Condition_related] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

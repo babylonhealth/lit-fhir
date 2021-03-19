@@ -44,15 +44,15 @@ object Concept_bidirectional extends CompanionFor[Concept_bidirectional] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
     ))
   override def fields(t: Concept_bidirectional): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Concept_bidirectional): Option[String]                   = t.id
-  def extractValue(t: Concept_bidirectional): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
+  def extractValue(t: Concept_bidirectional): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                             = "Concept_bidirectional"
   override val searchParams: Map[String, Concept_bidirectional => Seq[Any]] = Extension.searchParams
   def unapply(o: Concept_bidirectional): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Boolean]))
+    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Concept_bidirectional] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

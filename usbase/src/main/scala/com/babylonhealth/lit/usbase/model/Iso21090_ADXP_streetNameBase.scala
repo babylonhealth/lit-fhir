@@ -44,15 +44,15 @@ object Iso21090_ADXP_streetNameBase extends CompanionFor[Iso21090_ADXP_streetNam
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Iso21090_ADXP_streetNameBase): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Iso21090_ADXP_streetNameBase): Option[String]                   = t.id
-  def extractValue(t: Iso21090_ADXP_streetNameBase): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Iso21090_ADXP_streetNameBase): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                    = "Iso21090_ADXP_streetNameBase"
   override val searchParams: Map[String, Iso21090_ADXP_streetNameBase => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_ADXP_streetNameBase): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_ADXP_streetNameBase] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

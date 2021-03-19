@@ -44,15 +44,15 @@ object Questionnaireresponse_author extends CompanionFor[Questionnaireresponse_a
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
+      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
   override def fields(t: Questionnaireresponse_author): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaireresponse_author): Option[String]                   = t.id
-  def extractValue(t: Questionnaireresponse_author): Reference                     = t.value.get.value.asInstanceOf[Reference]
+  def extractValue(t: Questionnaireresponse_author): Reference                     = t.value.get.toSubRefNonUnion[Reference]
   override val thisName: String                                                    = "Questionnaireresponse_author"
   override val searchParams: Map[String, Questionnaireresponse_author => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaireresponse_author): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Reference]))
+    (o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaireresponse_author] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

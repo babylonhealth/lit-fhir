@@ -45,15 +45,15 @@ object Observation_geneticsDNARegionName extends CompanionFor[Observation_geneti
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Observation_geneticsDNARegionName): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Observation_geneticsDNARegionName): Option[String]                   = t.id
-  def extractValue(t: Observation_geneticsDNARegionName): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Observation_geneticsDNARegionName): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                         = "Observation_geneticsDNARegionName"
   override val searchParams: Map[String, Observation_geneticsDNARegionName => Seq[Any]] = Extension.searchParams
   def unapply(o: Observation_geneticsDNARegionName): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Observation_geneticsDNARegionName] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

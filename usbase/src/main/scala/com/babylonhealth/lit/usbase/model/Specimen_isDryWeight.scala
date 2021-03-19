@@ -44,15 +44,15 @@ object Specimen_isDryWeight extends CompanionFor[Specimen_isDryWeight] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
     ))
   override def fields(t: Specimen_isDryWeight): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Specimen_isDryWeight): Option[String]                   = t.id
-  def extractValue(t: Specimen_isDryWeight): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
+  def extractValue(t: Specimen_isDryWeight): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                            = "Specimen_isDryWeight"
   override val searchParams: Map[String, Specimen_isDryWeight => Seq[Any]] = Extension.searchParams
   def unapply(o: Specimen_isDryWeight): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Boolean]))
+    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Specimen_isDryWeight] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

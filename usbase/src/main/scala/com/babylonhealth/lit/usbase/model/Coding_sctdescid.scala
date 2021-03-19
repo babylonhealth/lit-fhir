@@ -44,14 +44,14 @@ object Coding_sctdescid extends CompanionFor[Coding_sctdescid] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Id](value, t.value.get.value.asInstanceOf[Id])
+      FHIRComponentField[Id](value, t.value.get.toSubRefNonUnion[Id])
     ))
   override def fields(t: Coding_sctdescid): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Coding_sctdescid): Option[String]                   = t.id
-  def extractValue(t: Coding_sctdescid): Id                            = t.value.get.value.asInstanceOf[Id]
+  def extractValue(t: Coding_sctdescid): Id                            = t.value.get.toSubRefNonUnion[Id]
   override val thisName: String                                        = "Coding_sctdescid"
   override val searchParams: Map[String, Coding_sctdescid => Seq[Any]] = Extension.searchParams
-  def unapply(o: Coding_sctdescid): Option[(Option[String], Id)]       = Some((o.id, o.value.get.value.asInstanceOf[Id]))
+  def unapply(o: Coding_sctdescid): Option[(Option[String], Id)]       = Some((o.id, o.value.get.toSubRefNonUnion[Id]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Coding_sctdescid] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

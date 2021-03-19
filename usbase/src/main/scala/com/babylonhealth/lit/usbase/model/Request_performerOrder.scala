@@ -44,15 +44,15 @@ object Request_performerOrder extends CompanionFor[Request_performerOrder] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Int](value, t.value.get.value.asInstanceOf[Int])
+      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
     ))
   override def fields(t: Request_performerOrder): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Request_performerOrder): Option[String]                   = t.id
-  def extractValue(t: Request_performerOrder): Int                           = t.value.get.value.asInstanceOf[Int]
+  def extractValue(t: Request_performerOrder): Int                           = t.value.get.toSubRefNonUnion[Int]
   override val thisName: String                                              = "Request_performerOrder"
   override val searchParams: Map[String, Request_performerOrder => Seq[Any]] = Extension.searchParams
   def unapply(o: Request_performerOrder): Option[(Option[String], Int)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Int]))
+    (o.id, o.value.get.toSubRefNonUnion[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Request_performerOrder] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

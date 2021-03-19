@@ -44,15 +44,15 @@ object Questionnaire_supportLink extends CompanionFor[Questionnaire_supportLink]
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
     ))
   override def fields(t: Questionnaire_supportLink): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_supportLink): Option[String]                   = t.id
-  def extractValue(t: Questionnaire_supportLink): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
+  def extractValue(t: Questionnaire_supportLink): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                                 = "Questionnaire_supportLink"
   override val searchParams: Map[String, Questionnaire_supportLink => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_supportLink): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[UriStr]))
+    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_supportLink] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

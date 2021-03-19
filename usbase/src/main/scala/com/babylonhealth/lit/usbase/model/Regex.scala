@@ -44,14 +44,14 @@ object Regex extends CompanionFor[Regex] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Regex): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Regex): Option[String]                   = t.id
-  def extractValue(t: Regex): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Regex): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                             = "Regex"
   override val searchParams: Map[String, Regex => Seq[Any]] = Extension.searchParams
-  def unapply(o: Regex): Option[(Option[String], String)]   = Some((o.id, o.value.get.value.asInstanceOf[String]))
+  def unapply(o: Regex): Option[(Option[String], String)]   = Some((o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Regex] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

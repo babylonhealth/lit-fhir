@@ -45,15 +45,15 @@ object _11179_permitted_value_valueset extends CompanionFor[_11179_permitted_val
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Canonical](value, t.value.get.value.asInstanceOf[Canonical])
+      FHIRComponentField[Canonical](value, t.value.get.toSubRefNonUnion[Canonical])
     ))
   override def fields(t: _11179_permitted_value_valueset): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: _11179_permitted_value_valueset): Option[String]                   = t.id
-  def extractValue(t: _11179_permitted_value_valueset): Canonical                     = t.value.get.value.asInstanceOf[Canonical]
+  def extractValue(t: _11179_permitted_value_valueset): Canonical                     = t.value.get.toSubRefNonUnion[Canonical]
   override val thisName: String                                                       = "_11179_permitted_value_valueset"
   override val searchParams: Map[String, _11179_permitted_value_valueset => Seq[Any]] = Extension.searchParams
   def unapply(o: _11179_permitted_value_valueset): Option[(Option[String], Canonical)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Canonical]))
+    (o.id, o.value.get.toSubRefNonUnion[Canonical]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[_11179_permitted_value_valueset] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

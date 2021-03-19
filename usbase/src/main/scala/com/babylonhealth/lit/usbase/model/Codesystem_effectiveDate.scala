@@ -44,15 +44,15 @@ object Codesystem_effectiveDate extends CompanionFor[Codesystem_effectiveDate] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[FHIRDate](value, t.value.get.value.asInstanceOf[FHIRDate])
+      FHIRComponentField[FHIRDate](value, t.value.get.toSubRefNonUnion[FHIRDate])
     ))
   override def fields(t: Codesystem_effectiveDate): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Codesystem_effectiveDate): Option[String]                   = t.id
-  def extractValue(t: Codesystem_effectiveDate): FHIRDate                      = t.value.get.value.asInstanceOf[FHIRDate]
+  def extractValue(t: Codesystem_effectiveDate): FHIRDate                      = t.value.get.toSubRefNonUnion[FHIRDate]
   override val thisName: String                                                = "Codesystem_effectiveDate"
   override val searchParams: Map[String, Codesystem_effectiveDate => Seq[Any]] = Extension.searchParams
   def unapply(o: Codesystem_effectiveDate): Option[(Option[String], FHIRDate)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[FHIRDate]))
+    (o.id, o.value.get.toSubRefNonUnion[FHIRDate]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Codesystem_effectiveDate] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

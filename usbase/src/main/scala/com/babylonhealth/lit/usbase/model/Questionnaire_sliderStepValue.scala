@@ -45,15 +45,15 @@ object Questionnaire_sliderStepValue extends CompanionFor[Questionnaire_sliderSt
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Int](value, t.value.get.value.asInstanceOf[Int])
+      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
     ))
   override def fields(t: Questionnaire_sliderStepValue): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_sliderStepValue): Option[String]                   = t.id
-  def extractValue(t: Questionnaire_sliderStepValue): Int                           = t.value.get.value.asInstanceOf[Int]
+  def extractValue(t: Questionnaire_sliderStepValue): Int                           = t.value.get.toSubRefNonUnion[Int]
   override val thisName: String                                                     = "Questionnaire_sliderStepValue"
   override val searchParams: Map[String, Questionnaire_sliderStepValue => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_sliderStepValue): Option[(Option[String], Int)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Int]))
+    (o.id, o.value.get.toSubRefNonUnion[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_sliderStepValue] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

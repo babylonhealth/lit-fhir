@@ -44,15 +44,15 @@ object Condition_assertedDate extends CompanionFor[Condition_assertedDate] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[FHIRDateTime](value, t.value.get.value.asInstanceOf[FHIRDateTime])
+      FHIRComponentField[FHIRDateTime](value, t.value.get.toSubRefNonUnion[FHIRDateTime])
     ))
   override def fields(t: Condition_assertedDate): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Condition_assertedDate): Option[String]                   = t.id
-  def extractValue(t: Condition_assertedDate): FHIRDateTime                  = t.value.get.value.asInstanceOf[FHIRDateTime]
+  def extractValue(t: Condition_assertedDate): FHIRDateTime                  = t.value.get.toSubRefNonUnion[FHIRDateTime]
   override val thisName: String                                              = "Condition_assertedDate"
   override val searchParams: Map[String, Condition_assertedDate => Seq[Any]] = Extension.searchParams
   def unapply(o: Condition_assertedDate): Option[(Option[String], FHIRDateTime)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[FHIRDateTime]))
+    (o.id, o.value.get.toSubRefNonUnion[FHIRDateTime]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Condition_assertedDate] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

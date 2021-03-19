@@ -45,15 +45,15 @@ object Iso21090_ADXP_houseNumberNumeric extends CompanionFor[Iso21090_ADXP_house
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Iso21090_ADXP_houseNumberNumeric): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Iso21090_ADXP_houseNumberNumeric): Option[String]                   = t.id
-  def extractValue(t: Iso21090_ADXP_houseNumberNumeric): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Iso21090_ADXP_houseNumberNumeric): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                        = "Iso21090_ADXP_houseNumberNumeric"
   override val searchParams: Map[String, Iso21090_ADXP_houseNumberNumeric => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_ADXP_houseNumberNumeric): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_ADXP_houseNumberNumeric] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

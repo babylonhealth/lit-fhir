@@ -45,15 +45,15 @@ object Structuredefinition_display_hint extends CompanionFor[Structuredefinition
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Structuredefinition_display_hint): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Structuredefinition_display_hint): Option[String]                   = t.id
-  def extractValue(t: Structuredefinition_display_hint): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Structuredefinition_display_hint): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                        = "Structuredefinition_display_hint"
   override val searchParams: Map[String, Structuredefinition_display_hint => Seq[Any]] = Extension.searchParams
   def unapply(o: Structuredefinition_display_hint): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Structuredefinition_display_hint] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

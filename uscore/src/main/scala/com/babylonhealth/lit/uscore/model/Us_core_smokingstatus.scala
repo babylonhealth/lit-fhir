@@ -224,7 +224,7 @@ object Us_core_smokingstatus extends CompanionFor[Us_core_smokingstatus] {
       FHIRComponentField[Reference](subject, t.subject.get),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
-      FHIRComponentField[CodeableConcept](value, t.value.get.value.asInstanceOf[CodeableConcept]),
+      FHIRComponentField[CodeableConcept](value, t.value.get.toSubRefNonUnion[CodeableConcept]),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[Option[Reference]](specimen, t.specimen),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -258,7 +258,7 @@ object Us_core_smokingstatus extends CompanionFor[Us_core_smokingstatus] {
   def extractSubject(t: Us_core_smokingstatus): Reference                                       = t.subject.get
   def extractLanguage(t: Us_core_smokingstatus): Option[LANGUAGES]                              = t.language
   def extractCategory(t: Us_core_smokingstatus): LitSeq[CodeableConcept]                        = t.category
-  def extractValue(t: Us_core_smokingstatus): CodeableConcept                                   = t.value.get.value.asInstanceOf[CodeableConcept]
+  def extractValue(t: Us_core_smokingstatus): CodeableConcept                                   = t.value.get.toSubRefNonUnion[CodeableConcept]
   def extractBodySite(t: Us_core_smokingstatus): Option[CodeableConcept]                        = t.bodySite
   def extractSpecimen(t: Us_core_smokingstatus): Option[Reference]                              = t.specimen
   def extractContained(t: Us_core_smokingstatus): LitSeq[Resource]                              = t.contained

@@ -44,15 +44,15 @@ object Codesystem_sourceReference extends CompanionFor[Codesystem_sourceReferenc
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
     ))
   override def fields(t: Codesystem_sourceReference): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Codesystem_sourceReference): Option[String]                   = t.id
-  def extractValue(t: Codesystem_sourceReference): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
+  def extractValue(t: Codesystem_sourceReference): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                                  = "Codesystem_sourceReference"
   override val searchParams: Map[String, Codesystem_sourceReference => Seq[Any]] = Extension.searchParams
   def unapply(o: Codesystem_sourceReference): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[UriStr]))
+    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Codesystem_sourceReference] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

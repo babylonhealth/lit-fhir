@@ -44,15 +44,15 @@ object Valueset_deprecated extends CompanionFor[Valueset_deprecated] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
     ))
   override def fields(t: Valueset_deprecated): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_deprecated): Option[String]                   = t.id
-  def extractValue(t: Valueset_deprecated): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
+  def extractValue(t: Valueset_deprecated): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                           = "Valueset_deprecated"
   override val searchParams: Map[String, Valueset_deprecated => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_deprecated): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Boolean]))
+    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_deprecated] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

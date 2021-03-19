@@ -44,15 +44,15 @@ object Questionnaire_optionPrefix extends CompanionFor[Questionnaire_optionPrefi
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Questionnaire_optionPrefix): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_optionPrefix): Option[String]                   = t.id
-  def extractValue(t: Questionnaire_optionPrefix): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Questionnaire_optionPrefix): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                  = "Questionnaire_optionPrefix"
   override val searchParams: Map[String, Questionnaire_optionPrefix => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_optionPrefix): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_optionPrefix] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

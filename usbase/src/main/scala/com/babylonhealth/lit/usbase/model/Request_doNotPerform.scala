@@ -44,15 +44,15 @@ object Request_doNotPerform extends CompanionFor[Request_doNotPerform] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
     ))
   override def fields(t: Request_doNotPerform): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Request_doNotPerform): Option[String]                   = t.id
-  def extractValue(t: Request_doNotPerform): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
+  def extractValue(t: Request_doNotPerform): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                            = "Request_doNotPerform"
   override val searchParams: Map[String, Request_doNotPerform => Seq[Any]] = Extension.searchParams
   def unapply(o: Request_doNotPerform): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Boolean]))
+    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Request_doNotPerform] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

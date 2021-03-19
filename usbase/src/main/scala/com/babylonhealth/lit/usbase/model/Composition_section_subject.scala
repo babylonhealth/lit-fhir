@@ -44,15 +44,15 @@ object Composition_section_subject extends CompanionFor[Composition_section_subj
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Composition_section_subject): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Composition_section_subject): Option[String]                   = t.id
-  def extractValue(t: Composition_section_subject): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Composition_section_subject): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                   = "Composition_section_subject"
   override val searchParams: Map[String, Composition_section_subject => Seq[Any]] = Extension.searchParams
   def unapply(o: Composition_section_subject): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Composition_section_subject] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

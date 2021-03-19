@@ -44,15 +44,15 @@ object Valueset_steward extends CompanionFor[Valueset_steward] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[ContactDetail](value, t.value.get.value.asInstanceOf[ContactDetail])
+      FHIRComponentField[ContactDetail](value, t.value.get.toSubRefNonUnion[ContactDetail])
     ))
   override def fields(t: Valueset_steward): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_steward): Option[String]                   = t.id
-  def extractValue(t: Valueset_steward): ContactDetail                 = t.value.get.value.asInstanceOf[ContactDetail]
+  def extractValue(t: Valueset_steward): ContactDetail                 = t.value.get.toSubRefNonUnion[ContactDetail]
   override val thisName: String                                        = "Valueset_steward"
   override val searchParams: Map[String, Valueset_steward => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_steward): Option[(Option[String], ContactDetail)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[ContactDetail]))
+    (o.id, o.value.get.toSubRefNonUnion[ContactDetail]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_steward] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

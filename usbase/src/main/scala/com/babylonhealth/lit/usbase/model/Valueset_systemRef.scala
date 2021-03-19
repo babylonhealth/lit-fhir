@@ -44,15 +44,15 @@ object Valueset_systemRef extends CompanionFor[Valueset_systemRef] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
     ))
   override def fields(t: Valueset_systemRef): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_systemRef): Option[String]                   = t.id
-  def extractValue(t: Valueset_systemRef): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
+  def extractValue(t: Valueset_systemRef): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                          = "Valueset_systemRef"
   override val searchParams: Map[String, Valueset_systemRef => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_systemRef): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[UriStr]))
+    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_systemRef] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

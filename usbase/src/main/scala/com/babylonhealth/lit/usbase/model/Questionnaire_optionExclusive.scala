@@ -45,15 +45,15 @@ object Questionnaire_optionExclusive extends CompanionFor[Questionnaire_optionEx
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
     ))
   override def fields(t: Questionnaire_optionExclusive): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_optionExclusive): Option[String]                   = t.id
-  def extractValue(t: Questionnaire_optionExclusive): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
+  def extractValue(t: Questionnaire_optionExclusive): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                                     = "Questionnaire_optionExclusive"
   override val searchParams: Map[String, Questionnaire_optionExclusive => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_optionExclusive): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Boolean]))
+    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_optionExclusive] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -44,15 +44,15 @@ object Valueset_warning extends CompanionFor[Valueset_warning] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Markdown](value, t.value.get.value.asInstanceOf[Markdown])
+      FHIRComponentField[Markdown](value, t.value.get.toSubRefNonUnion[Markdown])
     ))
   override def fields(t: Valueset_warning): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_warning): Option[String]                   = t.id
-  def extractValue(t: Valueset_warning): Markdown                      = t.value.get.value.asInstanceOf[Markdown]
+  def extractValue(t: Valueset_warning): Markdown                      = t.value.get.toSubRefNonUnion[Markdown]
   override val thisName: String                                        = "Valueset_warning"
   override val searchParams: Map[String, Valueset_warning => Seq[Any]] = Extension.searchParams
   def unapply(o: Valueset_warning): Option[(Option[String], Markdown)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Markdown]))
+    (o.id, o.value.get.toSubRefNonUnion[Markdown]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_warning] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

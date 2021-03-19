@@ -44,15 +44,15 @@ object Practitionerrole_primaryInd extends CompanionFor[Practitionerrole_primary
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
     ))
   override def fields(t: Practitionerrole_primaryInd): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Practitionerrole_primaryInd): Option[String]                   = t.id
-  def extractValue(t: Practitionerrole_primaryInd): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
+  def extractValue(t: Practitionerrole_primaryInd): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                                   = "Practitionerrole_primaryInd"
   override val searchParams: Map[String, Practitionerrole_primaryInd => Seq[Any]] = Extension.searchParams
   def unapply(o: Practitionerrole_primaryInd): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Boolean]))
+    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Practitionerrole_primaryInd] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

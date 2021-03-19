@@ -44,15 +44,15 @@ object Identifier_validDate extends CompanionFor[Identifier_validDate] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[FHIRDateTime](value, t.value.get.value.asInstanceOf[FHIRDateTime])
+      FHIRComponentField[FHIRDateTime](value, t.value.get.toSubRefNonUnion[FHIRDateTime])
     ))
   override def fields(t: Identifier_validDate): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Identifier_validDate): Option[String]                   = t.id
-  def extractValue(t: Identifier_validDate): FHIRDateTime                  = t.value.get.value.asInstanceOf[FHIRDateTime]
+  def extractValue(t: Identifier_validDate): FHIRDateTime                  = t.value.get.toSubRefNonUnion[FHIRDateTime]
   override val thisName: String                                            = "Identifier_validDate"
   override val searchParams: Map[String, Identifier_validDate => Seq[Any]] = Extension.searchParams
   def unapply(o: Identifier_validDate): Option[(Option[String], FHIRDateTime)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[FHIRDateTime]))
+    (o.id, o.value.get.toSubRefNonUnion[FHIRDateTime]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Identifier_validDate] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -44,15 +44,15 @@ object Procedure_incisionDateTime extends CompanionFor[Procedure_incisionDateTim
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[FHIRDateTime](value, t.value.get.value.asInstanceOf[FHIRDateTime])
+      FHIRComponentField[FHIRDateTime](value, t.value.get.toSubRefNonUnion[FHIRDateTime])
     ))
   override def fields(t: Procedure_incisionDateTime): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Procedure_incisionDateTime): Option[String]                   = t.id
-  def extractValue(t: Procedure_incisionDateTime): FHIRDateTime                  = t.value.get.value.asInstanceOf[FHIRDateTime]
+  def extractValue(t: Procedure_incisionDateTime): FHIRDateTime                  = t.value.get.toSubRefNonUnion[FHIRDateTime]
   override val thisName: String                                                  = "Procedure_incisionDateTime"
   override val searchParams: Map[String, Procedure_incisionDateTime => Seq[Any]] = Extension.searchParams
   def unapply(o: Procedure_incisionDateTime): Option[(Option[String], FHIRDateTime)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[FHIRDateTime]))
+    (o.id, o.value.get.toSubRefNonUnion[FHIRDateTime]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Procedure_incisionDateTime] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

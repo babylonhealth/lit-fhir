@@ -45,15 +45,15 @@ object Operationdefinition_allowed_type extends CompanionFor[Operationdefinition
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
     ))
   override def fields(t: Operationdefinition_allowed_type): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Operationdefinition_allowed_type): Option[String]                   = t.id
-  def extractValue(t: Operationdefinition_allowed_type): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
+  def extractValue(t: Operationdefinition_allowed_type): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                                        = "Operationdefinition_allowed_type"
   override val searchParams: Map[String, Operationdefinition_allowed_type => Seq[Any]] = Extension.searchParams
   def unapply(o: Operationdefinition_allowed_type): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[UriStr]))
+    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Operationdefinition_allowed_type] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

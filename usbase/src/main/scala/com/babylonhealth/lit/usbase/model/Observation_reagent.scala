@@ -44,15 +44,15 @@ object Observation_reagent extends CompanionFor[Observation_reagent] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
+      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
   override def fields(t: Observation_reagent): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Observation_reagent): Option[String]                   = t.id
-  def extractValue(t: Observation_reagent): Reference                     = t.value.get.value.asInstanceOf[Reference]
+  def extractValue(t: Observation_reagent): Reference                     = t.value.get.toSubRefNonUnion[Reference]
   override val thisName: String                                           = "Observation_reagent"
   override val searchParams: Map[String, Observation_reagent => Seq[Any]] = Extension.searchParams
   def unapply(o: Observation_reagent): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Reference]))
+    (o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Observation_reagent] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

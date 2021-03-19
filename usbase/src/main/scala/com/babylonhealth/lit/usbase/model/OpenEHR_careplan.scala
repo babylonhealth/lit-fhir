@@ -44,15 +44,15 @@ object OpenEHR_careplan extends CompanionFor[OpenEHR_careplan] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](value, t.value.get.value.asInstanceOf[Reference])
+      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
   override def fields(t: OpenEHR_careplan): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: OpenEHR_careplan): Option[String]                   = t.id
-  def extractValue(t: OpenEHR_careplan): Reference                     = t.value.get.value.asInstanceOf[Reference]
+  def extractValue(t: OpenEHR_careplan): Reference                     = t.value.get.toSubRefNonUnion[Reference]
   override val thisName: String                                        = "OpenEHR_careplan"
   override val searchParams: Map[String, OpenEHR_careplan => Seq[Any]] = Extension.searchParams
   def unapply(o: OpenEHR_careplan): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Reference]))
+    (o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[OpenEHR_careplan] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

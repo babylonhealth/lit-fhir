@@ -46,17 +46,17 @@ object Composition_clinicaldocument_otherConfidentiality
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Coding](value, t.value.get.value.asInstanceOf[Coding])
+      FHIRComponentField[Coding](value, t.value.get.toSubRefNonUnion[Coding])
     ))
   override def fields(t: Composition_clinicaldocument_otherConfidentiality): Seq[FHIRComponentField[_]] =
     fieldsFromParent(t).get
   def extractId(t: Composition_clinicaldocument_otherConfidentiality): Option[String] = t.id
-  def extractValue(t: Composition_clinicaldocument_otherConfidentiality): Coding      = t.value.get.value.asInstanceOf[Coding]
+  def extractValue(t: Composition_clinicaldocument_otherConfidentiality): Coding      = t.value.get.toSubRefNonUnion[Coding]
   override val thisName: String                                                       = "Composition_clinicaldocument_otherConfidentiality"
   override val searchParams: Map[String, Composition_clinicaldocument_otherConfidentiality => Seq[Any]] =
     Extension.searchParams
   def unapply(o: Composition_clinicaldocument_otherConfidentiality): Option[(Option[String], Coding)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Coding]))
+    (o.id, o.value.get.toSubRefNonUnion[Coding]))
   def decodeThis(cursor: HCursor)(implicit
       params: DecoderParams): Try[Composition_clinicaldocument_otherConfidentiality] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>

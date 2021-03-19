@@ -44,15 +44,15 @@ object Questionnaire_hidden extends CompanionFor[Questionnaire_hidden] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
     ))
   override def fields(t: Questionnaire_hidden): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_hidden): Option[String]                   = t.id
-  def extractValue(t: Questionnaire_hidden): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
+  def extractValue(t: Questionnaire_hidden): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                            = "Questionnaire_hidden"
   override val searchParams: Map[String, Questionnaire_hidden => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_hidden): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Boolean]))
+    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_hidden] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

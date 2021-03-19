@@ -44,15 +44,15 @@ object Contactpoint_country extends CompanionFor[Contactpoint_country] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Contactpoint_country): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Contactpoint_country): Option[String]                   = t.id
-  def extractValue(t: Contactpoint_country): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Contactpoint_country): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                            = "Contactpoint_country"
   override val searchParams: Map[String, Contactpoint_country => Seq[Any]] = Extension.searchParams
   def unapply(o: Contactpoint_country): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Contactpoint_country] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

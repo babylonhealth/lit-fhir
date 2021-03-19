@@ -45,15 +45,15 @@ object Questionnaire_referenceFilter extends CompanionFor[Questionnaire_referenc
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Questionnaire_referenceFilter): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_referenceFilter): Option[String]                   = t.id
-  def extractValue(t: Questionnaire_referenceFilter): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Questionnaire_referenceFilter): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                     = "Questionnaire_referenceFilter"
   override val searchParams: Map[String, Questionnaire_referenceFilter => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaire_referenceFilter): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_referenceFilter] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

@@ -45,15 +45,15 @@ object Organizationaffiliation_primaryInd extends CompanionFor[Organizationaffil
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Boolean](value, t.value.get.value.asInstanceOf[Boolean])
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
     ))
   override def fields(t: Organizationaffiliation_primaryInd): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Organizationaffiliation_primaryInd): Option[String]                   = t.id
-  def extractValue(t: Organizationaffiliation_primaryInd): Boolean                       = t.value.get.value.asInstanceOf[Boolean]
+  def extractValue(t: Organizationaffiliation_primaryInd): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                                          = "Organizationaffiliation_primaryInd"
   override val searchParams: Map[String, Organizationaffiliation_primaryInd => Seq[Any]] = Extension.searchParams
   def unapply(o: Organizationaffiliation_primaryInd): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Boolean]))
+    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Organizationaffiliation_primaryInd] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

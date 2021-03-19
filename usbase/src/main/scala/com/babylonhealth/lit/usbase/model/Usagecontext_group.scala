@@ -44,15 +44,15 @@ object Usagecontext_group extends CompanionFor[Usagecontext_group] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Usagecontext_group): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Usagecontext_group): Option[String]                   = t.id
-  def extractValue(t: Usagecontext_group): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Usagecontext_group): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                          = "Usagecontext_group"
   override val searchParams: Map[String, Usagecontext_group => Seq[Any]] = Extension.searchParams
   def unapply(o: Usagecontext_group): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[String]))
+    (o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Usagecontext_group] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

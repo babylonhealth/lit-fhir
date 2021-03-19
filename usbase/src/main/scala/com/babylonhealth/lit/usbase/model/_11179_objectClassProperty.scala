@@ -44,15 +44,15 @@ object _11179_objectClassProperty extends CompanionFor[_11179_objectClassPropert
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Coding](value, t.value.get.value.asInstanceOf[Coding])
+      FHIRComponentField[Coding](value, t.value.get.toSubRefNonUnion[Coding])
     ))
   override def fields(t: _11179_objectClassProperty): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: _11179_objectClassProperty): Option[String]                   = t.id
-  def extractValue(t: _11179_objectClassProperty): Coding                        = t.value.get.value.asInstanceOf[Coding]
+  def extractValue(t: _11179_objectClassProperty): Coding                        = t.value.get.toSubRefNonUnion[Coding]
   override val thisName: String                                                  = "_11179_objectClassProperty"
   override val searchParams: Map[String, _11179_objectClassProperty => Seq[Any]] = Extension.searchParams
   def unapply(o: _11179_objectClassProperty): Option[(Option[String], Coding)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[Coding]))
+    (o.id, o.value.get.toSubRefNonUnion[Coding]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[_11179_objectClassProperty] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

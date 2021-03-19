@@ -44,14 +44,14 @@ object Cqf_citation extends CompanionFor[Cqf_citation] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[String](value, t.value.get.value.asInstanceOf[String])
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
     ))
   override def fields(t: Cqf_citation): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Cqf_citation): Option[String]                   = t.id
-  def extractValue(t: Cqf_citation): String                        = t.value.get.value.asInstanceOf[String]
+  def extractValue(t: Cqf_citation): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                    = "Cqf_citation"
   override val searchParams: Map[String, Cqf_citation => Seq[Any]] = Extension.searchParams
-  def unapply(o: Cqf_citation): Option[(Option[String], String)]   = Some((o.id, o.value.get.value.asInstanceOf[String]))
+  def unapply(o: Cqf_citation): Option[(Option[String], String)]   = Some((o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Cqf_citation] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(

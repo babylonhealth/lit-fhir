@@ -44,15 +44,15 @@ object Operationoutcome_authority extends CompanionFor[Operationoutcome_authorit
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[UriStr](value, t.value.get.value.asInstanceOf[UriStr])
+      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
     ))
   override def fields(t: Operationoutcome_authority): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Operationoutcome_authority): Option[String]                   = t.id
-  def extractValue(t: Operationoutcome_authority): UriStr                        = t.value.get.value.asInstanceOf[UriStr]
+  def extractValue(t: Operationoutcome_authority): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                                  = "Operationoutcome_authority"
   override val searchParams: Map[String, Operationoutcome_authority => Seq[Any]] = Extension.searchParams
   def unapply(o: Operationoutcome_authority): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.value.asInstanceOf[UriStr]))
+    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Operationoutcome_authority] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
