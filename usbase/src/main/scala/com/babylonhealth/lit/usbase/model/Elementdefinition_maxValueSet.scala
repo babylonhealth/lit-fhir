@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxValueSet] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet")
   type ValueChoice = Choice[Union00545979821]
@@ -42,10 +43,12 @@ object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxV
   val value: FHIRComponentFieldMeta[Elementdefinition_maxValueSet.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_maxValueSet.ValueChoice], true, lTagOf[Union00545979821])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Elementdefinition_maxValueSet): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Elementdefinition_maxValueSet.ValueChoice](value, t.value.get.toSubRef)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Elementdefinition_maxValueSet.ValueChoice](value, t.value.get.toSubRef)
+    ))
+  override def fields(t: Elementdefinition_maxValueSet): Seq[FHIRComponentField[_]]             = fieldsFromParent(t).get
   def extractId(t: Elementdefinition_maxValueSet): Option[String]                               = t.id
   def extractValue(t: Elementdefinition_maxValueSet): Elementdefinition_maxValueSet.ValueChoice = t.value.get.toSubRef
   override val thisName: String                                                                 = "Elementdefinition_maxValueSet"

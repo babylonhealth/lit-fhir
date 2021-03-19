@@ -4,7 +4,7 @@ import java.time.ZonedDateTime
 import java.util.Date
 
 import scala.collection.mutable
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.HCursor
 
@@ -59,12 +59,14 @@ case class TestUnionWrapper3(field: Choice[String \/ Boolean \/ Int], fieldCode:
 }
 
 object TestUnionWrapper1 extends CompanionFor[TestUnionWrapper1] {
+  override type ResourceType = TestUnionWrapper1
   val baseType                            = TestUnionWrapper1
   val thisName: String                    = "TestUnionWrapper1"
   override val profileUrl: Option[String] = Some(thisName)
   val field: FHIRComponentFieldMeta[Choice[String \/ Boolean]] =
     FHIRComponentFieldMeta("field", lTagOf[Choice[String \/ Boolean]], true, lTagOf[Choice[String \/ Boolean]])
-  val fieldsMeta = Seq(field)
+  val fieldsMeta                                                                      = Seq(field)
+  override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: TestUnionWrapper1): Seq[FHIRComponentField[_]] =
     Seq(FHIRComponentField(field, t.field))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper1] =
@@ -74,6 +76,7 @@ object TestUnionWrapper1 extends CompanionFor[TestUnionWrapper1] {
 }
 
 object TestUnionWrapper2 extends CompanionFor[TestUnionWrapper2] {
+  override type ResourceType = TestUnionWrapper2
   val baseType                            = TestUnionWrapper2
   val thisName: String                    = "TestUnionWrapper2"
   override val profileUrl: Option[String] = Some(thisName)
@@ -83,7 +86,8 @@ object TestUnionWrapper2 extends CompanionFor[TestUnionWrapper2] {
       lTagOf[Choice[String \/ Boolean \/ Int]],
       true,
       lTagOf[Choice[String \/ Boolean \/ Int]])
-  val fieldsMeta = Seq(field)
+  val fieldsMeta                                                                      = Seq(field)
+  override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: TestUnionWrapper2): Seq[FHIRComponentField[_]] =
     Seq(FHIRComponentField(field, t.field))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper2] =
@@ -93,6 +97,7 @@ object TestUnionWrapper2 extends CompanionFor[TestUnionWrapper2] {
 }
 
 object TestUnionWrapper3 extends CompanionFor[TestUnionWrapper3] {
+  override type ResourceType = TestUnionWrapper3
   val baseType                            = TestUnionWrapper3
   val thisName: String                    = "TestUnionWrapper3"
   override val profileUrl: Option[String] = Some(thisName)
@@ -102,8 +107,9 @@ object TestUnionWrapper3 extends CompanionFor[TestUnionWrapper3] {
       lTagOf[Choice[String \/ Boolean \/ Int]],
       true,
       lTagOf[Choice[String \/ Boolean \/ Int]])
-  val fieldCode: FHIRComponentFieldMeta[Code] = FHIRComponentFieldMeta("fieldCode", lTagOf[Code], false, lTagOf[Code])
-  val fieldsMeta                              = Seq(field, fieldCode)
+  val fieldCode: FHIRComponentFieldMeta[Code]                                         = FHIRComponentFieldMeta("fieldCode", lTagOf[Code], false, lTagOf[Code])
+  val fieldsMeta                                                                      = Seq(field, fieldCode)
+  override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: TestUnionWrapper3): Seq[FHIRComponentField[_]] =
     Seq(
       FHIRComponentField(field, t.field),

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ChargeItemDefinition extends CompanionFor[ChargeItemDefinition] {
-  override val baseType: CompanionFor[ChargeItemDefinition] = ChargeItemDefinition
-  override val profileUrl: Option[String]                   = Some("http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition")
+  override type ResourceType = ChargeItemDefinition
+  override val baseType: CompanionFor[ResourceType] = ChargeItemDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition")
   object PropertyGroup extends CompanionFor[PropertyGroup] {
+    override type ResourceType = PropertyGroup
     object PriceComponent extends CompanionFor[PriceComponent] {
+      override type ResourceType = PriceComponent
       def apply(
           id: Option[String] = None,
           `type`: INVOICE_PRICECOMPONENTTYPE,
@@ -66,6 +69,7 @@ object ChargeItemDefinition extends CompanionFor[ChargeItemDefinition] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, `type`, code, factor, amount, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: PriceComponent): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[INVOICE_PRICECOMPONENTTYPE](`type`, t.`type`),
@@ -142,6 +146,7 @@ object ChargeItemDefinition extends CompanionFor[ChargeItemDefinition] {
         lTagOf[PropertyGroup.PriceComponent])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, extension, applicability, modifierExtension, priceComponent)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: PropertyGroup): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -174,6 +179,7 @@ object ChargeItemDefinition extends CompanionFor[ChargeItemDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Applicability extends CompanionFor[Applicability] {
+    override type ResourceType = Applicability
     def apply(
         id: Option[String] = None,
         language: Option[String] = None,
@@ -208,6 +214,7 @@ object ChargeItemDefinition extends CompanionFor[ChargeItemDefinition] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, language, extension, expression, description, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Applicability): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[String]](language, t.language),
@@ -412,6 +419,7 @@ object ChargeItemDefinition extends CompanionFor[ChargeItemDefinition] {
     applicability,
     propertyGroup
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ChargeItemDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[UriStr](url, t.url),

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,8 +21,9 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Money extends CompanionFor[Money] {
-  override val baseType: CompanionFor[Money] = Money
-  override val profileUrl: Option[String]    = Some("http://hl7.org/fhir/StructureDefinition/Money")
+  override type ResourceType = Money
+  override val baseType: CompanionFor[ResourceType] = Money
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Money")
   def apply(
       id: Option[String] = None,
       value: Option[BigDecimal] = None,
@@ -44,7 +45,8 @@ object Money extends CompanionFor[Money] {
     FHIRComponentFieldMeta("currency", lTagOf[Option[Code]], false, lTagOf[Code])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value, currency, extension)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, value, currency, extension)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Money): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[BigDecimal]](value, t.value),

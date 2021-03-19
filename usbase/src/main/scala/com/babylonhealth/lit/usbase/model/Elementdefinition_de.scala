@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
-  override val baseType: CompanionFor[ElementDefinition] = ElementDefinition
-  override val profileUrl: Option[String]                = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-de")
+  override type ResourceType = ElementDefinition
+  override val baseType: CompanionFor[ResourceType] = ElementDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-de")
   type MinValueChoice     = Choice[Union_0637176084]
   type MaxValueChoice     = Choice[Union_0637176084]
   type DefaultValueChoice = Choice[Union_1349125893]
@@ -209,37 +210,39 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
     binding,
     constraint
   )
-  override def fields(t: Elementdefinition_de): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[UnsignedInt]](min, t.min),
-    FHIRComponentField[Option[String]](max, t.max),
-    FHIRComponentField[String](path, t.path),
-    FHIRComponentField[LitSeq[Coding]](code, t.code),
-    FHIRComponentField[Option[String]](label, t.label),
-    FHIRComponentField[LitSeq[String]](alias, t.alias),
-    FHIRComponentField[Option[Markdown]](comment, t.comment),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[String]](sliceName, t.sliceName),
-    FHIRComponentField[Option[Int]](maxLength, t.maxLength),
-    FHIRComponentField[LitSeq[Id]](condition, t.condition),
-    FHIRComponentField[Option[Markdown]](definition, t.definition),
-    FHIRComponentField[Option[Elementdefinition_de.MinValueChoice]](minValue, t.minValue),
-    FHIRComponentField[Option[Elementdefinition_de.MaxValueChoice]](maxValue, t.maxValue),
-    FHIRComponentField[Option[Boolean]](mustSupport, t.mustSupport),
-    FHIRComponentField[Option[Markdown]](requirements, t.requirements),
-    FHIRComponentField[Option[String]](orderMeaning, t.orderMeaning),
-    FHIRComponentField[Option[ElementDefinition.Base]](base, t.base),
-    FHIRComponentField[Option[Elementdefinition_de.DefaultValueChoice]](defaultValue, t.defaultValue),
-    FHIRComponentField[Option[String]](isModifierReason, t.isModifierReason),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[ElementDefinition.Example]](example, t.example),
-    FHIRComponentField[LitSeq[ElementDefinition.Mapping]](mapping, t.mapping),
-    FHIRComponentField[LitSeq[ElementDefinition.Type]](`type`, t.`type`),
-    FHIRComponentField[Option[Markdown]](meaningWhenMissing, t.meaningWhenMissing),
-    FHIRComponentField[Option[Boolean]](sliceIsConstraining, t.sliceIsConstraining),
-    FHIRComponentField[Option[ElementDefinition.Binding]](binding, t.binding),
-    FHIRComponentField[LitSeq[ElementDefinition.Constraint]](constraint, t.constraint)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[UnsignedInt]](min, t.min),
+      FHIRComponentField[Option[String]](max, t.max),
+      FHIRComponentField[String](path, t.path),
+      FHIRComponentField[LitSeq[Coding]](code, t.code),
+      FHIRComponentField[Option[String]](label, t.label),
+      FHIRComponentField[LitSeq[String]](alias, t.alias),
+      FHIRComponentField[Option[Markdown]](comment, t.comment),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[String]](sliceName, t.sliceName),
+      FHIRComponentField[Option[Int]](maxLength, t.maxLength),
+      FHIRComponentField[LitSeq[Id]](condition, t.condition),
+      FHIRComponentField[Option[Markdown]](definition, t.definition),
+      FHIRComponentField[Option[Elementdefinition_de.MinValueChoice]](minValue, t.minValue),
+      FHIRComponentField[Option[Elementdefinition_de.MaxValueChoice]](maxValue, t.maxValue),
+      FHIRComponentField[Option[Boolean]](mustSupport, t.mustSupport),
+      FHIRComponentField[Option[Markdown]](requirements, t.requirements),
+      FHIRComponentField[Option[String]](orderMeaning, t.orderMeaning),
+      FHIRComponentField[Option[ElementDefinition.Base]](base, t.base),
+      FHIRComponentField[Option[Elementdefinition_de.DefaultValueChoice]](defaultValue, t.defaultValue),
+      FHIRComponentField[Option[String]](isModifierReason, t.isModifierReason),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[ElementDefinition.Example]](example, t.example),
+      FHIRComponentField[LitSeq[ElementDefinition.Mapping]](mapping, t.mapping),
+      FHIRComponentField[LitSeq[ElementDefinition.Type]](`type`, t.`type`),
+      FHIRComponentField[Option[Markdown]](meaningWhenMissing, t.meaningWhenMissing),
+      FHIRComponentField[Option[Boolean]](sliceIsConstraining, t.sliceIsConstraining),
+      FHIRComponentField[Option[ElementDefinition.Binding]](binding, t.binding),
+      FHIRComponentField[LitSeq[ElementDefinition.Constraint]](constraint, t.constraint)
+    ))
+  override def fields(t: Elementdefinition_de): Seq[FHIRComponentField[_]]                          = fieldsFromParent(t).get
   def extractId(t: Elementdefinition_de): Option[String]                                            = t.id
   def extractMin(t: Elementdefinition_de): Option[UnsignedInt]                                      = t.min
   def extractMax(t: Elementdefinition_de): Option[String]                                           = t.max

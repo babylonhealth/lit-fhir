@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MaxValue extends CompanionFor[MaxValue] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/maxValue")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/maxValue")
   type ValueChoice = Choice[Union00315627715]
   def apply(
       id: Option[String] = None,
@@ -41,10 +42,12 @@ object MaxValue extends CompanionFor[MaxValue] {
   val value: FHIRComponentFieldMeta[MaxValue.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[MaxValue.ValueChoice], true, lTagOf[Union00315627715])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: MaxValue): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[MaxValue.ValueChoice](value, t.value.get.toSubRef)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[MaxValue.ValueChoice](value, t.value.get.toSubRef)
+    ))
+  override def fields(t: MaxValue): Seq[FHIRComponentField[_]]             = fieldsFromParent(t).get
   def extractId(t: MaxValue): Option[String]                               = t.id
   def extractValue(t: MaxValue): MaxValue.ValueChoice                      = t.value.get.toSubRef
   override val thisName: String                                            = "MaxValue"

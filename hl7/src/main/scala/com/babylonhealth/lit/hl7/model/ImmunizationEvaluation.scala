@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
-  override val baseType: CompanionFor[ImmunizationEvaluation] = ImmunizationEvaluation
-  override val profileUrl: Option[String]                     = Some("http://hl7.org/fhir/StructureDefinition/ImmunizationEvaluation")
+  override type ResourceType = ImmunizationEvaluation
+  override val baseType: CompanionFor[ResourceType] = ImmunizationEvaluation
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImmunizationEvaluation")
   type DoseNumberChoice  = Choice[Union_0839638734]
   type SeriesDosesChoice = Choice[Union_0839638734]
   def apply(
@@ -152,6 +153,7 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
     modifierExtension,
     immunizationEvent
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ImmunizationEvaluation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

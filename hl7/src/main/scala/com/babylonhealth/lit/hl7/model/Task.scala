@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Task extends CompanionFor[Task] {
-  override val baseType: CompanionFor[Task] = Task
-  override val profileUrl: Option[String]   = Some("http://hl7.org/fhir/StructureDefinition/Task")
+  override type ResourceType = Task
+  override val baseType: CompanionFor[ResourceType] = Task
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Task")
   object Restriction extends CompanionFor[Restriction] {
+    override type ResourceType = Restriction
     def apply(
         id: Option[String] = None,
         period: Option[Period] = None,
@@ -61,6 +63,7 @@ object Task extends CompanionFor[Task] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, period, extension, recipient, repetitions, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Restriction): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Period]](period, t.period),
@@ -96,7 +99,8 @@ object Task extends CompanionFor[Task] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Output extends CompanionFor[Output] {
-    type ValueChoice = Choice[Union_1349125893]
+    override type ResourceType = Output
+    type ValueChoice           = Choice[Union_1349125893]
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -125,7 +129,8 @@ object Task extends CompanionFor[Task] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, value, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, value, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Output): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[CodeableConcept](`type`, t.`type`),
@@ -158,7 +163,8 @@ object Task extends CompanionFor[Task] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Input extends CompanionFor[Input] {
-    type ValueChoice = Choice[Union_1349125893]
+    override type ResourceType = Input
+    type ValueChoice           = Choice[Union_1349125893]
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -187,7 +193,8 @@ object Task extends CompanionFor[Task] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, value, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, value, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Input): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[CodeableConcept](`type`, t.`type`),
@@ -421,6 +428,7 @@ object Task extends CompanionFor[Task] {
     output,
     restriction
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Task): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Reference]](`for`, t.`for`),

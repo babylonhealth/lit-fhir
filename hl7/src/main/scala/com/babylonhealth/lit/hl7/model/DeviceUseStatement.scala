@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceUseStatement extends CompanionFor[DeviceUseStatement] {
-  override val baseType: CompanionFor[DeviceUseStatement] = DeviceUseStatement
-  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/DeviceUseStatement")
+  override type ResourceType = DeviceUseStatement
+  override val baseType: CompanionFor[ResourceType] = DeviceUseStatement
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceUseStatement")
   type TimingChoice = Choice[Union00609373412]
   def apply(
       id: Option[String] = None,
@@ -139,6 +140,7 @@ object DeviceUseStatement extends CompanionFor[DeviceUseStatement] {
     reasonReference,
     modifierExtension
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: DeviceUseStatement): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

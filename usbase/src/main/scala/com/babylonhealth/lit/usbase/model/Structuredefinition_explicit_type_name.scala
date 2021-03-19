@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_explicit_type_name extends CompanionFor[Structuredefinition_explicit_type_name] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name")
   def apply(
@@ -41,10 +42,12 @@ object Structuredefinition_explicit_type_name extends CompanionFor[Structuredefi
   val value: FHIRComponentFieldMeta[String] =
     FHIRComponentFieldMeta("value", lTagOf[String], true, lTagOf[String])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Structuredefinition_explicit_type_name): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
+    ))
+  override def fields(t: Structuredefinition_explicit_type_name): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Structuredefinition_explicit_type_name): Option[String]                   = t.id
   def extractValue(t: Structuredefinition_explicit_type_name): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                              = "Structuredefinition_explicit_type_name"

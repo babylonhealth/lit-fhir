@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object OpenEHR_administration extends CompanionFor[OpenEHR_administration] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/openEHR-administration")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/openEHR-administration")
   def apply(
       id: Option[String] = None,
       value: Reference,
@@ -40,10 +41,12 @@ object OpenEHR_administration extends CompanionFor[OpenEHR_administration] {
   val value: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("value", lTagOf[Reference], true, lTagOf[Reference])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: OpenEHR_administration): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
+    ))
+  override def fields(t: OpenEHR_administration): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: OpenEHR_administration): Option[String]                   = t.id
   def extractValue(t: OpenEHR_administration): Reference                     = t.value.get.toSubRefNonUnion[Reference]
   override val thisName: String                                              = "OpenEHR_administration"

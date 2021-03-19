@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Ehrsrle_auditevent extends CompanionFor[Ehrsrle_auditevent] {
-  override val baseType: CompanionFor[AuditEvent] = AuditEvent
-  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/ehrsrle-auditevent")
+  override type ResourceType = AuditEvent
+  override val baseType: CompanionFor[ResourceType] = AuditEvent
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ehrsrle-auditevent")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -130,27 +131,29 @@ object Ehrsrle_auditevent extends CompanionFor[Ehrsrle_auditevent] {
     agent,
     entity
   )
-  override def fields(t: Ehrsrle_auditevent): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[Coding](`type`, t.`type`),
-    FHIRComponentField[Option[AUDIT_EVENT_ACTION]](action, t.action),
-    FHIRComponentField[Option[Period]](period, t.period),
-    FHIRComponentField[LitSeq[Coding]](subtype, t.subtype),
-    FHIRComponentField[Option[AUDIT_EVENT_OUTCOME]](outcome, t.outcome),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[ZonedDateTime](recorded, t.recorded),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[String]](outcomeDesc, t.outcomeDesc),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[CodeableConcept]](purposeOfEvent, t.purposeOfEvent),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[AuditEvent.Source](source, t.source),
-    FHIRComponentField[NonEmptyLitSeq[AuditEvent.Agent]](agent, t.agent),
-    FHIRComponentField[LitSeq[AuditEvent.Entity]](entity, t.entity)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[Coding](`type`, t.`type`),
+      FHIRComponentField[Option[AUDIT_EVENT_ACTION]](action, t.action),
+      FHIRComponentField[Option[Period]](period, t.period),
+      FHIRComponentField[LitSeq[Coding]](subtype, t.subtype),
+      FHIRComponentField[Option[AUDIT_EVENT_OUTCOME]](outcome, t.outcome),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[ZonedDateTime](recorded, t.recorded),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[String]](outcomeDesc, t.outcomeDesc),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[CodeableConcept]](purposeOfEvent, t.purposeOfEvent),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[AuditEvent.Source](source, t.source),
+      FHIRComponentField[NonEmptyLitSeq[AuditEvent.Agent]](agent, t.agent),
+      FHIRComponentField[LitSeq[AuditEvent.Entity]](entity, t.entity)
+    ))
+  override def fields(t: Ehrsrle_auditevent): Seq[FHIRComponentField[_]]    = fieldsFromParent(t).get
   def extractId(t: Ehrsrle_auditevent): Option[String]                      = t.id
   def extractMeta(t: Ehrsrle_auditevent): Option[Meta]                      = t.meta
   def extractText(t: Ehrsrle_auditevent): Option[Narrative]                 = t.text

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_applicable_version extends CompanionFor[Structuredefinition_applicable_version] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/structuredefinition-applicable-version")
   def apply(
@@ -41,11 +42,13 @@ object Structuredefinition_applicable_version extends CompanionFor[Structuredefi
   val value: FHIRComponentFieldMeta[FHIR_VERSION] =
     FHIRComponentFieldMeta("value", lTagOf[FHIR_VERSION], true, lTagOf[FHIR_VERSION])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Structuredefinition_applicable_version): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[FHIR_VERSION](value, FHIR_VERSION.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Structuredefinition_applicable_version): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[FHIR_VERSION](value, FHIR_VERSION.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Structuredefinition_applicable_version): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Structuredefinition_applicable_version): Option[String]                   = t.id
   def extractValue(t: Structuredefinition_applicable_version): FHIR_VERSION =
     FHIR_VERSION.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                              = "Structuredefinition_applicable_version"

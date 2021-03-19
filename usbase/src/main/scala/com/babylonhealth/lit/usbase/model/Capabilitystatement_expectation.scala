@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Capabilitystatement_expectation extends CompanionFor[Capabilitystatement_expectation] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation")
   def apply(
@@ -41,13 +42,15 @@ object Capabilitystatement_expectation extends CompanionFor[Capabilitystatement_
   val value: FHIRComponentFieldMeta[CONFORMANCE_EXPECTATION] =
     FHIRComponentFieldMeta("value", lTagOf[CONFORMANCE_EXPECTATION], true, lTagOf[CONFORMANCE_EXPECTATION])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Capabilitystatement_expectation): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[CONFORMANCE_EXPECTATION](
-      value,
-      CONFORMANCE_EXPECTATION.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Capabilitystatement_expectation): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[CONFORMANCE_EXPECTATION](
+        value,
+        CONFORMANCE_EXPECTATION.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Capabilitystatement_expectation): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Capabilitystatement_expectation): Option[String]                   = t.id
   def extractValue(t: Capabilitystatement_expectation): CONFORMANCE_EXPECTATION =
     CONFORMANCE_EXPECTATION.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                       = "Capabilitystatement_expectation"

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,11 +24,15 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Contract extends CompanionFor[Contract] {
-  override val baseType: CompanionFor[Contract] = Contract
-  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/Contract")
+  override type ResourceType = Contract
+  override val baseType: CompanionFor[ResourceType] = Contract
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Contract")
   object Term extends CompanionFor[Term] {
+    override type ResourceType = Term
     object Offer extends CompanionFor[Offer] {
+      override type ResourceType = Offer
       object Party extends CompanionFor[Party] {
+        override type ResourceType = Party
         def apply(
             id: Option[String] = None,
             role: CodeableConcept,
@@ -57,7 +61,8 @@ object Contract extends CompanionFor[Contract] {
           FHIRComponentFieldMeta("reference", lTagOf[NonEmptyLitSeq[Reference]], false, lTagOf[Reference])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, role, extension, reference, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, role, extension, reference, modifierExtension)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Party): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[CodeableConcept](role, t.role),
@@ -91,7 +96,8 @@ object Contract extends CompanionFor[Contract] {
             FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Answer extends CompanionFor[Answer] {
-        type ValueChoice = Choice[Union_2101127777]
+        override type ResourceType = Answer
+        type ValueChoice           = Choice[Union_2101127777]
         def apply(
             id: Option[String] = None,
             value: Answer.ValueChoice,
@@ -115,7 +121,8 @@ object Contract extends CompanionFor[Contract] {
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value, extension, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, value, extension, modifierExtension)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Answer): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[Answer.ValueChoice](value, t.value),
@@ -233,6 +240,7 @@ object Contract extends CompanionFor[Contract] {
         securityLabelNumber,
         party,
         answer)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Offer): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
@@ -290,6 +298,7 @@ object Contract extends CompanionFor[Contract] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object SecurityLabel extends CompanionFor[SecurityLabel] {
+      override type ResourceType = SecurityLabel
       def apply(
           id: Option[String] = None,
           number: LitSeq[UnsignedInt] = LitSeq.empty,
@@ -328,6 +337,7 @@ object Contract extends CompanionFor[Contract] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, number, control, category, extension, classification, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: SecurityLabel): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[LitSeq[UnsignedInt]](number, t.number),
@@ -367,7 +377,9 @@ object Contract extends CompanionFor[Contract] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Action extends CompanionFor[Action] {
+      override type ResourceType = Action
       object Subject extends CompanionFor[Subject] {
+        override type ResourceType = Subject
         def apply(
             id: Option[String] = None,
             role: Option[CodeableConcept] = None,
@@ -396,7 +408,8 @@ object Contract extends CompanionFor[Contract] {
           FHIRComponentFieldMeta("reference", lTagOf[NonEmptyLitSeq[Reference]], false, lTagOf[Reference])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, role, extension, reference, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, role, extension, reference, modifierExtension)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Subject): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[Option[CodeableConcept]](role, t.role),
@@ -557,6 +570,7 @@ object Contract extends CompanionFor[Contract] {
         securityLabelNumber,
         subject
       )
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Action): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[CodeableConcept](`type`, t.`type`),
@@ -647,7 +661,9 @@ object Contract extends CompanionFor[Contract] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Asset extends CompanionFor[Asset] {
+      override type ResourceType = Asset
       object Context extends CompanionFor[Context] {
+        override type ResourceType = Context
         def apply(
             id: Option[String] = None,
             code: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -680,7 +696,8 @@ object Contract extends CompanionFor[Contract] {
           FHIRComponentFieldMeta("reference", lTagOf[Option[Reference]], false, lTagOf[Reference])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, text, extension, reference, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, text, extension, reference, modifierExtension)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Context): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[LitSeq[CodeableConcept]](code, t.code),
@@ -717,7 +734,8 @@ object Contract extends CompanionFor[Contract] {
             FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object ValuedItem extends CompanionFor[ValuedItem] {
-        type EntityChoice = Choice[Union01025009075]
+        override type ResourceType = ValuedItem
+        type EntityChoice          = Choice[Union01025009075]
         def apply(
             id: Option[String] = None,
             net: Option[Money] = None,
@@ -831,6 +849,7 @@ object Contract extends CompanionFor[Contract] {
           modifierExtension,
           securityLabelNumber
         )
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: ValuedItem): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[Option[Money]](net, t.net),
@@ -1022,6 +1041,7 @@ object Contract extends CompanionFor[Contract] {
         context,
         valuedItem
       )
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Asset): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[LitSeq[CodeableConcept]](`type`, t.`type`),
@@ -1194,6 +1214,7 @@ object Contract extends CompanionFor[Contract] {
       securityLabel,
       action,
       asset)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Term): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
@@ -1256,6 +1277,7 @@ object Contract extends CompanionFor[Contract] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ContentDefinition extends CompanionFor[ContentDefinition] {
+    override type ResourceType = ContentDefinition
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -1316,6 +1338,7 @@ object Contract extends CompanionFor[Contract] {
         lTagOf[CONTRACT_PUBLICATIONSTATUS])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, `type`, subType, extension, publisher, copyright, publicationDate, modifierExtension, publicationStatus)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: ContentDefinition): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[CodeableConcept](`type`, t.`type`),
@@ -1360,7 +1383,8 @@ object Contract extends CompanionFor[Contract] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Friendly extends CompanionFor[Friendly] {
-    type ContentChoice = Choice[Union_0340660840]
+    override type ResourceType = Friendly
+    type ContentChoice         = Choice[Union_0340660840]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -1384,7 +1408,8 @@ object Contract extends CompanionFor[Contract] {
       FHIRComponentFieldMeta("content", lTagOf[Friendly.ContentChoice], true, lTagOf[Union_0340660840])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension, content, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Friendly): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -1414,6 +1439,7 @@ object Contract extends CompanionFor[Contract] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Signer extends CompanionFor[Signer] {
+    override type ResourceType = Signer
     def apply(
         id: Option[String] = None,
         `type`: Coding,
@@ -1446,7 +1472,8 @@ object Contract extends CompanionFor[Contract] {
       FHIRComponentFieldMeta("signature", lTagOf[NonEmptyLitSeq[Signature]], false, lTagOf[Signature])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, party, extension, signature, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, party, extension, signature, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Signer): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Coding](`type`, t.`type`),
@@ -1482,7 +1509,8 @@ object Contract extends CompanionFor[Contract] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Legal extends CompanionFor[Legal] {
-    type ContentChoice = Choice[Union_0340660840]
+    override type ResourceType = Legal
+    type ContentChoice         = Choice[Union_0340660840]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -1506,7 +1534,8 @@ object Contract extends CompanionFor[Contract] {
       FHIRComponentFieldMeta("content", lTagOf[Legal.ContentChoice], true, lTagOf[Union_0340660840])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension, content, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Legal): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -1536,7 +1565,8 @@ object Contract extends CompanionFor[Contract] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Rule extends CompanionFor[Rule] {
-    type ContentChoice = Choice[Union_0340660840]
+    override type ResourceType = Rule
+    type ContentChoice         = Choice[Union_0340660840]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -1560,7 +1590,8 @@ object Contract extends CompanionFor[Contract] {
       FHIRComponentFieldMeta("content", lTagOf[Rule.ContentChoice], true, lTagOf[Union_0340660840])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension, content, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Rule): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -1811,6 +1842,7 @@ object Contract extends CompanionFor[Contract] {
     contentDefinition,
     term
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Contract): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),

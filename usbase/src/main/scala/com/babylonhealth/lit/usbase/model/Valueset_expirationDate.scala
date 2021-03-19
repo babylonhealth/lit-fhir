@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_expirationDate extends CompanionFor[Valueset_expirationDate] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/valueset-expirationDate")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-expirationDate")
   def apply(
       id: Option[String] = None,
       value: FHIRDate,
@@ -40,10 +41,12 @@ object Valueset_expirationDate extends CompanionFor[Valueset_expirationDate] {
   val value: FHIRComponentFieldMeta[FHIRDate] =
     FHIRComponentFieldMeta("value", lTagOf[FHIRDate], true, lTagOf[FHIRDate])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Valueset_expirationDate): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[FHIRDate](value, t.value.get.toSubRefNonUnion[FHIRDate])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[FHIRDate](value, t.value.get.toSubRefNonUnion[FHIRDate])
+    ))
+  override def fields(t: Valueset_expirationDate): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_expirationDate): Option[String]                   = t.id
   def extractValue(t: Valueset_expirationDate): FHIRDate                      = t.value.get.toSubRefNonUnion[FHIRDate]
   override val thisName: String                                               = "Valueset_expirationDate"

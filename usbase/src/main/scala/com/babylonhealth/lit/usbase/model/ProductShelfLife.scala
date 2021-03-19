@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ProductShelfLife extends CompanionFor[ProductShelfLife] {
-  override val baseType: CompanionFor[ProductShelfLife] = ProductShelfLife
-  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/ProductShelfLife")
+  override type ResourceType = ProductShelfLife
+  override val baseType: CompanionFor[ResourceType] = ProductShelfLife
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ProductShelfLife")
   def apply(
       id: Option[String] = None,
       `type`: CodeableConcept,
@@ -65,6 +66,7 @@ object ProductShelfLife extends CompanionFor[ProductShelfLife] {
       lTagOf[CodeableConcept])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, `type`, period, extension, identifier, modifierExtension, specialPrecautionsForStorage)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ProductShelfLife): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[CodeableConcept](`type`, t.`type`),

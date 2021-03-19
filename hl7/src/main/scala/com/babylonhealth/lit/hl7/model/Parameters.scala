@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -23,10 +23,12 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Parameters extends CompanionFor[Parameters] {
-  override val baseType: CompanionFor[Parameters] = Parameters
-  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/Parameters")
+  override type ResourceType = Parameters
+  override val baseType: CompanionFor[ResourceType] = Parameters
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Parameters")
   object Parameter extends CompanionFor[Parameter] {
-    type ValueChoice = Choice[Union_1349125893]
+    override type ResourceType = Parameter
+    type ValueChoice           = Choice[Union_1349125893]
     def apply(
         id: Option[String] = None,
         name: String,
@@ -63,7 +65,8 @@ object Parameters extends CompanionFor[Parameters] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, part, value, resource, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, name, part, value, resource, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Parameter): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[String](name, t.name),
@@ -126,7 +129,8 @@ object Parameters extends CompanionFor[Parameters] {
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val parameter: FHIRComponentFieldMeta[LitSeq[Parameters.Parameter]] =
     FHIRComponentFieldMeta("parameter", lTagOf[LitSeq[Parameters.Parameter]], false, lTagOf[Parameters.Parameter])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, meta, language, implicitRules, parameter)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, meta, language, implicitRules, parameter)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Parameters): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

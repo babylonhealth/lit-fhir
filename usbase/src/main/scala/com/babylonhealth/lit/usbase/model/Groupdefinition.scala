@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Groupdefinition extends CompanionFor[Groupdefinition] {
-  override val baseType: CompanionFor[Group] = Group
-  override val profileUrl: Option[String]    = Some("http://hl7.org/fhir/StructureDefinition/groupdefinition")
+  override type ResourceType = Group
+  override val baseType: CompanionFor[ResourceType] = Group
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/groupdefinition")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/groupdefinition"))),
@@ -119,25 +120,27 @@ object Groupdefinition extends CompanionFor[Groupdefinition] {
     modifierExtension,
     characteristic
   )
-  override def fields(t: Groupdefinition): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[GROUP_TYPE](`type`, t.`type`),
-    FHIRComponentField[Option[CodeableConcept]](code, t.code),
-    FHIRComponentField[Option[String]](name, t.name),
-    FHIRComponentField[Option[Boolean]](active, t.active),
-    FHIRComponentField[Boolean](actual, t.actual),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[UnsignedInt]](quantity, t.quantity),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[Reference]](managingEntity, t.managingEntity),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Group.Characteristic]](characteristic, t.characteristic)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[GROUP_TYPE](`type`, t.`type`),
+      FHIRComponentField[Option[CodeableConcept]](code, t.code),
+      FHIRComponentField[Option[String]](name, t.name),
+      FHIRComponentField[Option[Boolean]](active, t.active),
+      FHIRComponentField[Boolean](actual, t.actual),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[Option[UnsignedInt]](quantity, t.quantity),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[Reference]](managingEntity, t.managingEntity),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Group.Characteristic]](characteristic, t.characteristic)
+    ))
+  override def fields(t: Groupdefinition): Seq[FHIRComponentField[_]]         = fieldsFromParent(t).get
   def extractId(t: Groupdefinition): Option[String]                           = t.id
   def extractMeta(t: Groupdefinition): Option[Meta]                           = t.meta
   def extractText(t: Groupdefinition): Option[Narrative]                      = t.text

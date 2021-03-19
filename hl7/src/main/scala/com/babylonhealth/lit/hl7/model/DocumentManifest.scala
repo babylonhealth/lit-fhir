@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DocumentManifest extends CompanionFor[DocumentManifest] {
-  override val baseType: CompanionFor[DocumentManifest] = DocumentManifest
-  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/DocumentManifest")
+  override type ResourceType = DocumentManifest
+  override val baseType: CompanionFor[ResourceType] = DocumentManifest
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DocumentManifest")
   object Related extends CompanionFor[Related] {
+    override type ResourceType = Related
     def apply(
         id: Option[String] = None,
         ref: Option[Reference] = None,
@@ -55,7 +57,8 @@ object DocumentManifest extends CompanionFor[DocumentManifest] {
       FHIRComponentFieldMeta("identifier", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, ref, extension, identifier, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, ref, extension, identifier, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Related): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Reference]](ref, t.ref),
@@ -194,6 +197,7 @@ object DocumentManifest extends CompanionFor[DocumentManifest] {
     modifierExtension,
     related
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: DocumentManifest): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

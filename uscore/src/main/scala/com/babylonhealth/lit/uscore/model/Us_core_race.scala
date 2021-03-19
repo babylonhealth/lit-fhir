@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_race extends CompanionFor[Us_core_race] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-race")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-race")
   def apply(
       id: Option[String] = None,
       extension: NonEmptyLitSeq[Extension],
@@ -41,10 +42,12 @@ object Us_core_race extends CompanionFor[Us_core_race] {
   val extension: FHIRComponentFieldMeta[NonEmptyLitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[NonEmptyLitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension)
-  override def fields(t: Us_core_race): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
+    ))
+  override def fields(t: Us_core_race): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Us_core_race): Option[String]                   = t.id
   def extractExtension(t: Us_core_race): NonEmptyLitSeq[Extension] = t.extension.asNonEmpty
   override val thisName: String                                    = "Us_core_race"

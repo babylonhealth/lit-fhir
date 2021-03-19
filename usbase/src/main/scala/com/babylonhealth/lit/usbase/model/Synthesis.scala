@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Synthesis extends CompanionFor[Synthesis] {
-  override val baseType: CompanionFor[Evidence] = Evidence
-  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/synthesis")
+  override type ResourceType = Evidence
+  override val baseType: CompanionFor[ResourceType] = Evidence
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/synthesis")
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -214,44 +215,46 @@ object Synthesis extends CompanionFor[Synthesis] {
     modifierExtension,
     exposureBackground
   )
-  override def fields(t: Synthesis): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[UriStr]](url, t.url),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[Option[String]](name, t.name),
-    FHIRComponentField[Option[FHIRDateTime]](date, t.date),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[Option[String]](title, t.title),
-    FHIRComponentField[LitSeq[CodeableConcept]](topic, t.topic),
-    FHIRComponentField[PUBLICATION_STATUS](status, t.status),
-    FHIRComponentField[LitSeq[ContactDetail]](author, t.author),
-    FHIRComponentField[LitSeq[ContactDetail]](editor, t.editor),
-    FHIRComponentField[Option[String]](version, t.version),
-    FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
-    FHIRComponentField[NonEmptyLitSeq[Reference]](outcome, t.outcome.asNonEmpty),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[String]](subtitle, t.subtitle),
-    FHIRComponentField[LitSeq[ContactDetail]](reviewer, t.reviewer),
-    FHIRComponentField[LitSeq[ContactDetail]](endorser, t.endorser),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[String]](publisher, t.publisher),
-    FHIRComponentField[Option[Markdown]](copyright, t.copyright),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[String]](shortTitle, t.shortTitle),
-    FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
-    FHIRComponentField[Option[Markdown]](description, t.description),
-    FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
-    FHIRComponentField[Option[FHIRDate]](approvalDate, t.approvalDate),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[FHIRDate]](lastReviewDate, t.lastReviewDate),
-    FHIRComponentField[Option[Period]](effectivePeriod, t.effectivePeriod),
-    FHIRComponentField[LitSeq[RelatedArtifact]](relatedArtifact, t.relatedArtifact),
-    FHIRComponentField[NonEmptyLitSeq[Reference]](exposureVariant, t.exposureVariant.asNonEmpty),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[Reference](exposureBackground, t.exposureBackground)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[UriStr]](url, t.url),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[Option[String]](name, t.name),
+      FHIRComponentField[Option[FHIRDateTime]](date, t.date),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[Option[String]](title, t.title),
+      FHIRComponentField[LitSeq[CodeableConcept]](topic, t.topic),
+      FHIRComponentField[PUBLICATION_STATUS](status, t.status),
+      FHIRComponentField[LitSeq[ContactDetail]](author, t.author),
+      FHIRComponentField[LitSeq[ContactDetail]](editor, t.editor),
+      FHIRComponentField[Option[String]](version, t.version),
+      FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
+      FHIRComponentField[NonEmptyLitSeq[Reference]](outcome, t.outcome.asNonEmpty),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[Option[String]](subtitle, t.subtitle),
+      FHIRComponentField[LitSeq[ContactDetail]](reviewer, t.reviewer),
+      FHIRComponentField[LitSeq[ContactDetail]](endorser, t.endorser),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[String]](publisher, t.publisher),
+      FHIRComponentField[Option[Markdown]](copyright, t.copyright),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[String]](shortTitle, t.shortTitle),
+      FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
+      FHIRComponentField[Option[Markdown]](description, t.description),
+      FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
+      FHIRComponentField[Option[FHIRDate]](approvalDate, t.approvalDate),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[FHIRDate]](lastReviewDate, t.lastReviewDate),
+      FHIRComponentField[Option[Period]](effectivePeriod, t.effectivePeriod),
+      FHIRComponentField[LitSeq[RelatedArtifact]](relatedArtifact, t.relatedArtifact),
+      FHIRComponentField[NonEmptyLitSeq[Reference]](exposureVariant, t.exposureVariant.asNonEmpty),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Reference](exposureBackground, t.exposureBackground)
+    ))
+  override def fields(t: Synthesis): Seq[FHIRComponentField[_]]       = fieldsFromParent(t).get
   def extractId(t: Synthesis): Option[String]                         = t.id
   def extractUrl(t: Synthesis): Option[UriStr]                        = t.url
   def extractMeta(t: Synthesis): Option[Meta]                         = t.meta

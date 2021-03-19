@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Media extends CompanionFor[Media] {
-  override val baseType: CompanionFor[Media] = Media
-  override val profileUrl: Option[String]    = Some("http://hl7.org/fhir/StructureDefinition/Media")
+  override type ResourceType = Media
+  override val baseType: CompanionFor[ResourceType] = Media
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Media")
   type CreatedChoice = Choice[Union_0934386166]
   def apply(
       id: Option[String] = None,
@@ -184,6 +185,7 @@ object Media extends CompanionFor[Media] {
     implicitRules,
     modifierExtension
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Media): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

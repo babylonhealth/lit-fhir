@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,7 +26,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_diagnosticreport_note extends CompanionFor[Us_core_diagnosticreport_note] {
-  override val baseType: CompanionFor[DiagnosticReport] = DiagnosticReport
+  override type ResourceType = DiagnosticReport
+  override val baseType: CompanionFor[ResourceType] = DiagnosticReport
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note")
   type EffectiveChoice = Choice[Union_0934386166]
@@ -172,34 +173,36 @@ object Us_core_diagnosticreport_note extends CompanionFor[Us_core_diagnosticrepo
     resultsInterpreter,
     media
   )
-  override def fields(t: Us_core_diagnosticreport_note): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[CodeableConcept](code, t.code),
-    FHIRComponentField[DIAGNOSTIC_REPORT_STATUS](status, t.status),
-    FHIRComponentField[Option[ZonedDateTime]](issued, t.issued),
-    FHIRComponentField[LitSeq[Reference]](result, t.result),
-    FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
-    FHIRComponentField[Reference](subject, t.subject.get),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-    FHIRComponentField[LitSeq[Reference]](specimen, t.specimen),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[LitSeq[Reference]](performer, t.performer),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[String]](conclusion, t.conclusion),
-    FHIRComponentField[Us_core_diagnosticreport_note.EffectiveChoice](effective, t.effective.get),
-    FHIRComponentField[LitSeq[Reference]](imagingStudy, t.imagingStudy),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[Attachment]](presentedForm, t.presentedForm),
-    FHIRComponentField[LitSeq[CodeableConcept]](conclusionCode, t.conclusionCode),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Reference]](resultsInterpreter, t.resultsInterpreter),
-    FHIRComponentField[LitSeq[DiagnosticReport.Media]](media, t.media)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[CodeableConcept](code, t.code),
+      FHIRComponentField[DIAGNOSTIC_REPORT_STATUS](status, t.status),
+      FHIRComponentField[Option[ZonedDateTime]](issued, t.issued),
+      FHIRComponentField[LitSeq[Reference]](result, t.result),
+      FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
+      FHIRComponentField[Reference](subject, t.subject.get),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
+      FHIRComponentField[LitSeq[Reference]](specimen, t.specimen),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[LitSeq[Reference]](performer, t.performer),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[String]](conclusion, t.conclusion),
+      FHIRComponentField[Us_core_diagnosticreport_note.EffectiveChoice](effective, t.effective.get),
+      FHIRComponentField[LitSeq[Reference]](imagingStudy, t.imagingStudy),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[Attachment]](presentedForm, t.presentedForm),
+      FHIRComponentField[LitSeq[CodeableConcept]](conclusionCode, t.conclusionCode),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Reference]](resultsInterpreter, t.resultsInterpreter),
+      FHIRComponentField[LitSeq[DiagnosticReport.Media]](media, t.media)
+    ))
+  override def fields(t: Us_core_diagnosticreport_note): Seq[FHIRComponentField[_]]      = fieldsFromParent(t).get
   def extractId(t: Us_core_diagnosticreport_note): Option[String]                        = t.id
   def extractMeta(t: Us_core_diagnosticreport_note): Option[Meta]                        = t.meta
   def extractText(t: Us_core_diagnosticreport_note): Option[Narrative]                   = t.text

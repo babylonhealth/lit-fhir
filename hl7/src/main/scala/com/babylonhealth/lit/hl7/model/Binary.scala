@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -23,8 +23,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Binary extends CompanionFor[Binary] {
-  override val baseType: CompanionFor[Binary] = Binary
-  override val profileUrl: Option[String]     = Some("http://hl7.org/fhir/StructureDefinition/Binary")
+  override type ResourceType = Binary
+  override val baseType: CompanionFor[ResourceType] = Binary
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Binary")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -60,6 +61,7 @@ object Binary extends CompanionFor[Binary] {
     FHIRComponentFieldMeta("securityContext", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, meta, data, language, contentType, implicitRules, securityContext)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Binary): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

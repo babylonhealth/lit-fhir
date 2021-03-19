@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Specimen_sequenceNumber extends CompanionFor[Specimen_sequenceNumber] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber")
   def apply(
       id: Option[String] = None,
       value: Int,
@@ -40,10 +41,12 @@ object Specimen_sequenceNumber extends CompanionFor[Specimen_sequenceNumber] {
   val value: FHIRComponentFieldMeta[Int] =
     FHIRComponentFieldMeta("value", lTagOf[Int], true, lTagOf[Int])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Specimen_sequenceNumber): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
+    ))
+  override def fields(t: Specimen_sequenceNumber): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Specimen_sequenceNumber): Option[String]                   = t.id
   def extractValue(t: Specimen_sequenceNumber): Int                           = t.value.get.toSubRefNonUnion[Int]
   override val thisName: String                                               = "Specimen_sequenceNumber"

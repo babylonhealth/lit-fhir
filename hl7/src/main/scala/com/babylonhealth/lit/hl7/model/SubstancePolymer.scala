@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -23,11 +23,15 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstancePolymer extends CompanionFor[SubstancePolymer] {
-  override val baseType: CompanionFor[SubstancePolymer] = SubstancePolymer
-  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/SubstancePolymer")
+  override type ResourceType = SubstancePolymer
+  override val baseType: CompanionFor[ResourceType] = SubstancePolymer
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstancePolymer")
   object Repeat extends CompanionFor[Repeat] {
+    override type ResourceType = Repeat
     object RepeatUnit extends CompanionFor[RepeatUnit] {
+      override type ResourceType = RepeatUnit
       object DegreeOfPolymerisation extends CompanionFor[DegreeOfPolymerisation] {
+        override type ResourceType = DegreeOfPolymerisation
         def apply(
             id: Option[String] = None,
             degree: Option[CodeableConcept] = None,
@@ -60,7 +64,8 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, degree, amount, extension, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, degree, amount, extension, modifierExtension)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: DegreeOfPolymerisation): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[Option[CodeableConcept]](degree, t.degree),
@@ -94,6 +99,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
             FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object StructuralRepresentation extends CompanionFor[StructuralRepresentation] {
+        override type ResourceType = StructuralRepresentation
         def apply(
             id: Option[String] = None,
             `type`: Option[CodeableConcept] = None,
@@ -128,6 +134,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
           Seq(id, `type`, extension, attachment, representation, modifierExtension)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: StructuralRepresentation): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
@@ -237,6 +244,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
         orientationOfPolymerisation,
         degreeOfPolymerisation,
         structuralRepresentation)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: RepeatUnit): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[Choice["SubstanceAmount"]]](amount, t.amount),
@@ -327,6 +335,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       FHIRComponentFieldMeta("repeatUnit", lTagOf[LitSeq[Repeat.RepeatUnit]], false, lTagOf[Repeat.RepeatUnit])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, extension, numberOfUnits, modifierExtension, repeatUnitAmountType, averageMolecularFormula, repeatUnit)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Repeat): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -365,7 +374,9 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object MonomerSet extends CompanionFor[MonomerSet] {
+    override type ResourceType = MonomerSet
     object StartingMaterial extends CompanionFor[StartingMaterial] {
+      override type ResourceType = StartingMaterial
       def apply(
           id: Option[String] = None,
           `type`: Option[CodeableConcept] = None,
@@ -408,6 +419,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, `type`, amount, material, extension, isDefining, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: StartingMaterial): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
@@ -478,7 +490,8 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
         lTagOf[LitSeq[MonomerSet.StartingMaterial]],
         false,
         lTagOf[MonomerSet.StartingMaterial])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, ratioType, modifierExtension, startingMaterial)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension, ratioType, modifierExtension, startingMaterial)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: MonomerSet): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -590,6 +603,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
     copolymerConnectivity,
     monomerSet,
     repeat)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: SubstancePolymer): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

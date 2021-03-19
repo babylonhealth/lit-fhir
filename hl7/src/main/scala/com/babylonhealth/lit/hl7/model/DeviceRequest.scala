@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,12 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceRequest extends CompanionFor[DeviceRequest] {
-  override val baseType: CompanionFor[DeviceRequest] = DeviceRequest
-  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/DeviceRequest")
+  override type ResourceType = DeviceRequest
+  override val baseType: CompanionFor[ResourceType] = DeviceRequest
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceRequest")
   object Parameter extends CompanionFor[Parameter] {
-    type ValueChoice = Choice[Union_1516277229]
+    override type ResourceType = Parameter
+    type ValueChoice           = Choice[Union_1516277229]
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,
@@ -56,7 +58,8 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, value, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, value, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Parameter): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[CodeableConcept]](code, t.code),
@@ -257,6 +260,7 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     instantiatesCanonical,
     parameter
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: DeviceRequest): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

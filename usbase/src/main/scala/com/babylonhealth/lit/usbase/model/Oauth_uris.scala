@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Oauth_uris extends CompanionFor[Oauth_uris] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris")
   def apply(
@@ -41,10 +42,12 @@ object Oauth_uris extends CompanionFor[Oauth_uris] {
   val extension: FHIRComponentFieldMeta[NonEmptyLitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[NonEmptyLitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension)
-  override def fields(t: Oauth_uris): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
+    ))
+  override def fields(t: Oauth_uris): Seq[FHIRComponentField[_]]                  = fieldsFromParent(t).get
   def extractId(t: Oauth_uris): Option[String]                                    = t.id
   def extractExtension(t: Oauth_uris): NonEmptyLitSeq[Extension]                  = t.extension.asNonEmpty
   override val thisName: String                                                   = "Oauth_uris"

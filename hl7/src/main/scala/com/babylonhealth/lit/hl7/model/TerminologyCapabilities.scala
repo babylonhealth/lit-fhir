@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,11 +24,15 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
-  override val baseType: CompanionFor[TerminologyCapabilities] = TerminologyCapabilities
-  override val profileUrl: Option[String]                      = Some("http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities")
+  override type ResourceType = TerminologyCapabilities
+  override val baseType: CompanionFor[ResourceType] = TerminologyCapabilities
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities")
   object CodeSystem extends CompanionFor[CodeSystem] {
+    override type ResourceType = CodeSystem
     object Version extends CompanionFor[Version] {
+      override type ResourceType = Version
       object Filter extends CompanionFor[Filter] {
+        override type ResourceType = Filter
         def apply(
             id: Option[String] = None,
             op: NonEmptyLitSeq[Code],
@@ -57,7 +61,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, op, code, extension, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, op, code, extension, modifierExtension)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Filter): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[NonEmptyLitSeq[Code]](op, t.op),
@@ -146,6 +151,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
         FHIRComponentFieldMeta("filter", lTagOf[LitSeq[Version.Filter]], false, lTagOf[Version.Filter])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, code, language, property, extension, isDefault, compositional, modifierExtension, filter)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Version): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[String]](code, t.code),
@@ -222,7 +228,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val version: FHIRComponentFieldMeta[LitSeq[CodeSystem.Version]] =
       FHIRComponentFieldMeta("version", lTagOf[LitSeq[CodeSystem.Version]], false, lTagOf[CodeSystem.Version])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, uri, extension, subsumption, modifierExtension, version)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, uri, extension, subsumption, modifierExtension, version)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: CodeSystem): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Canonical]](uri, t.uri),
@@ -258,7 +265,9 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Expansion extends CompanionFor[Expansion] {
+    override type ResourceType = Expansion
     object Parameter extends CompanionFor[Parameter] {
+      override type ResourceType = Parameter
       def apply(
           id: Option[String] = None,
           name: Code,
@@ -286,7 +295,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
         FHIRComponentFieldMeta("documentation", lTagOf[Option[String]], false, lTagOf[String])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, extension, documentation, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, name, extension, documentation, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Parameter): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Code](name, t.name),
@@ -361,6 +371,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       FHIRComponentFieldMeta("parameter", lTagOf[LitSeq[Expansion.Parameter]], false, lTagOf[Expansion.Parameter])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, paging, extension, incomplete, textFilter, hierarchical, modifierExtension, parameter)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Expansion): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Boolean]](paging, t.paging),
@@ -402,6 +413,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Implementation extends CompanionFor[Implementation] {
+    override type ResourceType = Implementation
     def apply(
         id: Option[String] = None,
         url: Option[UrlStr] = None,
@@ -430,7 +442,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       FHIRComponentFieldMeta("description", lTagOf[String], false, lTagOf[String])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, extension, description, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, url, extension, description, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Implementation): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[UrlStr]](url, t.url),
@@ -463,6 +476,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ValidateCode extends CompanionFor[ValidateCode] {
+    override type ResourceType = ValidateCode
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -486,7 +500,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       FHIRComponentFieldMeta("translations", lTagOf[Boolean], false, lTagOf[Boolean])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, translations, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension, translations, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: ValidateCode): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -516,6 +531,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Translation extends CompanionFor[Translation] {
+    override type ResourceType = Translation
     def apply(
         id: Option[String] = None,
         needsMap: Boolean,
@@ -539,7 +555,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, needsMap, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, needsMap, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Translation): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Boolean](needsMap, t.needsMap),
@@ -569,6 +586,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Software extends CompanionFor[Software] {
+    override type ResourceType = Software
     def apply(
         id: Option[String] = None,
         name: String,
@@ -596,7 +614,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, version, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, name, version, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Software): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[String](name, t.name),
@@ -629,6 +648,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Closure extends CompanionFor[Closure] {
+    override type ResourceType = Closure
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -652,7 +672,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       FHIRComponentFieldMeta("translation", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, translation, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension, translation, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Closure): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -876,6 +897,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
     expansion,
     codeSystem
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: TerminologyCapabilities): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablelibrary extends CompanionFor[Shareablelibrary] {
-  override val baseType: CompanionFor[Library] = Library
-  override val profileUrl: Option[String]      = Some("http://hl7.org/fhir/StructureDefinition/shareablelibrary")
+  override type ResourceType = Library
+  override val baseType: CompanionFor[ResourceType] = Library
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareablelibrary")
   type SubjectChoice = Choice[Union01025009075]
   def apply(
       id: Option[String] = None,
@@ -230,47 +231,49 @@ object Shareablelibrary extends CompanionFor[Shareablelibrary] {
     dataRequirement,
     modifierExtension
   )
-  override def fields(t: Shareablelibrary): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[UriStr](url, t.url.get),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name.get),
-    FHIRComponentField[CodeableConcept](`type`, t.`type`),
-    FHIRComponentField[Option[FHIRDateTime]](date, t.date),
-    FHIRComponentField[Option[String]](title, t.title),
-    FHIRComponentField[Option[String]](usage, t.usage),
-    FHIRComponentField[LitSeq[CodeableConcept]](topic, t.topic),
-    FHIRComponentField[PUBLICATION_STATUS](status, t.status),
-    FHIRComponentField[LitSeq[ContactDetail]](author, t.author),
-    FHIRComponentField[LitSeq[ContactDetail]](editor, t.editor),
-    FHIRComponentField[String](version, t.version.get),
-    FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
-    FHIRComponentField[Option[Markdown]](purpose, t.purpose),
-    FHIRComponentField[LitSeq[Attachment]](content, t.content),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[String]](subtitle, t.subtitle),
-    FHIRComponentField[LitSeq[ContactDetail]](reviewer, t.reviewer),
-    FHIRComponentField[LitSeq[ContactDetail]](endorser, t.endorser),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[String](publisher, t.publisher.get),
-    FHIRComponentField[Option[Markdown]](copyright, t.copyright),
-    FHIRComponentField[LitSeq[ParameterDefinition]](parameter, t.parameter),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[Shareablelibrary.SubjectChoice]](subject, t.subject),
-    FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
-    FHIRComponentField[Markdown](description, t.description.get),
-    FHIRComponentField[Boolean](experimental, t.experimental.get),
-    FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
-    FHIRComponentField[Option[FHIRDate]](approvalDate, t.approvalDate),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[FHIRDate]](lastReviewDate, t.lastReviewDate),
-    FHIRComponentField[Option[Period]](effectivePeriod, t.effectivePeriod),
-    FHIRComponentField[LitSeq[RelatedArtifact]](relatedArtifact, t.relatedArtifact),
-    FHIRComponentField[LitSeq[DataRequirement]](dataRequirement, t.dataRequirement),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[UriStr](url, t.url.get),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[String](name, t.name.get),
+      FHIRComponentField[CodeableConcept](`type`, t.`type`),
+      FHIRComponentField[Option[FHIRDateTime]](date, t.date),
+      FHIRComponentField[Option[String]](title, t.title),
+      FHIRComponentField[Option[String]](usage, t.usage),
+      FHIRComponentField[LitSeq[CodeableConcept]](topic, t.topic),
+      FHIRComponentField[PUBLICATION_STATUS](status, t.status),
+      FHIRComponentField[LitSeq[ContactDetail]](author, t.author),
+      FHIRComponentField[LitSeq[ContactDetail]](editor, t.editor),
+      FHIRComponentField[String](version, t.version.get),
+      FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
+      FHIRComponentField[Option[Markdown]](purpose, t.purpose),
+      FHIRComponentField[LitSeq[Attachment]](content, t.content),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[Option[String]](subtitle, t.subtitle),
+      FHIRComponentField[LitSeq[ContactDetail]](reviewer, t.reviewer),
+      FHIRComponentField[LitSeq[ContactDetail]](endorser, t.endorser),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[String](publisher, t.publisher.get),
+      FHIRComponentField[Option[Markdown]](copyright, t.copyright),
+      FHIRComponentField[LitSeq[ParameterDefinition]](parameter, t.parameter),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[Shareablelibrary.SubjectChoice]](subject, t.subject),
+      FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
+      FHIRComponentField[Markdown](description, t.description.get),
+      FHIRComponentField[Boolean](experimental, t.experimental.get),
+      FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
+      FHIRComponentField[Option[FHIRDate]](approvalDate, t.approvalDate),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[FHIRDate]](lastReviewDate, t.lastReviewDate),
+      FHIRComponentField[Option[Period]](effectivePeriod, t.effectivePeriod),
+      FHIRComponentField[LitSeq[RelatedArtifact]](relatedArtifact, t.relatedArtifact),
+      FHIRComponentField[LitSeq[DataRequirement]](dataRequirement, t.dataRequirement),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
+    ))
+  override def fields(t: Shareablelibrary): Seq[FHIRComponentField[_]]            = fieldsFromParent(t).get
   def extractId(t: Shareablelibrary): Option[String]                              = t.id
   def extractUrl(t: Shareablelibrary): UriStr                                     = t.url.get
   def extractMeta(t: Shareablelibrary): Option[Meta]                              = t.meta

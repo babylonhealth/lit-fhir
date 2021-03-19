@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EventDefinition extends CompanionFor[EventDefinition] {
-  override val baseType: CompanionFor[EventDefinition] = EventDefinition
-  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/EventDefinition")
+  override type ResourceType = EventDefinition
+  override val baseType: CompanionFor[ResourceType] = EventDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/EventDefinition")
   type SubjectChoice = Choice[Union01025009075]
   def apply(
       id: Option[String] = None,
@@ -214,6 +215,7 @@ object EventDefinition extends CompanionFor[EventDefinition] {
     relatedArtifact,
     modifierExtension
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: EventDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),

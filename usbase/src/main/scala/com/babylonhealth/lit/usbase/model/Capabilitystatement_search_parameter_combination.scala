@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,7 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Capabilitystatement_search_parameter_combination
     extends CompanionFor[Capabilitystatement_search_parameter_combination] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination")
   def apply(
@@ -42,10 +43,13 @@ object Capabilitystatement_search_parameter_combination
   val extension: FHIRComponentFieldMeta[NonEmptyLitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[NonEmptyLitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension)
-  override def fields(t: Capabilitystatement_search_parameter_combination): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
+    ))
+  override def fields(t: Capabilitystatement_search_parameter_combination): Seq[FHIRComponentField[_]] =
+    fieldsFromParent(t).get
   def extractId(t: Capabilitystatement_search_parameter_combination): Option[String] = t.id
   def extractExtension(t: Capabilitystatement_search_parameter_combination): NonEmptyLitSeq[Extension] =
     t.extension.asNonEmpty

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,8 +26,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_encounter extends CompanionFor[Us_core_encounter] {
-  override val baseType: CompanionFor[Encounter] = Encounter
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter")
+  override type ResourceType = Encounter
+  override val baseType: CompanionFor[ResourceType] = Encounter
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -203,39 +204,41 @@ object Us_core_encounter extends CompanionFor[Us_core_encounter] {
     statusHistory,
     hospitalization
   )
-  override def fields(t: Us_core_encounter): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](`type`, t.`type`.asNonEmpty),
-    FHIRComponentField[Coding](`class`, t.`class`),
-    FHIRComponentField[ENCOUNTER_STATUS](status, t.status),
-    FHIRComponentField[Option[Period]](period, t.period),
-    FHIRComponentField[Option[Duration]](length, t.length),
-    FHIRComponentField[Option[Reference]](partOf, t.partOf),
-    FHIRComponentField[Reference](subject, t.subject.get),
-    FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
-    FHIRComponentField[LitSeq[Reference]](account, t.account),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[CodeableConcept]](priority, t.priority),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
-    FHIRComponentField[Option[CodeableConcept]](serviceType, t.serviceType),
-    FHIRComponentField[LitSeq[Reference]](appointment, t.appointment),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[Reference]](episodeOfCare, t.episodeOfCare),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
-    FHIRComponentField[Option[Reference]](serviceProvider, t.serviceProvider),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[Encounter.Location]](location, t.location),
-    FHIRComponentField[LitSeq[Encounter.Diagnosis]](diagnosis, t.diagnosis),
-    FHIRComponentField[LitSeq[Encounter.Participant]](participant, t.participant),
-    FHIRComponentField[LitSeq[Encounter.ClassHistory]](classHistory, t.classHistory),
-    FHIRComponentField[LitSeq[Encounter.StatusHistory]](statusHistory, t.statusHistory),
-    FHIRComponentField[Option[Encounter.Hospitalization]](hospitalization, t.hospitalization)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](`type`, t.`type`.asNonEmpty),
+      FHIRComponentField[Coding](`class`, t.`class`),
+      FHIRComponentField[ENCOUNTER_STATUS](status, t.status),
+      FHIRComponentField[Option[Period]](period, t.period),
+      FHIRComponentField[Option[Duration]](length, t.length),
+      FHIRComponentField[Option[Reference]](partOf, t.partOf),
+      FHIRComponentField[Reference](subject, t.subject.get),
+      FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
+      FHIRComponentField[LitSeq[Reference]](account, t.account),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[Option[CodeableConcept]](priority, t.priority),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
+      FHIRComponentField[Option[CodeableConcept]](serviceType, t.serviceType),
+      FHIRComponentField[LitSeq[Reference]](appointment, t.appointment),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[Reference]](episodeOfCare, t.episodeOfCare),
+      FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
+      FHIRComponentField[Option[Reference]](serviceProvider, t.serviceProvider),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[LitSeq[Encounter.Location]](location, t.location),
+      FHIRComponentField[LitSeq[Encounter.Diagnosis]](diagnosis, t.diagnosis),
+      FHIRComponentField[LitSeq[Encounter.Participant]](participant, t.participant),
+      FHIRComponentField[LitSeq[Encounter.ClassHistory]](classHistory, t.classHistory),
+      FHIRComponentField[LitSeq[Encounter.StatusHistory]](statusHistory, t.statusHistory),
+      FHIRComponentField[Option[Encounter.Hospitalization]](hospitalization, t.hospitalization)
+    ))
+  override def fields(t: Us_core_encounter): Seq[FHIRComponentField[_]]               = fieldsFromParent(t).get
   def extractId(t: Us_core_encounter): Option[String]                                 = t.id
   def extractMeta(t: Us_core_encounter): Option[Meta]                                 = t.meta
   def extractText(t: Us_core_encounter): Option[Narrative]                            = t.text

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,8 +26,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_goal extends CompanionFor[Us_core_goal] {
-  override val baseType: CompanionFor[Goal] = Goal
-  override val profileUrl: Option[String]   = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal")
+  override type ResourceType = Goal
+  override val baseType: CompanionFor[ResourceType] = Goal
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal")
   type StartChoice = Choice[Union00078348305]
   def apply(
       id: Option[String] = None,
@@ -157,32 +158,34 @@ object Us_core_goal extends CompanionFor[Us_core_goal] {
     achievementStatus,
     target
   )
-  override def fields(t: Us_core_goal): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[Reference](subject, t.subject),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
-    FHIRComponentField[Option[CodeableConcept]](priority, t.priority),
-    FHIRComponentField[Option[Us_core_goal.StartChoice]](start, t.start),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[LitSeq[Reference]](addresses, t.addresses),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[FHIRDate]](statusDate, t.statusDate),
-    FHIRComponentField[CodeableConcept](description, t.description),
-    FHIRComponentField[Option[Reference]](expressedBy, t.expressedBy),
-    FHIRComponentField[LitSeq[CodeableConcept]](outcomeCode, t.outcomeCode),
-    FHIRComponentField[Option[String]](statusReason, t.statusReason),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[GOAL_STATUS](lifecycleStatus, t.lifecycleStatus),
-    FHIRComponentField[LitSeq[Reference]](outcomeReference, t.outcomeReference),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[Option[CodeableConcept]](achievementStatus, t.achievementStatus),
-    FHIRComponentField[LitSeq[Goal.Target]](target, t.target)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[Reference](subject, t.subject),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
+      FHIRComponentField[Option[CodeableConcept]](priority, t.priority),
+      FHIRComponentField[Option[Us_core_goal.StartChoice]](start, t.start),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[LitSeq[Reference]](addresses, t.addresses),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[FHIRDate]](statusDate, t.statusDate),
+      FHIRComponentField[CodeableConcept](description, t.description),
+      FHIRComponentField[Option[Reference]](expressedBy, t.expressedBy),
+      FHIRComponentField[LitSeq[CodeableConcept]](outcomeCode, t.outcomeCode),
+      FHIRComponentField[Option[String]](statusReason, t.statusReason),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[GOAL_STATUS](lifecycleStatus, t.lifecycleStatus),
+      FHIRComponentField[LitSeq[Reference]](outcomeReference, t.outcomeReference),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Option[CodeableConcept]](achievementStatus, t.achievementStatus),
+      FHIRComponentField[LitSeq[Goal.Target]](target, t.target)
+    ))
+  override def fields(t: Us_core_goal): Seq[FHIRComponentField[_]]       = fieldsFromParent(t).get
   def extractId(t: Us_core_goal): Option[String]                         = t.id
   def extractMeta(t: Us_core_goal): Option[Meta]                         = t.meta
   def extractText(t: Us_core_goal): Option[Narrative]                    = t.text

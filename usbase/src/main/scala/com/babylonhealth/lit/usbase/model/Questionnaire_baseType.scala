@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire_baseType extends CompanionFor[Questionnaire_baseType] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/questionnaire-baseType")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/questionnaire-baseType")
   def apply(
       id: Option[String] = None,
       value: DATA_TYPES,
@@ -40,10 +41,12 @@ object Questionnaire_baseType extends CompanionFor[Questionnaire_baseType] {
   val value: FHIRComponentFieldMeta[DATA_TYPES] =
     FHIRComponentFieldMeta("value", lTagOf[DATA_TYPES], true, lTagOf[DATA_TYPES])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Questionnaire_baseType): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[DATA_TYPES](value, DATA_TYPES.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[DATA_TYPES](value, DATA_TYPES.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Questionnaire_baseType): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_baseType): Option[String]                   = t.id
   def extractValue(t: Questionnaire_baseType): DATA_TYPES                    = DATA_TYPES.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                              = "Questionnaire_baseType"

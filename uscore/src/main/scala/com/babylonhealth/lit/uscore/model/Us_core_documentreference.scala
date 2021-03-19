@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,7 +26,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_documentreference extends CompanionFor[Us_core_documentreference] {
-  override val baseType: CompanionFor[DocumentReference] = DocumentReference
+  override type ResourceType = DocumentReference
+  override val baseType: CompanionFor[ResourceType] = DocumentReference
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference")
   def apply(
@@ -165,32 +166,34 @@ object Us_core_documentreference extends CompanionFor[Us_core_documentreference]
     relatesTo,
     content
   )
-  override def fields(t: Us_core_documentreference): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[CodeableConcept](`type`, t.`type`.get),
-    FHIRComponentField[Option[ZonedDateTime]](date, t.date),
-    FHIRComponentField[DOCUMENT_REFERENCE_STATUS](status, t.status),
-    FHIRComponentField[LitSeq[Reference]](author, t.author),
-    FHIRComponentField[Reference](subject, t.subject.get),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[COMPOSITION_STATUS]](docStatus, t.docStatus),
-    FHIRComponentField[Option[Reference]](custodian, t.custodian),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[String]](description, t.description),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[Reference]](authenticator, t.authenticator),
-    FHIRComponentField[LitSeq[CodeableConcept]](securityLabel, t.securityLabel),
-    FHIRComponentField[Option[Identifier]](masterIdentifier, t.masterIdentifier),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[Option[DocumentReference.Context]](context, t.context),
-    FHIRComponentField[LitSeq[DocumentReference.RelatesTo]](relatesTo, t.relatesTo),
-    FHIRComponentField[DocumentReference.Content](content, t.content.head)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[CodeableConcept](`type`, t.`type`.get),
+      FHIRComponentField[Option[ZonedDateTime]](date, t.date),
+      FHIRComponentField[DOCUMENT_REFERENCE_STATUS](status, t.status),
+      FHIRComponentField[LitSeq[Reference]](author, t.author),
+      FHIRComponentField[Reference](subject, t.subject.get),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[COMPOSITION_STATUS]](docStatus, t.docStatus),
+      FHIRComponentField[Option[Reference]](custodian, t.custodian),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[String]](description, t.description),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[Reference]](authenticator, t.authenticator),
+      FHIRComponentField[LitSeq[CodeableConcept]](securityLabel, t.securityLabel),
+      FHIRComponentField[Option[Identifier]](masterIdentifier, t.masterIdentifier),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Option[DocumentReference.Context]](context, t.context),
+      FHIRComponentField[LitSeq[DocumentReference.RelatesTo]](relatesTo, t.relatesTo),
+      FHIRComponentField[DocumentReference.Content](content, t.content.head)
+    ))
+  override def fields(t: Us_core_documentreference): Seq[FHIRComponentField[_]]           = fieldsFromParent(t).get
   def extractId(t: Us_core_documentreference): Option[String]                             = t.id
   def extractMeta(t: Us_core_documentreference): Option[Meta]                             = t.meta
   def extractText(t: Us_core_documentreference): Option[Narrative]                        = t.text

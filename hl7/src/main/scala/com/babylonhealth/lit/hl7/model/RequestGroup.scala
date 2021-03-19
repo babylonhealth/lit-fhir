@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -35,10 +35,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RequestGroup extends CompanionFor[RequestGroup] {
-  override val baseType: CompanionFor[RequestGroup] = RequestGroup
+  override type ResourceType = RequestGroup
+  override val baseType: CompanionFor[ResourceType] = RequestGroup
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RequestGroup")
   object Action extends CompanionFor[Action] {
+    override type ResourceType = Action
     object Condition extends CompanionFor[Condition] {
+      override type ResourceType = Condition
       def apply(
           id: Option[String] = None,
           kind: ACTION_CONDITION_KIND,
@@ -67,7 +70,8 @@ object RequestGroup extends CompanionFor[RequestGroup] {
         FHIRComponentFieldMeta("expression", lTagOf[Option[Expression]], false, lTagOf[Expression])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, kind, extension, expression, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, kind, extension, expression, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Condition): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[ACTION_CONDITION_KIND](kind, t.kind),
@@ -101,7 +105,8 @@ object RequestGroup extends CompanionFor[RequestGroup] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object RelatedAction extends CompanionFor[RelatedAction] {
-      type OffsetChoice = Choice[Union00801828838]
+      override type ResourceType = RelatedAction
+      type OffsetChoice          = Choice[Union00801828838]
       def apply(
           id: Option[String] = None,
           actionId: Id,
@@ -140,6 +145,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, actionId, extension, offset, relationship, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: RelatedAction): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Id](actionId, t.actionId),
@@ -339,6 +345,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       condition,
       relatedAction
     )
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Action): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[CodeableConcept]](code, t.code),
@@ -558,6 +565,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
     instantiatesCanonical,
     action
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: RequestGroup): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

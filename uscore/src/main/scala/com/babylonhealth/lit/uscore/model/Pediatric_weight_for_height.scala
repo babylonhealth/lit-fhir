@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,7 +26,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Pediatric_weight_for_height extends CompanionFor[Pediatric_weight_for_height] {
-  override val baseType: CompanionFor[Observation] = Observation
+  override type ResourceType = Observation
+  override val baseType: CompanionFor[ResourceType] = Observation
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height")
   type EffectiveChoice = Choice[Union_0934386166]
@@ -206,40 +207,42 @@ object Pediatric_weight_for_height extends CompanionFor[Pediatric_weight_for_hei
     component,
     referenceRange
   )
-  override def fields(t: Pediatric_weight_for_height): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[CodeableConcept](code, t.code),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[LitSeq[Reference]](focus, t.focus),
-    FHIRComponentField[LitSeq[Reference]](partOf, t.partOf),
-    FHIRComponentField[OBSERVATION_STATUS](status, t.status),
-    FHIRComponentField[Option[ZonedDateTime]](issued, t.issued),
-    FHIRComponentField[Option[CodeableConcept]](method, t.method),
-    FHIRComponentField[Option[Reference]](device, t.device),
-    FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
-    FHIRComponentField[Reference](subject, t.subject.get),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-    FHIRComponentField[Quantity](value, t.value.get.toSubRefNonUnion[Quantity]),
-    FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
-    FHIRComponentField[Option[Reference]](specimen, t.specimen),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[LitSeq[Reference]](performer, t.performer),
-    FHIRComponentField[LitSeq[Reference]](hasMember, t.hasMember),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[Reference]](derivedFrom, t.derivedFrom),
-    FHIRComponentField[Pediatric_weight_for_height.EffectiveChoice](effective, t.effective.get.toSubRef),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[CodeableConcept]](interpretation, t.interpretation),
-    FHIRComponentField[Option[CodeableConcept]](dataAbsentReason, t.dataAbsentReason),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Observation.Component]](component, t.component),
-    FHIRComponentField[LitSeq[Observation.ReferenceRange]](referenceRange, t.referenceRange)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[CodeableConcept](code, t.code),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[LitSeq[Reference]](focus, t.focus),
+      FHIRComponentField[LitSeq[Reference]](partOf, t.partOf),
+      FHIRComponentField[OBSERVATION_STATUS](status, t.status),
+      FHIRComponentField[Option[ZonedDateTime]](issued, t.issued),
+      FHIRComponentField[Option[CodeableConcept]](method, t.method),
+      FHIRComponentField[Option[Reference]](device, t.device),
+      FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
+      FHIRComponentField[Reference](subject, t.subject.get),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
+      FHIRComponentField[Quantity](value, t.value.get.toSubRefNonUnion[Quantity]),
+      FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
+      FHIRComponentField[Option[Reference]](specimen, t.specimen),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[LitSeq[Reference]](performer, t.performer),
+      FHIRComponentField[LitSeq[Reference]](hasMember, t.hasMember),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[LitSeq[Reference]](derivedFrom, t.derivedFrom),
+      FHIRComponentField[Pediatric_weight_for_height.EffectiveChoice](effective, t.effective.get.toSubRef),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[CodeableConcept]](interpretation, t.interpretation),
+      FHIRComponentField[Option[CodeableConcept]](dataAbsentReason, t.dataAbsentReason),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Observation.Component]](component, t.component),
+      FHIRComponentField[LitSeq[Observation.ReferenceRange]](referenceRange, t.referenceRange)
+    ))
+  override def fields(t: Pediatric_weight_for_height): Seq[FHIRComponentField[_]]      = fieldsFromParent(t).get
   def extractId(t: Pediatric_weight_for_height): Option[String]                        = t.id
   def extractMeta(t: Pediatric_weight_for_height): Option[Meta]                        = t.meta
   def extractText(t: Pediatric_weight_for_height): Option[Narrative]                   = t.text

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,8 +21,9 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Signature extends CompanionFor[Signature] {
-  override val baseType: CompanionFor[Signature] = Signature
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/Signature")
+  override type ResourceType = Signature
+  override val baseType: CompanionFor[ResourceType] = Signature
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Signature")
   def apply(
       id: Option[String] = None,
       who: Reference,
@@ -66,6 +67,7 @@ object Signature extends CompanionFor[Signature] {
     FHIRComponentFieldMeta("targetFormat", lTagOf[Option[Code]], false, lTagOf[Code])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, who, `type`, when, data, extension, sigFormat, onBehalfOf, targetFormat)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Signature): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Reference](who, t.who),

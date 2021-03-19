@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,11 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RiskAssessment extends CompanionFor[RiskAssessment] {
-  override val baseType: CompanionFor[RiskAssessment] = RiskAssessment
-  override val profileUrl: Option[String]             = Some("http://hl7.org/fhir/StructureDefinition/RiskAssessment")
+  override type ResourceType = RiskAssessment
+  override val baseType: CompanionFor[ResourceType] = RiskAssessment
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RiskAssessment")
   object Prediction extends CompanionFor[Prediction] {
-    type WhenChoice        = Choice[Union01200936722]
-    type ProbabilityChoice = Choice[Union_0831630297]
+    override type ResourceType = Prediction
+    type WhenChoice            = Choice[Union01200936722]
+    type ProbabilityChoice     = Choice[Union_0831630297]
     def apply(
         id: Option[String] = None,
         outcome: Option[CodeableConcept] = None,
@@ -89,6 +91,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, outcome, when, extension, rationale, relativeRisk, probability, qualitativeRisk, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Prediction): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[CodeableConcept]](outcome, t.outcome),
@@ -273,6 +276,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
     modifierExtension,
     prediction
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: RiskAssessment): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

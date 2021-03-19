@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Communication_media extends CompanionFor[Communication_media] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/communication-media")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/communication-media")
   def apply(
       id: Option[String] = None,
       value: Attachment,
@@ -40,10 +41,12 @@ object Communication_media extends CompanionFor[Communication_media] {
   val value: FHIRComponentFieldMeta[Attachment] =
     FHIRComponentFieldMeta("value", lTagOf[Attachment], true, lTagOf[Attachment])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Communication_media): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Attachment](value, t.value.get.toSubRefNonUnion[Attachment])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Attachment](value, t.value.get.toSubRefNonUnion[Attachment])
+    ))
+  override def fields(t: Communication_media): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Communication_media): Option[String]                   = t.id
   def extractValue(t: Communication_media): Attachment                    = t.value.get.toSubRefNonUnion[Attachment]
   override val thisName: String                                           = "Communication_media"

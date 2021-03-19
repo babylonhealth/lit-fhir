@@ -25,6 +25,7 @@ trait OptionSugar {
 abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: ClassTag[T @uncheckedVariance])
     extends JsonDecoderHelpers
     with OptionSugar {
+  type ResourceType >: T <: FHIRObject
   private val log: Logger = LoggerFactory.getLogger(getClass)
   val thisName: String
   val profileUrl: Option[String] = None
@@ -72,6 +73,11 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
       }
 
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]
+
+  def cast(t: ResourceType): Try[T @uncheckedVariance] =
+    fieldsFromParent(t).map(fs => classConstructor.newInstance(fs.map(_.value) :+ t.primitiveAttributes: _*))
+
+  def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]]
 
   def fields(t: T): Seq[FHIRComponentField[_]]
 

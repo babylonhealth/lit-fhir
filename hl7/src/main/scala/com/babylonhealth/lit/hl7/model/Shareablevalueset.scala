@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablevalueset extends CompanionFor[Shareablevalueset] {
-  override val baseType: CompanionFor[ValueSet] = ValueSet
-  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/shareablevalueset")
+  override type ResourceType = ValueSet
+  override val baseType: CompanionFor[ResourceType] = ValueSet
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareablevalueset")
   def apply(
       id: Option[String] = None,
       url: UriStr,
@@ -164,34 +165,36 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
     expansion,
     compose
   )
-  override def fields(t: Shareablevalueset): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[UriStr](url, t.url.get),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name.get),
-    FHIRComponentField[Option[FHIRDateTime]](date, t.date),
-    FHIRComponentField[Option[String]](title, t.title),
-    FHIRComponentField[PUBLICATION_STATUS](status, t.status),
-    FHIRComponentField[String](version, t.version.get),
-    FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
-    FHIRComponentField[Option[Markdown]](purpose, t.purpose),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[String](publisher, t.publisher.get),
-    FHIRComponentField[Option[Boolean]](immutable, t.immutable),
-    FHIRComponentField[Option[Markdown]](copyright, t.copyright),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
-    FHIRComponentField[Markdown](description, t.description.get),
-    FHIRComponentField[Boolean](experimental, t.experimental.get),
-    FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[Option[ValueSet.Expansion]](expansion, t.expansion),
-    FHIRComponentField[Option[ValueSet.Compose]](compose, t.compose)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[UriStr](url, t.url.get),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[String](name, t.name.get),
+      FHIRComponentField[Option[FHIRDateTime]](date, t.date),
+      FHIRComponentField[Option[String]](title, t.title),
+      FHIRComponentField[PUBLICATION_STATUS](status, t.status),
+      FHIRComponentField[String](version, t.version.get),
+      FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
+      FHIRComponentField[Option[Markdown]](purpose, t.purpose),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[String](publisher, t.publisher.get),
+      FHIRComponentField[Option[Boolean]](immutable, t.immutable),
+      FHIRComponentField[Option[Markdown]](copyright, t.copyright),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
+      FHIRComponentField[Markdown](description, t.description.get),
+      FHIRComponentField[Boolean](experimental, t.experimental.get),
+      FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Option[ValueSet.Expansion]](expansion, t.expansion),
+      FHIRComponentField[Option[ValueSet.Compose]](compose, t.compose)
+    ))
+  override def fields(t: Shareablevalueset): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
   def extractId(t: Shareablevalueset): Option[String]                    = t.id
   def extractUrl(t: Shareablevalueset): UriStr                           = t.url.get
   def extractMeta(t: Shareablevalueset): Option[Meta]                    = t.meta

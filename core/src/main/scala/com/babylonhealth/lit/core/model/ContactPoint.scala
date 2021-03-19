@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,7 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ContactPoint extends CompanionFor[ContactPoint] {
-  override val baseType: CompanionFor[ContactPoint] = ContactPoint
+  override type ResourceType = ContactPoint
+  override val baseType: CompanionFor[ResourceType] = ContactPoint
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ContactPoint")
   def apply(
       id: Option[String] = None,
@@ -56,7 +57,8 @@ object ContactPoint extends CompanionFor[ContactPoint] {
     FHIRComponentFieldMeta("period", lTagOf[Option[Period]], false, lTagOf[Period])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, use, rank, value, system, period, extension)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, use, rank, value, system, period, extension)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ContactPoint): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[CONTACT_POINT_USE]](use, t.use),

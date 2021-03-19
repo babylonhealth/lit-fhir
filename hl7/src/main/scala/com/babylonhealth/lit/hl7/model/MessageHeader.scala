@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MessageHeader extends CompanionFor[MessageHeader] {
-  override val baseType: CompanionFor[MessageHeader] = MessageHeader
-  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/MessageHeader")
+  override type ResourceType = MessageHeader
+  override val baseType: CompanionFor[ResourceType] = MessageHeader
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MessageHeader")
   object Destination extends CompanionFor[Destination] {
+    override type ResourceType = Destination
     def apply(
         id: Option[String] = None,
         name: Option[String] = None,
@@ -65,6 +67,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, name, target, endpoint, receiver, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Destination): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[String]](name, t.name),
@@ -103,6 +106,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Response extends CompanionFor[Response] {
+    override type ResourceType = Response
     def apply(
         id: Option[String] = None,
         code: RESPONSE_CODE,
@@ -135,7 +139,8 @@ object MessageHeader extends CompanionFor[MessageHeader] {
       FHIRComponentFieldMeta("identifier", lTagOf[Id], false, lTagOf[Id])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, details, extension, identifier, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, details, extension, identifier, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Response): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[RESPONSE_CODE](code, t.code),
@@ -171,6 +176,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Source extends CompanionFor[Source] {
+    override type ResourceType = Source
     def apply(
         id: Option[String] = None,
         name: Option[String] = None,
@@ -213,6 +219,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, name, version, contact, software, endpoint, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Source): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[String]](name, t.name),
@@ -360,6 +367,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
     response,
     destination
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: MessageHeader): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

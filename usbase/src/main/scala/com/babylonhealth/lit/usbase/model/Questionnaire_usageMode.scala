@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire_usageMode extends CompanionFor[Questionnaire_usageMode] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/questionnaire-usageMode")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/questionnaire-usageMode")
   def apply(
       id: Option[String] = None,
       value: QUESTIONNAIRE_USAGE_MODE,
@@ -40,13 +41,15 @@ object Questionnaire_usageMode extends CompanionFor[Questionnaire_usageMode] {
   val value: FHIRComponentFieldMeta[QUESTIONNAIRE_USAGE_MODE] =
     FHIRComponentFieldMeta("value", lTagOf[QUESTIONNAIRE_USAGE_MODE], true, lTagOf[QUESTIONNAIRE_USAGE_MODE])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Questionnaire_usageMode): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[QUESTIONNAIRE_USAGE_MODE](
-      value,
-      QUESTIONNAIRE_USAGE_MODE.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Questionnaire_usageMode): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[QUESTIONNAIRE_USAGE_MODE](
+        value,
+        QUESTIONNAIRE_USAGE_MODE.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Questionnaire_usageMode): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Questionnaire_usageMode): Option[String]                   = t.id
   def extractValue(t: Questionnaire_usageMode): QUESTIONNAIRE_USAGE_MODE =
     QUESTIONNAIRE_USAGE_MODE.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                               = "Questionnaire_usageMode"

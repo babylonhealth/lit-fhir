@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -23,10 +23,12 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteraction] {
-  override val baseType: CompanionFor[MedicinalProductInteraction] = MedicinalProductInteraction
-  override val profileUrl: Option[String]                          = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductInteraction")
+  override type ResourceType = MedicinalProductInteraction
+  override val baseType: CompanionFor[ResourceType] = MedicinalProductInteraction
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductInteraction")
   object Interactant extends CompanionFor[Interactant] {
-    type ItemChoice = Choice[Union01025009075]
+    override type ResourceType = Interactant
+    type ItemChoice            = Choice[Union01025009075]
     def apply(
         id: Option[String] = None,
         item: Interactant.ItemChoice,
@@ -51,7 +53,8 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, item, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, item, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Interactant): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Interactant.ItemChoice](item, t.item),
@@ -165,6 +168,7 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
     implicitRules,
     modifierExtension,
     interactant)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: MedicinalProductInteraction): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

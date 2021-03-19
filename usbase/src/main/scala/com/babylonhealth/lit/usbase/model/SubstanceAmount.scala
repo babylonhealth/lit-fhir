@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceAmount extends CompanionFor[SubstanceAmount] {
-  override val baseType: CompanionFor[SubstanceAmount] = SubstanceAmount
-  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/SubstanceAmount")
+  override type ResourceType = SubstanceAmount
+  override val baseType: CompanionFor[ResourceType] = SubstanceAmount
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceAmount")
   object ReferenceRange extends CompanionFor[ReferenceRange] {
+    override type ResourceType = ReferenceRange
     def apply(
         id: Option[String] = None,
         lowLimit: Option[Quantity] = None,
@@ -50,7 +52,8 @@ object SubstanceAmount extends CompanionFor[SubstanceAmount] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val highLimit: FHIRComponentFieldMeta[Option[Quantity]] =
       FHIRComponentFieldMeta("highLimit", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, lowLimit, extension, highLimit)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, lowLimit, extension, highLimit)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: ReferenceRange): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Quantity]](lowLimit, t.lowLimit),
@@ -119,6 +122,7 @@ object SubstanceAmount extends CompanionFor[SubstanceAmount] {
       lTagOf[SubstanceAmount.ReferenceRange])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, extension, amount, amountType, amountText, modifierExtension, referenceRange)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: SubstanceAmount): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),

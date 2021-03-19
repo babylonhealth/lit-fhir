@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_toocostly extends CompanionFor[Valueset_toocostly] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/valueset-toocostly")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-toocostly")
   def apply(
       id: Option[String] = None,
       value: Boolean,
@@ -40,10 +41,12 @@ object Valueset_toocostly extends CompanionFor[Valueset_toocostly] {
   val value: FHIRComponentFieldMeta[Boolean] =
     FHIRComponentFieldMeta("value", lTagOf[Boolean], true, lTagOf[Boolean])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Valueset_toocostly): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
+    ))
+  override def fields(t: Valueset_toocostly): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_toocostly): Option[String]                   = t.id
   def extractValue(t: Valueset_toocostly): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                          = "Valueset_toocostly"

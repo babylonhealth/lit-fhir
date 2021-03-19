@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ResearchStudy extends CompanionFor[ResearchStudy] {
-  override val baseType: CompanionFor[ResearchStudy] = ResearchStudy
-  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/ResearchStudy")
+  override type ResourceType = ResearchStudy
+  override val baseType: CompanionFor[ResourceType] = ResearchStudy
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ResearchStudy")
   object Objective extends CompanionFor[Objective] {
+    override type ResourceType = Objective
     def apply(
         id: Option[String] = None,
         name: Option[String] = None,
@@ -55,7 +57,8 @@ object ResearchStudy extends CompanionFor[ResearchStudy] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, `type`, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, name, `type`, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Objective): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[String]](name, t.name),
@@ -88,6 +91,7 @@ object ResearchStudy extends CompanionFor[ResearchStudy] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Arm extends CompanionFor[Arm] {
+    override type ResourceType = Arm
     def apply(
         id: Option[String] = None,
         name: String,
@@ -120,7 +124,8 @@ object ResearchStudy extends CompanionFor[ResearchStudy] {
       FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, `type`, extension, description, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, name, `type`, extension, description, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Arm): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[String](name, t.name),
@@ -322,6 +327,7 @@ object ResearchStudy extends CompanionFor[ResearchStudy] {
     arm,
     objective
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ResearchStudy): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

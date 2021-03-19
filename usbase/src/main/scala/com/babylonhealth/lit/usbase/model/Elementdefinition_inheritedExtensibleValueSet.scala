@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,7 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_inheritedExtensibleValueSet
     extends CompanionFor[Elementdefinition_inheritedExtensibleValueSet] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/elementdefinition-inheritedExtensibleValueSet")
   type ValueChoice = Choice[Union00545979821]
@@ -47,10 +48,13 @@ object Elementdefinition_inheritedExtensibleValueSet
       true,
       lTagOf[Union00545979821])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Elementdefinition_inheritedExtensibleValueSet): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Elementdefinition_inheritedExtensibleValueSet.ValueChoice](value, t.value.get.toSubRef)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Elementdefinition_inheritedExtensibleValueSet.ValueChoice](value, t.value.get.toSubRef)
+    ))
+  override def fields(t: Elementdefinition_inheritedExtensibleValueSet): Seq[FHIRComponentField[_]] = fieldsFromParent(
+    t).get
   def extractId(t: Elementdefinition_inheritedExtensibleValueSet): Option[String] = t.id
   def extractValue(
       t: Elementdefinition_inheritedExtensibleValueSet): Elementdefinition_inheritedExtensibleValueSet.ValueChoice =

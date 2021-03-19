@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -35,10 +35,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PlanDefinition extends CompanionFor[PlanDefinition] {
-  override val baseType: CompanionFor[PlanDefinition] = PlanDefinition
-  override val profileUrl: Option[String]             = Some("http://hl7.org/fhir/StructureDefinition/PlanDefinition")
+  override type ResourceType = PlanDefinition
+  override val baseType: CompanionFor[ResourceType] = PlanDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/PlanDefinition")
   object Action extends CompanionFor[Action] {
+    override type ResourceType = Action
     object Condition extends CompanionFor[Condition] {
+      override type ResourceType = Condition
       def apply(
           id: Option[String] = None,
           kind: ACTION_CONDITION_KIND,
@@ -67,7 +70,8 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         FHIRComponentFieldMeta("expression", lTagOf[Option[Expression]], false, lTagOf[Expression])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, kind, extension, expression, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, kind, extension, expression, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Condition): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[ACTION_CONDITION_KIND](kind, t.kind),
@@ -101,6 +105,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Participant extends CompanionFor[Participant] {
+      override type ResourceType = Participant
       def apply(
           id: Option[String] = None,
           `type`: ACTION_PARTICIPANT_TYPE,
@@ -129,7 +134,8 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, role, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, role, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Participant): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[ACTION_PARTICIPANT_TYPE](`type`, t.`type`),
@@ -163,6 +169,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object DynamicValue extends CompanionFor[DynamicValue] {
+      override type ResourceType = DynamicValue
       def apply(
           id: Option[String] = None,
           path: Option[String] = None,
@@ -191,7 +198,8 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         FHIRComponentFieldMeta("expression", lTagOf[Option[Expression]], false, lTagOf[Expression])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, path, extension, expression, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, path, extension, expression, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: DynamicValue): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[String]](path, t.path),
@@ -225,7 +233,8 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object RelatedAction extends CompanionFor[RelatedAction] {
-      type OffsetChoice = Choice[Union00801828838]
+      override type ResourceType = RelatedAction
+      type OffsetChoice          = Choice[Union00801828838]
       def apply(
           id: Option[String] = None,
           actionId: Id,
@@ -264,6 +273,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, actionId, extension, offset, relationship, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: RelatedAction): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Id](actionId, t.actionId),
@@ -479,6 +489,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
       dynamicValue,
       relatedAction
     )
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Action): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[CodeableConcept]](code, t.code),
@@ -586,8 +597,10 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Goal extends CompanionFor[Goal] {
+    override type ResourceType = Goal
     object Target extends CompanionFor[Target] {
-      type DetailChoice = Choice[Union01560785079]
+      override type ResourceType = Target
+      type DetailChoice          = Choice[Union01560785079]
       def apply(
           id: Option[String] = None,
           due: Option[Duration] = None,
@@ -620,7 +633,8 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         FHIRComponentFieldMeta("detail", lTagOf[Option[Target.DetailChoice]], true, lTagOf[Union01560785079])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, due, measure, extension, detail, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, due, measure, extension, detail, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Target): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[Duration]](due, t.due),
@@ -717,6 +731,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
       FHIRComponentFieldMeta("target", lTagOf[LitSeq[Goal.Target]], false, lTagOf[Goal.Target])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, start, category, priority, extension, addresses, description, documentation, modifierExtension, target)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Goal): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[CodeableConcept]](start, t.start),
@@ -966,6 +981,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
     goal,
     action
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: PlanDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,10 +21,12 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DataRequirement extends CompanionFor[DataRequirement] {
-  override val baseType: CompanionFor[DataRequirement] = DataRequirement
-  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/DataRequirement")
+  override type ResourceType = DataRequirement
+  override val baseType: CompanionFor[ResourceType] = DataRequirement
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DataRequirement")
   object DateFilter extends CompanionFor[DateFilter] {
-    type ValueChoice = Choice[Union_1947777294]
+    override type ResourceType = DateFilter
+    type ValueChoice           = Choice[Union_1947777294]
     def apply(
         id: Option[String] = None,
         path: Option[String] = None,
@@ -53,7 +55,8 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val searchParam: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("searchParam", lTagOf[Option[String]], false, lTagOf[String])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, path, value, extension, searchParam)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, path, value, extension, searchParam)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: DateFilter): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[String]](path, t.path),
@@ -86,6 +89,7 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object CodeFilter extends CompanionFor[CodeFilter] {
+    override type ResourceType = CodeFilter
     def apply(
         id: Option[String] = None,
         path: Option[String] = None,
@@ -118,7 +122,8 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val searchParam: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("searchParam", lTagOf[Option[String]], false, lTagOf[String])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, path, code, valueSet, extension, searchParam)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, path, code, valueSet, extension, searchParam)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: CodeFilter): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[String]](path, t.path),
@@ -154,6 +159,7 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Sort extends CompanionFor[Sort] {
+    override type ResourceType = Sort
     def apply(
         id: Option[String] = None,
         path: String,
@@ -177,7 +183,8 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val direction: FHIRComponentFieldMeta[SORT_DIRECTION] =
       FHIRComponentFieldMeta("direction", lTagOf[SORT_DIRECTION], false, lTagOf[SORT_DIRECTION])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, path, extension, direction)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, path, extension, direction)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Sort): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[String](path, t.path),
@@ -262,6 +269,7 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       lTagOf[DataRequirement.DateFilter])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, `type`, limit, profile, extension, subject, mustSupport, sort, codeFilter, dateFilter)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: DataRequirement): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[ALL_TYPES](`type`, t.`type`),

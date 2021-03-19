@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Replaces extends CompanionFor[Replaces] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/replaces")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/replaces")
   def apply(
       id: Option[String] = None,
       value: Canonical,
@@ -40,10 +41,12 @@ object Replaces extends CompanionFor[Replaces] {
   val value: FHIRComponentFieldMeta[Canonical] =
     FHIRComponentFieldMeta("value", lTagOf[Canonical], true, lTagOf[Canonical])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Replaces): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Canonical](value, t.value.get.toSubRefNonUnion[Canonical])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Canonical](value, t.value.get.toSubRefNonUnion[Canonical])
+    ))
+  override def fields(t: Replaces): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
   def extractId(t: Replaces): Option[String]                    = t.id
   def extractValue(t: Replaces): Canonical                      = t.value.get.toSubRefNonUnion[Canonical]
   override val thisName: String                                 = "Replaces"
