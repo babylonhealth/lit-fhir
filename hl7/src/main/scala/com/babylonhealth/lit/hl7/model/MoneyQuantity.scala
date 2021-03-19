@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -23,8 +23,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MoneyQuantity extends CompanionFor[MoneyQuantity] {
-  override val baseType: CompanionFor[Quantity] = Quantity
-  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/MoneyQuantity")
+  override type ResourceType = Quantity
+  override val baseType: CompanionFor[ResourceType] = Quantity
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MoneyQuantity")
   def apply(
       id: Option[String] = None,
       unit: Option[String] = None,
@@ -59,15 +60,17 @@ object MoneyQuantity extends CompanionFor[MoneyQuantity] {
   val comparator: FHIRComponentFieldMeta[Option[QUANTITY_COMPARATOR]] =
     FHIRComponentFieldMeta("comparator", lTagOf[Option[QUANTITY_COMPARATOR]], false, lTagOf[QUANTITY_COMPARATOR])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, unit, code, value, system, extension, comparator)
-  override def fields(t: MoneyQuantity): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[String]](unit, t.unit),
-    FHIRComponentField[Option[Code]](code, t.code),
-    FHIRComponentField[Option[BigDecimal]](value, t.value),
-    FHIRComponentField[Option[UriStr]](system, t.system),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[QUANTITY_COMPARATOR]](comparator, t.comparator)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[String]](unit, t.unit),
+      FHIRComponentField[Option[Code]](code, t.code),
+      FHIRComponentField[Option[BigDecimal]](value, t.value),
+      FHIRComponentField[Option[UriStr]](system, t.system),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[QUANTITY_COMPARATOR]](comparator, t.comparator)
+    ))
+  override def fields(t: MoneyQuantity): Seq[FHIRComponentField[_]]    = fieldsFromParent(t).get
   def extractId(t: MoneyQuantity): Option[String]                      = t.id
   def extractUnit(t: MoneyQuantity): Option[String]                    = t.unit
   def extractCode(t: MoneyQuantity): Option[Code]                      = t.code

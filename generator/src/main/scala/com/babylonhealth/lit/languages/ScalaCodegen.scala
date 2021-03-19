@@ -163,7 +163,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
        |import java.util.UUID
        |
        |import scala.collection.immutable.TreeMap
-       |import scala.util.Try
+       |import scala.util.{ Success, Try }
        |
        |import io.circe.{ Decoder, HCursor }
        |
@@ -289,7 +289,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       val fieldsMetaImpl =
         fields.map(_.scalaName).mkString("val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(", ", ", ")")
       val getFieldsImpl =
-        s"""override def fields(t: $className): Seq[FHIRComponentField[_]] = Seq(
+        s"""override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
+           |override def fields(t: $className): Seq[FHIRComponentField[_]] = Seq(
            |  ${fields.map(_.field(allClashingTypes)).mkString(",\n  ")}
            |)""".stripMargin
       val choiceAliases = fields
@@ -308,6 +309,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
 
       val companionDef =
         s"""object $className extends CompanionFor[$className] {
+           |  override type ResourceType = $className
            |  $recursiveClassDefsString
            |  $choiceAliases
            |  $applyImpl
@@ -418,10 +420,17 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     val eachFieldsMetaImpl = fields.map(f => f.fieldMeta(allClashingTypes)).mkString("\n    ")
     val fieldsMetaImpl =
       fields.map(_.scalaName).mkString("val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(", ", ", ")")
-    val getFieldsImpl =
-      s"""override def fields(t: $className): Seq[FHIRComponentField[_]] = Seq(
+    val getFieldsImpl = if (topLevelClass.typeName == topLevelClass.className)
+      s"""override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
+         |override def fields(t: $className): Seq[FHIRComponentField[_]] = Seq(
          |  ${fields.map(f => f.field(allClashingTypes)).mkString(",\n    ")}
          |)""".stripMargin
+    else
+    s"""override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(Seq(
+       |  ${fields.map(f => f.field(allClashingTypes)).mkString(",\n    ")}
+       |))
+       |override def fields(t: $className): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get""".stripMargin
+
     def extractFieldsImpl                  = fields.map(f => f.getField(allClashingTypes)).mkString("\n    ")
     def unapplyField(f: BaseField): String = f.refineField(allClashingTypes, "o")
     val unapplyImpl =
@@ -573,7 +582,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     // build finally
     val fileStr =
       s"""object $className extends CompanionFor[$className] {
-         |  override val baseType: CompanionFor[${topLevelClass.scalaBaseClassName}] = ${topLevelClass.scalaBaseClassName}
+         |  override type ResourceType = ${topLevelClass.scalaBaseClassName}
+         |  override val baseType: CompanionFor[ResourceType] = ${topLevelClass.scalaBaseClassName}
          |  override val profileUrl: Option[String] = Some("${topLevelClass.url}")
          |  $otherClassDefs
          |  $choiceAliases

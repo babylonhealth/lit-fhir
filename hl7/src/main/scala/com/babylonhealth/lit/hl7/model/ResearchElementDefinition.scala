@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition] {
-  override val baseType: CompanionFor[ResearchElementDefinition] = ResearchElementDefinition
-  override val profileUrl: Option[String]                        = Some("http://hl7.org/fhir/StructureDefinition/ResearchElementDefinition")
+  override type ResourceType = ResearchElementDefinition
+  override val baseType: CompanionFor[ResourceType] = ResearchElementDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ResearchElementDefinition")
   object Characteristic extends CompanionFor[Characteristic] {
+    override type ResourceType      = Characteristic
     type DefinitionChoice           = Choice[Union_1750128470]
     type StudyEffectiveChoice       = Choice[Union00607514014]
     type ParticipantEffectiveChoice = Choice[Union00607514014]
@@ -143,6 +145,7 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
       participantEffectiveGroupMeasure,
       participantEffectiveTimeFromStart
     )
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Characteristic): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Boolean]](exclude, t.exclude),
@@ -427,6 +430,7 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
     modifierExtension,
     characteristic
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ResearchElementDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),

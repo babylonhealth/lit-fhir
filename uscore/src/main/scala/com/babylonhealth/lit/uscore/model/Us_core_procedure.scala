@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,8 +26,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_procedure extends CompanionFor[Us_core_procedure] {
-  override val baseType: CompanionFor[Procedure] = Procedure
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure")
+  override type ResourceType = Procedure
+  override val baseType: CompanionFor[ResourceType] = Procedure
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure")
   type PerformedChoice = Choice[Union_0934386166]
   def apply(
       id: Option[String] = None,
@@ -217,44 +218,46 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
     performer,
     focalDevice
   )
-  override def fields(t: Us_core_procedure): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[CodeableConcept](code, t.code.get),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[LitSeq[Reference]](partOf, t.partOf),
-    FHIRComponentField[EVENT_STATUS](status, t.status),
-    FHIRComponentField[LitSeq[Reference]](report, t.report),
-    FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
-    FHIRComponentField[Reference](subject, t.subject),
-    FHIRComponentField[Option[CodeableConcept]](outcome, t.outcome),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[CodeableConcept]](category, t.category),
-    FHIRComponentField[Option[Reference]](recorder, t.recorder),
-    FHIRComponentField[Option[Reference]](asserter, t.asserter),
-    FHIRComponentField[Option[Reference]](location, t.location),
-    FHIRComponentField[LitSeq[CodeableConcept]](bodySite, t.bodySite),
-    FHIRComponentField[LitSeq[CodeableConcept]](followUp, t.followUp),
-    FHIRComponentField[LitSeq[CodeableConcept]](usedCode, t.usedCode),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
-    FHIRComponentField[Option[CodeableConcept]](statusReason, t.statusReason),
-    FHIRComponentField[Us_core_procedure.PerformedChoice](performed, t.performed.get.toSubRef),
-    FHIRComponentField[LitSeq[CodeableConcept]](complication, t.complication),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[Reference]](usedReference, t.usedReference),
-    FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Reference]](complicationDetail, t.complicationDetail),
-    FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
-    FHIRComponentField[LitSeq[Procedure.Performer]](performer, t.performer),
-    FHIRComponentField[LitSeq[Procedure.FocalDevice]](focalDevice, t.focalDevice)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[CodeableConcept](code, t.code.get),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[LitSeq[Reference]](partOf, t.partOf),
+      FHIRComponentField[EVENT_STATUS](status, t.status),
+      FHIRComponentField[LitSeq[Reference]](report, t.report),
+      FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
+      FHIRComponentField[Reference](subject, t.subject),
+      FHIRComponentField[Option[CodeableConcept]](outcome, t.outcome),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[Option[CodeableConcept]](category, t.category),
+      FHIRComponentField[Option[Reference]](recorder, t.recorder),
+      FHIRComponentField[Option[Reference]](asserter, t.asserter),
+      FHIRComponentField[Option[Reference]](location, t.location),
+      FHIRComponentField[LitSeq[CodeableConcept]](bodySite, t.bodySite),
+      FHIRComponentField[LitSeq[CodeableConcept]](followUp, t.followUp),
+      FHIRComponentField[LitSeq[CodeableConcept]](usedCode, t.usedCode),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
+      FHIRComponentField[Option[CodeableConcept]](statusReason, t.statusReason),
+      FHIRComponentField[Us_core_procedure.PerformedChoice](performed, t.performed.get.toSubRef),
+      FHIRComponentField[LitSeq[CodeableConcept]](complication, t.complication),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[Reference]](usedReference, t.usedReference),
+      FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
+      FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Reference]](complicationDetail, t.complicationDetail),
+      FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
+      FHIRComponentField[LitSeq[Procedure.Performer]](performer, t.performer),
+      FHIRComponentField[LitSeq[Procedure.FocalDevice]](focalDevice, t.focalDevice)
+    ))
+  override def fields(t: Us_core_procedure): Seq[FHIRComponentField[_]]         = fieldsFromParent(t).get
   def extractId(t: Us_core_procedure): Option[String]                           = t.id
   def extractMeta(t: Us_core_procedure): Option[Meta]                           = t.meta
   def extractText(t: Us_core_procedure): Option[Narrative]                      = t.text

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceProtein extends CompanionFor[SubstanceProtein] {
-  override val baseType: CompanionFor[SubstanceProtein] = SubstanceProtein
-  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/SubstanceProtein")
+  override type ResourceType = SubstanceProtein
+  override val baseType: CompanionFor[ResourceType] = SubstanceProtein
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceProtein")
   object Subunit extends CompanionFor[Subunit] {
+    override type ResourceType = Subunit
     def apply(
         id: Option[String] = None,
         length: Option[Int] = None,
@@ -104,6 +106,7 @@ object SubstanceProtein extends CompanionFor[SubstanceProtein] {
       nTerminalModificationId,
       cTerminalModificationId
     )
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Subunit): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Int]](length, t.length),
@@ -219,6 +222,7 @@ object SubstanceProtein extends CompanionFor[SubstanceProtein] {
     disulfideLinkage,
     modifierExtension,
     subunit)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: SubstanceProtein): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

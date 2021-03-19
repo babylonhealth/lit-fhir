@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Servicerequest_genetics extends CompanionFor[Servicerequest_genetics] {
-  override val baseType: CompanionFor[ServiceRequest] = ServiceRequest
-  override val profileUrl: Option[String]             = Some("http://hl7.org/fhir/StructureDefinition/servicerequest-genetics")
+  override type ResourceType = ServiceRequest
+  override val baseType: CompanionFor[ResourceType] = ServiceRequest
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/servicerequest-genetics")
   type QuantityChoice   = Choice[Union_0575082635]
   type AsNeededChoice   = Choice[Union_1768247138]
   type OccurrenceChoice = Choice[Union00609373412]
@@ -255,49 +256,51 @@ object Servicerequest_genetics extends CompanionFor[Servicerequest_genetics] {
     patientInstruction,
     instantiatesCanonical
   )
-  override def fields(t: Servicerequest_genetics): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[Option[CodeableConcept]](code, t.code),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[REQUEST_STATUS](status, t.status),
-    FHIRComponentField[REQUEST_INTENT](intent, t.intent),
-    FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
-    FHIRComponentField[Reference](subject, t.subject),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[Reference]](replaces, t.replaces),
-    FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
-    FHIRComponentField[Option[REQUEST_PRIORITY]](priority, t.priority),
-    FHIRComponentField[LitSeq[Reference]](specimen, t.specimen),
-    FHIRComponentField[LitSeq[CodeableConcept]](bodySite, t.bodySite),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[Option[Reference]](requester, t.requester),
-    FHIRComponentField[LitSeq[Reference]](performer, t.performer),
-    FHIRComponentField[LitSeq[Reference]](insurance, t.insurance),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[FHIRDateTime]](authoredOn, t.authoredOn),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
-    FHIRComponentField[Option[Identifier]](requisition, t.requisition),
-    FHIRComponentField[LitSeq[CodeableConcept]](orderDetail, t.orderDetail),
-    FHIRComponentField[Option[Servicerequest_genetics.QuantityChoice]](quantity, t.quantity),
-    FHIRComponentField[Option[Servicerequest_genetics.AsNeededChoice]](asNeeded, t.asNeeded),
-    FHIRComponentField[Option[Boolean]](doNotPerform, t.doNotPerform),
-    FHIRComponentField[LitSeq[CodeableConcept]](locationCode, t.locationCode),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[Servicerequest_genetics.OccurrenceChoice]](occurrence, t.occurrence),
-    FHIRComponentField[Option[CodeableConcept]](performerType, t.performerType),
-    FHIRComponentField[LitSeq[Reference]](supportingInfo, t.supportingInfo),
-    FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
-    FHIRComponentField[LitSeq[Reference]](relevantHistory, t.relevantHistory),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Reference]](locationReference, t.locationReference),
-    FHIRComponentField[Option[String]](patientInstruction, t.patientInstruction),
-    FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[Option[CodeableConcept]](code, t.code),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[REQUEST_STATUS](status, t.status),
+      FHIRComponentField[REQUEST_INTENT](intent, t.intent),
+      FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
+      FHIRComponentField[Reference](subject, t.subject),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Reference]](replaces, t.replaces),
+      FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
+      FHIRComponentField[Option[REQUEST_PRIORITY]](priority, t.priority),
+      FHIRComponentField[LitSeq[Reference]](specimen, t.specimen),
+      FHIRComponentField[LitSeq[CodeableConcept]](bodySite, t.bodySite),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[Option[Reference]](requester, t.requester),
+      FHIRComponentField[LitSeq[Reference]](performer, t.performer),
+      FHIRComponentField[LitSeq[Reference]](insurance, t.insurance),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[FHIRDateTime]](authoredOn, t.authoredOn),
+      FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
+      FHIRComponentField[Option[Identifier]](requisition, t.requisition),
+      FHIRComponentField[LitSeq[CodeableConcept]](orderDetail, t.orderDetail),
+      FHIRComponentField[Option[Servicerequest_genetics.QuantityChoice]](quantity, t.quantity),
+      FHIRComponentField[Option[Servicerequest_genetics.AsNeededChoice]](asNeeded, t.asNeeded),
+      FHIRComponentField[Option[Boolean]](doNotPerform, t.doNotPerform),
+      FHIRComponentField[LitSeq[CodeableConcept]](locationCode, t.locationCode),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[Servicerequest_genetics.OccurrenceChoice]](occurrence, t.occurrence),
+      FHIRComponentField[Option[CodeableConcept]](performerType, t.performerType),
+      FHIRComponentField[LitSeq[Reference]](supportingInfo, t.supportingInfo),
+      FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
+      FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
+      FHIRComponentField[LitSeq[Reference]](relevantHistory, t.relevantHistory),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Reference]](locationReference, t.locationReference),
+      FHIRComponentField[Option[String]](patientInstruction, t.patientInstruction),
+      FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical)
+    ))
+  override def fields(t: Servicerequest_genetics): Seq[FHIRComponentField[_]]                         = fieldsFromParent(t).get
   def extractId(t: Servicerequest_genetics): Option[String]                                           = t.id
   def extractMeta(t: Servicerequest_genetics): Option[Meta]                                           = t.meta
   def extractText(t: Servicerequest_genetics): Option[Narrative]                                      = t.text

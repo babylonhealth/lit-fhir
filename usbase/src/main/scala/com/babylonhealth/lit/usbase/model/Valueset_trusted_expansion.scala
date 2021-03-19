@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_trusted_expansion extends CompanionFor[Valueset_trusted_expansion] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/valueset-trusted-expansion")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-trusted-expansion")
   def apply(
       id: Option[String] = None,
       value: UriStr,
@@ -40,10 +41,12 @@ object Valueset_trusted_expansion extends CompanionFor[Valueset_trusted_expansio
   val value: FHIRComponentFieldMeta[UriStr] =
     FHIRComponentFieldMeta("value", lTagOf[UriStr], true, lTagOf[UriStr])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Valueset_trusted_expansion): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[UriStr](value, t.value.get.toSubRefNonUnion[UriStr])
+    ))
+  override def fields(t: Valueset_trusted_expansion): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_trusted_expansion): Option[String]                   = t.id
   def extractValue(t: Valueset_trusted_expansion): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                                  = "Valueset_trusted_expansion"

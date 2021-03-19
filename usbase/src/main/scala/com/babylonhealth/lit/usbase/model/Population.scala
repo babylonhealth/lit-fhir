@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Population extends CompanionFor[Population] {
-  override val baseType: CompanionFor[Population] = Population
-  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/Population")
+  override type ResourceType = Population
+  override val baseType: CompanionFor[ResourceType] = Population
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Population")
   type AgeChoice = Choice[Union_1946587936]
   def apply(
       id: Option[String] = None,
@@ -62,6 +63,7 @@ object Population extends CompanionFor[Population] {
     FHIRComponentFieldMeta("physiologicalCondition", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, race, age, gender, extension, modifierExtension, physiologicalCondition)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Population): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[CodeableConcept]](race, t.race),

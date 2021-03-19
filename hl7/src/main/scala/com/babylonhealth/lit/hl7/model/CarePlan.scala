@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -29,12 +29,15 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CarePlan extends CompanionFor[CarePlan] {
-  override val baseType: CompanionFor[CarePlan] = CarePlan
-  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/CarePlan")
+  override type ResourceType = CarePlan
+  override val baseType: CompanionFor[ResourceType] = CarePlan
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CarePlan")
   object Activity extends CompanionFor[Activity] {
+    override type ResourceType = Activity
     object Detail extends CompanionFor[Detail] {
-      type ProductChoice   = Choice[Union01025009075]
-      type ScheduledChoice = Choice[Union01726112534]
+      override type ResourceType = Detail
+      type ProductChoice         = Choice[Union01025009075]
+      type ScheduledChoice       = Choice[Union01726112534]
       def apply(
           id: Option[String] = None,
           kind: Option[CARE_PLAN_ACTIVITY_KIND] = None,
@@ -166,6 +169,7 @@ object CarePlan extends CompanionFor[CarePlan] {
         modifierExtension,
         instantiatesCanonical
       )
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Detail): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[CARE_PLAN_ACTIVITY_KIND]](kind, t.kind),
@@ -294,6 +298,7 @@ object CarePlan extends CompanionFor[CarePlan] {
       FHIRComponentFieldMeta("detail", lTagOf[Option[Activity.Detail]], false, lTagOf[Activity.Detail])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, progress, extension, reference, outcomeReference, modifierExtension, outcomeCodeableConcept, detail)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Activity): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Annotation]](progress, t.progress),
@@ -496,6 +501,7 @@ object CarePlan extends CompanionFor[CarePlan] {
     instantiatesCanonical,
     activity
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: CarePlan): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

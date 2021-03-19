@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -35,10 +35,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object StructureMap extends CompanionFor[StructureMap] {
-  override val baseType: CompanionFor[StructureMap] = StructureMap
+  override type ResourceType = StructureMap
+  override val baseType: CompanionFor[ResourceType] = StructureMap
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/StructureMap")
   object Group extends CompanionFor[Group] {
+    override type ResourceType = Group
     object Input extends CompanionFor[Input] {
+      override type ResourceType = Input
       def apply(
           id: Option[String] = None,
           name: Id,
@@ -77,6 +80,7 @@ object StructureMap extends CompanionFor[StructureMap] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, name, `type`, mode, extension, documentation, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Input): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Id](name, t.name),
@@ -116,8 +120,10 @@ object StructureMap extends CompanionFor[StructureMap] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Rule extends CompanionFor[Rule] {
+      override type ResourceType = Rule
       object Source extends CompanionFor[Source] {
-        type DefaultValueChoice = Choice[Union_1349125893]
+        override type ResourceType = Source
+        type DefaultValueChoice    = Choice[Union_1349125893]
         def apply(
             id: Option[String] = None,
             min: Option[Int] = None,
@@ -216,6 +222,7 @@ object StructureMap extends CompanionFor[StructureMap] {
           logMessage,
           defaultValue,
           modifierExtension)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Source): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[Option[Int]](min, t.min),
@@ -276,6 +283,7 @@ object StructureMap extends CompanionFor[StructureMap] {
             FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Dependent extends CompanionFor[Dependent] {
+        override type ResourceType = Dependent
         def apply(
             id: Option[String] = None,
             name: Id,
@@ -304,7 +312,8 @@ object StructureMap extends CompanionFor[StructureMap] {
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, variable, extension, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, name, variable, extension, modifierExtension)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Dependent): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[Id](name, t.name),
@@ -338,8 +347,10 @@ object StructureMap extends CompanionFor[StructureMap] {
             FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Target extends CompanionFor[Target] {
+        override type ResourceType = Target
         object Parameter extends CompanionFor[Parameter] {
-          type ValueChoice = Choice[Union00600764285]
+          override type ResourceType = Parameter
+          type ValueChoice           = Choice[Union00600764285]
           def apply(
               id: Option[String] = None,
               value: Parameter.ValueChoice,
@@ -364,7 +375,8 @@ object StructureMap extends CompanionFor[StructureMap] {
             FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
           val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
             FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-          val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value, extension, modifierExtension)
+          val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, value, extension, modifierExtension)
+          override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
           override def fields(t: Parameter): Seq[FHIRComponentField[_]] = Seq(
             FHIRComponentField[Option[String]](id, t.id),
             FHIRComponentField[Parameter.ValueChoice](value, t.value),
@@ -470,6 +482,7 @@ object StructureMap extends CompanionFor[StructureMap] {
           contextType,
           modifierExtension,
           parameter)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Target): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[Option[Id]](context, t.context),
@@ -566,6 +579,7 @@ object StructureMap extends CompanionFor[StructureMap] {
         FHIRComponentFieldMeta("target", lTagOf[LitSeq[Rule.Target]], false, lTagOf[Rule.Target])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, name, rule, extension, documentation, modifierExtension, source, dependent, target)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Rule): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Id](name, t.name),
@@ -656,6 +670,7 @@ object StructureMap extends CompanionFor[StructureMap] {
       FHIRComponentFieldMeta("rule", lTagOf[NonEmptyLitSeq[Group.Rule]], false, lTagOf[Group.Rule])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, name, `extends`, typeMode, extension, documentation, modifierExtension, input, rule)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Group): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Id](name, t.name),
@@ -700,6 +715,7 @@ object StructureMap extends CompanionFor[StructureMap] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Structure extends CompanionFor[Structure] {
+    override type ResourceType = Structure
     def apply(
         id: Option[String] = None,
         url: Canonical,
@@ -738,6 +754,7 @@ object StructureMap extends CompanionFor[StructureMap] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, url, mode, alias, extension, documentation, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Structure): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Canonical](url, t.url),
@@ -912,6 +929,7 @@ object StructureMap extends CompanionFor[StructureMap] {
     structure,
     group
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: StructureMap): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[UriStr](url, t.url),

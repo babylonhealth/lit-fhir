@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,13 +24,17 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityResponse] {
-  override val baseType: CompanionFor[CoverageEligibilityResponse] = CoverageEligibilityResponse
-  override val profileUrl: Option[String]                          = Some("http://hl7.org/fhir/StructureDefinition/CoverageEligibilityResponse")
+  override type ResourceType = CoverageEligibilityResponse
+  override val baseType: CompanionFor[ResourceType] = CoverageEligibilityResponse
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CoverageEligibilityResponse")
   object Insurance extends CompanionFor[Insurance] {
+    override type ResourceType = Insurance
     object Item extends CompanionFor[Item] {
+      override type ResourceType = Item
       object Benefit extends CompanionFor[Benefit] {
-        type UsedChoice    = Choice[Union_0040864668]
-        type AllowedChoice = Choice[Union_0040864668]
+        override type ResourceType = Benefit
+        type UsedChoice            = Choice[Union_0040864668]
+        type AllowedChoice         = Choice[Union_0040864668]
         def apply(
             id: Option[String] = None,
             `type`: CodeableConcept,
@@ -63,7 +67,8 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
           FHIRComponentFieldMeta("allowed", lTagOf[Option[Benefit.AllowedChoice]], true, lTagOf[Union_0040864668])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, used, extension, allowed, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, used, extension, allowed, modifierExtension)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Benefit): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[CodeableConcept](`type`, t.`type`),
@@ -216,6 +221,7 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
         authorizationSupporting,
         benefit
       )
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Item): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[String]](name, t.name),
@@ -322,6 +328,7 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
       FHIRComponentFieldMeta("item", lTagOf[LitSeq[Insurance.Item]], false, lTagOf[Insurance.Item])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, inforce, coverage, extension, benefitPeriod, modifierExtension, item)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Insurance): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Boolean]](inforce, t.inforce),
@@ -360,6 +367,7 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Error extends CompanionFor[Error] {
+    override type ResourceType = Error
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,
@@ -383,7 +391,8 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Error): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[CodeableConcept](code, t.code),
@@ -551,6 +560,7 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
     error,
     insurance
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: CoverageEligibilityResponse): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

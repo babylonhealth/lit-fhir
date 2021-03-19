@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_expression extends CompanionFor[Cqf_expression] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/cqf-expression")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/cqf-expression")
   def apply(
       id: Option[String] = None,
       value: Expression,
@@ -40,10 +41,12 @@ object Cqf_expression extends CompanionFor[Cqf_expression] {
   val value: FHIRComponentFieldMeta[Expression] =
     FHIRComponentFieldMeta("value", lTagOf[Expression], true, lTagOf[Expression])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Cqf_expression): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Expression](value, t.value.get.toSubRefNonUnion[Expression])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Expression](value, t.value.get.toSubRefNonUnion[Expression])
+    ))
+  override def fields(t: Cqf_expression): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Cqf_expression): Option[String]                   = t.id
   def extractValue(t: Cqf_expression): Expression                    = t.value.get.toSubRefNonUnion[Expression]
   override val thisName: String                                      = "Cqf_expression"

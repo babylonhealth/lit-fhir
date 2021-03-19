@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Specimen_processingTime extends CompanionFor[Specimen_processingTime] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/specimen-processingTime")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/specimen-processingTime")
   type ValueChoice = Choice[Union00284192631]
   def apply(
       id: Option[String] = None,
@@ -41,10 +42,12 @@ object Specimen_processingTime extends CompanionFor[Specimen_processingTime] {
   val value: FHIRComponentFieldMeta[Specimen_processingTime.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Specimen_processingTime.ValueChoice], true, lTagOf[Union00284192631])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Specimen_processingTime): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Specimen_processingTime.ValueChoice](value, t.value.get.toSubRef)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Specimen_processingTime.ValueChoice](value, t.value.get.toSubRef)
+    ))
+  override def fields(t: Specimen_processingTime): Seq[FHIRComponentField[_]]       = fieldsFromParent(t).get
   def extractId(t: Specimen_processingTime): Option[String]                         = t.id
   def extractValue(t: Specimen_processingTime): Specimen_processingTime.ValueChoice = t.value.get.toSubRef
   override val thisName: String                                                     = "Specimen_processingTime"

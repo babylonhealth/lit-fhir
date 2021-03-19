@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_direct extends CompanionFor[Us_core_direct] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct")
   def apply(
       id: Option[String] = None,
       value: Option[Boolean] = None,
@@ -45,11 +46,13 @@ object Us_core_direct extends CompanionFor[Us_core_direct] {
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value, extension)
-  override def fields(t: Us_core_direct): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Boolean]](value, t.value.map(_.toSubRefNonUnion[Boolean])),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Boolean]](value, t.value.map(_.toSubRefNonUnion[Boolean])),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension)
+    ))
+  override def fields(t: Us_core_direct): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Us_core_direct): Option[String]                   = t.id
   def extractValue(t: Us_core_direct): Option[Boolean]               = t.value.map(_.toSubRefNonUnion[Boolean])
   def extractExtension(t: Us_core_direct): LitSeq[Extension]         = t.extension

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Person extends CompanionFor[Person] {
-  override val baseType: CompanionFor[Person] = Person
-  override val profileUrl: Option[String]     = Some("http://hl7.org/fhir/StructureDefinition/Person")
+  override type ResourceType = Person
+  override val baseType: CompanionFor[ResourceType] = Person
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Person")
   object Link extends CompanionFor[Link] {
+    override type ResourceType = Link
     def apply(
         id: Option[String] = None,
         target: Reference,
@@ -59,7 +61,8 @@ object Person extends CompanionFor[Person] {
         lTagOf[IDENTITY_ASSURANCELEVEL])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, target, extension, assurance, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, target, extension, assurance, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Link): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Reference](target, t.target),
@@ -188,6 +191,7 @@ object Person extends CompanionFor[Person] {
     managingOrganization,
     link
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Person): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

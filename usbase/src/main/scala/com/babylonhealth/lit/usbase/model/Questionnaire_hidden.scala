@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire_hidden extends CompanionFor[Questionnaire_hidden] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/questionnaire-hidden")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/questionnaire-hidden")
   def apply(
       id: Option[String] = None,
       value: Boolean,
@@ -40,10 +41,12 @@ object Questionnaire_hidden extends CompanionFor[Questionnaire_hidden] {
   val value: FHIRComponentFieldMeta[Boolean] =
     FHIRComponentFieldMeta("value", lTagOf[Boolean], true, lTagOf[Boolean])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Questionnaire_hidden): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
+    ))
+  override def fields(t: Questionnaire_hidden): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_hidden): Option[String]                   = t.id
   def extractValue(t: Questionnaire_hidden): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                            = "Questionnaire_hidden"

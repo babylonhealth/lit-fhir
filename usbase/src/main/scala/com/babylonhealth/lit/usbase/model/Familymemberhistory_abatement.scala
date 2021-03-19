@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Familymemberhistory_abatement extends CompanionFor[Familymemberhistory_abatement] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/familymemberhistory-abatement")
   type ValueChoice = Choice[Union00813350082]
@@ -42,10 +43,12 @@ object Familymemberhistory_abatement extends CompanionFor[Familymemberhistory_ab
   val value: FHIRComponentFieldMeta[Familymemberhistory_abatement.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Familymemberhistory_abatement.ValueChoice], true, lTagOf[Union00813350082])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Familymemberhistory_abatement): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Familymemberhistory_abatement.ValueChoice](value, t.value.get.toSubRef)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Familymemberhistory_abatement.ValueChoice](value, t.value.get.toSubRef)
+    ))
+  override def fields(t: Familymemberhistory_abatement): Seq[FHIRComponentField[_]]             = fieldsFromParent(t).get
   def extractId(t: Familymemberhistory_abatement): Option[String]                               = t.id
   def extractValue(t: Familymemberhistory_abatement): Familymemberhistory_abatement.ValueChoice = t.value.get.toSubRef
   override val thisName: String                                                                 = "Familymemberhistory_abatement"

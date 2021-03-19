@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -23,10 +23,12 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthorization] {
-  override val baseType: CompanionFor[MedicinalProductAuthorization] = MedicinalProductAuthorization
+  override type ResourceType = MedicinalProductAuthorization
+  override val baseType: CompanionFor[ResourceType] = MedicinalProductAuthorization
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/MedicinalProductAuthorization")
   object JurisdictionalAuthorization extends CompanionFor[JurisdictionalAuthorization] {
+    override type ResourceType = JurisdictionalAuthorization
     def apply(
         id: Option[String] = None,
         country: Option[CodeableConcept] = None,
@@ -78,6 +80,7 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
       FHIRComponentFieldMeta("legalStatusOfSupply", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, country, extension, identifier, jurisdiction, validityPeriod, modifierExtension, legalStatusOfSupply)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: JurisdictionalAuthorization): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[CodeableConcept]](country, t.country),
@@ -119,7 +122,8 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Procedure extends CompanionFor[Procedure] {
-    type DateChoice = Choice[Union_0934386166]
+    override type ResourceType = Procedure
+    type DateChoice            = Choice[Union_0934386166]
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -162,6 +166,7 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, `type`, date, extension, identifier, application, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Procedure): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[CodeableConcept](`type`, t.`type`),
@@ -335,6 +340,7 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
     procedure,
     jurisdictionalAuthorization
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: MedicinalProductAuthorization): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

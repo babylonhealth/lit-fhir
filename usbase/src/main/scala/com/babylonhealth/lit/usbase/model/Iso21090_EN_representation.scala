@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_EN_representation extends CompanionFor[Iso21090_EN_representation] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/iso21090-EN-representation")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/iso21090-EN-representation")
   def apply(
       id: Option[String] = None,
       value: NAME_V3_REPRESENTATION,
@@ -40,13 +41,15 @@ object Iso21090_EN_representation extends CompanionFor[Iso21090_EN_representatio
   val value: FHIRComponentFieldMeta[NAME_V3_REPRESENTATION] =
     FHIRComponentFieldMeta("value", lTagOf[NAME_V3_REPRESENTATION], true, lTagOf[NAME_V3_REPRESENTATION])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Iso21090_EN_representation): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[NAME_V3_REPRESENTATION](
-      value,
-      NAME_V3_REPRESENTATION.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Iso21090_EN_representation): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[NAME_V3_REPRESENTATION](
+        value,
+        NAME_V3_REPRESENTATION.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Iso21090_EN_representation): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Iso21090_EN_representation): Option[String]                   = t.id
   def extractValue(t: Iso21090_EN_representation): NAME_V3_REPRESENTATION =
     NAME_V3_REPRESENTATION.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                  = "Iso21090_EN_representation"

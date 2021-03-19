@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DiagnosticReport_geneticsReferences extends CompanionFor[DiagnosticReport_geneticsReferences] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/DiagnosticReport-geneticsReferences")
   def apply(
@@ -41,10 +42,12 @@ object DiagnosticReport_geneticsReferences extends CompanionFor[DiagnosticReport
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension)
-  override def fields(t: DiagnosticReport_geneticsReferences): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension)
+    ))
+  override def fields(t: DiagnosticReport_geneticsReferences): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: DiagnosticReport_geneticsReferences): Option[String]                   = t.id
   def extractExtension(t: DiagnosticReport_geneticsReferences): LitSeq[Extension]         = t.extension
   override val thisName: String                                                           = "DiagnosticReport_geneticsReferences"

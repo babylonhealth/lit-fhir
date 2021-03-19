@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Messageheader_response_request extends CompanionFor[Messageheader_response_request] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/messageheader-response-request")
   def apply(
@@ -45,13 +46,15 @@ object Messageheader_response_request extends CompanionFor[Messageheader_respons
       true,
       lTagOf[MESSAGEHEADER_RESPONSE_REQUEST])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Messageheader_response_request): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[MESSAGEHEADER_RESPONSE_REQUEST](
-      value,
-      MESSAGEHEADER_RESPONSE_REQUEST.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Messageheader_response_request): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[MESSAGEHEADER_RESPONSE_REQUEST](
+        value,
+        MESSAGEHEADER_RESPONSE_REQUEST.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Messageheader_response_request): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Messageheader_response_request): Option[String]                   = t.id
   def extractValue(t: Messageheader_response_request): MESSAGEHEADER_RESPONSE_REQUEST =
     MESSAGEHEADER_RESPONSE_REQUEST.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                      = "Messageheader_response_request"

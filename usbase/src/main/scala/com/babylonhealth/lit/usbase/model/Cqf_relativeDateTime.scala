@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_relativeDateTime extends CompanionFor[Cqf_relativeDateTime] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/cqf-relativeDateTime")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/cqf-relativeDateTime")
   def apply(
       id: Option[String] = None,
       extension: NonEmptyLitSeq[Extension],
@@ -40,10 +41,12 @@ object Cqf_relativeDateTime extends CompanionFor[Cqf_relativeDateTime] {
   val extension: FHIRComponentFieldMeta[NonEmptyLitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[NonEmptyLitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension)
-  override def fields(t: Cqf_relativeDateTime): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
+    ))
+  override def fields(t: Cqf_relativeDateTime): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Cqf_relativeDateTime): Option[String]                   = t.id
   def extractExtension(t: Cqf_relativeDateTime): NonEmptyLitSeq[Extension] = t.extension.asNonEmpty
   override val thisName: String                                            = "Cqf_relativeDateTime"

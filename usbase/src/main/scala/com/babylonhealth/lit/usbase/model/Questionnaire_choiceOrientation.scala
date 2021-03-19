@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire_choiceOrientation extends CompanionFor[Questionnaire_choiceOrientation] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/questionnaire-choiceOrientation")
   def apply(
@@ -41,13 +42,15 @@ object Questionnaire_choiceOrientation extends CompanionFor[Questionnaire_choice
   val value: FHIRComponentFieldMeta[CHOICE_LIST_ORIENTATION] =
     FHIRComponentFieldMeta("value", lTagOf[CHOICE_LIST_ORIENTATION], true, lTagOf[CHOICE_LIST_ORIENTATION])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Questionnaire_choiceOrientation): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[CHOICE_LIST_ORIENTATION](
-      value,
-      CHOICE_LIST_ORIENTATION.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Questionnaire_choiceOrientation): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[CHOICE_LIST_ORIENTATION](
+        value,
+        CHOICE_LIST_ORIENTATION.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Questionnaire_choiceOrientation): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Questionnaire_choiceOrientation): Option[String]                   = t.id
   def extractValue(t: Questionnaire_choiceOrientation): CHOICE_LIST_ORIENTATION =
     CHOICE_LIST_ORIENTATION.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                       = "Questionnaire_choiceOrientation"

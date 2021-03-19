@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_security_category extends CompanionFor[Structuredefinition_security_category] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category")
   def apply(
@@ -41,13 +42,15 @@ object Structuredefinition_security_category extends CompanionFor[Structuredefin
   val value: FHIRComponentFieldMeta[RESOURCE_SECURITY_CATEGORY] =
     FHIRComponentFieldMeta("value", lTagOf[RESOURCE_SECURITY_CATEGORY], true, lTagOf[RESOURCE_SECURITY_CATEGORY])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Structuredefinition_security_category): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[RESOURCE_SECURITY_CATEGORY](
-      value,
-      RESOURCE_SECURITY_CATEGORY.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Structuredefinition_security_category): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[RESOURCE_SECURITY_CATEGORY](
+        value,
+        RESOURCE_SECURITY_CATEGORY.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Structuredefinition_security_category): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Structuredefinition_security_category): Option[String]                   = t.id
   def extractValue(t: Structuredefinition_security_category): RESOURCE_SECURITY_CATEGORY =
     RESOURCE_SECURITY_CATEGORY.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                             = "Structuredefinition_security_category"

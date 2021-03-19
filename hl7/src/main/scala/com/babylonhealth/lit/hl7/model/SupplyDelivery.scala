@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,12 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SupplyDelivery extends CompanionFor[SupplyDelivery] {
-  override val baseType: CompanionFor[SupplyDelivery] = SupplyDelivery
-  override val profileUrl: Option[String]             = Some("http://hl7.org/fhir/StructureDefinition/SupplyDelivery")
+  override type ResourceType = SupplyDelivery
+  override val baseType: CompanionFor[ResourceType] = SupplyDelivery
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SupplyDelivery")
   object SuppliedItem extends CompanionFor[SuppliedItem] {
-    type ItemChoice = Choice[Union01025009075]
+    override type ResourceType = SuppliedItem
+    type ItemChoice            = Choice[Union01025009075]
     def apply(
         id: Option[String] = None,
         item: Option[SuppliedItem.ItemChoice] = None,
@@ -56,7 +58,8 @@ object SupplyDelivery extends CompanionFor[SupplyDelivery] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, item, quantity, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, item, quantity, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: SuppliedItem): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[SuppliedItem.ItemChoice]](item, t.item),
@@ -199,6 +202,7 @@ object SupplyDelivery extends CompanionFor[SupplyDelivery] {
     modifierExtension,
     suppliedItem
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: SupplyDelivery): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

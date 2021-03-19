@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -23,9 +23,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductPackaged extends CompanionFor[MedicinalProductPackaged] {
-  override val baseType: CompanionFor[MedicinalProductPackaged] = MedicinalProductPackaged
-  override val profileUrl: Option[String]                       = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductPackaged")
+  override type ResourceType = MedicinalProductPackaged
+  override val baseType: CompanionFor[ResourceType] = MedicinalProductPackaged
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductPackaged")
   object PackageItem extends CompanionFor[PackageItem] {
+    override type ResourceType = PackageItem
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -139,6 +141,7 @@ object MedicinalProductPackaged extends CompanionFor[MedicinalProductPackaged] {
       otherCharacteristics,
       physicalCharacteristics
     )
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: PackageItem): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[CodeableConcept](`type`, t.`type`),
@@ -201,6 +204,7 @@ object MedicinalProductPackaged extends CompanionFor[MedicinalProductPackaged] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object BatchIdentifier extends CompanionFor[BatchIdentifier] {
+    override type ResourceType = BatchIdentifier
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -231,6 +235,7 @@ object MedicinalProductPackaged extends CompanionFor[MedicinalProductPackaged] {
       FHIRComponentFieldMeta("immediatePackaging", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, extension, outerPackaging, modifierExtension, immediatePackaging)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: BatchIdentifier): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -366,6 +371,7 @@ object MedicinalProductPackaged extends CompanionFor[MedicinalProductPackaged] {
     batchIdentifier,
     packageItem
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: MedicinalProductPackaged): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

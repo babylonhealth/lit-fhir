@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Servicerequest_geneticsItem extends CompanionFor[Servicerequest_geneticsItem] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/servicerequest-geneticsItem")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/servicerequest-geneticsItem")
   def apply(
       id: Option[String] = None,
       extension: NonEmptyLitSeq[Extension],
@@ -40,10 +41,12 @@ object Servicerequest_geneticsItem extends CompanionFor[Servicerequest_geneticsI
   val extension: FHIRComponentFieldMeta[NonEmptyLitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[NonEmptyLitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension)
-  override def fields(t: Servicerequest_geneticsItem): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
+    ))
+  override def fields(t: Servicerequest_geneticsItem): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Servicerequest_geneticsItem): Option[String]                   = t.id
   def extractExtension(t: Servicerequest_geneticsItem): NonEmptyLitSeq[Extension] = t.extension.asNonEmpty
   override val thisName: String                                                   = "Servicerequest_geneticsItem"

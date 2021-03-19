@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,8 +26,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_medication extends CompanionFor[Us_core_medication] {
-  override val baseType: CompanionFor[Medication] = Medication
-  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication")
+  override type ResourceType = Medication
+  override val baseType: CompanionFor[ResourceType] = Medication
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -115,24 +116,26 @@ object Us_core_medication extends CompanionFor[Us_core_medication] {
     modifierExtension,
     batch,
     ingredient)
-  override def fields(t: Us_core_medication): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[CodeableConcept](code, t.code.get),
-    FHIRComponentField[Option[CodeableConcept]](form, t.form),
-    FHIRComponentField[Option[MEDICATION_STATUS]](status, t.status),
-    FHIRComponentField[Option[Ratio]](amount, t.amount),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[Reference]](manufacturer, t.manufacturer),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[Option[Medication.Batch]](batch, t.batch),
-    FHIRComponentField[LitSeq[Medication.Ingredient]](ingredient, t.ingredient)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[CodeableConcept](code, t.code.get),
+      FHIRComponentField[Option[CodeableConcept]](form, t.form),
+      FHIRComponentField[Option[MEDICATION_STATUS]](status, t.status),
+      FHIRComponentField[Option[Ratio]](amount, t.amount),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[Reference]](manufacturer, t.manufacturer),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Option[Medication.Batch]](batch, t.batch),
+      FHIRComponentField[LitSeq[Medication.Ingredient]](ingredient, t.ingredient)
+    ))
+  override def fields(t: Us_core_medication): Seq[FHIRComponentField[_]]      = fieldsFromParent(t).get
   def extractId(t: Us_core_medication): Option[String]                        = t.id
   def extractMeta(t: Us_core_medication): Option[Meta]                        = t.meta
   def extractText(t: Us_core_medication): Option[Narrative]                   = t.text

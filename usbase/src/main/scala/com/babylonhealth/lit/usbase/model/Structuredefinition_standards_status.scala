@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_standards_status extends CompanionFor[Structuredefinition_standards_status] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status")
   def apply(
@@ -41,11 +42,13 @@ object Structuredefinition_standards_status extends CompanionFor[Structuredefini
   val value: FHIRComponentFieldMeta[STANDARDS_STATUS] =
     FHIRComponentFieldMeta("value", lTagOf[STANDARDS_STATUS], true, lTagOf[STANDARDS_STATUS])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Structuredefinition_standards_status): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[STANDARDS_STATUS](value, STANDARDS_STATUS.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Structuredefinition_standards_status): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[STANDARDS_STATUS](value, STANDARDS_STATUS.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Structuredefinition_standards_status): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Structuredefinition_standards_status): Option[String]                   = t.id
   def extractValue(t: Structuredefinition_standards_status): STANDARDS_STATUS =
     STANDARDS_STATUS.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                            = "Structuredefinition_standards_status"

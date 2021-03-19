@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object NarrativeLink extends CompanionFor[NarrativeLink] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/narrativeLink")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/narrativeLink")
   def apply(
       id: Option[String] = None,
       value: UrlStr,
@@ -40,10 +41,12 @@ object NarrativeLink extends CompanionFor[NarrativeLink] {
   val value: FHIRComponentFieldMeta[UrlStr] =
     FHIRComponentFieldMeta("value", lTagOf[UrlStr], true, lTagOf[UrlStr])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: NarrativeLink): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[UrlStr](value, t.value.get.toSubRefNonUnion[UrlStr])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[UrlStr](value, t.value.get.toSubRefNonUnion[UrlStr])
+    ))
+  override def fields(t: NarrativeLink): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: NarrativeLink): Option[String]                   = t.id
   def extractValue(t: NarrativeLink): UrlStr                        = t.value.get.toSubRefNonUnion[UrlStr]
   override val thisName: String                                     = "NarrativeLink"

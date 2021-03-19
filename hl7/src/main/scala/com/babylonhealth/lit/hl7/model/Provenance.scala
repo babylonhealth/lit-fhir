@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Provenance extends CompanionFor[Provenance] {
-  override val baseType: CompanionFor[Provenance] = Provenance
-  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/Provenance")
+  override type ResourceType = Provenance
+  override val baseType: CompanionFor[ResourceType] = Provenance
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Provenance")
   object Entity extends CompanionFor[Entity] {
+    override type ResourceType = Entity
     def apply(
         id: Option[String] = None,
         role: PROVENANCE_ENTITY_ROLE,
@@ -59,7 +61,8 @@ object Provenance extends CompanionFor[Provenance] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, role, what, agent, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, role, what, agent, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Entity): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[PROVENANCE_ENTITY_ROLE](role, t.role),
@@ -95,6 +98,7 @@ object Provenance extends CompanionFor[Provenance] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Agent extends CompanionFor[Agent] {
+    override type ResourceType = Agent
     def apply(
         id: Option[String] = None,
         who: Reference,
@@ -133,6 +137,7 @@ object Provenance extends CompanionFor[Provenance] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, who, `type`, role, extension, onBehalfOf, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Agent): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Reference](who, t.who),
@@ -268,6 +273,7 @@ object Provenance extends CompanionFor[Provenance] {
     agent,
     entity
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Provenance): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

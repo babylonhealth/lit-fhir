@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cdshooksguidanceresponse extends CompanionFor[Cdshooksguidanceresponse] {
-  override val baseType: CompanionFor[GuidanceResponse] = GuidanceResponse
-  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/cdshooksguidanceresponse")
+  override type ResourceType = GuidanceResponse
+  override val baseType: CompanionFor[ResourceType] = GuidanceResponse
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/cdshooksguidanceresponse")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -150,31 +151,33 @@ object Cdshooksguidanceresponse extends CompanionFor[Cdshooksguidanceresponse] {
     evaluationMessage,
     occurrenceDateTime
   )
-  override def fields(t: Cdshooksguidanceresponse): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[GUIDANCE_RESPONSE_STATUS](status, t.status),
-    FHIRComponentField[Option[Reference]](result, t.result),
-    FHIRComponentField[Option[Reference]](subject, t.subject),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty),
-    FHIRComponentField[UriStr](module, t.module.toSubRefNonUnion[UriStr]),
-    FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[Option[Reference]](performer, t.performer),
-    FHIRComponentField[Identifier](identifier, t.identifier.head),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
-    FHIRComponentField[LitSeq[DataRequirement]](dataRequirement, t.dataRequirement),
-    FHIRComponentField[Option[Reference]](outputParameters, t.outputParameters),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[Identifier](requestIdentifier, t.requestIdentifier.get),
-    FHIRComponentField[LitSeq[Reference]](evaluationMessage, t.evaluationMessage),
-    FHIRComponentField[Option[FHIRDateTime]](occurrenceDateTime, t.occurrenceDateTime)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[GUIDANCE_RESPONSE_STATUS](status, t.status),
+      FHIRComponentField[Option[Reference]](result, t.result),
+      FHIRComponentField[Option[Reference]](subject, t.subject),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty),
+      FHIRComponentField[UriStr](module, t.module.toSubRefNonUnion[UriStr]),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[Option[Reference]](performer, t.performer),
+      FHIRComponentField[Identifier](identifier, t.identifier.head),
+      FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
+      FHIRComponentField[LitSeq[DataRequirement]](dataRequirement, t.dataRequirement),
+      FHIRComponentField[Option[Reference]](outputParameters, t.outputParameters),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Identifier](requestIdentifier, t.requestIdentifier.get),
+      FHIRComponentField[LitSeq[Reference]](evaluationMessage, t.evaluationMessage),
+      FHIRComponentField[Option[FHIRDateTime]](occurrenceDateTime, t.occurrenceDateTime)
+    ))
+  override def fields(t: Cdshooksguidanceresponse): Seq[FHIRComponentField[_]]     = fieldsFromParent(t).get
   def extractId(t: Cdshooksguidanceresponse): Option[String]                       = t.id
   def extractMeta(t: Cdshooksguidanceresponse): Option[Meta]                       = t.meta
   def extractText(t: Cdshooksguidanceresponse): Option[Narrative]                  = t.text

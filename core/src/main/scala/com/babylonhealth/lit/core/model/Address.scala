@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,8 +21,9 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Address extends CompanionFor[Address] {
-  override val baseType: CompanionFor[Address] = Address
-  override val profileUrl: Option[String]      = Some("http://hl7.org/fhir/StructureDefinition/Address")
+  override type ResourceType = Address
+  override val baseType: CompanionFor[ResourceType] = Address
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Address")
   def apply(
       id: Option[String] = None,
       use: Option[ADDRESS_USE] = None,
@@ -78,6 +79,7 @@ object Address extends CompanionFor[Address] {
     FHIRComponentFieldMeta("postalCode", lTagOf[Option[String]], false, lTagOf[String])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, use, `type`, text, line, city, state, period, country, district, extension, postalCode)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Address): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[ADDRESS_USE]](use, t.use),

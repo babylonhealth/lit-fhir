@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ConceptMap extends CompanionFor[ConceptMap] {
-  override val baseType: CompanionFor[ConceptMap] = ConceptMap
-  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/ConceptMap")
+  override type ResourceType = ConceptMap
+  override val baseType: CompanionFor[ResourceType] = ConceptMap
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ConceptMap")
   object Group extends CompanionFor[Group] {
+    override type ResourceType = Group
     object Unmapped extends CompanionFor[Unmapped] {
+      override type ResourceType = Unmapped
       def apply(
           id: Option[String] = None,
           url: Option[Canonical] = None,
@@ -64,7 +67,8 @@ object ConceptMap extends CompanionFor[ConceptMap] {
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, mode, code, display, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, url, mode, code, display, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Unmapped): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[Canonical]](url, t.url),
@@ -104,8 +108,11 @@ object ConceptMap extends CompanionFor[ConceptMap] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Element extends CompanionFor[Element] {
+      override type ResourceType = Element
       object Target extends CompanionFor[Target] {
+        override type ResourceType = Target
         object DependsOn extends CompanionFor[DependsOn] {
+          override type ResourceType = DependsOn
           def apply(
               id: Option[String] = None,
               value: String,
@@ -144,6 +151,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
             FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
           val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
             Seq(id, value, system, display, property, extension, modifierExtension)
+          override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
           override def fields(t: DependsOn): Seq[FHIRComponentField[_]] = Seq(
             FHIRComponentField[Option[String]](id, t.id),
             FHIRComponentField[String](value, t.value),
@@ -242,6 +250,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
           FHIRComponentFieldMeta("dependsOn", lTagOf[LitSeq[Target.DependsOn]], false, lTagOf[Target.DependsOn])
         val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
           Seq(id, code, display, comment, product, extension, equivalence, modifierExtension, dependsOn)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Target): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[Option[Code]](code, t.code),
@@ -318,7 +327,8 @@ object ConceptMap extends CompanionFor[ConceptMap] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val target: FHIRComponentFieldMeta[LitSeq[Element.Target]] =
         FHIRComponentFieldMeta("target", lTagOf[LitSeq[Element.Target]], false, lTagOf[Element.Target])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, display, extension, modifierExtension, target)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, display, extension, modifierExtension, target)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Element): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[Code]](code, t.code),
@@ -410,6 +420,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
       FHIRComponentFieldMeta("element", lTagOf[NonEmptyLitSeq[Group.Element]], false, lTagOf[Group.Element])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, source, target, extension, sourceVersion, targetVersion, modifierExtension, unmapped, element)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Group): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[UriStr]](source, t.source),
@@ -592,6 +603,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
     modifierExtension,
     group
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ConceptMap): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),

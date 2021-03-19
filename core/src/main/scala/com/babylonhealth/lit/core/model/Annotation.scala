@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,8 +21,9 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Annotation extends CompanionFor[Annotation] {
-  override val baseType: CompanionFor[Annotation] = Annotation
-  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/Annotation")
+  override type ResourceType = Annotation
+  override val baseType: CompanionFor[ResourceType] = Annotation
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Annotation")
   type AuthorChoice = Choice[Union_1128709984]
   def apply(
       id: Option[String] = None,
@@ -49,7 +50,8 @@ object Annotation extends CompanionFor[Annotation] {
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val author: FHIRComponentFieldMeta[Option[Annotation.AuthorChoice]] =
     FHIRComponentFieldMeta("author", lTagOf[Option[Annotation.AuthorChoice]], true, lTagOf[Union_1128709984])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, time, text, extension, author)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, time, text, extension, author)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Annotation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[FHIRDateTime]](time, t.time),

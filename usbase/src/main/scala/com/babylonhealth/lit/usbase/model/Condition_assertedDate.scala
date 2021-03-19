@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Condition_assertedDate extends CompanionFor[Condition_assertedDate] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/condition-assertedDate")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/condition-assertedDate")
   def apply(
       id: Option[String] = None,
       value: FHIRDateTime,
@@ -40,10 +41,12 @@ object Condition_assertedDate extends CompanionFor[Condition_assertedDate] {
   val value: FHIRComponentFieldMeta[FHIRDateTime] =
     FHIRComponentFieldMeta("value", lTagOf[FHIRDateTime], true, lTagOf[FHIRDateTime])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Condition_assertedDate): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[FHIRDateTime](value, t.value.get.toSubRefNonUnion[FHIRDateTime])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[FHIRDateTime](value, t.value.get.toSubRefNonUnion[FHIRDateTime])
+    ))
+  override def fields(t: Condition_assertedDate): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Condition_assertedDate): Option[String]                   = t.id
   def extractValue(t: Condition_assertedDate): FHIRDateTime                  = t.value.get.toSubRefNonUnion[FHIRDateTime]
   override val thisName: String                                              = "Condition_assertedDate"

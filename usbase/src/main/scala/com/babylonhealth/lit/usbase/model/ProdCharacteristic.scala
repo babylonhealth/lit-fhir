@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ProdCharacteristic extends CompanionFor[ProdCharacteristic] {
-  override val baseType: CompanionFor[ProdCharacteristic] = ProdCharacteristic
-  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/ProdCharacteristic")
+  override type ResourceType = ProdCharacteristic
+  override val baseType: CompanionFor[ResourceType] = ProdCharacteristic
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ProdCharacteristic")
   def apply(
       id: Option[String] = None,
       width: Option[Quantity] = None,
@@ -102,6 +103,7 @@ object ProdCharacteristic extends CompanionFor[ProdCharacteristic] {
     nominalVolume,
     externalDiameter,
     modifierExtension)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ProdCharacteristic): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Quantity]](width, t.width),

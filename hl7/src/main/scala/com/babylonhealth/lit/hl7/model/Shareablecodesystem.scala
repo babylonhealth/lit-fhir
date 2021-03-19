@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablecodesystem extends CompanionFor[Shareablecodesystem] {
-  override val baseType: CompanionFor[CodeSystem] = CodeSystem
-  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/shareablecodesystem")
+  override type ResourceType = CodeSystem
+  override val baseType: CompanionFor[ResourceType] = CodeSystem
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareablecodesystem")
   def apply(
       id: Option[String] = None,
       url: UriStr,
@@ -208,42 +209,44 @@ object Shareablecodesystem extends CompanionFor[Shareablecodesystem] {
     property,
     concept
   )
-  override def fields(t: Shareablecodesystem): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[UriStr](url, t.url.get),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name.get),
-    FHIRComponentField[Option[FHIRDateTime]](date, t.date),
-    FHIRComponentField[Option[String]](title, t.title),
-    FHIRComponentField[Option[UnsignedInt]](count, t.count),
-    FHIRComponentField[PUBLICATION_STATUS](status, t.status),
-    FHIRComponentField[String](version, t.version.get),
-    FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
-    FHIRComponentField[Option[Markdown]](purpose, t.purpose),
-    FHIRComponentField[CODESYSTEM_CONTENT_MODE](content, t.content),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[Canonical]](valueSet, t.valueSet),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[String](publisher, t.publisher.get),
-    FHIRComponentField[Option[Markdown]](copyright, t.copyright),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
-    FHIRComponentField[Markdown](description, t.description.get),
-    FHIRComponentField[Option[Canonical]](supplements, t.supplements),
-    FHIRComponentField[Boolean](experimental, t.experimental.get),
-    FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[Boolean]](caseSensitive, t.caseSensitive),
-    FHIRComponentField[Option[Boolean]](compositional, t.compositional),
-    FHIRComponentField[Option[Boolean]](versionNeeded, t.versionNeeded),
-    FHIRComponentField[Option[CODESYSTEM_HIERARCHY_MEANING]](hierarchyMeaning, t.hierarchyMeaning),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[CodeSystem.Filter]](filter, t.filter),
-    FHIRComponentField[LitSeq[CodeSystem.Property]](property, t.property),
-    FHIRComponentField[NonEmptyLitSeq[CodeSystem.Concept]](concept, t.concept.asNonEmpty)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[UriStr](url, t.url.get),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[String](name, t.name.get),
+      FHIRComponentField[Option[FHIRDateTime]](date, t.date),
+      FHIRComponentField[Option[String]](title, t.title),
+      FHIRComponentField[Option[UnsignedInt]](count, t.count),
+      FHIRComponentField[PUBLICATION_STATUS](status, t.status),
+      FHIRComponentField[String](version, t.version.get),
+      FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
+      FHIRComponentField[Option[Markdown]](purpose, t.purpose),
+      FHIRComponentField[CODESYSTEM_CONTENT_MODE](content, t.content),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[Option[Canonical]](valueSet, t.valueSet),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[String](publisher, t.publisher.get),
+      FHIRComponentField[Option[Markdown]](copyright, t.copyright),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
+      FHIRComponentField[Markdown](description, t.description.get),
+      FHIRComponentField[Option[Canonical]](supplements, t.supplements),
+      FHIRComponentField[Boolean](experimental, t.experimental.get),
+      FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[Boolean]](caseSensitive, t.caseSensitive),
+      FHIRComponentField[Option[Boolean]](compositional, t.compositional),
+      FHIRComponentField[Option[Boolean]](versionNeeded, t.versionNeeded),
+      FHIRComponentField[Option[CODESYSTEM_HIERARCHY_MEANING]](hierarchyMeaning, t.hierarchyMeaning),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[CodeSystem.Filter]](filter, t.filter),
+      FHIRComponentField[LitSeq[CodeSystem.Property]](property, t.property),
+      FHIRComponentField[NonEmptyLitSeq[CodeSystem.Concept]](concept, t.concept.asNonEmpty)
+    ))
+  override def fields(t: Shareablecodesystem): Seq[FHIRComponentField[_]]                   = fieldsFromParent(t).get
   def extractId(t: Shareablecodesystem): Option[String]                                     = t.id
   def extractUrl(t: Shareablecodesystem): UriStr                                            = t.url.get
   def extractMeta(t: Shareablecodesystem): Option[Meta]                                     = t.meta

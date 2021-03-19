@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -32,7 +32,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_medicationrequest extends CompanionFor[Us_core_medicationrequest] {
-  override val baseType: CompanionFor[MedicationRequest] = MedicationRequest
+  override type ResourceType = MedicationRequest
+  override val baseType: CompanionFor[ResourceType] = MedicationRequest
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest")
   type ReportedChoice   = Choice[Union_1524702593]
@@ -261,48 +262,50 @@ object Us_core_medicationrequest extends CompanionFor[Us_core_medicationrequest]
     dosageInstruction,
     dispenseRequest
   )
-  override def fields(t: Us_core_medicationrequest): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[MEDICATIONREQUEST_STATUS](status, t.status),
-    FHIRComponentField[MEDICATIONREQUEST_INTENT](intent, t.intent),
-    FHIRComponentField[Reference](subject, t.subject),
-    FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
-    FHIRComponentField[Option[REQUEST_PRIORITY]](priority, t.priority),
-    FHIRComponentField[Option[Reference]](recorder, t.recorder),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[Reference](requester, t.requester.get),
-    FHIRComponentField[Option[Reference]](performer, t.performer),
-    FHIRComponentField[LitSeq[Reference]](insurance, t.insurance),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[FHIRDateTime](authoredOn, t.authoredOn.get),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
-    FHIRComponentField[Option[Us_core_medicationrequest.ReportedChoice]](reported, t.reported),
-    FHIRComponentField[Option[CodeableConcept]](statusReason, t.statusReason),
-    FHIRComponentField[Option[Boolean]](doNotPerform, t.doNotPerform),
-    FHIRComponentField[LitSeq[Reference]](eventHistory, t.eventHistory),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Us_core_medicationrequest.MedicationChoice](medication, t.medication),
-    FHIRComponentField[Option[CodeableConcept]](performerType, t.performerType),
-    FHIRComponentField[LitSeq[Reference]](detectedIssue, t.detectedIssue),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
-    FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
-    FHIRComponentField[Option[Identifier]](groupIdentifier, t.groupIdentifier),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[Option[Reference]](priorPrescription, t.priorPrescription),
-    FHIRComponentField[Option[CodeableConcept]](courseOfTherapyType, t.courseOfTherapyType),
-    FHIRComponentField[LitSeq[Reference]](supportingInformation, t.supportingInformation),
-    FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
-    FHIRComponentField[Option[MedicationRequest.Substitution]](substitution, t.substitution),
-    FHIRComponentField[LitSeq[Dosage]](dosageInstruction, t.dosageInstruction),
-    FHIRComponentField[Option[MedicationRequest.DispenseRequest]](dispenseRequest, t.dispenseRequest)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[MEDICATIONREQUEST_STATUS](status, t.status),
+      FHIRComponentField[MEDICATIONREQUEST_INTENT](intent, t.intent),
+      FHIRComponentField[Reference](subject, t.subject),
+      FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
+      FHIRComponentField[Option[REQUEST_PRIORITY]](priority, t.priority),
+      FHIRComponentField[Option[Reference]](recorder, t.recorder),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[Reference](requester, t.requester.get),
+      FHIRComponentField[Option[Reference]](performer, t.performer),
+      FHIRComponentField[LitSeq[Reference]](insurance, t.insurance),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[FHIRDateTime](authoredOn, t.authoredOn.get),
+      FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
+      FHIRComponentField[Option[Us_core_medicationrequest.ReportedChoice]](reported, t.reported),
+      FHIRComponentField[Option[CodeableConcept]](statusReason, t.statusReason),
+      FHIRComponentField[Option[Boolean]](doNotPerform, t.doNotPerform),
+      FHIRComponentField[LitSeq[Reference]](eventHistory, t.eventHistory),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Us_core_medicationrequest.MedicationChoice](medication, t.medication),
+      FHIRComponentField[Option[CodeableConcept]](performerType, t.performerType),
+      FHIRComponentField[LitSeq[Reference]](detectedIssue, t.detectedIssue),
+      FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
+      FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
+      FHIRComponentField[Option[Identifier]](groupIdentifier, t.groupIdentifier),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Option[Reference]](priorPrescription, t.priorPrescription),
+      FHIRComponentField[Option[CodeableConcept]](courseOfTherapyType, t.courseOfTherapyType),
+      FHIRComponentField[LitSeq[Reference]](supportingInformation, t.supportingInformation),
+      FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
+      FHIRComponentField[Option[MedicationRequest.Substitution]](substitution, t.substitution),
+      FHIRComponentField[LitSeq[Dosage]](dosageInstruction, t.dosageInstruction),
+      FHIRComponentField[Option[MedicationRequest.DispenseRequest]](dispenseRequest, t.dispenseRequest)
+    ))
+  override def fields(t: Us_core_medicationrequest): Seq[FHIRComponentField[_]]                       = fieldsFromParent(t).get
   def extractId(t: Us_core_medicationrequest): Option[String]                                         = t.id
   def extractMeta(t: Us_core_medicationrequest): Option[Meta]                                         = t.meta
   def extractText(t: Us_core_medicationrequest): Option[Narrative]                                    = t.text

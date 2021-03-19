@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_equivalence extends CompanionFor[Elementdefinition_equivalence] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/elementdefinition-equivalence")
   def apply(
@@ -41,13 +42,15 @@ object Elementdefinition_equivalence extends CompanionFor[Elementdefinition_equi
   val value: FHIRComponentFieldMeta[CONCEPT_MAP_EQUIVALENCE] =
     FHIRComponentFieldMeta("value", lTagOf[CONCEPT_MAP_EQUIVALENCE], true, lTagOf[CONCEPT_MAP_EQUIVALENCE])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Elementdefinition_equivalence): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[CONCEPT_MAP_EQUIVALENCE](
-      value,
-      CONCEPT_MAP_EQUIVALENCE.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Elementdefinition_equivalence): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[CONCEPT_MAP_EQUIVALENCE](
+        value,
+        CONCEPT_MAP_EQUIVALENCE.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Elementdefinition_equivalence): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Elementdefinition_equivalence): Option[String]                   = t.id
   def extractValue(t: Elementdefinition_equivalence): CONCEPT_MAP_EQUIVALENCE =
     CONCEPT_MAP_EQUIVALENCE.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                     = "Elementdefinition_equivalence"

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Workflow_relatedArtifact extends CompanionFor[Workflow_relatedArtifact] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/workflow-relatedArtifact")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/workflow-relatedArtifact")
   def apply(
       id: Option[String] = None,
       value: RelatedArtifact,
@@ -40,10 +41,12 @@ object Workflow_relatedArtifact extends CompanionFor[Workflow_relatedArtifact] {
   val value: FHIRComponentFieldMeta[RelatedArtifact] =
     FHIRComponentFieldMeta("value", lTagOf[RelatedArtifact], true, lTagOf[RelatedArtifact])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Workflow_relatedArtifact): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[RelatedArtifact](value, t.value.get.toSubRefNonUnion[RelatedArtifact])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[RelatedArtifact](value, t.value.get.toSubRefNonUnion[RelatedArtifact])
+    ))
+  override def fields(t: Workflow_relatedArtifact): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Workflow_relatedArtifact): Option[String]                   = t.id
   def extractValue(t: Workflow_relatedArtifact): RelatedArtifact               = t.value.get.toSubRefNonUnion[RelatedArtifact]
   override val thisName: String                                                = "Workflow_relatedArtifact"

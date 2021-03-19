@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object AdverseEvent extends CompanionFor[AdverseEvent] {
-  override val baseType: CompanionFor[AdverseEvent] = AdverseEvent
+  override type ResourceType = AdverseEvent
+  override val baseType: CompanionFor[ResourceType] = AdverseEvent
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/AdverseEvent")
   object SuspectEntity extends CompanionFor[SuspectEntity] {
+    override type ResourceType = SuspectEntity
     object Causality extends CompanionFor[Causality] {
+      override type ResourceType = Causality
       def apply(
           id: Option[String] = None,
           author: Option[Reference] = None,
@@ -66,6 +69,7 @@ object AdverseEvent extends CompanionFor[AdverseEvent] {
         FHIRComponentFieldMeta("productRelatedness", lTagOf[Option[String]], false, lTagOf[String])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, author, method, extension, assessment, modifierExtension, productRelatedness)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Causality): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[Reference]](author, t.author),
@@ -136,7 +140,8 @@ object AdverseEvent extends CompanionFor[AdverseEvent] {
         lTagOf[LitSeq[SuspectEntity.Causality]],
         false,
         lTagOf[SuspectEntity.Causality])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, instance, extension, modifierExtension, causality)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, instance, extension, modifierExtension, causality)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: SuspectEntity): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Reference](instance, t.instance),
@@ -319,6 +324,7 @@ object AdverseEvent extends CompanionFor[AdverseEvent] {
     subjectMedicalHistory,
     suspectEntity
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: AdverseEvent): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

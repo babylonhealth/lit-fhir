@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -31,8 +31,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinition] {
-  override val baseType: CompanionFor[ActivityDefinition] = ActivityDefinition
-  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/shareableactivitydefinition")
+  override type ResourceType = ActivityDefinition
+  override val baseType: CompanionFor[ResourceType] = ActivityDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareableactivitydefinition")
   type TimingChoice  = Choice[Union_0181779868]
   type SubjectChoice = Choice[Union01025009075]
   type ProductChoice = Choice[Union01025009075]
@@ -334,62 +335,64 @@ object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinit
     participant,
     dynamicValue
   )
-  override def fields(t: Shareableactivitydefinition): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[UriStr](url, t.url.get),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name.get),
-    FHIRComponentField[Option[FHIRDateTime]](date, t.date),
-    FHIRComponentField[Option[REQUEST_RESOURCE_TYPES]](kind, t.kind),
-    FHIRComponentField[Option[CodeableConcept]](code, t.code),
-    FHIRComponentField[Option[String]](title, t.title),
-    FHIRComponentField[Option[String]](usage, t.usage),
-    FHIRComponentField[LitSeq[CodeableConcept]](topic, t.topic),
-    FHIRComponentField[PUBLICATION_STATUS](status, t.status),
-    FHIRComponentField[LitSeq[ContactDetail]](author, t.author),
-    FHIRComponentField[LitSeq[ContactDetail]](editor, t.editor),
-    FHIRComponentField[Option[REQUEST_INTENT]](intent, t.intent),
-    FHIRComponentField[LitSeq[Dosage]](dosage, t.dosage),
-    FHIRComponentField[String](version, t.version.get),
-    FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
-    FHIRComponentField[Option[Markdown]](purpose, t.purpose),
-    FHIRComponentField[LitSeq[Canonical]](library, t.library),
-    FHIRComponentField[Option[Canonical]](profile, t.profile),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[String]](subtitle, t.subtitle),
-    FHIRComponentField[LitSeq[ContactDetail]](reviewer, t.reviewer),
-    FHIRComponentField[LitSeq[ContactDetail]](endorser, t.endorser),
-    FHIRComponentField[Option[REQUEST_PRIORITY]](priority, t.priority),
-    FHIRComponentField[Option[Reference]](location, t.location),
-    FHIRComponentField[Option[Quantity]](quantity, t.quantity),
-    FHIRComponentField[LitSeq[CodeableConcept]](bodySite, t.bodySite),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[String](publisher, t.publisher.get),
-    FHIRComponentField[Option[Markdown]](copyright, t.copyright),
-    FHIRComponentField[Option[Shareableactivitydefinition.TimingChoice]](timing, t.timing),
-    FHIRComponentField[Option[Canonical]](transform, t.transform),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[Shareableactivitydefinition.SubjectChoice]](subject, t.subject),
-    FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
-    FHIRComponentField[Option[Shareableactivitydefinition.ProductChoice]](product, t.product),
-    FHIRComponentField[Markdown](description, t.description.get),
-    FHIRComponentField[Boolean](experimental, t.experimental.get),
-    FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
-    FHIRComponentField[Option[FHIRDate]](approvalDate, t.approvalDate),
-    FHIRComponentField[Option[Boolean]](doNotPerform, t.doNotPerform),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[FHIRDate]](lastReviewDate, t.lastReviewDate),
-    FHIRComponentField[Option[Period]](effectivePeriod, t.effectivePeriod),
-    FHIRComponentField[LitSeq[RelatedArtifact]](relatedArtifact, t.relatedArtifact),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Reference]](specimenRequirement, t.specimenRequirement),
-    FHIRComponentField[LitSeq[Reference]](observationRequirement, t.observationRequirement),
-    FHIRComponentField[LitSeq[Reference]](observationResultRequirement, t.observationResultRequirement),
-    FHIRComponentField[LitSeq[ActivityDefinition.Participant]](participant, t.participant),
-    FHIRComponentField[LitSeq[ActivityDefinition.DynamicValue]](dynamicValue, t.dynamicValue)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[UriStr](url, t.url.get),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[String](name, t.name.get),
+      FHIRComponentField[Option[FHIRDateTime]](date, t.date),
+      FHIRComponentField[Option[REQUEST_RESOURCE_TYPES]](kind, t.kind),
+      FHIRComponentField[Option[CodeableConcept]](code, t.code),
+      FHIRComponentField[Option[String]](title, t.title),
+      FHIRComponentField[Option[String]](usage, t.usage),
+      FHIRComponentField[LitSeq[CodeableConcept]](topic, t.topic),
+      FHIRComponentField[PUBLICATION_STATUS](status, t.status),
+      FHIRComponentField[LitSeq[ContactDetail]](author, t.author),
+      FHIRComponentField[LitSeq[ContactDetail]](editor, t.editor),
+      FHIRComponentField[Option[REQUEST_INTENT]](intent, t.intent),
+      FHIRComponentField[LitSeq[Dosage]](dosage, t.dosage),
+      FHIRComponentField[String](version, t.version.get),
+      FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
+      FHIRComponentField[Option[Markdown]](purpose, t.purpose),
+      FHIRComponentField[LitSeq[Canonical]](library, t.library),
+      FHIRComponentField[Option[Canonical]](profile, t.profile),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[Option[String]](subtitle, t.subtitle),
+      FHIRComponentField[LitSeq[ContactDetail]](reviewer, t.reviewer),
+      FHIRComponentField[LitSeq[ContactDetail]](endorser, t.endorser),
+      FHIRComponentField[Option[REQUEST_PRIORITY]](priority, t.priority),
+      FHIRComponentField[Option[Reference]](location, t.location),
+      FHIRComponentField[Option[Quantity]](quantity, t.quantity),
+      FHIRComponentField[LitSeq[CodeableConcept]](bodySite, t.bodySite),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[String](publisher, t.publisher.get),
+      FHIRComponentField[Option[Markdown]](copyright, t.copyright),
+      FHIRComponentField[Option[Shareableactivitydefinition.TimingChoice]](timing, t.timing),
+      FHIRComponentField[Option[Canonical]](transform, t.transform),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[Shareableactivitydefinition.SubjectChoice]](subject, t.subject),
+      FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
+      FHIRComponentField[Option[Shareableactivitydefinition.ProductChoice]](product, t.product),
+      FHIRComponentField[Markdown](description, t.description.get),
+      FHIRComponentField[Boolean](experimental, t.experimental.get),
+      FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
+      FHIRComponentField[Option[FHIRDate]](approvalDate, t.approvalDate),
+      FHIRComponentField[Option[Boolean]](doNotPerform, t.doNotPerform),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[FHIRDate]](lastReviewDate, t.lastReviewDate),
+      FHIRComponentField[Option[Period]](effectivePeriod, t.effectivePeriod),
+      FHIRComponentField[LitSeq[RelatedArtifact]](relatedArtifact, t.relatedArtifact),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Reference]](specimenRequirement, t.specimenRequirement),
+      FHIRComponentField[LitSeq[Reference]](observationRequirement, t.observationRequirement),
+      FHIRComponentField[LitSeq[Reference]](observationResultRequirement, t.observationResultRequirement),
+      FHIRComponentField[LitSeq[ActivityDefinition.Participant]](participant, t.participant),
+      FHIRComponentField[LitSeq[ActivityDefinition.DynamicValue]](dynamicValue, t.dynamicValue)
+    ))
+  override def fields(t: Shareableactivitydefinition): Seq[FHIRComponentField[_]]                       = fieldsFromParent(t).get
   def extractId(t: Shareableactivitydefinition): Option[String]                                         = t.id
   def extractUrl(t: Shareableactivitydefinition): UriStr                                                = t.url.get
   def extractMeta(t: Shareableactivitydefinition): Option[Meta]                                         = t.meta

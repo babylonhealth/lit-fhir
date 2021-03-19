@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,12 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object FamilyMemberHistory extends CompanionFor[FamilyMemberHistory] {
-  override val baseType: CompanionFor[FamilyMemberHistory] = FamilyMemberHistory
-  override val profileUrl: Option[String]                  = Some("http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory")
+  override type ResourceType = FamilyMemberHistory
+  override val baseType: CompanionFor[ResourceType] = FamilyMemberHistory
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory")
   object Condition extends CompanionFor[Condition] {
-    type OnsetChoice = Choice[Union01727798874]
+    override type ResourceType = Condition
+    type OnsetChoice           = Choice[Union01727798874]
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,
@@ -70,6 +72,7 @@ object FamilyMemberHistory extends CompanionFor[FamilyMemberHistory] {
       FHIRComponentFieldMeta("contributedToDeath", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, code, note, outcome, onset, extension, modifierExtension, contributedToDeath)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Condition): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[CodeableConcept](code, t.code),
@@ -258,6 +261,7 @@ object FamilyMemberHistory extends CompanionFor[FamilyMemberHistory] {
     instantiatesCanonical,
     condition
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: FamilyMemberHistory): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[CodeableConcept]](sex, t.sex),

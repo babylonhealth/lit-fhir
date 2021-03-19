@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_bestpractice extends CompanionFor[Elementdefinition_bestpractice] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice")
   type ValueChoice = Choice[Union_1768247138]
@@ -42,10 +43,12 @@ object Elementdefinition_bestpractice extends CompanionFor[Elementdefinition_bes
   val value: FHIRComponentFieldMeta[Elementdefinition_bestpractice.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_bestpractice.ValueChoice], true, lTagOf[Union_1768247138])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Elementdefinition_bestpractice): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Elementdefinition_bestpractice.ValueChoice](value, t.value.get.toSubRef)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Elementdefinition_bestpractice.ValueChoice](value, t.value.get.toSubRef)
+    ))
+  override def fields(t: Elementdefinition_bestpractice): Seq[FHIRComponentField[_]]              = fieldsFromParent(t).get
   def extractId(t: Elementdefinition_bestpractice): Option[String]                                = t.id
   def extractValue(t: Elementdefinition_bestpractice): Elementdefinition_bestpractice.ValueChoice = t.value.get.toSubRef
   override val thisName: String                                                                   = "Elementdefinition_bestpractice"

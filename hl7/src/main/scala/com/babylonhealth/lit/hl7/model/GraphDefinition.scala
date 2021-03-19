@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -30,11 +30,15 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object GraphDefinition extends CompanionFor[GraphDefinition] {
-  override val baseType: CompanionFor[GraphDefinition] = GraphDefinition
-  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/GraphDefinition")
+  override type ResourceType = GraphDefinition
+  override val baseType: CompanionFor[ResourceType] = GraphDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/GraphDefinition")
   object Link extends CompanionFor[Link] {
+    override type ResourceType = Link
     object Target extends CompanionFor[Target] {
+      override type ResourceType = Target
       object Compartment extends CompanionFor[Compartment] {
+        override type ResourceType = Compartment
         def apply(
             id: Option[String] = None,
             use: GRAPH_COMPARTMENT_USE,
@@ -77,6 +81,7 @@ object GraphDefinition extends CompanionFor[GraphDefinition] {
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
           Seq(id, use, code, rule, extension, expression, description, modifierExtension)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Compartment): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[GRAPH_COMPARTMENT_USE](use, t.use),
@@ -160,6 +165,7 @@ object GraphDefinition extends CompanionFor[GraphDefinition] {
         FHIRComponentFieldMeta("compartment", lTagOf[LitSeq[Target.Compartment]], false, lTagOf[Target.Compartment])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, `type`, link, params, profile, extension, modifierExtension, compartment)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Target): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[RESOURCE_TYPES](`type`, t.`type`),
@@ -247,6 +253,7 @@ object GraphDefinition extends CompanionFor[GraphDefinition] {
       FHIRComponentFieldMeta("target", lTagOf[LitSeq[Link.Target]], false, lTagOf[Link.Target])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, min, max, path, extension, sliceName, description, modifierExtension, target)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Link): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Int]](min, t.min),
@@ -412,6 +419,7 @@ object GraphDefinition extends CompanionFor[GraphDefinition] {
     modifierExtension,
     link
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: GraphDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),

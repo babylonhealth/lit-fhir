@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,8 +21,9 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TriggerDefinition extends CompanionFor[TriggerDefinition] {
-  override val baseType: CompanionFor[TriggerDefinition] = TriggerDefinition
-  override val profileUrl: Option[String]                = Some("http://hl7.org/fhir/StructureDefinition/TriggerDefinition")
+  override type ResourceType = TriggerDefinition
+  override val baseType: CompanionFor[ResourceType] = TriggerDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/TriggerDefinition")
   type TimingChoice = Choice[Union_1051729086]
   def apply(
       id: Option[String] = None,
@@ -57,7 +58,8 @@ object TriggerDefinition extends CompanionFor[TriggerDefinition] {
     FHIRComponentFieldMeta("timing", lTagOf[Option[TriggerDefinition.TimingChoice]], true, lTagOf[Union_1051729086])
   val condition: FHIRComponentFieldMeta[Option[Expression]] =
     FHIRComponentFieldMeta("condition", lTagOf[Option[Expression]], false, lTagOf[Expression])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, name, data, extension, timing, condition)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, name, data, extension, timing, condition)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: TriggerDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[TRIGGER_TYPE](`type`, t.`type`),

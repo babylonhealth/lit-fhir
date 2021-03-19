@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,10 +21,12 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Timing extends CompanionFor[Timing] {
-  override val baseType: CompanionFor[Timing] = Timing
-  override val profileUrl: Option[String]     = Some("http://hl7.org/fhir/StructureDefinition/Timing")
+  override type ResourceType = Timing
+  override val baseType: CompanionFor[ResourceType] = Timing
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Timing")
   object Repeat extends CompanionFor[Repeat] {
-    type BoundsChoice = Choice[Union_0731860109]
+    override type ResourceType = Repeat
+    type BoundsChoice          = Choice[Union_0731860109]
     def apply(
         id: Option[String] = None,
         when: LitSeq[EVENT_TIMING] = LitSeq.empty,
@@ -138,6 +140,7 @@ object Timing extends CompanionFor[Timing] {
       durationUnit,
       frequencyMax
     )
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Repeat): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[EVENT_TIMING]](when, t.when),
@@ -234,7 +237,8 @@ object Timing extends CompanionFor[Timing] {
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val repeat: FHIRComponentFieldMeta[Option[Timing.Repeat]] =
     FHIRComponentFieldMeta("repeat", lTagOf[Option[Timing.Repeat]], false, lTagOf[Timing.Repeat])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, event, extension, modifierExtension, repeat)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, event, extension, modifierExtension, repeat)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Timing): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[CodeableConcept]](code, t.code),

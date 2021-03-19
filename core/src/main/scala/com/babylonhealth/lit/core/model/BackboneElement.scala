@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,8 +21,9 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object BackboneElement extends CompanionFor[BackboneElement] {
-  override val baseType: CompanionFor[BackboneElement] = BackboneElement
-  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/BackboneElement")
+  override type ResourceType = BackboneElement
+  override val baseType: CompanionFor[ResourceType] = BackboneElement
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/BackboneElement")
   def apply(
       id: Option[String] = None,
       extension: LitSeq[Extension] = LitSeq.empty,
@@ -40,7 +41,8 @@ object BackboneElement extends CompanionFor[BackboneElement] {
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, modifierExtension)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension, modifierExtension)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: BackboneElement): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),

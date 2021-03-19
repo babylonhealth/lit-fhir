@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -31,9 +31,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SearchParameter extends CompanionFor[SearchParameter] {
-  override val baseType: CompanionFor[SearchParameter] = SearchParameter
-  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/SearchParameter")
+  override type ResourceType = SearchParameter
+  override val baseType: CompanionFor[ResourceType] = SearchParameter
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SearchParameter")
   object Component extends CompanionFor[Component] {
+    override type ResourceType = Component
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -61,7 +63,8 @@ object SearchParameter extends CompanionFor[SearchParameter] {
       FHIRComponentFieldMeta("expression", lTagOf[String], false, lTagOf[String])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, definition, expression, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension, definition, expression, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Component): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -274,6 +277,7 @@ object SearchParameter extends CompanionFor[SearchParameter] {
     modifierExtension,
     component
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: SearchParameter): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[UriStr](url, t.url),

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Clinicaldocument extends CompanionFor[Clinicaldocument] {
-  override val baseType: CompanionFor[Composition] = Composition
-  override val profileUrl: Option[String]          = Some("http://hl7.org/fhir/StructureDefinition/clinicaldocument")
+  override type ResourceType = Composition
+  override val baseType: CompanionFor[ResourceType] = Composition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/clinicaldocument")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/clinicaldocument"))),
@@ -153,31 +154,33 @@ object Clinicaldocument extends CompanionFor[Clinicaldocument] {
     attester,
     relatesTo
   )
-  override def fields(t: Clinicaldocument): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[CodeableConcept](`type`, t.`type`),
-    FHIRComponentField[FHIRDateTime](date, t.date),
-    FHIRComponentField[String](title, t.title),
-    FHIRComponentField[COMPOSITION_STATUS](status, t.status),
-    FHIRComponentField[NonEmptyLitSeq[Reference]](author, t.author),
-    FHIRComponentField[Option[Reference]](subject, t.subject),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[Option[Reference]](custodian, t.custodian),
-    FHIRComponentField[Option[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[V3_CONFIDENTIALITYCLASSIFICATION]](confidentiality, t.confidentiality),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Composition.Event]](event, t.event),
-    FHIRComponentField[LitSeq[Composition.Section]](section, t.section),
-    FHIRComponentField[LitSeq[Composition.Attester]](attester, t.attester),
-    FHIRComponentField[LitSeq[Composition.RelatesTo]](relatesTo, t.relatesTo)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[CodeableConcept](`type`, t.`type`),
+      FHIRComponentField[FHIRDateTime](date, t.date),
+      FHIRComponentField[String](title, t.title),
+      FHIRComponentField[COMPOSITION_STATUS](status, t.status),
+      FHIRComponentField[NonEmptyLitSeq[Reference]](author, t.author),
+      FHIRComponentField[Option[Reference]](subject, t.subject),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[Option[Reference]](custodian, t.custodian),
+      FHIRComponentField[Option[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[V3_CONFIDENTIALITYCLASSIFICATION]](confidentiality, t.confidentiality),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Composition.Event]](event, t.event),
+      FHIRComponentField[LitSeq[Composition.Section]](section, t.section),
+      FHIRComponentField[LitSeq[Composition.Attester]](attester, t.attester),
+      FHIRComponentField[LitSeq[Composition.RelatesTo]](relatesTo, t.relatesTo)
+    ))
+  override def fields(t: Clinicaldocument): Seq[FHIRComponentField[_]]                      = fieldsFromParent(t).get
   def extractId(t: Clinicaldocument): Option[String]                                        = t.id
   def extractMeta(t: Clinicaldocument): Option[Meta]                                        = t.meta
   def extractText(t: Clinicaldocument): Option[Narrative]                                   = t.text

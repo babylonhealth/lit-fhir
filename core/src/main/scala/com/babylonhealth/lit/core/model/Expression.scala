@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,8 +21,9 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Expression extends CompanionFor[Expression] {
-  override val baseType: CompanionFor[Expression] = Expression
-  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/Expression")
+  override type ResourceType = Expression
+  override val baseType: CompanionFor[ResourceType] = Expression
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Expression")
   def apply(
       id: Option[String] = None,
       name: Option[Id] = None,
@@ -58,6 +59,7 @@ object Expression extends CompanionFor[Expression] {
     FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, name, language, extension, reference, expression, description)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Expression): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Id]](name, t.name),

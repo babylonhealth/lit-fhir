@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,7 +26,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_immunization extends CompanionFor[Us_core_immunization] {
-  override val baseType: CompanionFor[Immunization] = Immunization
+  override type ResourceType = Immunization
+  override val baseType: CompanionFor[ResourceType] = Immunization
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization")
   type OccurrenceChoice = Choice[Union_1715923163]
   def apply(
@@ -221,44 +222,46 @@ object Us_core_immunization extends CompanionFor[Us_core_immunization] {
     education,
     protocolApplied
   )
-  override def fields(t: Us_core_immunization): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[Option[CodeableConcept]](site, t.site),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[Option[CodeableConcept]](route, t.route),
-    FHIRComponentField[IMMUNIZATION_STATUS](status, t.status),
-    FHIRComponentField[Reference](patient, t.patient),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[FHIRDateTime]](recorded, t.recorded),
-    FHIRComponentField[Option[Reference]](location, t.location),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[Option[String]](lotNumber, t.lotNumber),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
-    FHIRComponentField[CodeableConcept](vaccineCode, t.vaccineCode),
-    FHIRComponentField[Option[Boolean]](isSubpotent, t.isSubpotent),
-    FHIRComponentField[Option[CodeableConcept]](statusReason, t.statusReason),
-    FHIRComponentField[Option[CodeableConcept]](reportOrigin, t.reportOrigin),
-    FHIRComponentField[Option[Reference]](manufacturer, t.manufacturer),
-    FHIRComponentField[Option[Quantity]](doseQuantity, t.doseQuantity),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Us_core_immunization.OccurrenceChoice](occurrence, t.occurrence),
-    FHIRComponentField[Boolean](primarySource, t.primarySource.get),
-    FHIRComponentField[Option[CodeableConcept]](fundingSource, t.fundingSource),
-    FHIRComponentField[Option[FHIRDate]](expirationDate, t.expirationDate),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
-    FHIRComponentField[LitSeq[CodeableConcept]](subpotentReason, t.subpotentReason),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[CodeableConcept]](programEligibility, t.programEligibility),
-    FHIRComponentField[LitSeq[Immunization.Reaction]](reaction, t.reaction),
-    FHIRComponentField[LitSeq[Immunization.Performer]](performer, t.performer),
-    FHIRComponentField[LitSeq[Immunization.Education]](education, t.education),
-    FHIRComponentField[LitSeq[Immunization.ProtocolApplied]](protocolApplied, t.protocolApplied)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[Option[CodeableConcept]](site, t.site),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[Option[CodeableConcept]](route, t.route),
+      FHIRComponentField[IMMUNIZATION_STATUS](status, t.status),
+      FHIRComponentField[Reference](patient, t.patient),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[Option[FHIRDateTime]](recorded, t.recorded),
+      FHIRComponentField[Option[Reference]](location, t.location),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[Option[String]](lotNumber, t.lotNumber),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
+      FHIRComponentField[CodeableConcept](vaccineCode, t.vaccineCode),
+      FHIRComponentField[Option[Boolean]](isSubpotent, t.isSubpotent),
+      FHIRComponentField[Option[CodeableConcept]](statusReason, t.statusReason),
+      FHIRComponentField[Option[CodeableConcept]](reportOrigin, t.reportOrigin),
+      FHIRComponentField[Option[Reference]](manufacturer, t.manufacturer),
+      FHIRComponentField[Option[Quantity]](doseQuantity, t.doseQuantity),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Us_core_immunization.OccurrenceChoice](occurrence, t.occurrence),
+      FHIRComponentField[Boolean](primarySource, t.primarySource.get),
+      FHIRComponentField[Option[CodeableConcept]](fundingSource, t.fundingSource),
+      FHIRComponentField[Option[FHIRDate]](expirationDate, t.expirationDate),
+      FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
+      FHIRComponentField[LitSeq[CodeableConcept]](subpotentReason, t.subpotentReason),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[CodeableConcept]](programEligibility, t.programEligibility),
+      FHIRComponentField[LitSeq[Immunization.Reaction]](reaction, t.reaction),
+      FHIRComponentField[LitSeq[Immunization.Performer]](performer, t.performer),
+      FHIRComponentField[LitSeq[Immunization.Education]](education, t.education),
+      FHIRComponentField[LitSeq[Immunization.ProtocolApplied]](protocolApplied, t.protocolApplied)
+    ))
+  override def fields(t: Us_core_immunization): Seq[FHIRComponentField[_]]                  = fieldsFromParent(t).get
   def extractId(t: Us_core_immunization): Option[String]                                    = t.id
   def extractMeta(t: Us_core_immunization): Option[Meta]                                    = t.meta
   def extractText(t: Us_core_immunization): Option[Narrative]                               = t.text

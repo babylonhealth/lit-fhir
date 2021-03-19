@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -29,9 +29,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
-  override val baseType: CompanionFor[AllergyIntolerance] = AllergyIntolerance
-  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/AllergyIntolerance")
+  override type ResourceType = AllergyIntolerance
+  override val baseType: CompanionFor[ResourceType] = AllergyIntolerance
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/AllergyIntolerance")
   object Reaction extends CompanionFor[Reaction] {
+    override type ResourceType = Reaction
     def apply(
         id: Option[String] = None,
         note: LitSeq[Annotation] = LitSeq.empty,
@@ -97,6 +99,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, note, onset, severity, extension, substance, description, manifestation, exposureRoute, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Reaction): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Annotation]](note, t.note),
@@ -283,6 +286,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
     verificationStatus,
     reaction
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: AllergyIntolerance): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

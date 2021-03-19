@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_effectiveDate extends CompanionFor[Codesystem_effectiveDate] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/codesystem-effectiveDate")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/codesystem-effectiveDate")
   def apply(
       id: Option[String] = None,
       value: FHIRDate,
@@ -40,10 +41,12 @@ object Codesystem_effectiveDate extends CompanionFor[Codesystem_effectiveDate] {
   val value: FHIRComponentFieldMeta[FHIRDate] =
     FHIRComponentFieldMeta("value", lTagOf[FHIRDate], true, lTagOf[FHIRDate])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Codesystem_effectiveDate): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[FHIRDate](value, t.value.get.toSubRefNonUnion[FHIRDate])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[FHIRDate](value, t.value.get.toSubRefNonUnion[FHIRDate])
+    ))
+  override def fields(t: Codesystem_effectiveDate): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Codesystem_effectiveDate): Option[String]                   = t.id
   def extractValue(t: Codesystem_effectiveDate): FHIRDate                      = t.value.get.toSubRefNonUnion[FHIRDate]
   override val thisName: String                                                = "Codesystem_effectiveDate"

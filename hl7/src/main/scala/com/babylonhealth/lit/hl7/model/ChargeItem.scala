@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ChargeItem extends CompanionFor[ChargeItem] {
-  override val baseType: CompanionFor[ChargeItem] = ChargeItem
-  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/ChargeItem")
+  override type ResourceType = ChargeItem
+  override val baseType: CompanionFor[ResourceType] = ChargeItem
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ChargeItem")
   object Performer extends CompanionFor[Performer] {
+    override type ResourceType = Performer
     def apply(
         id: Option[String] = None,
         actor: Reference,
@@ -55,7 +57,8 @@ object ChargeItem extends CompanionFor[ChargeItem] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, actor, function, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, actor, function, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Performer): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Reference](actor, t.actor),
@@ -266,6 +269,7 @@ object ChargeItem extends CompanionFor[ChargeItem] {
     requestingOrganization,
     performer
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ChargeItem): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

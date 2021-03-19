@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,11 +24,14 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object QuestionnaireResponse extends CompanionFor[QuestionnaireResponse] {
-  override val baseType: CompanionFor[QuestionnaireResponse] = QuestionnaireResponse
-  override val profileUrl: Option[String]                    = Some("http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse")
+  override type ResourceType = QuestionnaireResponse
+  override val baseType: CompanionFor[ResourceType] = QuestionnaireResponse
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse")
   object Item extends CompanionFor[Item] {
+    override type ResourceType = Item
     object Answer extends CompanionFor[Answer] {
-      type ValueChoice = Choice[Union_2101127777]
+      override type ResourceType = Answer
+      type ValueChoice           = Choice[Union_2101127777]
       def apply(
           id: Option[String] = None,
           item: LitSeq[QuestionnaireResponse.Item] = LitSeq.empty,
@@ -61,7 +64,8 @@ object QuestionnaireResponse extends CompanionFor[QuestionnaireResponse] {
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, item, value, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, item, value, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Answer): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[LitSeq[QuestionnaireResponse.Item]](item, t.item),
@@ -140,6 +144,7 @@ object QuestionnaireResponse extends CompanionFor[QuestionnaireResponse] {
       FHIRComponentFieldMeta("answer", lTagOf[LitSeq[Item.Answer]], false, lTagOf[Item.Answer])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, text, item, linkId, extension, definition, modifierExtension, answer)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Item): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[String]](text, t.text),
@@ -286,6 +291,7 @@ object QuestionnaireResponse extends CompanionFor[QuestionnaireResponse] {
     modifierExtension,
     item
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: QuestionnaireResponse): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

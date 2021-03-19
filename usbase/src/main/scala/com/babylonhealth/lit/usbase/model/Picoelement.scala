@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Picoelement extends CompanionFor[Picoelement] {
-  override val baseType: CompanionFor[EvidenceVariable] = EvidenceVariable
-  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/picoelement")
+  override type ResourceType = EvidenceVariable
+  override val baseType: CompanionFor[ResourceType] = EvidenceVariable
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/picoelement")
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -213,43 +214,45 @@ object Picoelement extends CompanionFor[Picoelement] {
     modifierExtension,
     characteristic
   )
-  override def fields(t: Picoelement): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[UriStr]](url, t.url),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[Option[String]](name, t.name),
-    FHIRComponentField[Option[FHIRDateTime]](date, t.date),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[Option[VARIABLE_TYPE]](`type`, t.`type`),
-    FHIRComponentField[Option[String]](title, t.title),
-    FHIRComponentField[LitSeq[CodeableConcept]](topic, t.topic),
-    FHIRComponentField[PUBLICATION_STATUS](status, t.status),
-    FHIRComponentField[LitSeq[ContactDetail]](author, t.author),
-    FHIRComponentField[LitSeq[ContactDetail]](editor, t.editor),
-    FHIRComponentField[Option[String]](version, t.version),
-    FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[String]](subtitle, t.subtitle),
-    FHIRComponentField[LitSeq[ContactDetail]](reviewer, t.reviewer),
-    FHIRComponentField[LitSeq[ContactDetail]](endorser, t.endorser),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[String]](publisher, t.publisher),
-    FHIRComponentField[Option[Markdown]](copyright, t.copyright),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[String]](shortTitle, t.shortTitle),
-    FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
-    FHIRComponentField[Option[Markdown]](description, t.description),
-    FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
-    FHIRComponentField[Option[FHIRDate]](approvalDate, t.approvalDate),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[FHIRDate]](lastReviewDate, t.lastReviewDate),
-    FHIRComponentField[Option[Period]](effectivePeriod, t.effectivePeriod),
-    FHIRComponentField[LitSeq[RelatedArtifact]](relatedArtifact, t.relatedArtifact),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[NonEmptyLitSeq[EvidenceVariable.Characteristic]](characteristic, t.characteristic)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[UriStr]](url, t.url),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[Option[String]](name, t.name),
+      FHIRComponentField[Option[FHIRDateTime]](date, t.date),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[Option[VARIABLE_TYPE]](`type`, t.`type`),
+      FHIRComponentField[Option[String]](title, t.title),
+      FHIRComponentField[LitSeq[CodeableConcept]](topic, t.topic),
+      FHIRComponentField[PUBLICATION_STATUS](status, t.status),
+      FHIRComponentField[LitSeq[ContactDetail]](author, t.author),
+      FHIRComponentField[LitSeq[ContactDetail]](editor, t.editor),
+      FHIRComponentField[Option[String]](version, t.version),
+      FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[Option[String]](subtitle, t.subtitle),
+      FHIRComponentField[LitSeq[ContactDetail]](reviewer, t.reviewer),
+      FHIRComponentField[LitSeq[ContactDetail]](endorser, t.endorser),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[String]](publisher, t.publisher),
+      FHIRComponentField[Option[Markdown]](copyright, t.copyright),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[String]](shortTitle, t.shortTitle),
+      FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
+      FHIRComponentField[Option[Markdown]](description, t.description),
+      FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
+      FHIRComponentField[Option[FHIRDate]](approvalDate, t.approvalDate),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[FHIRDate]](lastReviewDate, t.lastReviewDate),
+      FHIRComponentField[Option[Period]](effectivePeriod, t.effectivePeriod),
+      FHIRComponentField[LitSeq[RelatedArtifact]](relatedArtifact, t.relatedArtifact),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[NonEmptyLitSeq[EvidenceVariable.Characteristic]](characteristic, t.characteristic)
+    ))
+  override def fields(t: Picoelement): Seq[FHIRComponentField[_]]                            = fieldsFromParent(t).get
   def extractId(t: Picoelement): Option[String]                                              = t.id
   def extractUrl(t: Picoelement): Option[UriStr]                                             = t.url
   def extractMeta(t: Picoelement): Option[Meta]                                              = t.meta

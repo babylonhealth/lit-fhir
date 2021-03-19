@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Slot extends CompanionFor[Slot] {
-  override val baseType: CompanionFor[Slot] = Slot
-  override val profileUrl: Option[String]   = Some("http://hl7.org/fhir/StructureDefinition/Slot")
+  override type ResourceType = Slot
+  override val baseType: CompanionFor[ResourceType] = Slot
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Slot")
   def apply(
       id: Option[String] = None,
       end: ZonedDateTime,
@@ -128,6 +129,7 @@ object Slot extends CompanionFor[Slot] {
     appointmentType,
     modifierExtension
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Slot): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[ZonedDateTime](end, t.end),

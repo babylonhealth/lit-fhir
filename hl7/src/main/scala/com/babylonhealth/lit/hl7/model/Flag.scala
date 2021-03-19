@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Flag extends CompanionFor[Flag] {
-  override val baseType: CompanionFor[Flag] = Flag
-  override val profileUrl: Option[String]   = Some("http://hl7.org/fhir/StructureDefinition/Flag")
+  override type ResourceType = Flag
+  override val baseType: CompanionFor[ResourceType] = Flag
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Flag")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -112,6 +113,7 @@ object Flag extends CompanionFor[Flag] {
     identifier,
     implicitRules,
     modifierExtension)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Flag): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

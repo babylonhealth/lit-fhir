@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ServiceRequest extends CompanionFor[ServiceRequest] {
-  override val baseType: CompanionFor[ServiceRequest] = ServiceRequest
-  override val profileUrl: Option[String]             = Some("http://hl7.org/fhir/StructureDefinition/ServiceRequest")
+  override type ResourceType = ServiceRequest
+  override val baseType: CompanionFor[ResourceType] = ServiceRequest
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ServiceRequest")
   type QuantityChoice   = Choice[Union_0575082635]
   type AsNeededChoice   = Choice[Union_1768247138]
   type OccurrenceChoice = Choice[Union00609373412]
@@ -245,6 +246,7 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
     patientInstruction,
     instantiatesCanonical
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ServiceRequest): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
