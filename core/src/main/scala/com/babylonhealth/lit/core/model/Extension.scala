@@ -7,7 +7,6 @@ import scala.collection.immutable.TreeMap
 import scala.util.Try
 
 import io.circe.{ Decoder, HCursor }
-import org.slf4j.{ Logger, LoggerFactory }
 
 import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.core.BaseFieldDecoders._
@@ -60,32 +59,17 @@ object Extension extends CompanionFor[Extension] {
   override val thisName: String                                 = "Extension"
   def unapply(o: Extension): Option[(Option[String], String, Option[Extension.ValueChoice], LitSeq[Extension])] = Some(
     (o.id, o.url, o.value, o.extension))
-  private val log: Logger = LoggerFactory.getLogger(getClass)
-  private final def genericExtension(url: String, cursor: HCursor)(implicit params: DecoderParams) = Try(
-    new Extension(
-      cursor.decodeAs[Option[String]]("id", Some(None)),
-      url,
-      cursor.decodeOptRef[Union_1349125893]("value"),
-      cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-      decodeAttributes(cursor)
-    )
-  )
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Extension] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
-      cursor.downField("url").as[String].toTry.flatMap { url =>
-        companionLookup.get(url) match {
-          case None =>
-            if (params.logOnMissingExtension) log.warn(s"Missing extension $url")
-            genericExtension(url, cursor)
-          case Some(ext) if ext.baseType eq Extension =>
-            ext.decodeThis(cursor).asInstanceOf[Try[Extension]].recoverWith {
-              case t if params.tolerateExtensionErrors =>
-                log.warn(s"Failed to decode extension $url", t)
-                genericExtension(url, cursor)
-            }
-        }
-      })
-
+      Try(
+        new Extension(
+          cursor.decodeAs[Option[String]]("id", Some(None)),
+          cursor.decodeAs[String]("url", None),
+          cursor.decodeOptRef[Union_1349125893]("value"),
+          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          decodeAttributes(cursor)
+        )
+      ))
 }
 
 /** Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.
