@@ -113,6 +113,8 @@ cycle: clean-generated-java clean-generated-scala build-all-class-models test
 gen-java-proto: rm-bad-files
 	mkdir -p ./gproto/src/main/java
 	protoc --proto_path=./fhir -I=./fhir/proto --java_out=./gproto/src/main/java $(shell find ./fhir/proto -name '*.proto' | less)
+	# [error].../protogen/ProfileGenerator.java:513:1: cannot find symbol\n [error]   symbol:   variable UNKNOWN\n[error]   location: class com.google.fhir.proto.SizeRestriction
+	rm -f gproto/src/main/java/com/google/fhir/protogen/ProfileGenerator.java
 
 rm-bad-files:
 # These all fail with something like
