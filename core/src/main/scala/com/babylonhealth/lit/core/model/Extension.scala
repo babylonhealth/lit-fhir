@@ -7,6 +7,7 @@ import scala.collection.immutable.TreeMap
 import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
+import org.slf4j.{ Logger, LoggerFactory }
 
 import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.core.BaseFieldDecoders._
@@ -61,6 +62,7 @@ object Extension extends CompanionFor[Extension] {
   override val thisName: String                                 = "Extension"
   def unapply(o: Extension): Option[(Option[String], String, Option[Extension.ValueChoice], LitSeq[Extension])] = Some(
     (o.id, o.url, o.value, o.extension))
+  private val log: Logger = LoggerFactory.getLogger(getClass)
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Extension] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,7 +73,18 @@ object Extension extends CompanionFor[Extension] {
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
-      ))
+      ).flatMap(e =>
+        companionLookup.get(e.url) match {
+          case None =>
+            if (params.logOnMissingExtension) log.warn(s"Missing extension $url")
+            Success(e)
+          case Some(ext) =>
+            ext.cast(e.asInstanceOf[ext.ResourceType]).asInstanceOf[Try[Extension]].recover {
+              case t if params.tolerateExtensionErrors =>
+                log.warn(s"Failed to decode extension $url", t)
+                e
+            }
+        }))
 }
 
 /** Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.
