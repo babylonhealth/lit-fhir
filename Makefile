@@ -113,20 +113,24 @@ cycle: clean-generated-java clean-generated-scala build-all-class-models test
 gen-java-proto: rm-bad-files
 	mkdir -p ./gproto/src/main/java
 	protoc --proto_path=./fhir -I=./fhir/proto --java_out=./gproto/src/main/java $(shell find ./fhir/proto -name '*.proto' | less)
+	# [error].../protogen/ProfileGenerator.java:513:1: cannot find symbol\n [error]   symbol:   variable UNKNOWN\n[error]   location: class com.google.fhir.proto.SizeRestriction
+	rm -f gproto/src/main/java/com/google/fhir/protogen/ProfileGenerator.java
+	rm -f gproto/src/main/java/com/google/fhir/protogen/ProfileGeneratorMain.java
 
-# TODO: what was this about?
 rm-bad-files:
-	rm -f fhir/proto/r4/core/profiles/data_element_constraint_on_element_definition_data_type.proto
-	rm -f fhir/proto/r4/core/profiles/ehrsfm_record_lifecycle_event_audit_event.proto
-	rm -f fhir/proto/r4/core/profiles/cqf_questionnaire.proto
-	rm -f fhir/proto/r4/core/profiles/pico_element_profile.proto
-	rm -f fhir/proto/r4/core/profiles/cds_hooks_request_group.proto
-	rm -f fhir/proto/r4/core/profiles/ehrsfm_record_lifecycle_event_provenance.proto
-	rm -f fhir/proto/r4/core/profiles/cql_library.proto
-	rm -f fhir/proto/r4/core/profiles/cds_hooks_service_plan_definition.proto
-	rm -f fhir/proto/r4/core/profiles/profile_for_hla_genotyping_results.proto
-	rm -f fhir/proto/r4/core/profiles/cds_hooks_guidance_response.proto
-	rm -f fhir/proto/r4/core/profiles/datatypes.proto
+# These all fail with something like
+# [libprotobuf WARNING google/protobuf/compiler/java/java_file.cc:232] proto/google/fhir/proto/r4/core/profiles/ehrsfm_record_lifecycle_event_audit_event.proto: The file's outer class name, "EhrsfmRecordLifecycleEventAuditEvent", matches the name of one of the types declared inside it when case is ignored. This can cause compilation issues on Windows / MacOS. Please either rename the type or use the java_outer_classname option to specify a different outer class name for the .proto file to be safe.
+	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/ehrsfm_record_lifecycle_event_audit_event.proto
+	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/cqf_questionnaire.proto
+	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/pico_element_profile.proto
+	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/cds_hooks_request_group.proto
+	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/ehrsfm_record_lifecycle_event_provenance.proto
+	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/cql_library.proto
+	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/cds_hooks_service_plan_definition.proto
+	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/profile_for_hla_genotyping_results.proto
+	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/cds_hooks_guidance_response.proto
+	# com/google/fhir/r4/core/Datatypes.java: Tried to write the same file twice.
+	rm -f fhir/proto/google/fhir/proto/r4/core/profiles/datatypes.proto
 
 pull-stuff:
 	npm --registry https://packages.simplifier.net install hl7.fhir.r4.core@4.0.1
