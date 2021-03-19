@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,11 +24,14 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object AuditEvent extends CompanionFor[AuditEvent] {
-  override val baseType: CompanionFor[AuditEvent] = AuditEvent
-  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/AuditEvent")
+  override type ResourceType = AuditEvent
+  override val baseType: CompanionFor[ResourceType] = AuditEvent
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/AuditEvent")
   object Entity extends CompanionFor[Entity] {
+    override type ResourceType = Entity
     object Detail extends CompanionFor[Detail] {
-      type ValueChoice = Choice[Union00483057553]
+      override type ResourceType = Detail
+      type ValueChoice           = Choice[Union00483057553]
       def apply(
           id: Option[String] = None,
           `type`: String,
@@ -57,7 +60,8 @@ object AuditEvent extends CompanionFor[AuditEvent] {
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, value, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, value, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Detail): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[String](`type`, t.`type`),
@@ -172,6 +176,7 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       securityLabel,
       modifierExtension,
       detail)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Entity): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Reference]](what, t.what),
@@ -225,7 +230,9 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Agent extends CompanionFor[Agent] {
+    override type ResourceType = Agent
     object Network extends CompanionFor[Network] {
+      override type ResourceType = Network
       def apply(
           id: Option[String] = None,
           `type`: Option[NETWORK_TYPE] = None,
@@ -254,7 +261,8 @@ object AuditEvent extends CompanionFor[AuditEvent] {
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, address, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, address, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Network): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[NETWORK_TYPE]](`type`, t.`type`),
@@ -381,6 +389,7 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       purposeOfUse,
       modifierExtension,
       network)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Agent): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Reference]](who, t.who),
@@ -440,6 +449,7 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Source extends CompanionFor[Source] {
+    override type ResourceType = Source
     def apply(
         id: Option[String] = None,
         site: Option[String] = None,
@@ -472,7 +482,8 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, site, `type`, observer, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, site, `type`, observer, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Source): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[String]](site, t.site),
@@ -609,6 +620,7 @@ object AuditEvent extends CompanionFor[AuditEvent] {
     agent,
     entity
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: AuditEvent): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

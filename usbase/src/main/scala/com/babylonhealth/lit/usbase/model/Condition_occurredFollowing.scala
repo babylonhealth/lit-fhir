@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollowing] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/condition-occurredFollowing")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/condition-occurredFollowing")
   type ValueChoice = Choice[Union01025009075]
   def apply(
       id: Option[String] = None,
@@ -41,10 +42,12 @@ object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollow
   val value: FHIRComponentFieldMeta[Condition_occurredFollowing.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Condition_occurredFollowing.ValueChoice], true, lTagOf[Union01025009075])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Condition_occurredFollowing): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Condition_occurredFollowing.ValueChoice](value, t.value.get.toSubRef)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Condition_occurredFollowing.ValueChoice](value, t.value.get.toSubRef)
+    ))
+  override def fields(t: Condition_occurredFollowing): Seq[FHIRComponentField[_]]           = fieldsFromParent(t).get
   def extractId(t: Condition_occurredFollowing): Option[String]                             = t.id
   def extractValue(t: Condition_occurredFollowing): Condition_occurredFollowing.ValueChoice = t.value.get.toSubRef
   override val thisName: String                                                             = "Condition_occurredFollowing"

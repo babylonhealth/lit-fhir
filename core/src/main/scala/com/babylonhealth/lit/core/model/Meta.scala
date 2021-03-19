@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,8 +21,9 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Meta extends CompanionFor[Meta] {
-  override val baseType: CompanionFor[Meta] = Meta
-  override val profileUrl: Option[String]   = Some("http://hl7.org/fhir/StructureDefinition/Meta")
+  override type ResourceType = Meta
+  override val baseType: CompanionFor[ResourceType] = Meta
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Meta")
   def apply(
       id: Option[String] = None,
       tag: LitSeq[Coding] = LitSeq.empty,
@@ -62,6 +63,7 @@ object Meta extends CompanionFor[Meta] {
     FHIRComponentFieldMeta("lastUpdated", lTagOf[Option[ZonedDateTime]], false, lTagOf[ZonedDateTime])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, tag, source, profile, security, extension, versionId, lastUpdated)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Meta): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[LitSeq[Coding]](tag, t.tag),

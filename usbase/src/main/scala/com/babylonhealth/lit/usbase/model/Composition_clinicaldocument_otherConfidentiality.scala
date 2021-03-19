@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,7 +25,8 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Composition_clinicaldocument_otherConfidentiality
     extends CompanionFor[Composition_clinicaldocument_otherConfidentiality] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/composition-clinicaldocument-otherConfidentiality")
   def apply(
@@ -42,10 +43,13 @@ object Composition_clinicaldocument_otherConfidentiality
   val value: FHIRComponentFieldMeta[Coding] =
     FHIRComponentFieldMeta("value", lTagOf[Coding], true, lTagOf[Coding])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Composition_clinicaldocument_otherConfidentiality): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Coding](value, t.value.get.toSubRefNonUnion[Coding])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Coding](value, t.value.get.toSubRefNonUnion[Coding])
+    ))
+  override def fields(t: Composition_clinicaldocument_otherConfidentiality): Seq[FHIRComponentField[_]] =
+    fieldsFromParent(t).get
   def extractId(t: Composition_clinicaldocument_otherConfidentiality): Option[String] = t.id
   def extractValue(t: Composition_clinicaldocument_otherConfidentiality): Coding      = t.value.get.toSubRefNonUnion[Coding]
   override val thisName: String                                                       = "Composition_clinicaldocument_otherConfidentiality"

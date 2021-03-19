@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -23,9 +23,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Organization extends CompanionFor[Organization] {
-  override val baseType: CompanionFor[Organization] = Organization
+  override type ResourceType = Organization
+  override val baseType: CompanionFor[ResourceType] = Organization
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Organization")
   object Contact extends CompanionFor[Contact] {
+    override type ResourceType = Contact
     def apply(
         id: Option[String] = None,
         name: Option[HumanName] = None,
@@ -64,6 +66,7 @@ object Organization extends CompanionFor[Organization] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, name, purpose, telecom, address, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Contact): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[HumanName]](name, t.name),
@@ -197,6 +200,7 @@ object Organization extends CompanionFor[Organization] {
     implicitRules,
     modifierExtension,
     contact)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Organization): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

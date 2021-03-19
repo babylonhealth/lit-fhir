@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
-  override val baseType: CompanionFor[CompartmentDefinition] = CompartmentDefinition
-  override val profileUrl: Option[String]                    = Some("http://hl7.org/fhir/StructureDefinition/CompartmentDefinition")
+  override type ResourceType = CompartmentDefinition
+  override val baseType: CompanionFor[ResourceType] = CompartmentDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CompartmentDefinition")
   object Resource extends CompanionFor[Resource] {
+    override type ResourceType = Resource
     def apply(
         id: Option[String] = None,
         code: RESOURCE_TYPES,
@@ -59,7 +61,8 @@ object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
       FHIRComponentFieldMeta("documentation", lTagOf[Option[String]], false, lTagOf[String])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, param, extension, documentation, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, param, extension, documentation, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Resource): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[RESOURCE_TYPES](code, t.code),
@@ -215,6 +218,7 @@ object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
     modifierExtension,
     resource
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: CompartmentDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[UriStr](url, t.url),

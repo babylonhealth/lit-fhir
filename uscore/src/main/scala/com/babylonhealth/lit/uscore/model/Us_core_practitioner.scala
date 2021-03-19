@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,7 +26,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_practitioner extends CompanionFor[Us_core_practitioner] {
-  override val baseType: CompanionFor[Practitioner] = Practitioner
+  override type ResourceType = Practitioner
+  override val baseType: CompanionFor[ResourceType] = Practitioner
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner")
   def apply(
       id: Option[String] = None,
@@ -130,26 +131,28 @@ object Us_core_practitioner extends CompanionFor[Us_core_practitioner] {
     identifier,
     qualification
   )
-  override def fields(t: Us_core_practitioner): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[LitSeq[Attachment]](photo, t.photo),
-    FHIRComponentField[Option[Boolean]](active, t.active),
-    FHIRComponentField[Option[ADMINISTRATIVE_GENDER]](gender, t.gender),
-    FHIRComponentField[LitSeq[ContactPoint]](telecom, t.telecom),
-    FHIRComponentField[LitSeq[Address]](address, t.address),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[FHIRDate]](birthDate, t.birthDate),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[CodeableConcept]](communication, t.communication),
-    FHIRComponentField[NonEmptyLitSeq[HumanName]](name, t.name.asNonEmpty),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[NonEmptyLitSeq[Identifier]](identifier, t.identifier.asNonEmpty),
-    FHIRComponentField[LitSeq[Practitioner.Qualification]](qualification, t.qualification)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[LitSeq[Attachment]](photo, t.photo),
+      FHIRComponentField[Option[Boolean]](active, t.active),
+      FHIRComponentField[Option[ADMINISTRATIVE_GENDER]](gender, t.gender),
+      FHIRComponentField[LitSeq[ContactPoint]](telecom, t.telecom),
+      FHIRComponentField[LitSeq[Address]](address, t.address),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[FHIRDate]](birthDate, t.birthDate),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[CodeableConcept]](communication, t.communication),
+      FHIRComponentField[NonEmptyLitSeq[HumanName]](name, t.name.asNonEmpty),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[NonEmptyLitSeq[Identifier]](identifier, t.identifier.asNonEmpty),
+      FHIRComponentField[LitSeq[Practitioner.Qualification]](qualification, t.qualification)
+    ))
+  override def fields(t: Us_core_practitioner): Seq[FHIRComponentField[_]]              = fieldsFromParent(t).get
   def extractId(t: Us_core_practitioner): Option[String]                                = t.id
   def extractMeta(t: Us_core_practitioner): Option[Meta]                                = t.meta
   def extractText(t: Us_core_practitioner): Option[Narrative]                           = t.text

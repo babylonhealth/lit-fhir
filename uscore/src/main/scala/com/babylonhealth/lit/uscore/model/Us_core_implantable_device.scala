@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,7 +26,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_implantable_device extends CompanionFor[Us_core_implantable_device] {
-  override val baseType: CompanionFor[Device] = Device
+  override type ResourceType = Device
+  override val baseType: CompanionFor[ResourceType] = Device
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device")
   def apply(
@@ -211,42 +212,44 @@ object Us_core_implantable_device extends CompanionFor[Us_core_implantable_devic
     deviceName,
     specialization
   )
-  override def fields(t: Us_core_implantable_device): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[UriStr]](url, t.url),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[CodeableConcept](`type`, t.`type`.get),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[Option[Reference]](owner, t.owner),
-    FHIRComponentField[Option[DEVICE_STATUS]](status, t.status),
-    FHIRComponentField[LitSeq[CodeableConcept]](safety, t.safety),
-    FHIRComponentField[Option[Reference]](parent, t.parent),
-    FHIRComponentField[Reference](patient, t.patient.get),
-    FHIRComponentField[LitSeq[ContactPoint]](contact, t.contact),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[Reference]](location, t.location),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[String]](lotNumber, t.lotNumber),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[Reference]](definition, t.definition),
-    FHIRComponentField[Option[String]](partNumber, t.partNumber),
-    FHIRComponentField[Option[String]](modelNumber, t.modelNumber),
-    FHIRComponentField[LitSeq[CodeableConcept]](statusReason, t.statusReason),
-    FHIRComponentField[Option[String]](manufacturer, t.manufacturer),
-    FHIRComponentField[Option[String]](serialNumber, t.serialNumber),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[FHIRDateTime]](expirationDate, t.expirationDate),
-    FHIRComponentField[Option[FHIRDateTime]](manufactureDate, t.manufactureDate),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[Option[String]](distinctIdentifier, t.distinctIdentifier),
-    FHIRComponentField[LitSeq[Device.Version]](version, t.version),
-    FHIRComponentField[LitSeq[Device.Property]](property, t.property),
-    FHIRComponentField[Option[Device.UdiCarrier]](udiCarrier, t.udiCarrier.headOption),
-    FHIRComponentField[LitSeq[Device.DeviceName]](deviceName, t.deviceName),
-    FHIRComponentField[LitSeq[Device.Specialization]](specialization, t.specialization)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[UriStr]](url, t.url),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[CodeableConcept](`type`, t.`type`.get),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[Option[Reference]](owner, t.owner),
+      FHIRComponentField[Option[DEVICE_STATUS]](status, t.status),
+      FHIRComponentField[LitSeq[CodeableConcept]](safety, t.safety),
+      FHIRComponentField[Option[Reference]](parent, t.parent),
+      FHIRComponentField[Reference](patient, t.patient.get),
+      FHIRComponentField[LitSeq[ContactPoint]](contact, t.contact),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[Option[Reference]](location, t.location),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[String]](lotNumber, t.lotNumber),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[Reference]](definition, t.definition),
+      FHIRComponentField[Option[String]](partNumber, t.partNumber),
+      FHIRComponentField[Option[String]](modelNumber, t.modelNumber),
+      FHIRComponentField[LitSeq[CodeableConcept]](statusReason, t.statusReason),
+      FHIRComponentField[Option[String]](manufacturer, t.manufacturer),
+      FHIRComponentField[Option[String]](serialNumber, t.serialNumber),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[FHIRDateTime]](expirationDate, t.expirationDate),
+      FHIRComponentField[Option[FHIRDateTime]](manufactureDate, t.manufactureDate),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Option[String]](distinctIdentifier, t.distinctIdentifier),
+      FHIRComponentField[LitSeq[Device.Version]](version, t.version),
+      FHIRComponentField[LitSeq[Device.Property]](property, t.property),
+      FHIRComponentField[Option[Device.UdiCarrier]](udiCarrier, t.udiCarrier.headOption),
+      FHIRComponentField[LitSeq[Device.DeviceName]](deviceName, t.deviceName),
+      FHIRComponentField[LitSeq[Device.Specialization]](specialization, t.specialization)
+    ))
+  override def fields(t: Us_core_implantable_device): Seq[FHIRComponentField[_]]          = fieldsFromParent(t).get
   def extractId(t: Us_core_implantable_device): Option[String]                            = t.id
   def extractUrl(t: Us_core_implantable_device): Option[UriStr]                           = t.url
   def extractMeta(t: Us_core_implantable_device): Option[Meta]                            = t.meta

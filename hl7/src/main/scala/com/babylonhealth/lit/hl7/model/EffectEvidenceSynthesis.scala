@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
-  override val baseType: CompanionFor[EffectEvidenceSynthesis] = EffectEvidenceSynthesis
-  override val profileUrl: Option[String]                      = Some("http://hl7.org/fhir/StructureDefinition/EffectEvidenceSynthesis")
+  override type ResourceType = EffectEvidenceSynthesis
+  override val baseType: CompanionFor[ResourceType] = EffectEvidenceSynthesis
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/EffectEvidenceSynthesis")
   object EffectEstimate extends CompanionFor[EffectEstimate] {
+    override type ResourceType = EffectEstimate
     object PrecisionEstimate extends CompanionFor[PrecisionEstimate] {
+      override type ResourceType = PrecisionEstimate
       def apply(
           id: Option[String] = None,
           to: Option[BigDecimal] = None,
@@ -64,7 +67,8 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, to, `type`, from, level, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, to, `type`, from, level, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: PrecisionEstimate): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[BigDecimal]](to, t.to),
@@ -163,6 +167,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
         lTagOf[EffectEstimate.PrecisionEstimate])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, `type`, value, extension, description, variantState, unitOfMeasure, modifierExtension, precisionEstimate)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: EffectEstimate): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
@@ -207,7 +212,9 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Certainty extends CompanionFor[Certainty] {
+    override type ResourceType = Certainty
     object CertaintySubcomponent extends CompanionFor[CertaintySubcomponent] {
+      override type ResourceType = CertaintySubcomponent
       def apply(
           id: Option[String] = None,
           `type`: Option[CodeableConcept] = None,
@@ -240,7 +247,8 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, note, rating, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, note, rating, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: CertaintySubcomponent): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
@@ -314,6 +322,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
         lTagOf[Certainty.CertaintySubcomponent])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, note, rating, extension, modifierExtension, certaintySubcomponent)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Certainty): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Annotation]](note, t.note),
@@ -349,6 +358,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ResultsByExposure extends CompanionFor[ResultsByExposure] {
+    override type ResourceType = ResultsByExposure
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -395,6 +405,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
       FHIRComponentFieldMeta("riskEvidenceSynthesis", lTagOf[Reference], false, lTagOf[Reference])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, extension, description, variantState, exposureState, modifierExtension, riskEvidenceSynthesis)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: ResultsByExposure): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -433,6 +444,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SampleSize extends CompanionFor[SampleSize] {
+    override type ResourceType = SampleSize
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -467,6 +479,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
       FHIRComponentFieldMeta("numberOfParticipants", lTagOf[Option[Int]], false, lTagOf[Int])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, extension, description, numberOfStudies, modifierExtension, numberOfParticipants)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: SampleSize): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -729,6 +742,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
     certainty,
     effectEstimate
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: EffectEvidenceSynthesis): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),

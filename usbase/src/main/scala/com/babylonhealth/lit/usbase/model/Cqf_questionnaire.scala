@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_questionnaire extends CompanionFor[Cqf_questionnaire] {
-  override val baseType: CompanionFor[Questionnaire] = Questionnaire
-  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/cqf-questionnaire")
+  override type ResourceType = Questionnaire
+  override val baseType: CompanionFor[ResourceType] = Questionnaire
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/cqf-questionnaire")
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -185,38 +186,40 @@ object Cqf_questionnaire extends CompanionFor[Cqf_questionnaire] {
     modifierExtension,
     item
   )
-  override def fields(t: Cqf_questionnaire): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[UriStr]](url, t.url),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[Option[String]](name, t.name),
-    FHIRComponentField[Option[FHIRDateTime]](date, t.date),
-    FHIRComponentField[LitSeq[Coding]](code, t.code),
-    FHIRComponentField[Option[String]](title, t.title),
-    FHIRComponentField[PUBLICATION_STATUS](status, t.status),
-    FHIRComponentField[Option[String]](version, t.version),
-    FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
-    FHIRComponentField[Option[Markdown]](purpose, t.purpose),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[String]](publisher, t.publisher),
-    FHIRComponentField[Option[Markdown]](copyright, t.copyright),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
-    FHIRComponentField[LitSeq[Canonical]](derivedFrom, t.derivedFrom),
-    FHIRComponentField[LitSeq[RESOURCE_TYPES]](subjectType, t.subjectType),
-    FHIRComponentField[Option[Markdown]](description, t.description),
-    FHIRComponentField[Option[Boolean]](experimental, t.experimental),
-    FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
-    FHIRComponentField[Option[FHIRDate]](approvalDate, t.approvalDate),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[FHIRDate]](lastReviewDate, t.lastReviewDate),
-    FHIRComponentField[Option[Period]](effectivePeriod, t.effectivePeriod),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Questionnaire.Item]](item, t.item)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[UriStr]](url, t.url),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[Option[String]](name, t.name),
+      FHIRComponentField[Option[FHIRDateTime]](date, t.date),
+      FHIRComponentField[LitSeq[Coding]](code, t.code),
+      FHIRComponentField[Option[String]](title, t.title),
+      FHIRComponentField[PUBLICATION_STATUS](status, t.status),
+      FHIRComponentField[Option[String]](version, t.version),
+      FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
+      FHIRComponentField[Option[Markdown]](purpose, t.purpose),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[String]](publisher, t.publisher),
+      FHIRComponentField[Option[Markdown]](copyright, t.copyright),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
+      FHIRComponentField[LitSeq[Canonical]](derivedFrom, t.derivedFrom),
+      FHIRComponentField[LitSeq[RESOURCE_TYPES]](subjectType, t.subjectType),
+      FHIRComponentField[Option[Markdown]](description, t.description),
+      FHIRComponentField[Option[Boolean]](experimental, t.experimental),
+      FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
+      FHIRComponentField[Option[FHIRDate]](approvalDate, t.approvalDate),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[FHIRDate]](lastReviewDate, t.lastReviewDate),
+      FHIRComponentField[Option[Period]](effectivePeriod, t.effectivePeriod),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Questionnaire.Item]](item, t.item)
+    ))
+  override def fields(t: Cqf_questionnaire): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
   def extractId(t: Cqf_questionnaire): Option[String]                    = t.id
   def extractUrl(t: Cqf_questionnaire): Option[UriStr]                   = t.url
   def extractMeta(t: Cqf_questionnaire): Option[Meta]                    = t.meta

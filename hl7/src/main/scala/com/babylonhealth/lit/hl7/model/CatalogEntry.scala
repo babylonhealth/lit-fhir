@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CatalogEntry extends CompanionFor[CatalogEntry] {
-  override val baseType: CompanionFor[CatalogEntry] = CatalogEntry
+  override type ResourceType = CatalogEntry
+  override val baseType: CompanionFor[ResourceType] = CatalogEntry
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CatalogEntry")
   object RelatedEntry extends CompanionFor[RelatedEntry] {
+    override type ResourceType = RelatedEntry
     def apply(
         id: Option[String] = None,
         item: Reference,
@@ -55,7 +57,8 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
       FHIRComponentFieldMeta("relationtype", lTagOf[RELATION_TYPE], false, lTagOf[RELATION_TYPE])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, item, extension, relationtype, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, item, extension, relationtype, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: RelatedEntry): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Reference](item, t.item),
@@ -203,6 +206,7 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
     additionalClassification,
     relatedEntry
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: CatalogEntry): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

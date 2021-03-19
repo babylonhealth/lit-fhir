@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_EN_qualifier extends CompanionFor[Iso21090_EN_qualifier] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier")
   def apply(
       id: Option[String] = None,
       value: NAME_PART_QUALIFIER,
@@ -40,11 +41,13 @@ object Iso21090_EN_qualifier extends CompanionFor[Iso21090_EN_qualifier] {
   val value: FHIRComponentFieldMeta[NAME_PART_QUALIFIER] =
     FHIRComponentFieldMeta("value", lTagOf[NAME_PART_QUALIFIER], true, lTagOf[NAME_PART_QUALIFIER])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Iso21090_EN_qualifier): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[NAME_PART_QUALIFIER](value, NAME_PART_QUALIFIER.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Iso21090_EN_qualifier): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[NAME_PART_QUALIFIER](value, NAME_PART_QUALIFIER.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Iso21090_EN_qualifier): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Iso21090_EN_qualifier): Option[String]                   = t.id
   def extractValue(t: Iso21090_EN_qualifier): NAME_PART_QUALIFIER =
     NAME_PART_QUALIFIER.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                             = "Iso21090_EN_qualifier"

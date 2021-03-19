@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Data_absent_reason extends CompanionFor[Data_absent_reason] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/data-absent-reason")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/data-absent-reason")
   def apply(
       id: Option[String] = None,
       value: DATA_ABSENT_REASON,
@@ -40,11 +41,13 @@ object Data_absent_reason extends CompanionFor[Data_absent_reason] {
   val value: FHIRComponentFieldMeta[DATA_ABSENT_REASON] =
     FHIRComponentFieldMeta("value", lTagOf[DATA_ABSENT_REASON], true, lTagOf[DATA_ABSENT_REASON])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Data_absent_reason): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[DATA_ABSENT_REASON](value, DATA_ABSENT_REASON.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Data_absent_reason): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[DATA_ABSENT_REASON](value, DATA_ABSENT_REASON.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Data_absent_reason): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Data_absent_reason): Option[String]                   = t.id
   def extractValue(t: Data_absent_reason): DATA_ABSENT_REASON =
     DATA_ABSENT_REASON.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                          = "Data_absent_reason"

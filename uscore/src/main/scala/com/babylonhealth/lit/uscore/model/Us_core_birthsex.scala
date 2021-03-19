@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_birthsex extends CompanionFor[Us_core_birthsex] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex")
   def apply(
       id: Option[String] = None,
       value: Option[Code] = None,
@@ -45,11 +46,13 @@ object Us_core_birthsex extends CompanionFor[Us_core_birthsex] {
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value, extension)
-  override def fields(t: Us_core_birthsex): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Code]](value, t.value.map(_.toSubRefNonUnion[Code])),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Code]](value, t.value.map(_.toSubRefNonUnion[Code])),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension)
+    ))
+  override def fields(t: Us_core_birthsex): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Us_core_birthsex): Option[String]                   = t.id
   def extractValue(t: Us_core_birthsex): Option[Code]                  = t.value.map(_.toSubRefNonUnion[Code])
   def extractExtension(t: Us_core_birthsex): LitSeq[Extension]         = t.extension

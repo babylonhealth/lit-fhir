@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object VisionPrescription extends CompanionFor[VisionPrescription] {
-  override val baseType: CompanionFor[VisionPrescription] = VisionPrescription
-  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/VisionPrescription")
+  override type ResourceType = VisionPrescription
+  override val baseType: CompanionFor[ResourceType] = VisionPrescription
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/VisionPrescription")
   object LensSpecification extends CompanionFor[LensSpecification] {
+    override type ResourceType = LensSpecification
     object Prism extends CompanionFor[Prism] {
+      override type ResourceType = Prism
       def apply(
           id: Option[String] = None,
           base: VISION_BASE_CODES,
@@ -56,7 +59,8 @@ object VisionPrescription extends CompanionFor[VisionPrescription] {
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, base, amount, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, base, amount, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Prism): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[VISION_BASE_CODES](base, t.base),
@@ -201,6 +205,7 @@ object VisionPrescription extends CompanionFor[VisionPrescription] {
       backCurve,
       modifierExtension,
       prism)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: LensSpecification): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[VISION_EYE_CODES](eye, t.eye),
@@ -359,6 +364,7 @@ object VisionPrescription extends CompanionFor[VisionPrescription] {
     modifierExtension,
     lensSpecification
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: VisionPrescription): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

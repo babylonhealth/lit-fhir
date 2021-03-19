@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MinValue extends CompanionFor[MinValue] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/minValue")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/minValue")
   type ValueChoice = Choice[Union01613806391]
   def apply(
       id: Option[String] = None,
@@ -41,10 +42,12 @@ object MinValue extends CompanionFor[MinValue] {
   val value: FHIRComponentFieldMeta[MinValue.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[MinValue.ValueChoice], true, lTagOf[Union01613806391])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: MinValue): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[MinValue.ValueChoice](value, t.value.get.toSubRef)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[MinValue.ValueChoice](value, t.value.get.toSubRef)
+    ))
+  override def fields(t: MinValue): Seq[FHIRComponentField[_]]             = fieldsFromParent(t).get
   def extractId(t: MinValue): Option[String]                               = t.id
   def extractValue(t: MinValue): MinValue.ValueChoice                      = t.value.get.toSubRef
   override val thisName: String                                            = "MinValue"

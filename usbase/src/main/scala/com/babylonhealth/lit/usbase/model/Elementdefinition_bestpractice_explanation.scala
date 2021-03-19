@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_bestpractice_explanation extends CompanionFor[Elementdefinition_bestpractice_explanation] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice-explanation")
   def apply(
@@ -41,10 +42,13 @@ object Elementdefinition_bestpractice_explanation extends CompanionFor[Elementde
   val value: FHIRComponentFieldMeta[Markdown] =
     FHIRComponentFieldMeta("value", lTagOf[Markdown], true, lTagOf[Markdown])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Elementdefinition_bestpractice_explanation): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Markdown](value, t.value.get.toSubRefNonUnion[Markdown])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Markdown](value, t.value.get.toSubRefNonUnion[Markdown])
+    ))
+  override def fields(t: Elementdefinition_bestpractice_explanation): Seq[FHIRComponentField[_]] = fieldsFromParent(
+    t).get
   def extractId(t: Elementdefinition_bestpractice_explanation): Option[String] = t.id
   def extractValue(t: Elementdefinition_bestpractice_explanation): Markdown    = t.value.get.toSubRefNonUnion[Markdown]
   override val thisName: String                                                = "Elementdefinition_bestpractice_explanation"

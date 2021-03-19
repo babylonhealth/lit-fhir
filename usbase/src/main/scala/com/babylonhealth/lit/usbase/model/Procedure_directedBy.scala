@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Procedure_directedBy extends CompanionFor[Procedure_directedBy] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/procedure-directedBy")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/procedure-directedBy")
   type ValueChoice = Choice[Union01025009075]
   def apply(
       id: Option[String] = None,
@@ -41,10 +42,12 @@ object Procedure_directedBy extends CompanionFor[Procedure_directedBy] {
   val value: FHIRComponentFieldMeta[Procedure_directedBy.ValueChoice] =
     FHIRComponentFieldMeta("value", lTagOf[Procedure_directedBy.ValueChoice], true, lTagOf[Union01025009075])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Procedure_directedBy): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Procedure_directedBy.ValueChoice](value, t.value.get.toSubRef)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Procedure_directedBy.ValueChoice](value, t.value.get.toSubRef)
+    ))
+  override def fields(t: Procedure_directedBy): Seq[FHIRComponentField[_]]    = fieldsFromParent(t).get
   def extractId(t: Procedure_directedBy): Option[String]                      = t.id
   def extractValue(t: Procedure_directedBy): Procedure_directedBy.ValueChoice = t.value.get.toSubRef
   override val thisName: String                                               = "Procedure_directedBy"

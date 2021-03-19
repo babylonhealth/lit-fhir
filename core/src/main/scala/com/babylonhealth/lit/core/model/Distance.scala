@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,8 +21,9 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Distance extends CompanionFor[Distance] {
-  override val baseType: CompanionFor[Distance] = Distance
-  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/Distance")
+  override type ResourceType = Distance
+  override val baseType: CompanionFor[ResourceType] = Distance
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Distance")
   def apply(
       id: Option[String] = None,
       unit: Option[String] = None,
@@ -56,7 +57,8 @@ object Distance extends CompanionFor[Distance] {
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val comparator: FHIRComponentFieldMeta[Option[QUANTITY_COMPARATOR]] =
     FHIRComponentFieldMeta("comparator", lTagOf[Option[QUANTITY_COMPARATOR]], false, lTagOf[QUANTITY_COMPARATOR])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, unit, code, value, system, extension, comparator)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, unit, code, value, system, extension, comparator)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Distance): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[String]](unit, t.unit),

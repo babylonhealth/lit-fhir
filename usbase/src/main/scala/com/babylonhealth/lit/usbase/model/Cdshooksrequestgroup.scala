@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,7 +25,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cdshooksrequestgroup extends CompanionFor[Cdshooksrequestgroup] {
-  override val baseType: CompanionFor[RequestGroup] = RequestGroup
+  override type ResourceType = RequestGroup
+  override val baseType: CompanionFor[ResourceType] = RequestGroup
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/cdshooksrequestgroup")
   def apply(
       id: Option[String] = None,
@@ -165,34 +166,36 @@ object Cdshooksrequestgroup extends CompanionFor[Cdshooksrequestgroup] {
     instantiatesCanonical,
     action
   )
-  override def fields(t: Cdshooksrequestgroup): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[Option[CodeableConcept]](code, t.code),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[REQUEST_STATUS](status, t.status),
-    FHIRComponentField[REQUEST_INTENT](intent, t.intent),
-    FHIRComponentField[Option[Reference]](author, t.author),
-    FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
-    FHIRComponentField[Option[Reference]](subject, t.subject),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[Reference]](replaces, t.replaces),
-    FHIRComponentField[Option[REQUEST_PRIORITY]](priority, t.priority),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[Identifier](identifier, t.identifier.head),
-    FHIRComponentField[Option[FHIRDateTime]](authoredOn, t.authoredOn),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[UriStr](instantiatesUri, t.instantiatesUri.head),
-    FHIRComponentField[Option[Identifier]](groupIdentifier, t.groupIdentifier),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
-    FHIRComponentField[LitSeq[RequestGroup.Action]](action, t.action)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[Option[CodeableConcept]](code, t.code),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[REQUEST_STATUS](status, t.status),
+      FHIRComponentField[REQUEST_INTENT](intent, t.intent),
+      FHIRComponentField[Option[Reference]](author, t.author),
+      FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
+      FHIRComponentField[Option[Reference]](subject, t.subject),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Reference]](replaces, t.replaces),
+      FHIRComponentField[Option[REQUEST_PRIORITY]](priority, t.priority),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[Identifier](identifier, t.identifier.head),
+      FHIRComponentField[Option[FHIRDateTime]](authoredOn, t.authoredOn),
+      FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[UriStr](instantiatesUri, t.instantiatesUri.head),
+      FHIRComponentField[Option[Identifier]](groupIdentifier, t.groupIdentifier),
+      FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
+      FHIRComponentField[LitSeq[RequestGroup.Action]](action, t.action)
+    ))
+  override def fields(t: Cdshooksrequestgroup): Seq[FHIRComponentField[_]]     = fieldsFromParent(t).get
   def extractId(t: Cdshooksrequestgroup): Option[String]                       = t.id
   def extractMeta(t: Cdshooksrequestgroup): Option[Meta]                       = t.meta
   def extractText(t: Cdshooksrequestgroup): Option[Narrative]                  = t.text

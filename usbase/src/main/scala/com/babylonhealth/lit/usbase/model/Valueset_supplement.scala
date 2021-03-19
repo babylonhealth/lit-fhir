@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_supplement extends CompanionFor[Valueset_supplement] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/valueset-supplement")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-supplement")
   def apply(
       id: Option[String] = None,
       value: Canonical,
@@ -40,10 +41,12 @@ object Valueset_supplement extends CompanionFor[Valueset_supplement] {
   val value: FHIRComponentFieldMeta[Canonical] =
     FHIRComponentFieldMeta("value", lTagOf[Canonical], true, lTagOf[Canonical])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Valueset_supplement): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Canonical](value, t.value.get.toSubRefNonUnion[Canonical])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Canonical](value, t.value.get.toSubRefNonUnion[Canonical])
+    ))
+  override def fields(t: Valueset_supplement): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_supplement): Option[String]                   = t.id
   def extractValue(t: Valueset_supplement): Canonical                     = t.value.get.toSubRefNonUnion[Canonical]
   override val thisName: String                                           = "Valueset_supplement"

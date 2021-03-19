@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,7 +25,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_organization extends CompanionFor[Us_core_organization] {
-  override val baseType: CompanionFor[Organization] = Organization
+  override type ResourceType = Organization
+  override val baseType: CompanionFor[ResourceType] = Organization
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization")
   def apply(
       id: Option[String] = None,
@@ -124,26 +125,28 @@ object Us_core_organization extends CompanionFor[Us_core_organization] {
     address,
     identifier,
     contact)
-  override def fields(t: Us_core_organization): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[LitSeq[CodeableConcept]](`type`, t.`type`),
-    FHIRComponentField[String](name, t.name.get),
-    FHIRComponentField[LitSeq[String]](alias, t.alias),
-    FHIRComponentField[Boolean](active, t.active.get),
-    FHIRComponentField[Option[Reference]](partOf, t.partOf),
-    FHIRComponentField[LitSeq[ContactPoint]](telecom, t.telecom),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[Reference]](endpoint, t.endpoint),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Address]](address, t.address),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[Organization.Contact]](contact, t.contact)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[LitSeq[CodeableConcept]](`type`, t.`type`),
+      FHIRComponentField[String](name, t.name.get),
+      FHIRComponentField[LitSeq[String]](alias, t.alias),
+      FHIRComponentField[Boolean](active, t.active.get),
+      FHIRComponentField[Option[Reference]](partOf, t.partOf),
+      FHIRComponentField[LitSeq[ContactPoint]](telecom, t.telecom),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Reference]](endpoint, t.endpoint),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Address]](address, t.address),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[LitSeq[Organization.Contact]](contact, t.contact)
+    ))
+  override def fields(t: Us_core_organization): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
   def extractId(t: Us_core_organization): Option[String]                    = t.id
   def extractMeta(t: Us_core_organization): Option[Meta]                    = t.meta
   def extractText(t: Us_core_organization): Option[Narrative]               = t.text

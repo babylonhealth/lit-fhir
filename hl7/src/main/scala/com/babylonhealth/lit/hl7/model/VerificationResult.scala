@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object VerificationResult extends CompanionFor[VerificationResult] {
-  override val baseType: CompanionFor[VerificationResult] = VerificationResult
-  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/VerificationResult")
+  override type ResourceType = VerificationResult
+  override val baseType: CompanionFor[ResourceType] = VerificationResult
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/VerificationResult")
   object Attestation extends CompanionFor[Attestation] {
+    override type ResourceType = Attestation
     def apply(
         id: Option[String] = None,
         who: Option[Reference] = None,
@@ -104,6 +106,7 @@ object VerificationResult extends CompanionFor[VerificationResult] {
       proxyIdentityCertificate,
       sourceIdentityCertificate
     )
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Attestation): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Reference]](who, t.who),
@@ -154,6 +157,7 @@ object VerificationResult extends CompanionFor[VerificationResult] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object PrimarySource extends CompanionFor[PrimarySource] {
+    override type ResourceType = PrimarySource
     def apply(
         id: Option[String] = None,
         who: Option[Reference] = None,
@@ -224,6 +228,7 @@ object VerificationResult extends CompanionFor[VerificationResult] {
       modifierExtension,
       pushTypeAvailable,
       communicationMethod)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: PrimarySource): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Reference]](who, t.who),
@@ -271,6 +276,7 @@ object VerificationResult extends CompanionFor[VerificationResult] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Validator extends CompanionFor[Validator] {
+    override type ResourceType = Validator
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -305,6 +311,7 @@ object VerificationResult extends CompanionFor[VerificationResult] {
       FHIRComponentFieldMeta("attestationSignature", lTagOf[Option[Signature]], false, lTagOf[Signature])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, extension, organization, modifierExtension, identityCertificate, attestationSignature)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Validator): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -468,6 +475,7 @@ object VerificationResult extends CompanionFor[VerificationResult] {
     primarySource,
     attestation
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: VerificationResult): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

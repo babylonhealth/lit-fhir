@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Humanname_assembly_order extends CompanionFor[Humanname_assembly_order] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/humanname-assembly-order")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/humanname-assembly-order")
   def apply(
       id: Option[String] = None,
       value: NAME_ASSEMBLY_ORDER,
@@ -40,11 +41,13 @@ object Humanname_assembly_order extends CompanionFor[Humanname_assembly_order] {
   val value: FHIRComponentFieldMeta[NAME_ASSEMBLY_ORDER] =
     FHIRComponentFieldMeta("value", lTagOf[NAME_ASSEMBLY_ORDER], true, lTagOf[NAME_ASSEMBLY_ORDER])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Humanname_assembly_order): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[NAME_ASSEMBLY_ORDER](value, NAME_ASSEMBLY_ORDER.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Humanname_assembly_order): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[NAME_ASSEMBLY_ORDER](value, NAME_ASSEMBLY_ORDER.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Humanname_assembly_order): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Humanname_assembly_order): Option[String]                   = t.id
   def extractValue(t: Humanname_assembly_order): NAME_ASSEMBLY_ORDER =
     NAME_ASSEMBLY_ORDER.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                = "Humanname_assembly_order"

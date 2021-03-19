@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Appointment extends CompanionFor[Appointment] {
-  override val baseType: CompanionFor[Appointment] = Appointment
-  override val profileUrl: Option[String]          = Some("http://hl7.org/fhir/StructureDefinition/Appointment")
+  override type ResourceType = Appointment
+  override val baseType: CompanionFor[ResourceType] = Appointment
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Appointment")
   object Participant extends CompanionFor[Participant] {
+    override type ResourceType = Participant
     def apply(
         id: Option[String] = None,
         `type`: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -69,6 +71,7 @@ object Appointment extends CompanionFor[Appointment] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, `type`, actor, status, period, required, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Participant): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[CodeableConcept]](`type`, t.`type`),
@@ -270,6 +273,7 @@ object Appointment extends CompanionFor[Appointment] {
     supportingInformation,
     participant
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Appointment): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[ZonedDateTime]](end, t.end),

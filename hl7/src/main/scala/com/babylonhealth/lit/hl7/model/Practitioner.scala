@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Practitioner extends CompanionFor[Practitioner] {
-  override val baseType: CompanionFor[Practitioner] = Practitioner
+  override type ResourceType = Practitioner
+  override val baseType: CompanionFor[ResourceType] = Practitioner
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Practitioner")
   object Qualification extends CompanionFor[Qualification] {
+    override type ResourceType = Qualification
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,
@@ -65,6 +67,7 @@ object Practitioner extends CompanionFor[Practitioner] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, code, period, issuer, extension, identifier, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Qualification): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[CodeableConcept](code, t.code),
@@ -203,6 +206,7 @@ object Practitioner extends CompanionFor[Practitioner] {
     modifierExtension,
     qualification
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Practitioner): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

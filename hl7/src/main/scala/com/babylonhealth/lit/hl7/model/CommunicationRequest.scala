@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,12 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CommunicationRequest extends CompanionFor[CommunicationRequest] {
-  override val baseType: CompanionFor[CommunicationRequest] = CommunicationRequest
-  override val profileUrl: Option[String]                   = Some("http://hl7.org/fhir/StructureDefinition/CommunicationRequest")
+  override type ResourceType = CommunicationRequest
+  override val baseType: CompanionFor[ResourceType] = CommunicationRequest
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CommunicationRequest")
   object Payload extends CompanionFor[Payload] {
-    type ContentChoice = Choice[Union_1750183386]
+    override type ResourceType = Payload
+    type ContentChoice         = Choice[Union_1750183386]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -51,7 +53,8 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
       FHIRComponentFieldMeta("content", lTagOf[Payload.ContentChoice], true, lTagOf[Union_1750183386])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension, content, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Payload): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -246,6 +249,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     modifierExtension,
     payload
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: CommunicationRequest): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,11 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Immunization extends CompanionFor[Immunization] {
-  override val baseType: CompanionFor[Immunization] = Immunization
+  override type ResourceType = Immunization
+  override val baseType: CompanionFor[ResourceType] = Immunization
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Immunization")
   object ProtocolApplied extends CompanionFor[ProtocolApplied] {
-    type DoseNumberChoice  = Choice[Union_0839638734]
-    type SeriesDosesChoice = Choice[Union_0839638734]
+    override type ResourceType = ProtocolApplied
+    type DoseNumberChoice      = Choice[Union_0839638734]
+    type SeriesDosesChoice     = Choice[Union_0839638734]
     def apply(
         id: Option[String] = None,
         series: Option[String] = None,
@@ -76,6 +78,7 @@ object Immunization extends CompanionFor[Immunization] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, series, extension, authority, targetDisease, doseNumber, seriesDoses, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: ProtocolApplied): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[String]](series, t.series),
@@ -117,6 +120,7 @@ object Immunization extends CompanionFor[Immunization] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Education extends CompanionFor[Education] {
+    override type ResourceType = Education
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -155,6 +159,7 @@ object Immunization extends CompanionFor[Immunization] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, extension, reference, documentType, publicationDate, presentationDate, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Education): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -193,6 +198,7 @@ object Immunization extends CompanionFor[Immunization] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Performer extends CompanionFor[Performer] {
+    override type ResourceType = Performer
     def apply(
         id: Option[String] = None,
         actor: Reference,
@@ -221,7 +227,8 @@ object Immunization extends CompanionFor[Immunization] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, actor, function, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, actor, function, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Performer): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Reference](actor, t.actor),
@@ -254,6 +261,7 @@ object Immunization extends CompanionFor[Immunization] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Reaction extends CompanionFor[Reaction] {
+    override type ResourceType = Reaction
     def apply(
         id: Option[String] = None,
         date: Option[FHIRDateTime] = None,
@@ -286,7 +294,8 @@ object Immunization extends CompanionFor[Immunization] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, date, detail, reported, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, date, detail, reported, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Reaction): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[FHIRDateTime]](date, t.date),
@@ -513,6 +522,7 @@ object Immunization extends CompanionFor[Immunization] {
     education,
     protocolApplied
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Immunization): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

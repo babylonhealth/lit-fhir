@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,8 +26,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_careplan extends CompanionFor[Us_core_careplan] {
-  override val baseType: CompanionFor[CarePlan] = CarePlan
-  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan")
+  override type ResourceType = CarePlan
+  override val baseType: CompanionFor[ResourceType] = CarePlan
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-careplan")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -191,39 +192,41 @@ object Us_core_careplan extends CompanionFor[Us_core_careplan] {
     instantiatesCanonical,
     activity
   )
-  override def fields(t: Us_core_careplan): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[LitSeq[Reference]](goal, t.goal),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[Option[String]](title, t.title),
-    FHIRComponentField[LitSeq[Reference]](partOf, t.partOf),
-    FHIRComponentField[REQUEST_STATUS](status, t.status),
-    FHIRComponentField[CARE_PLAN_INTENT](intent, t.intent),
-    FHIRComponentField[Option[Period]](period, t.period),
-    FHIRComponentField[Option[Reference]](author, t.author),
-    FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
-    FHIRComponentField[Reference](subject, t.subject),
-    FHIRComponentField[Option[FHIRDateTime]](created, t.created),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[Reference]](replaces, t.replaces),
-    FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-    FHIRComponentField[LitSeq[Reference]](careTeam, t.careTeam),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[LitSeq[Reference]](addresses, t.addresses),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[String]](description, t.description),
-    FHIRComponentField[LitSeq[Reference]](contributor, t.contributor),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Narrative](text, t.text.get),
-    FHIRComponentField[LitSeq[Reference]](supportingInfo, t.supportingInfo),
-    FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
-    FHIRComponentField[LitSeq[CarePlan.Activity]](activity, t.activity)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[LitSeq[Reference]](goal, t.goal),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[Option[String]](title, t.title),
+      FHIRComponentField[LitSeq[Reference]](partOf, t.partOf),
+      FHIRComponentField[REQUEST_STATUS](status, t.status),
+      FHIRComponentField[CARE_PLAN_INTENT](intent, t.intent),
+      FHIRComponentField[Option[Period]](period, t.period),
+      FHIRComponentField[Option[Reference]](author, t.author),
+      FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
+      FHIRComponentField[Reference](subject, t.subject),
+      FHIRComponentField[Option[FHIRDateTime]](created, t.created),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Reference]](replaces, t.replaces),
+      FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
+      FHIRComponentField[LitSeq[Reference]](careTeam, t.careTeam),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[LitSeq[Reference]](addresses, t.addresses),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[String]](description, t.description),
+      FHIRComponentField[LitSeq[Reference]](contributor, t.contributor),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Narrative](text, t.text.get),
+      FHIRComponentField[LitSeq[Reference]](supportingInfo, t.supportingInfo),
+      FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
+      FHIRComponentField[LitSeq[CarePlan.Activity]](activity, t.activity)
+    ))
+  override def fields(t: Us_core_careplan): Seq[FHIRComponentField[_]]      = fieldsFromParent(t).get
   def extractId(t: Us_core_careplan): Option[String]                        = t.id
   def extractMeta(t: Us_core_careplan): Option[Meta]                        = t.meta
   def extractGoal(t: Us_core_careplan): LitSeq[Reference]                   = t.goal

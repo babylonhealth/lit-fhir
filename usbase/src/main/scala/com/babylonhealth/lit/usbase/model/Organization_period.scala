@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Organization_period extends CompanionFor[Organization_period] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/organization-period")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/organization-period")
   def apply(
       id: Option[String] = None,
       value: Period,
@@ -40,10 +41,12 @@ object Organization_period extends CompanionFor[Organization_period] {
   val value: FHIRComponentFieldMeta[Period] =
     FHIRComponentFieldMeta("value", lTagOf[Period], true, lTagOf[Period])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Organization_period): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Period](value, t.value.get.toSubRefNonUnion[Period])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Period](value, t.value.get.toSubRefNonUnion[Period])
+    ))
+  override def fields(t: Organization_period): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Organization_period): Option[String]                   = t.id
   def extractValue(t: Organization_period): Period                        = t.value.get.toSubRefNonUnion[Period]
   override val thisName: String                                           = "Organization_period"

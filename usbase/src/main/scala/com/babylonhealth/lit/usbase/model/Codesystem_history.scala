@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_history extends CompanionFor[Codesystem_history] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/codesystem-history")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/codesystem-history")
   def apply(
       id: Option[String] = None,
       extension: LitSeq[Extension] = LitSeq.empty,
@@ -40,10 +41,12 @@ object Codesystem_history extends CompanionFor[Codesystem_history] {
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension)
-  override def fields(t: Codesystem_history): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension)
+    ))
+  override def fields(t: Codesystem_history): Seq[FHIRComponentField[_]]          = fieldsFromParent(t).get
   def extractId(t: Codesystem_history): Option[String]                            = t.id
   def extractExtension(t: Codesystem_history): LitSeq[Extension]                  = t.extension
   override val thisName: String                                                   = "Codesystem_history"

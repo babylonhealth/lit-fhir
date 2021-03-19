@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_author extends CompanionFor[Valueset_author] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/valueset-author")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-author")
   def apply(
       id: Option[String] = None,
       value: ContactDetail,
@@ -40,10 +41,12 @@ object Valueset_author extends CompanionFor[Valueset_author] {
   val value: FHIRComponentFieldMeta[ContactDetail] =
     FHIRComponentFieldMeta("value", lTagOf[ContactDetail], true, lTagOf[ContactDetail])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Valueset_author): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[ContactDetail](value, t.value.get.toSubRefNonUnion[ContactDetail])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[ContactDetail](value, t.value.get.toSubRefNonUnion[ContactDetail])
+    ))
+  override def fields(t: Valueset_author): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Valueset_author): Option[String]                   = t.id
   def extractValue(t: Valueset_author): ContactDetail                 = t.value.get.toSubRefNonUnion[ContactDetail]
   override val thisName: String                                       = "Valueset_author"

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
-  override val baseType: CompanionFor[PaymentReconciliation] = PaymentReconciliation
-  override val profileUrl: Option[String]                    = Some("http://hl7.org/fhir/StructureDefinition/PaymentReconciliation")
+  override type ResourceType = PaymentReconciliation
+  override val baseType: CompanionFor[ResourceType] = PaymentReconciliation
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/PaymentReconciliation")
   object ProcessNote extends CompanionFor[ProcessNote] {
+    override type ResourceType = ProcessNote
     def apply(
         id: Option[String] = None,
         `type`: Option[NOTE_TYPE] = None,
@@ -55,7 +57,8 @@ object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, text, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, text, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: ProcessNote): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[NOTE_TYPE]](`type`, t.`type`),
@@ -88,6 +91,7 @@ object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Detail extends CompanionFor[Detail] {
+    override type ResourceType = Detail
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -176,6 +180,7 @@ object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
       predecessor,
       responsible,
       modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Detail): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[CodeableConcept](`type`, t.`type`),
@@ -361,6 +366,7 @@ object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
     detail,
     processNote
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: PaymentReconciliation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

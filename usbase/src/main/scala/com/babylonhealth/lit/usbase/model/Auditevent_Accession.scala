@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Auditevent_Accession extends CompanionFor[Auditevent_Accession] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/auditevent-Accession")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/auditevent-Accession")
   def apply(
       id: Option[String] = None,
       value: Identifier,
@@ -40,10 +41,12 @@ object Auditevent_Accession extends CompanionFor[Auditevent_Accession] {
   val value: FHIRComponentFieldMeta[Identifier] =
     FHIRComponentFieldMeta("value", lTagOf[Identifier], true, lTagOf[Identifier])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Auditevent_Accession): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Identifier](value, t.value.get.toSubRefNonUnion[Identifier])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Identifier](value, t.value.get.toSubRefNonUnion[Identifier])
+    ))
+  override def fields(t: Auditevent_Accession): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Auditevent_Accession): Option[String]                   = t.id
   def extractValue(t: Auditevent_Accession): Identifier                    = t.value.get.toSubRefNonUnion[Identifier]
   override val thisName: String                                            = "Auditevent_Accession"

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Provenance_relevant_history extends CompanionFor[Provenance_relevant_history] {
-  override val baseType: CompanionFor[Provenance] = Provenance
-  override val profileUrl: Option[String]         = Some("http://hl7.org/fhir/StructureDefinition/provenance-relevant-history")
+  override type ResourceType = Provenance
+  override val baseType: CompanionFor[ResourceType] = Provenance
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/provenance-relevant-history")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -124,26 +125,28 @@ object Provenance_relevant_history extends CompanionFor[Provenance_relevant_hist
     agent,
     entity
   )
-  override def fields(t: Provenance_relevant_history): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[NonEmptyLitSeq[Reference]](target, t.target),
-    FHIRComponentField[LitSeq[UriStr]](policy, t.policy),
-    FHIRComponentField[LitSeq[CodeableConcept]](reason, t.reason),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[ZonedDateTime](recorded, t.recorded),
-    FHIRComponentField[Option[Reference]](location, t.location),
-    FHIRComponentField[CodeableConcept](activity, t.activity.get),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[LitSeq[Signature]](signature, t.signature),
-    FHIRComponentField[FHIRDateTime](occurred, t.occurred.get.toSubRefNonUnion[FHIRDateTime]),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[NonEmptyLitSeq[Provenance.Agent]](agent, t.agent),
-    FHIRComponentField[LitSeq[Provenance.Entity]](entity, t.entity)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[NonEmptyLitSeq[Reference]](target, t.target),
+      FHIRComponentField[LitSeq[UriStr]](policy, t.policy),
+      FHIRComponentField[LitSeq[CodeableConcept]](reason, t.reason),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[ZonedDateTime](recorded, t.recorded),
+      FHIRComponentField[Option[Reference]](location, t.location),
+      FHIRComponentField[CodeableConcept](activity, t.activity.get),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[LitSeq[Signature]](signature, t.signature),
+      FHIRComponentField[FHIRDateTime](occurred, t.occurred.get.toSubRefNonUnion[FHIRDateTime]),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[NonEmptyLitSeq[Provenance.Agent]](agent, t.agent),
+      FHIRComponentField[LitSeq[Provenance.Entity]](entity, t.entity)
+    ))
+  override def fields(t: Provenance_relevant_history): Seq[FHIRComponentField[_]]    = fieldsFromParent(t).get
   def extractId(t: Provenance_relevant_history): Option[String]                      = t.id
   def extractMeta(t: Provenance_relevant_history): Option[Meta]                      = t.meta
   def extractText(t: Provenance_relevant_history): Option[Narrative]                 = t.text

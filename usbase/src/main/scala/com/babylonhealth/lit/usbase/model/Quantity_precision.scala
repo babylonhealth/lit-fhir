@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Quantity_precision extends CompanionFor[Quantity_precision] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/quantity-precision")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/quantity-precision")
   def apply(
       id: Option[String] = None,
       value: Int,
@@ -40,10 +41,12 @@ object Quantity_precision extends CompanionFor[Quantity_precision] {
   val value: FHIRComponentFieldMeta[Int] =
     FHIRComponentFieldMeta("value", lTagOf[Int], true, lTagOf[Int])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Quantity_precision): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Int](value, t.value.get.toSubRefNonUnion[Int])
+    ))
+  override def fields(t: Quantity_precision): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Quantity_precision): Option[String]                   = t.id
   def extractValue(t: Quantity_precision): Int                           = t.value.get.toSubRefNonUnion[Int]
   override val thisName: String                                          = "Quantity_precision"

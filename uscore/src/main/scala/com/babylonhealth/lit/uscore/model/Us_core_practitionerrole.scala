@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,7 +25,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_practitionerrole extends CompanionFor[Us_core_practitionerrole] {
-  override val baseType: CompanionFor[PractitionerRole] = PractitionerRole
+  override type ResourceType = PractitionerRole
+  override val baseType: CompanionFor[ResourceType] = PractitionerRole
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole")
   def apply(
@@ -154,30 +155,32 @@ object Us_core_practitionerrole extends CompanionFor[Us_core_practitionerrole] {
     notAvailable,
     availableTime
   )
-  override def fields(t: Us_core_practitionerrole): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[LitSeq[CodeableConcept]](code, t.code),
-    FHIRComponentField[Option[Boolean]](active, t.active),
-    FHIRComponentField[Option[Period]](period, t.period),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[Reference]](location, t.location),
-    FHIRComponentField[LitSeq[Reference]](endpoint, t.endpoint),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[LitSeq[CodeableConcept]](specialty, t.specialty),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Reference](practitioner, t.practitioner.get),
-    FHIRComponentField[Reference](organization, t.organization.get),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Reference]](healthcareService, t.healthcareService),
-    FHIRComponentField[LitSeq[ContactPoint]](telecom, t.telecom),
-    FHIRComponentField[Option[String]](availabilityExceptions, t.availabilityExceptions),
-    FHIRComponentField[LitSeq[PractitionerRole.NotAvailable]](notAvailable, t.notAvailable),
-    FHIRComponentField[LitSeq[PractitionerRole.AvailableTime]](availableTime, t.availableTime)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[LitSeq[CodeableConcept]](code, t.code),
+      FHIRComponentField[Option[Boolean]](active, t.active),
+      FHIRComponentField[Option[Period]](period, t.period),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Reference]](location, t.location),
+      FHIRComponentField[LitSeq[Reference]](endpoint, t.endpoint),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[LitSeq[CodeableConcept]](specialty, t.specialty),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Reference](practitioner, t.practitioner.get),
+      FHIRComponentField[Reference](organization, t.organization.get),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[Reference]](healthcareService, t.healthcareService),
+      FHIRComponentField[LitSeq[ContactPoint]](telecom, t.telecom),
+      FHIRComponentField[Option[String]](availabilityExceptions, t.availabilityExceptions),
+      FHIRComponentField[LitSeq[PractitionerRole.NotAvailable]](notAvailable, t.notAvailable),
+      FHIRComponentField[LitSeq[PractitionerRole.AvailableTime]](availableTime, t.availableTime)
+    ))
+  override def fields(t: Us_core_practitionerrole): Seq[FHIRComponentField[_]]                  = fieldsFromParent(t).get
   def extractId(t: Us_core_practitionerrole): Option[String]                                    = t.id
   def extractMeta(t: Us_core_practitionerrole): Option[Meta]                                    = t.meta
   def extractText(t: Us_core_practitionerrole): Option[Narrative]                               = t.text

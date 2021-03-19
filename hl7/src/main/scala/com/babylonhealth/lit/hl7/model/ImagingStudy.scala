@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImagingStudy extends CompanionFor[ImagingStudy] {
-  override val baseType: CompanionFor[ImagingStudy] = ImagingStudy
+  override type ResourceType = ImagingStudy
+  override val baseType: CompanionFor[ResourceType] = ImagingStudy
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImagingStudy")
   object Series extends CompanionFor[Series] {
+    override type ResourceType = Series
     object Instance extends CompanionFor[Instance] {
+      override type ResourceType = Instance
       def apply(
           id: Option[String] = None,
           uid: Id,
@@ -66,6 +69,7 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, uid, title, number, sopClass, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Instance): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Id](uid, t.uid),
@@ -105,6 +109,7 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Performer extends CompanionFor[Performer] {
+      override type ResourceType = Performer
       def apply(
           id: Option[String] = None,
           actor: Reference,
@@ -133,7 +138,8 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, actor, function, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, actor, function, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Performer): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Reference](actor, t.actor),
@@ -266,6 +272,7 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
       numberOfInstances,
       instance,
       performer)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Series): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Id](uid, t.uid),
@@ -474,6 +481,7 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
     procedureReference,
     series
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ImagingStudy): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

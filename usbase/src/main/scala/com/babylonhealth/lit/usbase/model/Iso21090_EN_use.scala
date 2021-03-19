@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_EN_use extends CompanionFor[Iso21090_EN_use] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/iso21090-EN-use")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/iso21090-EN-use")
   def apply(
       id: Option[String] = None,
       value: V3_ENTITYNAMEUSER2,
@@ -40,11 +41,13 @@ object Iso21090_EN_use extends CompanionFor[Iso21090_EN_use] {
   val value: FHIRComponentFieldMeta[V3_ENTITYNAMEUSER2] =
     FHIRComponentFieldMeta("value", lTagOf[V3_ENTITYNAMEUSER2], true, lTagOf[V3_ENTITYNAMEUSER2])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Iso21090_EN_use): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[V3_ENTITYNAMEUSER2](value, V3_ENTITYNAMEUSER2.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Iso21090_EN_use): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[V3_ENTITYNAMEUSER2](value, V3_ENTITYNAMEUSER2.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Iso21090_EN_use): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Iso21090_EN_use): Option[String]                   = t.id
   def extractValue(t: Iso21090_EN_use): V3_ENTITYNAMEUSER2 =
     V3_ENTITYNAMEUSER2.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                       = "Iso21090_EN_use"

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Location extends CompanionFor[Location] {
-  override val baseType: CompanionFor[Location] = Location
-  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/Location")
+  override type ResourceType = Location
+  override val baseType: CompanionFor[ResourceType] = Location
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Location")
   object HoursOfOperation extends CompanionFor[HoursOfOperation] {
+    override type ResourceType = HoursOfOperation
     def apply(
         id: Option[String] = None,
         allDay: Option[Boolean] = None,
@@ -65,6 +67,7 @@ object Location extends CompanionFor[Location] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, allDay, extension, daysOfWeek, openingTime, closingTime, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: HoursOfOperation): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Boolean]](allDay, t.allDay),
@@ -103,6 +106,7 @@ object Location extends CompanionFor[Location] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Position extends CompanionFor[Position] {
+    override type ResourceType = Position
     def apply(
         id: Option[String] = None,
         latitude: BigDecimal,
@@ -137,6 +141,7 @@ object Location extends CompanionFor[Location] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, latitude, altitude, extension, longitude, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Position): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[BigDecimal](latitude, t.latitude),
@@ -307,6 +312,7 @@ object Location extends CompanionFor[Location] {
     position,
     hoursOfOperation
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Location): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

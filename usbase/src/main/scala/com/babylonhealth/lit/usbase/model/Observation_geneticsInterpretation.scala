@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,7 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_geneticsInterpretation extends CompanionFor[Observation_geneticsInterpretation] {
-  override val baseType: CompanionFor[Extension] = Extension
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/observation-geneticsInterpretation")
   def apply(
@@ -41,10 +42,12 @@ object Observation_geneticsInterpretation extends CompanionFor[Observation_genet
   val value: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("value", lTagOf[Reference], true, lTagOf[Reference])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Observation_geneticsInterpretation): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
+    ))
+  override def fields(t: Observation_geneticsInterpretation): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Observation_geneticsInterpretation): Option[String]                   = t.id
   def extractValue(t: Observation_geneticsInterpretation): Reference                     = t.value.get.toSubRefNonUnion[Reference]
   override val thisName: String                                                          = "Observation_geneticsInterpretation"

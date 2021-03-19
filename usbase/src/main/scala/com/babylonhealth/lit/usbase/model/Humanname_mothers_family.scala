@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Humanname_mothers_family extends CompanionFor[Humanname_mothers_family] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/humanname-mothers-family")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/humanname-mothers-family")
   def apply(
       id: Option[String] = None,
       value: String,
@@ -40,10 +41,12 @@ object Humanname_mothers_family extends CompanionFor[Humanname_mothers_family] {
   val value: FHIRComponentFieldMeta[String] =
     FHIRComponentFieldMeta("value", lTagOf[String], true, lTagOf[String])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Humanname_mothers_family): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[String](value, t.value.get.toSubRefNonUnion[String])
+    ))
+  override def fields(t: Humanname_mothers_family): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Humanname_mothers_family): Option[String]                   = t.id
   def extractValue(t: Humanname_mothers_family): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                = "Humanname_mothers_family"

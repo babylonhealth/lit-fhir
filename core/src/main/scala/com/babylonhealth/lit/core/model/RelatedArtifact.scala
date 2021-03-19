@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,8 +21,9 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RelatedArtifact extends CompanionFor[RelatedArtifact] {
-  override val baseType: CompanionFor[RelatedArtifact] = RelatedArtifact
-  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/RelatedArtifact")
+  override type ResourceType = RelatedArtifact
+  override val baseType: CompanionFor[ResourceType] = RelatedArtifact
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RelatedArtifact")
   def apply(
       id: Option[String] = None,
       url: Option[UrlStr] = None,
@@ -66,6 +67,7 @@ object RelatedArtifact extends CompanionFor[RelatedArtifact] {
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, url, `type`, label, display, citation, document, resource, extension)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: RelatedArtifact): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UrlStr]](url, t.url),

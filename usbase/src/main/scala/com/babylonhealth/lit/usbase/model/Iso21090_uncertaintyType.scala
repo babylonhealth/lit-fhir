@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_uncertaintyType extends CompanionFor[Iso21090_uncertaintyType] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/iso21090-uncertaintyType")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/iso21090-uncertaintyType")
   def apply(
       id: Option[String] = None,
       value: PROBABILITY_DISTRIBUTION_TYPE,
@@ -40,13 +41,15 @@ object Iso21090_uncertaintyType extends CompanionFor[Iso21090_uncertaintyType] {
   val value: FHIRComponentFieldMeta[PROBABILITY_DISTRIBUTION_TYPE] =
     FHIRComponentFieldMeta("value", lTagOf[PROBABILITY_DISTRIBUTION_TYPE], true, lTagOf[PROBABILITY_DISTRIBUTION_TYPE])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Iso21090_uncertaintyType): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[PROBABILITY_DISTRIBUTION_TYPE](
-      value,
-      PROBABILITY_DISTRIBUTION_TYPE.withName(t.value.get.toSubRefNonUnion[Code]))
-  )
-  def extractId(t: Iso21090_uncertaintyType): Option[String] = t.id
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[PROBABILITY_DISTRIBUTION_TYPE](
+        value,
+        PROBABILITY_DISTRIBUTION_TYPE.withName(t.value.get.toSubRefNonUnion[Code]))
+    ))
+  override def fields(t: Iso21090_uncertaintyType): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Iso21090_uncertaintyType): Option[String]                   = t.id
   def extractValue(t: Iso21090_uncertaintyType): PROBABILITY_DISTRIBUTION_TYPE =
     PROBABILITY_DISTRIBUTION_TYPE.withName(t.value.get.toSubRefNonUnion[Code])
   override val thisName: String                                                = "Iso21090_uncertaintyType"

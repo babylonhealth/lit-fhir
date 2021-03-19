@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ObservationDefinition extends CompanionFor[ObservationDefinition] {
-  override val baseType: CompanionFor[ObservationDefinition] = ObservationDefinition
-  override val profileUrl: Option[String]                    = Some("http://hl7.org/fhir/StructureDefinition/ObservationDefinition")
+  override type ResourceType = ObservationDefinition
+  override val baseType: CompanionFor[ResourceType] = ObservationDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ObservationDefinition")
   object QuantitativeDetails extends CompanionFor[QuantitativeDetails] {
+    override type ResourceType = QuantitativeDetails
     def apply(
         id: Option[String] = None,
         unit: Option[CodeableConcept] = None,
@@ -65,6 +67,7 @@ object ObservationDefinition extends CompanionFor[ObservationDefinition] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, unit, extension, customaryUnit, conversionFactor, decimalPrecision, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: QuantitativeDetails): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[CodeableConcept]](unit, t.unit),
@@ -103,6 +106,7 @@ object ObservationDefinition extends CompanionFor[ObservationDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object QualifiedInterval extends CompanionFor[QualifiedInterval] {
+    override type ResourceType = QualifiedInterval
     def apply(
         id: Option[String] = None,
         age: Option[Range] = None,
@@ -173,6 +177,7 @@ object ObservationDefinition extends CompanionFor[ObservationDefinition] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, age, range, gender, context, category, extension, appliesTo, condition, gestationalAge, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: QualifiedInterval): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Range]](age, t.age),
@@ -342,6 +347,7 @@ object ObservationDefinition extends CompanionFor[ObservationDefinition] {
     qualifiedInterval,
     quantitativeDetails
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ObservationDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

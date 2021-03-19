@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -23,10 +23,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendation] {
-  override val baseType: CompanionFor[ImmunizationRecommendation] = ImmunizationRecommendation
-  override val profileUrl: Option[String]                         = Some("http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation")
+  override type ResourceType = ImmunizationRecommendation
+  override val baseType: CompanionFor[ResourceType] = ImmunizationRecommendation
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation")
   object Recommendation extends CompanionFor[Recommendation] {
+    override type ResourceType = Recommendation
     object DateCriterion extends CompanionFor[DateCriterion] {
+      override type ResourceType = DateCriterion
       def apply(
           id: Option[String] = None,
           code: CodeableConcept,
@@ -55,7 +58,8 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, value, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, value, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: DateCriterion): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[CodeableConcept](code, t.code),
@@ -207,6 +211,7 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
       supportingPatientInformation,
       dateCriterion
     )
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Recommendation): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[String]](series, t.series),
@@ -343,6 +348,7 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
     implicitRules,
     modifierExtension,
     recommendation)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ImmunizationRecommendation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

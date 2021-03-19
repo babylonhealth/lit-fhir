@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -25,8 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_condition extends CompanionFor[Us_core_condition] {
-  override val baseType: CompanionFor[Condition] = Condition
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition")
+  override type ResourceType = Condition
+  override val baseType: CompanionFor[ResourceType] = Condition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition")
   type OnsetChoice     = Choice[Union01352864625]
   type AbatementChoice = Choice[Union01352864625]
   def apply(
@@ -166,33 +167,35 @@ object Us_core_condition extends CompanionFor[Us_core_condition] {
     stage,
     evidence
   )
-  override def fields(t: Us_core_condition): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[CodeableConcept](code, t.code.get),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[Reference](subject, t.subject),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-    FHIRComponentField[Option[CodeableConcept]](severity, t.severity),
-    FHIRComponentField[LitSeq[CodeableConcept]](bodySite, t.bodySite),
-    FHIRComponentField[Option[Us_core_condition.OnsetChoice]](onset, t.onset),
-    FHIRComponentField[Option[Reference]](recorder, t.recorder),
-    FHIRComponentField[Option[Reference]](asserter, t.asserter),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[Us_core_condition.AbatementChoice]](abatement, t.abatement),
-    FHIRComponentField[Option[FHIRDateTime]](recordedDate, t.recordedDate),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[CodeableConcept]](clinicalStatus, t.clinicalStatus),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[Option[CodeableConcept]](verificationStatus, t.verificationStatus),
-    FHIRComponentField[LitSeq[Condition.Stage]](stage, t.stage),
-    FHIRComponentField[LitSeq[Condition.Evidence]](evidence, t.evidence)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[CodeableConcept](code, t.code.get),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[Reference](subject, t.subject),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
+      FHIRComponentField[Option[CodeableConcept]](severity, t.severity),
+      FHIRComponentField[LitSeq[CodeableConcept]](bodySite, t.bodySite),
+      FHIRComponentField[Option[Us_core_condition.OnsetChoice]](onset, t.onset),
+      FHIRComponentField[Option[Reference]](recorder, t.recorder),
+      FHIRComponentField[Option[Reference]](asserter, t.asserter),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[Us_core_condition.AbatementChoice]](abatement, t.abatement),
+      FHIRComponentField[Option[FHIRDateTime]](recordedDate, t.recordedDate),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[CodeableConcept]](clinicalStatus, t.clinicalStatus),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Option[CodeableConcept]](verificationStatus, t.verificationStatus),
+      FHIRComponentField[LitSeq[Condition.Stage]](stage, t.stage),
+      FHIRComponentField[LitSeq[Condition.Evidence]](evidence, t.evidence)
+    ))
+  override def fields(t: Us_core_condition): Seq[FHIRComponentField[_]]                 = fieldsFromParent(t).get
   def extractId(t: Us_core_condition): Option[String]                                   = t.id
   def extractMeta(t: Us_core_condition): Option[Meta]                                   = t.meta
   def extractText(t: Us_core_condition): Option[Narrative]                              = t.text

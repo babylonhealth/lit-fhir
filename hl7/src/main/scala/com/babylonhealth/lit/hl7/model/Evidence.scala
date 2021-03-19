@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Evidence extends CompanionFor[Evidence] {
-  override val baseType: CompanionFor[Evidence] = Evidence
-  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/StructureDefinition/Evidence")
+  override type ResourceType = Evidence
+  override val baseType: CompanionFor[ResourceType] = Evidence
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Evidence")
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -213,6 +214,7 @@ object Evidence extends CompanionFor[Evidence] {
     modifierExtension,
     exposureBackground
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Evidence): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),

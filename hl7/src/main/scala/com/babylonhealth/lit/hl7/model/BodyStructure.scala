@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -23,8 +23,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object BodyStructure extends CompanionFor[BodyStructure] {
-  override val baseType: CompanionFor[BodyStructure] = BodyStructure
-  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/BodyStructure")
+  override type ResourceType = BodyStructure
+  override val baseType: CompanionFor[ResourceType] = BodyStructure
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/BodyStructure")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -112,6 +113,7 @@ object BodyStructure extends CompanionFor[BodyStructure] {
     modifierExtension,
     locationQualifier
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: BodyStructure): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

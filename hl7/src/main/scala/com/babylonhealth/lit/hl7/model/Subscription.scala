@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Subscription extends CompanionFor[Subscription] {
-  override val baseType: CompanionFor[Subscription] = Subscription
+  override type ResourceType = Subscription
+  override val baseType: CompanionFor[ResourceType] = Subscription
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Subscription")
   object Channel extends CompanionFor[Channel] {
+    override type ResourceType = Channel
     def apply(
         id: Option[String] = None,
         `type`: SUBSCRIPTION_CHANNEL_TYPE,
@@ -65,6 +67,7 @@ object Subscription extends CompanionFor[Subscription] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, `type`, header, payload, endpoint, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Channel): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[SUBSCRIPTION_CHANNEL_TYPE](`type`, t.`type`),
@@ -183,6 +186,7 @@ object Subscription extends CompanionFor[Subscription] {
     implicitRules,
     modifierExtension,
     channel)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Subscription): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[ZonedDateTime]](end, t.end),

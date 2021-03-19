@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -30,9 +30,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceMetric extends CompanionFor[DeviceMetric] {
-  override val baseType: CompanionFor[DeviceMetric] = DeviceMetric
+  override type ResourceType = DeviceMetric
+  override val baseType: CompanionFor[ResourceType] = DeviceMetric
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceMetric")
   object Calibration extends CompanionFor[Calibration] {
+    override type ResourceType = Calibration
     def apply(
         id: Option[String] = None,
         `type`: Option[METRIC_CALIBRATION_TYPE] = None,
@@ -65,7 +67,8 @@ object DeviceMetric extends CompanionFor[DeviceMetric] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, time, state, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, time, state, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Calibration): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[METRIC_CALIBRATION_TYPE]](`type`, t.`type`),
@@ -205,6 +208,7 @@ object DeviceMetric extends CompanionFor[DeviceMetric] {
     measurementPeriod,
     calibration
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: DeviceMetric): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,11 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Goal extends CompanionFor[Goal] {
-  override val baseType: CompanionFor[Goal] = Goal
-  override val profileUrl: Option[String]   = Some("http://hl7.org/fhir/StructureDefinition/Goal")
+  override type ResourceType = Goal
+  override val baseType: CompanionFor[ResourceType] = Goal
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Goal")
   object Target extends CompanionFor[Target] {
-    type DueChoice    = Choice[Union01219602913]
-    type DetailChoice = Choice[Union01056080496]
+    override type ResourceType = Target
+    type DueChoice             = Choice[Union01219602913]
+    type DetailChoice          = Choice[Union01056080496]
     def apply(
         id: Option[String] = None,
         due: Option[Target.DueChoice] = None,
@@ -61,7 +63,8 @@ object Goal extends CompanionFor[Goal] {
       FHIRComponentFieldMeta("detail", lTagOf[Option[Target.DetailChoice]], true, lTagOf[Union01056080496])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, due, measure, extension, detail, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, due, measure, extension, detail, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Target): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Target.DueChoice]](due, t.due),
@@ -224,6 +227,7 @@ object Goal extends CompanionFor[Goal] {
     achievementStatus,
     target
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Goal): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

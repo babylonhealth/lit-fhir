@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -31,10 +31,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ElementDefinition extends CompanionFor[ElementDefinition] {
-  override val baseType: CompanionFor[ElementDefinition] = ElementDefinition
-  override val profileUrl: Option[String]                = Some("http://hl7.org/fhir/StructureDefinition/ElementDefinition")
+  override type ResourceType = ElementDefinition
+  override val baseType: CompanionFor[ResourceType] = ElementDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ElementDefinition")
   object Slicing extends CompanionFor[Slicing] {
+    override type ResourceType = Slicing
     object Discriminator extends CompanionFor[Discriminator] {
+      override type ResourceType = Discriminator
       def apply(
           id: Option[String] = None,
           `type`: DISCRIMINATOR_TYPE,
@@ -58,7 +61,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
         FHIRComponentFieldMeta("path", lTagOf[String], false, lTagOf[String])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, path, extension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, path, extension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Discriminator): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[DISCRIMINATOR_TYPE](`type`, t.`type`),
@@ -124,7 +128,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
         lTagOf[LitSeq[Slicing.Discriminator]],
         false,
         lTagOf[Slicing.Discriminator])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, rules, ordered, extension, description, discriminator)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, rules, ordered, extension, description, discriminator)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Slicing): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[RESOURCE_SLICING_RULES](rules, t.rules),
@@ -160,6 +165,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Constraint extends CompanionFor[Constraint] {
+    override type ResourceType = Constraint
     def apply(
         id: Option[String] = None,
         key: Id,
@@ -206,6 +212,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       FHIRComponentFieldMeta("requirements", lTagOf[Option[String]], false, lTagOf[String])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, key, human, xpath, source, severity, extension, expression, requirements)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Constraint): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Id](key, t.key),
@@ -250,6 +257,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Binding extends CompanionFor[Binding] {
+    override type ResourceType = Binding
     def apply(
         id: Option[String] = None,
         strength: BINDING_STRENGTH,
@@ -278,7 +286,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val description: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, strength, valueSet, extension, description)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, strength, valueSet, extension, description)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Binding): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[BINDING_STRENGTH](strength, t.strength),
@@ -311,6 +320,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Type extends CompanionFor[Type] {
+    override type ResourceType = Type
     def apply(
         id: Option[String] = None,
         code: UriStr,
@@ -357,6 +367,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       FHIRComponentFieldMeta("targetProfile", lTagOf[LitSeq[Canonical]], false, lTagOf[Canonical])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, code, profile, extension, versioning, aggregation, targetProfile)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Type): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[UriStr](code, t.code),
@@ -395,6 +406,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Mapping extends CompanionFor[Mapping] {
+    override type ResourceType = Mapping
     def apply(
         id: Option[String] = None,
         map: String,
@@ -426,7 +438,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       FHIRComponentFieldMeta("language", lTagOf[Option[Code]], false, lTagOf[Code])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, map, comment, identity, language, extension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, map, comment, identity, language, extension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Mapping): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[String](map, t.map),
@@ -462,7 +475,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Example extends CompanionFor[Example] {
-    type ValueChoice = Choice[Union_1349125893]
+    override type ResourceType = Example
+    type ValueChoice           = Choice[Union_1349125893]
     def apply(
         id: Option[String] = None,
         label: String,
@@ -486,7 +500,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       FHIRComponentFieldMeta("value", lTagOf[Example.ValueChoice], true, lTagOf[Union_1349125893])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, label, value, extension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, label, value, extension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Example): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[String](label, t.label),
@@ -516,6 +531,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Base extends CompanionFor[Base] {
+    override type ResourceType = Base
     def apply(
         id: Option[String] = None,
         min: UnsignedInt,
@@ -543,7 +559,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       FHIRComponentFieldMeta("path", lTagOf[String], false, lTagOf[String])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, min, max, path, extension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, min, max, path, extension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Base): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[UnsignedInt](min, t.min),
@@ -800,6 +817,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
     constraint,
     slicing
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ElementDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UnsignedInt]](min, t.min),

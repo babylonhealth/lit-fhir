@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DesignNote extends CompanionFor[DesignNote] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/designNote")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/designNote")
   def apply(
       id: Option[String] = None,
       value: Markdown,
@@ -40,10 +41,12 @@ object DesignNote extends CompanionFor[DesignNote] {
   val value: FHIRComponentFieldMeta[Markdown] =
     FHIRComponentFieldMeta("value", lTagOf[Markdown], true, lTagOf[Markdown])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: DesignNote): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Markdown](value, t.value.get.toSubRefNonUnion[Markdown])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Markdown](value, t.value.get.toSubRefNonUnion[Markdown])
+    ))
+  override def fields(t: DesignNote): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: DesignNote): Option[String]                   = t.id
   def extractValue(t: DesignNote): Markdown                      = t.value.get.toSubRefNonUnion[Markdown]
   override val thisName: String                                  = "DesignNote"

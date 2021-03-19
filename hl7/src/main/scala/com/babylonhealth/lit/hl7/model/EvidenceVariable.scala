@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EvidenceVariable extends CompanionFor[EvidenceVariable] {
-  override val baseType: CompanionFor[EvidenceVariable] = EvidenceVariable
-  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/EvidenceVariable")
+  override type ResourceType = EvidenceVariable
+  override val baseType: CompanionFor[ResourceType] = EvidenceVariable
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/EvidenceVariable")
   object Characteristic extends CompanionFor[Characteristic] {
+    override type ResourceType      = Characteristic
     type DefinitionChoice           = Choice[Union_0358050020]
     type ParticipantEffectiveChoice = Choice[Union00607514014]
     def apply(
@@ -103,6 +105,7 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
       timeFromStart,
       modifierExtension,
       participantEffective)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Characteristic): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Boolean]](exclude, t.exclude),
@@ -337,6 +340,7 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
     modifierExtension,
     characteristic
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: EvidenceVariable): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),

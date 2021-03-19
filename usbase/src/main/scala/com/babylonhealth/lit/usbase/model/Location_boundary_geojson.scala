@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Location_boundary_geojson extends CompanionFor[Location_boundary_geojson] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/location-boundary-geojson")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/location-boundary-geojson")
   def apply(
       id: Option[String] = None,
       value: Attachment,
@@ -40,10 +41,12 @@ object Location_boundary_geojson extends CompanionFor[Location_boundary_geojson]
   val value: FHIRComponentFieldMeta[Attachment] =
     FHIRComponentFieldMeta("value", lTagOf[Attachment], true, lTagOf[Attachment])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Location_boundary_geojson): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Attachment](value, t.value.get.toSubRefNonUnion[Attachment])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Attachment](value, t.value.get.toSubRefNonUnion[Attachment])
+    ))
+  override def fields(t: Location_boundary_geojson): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Location_boundary_geojson): Option[String]                   = t.id
   def extractValue(t: Location_boundary_geojson): Attachment                    = t.value.get.toSubRefNonUnion[Attachment]
   override val thisName: String                                                 = "Location_boundary_geojson"

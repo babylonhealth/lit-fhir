@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Patient_preferenceType extends CompanionFor[Patient_preferenceType] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/patient-preferenceType")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/patient-preferenceType")
   def apply(
       id: Option[String] = None,
       value: Coding,
@@ -40,10 +41,12 @@ object Patient_preferenceType extends CompanionFor[Patient_preferenceType] {
   val value: FHIRComponentFieldMeta[Coding] =
     FHIRComponentFieldMeta("value", lTagOf[Coding], true, lTagOf[Coding])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Patient_preferenceType): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Coding](value, t.value.get.toSubRefNonUnion[Coding])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Coding](value, t.value.get.toSubRefNonUnion[Coding])
+    ))
+  override def fields(t: Patient_preferenceType): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Patient_preferenceType): Option[String]                   = t.id
   def extractValue(t: Patient_preferenceType): Coding                        = t.value.get.toSubRefNonUnion[Coding]
   override val thisName: String                                              = "Patient_preferenceType"

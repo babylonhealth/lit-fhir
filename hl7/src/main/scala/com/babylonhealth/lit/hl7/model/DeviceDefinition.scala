@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceDefinition extends CompanionFor[DeviceDefinition] {
-  override val baseType: CompanionFor[DeviceDefinition] = DeviceDefinition
-  override val profileUrl: Option[String]               = Some("http://hl7.org/fhir/StructureDefinition/DeviceDefinition")
+  override type ResourceType = DeviceDefinition
+  override val baseType: CompanionFor[ResourceType] = DeviceDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceDefinition")
   object UdiDeviceIdentifier extends CompanionFor[UdiDeviceIdentifier] {
+    override type ResourceType = UdiDeviceIdentifier
     def apply(
         id: Option[String] = None,
         issuer: UriStr,
@@ -61,6 +63,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, issuer, extension, jurisdiction, deviceIdentifier, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: UdiDeviceIdentifier): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[UriStr](issuer, t.issuer),
@@ -96,6 +99,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Specialization extends CompanionFor[Specialization] {
+    override type ResourceType = Specialization
     def apply(
         id: Option[String] = None,
         version: Option[String] = None,
@@ -124,7 +128,8 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       FHIRComponentFieldMeta("systemType", lTagOf[String], false, lTagOf[String])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, version, extension, systemType, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, version, extension, systemType, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Specialization): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[String]](version, t.version),
@@ -157,6 +162,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Material extends CompanionFor[Material] {
+    override type ResourceType = Material
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -191,6 +197,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       FHIRComponentFieldMeta("allergenicIndicator", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, extension, substance, alternate, modifierExtension, allergenicIndicator)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Material): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -226,6 +233,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Capability extends CompanionFor[Capability] {
+    override type ResourceType = Capability
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -254,7 +262,8 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       FHIRComponentFieldMeta("description", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, extension, description, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, extension, description, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Capability): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[CodeableConcept](`type`, t.`type`),
@@ -287,6 +296,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object DeviceName extends CompanionFor[DeviceName] {
+    override type ResourceType = DeviceName
     def apply(
         id: Option[String] = None,
         name: String,
@@ -315,7 +325,8 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, `type`, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, name, `type`, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: DeviceName): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[String](name, t.name),
@@ -348,6 +359,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Property extends CompanionFor[Property] {
+    override type ResourceType = Property
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -382,6 +394,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, `type`, extension, valueCode, valueQuantity, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Property): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[CodeableConcept](`type`, t.`type`),
@@ -610,6 +623,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
     specialization,
     udiDeviceIdentifier
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: DeviceDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UriStr]](url, t.url),

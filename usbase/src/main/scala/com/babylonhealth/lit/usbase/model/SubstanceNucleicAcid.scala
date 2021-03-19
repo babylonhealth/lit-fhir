@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
-  override val baseType: CompanionFor[SubstanceNucleicAcid] = SubstanceNucleicAcid
-  override val profileUrl: Option[String]                   = Some("http://hl7.org/fhir/StructureDefinition/SubstanceNucleicAcid")
+  override type ResourceType = SubstanceNucleicAcid
+  override val baseType: CompanionFor[ResourceType] = SubstanceNucleicAcid
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceNucleicAcid")
   object Subunit extends CompanionFor[Subunit] {
+    override type ResourceType = Subunit
     object Sugar extends CompanionFor[Sugar] {
+      override type ResourceType = Sugar
       def apply(
           id: Option[String] = None,
           name: Option[String] = None,
@@ -62,6 +65,7 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, name, extension, identifier, residueSite, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Sugar): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[String]](name, t.name),
@@ -98,6 +102,7 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Linkage extends CompanionFor[Linkage] {
+      override type ResourceType = Linkage
       def apply(
           id: Option[String] = None,
           name: Option[String] = None,
@@ -136,6 +141,7 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, name, extension, identifier, residueSite, connectivity, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Linkage): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[String]](name, t.name),
@@ -250,6 +256,7 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
       sequenceAttachment,
       sugar,
       linkage)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Subunit): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Int]](length, t.length),
@@ -375,6 +382,7 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
     oligoNucleotideType,
     subunit
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: SubstanceNucleicAcid): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

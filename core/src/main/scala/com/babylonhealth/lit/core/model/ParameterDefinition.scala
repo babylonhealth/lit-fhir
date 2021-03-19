@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -21,8 +21,9 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ParameterDefinition extends CompanionFor[ParameterDefinition] {
-  override val baseType: CompanionFor[ParameterDefinition] = ParameterDefinition
-  override val profileUrl: Option[String]                  = Some("http://hl7.org/fhir/StructureDefinition/ParameterDefinition")
+  override type ResourceType = ParameterDefinition
+  override val baseType: CompanionFor[ResourceType] = ParameterDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ParameterDefinition")
   def apply(
       id: Option[String] = None,
       use: OPERATION_PARAMETER_USE,
@@ -66,6 +67,7 @@ object ParameterDefinition extends CompanionFor[ParameterDefinition] {
     FHIRComponentFieldMeta("documentation", lTagOf[Option[String]], false, lTagOf[String])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, use, min, max, name, `type`, profile, extension, documentation)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ParameterDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[OPERATION_PARAMETER_USE](use, t.use),

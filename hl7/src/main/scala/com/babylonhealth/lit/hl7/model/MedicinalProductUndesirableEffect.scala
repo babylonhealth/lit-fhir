@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -23,7 +23,8 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductUndesirableEffect extends CompanionFor[MedicinalProductUndesirableEffect] {
-  override val baseType: CompanionFor[MedicinalProductUndesirableEffect] = MedicinalProductUndesirableEffect
+  override type ResourceType = MedicinalProductUndesirableEffect
+  override val baseType: CompanionFor[ResourceType] = MedicinalProductUndesirableEffect
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/MedicinalProductUndesirableEffect")
   def apply(
@@ -98,6 +99,7 @@ object MedicinalProductUndesirableEffect extends CompanionFor[MedicinalProductUn
     frequencyOfOccurrence,
     symptomConditionEffect
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: MedicinalProductUndesirableEffect): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

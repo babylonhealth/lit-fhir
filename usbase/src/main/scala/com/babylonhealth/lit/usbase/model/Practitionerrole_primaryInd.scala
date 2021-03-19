@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Practitionerrole_primaryInd extends CompanionFor[Practitionerrole_primaryInd] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/practitionerrole-primaryInd")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/practitionerrole-primaryInd")
   def apply(
       id: Option[String] = None,
       value: Boolean,
@@ -40,10 +41,12 @@ object Practitionerrole_primaryInd extends CompanionFor[Practitionerrole_primary
   val value: FHIRComponentFieldMeta[Boolean] =
     FHIRComponentFieldMeta("value", lTagOf[Boolean], true, lTagOf[Boolean])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Practitionerrole_primaryInd): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Boolean](value, t.value.get.toSubRefNonUnion[Boolean])
+    ))
+  override def fields(t: Practitionerrole_primaryInd): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Practitionerrole_primaryInd): Option[String]                   = t.id
   def extractValue(t: Practitionerrole_primaryInd): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                                   = "Practitionerrole_primaryInd"

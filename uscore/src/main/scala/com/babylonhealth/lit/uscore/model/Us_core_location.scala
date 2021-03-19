@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,8 +26,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_location extends CompanionFor[Us_core_location] {
-  override val baseType: CompanionFor[Location] = Location
-  override val profileUrl: Option[String]       = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-location")
+  override type ResourceType = Location
+  override val baseType: CompanionFor[ResourceType] = Location
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-location")
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -165,33 +166,35 @@ object Us_core_location extends CompanionFor[Us_core_location] {
     position,
     hoursOfOperation
   )
-  override def fields(t: Us_core_location): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name.get),
-    FHIRComponentField[Option[LOCATION_MODE]](mode, t.mode),
-    FHIRComponentField[LitSeq[CodeableConcept]](`type`, t.`type`),
-    FHIRComponentField[LitSeq[String]](alias, t.alias),
-    FHIRComponentField[Option[LOCATION_STATUS]](status, t.status),
-    FHIRComponentField[Option[Reference]](partOf, t.partOf),
-    FHIRComponentField[LitSeq[ContactPoint]](telecom, t.telecom),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[Reference]](endpoint, t.endpoint),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[String]](description, t.description),
-    FHIRComponentField[Option[CodeableConcept]](physicalType, t.physicalType),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[Option[Coding]](operationalStatus, t.operationalStatus),
-    FHIRComponentField[Option[Address]](address, t.address),
-    FHIRComponentField[Option[Reference]](managingOrganization, t.managingOrganization),
-    FHIRComponentField[Option[String]](availabilityExceptions, t.availabilityExceptions),
-    FHIRComponentField[Option[Location.Position]](position, t.position),
-    FHIRComponentField[LitSeq[Location.HoursOfOperation]](hoursOfOperation, t.hoursOfOperation)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[String](name, t.name.get),
+      FHIRComponentField[Option[LOCATION_MODE]](mode, t.mode),
+      FHIRComponentField[LitSeq[CodeableConcept]](`type`, t.`type`),
+      FHIRComponentField[LitSeq[String]](alias, t.alias),
+      FHIRComponentField[Option[LOCATION_STATUS]](status, t.status),
+      FHIRComponentField[Option[Reference]](partOf, t.partOf),
+      FHIRComponentField[LitSeq[ContactPoint]](telecom, t.telecom),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Reference]](endpoint, t.endpoint),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[String]](description, t.description),
+      FHIRComponentField[Option[CodeableConcept]](physicalType, t.physicalType),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Option[Coding]](operationalStatus, t.operationalStatus),
+      FHIRComponentField[Option[Address]](address, t.address),
+      FHIRComponentField[Option[Reference]](managingOrganization, t.managingOrganization),
+      FHIRComponentField[Option[String]](availabilityExceptions, t.availabilityExceptions),
+      FHIRComponentField[Option[Location.Position]](position, t.position),
+      FHIRComponentField[LitSeq[Location.HoursOfOperation]](hoursOfOperation, t.hoursOfOperation)
+    ))
+  override def fields(t: Us_core_location): Seq[FHIRComponentField[_]]                = fieldsFromParent(t).get
   def extractId(t: Us_core_location): Option[String]                                  = t.id
   def extractMeta(t: Us_core_location): Option[Meta]                                  = t.meta
   def extractText(t: Us_core_location): Option[Narrative]                             = t.text

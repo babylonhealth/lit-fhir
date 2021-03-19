@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MolecularSequence extends CompanionFor[MolecularSequence] {
-  override val baseType: CompanionFor[MolecularSequence] = MolecularSequence
-  override val profileUrl: Option[String]                = Some("http://hl7.org/fhir/StructureDefinition/MolecularSequence")
+  override type ResourceType = MolecularSequence
+  override val baseType: CompanionFor[ResourceType] = MolecularSequence
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MolecularSequence")
   object StructureVariant extends CompanionFor[StructureVariant] {
+    override type ResourceType = StructureVariant
     object Outer extends CompanionFor[Outer] {
+      override type ResourceType = Outer
       def apply(
           id: Option[String] = None,
           end: Option[Int] = None,
@@ -55,7 +58,8 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, end, start, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, end, start, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Outer): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[Int]](end, t.end),
@@ -89,6 +93,7 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Inner extends CompanionFor[Inner] {
+      override type ResourceType = Inner
       def apply(
           id: Option[String] = None,
           end: Option[Int] = None,
@@ -116,7 +121,8 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, end, start, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, end, start, extension, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Inner): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[Int]](end, t.end),
@@ -191,6 +197,7 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       FHIRComponentFieldMeta("inner", lTagOf[Option[StructureVariant.Inner]], false, lTagOf[StructureVariant.Inner])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, exact, length, extension, variantType, modifierExtension, outer, inner)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: StructureVariant): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Boolean]](exact, t.exact),
@@ -232,6 +239,7 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ReferenceSeq extends CompanionFor[ReferenceSeq] {
+    override type ResourceType = ReferenceSeq
     def apply(
         id: Option[String] = None,
         strand: Option[STRAND_TYPE] = None,
@@ -314,6 +322,7 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       modifierExtension,
       referenceSeqString,
       referenceSeqPointer)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: ReferenceSeq): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[STRAND_TYPE]](strand, t.strand),
@@ -367,7 +376,9 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Quality extends CompanionFor[Quality] {
+    override type ResourceType = Quality
     object Roc extends CompanionFor[Roc] {
+      override type ResourceType = Roc
       def apply(
           id: Option[String] = None,
           score: LitSeq[Int] = LitSeq.empty,
@@ -429,6 +440,7 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, score, numTP, numFP, numFN, fMeasure, extension, precision, sensitivity, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Roc): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[LitSeq[Int]](score, t.score),
@@ -594,6 +606,7 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       standardSequence,
       modifierExtension,
       roc)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Quality): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Int]](end, t.end),
@@ -665,6 +678,7 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Repository extends CompanionFor[Repository] {
+    override type ResourceType = Repository
     def apply(
         id: Option[String] = None,
         url: Option[UriStr] = None,
@@ -711,6 +725,7 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, url, `type`, name, extension, datasetId, readsetId, variantsetId, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Repository): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[UriStr]](url, t.url),
@@ -755,6 +770,7 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Variant extends CompanionFor[Variant] {
+    override type ResourceType = Variant
     def apply(
         id: Option[String] = None,
         end: Option[Int] = None,
@@ -811,6 +827,7 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, end, start, cigar, extension, observedAllele, variantPointer, referenceAllele, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Variant): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Int]](end, t.end),
@@ -1001,6 +1018,7 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
     referenceSeq,
     structureVariant
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: MolecularSequence): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

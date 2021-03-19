@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -23,9 +23,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object HealthcareService extends CompanionFor[HealthcareService] {
-  override val baseType: CompanionFor[HealthcareService] = HealthcareService
-  override val profileUrl: Option[String]                = Some("http://hl7.org/fhir/StructureDefinition/HealthcareService")
+  override type ResourceType = HealthcareService
+  override val baseType: CompanionFor[ResourceType] = HealthcareService
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/HealthcareService")
   object AvailableTime extends CompanionFor[AvailableTime] {
+    override type ResourceType = AvailableTime
     def apply(
         id: Option[String] = None,
         allDay: Option[Boolean] = None,
@@ -64,6 +66,7 @@ object HealthcareService extends CompanionFor[HealthcareService] {
       FHIRComponentFieldMeta("availableStartTime", lTagOf[Option[LocalTime]], false, lTagOf[LocalTime])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, allDay, extension, daysOfWeek, availableEndTime, modifierExtension, availableStartTime)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: AvailableTime): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Boolean]](allDay, t.allDay),
@@ -102,6 +105,7 @@ object HealthcareService extends CompanionFor[HealthcareService] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object NotAvailable extends CompanionFor[NotAvailable] {
+    override type ResourceType = NotAvailable
     def apply(
         id: Option[String] = None,
         during: Option[Period] = None,
@@ -130,7 +134,8 @@ object HealthcareService extends CompanionFor[HealthcareService] {
       FHIRComponentFieldMeta("description", lTagOf[String], false, lTagOf[String])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, during, extension, description, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, during, extension, description, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: NotAvailable): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[Period]](during, t.during),
@@ -163,6 +168,7 @@ object HealthcareService extends CompanionFor[HealthcareService] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Eligibility extends CompanionFor[Eligibility] {
+    override type ResourceType = Eligibility
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,
@@ -191,7 +197,8 @@ object HealthcareService extends CompanionFor[HealthcareService] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, comment, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, comment, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Eligibility): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[CodeableConcept]](code, t.code),
@@ -402,6 +409,7 @@ object HealthcareService extends CompanionFor[HealthcareService] {
     notAvailable,
     availableTime
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: HealthcareService): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -30,7 +30,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_allergyintolerance extends CompanionFor[Us_core_allergyintolerance] {
-  override val baseType: CompanionFor[AllergyIntolerance] = AllergyIntolerance
+  override type ResourceType = AllergyIntolerance
+  override val baseType: CompanionFor[ResourceType] = AllergyIntolerance
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance")
   type OnsetChoice = Choice[Union01352864625]
@@ -178,32 +179,34 @@ object Us_core_allergyintolerance extends CompanionFor[Us_core_allergyintoleranc
     verificationStatus,
     reaction
   )
-  override def fields(t: Us_core_allergyintolerance): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[Option[ALLERGY_INTOLERANCE_TYPE]](`type`, t.`type`),
-    FHIRComponentField[CodeableConcept](code, t.code.get),
-    FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[Reference](patient, t.patient),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[ALLERGY_INTOLERANCE_CATEGORY]](category, t.category),
-    FHIRComponentField[Option[Us_core_allergyintolerance.OnsetChoice]](onset, t.onset),
-    FHIRComponentField[Option[Reference]](recorder, t.recorder),
-    FHIRComponentField[Option[Reference]](asserter, t.asserter),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[ALLERGY_INTOLERANCE_CRITICALITY]](criticality, t.criticality),
-    FHIRComponentField[Option[FHIRDateTime]](recordedDate, t.recordedDate),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[CodeableConcept]](clinicalStatus, t.clinicalStatus),
-    FHIRComponentField[Option[FHIRDateTime]](lastOccurrence, t.lastOccurrence),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[Option[CodeableConcept]](verificationStatus, t.verificationStatus),
-    FHIRComponentField[LitSeq[AllergyIntolerance.Reaction]](reaction, t.reaction)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[Option[ALLERGY_INTOLERANCE_TYPE]](`type`, t.`type`),
+      FHIRComponentField[CodeableConcept](code, t.code.get),
+      FHIRComponentField[LitSeq[Annotation]](note, t.note),
+      FHIRComponentField[Reference](patient, t.patient),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[ALLERGY_INTOLERANCE_CATEGORY]](category, t.category),
+      FHIRComponentField[Option[Us_core_allergyintolerance.OnsetChoice]](onset, t.onset),
+      FHIRComponentField[Option[Reference]](recorder, t.recorder),
+      FHIRComponentField[Option[Reference]](asserter, t.asserter),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[Option[ALLERGY_INTOLERANCE_CRITICALITY]](criticality, t.criticality),
+      FHIRComponentField[Option[FHIRDateTime]](recordedDate, t.recordedDate),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[CodeableConcept]](clinicalStatus, t.clinicalStatus),
+      FHIRComponentField[Option[FHIRDateTime]](lastOccurrence, t.lastOccurrence),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Option[CodeableConcept]](verificationStatus, t.verificationStatus),
+      FHIRComponentField[LitSeq[AllergyIntolerance.Reaction]](reaction, t.reaction)
+    ))
+  override def fields(t: Us_core_allergyintolerance): Seq[FHIRComponentField[_]]                  = fieldsFromParent(t).get
   def extractId(t: Us_core_allergyintolerance): Option[String]                                    = t.id
   def extractMeta(t: Us_core_allergyintolerance): Option[Meta]                                    = t.meta
   def extractText(t: Us_core_allergyintolerance): Option[Narrative]                               = t.text

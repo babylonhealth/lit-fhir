@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Consent extends CompanionFor[Consent] {
-  override val baseType: CompanionFor[Consent] = Consent
-  override val profileUrl: Option[String]      = Some("http://hl7.org/fhir/StructureDefinition/Consent")
+  override type ResourceType = Consent
+  override val baseType: CompanionFor[ResourceType] = Consent
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Consent")
   object Provision extends CompanionFor[Provision] {
+    override type ResourceType = Provision
     object Data extends CompanionFor[Data] {
+      override type ResourceType = Data
       def apply(
           id: Option[String] = None,
           meaning: CONSENT_DATA_MEANING,
@@ -56,7 +59,8 @@ object Consent extends CompanionFor[Consent] {
         FHIRComponentFieldMeta("reference", lTagOf[Reference], false, lTagOf[Reference])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, meaning, extension, reference, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, meaning, extension, reference, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Data): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[CONSENT_DATA_MEANING](meaning, t.meaning),
@@ -90,6 +94,7 @@ object Consent extends CompanionFor[Consent] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Actor extends CompanionFor[Actor] {
+      override type ResourceType = Actor
       def apply(
           id: Option[String] = None,
           role: CodeableConcept,
@@ -118,7 +123,8 @@ object Consent extends CompanionFor[Consent] {
         FHIRComponentFieldMeta("reference", lTagOf[Reference], false, lTagOf[Reference])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, role, extension, reference, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, role, extension, reference, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Actor): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[CodeableConcept](role, t.role),
@@ -245,6 +251,7 @@ object Consent extends CompanionFor[Consent] {
       modifierExtension,
       data,
       actor)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Provision): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[CONSENT_PROVISION_TYPE]](`type`, t.`type`),
@@ -304,6 +311,7 @@ object Consent extends CompanionFor[Consent] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Verification extends CompanionFor[Verification] {
+    override type ResourceType = Verification
     def apply(
         id: Option[String] = None,
         verified: Boolean,
@@ -338,6 +346,7 @@ object Consent extends CompanionFor[Consent] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, verified, extension, verifiedWith, verificationDate, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Verification): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Boolean](verified, t.verified),
@@ -373,6 +382,7 @@ object Consent extends CompanionFor[Consent] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Policy extends CompanionFor[Policy] {
+    override type ResourceType = Policy
     def apply(
         id: Option[String] = None,
         uri: Option[UriStr] = None,
@@ -401,7 +411,8 @@ object Consent extends CompanionFor[Consent] {
       FHIRComponentFieldMeta("authority", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, uri, extension, authority, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, uri, extension, authority, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Policy): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[UriStr]](uri, t.uri),
@@ -546,6 +557,7 @@ object Consent extends CompanionFor[Consent] {
     verification,
     provision
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Consent): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

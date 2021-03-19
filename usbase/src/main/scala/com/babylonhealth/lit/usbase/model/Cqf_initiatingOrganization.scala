@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,8 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_initiatingOrganization extends CompanionFor[Cqf_initiatingOrganization] {
-  override val baseType: CompanionFor[Extension] = Extension
-  override val profileUrl: Option[String]        = Some("http://hl7.org/fhir/StructureDefinition/cqf-initiatingOrganization")
+  override type ResourceType = Extension
+  override val baseType: CompanionFor[ResourceType] = Extension
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/cqf-initiatingOrganization")
   def apply(
       id: Option[String] = None,
       value: Reference,
@@ -40,10 +41,12 @@ object Cqf_initiatingOrganization extends CompanionFor[Cqf_initiatingOrganizatio
   val value: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("value", lTagOf[Reference], true, lTagOf[Reference])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
-  override def fields(t: Cqf_initiatingOrganization): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
+    ))
+  override def fields(t: Cqf_initiatingOrganization): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Cqf_initiatingOrganization): Option[String]                   = t.id
   def extractValue(t: Cqf_initiatingOrganization): Reference                     = t.value.get.toSubRefNonUnion[Reference]
   override val thisName: String                                                  = "Cqf_initiatingOrganization"

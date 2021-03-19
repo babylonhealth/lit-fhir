@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RelatedPerson extends CompanionFor[RelatedPerson] {
-  override val baseType: CompanionFor[RelatedPerson] = RelatedPerson
-  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/RelatedPerson")
+  override type ResourceType = RelatedPerson
+  override val baseType: CompanionFor[ResourceType] = RelatedPerson
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RelatedPerson")
   object Communication extends CompanionFor[Communication] {
+    override type ResourceType = Communication
     def apply(
         id: Option[String] = None,
         language: CodeableConcept,
@@ -55,7 +57,8 @@ object RelatedPerson extends CompanionFor[RelatedPerson] {
       FHIRComponentFieldMeta("preferred", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, language, extension, preferred, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, language, extension, preferred, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Communication): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[CodeableConcept](language, t.language),
@@ -198,6 +201,7 @@ object RelatedPerson extends CompanionFor[RelatedPerson] {
     modifierExtension,
     communication
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: RelatedPerson): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

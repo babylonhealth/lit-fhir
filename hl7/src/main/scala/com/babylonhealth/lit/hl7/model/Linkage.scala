@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,9 +24,11 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Linkage extends CompanionFor[Linkage] {
-  override val baseType: CompanionFor[Linkage] = Linkage
-  override val profileUrl: Option[String]      = Some("http://hl7.org/fhir/StructureDefinition/Linkage")
+  override type ResourceType = Linkage
+  override val baseType: CompanionFor[ResourceType] = Linkage
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Linkage")
   object Item extends CompanionFor[Item] {
+    override type ResourceType = Item
     def apply(
         id: Option[String] = None,
         `type`: LINKAGE_TYPE,
@@ -54,7 +56,8 @@ object Linkage extends CompanionFor[Linkage] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, resource, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, resource, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Item): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LINKAGE_TYPE](`type`, t.`type`),
@@ -137,6 +140,7 @@ object Linkage extends CompanionFor[Linkage] {
     FHIRComponentFieldMeta("item", lTagOf[NonEmptyLitSeq[Linkage.Item]], false, lTagOf[Linkage.Item])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, meta, text, active, author, language, contained, extension, implicitRules, modifierExtension, item)
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Linkage): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

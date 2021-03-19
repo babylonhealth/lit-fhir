@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
-  override val baseType: CompanionFor[SpecimenDefinition] = SpecimenDefinition
-  override val profileUrl: Option[String]                 = Some("http://hl7.org/fhir/StructureDefinition/SpecimenDefinition")
+  override type ResourceType = SpecimenDefinition
+  override val baseType: CompanionFor[ResourceType] = SpecimenDefinition
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SpecimenDefinition")
   object TypeTested extends CompanionFor[TypeTested] {
+    override type ResourceType = TypeTested
     object Handling extends CompanionFor[Handling] {
+      override type ResourceType = Handling
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -74,6 +77,7 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
         FHIRComponentFieldMeta("temperatureQualifier", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, extension, maxDuration, instruction, temperatureRange, modifierExtension, temperatureQualifier)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Handling): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -113,8 +117,10 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Container extends CompanionFor[Container] {
+      override type ResourceType = Container
       object Additive extends CompanionFor[Additive] {
-        type AdditiveChoice = Choice[Union01025009075]
+        override type ResourceType = Additive
+        type AdditiveChoice        = Choice[Union01025009075]
         def apply(
             id: Option[String] = None,
             extension: LitSeq[Extension] = LitSeq.empty,
@@ -139,7 +145,8 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
           FHIRComponentFieldMeta("additive", lTagOf[Additive.AdditiveChoice], true, lTagOf[Union01025009075])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, additive, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension, additive, modifierExtension)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Additive): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[LitSeq[Extension]](extension, t.extension),
@@ -250,6 +257,7 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
         minimumVolume,
         modifierExtension,
         additive)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Container): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[CodeableConcept]](cap, t.cap),
@@ -380,6 +388,7 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
       rejectionCriterion,
       handling,
       container)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: TypeTested): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
@@ -510,6 +519,7 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
     patientPreparation,
     typeTested
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: SpecimenDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

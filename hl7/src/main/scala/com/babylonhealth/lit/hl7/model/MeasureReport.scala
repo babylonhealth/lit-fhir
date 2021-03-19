@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -24,10 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MeasureReport extends CompanionFor[MeasureReport] {
-  override val baseType: CompanionFor[MeasureReport] = MeasureReport
-  override val profileUrl: Option[String]            = Some("http://hl7.org/fhir/StructureDefinition/MeasureReport")
+  override type ResourceType = MeasureReport
+  override val baseType: CompanionFor[ResourceType] = MeasureReport
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MeasureReport")
   object Group extends CompanionFor[Group] {
+    override type ResourceType = Group
     object Population extends CompanionFor[Population] {
+      override type ResourceType = Population
       def apply(
           id: Option[String] = None,
           code: Option[CodeableConcept] = None,
@@ -62,6 +65,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, code, count, extension, subjectResults, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Population): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[CodeableConcept]](code, t.code),
@@ -98,8 +102,11 @@ object MeasureReport extends CompanionFor[MeasureReport] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Stratifier extends CompanionFor[Stratifier] {
+      override type ResourceType = Stratifier
       object Stratum extends CompanionFor[Stratum] {
+        override type ResourceType = Stratum
         object Component extends CompanionFor[Component] {
+          override type ResourceType = Component
           def apply(
               id: Option[String] = None,
               code: CodeableConcept,
@@ -128,7 +135,8 @@ object MeasureReport extends CompanionFor[MeasureReport] {
             FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
           val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
             FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-          val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, value, extension, modifierExtension)
+          val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, value, extension, modifierExtension)
+          override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
           override def fields(t: Component): Seq[FHIRComponentField[_]] = Seq(
             FHIRComponentField[Option[String]](id, t.id),
             FHIRComponentField[CodeableConcept](code, t.code),
@@ -162,6 +170,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
               FHIRObject.emptyAtts)
             extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
         object Population extends CompanionFor[Population] {
+          override type ResourceType = Population
           def apply(
               id: Option[String] = None,
               code: Option[CodeableConcept] = None,
@@ -196,6 +205,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
             FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
           val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
             Seq(id, code, count, extension, subjectResults, modifierExtension)
+          override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
           override def fields(t: Population): Seq[FHIRComponentField[_]] = Seq(
             FHIRComponentField[Option[String]](id, t.id),
             FHIRComponentField[Option[CodeableConcept]](code, t.code),
@@ -269,6 +279,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
           FHIRComponentFieldMeta("population", lTagOf[LitSeq[Stratum.Population]], false, lTagOf[Stratum.Population])
         val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
           Seq(id, value, extension, measureScore, modifierExtension, component, population)
+        override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Stratum): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[Option[CodeableConcept]](value, t.value),
@@ -335,7 +346,8 @@ object MeasureReport extends CompanionFor[MeasureReport] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val stratum: FHIRComponentFieldMeta[LitSeq[Stratifier.Stratum]] =
         FHIRComponentFieldMeta("stratum", lTagOf[LitSeq[Stratifier.Stratum]], false, lTagOf[Stratifier.Stratum])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, extension, modifierExtension, stratum)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, extension, modifierExtension, stratum)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Stratifier): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[LitSeq[CodeableConcept]](code, t.code),
@@ -406,6 +418,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
       FHIRComponentFieldMeta("stratifier", lTagOf[LitSeq[Group.Stratifier]], false, lTagOf[Group.Stratifier])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, code, extension, measureScore, modifierExtension, population, stratifier)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Group): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[CodeableConcept]](code, t.code),
@@ -545,6 +558,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
     improvementNotation,
     group
   )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: MeasureReport): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),

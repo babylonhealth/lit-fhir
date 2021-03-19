@@ -4,7 +4,7 @@ import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
 import scala.collection.immutable.TreeMap
-import scala.util.Try
+import scala.util.{ Success, Try }
 
 import io.circe.{ Decoder, HCursor }
 
@@ -26,8 +26,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_patient extends CompanionFor[Us_core_patient] {
-  override val baseType: CompanionFor[Patient] = Patient
-  override val profileUrl: Option[String]      = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient")
+  override type ResourceType = Patient
+  override val baseType: CompanionFor[ResourceType] = Patient
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient")
   type DeceasedChoice      = Choice[Union_2131715935]
   type MultipleBirthChoice = Choice[Union02065782851]
   def apply(
@@ -162,32 +163,34 @@ object Us_core_patient extends CompanionFor[Us_core_patient] {
     contact,
     communication
   )
-  override def fields(t: Us_core_patient): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[LitSeq[Attachment]](photo, t.photo),
-    FHIRComponentField[Option[Boolean]](active, t.active),
-    FHIRComponentField[ADMINISTRATIVE_GENDER](gender, t.gender.get),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[LitSeq[Resource]](contained, t.contained),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[FHIRDate]](birthDate, t.birthDate),
-    FHIRComponentField[Option[Us_core_patient.DeceasedChoice]](deceased, t.deceased),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[CodeableConcept]](maritalStatus, t.maritalStatus),
-    FHIRComponentField[NonEmptyLitSeq[HumanName]](name, t.name.asNonEmpty),
-    FHIRComponentField[Option[Us_core_patient.MultipleBirthChoice]](multipleBirth, t.multipleBirth),
-    FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[ContactPoint]](telecom, t.telecom),
-    FHIRComponentField[LitSeq[Address]](address, t.address),
-    FHIRComponentField[LitSeq[Reference]](generalPractitioner, t.generalPractitioner),
-    FHIRComponentField[NonEmptyLitSeq[Identifier]](identifier, t.identifier.asNonEmpty),
-    FHIRComponentField[Option[Reference]](managingOrganization, t.managingOrganization),
-    FHIRComponentField[LitSeq[Patient.Link]](link, t.link),
-    FHIRComponentField[LitSeq[Patient.Contact]](contact, t.contact),
-    FHIRComponentField[LitSeq[Patient.Communication]](communication, t.communication)
-  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[LitSeq[Attachment]](photo, t.photo),
+      FHIRComponentField[Option[Boolean]](active, t.active),
+      FHIRComponentField[ADMINISTRATIVE_GENDER](gender, t.gender.get),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[FHIRDate]](birthDate, t.birthDate),
+      FHIRComponentField[Option[Us_core_patient.DeceasedChoice]](deceased, t.deceased),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[Option[CodeableConcept]](maritalStatus, t.maritalStatus),
+      FHIRComponentField[NonEmptyLitSeq[HumanName]](name, t.name.asNonEmpty),
+      FHIRComponentField[Option[Us_core_patient.MultipleBirthChoice]](multipleBirth, t.multipleBirth),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[LitSeq[ContactPoint]](telecom, t.telecom),
+      FHIRComponentField[LitSeq[Address]](address, t.address),
+      FHIRComponentField[LitSeq[Reference]](generalPractitioner, t.generalPractitioner),
+      FHIRComponentField[NonEmptyLitSeq[Identifier]](identifier, t.identifier.asNonEmpty),
+      FHIRComponentField[Option[Reference]](managingOrganization, t.managingOrganization),
+      FHIRComponentField[LitSeq[Patient.Link]](link, t.link),
+      FHIRComponentField[LitSeq[Patient.Contact]](contact, t.contact),
+      FHIRComponentField[LitSeq[Patient.Communication]](communication, t.communication)
+    ))
+  override def fields(t: Us_core_patient): Seq[FHIRComponentField[_]]                       = fieldsFromParent(t).get
   def extractId(t: Us_core_patient): Option[String]                                         = t.id
   def extractMeta(t: Us_core_patient): Option[Meta]                                         = t.meta
   def extractText(t: Us_core_patient): Option[Narrative]                                    = t.text
