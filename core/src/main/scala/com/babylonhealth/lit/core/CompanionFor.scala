@@ -57,7 +57,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
       decoderParams: DecoderParams): Try[Unit] =
     if (decoderParams.ignoreUnknownFields) Success()
     else
-      cursor.keys.toIterable.flatten.toSet diff keys match {
+      cursor.keys.toIterable.flatten.toSet diff (keys + "resourceType") match {
         case s if s.isEmpty => Success()
         case s              =>
           // Remove at most one field for each choice, so that sending e.g. both effectivePeriod + effectiveDateTime is an error
