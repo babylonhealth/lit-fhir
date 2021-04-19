@@ -79,38 +79,40 @@ class SerdeParameterisationTest extends AnyFreeSpec with Matchers with FileUtils
         CodeableConcept(coding = LitSeq(Coding(system = Some("http://codingsystem.lo.wut"), code = Some("....IDK")))),
       referenceRange = ReferenceRange()
     )
-    def badResourceSuceeds(decodedBadBundle: Try[Resource]) =
+    def isSuccessful(decodedBadBundle: Try[Resource]) =
       decodedBadBundle should matchPattern { case Success(`resource`) =>
       }
+
+    def mk(middle: String = "") =
+      s"""{
+         |  "resourceType" : "Observation",
+         |  "meta" : {
+         |    "profile" : [
+         |      "http://hl7.org/fhir/StructureDefinition/triglyceride"
+         |    ]
+         |  },
+         |  "status" : "amended",
+         |  "effectiveDateTime": "2020-03-09T18:40:27.972Z",
+         |  "code": {
+         |    "coding": [
+         |      {
+         |        "system": "http://codingsystem.lo.wut",
+         |        "code": "....IDK"
+         |      }
+         |    ]
+         |  },
+         |  "subject" : {
+         |    "reference" : "patient-123"
+         |  },
+         |  "referenceRange": [{}]$middle
+         |}""".stripMargin
     // The Triglyceride profile disallows derivedFrom, so it should be either ignored, or throw an error, depending on the setting
-    val containsDisallowedField =
-      """{
-        |  "resourceType" : "Observation",
-        |  "meta" : {
-        |    "profile" : [
-        |      "http://hl7.org/fhir/StructureDefinition/triglyceride"
-        |    ]
-        |  },
-        |  "status" : "amended",
-        |  "effectiveDateTime": "2020-03-09T18:40:27.972Z",
-        |  "code": {
-        |    "coding": [
-        |      {
-        |        "system": "http://codingsystem.lo.wut",
-        |        "code": "....IDK"
-        |      }
-        |    ]
-        |  },
-        |  "subject" : {
-        |    "reference" : "patient-123"
-        |  },
-        |  "referenceRange": [{}],
-        |  "derivedFrom": [
-        |    {
-        |      "reference": "foo"
-        |    }
-        |  ]
-        |}""".stripMargin
+    val containsDisallowedField = mk(""",
+                                       |  "derivedFrom": [
+                                       |    {
+                                       |      "reference": "foo"
+                                       |    }
+                                       |  ]""".stripMargin)
     "fails if implicit param ignoreUnknownFields=false" in {
       implicit val params: DecoderParams = DecoderParams(ignoreUnknownFields = false)
       val decodedBadResource             = decode[Triglyceride](containsDisallowedField).toTry
@@ -119,7 +121,11 @@ class SerdeParameterisationTest extends AnyFreeSpec with Matchers with FileUtils
     "succeeds if implicit param ignoreUnknownFields=true" in {
       implicit val params: DecoderParams = DecoderParams(ignoreUnknownFields = true)
       val decodedBadResource             = decode[Triglyceride](containsDisallowedField).toTry
-      badResourceSuceeds(decodedBadResource)
+      isSuccessful(decodedBadResource)
+    }
+    "succeeds on legal resource if implicit param ignoreUnknownFields=false" in {
+      implicit val params: DecoderParams = DecoderParams(ignoreUnknownFields = false)
+      isSuccessful(decode[Triglyceride](mk()).toTry)
     }
   }
 
