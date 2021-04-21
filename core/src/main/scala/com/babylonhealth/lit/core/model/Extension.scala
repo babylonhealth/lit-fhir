@@ -60,9 +60,9 @@ object Extension extends CompanionFor[Extension] {
   def extractValue(t: Extension): Option[Extension.ValueChoice] = t.value
   def extractExtension(t: Extension): LitSeq[Extension]         = t.extension
   override val thisName: String                                 = "Extension"
+  private val log: Logger = LoggerFactory.getLogger(getClass)
   def unapply(o: Extension): Option[(Option[String], String, Option[Extension.ValueChoice], LitSeq[Extension])] = Some(
     (o.id, o.url, o.value, o.extension))
-  private val log: Logger = LoggerFactory.getLogger(getClass)
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Extension] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       cursor.downField("url").as[String].toTry.flatMap { url =>
