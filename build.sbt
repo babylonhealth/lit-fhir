@@ -99,13 +99,14 @@ lazy val core = project
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
-      "io.circe"            %% "circe-core"      % V.circe,
-      "io.circe"            %% "circe-generic"   % V.circe,
-      "io.circe"            %% "circe-parser"    % V.circe,
-      "com.typesafe"         % "config"          % "1.4.0",
-      "ch.qos.logback"       % "logback-classic" % V.logback,
-      "io.github.classgraph" % "classgraph"      % "4.8.78",
-      "dev.zio"             %% "izumi-reflect"   % V.izumiReflect,
+      "io.circe"               %% "circe-core"                 % V.circe,
+      "io.circe"               %% "circe-generic"              % V.circe,
+      "io.circe"               %% "circe-parser"               % V.circe,
+      "com.typesafe"            % "config"                     % "1.4.0",
+      "ch.qos.logback"          % "logback-classic"            % V.logback,
+      "io.github.classgraph"    % "classgraph"                 % "4.8.105",
+      "org.scala-lang.modules" %% "scala-parallel-collections" % "0.2.0",
+      "dev.zio"                %% "izumi-reflect"              % V.izumiReflect,
       // Test
       "org.scalatest"    %% "scalatest"         % V.scalaTest  % Test,
       "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
