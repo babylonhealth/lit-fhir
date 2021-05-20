@@ -14,7 +14,7 @@ case class FHIRComponentFieldMeta[T](name: String, tt: LTag[T], isRef: Boolean, 
   type Type
 }
 
-case class FHIRComponentField[T](meta: FHIRComponentFieldMeta[T], value: T) {
+case class FHIRComponentField[Stage <: LifecycleStage: ValueOf, T](meta: FHIRComponentFieldMeta[T], value: T) {
   def isRef: Boolean = meta.isRef
 
   def name: String = meta.name
@@ -32,7 +32,7 @@ case class FHIRComponentField[T](meta: FHIRComponentFieldMeta[T], value: T) {
 
 object PseudoLenses {
 
-  implicit class RicherFHIRComponent[C <: FHIRObject](c: C) {
+  implicit class RicherFHIRComponent[C <: FHIRObjectRaw[_]](c: C) {
     def modifyNestedFieldUnsafe[T](nestingPath: String*)(modify: T => T): C = {
       val h +: t = nestingPath
       c.constructor
@@ -40,11 +40,11 @@ object PseudoLenses {
           case FHIRComponentField(FHIRComponentFieldMeta(`h`, _, _, _), v: T @unchecked) if t.isEmpty      => modify(v)
           case FHIRComponentField(FHIRComponentFieldMeta(`h`, _, _, _), v @ (None | LitSeq.emptyInstance)) => v
           case FHIRComponentField(FHIRComponentFieldMeta(`h`, _, _, _), vs: LitSeq[_]) =>
-            vs.map(_.asInstanceOf[FHIRObject].modifyNestedFieldUnsafe(t: _*)(modify))
+            vs.map(_.asInstanceOf[FHIRObjectRaw[_]].modifyNestedFieldUnsafe(t: _*)(modify))
           case FHIRComponentField(FHIRComponentFieldMeta(`h`, _, _, _), Some(v)) =>
-            Some(v.asInstanceOf[FHIRObject].modifyNestedFieldUnsafe(t: _*)(modify))
+            Some(v.asInstanceOf[FHIRObjectRaw[_]].modifyNestedFieldUnsafe(t: _*)(modify))
           case FHIRComponentField(FHIRComponentFieldMeta(`h`, _, _, _), v) =>
-            Some(v.asInstanceOf[FHIRObject].modifyNestedFieldUnsafe(t: _*)(modify))
+            Some(v.asInstanceOf[FHIRObjectRaw[_]].modifyNestedFieldUnsafe(t: _*)(modify))
           case FHIRComponentField(_, v) => v
         } :+ c.primitiveAttributes: _*)
         .asInstanceOf[C]
@@ -57,8 +57,8 @@ object PseudoLenses {
   }
 }
 
-trait FHIRComponent extends Utils { self: FHIRObject =>
-  def fields: Seq[FHIRComponentField[_]]
+trait FHIRComponent[Stage <: LifecycleStage] extends Utils { _: FHIRObjectRaw[Stage] =>
+  def fields: Seq[FHIRComponentField[Stage, _]]
 
   def constructor: Constructor[_] = companion.classConstructor
 
@@ -107,7 +107,7 @@ trait FHIRComponent extends Utils { self: FHIRObject =>
       }
 }
 
-case class PrimitiveElementInfo(element: Element, phantom: Boolean = false)
+case class PrimitiveElementInfo(element: Element[Completed.type], phantom: Boolean = false)
 
 sealed trait FHIRDateTimeSpecificity {
   val dtFormatter: DateTimeFormatter

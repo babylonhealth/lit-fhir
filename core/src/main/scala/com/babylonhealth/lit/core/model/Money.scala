@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Money extends CompanionFor[Money] {
   implicit def summonObjectAndCompanionMoney389435883(o: Money): ObjectAndCompanion[Money, Money.type] =
     ObjectAndCompanion(o, this)
@@ -29,12 +30,19 @@ object Money extends CompanionFor[Money] {
   override val parentType: CompanionFor[ParentType] = Money
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Money")
   def apply(
+=======
+object Money extends CompanionFor[Money[_]] {
+  override type ResourceType[T] = Money[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Money
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Money")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       value: Option[BigDecimal] = None,
       currency: Option[Code] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Money = new Money(
+  ): Money[Stage] = new Money[Stage](
     id,
     value,
     currency,
@@ -47,31 +55,33 @@ object Money extends CompanionFor[Money] {
     FHIRComponentFieldMeta("value", lTagOf[Option[BigDecimal]], false, lTagOf[BigDecimal])
   val currency: FHIRComponentFieldMeta[Option[Code]] =
     FHIRComponentFieldMeta("currency", lTagOf[Option[Code]], false, lTagOf[Code])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, value, currency, extension)
-  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-  override def fields(t: Money): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[BigDecimal]](value, t.value),
-    FHIRComponentField[Option[Code]](currency, t.currency),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension)
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value, currency, extension)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Money[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[BigDecimal]](value, t.value),
+    FHIRComponentField[Stage, Option[Code]](currency, t.currency),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension)
   )
-  def extractId(t: Money): Option[String]           = t.id
-  def extractValue(t: Money): Option[BigDecimal]    = t.value
-  def extractCurrency(t: Money): Option[Code]       = t.currency
-  def extractExtension(t: Money): LitSeq[Extension] = t.extension
-  override val thisName: String                     = "Money"
-  def unapply(o: Money): Option[(Option[String], Option[BigDecimal], Option[Code], LitSeq[Extension])] = Some(
+  def extractId(t: Money[_]): Option[String]                             = t.id
+  def extractValue(t: Money[_]): Option[BigDecimal]                      = t.value
+  def extractCurrency(t: Money[_]): Option[Code]                         = t.currency
+  def extractExtension[Stage](t: Money[Stage]): LitSeq[Extension[Stage]] = t.extension
+  override val thisName: String                                          = "Money"
+  def unapply[Stage <: LifecycleStage: ValueOf](
+      o: Money[Stage]): Option[(Option[String], Option[BigDecimal], Option[Code], LitSeq[Extension[Stage]])] = Some(
     (o.id, o.value, o.currency, o.extension))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Money] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Money[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
-        new Money(
+        new Money[Completed.type](
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[BigDecimal]]("value", Some(None)),
           cursor.decodeAs[Option[Code]]("currency", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
       ))
@@ -98,12 +108,12 @@ object Money extends CompanionFor[Money] {
   *   of the extension.
   */
 @POJOBoilerplate
-class Money(
+class Money[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val value: Option[BigDecimal] = None,
     val currency: Option[Code] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Money"
 }

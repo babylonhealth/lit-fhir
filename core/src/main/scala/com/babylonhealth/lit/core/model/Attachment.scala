@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Attachment extends CompanionFor[Attachment] {
   implicit def summonObjectAndCompanionAttachment_1307825448(o: Attachment): ObjectAndCompanion[Attachment, Attachment.type] =
     ObjectAndCompanion(o, this)
@@ -29,6 +30,13 @@ object Attachment extends CompanionFor[Attachment] {
   override val parentType: CompanionFor[ParentType] = Attachment
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Attachment")
   def apply(
+=======
+object Attachment extends CompanionFor[Attachment[_]] {
+  override type ResourceType[T] = Attachment[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Attachment
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Attachment")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       url: Option[UrlStr] = None,
       data: Option[Base64Binary] = None,
@@ -37,10 +45,10 @@ object Attachment extends CompanionFor[Attachment] {
       title: Option[String] = None,
       language: Option[LANGUAGES] = None,
       creation: Option[FHIRDateTime] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       contentType: Option[Code] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Attachment = new Attachment(
+  ): Attachment[Stage] = new Attachment(
     id,
     url,
     data,
@@ -69,40 +77,42 @@ object Attachment extends CompanionFor[Attachment] {
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val creation: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("creation", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+
+  def extension[Stage <: LifecycleStage: ValueOf]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
   val contentType: FHIRComponentFieldMeta[Option[Code]] =
     FHIRComponentFieldMeta("contentType", lTagOf[Option[Code]], false, lTagOf[Code])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, url, data, size, hash, title, language, creation, extension, contentType)
-  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-  override def fields(t: Attachment): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[UrlStr]](url, t.url),
-    FHIRComponentField[Option[Base64Binary]](data, t.data),
-    FHIRComponentField[Option[UnsignedInt]](size, t.size),
-    FHIRComponentField[Option[Base64Binary]](hash, t.hash),
-    FHIRComponentField[Option[String]](title, t.title),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[FHIRDateTime]](creation, t.creation),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Code]](contentType, t.contentType)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Attachment[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[UrlStr]](url, t.url),
+    FHIRComponentField[Stage, Option[Base64Binary]](data, t.data),
+    FHIRComponentField[Stage, Option[UnsignedInt]](size, t.size),
+    FHIRComponentField[Stage, Option[Base64Binary]](hash, t.hash),
+    FHIRComponentField[Stage, Option[String]](title, t.title),
+    FHIRComponentField[Stage, Option[LANGUAGES]](language, t.language),
+    FHIRComponentField[Stage, Option[FHIRDateTime]](creation, t.creation),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[Code]](contentType, t.contentType)
   )
-  def extractId(t: Attachment): Option[String]             = t.id
-  def extractUrl(t: Attachment): Option[UrlStr]            = t.url
-  def extractData(t: Attachment): Option[Base64Binary]     = t.data
-  def extractSize(t: Attachment): Option[UnsignedInt]      = t.size
-  def extractHash(t: Attachment): Option[Base64Binary]     = t.hash
-  def extractTitle(t: Attachment): Option[String]          = t.title
-  def extractLanguage(t: Attachment): Option[LANGUAGES]    = t.language
-  def extractCreation(t: Attachment): Option[FHIRDateTime] = t.creation
-  def extractExtension(t: Attachment): LitSeq[Extension]   = t.extension
-  def extractContentType(t: Attachment): Option[Code]      = t.contentType
-  override val thisName: String                            = "Attachment"
-  def unapply(
-      o: Attachment): Option[(Option[String], Option[UrlStr], Option[Base64Binary], Option[UnsignedInt], Option[Base64Binary], Option[String], Option[LANGUAGES], Option[FHIRDateTime], LitSeq[Extension], Option[Code])] =
+  def extractId(t: Attachment[_]): Option[String]                             = t.id
+  def extractUrl(t: Attachment[_]): Option[UrlStr]                            = t.url
+  def extractData(t: Attachment[_]): Option[Base64Binary]                     = t.data
+  def extractSize(t: Attachment[_]): Option[UnsignedInt]                      = t.size
+  def extractHash(t: Attachment[_]): Option[Base64Binary]                     = t.hash
+  def extractTitle(t: Attachment[_]): Option[String]                          = t.title
+  def extractLanguage(t: Attachment[_]): Option[LANGUAGES]                    = t.language
+  def extractCreation(t: Attachment[_]): Option[FHIRDateTime]                 = t.creation
+  def extractExtension[Stage](t: Attachment[Stage]): LitSeq[Extension[Stage]] = t.extension
+  def extractContentType(t: Attachment[_]): Option[Code]                      = t.contentType
+  override val thisName: String                                               = "Attachment"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Attachment[
+    Stage]): Option[(Option[String], Option[UrlStr], Option[Base64Binary], Option[UnsignedInt], Option[Base64Binary], Option[String], Option[LANGUAGES], Option[FHIRDateTime], LitSeq[Extension[Stage]], Option[Code])] =
     Some((o.id, o.url, o.data, o.size, o.hash, o.title, o.language, o.creation, o.extension, o.contentType))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Attachment] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Attachment[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Attachment(
@@ -114,7 +124,7 @@ object Attachment extends CompanionFor[Attachment] {
           cursor.decodeAs[Option[String]]("title", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[Option[FHIRDateTime]]("creation", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Code]]("contentType", Some(None)),
           decodeAttributes(cursor)
         )
@@ -155,7 +165,7 @@ object Attachment extends CompanionFor[Attachment] {
   *   Includes mime type parameters such as charset where appropriate.
   */
 @POJOBoilerplate
-class Attachment(
+class Attachment[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val url: Option[UrlStr] = None,
     val data: Option[Base64Binary] = None,
@@ -164,9 +174,9 @@ class Attachment(
     val title: Option[String] = None,
     val language: Option[LANGUAGES] = None,
     val creation: Option[FHIRDateTime] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     val contentType: Option[Code] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Attachment"
 }

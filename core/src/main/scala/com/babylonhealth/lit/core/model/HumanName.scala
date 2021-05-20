@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.NAME_USE
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object HumanName extends CompanionFor[HumanName] {
   implicit def summonObjectAndCompanionHumanName1549178115(o: HumanName): ObjectAndCompanion[HumanName, HumanName.type] =
     ObjectAndCompanion(o, this)
@@ -29,6 +30,13 @@ object HumanName extends CompanionFor[HumanName] {
   override val parentType: CompanionFor[ParentType] = HumanName
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/HumanName")
   def apply(
+=======
+object HumanName extends CompanionFor[HumanName[_]] {
+  override type ResourceType[T] = HumanName[T]
+  override val baseType: CompanionFor[ResourceType[_]] = HumanName
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/HumanName")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       use: Option[NAME_USE] = None,
       text: Option[String] = None,
@@ -36,10 +44,10 @@ object HumanName extends CompanionFor[HumanName] {
       family: Option[String] = None,
       prefix: LitSeq[String] = LitSeq.empty,
       suffix: LitSeq[String] = LitSeq.empty,
-      period: Option[Period] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      period: Option[Period[Stage]] = None,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): HumanName = new HumanName(
+  ): HumanName[Stage] = new HumanName[Stage](
     id,
     use,
     text,
@@ -65,6 +73,7 @@ object HumanName extends CompanionFor[HumanName] {
     FHIRComponentFieldMeta("prefix", lTagOf[LitSeq[String]], false, lTagOf[String])
   val suffix: FHIRComponentFieldMeta[LitSeq[String]] =
     FHIRComponentFieldMeta("suffix", lTagOf[LitSeq[String]], false, lTagOf[String])
+<<<<<<< HEAD
   val period: FHIRComponentFieldMeta[Option[Period]] =
     FHIRComponentFieldMeta("period", lTagOf[Option[Period]], false, lTagOf[Period])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -96,6 +105,41 @@ object HumanName extends CompanionFor[HumanName] {
       o: HumanName): Option[(Option[String], Option[NAME_USE], Option[String], LitSeq[String], Option[String], LitSeq[String], LitSeq[String], Option[Period], LitSeq[Extension])] =
     Some((o.id, o.use, o.text, o.`given`, o.family, o.prefix, o.suffix, o.period, o.extension))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[HumanName] =
+=======
+  def period[Stage]: FHIRComponentFieldMeta[Option[Period[Stage]]] =
+    FHIRComponentFieldMeta("period", lTagOf[Option[Period[Stage]]], false, lTagOf[Period[Stage]])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, use, text, given, family, prefix, suffix, period, extension)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: HumanName[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[NAME_USE]](use, t.use),
+    FHIRComponentField[Stage, Option[String]](text, t.text),
+    FHIRComponentField[Stage, LitSeq[String]](given, t.given),
+    FHIRComponentField[Stage, Option[String]](family, t.family),
+    FHIRComponentField[Stage, LitSeq[String]](prefix, t.prefix),
+    FHIRComponentField[Stage, LitSeq[String]](suffix, t.suffix),
+    FHIRComponentField[Stage, Option[Period[Stage]]](period, t.period),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension)
+  )
+  def extractId(t: HumanName[_]): Option[String]                             = t.id
+  def extractUse(t: HumanName[_]): Option[NAME_USE]                          = t.use
+  def extractText(t: HumanName[_]): Option[String]                           = t.text
+  def extractGiven(t: HumanName[_]): LitSeq[String]                          = t.given
+  def extractFamily(t: HumanName[_]): Option[String]                         = t.family
+  def extractPrefix(t: HumanName[_]): LitSeq[String]                         = t.prefix
+  def extractSuffix(t: HumanName[_]): LitSeq[String]                         = t.suffix
+  def extractPeriod[Stage](t: HumanName[Stage]): Option[Period[Stage]]       = t.period
+  def extractExtension[Stage](t: HumanName[Stage]): LitSeq[Extension[Stage]] = t.extension
+  override val thisName: String                                              = "HumanName"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: HumanName[
+    Stage]): Option[(Option[String], Option[NAME_USE], Option[String], LitSeq[String], Option[String], LitSeq[String], LitSeq[String], Option[Period[Stage]], LitSeq[Extension[Stage]])] =
+    Some((o.id, o.use, o.text, o.given, o.family, o.prefix, o.suffix, o.period, o.extension))
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[HumanName[Completed.type]] =
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new HumanName(
@@ -106,8 +150,8 @@ object HumanName extends CompanionFor[HumanName] {
           cursor.decodeAs[Option[String]]("family", Some(None)),
           cursor.decodeAs[LitSeq[String]]("prefix", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[String]]("suffix", Some(LitSeq.empty)),
-          cursor.decodeAs[Option[Period]]("period", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Period[Completed.type]]]("period", Some(None)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
       ))
@@ -148,7 +192,7 @@ object HumanName extends CompanionFor[HumanName] {
   *   of the extension.
   */
 @POJOBoilerplate
-class HumanName(
+class HumanName[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val use: Option[NAME_USE] = None,
     val text: Option[String] = None,
@@ -156,9 +200,9 @@ class HumanName(
     val family: Option[String] = None,
     val prefix: LitSeq[String] = LitSeq.empty,
     val suffix: LitSeq[String] = LitSeq.empty,
-    val period: Option[Period] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    val period: Option[Period[Stage]] = None,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "HumanName"
 }

@@ -7,7 +7,7 @@ import cats.Monad
 import com.babylonhealth.lit.core
 import izumi.reflect.macrortti.LTag
 import com.babylonhealth.lit.core.TagSummoners.lTypeOf
-import com.babylonhealth.lit.core.model.{ Element, Extension, intSubSuffixes, stringSubSuffixes, typeSuffixMap }
+import com.babylonhealth.lit.core.model.{ Element, Extension[Stage], intSubSuffixes, stringSubSuffixes, typeSuffixMap }
 
 object FHIRObject {
   implicit val metaOrdering: Ordering[FHIRComponentFieldMeta[_]]          = Ordering.by(_.name)
@@ -17,11 +17,40 @@ object FHIRObject {
     new TreeMap()(FHIRObject.metaOrdering) ++ el
 }
 
+sealed trait LifecycleStage {
+  type F[_]
+  def apply[T](t: T): F[T]
+//  def unapply[T](ft: F[T]): T
+}
+case object Completed extends LifecycleStage {
+  override type F[T] = T
+  def apply[T](t: T): T = t
+//  def unapply[T](ft: F[T]): T = ft
+}
+sealed trait PartialType[+T]
+case class CompletedPartialType[T](t: T) extends PartialType[T]
+case object IncompletePartialType        extends PartialType[Nothing]
+case object Partial extends LifecycleStage {
+  override type F[T] = PartialType[T]
+  override def apply[T](t: T): PartialType[T] = CompletedPartialType(t)
+//  def apply[T](n: Option[T]): PartialType[T]  = n.fold[PartialType[T]](IncompletePartialType)(CompletedPartialType(_))
+//  def unapply[T](ft: F[T]): T = ft match {
+//    case CompletedPartialType(t) => t
+//    case IncompletePartialType => null.asInstanceOf[T]
+//  }
+}
+
 abstract class FHIRObject(
     // attributes are stored in a TreeMap with an ordering on `.name` only, in order to ensure that subtyped fields with
     // a different type tag to the parent still have the same key
+    primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
+    extends FHIRObjectRaw[Completed.type](Completed, primitiveAttributes = primitiveAttributes)
+abstract class FHIRObjectRaw[Stage <: LifecycleStage](
+    val stage: Stage,
+    // attributes are stored in a TreeMap with an ordering on `.name` only, in order to ensure that subtyped fields with
+    // a different type tag to the parent still have the same key
     val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
-    extends FHIRComponent {
+    extends FHIRComponent[Stage] {
   type FieldToElementLookup = TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo]
 
   def withPrimitiveAttributes(a: FieldToElementLookup): this.type =
@@ -59,38 +88,39 @@ abstract class FHIRObject(
   }
   object extensions {
     def update(field: FHIRComponentFieldMeta[_])(update: LitSeq[Extension] => LitSeq[Extension]): FHIRObject.this.type = {
-      def updateExtension: Option[PrimitiveElementInfo] => Option[PrimitiveElementInfo] = {
-        case None => Some(PrimitiveElementInfo(Element(extension = update(LitSeq.emptyInstance))))
-        case Some(PrimitiveElementInfo(Element(id, ext), phantom)) =>
-          Some(PrimitiveElementInfo(Element(id, update(ext)), phantom))
+      def updateExtension[Stage]: Option[PrimitiveElementInfo] => Option[PrimitiveElementInfo] = {
+        case None => Some(PrimitiveElementInfo(Element[Stage](extension = update(LitSeq.emptyInstance))))
+        case Some(PrimitiveElementInfo(Element[Stage](id, ext), phantom)) =>
+          Some(PrimitiveElementInfo(Element[Stage](id, update(ext)), phantom))
       }
 
-      updatePrimitiveAttributes(_.updatedWith(field)(updateExtension))
+      updatePrimitiveAttributes(_.updatedWith(field)(updateExtension[Stage]))
     }
 
-    def set(field: FHIRComponentFieldMeta[_])(newExtensions: LitSeq[Extension]): FHIRObject.this.type =
-      update(field)((_: LitSeq[Extension]) => newExtensions)
+    def set(field: FHIRComponentFieldMeta[_])(newExtensions: LitSeq[Extension[Stage]]): FHIRObjectRaw.this.type =
+      update(field)((_: LitSeq[Extension[Stage]]) => newExtensions)
 
-    def get(field: FHIRComponentFieldMeta[_]): LitSeq[Extension] =
+    def get(field: FHIRComponentFieldMeta[_]): LitSeq[Extension[Stage]] =
       primitiveAttributes(field).element.extension
   }
   object ids {
-    def update(field: FHIRComponentFieldMeta[_])(update: Option[String] => Option[String]): FHIRObject.this.type = {
+    def update(field: FHIRComponentFieldMeta[_])(update: Option[String] => Option[String]): FHIRObjectRaw.this.type = {
       def updateId: Option[PrimitiveElementInfo] => Option[PrimitiveElementInfo] = {
-        case None => Some(PrimitiveElementInfo(Element(id = update(None))))
-        case Some(PrimitiveElementInfo(Element(id, ext), phantom)) =>
-          Some(PrimitiveElementInfo(Element(update(id), ext), phantom))
+        case None => Some(PrimitiveElementInfo(Element[Stage](id = update(None))))
+        case Some(PrimitiveElementInfo(Element[Stage](id, ext), phantom)) =>
+          Some(PrimitiveElementInfo(Element[Stage](update(id), ext), phantom))
       }
 
       updatePrimitiveAttributes(_.updatedWith(field)(updateId))
     }
 
-    def set(field: FHIRComponentFieldMeta[_])(newId: Option[String]): FHIRObject.this.type = update(field)(_ => newId)
+    def set(field: FHIRComponentFieldMeta[_])(newId: Option[String]): FHIRObjectRaw.this.type =
+      update(field)(_ => newId)
 
     def get(field: FHIRComponentFieldMeta[_]): Option[String] = primitiveAttributes(field).element.id
   }
 
-  def fields: Seq[FHIRComponentField[_]] = companion.fields(this)
+  def fields[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentField[Stage, _]] = companion.fields[Stage](this)
 
   // TODO: should these four be autogenerated? This reflection stuff feels needlessly inefficient
   val companion: CompanionFor[this.type] =
@@ -126,21 +156,21 @@ abstract class FHIRObject(
       case _                                                => None
     }
 
-  def modifyFieldUnsafe[T, Up >: this.type <: FHIRObject](fieldName: String, modify: T => T)(implicit
+  def modifyFieldUnsafe[T, Up >: this.type <: FHIRObjectRaw[_]](fieldName: String, modify: T => T)(implicit
       ct: ClassTag[Up],
       tt: LTag[Up]): Up =
     ct.runtimeClass.getDeclaredConstructors.head
-      .newInstance(companionOf(ct, tt).fields(this).map {
+      .newInstance(companionOf(tt).fields[Stage <: LifecycleStage: ValueOf](this).map {
         case FHIRComponentField(FHIRComponentFieldMeta(`fieldName`, _, _, _), v: T @unchecked) => modify(v)
         case FHIRComponentField(_, v)                                                          => v
       } :+ primitiveAttributes: _*)
       .asInstanceOf[Up]
 
-  def modifyField[T: LTag, Up >: this.type <: FHIRObject](fieldName: String, modify: T => T)(implicit
+  def modifyField[T: LTag, Up >: this.type <: FHIRObjectRaw[_]](fieldName: String, modify: T => T)(implicit
       ct: ClassTag[Up],
       tt: LTag[Up]): Up = {
     var hasModified = false
-    val modifiedFields: Seq[Any] = companionOf(ct, tt).fields(this).map {
+    val modifiedFields: Seq[Any] = companionOf(ct, tt).fields[Stage <: LifecycleStage: ValueOf](this).map {
       case FHIRComponentField(FHIRComponentFieldMeta(`fieldName`, t, _, _), v: T @unchecked) if lTypeOf[T] <:< t.tag =>
         hasModified = true
         modify(v)
@@ -155,21 +185,21 @@ abstract class FHIRObject(
         .asInstanceOf[this.type]
   }
 
-  def withFieldUnsafe[T, Up >: this.type <: FHIRObject](fieldName: String, value: T)(implicit
+  def withFieldUnsafe[T, Up >: this.type <: FHIRObjectRaw[_]](fieldName: String, value: T)(implicit
       ct: ClassTag[Up],
       tt: LTag[Up]): Up =
     ct.runtimeClass.getDeclaredConstructors.head
-      .newInstance(companionOf(ct, tt).fields(this).map {
+      .newInstance(companionOf(ct, tt).fields[Stage <: LifecycleStage: ValueOf](this).map {
         case FHIRComponentField(FHIRComponentFieldMeta(`fieldName`, _, _, _), _) => value
         case FHIRComponentField(_, v)                                            => v
       } :+ primitiveAttributes: _*)
       .asInstanceOf[this.type]
 
-  def withField[T: LTag, Up >: this.type <: FHIRObject](fieldName: String, value: T)(implicit
+  def withField[T: LTag, Up >: this.type <: FHIRObjectRaw[_]](fieldName: String, value: T)(implicit
       ct: ClassTag[Up],
       tt: LTag[Up]): Up = {
     var hasModified = false
-    val modifiedFields: Seq[Any] = companionOf(ct, tt).fields(this).map {
+    val modifiedFields: Seq[Any] = companionOf(ct, tt).fields[Stage <: LifecycleStage: ValueOf](this).map {
       case FHIRComponentField(FHIRComponentFieldMeta(`fieldName`, t, _, _), _) if lTypeOf[T] <:< t.tag =>
         hasModified = true
         value
@@ -184,11 +214,11 @@ abstract class FHIRObject(
         .asInstanceOf[this.type]
   }
 
-  def withFields[Up >: this.type <: FHIRObject](
+  def withFields[Up >: this.type <: FHIRObjectRaw[_]](
       replacementFields: (String, Any)*)(implicit ct: ClassTag[Up], tt: LTag[Up]): Up = {
     var numModified = 0
-    val pairedFields: Seq[(FHIRComponentField[_], Option[(String, Any)])] =
-      companionOf(ct, tt).fields(this).map(f => f -> replacementFields.find(_._1 == f.name))
+    val pairedFields: Seq[(FHIRComponentField[Stage, _], Option[(String, Any)])] =
+      companionOf(ct, tt).fields[Stage <: LifecycleStage: ValueOf](this).map(f => f -> replacementFields.find(_._1 == f.name))
     val modifiedFields: Seq[Any] = pairedFields.map {
       case (_, Some((_, v))) =>
         numModified += 1
@@ -211,8 +241,8 @@ abstract class FHIRObject(
     val (suff, cond) = suffCond[T]
     >>>=(fn, suff, cond).map(_._1)
   }
-  private final val FCF = FHIRComponentField
-  private final def >>>=[T, F[_]](fn: T => F[T], suffix: Option[String], cond: (Any, LTag[_]) => Boolean)(implicit
+  protected final val FCF = FHIRComponentField
+  protected final def >>>=[T, F[_]](fn: T => F[T], suffix: Option[String], cond: (Any, LTag[_]) => Boolean)(implicit
       F: Monad[F]): F[(this.type, Boolean)] = {
     var changed = false
     def change[T](t: => T): T = { changed = true; t }
@@ -221,7 +251,7 @@ abstract class FHIRObject(
       case FCF(_, c: Choice[_]) =>
         c match {
           case Choice(suf, v) if suffix contains suf => change(fn(v.asInstanceOf[T]).map(Choice(suf, _)(c.tt)))
-          case Choice(suf, v: FHIRObject) =>
+          case Choice(suf, v: FHIRObjectRaw[_]) =>
             v.>>>=(fn, suffix, cond).map { case (obj, f) => if (f) change(Choice(suf, obj)(c.tt)) else c }
           case _ => F pure c
         }
@@ -229,7 +259,7 @@ abstract class FHIRObject(
         c match {
           case Choice(suf, v) if suffix contains suf =>
             change(fn(v.asInstanceOf[T]).map(nv => Some(Choice(suf, nv)(c.tt))))
-          case Choice(suf, v: FHIRObject) =>
+          case Choice(suf, v: FHIRObjectRaw[_]) =>
             v.>>>=(fn, suffix, cond).map { case (obj, f) => if (f) change(Choice(suf, obj)(c.tt)) else opt }
           case _ => F pure opt
         }
@@ -238,9 +268,9 @@ abstract class FHIRObject(
           change(
             vs.toList traverse (v => fn(v.asInstanceOf[T])) map (_.to(LitSeq))
           ) // conceptually dodgy to only check head
-        else if (vs.head.isInstanceOf[FHIRObject])
-          vs.asInstanceOf[LitSeq[FHIRObject]]
-            .foldLeft(F pure (LitSeq.newBuilder[FHIRObject], false: Boolean)) { case (_F, next) =>
+        else if (vs.head.isInstanceOf[FHIRObjectRaw[_]])
+          vs.asInstanceOf[LitSeq[FHIRObjectRaw[_]]]
+            .foldLeft(F pure (LitSeq.newBuilder[FHIRObjectRaw[_]], false: Boolean)) { case (_F, next) =>
               _F.flatMap { case (acc, flag) =>
                 next.>>>=(fn, suffix, cond).map { case (n1, f1) => acc.addOne(n1) -> (flag || f1) }
               }
@@ -251,11 +281,11 @@ abstract class FHIRObject(
         if (cond(t, meta.unwrappedTT)) change(fn(t.asInstanceOf[T]) map (Some(_)))
         else
           t match {
-            case v: FHIRObject => v.>>>=(fn, suffix, cond).map { case (obj, f) => if (f) change(obj) else opt }
+            case v: FHIRObjectRaw[_] => v.>>>=(fn, suffix, cond).map { case (obj, f) => if (f) change(obj) else opt }
             case _             => F pure opt
           }
       case FCF(meta, v: T @unchecked) if cond(v, meta.tt) => change(fn(v).asInstanceOf[F[Any]])
-      case FCF(_, v: FHIRObject) =>
+      case FCF(_, v: FHIRObjectRaw[_]) =>
         v.>>>=(fn, suffix, cond).map { case (obj, f) => if (f) change(obj) else v }
       case FCF(_, v) => F pure v
     }
@@ -264,7 +294,7 @@ abstract class FHIRObject(
       .asInstanceOf[F[(this.type, Boolean)]]
   }
 
-  private final def suffCond[T](implicit tt: LTag[T]): (Option[String], (Any, LTag[_]) => Boolean) = {
+  protected final def suffCond[T](implicit tt: LTag[T]): (Option[String], (Any, LTag[_]) => Boolean) = {
     val suff: Option[String]            = typeSuffixMap(tt.tag)
     val cond: (Any, LTag[_]) => Boolean =
       // The double checks here are to short-circuit when possible. `isInstanceOf` is much cheaper than `=:=`
@@ -288,7 +318,10 @@ abstract class FHIRObject(
     >>>(fn, suff, cond)._1
   }
 
-  private final def >>>[T](fn: T => T, suffix: Option[String], cond: (Any, LTag[_]) => Boolean): (this.type, Boolean) = {
+  protected final def >>>[T](
+      fn: T => T,
+      suffix: Option[String],
+      cond: (Any, LTag[_]) => Boolean): (this.type, Boolean) = {
     var changed = false
     def change[T](t: => T): T = { changed = true; t }
     val newFields = fields.map {
@@ -296,7 +329,7 @@ abstract class FHIRObject(
       case FHIRComponentField(_, c: Choice[_]) =>
         c match {
           case Choice(suf, v) if suffix contains suf => change(Choice(suf, fn(v.asInstanceOf[T]))(c.tt))
-          case Choice(suf, v: FHIRObject) =>
+          case Choice(suf, v: FHIRObjectRaw[_]) =>
             val (obj, f) = v >>> (fn, suffix, cond)
             if (f) change(Choice(suf, obj)(c.tt)) else c
           case _ => c
@@ -304,7 +337,7 @@ abstract class FHIRObject(
       case FHIRComponentField(_, opt @ Some(c: Choice[_])) =>
         c match {
           case Choice(suf, v) if suffix contains suf => change(Some(Choice(suf, fn(v.asInstanceOf[T]))(c.tt)))
-          case Choice(suf, v: FHIRObject) =>
+          case Choice(suf, v: FHIRObjectRaw[_]) =>
             val (obj, f) = v >>> (fn, suffix, cond)
             if (f) change(Some(Choice(suf, obj)(c.tt))) else opt
           case _ => opt
@@ -312,9 +345,9 @@ abstract class FHIRObject(
       case FHIRComponentField(meta, vs: LitSeq[_]) =>
         if (cond(vs.head, meta.unwrappedTT)) change(vs map (v => fn(v.asInstanceOf[T])))
         // conceptually dodgy to only check head
-        else if (vs.head.isInstanceOf[FHIRObject]) {
-          val (res, f) =
-            vs.asInstanceOf[LitSeq[FHIRObject]].foldLeft(LitSeq.newBuilder[FHIRObject] -> false) { case ((acc, flag), next) =>
+        else if (vs.head.isInstanceOf[FHIRObjectRaw[_]]) {
+          val (res, f) = vs.asInstanceOf[LitSeq[FHIRObjectRaw[_]]].foldLeft(LitSeq.newBuilder[FHIRObjectRaw[_]] -> false) {
+            case ((acc, flag), next) =>
               val (n1, f1) = next >>> (fn, suffix, cond)
               acc.addOne(n1) -> (flag || f1)
             }
@@ -324,13 +357,13 @@ abstract class FHIRObject(
         if (cond(t, meta.unwrappedTT)) change(Some(fn(t.asInstanceOf[T])))
         else
           t match {
-            case v: FHIRObject =>
+            case v: FHIRObjectRaw[_] =>
               val (obj, f) = v >>> (fn, suffix, cond)
               if (f) change(Some(obj)) else opt
             case v => opt
           }
       case FHIRComponentField(meta, v: T @unchecked) if cond(v, meta.tt) => change(fn(v))
-      case FHIRComponentField(_, v: FHIRObject) =>
+      case FHIRComponentField(_, v: FHIRObjectRaw[_]) =>
         val (obj, f) = v >>> (fn, suffix, cond)
         if (f) change(obj) else v
       case FHIRComponentField(_, v) => v
@@ -345,7 +378,7 @@ abstract class FHIRObject(
     *     as the input value.
     */
   final def nodalMap[T](klass: Class[T], fn: T => T): this.type = nodalMapFlag(klass, fn)._1
-  private final def nodalMapFlag[T](klass: Class[T], fn: T => T): (this.type, Boolean) = {
+  protected final def nodalMapFlag[T](klass: Class[T], fn: T => T): (this.type, Boolean) = {
     var changed = false
     def change[T](t: => T): T = { changed = true; t }
     val newFields = fields.map {
@@ -353,7 +386,7 @@ abstract class FHIRObject(
       case FHIRComponentField(_, c: Choice[_]) =>
         c match {
           case Choice(s, v: T @unchecked) if klass.isInstance(v) => change(Choice(s, fn(v))(c.tt))
-          case Choice(s, v: FHIRObject) =>
+          case Choice(s, v: FHIRObjectRaw[_]) =>
             val (v1, c1) = v.nodalMapFlag(klass, fn)
             if (c1) change(Choice(s, v1)(c.tt)) else c
           case _ => c
@@ -361,7 +394,7 @@ abstract class FHIRObject(
       case FHIRComponentField(_, opt @ Some(c: Choice[_])) =>
         c match {
           case Choice(s, v: T @unchecked) if klass.isInstance(v) => change(Choice(s, fn(v))(c.tt))
-          case Choice(s, v: FHIRObject) =>
+          case Choice(s, v: FHIRObjectRaw[_]) =>
             val (v1, c1) = v.nodalMapFlag(klass, fn)
             if (c1) change(Some(Choice(s, v1)(c.tt))) else opt
           case _ => opt
@@ -371,8 +404,8 @@ abstract class FHIRObject(
           // conceptually dodgy...
           case vs: LitSeq[T @unchecked] if klass.isInstance(vs.head) => change(vs map fn)
           // looks dodgy, but isn't
-          case vs: LitSeq[FHIRObject @unchecked] if vs.head.isInstanceOf[FHIRObject] =>
-            val (res, f) = vs.foldLeft(LitSeq.newBuilder[FHIRObject] -> false) { case ((acc, flag), next) =>
+          case vs: LitSeq[FHIRObjectRaw[_] @unchecked] if vs.head.isInstanceOf[FHIRObjectRaw[_]] =>
+            val (res, f) = vs.foldLeft(LitSeq.newBuilder[FHIRObjectRaw[_]] -> false) { case ((acc, flag), next) =>
               val (n1, f1) = next.nodalMapFlag(klass, fn)
               acc.addOne(n1) -> (flag || f1)
             }
@@ -382,7 +415,7 @@ abstract class FHIRObject(
       case FHIRComponentField(_, opt @ Some(v)) =>
         v match {
           case v: T @unchecked if klass.isInstance(v) => change(Some(fn(v)))
-          case v: FHIRObject =>
+          case v: FHIRObjectRaw[_] =>
             val (v1, c1) = v.nodalMapFlag(klass, fn)
             if (c1) change(Some(v1)) else opt
           case _ => opt
@@ -390,7 +423,7 @@ abstract class FHIRObject(
       case FHIRComponentField(_, v) =>
         v match {
           case v: T @unchecked if klass.isInstance(v) => change(fn(v))
-          case v: FHIRObject =>
+          case v: FHIRObjectRaw[_] =>
             val (v1, c1) = v.nodalMapFlag(klass, fn)
             if (c1) change(v1) else v
           case _ => v
@@ -409,31 +442,32 @@ abstract class FHIRObject(
     ^:^(suff, cond)
   }
 
-  private final def ^:^[Target](suffix: Option[String], cond: (Any, LTag[_]) => Boolean): LitSeq[Target] =
+  protected final def ^:^[Target](suffix: Option[String], cond: (Any, LTag[_]) => Boolean): LitSeq[Target] =
     fields.to(LitSeq).flatMap {
       case FHIRComponentField(meta, v: Target @unchecked) if cond(v, meta.tt) => LitSeq(v)
       case FHIRComponentField(_, None | LitSeq.emptyInstance)                 => LitSeq.empty
       case FHIRComponentField(_, c: Choice[_]) =>
         c match {
           case Choice(suf, v: Target @unchecked) if suffix contains suf => LitSeq(v)
-          case Choice(_, v: FHIRObject)                                 => v ^:^ (suffix, cond)
+          case Choice(_, v: FHIRObjectRaw[_])                           => v ^:^ (suffix, cond)
           case _                                                        => LitSeq.empty
         }
       case FHIRComponentField(meta, vs: LitSeq[_]) =>
         if (cond(vs.head, meta.unwrappedTT)) vs.asInstanceOf[LitSeq[Target]]
-        else if (vs.head.isInstanceOf[FHIRObject]) vs.asInstanceOf[LitSeq[FHIRObject]] flatMap (_ ^:^ (suffix, cond))
+        else if (vs.head.isInstanceOf[FHIRObjectRaw[_]])
+          vs.asInstanceOf[LitSeq[FHIRObjectRaw[_]]] flatMap (_ ^:^ (suffix, cond))
         else LitSeq.empty
       case FHIRComponentField(meta, Some(t)) =>
         if (cond(t, meta.unwrappedTT)) LitSeq(t.asInstanceOf[Target])
         else
           t match {
-            case v: FHIRObject                                            => v ^:^ (suffix, cond)
+            case v: FHIRObjectRaw[_]                                      => v ^:^ (suffix, cond)
             case Choice(suf, v: Target @unchecked) if suffix contains suf => LitSeq(v)
-            case Choice(_, v: FHIRObject)                                 => v ^:^ (suffix, cond)
+            case Choice(_, v: FHIRObjectRaw[_])                           => v ^:^ (suffix, cond)
             case _                                                        => LitSeq.empty
           }
-      case FHIRComponentField(_, v: FHIRObject) => v ^:^ (suffix, cond)
-      case _                                    => LitSeq.empty
+      case FHIRComponentField(_, v: FHIRObjectRaw[_]) => v ^:^ (suffix, cond)
+      case _                                          => LitSeq.empty
     }
 
   /** Convenience alias for nodalGetByClass andThen map to LitSeq[To] using fn: From => To.
@@ -451,33 +485,34 @@ abstract class FHIRObject(
       case FHIRComponentField(_, c: Choice[_]) =>
         c match {
           case Choice(_, v: Target @unchecked) if klass.isInstance(v) => LitSeq(v)
-          case Choice(_, v: FHIRObject)                               => v.nodalGetByClass(klass)
+          case Choice(_, v: FHIRObjectRaw[_])                         => v.nodalGetByClass(klass)
           case _                                                      => LitSeq.empty
         }
       case FHIRComponentField(_, vs: LitSeq[_]) =>
         if (klass.isInstance(vs.head)) vs.asInstanceOf[LitSeq[Target]]
-        else if (vs.head.isInstanceOf[FHIRObject]) vs.asInstanceOf[LitSeq[FHIRObject]].flatMap(_.nodalGetByClass(klass))
+        else if (vs.head.isInstanceOf[FHIRObjectRaw[_]])
+          vs.asInstanceOf[LitSeq[FHIRObjectRaw[_]]].flatMap(_.nodalGetByClass(klass))
         else LitSeq.empty
       case FHIRComponentField(_, Some(t)) =>
         if (klass.isInstance(t)) LitSeq(t.asInstanceOf[Target])
         else
           t match {
-            case v: FHIRObject                                          => v.nodalGetByClass(klass)
+            case v: FHIRObjectRaw[_]                                    => v.nodalGetByClass(klass)
             case Choice(s, v: Target @unchecked) if klass.isInstance(v) => LitSeq(v)
-            case Choice(s, v: FHIRObject)                               => v.nodalGetByClass(klass)
+            case Choice(s, v: FHIRObjectRaw[_])                         => v.nodalGetByClass(klass)
             case _                                                      => LitSeq.empty
           }
-      case FHIRComponentField(_, v: FHIRObject) => v.nodalGetByClass(klass)
-      case _                                    => LitSeq.empty
+      case FHIRComponentField(_, v: FHIRObjectRaw[_]) => v.nodalGetByClass(klass)
+      case _                                          => LitSeq.empty
     }
 
-  private def refToString(r: Choice[_]): String =
+  protected def refToString(r: Choice[_]): String =
     r.suffix match {
       case "" => s"<Any> = ${r.json}"
       case s  => s"$s = ${r.value.toString}"
     }
 
-  private def refishToString(r: Any): String =
+  protected def refishToString(r: Any): String =
     r match {
       case r: Choice[_] => refToString(r)
       case None         => "<absent> = None" // probably shouldn't happen

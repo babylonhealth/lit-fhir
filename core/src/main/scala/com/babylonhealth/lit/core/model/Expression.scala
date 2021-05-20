@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.EXPRESSION_LANGUAGE
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Expression extends CompanionFor[Expression] {
   implicit def summonObjectAndCompanionExpression_1139776435(o: Expression): ObjectAndCompanion[Expression, Expression.type] =
     ObjectAndCompanion(o, this)
@@ -29,15 +30,22 @@ object Expression extends CompanionFor[Expression] {
   override val parentType: CompanionFor[ParentType] = Expression
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Expression")
   def apply(
+=======
+object Expression extends CompanionFor[Expression[_]] {
+  override type ResourceType[T] = Expression[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Expression
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Expression")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       name: Option[Id] = None,
       language: EXPRESSION_LANGUAGE,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       reference: Option[UriStr] = None,
       expression: Option[String] = None,
       description: Option[String] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Expression = new Expression(
+  ): Expression[Stage] = new Expression[Stage](
     id,
     name,
     language,
@@ -53,14 +61,15 @@ object Expression extends CompanionFor[Expression] {
     FHIRComponentFieldMeta("name", lTagOf[Option[Id]], false, lTagOf[Id])
   val language: FHIRComponentFieldMeta[EXPRESSION_LANGUAGE] =
     FHIRComponentFieldMeta("language", lTagOf[EXPRESSION_LANGUAGE], false, lTagOf[EXPRESSION_LANGUAGE])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
   val reference: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("reference", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val expression: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("expression", lTagOf[Option[String]], false, lTagOf[String])
   val description: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
+<<<<<<< HEAD
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, language, extension, reference, expression, description)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Expression): Seq[FHIRComponentField[_]] = Seq(
@@ -71,26 +80,40 @@ object Expression extends CompanionFor[Expression] {
     FHIRComponentField[Option[UriStr]](reference, t.reference),
     FHIRComponentField[Option[String]](expression, t.expression),
     FHIRComponentField[Option[String]](description, t.description)
+=======
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, name, language, extension, reference, expression, description)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Expression[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[Id]](name, t.name),
+    FHIRComponentField[Stage, EXPRESSION_LANGUAGE](language, t.language),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[UriStr]](reference, t.reference),
+    FHIRComponentField[Stage, Option[String]](expression, t.expression),
+    FHIRComponentField[Stage, Option[String]](description, t.description)
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   )
-  def extractId(t: Expression): Option[String]            = t.id
-  def extractName(t: Expression): Option[Id]              = t.name
-  def extractLanguage(t: Expression): EXPRESSION_LANGUAGE = t.language
-  def extractExtension(t: Expression): LitSeq[Extension]  = t.extension
-  def extractReference(t: Expression): Option[UriStr]     = t.reference
-  def extractExpression(t: Expression): Option[String]    = t.expression
-  def extractDescription(t: Expression): Option[String]   = t.description
-  override val thisName: String                           = "Expression"
-  def unapply(
-      o: Expression): Option[(Option[String], Option[Id], EXPRESSION_LANGUAGE, LitSeq[Extension], Option[UriStr], Option[String], Option[String])] =
+  def extractId(t: Expression[_]): Option[String]                             = t.id
+  def extractName(t: Expression[_]): Option[Id]                               = t.name
+  def extractLanguage(t: Expression[_]): EXPRESSION_LANGUAGE                  = t.language
+  def extractExtension[Stage](t: Expression[Stage]): LitSeq[Extension[Stage]] = t.extension
+  def extractReference(t: Expression[_]): Option[UriStr]                      = t.reference
+  def extractExpression(t: Expression[_]): Option[String]                     = t.expression
+  def extractDescription(t: Expression[_]): Option[String]                    = t.description
+  override val thisName: String                                               = "Expression"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Expression[
+    Stage]): Option[(Option[String], Option[Id], EXPRESSION_LANGUAGE, LitSeq[Extension[Stage]], Option[UriStr], Option[String], Option[String])] =
     Some((o.id, o.name, o.language, o.extension, o.reference, o.expression, o.description))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Expression] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Expression[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Expression(
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[Id]]("name", Some(None)),
           cursor.decodeAs[EXPRESSION_LANGUAGE]("language", None),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("reference", Some(None)),
           cursor.decodeAs[Option[String]]("expression", Some(None)),
           cursor.decodeAs[Option[String]]("description", Some(None)),
@@ -128,15 +151,15 @@ object Expression extends CompanionFor[Expression] {
   *   - A brief, natural language description of the condition that effectively communicates the intended semantics.
   */
 @POJOBoilerplate
-class Expression(
+class Expression[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val name: Option[Id] = None,
     val language: EXPRESSION_LANGUAGE,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     val reference: Option[UriStr] = None,
     val expression: Option[String] = None,
     val description: Option[String] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Expression"
 }

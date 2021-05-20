@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.{ ALL_TYPES, OPERATION_PARAMETER_USE }
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object ParameterDefinition extends CompanionFor[ParameterDefinition] {
   implicit def summonObjectAndCompanionParameterDefinition436424647(
       o: ParameterDefinition): ObjectAndCompanion[ParameterDefinition, ParameterDefinition.type] = ObjectAndCompanion(o, this)
@@ -29,6 +30,13 @@ object ParameterDefinition extends CompanionFor[ParameterDefinition] {
   override val parentType: CompanionFor[ParentType] = ParameterDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ParameterDefinition")
   def apply(
+=======
+object ParameterDefinition extends CompanionFor[ParameterDefinition[_]] {
+  override type ResourceType[T] = ParameterDefinition[T]
+  override val baseType: CompanionFor[ResourceType[_]] = ParameterDefinition
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/ParameterDefinition")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       use: OPERATION_PARAMETER_USE,
       min: Option[Int] = None,
@@ -36,10 +44,10 @@ object ParameterDefinition extends CompanionFor[ParameterDefinition] {
       name: Option[Code] = None,
       `type`: ALL_TYPES,
       profile: Option[Canonical] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       documentation: Option[String] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): ParameterDefinition = new ParameterDefinition(
+  ): ParameterDefinition[Stage] = new ParameterDefinition[Stage](
     id,
     use,
     min,
@@ -65,10 +73,11 @@ object ParameterDefinition extends CompanionFor[ParameterDefinition] {
     FHIRComponentFieldMeta("type", lTagOf[ALL_TYPES], false, lTagOf[ALL_TYPES])
   val profile: FHIRComponentFieldMeta[Option[Canonical]] =
     FHIRComponentFieldMeta("profile", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
   val documentation: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("documentation", lTagOf[Option[String]], false, lTagOf[String])
+<<<<<<< HEAD
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, use, min, max, name, `type`, profile, extension, documentation)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ParameterDefinition): Seq[FHIRComponentField[_]] = Seq(
@@ -81,21 +90,38 @@ object ParameterDefinition extends CompanionFor[ParameterDefinition] {
     FHIRComponentField[Option[Canonical]](profile, t.profile),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[String]](documentation, t.documentation)
+=======
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, use, min, max, name, `type`, profile, extension, documentation)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](
+      t: ParameterDefinition[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, OPERATION_PARAMETER_USE](use, t.use),
+    FHIRComponentField[Stage, Option[Int]](min, t.min),
+    FHIRComponentField[Stage, Option[String]](max, t.max),
+    FHIRComponentField[Stage, Option[Code]](name, t.name),
+    FHIRComponentField[Stage, ALL_TYPES](`type`, t.`type`),
+    FHIRComponentField[Stage, Option[Canonical]](profile, t.profile),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[String]](documentation, t.documentation)
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   )
-  def extractId(t: ParameterDefinition): Option[String]            = t.id
-  def extractUse(t: ParameterDefinition): OPERATION_PARAMETER_USE  = t.use
-  def extractMin(t: ParameterDefinition): Option[Int]              = t.min
-  def extractMax(t: ParameterDefinition): Option[String]           = t.max
-  def extractName(t: ParameterDefinition): Option[Code]            = t.name
-  def extractType(t: ParameterDefinition): ALL_TYPES               = t.`type`
-  def extractProfile(t: ParameterDefinition): Option[Canonical]    = t.profile
-  def extractExtension(t: ParameterDefinition): LitSeq[Extension]  = t.extension
-  def extractDocumentation(t: ParameterDefinition): Option[String] = t.documentation
-  override val thisName: String                                    = "ParameterDefinition"
-  def unapply(
-      o: ParameterDefinition): Option[(Option[String], OPERATION_PARAMETER_USE, Option[Int], Option[String], Option[Code], ALL_TYPES, Option[Canonical], LitSeq[Extension], Option[String])] =
+  def extractId(t: ParameterDefinition[_]): Option[String]                             = t.id
+  def extractUse(t: ParameterDefinition[_]): OPERATION_PARAMETER_USE                   = t.use
+  def extractMin(t: ParameterDefinition[_]): Option[Int]                               = t.min
+  def extractMax(t: ParameterDefinition[_]): Option[String]                            = t.max
+  def extractName(t: ParameterDefinition[_]): Option[Code]                             = t.name
+  def extractType(t: ParameterDefinition[_]): ALL_TYPES                                = t.`type`
+  def extractProfile(t: ParameterDefinition[_]): Option[Canonical]                     = t.profile
+  def extractExtension[Stage](t: ParameterDefinition[Stage]): LitSeq[Extension[Stage]] = t.extension
+  def extractDocumentation(t: ParameterDefinition[_]): Option[String]                  = t.documentation
+  override val thisName: String                                                        = "ParameterDefinition"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: ParameterDefinition[
+    Stage]): Option[(Option[String], OPERATION_PARAMETER_USE, Option[Int], Option[String], Option[Code], ALL_TYPES, Option[Canonical], LitSeq[Extension[Stage]], Option[String])] =
     Some((o.id, o.use, o.min, o.max, o.name, o.`type`, o.profile, o.extension, o.documentation))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[ParameterDefinition] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[ParameterDefinition[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new ParameterDefinition(
@@ -106,7 +132,7 @@ object ParameterDefinition extends CompanionFor[ParameterDefinition] {
           cursor.decodeAs[Option[Code]]("name", Some(None)),
           cursor.decodeAs[ALL_TYPES]("type", None),
           cursor.decodeAs[Option[Canonical]]("profile", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("documentation", Some(None)),
           decodeAttributes(cursor)
         )
@@ -146,7 +172,7 @@ object ParameterDefinition extends CompanionFor[ParameterDefinition] {
   *   - A brief discussion of what the parameter is for and how it is used by the module.
   */
 @POJOBoilerplate
-class ParameterDefinition(
+class ParameterDefinition[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val use: OPERATION_PARAMETER_USE,
     val min: Option[Int] = None,
@@ -154,9 +180,9 @@ class ParameterDefinition(
     val name: Option[Code] = None,
     val `type`: ALL_TYPES,
     val profile: Option[Canonical] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     val documentation: Option[String] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "ParameterDefinition"
 }

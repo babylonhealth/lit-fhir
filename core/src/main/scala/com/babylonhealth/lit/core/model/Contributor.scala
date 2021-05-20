@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.CONTRIBUTOR_TYPE
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Contributor extends CompanionFor[Contributor] {
   implicit def summonObjectAndCompanionContributor1250805190(o: Contributor): ObjectAndCompanion[Contributor, Contributor.type] =
     ObjectAndCompanion(o, this)
@@ -29,13 +30,20 @@ object Contributor extends CompanionFor[Contributor] {
   override val parentType: CompanionFor[ParentType] = Contributor
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Contributor")
   def apply(
+=======
+object Contributor extends CompanionFor[Contributor[_]] {
+  override type ResourceType[T] = Contributor[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Contributor
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Contributor")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       `type`: CONTRIBUTOR_TYPE,
       name: String,
-      contact: LitSeq[ContactDetail] = LitSeq.empty,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      contact: LitSeq[ContactDetail[Stage]] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Contributor = new Contributor(
+  ): Contributor[Stage] = new Contributor(
     id,
     `type`,
     name,
@@ -49,19 +57,22 @@ object Contributor extends CompanionFor[Contributor] {
     FHIRComponentFieldMeta("type", lTagOf[CONTRIBUTOR_TYPE], false, lTagOf[CONTRIBUTOR_TYPE])
   val name: FHIRComponentFieldMeta[String] =
     FHIRComponentFieldMeta("name", lTagOf[String], false, lTagOf[String])
-  val contact: FHIRComponentFieldMeta[LitSeq[ContactDetail]] =
-    FHIRComponentFieldMeta("contact", lTagOf[LitSeq[ContactDetail]], false, lTagOf[ContactDetail])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, name, contact, extension)
-  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-  override def fields(t: Contributor): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[CONTRIBUTOR_TYPE](`type`, t.`type`),
-    FHIRComponentField[String](name, t.name),
-    FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension)
+  def contact[Stage]: FHIRComponentFieldMeta[LitSeq[ContactDetail[Stage]]] =
+    FHIRComponentFieldMeta("contact", lTagOf[LitSeq[ContactDetail[Stage]]], false, lTagOf[ContactDetail[Stage]])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, `type`, name, contact, extension)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Contributor[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, CONTRIBUTOR_TYPE](`type`, t.`type`),
+    FHIRComponentField[Stage, String](name, t.name),
+    FHIRComponentField[Stage, LitSeq[ContactDetail[Stage]]](contact, t.contact),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension)
   )
+<<<<<<< HEAD
   def extractId(t: Contributor): Option[String]             = t.id
   def extractType(t: Contributor): CONTRIBUTOR_TYPE         = t.`type`
   def extractName(t: Contributor): String                   = t.name
@@ -69,16 +80,26 @@ object Contributor extends CompanionFor[Contributor] {
   def extractExtension(t: Contributor): LitSeq[Extension]   = t.extension
   override val thisName: String                             = "Contributor"
   def unapply(o: Contributor): Option[(Option[String], CONTRIBUTOR_TYPE, String, LitSeq[ContactDetail], LitSeq[Extension])] =
+=======
+  def extractId(t: Contributor[_]): Option[String]                               = t.id
+  def extractType(t: Contributor[_]): CONTRIBUTOR_TYPE                           = t.`type`
+  def extractName(t: Contributor[_]): String                                     = t.name
+  def extractContact[Stage](t: Contributor[Stage]): LitSeq[ContactDetail[Stage]] = t.contact
+  def extractExtension[Stage](t: Contributor[Stage]): LitSeq[Extension[Stage]]   = t.extension
+  override val thisName: String                                                  = "Contributor"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Contributor[
+    Stage]): Option[(Option[String], CONTRIBUTOR_TYPE, String, LitSeq[ContactDetail[Stage]], LitSeq[Extension[Stage]])] =
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
     Some((o.id, o.`type`, o.name, o.contact, o.extension))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Contributor] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Contributor[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Contributor(
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[CONTRIBUTOR_TYPE]("type", None),
           cursor.decodeAs[String]("name", None),
-          cursor.decodeAs[LitSeq[ContactDetail]]("contact", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[ContactDetail[Completed.type]]]("contact", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
       ))
@@ -108,13 +129,13 @@ object Contributor extends CompanionFor[Contributor] {
   *   of the extension.
   */
 @POJOBoilerplate
-class Contributor(
+class Contributor[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val `type`: CONTRIBUTOR_TYPE,
     val name: String,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    val contact: LitSeq[ContactDetail[Stage]] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Contributor"
 }

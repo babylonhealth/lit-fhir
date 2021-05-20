@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.QUANTITY_COMPARATOR
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Distance extends CompanionFor[Distance] {
   implicit def summonObjectAndCompanionDistance1598637802(o: Distance): ObjectAndCompanion[Distance, Distance.type] =
     ObjectAndCompanion(o, this)
@@ -29,15 +30,22 @@ object Distance extends CompanionFor[Distance] {
   override val parentType: CompanionFor[ParentType] = Distance
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Distance")
   def apply(
+=======
+object Distance extends CompanionFor[Distance[_]] {
+  override type ResourceType[T] = Distance[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Distance
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Distance")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       unit: Option[String] = None,
       code: Option[Code] = None,
       value: Option[BigDecimal] = None,
       system: Option[UriStr] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       comparator: Option[QUANTITY_COMPARATOR] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Distance = new Distance(
+  ): Distance[Stage] = new Distance[Stage](
     id,
     unit,
     code,
@@ -57,10 +65,11 @@ object Distance extends CompanionFor[Distance] {
     FHIRComponentFieldMeta("value", lTagOf[Option[BigDecimal]], false, lTagOf[BigDecimal])
   val system: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("system", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
   val comparator: FHIRComponentFieldMeta[Option[QUANTITY_COMPARATOR]] =
     FHIRComponentFieldMeta("comparator", lTagOf[Option[QUANTITY_COMPARATOR]], false, lTagOf[QUANTITY_COMPARATOR])
+<<<<<<< HEAD
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, unit, code, value, system, extension, comparator)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Distance): Seq[FHIRComponentField[_]] = Seq(
@@ -71,20 +80,34 @@ object Distance extends CompanionFor[Distance] {
     FHIRComponentField[Option[UriStr]](system, t.system),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[QUANTITY_COMPARATOR]](comparator, t.comparator)
+=======
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, unit, code, value, system, extension, comparator)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Distance[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[String]](unit, t.unit),
+    FHIRComponentField[Stage, Option[Code]](code, t.code),
+    FHIRComponentField[Stage, Option[BigDecimal]](value, t.value),
+    FHIRComponentField[Stage, Option[UriStr]](system, t.system),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[QUANTITY_COMPARATOR]](comparator, t.comparator)
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   )
-  def extractId(t: Distance): Option[String]                      = t.id
-  def extractUnit(t: Distance): Option[String]                    = t.unit
-  def extractCode(t: Distance): Option[Code]                      = t.code
-  def extractValue(t: Distance): Option[BigDecimal]               = t.value
-  def extractSystem(t: Distance): Option[UriStr]                  = t.system
-  def extractExtension(t: Distance): LitSeq[Extension]            = t.extension
-  def extractComparator(t: Distance): Option[QUANTITY_COMPARATOR] = t.comparator
-  override val thisName: String                                   = "Distance"
-  override val searchParams: Map[String, Distance => Seq[Any]]    = Quantity.searchParams
-  def unapply(
-      o: Distance): Option[(Option[String], Option[String], Option[Code], Option[BigDecimal], Option[UriStr], LitSeq[Extension], Option[QUANTITY_COMPARATOR])] =
+  def extractId(t: Distance[_]): Option[String]                             = t.id
+  def extractUnit(t: Distance[_]): Option[String]                           = t.unit
+  def extractCode(t: Distance[_]): Option[Code]                             = t.code
+  def extractValue(t: Distance[_]): Option[BigDecimal]                      = t.value
+  def extractSystem(t: Distance[_]): Option[UriStr]                         = t.system
+  def extractExtension[Stage](t: Distance[Stage]): LitSeq[Extension[Stage]] = t.extension
+  def extractComparator(t: Distance[_]): Option[QUANTITY_COMPARATOR]        = t.comparator
+  override val thisName: String                                             = "Distance"
+  override val searchParams: Map[String, Distance[_] => Seq[Any]]           = Quantity.searchParams
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Distance[
+    Stage]): Option[(Option[String], Option[String], Option[Code], Option[BigDecimal], Option[UriStr], LitSeq[Extension[Stage]], Option[QUANTITY_COMPARATOR])] =
     Some((o.id, o.unit, o.code, o.value, o.system, o.extension, o.comparator))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Distance] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Distance[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Distance(
@@ -93,7 +116,7 @@ object Distance extends CompanionFor[Distance] {
           cursor.decodeAs[Option[Code]]("code", Some(None)),
           cursor.decodeAs[Option[BigDecimal]]("value", Some(None)),
           cursor.decodeAs[Option[UriStr]]("system", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[QUANTITY_COMPARATOR]]("comparator", Some(None)),
           decodeAttributes(cursor)
         )
@@ -129,13 +152,13 @@ object Distance extends CompanionFor[Distance] {
   *   to measurement issues; e.g. if the comparator is "<" , then the real value is < stated value.
   */
 @POJOBoilerplate
-class Distance(
+class Distance[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     override val unit: Option[String] = None,
     override val code: Option[Code] = None,
     override val value: Option[BigDecimal] = None,
     override val system: Option[UriStr] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     override val comparator: Option[QUANTITY_COMPARATOR] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Quantity(

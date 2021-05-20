@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Meta extends CompanionFor[Meta] {
   implicit def summonObjectAndCompanionMeta_2065656966(o: Meta): ObjectAndCompanion[Meta, Meta.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Meta
@@ -28,16 +29,23 @@ object Meta extends CompanionFor[Meta] {
   override val parentType: CompanionFor[ParentType] = Meta
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Meta")
   def apply(
+=======
+object Meta extends CompanionFor[Meta[_]] {
+  override type ResourceType[T] = Meta[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Meta
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Meta")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
-      tag: LitSeq[Coding] = LitSeq.empty,
+      tag: LitSeq[Coding[Stage]] = LitSeq.empty,
       source: Option[UriStr] = None,
       profile: LitSeq[Canonical] = LitSeq.empty,
-      security: LitSeq[Coding] = LitSeq.empty,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      security: LitSeq[Coding[Stage]] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       versionId: Option[Id] = None,
       lastUpdated: Option[ZonedDateTime] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Meta = new Meta(
+  ): Meta[Stage] = new Meta[Stage](
     id,
     tag,
     source,
@@ -50,20 +58,21 @@ object Meta extends CompanionFor[Meta] {
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val tag: FHIRComponentFieldMeta[LitSeq[Coding]] =
-    FHIRComponentFieldMeta("tag", lTagOf[LitSeq[Coding]], false, lTagOf[Coding])
+  def tag[Stage]: FHIRComponentFieldMeta[LitSeq[Coding[Stage]]] =
+    FHIRComponentFieldMeta("tag", lTagOf[LitSeq[Coding[Stage]]], false, lTagOf[Coding[Stage]])
   val source: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("source", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val profile: FHIRComponentFieldMeta[LitSeq[Canonical]] =
     FHIRComponentFieldMeta("profile", lTagOf[LitSeq[Canonical]], false, lTagOf[Canonical])
-  val security: FHIRComponentFieldMeta[LitSeq[Coding]] =
-    FHIRComponentFieldMeta("security", lTagOf[LitSeq[Coding]], false, lTagOf[Coding])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  def security[Stage]: FHIRComponentFieldMeta[LitSeq[Coding[Stage]]] =
+    FHIRComponentFieldMeta("security", lTagOf[LitSeq[Coding[Stage]]], false, lTagOf[Coding[Stage]])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
   val versionId: FHIRComponentFieldMeta[Option[Id]] =
     FHIRComponentFieldMeta("versionId", lTagOf[Option[Id]], false, lTagOf[Id])
   val lastUpdated: FHIRComponentFieldMeta[Option[ZonedDateTime]] =
     FHIRComponentFieldMeta("lastUpdated", lTagOf[Option[ZonedDateTime]], false, lTagOf[ZonedDateTime])
+<<<<<<< HEAD
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, tag, source, profile, security, extension, versionId, lastUpdated)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Meta): Seq[FHIRComponentField[_]] = Seq(
@@ -75,29 +84,44 @@ object Meta extends CompanionFor[Meta] {
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[Id]](versionId, t.versionId),
     FHIRComponentField[Option[ZonedDateTime]](lastUpdated, t.lastUpdated)
+=======
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, tag, source, profile, security, extension, versionId, lastUpdated)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Meta[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, LitSeq[Coding[Stage]]](tag, t.tag),
+    FHIRComponentField[Stage, Option[UriStr]](source, t.source),
+    FHIRComponentField[Stage, LitSeq[Canonical]](profile, t.profile),
+    FHIRComponentField[Stage, LitSeq[Coding[Stage]]](security, t.security),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[Id]](versionId, t.versionId),
+    FHIRComponentField[Stage, Option[ZonedDateTime]](lastUpdated, t.lastUpdated)
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   )
-  def extractId(t: Meta): Option[String]                 = t.id
-  def extractTag(t: Meta): LitSeq[Coding]                = t.tag
-  def extractSource(t: Meta): Option[UriStr]             = t.source
-  def extractProfile(t: Meta): LitSeq[Canonical]         = t.profile
-  def extractSecurity(t: Meta): LitSeq[Coding]           = t.security
-  def extractExtension(t: Meta): LitSeq[Extension]       = t.extension
-  def extractVersionId(t: Meta): Option[Id]              = t.versionId
-  def extractLastUpdated(t: Meta): Option[ZonedDateTime] = t.lastUpdated
-  override val thisName: String                          = "Meta"
-  def unapply(
-      o: Meta): Option[(Option[String], LitSeq[Coding], Option[UriStr], LitSeq[Canonical], LitSeq[Coding], LitSeq[Extension], Option[Id], Option[ZonedDateTime])] =
+  def extractId(t: Meta[_]): Option[String]                             = t.id
+  def extractTag[Stage](t: Meta[Stage]): LitSeq[Coding[Stage]]          = t.tag
+  def extractSource(t: Meta[_]): Option[UriStr]                         = t.source
+  def extractProfile(t: Meta[_]): LitSeq[Canonical]                     = t.profile
+  def extractSecurity[Stage](t: Meta[Stage]): LitSeq[Coding[Stage]]     = t.security
+  def extractExtension[Stage](t: Meta[Stage]): LitSeq[Extension[Stage]] = t.extension
+  def extractVersionId(t: Meta[_]): Option[Id]                          = t.versionId
+  def extractLastUpdated(t: Meta[_]): Option[ZonedDateTime]             = t.lastUpdated
+  override val thisName: String                                         = "Meta"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Meta[
+    Stage]): Option[(Option[String], LitSeq[Coding[Stage]], Option[UriStr], LitSeq[Canonical], LitSeq[Coding[Stage]], LitSeq[Extension[Stage]], Option[Id], Option[ZonedDateTime])] =
     Some((o.id, o.tag, o.source, o.profile, o.security, o.extension, o.versionId, o.lastUpdated))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Meta] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Meta[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
-        new Meta(
+        new Meta[Completed.type](
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[LitSeq[Coding]]("tag", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Coding[Completed.type]]]("tag", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("source", Some(None)),
           cursor.decodeAs[LitSeq[Canonical]]("profile", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[Coding]]("security", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Coding[Completed.type]]]("security", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Id]]("versionId", Some(None)),
           cursor.decodeAs[Option[ZonedDateTime]]("lastUpdated", Some(None)),
           decodeAttributes(cursor)
@@ -142,16 +166,16 @@ object Meta extends CompanionFor[Meta] {
   *   - When the resource last changed - e.g. when the version changed.
   */
 @POJOBoilerplate
-class Meta(
+class Meta[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
-    val tag: LitSeq[Coding] = LitSeq.empty,
+    val tag: LitSeq[Coding[Stage]] = LitSeq.empty,
     val source: Option[UriStr] = None,
     val profile: LitSeq[Canonical] = LitSeq.empty,
-    val security: LitSeq[Coding] = LitSeq.empty,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    val security: LitSeq[Coding[Stage]] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     val versionId: Option[Id] = None,
     val lastUpdated: Option[ZonedDateTime] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Meta"
 }

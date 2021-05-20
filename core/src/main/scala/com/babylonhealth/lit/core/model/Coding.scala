@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Coding extends CompanionFor[Coding] {
   implicit def summonObjectAndCompanionCoding_1098975329(o: Coding): ObjectAndCompanion[Coding, Coding.type] =
     ObjectAndCompanion(o, this)
@@ -29,15 +30,22 @@ object Coding extends CompanionFor[Coding] {
   override val parentType: CompanionFor[ParentType] = Coding
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Coding")
   def apply(
+=======
+object Coding extends CompanionFor[Coding[_]] {
+  override type ResourceType[T] = Coding[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Coding
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Coding")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       code: Option[Code] = None,
       system: Option[UriStr] = None,
       version: Option[String] = None,
       display: Option[String] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       userSelected: Option[Boolean] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Coding = new Coding(
+  ): Coding[Stage] = new Coding[Stage](
     id,
     code,
     system,
@@ -57,10 +65,11 @@ object Coding extends CompanionFor[Coding] {
     FHIRComponentFieldMeta("version", lTagOf[Option[String]], false, lTagOf[String])
   val display: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("display", lTagOf[Option[String]], false, lTagOf[String])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
   val userSelected: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("userSelected", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
+<<<<<<< HEAD
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, system, version, display, extension, userSelected)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Coding): Seq[FHIRComponentField[_]] = Seq(
@@ -71,28 +80,42 @@ object Coding extends CompanionFor[Coding] {
     FHIRComponentField[Option[String]](display, t.display),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[Boolean]](userSelected, t.userSelected)
+=======
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, code, system, version, display, extension, userSelected)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Coding[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[Code]](code, t.code),
+    FHIRComponentField[Stage, Option[UriStr]](system, t.system),
+    FHIRComponentField[Stage, Option[String]](version, t.version),
+    FHIRComponentField[Stage, Option[String]](display, t.display),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[Boolean]](userSelected, t.userSelected)
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   )
-  def extractId(t: Coding): Option[String]            = t.id
-  def extractCode(t: Coding): Option[Code]            = t.code
-  def extractSystem(t: Coding): Option[UriStr]        = t.system
-  def extractVersion(t: Coding): Option[String]       = t.version
-  def extractDisplay(t: Coding): Option[String]       = t.display
-  def extractExtension(t: Coding): LitSeq[Extension]  = t.extension
-  def extractUserSelected(t: Coding): Option[Boolean] = t.userSelected
-  override val thisName: String                       = "Coding"
-  def unapply(
-      o: Coding): Option[(Option[String], Option[Code], Option[UriStr], Option[String], Option[String], LitSeq[Extension], Option[Boolean])] =
+  def extractId(t: Coding[_]): Option[String]                             = t.id
+  def extractCode(t: Coding[_]): Option[Code]                             = t.code
+  def extractSystem(t: Coding[_]): Option[UriStr]                         = t.system
+  def extractVersion(t: Coding[_]): Option[String]                        = t.version
+  def extractDisplay(t: Coding[_]): Option[String]                        = t.display
+  def extractExtension[Stage](t: Coding[Stage]): LitSeq[Extension[Stage]] = t.extension
+  def extractUserSelected(t: Coding[_]): Option[Boolean]                  = t.userSelected
+  override val thisName: String                                           = "Coding"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Coding[
+    Stage]): Option[(Option[String], Option[Code], Option[UriStr], Option[String], Option[String], LitSeq[Extension[Stage]], Option[Boolean])] =
     Some((o.id, o.code, o.system, o.version, o.display, o.extension, o.userSelected))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Coding] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Coding[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
-        new Coding(
+        new Coding[Completed.type](
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[Code]]("code", Some(None)),
           cursor.decodeAs[Option[UriStr]]("system", Some(None)),
           cursor.decodeAs[Option[String]]("version", Some(None)),
           cursor.decodeAs[Option[String]]("display", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Boolean]]("userSelected", Some(None)),
           decodeAttributes(cursor)
         )
@@ -129,15 +152,15 @@ object Coding extends CompanionFor[Coding] {
   *   - Indicates that this coding was chosen by a user directly - e.g. off a pick list of available items (codes or displays).
   */
 @POJOBoilerplate
-class Coding(
+class Coding[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val code: Option[Code] = None,
     val system: Option[UriStr] = None,
     val version: Option[String] = None,
     val display: Option[String] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     val userSelected: Option[Boolean] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Coding"
 }

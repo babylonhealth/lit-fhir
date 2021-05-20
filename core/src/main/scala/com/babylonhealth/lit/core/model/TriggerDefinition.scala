@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.TRIGGER_TYPE
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object TriggerDefinition extends CompanionFor[TriggerDefinition] {
   implicit def summonObjectAndCompanionTriggerDefinition90925526(
       o: TriggerDefinition): ObjectAndCompanion[TriggerDefinition, TriggerDefinition.type] = ObjectAndCompanion(o, this)
@@ -30,15 +31,23 @@ object TriggerDefinition extends CompanionFor[TriggerDefinition] {
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/TriggerDefinition")
   type TimingChoice = Choice[Union01658422381]
   def apply(
+=======
+object TriggerDefinition extends CompanionFor[TriggerDefinition[_]] {
+  override type ResourceType[T] = TriggerDefinition[T]
+  override val baseType: CompanionFor[ResourceType[_]] = TriggerDefinition
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/TriggerDefinition")
+  type TimingChoice[Stage] = Choice[Union_1051729086[Stage]]
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       `type`: TRIGGER_TYPE,
       name: Option[String] = None,
-      data: LitSeq[DataRequirement] = LitSeq.empty,
-      extension: LitSeq[Extension] = LitSeq.empty,
-      timing: Option[TriggerDefinition.TimingChoice] = None,
-      condition: Option[Expression] = None,
+      data: LitSeq[DataRequirement[Stage]] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
+      timing: Option[TriggerDefinition.TimingChoice[Stage]] = None,
+      condition: Option[Expression[Stage]] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): TriggerDefinition = new TriggerDefinition(
+  ): TriggerDefinition[Stage] = new TriggerDefinition[Stage](
     id,
     `type`,
     name,
@@ -54,6 +63,7 @@ object TriggerDefinition extends CompanionFor[TriggerDefinition] {
     FHIRComponentFieldMeta("type", lTagOf[TRIGGER_TYPE], false, lTagOf[TRIGGER_TYPE])
   val name: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("name", lTagOf[Option[String]], false, lTagOf[String])
+<<<<<<< HEAD
   val data: FHIRComponentFieldMeta[LitSeq[DataRequirement]] =
     FHIRComponentFieldMeta("data", lTagOf[LitSeq[DataRequirement]], false, lTagOf[DataRequirement])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -72,29 +82,63 @@ object TriggerDefinition extends CompanionFor[TriggerDefinition] {
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[TriggerDefinition.TimingChoice]](timing, t.timing),
     FHIRComponentField[Option[Expression]](condition, t.condition)
+=======
+  def data[Stage]: FHIRComponentFieldMeta[LitSeq[DataRequirement[Stage]]] =
+    FHIRComponentFieldMeta("data", lTagOf[LitSeq[DataRequirement[Stage]]], false, lTagOf[DataRequirement[Stage]])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def timing[Stage]: FHIRComponentFieldMeta[Option[TriggerDefinition.TimingChoice[Stage]]] =
+    FHIRComponentFieldMeta(
+      "timing",
+      lTagOf[Option[TriggerDefinition.TimingChoice[Stage]]],
+      true,
+      lTagOf[Union_1051729086[Stage]])
+  def condition[Stage]: FHIRComponentFieldMeta[Option[Expression[Stage]]] =
+    FHIRComponentFieldMeta("condition", lTagOf[Option[Expression[Stage]]], false, lTagOf[Expression[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, `type`, name, data, extension, timing, condition)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](
+      t: TriggerDefinition[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, TRIGGER_TYPE](`type`, t.`type`),
+    FHIRComponentField[Stage, Option[String]](name, t.name),
+    FHIRComponentField[Stage, LitSeq[DataRequirement[Stage]]](data, t.data),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[TriggerDefinition.TimingChoice[Stage]]](timing, t.timing),
+    FHIRComponentField[Stage, Option[Expression[Stage]]](condition, t.condition)
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   )
-  def extractId(t: TriggerDefinition): Option[String]                             = t.id
-  def extractType(t: TriggerDefinition): TRIGGER_TYPE                             = t.`type`
-  def extractName(t: TriggerDefinition): Option[String]                           = t.name
-  def extractData(t: TriggerDefinition): LitSeq[DataRequirement]                  = t.data
-  def extractExtension(t: TriggerDefinition): LitSeq[Extension]                   = t.extension
-  def extractTiming(t: TriggerDefinition): Option[TriggerDefinition.TimingChoice] = t.timing
-  def extractCondition(t: TriggerDefinition): Option[Expression]                  = t.condition
-  override val thisName: String                                                   = "TriggerDefinition"
-  def unapply(
-      o: TriggerDefinition): Option[(Option[String], TRIGGER_TYPE, Option[String], LitSeq[DataRequirement], LitSeq[Extension], Option[TriggerDefinition.TimingChoice], Option[Expression])] =
+  def extractId(t: TriggerDefinition[_]): Option[String]                                               = t.id
+  def extractType(t: TriggerDefinition[_]): TRIGGER_TYPE                                               = t.`type`
+  def extractName(t: TriggerDefinition[_]): Option[String]                                             = t.name
+  def extractData[Stage](t: TriggerDefinition[Stage]): LitSeq[DataRequirement[Stage]]                  = t.data
+  def extractExtension[Stage](t: TriggerDefinition[Stage]): LitSeq[Extension[Stage]]                   = t.extension
+  def extractTiming[Stage](t: TriggerDefinition[Stage]): Option[TriggerDefinition.TimingChoice[Stage]] = t.timing
+  def extractCondition[Stage](t: TriggerDefinition[Stage]): Option[Expression[Stage]]                  = t.condition
+  override val thisName: String                                                                        = "TriggerDefinition"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: TriggerDefinition[
+    Stage]): Option[(Option[String], TRIGGER_TYPE, Option[String], LitSeq[DataRequirement[Stage]], LitSeq[Extension[Stage]], Option[TriggerDefinition.TimingChoice[Stage]], Option[Expression[Stage]])] =
     Some((o.id, o.`type`, o.name, o.data, o.extension, o.timing, o.condition))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TriggerDefinition] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TriggerDefinition[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new TriggerDefinition(
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[TRIGGER_TYPE]("type", None),
           cursor.decodeAs[Option[String]]("name", Some(None)),
+<<<<<<< HEAD
           cursor.decodeAs[LitSeq[DataRequirement]]("data", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeOptRef[Union01658422381]("timing"),
           cursor.decodeAs[Option[Expression]]("condition", Some(None)),
+=======
+          cursor.decodeAs[LitSeq[DataRequirement[Completed.type]]]("data", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
+          cursor.decodeOptRef[Union_1051729086[Completed.type]]("timing"),
+          cursor.decodeAs[Option[Expression[Completed.type]]]("condition", Some(None)),
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
           decodeAttributes(cursor)
         )
       ))
@@ -131,15 +175,15 @@ object TriggerDefinition extends CompanionFor[TriggerDefinition] {
   *   whether or not the trigger fires.
   */
 @POJOBoilerplate
-class TriggerDefinition(
+class TriggerDefinition[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val `type`: TRIGGER_TYPE,
     val name: Option[String] = None,
-    val data: LitSeq[DataRequirement] = LitSeq.empty,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
-    val timing: Option[TriggerDefinition.TimingChoice] = None,
-    val condition: Option[Expression] = None,
+    val data: LitSeq[DataRequirement[Stage]] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
+    val timing: Option[TriggerDefinition.TimingChoice[Stage]] = None,
+    val condition: Option[Expression[Stage]] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "TriggerDefinition"
 }

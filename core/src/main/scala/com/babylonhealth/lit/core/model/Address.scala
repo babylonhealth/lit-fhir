@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.{ ADDRESS_TYPE, ADDRESS_USE }
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Address extends CompanionFor[Address] {
   implicit def summonObjectAndCompanionAddress_1798164897(o: Address): ObjectAndCompanion[Address, Address.type] =
     ObjectAndCompanion(o, this)
@@ -27,8 +28,13 @@ object Address extends CompanionFor[Address] {
   override type ParentType   = Address
   override val baseType: CompanionFor[ResourceType] = Address
   override val parentType: CompanionFor[ParentType] = Address
+=======
+object Address extends CompanionFor[Address[_]] {
+  override type ResourceType[Stage] = Address[Stage]
+  override val baseType: CompanionFor[ResourceType[_]] = Address
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Address")
-  def apply(
+  def apply[Stage <: LifecycleStage: ValueOf](
       id: Option[String] = None,
       use: Option[ADDRESS_USE] = None,
       `type`: Option[ADDRESS_TYPE] = None,
@@ -36,13 +42,13 @@ object Address extends CompanionFor[Address] {
       line: LitSeq[String] = LitSeq.empty,
       city: Option[String] = None,
       state: Option[String] = None,
-      period: Option[Period] = None,
+      period: Option[Period[Stage]] = None,
       country: Option[String] = None,
       district: Option[String] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       postalCode: Option[String] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Address = new Address(
+  ): Address[Stage] = new Address[Stage](
     id,
     use,
     `type`,
@@ -71,53 +77,73 @@ object Address extends CompanionFor[Address] {
     FHIRComponentFieldMeta("city", lTagOf[Option[String]], false, lTagOf[String])
   val state: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("state", lTagOf[Option[String]], false, lTagOf[String])
-  val period: FHIRComponentFieldMeta[Option[Period]] =
-    FHIRComponentFieldMeta("period", lTagOf[Option[Period]], false, lTagOf[Period])
+  val period: FHIRComponentFieldMeta[Option[Period[Stage]]] =
+    FHIRComponentFieldMeta("period", lTagOf[Option[Period[Stage]]], false, lTagOf[Period[Stage]])
   val country: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("country", lTagOf[Option[String]], false, lTagOf[String])
   val district: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("district", lTagOf[Option[String]], false, lTagOf[String])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  val extension: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
   val postalCode: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("postalCode", lTagOf[Option[String]], false, lTagOf[String])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, use, `type`, text, line, city, state, period, country, district, extension, postalCode)
-  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-  override def fields(t: Address): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[ADDRESS_USE]](use, t.use),
-    FHIRComponentField[Option[ADDRESS_TYPE]](`type`, t.`type`),
-    FHIRComponentField[Option[String]](text, t.text),
-    FHIRComponentField[LitSeq[String]](line, t.line),
-    FHIRComponentField[Option[String]](city, t.city),
-    FHIRComponentField[Option[String]](state, t.state),
-    FHIRComponentField[Option[Period]](period, t.period),
-    FHIRComponentField[Option[String]](country, t.country),
-    FHIRComponentField[Option[String]](district, t.district),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[String]](postalCode, t.postalCode)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](t: ResourceType): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Address[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[ADDRESS_USE]](use, t.use),
+    FHIRComponentField[Stage, Option[ADDRESS_TYPE]](`type`, t.`type`),
+    FHIRComponentField[Stage, Option[String]](text, t.text),
+    FHIRComponentField[Stage, LitSeq[String]](line, t.line),
+    FHIRComponentField[Stage, Option[String]](city, t.city),
+    FHIRComponentField[Stage, Option[String]](state, t.state),
+    FHIRComponentField[Stage, Option[Period[Stage]]](period, t.period),
+    FHIRComponentField[Stage, Option[String]](country, t.country),
+    FHIRComponentField[Stage, Option[String]](district, t.district),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[String]](postalCode, t.postalCode)
   )
-  def extractId(t: Address): Option[String]           = t.id
-  def extractUse(t: Address): Option[ADDRESS_USE]     = t.use
-  def extractType(t: Address): Option[ADDRESS_TYPE]   = t.`type`
-  def extractText(t: Address): Option[String]         = t.text
-  def extractLine(t: Address): LitSeq[String]         = t.line
-  def extractCity(t: Address): Option[String]         = t.city
-  def extractState(t: Address): Option[String]        = t.state
-  def extractPeriod(t: Address): Option[Period]       = t.period
-  def extractCountry(t: Address): Option[String]      = t.country
-  def extractDistrict(t: Address): Option[String]     = t.district
-  def extractExtension(t: Address): LitSeq[Extension] = t.extension
-  def extractPostalCode(t: Address): Option[String]   = t.postalCode
+  def extractId(t: Address[Stage]): Option[String]           = t.id
+  def extractUse(t: Address[Stage]): Option[ADDRESS_USE]     = t.use
+  def extractType(t: Address[Stage]): Option[ADDRESS_TYPE]   = t.`type`
+  def extractText(t: Address[Stage]): Option[String]         = t.text
+  def extractLine(t: Address[Stage]): LitSeq[String]         = t.line
+  def extractCity(t: Address[Stage]): Option[String]         = t.city
+  def extractState(t: Address[Stage]): Option[String]        = t.state
+  def extractPeriod(t: Address[Stage]): Option[Period[Stage]]       = t.period
+  def extractCountry(t: Address[Stage]): Option[String]      = t.country
+  def extractDistrict(t: Address[Stage]): Option[String]     = t.district
+  def extractExtension[Stage](t: Address[Stage]): LitSeq[Extension[Stage]] = t.extension
+  def extractPostalCode(t: Address[Stage]): Option[String]   = t.postalCode
   override val thisName: String                       = "Address"
+<<<<<<< HEAD
   def unapply(
       o: Address): Option[(Option[String], Option[ADDRESS_USE], Option[ADDRESS_TYPE], Option[String], LitSeq[String], Option[String], Option[String], Option[Period], Option[String], Option[String], LitSeq[Extension], Option[String])] =
     Some((o.id, o.use, o.`type`, o.text, o.line, o.city, o.state, o.period, o.country, o.district, o.extension, o.postalCode))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Address] =
+=======
+  def unapply[Stage <: LifecycleStage: ValueOf](
+      o: Address[Stage]): Option[(Option[String], Option[ADDRESS_USE], Option[ADDRESS_TYPE], Option[String], LitSeq[String], Option[String], Option[String], Option[Period[Stage]], Option[String], Option[String], LitSeq[Extension[Stage]], Option[String])] =
+    Some(
+      (
+        o.id,
+        o.use,
+        o.`type`,
+        o.text,
+        o.line,
+        o.city,
+        o.state,
+        o.period,
+        o.country,
+        o.district,
+        o.extension,
+        o.postalCode))
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Address[Completed.type]] =
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
-        new Address(
+        new Address[Completed.type](
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[ADDRESS_USE]]("use", Some(None)),
           cursor.decodeAs[Option[ADDRESS_TYPE]]("type", Some(None)),
@@ -125,19 +151,23 @@ object Address extends CompanionFor[Address] {
           cursor.decodeAs[LitSeq[String]]("line", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("city", Some(None)),
           cursor.decodeAs[Option[String]]("state", Some(None)),
-          cursor.decodeAs[Option[Period]]("period", Some(None)),
+          cursor.decodeAs[Option[Period[Completed.type]]]("period", Some(None)),
           cursor.decodeAs[Option[String]]("country", Some(None)),
           cursor.decodeAs[Option[String]]("district", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("postalCode", Some(None)),
           decodeAttributes(cursor)
         )
       ))
 }
 
+<<<<<<< HEAD
 /** Base StructureDefinition for Address Type: An address expressed using postal conventions (as opposed to GPS or other location
   * definition formats). This data type may be used to convey addresses for use in delivering mail as well as for visiting
   * locations which might not be valid for mail delivery. There are a variety of postal address formats defined around the world.
+=======
+/** Base StructureDefinition for Address[Stage] Type: An address expressed using postal conventions (as opposed to GPS or other location definition formats).  This data type may be used to convey addresses for use in delivering mail as well as for visiting locations which might not be valid for mail delivery.  There are a variety of postal address formats defined around the world.
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   *
   * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
   * resource.)
@@ -178,7 +208,7 @@ object Address extends CompanionFor[Address] {
   *   - A postal code designating a region defined by the postal service.
   */
 @POJOBoilerplate
-class Address(
+class Address[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val use: Option[ADDRESS_USE] = None,
     val `type`: Option[ADDRESS_TYPE] = None,
@@ -186,12 +216,12 @@ class Address(
     val line: LitSeq[String] = LitSeq.empty,
     val city: Option[String] = None,
     val state: Option[String] = None,
-    val period: Option[Period] = None,
+    val period: Option[Period[Stage]] = None,
     val country: Option[String] = None,
     val district: Option[String] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     val postalCode: Option[String] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Address"
 }

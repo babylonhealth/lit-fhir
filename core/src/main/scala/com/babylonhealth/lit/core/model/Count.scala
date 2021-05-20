@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.QUANTITY_COMPARATOR
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Count extends CompanionFor[Count] {
   implicit def summonObjectAndCompanionCount380207674(o: Count): ObjectAndCompanion[Count, Count.type] =
     ObjectAndCompanion(o, this)
@@ -29,12 +30,19 @@ object Count extends CompanionFor[Count] {
   override val parentType: CompanionFor[ParentType] = Count
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Count")
   def apply(
+=======
+object Count extends CompanionFor[Count[_]] {
+  override type ResourceType[T] = Count[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Count
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Count")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       unit: Option[String] = None,
       code: Option[Code] = None,
       value: Option[BigDecimal] = None,
       system: Option[UriStr] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       comparator: Option[QUANTITY_COMPARATOR] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): Count = new Count(
@@ -57,10 +65,11 @@ object Count extends CompanionFor[Count] {
     FHIRComponentFieldMeta("value", lTagOf[Option[BigDecimal]], false, lTagOf[BigDecimal])
   val system: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("system", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
   val comparator: FHIRComponentFieldMeta[Option[QUANTITY_COMPARATOR]] =
     FHIRComponentFieldMeta("comparator", lTagOf[Option[QUANTITY_COMPARATOR]], false, lTagOf[QUANTITY_COMPARATOR])
+<<<<<<< HEAD
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, unit, code, value, system, extension, comparator)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Count): Seq[FHIRComponentField[_]] = Seq(
@@ -71,20 +80,34 @@ object Count extends CompanionFor[Count] {
     FHIRComponentField[Option[UriStr]](system, t.system),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[QUANTITY_COMPARATOR]](comparator, t.comparator)
+=======
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, unit, code, value, system, extension, comparator)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Count[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[String]](unit, t.unit),
+    FHIRComponentField[Stage, Option[Code]](code, t.code),
+    FHIRComponentField[Stage, Option[BigDecimal]](value, t.value),
+    FHIRComponentField[Stage, Option[UriStr]](system, t.system),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[QUANTITY_COMPARATOR]](comparator, t.comparator)
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   )
-  def extractId(t: Count): Option[String]                      = t.id
-  def extractUnit(t: Count): Option[String]                    = t.unit
-  def extractCode(t: Count): Option[Code]                      = t.code
-  def extractValue(t: Count): Option[BigDecimal]               = t.value
-  def extractSystem(t: Count): Option[UriStr]                  = t.system
-  def extractExtension(t: Count): LitSeq[Extension]            = t.extension
-  def extractComparator(t: Count): Option[QUANTITY_COMPARATOR] = t.comparator
-  override val thisName: String                                = "Count"
-  override val searchParams: Map[String, Count => Seq[Any]]    = Quantity.searchParams
-  def unapply(
-      o: Count): Option[(Option[String], Option[String], Option[Code], Option[BigDecimal], Option[UriStr], LitSeq[Extension], Option[QUANTITY_COMPARATOR])] =
+  def extractId(t: Count[_]): Option[String]                             = t.id
+  def extractUnit(t: Count[_]): Option[String]                           = t.unit
+  def extractCode(t: Count[_]): Option[Code]                             = t.code
+  def extractValue(t: Count[_]): Option[BigDecimal]                      = t.value
+  def extractSystem(t: Count[_]): Option[UriStr]                         = t.system
+  def extractExtension[Stage](t: Count[Stage]): LitSeq[Extension[Stage]] = t.extension
+  def extractComparator(t: Count[_]): Option[QUANTITY_COMPARATOR]        = t.comparator
+  override val thisName: String                                          = "Count"
+  override val searchParams: Map[String, Count[_] => Seq[Any]]           = Quantity.searchParams
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Count[
+    Stage]): Option[(Option[String], Option[String], Option[Code], Option[BigDecimal], Option[UriStr], LitSeq[Extension[Stage]], Option[QUANTITY_COMPARATOR])] =
     Some((o.id, o.unit, o.code, o.value, o.system, o.extension, o.comparator))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Count] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Count[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Count(
@@ -93,7 +116,7 @@ object Count extends CompanionFor[Count] {
           cursor.decodeAs[Option[Code]]("code", Some(None)),
           cursor.decodeAs[Option[BigDecimal]]("value", Some(None)),
           cursor.decodeAs[Option[UriStr]]("system", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[QUANTITY_COMPARATOR]]("comparator", Some(None)),
           decodeAttributes(cursor)
         )
@@ -131,13 +154,13 @@ object Count extends CompanionFor[Count] {
   *   to measurement issues; e.g. if the comparator is "<" , then the real value is < stated value.
   */
 @POJOBoilerplate
-class Count(
+class Count[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     override val unit: Option[String] = None,
     override val code: Option[Code] = None,
     override val value: Option[BigDecimal] = None,
     override val system: Option[UriStr] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     override val comparator: Option[QUANTITY_COMPARATOR] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Quantity(

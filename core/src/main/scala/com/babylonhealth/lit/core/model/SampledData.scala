@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object SampledData extends CompanionFor[SampledData] {
   implicit def summonObjectAndCompanionSampledData_992445521(o: SampledData): ObjectAndCompanion[SampledData, SampledData.type] =
     ObjectAndCompanion(o, this)
@@ -29,17 +30,24 @@ object SampledData extends CompanionFor[SampledData] {
   override val parentType: CompanionFor[ParentType] = SampledData
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SampledData")
   def apply(
+=======
+object SampledData extends CompanionFor[SampledData[_]] {
+  override type ResourceType[T] = SampledData[T]
+  override val baseType: CompanionFor[ResourceType[_]] = SampledData
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/SampledData")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       data: Option[String] = None,
-      origin: Quantity,
+      origin: Quantity[Stage],
       period: BigDecimal,
       factor: Option[BigDecimal] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       lowerLimit: Option[BigDecimal] = None,
       upperLimit: Option[BigDecimal] = None,
       dimensions: PositiveInt,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): SampledData = new SampledData(
+  ): SampledData[Stage] = new SampledData[Stage](
     id,
     data,
     origin,
@@ -55,57 +63,58 @@ object SampledData extends CompanionFor[SampledData] {
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val data: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("data", lTagOf[Option[String]], false, lTagOf[String])
-  val origin: FHIRComponentFieldMeta[Quantity] =
-    FHIRComponentFieldMeta("origin", lTagOf[Quantity], false, lTagOf[Quantity])
+  def origin[Stage]: FHIRComponentFieldMeta[Quantity[Stage]] =
+    FHIRComponentFieldMeta("origin", lTagOf[Quantity[Stage]], false, lTagOf[Quantity[Stage]])
   val period: FHIRComponentFieldMeta[BigDecimal] =
     FHIRComponentFieldMeta("period", lTagOf[BigDecimal], false, lTagOf[BigDecimal])
   val factor: FHIRComponentFieldMeta[Option[BigDecimal]] =
     FHIRComponentFieldMeta("factor", lTagOf[Option[BigDecimal]], false, lTagOf[BigDecimal])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
   val lowerLimit: FHIRComponentFieldMeta[Option[BigDecimal]] =
     FHIRComponentFieldMeta("lowerLimit", lTagOf[Option[BigDecimal]], false, lTagOf[BigDecimal])
   val upperLimit: FHIRComponentFieldMeta[Option[BigDecimal]] =
     FHIRComponentFieldMeta("upperLimit", lTagOf[Option[BigDecimal]], false, lTagOf[BigDecimal])
   val dimensions: FHIRComponentFieldMeta[PositiveInt] =
     FHIRComponentFieldMeta("dimensions", lTagOf[PositiveInt], false, lTagOf[PositiveInt])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, data, origin, period, factor, extension, lowerLimit, upperLimit, dimensions)
-  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-  override def fields(t: SampledData): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[String]](data, t.data),
-    FHIRComponentField[Quantity](origin, t.origin),
-    FHIRComponentField[BigDecimal](period, t.period),
-    FHIRComponentField[Option[BigDecimal]](factor, t.factor),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[BigDecimal]](lowerLimit, t.lowerLimit),
-    FHIRComponentField[Option[BigDecimal]](upperLimit, t.upperLimit),
-    FHIRComponentField[PositiveInt](dimensions, t.dimensions)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: SampledData[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[String]](data, t.data),
+    FHIRComponentField[Stage, Quantity[Stage]](origin, t.origin),
+    FHIRComponentField[Stage, BigDecimal](period, t.period),
+    FHIRComponentField[Stage, Option[BigDecimal]](factor, t.factor),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[BigDecimal]](lowerLimit, t.lowerLimit),
+    FHIRComponentField[Stage, Option[BigDecimal]](upperLimit, t.upperLimit),
+    FHIRComponentField[Stage, PositiveInt](dimensions, t.dimensions)
   )
-  def extractId(t: SampledData): Option[String]             = t.id
-  def extractData(t: SampledData): Option[String]           = t.data
-  def extractOrigin(t: SampledData): Quantity               = t.origin
-  def extractPeriod(t: SampledData): BigDecimal             = t.period
-  def extractFactor(t: SampledData): Option[BigDecimal]     = t.factor
-  def extractExtension(t: SampledData): LitSeq[Extension]   = t.extension
-  def extractLowerLimit(t: SampledData): Option[BigDecimal] = t.lowerLimit
-  def extractUpperLimit(t: SampledData): Option[BigDecimal] = t.upperLimit
-  def extractDimensions(t: SampledData): PositiveInt        = t.dimensions
-  override val thisName: String                             = "SampledData"
-  def unapply(
-      o: SampledData): Option[(Option[String], Option[String], Quantity, BigDecimal, Option[BigDecimal], LitSeq[Extension], Option[BigDecimal], Option[BigDecimal], PositiveInt)] =
+  def extractId(t: SampledData[_]): Option[String]                             = t.id
+  def extractData(t: SampledData[_]): Option[String]                           = t.data
+  def extractOrigin[Stage](t: SampledData[Stage]): Quantity[Stage]             = t.origin
+  def extractPeriod(t: SampledData[_]): BigDecimal                             = t.period
+  def extractFactor(t: SampledData[_]): Option[BigDecimal]                     = t.factor
+  def extractExtension[Stage](t: SampledData[Stage]): LitSeq[Extension[Stage]] = t.extension
+  def extractLowerLimit(t: SampledData[_]): Option[BigDecimal]                 = t.lowerLimit
+  def extractUpperLimit(t: SampledData[_]): Option[BigDecimal]                 = t.upperLimit
+  def extractDimensions(t: SampledData[_]): PositiveInt                        = t.dimensions
+  override val thisName: String                                                = "SampledData"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: SampledData[
+    Stage]): Option[(Option[String], Option[String], Quantity[Stage], BigDecimal, Option[BigDecimal], LitSeq[Extension[Stage]], Option[BigDecimal], Option[BigDecimal], PositiveInt)] =
     Some((o.id, o.data, o.origin, o.period, o.factor, o.extension, o.lowerLimit, o.upperLimit, o.dimensions))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[SampledData] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[SampledData[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new SampledData(
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[String]]("data", Some(None)),
-          cursor.decodeAs[Quantity]("origin", None),
+          cursor.decodeAs[Quantity[Completed.type]]("origin", None),
           cursor.decodeAs[BigDecimal]("period", None),
           cursor.decodeAs[Option[BigDecimal]]("factor", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[BigDecimal]]("lowerLimit", Some(None)),
           cursor.decodeAs[Option[BigDecimal]]("upperLimit", Some(None)),
           cursor.decodeAs[PositiveInt]("dimensions", None),
@@ -151,17 +160,17 @@ object SampledData extends CompanionFor[SampledData] {
   *   - all the sample points for a point in time will be recorded at once.
   */
 @POJOBoilerplate
-class SampledData(
+class SampledData[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val data: Option[String] = None,
-    val origin: Quantity,
+    val origin: Quantity[Stage],
     val period: BigDecimal,
     val factor: Option[BigDecimal] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     val lowerLimit: Option[BigDecimal] = None,
     val upperLimit: Option[BigDecimal] = None,
     val dimensions: PositiveInt,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "SampledData"
 }

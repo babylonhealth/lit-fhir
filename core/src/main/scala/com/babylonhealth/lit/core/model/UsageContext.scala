@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object UsageContext extends CompanionFor[UsageContext] {
   implicit def summonObjectAndCompanionUsageContext_348708541(
       o: UsageContext): ObjectAndCompanion[UsageContext, UsageContext.type] = ObjectAndCompanion(o, this)
@@ -30,12 +31,20 @@ object UsageContext extends CompanionFor[UsageContext] {
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/UsageContext")
   type ValueChoice = Choice[Union_1548929031]
   def apply(
+=======
+object UsageContext extends CompanionFor[UsageContext[_]] {
+  override type ResourceType[T] = UsageContext[T]
+  override val baseType: CompanionFor[ResourceType[_]] = UsageContext
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/UsageContext")
+  type ValueChoice[Stage] = Choice[Union_0119127717[Stage]]
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
-      code: Coding,
-      value: UsageContext.ValueChoice,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      code: Coding[Stage],
+      value: UsageContext.ValueChoice[Stage],
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): UsageContext = new UsageContext(
+  ): UsageContext[Stage] = new UsageContext[Stage](
     id,
     code,
     value,
@@ -44,6 +53,7 @@ object UsageContext extends CompanionFor[UsageContext] {
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
+<<<<<<< HEAD
   val code: FHIRComponentFieldMeta[Coding] =
     FHIRComponentFieldMeta("code", lTagOf[Coding], false, lTagOf[Coding])
   val value: FHIRComponentFieldMeta[UsageContext.ValueChoice] =
@@ -66,13 +76,47 @@ object UsageContext extends CompanionFor[UsageContext] {
   def unapply(o: UsageContext): Option[(Option[String], Coding, UsageContext.ValueChoice, LitSeq[Extension])] = Some(
     (o.id, o.code, o.value, o.extension))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[UsageContext] =
+=======
+  def code[Stage]: FHIRComponentFieldMeta[Coding[Stage]] =
+    FHIRComponentFieldMeta("code", lTagOf[Coding[Stage]], false, lTagOf[Coding[Stage]])
+  def value[Stage]: FHIRComponentFieldMeta[UsageContext.ValueChoice[Stage]] =
+    FHIRComponentFieldMeta("value", lTagOf[UsageContext.ValueChoice[Stage]], true, lTagOf[Union_0119127717[Stage]])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, value, extension)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: UsageContext[Stage]): Seq[FHIRComponentField[Stage, _]] =
+    Seq(
+      FHIRComponentField[Stage, Option[String]](id, t.id),
+      FHIRComponentField[Stage, Coding[Stage]](code, t.code),
+      FHIRComponentField[Stage, UsageContext.ValueChoice[Stage]](value, t.value),
+      FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension)
+    )
+  def extractId(t: UsageContext[_]): Option[String]                                = t.id
+  def extractCode[Stage](t: UsageContext[Stage]): Coding[Stage]                    = t.code
+  def extractValue[Stage](t: UsageContext[Stage]): UsageContext.ValueChoice[Stage] = t.value
+  def extractExtension[Stage](t: UsageContext[Stage]): LitSeq[Extension[Stage]]    = t.extension
+  override val thisName: String                                                    = "UsageContext"
+  def unapply[Stage <: LifecycleStage: ValueOf](
+      o: UsageContext[
+        Stage]): Option[(Option[String], Coding[Stage], UsageContext.ValueChoice[Stage], LitSeq[Extension[Stage]])] =
+    Some((o.id, o.code, o.value, o.extension))
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[UsageContext[Completed.type]] =
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new UsageContext(
           cursor.decodeAs[Option[String]]("id", Some(None)),
+<<<<<<< HEAD
           cursor.decodeAs[Coding]("code", None),
           cursor.decodeRef[Union_1548929031]("value"),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+=======
+          cursor.decodeAs[Coding[Completed.type]]("code", None),
+          cursor.decodeRef[Union_0119127717[Completed.type]]("value"),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
           decodeAttributes(cursor)
         )
       ))
@@ -101,12 +145,12 @@ object UsageContext extends CompanionFor[UsageContext] {
   *   of the extension.
   */
 @POJOBoilerplate
-class UsageContext(
+class UsageContext[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
-    val code: Coding,
-    val value: UsageContext.ValueChoice,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    val code: Coding[Stage],
+    val value: UsageContext.ValueChoice[Stage],
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "UsageContext"
 }

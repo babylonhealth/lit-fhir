@@ -47,6 +47,7 @@ case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor
 abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecoderHelpers with OptionSugar {
   type ResourceType >: T <: FHIRObject
   type ParentType >: T <: FHIRObject
+  type ResourceType[Stage <: LifecycleStage] >: T <: FHIRObjectRaw[_]
   private val log: Logger                          = LoggerFactory.getLogger(getClass)
   val thisClassTag: ClassTag[T @uncheckedVariance] = implicitly[ClassTag[T]]
   val thisName: String
@@ -88,7 +89,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecode
       obj                     <- cursor.value.asObject.toSeq
       (fieldName, fieldValue) <- obj.toIterable if fieldName.head == '_'
       elementValue            <- Element.decodeThis(fieldValue.hcursor).toOption
-      fieldMeta               <- fieldsMeta.find(_.name == fieldName.tail)
+      fieldMeta               <- fieldsMeta[Completed.type].find(_.name == fieldName.tail)
       phantom = params.createPhantomValues && cursor.downField(fieldName.tail).success.isEmpty
     } yield fieldMeta -> PrimitiveElementInfo(elementValue, phantom))
     else FHIRObject.emptyAtts
@@ -112,14 +113,14 @@ abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecode
           }
       }
 
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]]
 
-  def cast(t: ResourceType): Try[T @uncheckedVariance] =
-    fieldsFromParent(t).map(fs => classConstructor.newInstance(fs.map(_.value) :+ t.primitiveAttributes: _*))
+  def cast[Stage <: LifecycleStage: ValueOf](t: ResourceType[Stage]): Try[T @uncheckedVariance] =
+    fieldsFromParent[Stage](t).map(fs => classConstructor.newInstance(fs.map(_.value) :+ t.primitiveAttributes: _*))
 
-  def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]]
+  def fieldsFromParent[Stage <: LifecycleStage: ValueOf](t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]]
 
-  def fields(t: T): Seq[FHIRComponentField[_]]
+  def fields[Stage <: LifecycleStage: ValueOf](t: ResourceType[Stage]): Seq[FHIRComponentField[Stage, _]]
 
   val parentType: CompanionFor[ParentType]
 
@@ -207,7 +208,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecode
       }
     }
 
-  def decoder(implicit params: DecoderParams): Decoder[T @uncheckedVariance] =
+  def decoder(implicit params: DecoderParams): Decoder[ResourceType[Completed.type] @uncheckedVariance] =
     Decoder.instanceTry {
       parameterisedDecode(_, params)
     }

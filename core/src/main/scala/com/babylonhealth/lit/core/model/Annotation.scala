@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Annotation extends CompanionFor[Annotation] {
   implicit def summonObjectAndCompanionAnnotation_899367708(o: Annotation): ObjectAndCompanion[Annotation, Annotation.type] =
     ObjectAndCompanion(o, this)
@@ -30,13 +31,21 @@ object Annotation extends CompanionFor[Annotation] {
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Annotation")
   type AuthorChoice = Choice[UnionReferenceOrString]
   def apply(
+=======
+object Annotation extends CompanionFor[Annotation[_]] {
+  override type ResourceType[T] = Annotation[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Annotation
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Annotation")
+  type AuthorChoice[T] = Choice[Union_1128709984[T]]
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       time: Option[FHIRDateTime] = None,
       text: Markdown,
-      extension: LitSeq[Extension] = LitSeq.empty,
-      author: Option[Annotation.AuthorChoice] = None,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
+      author: Option[Annotation.AuthorChoice[Stage]] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Annotation = new Annotation(
+  ): Annotation[Stage] = new Annotation[Stage](
     id,
     time,
     text,
@@ -50,6 +59,7 @@ object Annotation extends CompanionFor[Annotation] {
     FHIRComponentFieldMeta("time", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val text: FHIRComponentFieldMeta[Markdown] =
     FHIRComponentFieldMeta("text", lTagOf[Markdown], false, lTagOf[Markdown])
+<<<<<<< HEAD
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val author: FHIRComponentFieldMeta[Option[Annotation.AuthorChoice]] =
@@ -62,32 +72,57 @@ object Annotation extends CompanionFor[Annotation] {
     FHIRComponentField[Markdown](text, t.text),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[Annotation.AuthorChoice]](author, t.author)
+=======
+  def extension[Stage <: LifecycleStage: ValueOf]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def author[Stage <: LifecycleStage: ValueOf]: FHIRComponentFieldMeta[Option[Annotation.AuthorChoice[Stage]]] =
+    FHIRComponentFieldMeta("author", lTagOf[Option[Annotation.AuthorChoice[_]]], true, lTagOf[Union_1128709984[_]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, time, text, extension, author)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Annotation[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[FHIRDateTime]](time, t.time),
+    FHIRComponentField[Stage, Markdown](text, t.text),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[Annotation.AuthorChoice[Stage]]](author, t.author)
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   )
-  def extractId(t: Annotation): Option[String]                      = t.id
-  def extractTime(t: Annotation): Option[FHIRDateTime]              = t.time
-  def extractText(t: Annotation): Markdown                          = t.text
-  def extractExtension(t: Annotation): LitSeq[Extension]            = t.extension
-  def extractAuthor(t: Annotation): Option[Annotation.AuthorChoice] = t.author
-  override val thisName: String                                     = "Annotation"
-  def unapply(
-      o: Annotation): Option[(Option[String], Option[FHIRDateTime], Markdown, LitSeq[Extension], Option[Annotation.AuthorChoice])] =
+  def extractId(t: Annotation[_]): Option[String]                                        = t.id
+  def extractTime(t: Annotation[_]): Option[FHIRDateTime]                                = t.time
+  def extractText(t: Annotation[_]): Markdown                                            = t.text
+  def extractExtension[Stage](t: Annotation[Stage]): LitSeq[Extension[Stage]]            = t.extension
+  def extractAuthor[Stage](t: Annotation[Stage]): Option[Annotation.AuthorChoice[Stage]] = t.author
+  override val thisName: String                                                          = "Annotation"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Annotation[
+    Stage]): Option[(Option[String], Option[FHIRDateTime], Markdown, LitSeq[Extension[Stage]], Option[Annotation.AuthorChoice[Stage]])] =
     Some((o.id, o.time, o.text, o.extension, o.author))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Annotation] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Annotation[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
-        new Annotation(
+        new Annotation[Completed.type](
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[FHIRDateTime]]("time", Some(None)),
           cursor.decodeAs[Markdown]("text", None),
+<<<<<<< HEAD
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeOptRef[UnionReferenceOrString]("author"),
+=======
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
+          cursor.decodeOptRef[Union_1128709984[Completed.type]]("author"),
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
           decodeAttributes(cursor)
         )
       ))
 }
 
+<<<<<<< HEAD
 /** Base StructureDefinition for Annotation Type: A text note which also contains information about who made the statement and
   * when.
+=======
+/** Base StructureDefinition for Annotation[Stage] Type: A  text note which also  contains information about who made the statement and when.
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   *
   * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
   * resource.)
@@ -110,13 +145,13 @@ object Annotation extends CompanionFor[Annotation] {
   *   - The individual responsible for making the annotation.
   */
 @POJOBoilerplate
-class Annotation(
+class Annotation[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val time: Option[FHIRDateTime] = None,
     val text: Markdown,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
-    val author: Option[Annotation.AuthorChoice] = None,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
+    val author: Option[Annotation.AuthorChoice[Stage]] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Annotation"
 }

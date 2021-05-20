@@ -102,6 +102,7 @@ lazy val core = project
       "io.circe"               %% "circe-core"                 % V.circe,
       "io.circe"               %% "circe-generic"              % V.circe,
       "io.circe"               %% "circe-parser"               % V.circe,
+      "org.typelevel"          %% "cats-core"                  % "2.6.1",
       "com.typesafe"            % "config"                     % "1.4.0",
       "ch.qos.logback"          % "logback-classic"            % V.logback,
       "io.github.classgraph"    % "classgraph"                 % "4.8.105",

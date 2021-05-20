@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.IDENTIFIER_USE
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Identifier extends CompanionFor[Identifier] {
   implicit def summonObjectAndCompanionIdentifier_962757026(o: Identifier): ObjectAndCompanion[Identifier, Identifier.type] =
     ObjectAndCompanion(o, this)
@@ -29,16 +30,23 @@ object Identifier extends CompanionFor[Identifier] {
   override val parentType: CompanionFor[ParentType] = Identifier
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Identifier")
   def apply(
+=======
+object Identifier extends CompanionFor[Identifier[_]] {
+  override type ResourceType[T] = Identifier[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Identifier
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Identifier")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       use: Option[IDENTIFIER_USE] = None,
-      `type`: Option[CodeableConcept] = None,
+      `type`: Option[CodeableConcept[Stage]] = None,
       value: Option[String] = None,
       system: Option[UriStr] = None,
-      period: Option[Period] = None,
-      assigner: Option[Reference] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      period: Option[Period[Stage]] = None,
+      assigner: Option[Reference[Stage]] = None,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Identifier = new Identifier(
+  ): Identifier[Stage] = new Identifier[Stage](
     id,
     use,
     `type`,
@@ -53,12 +61,13 @@ object Identifier extends CompanionFor[Identifier] {
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val use: FHIRComponentFieldMeta[Option[IDENTIFIER_USE]] =
     FHIRComponentFieldMeta("use", lTagOf[Option[IDENTIFIER_USE]], false, lTagOf[IDENTIFIER_USE])
-  val `type`: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-    FHIRComponentFieldMeta("type", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+  def `type`[Stage]: FHIRComponentFieldMeta[Option[CodeableConcept[Stage]]] =
+    FHIRComponentFieldMeta("type", lTagOf[Option[CodeableConcept[Stage]]], false, lTagOf[CodeableConcept[Stage]])
   val value: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("value", lTagOf[Option[String]], false, lTagOf[String])
   val system: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("system", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
+<<<<<<< HEAD
   val period: FHIRComponentFieldMeta[Option[Period]] =
     FHIRComponentFieldMeta("period", lTagOf[Option[Period]], false, lTagOf[Period])
   val assigner: FHIRComponentFieldMeta[Option[Reference]] =
@@ -76,31 +85,52 @@ object Identifier extends CompanionFor[Identifier] {
     FHIRComponentField[Option[Period]](period, t.period),
     FHIRComponentField[Option[Reference]](assigner, t.assigner),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension)
+=======
+  def period[Stage]: FHIRComponentFieldMeta[Option[Period[Stage]]] =
+    FHIRComponentFieldMeta("period", lTagOf[Option[Period[Stage]]], false, lTagOf[Period[Stage]])
+  def assigner[Stage]: FHIRComponentFieldMeta[Option[Reference[Stage]]] =
+    FHIRComponentFieldMeta("assigner", lTagOf[Option[Reference[Stage]]], false, lTagOf[Reference[Stage]])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, use, `type`, value, system, period, assigner, extension)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Identifier[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[IDENTIFIER_USE]](use, t.use),
+    FHIRComponentField[Stage, Option[CodeableConcept[Stage]]](`type`, t.`type`),
+    FHIRComponentField[Stage, Option[String]](value, t.value),
+    FHIRComponentField[Stage, Option[UriStr]](system, t.system),
+    FHIRComponentField[Stage, Option[Period[Stage]]](period, t.period),
+    FHIRComponentField[Stage, Option[Reference[Stage]]](assigner, t.assigner),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension)
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   )
-  def extractId(t: Identifier): Option[String]            = t.id
-  def extractUse(t: Identifier): Option[IDENTIFIER_USE]   = t.use
-  def extractType(t: Identifier): Option[CodeableConcept] = t.`type`
-  def extractValue(t: Identifier): Option[String]         = t.value
-  def extractSystem(t: Identifier): Option[UriStr]        = t.system
-  def extractPeriod(t: Identifier): Option[Period]        = t.period
-  def extractAssigner(t: Identifier): Option[Reference]   = t.assigner
-  def extractExtension(t: Identifier): LitSeq[Extension]  = t.extension
-  override val thisName: String                           = "Identifier"
-  def unapply(
-      o: Identifier): Option[(Option[String], Option[IDENTIFIER_USE], Option[CodeableConcept], Option[String], Option[UriStr], Option[Period], Option[Reference], LitSeq[Extension])] =
+  def extractId(t: Identifier[_]): Option[String]                              = t.id
+  def extractUse(t: Identifier[_]): Option[IDENTIFIER_USE]                     = t.use
+  def extractType[Stage](t: Identifier[Stage]): Option[CodeableConcept[Stage]] = t.`type`
+  def extractValue(t: Identifier[_]): Option[String]                           = t.value
+  def extractSystem(t: Identifier[_]): Option[UriStr]                          = t.system
+  def extractPeriod[Stage](t: Identifier[Stage]): Option[Period[Stage]]        = t.period
+  def extractAssigner[Stage](t: Identifier[Stage]): Option[Reference[Stage]]   = t.assigner
+  def extractExtension[Stage](t: Identifier[Stage]): LitSeq[Extension[Stage]]  = t.extension
+  override val thisName: String                                                = "Identifier"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Identifier[
+    Stage]): Option[(Option[String], Option[IDENTIFIER_USE], Option[CodeableConcept[Stage]], Option[String], Option[UriStr], Option[Period[Stage]], Option[Reference[Stage]], LitSeq[Extension[Stage]])] =
     Some((o.id, o.use, o.`type`, o.value, o.system, o.period, o.assigner, o.extension))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Identifier] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Identifier[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
-        new Identifier(
+        new Identifier[Completed.type](
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[IDENTIFIER_USE]]("use", Some(None)),
-          cursor.decodeAs[Option[CodeableConcept]]("type", Some(None)),
+          cursor.decodeAs[Option[CodeableConcept[Completed.type]]]("type", Some(None)),
           cursor.decodeAs[Option[String]]("value", Some(None)),
           cursor.decodeAs[Option[UriStr]]("system", Some(None)),
-          cursor.decodeAs[Option[Period]]("period", Some(None)),
-          cursor.decodeAs[Option[Reference]]("assigner", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Period[Completed.type]]]("period", Some(None)),
+          cursor.decodeAs[Option[Reference[Completed.type]]]("assigner", Some(None)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
       ))
@@ -136,16 +166,16 @@ object Identifier extends CompanionFor[Identifier] {
   *   of the extension.
   */
 @POJOBoilerplate
-class Identifier(
+class Identifier[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val use: Option[IDENTIFIER_USE] = None,
-    val `type`: Option[CodeableConcept] = None,
+    val `type`: Option[CodeableConcept[Stage]] = None,
     val value: Option[String] = None,
     val system: Option[UriStr] = None,
-    val period: Option[Period] = None,
-    val assigner: Option[Reference] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    val period: Option[Period[Stage]] = None,
+    val assigner: Option[Reference[Stage]] = None,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Identifier"
 }

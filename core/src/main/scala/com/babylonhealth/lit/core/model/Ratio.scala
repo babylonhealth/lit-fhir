@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Ratio extends CompanionFor[Ratio] {
   implicit def summonObjectAndCompanionRatio393642294(o: Ratio): ObjectAndCompanion[Ratio, Ratio.type] =
     ObjectAndCompanion(o, this)
@@ -29,12 +30,19 @@ object Ratio extends CompanionFor[Ratio] {
   override val parentType: CompanionFor[ParentType] = Ratio
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Ratio")
   def apply(
+=======
+object Ratio extends CompanionFor[Ratio[_]] {
+  override type ResourceType[T] = Ratio[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Ratio
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Ratio")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
-      numerator: Option[Quantity] = None,
-      denominator: Option[Quantity] = None,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
+      numerator: Option[Quantity[Stage]] = None,
+      denominator: Option[Quantity[Stage]] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Ratio = new Ratio(
+  ): Ratio[Stage] = new Ratio[Stage](
     id,
     extension,
     numerator,
@@ -43,35 +51,39 @@ object Ratio extends CompanionFor[Ratio] {
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val numerator: FHIRComponentFieldMeta[Option[Quantity]] =
-    FHIRComponentFieldMeta("numerator", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
-  val denominator: FHIRComponentFieldMeta[Option[Quantity]] =
-    FHIRComponentFieldMeta("denominator", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension, numerator, denominator)
-  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-  override def fields(t: Ratio): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Quantity]](numerator, t.numerator),
-    FHIRComponentField[Option[Quantity]](denominator, t.denominator)
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def numerator[Stage]: FHIRComponentFieldMeta[Option[Quantity[Stage]]] =
+    FHIRComponentFieldMeta("numerator", lTagOf[Option[Quantity[Stage]]], false, lTagOf[Quantity[Stage]])
+  def denominator[Stage]: FHIRComponentFieldMeta[Option[Quantity[Stage]]] =
+    FHIRComponentFieldMeta("denominator", lTagOf[Option[Quantity[Stage]]], false, lTagOf[Quantity[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, extension, numerator, denominator)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Ratio[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[Quantity[Stage]]](numerator, t.numerator),
+    FHIRComponentField[Stage, Option[Quantity[Stage]]](denominator, t.denominator)
   )
-  def extractId(t: Ratio): Option[String]            = t.id
-  def extractExtension(t: Ratio): LitSeq[Extension]  = t.extension
-  def extractNumerator(t: Ratio): Option[Quantity]   = t.numerator
-  def extractDenominator(t: Ratio): Option[Quantity] = t.denominator
-  override val thisName: String                      = "Ratio"
-  def unapply(o: Ratio): Option[(Option[String], LitSeq[Extension], Option[Quantity], Option[Quantity])] = Some(
-    (o.id, o.extension, o.numerator, o.denominator))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Ratio] =
+  def extractId(t: Ratio[_]): Option[String]                              = t.id
+  def extractExtension[Stage](t: Ratio[Stage]): LitSeq[Extension[Stage]]  = t.extension
+  def extractNumerator[Stage](t: Ratio[Stage]): Option[Quantity[Stage]]   = t.numerator
+  def extractDenominator[Stage](t: Ratio[Stage]): Option[Quantity[Stage]] = t.denominator
+  override val thisName: String                                           = "Ratio"
+  def unapply[Stage <: LifecycleStage: ValueOf](
+      o: Ratio[
+        Stage]): Option[(Option[String], LitSeq[Extension[Stage]], Option[Quantity[Stage]], Option[Quantity[Stage]])] =
+    Some((o.id, o.extension, o.numerator, o.denominator))
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Ratio[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Ratio(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          cursor.decodeAs[Option[Quantity]]("numerator", Some(None)),
-          cursor.decodeAs[Option[Quantity]]("denominator", Some(None)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Quantity[Completed.type]]]("numerator", Some(None)),
+          cursor.decodeAs[Option[Quantity[Completed.type]]]("denominator", Some(None)),
           decodeAttributes(cursor)
         )
       ))
@@ -98,12 +110,12 @@ object Ratio extends CompanionFor[Ratio] {
   *   - The value of the denominator.
   */
 @POJOBoilerplate
-class Ratio(
+class Ratio[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
-    val numerator: Option[Quantity] = None,
-    val denominator: Option[Quantity] = None,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
+    val numerator: Option[Quantity[Stage]] = None,
+    val denominator: Option[Quantity[Stage]] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Ratio"
 }

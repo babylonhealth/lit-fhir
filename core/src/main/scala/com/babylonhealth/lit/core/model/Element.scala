@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Element extends CompanionFor[Element] {
   implicit def summonObjectAndCompanionElement1981657447(o: Element): ObjectAndCompanion[Element, Element.type] =
     ObjectAndCompanion(o, this)
@@ -29,36 +30,46 @@ object Element extends CompanionFor[Element] {
   override val parentType: CompanionFor[ParentType] = Element
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Element")
   def apply(
+=======
+object Element extends CompanionFor[Element[_]] {
+  override type ResourceType[Stage] = Element[Stage]
+  override val baseType: CompanionFor[ResourceType[_]] = Element
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Element")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Element = new Element(
+  ): Element[Stage] = new Element[Stage](
     id,
     extension,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension)
-  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-  override def fields(t: Element): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension)
-  )
-  def extractId(t: Element): Option[String]                            = t.id
-  def extractExtension(t: Element): LitSeq[Extension]                  = t.extension
-  override val thisName: String                                        = "Element"
-  def unapply(o: Element): Option[(Option[String], LitSeq[Extension])] = Some((o.id, o.extension))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Element] =
+  def extension[Stage <: LifecycleStage: ValueOf]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] =
+    Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: ResourceType[Stage]): Seq[FHIRComponentField[Stage, _]] =
+    Seq(
+      FHIRComponentField[Stage, Option[String]](id, t.id),
+      FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension)
+    )
+  def extractId(t: Element[_]): Option[String]                                                        = t.id
+  def extractExtension[Stage <: LifecycleStage: ValueOf](t: Element[Stage]): LitSeq[Extension[Stage]] = t.extension
+  override val thisName: String                                                                       = "Element"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Element[Stage]): Option[(Option[String], LitSeq[Extension[Stage]])] =
+    Some((o.id, o.extension))
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Element[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Element(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          decodeAttributes(cursor)
-        )
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
+          decodeAttributes(cursor))
       ))
 }
 
@@ -76,10 +87,10 @@ object Element extends CompanionFor[Element] {
   *   of the extension.
   */
 @POJOBoilerplate
-class Element(
+class Element[Stage <: LifecycleStage: ValueOf](
     val id: Option[String] = None,
-    val extension: LitSeq[Extension] = LitSeq.empty,
+    val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends FHIRObject(primitiveAttributes = primitiveAttributes) {
+) extends FHIRObjectRaw(valueOf[Stage], primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Element"
 }

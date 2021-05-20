@@ -44,9 +44,9 @@
 //  val field: FHIRComponentFieldMeta[Choice[String \/ Boolean]] =
 //    FHIRComponentFieldMeta("field", lTagOf[Choice[String \/ Boolean]], true, lTagOf[Choice[String \/ Boolean]])
 //  val fieldsMeta = Seq(field)
-//  override def fields(t: TestUnionWrapper1): Seq[FHIRComponentField[_]] =
+//  override def fields[Stage <: LifecycleStage: ValueOf](t: TestUnionWrapper1): Seq[FHIRComponentField[Stage, _]] =
 //    Seq(FHIRComponentField(field, t.field))
-//  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper1] = Try(
+//  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper1[Completed.type]] = Try(
 //    TestUnionWrapper1(cursor.decodeRef("field"))
 //  )
 //}
@@ -61,9 +61,9 @@
 //      true,
 //      lTagOf[Choice[String \/ Boolean \/ Int]])
 //  val fieldsMeta = Seq(field)
-//  override def fields(t: TestUnionWrapper2): Seq[FHIRComponentField[_]] =
+//  override def fields[Stage <: LifecycleStage: ValueOf](t: TestUnionWrapper2): Seq[FHIRComponentField[Stage, _]] =
 //    Seq(FHIRComponentField(field, t.field))
-//  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper2] = Try(
+//  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper2[Completed.type]] = Try(
 //    TestUnionWrapper2(cursor.decodeRef("field"))
 //  )
 //}
@@ -79,12 +79,12 @@
 //      lTagOf[Choice[String \/ Boolean \/ Int]])
 //  val fieldCode: FHIRComponentFieldMeta[Code] = FHIRComponentFieldMeta("fieldCode", lTagOf[Code], false, lTagOf[Code])
 //  val fieldsMeta                              = Seq(field, fieldCode)
-//  override def fields(t: TestUnionWrapper3): Seq[FHIRComponentField[_]] =
+//  override def fields[Stage <: LifecycleStage: ValueOf](t: TestUnionWrapper3): Seq[FHIRComponentField[Stage, _]] =
 //    Seq(
 //      FHIRComponentField(field, t.field),
 //      FHIRComponentField(fieldCode, t.fieldCode)
 //    )
-//  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper3] = Try(
+//  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper3[Completed.type]] = Try(
 //    TestUnionWrapper3(
 //      cursor.decodeRef("field"),
 //      cursor.decodeAs[Code]("fieldCode", None)

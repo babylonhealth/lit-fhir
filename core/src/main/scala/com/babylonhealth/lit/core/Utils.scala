@@ -32,11 +32,11 @@ trait Utils {
       stub + end.replace(".", "$")
     } else repr
   }.replace("$$", "$")
-  def companionOf[T <: FHIRObject: ClassTag](implicit tag: LTag[T]): CompanionFor[T] =
+  def companionOf[T <: FHIRObjectRaw[_]: ClassTag](implicit tag: LTag[T]): CompanionFor[T] =
     Try[CompanionFor[T]](
       Class.forName(classTag[T].runtimeClass.getName + "$").getField("MODULE$").get(null).asInstanceOf[CompanionFor[T]]
     ).fold(e => throw new RuntimeException(s"Could not get companion object for type ${tag.tag.longName}", e), identity)
 
-  def decodeMethodFor[T <: FHIRObject: ClassTag](implicit tag: LTag[T], params: DecoderParams): HCursor => Try[T] =
+  def decodeMethodFor[T <: FHIRObjectRaw[_]: ClassTag](implicit tag: LTag[T], params: DecoderParams): HCursor => Try[T] =
     companionOf(classTag[T], tag).decoder(params)(_).toTry
 }

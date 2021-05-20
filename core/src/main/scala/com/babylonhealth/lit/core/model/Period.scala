@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Period extends CompanionFor[Period] {
   implicit def summonObjectAndCompanionPeriod_735614474(o: Period): ObjectAndCompanion[Period, Period.type] =
     ObjectAndCompanion(o, this)
@@ -29,12 +30,19 @@ object Period extends CompanionFor[Period] {
   override val parentType: CompanionFor[ParentType] = Period
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Period")
   def apply(
+=======
+object Period extends CompanionFor[Period[_]] {
+  override type ResourceType[T] = Period[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Period
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Period")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       end: Option[FHIRDateTime] = None,
       start: Option[FHIRDateTime] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Period = new Period(
+  ): Period[Stage] = new Period[Stage](
     id,
     end,
     start,
@@ -47,16 +55,18 @@ object Period extends CompanionFor[Period] {
     FHIRComponentFieldMeta("end", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val start: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("start", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, end, start, extension)
-  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-  override def fields(t: Period): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[FHIRDateTime]](end, t.end),
-    FHIRComponentField[Option[FHIRDateTime]](start, t.start),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension)
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] = Seq(id, end, start, extension)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Period[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[FHIRDateTime]](end, t.end),
+    FHIRComponentField[Stage, Option[FHIRDateTime]](start, t.start),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension)
   )
+<<<<<<< HEAD
   def extractId(t: Period): Option[String]           = t.id
   def extractEnd(t: Period): Option[FHIRDateTime]    = t.end
   def extractStart(t: Period): Option[FHIRDateTime]  = t.start
@@ -65,13 +75,25 @@ object Period extends CompanionFor[Period] {
   def unapply(o: Period): Option[(Option[String], Option[FHIRDateTime], Option[FHIRDateTime], LitSeq[Extension])] = Some(
     (o.id, o.end, o.start, o.extension))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Period] =
+=======
+  def extractId(t: Period[_]): Option[String]                             = t.id
+  def extractEnd(t: Period[_]): Option[FHIRDateTime]                      = t.end
+  def extractStart(t: Period[_]): Option[FHIRDateTime]                    = t.start
+  def extractExtension[Stage](t: Period[Stage]): LitSeq[Extension[Stage]] = t.extension
+  override val thisName: String                                           = "Period"
+  def unapply[Stage <: LifecycleStage: ValueOf](
+      o: Period[
+        Stage]): Option[(Option[String], Option[FHIRDateTime], Option[FHIRDateTime], LitSeq[Extension[Stage]])] =
+    Some((o.id, o.end, o.start, o.extension))
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Period[Completed.type]] =
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Period(
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[FHIRDateTime]]("end", Some(None)),
           cursor.decodeAs[Option[FHIRDateTime]]("start", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
       ))
@@ -100,12 +122,12 @@ object Period extends CompanionFor[Period] {
   *   of the extension.
   */
 @POJOBoilerplate
-class Period(
+class Period[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val end: Option[FHIRDateTime] = None,
     val start: Option[FHIRDateTime] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Period"
 }

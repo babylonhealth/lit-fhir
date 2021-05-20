@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Range extends CompanionFor[Range] {
   implicit def summonObjectAndCompanionRange393636456(o: Range): ObjectAndCompanion[Range, Range.type] =
     ObjectAndCompanion(o, this)
@@ -29,12 +30,19 @@ object Range extends CompanionFor[Range] {
   override val parentType: CompanionFor[ParentType] = Range
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Range")
   def apply(
+=======
+object Range extends CompanionFor[Range[_]] {
+  override type ResourceType[T] = Range[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Range
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Range")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
-      low: Option[Quantity] = None,
-      high: Option[Quantity] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      low: Option[Quantity[Stage]] = None,
+      high: Option[Quantity[Stage]] = None,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Range = new Range(
+  ): Range[Stage] = new Range[Stage](
     id,
     low,
     high,
@@ -43,35 +51,38 @@ object Range extends CompanionFor[Range] {
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val low: FHIRComponentFieldMeta[Option[Quantity]] =
-    FHIRComponentFieldMeta("low", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
-  val high: FHIRComponentFieldMeta[Option[Quantity]] =
-    FHIRComponentFieldMeta("high", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, low, high, extension)
-  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-  override def fields(t: Range): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Quantity]](low, t.low),
-    FHIRComponentField[Option[Quantity]](high, t.high),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension)
+  def low[Stage]: FHIRComponentFieldMeta[Option[Quantity[Stage]]] =
+    FHIRComponentFieldMeta("low", lTagOf[Option[Quantity[Stage]]], false, lTagOf[Quantity[Stage]])
+  def high[Stage]: FHIRComponentFieldMeta[Option[Quantity[Stage]]] =
+    FHIRComponentFieldMeta("high", lTagOf[Option[Quantity[Stage]]], false, lTagOf[Quantity[Stage]])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] = Seq(id, low, high, extension)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Range[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[Quantity[Stage]]](low, t.low),
+    FHIRComponentField[Stage, Option[Quantity[Stage]]](high, t.high),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension)
   )
-  def extractId(t: Range): Option[String]           = t.id
-  def extractLow(t: Range): Option[Quantity]        = t.low
-  def extractHigh(t: Range): Option[Quantity]       = t.high
-  def extractExtension(t: Range): LitSeq[Extension] = t.extension
-  override val thisName: String                     = "Range"
-  def unapply(o: Range): Option[(Option[String], Option[Quantity], Option[Quantity], LitSeq[Extension])] = Some(
-    (o.id, o.low, o.high, o.extension))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Range] =
+  def extractId(t: Range[_]): Option[String]                             = t.id
+  def extractLow[Stage](t: Range[Stage]): Option[Quantity[Stage]]        = t.low
+  def extractHigh[Stage](t: Range[Stage]): Option[Quantity[Stage]]       = t.high
+  def extractExtension[Stage](t: Range[Stage]): LitSeq[Extension[Stage]] = t.extension
+  override val thisName: String                                          = "Range"
+  def unapply[Stage <: LifecycleStage: ValueOf](
+      o: Range[
+        Stage]): Option[(Option[String], Option[Quantity[Stage]], Option[Quantity[Stage]], LitSeq[Extension[Stage]])] =
+    Some((o.id, o.low, o.high, o.extension))
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Range[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Range(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[Option[Quantity]]("low", Some(None)),
-          cursor.decodeAs[Option[Quantity]]("high", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Quantity[Completed.type]]]("low", Some(None)),
+          cursor.decodeAs[Option[Quantity[Completed.type]]]("high", Some(None)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
       ))
@@ -98,12 +109,12 @@ object Range extends CompanionFor[Range] {
   *   of the extension.
   */
 @POJOBoilerplate
-class Range(
+class Range[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
-    val low: Option[Quantity] = None,
-    val high: Option[Quantity] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    val low: Option[Quantity[Stage]] = None,
+    val high: Option[Quantity[Stage]] = None,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Range"
 }

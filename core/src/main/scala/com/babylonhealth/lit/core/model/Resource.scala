@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Resource extends CompanionFor[Resource] {
   implicit def summonObjectAndCompanionResource969113347(o: Resource): ObjectAndCompanion[Resource, Resource.type] =
     ObjectAndCompanion(o, this)
@@ -29,12 +30,19 @@ object Resource extends CompanionFor[Resource] {
   override val parentType: CompanionFor[ParentType] = Resource
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Resource")
   def apply(
+=======
+object Resource extends CompanionFor[Resource[_]] {
+  override type ResourceType[T] = Resource[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Resource
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Resource")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
-      meta: Option[Meta] = None,
+      meta: Option[Meta[Stage]] = None,
       language: Option[LANGUAGES] = None,
       implicitRules: Option[UriStr] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Resource = new Resource(
+  ): Resource[Stage] = new Resource[Stage](
     id,
     meta,
     language,
@@ -43,26 +51,28 @@ object Resource extends CompanionFor[Resource] {
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val meta: FHIRComponentFieldMeta[Option[Meta]] =
-    FHIRComponentFieldMeta("meta", lTagOf[Option[Meta]], false, lTagOf[Meta])
+  def meta[Stage]: FHIRComponentFieldMeta[Option[Meta[Stage]]] =
+    FHIRComponentFieldMeta("meta", lTagOf[Option[Meta[Stage]]], false, lTagOf[Meta[Stage]])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, meta, language, implicitRules)
-  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-  override def fields(t: Resource): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Option[Meta]](meta, t.meta),
-    FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules)
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, meta, language, implicitRules)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Resource[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[Meta[Stage]]](meta, t.meta),
+    FHIRComponentField[Stage, Option[LANGUAGES]](language, t.language),
+    FHIRComponentField[Stage, Option[UriStr]](implicitRules, t.implicitRules)
   )
-  def extractId(t: Resource): Option[String]            = t.id
-  def extractMeta(t: Resource): Option[Meta]            = t.meta
-  def extractLanguage(t: Resource): Option[LANGUAGES]   = t.language
-  def extractImplicitRules(t: Resource): Option[UriStr] = t.implicitRules
-  override val thisName: String                         = "Resource"
-  override val searchParams: Map[String, Resource => Seq[Any]] = Map(
+  def extractId(t: Resource[_]): Option[String]                   = t.id
+  def extractMeta[Stage](t: Resource[Stage]): Option[Meta[Stage]] = t.meta
+  def extractLanguage(t: Resource[_]): Option[LANGUAGES]          = t.language
+  def extractImplicitRules(t: Resource[_]): Option[UriStr]        = t.implicitRules
+  override val thisName: String                                   = "Resource"
+  override val searchParams: Map[String, Resource[_] => Seq[Any]] = Map(
     "_source"      -> (obj => obj.meta.flatMap(_.source).toSeq),
     "_lastUpdated" -> (obj => obj.meta.flatMap(_.lastUpdated).toSeq),
     "_security"    -> (obj => obj.meta.toSeq.flatMap(_.security).toSeq),
@@ -70,14 +80,15 @@ object Resource extends CompanionFor[Resource] {
     "_profile"     -> (obj => obj.meta.toSeq.flatMap(_.profile).toSeq),
     "_tag"         -> (obj => obj.meta.toSeq.flatMap(_.tag).toSeq)
   )
-  def unapply(o: Resource): Option[(Option[String], Option[Meta], Option[LANGUAGES], Option[UriStr])] = Some(
+  def unapply[Stage <: LifecycleStage: ValueOf](
+      o: Resource[Stage]): Option[(Option[String], Option[Meta[Stage]], Option[LANGUAGES], Option[UriStr])] = Some(
     (o.id, o.meta, o.language, o.implicitRules))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Resource] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Resource[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Resource(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[Option[Meta]]("meta", Some(None)),
+          cursor.decodeAs[Option[Meta[Completed.type]]]("meta", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           decodeAttributes(cursor)
@@ -102,9 +113,9 @@ object Resource extends CompanionFor[Resource] {
   *   other profiles etc.
   */
 @POJOBoilerplate
-class Resource(
+class Resource[Stage <: LifecycleStage: ValueOf](
     val id: Option[String] = None,
-    val meta: Option[Meta] = None,
+    val meta: Option[Meta[Stage]] = None,
     val language: Option[LANGUAGES] = None,
     val implicitRules: Option[UriStr] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
@@ -112,6 +123,7 @@ class Resource(
   override val thisTypeName: String = "Resource"
   /// Patched-in methods:
   def getIdentifier: Option[String] = id map (i => s"$thisTypeName/$i")
-  def getVersionedIdentifier: Option[String] = getIdentifier.zip(meta.flatMap(_.versionId)).map{case (i, v) => s"$i/_history/$v"}
+  def getVersionedIdentifier: Option[String] =
+    getIdentifier.zip(meta.flatMap(_.versionId)).map { case (i, v) => s"$i/_history/$v" }
   def getMostSpecificIdentifier: Option[String] = getVersionedIdentifier orElse getIdentifier
 }

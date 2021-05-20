@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.{ UNITS_OF_TIME, DAYS_OF_WEEK, EVENT_TIMING }
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Timing extends CompanionFor[Timing] {
   implicit def summonObjectAndCompanionTiming_617552769(o: Timing): ObjectAndCompanion[Timing, Timing.type] =
     ObjectAndCompanion(o, this)
@@ -36,6 +37,16 @@ object Timing extends CompanionFor[Timing] {
     override val parentType: CompanionFor[ResourceType] = Repeat
     type BoundsChoice = Choice[UnionDurationOrPeriodOrRange]
     def apply(
+=======
+object Timing extends CompanionFor[Timing[_]] {
+  override type ResourceType[T] = Timing[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Timing
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Timing")
+  object Repeat extends CompanionFor[Repeat[_]] {
+    override type ResourceType[T] = Repeat[T]
+    type BoundsChoice[Stage]      = Choice[Union_0731860109[Stage]]
+    def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
         id: Option[String] = None,
         when: LitSeq[EVENT_TIMING] = LitSeq.empty,
         count: Option[PositiveInt] = None,
@@ -43,8 +54,8 @@ object Timing extends CompanionFor[Timing] {
         offset: Option[UnsignedInt] = None,
         countMax: Option[PositiveInt] = None,
         duration: Option[BigDecimal] = None,
-        extension: LitSeq[Extension] = LitSeq.empty,
-        bounds: Option[Repeat.BoundsChoice] = None,
+        extension: LitSeq[Extension[Stage]] = LitSeq.empty,
+        bounds: Option[Repeat.BoundsChoice[Stage]] = None,
         frequency: Option[PositiveInt] = None,
         periodMax: Option[BigDecimal] = None,
         dayOfWeek: LitSeq[DAYS_OF_WEEK] = LitSeq.empty,
@@ -54,7 +65,7 @@ object Timing extends CompanionFor[Timing] {
         durationUnit: Option[UNITS_OF_TIME] = None,
         frequencyMax: Option[PositiveInt] = None,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-    ): Repeat = new Repeat(
+    ): Repeat[Stage] = new Repeat[Stage](
       id,
       when,
       count,
@@ -74,8 +85,8 @@ object Timing extends CompanionFor[Timing] {
       frequencyMax,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(
-        o: Repeat): Option[(Option[String], LitSeq[EVENT_TIMING], Option[PositiveInt], Option[BigDecimal], Option[UnsignedInt], Option[PositiveInt], Option[BigDecimal], LitSeq[Extension], Option[Repeat.BoundsChoice], Option[PositiveInt], Option[BigDecimal], LitSeq[DAYS_OF_WEEK], LitSeq[LocalTime], Option[UNITS_OF_TIME], Option[BigDecimal], Option[UNITS_OF_TIME], Option[PositiveInt])] =
+    def unapply[Stage <: LifecycleStage: ValueOf](o: Repeat[
+      Stage]): Option[(Option[String], LitSeq[EVENT_TIMING], Option[PositiveInt], Option[BigDecimal], Option[UnsignedInt], Option[PositiveInt], Option[BigDecimal], LitSeq[Extension[Stage]], Option[Repeat.BoundsChoice[Stage]], Option[PositiveInt], Option[BigDecimal], LitSeq[DAYS_OF_WEEK], LitSeq[LocalTime], Option[UNITS_OF_TIME], Option[BigDecimal], Option[UNITS_OF_TIME], Option[PositiveInt])] =
       Some(
         (
           o.id,
@@ -109,10 +120,21 @@ object Timing extends CompanionFor[Timing] {
       FHIRComponentFieldMeta("countMax", lTagOf[Option[PositiveInt]], false, lTagOf[PositiveInt])
     val duration: FHIRComponentFieldMeta[Option[BigDecimal]] =
       FHIRComponentFieldMeta("duration", lTagOf[Option[BigDecimal]], false, lTagOf[BigDecimal])
+<<<<<<< HEAD
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val bounds: FHIRComponentFieldMeta[Option[Repeat.BoundsChoice]] =
       FHIRComponentFieldMeta("bounds", lTagOf[Option[Repeat.BoundsChoice]], true, lTagOf[UnionDurationOrPeriodOrRange])
+=======
+    def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+      FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+    def bounds[Stage]: FHIRComponentFieldMeta[Option[Repeat.BoundsChoice[Stage]]] =
+      FHIRComponentFieldMeta(
+        "bounds",
+        lTagOf[Option[Repeat.BoundsChoice[Stage]]],
+        true,
+        lTagOf[Union_0731860109[Stage]])
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
     val frequency: FHIRComponentFieldMeta[Option[PositiveInt]] =
       FHIRComponentFieldMeta("frequency", lTagOf[Option[PositiveInt]], false, lTagOf[PositiveInt])
     val periodMax: FHIRComponentFieldMeta[Option[BigDecimal]] =
@@ -129,7 +151,7 @@ object Timing extends CompanionFor[Timing] {
       FHIRComponentFieldMeta("durationUnit", lTagOf[Option[UNITS_OF_TIME]], false, lTagOf[UNITS_OF_TIME])
     val frequencyMax: FHIRComponentFieldMeta[Option[PositiveInt]] =
       FHIRComponentFieldMeta("frequencyMax", lTagOf[Option[PositiveInt]], false, lTagOf[PositiveInt])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
+    def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] = Seq(
       id,
       when,
       count,
@@ -148,29 +170,30 @@ object Timing extends CompanionFor[Timing] {
       durationUnit,
       frequencyMax
     )
-    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-    override def fields(t: Repeat): Seq[FHIRComponentField[_]] = Seq(
-      FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[LitSeq[EVENT_TIMING]](when, t.when),
-      FHIRComponentField[Option[PositiveInt]](count, t.count),
-      FHIRComponentField[Option[BigDecimal]](period, t.period),
-      FHIRComponentField[Option[UnsignedInt]](offset, t.offset),
-      FHIRComponentField[Option[PositiveInt]](countMax, t.countMax),
-      FHIRComponentField[Option[BigDecimal]](duration, t.duration),
-      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-      FHIRComponentField[Option[Repeat.BoundsChoice]](bounds, t.bounds),
-      FHIRComponentField[Option[PositiveInt]](frequency, t.frequency),
-      FHIRComponentField[Option[BigDecimal]](periodMax, t.periodMax),
-      FHIRComponentField[LitSeq[DAYS_OF_WEEK]](dayOfWeek, t.dayOfWeek),
-      FHIRComponentField[LitSeq[LocalTime]](timeOfDay, t.timeOfDay),
-      FHIRComponentField[Option[UNITS_OF_TIME]](periodUnit, t.periodUnit),
-      FHIRComponentField[Option[BigDecimal]](durationMax, t.durationMax),
-      FHIRComponentField[Option[UNITS_OF_TIME]](durationUnit, t.durationUnit),
-      FHIRComponentField[Option[PositiveInt]](frequencyMax, t.frequencyMax)
+    override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+        t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+    override def fields[Stage <: LifecycleStage: ValueOf](t: Repeat[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+      FHIRComponentField[Stage, Option[String]](id, t.id),
+      FHIRComponentField[Stage, LitSeq[EVENT_TIMING]](when, t.when),
+      FHIRComponentField[Stage, Option[PositiveInt]](count, t.count),
+      FHIRComponentField[Stage, Option[BigDecimal]](period, t.period),
+      FHIRComponentField[Stage, Option[UnsignedInt]](offset, t.offset),
+      FHIRComponentField[Stage, Option[PositiveInt]](countMax, t.countMax),
+      FHIRComponentField[Stage, Option[BigDecimal]](duration, t.duration),
+      FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+      FHIRComponentField[Stage, Option[Repeat.BoundsChoice[Stage]]](bounds, t.bounds),
+      FHIRComponentField[Stage, Option[PositiveInt]](frequency, t.frequency),
+      FHIRComponentField[Stage, Option[BigDecimal]](periodMax, t.periodMax),
+      FHIRComponentField[Stage, LitSeq[DAYS_OF_WEEK]](dayOfWeek, t.dayOfWeek),
+      FHIRComponentField[Stage, LitSeq[LocalTime]](timeOfDay, t.timeOfDay),
+      FHIRComponentField[Stage, Option[UNITS_OF_TIME]](periodUnit, t.periodUnit),
+      FHIRComponentField[Stage, Option[BigDecimal]](durationMax, t.durationMax),
+      FHIRComponentField[Stage, Option[UNITS_OF_TIME]](durationUnit, t.durationUnit),
+      FHIRComponentField[Stage, Option[PositiveInt]](frequencyMax, t.frequencyMax)
     )
-    val baseType: CompanionFor[Repeat] = this
-    val thisName: String               = "Repeat"
-    def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Repeat] =
+    val baseType: CompanionFor[Repeat[_]] = this
+    val thisName: String                  = "Repeat"
+    def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Repeat[Completed.type]] =
       checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
         Try(
           new Repeat(
@@ -181,8 +204,13 @@ object Timing extends CompanionFor[Timing] {
             cursor.decodeAs[Option[UnsignedInt]]("offset", Some(None)),
             cursor.decodeAs[Option[PositiveInt]]("countMax", Some(None)),
             cursor.decodeAs[Option[BigDecimal]]("duration", Some(None)),
+<<<<<<< HEAD
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeOptRef[UnionDurationOrPeriodOrRange]("bounds"),
+=======
+            cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
+            cursor.decodeOptRef[Union_0731860109[Completed.type]]("bounds"),
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
             cursor.decodeAs[Option[PositiveInt]]("frequency", Some(None)),
             cursor.decodeAs[Option[BigDecimal]]("periodMax", Some(None)),
             cursor.decodeAs[LitSeq[DAYS_OF_WEEK]]("dayOfWeek", Some(LitSeq.empty)),
@@ -196,7 +224,7 @@ object Timing extends CompanionFor[Timing] {
         ))
   }
   @POJOBoilerplate
-  class Repeat(
+  class Repeat[Stage <: LifecycleStage: ValueOf](
       override val id: Option[String] = None,
       val when: LitSeq[EVENT_TIMING] = LitSeq.empty,
       val count: Option[PositiveInt] = None,
@@ -204,8 +232,8 @@ object Timing extends CompanionFor[Timing] {
       val offset: Option[UnsignedInt] = None,
       val countMax: Option[PositiveInt] = None,
       val duration: Option[BigDecimal] = None,
-      override val extension: LitSeq[Extension] = LitSeq.empty,
-      val bounds: Option[Repeat.BoundsChoice] = None,
+      override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
+      val bounds: Option[Repeat.BoundsChoice[Stage]] = None,
       val frequency: Option[PositiveInt] = None,
       val periodMax: Option[BigDecimal] = None,
       val dayOfWeek: LitSeq[DAYS_OF_WEEK] = LitSeq.empty,
@@ -215,16 +243,16 @@ object Timing extends CompanionFor[Timing] {
       val durationUnit: Option[UNITS_OF_TIME] = None,
       val frequencyMax: Option[PositiveInt] = None,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
-      extends Element(id = id, extension = extension)
-  def apply(
+      extends Element[Stage](id = id, extension = extension)
+  def apply[Stage <: LifecycleStage: ValueOf](
       id: Option[String] = None,
-      code: Option[CodeableConcept] = None,
+      code: Option[CodeableConcept[Stage]] = None,
       event: LitSeq[FHIRDateTime] = LitSeq.empty,
-      extension: LitSeq[Extension] = LitSeq.empty,
-      modifierExtension: LitSeq[Extension] = LitSeq.empty,
-      repeat: Option[Timing.Repeat] = None,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
+      modifierExtension: LitSeq[Extension[Stage]] = LitSeq.empty,
+      repeat: Option[Timing.Repeat[Stage]] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Timing = new Timing(
+  ): Timing[Stage] = new Timing[Stage](
     id,
     code,
     event,
@@ -235,10 +263,11 @@ object Timing extends CompanionFor[Timing] {
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val code: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-    FHIRComponentFieldMeta("code", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+  def code[Stage]: FHIRComponentFieldMeta[Option[CodeableConcept[Stage]]] =
+    FHIRComponentFieldMeta("code", lTagOf[Option[CodeableConcept[Stage]]], false, lTagOf[CodeableConcept[Stage]])
   val event: FHIRComponentFieldMeta[LitSeq[FHIRDateTime]] =
     FHIRComponentFieldMeta("event", lTagOf[LitSeq[FHIRDateTime]], false, lTagOf[FHIRDateTime])
+<<<<<<< HEAD
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -254,27 +283,46 @@ object Timing extends CompanionFor[Timing] {
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[Option[Timing.Repeat]](repeat, t.repeat)
+=======
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def modifierExtension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def repeat[Stage]: FHIRComponentFieldMeta[Option[Timing.Repeat[Stage]]] =
+    FHIRComponentFieldMeta("repeat", lTagOf[Option[Timing.Repeat[Stage]]], false, lTagOf[Timing.Repeat[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, code, event, extension, modifierExtension, repeat)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Timing[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[CodeableConcept[Stage]]](code, t.code),
+    FHIRComponentField[Stage, LitSeq[FHIRDateTime]](event, t.event),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](modifierExtension, t.modifierExtension),
+    FHIRComponentField[Stage, Option[Timing.Repeat[Stage]]](repeat, t.repeat)
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   )
-  def extractId(t: Timing): Option[String]                   = t.id
-  def extractCode(t: Timing): Option[CodeableConcept]        = t.code
-  def extractEvent(t: Timing): LitSeq[FHIRDateTime]          = t.event
-  def extractExtension(t: Timing): LitSeq[Extension]         = t.extension
-  def extractModifierExtension(t: Timing): LitSeq[Extension] = t.modifierExtension
-  def extractRepeat(t: Timing): Option[Timing.Repeat]        = t.repeat
-  override val thisName: String                              = "Timing"
-  def unapply(
-      o: Timing): Option[(Option[String], Option[CodeableConcept], LitSeq[FHIRDateTime], LitSeq[Extension], LitSeq[Extension], Option[Timing.Repeat])] =
+  def extractId(t: Timing[_]): Option[String]                                     = t.id
+  def extractCode[Stage](t: Timing[Stage]): Option[CodeableConcept[Stage]]        = t.code
+  def extractEvent(t: Timing[_]): LitSeq[FHIRDateTime]                            = t.event
+  def extractExtension[Stage](t: Timing[Stage]): LitSeq[Extension[Stage]]         = t.extension
+  def extractModifierExtension[Stage](t: Timing[Stage]): LitSeq[Extension[Stage]] = t.modifierExtension
+  def extractRepeat[Stage](t: Timing[Stage]): Option[Timing.Repeat[Stage]]        = t.repeat
+  override val thisName: String                                                   = "Timing"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Timing[
+    Stage]): Option[(Option[String], Option[CodeableConcept[Stage]], LitSeq[FHIRDateTime], LitSeq[Extension[Stage]], LitSeq[Extension[Stage]], Option[Timing.Repeat[Stage]])] =
     Some((o.id, o.code, o.event, o.extension, o.modifierExtension, o.repeat))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Timing] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Timing[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Timing(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[Option[CodeableConcept]]("code", Some(None)),
+          cursor.decodeAs[Option[CodeableConcept[Completed.type]]]("code", Some(None)),
           cursor.decodeAs[LitSeq[FHIRDateTime]]("event", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-          cursor.decodeAs[Option[Timing.Repeat]]("repeat", Some(None)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("modifierExtension", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Timing.Repeat[Completed.type]]]("repeat", Some(None)),
           decodeAttributes(cursor)
         )
       ))
@@ -317,13 +365,13 @@ object Timing extends CompanionFor[Timing] {
   *   - A set of rules that describe when the event is scheduled.
   */
 @POJOBoilerplate
-class Timing(
+class Timing[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
-    val code: Option[CodeableConcept] = None,
+    val code: Option[CodeableConcept[Stage]] = None,
     val event: LitSeq[FHIRDateTime] = LitSeq.empty,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
-    override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-    val repeat: Option[Timing.Repeat] = None,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
+    override val modifierExtension: LitSeq[Extension[Stage]] = LitSeq.empty,
+    val repeat: Option[Timing.Repeat[Stage]] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends BackboneElement(
       id = id,

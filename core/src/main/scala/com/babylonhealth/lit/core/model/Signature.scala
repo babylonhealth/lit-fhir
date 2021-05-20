@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Signature extends CompanionFor[Signature] {
   implicit def summonObjectAndCompanionSignature_1260569501(o: Signature): ObjectAndCompanion[Signature, Signature.type] =
     ObjectAndCompanion(o, this)
@@ -29,17 +30,24 @@ object Signature extends CompanionFor[Signature] {
   override val parentType: CompanionFor[ParentType] = Signature
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Signature")
   def apply(
+=======
+object Signature extends CompanionFor[Signature[_]] {
+  override type ResourceType[T] = Signature[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Signature
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Signature")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
-      who: Reference,
-      `type`: NonEmptyLitSeq[Coding],
+      who: Reference[Stage],
+      `type`: NonEmptyLitSeq[Coding[Stage]],
       when: ZonedDateTime,
       data: Option[Base64Binary] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       sigFormat: Option[Code] = None,
-      onBehalfOf: Option[Reference] = None,
+      onBehalfOf: Option[Reference[Stage]] = None,
       targetFormat: Option[Code] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Signature = new Signature(
+  ): Signature[Stage] = new Signature[Stage](
     id,
     who,
     `type`,
@@ -53,61 +61,62 @@ object Signature extends CompanionFor[Signature] {
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-  val who: FHIRComponentFieldMeta[Reference] =
-    FHIRComponentFieldMeta("who", lTagOf[Reference], false, lTagOf[Reference])
-  val `type`: FHIRComponentFieldMeta[NonEmptyLitSeq[Coding]] =
-    FHIRComponentFieldMeta("type", lTagOf[NonEmptyLitSeq[Coding]], false, lTagOf[Coding])
+  def who[Stage]: FHIRComponentFieldMeta[Reference[Stage]] =
+    FHIRComponentFieldMeta("who", lTagOf[Reference[Stage]], false, lTagOf[Reference[Stage]])
+  def `type`[Stage]: FHIRComponentFieldMeta[NonEmptyLitSeq[Coding[Stage]]] =
+    FHIRComponentFieldMeta("type", lTagOf[NonEmptyLitSeq[Coding[Stage]]], false, lTagOf[Coding[Stage]])
   val when: FHIRComponentFieldMeta[ZonedDateTime] =
     FHIRComponentFieldMeta("when", lTagOf[ZonedDateTime], false, lTagOf[ZonedDateTime])
   val data: FHIRComponentFieldMeta[Option[Base64Binary]] =
     FHIRComponentFieldMeta("data", lTagOf[Option[Base64Binary]], false, lTagOf[Base64Binary])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
   val sigFormat: FHIRComponentFieldMeta[Option[Code]] =
     FHIRComponentFieldMeta("sigFormat", lTagOf[Option[Code]], false, lTagOf[Code])
-  val onBehalfOf: FHIRComponentFieldMeta[Option[Reference]] =
-    FHIRComponentFieldMeta("onBehalfOf", lTagOf[Option[Reference]], false, lTagOf[Reference])
+  def onBehalfOf[Stage]: FHIRComponentFieldMeta[Option[Reference[Stage]]] =
+    FHIRComponentFieldMeta("onBehalfOf", lTagOf[Option[Reference[Stage]]], false, lTagOf[Reference[Stage]])
   val targetFormat: FHIRComponentFieldMeta[Option[Code]] =
     FHIRComponentFieldMeta("targetFormat", lTagOf[Option[Code]], false, lTagOf[Code])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, who, `type`, when, data, extension, sigFormat, onBehalfOf, targetFormat)
-  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-  override def fields(t: Signature): Seq[FHIRComponentField[_]] = Seq(
-    FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[Reference](who, t.who),
-    FHIRComponentField[NonEmptyLitSeq[Coding]](`type`, t.`type`),
-    FHIRComponentField[ZonedDateTime](when, t.when),
-    FHIRComponentField[Option[Base64Binary]](data, t.data),
-    FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[Code]](sigFormat, t.sigFormat),
-    FHIRComponentField[Option[Reference]](onBehalfOf, t.onBehalfOf),
-    FHIRComponentField[Option[Code]](targetFormat, t.targetFormat)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Signature[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Reference[Stage]](who, t.who),
+    FHIRComponentField[Stage, NonEmptyLitSeq[Coding[Stage]]](`type`, t.`type`),
+    FHIRComponentField[Stage, ZonedDateTime](when, t.when),
+    FHIRComponentField[Stage, Option[Base64Binary]](data, t.data),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[Code]](sigFormat, t.sigFormat),
+    FHIRComponentField[Stage, Option[Reference[Stage]]](onBehalfOf, t.onBehalfOf),
+    FHIRComponentField[Stage, Option[Code]](targetFormat, t.targetFormat)
   )
-  def extractId(t: Signature): Option[String]            = t.id
-  def extractWho(t: Signature): Reference                = t.who
-  def extractType(t: Signature): NonEmptyLitSeq[Coding]  = t.`type`
-  def extractWhen(t: Signature): ZonedDateTime           = t.when
-  def extractData(t: Signature): Option[Base64Binary]    = t.data
-  def extractExtension(t: Signature): LitSeq[Extension]  = t.extension
-  def extractSigFormat(t: Signature): Option[Code]       = t.sigFormat
-  def extractOnBehalfOf(t: Signature): Option[Reference] = t.onBehalfOf
-  def extractTargetFormat(t: Signature): Option[Code]    = t.targetFormat
-  override val thisName: String                          = "Signature"
-  def unapply(
-      o: Signature): Option[(Option[String], Reference, NonEmptyLitSeq[Coding], ZonedDateTime, Option[Base64Binary], LitSeq[Extension], Option[Code], Option[Reference], Option[Code])] =
+  def extractId(t: Signature[_]): Option[String]                              = t.id
+  def extractWho[Stage](t: Signature[Stage]): Reference[Stage]                = t.who
+  def extractType[Stage](t: Signature[Stage]): NonEmptyLitSeq[Coding[Stage]]  = t.`type`
+  def extractWhen(t: Signature[_]): ZonedDateTime                             = t.when
+  def extractData(t: Signature[_]): Option[Base64Binary]                      = t.data
+  def extractExtension[Stage](t: Signature[Stage]): LitSeq[Extension[Stage]]  = t.extension
+  def extractSigFormat(t: Signature[_]): Option[Code]                         = t.sigFormat
+  def extractOnBehalfOf[Stage](t: Signature[Stage]): Option[Reference[Stage]] = t.onBehalfOf
+  def extractTargetFormat(t: Signature[_]): Option[Code]                      = t.targetFormat
+  override val thisName: String                                               = "Signature"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Signature[
+    Stage]): Option[(Option[String], Reference[Stage], NonEmptyLitSeq[Coding[Stage]], ZonedDateTime, Option[Base64Binary], LitSeq[Extension[Stage]], Option[Code], Option[Reference[Stage]], Option[Code])] =
     Some((o.id, o.who, o.`type`, o.when, o.data, o.extension, o.sigFormat, o.onBehalfOf, o.targetFormat))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Signature] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Signature[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Signature(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeAs[Reference]("who", None),
-          cursor.decodeAs[NonEmptyLitSeq[Coding]]("type", None),
+          cursor.decodeAs[Reference[Completed.type]]("who", None),
+          cursor.decodeAs[NonEmptyLitSeq[Coding[Completed.type]]]("type", None),
           cursor.decodeAs[ZonedDateTime]("when", None),
           cursor.decodeAs[Option[Base64Binary]]("data", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Code]]("sigFormat", Some(None)),
-          cursor.decodeAs[Option[Reference]]("onBehalfOf", Some(None)),
+          cursor.decodeAs[Option[Reference[Completed.type]]]("onBehalfOf", Some(None)),
           cursor.decodeAs[Option[Code]]("targetFormat", Some(None)),
           decodeAttributes(cursor)
         )
@@ -150,17 +159,17 @@ object Signature extends CompanionFor[Signature] {
   *   - A mime type that indicates the technical format of the target resources signed by the signature.
   */
 @POJOBoilerplate
-class Signature(
+class Signature[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
-    val who: Reference,
-    val `type`: NonEmptyLitSeq[Coding],
+    val who: Reference[Stage],
+    val `type`: NonEmptyLitSeq[Coding[Stage]],
     val when: ZonedDateTime,
     val data: Option[Base64Binary] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     val sigFormat: Option[Code] = None,
-    val onBehalfOf: Option[Reference] = None,
+    val onBehalfOf: Option[Reference[Stage]] = None,
     val targetFormat: Option[Code] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Signature"
 }

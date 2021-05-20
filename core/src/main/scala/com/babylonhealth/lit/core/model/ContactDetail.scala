@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object ContactDetail extends CompanionFor[ContactDetail] {
   implicit def summonObjectAndCompanionContactDetail_98408772(
       o: ContactDetail): ObjectAndCompanion[ContactDetail, ContactDetail.type] = ObjectAndCompanion(o, this)
@@ -29,12 +30,19 @@ object ContactDetail extends CompanionFor[ContactDetail] {
   override val parentType: CompanionFor[ParentType] = ContactDetail
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ContactDetail")
   def apply(
+=======
+object ContactDetail extends CompanionFor[ContactDetail[_]] {
+  override type ResourceType[T] = ContactDetail[T]
+  override val baseType: CompanionFor[ResourceType[_]] = ContactDetail
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/ContactDetail")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       name: Option[String] = None,
-      telecom: LitSeq[ContactPoint] = LitSeq.empty,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      telecom: LitSeq[ContactPoint[Stage]] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): ContactDetail = new ContactDetail(
+  ): ContactDetail[Stage] = new ContactDetail[Stage](
     id,
     name,
     telecom,
@@ -45,6 +53,7 @@ object ContactDetail extends CompanionFor[ContactDetail] {
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val name: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("name", lTagOf[Option[String]], false, lTagOf[String])
+<<<<<<< HEAD
   val telecom: FHIRComponentFieldMeta[LitSeq[ContactPoint]] =
     FHIRComponentFieldMeta("telecom", lTagOf[LitSeq[ContactPoint]], false, lTagOf[ContactPoint])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -65,13 +74,39 @@ object ContactDetail extends CompanionFor[ContactDetail] {
   def unapply(o: ContactDetail): Option[(Option[String], Option[String], LitSeq[ContactPoint], LitSeq[Extension])] = Some(
     (o.id, o.name, o.telecom, o.extension))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[ContactDetail] =
+=======
+  def telecom[Stage]: FHIRComponentFieldMeta[LitSeq[ContactPoint[Stage]]] =
+    FHIRComponentFieldMeta("telecom", lTagOf[LitSeq[ContactPoint[Stage]]], false, lTagOf[ContactPoint[Stage]])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, telecom, extension)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t[Stage]))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: ContactDetail[Stage]): Seq[FHIRComponentField[Stage, _]] =
+    Seq(
+      FHIRComponentField[Stage, Option[String]](id, t.id),
+      FHIRComponentField[Stage, Option[String]](name, t.name),
+      FHIRComponentField[Stage, LitSeq[ContactPoint[Stage]]](telecom, t.telecom),
+      FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension)
+    )
+  def extractId(t: ContactDetail[_]): Option[String]                              = t.id
+  def extractName(t: ContactDetail[_]): Option[String]                            = t.name
+  def extractTelecom[Stage](t: ContactDetail[Stage]): LitSeq[ContactPoint[Stage]] = t.telecom
+  def extractExtension[Stage](t: ContactDetail[Stage]): LitSeq[Extension[Stage]]  = t.extension
+  override val thisName: String                                                   = "ContactDetail"
+  def unapply[Stage <: LifecycleStage: ValueOf](
+      o: ContactDetail[
+        Stage]): Option[(Option[String], Option[String], LitSeq[ContactPoint], LitSeq[Extension[Stage]])] =
+    Some((o.id, o.name, o.telecom, o.extension))
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[ContactDetail[Completed.type]] =
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new ContactDetail(
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[String]]("name", Some(None)),
-          cursor.decodeAs[LitSeq[ContactPoint]]("telecom", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[ContactPoint[Completed.type]]]("telecom", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
       ))
@@ -98,12 +133,12 @@ object ContactDetail extends CompanionFor[ContactDetail] {
   *   of the extension.
   */
 @POJOBoilerplate
-class ContactDetail(
+class ContactDetail[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val name: Option[String] = None,
-    val telecom: LitSeq[ContactPoint] = LitSeq.empty,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    val telecom: LitSeq[ContactPoint[Stage]] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "ContactDetail"
 }

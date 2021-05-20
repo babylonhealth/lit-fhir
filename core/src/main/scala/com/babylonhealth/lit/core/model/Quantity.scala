@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.QUANTITY_COMPARATOR
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object Quantity extends CompanionFor[Quantity] {
   implicit def summonObjectAndCompanionQuantity25173888(o: Quantity): ObjectAndCompanion[Quantity, Quantity.type] =
     ObjectAndCompanion(o, this)
@@ -29,15 +30,22 @@ object Quantity extends CompanionFor[Quantity] {
   override val parentType: CompanionFor[ParentType] = Quantity
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Quantity")
   def apply(
+=======
+object Quantity extends CompanionFor[Quantity[_]] {
+  override type ResourceType[T] = Quantity[T]
+  override val baseType: CompanionFor[ResourceType[_]] = Quantity
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/Quantity")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       unit: Option[String] = None,
       code: Option[Code] = None,
       value: Option[BigDecimal] = None,
       system: Option[UriStr] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       comparator: Option[QUANTITY_COMPARATOR] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): Quantity = new Quantity(
+  ): Quantity[Stage] = new Quantity[Stage](
     id,
     unit,
     code,
@@ -57,10 +65,11 @@ object Quantity extends CompanionFor[Quantity] {
     FHIRComponentFieldMeta("value", lTagOf[Option[BigDecimal]], false, lTagOf[BigDecimal])
   val system: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("system", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
-  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
   val comparator: FHIRComponentFieldMeta[Option[QUANTITY_COMPARATOR]] =
     FHIRComponentFieldMeta("comparator", lTagOf[Option[QUANTITY_COMPARATOR]], false, lTagOf[QUANTITY_COMPARATOR])
+<<<<<<< HEAD
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, unit, code, value, system, extension, comparator)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Quantity): Seq[FHIRComponentField[_]] = Seq(
@@ -71,19 +80,33 @@ object Quantity extends CompanionFor[Quantity] {
     FHIRComponentField[Option[UriStr]](system, t.system),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[QUANTITY_COMPARATOR]](comparator, t.comparator)
+=======
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, unit, code, value, system, extension, comparator)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: Quantity[Stage]): Seq[FHIRComponentField[Stage, _]] = Seq(
+    FHIRComponentField[Stage, Option[String]](id, t.id),
+    FHIRComponentField[Stage, Option[String]](unit, t.unit),
+    FHIRComponentField[Stage, Option[Code]](code, t.code),
+    FHIRComponentField[Stage, Option[BigDecimal]](value, t.value),
+    FHIRComponentField[Stage, Option[UriStr]](system, t.system),
+    FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension),
+    FHIRComponentField[Stage, Option[QUANTITY_COMPARATOR]](comparator, t.comparator)
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
   )
-  def extractId(t: Quantity): Option[String]                      = t.id
-  def extractUnit(t: Quantity): Option[String]                    = t.unit
-  def extractCode(t: Quantity): Option[Code]                      = t.code
-  def extractValue(t: Quantity): Option[BigDecimal]               = t.value
-  def extractSystem(t: Quantity): Option[UriStr]                  = t.system
-  def extractExtension(t: Quantity): LitSeq[Extension]            = t.extension
-  def extractComparator(t: Quantity): Option[QUANTITY_COMPARATOR] = t.comparator
-  override val thisName: String                                   = "Quantity"
-  def unapply(
-      o: Quantity): Option[(Option[String], Option[String], Option[Code], Option[BigDecimal], Option[UriStr], LitSeq[Extension], Option[QUANTITY_COMPARATOR])] =
+  def extractId(t: Quantity[_]): Option[String]                             = t.id
+  def extractUnit(t: Quantity[_]): Option[String]                           = t.unit
+  def extractCode(t: Quantity[_]): Option[Code]                             = t.code
+  def extractValue(t: Quantity[_]): Option[BigDecimal]                      = t.value
+  def extractSystem(t: Quantity[_]): Option[UriStr]                         = t.system
+  def extractExtension[Stage](t: Quantity[Stage]): LitSeq[Extension[Stage]] = t.extension
+  def extractComparator(t: Quantity[_]): Option[QUANTITY_COMPARATOR]        = t.comparator
+  override val thisName: String                                             = "Quantity"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: Quantity[
+    Stage]): Option[(Option[String], Option[String], Option[Code], Option[BigDecimal], Option[UriStr], LitSeq[Extension[Stage]], Option[QUANTITY_COMPARATOR])] =
     Some((o.id, o.unit, o.code, o.value, o.system, o.extension, o.comparator))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Quantity] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Quantity[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Quantity(
@@ -92,7 +115,7 @@ object Quantity extends CompanionFor[Quantity] {
           cursor.decodeAs[Option[Code]]("code", Some(None)),
           cursor.decodeAs[Option[BigDecimal]]("value", Some(None)),
           cursor.decodeAs[Option[UriStr]]("system", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[QUANTITY_COMPARATOR]]("comparator", Some(None)),
           decodeAttributes(cursor)
         )
@@ -129,15 +152,15 @@ object Quantity extends CompanionFor[Quantity] {
   *   to measurement issues; e.g. if the comparator is "<" , then the real value is < stated value.
   */
 @POJOBoilerplate
-class Quantity(
+class Quantity[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val unit: Option[String] = None,
     val code: Option[Code] = None,
     val value: Option[BigDecimal] = None,
     val system: Option[UriStr] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     val comparator: Option[QUANTITY_COMPARATOR] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Quantity"
 }

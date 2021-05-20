@@ -20,6 +20,7 @@ import com.babylonhealth.lit.core.RELATED_ARTIFACT_TYPE
 import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
+<<<<<<< HEAD
 object RelatedArtifact extends CompanionFor[RelatedArtifact] {
   implicit def summonObjectAndCompanionRelatedArtifact652321416(
       o: RelatedArtifact): ObjectAndCompanion[RelatedArtifact, RelatedArtifact.type] = ObjectAndCompanion(o, this)
@@ -29,17 +30,24 @@ object RelatedArtifact extends CompanionFor[RelatedArtifact] {
   override val parentType: CompanionFor[ParentType] = RelatedArtifact
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RelatedArtifact")
   def apply(
+=======
+object RelatedArtifact extends CompanionFor[RelatedArtifact[_]] {
+  override type ResourceType[T] = RelatedArtifact[T]
+  override val baseType: CompanionFor[ResourceType[_]] = RelatedArtifact
+  override val profileUrl: Option[String]              = Some("http://hl7.org/fhir/StructureDefinition/RelatedArtifact")
+  def apply[Stage <: LifecycleStage: ValueOf](
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       id: Option[String] = None,
       url: Option[UrlStr] = None,
       `type`: RELATED_ARTIFACT_TYPE,
       label: Option[String] = None,
       display: Option[String] = None,
       citation: Option[Markdown] = None,
-      document: Option[Attachment] = None,
+      document: Option[Attachment[Stage]] = None,
       resource: Option[Canonical] = None,
-      extension: LitSeq[Extension] = LitSeq.empty,
+      extension: LitSeq[Extension[Stage]] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-  ): RelatedArtifact = new RelatedArtifact(
+  ): RelatedArtifact[Stage] = new RelatedArtifact[Stage](
     id,
     url,
     `type`,
@@ -63,10 +71,11 @@ object RelatedArtifact extends CompanionFor[RelatedArtifact] {
     FHIRComponentFieldMeta("display", lTagOf[Option[String]], false, lTagOf[String])
   val citation: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("citation", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
-  val document: FHIRComponentFieldMeta[Option[Attachment]] =
-    FHIRComponentFieldMeta("document", lTagOf[Option[Attachment]], false, lTagOf[Attachment])
+  def document[Stage]: FHIRComponentFieldMeta[Option[Attachment[Stage]]] =
+    FHIRComponentFieldMeta("document", lTagOf[Option[Attachment[Stage]]], false, lTagOf[Attachment[Stage]])
   val resource: FHIRComponentFieldMeta[Option[Canonical]] =
     FHIRComponentFieldMeta("resource", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
+<<<<<<< HEAD
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, `type`, label, display, citation, document, resource, extension)
@@ -94,8 +103,40 @@ object RelatedArtifact extends CompanionFor[RelatedArtifact] {
   override val thisName: String                               = "RelatedArtifact"
   def unapply(
       o: RelatedArtifact): Option[(Option[String], Option[UrlStr], RELATED_ARTIFACT_TYPE, Option[String], Option[String], Option[Markdown], Option[Attachment], Option[Canonical], LitSeq[Extension])] =
+=======
+  def extension[Stage]: FHIRComponentFieldMeta[LitSeq[Extension[Stage]]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension[Stage]]], false, lTagOf[Extension[Stage]])
+  def fieldsMeta[Stage <: LifecycleStage: ValueOf]: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, url, `type`, label, display, citation, document, resource, extension)
+  override def fieldsFromParent[Stage <: LifecycleStage: ValueOf](
+      t: ResourceType[Stage]): Try[Seq[FHIRComponentField[Stage, _]]] = Success(fields[Stage](t))
+  override def fields[Stage <: LifecycleStage: ValueOf](t: RelatedArtifact[Stage]): Seq[FHIRComponentField[Stage, _]] =
+    Seq(
+      FHIRComponentField[Stage, Option[String]](id, t.id),
+      FHIRComponentField[Stage, Option[UrlStr]](url, t.url),
+      FHIRComponentField[Stage, RELATED_ARTIFACT_TYPE](`type`, t.`type`),
+      FHIRComponentField[Stage, Option[String]](label, t.label),
+      FHIRComponentField[Stage, Option[String]](display, t.display),
+      FHIRComponentField[Stage, Option[Markdown]](citation, t.citation),
+      FHIRComponentField[Stage, Option[Attachment[Stage]]](document, t.document),
+      FHIRComponentField[Stage, Option[Canonical]](resource, t.resource),
+      FHIRComponentField[Stage, LitSeq[Extension[Stage]]](extension, t.extension)
+    )
+  def extractId(t: RelatedArtifact[_]): Option[String]                             = t.id
+  def extractUrl(t: RelatedArtifact[_]): Option[UrlStr]                            = t.url
+  def extractType(t: RelatedArtifact[_]): RELATED_ARTIFACT_TYPE                    = t.`type`
+  def extractLabel(t: RelatedArtifact[_]): Option[String]                          = t.label
+  def extractDisplay(t: RelatedArtifact[_]): Option[String]                        = t.display
+  def extractCitation(t: RelatedArtifact[_]): Option[Markdown]                     = t.citation
+  def extractDocument[Stage](t: RelatedArtifact[Stage]): Option[Attachment[Stage]] = t.document
+  def extractResource(t: RelatedArtifact[_]): Option[Canonical]                    = t.resource
+  def extractExtension[Stage](t: RelatedArtifact[Stage]): LitSeq[Extension[Stage]] = t.extension
+  override val thisName: String                                                    = "RelatedArtifact"
+  def unapply[Stage <: LifecycleStage: ValueOf](o: RelatedArtifact[
+    Stage]): Option[(Option[String], Option[UrlStr], RELATED_ARTIFACT_TYPE, Option[String], Option[String], Option[Markdown], Option[Attachment[Stage]], Option[Canonical], LitSeq[Extension[Stage]])] =
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
     Some((o.id, o.url, o.`type`, o.label, o.display, o.citation, o.document, o.resource, o.extension))
-  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[RelatedArtifact] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[RelatedArtifact[Completed.type]] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new RelatedArtifact(
@@ -105,9 +146,9 @@ object RelatedArtifact extends CompanionFor[RelatedArtifact] {
           cursor.decodeAs[Option[String]]("label", Some(None)),
           cursor.decodeAs[Option[String]]("display", Some(None)),
           cursor.decodeAs[Option[Markdown]]("citation", Some(None)),
-          cursor.decodeAs[Option[Attachment]]("document", Some(None)),
+          cursor.decodeAs[Option[Attachment[Completed.type]]]("document", Some(None)),
           cursor.decodeAs[Option[Canonical]]("resource", Some(None)),
-          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension[Completed.type]]]("extension", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
       ))
@@ -146,17 +187,17 @@ object RelatedArtifact extends CompanionFor[RelatedArtifact] {
   *   of the extension.
   */
 @POJOBoilerplate
-class RelatedArtifact(
+class RelatedArtifact[Stage <: LifecycleStage: ValueOf](
     override val id: Option[String] = None,
     val url: Option[UrlStr] = None,
     val `type`: RELATED_ARTIFACT_TYPE,
     val label: Option[String] = None,
     val display: Option[String] = None,
     val citation: Option[Markdown] = None,
-    val document: Option[Attachment] = None,
+    val document: Option[Attachment[Stage]] = None,
     val resource: Option[Canonical] = None,
-    override val extension: LitSeq[Extension] = LitSeq.empty,
+    override val extension: LitSeq[Extension[Stage]] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends Element[Stage](id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "RelatedArtifact"
 }

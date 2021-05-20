@@ -18,6 +18,7 @@ object serdes extends Utils {
 
   def serializeField[T](fieldValue: T)(implicit encoderParams: EncoderParams = EncoderParams()): Json =
     fieldValue match {
+<<<<<<< HEAD
       case Some(x)            => serializeField(x)
       case None               => Json.Null
       case s: LitSeq[_]       => Json.arr(s.map(serializeField).toSeq: _*)
@@ -35,6 +36,26 @@ object serdes extends Utils {
       case e: EnumBase        => Encoder.encodeString(e.name)
       case bytes: Array[Byte] => Json.fromString(Base64.getEncoder.encodeToString(bytes))
       case j: Json            => j
+=======
+      case Some(x)                               => serializeField(x)
+      case None                                  => Json.Null
+      case s: LitSeq[_]                          => Json.arr(s.map(serializeField).toSeq: _*)
+      case subObj: FHIRObjectRaw[Completed.type] => encodeComponent[Completed.type, subObj.type](subObj)
+      case subObj: FHIRObjectRaw[Partial.type]   => ???
+      case r: Choice[_]                          => r.json
+      case s: String                             => Json fromString s // All subtypes of String (e.g. Markdown) should be encoded as String
+      case b: BigDecimal                         => Json fromBigDecimal b
+      case s: Int                                => Json fromInt s    // All subtypes of Int (e.g. UnsignedInt) should be encoded as Int
+      case b: Boolean                            => Json fromBoolean b
+      case uuid: UUID                            => Json fromString uuid.toString
+      case d: ZonedDateTime                      => Json fromString FHIRDateTimeSpecificity.Time.dtFormatter.format(d)
+      case dt: FHIRDateTime                      => Json fromString dt.fmt
+      case d: FHIRDate                           => Json fromString d.fmt
+      case time: LocalTime                       => time.asJson
+      case e: EnumEntry                          => Encoder.encodeString(e.entryName)
+      case bytes: Array[Byte]                    => Json.fromString(Base64.getEncoder.encodeToString(bytes))
+      case j: Json                               => j
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
       // unused?
       case Left(l)  => serializeField(l)
       case Right(l) => serializeField(l)
@@ -60,11 +81,12 @@ object serdes extends Utils {
         (name + value) -> serializeField(x)
     }
 
-  def encodeComponent[T <: FHIRObject](a: T)(implicit encoderParams: EncoderParams): Json = {
+  def encodeComponent[Stage <: LifecycleStage, T <: FHIRObjectRaw[Stage]](a: T)(implicit
+      encoderParams: EncoderParams): Json = {
     // set 'addTopLevelResourceType' to false so we don't add resourceType to any nested element fields
     val newParams: EncoderParams =
       if (encoderParams.addTopLevelResourceType) encoderParams.copy(addTopLevelResourceType = false) else encoderParams
-    val fields = a.companion.baseType.fields(a)
+    val fields = a.companion.baseType.fields[Stage <: LifecycleStage: ValueOf](a)
     val fs: Seq[(String, Json)] = fields.map {
       case FHIRComponentField(meta, _) if encoderParams.stripPhantom && a.primitiveAttributes.get(meta).exists(_.phantom) =>
         "" -> Json.Null
@@ -80,26 +102,38 @@ object serdes extends Utils {
       case _ => None
     }
     val attributes: Seq[(String, Json)] = a.primitiveAttributes.map { case (k, v) =>
-      ('_' +: k.name) -> encodeComponent(v.element)(newParams)
+      ('_' +: k.name) -> encodeComponent[Stage, Element](v.element)(newParams)
     }.toSeq
     Json.fromFields((resourceType.toSeq ++ fs ++ attributes).filterNot(x => x._2.isNull || x._2.asArray.exists(_.isEmpty)))
   }
   // convenience methods, primarily for calling from Java
   lazy val allGeneratedClasses: Seq[Class[_]] = model.urlLookup.values.map(_.thisClassTag.runtimeClass).toSeq
   lazy val companionClassMap: Map[Class[_], CompanionFor[_]] = allGeneratedClasses map { klass =>
+<<<<<<< HEAD
     val companionObj: CompanionFor[_ <: FHIRObject] =
       Class.forName(klass.getName + "$").getField("MODULE$").get(null).asInstanceOf[CompanionFor[_ <: FHIRObject]]
+=======
+    val module = Utils.mirror.staticModule(klass.getName)
+    val companionObj: CompanionFor[_ <: FHIRObjectRaw[_]] =
+      Utils.mirror.reflectModule(module).instance.asInstanceOf[CompanionFor[_ <: FHIRObjectRaw[_]]]
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
     klass -> companionObj
   } toMap
 
-  def decodeFHIRObject[T <: FHIRObject](companion: CompanionFor[T], jstr: String)(implicit
-      params: DecoderParams = DecoderParams()): Try[T] =
+  def decodeFHIRObject[T <: FHIRObjectRaw[Completed.type]](companion: CompanionFor[T], jstr: String)(
+      implicit params: DecoderParams = DecoderParams()): Try[T] =
     decode[T](jstr)(companion.decoder).left.map(new FhirDecodeError(_)).toTry
 
-  implicit def objectEncoder[T <: FHIRObject](implicit params: EncoderParams = EncoderParams()): Encoder[T] =
+  implicit def objectEncoder[T <: FHIRObjectRaw[Completed.type]](implicit
+      params: EncoderParams = EncoderParams()): Encoder[T] =
     Encoder.instance(encodeComponent)
 
+<<<<<<< HEAD
   implicit def objectDecoder[T <: FHIRObject: LTag: ClassTag](implicit params: DecoderParams = DecoderParams()): Decoder[T] =
+=======
+  implicit def objectDecoder[T <: FHIRObjectRaw[Completed.type]: LTag](implicit
+      params: DecoderParams = DecoderParams()): Decoder[T] =
+>>>>>>> 1bcce413 (experimentations with a type param on the fhir classes to denote partial objects)
     Decoder.instanceTry {
       decodeMethodFor[T]
     }
