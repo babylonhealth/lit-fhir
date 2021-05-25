@@ -7,8 +7,7 @@ import cats.syntax.option._
 import cats.Traverse.ops.toAllTraverseOps
 import cats.implicits.catsSyntaxApplicativeErrorId
 import cats.instances.list._
-
-import com.babylonhealth.lit.core.FHIRObject
+import com.babylonhealth.lit.core.{Choice, FHIRObject}
 import com.babylonhealth.lit.fhirpath.conversions._
 import com.babylonhealth.lit.fhirpath.model._
 
@@ -101,7 +100,9 @@ class Evaluator[F[+_]: MErr](implicit functions: FhirPathFuncs[F]) {
     for {
       value <- input
       field <- value fold {
-        case obj: FHIRObject => obj.children(_.name == name)
+        case obj: FHIRObject => obj.children { field =>
+          field.name == name || field.suffixedName.contains(name)
+        }
         case _               => Nil
       }
     } yield field
