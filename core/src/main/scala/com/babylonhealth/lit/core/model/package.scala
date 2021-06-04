@@ -56,7 +56,7 @@ package object model {
     lookups
   }
   lazy val companionLookup: Map[String, CompanionFor[_ <: FHIRObject]] =
-    urlLookup.map { case (url, obj) => url.split("/").last -> obj }
+    urlLookup.collect { case (url, obj) if obj eq obj.baseType => obj.thisName -> obj }
 
   val suffixDecoderTypeTagMap: Map[String, DecoderAndTag[_]] = Map(
     "Dosage"          -> DecoderAndTag[Dosage](Dosage.decoder(_), lTagOf[Dosage]),
