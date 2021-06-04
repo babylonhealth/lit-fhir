@@ -55,8 +55,12 @@ package object model {
     println(s"Successfully created ${lookups.size} lookup mappings in ${System.currentTimeMillis - startTime}ms")
     lookups
   }
+  lazy val resourceTypeLookup: Map[String, CompanionFor[_ <: FHIRObject]] =
+    urlLookup.collect { case (_, obj) if obj eq obj.baseType => obj.thisName -> obj }
+
+  @deprecated("Use urlLookup or resourceTypeLookup")
   lazy val companionLookup: Map[String, CompanionFor[_ <: FHIRObject]] =
-    urlLookup.collect { case (url, obj) if obj eq obj.baseType => obj.thisName -> obj }
+    resourceTypeLookup ++ urlLookup
 
   val suffixDecoderTypeTagMap: Map[String, DecoderAndTag[_]] = Map(
     "Dosage"          -> DecoderAndTag[Dosage](Dosage.decoder(_), lTagOf[Dosage]),

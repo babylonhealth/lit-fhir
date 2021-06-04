@@ -1,14 +1,17 @@
 package com.babylonhealth.lit.core
 
 import java.lang.reflect.Constructor
+
 import scala.annotation.unchecked.uncheckedVariance
 import scala.collection.immutable.TreeMap
 import scala.reflect.ClassTag
 import scala.util.{ Failure, Success, Try }
+
 import io.circe.{ Decoder, DecodingFailure, HCursor }
 import izumi.reflect.macrortti.LTag
 import org.slf4j.{ Logger, LoggerFactory }
-import com.babylonhealth.lit.core.model.{ Element, Resource, companionLookup, urlLookup }
+
+import com.babylonhealth.lit.core.model.{ Element, Resource, resourceTypeLookup, urlLookup }
 
 trait OptionSugar {
   implicit class RichT[T](val t: T) {
@@ -88,7 +91,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
   private def getTargetProfile(targets: Seq[String]): Option[CompanionFor[_]] =
     targets.flatMap(urlLookup.get).headOption
   private def getTargetType(target: String): Option[CompanionFor[_]] =
-    companionLookup.get(target)
+    resourceTypeLookup.get(target)
 
   def parameterisedDecode(x: HCursor, params: DecoderParams): Try[T @uncheckedVariance] = {
     def decodeThisAsThis: Try[T @uncheckedVariance] = decodeThis(x)(params)

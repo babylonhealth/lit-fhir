@@ -2,14 +2,13 @@ package com.babylonhealth.lit.languages
 
 import scala.collection.immutable.ListMap
 import scala.util.Try
+
 import com.babylonhealth.lit._
 import com.babylonhealth.lit.Cardinality._
 import com.babylonhealth.lit.CardinalityImplicits._
 import com.babylonhealth.lit.common.CodegenUtils
 import com.babylonhealth.lit.hl7.BINDING_STRENGTH
 import com.babylonhealth.lit.fhirpath.genScala.ExactlyOne
-
-import scala.collection.immutable
 
 trait BaseFieldImplicits {
   implicit class RichTopLevelClass(topLevelClass: TopLevelClass) {
@@ -698,44 +697,24 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |import BaseFieldDecoders._
       |
       |package object model {
-      |  def extractCompanionsFromPath(classPathResults: Seq[ClassInfo]): Seq[CompanionFor[_ <: FHIRObject]] = {
-      |    import scala.concurrent.ExecutionContext.Implicits.global
-      |    Await
-      |      .result(
-      |        Future.traverse(classPathResults) { c =>
-      |          Future successful {
-      |            val companionObj: CompanionFor[_ <: FHIRObject] = {
-      |              val klass = Class.forName(c.getName)
-      |              val module = Utils.mirror.classSymbol(klass).companion.asInstanceOf[ModuleSymbol]
-      |              val instance = Utils.mirror.reflectModule(module).instance.asInstanceOf[CompanionFor[_ <: FHIRObject]]
-      |              instance
-      |            }
-      |            companionObj
-      |          }
-      |        },
-      |        Inf
-      |      )
+      |  def extractModuleFromPath(classPathResults: Seq[ClassInfo]): Seq[ModuleDict] = classPathResults.map { ci =>
+      |    val c = Class.forName(ci.getName)
+      |    c.getField("MODULE$").get(c).asInstanceOf[ModuleDict]
       |  }
-      |  lazy val companionLookup: Map[String, CompanionFor[_]] = blocking {
+      |  lazy val urlLookup: Map[String, CompanionFor[_ <: FHIRObject]] = blocking {
       |    println("Initialising lookups")
       |    val startTime                             = System.currentTimeMillis
       |    var scanResult: ScanResult                = null
       |    var lookups: Map[String, CompanionFor[_]] = null
       |    try {
       |      scanResult = new ClassGraph().whitelistPackages(Config.generatedNamespaces: _*).scan()
-      |      /// For some reason, the classloader gets stuck unless these objects are explicitly instantiated outside of the reflection...
-      |      def classloaderBypass = Seq(Age, Coding, Count, Distance, Duration, Expression, Quantity, Reference, Resource)
       |      val classPathResults = scanResult
-      |        .getSubclasses("com.babylonhealth.lit.core.FHIRObject")
-      |        .filter(!_.getSimpleName.contains('$'))
+      |        .getSubclasses("com.babylonhealth.lit.core.ModuleDict")
       |        .asScala
-      |      val companions = extractCompanionsFromPath(classPathResults.toSeq).toList
       |
-      |      lookups = companions.flatMap {
-      |        case x if x.profileUrl.isEmpty => println(s"FATAL ERROR: Some resource companions are missing the profileUrl field (${x.thisName})"); sys.exit(5)
-      |        case x if x eq x.baseType      => Seq(x.thisName -> x) ++ x.profileUrl.toSeq.map(_ -> x)
-      |        case x                         => x.profileUrl.toSeq.map(_ -> x)
-      |      }.toMap
+      |      val modules = extractModuleFromPath(classPathResults.toSeq).toList
+      |
+      |      lookups = modules.flatMap(_.lookup).toMap
       |    } finally if (scanResult != null) scanResult.close()
       |    if (lookups == null || lookups.size < 35) { // 35 classes inherit from FHIRObject just in core alone...
       |      println("FATAL ERROR: Unable to instantiate companionLookup map")
@@ -744,6 +723,12 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |    println(s"Successfully created ${lookups.size} lookup mappings in ${System.currentTimeMillis - startTime}ms")
       |    lookups
       |  }
+      |  lazy val resourceTypeLookup: Map[String, CompanionFor[_ <: FHIRObject]] =
+      |    urlLookup.collect { case (_, obj) if obj eq obj.baseType => obj.thisName -> obj }
+      |
+      |  @deprecated("Use urlLookup or resourceTypeLookup")
+      |  lazy val companionLookup: Map[String, CompanionFor[_ <: FHIRObject]] =
+      |    resourceTypeLookup ++ urlLookup
       |
       |  val suffixDecoderTypeTagMap: Map[String, DecoderAndTag[_]] = Map(
       |    "Dosage"          -> DecoderAndTag[Dosage](Dosage.decoder(_), lTagOf[Dosage]),
