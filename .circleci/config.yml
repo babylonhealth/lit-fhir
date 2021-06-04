@@ -12,7 +12,7 @@ commands:
           command: find -name target -exec tar -zcf targets.tar.gz -H posix {} + && find -name target -exec rm -r {} +
       - save_cache:
           name: Saving build cache
-          key: build-cache-v3-{{ .Branch }}-{{ .Revision }}
+          key: build-cache-v4-{{ .Branch }}-{{ .Revision }}
           paths:
             - "~/.ivy2"
             - "~/project/targets.tar.gz"
@@ -24,9 +24,9 @@ commands:
       - restore_cache:
           name: Restoring build cache
           keys:
-            - build-cache-v3-{{ .Branch }}-{{ .Revision }}
-            - build-cache-v3-{{ .Branch }}-
-            - build-cache-v3-
+            - build-cache-v4-{{ .Branch }}-{{ .Revision }}
+            - build-cache-v4-{{ .Branch }}-
+            - build-cache-v4-
       - run:
           name: untar classfiles
           command: if [ -f targets.tar.gz ]; then tar -xf targets.tar.gz; fi
