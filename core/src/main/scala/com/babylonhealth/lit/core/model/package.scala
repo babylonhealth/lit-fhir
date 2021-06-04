@@ -29,46 +29,24 @@ case class DecoderAndTag[T](decoder: DecoderParams => Decoder[T], typeTag: LTag[
 import BaseFieldDecoders._
 
 package object model {
-  def extractCompanionsFromPath(classPathResults: Seq[ClassInfo]): Seq[CompanionFor[_ <: FHIRObject]] = {
-    import scala.concurrent.ExecutionContext.Implicits.global
-    Await
-      .result(
-        Future.traverse(classPathResults) { c =>
-          Future successful {
-            val companionObj: CompanionFor[_ <: FHIRObject] = {
-              val klass    = Class.forName(c.getName)
-              val module   = Utils.mirror.classSymbol(klass).companion.asInstanceOf[ModuleSymbol]
-              val instance = Utils.mirror.reflectModule(module).instance.asInstanceOf[CompanionFor[_ <: FHIRObject]]
-              instance
-            }
-            companionObj
-          }
-        },
-        Inf
-      )
+  def extractModuleFromPath(classPathResults: Seq[ClassInfo]): Seq[ModuleDict] = classPathResults.map { ci =>
+    val c = Class.forName(ci.getName)
+    c.getField("MODULE$").get(c).asInstanceOf[ModuleDict]
   }
-  lazy val companionLookup: Map[String, CompanionFor[_]] = blocking {
+  lazy val urlLookup: Map[String, CompanionFor[_ <: FHIRObject]] = blocking {
     println("Initialising lookups")
     val startTime                             = System.currentTimeMillis
     var scanResult: ScanResult                = null
     var lookups: Map[String, CompanionFor[_]] = null
     try {
       scanResult = new ClassGraph().whitelistPackages(Config.generatedNamespaces: _*).scan()
-      /// For some reason, the classloader gets stuck unless these objects are explicitly instantiated outside of the reflection...
-      def classloaderBypass = Seq(Age, Coding, Count, Distance, Duration, Expression, Quantity, Reference, Resource)
       val classPathResults = scanResult
-        .getSubclasses("com.babylonhealth.lit.core.FHIRObject")
-        .filter(!_.getSimpleName.contains('$'))
+        .getSubclasses("com.babylonhealth.lit.core.ModuleDict")
         .asScala
-      val companions = extractCompanionsFromPath(classPathResults.toSeq).toList
 
-      lookups = companions.flatMap {
-        case x if x.profileUrl.isEmpty =>
-          println(s"FATAL ERROR: Some resource companions are missing the profileUrl field (${x.thisName})");
-          sys.exit(5)
-        case x if x eq x.baseType => Seq(x.thisName -> x) ++ x.profileUrl.toSeq.map(_ -> x)
-        case x                    => x.profileUrl.toSeq.map(_ -> x)
-      }.toMap
+      val modules = extractModuleFromPath(classPathResults.toSeq).toList
+
+      lookups = modules.flatMap(_.lookup).toMap
     } finally if (scanResult != null) scanResult.close()
     if (lookups == null || lookups.size < 35) { // 35 classes inherit from FHIRObject just in core alone...
       println("FATAL ERROR: Unable to instantiate companionLookup map")
@@ -77,6 +55,8 @@ package object model {
     println(s"Successfully created ${lookups.size} lookup mappings in ${System.currentTimeMillis - startTime}ms")
     lookups
   }
+  lazy val companionLookup: Map[String, CompanionFor[_ <: FHIRObject]] =
+    urlLookup.map { case (url, obj) => url.split("/").last -> obj }
 
   val suffixDecoderTypeTagMap: Map[String, DecoderAndTag[_]] = Map(
     "Dosage"          -> DecoderAndTag[Dosage](Dosage.decoder(_), lTagOf[Dosage]),
@@ -186,3 +166,43 @@ object UnionAliases {
   type Union_1768247138 = Boolean \/ CodeableConcept
   type Union_1947777294 = Duration \/ FHIRDateTime \/ Period
 }
+
+object Module
+    extends ModuleDict(
+      Map(
+        "http://hl7.org/fhir/StructureDefinition/Timing"              -> Timing,
+        "http://hl7.org/fhir/StructureDefinition/Duration"            -> Duration,
+        "http://hl7.org/fhir/StructureDefinition/Age"                 -> Age,
+        "http://hl7.org/fhir/StructureDefinition/HumanName"           -> HumanName,
+        "http://hl7.org/fhir/StructureDefinition/UsageContext"        -> UsageContext,
+        "http://hl7.org/fhir/StructureDefinition/CodeableConcept"     -> CodeableConcept,
+        "http://hl7.org/fhir/StructureDefinition/Annotation"          -> Annotation,
+        "http://hl7.org/fhir/StructureDefinition/Element"             -> Element,
+        "http://hl7.org/fhir/StructureDefinition/ContactDetail"       -> ContactDetail,
+        "http://hl7.org/fhir/StructureDefinition/Reference"           -> Reference,
+        "http://hl7.org/fhir/StructureDefinition/Attachment"          -> Attachment,
+        "http://hl7.org/fhir/StructureDefinition/Count"               -> Count,
+        "http://hl7.org/fhir/StructureDefinition/Expression"          -> Expression,
+        "http://hl7.org/fhir/StructureDefinition/Signature"           -> Signature,
+        "http://hl7.org/fhir/StructureDefinition/Contributor"         -> Contributor,
+        "http://hl7.org/fhir/StructureDefinition/Period"              -> Period,
+        "http://hl7.org/fhir/StructureDefinition/Meta"                -> Meta,
+        "http://hl7.org/fhir/StructureDefinition/Money"               -> Money,
+        "http://hl7.org/fhir/StructureDefinition/Address"             -> Address,
+        "http://hl7.org/fhir/StructureDefinition/ContactPoint"        -> ContactPoint,
+        "http://hl7.org/fhir/StructureDefinition/ParameterDefinition" -> ParameterDefinition,
+        "http://hl7.org/fhir/StructureDefinition/Identifier"          -> Identifier,
+        "http://hl7.org/fhir/StructureDefinition/BackboneElement"     -> BackboneElement,
+        "http://hl7.org/fhir/StructureDefinition/Dosage"              -> Dosage,
+        "http://hl7.org/fhir/StructureDefinition/Resource"            -> Resource,
+        "http://hl7.org/fhir/StructureDefinition/Extension"           -> Extension,
+        "http://hl7.org/fhir/StructureDefinition/Distance"            -> Distance,
+        "http://hl7.org/fhir/StructureDefinition/SampledData"         -> SampledData,
+        "http://hl7.org/fhir/StructureDefinition/Ratio"               -> Ratio,
+        "http://hl7.org/fhir/StructureDefinition/TriggerDefinition"   -> TriggerDefinition,
+        "http://hl7.org/fhir/StructureDefinition/Quantity"            -> Quantity,
+        "http://hl7.org/fhir/StructureDefinition/DataRequirement"     -> DataRequirement,
+        "http://hl7.org/fhir/StructureDefinition/Coding"              -> Coding,
+        "http://hl7.org/fhir/StructureDefinition/Range"               -> Range,
+        "http://hl7.org/fhir/StructureDefinition/RelatedArtifact"     -> RelatedArtifact
+      ))

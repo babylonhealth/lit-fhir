@@ -2,13 +2,14 @@ package com.babylonhealth.lit.languages
 
 import scala.collection.immutable.ListMap
 import scala.util.Try
-
 import com.babylonhealth.lit._
 import com.babylonhealth.lit.Cardinality._
 import com.babylonhealth.lit.CardinalityImplicits._
 import com.babylonhealth.lit.common.CodegenUtils
 import com.babylonhealth.lit.hl7.BINDING_STRENGTH
 import com.babylonhealth.lit.fhirpath.genScala.ExactlyOne
+
+import scala.collection.immutable
 
 trait BaseFieldImplicits {
   implicit class RichTopLevelClass(topLevelClass: TopLevelClass) {
@@ -420,16 +421,17 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     val eachFieldsMetaImpl = fields.map(f => f.fieldMeta(allClashingTypes)).mkString("\n    ")
     val fieldsMetaImpl =
       fields.map(_.scalaName).mkString("val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(", ", ", ")")
-    val getFieldsImpl = if (topLevelClass.typeName == topLevelClass.className)
-      s"""override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-         |override def fields(t: $className): Seq[FHIRComponentField[_]] = Seq(
-         |  ${fields.map(f => f.field(allClashingTypes)).mkString(",\n    ")}
-         |)""".stripMargin
-    else
-    s"""override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(Seq(
-       |  ${fields.map(f => f.field(allClashingTypes)).mkString(",\n    ")}
-       |))
-       |override def fields(t: $className): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get""".stripMargin
+    val getFieldsImpl =
+      if (topLevelClass.typeName == topLevelClass.className)
+        s"""override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
+           |override def fields(t: $className): Seq[FHIRComponentField[_]] = Seq(
+           |  ${fields.map(f => f.field(allClashingTypes)).mkString(",\n    ")}
+           |)""".stripMargin
+      else
+        s"""override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(Seq(
+           |  ${fields.map(f => f.field(allClashingTypes)).mkString(",\n    ")}
+           |))
+           |override def fields(t: $className): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get""".stripMargin
 
     def extractFieldsImpl                  = fields.map(f => f.getField(allClashingTypes)).mkString("\n    ")
     def unapplyField(f: BaseField): String = f.refineField(allClashingTypes, "o")
@@ -647,16 +649,21 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
   }
   def genPackageObjectFiles(
       moduleDependencies: ModuleDependencies,
-      _unionAliases: Map[String, (Seq[String], Seq[String])]): Seq[ClassGenInfo] =
-    _unionAliases
-      .map { case (unionName, (pkgs, unionTypes)) =>
-        (moduleDependencies.leastCommon(pkgs.toSet), unionName, unionTypes)
-      }
-      .groupBy(_._1)
-      .map { case (pkg, unions) =>
-        ClassGenInfo(genPackageObject(pkg, unions.map { case (_, b, c) => b -> c }.toMap), "package", pkg)
-      }
-      .toSeq
+      _unionAliases: Map[String, (Seq[String], Seq[String])],
+      classes: Seq[(String, TopLevelClass)]): Seq[ClassGenInfo] = {
+    val lookups = classes.groupMap(_._1) { case (_, c) => c.url -> c.scalaClassName }
+    val unions: Map[String, Map[String, Seq[String]]] =
+      _unionAliases
+        .map { case (unionName, (pkgs, unionTypes)) =>
+          (moduleDependencies.leastCommon(pkgs.toSet), unionName, unionTypes)
+        }
+        .groupBy(_._1)
+        .map { case (pkg, unions) => pkg -> unions.map { case (_, b, c) => b -> c }.toMap }
+
+    lookups.map { case (pkg, classes) =>
+      ClassGenInfo(genPackageObject(pkg, unions.getOrElse(pkg, Map.empty), classes.toMap), "package", pkg)
+    }.toSeq
+  }
 
   def genPackageCore: String =
     """package com.babylonhealth.lit.core
@@ -833,7 +840,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |    }
       |  }
       |}""".stripMargin
-  def genPackageObject(pkg: String, _unionAliases: Map[String, Seq[String]]): String = {
+  def genPackageObject(pkg: String, _unionAliases: Map[String, Seq[String]], lookups: Map[String, String]): String = {
     val head =
       if (pkg == "core") genPackageCore
       else
@@ -844,6 +851,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
            |
            |import com.babylonhealth.lit.core._
            |import com.babylonhealth.lit.core.model._
+           |import com.babylonhealth.lit.$pkg.model._
            |""".stripMargin
     val unionAliases =
       _unionAliases.toSeq
@@ -852,9 +860,13 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         .mkString("\n  ")
     s"""$head
        |
-       |object UnionAliases {
+       |${if (unionAliases.nonEmpty) s"""object UnionAliases {
        |  $unionAliases
        |}
+       |""" else ""}
+       |object Module extends ModuleDict(Map(${lookups
+      .map { case (url, obj) => s""""$url" -> $obj""" }
+      .mkString(", ")}))
        |
        |""".stripMargin
   }
