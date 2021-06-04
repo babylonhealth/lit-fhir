@@ -29,31 +29,25 @@ case class DecoderAndTag[T](decoder: DecoderParams => Decoder[T], typeTag: LTag[
 import BaseFieldDecoders._
 
 package object model {
-  def extractModuleFromPath(classPathResults: Seq[ClassInfo]): Seq[ModuleDict] = classPathResults.map { ci =>
-    val c = Class.forName(ci.getName)
-    c.getField("MODULE$").get(c).asInstanceOf[ModuleDict]
+  def extractModuleFromRoots(roots: Seq[String]): Seq[ModuleDict] = roots.flatMap { root =>
+    Try(Class.forName(s"$root.Module$$")).map(c => c.getField("MODULE$").get(c).asInstanceOf[ModuleDict]).toOption
   }
   lazy val urlLookup: Map[String, CompanionFor[_ <: FHIRObject]] = blocking {
     println("Initialising lookups")
-    val startTime                             = System.currentTimeMillis
-    var scanResult: ScanResult                = null
-    var lookups: Map[String, CompanionFor[_]] = null
-    try {
-      scanResult = new ClassGraph().whitelistPackages(Config.generatedNamespaces: _*).scan()
-      val classPathResults = scanResult
-        .getSubclasses("com.babylonhealth.lit.core.ModuleDict")
-        .asScala
-
-      val modules = extractModuleFromPath(classPathResults.toSeq).toList
-
-      lookups = modules.flatMap(_.lookup).toMap
-    } finally if (scanResult != null) scanResult.close()
-    if (lookups == null || lookups.size < 35) { // 35 classes inherit from FHIRObject just in core alone...
+    val reg                = """com\.babylonhealth\.lit\.\w+""".r
+    val startTime          = System.currentTimeMillis
+    val packageScan        = new ClassGraph().acceptPackages("com.babylonhealth.lit.*").scan()
+    val roots: Seq[String] = packageScan.getPackageInfo.asScala.map(_.getName).filter(reg.matches).toSeq
+    packageScan.close()
+    val modules = extractModuleFromRoots(roots).toList
+    if (modules.isEmpty) { // expect at least core module to be present
       println("FATAL ERROR: Unable to instantiate companionLookup map")
       sys.exit(5)
     }
-    println(s"Successfully created ${lookups.size} lookup mappings in ${System.currentTimeMillis - startTime}ms")
-    lookups
+    val endTime = System.currentTimeMillis
+    println(
+      s"Successfully created ${modules.map(_.lookup.size).sum} lookup mappings in ${modules.size} packages in ${endTime - startTime}ms")
+    modules.flatMap(_.lookup).toMap
   }
   lazy val resourceTypeLookup: Map[String, CompanionFor[_ <: FHIRObject]] =
     urlLookup.collect { case (_, obj) if obj eq obj.baseType => obj.thisName -> obj }

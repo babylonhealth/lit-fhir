@@ -96,7 +96,7 @@ lazy val core = project
       "ch.qos.logback"          % "logback-classic"            % V.logback,
       "com.beachape"           %% "enumeratum"                 % V.enumeratum,
       "com.beachape"           %% "enumeratum-circe"           % "1.5.23",
-      "io.github.classgraph"    % "classgraph"                 % "4.8.78",
+      "io.github.classgraph"    % "classgraph"                 % "4.8.107",
       "org.scala-lang.modules" %% "scala-parallel-collections" % "0.2.0",
       "dev.zio"                %% "izumi-reflect"              % V.izumiReflect,
       // Test
