@@ -77,7 +77,7 @@ object Extension extends CompanionFor[Extension] {
         )
         if (!params.decodeSpecificExtensions) genericExtension
         else {
-          val specificExtension = companionLookup.get(url)
+          val specificExtension = urlLookup.get(url)
           specificExtension match {
             case None =>
               if (params.logOnMissingExtension) log.warn(s"Missing extension $url")

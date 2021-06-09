@@ -6,7 +6,7 @@ import scala.util.Try
 import izumi.reflect.macrortti.LTag
 
 import com.babylonhealth.lit.core.FHIRObject
-import com.babylonhealth.lit.core.model.{ companionLookup, suffixDecoderTypeTagMap }
+import com.babylonhealth.lit.core.model.{ resourceTypeLookup, suffixDecoderTypeTagMap }
 
 object model {
 
@@ -98,7 +98,7 @@ object model {
     override def toString: String = f"$model.$name"
   }
 
-  private val fhirObjTypeMap: Map[String, LTag[_]] = companionLookup.map { case (k, v) => k -> v.thisTypeTag }
+  private val fhirObjTypeMap: Map[String, LTag[_]] = resourceTypeLookup.map { case (k, v) => k -> v.thisTypeTag }
   private val typeMap: Map[String, LTag[_]] = fhirObjTypeMap ++ suffixDecoderTypeTagMap.map { case (k, v) =>
     k -> v.typeTag
   }

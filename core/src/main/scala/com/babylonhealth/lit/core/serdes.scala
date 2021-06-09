@@ -89,7 +89,7 @@ object serdes extends Utils {
       (resourceType.toSeq ++ fs ++ attributes).filterNot(x => x._2.isNull || x._2.asArray.exists(_.isEmpty)))
   }
   // convenience methods, primarily for calling from Java
-  lazy val allGeneratedClasses: Seq[Class[_]] = model.companionLookup.values.map(_.thisClassTag.runtimeClass).toSeq
+  lazy val allGeneratedClasses: Seq[Class[_]] = model.urlLookup.values.map(_.thisClassTag.runtimeClass).toSeq
   lazy val companionClassMap: Map[Class[_], CompanionFor[_]] = allGeneratedClasses map { klass =>
     val module = Utils.mirror.staticModule(klass.getName)
     val companionObj: CompanionFor[_ <: FHIRObject] =

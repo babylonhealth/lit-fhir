@@ -196,7 +196,10 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
         }.toSeq
       }
       allFHIRClasses ++ valueSetFiles ++ extensions("scala") ++
-      ScalaCodegen.genPackageObjectFiles(args.moduleDependencies, ElementTreee.getUnionTypes)
+      ScalaCodegen.genPackageObjectFiles(
+        args.moduleDependencies,
+        ElementTreee.getUnionTypes,
+        topLevelClasses.classes.toSeq.flatMap(_._2))
     }
 
     val javaClassGenInfo: Option[JavaClassGenInfo] = args.javaPackageSuffix.map { j =>
