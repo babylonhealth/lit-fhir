@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_ADXP_buildingNumberSuffix extends CompanionFor[Iso21090_ADXP_buildingNumberSuffix] {
+  implicit def summonObjectAndCompanionIso21090_ADXP_buildingNumberSuffix1429001697(
+      o: Iso21090_ADXP_buildingNumberSuffix): ObjectAndCompanion[Iso21090_ADXP_buildingNumberSuffix, Iso21090_ADXP_buildingNumberSuffix.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

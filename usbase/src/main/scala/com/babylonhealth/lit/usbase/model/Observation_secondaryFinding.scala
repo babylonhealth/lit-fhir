@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_secondaryFinding extends CompanionFor[Observation_secondaryFinding] {
+  implicit def summonObjectAndCompanionObservation_secondaryFinding_775411696(
+      o: Observation_secondaryFinding): ObjectAndCompanion[Observation_secondaryFinding, Observation_secondaryFinding.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

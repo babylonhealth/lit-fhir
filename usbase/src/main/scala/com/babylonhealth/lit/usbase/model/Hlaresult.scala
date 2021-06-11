@@ -25,6 +25,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Hlaresult extends CompanionFor[Hlaresult] {
+  implicit def summonObjectAndCompanionHlaresult_156723936(
+      o: Hlaresult): ObjectAndCompanion[Hlaresult, Hlaresult.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DiagnosticReport
   override type ParentType   = DiagnosticReport
   override val baseType: CompanionFor[ResourceType] = DiagnosticReport

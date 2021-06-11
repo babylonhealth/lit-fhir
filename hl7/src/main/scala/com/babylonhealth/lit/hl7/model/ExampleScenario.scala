@@ -24,16 +24,22 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ExampleScenario extends CompanionFor[ExampleScenario] {
+  implicit def summonObjectAndCompanionExampleScenario_1638511118(
+      o: ExampleScenario): ObjectAndCompanion[ExampleScenario, ExampleScenario.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ExampleScenario
   override type ParentType   = ExampleScenario
   override val baseType: CompanionFor[ResourceType] = ExampleScenario
   override val parentType: CompanionFor[ParentType] = ExampleScenario
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ExampleScenario")
   object Instance extends CompanionFor[Instance] {
+    implicit def summonObjectAndCompanionInstance_1923696482(o: Instance): ObjectAndCompanion[Instance, Instance.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Instance
     override type ParentType   = Instance
     override val parentType: CompanionFor[ResourceType] = Instance
     object Version extends CompanionFor[Version] {
+      implicit def summonObjectAndCompanionVersion_207646148(o: Version): ObjectAndCompanion[Version, Version.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Version
       override type ParentType   = Version
       override val parentType: CompanionFor[ResourceType] = Version
@@ -99,6 +105,9 @@ object ExampleScenario extends CompanionFor[ExampleScenario] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object ContainedInstance extends CompanionFor[ContainedInstance] {
+      implicit def summonObjectAndCompanionContainedInstance1708675996(
+          o: ContainedInstance): ObjectAndCompanion[ContainedInstance, ContainedInstance.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = ContainedInstance
       override type ParentType   = ContainedInstance
       override val parentType: CompanionFor[ResourceType] = ContainedInstance
@@ -269,14 +278,20 @@ object ExampleScenario extends CompanionFor[ExampleScenario] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Process extends CompanionFor[Process] {
+    implicit def summonObjectAndCompanionProcess_288453292(o: Process): ObjectAndCompanion[Process, Process.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Process
     override type ParentType   = Process
     override val parentType: CompanionFor[ResourceType] = Process
     object Step extends CompanionFor[Step] {
+      implicit def summonObjectAndCompanionStep582815537(o: Step): ObjectAndCompanion[Step, Step.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Step
       override type ParentType   = Step
       override val parentType: CompanionFor[ResourceType] = Step
       object Operation extends CompanionFor[Operation] {
+        implicit def summonObjectAndCompanionOperation842208313(
+            o: Operation): ObjectAndCompanion[Operation, Operation.type] = ObjectAndCompanion(o, this)
         override type ResourceType = Operation
         override type ParentType   = Operation
         override val parentType: CompanionFor[ResourceType] = Operation
@@ -434,6 +449,8 @@ object ExampleScenario extends CompanionFor[ExampleScenario] {
             FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Alternative extends CompanionFor[Alternative] {
+        implicit def summonObjectAndCompanionAlternative_834030238(
+            o: Alternative): ObjectAndCompanion[Alternative, Alternative.type] = ObjectAndCompanion(o, this)
         override type ResourceType = Alternative
         override type ParentType   = Alternative
         override val parentType: CompanionFor[ResourceType] = Alternative
@@ -675,6 +692,8 @@ object ExampleScenario extends CompanionFor[ExampleScenario] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Actor extends CompanionFor[Actor] {
+    implicit def summonObjectAndCompanionActor1323798523(o: Actor): ObjectAndCompanion[Actor, Actor.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Actor
     override type ParentType   = Actor
     override val parentType: CompanionFor[ResourceType] = Actor

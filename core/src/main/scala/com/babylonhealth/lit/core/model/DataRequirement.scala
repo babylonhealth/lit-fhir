@@ -21,12 +21,16 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DataRequirement extends CompanionFor[DataRequirement] {
+  implicit def summonObjectAndCompanionDataRequirement1813028335(
+      o: DataRequirement): ObjectAndCompanion[DataRequirement, DataRequirement.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DataRequirement
   override type ParentType   = DataRequirement
   override val baseType: CompanionFor[ResourceType] = DataRequirement
   override val parentType: CompanionFor[ParentType] = DataRequirement
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DataRequirement")
   object DateFilter extends CompanionFor[DateFilter] {
+    implicit def summonObjectAndCompanionDateFilter167096238(
+        o: DateFilter): ObjectAndCompanion[DateFilter, DateFilter.type] = ObjectAndCompanion(o, this)
     override type ResourceType = DateFilter
     override type ParentType   = DateFilter
     override val parentType: CompanionFor[ResourceType] = DateFilter
@@ -93,6 +97,8 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object CodeFilter extends CompanionFor[CodeFilter] {
+    implicit def summonObjectAndCompanionCodeFilter540025153(
+        o: CodeFilter): ObjectAndCompanion[CodeFilter, CodeFilter.type] = ObjectAndCompanion(o, this)
     override type ResourceType = CodeFilter
     override type ParentType   = CodeFilter
     override val parentType: CompanionFor[ResourceType] = CodeFilter
@@ -165,6 +171,8 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Sort extends CompanionFor[Sort] {
+    implicit def summonObjectAndCompanionSort725645701(o: Sort): ObjectAndCompanion[Sort, Sort.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Sort
     override type ParentType   = Sort
     override val parentType: CompanionFor[ResourceType] = Sort

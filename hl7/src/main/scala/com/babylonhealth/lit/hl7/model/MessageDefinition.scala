@@ -29,12 +29,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MessageDefinition extends CompanionFor[MessageDefinition] {
+  implicit def summonObjectAndCompanionMessageDefinition_638721944(
+      o: MessageDefinition): ObjectAndCompanion[MessageDefinition, MessageDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MessageDefinition
   override type ParentType   = MessageDefinition
   override val baseType: CompanionFor[ResourceType] = MessageDefinition
   override val parentType: CompanionFor[ParentType] = MessageDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MessageDefinition")
   object AllowedResponse extends CompanionFor[AllowedResponse] {
+    implicit def summonObjectAndCompanionAllowedResponse807585912(
+        o: AllowedResponse): ObjectAndCompanion[AllowedResponse, AllowedResponse.type] = ObjectAndCompanion(o, this)
     override type ResourceType = AllowedResponse
     override type ParentType   = AllowedResponse
     override val parentType: CompanionFor[ResourceType] = AllowedResponse
@@ -100,6 +104,8 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Focus extends CompanionFor[Focus] {
+    implicit def summonObjectAndCompanionFocus1852442267(o: Focus): ObjectAndCompanion[Focus, Focus.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Focus
     override type ParentType   = Focus
     override val parentType: CompanionFor[ResourceType] = Focus

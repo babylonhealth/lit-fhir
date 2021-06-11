@@ -30,16 +30,23 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object OperationDefinition extends CompanionFor[OperationDefinition] {
+  implicit def summonObjectAndCompanionOperationDefinition2122367953(
+      o: OperationDefinition): ObjectAndCompanion[OperationDefinition, OperationDefinition.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = OperationDefinition
   override type ParentType   = OperationDefinition
   override val baseType: CompanionFor[ResourceType] = OperationDefinition
   override val parentType: CompanionFor[ParentType] = OperationDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/OperationDefinition")
   object Parameter extends CompanionFor[Parameter] {
+    implicit def summonObjectAndCompanionParameter_1787693368(
+        o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Parameter
     override type ParentType   = Parameter
     override val parentType: CompanionFor[ResourceType] = Parameter
     object Binding extends CompanionFor[Binding] {
+      implicit def summonObjectAndCompanionBinding_397081076(o: Binding): ObjectAndCompanion[Binding, Binding.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Binding
       override type ParentType   = Binding
       override val parentType: CompanionFor[ResourceType] = Binding
@@ -106,6 +113,8 @@ object OperationDefinition extends CompanionFor[OperationDefinition] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object ReferencedFrom extends CompanionFor[ReferencedFrom] {
+      implicit def summonObjectAndCompanionReferencedFrom599532594(
+          o: ReferencedFrom): ObjectAndCompanion[ReferencedFrom, ReferencedFrom.type] = ObjectAndCompanion(o, this)
       override type ResourceType = ReferencedFrom
       override type ParentType   = ReferencedFrom
       override val parentType: CompanionFor[ResourceType] = ReferencedFrom
@@ -333,6 +342,8 @@ object OperationDefinition extends CompanionFor[OperationDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Overload extends CompanionFor[Overload] {
+    implicit def summonObjectAndCompanionOverload_1870125354(o: Overload): ObjectAndCompanion[Overload, Overload.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Overload
     override type ParentType   = Overload
     override val parentType: CompanionFor[ResourceType] = Overload

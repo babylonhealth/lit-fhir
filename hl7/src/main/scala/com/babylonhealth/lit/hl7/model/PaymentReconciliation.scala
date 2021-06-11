@@ -24,12 +24,17 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
+  implicit def summonObjectAndCompanionPaymentReconciliation1456914715(
+      o: PaymentReconciliation): ObjectAndCompanion[PaymentReconciliation, PaymentReconciliation.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = PaymentReconciliation
   override type ParentType   = PaymentReconciliation
   override val baseType: CompanionFor[ResourceType] = PaymentReconciliation
   override val parentType: CompanionFor[ParentType] = PaymentReconciliation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/PaymentReconciliation")
   object ProcessNote extends CompanionFor[ProcessNote] {
+    implicit def summonObjectAndCompanionProcessNote1315800070(
+        o: ProcessNote): ObjectAndCompanion[ProcessNote, ProcessNote.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ProcessNote
     override type ParentType   = ProcessNote
     override val parentType: CompanionFor[ResourceType] = ProcessNote
@@ -95,6 +100,8 @@ object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Detail extends CompanionFor[Detail] {
+    implicit def summonObjectAndCompanionDetail_1308454562(o: Detail): ObjectAndCompanion[Detail, Detail.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Detail
     override type ParentType   = Detail
     override val parentType: CompanionFor[ResourceType] = Detail

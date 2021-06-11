@@ -24,12 +24,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CatalogEntry extends CompanionFor[CatalogEntry] {
+  implicit def summonObjectAndCompanionCatalogEntry1056870130(
+      o: CatalogEntry): ObjectAndCompanion[CatalogEntry, CatalogEntry.type] = ObjectAndCompanion(o, this)
   override type ResourceType = CatalogEntry
   override type ParentType   = CatalogEntry
   override val baseType: CompanionFor[ResourceType] = CatalogEntry
   override val parentType: CompanionFor[ParentType] = CatalogEntry
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CatalogEntry")
   object RelatedEntry extends CompanionFor[RelatedEntry] {
+    implicit def summonObjectAndCompanionRelatedEntry_739686067(
+        o: RelatedEntry): ObjectAndCompanion[RelatedEntry, RelatedEntry.type] = ObjectAndCompanion(o, this)
     override type ResourceType = RelatedEntry
     override type ParentType   = RelatedEntry
     override val parentType: CompanionFor[ResourceType] = RelatedEntry

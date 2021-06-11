@@ -24,12 +24,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EpisodeOfCare extends CompanionFor[EpisodeOfCare] {
+  implicit def summonObjectAndCompanionEpisodeOfCare_540675477(
+      o: EpisodeOfCare): ObjectAndCompanion[EpisodeOfCare, EpisodeOfCare.type] = ObjectAndCompanion(o, this)
   override type ResourceType = EpisodeOfCare
   override type ParentType   = EpisodeOfCare
   override val baseType: CompanionFor[ResourceType] = EpisodeOfCare
   override val parentType: CompanionFor[ParentType] = EpisodeOfCare
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/EpisodeOfCare")
   object StatusHistory extends CompanionFor[StatusHistory] {
+    implicit def summonObjectAndCompanionStatusHistory639383329(
+        o: StatusHistory): ObjectAndCompanion[StatusHistory, StatusHistory.type] = ObjectAndCompanion(o, this)
     override type ResourceType = StatusHistory
     override type ParentType   = StatusHistory
     override val parentType: CompanionFor[ResourceType] = StatusHistory
@@ -95,6 +99,8 @@ object EpisodeOfCare extends CompanionFor[EpisodeOfCare] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Diagnosis extends CompanionFor[Diagnosis] {
+    implicit def summonObjectAndCompanionDiagnosis_602285976(
+        o: Diagnosis): ObjectAndCompanion[Diagnosis, Diagnosis.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Diagnosis
     override type ParentType   = Diagnosis
     override val parentType: CompanionFor[ResourceType] = Diagnosis

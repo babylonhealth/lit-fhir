@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Resource_effectivePeriod extends CompanionFor[Resource_effectivePeriod] {
+  implicit def summonObjectAndCompanionResource_effectivePeriod_192090101(
+      o: Resource_effectivePeriod): ObjectAndCompanion[Resource_effectivePeriod, Resource_effectivePeriod.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

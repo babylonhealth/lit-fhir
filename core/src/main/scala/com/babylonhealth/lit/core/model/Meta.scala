@@ -21,6 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Meta extends CompanionFor[Meta] {
+  implicit def summonObjectAndCompanionMeta_1134059056(o: Meta): ObjectAndCompanion[Meta, Meta.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Meta
   override type ParentType   = Meta
   override val baseType: CompanionFor[ResourceType] = Meta

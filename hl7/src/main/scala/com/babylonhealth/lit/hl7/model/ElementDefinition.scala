@@ -31,16 +31,22 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ElementDefinition extends CompanionFor[ElementDefinition] {
+  implicit def summonObjectAndCompanionElementDefinition_1313741034(
+      o: ElementDefinition): ObjectAndCompanion[ElementDefinition, ElementDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ElementDefinition
   override type ParentType   = ElementDefinition
   override val baseType: CompanionFor[ResourceType] = ElementDefinition
   override val parentType: CompanionFor[ParentType] = ElementDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ElementDefinition")
   object Slicing extends CompanionFor[Slicing] {
+    implicit def summonObjectAndCompanionSlicing_610753655(o: Slicing): ObjectAndCompanion[Slicing, Slicing.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Slicing
     override type ParentType   = Slicing
     override val parentType: CompanionFor[ResourceType] = Slicing
     object Discriminator extends CompanionFor[Discriminator] {
+      implicit def summonObjectAndCompanionDiscriminator_666719695(
+          o: Discriminator): ObjectAndCompanion[Discriminator, Discriminator.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Discriminator
       override type ParentType   = Discriminator
       override val parentType: CompanionFor[ResourceType] = Discriminator
@@ -171,6 +177,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Constraint extends CompanionFor[Constraint] {
+    implicit def summonObjectAndCompanionConstraint_1898286269(
+        o: Constraint): ObjectAndCompanion[Constraint, Constraint.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Constraint
     override type ParentType   = Constraint
     override val parentType: CompanionFor[ResourceType] = Constraint
@@ -265,6 +273,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Binding extends CompanionFor[Binding] {
+    implicit def summonObjectAndCompanionBinding1283878123(o: Binding): ObjectAndCompanion[Binding, Binding.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Binding
     override type ParentType   = Binding
     override val parentType: CompanionFor[ResourceType] = Binding
@@ -330,6 +340,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Type extends CompanionFor[Type] {
+    implicit def summonObjectAndCompanionType1912653087(o: Type): ObjectAndCompanion[Type, Type.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Type
     override type ParentType   = Type
     override val parentType: CompanionFor[ResourceType] = Type
@@ -418,6 +430,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Mapping extends CompanionFor[Mapping] {
+    implicit def summonObjectAndCompanionMapping_2082133029(o: Mapping): ObjectAndCompanion[Mapping, Mapping.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Mapping
     override type ParentType   = Mapping
     override val parentType: CompanionFor[ResourceType] = Mapping
@@ -489,6 +503,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Example extends CompanionFor[Example] {
+    implicit def summonObjectAndCompanionExample108344653(o: Example): ObjectAndCompanion[Example, Example.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Example
     override type ParentType   = Example
     override val parentType: CompanionFor[ResourceType] = Example
@@ -547,6 +563,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Base extends CompanionFor[Base] {
+    implicit def summonObjectAndCompanionBase1287525849(o: Base): ObjectAndCompanion[Base, Base.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Base
     override type ParentType   = Base
     override val parentType: CompanionFor[ResourceType] = Base

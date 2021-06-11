@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_systemUserTaskContext extends CompanionFor[Cqf_systemUserTaskContext] {
+  implicit def summonObjectAndCompanionCqf_systemUserTaskContext327935771(
+      o: Cqf_systemUserTaskContext): ObjectAndCompanion[Cqf_systemUserTaskContext, Cqf_systemUserTaskContext.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

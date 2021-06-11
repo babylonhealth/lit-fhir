@@ -30,12 +30,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Composition extends CompanionFor[Composition] {
+  implicit def summonObjectAndCompanionComposition_2106938514(
+      o: Composition): ObjectAndCompanion[Composition, Composition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Composition
   override type ParentType   = Composition
   override val baseType: CompanionFor[ResourceType] = Composition
   override val parentType: CompanionFor[ParentType] = Composition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Composition")
   object RelatesTo extends CompanionFor[RelatesTo] {
+    implicit def summonObjectAndCompanionRelatesTo_2011369864(
+        o: RelatesTo): ObjectAndCompanion[RelatesTo, RelatesTo.type] = ObjectAndCompanion(o, this)
     override type ResourceType = RelatesTo
     override type ParentType   = RelatesTo
     override val parentType: CompanionFor[ResourceType] = RelatesTo
@@ -102,6 +106,8 @@ object Composition extends CompanionFor[Composition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Attester extends CompanionFor[Attester] {
+    implicit def summonObjectAndCompanionAttester_1782317507(o: Attester): ObjectAndCompanion[Attester, Attester.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Attester
     override type ParentType   = Attester
     override val parentType: CompanionFor[ResourceType] = Attester
@@ -174,6 +180,8 @@ object Composition extends CompanionFor[Composition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Section extends CompanionFor[Section] {
+    implicit def summonObjectAndCompanionSection_315048399(o: Section): ObjectAndCompanion[Section, Section.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Section
     override type ParentType   = Section
     override val parentType: CompanionFor[ResourceType] = Section
@@ -322,6 +330,8 @@ object Composition extends CompanionFor[Composition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Event extends CompanionFor[Event] {
+    implicit def summonObjectAndCompanionEvent_803352966(o: Event): ObjectAndCompanion[Event, Event.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Event
     override type ParentType   = Event
     override val parentType: CompanionFor[ResourceType] = Event

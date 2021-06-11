@@ -24,16 +24,22 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object NutritionOrder extends CompanionFor[NutritionOrder] {
+  implicit def summonObjectAndCompanionNutritionOrder1730118791(
+      o: NutritionOrder): ObjectAndCompanion[NutritionOrder, NutritionOrder.type] = ObjectAndCompanion(o, this)
   override type ResourceType = NutritionOrder
   override type ParentType   = NutritionOrder
   override val baseType: CompanionFor[ResourceType] = NutritionOrder
   override val parentType: CompanionFor[ParentType] = NutritionOrder
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/NutritionOrder")
   object EnteralFormula extends CompanionFor[EnteralFormula] {
+    implicit def summonObjectAndCompanionEnteralFormula506699772(
+        o: EnteralFormula): ObjectAndCompanion[EnteralFormula, EnteralFormula.type] = ObjectAndCompanion(o, this)
     override type ResourceType = EnteralFormula
     override type ParentType   = EnteralFormula
     override val parentType: CompanionFor[ResourceType] = EnteralFormula
     object Administration extends CompanionFor[Administration] {
+      implicit def summonObjectAndCompanionAdministration_327056599(
+          o: Administration): ObjectAndCompanion[Administration, Administration.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Administration
       override type ParentType   = Administration
       override val parentType: CompanionFor[ResourceType] = Administration
@@ -248,10 +254,14 @@ object NutritionOrder extends CompanionFor[NutritionOrder] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object OralDiet extends CompanionFor[OralDiet] {
+    implicit def summonObjectAndCompanionOralDiet_1200010012(o: OralDiet): ObjectAndCompanion[OralDiet, OralDiet.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = OralDiet
     override type ParentType   = OralDiet
     override val parentType: CompanionFor[ResourceType] = OralDiet
     object Texture extends CompanionFor[Texture] {
+      implicit def summonObjectAndCompanionTexture_1411370188(o: Texture): ObjectAndCompanion[Texture, Texture.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Texture
       override type ParentType   = Texture
       override val parentType: CompanionFor[ResourceType] = Texture
@@ -318,6 +328,8 @@ object NutritionOrder extends CompanionFor[NutritionOrder] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Nutrient extends CompanionFor[Nutrient] {
+      implicit def summonObjectAndCompanionNutrient_2049768071(
+          o: Nutrient): ObjectAndCompanion[Nutrient, Nutrient.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Nutrient
       override type ParentType   = Nutrient
       override val parentType: CompanionFor[ResourceType] = Nutrient
@@ -484,6 +496,8 @@ object NutritionOrder extends CompanionFor[NutritionOrder] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Supplement extends CompanionFor[Supplement] {
+    implicit def summonObjectAndCompanionSupplement960121857(
+        o: Supplement): ObjectAndCompanion[Supplement, Supplement.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Supplement
     override type ParentType   = Supplement
     override val parentType: CompanionFor[ResourceType] = Supplement

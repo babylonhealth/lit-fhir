@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Timing_exact extends CompanionFor[Timing_exact] {
+  implicit def summonObjectAndCompanionTiming_exact_885051406(
+      o: Timing_exact): ObjectAndCompanion[Timing_exact, Timing_exact.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

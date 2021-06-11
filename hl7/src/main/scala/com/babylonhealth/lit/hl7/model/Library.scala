@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Library extends CompanionFor[Library] {
+  implicit def summonObjectAndCompanionLibrary924236600(o: Library): ObjectAndCompanion[Library, Library.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Library
   override type ParentType   = Library
   override val baseType: CompanionFor[ResourceType] = Library

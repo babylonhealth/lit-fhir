@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Procedure_approachBodyStructure extends CompanionFor[Procedure_approachBodyStructure] {
+  implicit def summonObjectAndCompanionProcedure_approachBodyStructure_1218205608(
+      o: Procedure_approachBodyStructure): ObjectAndCompanion[Procedure_approachBodyStructure, Procedure_approachBodyStructure.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

@@ -30,12 +30,17 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object StructureDefinition extends CompanionFor[StructureDefinition] {
+  implicit def summonObjectAndCompanionStructureDefinition8867373(
+      o: StructureDefinition): ObjectAndCompanion[StructureDefinition, StructureDefinition.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = StructureDefinition
   override type ParentType   = StructureDefinition
   override val baseType: CompanionFor[ResourceType] = StructureDefinition
   override val parentType: CompanionFor[ParentType] = StructureDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/StructureDefinition")
   object Differential extends CompanionFor[Differential] {
+    implicit def summonObjectAndCompanionDifferential62897179(
+        o: Differential): ObjectAndCompanion[Differential, Differential.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Differential
     override type ParentType   = Differential
     override val parentType: CompanionFor[ResourceType] = Differential
@@ -94,6 +99,8 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Snapshot extends CompanionFor[Snapshot] {
+    implicit def summonObjectAndCompanionSnapshot497698502(o: Snapshot): ObjectAndCompanion[Snapshot, Snapshot.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Snapshot
     override type ParentType   = Snapshot
     override val parentType: CompanionFor[ResourceType] = Snapshot
@@ -152,6 +159,8 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Context extends CompanionFor[Context] {
+    implicit def summonObjectAndCompanionContext2131363304(o: Context): ObjectAndCompanion[Context, Context.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Context
     override type ParentType   = Context
     override val parentType: CompanionFor[ResourceType] = Context
@@ -217,6 +226,8 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Mapping extends CompanionFor[Mapping] {
+    implicit def summonObjectAndCompanionMapping2110698902(o: Mapping): ObjectAndCompanion[Mapping, Mapping.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Mapping
     override type ParentType   = Mapping
     override val parentType: CompanionFor[ResourceType] = Mapping

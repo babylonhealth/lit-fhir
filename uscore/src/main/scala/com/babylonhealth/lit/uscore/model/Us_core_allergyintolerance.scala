@@ -30,6 +30,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_allergyintolerance extends CompanionFor[Us_core_allergyintolerance] {
+  implicit def summonObjectAndCompanionUs_core_allergyintolerance_775912631(
+      o: Us_core_allergyintolerance): ObjectAndCompanion[Us_core_allergyintolerance, Us_core_allergyintolerance.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = AllergyIntolerance
   override type ParentType   = AllergyIntolerance
   override val baseType: CompanionFor[ResourceType] = AllergyIntolerance

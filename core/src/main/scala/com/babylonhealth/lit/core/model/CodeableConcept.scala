@@ -21,6 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CodeableConcept extends CompanionFor[CodeableConcept] {
+  implicit def summonObjectAndCompanionCodeableConcept1231013185(
+      o: CodeableConcept): ObjectAndCompanion[CodeableConcept, CodeableConcept.type] = ObjectAndCompanion(o, this)
   override type ResourceType = CodeableConcept
   override type ParentType   = CodeableConcept
   override val baseType: CompanionFor[ResourceType] = CodeableConcept

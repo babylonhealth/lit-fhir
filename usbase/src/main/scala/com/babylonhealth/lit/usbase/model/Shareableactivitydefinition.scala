@@ -31,6 +31,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinition] {
+  implicit def summonObjectAndCompanionShareableactivitydefinition_219438691(
+      o: Shareableactivitydefinition): ObjectAndCompanion[Shareableactivitydefinition, Shareableactivitydefinition.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = ActivityDefinition
   override type ParentType   = ActivityDefinition
   override val baseType: CompanionFor[ResourceType] = ActivityDefinition

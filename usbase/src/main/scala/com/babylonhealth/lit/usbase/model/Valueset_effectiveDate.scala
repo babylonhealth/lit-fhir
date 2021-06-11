@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_effectiveDate extends CompanionFor[Valueset_effectiveDate] {
+  implicit def summonObjectAndCompanionValueset_effectiveDate862006023(
+      o: Valueset_effectiveDate): ObjectAndCompanion[Valueset_effectiveDate, Valueset_effectiveDate.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

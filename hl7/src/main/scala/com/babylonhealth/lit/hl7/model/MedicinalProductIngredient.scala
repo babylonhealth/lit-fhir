@@ -23,20 +23,31 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredient] {
+  implicit def summonObjectAndCompanionMedicinalProductIngredient_732358313(
+      o: MedicinalProductIngredient): ObjectAndCompanion[MedicinalProductIngredient, MedicinalProductIngredient.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = MedicinalProductIngredient
   override type ParentType   = MedicinalProductIngredient
   override val baseType: CompanionFor[ResourceType] = MedicinalProductIngredient
   override val parentType: CompanionFor[ParentType] = MedicinalProductIngredient
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductIngredient")
   object SpecifiedSubstance extends CompanionFor[SpecifiedSubstance] {
+    implicit def summonObjectAndCompanionSpecifiedSubstance_2017027232(
+        o: SpecifiedSubstance): ObjectAndCompanion[SpecifiedSubstance, SpecifiedSubstance.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = SpecifiedSubstance
     override type ParentType   = SpecifiedSubstance
     override val parentType: CompanionFor[ResourceType] = SpecifiedSubstance
     object Strength extends CompanionFor[Strength] {
+      implicit def summonObjectAndCompanionStrength_693863080(
+          o: Strength): ObjectAndCompanion[Strength, Strength.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Strength
       override type ParentType   = Strength
       override val parentType: CompanionFor[ResourceType] = Strength
       object ReferenceStrength extends CompanionFor[ReferenceStrength] {
+        implicit def summonObjectAndCompanionReferenceStrength_981305079(
+            o: ReferenceStrength): ObjectAndCompanion[ReferenceStrength, ReferenceStrength.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = ReferenceStrength
         override type ParentType   = ReferenceStrength
         override val parentType: CompanionFor[ResourceType] = ReferenceStrength
@@ -336,6 +347,8 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Substance extends CompanionFor[Substance] {
+    implicit def summonObjectAndCompanionSubstance1154424708(
+        o: Substance): ObjectAndCompanion[Substance, Substance.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Substance
     override type ParentType   = Substance
     override val parentType: CompanionFor[ResourceType] = Substance

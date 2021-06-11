@@ -25,6 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_practitionerrole extends CompanionFor[Us_core_practitionerrole] {
+  implicit def summonObjectAndCompanionUs_core_practitionerrole1375558721(
+      o: Us_core_practitionerrole): ObjectAndCompanion[Us_core_practitionerrole, Us_core_practitionerrole.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = PractitionerRole
   override type ParentType   = PractitionerRole
   override val baseType: CompanionFor[ResourceType] = PractitionerRole

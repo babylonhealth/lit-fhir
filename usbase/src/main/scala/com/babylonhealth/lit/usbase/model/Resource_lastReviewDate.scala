@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Resource_lastReviewDate extends CompanionFor[Resource_lastReviewDate] {
+  implicit def summonObjectAndCompanionResource_lastReviewDate_1875246827(
+      o: Resource_lastReviewDate): ObjectAndCompanion[Resource_lastReviewDate, Resource_lastReviewDate.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

@@ -25,6 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_genetics extends CompanionFor[Observation_genetics] {
+  implicit def summonObjectAndCompanionObservation_genetics1722605845(
+      o: Observation_genetics): ObjectAndCompanion[Observation_genetics, Observation_genetics.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Observation
   override type ParentType   = Observation
   override val baseType: CompanionFor[ResourceType] = Observation

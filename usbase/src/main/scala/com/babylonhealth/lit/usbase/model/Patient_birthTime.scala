@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Patient_birthTime extends CompanionFor[Patient_birthTime] {
+  implicit def summonObjectAndCompanionPatient_birthTime404928289(
+      o: Patient_birthTime): ObjectAndCompanion[Patient_birthTime, Patient_birthTime.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

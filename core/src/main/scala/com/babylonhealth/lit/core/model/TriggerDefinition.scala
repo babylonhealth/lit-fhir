@@ -21,6 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TriggerDefinition extends CompanionFor[TriggerDefinition] {
+  implicit def summonObjectAndCompanionTriggerDefinition1375613741(
+      o: TriggerDefinition): ObjectAndCompanion[TriggerDefinition, TriggerDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = TriggerDefinition
   override type ParentType   = TriggerDefinition
   override val baseType: CompanionFor[ResourceType] = TriggerDefinition

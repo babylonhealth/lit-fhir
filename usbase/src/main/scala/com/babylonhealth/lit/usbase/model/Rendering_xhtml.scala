@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Rendering_xhtml extends CompanionFor[Rendering_xhtml] {
+  implicit def summonObjectAndCompanionRendering_xhtml_1968418231(
+      o: Rendering_xhtml): ObjectAndCompanion[Rendering_xhtml, Rendering_xhtml.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

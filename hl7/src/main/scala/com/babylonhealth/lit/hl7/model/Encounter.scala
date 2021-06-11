@@ -24,12 +24,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Encounter extends CompanionFor[Encounter] {
+  implicit def summonObjectAndCompanionEncounter1049926270(
+      o: Encounter): ObjectAndCompanion[Encounter, Encounter.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Encounter
   override type ParentType   = Encounter
   override val baseType: CompanionFor[ResourceType] = Encounter
   override val parentType: CompanionFor[ParentType] = Encounter
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Encounter")
   object Hospitalization extends CompanionFor[Hospitalization] {
+    implicit def summonObjectAndCompanionHospitalization_332583352(
+        o: Hospitalization): ObjectAndCompanion[Hospitalization, Hospitalization.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Hospitalization
     override type ParentType   = Hospitalization
     override val parentType: CompanionFor[ResourceType] = Hospitalization
@@ -170,6 +174,8 @@ object Encounter extends CompanionFor[Encounter] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object StatusHistory extends CompanionFor[StatusHistory] {
+    implicit def summonObjectAndCompanionStatusHistory73363137(
+        o: StatusHistory): ObjectAndCompanion[StatusHistory, StatusHistory.type] = ObjectAndCompanion(o, this)
     override type ResourceType = StatusHistory
     override type ParentType   = StatusHistory
     override val parentType: CompanionFor[ResourceType] = StatusHistory
@@ -235,6 +241,8 @@ object Encounter extends CompanionFor[Encounter] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ClassHistory extends CompanionFor[ClassHistory] {
+    implicit def summonObjectAndCompanionClassHistory_2097844063(
+        o: ClassHistory): ObjectAndCompanion[ClassHistory, ClassHistory.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ClassHistory
     override type ParentType   = ClassHistory
     override val parentType: CompanionFor[ResourceType] = ClassHistory
@@ -299,6 +307,8 @@ object Encounter extends CompanionFor[Encounter] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Participant extends CompanionFor[Participant] {
+    implicit def summonObjectAndCompanionParticipant_1011655646(
+        o: Participant): ObjectAndCompanion[Participant, Participant.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Participant
     override type ParentType   = Participant
     override val parentType: CompanionFor[ResourceType] = Participant
@@ -371,6 +381,8 @@ object Encounter extends CompanionFor[Encounter] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Diagnosis extends CompanionFor[Diagnosis] {
+    implicit def summonObjectAndCompanionDiagnosis_610612379(
+        o: Diagnosis): ObjectAndCompanion[Diagnosis, Diagnosis.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Diagnosis
     override type ParentType   = Diagnosis
     override val parentType: CompanionFor[ResourceType] = Diagnosis
@@ -443,6 +455,8 @@ object Encounter extends CompanionFor[Encounter] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Location extends CompanionFor[Location] {
+    implicit def summonObjectAndCompanionLocation1286652309(o: Location): ObjectAndCompanion[Location, Location.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Location
     override type ParentType   = Location
     override val parentType: CompanionFor[ResourceType] = Location

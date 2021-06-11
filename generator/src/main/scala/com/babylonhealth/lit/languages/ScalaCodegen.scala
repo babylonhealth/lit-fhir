@@ -309,6 +309,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
 
       val companionDef =
         s"""object $className extends CompanionFor[$className] {
+           |  implicit def summonObjectAndCompanion$className${field.hashCode().toString.replace('-', '_')}(o: $className): ObjectAndCompanion[$className, $className.type] = ObjectAndCompanion(o, this)
            |  override type ResourceType = $className
            |  override type ParentType = $className
            |  override val parentType: CompanionFor[ResourceType] = $className
@@ -589,6 +590,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     // build finally
     val fileStr =
       s"""object $className extends CompanionFor[$className] {
+         |  implicit def summonObjectAndCompanion$className${topLevelClass.hashCode().toString.replace('-', '_')}(o: $className): ObjectAndCompanion[$className, $className.type] = ObjectAndCompanion(o, this)
          |  override type ResourceType = ${topLevelClass.scalaBaseClassName}
          |  override type ParentType = $parentType
          |  override val baseType: CompanionFor[ResourceType] = ${topLevelClass.scalaBaseClassName}

@@ -24,16 +24,22 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object AdverseEvent extends CompanionFor[AdverseEvent] {
+  implicit def summonObjectAndCompanionAdverseEvent_712079276(
+      o: AdverseEvent): ObjectAndCompanion[AdverseEvent, AdverseEvent.type] = ObjectAndCompanion(o, this)
   override type ResourceType = AdverseEvent
   override type ParentType   = AdverseEvent
   override val baseType: CompanionFor[ResourceType] = AdverseEvent
   override val parentType: CompanionFor[ParentType] = AdverseEvent
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/AdverseEvent")
   object SuspectEntity extends CompanionFor[SuspectEntity] {
+    implicit def summonObjectAndCompanionSuspectEntity749698711(
+        o: SuspectEntity): ObjectAndCompanion[SuspectEntity, SuspectEntity.type] = ObjectAndCompanion(o, this)
     override type ResourceType = SuspectEntity
     override type ParentType   = SuspectEntity
     override val parentType: CompanionFor[ResourceType] = SuspectEntity
     object Causality extends CompanionFor[Causality] {
+      implicit def summonObjectAndCompanionCausality_1839941897(
+          o: Causality): ObjectAndCompanion[Causality, Causality.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Causality
       override type ParentType   = Causality
       override val parentType: CompanionFor[ResourceType] = Causality

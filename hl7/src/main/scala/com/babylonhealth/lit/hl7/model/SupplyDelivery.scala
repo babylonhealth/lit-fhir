@@ -24,12 +24,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SupplyDelivery extends CompanionFor[SupplyDelivery] {
+  implicit def summonObjectAndCompanionSupplyDelivery_1097491031(
+      o: SupplyDelivery): ObjectAndCompanion[SupplyDelivery, SupplyDelivery.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SupplyDelivery
   override type ParentType   = SupplyDelivery
   override val baseType: CompanionFor[ResourceType] = SupplyDelivery
   override val parentType: CompanionFor[ParentType] = SupplyDelivery
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SupplyDelivery")
   object SuppliedItem extends CompanionFor[SuppliedItem] {
+    implicit def summonObjectAndCompanionSuppliedItem_2132972385(
+        o: SuppliedItem): ObjectAndCompanion[SuppliedItem, SuppliedItem.type] = ObjectAndCompanion(o, this)
     override type ResourceType = SuppliedItem
     override type ParentType   = SuppliedItem
     override val parentType: CompanionFor[ResourceType] = SuppliedItem

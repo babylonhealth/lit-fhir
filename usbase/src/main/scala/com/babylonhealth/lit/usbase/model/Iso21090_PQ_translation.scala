@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_PQ_translation extends CompanionFor[Iso21090_PQ_translation] {
+  implicit def summonObjectAndCompanionIso21090_PQ_translation_1907610219(
+      o: Iso21090_PQ_translation): ObjectAndCompanion[Iso21090_PQ_translation, Iso21090_PQ_translation.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

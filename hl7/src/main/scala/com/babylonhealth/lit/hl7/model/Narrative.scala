@@ -23,6 +23,8 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Narrative extends CompanionFor[Narrative] {
+  implicit def summonObjectAndCompanionNarrative_1109235826(
+      o: Narrative): ObjectAndCompanion[Narrative, Narrative.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Narrative
   override type ParentType   = Narrative
   override val baseType: CompanionFor[ResourceType] = Narrative

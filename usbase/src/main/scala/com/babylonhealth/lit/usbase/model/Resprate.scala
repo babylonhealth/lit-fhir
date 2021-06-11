@@ -25,6 +25,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Resprate extends CompanionFor[Resprate] {
+  implicit def summonObjectAndCompanionResprate_812910935(o: Resprate): ObjectAndCompanion[Resprate, Resprate.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Observation
   override type ParentType   = Vitalsigns
   override val baseType: CompanionFor[ResourceType] = Observation

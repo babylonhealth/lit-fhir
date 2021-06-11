@@ -26,6 +26,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_procedure extends CompanionFor[Us_core_procedure] {
+  implicit def summonObjectAndCompanionUs_core_procedure_1063734834(
+      o: Us_core_procedure): ObjectAndCompanion[Us_core_procedure, Us_core_procedure.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Procedure
   override type ParentType   = Procedure
   override val baseType: CompanionFor[ResourceType] = Procedure

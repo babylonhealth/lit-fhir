@@ -25,6 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareableplandefinition extends CompanionFor[Shareableplandefinition] {
+  implicit def summonObjectAndCompanionShareableplandefinition_1082192799(
+      o: Shareableplandefinition): ObjectAndCompanion[Shareableplandefinition, Shareableplandefinition.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = PlanDefinition
   override type ParentType   = PlanDefinition
   override val baseType: CompanionFor[ResourceType] = PlanDefinition

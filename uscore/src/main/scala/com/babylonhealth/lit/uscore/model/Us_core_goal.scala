@@ -26,6 +26,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_goal extends CompanionFor[Us_core_goal] {
+  implicit def summonObjectAndCompanionUs_core_goal_495757841(
+      o: Us_core_goal): ObjectAndCompanion[Us_core_goal, Us_core_goal.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Goal
   override type ParentType   = Goal
   override val baseType: CompanionFor[ResourceType] = Goal

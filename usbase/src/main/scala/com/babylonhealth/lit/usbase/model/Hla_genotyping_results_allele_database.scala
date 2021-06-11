@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Hla_genotyping_results_allele_database extends CompanionFor[Hla_genotyping_results_allele_database] {
+  implicit def summonObjectAndCompanionHla_genotyping_results_allele_database954466335(
+      o: Hla_genotyping_results_allele_database): ObjectAndCompanion[Hla_genotyping_results_allele_database, Hla_genotyping_results_allele_database.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

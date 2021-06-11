@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Media extends CompanionFor[Media] {
+  implicit def summonObjectAndCompanionMedia_1579011941(o: Media): ObjectAndCompanion[Media, Media.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Media
   override type ParentType   = Media
   override val baseType: CompanionFor[ResourceType] = Media

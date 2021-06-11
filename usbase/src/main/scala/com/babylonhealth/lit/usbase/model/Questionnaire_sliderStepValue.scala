@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire_sliderStepValue extends CompanionFor[Questionnaire_sliderStepValue] {
+  implicit def summonObjectAndCompanionQuestionnaire_sliderStepValue_1608615408(
+      o: Questionnaire_sliderStepValue): ObjectAndCompanion[Questionnaire_sliderStepValue, Questionnaire_sliderStepValue.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

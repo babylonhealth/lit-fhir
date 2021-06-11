@@ -35,16 +35,22 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PlanDefinition extends CompanionFor[PlanDefinition] {
+  implicit def summonObjectAndCompanionPlanDefinition_709039026(
+      o: PlanDefinition): ObjectAndCompanion[PlanDefinition, PlanDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = PlanDefinition
   override type ParentType   = PlanDefinition
   override val baseType: CompanionFor[ResourceType] = PlanDefinition
   override val parentType: CompanionFor[ParentType] = PlanDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/PlanDefinition")
   object Action extends CompanionFor[Action] {
+    implicit def summonObjectAndCompanionAction413386604(o: Action): ObjectAndCompanion[Action, Action.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Action
     override type ParentType   = Action
     override val parentType: CompanionFor[ResourceType] = Action
     object Condition extends CompanionFor[Condition] {
+      implicit def summonObjectAndCompanionCondition_687729530(
+          o: Condition): ObjectAndCompanion[Condition, Condition.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Condition
       override type ParentType   = Condition
       override val parentType: CompanionFor[ResourceType] = Condition
@@ -111,6 +117,8 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Participant extends CompanionFor[Participant] {
+      implicit def summonObjectAndCompanionParticipant701731347(
+          o: Participant): ObjectAndCompanion[Participant, Participant.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Participant
       override type ParentType   = Participant
       override val parentType: CompanionFor[ResourceType] = Participant
@@ -177,6 +185,8 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object DynamicValue extends CompanionFor[DynamicValue] {
+      implicit def summonObjectAndCompanionDynamicValue1509964686(
+          o: DynamicValue): ObjectAndCompanion[DynamicValue, DynamicValue.type] = ObjectAndCompanion(o, this)
       override type ResourceType = DynamicValue
       override type ParentType   = DynamicValue
       override val parentType: CompanionFor[ResourceType] = DynamicValue
@@ -243,6 +253,8 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object RelatedAction extends CompanionFor[RelatedAction] {
+      implicit def summonObjectAndCompanionRelatedAction_1504318188(
+          o: RelatedAction): ObjectAndCompanion[RelatedAction, RelatedAction.type] = ObjectAndCompanion(o, this)
       override type ResourceType = RelatedAction
       override type ParentType   = RelatedAction
       override val parentType: CompanionFor[ResourceType] = RelatedAction
@@ -609,10 +621,14 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Goal extends CompanionFor[Goal] {
+    implicit def summonObjectAndCompanionGoal803525916(o: Goal): ObjectAndCompanion[Goal, Goal.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Goal
     override type ParentType   = Goal
     override val parentType: CompanionFor[ResourceType] = Goal
     object Target extends CompanionFor[Target] {
+      implicit def summonObjectAndCompanionTarget1182104882(o: Target): ObjectAndCompanion[Target, Target.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Target
       override type ParentType   = Target
       override val parentType: CompanionFor[ResourceType] = Target

@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_ADXP_delimiter extends CompanionFor[Iso21090_ADXP_delimiter] {
+  implicit def summonObjectAndCompanionIso21090_ADXP_delimiter_1327611151(
+      o: Iso21090_ADXP_delimiter): ObjectAndCompanion[Iso21090_ADXP_delimiter, Iso21090_ADXP_delimiter.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

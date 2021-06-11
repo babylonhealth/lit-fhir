@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceUseStatement extends CompanionFor[DeviceUseStatement] {
+  implicit def summonObjectAndCompanionDeviceUseStatement_1788764606(
+      o: DeviceUseStatement): ObjectAndCompanion[DeviceUseStatement, DeviceUseStatement.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = DeviceUseStatement
   override type ParentType   = DeviceUseStatement
   override val baseType: CompanionFor[ResourceType] = DeviceUseStatement

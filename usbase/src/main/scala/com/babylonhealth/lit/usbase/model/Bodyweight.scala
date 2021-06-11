@@ -25,6 +25,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Bodyweight extends CompanionFor[Bodyweight] {
+  implicit def summonObjectAndCompanionBodyweight1028135545(
+      o: Bodyweight): ObjectAndCompanion[Bodyweight, Bodyweight.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Observation
   override type ParentType   = Vitalsigns
   override val baseType: CompanionFor[ResourceType] = Observation

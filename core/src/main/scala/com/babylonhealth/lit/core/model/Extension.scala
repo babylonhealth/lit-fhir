@@ -22,6 +22,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Extension extends CompanionFor[Extension] {
+  implicit def summonObjectAndCompanionExtension_512776784(
+      o: Extension): ObjectAndCompanion[Extension, Extension.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -58,9 +60,9 @@ object Extension extends CompanionFor[Extension] {
     FHIRComponentField[LitSeq[Extension]](extension, t.extension)
   )
   def extractId(t: Extension): Option[String]                   = t.id
+  private val log: Logger = LoggerFactory.getLogger(getClass)
   def extractUrl(t: Extension): String                          = t.url
   def extractValue(t: Extension): Option[Extension.ValueChoice] = t.value
-  private val log: Logger = LoggerFactory.getLogger(getClass)
   def extractExtension(t: Extension): LitSeq[Extension]         = t.extension
   override val thisName: String                                 = "Extension"
   def unapply(o: Extension): Option[(Option[String], String, Option[Extension.ValueChoice], LitSeq[Extension])] = Some(

@@ -23,12 +23,17 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteraction] {
+  implicit def summonObjectAndCompanionMedicinalProductInteraction2637581(
+      o: MedicinalProductInteraction): ObjectAndCompanion[MedicinalProductInteraction, MedicinalProductInteraction.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = MedicinalProductInteraction
   override type ParentType   = MedicinalProductInteraction
   override val baseType: CompanionFor[ResourceType] = MedicinalProductInteraction
   override val parentType: CompanionFor[ParentType] = MedicinalProductInteraction
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductInteraction")
   object Interactant extends CompanionFor[Interactant] {
+    implicit def summonObjectAndCompanionInteractant2141115057(
+        o: Interactant): ObjectAndCompanion[Interactant, Interactant.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Interactant
     override type ParentType   = Interactant
     override val parentType: CompanionFor[ResourceType] = Interactant

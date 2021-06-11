@@ -31,12 +31,17 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ActivityDefinition extends CompanionFor[ActivityDefinition] {
+  implicit def summonObjectAndCompanionActivityDefinition139805725(
+      o: ActivityDefinition): ObjectAndCompanion[ActivityDefinition, ActivityDefinition.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = ActivityDefinition
   override type ParentType   = ActivityDefinition
   override val baseType: CompanionFor[ResourceType] = ActivityDefinition
   override val parentType: CompanionFor[ParentType] = ActivityDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ActivityDefinition")
   object DynamicValue extends CompanionFor[DynamicValue] {
+    implicit def summonObjectAndCompanionDynamicValue_1565170651(
+        o: DynamicValue): ObjectAndCompanion[DynamicValue, DynamicValue.type] = ObjectAndCompanion(o, this)
     override type ResourceType = DynamicValue
     override type ParentType   = DynamicValue
     override val parentType: CompanionFor[ResourceType] = DynamicValue
@@ -101,6 +106,8 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Participant extends CompanionFor[Participant] {
+    implicit def summonObjectAndCompanionParticipant1721954748(
+        o: Participant): ObjectAndCompanion[Participant, Participant.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Participant
     override type ParentType   = Participant
     override val parentType: CompanionFor[ResourceType] = Participant

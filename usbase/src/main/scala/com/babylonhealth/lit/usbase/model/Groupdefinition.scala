@@ -25,6 +25,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Groupdefinition extends CompanionFor[Groupdefinition] {
+  implicit def summonObjectAndCompanionGroupdefinition1287728997(
+      o: Groupdefinition): ObjectAndCompanion[Groupdefinition, Groupdefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Group
   override type ParentType   = Group
   override val baseType: CompanionFor[ResourceType] = Group

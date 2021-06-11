@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_steward extends CompanionFor[Valueset_steward] {
+  implicit def summonObjectAndCompanionValueset_steward_543376880(
+      o: Valueset_steward): ObjectAndCompanion[Valueset_steward, Valueset_steward.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

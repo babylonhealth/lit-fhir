@@ -24,20 +24,29 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityResponse] {
+  implicit def summonObjectAndCompanionCoverageEligibilityResponse960413461(
+      o: CoverageEligibilityResponse): ObjectAndCompanion[CoverageEligibilityResponse, CoverageEligibilityResponse.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = CoverageEligibilityResponse
   override type ParentType   = CoverageEligibilityResponse
   override val baseType: CompanionFor[ResourceType] = CoverageEligibilityResponse
   override val parentType: CompanionFor[ParentType] = CoverageEligibilityResponse
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CoverageEligibilityResponse")
   object Insurance extends CompanionFor[Insurance] {
+    implicit def summonObjectAndCompanionInsurance717243511(
+        o: Insurance): ObjectAndCompanion[Insurance, Insurance.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Insurance
     override type ParentType   = Insurance
     override val parentType: CompanionFor[ResourceType] = Insurance
     object Item extends CompanionFor[Item] {
+      implicit def summonObjectAndCompanionItem_429534630(o: Item): ObjectAndCompanion[Item, Item.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Item
       override type ParentType   = Item
       override val parentType: CompanionFor[ResourceType] = Item
       object Benefit extends CompanionFor[Benefit] {
+        implicit def summonObjectAndCompanionBenefit_58365939(o: Benefit): ObjectAndCompanion[Benefit, Benefit.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = Benefit
         override type ParentType   = Benefit
         override val parentType: CompanionFor[ResourceType] = Benefit
@@ -375,6 +384,8 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Error extends CompanionFor[Error] {
+    implicit def summonObjectAndCompanionError1198810380(o: Error): ObjectAndCompanion[Error, Error.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Error
     override type ParentType   = Error
     override val parentType: CompanionFor[ResourceType] = Error

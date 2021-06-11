@@ -23,6 +23,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductPharmaceutical extends CompanionFor[MedicinalProductPharmaceutical] {
+  implicit def summonObjectAndCompanionMedicinalProductPharmaceutical_1379934992(
+      o: MedicinalProductPharmaceutical): ObjectAndCompanion[MedicinalProductPharmaceutical, MedicinalProductPharmaceutical.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = MedicinalProductPharmaceutical
   override type ParentType   = MedicinalProductPharmaceutical
   override val baseType: CompanionFor[ResourceType] = MedicinalProductPharmaceutical
@@ -30,14 +33,22 @@ object MedicinalProductPharmaceutical extends CompanionFor[MedicinalProductPharm
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/MedicinalProductPharmaceutical")
   object RouteOfAdministration extends CompanionFor[RouteOfAdministration] {
+    implicit def summonObjectAndCompanionRouteOfAdministration1173028863(
+        o: RouteOfAdministration): ObjectAndCompanion[RouteOfAdministration, RouteOfAdministration.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = RouteOfAdministration
     override type ParentType   = RouteOfAdministration
     override val parentType: CompanionFor[ResourceType] = RouteOfAdministration
     object TargetSpecies extends CompanionFor[TargetSpecies] {
+      implicit def summonObjectAndCompanionTargetSpecies_2085213527(
+          o: TargetSpecies): ObjectAndCompanion[TargetSpecies, TargetSpecies.type] = ObjectAndCompanion(o, this)
       override type ResourceType = TargetSpecies
       override type ParentType   = TargetSpecies
       override val parentType: CompanionFor[ResourceType] = TargetSpecies
       object WithdrawalPeriod extends CompanionFor[WithdrawalPeriod] {
+        implicit def summonObjectAndCompanionWithdrawalPeriod_2067755489(
+            o: WithdrawalPeriod): ObjectAndCompanion[WithdrawalPeriod, WithdrawalPeriod.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = WithdrawalPeriod
         override type ParentType   = WithdrawalPeriod
         override val parentType: CompanionFor[ResourceType] = WithdrawalPeriod
@@ -299,6 +310,8 @@ object MedicinalProductPharmaceutical extends CompanionFor[MedicinalProductPharm
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Characteristics extends CompanionFor[Characteristics] {
+    implicit def summonObjectAndCompanionCharacteristics_433200174(
+        o: Characteristics): ObjectAndCompanion[Characteristics, Characteristics.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Characteristics
     override type ParentType   = Characteristics
     override val parentType: CompanionFor[ResourceType] = Characteristics

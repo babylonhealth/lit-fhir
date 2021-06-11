@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_deprecated extends CompanionFor[Valueset_deprecated] {
+  implicit def summonObjectAndCompanionValueset_deprecated1627556611(
+      o: Valueset_deprecated): ObjectAndCompanion[Valueset_deprecated, Valueset_deprecated.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

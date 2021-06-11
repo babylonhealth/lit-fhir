@@ -24,16 +24,23 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object QuestionnaireResponse extends CompanionFor[QuestionnaireResponse] {
+  implicit def summonObjectAndCompanionQuestionnaireResponse927410431(
+      o: QuestionnaireResponse): ObjectAndCompanion[QuestionnaireResponse, QuestionnaireResponse.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = QuestionnaireResponse
   override type ParentType   = QuestionnaireResponse
   override val baseType: CompanionFor[ResourceType] = QuestionnaireResponse
   override val parentType: CompanionFor[ParentType] = QuestionnaireResponse
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse")
   object Item extends CompanionFor[Item] {
+    implicit def summonObjectAndCompanionItem373103816(o: Item): ObjectAndCompanion[Item, Item.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Item
     override type ParentType   = Item
     override val parentType: CompanionFor[ResourceType] = Item
     object Answer extends CompanionFor[Answer] {
+      implicit def summonObjectAndCompanionAnswer658046562(o: Answer): ObjectAndCompanion[Answer, Answer.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Answer
       override type ParentType   = Answer
       override val parentType: CompanionFor[ResourceType] = Answer

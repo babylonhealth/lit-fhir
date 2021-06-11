@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxValueSet] {
+  implicit def summonObjectAndCompanionElementdefinition_maxValueSet215922447(
+      o: Elementdefinition_maxValueSet): ObjectAndCompanion[Elementdefinition_maxValueSet, Elementdefinition_maxValueSet.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

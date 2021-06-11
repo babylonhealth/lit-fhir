@@ -21,6 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object UsageContext extends CompanionFor[UsageContext] {
+  implicit def summonObjectAndCompanionUsageContext2009442691(
+      o: UsageContext): ObjectAndCompanion[UsageContext, UsageContext.type] = ObjectAndCompanion(o, this)
   override type ResourceType = UsageContext
   override type ParentType   = UsageContext
   override val baseType: CompanionFor[ResourceType] = UsageContext

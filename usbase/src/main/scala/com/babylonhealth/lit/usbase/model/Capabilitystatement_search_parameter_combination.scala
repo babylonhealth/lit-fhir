@@ -25,6 +25,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Capabilitystatement_search_parameter_combination
     extends CompanionFor[Capabilitystatement_search_parameter_combination] {
+  implicit def summonObjectAndCompanionCapabilitystatement_search_parameter_combination_1276757849(
+      o: Capabilitystatement_search_parameter_combination): ObjectAndCompanion[Capabilitystatement_search_parameter_combination, Capabilitystatement_search_parameter_combination.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

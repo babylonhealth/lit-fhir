@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Tz_offset extends CompanionFor[Tz_offset] {
+  implicit def summonObjectAndCompanionTz_offset_1966188009(
+      o: Tz_offset): ObjectAndCompanion[Tz_offset, Tz_offset.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

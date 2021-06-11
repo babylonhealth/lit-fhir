@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Slot extends CompanionFor[Slot] {
+  implicit def summonObjectAndCompanionSlot_873118674(o: Slot): ObjectAndCompanion[Slot, Slot.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Slot
   override type ParentType   = Slot
   override val baseType: CompanionFor[ResourceType] = Slot

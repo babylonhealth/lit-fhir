@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Rendering_styleSensitive extends CompanionFor[Rendering_styleSensitive] {
+  implicit def summonObjectAndCompanionRendering_styleSensitive_457544656(
+      o: Rendering_styleSensitive): ObjectAndCompanion[Rendering_styleSensitive, Rendering_styleSensitive.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

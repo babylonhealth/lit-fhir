@@ -24,12 +24,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DocumentReference extends CompanionFor[DocumentReference] {
+  implicit def summonObjectAndCompanionDocumentReference1977755265(
+      o: DocumentReference): ObjectAndCompanion[DocumentReference, DocumentReference.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DocumentReference
   override type ParentType   = DocumentReference
   override val baseType: CompanionFor[ResourceType] = DocumentReference
   override val parentType: CompanionFor[ParentType] = DocumentReference
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DocumentReference")
   object RelatesTo extends CompanionFor[RelatesTo] {
+    implicit def summonObjectAndCompanionRelatesTo_307487467(
+        o: RelatesTo): ObjectAndCompanion[RelatesTo, RelatesTo.type] = ObjectAndCompanion(o, this)
     override type ResourceType = RelatesTo
     override type ParentType   = RelatesTo
     override val parentType: CompanionFor[ResourceType] = RelatesTo
@@ -95,6 +99,8 @@ object DocumentReference extends CompanionFor[DocumentReference] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Context extends CompanionFor[Context] {
+    implicit def summonObjectAndCompanionContext2093262458(o: Context): ObjectAndCompanion[Context, Context.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Context
     override type ParentType   = Context
     override val parentType: CompanionFor[ResourceType] = Context
@@ -216,6 +222,8 @@ object DocumentReference extends CompanionFor[DocumentReference] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Content extends CompanionFor[Content] {
+    implicit def summonObjectAndCompanionContent_1114038435(o: Content): ObjectAndCompanion[Content, Content.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Content
     override type ParentType   = Content
     override val parentType: CompanionFor[ResourceType] = Content

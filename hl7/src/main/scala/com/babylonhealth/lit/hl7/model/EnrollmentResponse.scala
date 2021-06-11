@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EnrollmentResponse extends CompanionFor[EnrollmentResponse] {
+  implicit def summonObjectAndCompanionEnrollmentResponse941848986(
+      o: EnrollmentResponse): ObjectAndCompanion[EnrollmentResponse, EnrollmentResponse.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = EnrollmentResponse
   override type ParentType   = EnrollmentResponse
   override val baseType: CompanionFor[ResourceType] = EnrollmentResponse

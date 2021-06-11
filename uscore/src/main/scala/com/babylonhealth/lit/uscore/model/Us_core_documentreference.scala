@@ -26,6 +26,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_documentreference extends CompanionFor[Us_core_documentreference] {
+  implicit def summonObjectAndCompanionUs_core_documentreference414028103(
+      o: Us_core_documentreference): ObjectAndCompanion[Us_core_documentreference, Us_core_documentreference.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = DocumentReference
   override type ParentType   = DocumentReference
   override val baseType: CompanionFor[ResourceType] = DocumentReference

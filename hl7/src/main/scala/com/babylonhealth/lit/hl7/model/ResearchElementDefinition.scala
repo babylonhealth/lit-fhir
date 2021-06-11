@@ -24,12 +24,17 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition] {
+  implicit def summonObjectAndCompanionResearchElementDefinition_462835577(
+      o: ResearchElementDefinition): ObjectAndCompanion[ResearchElementDefinition, ResearchElementDefinition.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = ResearchElementDefinition
   override type ParentType   = ResearchElementDefinition
   override val baseType: CompanionFor[ResourceType] = ResearchElementDefinition
   override val parentType: CompanionFor[ParentType] = ResearchElementDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ResearchElementDefinition")
   object Characteristic extends CompanionFor[Characteristic] {
+    implicit def summonObjectAndCompanionCharacteristic2092607263(
+        o: Characteristic): ObjectAndCompanion[Characteristic, Characteristic.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Characteristic
     override type ParentType   = Characteristic
     override val parentType: CompanionFor[ResourceType] = Characteristic

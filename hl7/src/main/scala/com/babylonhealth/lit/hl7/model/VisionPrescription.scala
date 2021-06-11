@@ -24,16 +24,24 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object VisionPrescription extends CompanionFor[VisionPrescription] {
+  implicit def summonObjectAndCompanionVisionPrescription_20967432(
+      o: VisionPrescription): ObjectAndCompanion[VisionPrescription, VisionPrescription.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = VisionPrescription
   override type ParentType   = VisionPrescription
   override val baseType: CompanionFor[ResourceType] = VisionPrescription
   override val parentType: CompanionFor[ParentType] = VisionPrescription
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/VisionPrescription")
   object LensSpecification extends CompanionFor[LensSpecification] {
+    implicit def summonObjectAndCompanionLensSpecification_1359361219(
+        o: LensSpecification): ObjectAndCompanion[LensSpecification, LensSpecification.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = LensSpecification
     override type ParentType   = LensSpecification
     override val parentType: CompanionFor[ResourceType] = LensSpecification
     object Prism extends CompanionFor[Prism] {
+      implicit def summonObjectAndCompanionPrism_1825337371(o: Prism): ObjectAndCompanion[Prism, Prism.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Prism
       override type ParentType   = Prism
       override val parentType: CompanionFor[ResourceType] = Prism

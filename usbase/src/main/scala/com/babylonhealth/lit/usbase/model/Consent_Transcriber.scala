@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Consent_Transcriber extends CompanionFor[Consent_Transcriber] {
+  implicit def summonObjectAndCompanionConsent_Transcriber55977179(
+      o: Consent_Transcriber): ObjectAndCompanion[Consent_Transcriber, Consent_Transcriber.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

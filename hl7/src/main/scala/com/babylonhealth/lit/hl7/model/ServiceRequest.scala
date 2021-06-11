@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ServiceRequest extends CompanionFor[ServiceRequest] {
+  implicit def summonObjectAndCompanionServiceRequest33710513(
+      o: ServiceRequest): ObjectAndCompanion[ServiceRequest, ServiceRequest.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ServiceRequest
   override type ParentType   = ServiceRequest
   override val baseType: CompanionFor[ResourceType] = ServiceRequest

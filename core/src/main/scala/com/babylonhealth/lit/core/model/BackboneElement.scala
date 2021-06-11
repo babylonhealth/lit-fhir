@@ -21,6 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object BackboneElement extends CompanionFor[BackboneElement] {
+  implicit def summonObjectAndCompanionBackboneElement_17315358(
+      o: BackboneElement): ObjectAndCompanion[BackboneElement, BackboneElement.type] = ObjectAndCompanion(o, this)
   override type ResourceType = BackboneElement
   override type ParentType   = BackboneElement
   override val baseType: CompanionFor[ResourceType] = BackboneElement

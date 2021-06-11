@@ -23,6 +23,8 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SimpleQuantity extends CompanionFor[SimpleQuantity] {
+  implicit def summonObjectAndCompanionSimpleQuantity1620021347(
+      o: SimpleQuantity): ObjectAndCompanion[SimpleQuantity, SimpleQuantity.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Quantity
   override type ParentType   = Quantity
   override val baseType: CompanionFor[ResourceType] = Quantity

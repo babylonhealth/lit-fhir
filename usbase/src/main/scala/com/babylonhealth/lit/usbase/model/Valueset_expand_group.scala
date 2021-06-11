@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_expand_group extends CompanionFor[Valueset_expand_group] {
+  implicit def summonObjectAndCompanionValueset_expand_group542103878(
+      o: Valueset_expand_group): ObjectAndCompanion[Valueset_expand_group, Valueset_expand_group.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

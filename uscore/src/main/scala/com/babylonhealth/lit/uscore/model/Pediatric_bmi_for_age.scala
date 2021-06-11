@@ -26,6 +26,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Pediatric_bmi_for_age extends CompanionFor[Pediatric_bmi_for_age] {
+  implicit def summonObjectAndCompanionPediatric_bmi_for_age_1902319809(
+      o: Pediatric_bmi_for_age): ObjectAndCompanion[Pediatric_bmi_for_age, Pediatric_bmi_for_age.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Observation
   override type ParentType   = Vitalsigns
   override val baseType: CompanionFor[ResourceType] = Observation

@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Event_performerFunction extends CompanionFor[Event_performerFunction] {
+  implicit def summonObjectAndCompanionEvent_performerFunction43359373(
+      o: Event_performerFunction): ObjectAndCompanion[Event_performerFunction, Event_performerFunction.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

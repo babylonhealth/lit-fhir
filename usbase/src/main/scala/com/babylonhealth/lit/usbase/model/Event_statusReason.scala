@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Event_statusReason extends CompanionFor[Event_statusReason] {
+  implicit def summonObjectAndCompanionEvent_statusReason_1082803555(
+      o: Event_statusReason): ObjectAndCompanion[Event_statusReason, Event_statusReason.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

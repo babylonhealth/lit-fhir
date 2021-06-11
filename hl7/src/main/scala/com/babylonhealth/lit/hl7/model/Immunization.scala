@@ -24,12 +24,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Immunization extends CompanionFor[Immunization] {
+  implicit def summonObjectAndCompanionImmunization454761927(
+      o: Immunization): ObjectAndCompanion[Immunization, Immunization.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Immunization
   override type ParentType   = Immunization
   override val baseType: CompanionFor[ResourceType] = Immunization
   override val parentType: CompanionFor[ParentType] = Immunization
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Immunization")
   object ProtocolApplied extends CompanionFor[ProtocolApplied] {
+    implicit def summonObjectAndCompanionProtocolApplied_1294476948(
+        o: ProtocolApplied): ObjectAndCompanion[ProtocolApplied, ProtocolApplied.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ProtocolApplied
     override type ParentType   = ProtocolApplied
     override val parentType: CompanionFor[ResourceType] = ProtocolApplied
@@ -124,6 +128,8 @@ object Immunization extends CompanionFor[Immunization] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Education extends CompanionFor[Education] {
+    implicit def summonObjectAndCompanionEducation_1642300874(
+        o: Education): ObjectAndCompanion[Education, Education.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Education
     override type ParentType   = Education
     override val parentType: CompanionFor[ResourceType] = Education
@@ -204,6 +210,8 @@ object Immunization extends CompanionFor[Immunization] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Performer extends CompanionFor[Performer] {
+    implicit def summonObjectAndCompanionPerformer419551073(
+        o: Performer): ObjectAndCompanion[Performer, Performer.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Performer
     override type ParentType   = Performer
     override val parentType: CompanionFor[ResourceType] = Performer
@@ -269,6 +277,8 @@ object Immunization extends CompanionFor[Immunization] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Reaction extends CompanionFor[Reaction] {
+    implicit def summonObjectAndCompanionReaction_2062931714(o: Reaction): ObjectAndCompanion[Reaction, Reaction.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Reaction
     override type ParentType   = Reaction
     override val parentType: CompanionFor[ResourceType] = Reaction

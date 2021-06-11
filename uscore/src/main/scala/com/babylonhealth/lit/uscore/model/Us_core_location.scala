@@ -26,6 +26,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_location extends CompanionFor[Us_core_location] {
+  implicit def summonObjectAndCompanionUs_core_location1477028323(
+      o: Us_core_location): ObjectAndCompanion[Us_core_location, Us_core_location.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Location
   override type ParentType   = Location
   override val baseType: CompanionFor[ResourceType] = Location

@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_display_hint extends CompanionFor[Structuredefinition_display_hint] {
+  implicit def summonObjectAndCompanionStructuredefinition_display_hint234901764(
+      o: Structuredefinition_display_hint): ObjectAndCompanion[Structuredefinition_display_hint, Structuredefinition_display_hint.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

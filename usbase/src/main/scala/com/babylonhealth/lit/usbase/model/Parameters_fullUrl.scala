@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Parameters_fullUrl extends CompanionFor[Parameters_fullUrl] {
+  implicit def summonObjectAndCompanionParameters_fullUrl_864292463(
+      o: Parameters_fullUrl): ObjectAndCompanion[Parameters_fullUrl, Parameters_fullUrl.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

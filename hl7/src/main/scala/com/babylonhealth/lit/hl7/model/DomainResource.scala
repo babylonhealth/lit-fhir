@@ -23,6 +23,8 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DomainResource extends CompanionFor[DomainResource] {
+  implicit def summonObjectAndCompanionDomainResource2033096800(
+      o: DomainResource): ObjectAndCompanion[DomainResource, DomainResource.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DomainResource
   override type ParentType   = DomainResource
   override val baseType: CompanionFor[ResourceType] = DomainResource

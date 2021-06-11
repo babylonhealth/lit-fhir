@@ -24,12 +24,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation extends CompanionFor[Observation] {
+  implicit def summonObjectAndCompanionObservation544956667(
+      o: Observation): ObjectAndCompanion[Observation, Observation.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Observation
   override type ParentType   = Observation
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Observation")
   object ReferenceRange extends CompanionFor[ReferenceRange] {
+    implicit def summonObjectAndCompanionReferenceRange2083430785(
+        o: ReferenceRange): ObjectAndCompanion[ReferenceRange, ReferenceRange.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ReferenceRange
     override type ParentType   = ReferenceRange
     override val parentType: CompanionFor[ResourceType] = ReferenceRange
@@ -124,6 +128,8 @@ object Observation extends CompanionFor[Observation] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Component extends CompanionFor[Component] {
+    implicit def summonObjectAndCompanionComponent1064721770(
+        o: Component): ObjectAndCompanion[Component, Component.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Component
     override type ParentType   = Component
     override val parentType: CompanionFor[ResourceType] = Component

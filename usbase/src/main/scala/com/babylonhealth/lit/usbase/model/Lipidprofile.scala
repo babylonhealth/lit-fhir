@@ -25,6 +25,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Lipidprofile extends CompanionFor[Lipidprofile] {
+  implicit def summonObjectAndCompanionLipidprofile_1579300877(
+      o: Lipidprofile): ObjectAndCompanion[Lipidprofile, Lipidprofile.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DiagnosticReport
   override type ParentType   = DiagnosticReport
   override val baseType: CompanionFor[ResourceType] = DiagnosticReport

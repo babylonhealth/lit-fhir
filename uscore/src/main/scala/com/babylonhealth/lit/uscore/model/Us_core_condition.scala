@@ -25,6 +25,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_condition extends CompanionFor[Us_core_condition] {
+  implicit def summonObjectAndCompanionUs_core_condition705855872(
+      o: Us_core_condition): ObjectAndCompanion[Us_core_condition, Us_core_condition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Condition
   override type ParentType   = Condition
   override val baseType: CompanionFor[ResourceType] = Condition

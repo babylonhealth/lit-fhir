@@ -24,12 +24,17 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceDefinition extends CompanionFor[DeviceDefinition] {
+  implicit def summonObjectAndCompanionDeviceDefinition_1871151862(
+      o: DeviceDefinition): ObjectAndCompanion[DeviceDefinition, DeviceDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DeviceDefinition
   override type ParentType   = DeviceDefinition
   override val baseType: CompanionFor[ResourceType] = DeviceDefinition
   override val parentType: CompanionFor[ParentType] = DeviceDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceDefinition")
   object UdiDeviceIdentifier extends CompanionFor[UdiDeviceIdentifier] {
+    implicit def summonObjectAndCompanionUdiDeviceIdentifier_1199756772(
+        o: UdiDeviceIdentifier): ObjectAndCompanion[UdiDeviceIdentifier, UdiDeviceIdentifier.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = UdiDeviceIdentifier
     override type ParentType   = UdiDeviceIdentifier
     override val parentType: CompanionFor[ResourceType] = UdiDeviceIdentifier
@@ -103,6 +108,8 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Specialization extends CompanionFor[Specialization] {
+    implicit def summonObjectAndCompanionSpecialization1512433167(
+        o: Specialization): ObjectAndCompanion[Specialization, Specialization.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Specialization
     override type ParentType   = Specialization
     override val parentType: CompanionFor[ResourceType] = Specialization
@@ -168,6 +175,8 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Material extends CompanionFor[Material] {
+    implicit def summonObjectAndCompanionMaterial_384429521(o: Material): ObjectAndCompanion[Material, Material.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Material
     override type ParentType   = Material
     override val parentType: CompanionFor[ResourceType] = Material
@@ -241,6 +250,8 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Capability extends CompanionFor[Capability] {
+    implicit def summonObjectAndCompanionCapability_478250633(
+        o: Capability): ObjectAndCompanion[Capability, Capability.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Capability
     override type ParentType   = Capability
     override val parentType: CompanionFor[ResourceType] = Capability
@@ -306,6 +317,8 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object DeviceName extends CompanionFor[DeviceName] {
+    implicit def summonObjectAndCompanionDeviceName1515491299(
+        o: DeviceName): ObjectAndCompanion[DeviceName, DeviceName.type] = ObjectAndCompanion(o, this)
     override type ResourceType = DeviceName
     override type ParentType   = DeviceName
     override val parentType: CompanionFor[ResourceType] = DeviceName
@@ -371,6 +384,8 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Property extends CompanionFor[Property] {
+    implicit def summonObjectAndCompanionProperty113366995(o: Property): ObjectAndCompanion[Property, Property.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Property
     override type ParentType   = Property
     override val parentType: CompanionFor[ResourceType] = Property

@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Humanname_own_name extends CompanionFor[Humanname_own_name] {
+  implicit def summonObjectAndCompanionHumanname_own_name1253451451(
+      o: Humanname_own_name): ObjectAndCompanion[Humanname_own_name, Humanname_own_name.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

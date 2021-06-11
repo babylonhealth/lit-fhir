@@ -25,6 +25,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_provenance extends CompanionFor[Us_core_provenance] {
+  implicit def summonObjectAndCompanionUs_core_provenance_1966246864(
+      o: Us_core_provenance): ObjectAndCompanion[Us_core_provenance, Us_core_provenance.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Provenance
   override type ParentType   = Provenance
   override val baseType: CompanionFor[ResourceType] = Provenance

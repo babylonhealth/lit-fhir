@@ -25,6 +25,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Heartrate extends CompanionFor[Heartrate] {
+  implicit def summonObjectAndCompanionHeartrate_288546700(
+      o: Heartrate): ObjectAndCompanion[Heartrate, Heartrate.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Observation
   override type ParentType   = Vitalsigns
   override val baseType: CompanionFor[ResourceType] = Observation

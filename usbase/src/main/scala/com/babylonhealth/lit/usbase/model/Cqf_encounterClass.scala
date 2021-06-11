@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_encounterClass extends CompanionFor[Cqf_encounterClass] {
+  implicit def summonObjectAndCompanionCqf_encounterClass_1567660154(
+      o: Cqf_encounterClass): ObjectAndCompanion[Cqf_encounterClass, Cqf_encounterClass.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

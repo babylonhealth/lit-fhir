@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_warning extends CompanionFor[Codesystem_warning] {
+  implicit def summonObjectAndCompanionCodesystem_warning114625929(
+      o: Codesystem_warning): ObjectAndCompanion[Codesystem_warning, Codesystem_warning.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

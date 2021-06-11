@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Capabilitystatement_expectation extends CompanionFor[Capabilitystatement_expectation] {
+  implicit def summonObjectAndCompanionCapabilitystatement_expectation_186297424(
+      o: Capabilitystatement_expectation): ObjectAndCompanion[Capabilitystatement_expectation, Capabilitystatement_expectation.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

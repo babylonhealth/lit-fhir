@@ -24,12 +24,17 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduct] {
+  implicit def summonObjectAndCompanionBiologicallyDerivedProduct_471301622(
+      o: BiologicallyDerivedProduct): ObjectAndCompanion[BiologicallyDerivedProduct, BiologicallyDerivedProduct.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = BiologicallyDerivedProduct
   override type ParentType   = BiologicallyDerivedProduct
   override val baseType: CompanionFor[ResourceType] = BiologicallyDerivedProduct
   override val parentType: CompanionFor[ParentType] = BiologicallyDerivedProduct
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/BiologicallyDerivedProduct")
   object Manipulation extends CompanionFor[Manipulation] {
+    implicit def summonObjectAndCompanionManipulation_1797640286(
+        o: Manipulation): ObjectAndCompanion[Manipulation, Manipulation.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Manipulation
     override type ParentType   = Manipulation
     override val parentType: CompanionFor[ResourceType] = Manipulation
@@ -96,6 +101,8 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Processing extends CompanionFor[Processing] {
+    implicit def summonObjectAndCompanionProcessing1932650747(
+        o: Processing): ObjectAndCompanion[Processing, Processing.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Processing
     override type ParentType   = Processing
     override val parentType: CompanionFor[ResourceType] = Processing
@@ -177,6 +184,8 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Collection extends CompanionFor[Collection] {
+    implicit def summonObjectAndCompanionCollection_1421745841(
+        o: Collection): ObjectAndCompanion[Collection, Collection.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Collection
     override type ParentType   = Collection
     override val parentType: CompanionFor[ResourceType] = Collection
@@ -250,6 +259,8 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Storage extends CompanionFor[Storage] {
+    implicit def summonObjectAndCompanionStorage1150179316(o: Storage): ObjectAndCompanion[Storage, Storage.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Storage
     override type ParentType   = Storage
     override val parentType: CompanionFor[ResourceType] = Storage

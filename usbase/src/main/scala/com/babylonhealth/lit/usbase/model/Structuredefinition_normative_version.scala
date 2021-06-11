@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_normative_version extends CompanionFor[Structuredefinition_normative_version] {
+  implicit def summonObjectAndCompanionStructuredefinition_normative_version137279279(
+      o: Structuredefinition_normative_version): ObjectAndCompanion[Structuredefinition_normative_version, Structuredefinition_normative_version.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

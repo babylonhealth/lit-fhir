@@ -23,12 +23,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object HealthcareService extends CompanionFor[HealthcareService] {
+  implicit def summonObjectAndCompanionHealthcareService_310532684(
+      o: HealthcareService): ObjectAndCompanion[HealthcareService, HealthcareService.type] = ObjectAndCompanion(o, this)
   override type ResourceType = HealthcareService
   override type ParentType   = HealthcareService
   override val baseType: CompanionFor[ResourceType] = HealthcareService
   override val parentType: CompanionFor[ParentType] = HealthcareService
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/HealthcareService")
   object AvailableTime extends CompanionFor[AvailableTime] {
+    implicit def summonObjectAndCompanionAvailableTime2089229632(
+        o: AvailableTime): ObjectAndCompanion[AvailableTime, AvailableTime.type] = ObjectAndCompanion(o, this)
     override type ResourceType = AvailableTime
     override type ParentType   = AvailableTime
     override val parentType: CompanionFor[ResourceType] = AvailableTime
@@ -109,6 +113,8 @@ object HealthcareService extends CompanionFor[HealthcareService] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object NotAvailable extends CompanionFor[NotAvailable] {
+    implicit def summonObjectAndCompanionNotAvailable_1165707934(
+        o: NotAvailable): ObjectAndCompanion[NotAvailable, NotAvailable.type] = ObjectAndCompanion(o, this)
     override type ResourceType = NotAvailable
     override type ParentType   = NotAvailable
     override val parentType: CompanionFor[ResourceType] = NotAvailable
@@ -174,6 +180,8 @@ object HealthcareService extends CompanionFor[HealthcareService] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Eligibility extends CompanionFor[Eligibility] {
+    implicit def summonObjectAndCompanionEligibility770862261(
+        o: Eligibility): ObjectAndCompanion[Eligibility, Eligibility.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Eligibility
     override type ParentType   = Eligibility
     override val parentType: CompanionFor[ResourceType] = Eligibility

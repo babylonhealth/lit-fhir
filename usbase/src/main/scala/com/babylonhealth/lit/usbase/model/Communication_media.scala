@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Communication_media extends CompanionFor[Communication_media] {
+  implicit def summonObjectAndCompanionCommunication_media_1966946846(
+      o: Communication_media): ObjectAndCompanion[Communication_media, Communication_media.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

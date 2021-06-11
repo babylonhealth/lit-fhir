@@ -24,12 +24,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ChargeItem extends CompanionFor[ChargeItem] {
+  implicit def summonObjectAndCompanionChargeItem2028172658(
+      o: ChargeItem): ObjectAndCompanion[ChargeItem, ChargeItem.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ChargeItem
   override type ParentType   = ChargeItem
   override val baseType: CompanionFor[ResourceType] = ChargeItem
   override val parentType: CompanionFor[ParentType] = ChargeItem
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ChargeItem")
   object Performer extends CompanionFor[Performer] {
+    implicit def summonObjectAndCompanionPerformer2103053223(
+        o: Performer): ObjectAndCompanion[Performer, Performer.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Performer
     override type ParentType   = Performer
     override val parentType: CompanionFor[ResourceType] = Performer

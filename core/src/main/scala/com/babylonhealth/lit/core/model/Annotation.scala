@@ -21,6 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Annotation extends CompanionFor[Annotation] {
+  implicit def summonObjectAndCompanionAnnotation_1299111937(
+      o: Annotation): ObjectAndCompanion[Annotation, Annotation.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Annotation
   override type ParentType   = Annotation
   override val baseType: CompanionFor[ResourceType] = Annotation

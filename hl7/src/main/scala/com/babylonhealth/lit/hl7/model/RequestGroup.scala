@@ -35,16 +35,22 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RequestGroup extends CompanionFor[RequestGroup] {
+  implicit def summonObjectAndCompanionRequestGroup238156400(
+      o: RequestGroup): ObjectAndCompanion[RequestGroup, RequestGroup.type] = ObjectAndCompanion(o, this)
   override type ResourceType = RequestGroup
   override type ParentType   = RequestGroup
   override val baseType: CompanionFor[ResourceType] = RequestGroup
   override val parentType: CompanionFor[ParentType] = RequestGroup
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RequestGroup")
   object Action extends CompanionFor[Action] {
+    implicit def summonObjectAndCompanionAction1873784984(o: Action): ObjectAndCompanion[Action, Action.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Action
     override type ParentType   = Action
     override val parentType: CompanionFor[ResourceType] = Action
     object Condition extends CompanionFor[Condition] {
+      implicit def summonObjectAndCompanionCondition_1424243673(
+          o: Condition): ObjectAndCompanion[Condition, Condition.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Condition
       override type ParentType   = Condition
       override val parentType: CompanionFor[ResourceType] = Condition
@@ -111,6 +117,8 @@ object RequestGroup extends CompanionFor[RequestGroup] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object RelatedAction extends CompanionFor[RelatedAction] {
+      implicit def summonObjectAndCompanionRelatedAction_355036975(
+          o: RelatedAction): ObjectAndCompanion[RelatedAction, RelatedAction.type] = ObjectAndCompanion(o, this)
       override type ResourceType = RelatedAction
       override type ParentType   = RelatedAction
       override val parentType: CompanionFor[ResourceType] = RelatedAction

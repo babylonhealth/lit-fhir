@@ -25,6 +25,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Triglyceride extends CompanionFor[Triglyceride] {
+  implicit def summonObjectAndCompanionTriglyceride_1068226631(
+      o: Triglyceride): ObjectAndCompanion[Triglyceride, Triglyceride.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Observation
   override type ParentType   = Observation
   override val baseType: CompanionFor[ResourceType] = Observation

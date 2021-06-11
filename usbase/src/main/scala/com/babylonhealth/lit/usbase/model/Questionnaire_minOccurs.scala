@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire_minOccurs extends CompanionFor[Questionnaire_minOccurs] {
+  implicit def summonObjectAndCompanionQuestionnaire_minOccurs_1600400228(
+      o: Questionnaire_minOccurs): ObjectAndCompanion[Questionnaire_minOccurs, Questionnaire_minOccurs.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

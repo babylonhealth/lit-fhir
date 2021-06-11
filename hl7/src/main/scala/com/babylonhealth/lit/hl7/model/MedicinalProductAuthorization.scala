@@ -23,6 +23,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthorization] {
+  implicit def summonObjectAndCompanionMedicinalProductAuthorization742413989(
+      o: MedicinalProductAuthorization): ObjectAndCompanion[MedicinalProductAuthorization, MedicinalProductAuthorization.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = MedicinalProductAuthorization
   override type ParentType   = MedicinalProductAuthorization
   override val baseType: CompanionFor[ResourceType] = MedicinalProductAuthorization
@@ -30,6 +33,9 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/MedicinalProductAuthorization")
   object JurisdictionalAuthorization extends CompanionFor[JurisdictionalAuthorization] {
+    implicit def summonObjectAndCompanionJurisdictionalAuthorization118540538(
+        o: JurisdictionalAuthorization): ObjectAndCompanion[JurisdictionalAuthorization, JurisdictionalAuthorization.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = JurisdictionalAuthorization
     override type ParentType   = JurisdictionalAuthorization
     override val parentType: CompanionFor[ResourceType] = JurisdictionalAuthorization
@@ -126,6 +132,8 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Procedure extends CompanionFor[Procedure] {
+    implicit def summonObjectAndCompanionProcedure1298976855(
+        o: Procedure): ObjectAndCompanion[Procedure, Procedure.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Procedure
     override type ParentType   = Procedure
     override val parentType: CompanionFor[ResourceType] = Procedure

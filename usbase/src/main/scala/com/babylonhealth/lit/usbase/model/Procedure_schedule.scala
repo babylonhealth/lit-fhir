@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Procedure_schedule extends CompanionFor[Procedure_schedule] {
+  implicit def summonObjectAndCompanionProcedure_schedule931867800(
+      o: Procedure_schedule): ObjectAndCompanion[Procedure_schedule, Procedure_schedule.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

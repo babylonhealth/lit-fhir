@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_expirationDate extends CompanionFor[Codesystem_expirationDate] {
+  implicit def summonObjectAndCompanionCodesystem_expirationDate381609788(
+      o: Codesystem_expirationDate): ObjectAndCompanion[Codesystem_expirationDate, Codesystem_expirationDate.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Consent_NotificationEndpoint extends CompanionFor[Consent_NotificationEndpoint] {
+  implicit def summonObjectAndCompanionConsent_NotificationEndpoint_1824141883(
+      o: Consent_NotificationEndpoint): ObjectAndCompanion[Consent_NotificationEndpoint, Consent_NotificationEndpoint.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

@@ -24,16 +24,24 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RiskEvidenceSynthesis extends CompanionFor[RiskEvidenceSynthesis] {
+  implicit def summonObjectAndCompanionRiskEvidenceSynthesis10853932(
+      o: RiskEvidenceSynthesis): ObjectAndCompanion[RiskEvidenceSynthesis, RiskEvidenceSynthesis.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = RiskEvidenceSynthesis
   override type ParentType   = RiskEvidenceSynthesis
   override val baseType: CompanionFor[ResourceType] = RiskEvidenceSynthesis
   override val parentType: CompanionFor[ParentType] = RiskEvidenceSynthesis
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RiskEvidenceSynthesis")
   object Certainty extends CompanionFor[Certainty] {
+    implicit def summonObjectAndCompanionCertainty_1643228058(
+        o: Certainty): ObjectAndCompanion[Certainty, Certainty.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Certainty
     override type ParentType   = Certainty
     override val parentType: CompanionFor[ResourceType] = Certainty
     object CertaintySubcomponent extends CompanionFor[CertaintySubcomponent] {
+      implicit def summonObjectAndCompanionCertaintySubcomponent457143695(
+          o: CertaintySubcomponent): ObjectAndCompanion[CertaintySubcomponent, CertaintySubcomponent.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = CertaintySubcomponent
       override type ParentType   = CertaintySubcomponent
       override val parentType: CompanionFor[ResourceType] = CertaintySubcomponent
@@ -180,10 +188,15 @@ object RiskEvidenceSynthesis extends CompanionFor[RiskEvidenceSynthesis] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object RiskEstimate extends CompanionFor[RiskEstimate] {
+    implicit def summonObjectAndCompanionRiskEstimate_268499069(
+        o: RiskEstimate): ObjectAndCompanion[RiskEstimate, RiskEstimate.type] = ObjectAndCompanion(o, this)
     override type ResourceType = RiskEstimate
     override type ParentType   = RiskEstimate
     override val parentType: CompanionFor[ResourceType] = RiskEstimate
     object PrecisionEstimate extends CompanionFor[PrecisionEstimate] {
+      implicit def summonObjectAndCompanionPrecisionEstimate550222970(
+          o: PrecisionEstimate): ObjectAndCompanion[PrecisionEstimate, PrecisionEstimate.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = PrecisionEstimate
       override type ParentType   = PrecisionEstimate
       override val parentType: CompanionFor[ResourceType] = PrecisionEstimate
@@ -385,6 +398,8 @@ object RiskEvidenceSynthesis extends CompanionFor[RiskEvidenceSynthesis] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SampleSize extends CompanionFor[SampleSize] {
+    implicit def summonObjectAndCompanionSampleSize1654462420(
+        o: SampleSize): ObjectAndCompanion[SampleSize, SampleSize.type] = ObjectAndCompanion(o, this)
     override type ResourceType = SampleSize
     override type ParentType   = SampleSize
     override val parentType: CompanionFor[ResourceType] = SampleSize

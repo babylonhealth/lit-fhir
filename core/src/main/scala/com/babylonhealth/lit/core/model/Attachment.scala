@@ -21,6 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Attachment extends CompanionFor[Attachment] {
+  implicit def summonObjectAndCompanionAttachment1501498888(
+      o: Attachment): ObjectAndCompanion[Attachment, Attachment.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Attachment
   override type ParentType   = Attachment
   override val baseType: CompanionFor[ResourceType] = Attachment

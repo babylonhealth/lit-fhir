@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_citation extends CompanionFor[Cqf_citation] {
+  implicit def summonObjectAndCompanionCqf_citation52064095(
+      o: Cqf_citation): ObjectAndCompanion[Cqf_citation, Cqf_citation.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

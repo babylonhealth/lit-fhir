@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_warning extends CompanionFor[Valueset_warning] {
+  implicit def summonObjectAndCompanionValueset_warning_832775730(
+      o: Valueset_warning): ObjectAndCompanion[Valueset_warning, Valueset_warning.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

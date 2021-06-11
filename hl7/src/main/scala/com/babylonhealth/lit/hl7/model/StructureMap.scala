@@ -35,16 +35,22 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object StructureMap extends CompanionFor[StructureMap] {
+  implicit def summonObjectAndCompanionStructureMap_1273794052(
+      o: StructureMap): ObjectAndCompanion[StructureMap, StructureMap.type] = ObjectAndCompanion(o, this)
   override type ResourceType = StructureMap
   override type ParentType   = StructureMap
   override val baseType: CompanionFor[ResourceType] = StructureMap
   override val parentType: CompanionFor[ParentType] = StructureMap
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/StructureMap")
   object Group extends CompanionFor[Group] {
+    implicit def summonObjectAndCompanionGroup1792996326(o: Group): ObjectAndCompanion[Group, Group.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Group
     override type ParentType   = Group
     override val parentType: CompanionFor[ResourceType] = Group
     object Input extends CompanionFor[Input] {
+      implicit def summonObjectAndCompanionInput1221585872(o: Input): ObjectAndCompanion[Input, Input.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Input
       override type ParentType   = Input
       override val parentType: CompanionFor[ResourceType] = Input
@@ -126,10 +132,14 @@ object StructureMap extends CompanionFor[StructureMap] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Rule extends CompanionFor[Rule] {
+      implicit def summonObjectAndCompanionRule_210748660(o: Rule): ObjectAndCompanion[Rule, Rule.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Rule
       override type ParentType   = Rule
       override val parentType: CompanionFor[ResourceType] = Rule
       object Source extends CompanionFor[Source] {
+        implicit def summonObjectAndCompanionSource_2086053457(o: Source): ObjectAndCompanion[Source, Source.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = Source
         override type ParentType   = Source
         override val parentType: CompanionFor[ResourceType] = Source
@@ -293,6 +303,8 @@ object StructureMap extends CompanionFor[StructureMap] {
             FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Dependent extends CompanionFor[Dependent] {
+        implicit def summonObjectAndCompanionDependent1812723523(
+            o: Dependent): ObjectAndCompanion[Dependent, Dependent.type] = ObjectAndCompanion(o, this)
         override type ResourceType = Dependent
         override type ParentType   = Dependent
         override val parentType: CompanionFor[ResourceType] = Dependent
@@ -359,10 +371,14 @@ object StructureMap extends CompanionFor[StructureMap] {
             FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Target extends CompanionFor[Target] {
+        implicit def summonObjectAndCompanionTarget557868457(o: Target): ObjectAndCompanion[Target, Target.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = Target
         override type ParentType   = Target
         override val parentType: CompanionFor[ResourceType] = Target
         object Parameter extends CompanionFor[Parameter] {
+          implicit def summonObjectAndCompanionParameter1829935754(
+              o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] = ObjectAndCompanion(o, this)
           override type ResourceType = Parameter
           override type ParentType   = Parameter
           override val parentType: CompanionFor[ResourceType] = Parameter
@@ -731,6 +747,8 @@ object StructureMap extends CompanionFor[StructureMap] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Structure extends CompanionFor[Structure] {
+    implicit def summonObjectAndCompanionStructure33291370(
+        o: Structure): ObjectAndCompanion[Structure, Structure.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Structure
     override type ParentType   = Structure
     override val parentType: CompanionFor[ResourceType] = Structure

@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Request_relevantHistory extends CompanionFor[Request_relevantHistory] {
+  implicit def summonObjectAndCompanionRequest_relevantHistory1347619652(
+      o: Request_relevantHistory): ObjectAndCompanion[Request_relevantHistory, Request_relevantHistory.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

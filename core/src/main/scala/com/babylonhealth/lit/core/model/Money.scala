@@ -21,6 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Money extends CompanionFor[Money] {
+  implicit def summonObjectAndCompanionMoney_1188401209(o: Money): ObjectAndCompanion[Money, Money.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Money
   override type ParentType   = Money
   override val baseType: CompanionFor[ResourceType] = Money

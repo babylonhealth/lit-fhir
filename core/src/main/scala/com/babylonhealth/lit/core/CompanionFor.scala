@@ -21,6 +21,11 @@ trait OptionSugar {
   }
 }
 
+case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor[_]](o: O, c: C) {
+  def updating[T](fieldSelection: C => FHIRComponentFieldMeta[T])(fn: T => T): O =
+    o.`with`[T, O](fieldSelection(c))(fn)
+}
+
 abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: ClassTag[T @uncheckedVariance])
     extends JsonDecoderHelpers
     with OptionSugar {

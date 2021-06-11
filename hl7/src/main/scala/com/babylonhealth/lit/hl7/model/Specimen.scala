@@ -24,12 +24,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Specimen extends CompanionFor[Specimen] {
+  implicit def summonObjectAndCompanionSpecimen290397770(o: Specimen): ObjectAndCompanion[Specimen, Specimen.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Specimen
   override type ParentType   = Specimen
   override val baseType: CompanionFor[ResourceType] = Specimen
   override val parentType: CompanionFor[ParentType] = Specimen
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Specimen")
   object Processing extends CompanionFor[Processing] {
+    implicit def summonObjectAndCompanionProcessing1789133824(
+        o: Processing): ObjectAndCompanion[Processing, Processing.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Processing
     override type ParentType   = Processing
     override val parentType: CompanionFor[ResourceType] = Processing
@@ -111,6 +115,8 @@ object Specimen extends CompanionFor[Specimen] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Collection extends CompanionFor[Collection] {
+    implicit def summonObjectAndCompanionCollection1373723242(
+        o: Collection): ObjectAndCompanion[Collection, Collection.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Collection
     override type ParentType   = Collection
     override val parentType: CompanionFor[ResourceType] = Collection
@@ -229,6 +235,8 @@ object Specimen extends CompanionFor[Specimen] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Container extends CompanionFor[Container] {
+    implicit def summonObjectAndCompanionContainer1330076187(
+        o: Container): ObjectAndCompanion[Container, Container.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Container
     override type ParentType   = Container
     override val parentType: CompanionFor[ResourceType] = Container

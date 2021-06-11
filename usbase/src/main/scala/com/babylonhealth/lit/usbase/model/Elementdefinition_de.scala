@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
+  implicit def summonObjectAndCompanionElementdefinition_de2079635633(
+      o: Elementdefinition_de): ObjectAndCompanion[Elementdefinition_de, Elementdefinition_de.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = ElementDefinition
   override type ParentType   = ElementDefinition
   override val baseType: CompanionFor[ResourceType] = ElementDefinition

@@ -33,11 +33,6 @@ abstract class FHIRObject(
   def updatePrimitiveAttributes(fn: FieldToElementLookup => FieldToElementLookup): this.type =
     withPrimitiveAttributes(fn(primitiveAttributes))
 
-  def updating[T](fieldSelection: CompanionFor[this.type] => FHIRComponentFieldMeta[T])(
-      fn: T => T): companion.ResourceType =
-    `with`[T, companion.ResourceType](fieldSelection(companion))(fn)(
-      companion.baseType.thisClassTag.asInstanceOf,
-      companion.baseType.thisTypeTag.asInstanceOf)
   def `with`[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
 //      selectField: CompanionFor[UpType] => FHIRComponentFieldMeta[T]
       field: FHIRComponentFieldMeta[T]

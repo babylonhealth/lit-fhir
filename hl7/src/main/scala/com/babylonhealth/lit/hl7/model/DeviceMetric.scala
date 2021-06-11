@@ -30,12 +30,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceMetric extends CompanionFor[DeviceMetric] {
+  implicit def summonObjectAndCompanionDeviceMetric1213554835(
+      o: DeviceMetric): ObjectAndCompanion[DeviceMetric, DeviceMetric.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DeviceMetric
   override type ParentType   = DeviceMetric
   override val baseType: CompanionFor[ResourceType] = DeviceMetric
   override val parentType: CompanionFor[ParentType] = DeviceMetric
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceMetric")
   object Calibration extends CompanionFor[Calibration] {
+    implicit def summonObjectAndCompanionCalibration_23995587(
+        o: Calibration): ObjectAndCompanion[Calibration, Calibration.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Calibration
     override type ParentType   = Calibration
     override val parentType: CompanionFor[ResourceType] = Calibration

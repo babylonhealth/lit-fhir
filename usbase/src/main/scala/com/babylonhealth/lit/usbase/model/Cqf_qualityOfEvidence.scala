@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_qualityOfEvidence extends CompanionFor[Cqf_qualityOfEvidence] {
+  implicit def summonObjectAndCompanionCqf_qualityOfEvidence_1824011520(
+      o: Cqf_qualityOfEvidence): ObjectAndCompanion[Cqf_qualityOfEvidence, Cqf_qualityOfEvidence.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

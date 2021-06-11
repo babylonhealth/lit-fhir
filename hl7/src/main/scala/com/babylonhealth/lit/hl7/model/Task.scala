@@ -24,12 +24,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Task extends CompanionFor[Task] {
+  implicit def summonObjectAndCompanionTask1301031953(o: Task): ObjectAndCompanion[Task, Task.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Task
   override type ParentType   = Task
   override val baseType: CompanionFor[ResourceType] = Task
   override val parentType: CompanionFor[ParentType] = Task
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Task")
   object Restriction extends CompanionFor[Restriction] {
+    implicit def summonObjectAndCompanionRestriction1922801621(
+        o: Restriction): ObjectAndCompanion[Restriction, Restriction.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Restriction
     override type ParentType   = Restriction
     override val parentType: CompanionFor[ResourceType] = Restriction
@@ -103,6 +107,8 @@ object Task extends CompanionFor[Task] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Output extends CompanionFor[Output] {
+    implicit def summonObjectAndCompanionOutput22298745(o: Output): ObjectAndCompanion[Output, Output.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Output
     override type ParentType   = Output
     override val parentType: CompanionFor[ResourceType] = Output
@@ -169,6 +175,8 @@ object Task extends CompanionFor[Task] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Input extends CompanionFor[Input] {
+    implicit def summonObjectAndCompanionInput2099773490(o: Input): ObjectAndCompanion[Input, Input.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Input
     override type ParentType   = Input
     override val parentType: CompanionFor[ResourceType] = Input

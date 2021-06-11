@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object GuidanceResponse extends CompanionFor[GuidanceResponse] {
+  implicit def summonObjectAndCompanionGuidanceResponse2143279051(
+      o: GuidanceResponse): ObjectAndCompanion[GuidanceResponse, GuidanceResponse.type] = ObjectAndCompanion(o, this)
   override type ResourceType = GuidanceResponse
   override type ParentType   = GuidanceResponse
   override val baseType: CompanionFor[ResourceType] = GuidanceResponse

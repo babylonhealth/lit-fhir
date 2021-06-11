@@ -24,6 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Timing_dayOfMonth extends CompanionFor[Timing_dayOfMonth] {
+  implicit def summonObjectAndCompanionTiming_dayOfMonth_318507618(
+      o: Timing_dayOfMonth): ObjectAndCompanion[Timing_dayOfMonth, Timing_dayOfMonth.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension

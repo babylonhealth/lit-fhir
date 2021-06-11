@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationStatement extends CompanionFor[MedicationStatement] {
+  implicit def summonObjectAndCompanionMedicationStatement1780285890(
+      o: MedicationStatement): ObjectAndCompanion[MedicationStatement, MedicationStatement.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = MedicationStatement
   override type ParentType   = MedicationStatement
   override val baseType: CompanionFor[ResourceType] = MedicationStatement

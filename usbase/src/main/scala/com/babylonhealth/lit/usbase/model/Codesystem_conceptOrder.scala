@@ -24,6 +24,9 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_conceptOrder extends CompanionFor[Codesystem_conceptOrder] {
+  implicit def summonObjectAndCompanionCodesystem_conceptOrder1556351825(
+      o: Codesystem_conceptOrder): ObjectAndCompanion[Codesystem_conceptOrder, Codesystem_conceptOrder.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
