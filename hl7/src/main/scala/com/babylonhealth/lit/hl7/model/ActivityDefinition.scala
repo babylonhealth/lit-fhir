@@ -32,10 +32,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ActivityDefinition extends CompanionFor[ActivityDefinition] {
   override type ResourceType = ActivityDefinition
+  override type ParentType   = ActivityDefinition
   override val baseType: CompanionFor[ResourceType] = ActivityDefinition
+  override val parentType: CompanionFor[ParentType] = ActivityDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ActivityDefinition")
   object DynamicValue extends CompanionFor[DynamicValue] {
     override type ResourceType = DynamicValue
+    override type ParentType   = DynamicValue
+    override val parentType: CompanionFor[ResourceType] = DynamicValue
     def apply(
         id: Option[String] = None,
         path: String,
@@ -98,6 +102,8 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Participant extends CompanionFor[Participant] {
     override type ResourceType = Participant
+    override type ParentType   = Participant
+    override val parentType: CompanionFor[ResourceType] = Participant
     def apply(
         id: Option[String] = None,
         `type`: ACTION_PARTICIPANT_TYPE,

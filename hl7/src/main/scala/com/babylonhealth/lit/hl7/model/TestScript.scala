@@ -33,14 +33,22 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TestScript extends CompanionFor[TestScript] {
   override type ResourceType = TestScript
+  override type ParentType   = TestScript
   override val baseType: CompanionFor[ResourceType] = TestScript
+  override val parentType: CompanionFor[ParentType] = TestScript
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/TestScript")
   object Setup extends CompanionFor[Setup] {
     override type ResourceType = Setup
+    override type ParentType   = Setup
+    override val parentType: CompanionFor[ResourceType] = Setup
     object Action extends CompanionFor[Action] {
       override type ResourceType = Action
+      override type ParentType   = Action
+      override val parentType: CompanionFor[ResourceType] = Action
       object Assert extends CompanionFor[Assert] {
         override type ResourceType = Assert
+        override type ParentType   = Assert
+        override val parentType: CompanionFor[ResourceType] = Assert
         def apply(
             id: Option[String] = None,
             path: Option[String] = None,
@@ -280,8 +288,12 @@ object TestScript extends CompanionFor[TestScript] {
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Operation extends CompanionFor[Operation] {
         override type ResourceType = Operation
+        override type ParentType   = Operation
+        override val parentType: CompanionFor[ResourceType] = Operation
         object RequestHeader extends CompanionFor[RequestHeader] {
           override type ResourceType = RequestHeader
+          override type ParentType   = RequestHeader
+          override val parentType: CompanionFor[ResourceType] = RequestHeader
           def apply(
               id: Option[String] = None,
               field: String,
@@ -675,8 +687,12 @@ object TestScript extends CompanionFor[TestScript] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Metadata extends CompanionFor[Metadata] {
     override type ResourceType = Metadata
+    override type ParentType   = Metadata
+    override val parentType: CompanionFor[ResourceType] = Metadata
     object Link extends CompanionFor[Link] {
       override type ResourceType = Link
+      override type ParentType   = Link
+      override val parentType: CompanionFor[ResourceType] = Link
       def apply(
           id: Option[String] = None,
           url: UriStr,
@@ -740,6 +756,8 @@ object TestScript extends CompanionFor[TestScript] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Capability extends CompanionFor[Capability] {
       override type ResourceType = Capability
+      override type ParentType   = Capability
+      override val parentType: CompanionFor[ResourceType] = Capability
       def apply(
           id: Option[String] = None,
           link: LitSeq[UriStr] = LitSeq.empty,
@@ -916,8 +934,12 @@ object TestScript extends CompanionFor[TestScript] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Teardown extends CompanionFor[Teardown] {
     override type ResourceType = Teardown
+    override type ParentType   = Teardown
+    override val parentType: CompanionFor[ResourceType] = Teardown
     object Action extends CompanionFor[Action] {
       override type ResourceType = Action
+      override type ParentType   = Action
+      override val parentType: CompanionFor[ResourceType] = Action
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -1033,8 +1055,12 @@ object TestScript extends CompanionFor[TestScript] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Test extends CompanionFor[Test] {
     override type ResourceType = Test
+    override type ParentType   = Test
+    override val parentType: CompanionFor[ResourceType] = Test
     object Action extends CompanionFor[Action] {
       override type ResourceType = Action
+      override type ParentType   = Action
+      override val parentType: CompanionFor[ResourceType] = Action
       def apply(
           id: Option[String] = None,
           assert: Option[TestScript.Setup.Action.Assert] = None,
@@ -1175,6 +1201,8 @@ object TestScript extends CompanionFor[TestScript] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Destination extends CompanionFor[Destination] {
     override type ResourceType = Destination
+    override type ParentType   = Destination
+    override val parentType: CompanionFor[ResourceType] = Destination
     def apply(
         id: Option[String] = None,
         index: Int,
@@ -1237,6 +1265,8 @@ object TestScript extends CompanionFor[TestScript] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Variable extends CompanionFor[Variable] {
     override type ResourceType = Variable
+    override type ParentType   = Variable
+    override val parentType: CompanionFor[ResourceType] = Variable
     def apply(
         id: Option[String] = None,
         name: String,
@@ -1365,6 +1395,8 @@ object TestScript extends CompanionFor[TestScript] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Fixture extends CompanionFor[Fixture] {
     override type ResourceType = Fixture
+    override type ParentType   = Fixture
+    override val parentType: CompanionFor[ResourceType] = Fixture
     def apply(
         id: Option[String] = None,
         resource: Option[Reference] = None,
@@ -1436,6 +1468,8 @@ object TestScript extends CompanionFor[TestScript] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Origin extends CompanionFor[Origin] {
     override type ResourceType = Origin
+    override type ParentType   = Origin
+    override val parentType: CompanionFor[ResourceType] = Origin
     def apply(
         id: Option[String] = None,
         index: Int,

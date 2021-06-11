@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object NamingSystem extends CompanionFor[NamingSystem] {
   override type ResourceType = NamingSystem
+  override type ParentType   = NamingSystem
   override val baseType: CompanionFor[ResourceType] = NamingSystem
+  override val parentType: CompanionFor[ParentType] = NamingSystem
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/NamingSystem")
   object UniqueId extends CompanionFor[UniqueId] {
     override type ResourceType = UniqueId
+    override type ParentType   = UniqueId
+    override val parentType: CompanionFor[ResourceType] = UniqueId
     def apply(
         id: Option[String] = None,
         `type`: NAMINGSYSTEM_IDENTIFIER_TYPE,

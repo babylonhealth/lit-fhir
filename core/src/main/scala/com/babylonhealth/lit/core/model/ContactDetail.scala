@@ -22,7 +22,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ContactDetail extends CompanionFor[ContactDetail] {
   override type ResourceType = ContactDetail
+  override type ParentType   = ContactDetail
   override val baseType: CompanionFor[ResourceType] = ContactDetail
+  override val parentType: CompanionFor[ParentType] = ContactDetail
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ContactDetail")
   def apply(
       id: Option[String] = None,

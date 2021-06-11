@@ -24,12 +24,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendation] {
   override type ResourceType = ImmunizationRecommendation
+  override type ParentType   = ImmunizationRecommendation
   override val baseType: CompanionFor[ResourceType] = ImmunizationRecommendation
+  override val parentType: CompanionFor[ParentType] = ImmunizationRecommendation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation")
   object Recommendation extends CompanionFor[Recommendation] {
     override type ResourceType = Recommendation
+    override type ParentType   = Recommendation
+    override val parentType: CompanionFor[ResourceType] = Recommendation
     object DateCriterion extends CompanionFor[DateCriterion] {
       override type ResourceType = DateCriterion
+      override type ParentType   = DateCriterion
+      override val parentType: CompanionFor[ResourceType] = DateCriterion
       def apply(
           id: Option[String] = None,
           code: CodeableConcept,

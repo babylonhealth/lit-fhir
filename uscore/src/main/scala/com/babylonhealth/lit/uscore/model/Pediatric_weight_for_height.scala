@@ -27,7 +27,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Pediatric_weight_for_height extends CompanionFor[Pediatric_weight_for_height] {
   override type ResourceType = Observation
+  override type ParentType   = Vitalsigns
   override val baseType: CompanionFor[ResourceType] = Observation
+  override val parentType: CompanionFor[ParentType] = Vitalsigns
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height")
   type EffectiveChoice = Choice[Union_0934386166]

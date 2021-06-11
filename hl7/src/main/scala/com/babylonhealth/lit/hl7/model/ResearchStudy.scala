@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ResearchStudy extends CompanionFor[ResearchStudy] {
   override type ResourceType = ResearchStudy
+  override type ParentType   = ResearchStudy
   override val baseType: CompanionFor[ResourceType] = ResearchStudy
+  override val parentType: CompanionFor[ParentType] = ResearchStudy
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ResearchStudy")
   object Objective extends CompanionFor[Objective] {
     override type ResourceType = Objective
+    override type ParentType   = Objective
+    override val parentType: CompanionFor[ResourceType] = Objective
     def apply(
         id: Option[String] = None,
         name: Option[String] = None,
@@ -92,6 +96,8 @@ object ResearchStudy extends CompanionFor[ResearchStudy] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Arm extends CompanionFor[Arm] {
     override type ResourceType = Arm
+    override type ParentType   = Arm
+    override val parentType: CompanionFor[ResourceType] = Arm
     def apply(
         id: Option[String] = None,
         name: String,

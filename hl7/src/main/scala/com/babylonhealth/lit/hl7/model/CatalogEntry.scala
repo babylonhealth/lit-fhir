@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CatalogEntry extends CompanionFor[CatalogEntry] {
   override type ResourceType = CatalogEntry
+  override type ParentType   = CatalogEntry
   override val baseType: CompanionFor[ResourceType] = CatalogEntry
+  override val parentType: CompanionFor[ParentType] = CatalogEntry
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CatalogEntry")
   object RelatedEntry extends CompanionFor[RelatedEntry] {
     override type ResourceType = RelatedEntry
+    override type ParentType   = RelatedEntry
+    override val parentType: CompanionFor[ResourceType] = RelatedEntry
     def apply(
         id: Option[String] = None,
         item: Reference,

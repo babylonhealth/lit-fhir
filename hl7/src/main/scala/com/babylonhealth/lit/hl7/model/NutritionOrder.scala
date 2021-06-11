@@ -25,13 +25,19 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object NutritionOrder extends CompanionFor[NutritionOrder] {
   override type ResourceType = NutritionOrder
+  override type ParentType   = NutritionOrder
   override val baseType: CompanionFor[ResourceType] = NutritionOrder
+  override val parentType: CompanionFor[ParentType] = NutritionOrder
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/NutritionOrder")
   object EnteralFormula extends CompanionFor[EnteralFormula] {
     override type ResourceType = EnteralFormula
+    override type ParentType   = EnteralFormula
+    override val parentType: CompanionFor[ResourceType] = EnteralFormula
     object Administration extends CompanionFor[Administration] {
       override type ResourceType = Administration
-      type RateChoice            = Choice[Union_0964108894]
+      override type ParentType   = Administration
+      override val parentType: CompanionFor[ResourceType] = Administration
+      type RateChoice = Choice[Union_0964108894]
       def apply(
           id: Option[String] = None,
           rate: Option[Administration.RateChoice] = None,
@@ -243,8 +249,12 @@ object NutritionOrder extends CompanionFor[NutritionOrder] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object OralDiet extends CompanionFor[OralDiet] {
     override type ResourceType = OralDiet
+    override type ParentType   = OralDiet
+    override val parentType: CompanionFor[ResourceType] = OralDiet
     object Texture extends CompanionFor[Texture] {
       override type ResourceType = Texture
+      override type ParentType   = Texture
+      override val parentType: CompanionFor[ResourceType] = Texture
       def apply(
           id: Option[String] = None,
           modifier: Option[CodeableConcept] = None,
@@ -309,6 +319,8 @@ object NutritionOrder extends CompanionFor[NutritionOrder] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Nutrient extends CompanionFor[Nutrient] {
       override type ResourceType = Nutrient
+      override type ParentType   = Nutrient
+      override val parentType: CompanionFor[ResourceType] = Nutrient
       def apply(
           id: Option[String] = None,
           amount: Option[Quantity] = None,
@@ -473,6 +485,8 @@ object NutritionOrder extends CompanionFor[NutritionOrder] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Supplement extends CompanionFor[Supplement] {
     override type ResourceType = Supplement
+    override type ParentType   = Supplement
+    override val parentType: CompanionFor[ResourceType] = Supplement
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,

@@ -22,7 +22,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TriggerDefinition extends CompanionFor[TriggerDefinition] {
   override type ResourceType = TriggerDefinition
+  override type ParentType   = TriggerDefinition
   override val baseType: CompanionFor[ResourceType] = TriggerDefinition
+  override val parentType: CompanionFor[ParentType] = TriggerDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/TriggerDefinition")
   type TimingChoice = Choice[Union_1051729086]
   def apply(

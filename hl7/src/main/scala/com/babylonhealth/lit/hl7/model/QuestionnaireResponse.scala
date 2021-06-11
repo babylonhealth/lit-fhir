@@ -25,13 +25,19 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object QuestionnaireResponse extends CompanionFor[QuestionnaireResponse] {
   override type ResourceType = QuestionnaireResponse
+  override type ParentType   = QuestionnaireResponse
   override val baseType: CompanionFor[ResourceType] = QuestionnaireResponse
+  override val parentType: CompanionFor[ParentType] = QuestionnaireResponse
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse")
   object Item extends CompanionFor[Item] {
     override type ResourceType = Item
+    override type ParentType   = Item
+    override val parentType: CompanionFor[ResourceType] = Item
     object Answer extends CompanionFor[Answer] {
       override type ResourceType = Answer
-      type ValueChoice           = Choice[Union_2101127777]
+      override type ParentType   = Answer
+      override val parentType: CompanionFor[ResourceType] = Answer
+      type ValueChoice = Choice[Union_2101127777]
       def apply(
           id: Option[String] = None,
           item: LitSeq[QuestionnaireResponse.Item] = LitSeq.empty,

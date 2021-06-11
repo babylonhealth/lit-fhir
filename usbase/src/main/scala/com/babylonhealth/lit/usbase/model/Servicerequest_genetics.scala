@@ -26,7 +26,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Servicerequest_genetics extends CompanionFor[Servicerequest_genetics] {
   override type ResourceType = ServiceRequest
+  override type ParentType   = ServiceRequest
   override val baseType: CompanionFor[ResourceType] = ServiceRequest
+  override val parentType: CompanionFor[ParentType] = ServiceRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/servicerequest-genetics")
   type QuantityChoice   = Choice[Union_0575082635]
   type AsNeededChoice   = Choice[Union_1768247138]

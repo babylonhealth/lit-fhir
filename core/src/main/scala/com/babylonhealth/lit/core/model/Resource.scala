@@ -22,7 +22,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Resource extends CompanionFor[Resource] {
   override type ResourceType = Resource
+  override type ParentType   = Resource
   override val baseType: CompanionFor[ResourceType] = Resource
+  override val parentType: CompanionFor[ParentType] = Resource
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Resource")
   def apply(
       id: Option[String] = None,

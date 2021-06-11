@@ -24,12 +24,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
   override type ResourceType = SubstanceSpecification
+  override type ParentType   = SubstanceSpecification
   override val baseType: CompanionFor[ResourceType] = SubstanceSpecification
+  override val parentType: CompanionFor[ParentType] = SubstanceSpecification
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceSpecification")
   object Structure extends CompanionFor[Structure] {
     override type ResourceType = Structure
+    override type ParentType   = Structure
+    override val parentType: CompanionFor[ResourceType] = Structure
     object Representation extends CompanionFor[Representation] {
       override type ResourceType = Representation
+      override type ParentType   = Representation
+      override val parentType: CompanionFor[ResourceType] = Representation
       def apply(
           id: Option[String] = None,
           `type`: Option[CodeableConcept] = None,
@@ -102,8 +108,12 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Isotope extends CompanionFor[Isotope] {
       override type ResourceType = Isotope
+      override type ParentType   = Isotope
+      override val parentType: CompanionFor[ResourceType] = Isotope
       object MolecularWeight extends CompanionFor[MolecularWeight] {
         override type ResourceType = MolecularWeight
+        override type ParentType   = MolecularWeight
+        override val parentType: CompanionFor[ResourceType] = MolecularWeight
         def apply(
             id: Option[String] = None,
             `type`: Option[CodeableConcept] = None,
@@ -404,8 +414,10 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Relationship extends CompanionFor[Relationship] {
     override type ResourceType = Relationship
-    type AmountChoice          = Choice[Union00910671146]
-    type SubstanceChoice       = Choice[Union01025009075]
+    override type ParentType   = Relationship
+    override val parentType: CompanionFor[ResourceType] = Relationship
+    type AmountChoice    = Choice[Union00910671146]
+    type SubstanceChoice = Choice[Union01025009075]
     def apply(
         id: Option[String] = None,
         source: LitSeq[Reference] = LitSeq.empty,
@@ -525,8 +537,12 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Name extends CompanionFor[Name] {
     override type ResourceType = Name
+    override type ParentType   = Name
+    override val parentType: CompanionFor[ResourceType] = Name
     object Official extends CompanionFor[Official] {
       override type ResourceType = Official
+      override type ParentType   = Official
+      override val parentType: CompanionFor[ResourceType] = Official
       def apply(
           id: Option[String] = None,
           date: Option[FHIRDateTime] = None,
@@ -758,7 +774,9 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Property extends CompanionFor[Property] {
-    override type ResourceType   = Property
+    override type ResourceType = Property
+    override type ParentType   = Property
+    override val parentType: CompanionFor[ResourceType] = Property
     type AmountChoice            = Choice[Union_2072987899]
     type DefiningSubstanceChoice = Choice[Union01025009075]
     def apply(
@@ -850,7 +868,9 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Moiety extends CompanionFor[Moiety] {
     override type ResourceType = Moiety
-    type AmountChoice          = Choice[Union_2072987899]
+    override type ParentType   = Moiety
+    override val parentType: CompanionFor[ResourceType] = Moiety
+    type AmountChoice = Choice[Union_2072987899]
     def apply(
         id: Option[String] = None,
         role: Option[CodeableConcept] = None,
@@ -970,6 +990,8 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Code extends CompanionFor[Code] {
     override type ResourceType = Code
+    override type ParentType   = Code
+    override val parentType: CompanionFor[ResourceType] = Code
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,

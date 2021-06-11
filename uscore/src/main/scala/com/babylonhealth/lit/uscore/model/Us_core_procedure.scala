@@ -27,7 +27,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_procedure extends CompanionFor[Us_core_procedure] {
   override type ResourceType = Procedure
+  override type ParentType   = Procedure
   override val baseType: CompanionFor[ResourceType] = Procedure
+  override val parentType: CompanionFor[ParentType] = Procedure
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure")
   type PerformedChoice = Choice[Union_0934386166]
   def apply(

@@ -24,11 +24,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInformation] {
   override type ResourceType = SubstanceReferenceInformation
+  override type ParentType   = SubstanceReferenceInformation
   override val baseType: CompanionFor[ResourceType] = SubstanceReferenceInformation
+  override val parentType: CompanionFor[ParentType] = SubstanceReferenceInformation
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/SubstanceReferenceInformation")
   object Classification extends CompanionFor[Classification] {
     override type ResourceType = Classification
+    override type ParentType   = Classification
+    override val parentType: CompanionFor[ResourceType] = Classification
     def apply(
         id: Option[String] = None,
         domain: Option[CodeableConcept] = None,
@@ -107,6 +111,8 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object GeneElement extends CompanionFor[GeneElement] {
     override type ResourceType = GeneElement
+    override type ParentType   = GeneElement
+    override val parentType: CompanionFor[ResourceType] = GeneElement
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,
@@ -177,7 +183,9 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Target extends CompanionFor[Target] {
     override type ResourceType = Target
-    type AmountChoice          = Choice[Union_1527751898]
+    override type ParentType   = Target
+    override val parentType: CompanionFor[ResourceType] = Target
+    type AmountChoice = Choice[Union_1527751898]
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,
@@ -306,6 +314,8 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Gene extends CompanionFor[Gene] {
     override type ResourceType = Gene
+    override type ParentType   = Gene
+    override val parentType: CompanionFor[ResourceType] = Gene
     def apply(
         id: Option[String] = None,
         gene: Option[CodeableConcept] = None,

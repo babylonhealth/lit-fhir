@@ -22,7 +22,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Coding extends CompanionFor[Coding] {
   override type ResourceType = Coding
+  override type ParentType   = Coding
   override val baseType: CompanionFor[ResourceType] = Coding
+  override val parentType: CompanionFor[ParentType] = Coding
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Coding")
   def apply(
       id: Option[String] = None,

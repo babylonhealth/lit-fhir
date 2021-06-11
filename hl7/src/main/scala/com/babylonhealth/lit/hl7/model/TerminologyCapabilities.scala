@@ -25,14 +25,22 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
   override type ResourceType = TerminologyCapabilities
+  override type ParentType   = TerminologyCapabilities
   override val baseType: CompanionFor[ResourceType] = TerminologyCapabilities
+  override val parentType: CompanionFor[ParentType] = TerminologyCapabilities
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities")
   object CodeSystem extends CompanionFor[CodeSystem] {
     override type ResourceType = CodeSystem
+    override type ParentType   = CodeSystem
+    override val parentType: CompanionFor[ResourceType] = CodeSystem
     object Version extends CompanionFor[Version] {
       override type ResourceType = Version
+      override type ParentType   = Version
+      override val parentType: CompanionFor[ResourceType] = Version
       object Filter extends CompanionFor[Filter] {
         override type ResourceType = Filter
+        override type ParentType   = Filter
+        override val parentType: CompanionFor[ResourceType] = Filter
         def apply(
             id: Option[String] = None,
             op: NonEmptyLitSeq[Code],
@@ -266,8 +274,12 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Expansion extends CompanionFor[Expansion] {
     override type ResourceType = Expansion
+    override type ParentType   = Expansion
+    override val parentType: CompanionFor[ResourceType] = Expansion
     object Parameter extends CompanionFor[Parameter] {
       override type ResourceType = Parameter
+      override type ParentType   = Parameter
+      override val parentType: CompanionFor[ResourceType] = Parameter
       def apply(
           id: Option[String] = None,
           name: Code,
@@ -414,6 +426,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Implementation extends CompanionFor[Implementation] {
     override type ResourceType = Implementation
+    override type ParentType   = Implementation
+    override val parentType: CompanionFor[ResourceType] = Implementation
     def apply(
         id: Option[String] = None,
         url: Option[UrlStr] = None,
@@ -477,6 +491,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ValidateCode extends CompanionFor[ValidateCode] {
     override type ResourceType = ValidateCode
+    override type ParentType   = ValidateCode
+    override val parentType: CompanionFor[ResourceType] = ValidateCode
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -532,6 +548,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Translation extends CompanionFor[Translation] {
     override type ResourceType = Translation
+    override type ParentType   = Translation
+    override val parentType: CompanionFor[ResourceType] = Translation
     def apply(
         id: Option[String] = None,
         needsMap: Boolean,
@@ -587,6 +605,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Software extends CompanionFor[Software] {
     override type ResourceType = Software
+    override type ParentType   = Software
+    override val parentType: CompanionFor[ResourceType] = Software
     def apply(
         id: Option[String] = None,
         name: String,
@@ -649,6 +669,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Closure extends CompanionFor[Closure] {
     override type ResourceType = Closure
+    override type ParentType   = Closure
+    override val parentType: CompanionFor[ResourceType] = Closure
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,

@@ -25,13 +25,19 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CoverageEligibilityRequest extends CompanionFor[CoverageEligibilityRequest] {
   override type ResourceType = CoverageEligibilityRequest
+  override type ParentType   = CoverageEligibilityRequest
   override val baseType: CompanionFor[ResourceType] = CoverageEligibilityRequest
+  override val parentType: CompanionFor[ParentType] = CoverageEligibilityRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CoverageEligibilityRequest")
   object Item extends CompanionFor[Item] {
     override type ResourceType = Item
+    override type ParentType   = Item
+    override val parentType: CompanionFor[ResourceType] = Item
     object Diagnosis extends CompanionFor[Diagnosis] {
       override type ResourceType = Diagnosis
-      type DiagnosisChoice       = Choice[Union01025009075]
+      override type ParentType   = Diagnosis
+      override val parentType: CompanionFor[ResourceType] = Diagnosis
+      type DiagnosisChoice = Choice[Union01025009075]
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -233,6 +239,8 @@ object CoverageEligibilityRequest extends CompanionFor[CoverageEligibilityReques
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SupportingInfo extends CompanionFor[SupportingInfo] {
     override type ResourceType = SupportingInfo
+    override type ParentType   = SupportingInfo
+    override val parentType: CompanionFor[ResourceType] = SupportingInfo
     def apply(
         id: Option[String] = None,
         sequence: PositiveInt,
@@ -304,6 +312,8 @@ object CoverageEligibilityRequest extends CompanionFor[CoverageEligibilityReques
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Insurance extends CompanionFor[Insurance] {
     override type ResourceType = Insurance
+    override type ParentType   = Insurance
+    override val parentType: CompanionFor[ResourceType] = Insurance
     def apply(
         id: Option[String] = None,
         focal: Option[Boolean] = None,

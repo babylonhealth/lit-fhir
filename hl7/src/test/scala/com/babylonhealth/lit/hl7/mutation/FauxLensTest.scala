@@ -70,6 +70,16 @@ class FauxLensTest extends AnyFreeSpec with Matchers {
     val x: ElementDefinition = e.updateType(_ => LitSeq(ElementDefinition.Type(code = "Quantity")))
     x.`type` shouldEqual LitSeq(ElementDefinition.Type(code = "Quantity"))
   }
+  "Can modify a field with a keyword name (update)" in {
+    val e                    = ElementDefinition(path = "Observation.value[x]")
+    val x: ElementDefinition = e.`with`(ElementDefinition.`type`)(_ => LitSeq(ElementDefinition.Type(code = "Quantity")))
+    x.`type` shouldEqual LitSeq(ElementDefinition.Type(code = "Quantity"))
+  }
+//  "Can modify a field with a keyword name (update sugar)" in {
+//    val e: ElementDefinition = ElementDefinition(path = "Observation.value[x]")
+//    val x: ElementDefinition = e.updating(_.`type`)(_ => LitSeq(ElementDefinition.Type(code = "Quantity")))
+//    x.`type` shouldEqual LitSeq(ElementDefinition.Type(code = "Quantity"))
+//  }
   "Can modify a series of nested fields in a reasonably ergonomic and safe way" in {
     val bundle   = mkBundle(subjects)
     val expected = mkBundle(subjects2)

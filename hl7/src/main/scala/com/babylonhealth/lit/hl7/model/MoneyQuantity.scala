@@ -24,7 +24,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MoneyQuantity extends CompanionFor[MoneyQuantity] {
   override type ResourceType = Quantity
+  override type ParentType   = Quantity
   override val baseType: CompanionFor[ResourceType] = Quantity
+  override val parentType: CompanionFor[ParentType] = Quantity
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MoneyQuantity")
   def apply(
       id: Option[String] = None,

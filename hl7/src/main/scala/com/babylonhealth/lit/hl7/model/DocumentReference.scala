@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DocumentReference extends CompanionFor[DocumentReference] {
   override type ResourceType = DocumentReference
+  override type ParentType   = DocumentReference
   override val baseType: CompanionFor[ResourceType] = DocumentReference
+  override val parentType: CompanionFor[ParentType] = DocumentReference
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DocumentReference")
   object RelatesTo extends CompanionFor[RelatesTo] {
     override type ResourceType = RelatesTo
+    override type ParentType   = RelatesTo
+    override val parentType: CompanionFor[ResourceType] = RelatesTo
     def apply(
         id: Option[String] = None,
         code: DOCUMENT_RELATIONSHIP_TYPE,
@@ -92,6 +96,8 @@ object DocumentReference extends CompanionFor[DocumentReference] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Context extends CompanionFor[Context] {
     override type ResourceType = Context
+    override type ParentType   = Context
+    override val parentType: CompanionFor[ResourceType] = Context
     def apply(
         id: Option[String] = None,
         event: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -211,6 +217,8 @@ object DocumentReference extends CompanionFor[DocumentReference] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Content extends CompanionFor[Content] {
     override type ResourceType = Content
+    override type ParentType   = Content
+    override val parentType: CompanionFor[ResourceType] = Content
     def apply(
         id: Option[String] = None,
         format: Option[Coding] = None,

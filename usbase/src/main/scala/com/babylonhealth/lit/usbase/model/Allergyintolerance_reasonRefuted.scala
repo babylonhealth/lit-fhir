@@ -25,7 +25,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Allergyintolerance_reasonRefuted extends CompanionFor[Allergyintolerance_reasonRefuted] {
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/allergyintolerance-reasonRefuted")
   def apply(

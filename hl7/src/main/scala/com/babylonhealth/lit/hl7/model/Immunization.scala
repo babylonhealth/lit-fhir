@@ -25,12 +25,16 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Immunization extends CompanionFor[Immunization] {
   override type ResourceType = Immunization
+  override type ParentType   = Immunization
   override val baseType: CompanionFor[ResourceType] = Immunization
+  override val parentType: CompanionFor[ParentType] = Immunization
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Immunization")
   object ProtocolApplied extends CompanionFor[ProtocolApplied] {
     override type ResourceType = ProtocolApplied
-    type DoseNumberChoice      = Choice[Union_0839638734]
-    type SeriesDosesChoice     = Choice[Union_0839638734]
+    override type ParentType   = ProtocolApplied
+    override val parentType: CompanionFor[ResourceType] = ProtocolApplied
+    type DoseNumberChoice  = Choice[Union_0839638734]
+    type SeriesDosesChoice = Choice[Union_0839638734]
     def apply(
         id: Option[String] = None,
         series: Option[String] = None,
@@ -121,6 +125,8 @@ object Immunization extends CompanionFor[Immunization] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Education extends CompanionFor[Education] {
     override type ResourceType = Education
+    override type ParentType   = Education
+    override val parentType: CompanionFor[ResourceType] = Education
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -199,6 +205,8 @@ object Immunization extends CompanionFor[Immunization] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Performer extends CompanionFor[Performer] {
     override type ResourceType = Performer
+    override type ParentType   = Performer
+    override val parentType: CompanionFor[ResourceType] = Performer
     def apply(
         id: Option[String] = None,
         actor: Reference,
@@ -262,6 +270,8 @@ object Immunization extends CompanionFor[Immunization] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Reaction extends CompanionFor[Reaction] {
     override type ResourceType = Reaction
+    override type ParentType   = Reaction
+    override val parentType: CompanionFor[ResourceType] = Reaction
     def apply(
         id: Option[String] = None,
         date: Option[FHIRDateTime] = None,

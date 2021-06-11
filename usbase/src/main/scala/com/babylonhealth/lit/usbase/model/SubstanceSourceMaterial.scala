@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceSourceMaterial extends CompanionFor[SubstanceSourceMaterial] {
   override type ResourceType = SubstanceSourceMaterial
+  override type ParentType   = SubstanceSourceMaterial
   override val baseType: CompanionFor[ResourceType] = SubstanceSourceMaterial
+  override val parentType: CompanionFor[ParentType] = SubstanceSourceMaterial
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceSourceMaterial")
   object Organism extends CompanionFor[Organism] {
     override type ResourceType = Organism
+    override type ParentType   = Organism
+    override val parentType: CompanionFor[ResourceType] = Organism
     object Author extends CompanionFor[Author] {
       override type ResourceType = Author
+      override type ParentType   = Author
+      override val parentType: CompanionFor[ResourceType] = Author
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -96,6 +102,8 @@ object SubstanceSourceMaterial extends CompanionFor[SubstanceSourceMaterial] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Hybrid extends CompanionFor[Hybrid] {
       override type ResourceType = Hybrid
+      override type ParentType   = Hybrid
+      override val parentType: CompanionFor[ResourceType] = Hybrid
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -198,6 +206,8 @@ object SubstanceSourceMaterial extends CompanionFor[SubstanceSourceMaterial] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object OrganismGeneral extends CompanionFor[OrganismGeneral] {
       override type ResourceType = OrganismGeneral
+      override type ParentType   = OrganismGeneral
+      override val parentType: CompanionFor[ResourceType] = OrganismGeneral
       def apply(
           id: Option[String] = None,
           `class`: Option[CodeableConcept] = None,
@@ -407,6 +417,8 @@ object SubstanceSourceMaterial extends CompanionFor[SubstanceSourceMaterial] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object FractionDescription extends CompanionFor[FractionDescription] {
     override type ResourceType = FractionDescription
+    override type ParentType   = FractionDescription
+    override val parentType: CompanionFor[ResourceType] = FractionDescription
     def apply(
         id: Option[String] = None,
         fraction: Option[String] = None,
@@ -470,6 +482,8 @@ object SubstanceSourceMaterial extends CompanionFor[SubstanceSourceMaterial] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object PartDescription extends CompanionFor[PartDescription] {
     override type ResourceType = PartDescription
+    override type ParentType   = PartDescription
+    override val parentType: CompanionFor[ResourceType] = PartDescription
     def apply(
         id: Option[String] = None,
         part: Option[CodeableConcept] = None,

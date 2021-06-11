@@ -25,11 +25,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Specimen extends CompanionFor[Specimen] {
   override type ResourceType = Specimen
+  override type ParentType   = Specimen
   override val baseType: CompanionFor[ResourceType] = Specimen
+  override val parentType: CompanionFor[ParentType] = Specimen
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Specimen")
   object Processing extends CompanionFor[Processing] {
     override type ResourceType = Processing
-    type TimeChoice            = Choice[Union_0934386166]
+    override type ParentType   = Processing
+    override val parentType: CompanionFor[ResourceType] = Processing
+    type TimeChoice = Choice[Union_0934386166]
     def apply(
         id: Option[String] = None,
         time: Option[Processing.TimeChoice] = None,
@@ -108,8 +112,10 @@ object Specimen extends CompanionFor[Specimen] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Collection extends CompanionFor[Collection] {
     override type ResourceType = Collection
-    type CollectedChoice       = Choice[Union_0934386166]
-    type FastingStatusChoice   = Choice[Union01243416269]
+    override type ParentType   = Collection
+    override val parentType: CompanionFor[ResourceType] = Collection
+    type CollectedChoice     = Choice[Union_0934386166]
+    type FastingStatusChoice = Choice[Union01243416269]
     def apply(
         id: Option[String] = None,
         method: Option[CodeableConcept] = None,
@@ -224,7 +230,9 @@ object Specimen extends CompanionFor[Specimen] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Container extends CompanionFor[Container] {
     override type ResourceType = Container
-    type AdditiveChoice        = Choice[Union01025009075]
+    override type ParentType   = Container
+    override val parentType: CompanionFor[ResourceType] = Container
+    type AdditiveChoice = Choice[Union01025009075]
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,

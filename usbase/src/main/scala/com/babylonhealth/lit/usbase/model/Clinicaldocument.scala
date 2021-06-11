@@ -26,7 +26,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Clinicaldocument extends CompanionFor[Clinicaldocument] {
   override type ResourceType = Composition
+  override type ParentType   = Composition
   override val baseType: CompanionFor[ResourceType] = Composition
+  override val parentType: CompanionFor[ParentType] = Composition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/clinicaldocument")
   def apply(
       id: Option[String] = None,

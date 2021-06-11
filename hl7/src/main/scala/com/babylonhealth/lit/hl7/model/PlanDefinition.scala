@@ -36,12 +36,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PlanDefinition extends CompanionFor[PlanDefinition] {
   override type ResourceType = PlanDefinition
+  override type ParentType   = PlanDefinition
   override val baseType: CompanionFor[ResourceType] = PlanDefinition
+  override val parentType: CompanionFor[ParentType] = PlanDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/PlanDefinition")
   object Action extends CompanionFor[Action] {
     override type ResourceType = Action
+    override type ParentType   = Action
+    override val parentType: CompanionFor[ResourceType] = Action
     object Condition extends CompanionFor[Condition] {
       override type ResourceType = Condition
+      override type ParentType   = Condition
+      override val parentType: CompanionFor[ResourceType] = Condition
       def apply(
           id: Option[String] = None,
           kind: ACTION_CONDITION_KIND,
@@ -106,6 +112,8 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Participant extends CompanionFor[Participant] {
       override type ResourceType = Participant
+      override type ParentType   = Participant
+      override val parentType: CompanionFor[ResourceType] = Participant
       def apply(
           id: Option[String] = None,
           `type`: ACTION_PARTICIPANT_TYPE,
@@ -170,6 +178,8 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object DynamicValue extends CompanionFor[DynamicValue] {
       override type ResourceType = DynamicValue
+      override type ParentType   = DynamicValue
+      override val parentType: CompanionFor[ResourceType] = DynamicValue
       def apply(
           id: Option[String] = None,
           path: Option[String] = None,
@@ -234,7 +244,9 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object RelatedAction extends CompanionFor[RelatedAction] {
       override type ResourceType = RelatedAction
-      type OffsetChoice          = Choice[Union00801828838]
+      override type ParentType   = RelatedAction
+      override val parentType: CompanionFor[ResourceType] = RelatedAction
+      type OffsetChoice = Choice[Union00801828838]
       def apply(
           id: Option[String] = None,
           actionId: Id,
@@ -598,9 +610,13 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Goal extends CompanionFor[Goal] {
     override type ResourceType = Goal
+    override type ParentType   = Goal
+    override val parentType: CompanionFor[ResourceType] = Goal
     object Target extends CompanionFor[Target] {
       override type ResourceType = Target
-      type DetailChoice          = Choice[Union01560785079]
+      override type ParentType   = Target
+      override val parentType: CompanionFor[ResourceType] = Target
+      type DetailChoice = Choice[Union01560785079]
       def apply(
           id: Option[String] = None,
           due: Option[Duration] = None,

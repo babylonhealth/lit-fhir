@@ -25,7 +25,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceUseStatement extends CompanionFor[DeviceUseStatement] {
   override type ResourceType = DeviceUseStatement
+  override type ParentType   = DeviceUseStatement
   override val baseType: CompanionFor[ResourceType] = DeviceUseStatement
+  override val parentType: CompanionFor[ParentType] = DeviceUseStatement
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceUseStatement")
   type TimingChoice = Choice[Union00609373412]
   def apply(

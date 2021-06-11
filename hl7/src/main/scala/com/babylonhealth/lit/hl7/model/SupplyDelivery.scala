@@ -25,11 +25,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SupplyDelivery extends CompanionFor[SupplyDelivery] {
   override type ResourceType = SupplyDelivery
+  override type ParentType   = SupplyDelivery
   override val baseType: CompanionFor[ResourceType] = SupplyDelivery
+  override val parentType: CompanionFor[ParentType] = SupplyDelivery
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SupplyDelivery")
   object SuppliedItem extends CompanionFor[SuppliedItem] {
     override type ResourceType = SuppliedItem
-    type ItemChoice            = Choice[Union01025009075]
+    override type ParentType   = SuppliedItem
+    override val parentType: CompanionFor[ResourceType] = SuppliedItem
+    type ItemChoice = Choice[Union01025009075]
     def apply(
         id: Option[String] = None,
         item: Option[SuppliedItem.ItemChoice] = None,

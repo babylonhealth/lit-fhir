@@ -30,14 +30,20 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CarePlan extends CompanionFor[CarePlan] {
   override type ResourceType = CarePlan
+  override type ParentType   = CarePlan
   override val baseType: CompanionFor[ResourceType] = CarePlan
+  override val parentType: CompanionFor[ParentType] = CarePlan
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CarePlan")
   object Activity extends CompanionFor[Activity] {
     override type ResourceType = Activity
+    override type ParentType   = Activity
+    override val parentType: CompanionFor[ResourceType] = Activity
     object Detail extends CompanionFor[Detail] {
       override type ResourceType = Detail
-      type ProductChoice         = Choice[Union01025009075]
-      type ScheduledChoice       = Choice[Union01726112534]
+      override type ParentType   = Detail
+      override val parentType: CompanionFor[ResourceType] = Detail
+      type ProductChoice   = Choice[Union01025009075]
+      type ScheduledChoice = Choice[Union01726112534]
       def apply(
           id: Option[String] = None,
           kind: Option[CARE_PLAN_ACTIVITY_KIND] = None,

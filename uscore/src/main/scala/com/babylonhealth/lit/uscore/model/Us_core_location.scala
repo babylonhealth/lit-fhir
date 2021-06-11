@@ -27,7 +27,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_location extends CompanionFor[Us_core_location] {
   override type ResourceType = Location
+  override type ParentType   = Location
   override val baseType: CompanionFor[ResourceType] = Location
+  override val parentType: CompanionFor[ParentType] = Location
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-location")
   def apply(
       id: Option[String] = None,

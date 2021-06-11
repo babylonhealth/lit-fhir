@@ -22,7 +22,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Meta extends CompanionFor[Meta] {
   override type ResourceType = Meta
+  override type ParentType   = Meta
   override val baseType: CompanionFor[ResourceType] = Meta
+  override val parentType: CompanionFor[ParentType] = Meta
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Meta")
   def apply(
       id: Option[String] = None,

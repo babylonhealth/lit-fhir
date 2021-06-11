@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ExampleScenario extends CompanionFor[ExampleScenario] {
   override type ResourceType = ExampleScenario
+  override type ParentType   = ExampleScenario
   override val baseType: CompanionFor[ResourceType] = ExampleScenario
+  override val parentType: CompanionFor[ParentType] = ExampleScenario
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ExampleScenario")
   object Instance extends CompanionFor[Instance] {
     override type ResourceType = Instance
+    override type ParentType   = Instance
+    override val parentType: CompanionFor[ResourceType] = Instance
     object Version extends CompanionFor[Version] {
       override type ResourceType = Version
+      override type ParentType   = Version
+      override val parentType: CompanionFor[ResourceType] = Version
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -94,6 +100,8 @@ object ExampleScenario extends CompanionFor[ExampleScenario] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object ContainedInstance extends CompanionFor[ContainedInstance] {
       override type ResourceType = ContainedInstance
+      override type ParentType   = ContainedInstance
+      override val parentType: CompanionFor[ResourceType] = ContainedInstance
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -262,10 +270,16 @@ object ExampleScenario extends CompanionFor[ExampleScenario] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Process extends CompanionFor[Process] {
     override type ResourceType = Process
+    override type ParentType   = Process
+    override val parentType: CompanionFor[ResourceType] = Process
     object Step extends CompanionFor[Step] {
       override type ResourceType = Step
+      override type ParentType   = Step
+      override val parentType: CompanionFor[ResourceType] = Step
       object Operation extends CompanionFor[Operation] {
         override type ResourceType = Operation
+        override type ParentType   = Operation
+        override val parentType: CompanionFor[ResourceType] = Operation
         def apply(
             id: Option[String] = None,
             `type`: Option[String] = None,
@@ -421,6 +435,8 @@ object ExampleScenario extends CompanionFor[ExampleScenario] {
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Alternative extends CompanionFor[Alternative] {
         override type ResourceType = Alternative
+        override type ParentType   = Alternative
+        override val parentType: CompanionFor[ResourceType] = Alternative
         def apply(
             id: Option[String] = None,
             step: LitSeq[ExampleScenario.Process.Step] = LitSeq.empty,
@@ -660,6 +676,8 @@ object ExampleScenario extends CompanionFor[ExampleScenario] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Actor extends CompanionFor[Actor] {
     override type ResourceType = Actor
+    override type ParentType   = Actor
+    override val parentType: CompanionFor[ResourceType] = Actor
     def apply(
         id: Option[String] = None,
         `type`: EXAMPLESCENARIO_ACTOR_TYPE,

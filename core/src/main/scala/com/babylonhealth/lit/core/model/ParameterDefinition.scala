@@ -22,7 +22,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ParameterDefinition extends CompanionFor[ParameterDefinition] {
   override type ResourceType = ParameterDefinition
+  override type ParentType   = ParameterDefinition
   override val baseType: CompanionFor[ResourceType] = ParameterDefinition
+  override val parentType: CompanionFor[ParentType] = ParameterDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ParameterDefinition")
   def apply(
       id: Option[String] = None,

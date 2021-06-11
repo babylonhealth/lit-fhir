@@ -31,13 +31,19 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CodeSystem extends CompanionFor[CodeSystem] {
   override type ResourceType = CodeSystem
+  override type ParentType   = CodeSystem
   override val baseType: CompanionFor[ResourceType] = CodeSystem
+  override val parentType: CompanionFor[ParentType] = CodeSystem
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CodeSystem")
   object Concept extends CompanionFor[Concept] {
     override type ResourceType = Concept
+    override type ParentType   = Concept
+    override val parentType: CompanionFor[ResourceType] = Concept
     object Property extends CompanionFor[Property] {
       override type ResourceType = Property
-      type ValueChoice           = Choice[Union_1489367071]
+      override type ParentType   = Property
+      override val parentType: CompanionFor[ResourceType] = Property
+      type ValueChoice = Choice[Union_1489367071]
       def apply(
           id: Option[String] = None,
           code: Code,
@@ -102,6 +108,8 @@ object CodeSystem extends CompanionFor[CodeSystem] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Designation extends CompanionFor[Designation] {
       override type ResourceType = Designation
+      override type ParentType   = Designation
+      override val parentType: CompanionFor[ResourceType] = Designation
       def apply(
           id: Option[String] = None,
           use: Option[Coding] = None,
@@ -264,6 +272,8 @@ object CodeSystem extends CompanionFor[CodeSystem] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Property extends CompanionFor[Property] {
     override type ResourceType = Property
+    override type ParentType   = Property
+    override val parentType: CompanionFor[ResourceType] = Property
     def apply(
         id: Option[String] = None,
         uri: Option[UriStr] = None,
@@ -342,6 +352,8 @@ object CodeSystem extends CompanionFor[CodeSystem] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Filter extends CompanionFor[Filter] {
     override type ResourceType = Filter
+    override type ParentType   = Filter
+    override val parentType: CompanionFor[ResourceType] = Filter
     def apply(
         id: Option[String] = None,
         code: Code,

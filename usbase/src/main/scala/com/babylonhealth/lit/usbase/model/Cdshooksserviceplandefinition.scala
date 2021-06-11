@@ -26,7 +26,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cdshooksserviceplandefinition extends CompanionFor[Cdshooksserviceplandefinition] {
   override type ResourceType = PlanDefinition
+  override type ParentType   = PlanDefinition
   override val baseType: CompanionFor[ResourceType] = PlanDefinition
+  override val parentType: CompanionFor[ParentType] = PlanDefinition
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/cdshooksserviceplandefinition")
   type SubjectChoice = Choice[Union01025009075]

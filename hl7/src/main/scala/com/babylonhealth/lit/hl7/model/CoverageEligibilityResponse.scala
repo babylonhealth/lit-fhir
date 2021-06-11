@@ -25,16 +25,24 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityResponse] {
   override type ResourceType = CoverageEligibilityResponse
+  override type ParentType   = CoverageEligibilityResponse
   override val baseType: CompanionFor[ResourceType] = CoverageEligibilityResponse
+  override val parentType: CompanionFor[ParentType] = CoverageEligibilityResponse
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CoverageEligibilityResponse")
   object Insurance extends CompanionFor[Insurance] {
     override type ResourceType = Insurance
+    override type ParentType   = Insurance
+    override val parentType: CompanionFor[ResourceType] = Insurance
     object Item extends CompanionFor[Item] {
       override type ResourceType = Item
+      override type ParentType   = Item
+      override val parentType: CompanionFor[ResourceType] = Item
       object Benefit extends CompanionFor[Benefit] {
         override type ResourceType = Benefit
-        type UsedChoice            = Choice[Union_0040864668]
-        type AllowedChoice         = Choice[Union_0040864668]
+        override type ParentType   = Benefit
+        override val parentType: CompanionFor[ResourceType] = Benefit
+        type UsedChoice    = Choice[Union_0040864668]
+        type AllowedChoice = Choice[Union_0040864668]
         def apply(
             id: Option[String] = None,
             `type`: CodeableConcept,
@@ -368,6 +376,8 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Error extends CompanionFor[Error] {
     override type ResourceType = Error
+    override type ParentType   = Error
+    override val parentType: CompanionFor[ResourceType] = Error
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,

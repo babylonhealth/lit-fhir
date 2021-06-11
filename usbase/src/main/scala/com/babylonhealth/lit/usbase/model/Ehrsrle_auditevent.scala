@@ -26,7 +26,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Ehrsrle_auditevent extends CompanionFor[Ehrsrle_auditevent] {
   override type ResourceType = AuditEvent
+  override type ParentType   = AuditEvent
   override val baseType: CompanionFor[ResourceType] = AuditEvent
+  override val parentType: CompanionFor[ParentType] = AuditEvent
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ehrsrle-auditevent")
   def apply(
       id: Option[String] = None,

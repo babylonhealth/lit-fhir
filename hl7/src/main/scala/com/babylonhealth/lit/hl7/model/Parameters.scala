@@ -24,11 +24,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Parameters extends CompanionFor[Parameters] {
   override type ResourceType = Parameters
+  override type ParentType   = Parameters
   override val baseType: CompanionFor[ResourceType] = Parameters
+  override val parentType: CompanionFor[ParentType] = Parameters
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Parameters")
   object Parameter extends CompanionFor[Parameter] {
     override type ResourceType = Parameter
-    type ValueChoice           = Choice[Union_1349125893]
+    override type ParentType   = Parameter
+    override val parentType: CompanionFor[ResourceType] = Parameter
+    type ValueChoice = Choice[Union_1349125893]
     def apply(
         id: Option[String] = None,
         name: String,

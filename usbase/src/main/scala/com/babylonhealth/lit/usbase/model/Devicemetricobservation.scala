@@ -26,7 +26,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Devicemetricobservation extends CompanionFor[Devicemetricobservation] {
   override type ResourceType = Observation
+  override type ParentType   = Observation
   override val baseType: CompanionFor[ResourceType] = Observation
+  override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/devicemetricobservation")
   type ValueChoice = Choice[Union_1915626029]
   def apply(

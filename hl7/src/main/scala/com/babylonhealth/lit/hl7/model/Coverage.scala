@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Coverage extends CompanionFor[Coverage] {
   override type ResourceType = Coverage
+  override type ParentType   = Coverage
   override val baseType: CompanionFor[ResourceType] = Coverage
+  override val parentType: CompanionFor[ParentType] = Coverage
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Coverage")
   object CostToBeneficiary extends CompanionFor[CostToBeneficiary] {
     override type ResourceType = CostToBeneficiary
+    override type ParentType   = CostToBeneficiary
+    override val parentType: CompanionFor[ResourceType] = CostToBeneficiary
     object Exception extends CompanionFor[Exception] {
       override type ResourceType = Exception
+      override type ParentType   = Exception
+      override val parentType: CompanionFor[ResourceType] = Exception
       def apply(
           id: Option[String] = None,
           `type`: CodeableConcept,
@@ -168,6 +174,8 @@ object Coverage extends CompanionFor[Coverage] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Class extends CompanionFor[Class] {
     override type ResourceType = Class
+    override type ParentType   = Class
+    override val parentType: CompanionFor[ResourceType] = Class
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,

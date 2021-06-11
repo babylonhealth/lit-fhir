@@ -30,14 +30,22 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TestReport extends CompanionFor[TestReport] {
   override type ResourceType = TestReport
+  override type ParentType   = TestReport
   override val baseType: CompanionFor[ResourceType] = TestReport
+  override val parentType: CompanionFor[ParentType] = TestReport
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/TestReport")
   object Setup extends CompanionFor[Setup] {
     override type ResourceType = Setup
+    override type ParentType   = Setup
+    override val parentType: CompanionFor[ResourceType] = Setup
     object Action extends CompanionFor[Action] {
       override type ResourceType = Action
+      override type ParentType   = Action
+      override val parentType: CompanionFor[ResourceType] = Action
       object Assert extends CompanionFor[Assert] {
         override type ResourceType = Assert
+        override type ParentType   = Assert
+        override val parentType: CompanionFor[ResourceType] = Assert
         def apply(
             id: Option[String] = None,
             result: REPORT_ACTION_RESULT_CODES,
@@ -113,6 +121,8 @@ object TestReport extends CompanionFor[TestReport] {
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Operation extends CompanionFor[Operation] {
         override type ResourceType = Operation
+        override type ParentType   = Operation
+        override val parentType: CompanionFor[ResourceType] = Operation
         def apply(
             id: Option[String] = None,
             result: REPORT_ACTION_RESULT_CODES,
@@ -304,8 +314,12 @@ object TestReport extends CompanionFor[TestReport] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Teardown extends CompanionFor[Teardown] {
     override type ResourceType = Teardown
+    override type ParentType   = Teardown
+    override val parentType: CompanionFor[ResourceType] = Teardown
     object Action extends CompanionFor[Action] {
       override type ResourceType = Action
+      override type ParentType   = Action
+      override val parentType: CompanionFor[ResourceType] = Action
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -421,8 +435,12 @@ object TestReport extends CompanionFor[TestReport] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Test extends CompanionFor[Test] {
     override type ResourceType = Test
+    override type ParentType   = Test
+    override val parentType: CompanionFor[ResourceType] = Test
     object Action extends CompanionFor[Action] {
       override type ResourceType = Action
+      override type ParentType   = Action
+      override val parentType: CompanionFor[ResourceType] = Action
       def apply(
           id: Option[String] = None,
           assert: Option[TestReport.Setup.Action.Assert] = None,
@@ -563,6 +581,8 @@ object TestReport extends CompanionFor[TestReport] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Participant extends CompanionFor[Participant] {
     override type ResourceType = Participant
+    override type ParentType   = Participant
+    override val parentType: CompanionFor[ResourceType] = Participant
     def apply(
         id: Option[String] = None,
         uri: UriStr,

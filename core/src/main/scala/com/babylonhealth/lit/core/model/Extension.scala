@@ -23,7 +23,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Extension extends CompanionFor[Extension] {
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Extension")
   type ValueChoice = Choice[Union_1349125893]
   def apply(
@@ -58,9 +60,9 @@ object Extension extends CompanionFor[Extension] {
   def extractId(t: Extension): Option[String]                   = t.id
   def extractUrl(t: Extension): String                          = t.url
   def extractValue(t: Extension): Option[Extension.ValueChoice] = t.value
+  private val log: Logger = LoggerFactory.getLogger(getClass)
   def extractExtension(t: Extension): LitSeq[Extension]         = t.extension
   override val thisName: String                                 = "Extension"
-  private val log: Logger = LoggerFactory.getLogger(getClass)
   def unapply(o: Extension): Option[(Option[String], String, Option[Extension.ValueChoice], LitSeq[Extension])] = Some(
     (o.id, o.url, o.value, o.extension))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Extension] =

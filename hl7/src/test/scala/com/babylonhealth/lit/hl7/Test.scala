@@ -41,26 +41,28 @@ import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
 import com.babylonhealth.lit.hl7.model._
 
 case class TestUnionWrapper1(field: Choice[String \/ Boolean]) extends FHIRObject {
-  def companion             = TestUnionWrapper1.asInstanceOf[CompanionFor[this.type]]
+  val companion             = TestUnionWrapper1.asInstanceOf[CompanionFor[this.type]]
   def thisClassName: String = "TestUnionWrapper1"
   def thisTypeName: String  = "TestUnionWrapper1"
 }
 
 case class TestUnionWrapper2(field: Choice[String \/ Boolean \/ Int]) extends FHIRObject {
-  def companion             = TestUnionWrapper2.asInstanceOf[CompanionFor[this.type]]
+  val companion             = TestUnionWrapper2.asInstanceOf[CompanionFor[this.type]]
   def thisClassName: String = "TestUnionWrapper2"
   def thisTypeName: String  = "TestUnionWrapper2"
 }
 
 case class TestUnionWrapper3(field: Choice[String \/ Boolean \/ Int], fieldCode: Code) extends FHIRObject {
-  def companion             = TestUnionWrapper3.asInstanceOf[CompanionFor[this.type]]
+  val companion             = TestUnionWrapper3.asInstanceOf[CompanionFor[this.type]]
   def thisClassName: String = "TestUnionWrapper3"
   def thisTypeName: String  = "TestUnionWrapper3"
 }
 
 object TestUnionWrapper1 extends CompanionFor[TestUnionWrapper1] {
   override type ResourceType = TestUnionWrapper1
+  override type ParentType   = TestUnionWrapper1
   val baseType                            = TestUnionWrapper1
+  val parentType                          = TestUnionWrapper1
   val thisName: String                    = "TestUnionWrapper1"
   override val profileUrl: Option[String] = Some(thisName)
   val field: FHIRComponentFieldMeta[Choice[String \/ Boolean]] =
@@ -77,7 +79,9 @@ object TestUnionWrapper1 extends CompanionFor[TestUnionWrapper1] {
 
 object TestUnionWrapper2 extends CompanionFor[TestUnionWrapper2] {
   override type ResourceType = TestUnionWrapper2
+  override type ParentType   = TestUnionWrapper2
   val baseType                            = TestUnionWrapper2
+  val parentType                          = TestUnionWrapper2
   val thisName: String                    = "TestUnionWrapper2"
   override val profileUrl: Option[String] = Some(thisName)
   val field: FHIRComponentFieldMeta[Choice[String \/ Boolean \/ Int]] =
@@ -98,7 +102,9 @@ object TestUnionWrapper2 extends CompanionFor[TestUnionWrapper2] {
 
 object TestUnionWrapper3 extends CompanionFor[TestUnionWrapper3] {
   override type ResourceType = TestUnionWrapper3
+  override type ParentType   = TestUnionWrapper3
   val baseType                            = TestUnionWrapper3
+  val parentType                          = TestUnionWrapper3
   val thisName: String                    = "TestUnionWrapper3"
   override val profileUrl: Option[String] = Some(thisName)
   val field: FHIRComponentFieldMeta[Choice[String \/ Boolean \/ Int]] =

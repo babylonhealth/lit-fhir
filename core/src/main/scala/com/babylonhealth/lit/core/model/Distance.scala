@@ -22,7 +22,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Distance extends CompanionFor[Distance] {
   override type ResourceType = Distance
+  override type ParentType   = Distance
   override val baseType: CompanionFor[ResourceType] = Distance
+  override val parentType: CompanionFor[ParentType] = Distance
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Distance")
   def apply(
       id: Option[String] = None,

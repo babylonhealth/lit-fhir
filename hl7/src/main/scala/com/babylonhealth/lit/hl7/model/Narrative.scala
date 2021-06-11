@@ -24,7 +24,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Narrative extends CompanionFor[Narrative] {
   override type ResourceType = Narrative
+  override type ParentType   = Narrative
   override val baseType: CompanionFor[ResourceType] = Narrative
+  override val parentType: CompanionFor[ParentType] = Narrative
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Narrative")
   def apply(
       id: Option[String] = None,

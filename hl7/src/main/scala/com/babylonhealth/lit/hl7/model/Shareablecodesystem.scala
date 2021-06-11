@@ -25,7 +25,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablecodesystem extends CompanionFor[Shareablecodesystem] {
   override type ResourceType = CodeSystem
+  override type ParentType   = CodeSystem
   override val baseType: CompanionFor[ResourceType] = CodeSystem
+  override val parentType: CompanionFor[ParentType] = CodeSystem
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareablecodesystem")
   def apply(
       id: Option[String] = None,

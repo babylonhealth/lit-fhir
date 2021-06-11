@@ -32,10 +32,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SearchParameter extends CompanionFor[SearchParameter] {
   override type ResourceType = SearchParameter
+  override type ParentType   = SearchParameter
   override val baseType: CompanionFor[ResourceType] = SearchParameter
+  override val parentType: CompanionFor[ParentType] = SearchParameter
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SearchParameter")
   object Component extends CompanionFor[Component] {
     override type ResourceType = Component
+    override type ParentType   = Component
+    override val parentType: CompanionFor[ResourceType] = Component
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,

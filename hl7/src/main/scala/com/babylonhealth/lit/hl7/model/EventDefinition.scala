@@ -25,7 +25,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EventDefinition extends CompanionFor[EventDefinition] {
   override type ResourceType = EventDefinition
+  override type ParentType   = EventDefinition
   override val baseType: CompanionFor[ResourceType] = EventDefinition
+  override val parentType: CompanionFor[ParentType] = EventDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/EventDefinition")
   type SubjectChoice = Choice[Union01025009075]
   def apply(

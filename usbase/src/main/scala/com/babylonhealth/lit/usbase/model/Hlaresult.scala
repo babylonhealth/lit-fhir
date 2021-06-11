@@ -26,7 +26,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Hlaresult extends CompanionFor[Hlaresult] {
   override type ResourceType = DiagnosticReport
+  override type ParentType   = DiagnosticReport
   override val baseType: CompanionFor[ResourceType] = DiagnosticReport
+  override val parentType: CompanionFor[ParentType] = DiagnosticReport
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/hlaresult")
   type EffectiveChoice = Choice[Union_0934386166]
   def apply(

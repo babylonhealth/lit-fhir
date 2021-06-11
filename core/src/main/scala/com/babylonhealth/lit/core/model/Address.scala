@@ -22,7 +22,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Address extends CompanionFor[Address] {
   override type ResourceType = Address
+  override type ParentType   = Address
   override val baseType: CompanionFor[ResourceType] = Address
+  override val parentType: CompanionFor[ParentType] = Address
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Address")
   def apply(
       id: Option[String] = None,

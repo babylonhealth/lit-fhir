@@ -26,7 +26,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Actualgroup extends CompanionFor[Actualgroup] {
   override type ResourceType = Group
+  override type ParentType   = Group
   override val baseType: CompanionFor[ResourceType] = Group
+  override val parentType: CompanionFor[ParentType] = Group
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/actualgroup")
   def apply(
       id: Option[String] = None,

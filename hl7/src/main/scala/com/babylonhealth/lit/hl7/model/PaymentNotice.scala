@@ -25,7 +25,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PaymentNotice extends CompanionFor[PaymentNotice] {
   override type ResourceType = PaymentNotice
+  override type ParentType   = PaymentNotice
   override val baseType: CompanionFor[ResourceType] = PaymentNotice
+  override val parentType: CompanionFor[ParentType] = PaymentNotice
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/PaymentNotice")
   def apply(
       id: Option[String] = None,

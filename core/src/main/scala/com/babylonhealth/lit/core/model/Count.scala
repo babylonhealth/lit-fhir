@@ -22,7 +22,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Count extends CompanionFor[Count] {
   override type ResourceType = Count
+  override type ParentType   = Count
   override val baseType: CompanionFor[ResourceType] = Count
+  override val parentType: CompanionFor[ParentType] = Count
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Count")
   def apply(
       id: Option[String] = None,

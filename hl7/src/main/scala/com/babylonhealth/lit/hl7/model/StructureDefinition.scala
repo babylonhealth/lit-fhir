@@ -31,10 +31,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object StructureDefinition extends CompanionFor[StructureDefinition] {
   override type ResourceType = StructureDefinition
+  override type ParentType   = StructureDefinition
   override val baseType: CompanionFor[ResourceType] = StructureDefinition
+  override val parentType: CompanionFor[ParentType] = StructureDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/StructureDefinition")
   object Differential extends CompanionFor[Differential] {
     override type ResourceType = Differential
+    override type ParentType   = Differential
+    override val parentType: CompanionFor[ResourceType] = Differential
     def apply(
         id: Option[String] = None,
         element: NonEmptyLitSeq[ElementDefinition],
@@ -91,6 +95,8 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Snapshot extends CompanionFor[Snapshot] {
     override type ResourceType = Snapshot
+    override type ParentType   = Snapshot
+    override val parentType: CompanionFor[ResourceType] = Snapshot
     def apply(
         id: Option[String] = None,
         element: NonEmptyLitSeq[ElementDefinition],
@@ -147,6 +153,8 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Context extends CompanionFor[Context] {
     override type ResourceType = Context
+    override type ParentType   = Context
+    override val parentType: CompanionFor[ResourceType] = Context
     def apply(
         id: Option[String] = None,
         `type`: EXTENSION_CONTEXT_TYPE,
@@ -210,6 +218,8 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Mapping extends CompanionFor[Mapping] {
     override type ResourceType = Mapping
+    override type ParentType   = Mapping
+    override val parentType: CompanionFor[ResourceType] = Mapping
     def apply(
         id: Option[String] = None,
         uri: Option[UriStr] = None,

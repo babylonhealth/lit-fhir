@@ -20,7 +20,7 @@ trait EqMethods {
   private def toPlainName(arg: Tree): String = arg.toString.replaceAll("`", "")
 
   def withCompanion(tpe: TypeName): Tree =
-    q"""override def companion: CompanionFor[this.type] = ${tpe.toTermName}.asInstanceOf[CompanionFor[this.type]]"""
+    q"""override val companion: CompanionFor[this.type] = ${tpe.toTermName}.asInstanceOf[CompanionFor[this.type]]"""
   def withClassName(tpe: TypeName): Tree = q"""override val thisClassName: String = ${tpe.toString}"""
 
   def withHashCode(params: Seq[ValDef], pparams: Seq[NamedArg]): Option[Tree] = {

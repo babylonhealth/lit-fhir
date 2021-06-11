@@ -32,13 +32,19 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImplementationGuide extends CompanionFor[ImplementationGuide] {
   override type ResourceType = ImplementationGuide
+  override type ParentType   = ImplementationGuide
   override val baseType: CompanionFor[ResourceType] = ImplementationGuide
+  override val parentType: CompanionFor[ParentType] = ImplementationGuide
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImplementationGuide")
   object Definition extends CompanionFor[Definition] {
     override type ResourceType = Definition
+    override type ParentType   = Definition
+    override val parentType: CompanionFor[ResourceType] = Definition
     object Page extends CompanionFor[Page] {
       override type ResourceType = Page
-      type NameChoice            = Choice[Union01831019594]
+      override type ParentType   = Page
+      override val parentType: CompanionFor[ResourceType] = Page
+      type NameChoice = Choice[Union01831019594]
       def apply(
           id: Option[String] = None,
           page: LitSeq[ImplementationGuide.Definition.Page] = LitSeq.empty,
@@ -122,6 +128,8 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Grouping extends CompanionFor[Grouping] {
       override type ResourceType = Grouping
+      override type ParentType   = Grouping
+      override val parentType: CompanionFor[ResourceType] = Grouping
       def apply(
           id: Option[String] = None,
           name: String,
@@ -185,7 +193,9 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Resource extends CompanionFor[Resource] {
       override type ResourceType = Resource
-      type ExampleChoice         = Choice[Union00683246261]
+      override type ParentType   = Resource
+      override val parentType: CompanionFor[ResourceType] = Resource
+      type ExampleChoice = Choice[Union00683246261]
       def apply(
           id: Option[String] = None,
           name: Option[String] = None,
@@ -289,6 +299,8 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Template extends CompanionFor[Template] {
       override type ResourceType = Template
+      override type ParentType   = Template
+      override val parentType: CompanionFor[ResourceType] = Template
       def apply(
           id: Option[String] = None,
           code: Code,
@@ -360,6 +372,8 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Parameter extends CompanionFor[Parameter] {
       override type ResourceType = Parameter
+      override type ParentType   = Parameter
+      override val parentType: CompanionFor[ResourceType] = Parameter
       def apply(
           id: Option[String] = None,
           code: GUIDE_PARAMETER_CODE,
@@ -511,8 +525,12 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Manifest extends CompanionFor[Manifest] {
     override type ResourceType = Manifest
+    override type ParentType   = Manifest
+    override val parentType: CompanionFor[ResourceType] = Manifest
     object Page extends CompanionFor[Page] {
       override type ResourceType = Page
+      override type ParentType   = Page
+      override val parentType: CompanionFor[ResourceType] = Page
       def apply(
           id: Option[String] = None,
           name: String,
@@ -584,7 +602,9 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Resource extends CompanionFor[Resource] {
       override type ResourceType = Resource
-      type ExampleChoice         = Choice[Union00683246261]
+      override type ParentType   = Resource
+      override val parentType: CompanionFor[ResourceType] = Resource
+      type ExampleChoice = Choice[Union00683246261]
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -740,6 +760,8 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object DependsOn extends CompanionFor[DependsOn] {
     override type ResourceType = DependsOn
+    override type ParentType   = DependsOn
+    override val parentType: CompanionFor[ResourceType] = DependsOn
     def apply(
         id: Option[String] = None,
         uri: Canonical,
@@ -810,6 +832,8 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Global extends CompanionFor[Global] {
     override type ResourceType = Global
+    override type ParentType   = Global
+    override val parentType: CompanionFor[ResourceType] = Global
     def apply(
         id: Option[String] = None,
         `type`: RESOURCE_TYPES,

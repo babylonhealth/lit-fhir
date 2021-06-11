@@ -24,11 +24,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteraction] {
   override type ResourceType = MedicinalProductInteraction
+  override type ParentType   = MedicinalProductInteraction
   override val baseType: CompanionFor[ResourceType] = MedicinalProductInteraction
+  override val parentType: CompanionFor[ParentType] = MedicinalProductInteraction
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductInteraction")
   object Interactant extends CompanionFor[Interactant] {
     override type ResourceType = Interactant
-    type ItemChoice            = Choice[Union01025009075]
+    override type ParentType   = Interactant
+    override val parentType: CompanionFor[ResourceType] = Interactant
+    type ItemChoice = Choice[Union01025009075]
     def apply(
         id: Option[String] = None,
         item: Interactant.ItemChoice,

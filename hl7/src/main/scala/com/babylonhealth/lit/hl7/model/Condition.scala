@@ -24,10 +24,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Condition extends CompanionFor[Condition] {
   override type ResourceType = Condition
+  override type ParentType   = Condition
   override val baseType: CompanionFor[ResourceType] = Condition
+  override val parentType: CompanionFor[ParentType] = Condition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Condition")
   object Evidence extends CompanionFor[Evidence] {
     override type ResourceType = Evidence
+    override type ParentType   = Evidence
+    override val parentType: CompanionFor[ResourceType] = Evidence
     def apply(
         id: Option[String] = None,
         code: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -91,6 +95,8 @@ object Condition extends CompanionFor[Condition] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Stage extends CompanionFor[Stage] {
     override type ResourceType = Stage
+    override type ParentType   = Stage
+    override val parentType: CompanionFor[ResourceType] = Stage
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,

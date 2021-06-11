@@ -25,14 +25,22 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ValueSet extends CompanionFor[ValueSet] {
   override type ResourceType = ValueSet
+  override type ParentType   = ValueSet
   override val baseType: CompanionFor[ResourceType] = ValueSet
+  override val parentType: CompanionFor[ParentType] = ValueSet
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ValueSet")
   object Compose extends CompanionFor[Compose] {
     override type ResourceType = Compose
+    override type ParentType   = Compose
+    override val parentType: CompanionFor[ResourceType] = Compose
     object Include extends CompanionFor[Include] {
       override type ResourceType = Include
+      override type ParentType   = Include
+      override val parentType: CompanionFor[ResourceType] = Include
       object Filter extends CompanionFor[Filter] {
         override type ResourceType = Filter
+        override type ParentType   = Filter
+        override val parentType: CompanionFor[ResourceType] = Filter
         def apply(
             id: Option[String] = None,
             op: FILTER_OPERATOR,
@@ -104,8 +112,12 @@ object ValueSet extends CompanionFor[ValueSet] {
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Concept extends CompanionFor[Concept] {
         override type ResourceType = Concept
+        override type ParentType   = Concept
+        override val parentType: CompanionFor[ResourceType] = Concept
         object Designation extends CompanionFor[Designation] {
           override type ResourceType = Designation
+          override type ParentType   = Designation
+          override val parentType: CompanionFor[ResourceType] = Designation
           def apply(
               id: Option[String] = None,
               use: Option[Coding] = None,
@@ -411,8 +423,12 @@ object ValueSet extends CompanionFor[ValueSet] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Expansion extends CompanionFor[Expansion] {
     override type ResourceType = Expansion
+    override type ParentType   = Expansion
+    override val parentType: CompanionFor[ResourceType] = Expansion
     object Contains extends CompanionFor[Contains] {
       override type ResourceType = Contains
+      override type ParentType   = Contains
+      override val parentType: CompanionFor[ResourceType] = Contains
       def apply(
           id: Option[String] = None,
           code: Option[Code] = None,
@@ -550,7 +566,9 @@ object ValueSet extends CompanionFor[ValueSet] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Parameter extends CompanionFor[Parameter] {
       override type ResourceType = Parameter
-      type ValueChoice           = Choice[Union_1427970408]
+      override type ParentType   = Parameter
+      override val parentType: CompanionFor[ResourceType] = Parameter
+      type ValueChoice = Choice[Union_1427970408]
       def apply(
           id: Option[String] = None,
           name: String,

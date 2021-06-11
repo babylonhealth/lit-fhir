@@ -25,11 +25,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceRequest extends CompanionFor[DeviceRequest] {
   override type ResourceType = DeviceRequest
+  override type ParentType   = DeviceRequest
   override val baseType: CompanionFor[ResourceType] = DeviceRequest
+  override val parentType: CompanionFor[ParentType] = DeviceRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceRequest")
   object Parameter extends CompanionFor[Parameter] {
     override type ResourceType = Parameter
-    type ValueChoice           = Choice[Union_1516277229]
+    override type ParentType   = Parameter
+    override val parentType: CompanionFor[ResourceType] = Parameter
+    type ValueChoice = Choice[Union_1516277229]
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,

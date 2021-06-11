@@ -25,7 +25,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Endpoint extends CompanionFor[Endpoint] {
   override type ResourceType = Endpoint
+  override type ParentType   = Endpoint
   override val baseType: CompanionFor[ResourceType] = Endpoint
+  override val parentType: CompanionFor[ParentType] = Endpoint
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Endpoint")
   def apply(
       id: Option[String] = None,

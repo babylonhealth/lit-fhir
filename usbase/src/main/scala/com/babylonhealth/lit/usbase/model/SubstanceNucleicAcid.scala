@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
   override type ResourceType = SubstanceNucleicAcid
+  override type ParentType   = SubstanceNucleicAcid
   override val baseType: CompanionFor[ResourceType] = SubstanceNucleicAcid
+  override val parentType: CompanionFor[ParentType] = SubstanceNucleicAcid
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceNucleicAcid")
   object Subunit extends CompanionFor[Subunit] {
     override type ResourceType = Subunit
+    override type ParentType   = Subunit
+    override val parentType: CompanionFor[ResourceType] = Subunit
     object Sugar extends CompanionFor[Sugar] {
       override type ResourceType = Sugar
+      override type ParentType   = Sugar
+      override val parentType: CompanionFor[ResourceType] = Sugar
       def apply(
           id: Option[String] = None,
           name: Option[String] = None,
@@ -103,6 +109,8 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Linkage extends CompanionFor[Linkage] {
       override type ResourceType = Linkage
+      override type ParentType   = Linkage
+      override val parentType: CompanionFor[ResourceType] = Linkage
       def apply(
           id: Option[String] = None,
           name: Option[String] = None,

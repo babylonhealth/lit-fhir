@@ -25,14 +25,22 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Contract extends CompanionFor[Contract] {
   override type ResourceType = Contract
+  override type ParentType   = Contract
   override val baseType: CompanionFor[ResourceType] = Contract
+  override val parentType: CompanionFor[ParentType] = Contract
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Contract")
   object Term extends CompanionFor[Term] {
     override type ResourceType = Term
+    override type ParentType   = Term
+    override val parentType: CompanionFor[ResourceType] = Term
     object Offer extends CompanionFor[Offer] {
       override type ResourceType = Offer
+      override type ParentType   = Offer
+      override val parentType: CompanionFor[ResourceType] = Offer
       object Party extends CompanionFor[Party] {
         override type ResourceType = Party
+        override type ParentType   = Party
+        override val parentType: CompanionFor[ResourceType] = Party
         def apply(
             id: Option[String] = None,
             role: CodeableConcept,
@@ -97,7 +105,9 @@ object Contract extends CompanionFor[Contract] {
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Answer extends CompanionFor[Answer] {
         override type ResourceType = Answer
-        type ValueChoice           = Choice[Union_2101127777]
+        override type ParentType   = Answer
+        override val parentType: CompanionFor[ResourceType] = Answer
+        type ValueChoice = Choice[Union_2101127777]
         def apply(
             id: Option[String] = None,
             value: Answer.ValueChoice,
@@ -299,6 +309,8 @@ object Contract extends CompanionFor[Contract] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object SecurityLabel extends CompanionFor[SecurityLabel] {
       override type ResourceType = SecurityLabel
+      override type ParentType   = SecurityLabel
+      override val parentType: CompanionFor[ResourceType] = SecurityLabel
       def apply(
           id: Option[String] = None,
           number: LitSeq[UnsignedInt] = LitSeq.empty,
@@ -378,8 +390,12 @@ object Contract extends CompanionFor[Contract] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Action extends CompanionFor[Action] {
       override type ResourceType = Action
+      override type ParentType   = Action
+      override val parentType: CompanionFor[ResourceType] = Action
       object Subject extends CompanionFor[Subject] {
         override type ResourceType = Subject
+        override type ParentType   = Subject
+        override val parentType: CompanionFor[ResourceType] = Subject
         def apply(
             id: Option[String] = None,
             role: Option[CodeableConcept] = None,
@@ -662,8 +678,12 @@ object Contract extends CompanionFor[Contract] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Asset extends CompanionFor[Asset] {
       override type ResourceType = Asset
+      override type ParentType   = Asset
+      override val parentType: CompanionFor[ResourceType] = Asset
       object Context extends CompanionFor[Context] {
         override type ResourceType = Context
+        override type ParentType   = Context
+        override val parentType: CompanionFor[ResourceType] = Context
         def apply(
             id: Option[String] = None,
             code: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -735,7 +755,9 @@ object Contract extends CompanionFor[Contract] {
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object ValuedItem extends CompanionFor[ValuedItem] {
         override type ResourceType = ValuedItem
-        type EntityChoice          = Choice[Union01025009075]
+        override type ParentType   = ValuedItem
+        override val parentType: CompanionFor[ResourceType] = ValuedItem
+        type EntityChoice = Choice[Union01025009075]
         def apply(
             id: Option[String] = None,
             net: Option[Money] = None,
@@ -1278,6 +1300,8 @@ object Contract extends CompanionFor[Contract] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ContentDefinition extends CompanionFor[ContentDefinition] {
     override type ResourceType = ContentDefinition
+    override type ParentType   = ContentDefinition
+    override val parentType: CompanionFor[ResourceType] = ContentDefinition
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -1384,7 +1408,9 @@ object Contract extends CompanionFor[Contract] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Friendly extends CompanionFor[Friendly] {
     override type ResourceType = Friendly
-    type ContentChoice         = Choice[Union_0340660840]
+    override type ParentType   = Friendly
+    override val parentType: CompanionFor[ResourceType] = Friendly
+    type ContentChoice = Choice[Union_0340660840]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -1440,6 +1466,8 @@ object Contract extends CompanionFor[Contract] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Signer extends CompanionFor[Signer] {
     override type ResourceType = Signer
+    override type ParentType   = Signer
+    override val parentType: CompanionFor[ResourceType] = Signer
     def apply(
         id: Option[String] = None,
         `type`: Coding,
@@ -1510,7 +1538,9 @@ object Contract extends CompanionFor[Contract] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Legal extends CompanionFor[Legal] {
     override type ResourceType = Legal
-    type ContentChoice         = Choice[Union_0340660840]
+    override type ParentType   = Legal
+    override val parentType: CompanionFor[ResourceType] = Legal
+    type ContentChoice = Choice[Union_0340660840]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -1566,7 +1596,9 @@ object Contract extends CompanionFor[Contract] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Rule extends CompanionFor[Rule] {
     override type ResourceType = Rule
-    type ContentChoice         = Choice[Union_0340660840]
+    override type ParentType   = Rule
+    override val parentType: CompanionFor[ResourceType] = Rule
+    type ContentChoice = Choice[Union_0340660840]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,

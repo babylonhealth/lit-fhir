@@ -25,11 +25,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduct] {
   override type ResourceType = BiologicallyDerivedProduct
+  override type ParentType   = BiologicallyDerivedProduct
   override val baseType: CompanionFor[ResourceType] = BiologicallyDerivedProduct
+  override val parentType: CompanionFor[ParentType] = BiologicallyDerivedProduct
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/BiologicallyDerivedProduct")
   object Manipulation extends CompanionFor[Manipulation] {
     override type ResourceType = Manipulation
-    type TimeChoice            = Choice[Union_0934386166]
+    override type ParentType   = Manipulation
+    override val parentType: CompanionFor[ResourceType] = Manipulation
+    type TimeChoice = Choice[Union_0934386166]
     def apply(
         id: Option[String] = None,
         time: Option[Manipulation.TimeChoice] = None,
@@ -93,7 +97,9 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Processing extends CompanionFor[Processing] {
     override type ResourceType = Processing
-    type TimeChoice            = Choice[Union_0934386166]
+    override type ParentType   = Processing
+    override val parentType: CompanionFor[ResourceType] = Processing
+    type TimeChoice = Choice[Union_0934386166]
     def apply(
         id: Option[String] = None,
         time: Option[Processing.TimeChoice] = None,
@@ -172,7 +178,9 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Collection extends CompanionFor[Collection] {
     override type ResourceType = Collection
-    type CollectedChoice       = Choice[Union_0934386166]
+    override type ParentType   = Collection
+    override val parentType: CompanionFor[ResourceType] = Collection
+    type CollectedChoice = Choice[Union_0934386166]
     def apply(
         id: Option[String] = None,
         source: Option[Reference] = None,
@@ -243,6 +251,8 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Storage extends CompanionFor[Storage] {
     override type ResourceType = Storage
+    override type ParentType   = Storage
+    override val parentType: CompanionFor[ResourceType] = Storage
     def apply(
         id: Option[String] = None,
         scale: Option[PRODUCT_STORAGE_SCALE] = None,

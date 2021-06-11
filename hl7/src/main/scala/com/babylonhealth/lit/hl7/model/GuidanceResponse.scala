@@ -25,7 +25,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object GuidanceResponse extends CompanionFor[GuidanceResponse] {
   override type ResourceType = GuidanceResponse
+  override type ParentType   = GuidanceResponse
   override val baseType: CompanionFor[ResourceType] = GuidanceResponse
+  override val parentType: CompanionFor[ParentType] = GuidanceResponse
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/GuidanceResponse")
   type ModuleChoice = Choice[Union_0687680458]
   def apply(

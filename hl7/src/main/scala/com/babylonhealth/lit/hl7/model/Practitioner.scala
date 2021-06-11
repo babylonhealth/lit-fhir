@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Practitioner extends CompanionFor[Practitioner] {
   override type ResourceType = Practitioner
+  override type ParentType   = Practitioner
   override val baseType: CompanionFor[ResourceType] = Practitioner
+  override val parentType: CompanionFor[ParentType] = Practitioner
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Practitioner")
   object Qualification extends CompanionFor[Qualification] {
     override type ResourceType = Qualification
+    override type ParentType   = Qualification
+    override val parentType: CompanionFor[ResourceType] = Qualification
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,

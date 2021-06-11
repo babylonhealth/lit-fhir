@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceAmount extends CompanionFor[SubstanceAmount] {
   override type ResourceType = SubstanceAmount
+  override type ParentType   = SubstanceAmount
   override val baseType: CompanionFor[ResourceType] = SubstanceAmount
+  override val parentType: CompanionFor[ParentType] = SubstanceAmount
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceAmount")
   object ReferenceRange extends CompanionFor[ReferenceRange] {
     override type ResourceType = ReferenceRange
+    override type ParentType   = ReferenceRange
+    override val parentType: CompanionFor[ResourceType] = ReferenceRange
     def apply(
         id: Option[String] = None,
         lowLimit: Option[Quantity] = None,

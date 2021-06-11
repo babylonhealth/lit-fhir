@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Patient extends CompanionFor[Patient] {
   override type ResourceType = Patient
+  override type ParentType   = Patient
   override val baseType: CompanionFor[ResourceType] = Patient
+  override val parentType: CompanionFor[ParentType] = Patient
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Patient")
   object Communication extends CompanionFor[Communication] {
     override type ResourceType = Communication
+    override type ParentType   = Communication
+    override val parentType: CompanionFor[ResourceType] = Communication
     def apply(
         id: Option[String] = None,
         language: CodeableConcept,
@@ -92,6 +96,8 @@ object Patient extends CompanionFor[Patient] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Contact extends CompanionFor[Contact] {
     override type ResourceType = Contact
+    override type ParentType   = Contact
+    override val parentType: CompanionFor[ResourceType] = Contact
     def apply(
         id: Option[String] = None,
         name: Option[HumanName] = None,
@@ -202,6 +208,8 @@ object Patient extends CompanionFor[Patient] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Link extends CompanionFor[Link] {
     override type ResourceType = Link
+    override type ParentType   = Link
+    override val parentType: CompanionFor[ResourceType] = Link
     def apply(
         id: Option[String] = None,
         `type`: LINK_TYPE,

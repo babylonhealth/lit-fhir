@@ -32,7 +32,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinition] {
   override type ResourceType = ActivityDefinition
+  override type ParentType   = ActivityDefinition
   override val baseType: CompanionFor[ResourceType] = ActivityDefinition
+  override val parentType: CompanionFor[ParentType] = ActivityDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareableactivitydefinition")
   type TimingChoice  = Choice[Union_0181779868]
   type SubjectChoice = Choice[Union01025009075]

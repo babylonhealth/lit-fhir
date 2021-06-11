@@ -36,12 +36,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RequestGroup extends CompanionFor[RequestGroup] {
   override type ResourceType = RequestGroup
+  override type ParentType   = RequestGroup
   override val baseType: CompanionFor[ResourceType] = RequestGroup
+  override val parentType: CompanionFor[ParentType] = RequestGroup
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RequestGroup")
   object Action extends CompanionFor[Action] {
     override type ResourceType = Action
+    override type ParentType   = Action
+    override val parentType: CompanionFor[ResourceType] = Action
     object Condition extends CompanionFor[Condition] {
       override type ResourceType = Condition
+      override type ParentType   = Condition
+      override val parentType: CompanionFor[ResourceType] = Condition
       def apply(
           id: Option[String] = None,
           kind: ACTION_CONDITION_KIND,
@@ -106,7 +112,9 @@ object RequestGroup extends CompanionFor[RequestGroup] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object RelatedAction extends CompanionFor[RelatedAction] {
       override type ResourceType = RelatedAction
-      type OffsetChoice          = Choice[Union00801828838]
+      override type ParentType   = RelatedAction
+      override val parentType: CompanionFor[ResourceType] = RelatedAction
+      type OffsetChoice = Choice[Union00801828838]
       def apply(
           id: Option[String] = None,
           actionId: Id,

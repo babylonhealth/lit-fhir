@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object VerificationResult extends CompanionFor[VerificationResult] {
   override type ResourceType = VerificationResult
+  override type ParentType   = VerificationResult
   override val baseType: CompanionFor[ResourceType] = VerificationResult
+  override val parentType: CompanionFor[ParentType] = VerificationResult
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/VerificationResult")
   object Attestation extends CompanionFor[Attestation] {
     override type ResourceType = Attestation
+    override type ParentType   = Attestation
+    override val parentType: CompanionFor[ResourceType] = Attestation
     def apply(
         id: Option[String] = None,
         who: Option[Reference] = None,
@@ -158,6 +162,8 @@ object VerificationResult extends CompanionFor[VerificationResult] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object PrimarySource extends CompanionFor[PrimarySource] {
     override type ResourceType = PrimarySource
+    override type ParentType   = PrimarySource
+    override val parentType: CompanionFor[ResourceType] = PrimarySource
     def apply(
         id: Option[String] = None,
         who: Option[Reference] = None,
@@ -277,6 +283,8 @@ object VerificationResult extends CompanionFor[VerificationResult] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Validator extends CompanionFor[Validator] {
     override type ResourceType = Validator
+    override type ParentType   = Validator
+    override val parentType: CompanionFor[ResourceType] = Validator
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,

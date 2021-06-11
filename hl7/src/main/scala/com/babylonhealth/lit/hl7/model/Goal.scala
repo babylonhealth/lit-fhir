@@ -25,12 +25,16 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Goal extends CompanionFor[Goal] {
   override type ResourceType = Goal
+  override type ParentType   = Goal
   override val baseType: CompanionFor[ResourceType] = Goal
+  override val parentType: CompanionFor[ParentType] = Goal
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Goal")
   object Target extends CompanionFor[Target] {
     override type ResourceType = Target
-    type DueChoice             = Choice[Union01219602913]
-    type DetailChoice          = Choice[Union01056080496]
+    override type ParentType   = Target
+    override val parentType: CompanionFor[ResourceType] = Target
+    type DueChoice    = Choice[Union01219602913]
+    type DetailChoice = Choice[Union01056080496]
     def apply(
         id: Option[String] = None,
         due: Option[Target.DueChoice] = None,

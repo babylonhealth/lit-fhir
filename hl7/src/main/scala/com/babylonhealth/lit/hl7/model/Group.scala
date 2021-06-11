@@ -25,11 +25,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Group extends CompanionFor[Group] {
   override type ResourceType = Group
+  override type ParentType   = Group
   override val baseType: CompanionFor[ResourceType] = Group
+  override val parentType: CompanionFor[ParentType] = Group
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Group")
   object Characteristic extends CompanionFor[Characteristic] {
     override type ResourceType = Characteristic
-    type ValueChoice           = Choice[Union01646729908]
+    override type ParentType   = Characteristic
+    override val parentType: CompanionFor[ResourceType] = Characteristic
+    type ValueChoice = Choice[Union01646729908]
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,
@@ -107,6 +111,8 @@ object Group extends CompanionFor[Group] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Member extends CompanionFor[Member] {
     override type ResourceType = Member
+    override type ParentType   = Member
+    override val parentType: CompanionFor[ResourceType] = Member
     def apply(
         id: Option[String] = None,
         entity: Reference,

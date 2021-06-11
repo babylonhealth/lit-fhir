@@ -25,7 +25,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ProductShelfLife extends CompanionFor[ProductShelfLife] {
   override type ResourceType = ProductShelfLife
+  override type ParentType   = ProductShelfLife
   override val baseType: CompanionFor[ResourceType] = ProductShelfLife
+  override val parentType: CompanionFor[ParentType] = ProductShelfLife
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ProductShelfLife")
   def apply(
       id: Option[String] = None,

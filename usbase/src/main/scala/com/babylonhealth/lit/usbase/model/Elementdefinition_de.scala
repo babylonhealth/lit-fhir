@@ -25,7 +25,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
   override type ResourceType = ElementDefinition
+  override type ParentType   = ElementDefinition
   override val baseType: CompanionFor[ResourceType] = ElementDefinition
+  override val parentType: CompanionFor[ParentType] = ElementDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-de")
   type MinValueChoice     = Choice[Union_0637176084]
   type MaxValueChoice     = Choice[Union_0637176084]

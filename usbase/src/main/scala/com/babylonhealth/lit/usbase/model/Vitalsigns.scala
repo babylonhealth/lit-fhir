@@ -26,7 +26,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Vitalsigns extends CompanionFor[Vitalsigns] {
   override type ResourceType = Observation
+  override type ParentType   = Observation
   override val baseType: CompanionFor[ResourceType] = Observation
+  override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/vitalsigns")
   type ValueChoice     = Choice[Union_0802685816]
   type EffectiveChoice = Choice[Union_0934386166]

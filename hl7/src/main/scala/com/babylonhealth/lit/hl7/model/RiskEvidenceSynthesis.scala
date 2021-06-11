@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RiskEvidenceSynthesis extends CompanionFor[RiskEvidenceSynthesis] {
   override type ResourceType = RiskEvidenceSynthesis
+  override type ParentType   = RiskEvidenceSynthesis
   override val baseType: CompanionFor[ResourceType] = RiskEvidenceSynthesis
+  override val parentType: CompanionFor[ParentType] = RiskEvidenceSynthesis
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RiskEvidenceSynthesis")
   object Certainty extends CompanionFor[Certainty] {
     override type ResourceType = Certainty
+    override type ParentType   = Certainty
+    override val parentType: CompanionFor[ResourceType] = Certainty
     object CertaintySubcomponent extends CompanionFor[CertaintySubcomponent] {
       override type ResourceType = CertaintySubcomponent
+      override type ParentType   = CertaintySubcomponent
+      override val parentType: CompanionFor[ResourceType] = CertaintySubcomponent
       def apply(
           id: Option[String] = None,
           `type`: Option[CodeableConcept] = None,
@@ -175,8 +181,12 @@ object RiskEvidenceSynthesis extends CompanionFor[RiskEvidenceSynthesis] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object RiskEstimate extends CompanionFor[RiskEstimate] {
     override type ResourceType = RiskEstimate
+    override type ParentType   = RiskEstimate
+    override val parentType: CompanionFor[ResourceType] = RiskEstimate
     object PrecisionEstimate extends CompanionFor[PrecisionEstimate] {
       override type ResourceType = PrecisionEstimate
+      override type ParentType   = PrecisionEstimate
+      override val parentType: CompanionFor[ResourceType] = PrecisionEstimate
       def apply(
           id: Option[String] = None,
           to: Option[BigDecimal] = None,
@@ -376,6 +386,8 @@ object RiskEvidenceSynthesis extends CompanionFor[RiskEvidenceSynthesis] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SampleSize extends CompanionFor[SampleSize] {
     override type ResourceType = SampleSize
+    override type ParentType   = SampleSize
+    override val parentType: CompanionFor[ResourceType] = SampleSize
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,

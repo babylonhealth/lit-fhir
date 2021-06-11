@@ -31,13 +31,19 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire extends CompanionFor[Questionnaire] {
   override type ResourceType = Questionnaire
+  override type ParentType   = Questionnaire
   override val baseType: CompanionFor[ResourceType] = Questionnaire
+  override val parentType: CompanionFor[ParentType] = Questionnaire
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Questionnaire")
   object Item extends CompanionFor[Item] {
     override type ResourceType = Item
+    override type ParentType   = Item
+    override val parentType: CompanionFor[ResourceType] = Item
     object Initial extends CompanionFor[Initial] {
       override type ResourceType = Initial
-      type ValueChoice           = Choice[Union_2101127777]
+      override type ParentType   = Initial
+      override val parentType: CompanionFor[ResourceType] = Initial
+      type ValueChoice = Choice[Union_2101127777]
       def apply(
           id: Option[String] = None,
           value: Initial.ValueChoice,
@@ -94,7 +100,9 @@ object Questionnaire extends CompanionFor[Questionnaire] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object EnableWhen extends CompanionFor[EnableWhen] {
       override type ResourceType = EnableWhen
-      type AnswerChoice          = Choice[Union_0388264667]
+      override type ParentType   = EnableWhen
+      override val parentType: CompanionFor[ResourceType] = EnableWhen
+      type AnswerChoice = Choice[Union_0388264667]
       def apply(
           id: Option[String] = None,
           question: String,
@@ -170,7 +178,9 @@ object Questionnaire extends CompanionFor[Questionnaire] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object AnswerOption extends CompanionFor[AnswerOption] {
       override type ResourceType = AnswerOption
-      type ValueChoice           = Choice[Union_1132894602]
+      override type ParentType   = AnswerOption
+      override val parentType: CompanionFor[ResourceType] = AnswerOption
+      type ValueChoice = Choice[Union_1132894602]
       def apply(
           id: Option[String] = None,
           value: AnswerOption.ValueChoice,

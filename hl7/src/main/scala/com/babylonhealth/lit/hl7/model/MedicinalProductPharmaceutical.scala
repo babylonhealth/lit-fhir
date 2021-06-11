@@ -24,15 +24,23 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductPharmaceutical extends CompanionFor[MedicinalProductPharmaceutical] {
   override type ResourceType = MedicinalProductPharmaceutical
+  override type ParentType   = MedicinalProductPharmaceutical
   override val baseType: CompanionFor[ResourceType] = MedicinalProductPharmaceutical
+  override val parentType: CompanionFor[ParentType] = MedicinalProductPharmaceutical
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/MedicinalProductPharmaceutical")
   object RouteOfAdministration extends CompanionFor[RouteOfAdministration] {
     override type ResourceType = RouteOfAdministration
+    override type ParentType   = RouteOfAdministration
+    override val parentType: CompanionFor[ResourceType] = RouteOfAdministration
     object TargetSpecies extends CompanionFor[TargetSpecies] {
       override type ResourceType = TargetSpecies
+      override type ParentType   = TargetSpecies
+      override val parentType: CompanionFor[ResourceType] = TargetSpecies
       object WithdrawalPeriod extends CompanionFor[WithdrawalPeriod] {
         override type ResourceType = WithdrawalPeriod
+        override type ParentType   = WithdrawalPeriod
+        override val parentType: CompanionFor[ResourceType] = WithdrawalPeriod
         def apply(
             id: Option[String] = None,
             value: Quantity,
@@ -292,6 +300,8 @@ object MedicinalProductPharmaceutical extends CompanionFor[MedicinalProductPharm
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Characteristics extends CompanionFor[Characteristics] {
     override type ResourceType = Characteristics
+    override type ParentType   = Characteristics
+    override val parentType: CompanionFor[ResourceType] = Characteristics
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,

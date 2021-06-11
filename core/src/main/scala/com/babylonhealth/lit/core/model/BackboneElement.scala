@@ -22,7 +22,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object BackboneElement extends CompanionFor[BackboneElement] {
   override type ResourceType = BackboneElement
+  override type ParentType   = BackboneElement
   override val baseType: CompanionFor[ResourceType] = BackboneElement
+  override val parentType: CompanionFor[ParentType] = BackboneElement
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/BackboneElement")
   def apply(
       id: Option[String] = None,

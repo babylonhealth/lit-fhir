@@ -24,10 +24,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductPackaged extends CompanionFor[MedicinalProductPackaged] {
   override type ResourceType = MedicinalProductPackaged
+  override type ParentType   = MedicinalProductPackaged
   override val baseType: CompanionFor[ResourceType] = MedicinalProductPackaged
+  override val parentType: CompanionFor[ParentType] = MedicinalProductPackaged
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductPackaged")
   object PackageItem extends CompanionFor[PackageItem] {
     override type ResourceType = PackageItem
+    override type ParentType   = PackageItem
+    override val parentType: CompanionFor[ResourceType] = PackageItem
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -205,6 +209,8 @@ object MedicinalProductPackaged extends CompanionFor[MedicinalProductPackaged] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object BatchIdentifier extends CompanionFor[BatchIdentifier] {
     override type ResourceType = BatchIdentifier
+    override type ParentType   = BatchIdentifier
+    override val parentType: CompanionFor[ResourceType] = BatchIdentifier
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,

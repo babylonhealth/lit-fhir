@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ChargeItem extends CompanionFor[ChargeItem] {
   override type ResourceType = ChargeItem
+  override type ParentType   = ChargeItem
   override val baseType: CompanionFor[ResourceType] = ChargeItem
+  override val parentType: CompanionFor[ParentType] = ChargeItem
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ChargeItem")
   object Performer extends CompanionFor[Performer] {
     override type ResourceType = Performer
+    override type ParentType   = Performer
+    override val parentType: CompanionFor[ResourceType] = Performer
     def apply(
         id: Option[String] = None,
         actor: Reference,

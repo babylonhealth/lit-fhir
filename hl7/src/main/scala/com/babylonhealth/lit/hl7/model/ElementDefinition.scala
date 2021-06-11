@@ -32,12 +32,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ElementDefinition extends CompanionFor[ElementDefinition] {
   override type ResourceType = ElementDefinition
+  override type ParentType   = ElementDefinition
   override val baseType: CompanionFor[ResourceType] = ElementDefinition
+  override val parentType: CompanionFor[ParentType] = ElementDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ElementDefinition")
   object Slicing extends CompanionFor[Slicing] {
     override type ResourceType = Slicing
+    override type ParentType   = Slicing
+    override val parentType: CompanionFor[ResourceType] = Slicing
     object Discriminator extends CompanionFor[Discriminator] {
       override type ResourceType = Discriminator
+      override type ParentType   = Discriminator
+      override val parentType: CompanionFor[ResourceType] = Discriminator
       def apply(
           id: Option[String] = None,
           `type`: DISCRIMINATOR_TYPE,
@@ -166,6 +172,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       extends Element(id = id, extension = extension)
   object Constraint extends CompanionFor[Constraint] {
     override type ResourceType = Constraint
+    override type ParentType   = Constraint
+    override val parentType: CompanionFor[ResourceType] = Constraint
     def apply(
         id: Option[String] = None,
         key: Id,
@@ -258,6 +266,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       extends Element(id = id, extension = extension)
   object Binding extends CompanionFor[Binding] {
     override type ResourceType = Binding
+    override type ParentType   = Binding
+    override val parentType: CompanionFor[ResourceType] = Binding
     def apply(
         id: Option[String] = None,
         strength: BINDING_STRENGTH,
@@ -321,6 +331,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       extends Element(id = id, extension = extension)
   object Type extends CompanionFor[Type] {
     override type ResourceType = Type
+    override type ParentType   = Type
+    override val parentType: CompanionFor[ResourceType] = Type
     def apply(
         id: Option[String] = None,
         code: UriStr,
@@ -407,6 +419,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       extends Element(id = id, extension = extension)
   object Mapping extends CompanionFor[Mapping] {
     override type ResourceType = Mapping
+    override type ParentType   = Mapping
+    override val parentType: CompanionFor[ResourceType] = Mapping
     def apply(
         id: Option[String] = None,
         map: String,
@@ -476,7 +490,9 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       extends Element(id = id, extension = extension)
   object Example extends CompanionFor[Example] {
     override type ResourceType = Example
-    type ValueChoice           = Choice[Union_1349125893]
+    override type ParentType   = Example
+    override val parentType: CompanionFor[ResourceType] = Example
+    type ValueChoice = Choice[Union_1349125893]
     def apply(
         id: Option[String] = None,
         label: String,
@@ -532,6 +548,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       extends Element(id = id, extension = extension)
   object Base extends CompanionFor[Base] {
     override type ResourceType = Base
+    override type ParentType   = Base
+    override val parentType: CompanionFor[ResourceType] = Base
     def apply(
         id: Option[String] = None,
         min: UnsignedInt,

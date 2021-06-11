@@ -40,12 +40,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CapabilityStatement extends CompanionFor[CapabilityStatement] {
   override type ResourceType = CapabilityStatement
+  override type ParentType   = CapabilityStatement
   override val baseType: CompanionFor[ResourceType] = CapabilityStatement
+  override val parentType: CompanionFor[ParentType] = CapabilityStatement
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CapabilityStatement")
   object Messaging extends CompanionFor[Messaging] {
     override type ResourceType = Messaging
+    override type ParentType   = Messaging
+    override val parentType: CompanionFor[ResourceType] = Messaging
     object Endpoint extends CompanionFor[Endpoint] {
       override type ResourceType = Endpoint
+      override type ParentType   = Endpoint
+      override val parentType: CompanionFor[ResourceType] = Endpoint
       def apply(
           id: Option[String] = None,
           address: UrlStr,
@@ -109,6 +115,8 @@ object CapabilityStatement extends CompanionFor[CapabilityStatement] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object SupportedMessage extends CompanionFor[SupportedMessage] {
       override type ResourceType = SupportedMessage
+      override type ParentType   = SupportedMessage
+      override val parentType: CompanionFor[ResourceType] = SupportedMessage
       def apply(
           id: Option[String] = None,
           mode: EVENT_CAPABILITY_MODE,
@@ -253,8 +261,12 @@ object CapabilityStatement extends CompanionFor[CapabilityStatement] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Rest extends CompanionFor[Rest] {
     override type ResourceType = Rest
+    override type ParentType   = Rest
+    override val parentType: CompanionFor[ResourceType] = Rest
     object Security extends CompanionFor[Security] {
       override type ResourceType = Security
+      override type ParentType   = Security
+      override val parentType: CompanionFor[ResourceType] = Security
       def apply(
           id: Option[String] = None,
           cors: Option[Boolean] = None,
@@ -326,6 +338,8 @@ object CapabilityStatement extends CompanionFor[CapabilityStatement] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Interaction extends CompanionFor[Interaction] {
       override type ResourceType = Interaction
+      override type ParentType   = Interaction
+      override val parentType: CompanionFor[ResourceType] = Interaction
       def apply(
           id: Option[String] = None,
           code: SYSTEM_RESTFUL_INTERACTION,
@@ -390,8 +404,12 @@ object CapabilityStatement extends CompanionFor[CapabilityStatement] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Resource extends CompanionFor[Resource] {
       override type ResourceType = Resource
+      override type ParentType   = Resource
+      override val parentType: CompanionFor[ResourceType] = Resource
       object Operation extends CompanionFor[Operation] {
         override type ResourceType = Operation
+        override type ParentType   = Operation
+        override val parentType: CompanionFor[ResourceType] = Operation
         def apply(
             id: Option[String] = None,
             name: String,
@@ -464,6 +482,8 @@ object CapabilityStatement extends CompanionFor[CapabilityStatement] {
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Interaction extends CompanionFor[Interaction] {
         override type ResourceType = Interaction
+        override type ParentType   = Interaction
+        override val parentType: CompanionFor[ResourceType] = Interaction
         def apply(
             id: Option[String] = None,
             code: TYPE_RESTFUL_INTERACTION,
@@ -528,6 +548,8 @@ object CapabilityStatement extends CompanionFor[CapabilityStatement] {
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object SearchParam extends CompanionFor[SearchParam] {
         override type ResourceType = SearchParam
+        override type ParentType   = SearchParam
+        override val parentType: CompanionFor[ResourceType] = SearchParam
         def apply(
             id: Option[String] = None,
             name: String,
@@ -962,6 +984,8 @@ object CapabilityStatement extends CompanionFor[CapabilityStatement] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Implementation extends CompanionFor[Implementation] {
     override type ResourceType = Implementation
+    override type ParentType   = Implementation
+    override val parentType: CompanionFor[ResourceType] = Implementation
     def apply(
         id: Option[String] = None,
         url: Option[UrlStr] = None,
@@ -1032,6 +1056,8 @@ object CapabilityStatement extends CompanionFor[CapabilityStatement] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Document extends CompanionFor[Document] {
     override type ResourceType = Document
+    override type ParentType   = Document
+    override val parentType: CompanionFor[ResourceType] = Document
     def apply(
         id: Option[String] = None,
         mode: DOCUMENT_MODE,
@@ -1102,6 +1128,8 @@ object CapabilityStatement extends CompanionFor[CapabilityStatement] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Software extends CompanionFor[Software] {
     override type ResourceType = Software
+    override type ParentType   = Software
+    override val parentType: CompanionFor[ResourceType] = Software
     def apply(
         id: Option[String] = None,
         name: String,

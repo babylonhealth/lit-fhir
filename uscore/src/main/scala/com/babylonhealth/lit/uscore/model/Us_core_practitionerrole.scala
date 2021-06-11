@@ -26,7 +26,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_practitionerrole extends CompanionFor[Us_core_practitionerrole] {
   override type ResourceType = PractitionerRole
+  override type ParentType   = PractitionerRole
   override val baseType: CompanionFor[ResourceType] = PractitionerRole
+  override val parentType: CompanionFor[ParentType] = PractitionerRole
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitionerrole")
   def apply(

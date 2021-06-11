@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ObservationDefinition extends CompanionFor[ObservationDefinition] {
   override type ResourceType = ObservationDefinition
+  override type ParentType   = ObservationDefinition
   override val baseType: CompanionFor[ResourceType] = ObservationDefinition
+  override val parentType: CompanionFor[ParentType] = ObservationDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ObservationDefinition")
   object QuantitativeDetails extends CompanionFor[QuantitativeDetails] {
     override type ResourceType = QuantitativeDetails
+    override type ParentType   = QuantitativeDetails
+    override val parentType: CompanionFor[ResourceType] = QuantitativeDetails
     def apply(
         id: Option[String] = None,
         unit: Option[CodeableConcept] = None,
@@ -107,6 +111,8 @@ object ObservationDefinition extends CompanionFor[ObservationDefinition] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object QualifiedInterval extends CompanionFor[QualifiedInterval] {
     override type ResourceType = QualifiedInterval
+    override type ParentType   = QualifiedInterval
+    override val parentType: CompanionFor[ResourceType] = QualifiedInterval
     def apply(
         id: Option[String] = None,
         age: Option[Range] = None,

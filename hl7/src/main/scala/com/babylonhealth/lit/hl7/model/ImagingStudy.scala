@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImagingStudy extends CompanionFor[ImagingStudy] {
   override type ResourceType = ImagingStudy
+  override type ParentType   = ImagingStudy
   override val baseType: CompanionFor[ResourceType] = ImagingStudy
+  override val parentType: CompanionFor[ParentType] = ImagingStudy
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImagingStudy")
   object Series extends CompanionFor[Series] {
     override type ResourceType = Series
+    override type ParentType   = Series
+    override val parentType: CompanionFor[ResourceType] = Series
     object Instance extends CompanionFor[Instance] {
       override type ResourceType = Instance
+      override type ParentType   = Instance
+      override val parentType: CompanionFor[ResourceType] = Instance
       def apply(
           id: Option[String] = None,
           uid: Id,
@@ -110,6 +116,8 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Performer extends CompanionFor[Performer] {
       override type ResourceType = Performer
+      override type ParentType   = Performer
+      override val parentType: CompanionFor[ResourceType] = Performer
       def apply(
           id: Option[String] = None,
           actor: Reference,

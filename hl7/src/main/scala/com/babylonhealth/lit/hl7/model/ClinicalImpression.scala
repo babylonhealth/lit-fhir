@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ClinicalImpression extends CompanionFor[ClinicalImpression] {
   override type ResourceType = ClinicalImpression
+  override type ParentType   = ClinicalImpression
   override val baseType: CompanionFor[ResourceType] = ClinicalImpression
+  override val parentType: CompanionFor[ParentType] = ClinicalImpression
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ClinicalImpression")
   object Investigation extends CompanionFor[Investigation] {
     override type ResourceType = Investigation
+    override type ParentType   = Investigation
+    override val parentType: CompanionFor[ResourceType] = Investigation
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,
@@ -92,6 +96,8 @@ object ClinicalImpression extends CompanionFor[ClinicalImpression] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Finding extends CompanionFor[Finding] {
     override type ResourceType = Finding
+    override type ParentType   = Finding
+    override val parentType: CompanionFor[ResourceType] = Finding
     def apply(
         id: Option[String] = None,
         basis: Option[String] = None,

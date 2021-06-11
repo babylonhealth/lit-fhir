@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object VisionPrescription extends CompanionFor[VisionPrescription] {
   override type ResourceType = VisionPrescription
+  override type ParentType   = VisionPrescription
   override val baseType: CompanionFor[ResourceType] = VisionPrescription
+  override val parentType: CompanionFor[ParentType] = VisionPrescription
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/VisionPrescription")
   object LensSpecification extends CompanionFor[LensSpecification] {
     override type ResourceType = LensSpecification
+    override type ParentType   = LensSpecification
+    override val parentType: CompanionFor[ResourceType] = LensSpecification
     object Prism extends CompanionFor[Prism] {
       override type ResourceType = Prism
+      override type ParentType   = Prism
+      override val parentType: CompanionFor[ResourceType] = Prism
       def apply(
           id: Option[String] = None,
           base: VISION_BASE_CODES,

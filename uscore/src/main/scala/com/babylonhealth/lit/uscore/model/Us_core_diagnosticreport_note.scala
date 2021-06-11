@@ -27,7 +27,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_diagnosticreport_note extends CompanionFor[Us_core_diagnosticreport_note] {
   override type ResourceType = DiagnosticReport
+  override type ParentType   = DiagnosticReport
   override val baseType: CompanionFor[ResourceType] = DiagnosticReport
+  override val parentType: CompanionFor[ParentType] = DiagnosticReport
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note")
   type EffectiveChoice = Choice[Union_0934386166]

@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationAdministration extends CompanionFor[MedicationAdministration] {
   override type ResourceType = MedicationAdministration
+  override type ParentType   = MedicationAdministration
   override val baseType: CompanionFor[ResourceType] = MedicationAdministration
+  override val parentType: CompanionFor[ParentType] = MedicationAdministration
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicationAdministration")
   object Performer extends CompanionFor[Performer] {
     override type ResourceType = Performer
+    override type ParentType   = Performer
+    override val parentType: CompanionFor[ResourceType] = Performer
     def apply(
         id: Option[String] = None,
         actor: Reference,
@@ -92,7 +96,9 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Dosage extends CompanionFor[Dosage] {
     override type ResourceType = Dosage
-    type RateChoice            = Choice[Union_0964108894]
+    override type ParentType   = Dosage
+    override val parentType: CompanionFor[ResourceType] = Dosage
+    type RateChoice = Choice[Union_0964108894]
     def apply(
         id: Option[String] = None,
         text: Option[String] = None,

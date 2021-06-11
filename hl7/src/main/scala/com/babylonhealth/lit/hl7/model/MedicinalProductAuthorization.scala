@@ -24,11 +24,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthorization] {
   override type ResourceType = MedicinalProductAuthorization
+  override type ParentType   = MedicinalProductAuthorization
   override val baseType: CompanionFor[ResourceType] = MedicinalProductAuthorization
+  override val parentType: CompanionFor[ParentType] = MedicinalProductAuthorization
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/MedicinalProductAuthorization")
   object JurisdictionalAuthorization extends CompanionFor[JurisdictionalAuthorization] {
     override type ResourceType = JurisdictionalAuthorization
+    override type ParentType   = JurisdictionalAuthorization
+    override val parentType: CompanionFor[ResourceType] = JurisdictionalAuthorization
     def apply(
         id: Option[String] = None,
         country: Option[CodeableConcept] = None,
@@ -123,7 +127,9 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Procedure extends CompanionFor[Procedure] {
     override type ResourceType = Procedure
-    type DateChoice            = Choice[Union_0934386166]
+    override type ParentType   = Procedure
+    override val parentType: CompanionFor[ResourceType] = Procedure
+    type DateChoice = Choice[Union_0934386166]
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,

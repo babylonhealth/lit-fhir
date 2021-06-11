@@ -25,11 +25,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CommunicationRequest extends CompanionFor[CommunicationRequest] {
   override type ResourceType = CommunicationRequest
+  override type ParentType   = CommunicationRequest
   override val baseType: CompanionFor[ResourceType] = CommunicationRequest
+  override val parentType: CompanionFor[ParentType] = CommunicationRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CommunicationRequest")
   object Payload extends CompanionFor[Payload] {
     override type ResourceType = Payload
-    type ContentChoice         = Choice[Union_1750183386]
+    override type ParentType   = Payload
+    override val parentType: CompanionFor[ResourceType] = Payload
+    type ContentChoice = Choice[Union_1750183386]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,

@@ -36,12 +36,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object StructureMap extends CompanionFor[StructureMap] {
   override type ResourceType = StructureMap
+  override type ParentType   = StructureMap
   override val baseType: CompanionFor[ResourceType] = StructureMap
+  override val parentType: CompanionFor[ParentType] = StructureMap
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/StructureMap")
   object Group extends CompanionFor[Group] {
     override type ResourceType = Group
+    override type ParentType   = Group
+    override val parentType: CompanionFor[ResourceType] = Group
     object Input extends CompanionFor[Input] {
       override type ResourceType = Input
+      override type ParentType   = Input
+      override val parentType: CompanionFor[ResourceType] = Input
       def apply(
           id: Option[String] = None,
           name: Id,
@@ -121,9 +127,13 @@ object StructureMap extends CompanionFor[StructureMap] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Rule extends CompanionFor[Rule] {
       override type ResourceType = Rule
+      override type ParentType   = Rule
+      override val parentType: CompanionFor[ResourceType] = Rule
       object Source extends CompanionFor[Source] {
         override type ResourceType = Source
-        type DefaultValueChoice    = Choice[Union_1349125893]
+        override type ParentType   = Source
+        override val parentType: CompanionFor[ResourceType] = Source
+        type DefaultValueChoice = Choice[Union_1349125893]
         def apply(
             id: Option[String] = None,
             min: Option[Int] = None,
@@ -284,6 +294,8 @@ object StructureMap extends CompanionFor[StructureMap] {
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Dependent extends CompanionFor[Dependent] {
         override type ResourceType = Dependent
+        override type ParentType   = Dependent
+        override val parentType: CompanionFor[ResourceType] = Dependent
         def apply(
             id: Option[String] = None,
             name: Id,
@@ -348,9 +360,13 @@ object StructureMap extends CompanionFor[StructureMap] {
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Target extends CompanionFor[Target] {
         override type ResourceType = Target
+        override type ParentType   = Target
+        override val parentType: CompanionFor[ResourceType] = Target
         object Parameter extends CompanionFor[Parameter] {
           override type ResourceType = Parameter
-          type ValueChoice           = Choice[Union00600764285]
+          override type ParentType   = Parameter
+          override val parentType: CompanionFor[ResourceType] = Parameter
+          type ValueChoice = Choice[Union00600764285]
           def apply(
               id: Option[String] = None,
               value: Parameter.ValueChoice,
@@ -716,6 +732,8 @@ object StructureMap extends CompanionFor[StructureMap] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Structure extends CompanionFor[Structure] {
     override type ResourceType = Structure
+    override type ParentType   = Structure
+    override val parentType: CompanionFor[ResourceType] = Structure
     def apply(
         id: Option[String] = None,
         url: Canonical,

@@ -24,7 +24,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DomainResource extends CompanionFor[DomainResource] {
   override type ResourceType = DomainResource
+  override type ParentType   = DomainResource
   override val baseType: CompanionFor[ResourceType] = DomainResource
+  override val parentType: CompanionFor[ParentType] = DomainResource
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DomainResource")
   def apply(
       id: Option[String] = None,

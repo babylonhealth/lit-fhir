@@ -25,14 +25,22 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ClaimResponse extends CompanionFor[ClaimResponse] {
   override type ResourceType = ClaimResponse
+  override type ParentType   = ClaimResponse
   override val baseType: CompanionFor[ResourceType] = ClaimResponse
+  override val parentType: CompanionFor[ParentType] = ClaimResponse
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ClaimResponse")
   object AddItem extends CompanionFor[AddItem] {
     override type ResourceType = AddItem
+    override type ParentType   = AddItem
+    override val parentType: CompanionFor[ResourceType] = AddItem
     object Detail extends CompanionFor[Detail] {
       override type ResourceType = Detail
+      override type ParentType   = Detail
+      override val parentType: CompanionFor[ResourceType] = Detail
       object SubDetail extends CompanionFor[SubDetail] {
         override type ResourceType = SubDetail
+        override type ParentType   = SubDetail
+        override val parentType: CompanionFor[ResourceType] = SubDetail
         def apply(
             id: Option[String] = None,
             net: Option[Money] = None,
@@ -529,8 +537,12 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Item extends CompanionFor[Item] {
     override type ResourceType = Item
+    override type ParentType   = Item
+    override val parentType: CompanionFor[ResourceType] = Item
     object Adjudication extends CompanionFor[Adjudication] {
       override type ResourceType = Adjudication
+      override type ParentType   = Adjudication
+      override val parentType: CompanionFor[ResourceType] = Adjudication
       def apply(
           id: Option[String] = None,
           value: Option[BigDecimal] = None,
@@ -610,8 +622,12 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Detail extends CompanionFor[Detail] {
       override type ResourceType = Detail
+      override type ParentType   = Detail
+      override val parentType: CompanionFor[ResourceType] = Detail
       object SubDetail extends CompanionFor[SubDetail] {
         override type ResourceType = SubDetail
+        override type ParentType   = SubDetail
+        override val parentType: CompanionFor[ResourceType] = SubDetail
         def apply(
             id: Option[String] = None,
             extension: LitSeq[Extension] = LitSeq.empty,
@@ -849,6 +865,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Insurance extends CompanionFor[Insurance] {
     override type ResourceType = Insurance
+    override type ParentType   = Insurance
+    override val parentType: CompanionFor[ResourceType] = Insurance
     def apply(
         id: Option[String] = None,
         focal: Boolean,
@@ -943,6 +961,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ProcessNote extends CompanionFor[ProcessNote] {
     override type ResourceType = ProcessNote
+    override type ParentType   = ProcessNote
+    override val parentType: CompanionFor[ResourceType] = ProcessNote
     def apply(
         id: Option[String] = None,
         `type`: Option[NOTE_TYPE] = None,
@@ -1021,6 +1041,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Payment extends CompanionFor[Payment] {
     override type ResourceType = Payment
+    override type ParentType   = Payment
+    override val parentType: CompanionFor[ResourceType] = Payment
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -1123,6 +1145,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Error extends CompanionFor[Error] {
     override type ResourceType = Error
+    override type ParentType   = Error
+    override val parentType: CompanionFor[ResourceType] = Error
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,
@@ -1201,6 +1225,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Total extends CompanionFor[Total] {
     override type ResourceType = Total
+    override type ParentType   = Total
+    override val parentType: CompanionFor[ResourceType] = Total
     def apply(
         id: Option[String] = None,
         amount: Money,

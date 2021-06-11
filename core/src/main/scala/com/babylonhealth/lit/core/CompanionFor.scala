@@ -10,7 +10,6 @@ import scala.util.{ Failure, Success, Try }
 import io.circe.{ Decoder, DecodingFailure, HCursor }
 import izumi.reflect.macrortti.LTag
 import org.slf4j.{ Logger, LoggerFactory }
-
 import com.babylonhealth.lit.core.model.{ Element, Resource, resourceTypeLookup, urlLookup }
 
 trait OptionSugar {
@@ -26,10 +25,19 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
     extends JsonDecoderHelpers
     with OptionSugar {
   type ResourceType >: T <: FHIRObject
+  type ParentType >: T <: FHIRObject
   private val log: Logger = LoggerFactory.getLogger(getClass)
   val thisName: String
   val profileUrl: Option[String] = None
 
+  final private[core] def leastParentWithField(
+      f: FHIRComponentFieldMeta[_],
+      chain: List[CompanionFor[_]] = Nil): CompanionFor[_ <: ResourceType] = {
+    if (fieldsMeta.contains(f)) this.asInstanceOf[CompanionFor[_ <: ResourceType]]
+    else if (parentType eq this)
+      throw new RuntimeException(s"Unable to find field matching $f in ${chain.map(_.thisName).mkString(" <: ")}")
+    else parentType.leastParentWithField(f, chain :+ this)
+  }
   //  private val m = runtimeMirror(getClass.getClassLoader)
   //  lazy val classConstructor: Constructor[_] =
   //    thisClassTag.runtimeClass.getDeclaredConstructor(fieldsMeta.map(f => m.runtimeClass(f.tt.tag.typeSymbol.asClass)): _*)
@@ -80,6 +88,8 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
   def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]]
 
   def fields(t: T): Seq[FHIRComponentField[_]]
+
+  val parentType: CompanionFor[ParentType]
 
   val baseType: CompanionFor[T]
 

@@ -30,10 +30,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
   override type ResourceType = AllergyIntolerance
+  override type ParentType   = AllergyIntolerance
   override val baseType: CompanionFor[ResourceType] = AllergyIntolerance
+  override val parentType: CompanionFor[ParentType] = AllergyIntolerance
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/AllergyIntolerance")
   object Reaction extends CompanionFor[Reaction] {
     override type ResourceType = Reaction
+    override type ParentType   = Reaction
+    override val parentType: CompanionFor[ResourceType] = Reaction
     def apply(
         id: Option[String] = None,
         note: LitSeq[Annotation] = LitSeq.empty,

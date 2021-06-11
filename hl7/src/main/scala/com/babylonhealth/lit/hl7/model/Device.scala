@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Device extends CompanionFor[Device] {
   override type ResourceType = Device
+  override type ParentType   = Device
   override val baseType: CompanionFor[ResourceType] = Device
+  override val parentType: CompanionFor[ParentType] = Device
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Device")
   object Specialization extends CompanionFor[Specialization] {
     override type ResourceType = Specialization
+    override type ParentType   = Specialization
+    override val parentType: CompanionFor[ResourceType] = Specialization
     def apply(
         id: Option[String] = None,
         version: Option[String] = None,
@@ -92,6 +96,8 @@ object Device extends CompanionFor[Device] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object DeviceName extends CompanionFor[DeviceName] {
     override type ResourceType = DeviceName
+    override type ParentType   = DeviceName
+    override val parentType: CompanionFor[ResourceType] = DeviceName
     def apply(
         id: Option[String] = None,
         name: String,
@@ -155,6 +161,8 @@ object Device extends CompanionFor[Device] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object UdiCarrier extends CompanionFor[UdiCarrier] {
     override type ResourceType = UdiCarrier
+    override type ParentType   = UdiCarrier
+    override val parentType: CompanionFor[ResourceType] = UdiCarrier
     def apply(
         id: Option[String] = None,
         issuer: Option[UriStr] = None,
@@ -257,6 +265,8 @@ object Device extends CompanionFor[Device] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Property extends CompanionFor[Property] {
     override type ResourceType = Property
+    override type ParentType   = Property
+    override val parentType: CompanionFor[ResourceType] = Property
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -328,6 +338,8 @@ object Device extends CompanionFor[Device] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Version extends CompanionFor[Version] {
     override type ResourceType = Version
+    override type ParentType   = Version
+    override val parentType: CompanionFor[ResourceType] = Version
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,

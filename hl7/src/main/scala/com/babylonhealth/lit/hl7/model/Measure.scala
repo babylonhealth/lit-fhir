@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Measure extends CompanionFor[Measure] {
   override type ResourceType = Measure
+  override type ParentType   = Measure
   override val baseType: CompanionFor[ResourceType] = Measure
+  override val parentType: CompanionFor[ParentType] = Measure
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Measure")
   object Group extends CompanionFor[Group] {
     override type ResourceType = Group
+    override type ParentType   = Group
+    override val parentType: CompanionFor[ResourceType] = Group
     object Population extends CompanionFor[Population] {
       override type ResourceType = Population
+      override type ParentType   = Population
+      override val parentType: CompanionFor[ResourceType] = Population
       def apply(
           id: Option[String] = None,
           code: Option[CodeableConcept] = None,
@@ -103,8 +109,12 @@ object Measure extends CompanionFor[Measure] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Stratifier extends CompanionFor[Stratifier] {
       override type ResourceType = Stratifier
+      override type ParentType   = Stratifier
+      override val parentType: CompanionFor[ResourceType] = Stratifier
       object Component extends CompanionFor[Component] {
         override type ResourceType = Component
+        override type ParentType   = Component
+        override val parentType: CompanionFor[ResourceType] = Component
         def apply(
             id: Option[String] = None,
             code: Option[CodeableConcept] = None,
@@ -330,6 +340,8 @@ object Measure extends CompanionFor[Measure] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SupplementalData extends CompanionFor[SupplementalData] {
     override type ResourceType = SupplementalData
+    override type ParentType   = SupplementalData
+    override val parentType: CompanionFor[ResourceType] = SupplementalData
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,

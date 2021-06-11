@@ -24,10 +24,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object HealthcareService extends CompanionFor[HealthcareService] {
   override type ResourceType = HealthcareService
+  override type ParentType   = HealthcareService
   override val baseType: CompanionFor[ResourceType] = HealthcareService
+  override val parentType: CompanionFor[ParentType] = HealthcareService
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/HealthcareService")
   object AvailableTime extends CompanionFor[AvailableTime] {
     override type ResourceType = AvailableTime
+    override type ParentType   = AvailableTime
+    override val parentType: CompanionFor[ResourceType] = AvailableTime
     def apply(
         id: Option[String] = None,
         allDay: Option[Boolean] = None,
@@ -106,6 +110,8 @@ object HealthcareService extends CompanionFor[HealthcareService] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object NotAvailable extends CompanionFor[NotAvailable] {
     override type ResourceType = NotAvailable
+    override type ParentType   = NotAvailable
+    override val parentType: CompanionFor[ResourceType] = NotAvailable
     def apply(
         id: Option[String] = None,
         during: Option[Period] = None,
@@ -169,6 +175,8 @@ object HealthcareService extends CompanionFor[HealthcareService] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Eligibility extends CompanionFor[Eligibility] {
     override type ResourceType = Eligibility
+    override type ParentType   = Eligibility
+    override val parentType: CompanionFor[ResourceType] = Eligibility
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,

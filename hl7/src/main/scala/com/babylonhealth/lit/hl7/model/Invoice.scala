@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Invoice extends CompanionFor[Invoice] {
   override type ResourceType = Invoice
+  override type ParentType   = Invoice
   override val baseType: CompanionFor[ResourceType] = Invoice
+  override val parentType: CompanionFor[ParentType] = Invoice
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Invoice")
   object LineItem extends CompanionFor[LineItem] {
     override type ResourceType = LineItem
+    override type ParentType   = LineItem
+    override val parentType: CompanionFor[ResourceType] = LineItem
     object PriceComponent extends CompanionFor[PriceComponent] {
       override type ResourceType = PriceComponent
+      override type ParentType   = PriceComponent
+      override val parentType: CompanionFor[ResourceType] = PriceComponent
       def apply(
           id: Option[String] = None,
           `type`: INVOICE_PRICECOMPONENTTYPE,
@@ -184,6 +190,8 @@ object Invoice extends CompanionFor[Invoice] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Participant extends CompanionFor[Participant] {
     override type ResourceType = Participant
+    override type ParentType   = Participant
+    override val parentType: CompanionFor[ResourceType] = Participant
     def apply(
         id: Option[String] = None,
         role: Option[CodeableConcept] = None,

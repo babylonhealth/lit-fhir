@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
   override type ResourceType = SpecimenDefinition
+  override type ParentType   = SpecimenDefinition
   override val baseType: CompanionFor[ResourceType] = SpecimenDefinition
+  override val parentType: CompanionFor[ParentType] = SpecimenDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SpecimenDefinition")
   object TypeTested extends CompanionFor[TypeTested] {
     override type ResourceType = TypeTested
+    override type ParentType   = TypeTested
+    override val parentType: CompanionFor[ResourceType] = TypeTested
     object Handling extends CompanionFor[Handling] {
       override type ResourceType = Handling
+      override type ParentType   = Handling
+      override val parentType: CompanionFor[ResourceType] = Handling
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -118,9 +124,13 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Container extends CompanionFor[Container] {
       override type ResourceType = Container
+      override type ParentType   = Container
+      override val parentType: CompanionFor[ResourceType] = Container
       object Additive extends CompanionFor[Additive] {
         override type ResourceType = Additive
-        type AdditiveChoice        = Choice[Union01025009075]
+        override type ParentType   = Additive
+        override val parentType: CompanionFor[ResourceType] = Additive
+        type AdditiveChoice = Choice[Union01025009075]
         def apply(
             id: Option[String] = None,
             extension: LitSeq[Extension] = LitSeq.empty,

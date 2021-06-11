@@ -27,7 +27,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_pulse_oximetry extends CompanionFor[Us_core_pulse_oximetry] {
   override type ResourceType = Observation
+  override type ParentType   = Oxygensat
   override val baseType: CompanionFor[ResourceType] = Observation
+  override val parentType: CompanionFor[ParentType] = Oxygensat
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-pulse-oximetry")
   type EffectiveChoice = Choice[Union_0934386166]

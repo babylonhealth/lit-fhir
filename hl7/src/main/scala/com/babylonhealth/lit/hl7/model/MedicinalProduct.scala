@@ -24,10 +24,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProduct extends CompanionFor[MedicinalProduct] {
   override type ResourceType = MedicinalProduct
+  override type ParentType   = MedicinalProduct
   override val baseType: CompanionFor[ResourceType] = MedicinalProduct
+  override val parentType: CompanionFor[ParentType] = MedicinalProduct
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProduct")
   object ManufacturingBusinessOperation extends CompanionFor[ManufacturingBusinessOperation] {
     override type ResourceType = ManufacturingBusinessOperation
+    override type ParentType   = ManufacturingBusinessOperation
+    override val parentType: CompanionFor[ResourceType] = ManufacturingBusinessOperation
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -142,8 +146,12 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Name extends CompanionFor[Name] {
     override type ResourceType = Name
+    override type ParentType   = Name
+    override val parentType: CompanionFor[ResourceType] = Name
     object NamePart extends CompanionFor[NamePart] {
       override type ResourceType = NamePart
+      override type ParentType   = NamePart
+      override val parentType: CompanionFor[ResourceType] = NamePart
       def apply(
           id: Option[String] = None,
           part: String,
@@ -207,6 +215,8 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object CountryLanguage extends CompanionFor[CountryLanguage] {
       override type ResourceType = CountryLanguage
+      override type ParentType   = CountryLanguage
+      override val parentType: CompanionFor[ResourceType] = CountryLanguage
       def apply(
           id: Option[String] = None,
           country: CodeableConcept,
@@ -352,7 +362,9 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SpecialDesignation extends CompanionFor[SpecialDesignation] {
     override type ResourceType = SpecialDesignation
-    type IndicationChoice      = Choice[Union01025009075]
+    override type ParentType   = SpecialDesignation
+    override val parentType: CompanionFor[ResourceType] = SpecialDesignation
+    type IndicationChoice = Choice[Union01025009075]
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,

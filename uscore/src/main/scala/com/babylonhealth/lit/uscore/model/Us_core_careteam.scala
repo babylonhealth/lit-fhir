@@ -27,7 +27,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_careteam extends CompanionFor[Us_core_careteam] {
   override type ResourceType = CareTeam
+  override type ParentType   = CareTeam
   override val baseType: CompanionFor[ResourceType] = CareTeam
+  override val parentType: CompanionFor[ParentType] = CareTeam
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam")
   def apply(
       id: Option[String] = None,

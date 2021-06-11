@@ -27,7 +27,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_patient extends CompanionFor[Us_core_patient] {
   override type ResourceType = Patient
+  override type ParentType   = Patient
   override val baseType: CompanionFor[ResourceType] = Patient
+  override val parentType: CompanionFor[ParentType] = Patient
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient")
   type DeceasedChoice      = Choice[Union_2131715935]
   type MultipleBirthChoice = Choice[Union02065782851]

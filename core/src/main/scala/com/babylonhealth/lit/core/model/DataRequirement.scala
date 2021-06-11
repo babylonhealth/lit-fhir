@@ -22,11 +22,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DataRequirement extends CompanionFor[DataRequirement] {
   override type ResourceType = DataRequirement
+  override type ParentType   = DataRequirement
   override val baseType: CompanionFor[ResourceType] = DataRequirement
+  override val parentType: CompanionFor[ParentType] = DataRequirement
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DataRequirement")
   object DateFilter extends CompanionFor[DateFilter] {
     override type ResourceType = DateFilter
-    type ValueChoice           = Choice[Union_1947777294]
+    override type ParentType   = DateFilter
+    override val parentType: CompanionFor[ResourceType] = DateFilter
+    type ValueChoice = Choice[Union_1947777294]
     def apply(
         id: Option[String] = None,
         path: Option[String] = None,
@@ -90,6 +94,8 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       extends Element(id = id, extension = extension)
   object CodeFilter extends CompanionFor[CodeFilter] {
     override type ResourceType = CodeFilter
+    override type ParentType   = CodeFilter
+    override val parentType: CompanionFor[ResourceType] = CodeFilter
     def apply(
         id: Option[String] = None,
         path: Option[String] = None,
@@ -160,6 +166,8 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       extends Element(id = id, extension = extension)
   object Sort extends CompanionFor[Sort] {
     override type ResourceType = Sort
+    override type ParentType   = Sort
+    override val parentType: CompanionFor[ResourceType] = Sort
     def apply(
         id: Option[String] = None,
         path: String,

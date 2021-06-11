@@ -22,7 +22,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object UsageContext extends CompanionFor[UsageContext] {
   override type ResourceType = UsageContext
+  override type ParentType   = UsageContext
   override val baseType: CompanionFor[ResourceType] = UsageContext
+  override val parentType: CompanionFor[ParentType] = UsageContext
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/UsageContext")
   type ValueChoice = Choice[Union_0119127717]
   def apply(

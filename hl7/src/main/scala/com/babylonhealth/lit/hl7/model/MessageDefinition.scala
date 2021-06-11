@@ -30,10 +30,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MessageDefinition extends CompanionFor[MessageDefinition] {
   override type ResourceType = MessageDefinition
+  override type ParentType   = MessageDefinition
   override val baseType: CompanionFor[ResourceType] = MessageDefinition
+  override val parentType: CompanionFor[ParentType] = MessageDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MessageDefinition")
   object AllowedResponse extends CompanionFor[AllowedResponse] {
     override type ResourceType = AllowedResponse
+    override type ParentType   = AllowedResponse
+    override val parentType: CompanionFor[ResourceType] = AllowedResponse
     def apply(
         id: Option[String] = None,
         message: Canonical,
@@ -97,6 +101,8 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Focus extends CompanionFor[Focus] {
     override type ResourceType = Focus
+    override type ParentType   = Focus
+    override val parentType: CompanionFor[ResourceType] = Focus
     def apply(
         id: Option[String] = None,
         min: UnsignedInt,

@@ -26,7 +26,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Picoelement extends CompanionFor[Picoelement] {
   override type ResourceType = EvidenceVariable
+  override type ParentType   = EvidenceVariable
   override val baseType: CompanionFor[ResourceType] = EvidenceVariable
+  override val parentType: CompanionFor[ParentType] = EvidenceVariable
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/picoelement")
   def apply(
       id: Option[String] = None,

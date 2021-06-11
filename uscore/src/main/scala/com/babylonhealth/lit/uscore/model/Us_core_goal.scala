@@ -27,7 +27,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_goal extends CompanionFor[Us_core_goal] {
   override type ResourceType = Goal
+  override type ParentType   = Goal
   override val baseType: CompanionFor[ResourceType] = Goal
+  override val parentType: CompanionFor[ParentType] = Goal
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal")
   type StartChoice = Choice[Union00078348305]
   def apply(

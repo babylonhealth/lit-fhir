@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Location extends CompanionFor[Location] {
   override type ResourceType = Location
+  override type ParentType   = Location
   override val baseType: CompanionFor[ResourceType] = Location
+  override val parentType: CompanionFor[ParentType] = Location
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Location")
   object HoursOfOperation extends CompanionFor[HoursOfOperation] {
     override type ResourceType = HoursOfOperation
+    override type ParentType   = HoursOfOperation
+    override val parentType: CompanionFor[ResourceType] = HoursOfOperation
     def apply(
         id: Option[String] = None,
         allDay: Option[Boolean] = None,
@@ -107,6 +111,8 @@ object Location extends CompanionFor[Location] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Position extends CompanionFor[Position] {
     override type ResourceType = Position
+    override type ParentType   = Position
+    override val parentType: CompanionFor[ResourceType] = Position
     def apply(
         id: Option[String] = None,
         latitude: BigDecimal,

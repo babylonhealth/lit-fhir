@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ConceptMap extends CompanionFor[ConceptMap] {
   override type ResourceType = ConceptMap
+  override type ParentType   = ConceptMap
   override val baseType: CompanionFor[ResourceType] = ConceptMap
+  override val parentType: CompanionFor[ParentType] = ConceptMap
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ConceptMap")
   object Group extends CompanionFor[Group] {
     override type ResourceType = Group
+    override type ParentType   = Group
+    override val parentType: CompanionFor[ResourceType] = Group
     object Unmapped extends CompanionFor[Unmapped] {
       override type ResourceType = Unmapped
+      override type ParentType   = Unmapped
+      override val parentType: CompanionFor[ResourceType] = Unmapped
       def apply(
           id: Option[String] = None,
           url: Option[Canonical] = None,
@@ -109,10 +115,16 @@ object ConceptMap extends CompanionFor[ConceptMap] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Element extends CompanionFor[Element] {
       override type ResourceType = Element
+      override type ParentType   = Element
+      override val parentType: CompanionFor[ResourceType] = Element
       object Target extends CompanionFor[Target] {
         override type ResourceType = Target
+        override type ParentType   = Target
+        override val parentType: CompanionFor[ResourceType] = Target
         object DependsOn extends CompanionFor[DependsOn] {
           override type ResourceType = DependsOn
+          override type ParentType   = DependsOn
+          override val parentType: CompanionFor[ResourceType] = DependsOn
           def apply(
               id: Option[String] = None,
               value: String,

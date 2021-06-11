@@ -25,7 +25,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Population extends CompanionFor[Population] {
   override type ResourceType = Population
+  override type ParentType   = Population
   override val baseType: CompanionFor[ResourceType] = Population
+  override val parentType: CompanionFor[ParentType] = Population
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Population")
   type AgeChoice = Choice[Union_1946587936]
   def apply(

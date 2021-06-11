@@ -24,7 +24,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductManufactured extends CompanionFor[MedicinalProductManufactured] {
   override type ResourceType = MedicinalProductManufactured
+  override type ParentType   = MedicinalProductManufactured
   override val baseType: CompanionFor[ResourceType] = MedicinalProductManufactured
+  override val parentType: CompanionFor[ParentType] = MedicinalProductManufactured
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductManufactured")
   def apply(
       id: Option[String] = None,

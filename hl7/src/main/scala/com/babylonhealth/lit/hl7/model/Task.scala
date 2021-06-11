@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Task extends CompanionFor[Task] {
   override type ResourceType = Task
+  override type ParentType   = Task
   override val baseType: CompanionFor[ResourceType] = Task
+  override val parentType: CompanionFor[ParentType] = Task
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Task")
   object Restriction extends CompanionFor[Restriction] {
     override type ResourceType = Restriction
+    override type ParentType   = Restriction
+    override val parentType: CompanionFor[ResourceType] = Restriction
     def apply(
         id: Option[String] = None,
         period: Option[Period] = None,
@@ -100,7 +104,9 @@ object Task extends CompanionFor[Task] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Output extends CompanionFor[Output] {
     override type ResourceType = Output
-    type ValueChoice           = Choice[Union_1349125893]
+    override type ParentType   = Output
+    override val parentType: CompanionFor[ResourceType] = Output
+    type ValueChoice = Choice[Union_1349125893]
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -164,7 +170,9 @@ object Task extends CompanionFor[Task] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Input extends CompanionFor[Input] {
     override type ResourceType = Input
-    type ValueChoice           = Choice[Union_1349125893]
+    override type ParentType   = Input
+    override val parentType: CompanionFor[ResourceType] = Input
+    type ValueChoice = Choice[Union_1349125893]
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,

@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MolecularSequence extends CompanionFor[MolecularSequence] {
   override type ResourceType = MolecularSequence
+  override type ParentType   = MolecularSequence
   override val baseType: CompanionFor[ResourceType] = MolecularSequence
+  override val parentType: CompanionFor[ParentType] = MolecularSequence
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MolecularSequence")
   object StructureVariant extends CompanionFor[StructureVariant] {
     override type ResourceType = StructureVariant
+    override type ParentType   = StructureVariant
+    override val parentType: CompanionFor[ResourceType] = StructureVariant
     object Outer extends CompanionFor[Outer] {
       override type ResourceType = Outer
+      override type ParentType   = Outer
+      override val parentType: CompanionFor[ResourceType] = Outer
       def apply(
           id: Option[String] = None,
           end: Option[Int] = None,
@@ -94,6 +100,8 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Inner extends CompanionFor[Inner] {
       override type ResourceType = Inner
+      override type ParentType   = Inner
+      override val parentType: CompanionFor[ResourceType] = Inner
       def apply(
           id: Option[String] = None,
           end: Option[Int] = None,
@@ -240,6 +248,8 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ReferenceSeq extends CompanionFor[ReferenceSeq] {
     override type ResourceType = ReferenceSeq
+    override type ParentType   = ReferenceSeq
+    override val parentType: CompanionFor[ResourceType] = ReferenceSeq
     def apply(
         id: Option[String] = None,
         strand: Option[STRAND_TYPE] = None,
@@ -377,8 +387,12 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Quality extends CompanionFor[Quality] {
     override type ResourceType = Quality
+    override type ParentType   = Quality
+    override val parentType: CompanionFor[ResourceType] = Quality
     object Roc extends CompanionFor[Roc] {
       override type ResourceType = Roc
+      override type ParentType   = Roc
+      override val parentType: CompanionFor[ResourceType] = Roc
       def apply(
           id: Option[String] = None,
           score: LitSeq[Int] = LitSeq.empty,
@@ -679,6 +693,8 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Repository extends CompanionFor[Repository] {
     override type ResourceType = Repository
+    override type ParentType   = Repository
+    override val parentType: CompanionFor[ResourceType] = Repository
     def apply(
         id: Option[String] = None,
         url: Option[UriStr] = None,
@@ -771,6 +787,8 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Variant extends CompanionFor[Variant] {
     override type ResourceType = Variant
+    override type ParentType   = Variant
+    override val parentType: CompanionFor[ResourceType] = Variant
     def apply(
         id: Option[String] = None,
         end: Option[Int] = None,

@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
   override type ResourceType = PaymentReconciliation
+  override type ParentType   = PaymentReconciliation
   override val baseType: CompanionFor[ResourceType] = PaymentReconciliation
+  override val parentType: CompanionFor[ParentType] = PaymentReconciliation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/PaymentReconciliation")
   object ProcessNote extends CompanionFor[ProcessNote] {
     override type ResourceType = ProcessNote
+    override type ParentType   = ProcessNote
+    override val parentType: CompanionFor[ResourceType] = ProcessNote
     def apply(
         id: Option[String] = None,
         `type`: Option[NOTE_TYPE] = None,
@@ -92,6 +96,8 @@ object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Detail extends CompanionFor[Detail] {
     override type ResourceType = Detail
+    override type ParentType   = Detail
+    override val parentType: CompanionFor[ResourceType] = Detail
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,

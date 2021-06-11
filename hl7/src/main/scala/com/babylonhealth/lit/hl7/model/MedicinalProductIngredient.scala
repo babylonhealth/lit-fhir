@@ -24,14 +24,22 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredient] {
   override type ResourceType = MedicinalProductIngredient
+  override type ParentType   = MedicinalProductIngredient
   override val baseType: CompanionFor[ResourceType] = MedicinalProductIngredient
+  override val parentType: CompanionFor[ParentType] = MedicinalProductIngredient
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductIngredient")
   object SpecifiedSubstance extends CompanionFor[SpecifiedSubstance] {
     override type ResourceType = SpecifiedSubstance
+    override type ParentType   = SpecifiedSubstance
+    override val parentType: CompanionFor[ResourceType] = SpecifiedSubstance
     object Strength extends CompanionFor[Strength] {
       override type ResourceType = Strength
+      override type ParentType   = Strength
+      override val parentType: CompanionFor[ResourceType] = Strength
       object ReferenceStrength extends CompanionFor[ReferenceStrength] {
         override type ResourceType = ReferenceStrength
+        override type ParentType   = ReferenceStrength
+        override val parentType: CompanionFor[ResourceType] = ReferenceStrength
         def apply(
             id: Option[String] = None,
             country: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -329,6 +337,8 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Substance extends CompanionFor[Substance] {
     override type ResourceType = Substance
+    override type ParentType   = Substance
+    override val parentType: CompanionFor[ResourceType] = Substance
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,

@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceProtein extends CompanionFor[SubstanceProtein] {
   override type ResourceType = SubstanceProtein
+  override type ParentType   = SubstanceProtein
   override val baseType: CompanionFor[ResourceType] = SubstanceProtein
+  override val parentType: CompanionFor[ParentType] = SubstanceProtein
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceProtein")
   object Subunit extends CompanionFor[Subunit] {
     override type ResourceType = Subunit
+    override type ParentType   = Subunit
+    override val parentType: CompanionFor[ResourceType] = Subunit
     def apply(
         id: Option[String] = None,
         length: Option[Int] = None,

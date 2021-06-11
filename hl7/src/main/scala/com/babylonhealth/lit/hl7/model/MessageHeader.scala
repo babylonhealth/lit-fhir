@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MessageHeader extends CompanionFor[MessageHeader] {
   override type ResourceType = MessageHeader
+  override type ParentType   = MessageHeader
   override val baseType: CompanionFor[ResourceType] = MessageHeader
+  override val parentType: CompanionFor[ParentType] = MessageHeader
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MessageHeader")
   object Destination extends CompanionFor[Destination] {
     override type ResourceType = Destination
+    override type ParentType   = Destination
+    override val parentType: CompanionFor[ResourceType] = Destination
     def apply(
         id: Option[String] = None,
         name: Option[String] = None,
@@ -107,6 +111,8 @@ object MessageHeader extends CompanionFor[MessageHeader] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Response extends CompanionFor[Response] {
     override type ResourceType = Response
+    override type ParentType   = Response
+    override val parentType: CompanionFor[ResourceType] = Response
     def apply(
         id: Option[String] = None,
         code: RESPONSE_CODE,
@@ -177,6 +183,8 @@ object MessageHeader extends CompanionFor[MessageHeader] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Source extends CompanionFor[Source] {
     override type ResourceType = Source
+    override type ParentType   = Source
+    override val parentType: CompanionFor[ResourceType] = Source
     def apply(
         id: Option[String] = None,
         name: Option[String] = None,

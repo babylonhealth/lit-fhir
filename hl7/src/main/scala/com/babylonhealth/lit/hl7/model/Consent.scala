@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Consent extends CompanionFor[Consent] {
   override type ResourceType = Consent
+  override type ParentType   = Consent
   override val baseType: CompanionFor[ResourceType] = Consent
+  override val parentType: CompanionFor[ParentType] = Consent
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Consent")
   object Provision extends CompanionFor[Provision] {
     override type ResourceType = Provision
+    override type ParentType   = Provision
+    override val parentType: CompanionFor[ResourceType] = Provision
     object Data extends CompanionFor[Data] {
       override type ResourceType = Data
+      override type ParentType   = Data
+      override val parentType: CompanionFor[ResourceType] = Data
       def apply(
           id: Option[String] = None,
           meaning: CONSENT_DATA_MEANING,
@@ -95,6 +101,8 @@ object Consent extends CompanionFor[Consent] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Actor extends CompanionFor[Actor] {
       override type ResourceType = Actor
+      override type ParentType   = Actor
+      override val parentType: CompanionFor[ResourceType] = Actor
       def apply(
           id: Option[String] = None,
           role: CodeableConcept,
@@ -312,6 +320,8 @@ object Consent extends CompanionFor[Consent] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Verification extends CompanionFor[Verification] {
     override type ResourceType = Verification
+    override type ParentType   = Verification
+    override val parentType: CompanionFor[ResourceType] = Verification
     def apply(
         id: Option[String] = None,
         verified: Boolean,
@@ -383,6 +393,8 @@ object Consent extends CompanionFor[Consent] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Policy extends CompanionFor[Policy] {
     override type ResourceType = Policy
+    override type ParentType   = Policy
+    override val parentType: CompanionFor[ResourceType] = Policy
     def apply(
         id: Option[String] = None,
         uri: Option[UriStr] = None,

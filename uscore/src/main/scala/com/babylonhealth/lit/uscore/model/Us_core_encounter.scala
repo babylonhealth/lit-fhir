@@ -27,7 +27,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_encounter extends CompanionFor[Us_core_encounter] {
   override type ResourceType = Encounter
+  override type ParentType   = Encounter
   override val baseType: CompanionFor[ResourceType] = Encounter
+  override val parentType: CompanionFor[ParentType] = Encounter
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter")
   def apply(
       id: Option[String] = None,

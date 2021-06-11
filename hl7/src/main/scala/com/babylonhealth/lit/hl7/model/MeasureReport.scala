@@ -25,12 +25,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MeasureReport extends CompanionFor[MeasureReport] {
   override type ResourceType = MeasureReport
+  override type ParentType   = MeasureReport
   override val baseType: CompanionFor[ResourceType] = MeasureReport
+  override val parentType: CompanionFor[ParentType] = MeasureReport
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MeasureReport")
   object Group extends CompanionFor[Group] {
     override type ResourceType = Group
+    override type ParentType   = Group
+    override val parentType: CompanionFor[ResourceType] = Group
     object Population extends CompanionFor[Population] {
       override type ResourceType = Population
+      override type ParentType   = Population
+      override val parentType: CompanionFor[ResourceType] = Population
       def apply(
           id: Option[String] = None,
           code: Option[CodeableConcept] = None,
@@ -103,10 +109,16 @@ object MeasureReport extends CompanionFor[MeasureReport] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Stratifier extends CompanionFor[Stratifier] {
       override type ResourceType = Stratifier
+      override type ParentType   = Stratifier
+      override val parentType: CompanionFor[ResourceType] = Stratifier
       object Stratum extends CompanionFor[Stratum] {
         override type ResourceType = Stratum
+        override type ParentType   = Stratum
+        override val parentType: CompanionFor[ResourceType] = Stratum
         object Component extends CompanionFor[Component] {
           override type ResourceType = Component
+          override type ParentType   = Component
+          override val parentType: CompanionFor[ResourceType] = Component
           def apply(
               id: Option[String] = None,
               code: CodeableConcept,
@@ -171,6 +183,8 @@ object MeasureReport extends CompanionFor[MeasureReport] {
             extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
         object Population extends CompanionFor[Population] {
           override type ResourceType = Population
+          override type ParentType   = Population
+          override val parentType: CompanionFor[ResourceType] = Population
           def apply(
               id: Option[String] = None,
               code: Option[CodeableConcept] = None,

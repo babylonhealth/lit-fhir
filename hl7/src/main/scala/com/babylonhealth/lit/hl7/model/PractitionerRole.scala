@@ -24,10 +24,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PractitionerRole extends CompanionFor[PractitionerRole] {
   override type ResourceType = PractitionerRole
+  override type ParentType   = PractitionerRole
   override val baseType: CompanionFor[ResourceType] = PractitionerRole
+  override val parentType: CompanionFor[ParentType] = PractitionerRole
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/PractitionerRole")
   object AvailableTime extends CompanionFor[AvailableTime] {
     override type ResourceType = AvailableTime
+    override type ParentType   = AvailableTime
+    override val parentType: CompanionFor[ResourceType] = AvailableTime
     def apply(
         id: Option[String] = None,
         allDay: Option[Boolean] = None,
@@ -106,6 +110,8 @@ object PractitionerRole extends CompanionFor[PractitionerRole] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object NotAvailable extends CompanionFor[NotAvailable] {
     override type ResourceType = NotAvailable
+    override type ParentType   = NotAvailable
+    override val parentType: CompanionFor[ResourceType] = NotAvailable
     def apply(
         id: Option[String] = None,
         during: Option[Period] = None,

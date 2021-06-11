@@ -26,7 +26,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_condition extends CompanionFor[Us_core_condition] {
   override type ResourceType = Condition
+  override type ParentType   = Condition
   override val baseType: CompanionFor[ResourceType] = Condition
+  override val parentType: CompanionFor[ParentType] = Condition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition")
   type OnsetChoice     = Choice[Union01352864625]
   type AbatementChoice = Choice[Union01352864625]

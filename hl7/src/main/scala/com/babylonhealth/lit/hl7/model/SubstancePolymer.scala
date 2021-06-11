@@ -24,14 +24,22 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstancePolymer extends CompanionFor[SubstancePolymer] {
   override type ResourceType = SubstancePolymer
+  override type ParentType   = SubstancePolymer
   override val baseType: CompanionFor[ResourceType] = SubstancePolymer
+  override val parentType: CompanionFor[ParentType] = SubstancePolymer
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstancePolymer")
   object Repeat extends CompanionFor[Repeat] {
     override type ResourceType = Repeat
+    override type ParentType   = Repeat
+    override val parentType: CompanionFor[ResourceType] = Repeat
     object RepeatUnit extends CompanionFor[RepeatUnit] {
       override type ResourceType = RepeatUnit
+      override type ParentType   = RepeatUnit
+      override val parentType: CompanionFor[ResourceType] = RepeatUnit
       object DegreeOfPolymerisation extends CompanionFor[DegreeOfPolymerisation] {
         override type ResourceType = DegreeOfPolymerisation
+        override type ParentType   = DegreeOfPolymerisation
+        override val parentType: CompanionFor[ResourceType] = DegreeOfPolymerisation
         def apply(
             id: Option[String] = None,
             degree: Option[CodeableConcept] = None,
@@ -100,6 +108,8 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object StructuralRepresentation extends CompanionFor[StructuralRepresentation] {
         override type ResourceType = StructuralRepresentation
+        override type ParentType   = StructuralRepresentation
+        override val parentType: CompanionFor[ResourceType] = StructuralRepresentation
         def apply(
             id: Option[String] = None,
             `type`: Option[CodeableConcept] = None,
@@ -375,8 +385,12 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object MonomerSet extends CompanionFor[MonomerSet] {
     override type ResourceType = MonomerSet
+    override type ParentType   = MonomerSet
+    override val parentType: CompanionFor[ResourceType] = MonomerSet
     object StartingMaterial extends CompanionFor[StartingMaterial] {
       override type ResourceType = StartingMaterial
+      override type ParentType   = StartingMaterial
+      override val parentType: CompanionFor[ResourceType] = StartingMaterial
       def apply(
           id: Option[String] = None,
           `type`: Option[CodeableConcept] = None,

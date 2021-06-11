@@ -31,10 +31,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceMetric extends CompanionFor[DeviceMetric] {
   override type ResourceType = DeviceMetric
+  override type ParentType   = DeviceMetric
   override val baseType: CompanionFor[ResourceType] = DeviceMetric
+  override val parentType: CompanionFor[ParentType] = DeviceMetric
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceMetric")
   object Calibration extends CompanionFor[Calibration] {
     override type ResourceType = Calibration
+    override type ParentType   = Calibration
+    override val parentType: CompanionFor[ResourceType] = Calibration
     def apply(
         id: Option[String] = None,
         `type`: Option[METRIC_CALIBRATION_TYPE] = None,

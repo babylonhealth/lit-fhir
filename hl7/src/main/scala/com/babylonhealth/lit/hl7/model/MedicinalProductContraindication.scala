@@ -24,12 +24,16 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductContraindication extends CompanionFor[MedicinalProductContraindication] {
   override type ResourceType = MedicinalProductContraindication
+  override type ParentType   = MedicinalProductContraindication
   override val baseType: CompanionFor[ResourceType] = MedicinalProductContraindication
+  override val parentType: CompanionFor[ParentType] = MedicinalProductContraindication
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/MedicinalProductContraindication")
   object OtherTherapy extends CompanionFor[OtherTherapy] {
     override type ResourceType = OtherTherapy
-    type MedicationChoice      = Choice[Union01025009075]
+    override type ParentType   = OtherTherapy
+    override val parentType: CompanionFor[ResourceType] = OtherTherapy
+    type MedicationChoice = Choice[Union01025009075]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,

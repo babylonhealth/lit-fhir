@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Procedure extends CompanionFor[Procedure] {
   override type ResourceType = Procedure
+  override type ParentType   = Procedure
   override val baseType: CompanionFor[ResourceType] = Procedure
+  override val parentType: CompanionFor[ParentType] = Procedure
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Procedure")
   object FocalDevice extends CompanionFor[FocalDevice] {
     override type ResourceType = FocalDevice
+    override type ParentType   = FocalDevice
+    override val parentType: CompanionFor[ResourceType] = FocalDevice
     def apply(
         id: Option[String] = None,
         action: Option[CodeableConcept] = None,
@@ -92,6 +96,8 @@ object Procedure extends CompanionFor[Procedure] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Performer extends CompanionFor[Performer] {
     override type ResourceType = Performer
+    override type ParentType   = Performer
+    override val parentType: CompanionFor[ResourceType] = Performer
     def apply(
         id: Option[String] = None,
         actor: Reference,

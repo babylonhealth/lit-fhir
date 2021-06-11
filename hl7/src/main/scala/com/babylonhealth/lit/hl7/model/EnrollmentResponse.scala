@@ -25,7 +25,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EnrollmentResponse extends CompanionFor[EnrollmentResponse] {
   override type ResourceType = EnrollmentResponse
+  override type ParentType   = EnrollmentResponse
   override val baseType: CompanionFor[ResourceType] = EnrollmentResponse
+  override val parentType: CompanionFor[ParentType] = EnrollmentResponse
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/EnrollmentResponse")
   def apply(
       id: Option[String] = None,

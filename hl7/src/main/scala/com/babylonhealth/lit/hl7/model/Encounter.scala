@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Encounter extends CompanionFor[Encounter] {
   override type ResourceType = Encounter
+  override type ParentType   = Encounter
   override val baseType: CompanionFor[ResourceType] = Encounter
+  override val parentType: CompanionFor[ParentType] = Encounter
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Encounter")
   object Hospitalization extends CompanionFor[Hospitalization] {
     override type ResourceType = Hospitalization
+    override type ParentType   = Hospitalization
+    override val parentType: CompanionFor[ResourceType] = Hospitalization
     def apply(
         id: Option[String] = None,
         origin: Option[Reference] = None,
@@ -167,6 +171,8 @@ object Encounter extends CompanionFor[Encounter] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object StatusHistory extends CompanionFor[StatusHistory] {
     override type ResourceType = StatusHistory
+    override type ParentType   = StatusHistory
+    override val parentType: CompanionFor[ResourceType] = StatusHistory
     def apply(
         id: Option[String] = None,
         status: ENCOUNTER_STATUS,
@@ -230,6 +236,8 @@ object Encounter extends CompanionFor[Encounter] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ClassHistory extends CompanionFor[ClassHistory] {
     override type ResourceType = ClassHistory
+    override type ParentType   = ClassHistory
+    override val parentType: CompanionFor[ResourceType] = ClassHistory
     def apply(
         id: Option[String] = None,
         `class`: Coding,
@@ -292,6 +300,8 @@ object Encounter extends CompanionFor[Encounter] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Participant extends CompanionFor[Participant] {
     override type ResourceType = Participant
+    override type ParentType   = Participant
+    override val parentType: CompanionFor[ResourceType] = Participant
     def apply(
         id: Option[String] = None,
         `type`: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -362,6 +372,8 @@ object Encounter extends CompanionFor[Encounter] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Diagnosis extends CompanionFor[Diagnosis] {
     override type ResourceType = Diagnosis
+    override type ParentType   = Diagnosis
+    override val parentType: CompanionFor[ResourceType] = Diagnosis
     def apply(
         id: Option[String] = None,
         use: Option[CodeableConcept] = None,
@@ -432,6 +444,8 @@ object Encounter extends CompanionFor[Encounter] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Location extends CompanionFor[Location] {
     override type ResourceType = Location
+    override type ParentType   = Location
+    override val parentType: CompanionFor[ResourceType] = Location
     def apply(
         id: Option[String] = None,
         status: Option[ENCOUNTER_LOCATION_STATUS] = None,

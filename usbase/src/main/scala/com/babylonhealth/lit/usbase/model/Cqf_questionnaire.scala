@@ -26,7 +26,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_questionnaire extends CompanionFor[Cqf_questionnaire] {
   override type ResourceType = Questionnaire
+  override type ParentType   = Questionnaire
   override val baseType: CompanionFor[ResourceType] = Questionnaire
+  override val parentType: CompanionFor[ParentType] = Questionnaire
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/cqf-questionnaire")
   def apply(
       id: Option[String] = None,

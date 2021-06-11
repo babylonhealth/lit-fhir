@@ -24,7 +24,9 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object BodyStructure extends CompanionFor[BodyStructure] {
   override type ResourceType = BodyStructure
+  override type ParentType   = BodyStructure
   override val baseType: CompanionFor[ResourceType] = BodyStructure
+  override val parentType: CompanionFor[ParentType] = BodyStructure
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/BodyStructure")
   def apply(
       id: Option[String] = None,

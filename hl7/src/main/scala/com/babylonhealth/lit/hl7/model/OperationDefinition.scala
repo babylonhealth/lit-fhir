@@ -31,12 +31,18 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object OperationDefinition extends CompanionFor[OperationDefinition] {
   override type ResourceType = OperationDefinition
+  override type ParentType   = OperationDefinition
   override val baseType: CompanionFor[ResourceType] = OperationDefinition
+  override val parentType: CompanionFor[ParentType] = OperationDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/OperationDefinition")
   object Parameter extends CompanionFor[Parameter] {
     override type ResourceType = Parameter
+    override type ParentType   = Parameter
+    override val parentType: CompanionFor[ResourceType] = Parameter
     object Binding extends CompanionFor[Binding] {
       override type ResourceType = Binding
+      override type ParentType   = Binding
+      override val parentType: CompanionFor[ResourceType] = Binding
       def apply(
           id: Option[String] = None,
           strength: BINDING_STRENGTH,
@@ -101,6 +107,8 @@ object OperationDefinition extends CompanionFor[OperationDefinition] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object ReferencedFrom extends CompanionFor[ReferencedFrom] {
       override type ResourceType = ReferencedFrom
+      override type ParentType   = ReferencedFrom
+      override val parentType: CompanionFor[ResourceType] = ReferencedFrom
       def apply(
           id: Option[String] = None,
           source: String,
@@ -326,6 +334,8 @@ object OperationDefinition extends CompanionFor[OperationDefinition] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Overload extends CompanionFor[Overload] {
     override type ResourceType = Overload
+    override type ParentType   = Overload
+    override val parentType: CompanionFor[ResourceType] = Overload
     def apply(
         id: Option[String] = None,
         comment: Option[String] = None,

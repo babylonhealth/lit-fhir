@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
   override type ResourceType = CompartmentDefinition
+  override type ParentType   = CompartmentDefinition
   override val baseType: CompanionFor[ResourceType] = CompartmentDefinition
+  override val parentType: CompanionFor[ParentType] = CompartmentDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CompartmentDefinition")
   object Resource extends CompanionFor[Resource] {
     override type ResourceType = Resource
+    override type ParentType   = Resource
+    override val parentType: CompanionFor[ResourceType] = Resource
     def apply(
         id: Option[String] = None,
         code: RESOURCE_TYPES,

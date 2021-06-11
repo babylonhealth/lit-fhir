@@ -25,13 +25,19 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object AuditEvent extends CompanionFor[AuditEvent] {
   override type ResourceType = AuditEvent
+  override type ParentType   = AuditEvent
   override val baseType: CompanionFor[ResourceType] = AuditEvent
+  override val parentType: CompanionFor[ParentType] = AuditEvent
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/AuditEvent")
   object Entity extends CompanionFor[Entity] {
     override type ResourceType = Entity
+    override type ParentType   = Entity
+    override val parentType: CompanionFor[ResourceType] = Entity
     object Detail extends CompanionFor[Detail] {
       override type ResourceType = Detail
-      type ValueChoice           = Choice[Union00483057553]
+      override type ParentType   = Detail
+      override val parentType: CompanionFor[ResourceType] = Detail
+      type ValueChoice = Choice[Union00483057553]
       def apply(
           id: Option[String] = None,
           `type`: String,
@@ -231,8 +237,12 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Agent extends CompanionFor[Agent] {
     override type ResourceType = Agent
+    override type ParentType   = Agent
+    override val parentType: CompanionFor[ResourceType] = Agent
     object Network extends CompanionFor[Network] {
       override type ResourceType = Network
+      override type ParentType   = Network
+      override val parentType: CompanionFor[ResourceType] = Network
       def apply(
           id: Option[String] = None,
           `type`: Option[NETWORK_TYPE] = None,
@@ -450,6 +460,8 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Source extends CompanionFor[Source] {
     override type ResourceType = Source
+    override type ParentType   = Source
+    override val parentType: CompanionFor[ResourceType] = Source
     def apply(
         id: Option[String] = None,
         site: Option[String] = None,

@@ -25,10 +25,14 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Provenance extends CompanionFor[Provenance] {
   override type ResourceType = Provenance
+  override type ParentType   = Provenance
   override val baseType: CompanionFor[ResourceType] = Provenance
+  override val parentType: CompanionFor[ParentType] = Provenance
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Provenance")
   object Entity extends CompanionFor[Entity] {
     override type ResourceType = Entity
+    override type ParentType   = Entity
+    override val parentType: CompanionFor[ResourceType] = Entity
     def apply(
         id: Option[String] = None,
         role: PROVENANCE_ENTITY_ROLE,
@@ -99,6 +103,8 @@ object Provenance extends CompanionFor[Provenance] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Agent extends CompanionFor[Agent] {
     override type ResourceType = Agent
+    override type ParentType   = Agent
+    override val parentType: CompanionFor[ResourceType] = Agent
     def apply(
         id: Option[String] = None,
         who: Reference,
