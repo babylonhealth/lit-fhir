@@ -24,6 +24,12 @@ trait OptionSugar {
 case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor[_]](o: O, c: C) {
   def updating[T](fieldSelection: C => FHIRComponentFieldMeta[T])(fn: T => T): O =
     o.`with`[T, O](fieldSelection(c))(fn)
+  def setting[T](fieldSelection: C => FHIRComponentFieldMeta[T])(value: T): O =
+    o.sett[T, O](fieldSelection(c))(value)
+  def updateIfExists[T](fieldSelection: C => FHIRComponentFieldMeta[Option[T]])(fn: T => T): O =
+    o.`with`[Option[T], O](fieldSelection(c))(_ map fn)
+  def updateAll[T](fieldSelection: C => FHIRComponentFieldMeta[LitSeq[T]])(fn: T => T): O =
+    o.`with`[LitSeq[T], O](fieldSelection(c))(_ map fn)
 }
 
 abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: ClassTag[T @uncheckedVariance])
@@ -37,7 +43,8 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
 
   final private[core] def leastParentWithField(
       f: FHIRComponentFieldMeta[_],
-      chain: List[CompanionFor[_]] = Nil): CompanionFor[_ <: ResourceType] = {
+      chain: List[CompanionFor[_]] = Nil
+  ): CompanionFor[_ <: ResourceType] = {
     if (fieldsMeta.contains(f)) this.asInstanceOf[CompanionFor[_ <: ResourceType]]
     else if (parentType eq this)
       throw new RuntimeException(s"Unable to find field matching $f in ${chain.map(_.thisName).mkString(" <: ")}")

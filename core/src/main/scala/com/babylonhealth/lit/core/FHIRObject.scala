@@ -5,6 +5,7 @@ import scala.reflect.{ ClassTag, classTag }
 import scala.reflect.runtime.universe.{ RuntimeClass, typeOf }
 
 import cats.Monad
+import com.babylonhealth.lit.core
 import izumi.reflect.macrortti.LTag
 import com.babylonhealth.lit.core.TagSummoners.lTypeOf
 import com.babylonhealth.lit.core.model.{ Element, Extension, intSubSuffixes, stringSubSuffixes, typeSuffixMap }
@@ -33,11 +34,12 @@ abstract class FHIRObject(
   def updatePrimitiveAttributes(fn: FieldToElementLookup => FieldToElementLookup): this.type =
     withPrimitiveAttributes(fn(primitiveAttributes))
 
+  // This form is potentially not typesafe (one can call it on any resource with any meta field), but it should either
+  // always or never throw on a given resourceType at a particular call-site.
+  // Prefer updating/setting/updateIfExists/updateAll from the implicitly-summoned `ObjectAndCompanion`
   def `with`[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
-//      selectField: CompanionFor[UpType] => FHIRComponentFieldMeta[T]
       field: FHIRComponentFieldMeta[T]
   )(fn: T => T): UpType = {
-//    val field: FHIRComponentFieldMeta[T]                                   = selectField(companion.baseType)
     val levelToGoTo: CompanionFor[_ <: companion.ResourceType] = companion.leastParentWithField(field)
     val currentValue = levelToGoTo
       .fieldsFromParent(this.asInstanceOf[levelToGoTo.ResourceType])
@@ -48,6 +50,14 @@ abstract class FHIRObject(
       .asInstanceOf[T]
     val newVal = fn(currentValue)
     withFieldUnsafe[T, UpType](field.name, newVal)
+  }
+  def sett[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
+      field: FHIRComponentFieldMeta[T]
+  )(newVal: T): UpType = {
+    val parent: CompanionFor[_ <: companion.ResourceType] = companion.leastParentWithField(field)
+    withFieldUnsafe[T, companion.ResourceType](field.name, newVal)(
+      parent.thisClassTag.asInstanceOf[ClassTag[companion.ResourceType]],
+      parent.thisTypeTag.asInstanceOf[LTag[companion.ResourceType]]).asInstanceOf[UpType]
   }
   val extensions = new {
     def update(field: FHIRComponentFieldMeta[_])(
