@@ -10,7 +10,7 @@ import scala.util.{ Failure, Success, Try }
 import io.circe.{ Decoder, DecodingFailure, HCursor }
 import izumi.reflect.macrortti.LTag
 import org.slf4j.{ Logger, LoggerFactory }
-import com.babylonhealth.lit.core.model.{ Element, Resource, resourceTypeLookup, urlLookup }
+import com.babylonhealth.lit.core.model.{ Element, Extension, Resource, resourceTypeLookup, urlLookup }
 
 trait OptionSugar {
   implicit class RichT[T](val t: T) {
@@ -30,6 +30,15 @@ case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor
     o.updateFromField[Option[T], O](fieldSelection(c))(_ map fn)
   def updateAll[T](fieldSelection: C => FHIRComponentFieldMeta[LitSeq[T]])(fn: T => T): O =
     o.updateFromField[LitSeq[T], O](fieldSelection(c))(_ map fn)
+  def updateExtensions(field: C => FHIRComponentFieldMeta[_])(update: LitSeq[Extension] => LitSeq[Extension]): O =
+    o.extensions.update(field(c))(update)
+  def updateIds(field: C => FHIRComponentFieldMeta[_])(update: Option[String] => Option[String]): O =
+    o.ids.update(field(c))(update)
+  def setExtensions(field: C => FHIRComponentFieldMeta[_])(extension: LitSeq[Extension]): O =
+    o.extensions.set(field(c))(extension)
+  def setIds(field: C => FHIRComponentFieldMeta[_])(id: Option[String]): O    = o.ids.set(field(c))(id)
+  def getExtensions(field: C => FHIRComponentFieldMeta[_]): LitSeq[Extension] = o.extensions.get(field(c))
+  def getIds(field: C => FHIRComponentFieldMeta[_]): Option[String]           = o.ids.get(field(c))
 }
 
 abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: ClassTag[T @uncheckedVariance])
