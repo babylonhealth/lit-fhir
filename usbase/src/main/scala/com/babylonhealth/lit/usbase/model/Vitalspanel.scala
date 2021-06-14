@@ -25,8 +25,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Vitalspanel extends CompanionFor[Vitalspanel] {
+  implicit def summonObjectAndCompanionVitalspanel1155523574(
+      o: Vitalspanel): ObjectAndCompanion[Vitalspanel, Vitalspanel.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Observation
+  override type ParentType   = Vitalsigns
   override val baseType: CompanionFor[ResourceType] = Observation
+  override val parentType: CompanionFor[ParentType] = Vitalsigns
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/vitalspanel")
   type EffectiveChoice = Choice[Union_0934386166]
   def apply(

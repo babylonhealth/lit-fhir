@@ -24,13 +24,25 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MolecularSequence extends CompanionFor[MolecularSequence] {
+  implicit def summonObjectAndCompanionMolecularSequence1402502961(
+      o: MolecularSequence): ObjectAndCompanion[MolecularSequence, MolecularSequence.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MolecularSequence
+  override type ParentType   = MolecularSequence
   override val baseType: CompanionFor[ResourceType] = MolecularSequence
+  override val parentType: CompanionFor[ParentType] = MolecularSequence
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MolecularSequence")
   object StructureVariant extends CompanionFor[StructureVariant] {
+    implicit def summonObjectAndCompanionStructureVariant_407752872(
+        o: StructureVariant): ObjectAndCompanion[StructureVariant, StructureVariant.type] = ObjectAndCompanion(o, this)
     override type ResourceType = StructureVariant
+    override type ParentType   = StructureVariant
+    override val parentType: CompanionFor[ResourceType] = StructureVariant
     object Outer extends CompanionFor[Outer] {
+      implicit def summonObjectAndCompanionOuter_718518432(o: Outer): ObjectAndCompanion[Outer, Outer.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Outer
+      override type ParentType   = Outer
+      override val parentType: CompanionFor[ResourceType] = Outer
       def apply(
           id: Option[String] = None,
           end: Option[Int] = None,
@@ -93,7 +105,11 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Inner extends CompanionFor[Inner] {
+      implicit def summonObjectAndCompanionInner_650628805(o: Inner): ObjectAndCompanion[Inner, Inner.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Inner
+      override type ParentType   = Inner
+      override val parentType: CompanionFor[ResourceType] = Inner
       def apply(
           id: Option[String] = None,
           end: Option[Int] = None,
@@ -239,7 +255,11 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ReferenceSeq extends CompanionFor[ReferenceSeq] {
+    implicit def summonObjectAndCompanionReferenceSeq_1318259111(
+        o: ReferenceSeq): ObjectAndCompanion[ReferenceSeq, ReferenceSeq.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ReferenceSeq
+    override type ParentType   = ReferenceSeq
+    override val parentType: CompanionFor[ResourceType] = ReferenceSeq
     def apply(
         id: Option[String] = None,
         strand: Option[STRAND_TYPE] = None,
@@ -376,9 +396,17 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Quality extends CompanionFor[Quality] {
+    implicit def summonObjectAndCompanionQuality_1402654486(o: Quality): ObjectAndCompanion[Quality, Quality.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Quality
+    override type ParentType   = Quality
+    override val parentType: CompanionFor[ResourceType] = Quality
     object Roc extends CompanionFor[Roc] {
+      implicit def summonObjectAndCompanionRoc_1195414897(o: Roc): ObjectAndCompanion[Roc, Roc.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Roc
+      override type ParentType   = Roc
+      override val parentType: CompanionFor[ResourceType] = Roc
       def apply(
           id: Option[String] = None,
           score: LitSeq[Int] = LitSeq.empty,
@@ -678,7 +706,11 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Repository extends CompanionFor[Repository] {
+    implicit def summonObjectAndCompanionRepository958228062(
+        o: Repository): ObjectAndCompanion[Repository, Repository.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Repository
+    override type ParentType   = Repository
+    override val parentType: CompanionFor[ResourceType] = Repository
     def apply(
         id: Option[String] = None,
         url: Option[UriStr] = None,
@@ -770,7 +802,11 @@ object MolecularSequence extends CompanionFor[MolecularSequence] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Variant extends CompanionFor[Variant] {
+    implicit def summonObjectAndCompanionVariant_1953348921(o: Variant): ObjectAndCompanion[Variant, Variant.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Variant
+    override type ParentType   = Variant
+    override val parentType: CompanionFor[ResourceType] = Variant
     def apply(
         id: Option[String] = None,
         end: Option[Int] = None,

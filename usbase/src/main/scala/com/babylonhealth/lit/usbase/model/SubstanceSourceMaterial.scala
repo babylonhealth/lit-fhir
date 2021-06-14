@@ -24,13 +24,26 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceSourceMaterial extends CompanionFor[SubstanceSourceMaterial] {
+  implicit def summonObjectAndCompanionSubstanceSourceMaterial_532280209(
+      o: SubstanceSourceMaterial): ObjectAndCompanion[SubstanceSourceMaterial, SubstanceSourceMaterial.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = SubstanceSourceMaterial
+  override type ParentType   = SubstanceSourceMaterial
   override val baseType: CompanionFor[ResourceType] = SubstanceSourceMaterial
+  override val parentType: CompanionFor[ParentType] = SubstanceSourceMaterial
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceSourceMaterial")
   object Organism extends CompanionFor[Organism] {
+    implicit def summonObjectAndCompanionOrganism625268825(o: Organism): ObjectAndCompanion[Organism, Organism.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Organism
+    override type ParentType   = Organism
+    override val parentType: CompanionFor[ResourceType] = Organism
     object Author extends CompanionFor[Author] {
+      implicit def summonObjectAndCompanionAuthor_168151660(o: Author): ObjectAndCompanion[Author, Author.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Author
+      override type ParentType   = Author
+      override val parentType: CompanionFor[ResourceType] = Author
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -95,7 +108,11 @@ object SubstanceSourceMaterial extends CompanionFor[SubstanceSourceMaterial] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Hybrid extends CompanionFor[Hybrid] {
+      implicit def summonObjectAndCompanionHybrid_2107848033(o: Hybrid): ObjectAndCompanion[Hybrid, Hybrid.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Hybrid
+      override type ParentType   = Hybrid
+      override val parentType: CompanionFor[ResourceType] = Hybrid
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -197,7 +214,11 @@ object SubstanceSourceMaterial extends CompanionFor[SubstanceSourceMaterial] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object OrganismGeneral extends CompanionFor[OrganismGeneral] {
+      implicit def summonObjectAndCompanionOrganismGeneral_553319767(
+          o: OrganismGeneral): ObjectAndCompanion[OrganismGeneral, OrganismGeneral.type] = ObjectAndCompanion(o, this)
       override type ResourceType = OrganismGeneral
+      override type ParentType   = OrganismGeneral
+      override val parentType: CompanionFor[ResourceType] = OrganismGeneral
       def apply(
           id: Option[String] = None,
           `class`: Option[CodeableConcept] = None,
@@ -406,7 +427,12 @@ object SubstanceSourceMaterial extends CompanionFor[SubstanceSourceMaterial] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object FractionDescription extends CompanionFor[FractionDescription] {
+    implicit def summonObjectAndCompanionFractionDescription_1917336077(
+        o: FractionDescription): ObjectAndCompanion[FractionDescription, FractionDescription.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = FractionDescription
+    override type ParentType   = FractionDescription
+    override val parentType: CompanionFor[ResourceType] = FractionDescription
     def apply(
         id: Option[String] = None,
         fraction: Option[String] = None,
@@ -469,7 +495,11 @@ object SubstanceSourceMaterial extends CompanionFor[SubstanceSourceMaterial] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object PartDescription extends CompanionFor[PartDescription] {
+    implicit def summonObjectAndCompanionPartDescription1243272438(
+        o: PartDescription): ObjectAndCompanion[PartDescription, PartDescription.type] = ObjectAndCompanion(o, this)
     override type ResourceType = PartDescription
+    override type ParentType   = PartDescription
+    override val parentType: CompanionFor[ResourceType] = PartDescription
     def apply(
         id: Option[String] = None,
         part: Option[CodeableConcept] = None,

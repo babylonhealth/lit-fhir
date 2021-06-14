@@ -26,8 +26,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_observation_lab extends CompanionFor[Us_core_observation_lab] {
+  implicit def summonObjectAndCompanionUs_core_observation_lab_671929939(
+      o: Us_core_observation_lab): ObjectAndCompanion[Us_core_observation_lab, Us_core_observation_lab.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Observation
+  override type ParentType   = Observation
   override val baseType: CompanionFor[ResourceType] = Observation
+  override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab")
   type ValueChoice     = Choice[Union_0802685816]

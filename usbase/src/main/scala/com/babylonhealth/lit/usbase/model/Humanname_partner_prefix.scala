@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Humanname_partner_prefix extends CompanionFor[Humanname_partner_prefix] {
+  implicit def summonObjectAndCompanionHumanname_partner_prefix_2009237365(
+      o: Humanname_partner_prefix): ObjectAndCompanion[Humanname_partner_prefix, Humanname_partner_prefix.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix")
   def apply(
       id: Option[String] = None,

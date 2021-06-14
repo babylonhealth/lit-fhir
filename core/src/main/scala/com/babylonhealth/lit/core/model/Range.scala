@@ -21,8 +21,12 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Range extends CompanionFor[Range] {
+  implicit def summonObjectAndCompanionRange2016758689(o: Range): ObjectAndCompanion[Range, Range.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Range
+  override type ParentType   = Range
   override val baseType: CompanionFor[ResourceType] = Range
+  override val parentType: CompanionFor[ParentType] = Range
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Range")
   def apply(
       id: Option[String] = None,

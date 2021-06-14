@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_sourceReference extends CompanionFor[Valueset_sourceReference] {
+  implicit def summonObjectAndCompanionValueset_sourceReference284591857(
+      o: Valueset_sourceReference): ObjectAndCompanion[Valueset_sourceReference, Valueset_sourceReference.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-sourceReference")
   def apply(
       id: Option[String] = None,

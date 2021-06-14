@@ -29,15 +29,27 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CarePlan extends CompanionFor[CarePlan] {
+  implicit def summonObjectAndCompanionCarePlan815654980(o: CarePlan): ObjectAndCompanion[CarePlan, CarePlan.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = CarePlan
+  override type ParentType   = CarePlan
   override val baseType: CompanionFor[ResourceType] = CarePlan
+  override val parentType: CompanionFor[ParentType] = CarePlan
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CarePlan")
   object Activity extends CompanionFor[Activity] {
+    implicit def summonObjectAndCompanionActivity_1253882045(o: Activity): ObjectAndCompanion[Activity, Activity.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Activity
+    override type ParentType   = Activity
+    override val parentType: CompanionFor[ResourceType] = Activity
     object Detail extends CompanionFor[Detail] {
+      implicit def summonObjectAndCompanionDetail_1197382657(o: Detail): ObjectAndCompanion[Detail, Detail.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Detail
-      type ProductChoice         = Choice[Union01025009075]
-      type ScheduledChoice       = Choice[Union01726112534]
+      override type ParentType   = Detail
+      override val parentType: CompanionFor[ResourceType] = Detail
+      type ProductChoice   = Choice[Union01025009075]
+      type ScheduledChoice = Choice[Union01726112534]
       def apply(
           id: Option[String] = None,
           kind: Option[CARE_PLAN_ACTIVITY_KIND] = None,

@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Ehrsrle_provenance extends CompanionFor[Ehrsrle_provenance] {
+  implicit def summonObjectAndCompanionEhrsrle_provenance_1217158574(
+      o: Ehrsrle_provenance): ObjectAndCompanion[Ehrsrle_provenance, Ehrsrle_provenance.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Provenance
+  override type ParentType   = Provenance
   override val baseType: CompanionFor[ResourceType] = Provenance
+  override val parentType: CompanionFor[ParentType] = Provenance
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ehrsrle-provenance")
   type OccurredChoice = Choice[Union_0934386166]
   def apply(

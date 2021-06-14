@@ -25,8 +25,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Actualgroup extends CompanionFor[Actualgroup] {
+  implicit def summonObjectAndCompanionActualgroup1314383590(
+      o: Actualgroup): ObjectAndCompanion[Actualgroup, Actualgroup.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Group
+  override type ParentType   = Group
   override val baseType: CompanionFor[ResourceType] = Group
+  override val parentType: CompanionFor[ParentType] = Group
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/actualgroup")
   def apply(
       id: Option[String] = None,

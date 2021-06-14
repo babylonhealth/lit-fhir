@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Resource_pertainsToGoal extends CompanionFor[Resource_pertainsToGoal] {
+  implicit def summonObjectAndCompanionResource_pertainsToGoal_634176408(
+      o: Resource_pertainsToGoal): ObjectAndCompanion[Resource_pertainsToGoal, Resource_pertainsToGoal.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/resource-pertainsToGoal")
   def apply(
       id: Option[String] = None,

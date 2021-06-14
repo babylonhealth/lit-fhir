@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_summary extends CompanionFor[Structuredefinition_summary] {
+  implicit def summonObjectAndCompanionStructuredefinition_summary1193408739(
+      o: Structuredefinition_summary): ObjectAndCompanion[Structuredefinition_summary, Structuredefinition_summary.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/structuredefinition-summary")
   def apply(
       id: Option[String] = None,

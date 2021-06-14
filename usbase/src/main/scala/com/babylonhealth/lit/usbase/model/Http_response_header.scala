@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Http_response_header extends CompanionFor[Http_response_header] {
+  implicit def summonObjectAndCompanionHttp_response_header1465345770(
+      o: Http_response_header): ObjectAndCompanion[Http_response_header, Http_response_header.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/http-response-header")
   def apply(
       id: Option[String] = None,

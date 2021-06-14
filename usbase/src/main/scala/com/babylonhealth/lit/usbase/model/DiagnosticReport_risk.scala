@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DiagnosticReport_risk extends CompanionFor[DiagnosticReport_risk] {
+  implicit def summonObjectAndCompanionDiagnosticReport_risk245070267(
+      o: DiagnosticReport_risk): ObjectAndCompanion[DiagnosticReport_risk, DiagnosticReport_risk.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/diagnosticReport-risk")
   def apply(
       id: Option[String] = None,

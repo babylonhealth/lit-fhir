@@ -24,13 +24,25 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Consent extends CompanionFor[Consent] {
+  implicit def summonObjectAndCompanionConsent2031953241(o: Consent): ObjectAndCompanion[Consent, Consent.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Consent
+  override type ParentType   = Consent
   override val baseType: CompanionFor[ResourceType] = Consent
+  override val parentType: CompanionFor[ParentType] = Consent
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Consent")
   object Provision extends CompanionFor[Provision] {
+    implicit def summonObjectAndCompanionProvision_1997539014(
+        o: Provision): ObjectAndCompanion[Provision, Provision.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Provision
+    override type ParentType   = Provision
+    override val parentType: CompanionFor[ResourceType] = Provision
     object Data extends CompanionFor[Data] {
+      implicit def summonObjectAndCompanionData_1037210956(o: Data): ObjectAndCompanion[Data, Data.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Data
+      override type ParentType   = Data
+      override val parentType: CompanionFor[ResourceType] = Data
       def apply(
           id: Option[String] = None,
           meaning: CONSENT_DATA_MEANING,
@@ -94,7 +106,11 @@ object Consent extends CompanionFor[Consent] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Actor extends CompanionFor[Actor] {
+      implicit def summonObjectAndCompanionActor_1330133344(o: Actor): ObjectAndCompanion[Actor, Actor.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Actor
+      override type ParentType   = Actor
+      override val parentType: CompanionFor[ResourceType] = Actor
       def apply(
           id: Option[String] = None,
           role: CodeableConcept,
@@ -311,7 +327,11 @@ object Consent extends CompanionFor[Consent] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Verification extends CompanionFor[Verification] {
+    implicit def summonObjectAndCompanionVerification1486560618(
+        o: Verification): ObjectAndCompanion[Verification, Verification.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Verification
+    override type ParentType   = Verification
+    override val parentType: CompanionFor[ResourceType] = Verification
     def apply(
         id: Option[String] = None,
         verified: Boolean,
@@ -382,7 +402,11 @@ object Consent extends CompanionFor[Consent] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Policy extends CompanionFor[Policy] {
+    implicit def summonObjectAndCompanionPolicy493133486(o: Policy): ObjectAndCompanion[Policy, Policy.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Policy
+    override type ParentType   = Policy
+    override val parentType: CompanionFor[ResourceType] = Policy
     def apply(
         id: Option[String] = None,
         uri: Option[UriStr] = None,

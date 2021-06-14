@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Condition_ruledOut extends CompanionFor[Condition_ruledOut] {
+  implicit def summonObjectAndCompanionCondition_ruledOut_887714800(
+      o: Condition_ruledOut): ObjectAndCompanion[Condition_ruledOut, Condition_ruledOut.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/condition-ruledOut")
   def apply(
       id: Option[String] = None,

@@ -24,8 +24,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EntryFormat extends CompanionFor[EntryFormat] {
+  implicit def summonObjectAndCompanionEntryFormat845864792(
+      o: EntryFormat): ObjectAndCompanion[EntryFormat, EntryFormat.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/entryFormat")
   def apply(
       id: Option[String] = None,

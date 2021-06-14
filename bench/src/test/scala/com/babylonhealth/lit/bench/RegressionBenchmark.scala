@@ -86,7 +86,7 @@ object RegressionBenchmarks6 extends RegressionBenchmark {
 object RegressionBenchmarks7 extends RegressionBenchmark {
   performance of "lit_resource" in {
     measure method "update" in {
-      using(singleTest) in (_ => sampleResource.updateType(_ => BUNDLE_TYPE.SEARCHSET))
+      using(singleTest) in (_ => sampleResource.update(_.`type`)(_ => BUNDLE_TYPE.SEARCHSET))
     }
   }
 

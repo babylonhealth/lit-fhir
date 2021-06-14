@@ -24,11 +24,19 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DetectedIssue extends CompanionFor[DetectedIssue] {
+  implicit def summonObjectAndCompanionDetectedIssue_418892300(
+      o: DetectedIssue): ObjectAndCompanion[DetectedIssue, DetectedIssue.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DetectedIssue
+  override type ParentType   = DetectedIssue
   override val baseType: CompanionFor[ResourceType] = DetectedIssue
+  override val parentType: CompanionFor[ParentType] = DetectedIssue
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DetectedIssue")
   object Mitigation extends CompanionFor[Mitigation] {
+    implicit def summonObjectAndCompanionMitigation1683094474(
+        o: Mitigation): ObjectAndCompanion[Mitigation, Mitigation.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Mitigation
+    override type ParentType   = Mitigation
+    override val parentType: CompanionFor[ResourceType] = Mitigation
     def apply(
         id: Option[String] = None,
         date: Option[FHIRDateTime] = None,
@@ -98,7 +106,11 @@ object DetectedIssue extends CompanionFor[DetectedIssue] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Evidence extends CompanionFor[Evidence] {
+    implicit def summonObjectAndCompanionEvidence73003771(o: Evidence): ObjectAndCompanion[Evidence, Evidence.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Evidence
+    override type ParentType   = Evidence
+    override val parentType: CompanionFor[ResourceType] = Evidence
     def apply(
         id: Option[String] = None,
         code: LitSeq[CodeableConcept] = LitSeq.empty,

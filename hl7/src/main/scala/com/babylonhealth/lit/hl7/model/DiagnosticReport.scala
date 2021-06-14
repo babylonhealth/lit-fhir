@@ -24,11 +24,19 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DiagnosticReport extends CompanionFor[DiagnosticReport] {
+  implicit def summonObjectAndCompanionDiagnosticReport_1757084483(
+      o: DiagnosticReport): ObjectAndCompanion[DiagnosticReport, DiagnosticReport.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DiagnosticReport
+  override type ParentType   = DiagnosticReport
   override val baseType: CompanionFor[ResourceType] = DiagnosticReport
+  override val parentType: CompanionFor[ParentType] = DiagnosticReport
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DiagnosticReport")
   object Media extends CompanionFor[Media] {
+    implicit def summonObjectAndCompanionMedia_806074983(o: Media): ObjectAndCompanion[Media, Media.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Media
+    override type ParentType   = Media
+    override val parentType: CompanionFor[ResourceType] = Media
     def apply(
         id: Option[String] = None,
         link: Reference,

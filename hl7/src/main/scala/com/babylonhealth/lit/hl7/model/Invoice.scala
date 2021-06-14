@@ -24,13 +24,25 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Invoice extends CompanionFor[Invoice] {
+  implicit def summonObjectAndCompanionInvoice283099885(o: Invoice): ObjectAndCompanion[Invoice, Invoice.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Invoice
+  override type ParentType   = Invoice
   override val baseType: CompanionFor[ResourceType] = Invoice
+  override val parentType: CompanionFor[ParentType] = Invoice
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Invoice")
   object LineItem extends CompanionFor[LineItem] {
+    implicit def summonObjectAndCompanionLineItem1733284199(o: LineItem): ObjectAndCompanion[LineItem, LineItem.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = LineItem
+    override type ParentType   = LineItem
+    override val parentType: CompanionFor[ResourceType] = LineItem
     object PriceComponent extends CompanionFor[PriceComponent] {
+      implicit def summonObjectAndCompanionPriceComponent_801785913(
+          o: PriceComponent): ObjectAndCompanion[PriceComponent, PriceComponent.type] = ObjectAndCompanion(o, this)
       override type ResourceType = PriceComponent
+      override type ParentType   = PriceComponent
+      override val parentType: CompanionFor[ResourceType] = PriceComponent
       def apply(
           id: Option[String] = None,
           `type`: INVOICE_PRICECOMPONENTTYPE,
@@ -183,7 +195,11 @@ object Invoice extends CompanionFor[Invoice] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Participant extends CompanionFor[Participant] {
+    implicit def summonObjectAndCompanionParticipant_1514259532(
+        o: Participant): ObjectAndCompanion[Participant, Participant.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Participant
+    override type ParentType   = Participant
+    override val parentType: CompanionFor[ResourceType] = Participant
     def apply(
         id: Option[String] = None,
         role: Option[CodeableConcept] = None,

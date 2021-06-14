@@ -21,8 +21,12 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Duration extends CompanionFor[Duration] {
+  implicit def summonObjectAndCompanionDuration1993583550(o: Duration): ObjectAndCompanion[Duration, Duration.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Duration
+  override type ParentType   = Duration
   override val baseType: CompanionFor[ResourceType] = Duration
+  override val parentType: CompanionFor[ParentType] = Duration
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Duration")
   def apply(
       id: Option[String] = None,

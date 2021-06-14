@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Contactpoint_extension extends CompanionFor[Contactpoint_extension] {
+  implicit def summonObjectAndCompanionContactpoint_extension986944357(
+      o: Contactpoint_extension): ObjectAndCompanion[Contactpoint_extension, Contactpoint_extension.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/contactpoint-extension")
   def apply(
       id: Option[String] = None,

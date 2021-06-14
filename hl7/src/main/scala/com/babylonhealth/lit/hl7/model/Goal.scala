@@ -24,13 +24,21 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Goal extends CompanionFor[Goal] {
+  implicit def summonObjectAndCompanionGoal_1296351574(o: Goal): ObjectAndCompanion[Goal, Goal.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Goal
+  override type ParentType   = Goal
   override val baseType: CompanionFor[ResourceType] = Goal
+  override val parentType: CompanionFor[ParentType] = Goal
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Goal")
   object Target extends CompanionFor[Target] {
+    implicit def summonObjectAndCompanionTarget1285289013(o: Target): ObjectAndCompanion[Target, Target.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Target
-    type DueChoice             = Choice[Union01219602913]
-    type DetailChoice          = Choice[Union01056080496]
+    override type ParentType   = Target
+    override val parentType: CompanionFor[ResourceType] = Target
+    type DueChoice    = Choice[Union01219602913]
+    type DetailChoice = Choice[Union01056080496]
     def apply(
         id: Option[String] = None,
         due: Option[Target.DueChoice] = None,

@@ -24,11 +24,20 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationAdministration extends CompanionFor[MedicationAdministration] {
+  implicit def summonObjectAndCompanionMedicationAdministration_941000860(
+      o: MedicationAdministration): ObjectAndCompanion[MedicationAdministration, MedicationAdministration.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = MedicationAdministration
+  override type ParentType   = MedicationAdministration
   override val baseType: CompanionFor[ResourceType] = MedicationAdministration
+  override val parentType: CompanionFor[ParentType] = MedicationAdministration
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicationAdministration")
   object Performer extends CompanionFor[Performer] {
+    implicit def summonObjectAndCompanionPerformer_1388735003(
+        o: Performer): ObjectAndCompanion[Performer, Performer.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Performer
+    override type ParentType   = Performer
+    override val parentType: CompanionFor[ResourceType] = Performer
     def apply(
         id: Option[String] = None,
         actor: Reference,
@@ -91,8 +100,12 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Dosage extends CompanionFor[Dosage] {
+    implicit def summonObjectAndCompanionDosage_500320078(o: Dosage): ObjectAndCompanion[Dosage, Dosage.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Dosage
-    type RateChoice            = Choice[Union_0964108894]
+    override type ParentType   = Dosage
+    override val parentType: CompanionFor[ResourceType] = Dosage
+    type RateChoice = Choice[Union_0964108894]
     def apply(
         id: Option[String] = None,
         text: Option[String] = None,

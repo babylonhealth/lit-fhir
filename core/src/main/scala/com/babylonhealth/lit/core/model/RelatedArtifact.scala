@@ -21,8 +21,12 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RelatedArtifact extends CompanionFor[RelatedArtifact] {
+  implicit def summonObjectAndCompanionRelatedArtifact917952826(
+      o: RelatedArtifact): ObjectAndCompanion[RelatedArtifact, RelatedArtifact.type] = ObjectAndCompanion(o, this)
   override type ResourceType = RelatedArtifact
+  override type ParentType   = RelatedArtifact
   override val baseType: CompanionFor[ResourceType] = RelatedArtifact
+  override val parentType: CompanionFor[ParentType] = RelatedArtifact
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RelatedArtifact")
   def apply(
       id: Option[String] = None,

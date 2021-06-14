@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Operationdefinition_allowed_type extends CompanionFor[Operationdefinition_allowed_type] {
+  implicit def summonObjectAndCompanionOperationdefinition_allowed_type1259105440(
+      o: Operationdefinition_allowed_type): ObjectAndCompanion[Operationdefinition_allowed_type, Operationdefinition_allowed_type.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type")
   def apply(

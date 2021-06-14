@@ -32,8 +32,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_medicationrequest extends CompanionFor[Us_core_medicationrequest] {
+  implicit def summonObjectAndCompanionUs_core_medicationrequest_1407926957(
+      o: Us_core_medicationrequest): ObjectAndCompanion[Us_core_medicationrequest, Us_core_medicationrequest.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = MedicationRequest
+  override type ParentType   = MedicationRequest
   override val baseType: CompanionFor[ResourceType] = MedicationRequest
+  override val parentType: CompanionFor[ParentType] = MedicationRequest
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationrequest")
   type ReportedChoice   = Choice[Union_1524702593]

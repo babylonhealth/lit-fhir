@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Concept_bidirectional extends CompanionFor[Concept_bidirectional] {
+  implicit def summonObjectAndCompanionConcept_bidirectional_528455996(
+      o: Concept_bidirectional): ObjectAndCompanion[Concept_bidirectional, Concept_bidirectional.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/concept-bidirectional")
   def apply(
       id: Option[String] = None,

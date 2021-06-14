@@ -2,15 +2,18 @@ package com.babylonhealth.lit.hl7.mutation
 
 import java.time.{ LocalTime, ZonedDateTime }
 
+import scala.reflect.runtime.universe.ModuleSymbol
+
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
-
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.PseudoLenses._
 import com.babylonhealth.lit.core.model._
-import com.babylonhealth.lit.core.{ Choice, LitSeq, \/ }
+import com.babylonhealth.lit.core.{ Choice, CompanionFor, FHIRComponentFieldMeta, FHIRObject, LitSeq, Utils, \/ }
 import com.babylonhealth.lit.hl7.{ BUNDLE_TYPE, OBSERVATION_STATUS }
 import com.babylonhealth.lit.hl7.model._
+import izumi.reflect.macrortti.LTag
+import shapeless.ops.zipper.Up
 
 class FauxLensTest extends AnyFreeSpec with Matchers {
   val subjects: Seq[(Reference, Coding)] = Seq(
@@ -68,6 +71,44 @@ class FauxLensTest extends AnyFreeSpec with Matchers {
   "Can modify a field with a keyword name (withType)" in {
     val e                    = ElementDefinition(path = "Observation.value[x]")
     val x: ElementDefinition = e.updateType(_ => LitSeq(ElementDefinition.Type(code = "Quantity")))
+    x.`type` shouldEqual LitSeq(ElementDefinition.Type(code = "Quantity"))
+  }
+  "Can modify a field with a keyword name (update)" in {
+    val e = ElementDefinition(path = "Observation.value[x]")
+    val x: ElementDefinition =
+      e.updateFromField(ElementDefinition.`type`)(_ => LitSeq(ElementDefinition.Type(code = "Quantity")))
+    x.`type` shouldEqual LitSeq(ElementDefinition.Type(code = "Quantity"))
+  }
+
+//  implicit
+//  case class HALP[O <: FHIRObject: LTag, C <: CompanionFor[_]](o: O, c: C) {
+//    def updating[T](fieldSelection: c.type => FHIRComponentFieldMeta[T])(fn: T => T): O =
+//      o.`with`[T, O](fieldSelection(c))(fn)(
+//        o.companion.baseType.thisClassTag.asInstanceOf,
+//        o.companion.baseType.thisTypeTag.asInstanceOf)
+//  }
+//  implicit def mkHALP[O <: FHIRObject: LTag](o: O)(implicit
+//      @inline c: CompanionFor[O] = o.companionOf[O](o.companion.thisTypeTag.asInstanceOf[LTag[O]])): HALP[O, c.type] = HALP(o, c)
+//  object Tmp extends com.babylonhealth.lit.core.Utils {
+//  def foo[T <: FHIRObject: LTag] = Utils.mirror
+//    .reflectModule(
+//      Utils.mirror.classSymbol(Class.forName(companionClassName(LTag[T]))).companion.asInstanceOf[ModuleSymbol])
+//    .instance
+//  type Foo[T <: FHIRObject: LTag] = companionOf[T].type
+//}
+//  implicit class RicherFHIRObject[O <: FHIRObject: LTag](o: O) {
+//    def updating[T](fieldSelection:( Up => FHIRComponentFieldMeta[T] forSome { type Up = o.companionOf[O].type})(fn: T => T): O =
+//      o.`with`[T, O](fieldSelection(c))(fn)(
+//        o.companion.baseType.thisClassTag.asInstanceOf,
+//        o.companion.baseType.thisTypeTag.asInstanceOf)
+//  }
+//  @inline implicit def mkThing[T <: FHIRObject](o: T): HALP[T, valueOf[CompanionFor[T]]] = {
+//    val c = Tmp.companionOf[T]
+//    HALP[T, c.type](o, c)
+//  }
+  "Can modify a field with a keyword name (update sugar)" in {
+    val e: ElementDefinition = ElementDefinition(path = "Observation.value[x]")
+    val x: ElementDefinition = e.update[LitSeq[ElementDefinition.Type]](_.`type`)(_ => LitSeq(ElementDefinition.Type(code = "Quantity")))
     x.`type` shouldEqual LitSeq(ElementDefinition.Type(code = "Quantity"))
   }
   "Can modify a series of nested fields in a reasonably ergonomic and safe way" in {

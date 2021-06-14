@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_minValueSet extends CompanionFor[Elementdefinition_minValueSet] {
+  implicit def summonObjectAndCompanionElementdefinition_minValueSet_1001437180(
+      o: Elementdefinition_minValueSet): ObjectAndCompanion[Elementdefinition_minValueSet, Elementdefinition_minValueSet.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/elementdefinition-minValueSet")
   type ValueChoice = Choice[Union00545979821]

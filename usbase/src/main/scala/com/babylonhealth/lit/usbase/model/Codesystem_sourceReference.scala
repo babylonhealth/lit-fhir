@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_sourceReference extends CompanionFor[Codesystem_sourceReference] {
+  implicit def summonObjectAndCompanionCodesystem_sourceReference_449338922(
+      o: Codesystem_sourceReference): ObjectAndCompanion[Codesystem_sourceReference, Codesystem_sourceReference.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/codesystem-sourceReference")
   def apply(
       id: Option[String] = None,

@@ -26,8 +26,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_careteam extends CompanionFor[Us_core_careteam] {
+  implicit def summonObjectAndCompanionUs_core_careteam1215165486(
+      o: Us_core_careteam): ObjectAndCompanion[Us_core_careteam, Us_core_careteam.type] = ObjectAndCompanion(o, this)
   override type ResourceType = CareTeam
+  override type ParentType   = CareTeam
   override val baseType: CompanionFor[ResourceType] = CareTeam
+  override val parentType: CompanionFor[ParentType] = CareTeam
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam")
   def apply(
       id: Option[String] = None,

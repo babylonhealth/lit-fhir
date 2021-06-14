@@ -26,8 +26,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_immunization extends CompanionFor[Us_core_immunization] {
+  implicit def summonObjectAndCompanionUs_core_immunization_400019427(
+      o: Us_core_immunization): ObjectAndCompanion[Us_core_immunization, Us_core_immunization.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Immunization
+  override type ParentType   = Immunization
   override val baseType: CompanionFor[ResourceType] = Immunization
+  override val parentType: CompanionFor[ParentType] = Immunization
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization")
   type OccurrenceChoice = Choice[Union_1715923163]
   def apply(

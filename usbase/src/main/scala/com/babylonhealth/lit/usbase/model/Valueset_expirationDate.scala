@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_expirationDate extends CompanionFor[Valueset_expirationDate] {
+  implicit def summonObjectAndCompanionValueset_expirationDate_2122447446(
+      o: Valueset_expirationDate): ObjectAndCompanion[Valueset_expirationDate, Valueset_expirationDate.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-expirationDate")
   def apply(
       id: Option[String] = None,

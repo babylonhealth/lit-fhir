@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_bestpractice extends CompanionFor[Elementdefinition_bestpractice] {
+  implicit def summonObjectAndCompanionElementdefinition_bestpractice1416089088(
+      o: Elementdefinition_bestpractice): ObjectAndCompanion[Elementdefinition_bestpractice, Elementdefinition_bestpractice.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice")
   type ValueChoice = Choice[Union_1768247138]

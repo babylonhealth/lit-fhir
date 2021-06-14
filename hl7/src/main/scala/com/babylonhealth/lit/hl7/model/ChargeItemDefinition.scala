@@ -24,13 +24,26 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ChargeItemDefinition extends CompanionFor[ChargeItemDefinition] {
+  implicit def summonObjectAndCompanionChargeItemDefinition_1446763626(
+      o: ChargeItemDefinition): ObjectAndCompanion[ChargeItemDefinition, ChargeItemDefinition.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = ChargeItemDefinition
+  override type ParentType   = ChargeItemDefinition
   override val baseType: CompanionFor[ResourceType] = ChargeItemDefinition
+  override val parentType: CompanionFor[ParentType] = ChargeItemDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ChargeItemDefinition")
   object PropertyGroup extends CompanionFor[PropertyGroup] {
+    implicit def summonObjectAndCompanionPropertyGroup1825231222(
+        o: PropertyGroup): ObjectAndCompanion[PropertyGroup, PropertyGroup.type] = ObjectAndCompanion(o, this)
     override type ResourceType = PropertyGroup
+    override type ParentType   = PropertyGroup
+    override val parentType: CompanionFor[ResourceType] = PropertyGroup
     object PriceComponent extends CompanionFor[PriceComponent] {
+      implicit def summonObjectAndCompanionPriceComponent_1998872878(
+          o: PriceComponent): ObjectAndCompanion[PriceComponent, PriceComponent.type] = ObjectAndCompanion(o, this)
       override type ResourceType = PriceComponent
+      override type ParentType   = PriceComponent
+      override val parentType: CompanionFor[ResourceType] = PriceComponent
       def apply(
           id: Option[String] = None,
           `type`: INVOICE_PRICECOMPONENTTYPE,
@@ -179,7 +192,11 @@ object ChargeItemDefinition extends CompanionFor[ChargeItemDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Applicability extends CompanionFor[Applicability] {
+    implicit def summonObjectAndCompanionApplicability_2030874564(
+        o: Applicability): ObjectAndCompanion[Applicability, Applicability.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Applicability
+    override type ParentType   = Applicability
+    override val parentType: CompanionFor[ResourceType] = Applicability
     def apply(
         id: Option[String] = None,
         language: Option[String] = None,

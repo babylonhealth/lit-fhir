@@ -24,8 +24,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MinValue extends CompanionFor[MinValue] {
+  implicit def summonObjectAndCompanionMinValue_1047861612(o: MinValue): ObjectAndCompanion[MinValue, MinValue.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/minValue")
   type ValueChoice = Choice[Union01613806391]
   def apply(

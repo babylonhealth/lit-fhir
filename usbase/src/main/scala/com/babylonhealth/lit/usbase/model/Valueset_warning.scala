@@ -24,8 +24,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_warning extends CompanionFor[Valueset_warning] {
+  implicit def summonObjectAndCompanionValueset_warning_832775730(
+      o: Valueset_warning): ObjectAndCompanion[Valueset_warning, Valueset_warning.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-warning")
   def apply(
       id: Option[String] = None,

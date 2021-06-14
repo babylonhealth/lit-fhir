@@ -24,8 +24,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_author extends CompanionFor[Codesystem_author] {
+  implicit def summonObjectAndCompanionCodesystem_author2005125556(
+      o: Codesystem_author): ObjectAndCompanion[Codesystem_author, Codesystem_author.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/codesystem-author")
   def apply(
       id: Option[String] = None,

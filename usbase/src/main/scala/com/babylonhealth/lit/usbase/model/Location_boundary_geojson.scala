@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Location_boundary_geojson extends CompanionFor[Location_boundary_geojson] {
+  implicit def summonObjectAndCompanionLocation_boundary_geojson2133440427(
+      o: Location_boundary_geojson): ObjectAndCompanion[Location_boundary_geojson, Location_boundary_geojson.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/location-boundary-geojson")
   def apply(
       id: Option[String] = None,

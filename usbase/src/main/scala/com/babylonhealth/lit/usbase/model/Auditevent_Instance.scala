@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Auditevent_Instance extends CompanionFor[Auditevent_Instance] {
+  implicit def summonObjectAndCompanionAuditevent_Instance_1115074495(
+      o: Auditevent_Instance): ObjectAndCompanion[Auditevent_Instance, Auditevent_Instance.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/auditevent-Instance")
   def apply(
       id: Option[String] = None,

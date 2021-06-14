@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_ADXP_houseNumber extends CompanionFor[Iso21090_ADXP_houseNumber] {
+  implicit def summonObjectAndCompanionIso21090_ADXP_houseNumber_135889553(
+      o: Iso21090_ADXP_houseNumber): ObjectAndCompanion[Iso21090_ADXP_houseNumber, Iso21090_ADXP_houseNumber.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber")
   def apply(
       id: Option[String] = None,

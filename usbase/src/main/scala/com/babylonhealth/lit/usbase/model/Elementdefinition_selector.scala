@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_selector extends CompanionFor[Elementdefinition_selector] {
+  implicit def summonObjectAndCompanionElementdefinition_selector2048453200(
+      o: Elementdefinition_selector): ObjectAndCompanion[Elementdefinition_selector, Elementdefinition_selector.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-selector")
   def apply(
       id: Option[String] = None,

@@ -25,8 +25,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Hdlcholesterol extends CompanionFor[Hdlcholesterol] {
+  implicit def summonObjectAndCompanionHdlcholesterol2056980055(
+      o: Hdlcholesterol): ObjectAndCompanion[Hdlcholesterol, Hdlcholesterol.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Observation
+  override type ParentType   = Observation
   override val baseType: CompanionFor[ResourceType] = Observation
+  override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/hdlcholesterol")
   type EffectiveChoice = Choice[Union01473702374]
   def apply(

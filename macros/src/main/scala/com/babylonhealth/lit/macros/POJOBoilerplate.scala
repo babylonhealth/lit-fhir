@@ -20,7 +20,7 @@ trait EqMethods {
   private def toPlainName(arg: Tree): String = arg.toString.replaceAll("`", "")
 
   def withCompanion(tpe: TypeName): Tree =
-    q"""override def companion: CompanionFor[this.type] = ${tpe.toTermName}.asInstanceOf[CompanionFor[this.type]]"""
+    q"""override val companion: CompanionFor[this.type] = ${tpe.toTermName}.asInstanceOf[CompanionFor[this.type]]"""
   def withClassName(tpe: TypeName): Tree = q"""override val thisClassName: String = ${tpe.toString}"""
 
   def withHashCode(params: Seq[ValDef], pparams: Seq[NamedArg]): Option[Tree] = {
@@ -70,8 +70,7 @@ object boilerplateMethodsMacro {
     val classWithCopyMethods = annottee match {
       case q"class $tpe(..$params) extends $p(..$pparams) { ..$body } " =>
         val defdefdef: List[Tree] =
-          (idExtSugar(tpe.asInstanceOf[c.TypeName], p) ++
-            withDefx(tpe.asInstanceOf[c.TypeName], params, pparams).flatten ++
+          (withDefx(tpe.asInstanceOf[c.TypeName], params, pparams).flatten ++
             updateDefx(tpe.asInstanceOf[c.TypeName], params, pparams).flatten ++
             updateIfExistsDefx(tpe.asInstanceOf[c.TypeName], params, pparams).flatten ++
             withEqs(
@@ -83,8 +82,8 @@ object boilerplateMethodsMacro {
             withCompanion(tpe.asInstanceOf[c.TypeName]))
             .asInstanceOf[List[Tree]]
         q"""class $tpe(..$params) extends $p(..$pparams) {
-         private final def set[T](f: String, v: T): $tpe          = withFieldUnsafe[T, $tpe](f, v)
-         private final def update[T](f: String, fn: T => T): $tpe = modifyFieldUnsafe[T, $tpe](f, fn)
+         private final def _set[T](f: String, v: T): $tpe          = withFieldUnsafe[T, $tpe](f, v)
+         private final def _update[T](f: String, fn: T => T): $tpe = modifyFieldUnsafe[T, $tpe](f, fn)
          ..$body
          ..$defdefdef
         }"""

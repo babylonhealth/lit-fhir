@@ -24,11 +24,19 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Subscription extends CompanionFor[Subscription] {
+  implicit def summonObjectAndCompanionSubscription1636352817(
+      o: Subscription): ObjectAndCompanion[Subscription, Subscription.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Subscription
+  override type ParentType   = Subscription
   override val baseType: CompanionFor[ResourceType] = Subscription
+  override val parentType: CompanionFor[ParentType] = Subscription
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Subscription")
   object Channel extends CompanionFor[Channel] {
+    implicit def summonObjectAndCompanionChannel_877727159(o: Channel): ObjectAndCompanion[Channel, Channel.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Channel
+    override type ParentType   = Channel
+    override val parentType: CompanionFor[ResourceType] = Channel
     def apply(
         id: Option[String] = None,
         `type`: SUBSCRIPTION_CHANNEL_TYPE,

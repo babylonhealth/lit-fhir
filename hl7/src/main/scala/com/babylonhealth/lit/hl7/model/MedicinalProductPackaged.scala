@@ -23,11 +23,20 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductPackaged extends CompanionFor[MedicinalProductPackaged] {
+  implicit def summonObjectAndCompanionMedicinalProductPackaged_1716826691(
+      o: MedicinalProductPackaged): ObjectAndCompanion[MedicinalProductPackaged, MedicinalProductPackaged.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = MedicinalProductPackaged
+  override type ParentType   = MedicinalProductPackaged
   override val baseType: CompanionFor[ResourceType] = MedicinalProductPackaged
+  override val parentType: CompanionFor[ParentType] = MedicinalProductPackaged
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductPackaged")
   object PackageItem extends CompanionFor[PackageItem] {
+    implicit def summonObjectAndCompanionPackageItem_279277338(
+        o: PackageItem): ObjectAndCompanion[PackageItem, PackageItem.type] = ObjectAndCompanion(o, this)
     override type ResourceType = PackageItem
+    override type ParentType   = PackageItem
+    override val parentType: CompanionFor[ResourceType] = PackageItem
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -204,7 +213,11 @@ object MedicinalProductPackaged extends CompanionFor[MedicinalProductPackaged] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object BatchIdentifier extends CompanionFor[BatchIdentifier] {
+    implicit def summonObjectAndCompanionBatchIdentifier_1067710928(
+        o: BatchIdentifier): ObjectAndCompanion[BatchIdentifier, BatchIdentifier.type] = ObjectAndCompanion(o, this)
     override type ResourceType = BatchIdentifier
+    override type ParentType   = BatchIdentifier
+    override val parentType: CompanionFor[ResourceType] = BatchIdentifier
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,

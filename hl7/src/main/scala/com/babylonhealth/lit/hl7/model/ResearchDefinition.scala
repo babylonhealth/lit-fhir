@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ResearchDefinition extends CompanionFor[ResearchDefinition] {
+  implicit def summonObjectAndCompanionResearchDefinition_296689742(
+      o: ResearchDefinition): ObjectAndCompanion[ResearchDefinition, ResearchDefinition.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = ResearchDefinition
+  override type ParentType   = ResearchDefinition
   override val baseType: CompanionFor[ResourceType] = ResearchDefinition
+  override val parentType: CompanionFor[ParentType] = ResearchDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ResearchDefinition")
   type SubjectChoice = Choice[Union01025009075]
   def apply(

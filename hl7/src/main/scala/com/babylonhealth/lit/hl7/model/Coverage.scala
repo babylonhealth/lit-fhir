@@ -24,13 +24,26 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Coverage extends CompanionFor[Coverage] {
+  implicit def summonObjectAndCompanionCoverage_709407888(o: Coverage): ObjectAndCompanion[Coverage, Coverage.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Coverage
+  override type ParentType   = Coverage
   override val baseType: CompanionFor[ResourceType] = Coverage
+  override val parentType: CompanionFor[ParentType] = Coverage
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Coverage")
   object CostToBeneficiary extends CompanionFor[CostToBeneficiary] {
+    implicit def summonObjectAndCompanionCostToBeneficiary_532912780(
+        o: CostToBeneficiary): ObjectAndCompanion[CostToBeneficiary, CostToBeneficiary.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = CostToBeneficiary
+    override type ParentType   = CostToBeneficiary
+    override val parentType: CompanionFor[ResourceType] = CostToBeneficiary
     object Exception extends CompanionFor[Exception] {
+      implicit def summonObjectAndCompanionException_1679940211(
+          o: Exception): ObjectAndCompanion[Exception, Exception.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Exception
+      override type ParentType   = Exception
+      override val parentType: CompanionFor[ResourceType] = Exception
       def apply(
           id: Option[String] = None,
           `type`: CodeableConcept,
@@ -167,7 +180,11 @@ object Coverage extends CompanionFor[Coverage] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Class extends CompanionFor[Class] {
+    implicit def summonObjectAndCompanionClass1029523057(o: Class): ObjectAndCompanion[Class, Class.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Class
+    override type ParentType   = Class
+    override val parentType: CompanionFor[ResourceType] = Class
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,

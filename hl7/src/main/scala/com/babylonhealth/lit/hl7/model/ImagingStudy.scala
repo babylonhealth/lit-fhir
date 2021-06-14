@@ -24,13 +24,25 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImagingStudy extends CompanionFor[ImagingStudy] {
+  implicit def summonObjectAndCompanionImagingStudy_322454125(
+      o: ImagingStudy): ObjectAndCompanion[ImagingStudy, ImagingStudy.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ImagingStudy
+  override type ParentType   = ImagingStudy
   override val baseType: CompanionFor[ResourceType] = ImagingStudy
+  override val parentType: CompanionFor[ParentType] = ImagingStudy
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImagingStudy")
   object Series extends CompanionFor[Series] {
+    implicit def summonObjectAndCompanionSeries_1920411907(o: Series): ObjectAndCompanion[Series, Series.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Series
+    override type ParentType   = Series
+    override val parentType: CompanionFor[ResourceType] = Series
     object Instance extends CompanionFor[Instance] {
+      implicit def summonObjectAndCompanionInstance2059832215(
+          o: Instance): ObjectAndCompanion[Instance, Instance.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Instance
+      override type ParentType   = Instance
+      override val parentType: CompanionFor[ResourceType] = Instance
       def apply(
           id: Option[String] = None,
           uid: Id,
@@ -109,7 +121,11 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Performer extends CompanionFor[Performer] {
+      implicit def summonObjectAndCompanionPerformer_1898126146(
+          o: Performer): ObjectAndCompanion[Performer, Performer.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Performer
+      override type ParentType   = Performer
+      override val parentType: CompanionFor[ResourceType] = Performer
       def apply(
           id: Option[String] = None,
           actor: Reference,

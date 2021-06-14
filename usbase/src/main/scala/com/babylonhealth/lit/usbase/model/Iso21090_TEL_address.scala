@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_TEL_address extends CompanionFor[Iso21090_TEL_address] {
+  implicit def summonObjectAndCompanionIso21090_TEL_address_1652600132(
+      o: Iso21090_TEL_address): ObjectAndCompanion[Iso21090_TEL_address, Iso21090_TEL_address.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/iso21090-TEL-address")
   def apply(
       id: Option[String] = None,

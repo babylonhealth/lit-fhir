@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_precondition extends CompanionFor[Observation_precondition] {
+  implicit def summonObjectAndCompanionObservation_precondition269304072(
+      o: Observation_precondition): ObjectAndCompanion[Observation_precondition, Observation_precondition.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/observation-precondition")
   def apply(
       id: Option[String] = None,

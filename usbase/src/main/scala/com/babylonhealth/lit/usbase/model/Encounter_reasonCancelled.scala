@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Encounter_reasonCancelled extends CompanionFor[Encounter_reasonCancelled] {
+  implicit def summonObjectAndCompanionEncounter_reasonCancelled1289998553(
+      o: Encounter_reasonCancelled): ObjectAndCompanion[Encounter_reasonCancelled, Encounter_reasonCancelled.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/encounter-reasonCancelled")
   def apply(
       id: Option[String] = None,

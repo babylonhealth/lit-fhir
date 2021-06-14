@@ -24,11 +24,19 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceAmount extends CompanionFor[SubstanceAmount] {
+  implicit def summonObjectAndCompanionSubstanceAmount_130007623(
+      o: SubstanceAmount): ObjectAndCompanion[SubstanceAmount, SubstanceAmount.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SubstanceAmount
+  override type ParentType   = SubstanceAmount
   override val baseType: CompanionFor[ResourceType] = SubstanceAmount
+  override val parentType: CompanionFor[ParentType] = SubstanceAmount
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceAmount")
   object ReferenceRange extends CompanionFor[ReferenceRange] {
+    implicit def summonObjectAndCompanionReferenceRange_1502130618(
+        o: ReferenceRange): ObjectAndCompanion[ReferenceRange, ReferenceRange.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ReferenceRange
+    override type ParentType   = ReferenceRange
+    override val parentType: CompanionFor[ResourceType] = ReferenceRange
     def apply(
         id: Option[String] = None,
         lowLimit: Option[Quantity] = None,

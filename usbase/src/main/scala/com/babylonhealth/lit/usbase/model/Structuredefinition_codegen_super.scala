@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_codegen_super extends CompanionFor[Structuredefinition_codegen_super] {
+  implicit def summonObjectAndCompanionStructuredefinition_codegen_super1382426852(
+      o: Structuredefinition_codegen_super): ObjectAndCompanion[Structuredefinition_codegen_super, Structuredefinition_codegen_super.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/structuredefinition-codegen-super")
   def apply(

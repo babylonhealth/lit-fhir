@@ -23,15 +23,32 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstancePolymer extends CompanionFor[SubstancePolymer] {
+  implicit def summonObjectAndCompanionSubstancePolymer2023041766(
+      o: SubstancePolymer): ObjectAndCompanion[SubstancePolymer, SubstancePolymer.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SubstancePolymer
+  override type ParentType   = SubstancePolymer
   override val baseType: CompanionFor[ResourceType] = SubstancePolymer
+  override val parentType: CompanionFor[ParentType] = SubstancePolymer
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstancePolymer")
   object Repeat extends CompanionFor[Repeat] {
+    implicit def summonObjectAndCompanionRepeat_339841079(o: Repeat): ObjectAndCompanion[Repeat, Repeat.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Repeat
+    override type ParentType   = Repeat
+    override val parentType: CompanionFor[ResourceType] = Repeat
     object RepeatUnit extends CompanionFor[RepeatUnit] {
+      implicit def summonObjectAndCompanionRepeatUnit_694363022(
+          o: RepeatUnit): ObjectAndCompanion[RepeatUnit, RepeatUnit.type] = ObjectAndCompanion(o, this)
       override type ResourceType = RepeatUnit
+      override type ParentType   = RepeatUnit
+      override val parentType: CompanionFor[ResourceType] = RepeatUnit
       object DegreeOfPolymerisation extends CompanionFor[DegreeOfPolymerisation] {
+        implicit def summonObjectAndCompanionDegreeOfPolymerisation73527350(
+            o: DegreeOfPolymerisation): ObjectAndCompanion[DegreeOfPolymerisation, DegreeOfPolymerisation.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = DegreeOfPolymerisation
+        override type ParentType   = DegreeOfPolymerisation
+        override val parentType: CompanionFor[ResourceType] = DegreeOfPolymerisation
         def apply(
             id: Option[String] = None,
             degree: Option[CodeableConcept] = None,
@@ -99,7 +116,12 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
             FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object StructuralRepresentation extends CompanionFor[StructuralRepresentation] {
+        implicit def summonObjectAndCompanionStructuralRepresentation_535539170(
+            o: StructuralRepresentation): ObjectAndCompanion[StructuralRepresentation, StructuralRepresentation.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = StructuralRepresentation
+        override type ParentType   = StructuralRepresentation
+        override val parentType: CompanionFor[ResourceType] = StructuralRepresentation
         def apply(
             id: Option[String] = None,
             `type`: Option[CodeableConcept] = None,
@@ -374,9 +396,18 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object MonomerSet extends CompanionFor[MonomerSet] {
+    implicit def summonObjectAndCompanionMonomerSet640177791(
+        o: MonomerSet): ObjectAndCompanion[MonomerSet, MonomerSet.type] = ObjectAndCompanion(o, this)
     override type ResourceType = MonomerSet
+    override type ParentType   = MonomerSet
+    override val parentType: CompanionFor[ResourceType] = MonomerSet
     object StartingMaterial extends CompanionFor[StartingMaterial] {
+      implicit def summonObjectAndCompanionStartingMaterial_339228462(
+          o: StartingMaterial): ObjectAndCompanion[StartingMaterial, StartingMaterial.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = StartingMaterial
+      override type ParentType   = StartingMaterial
+      override val parentType: CompanionFor[ResourceType] = StartingMaterial
       def apply(
           id: Option[String] = None,
           `type`: Option[CodeableConcept] = None,

@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Servicerequest_questionnaireRequest extends CompanionFor[Servicerequest_questionnaireRequest] {
+  implicit def summonObjectAndCompanionServicerequest_questionnaireRequest_1185232030(
+      o: Servicerequest_questionnaireRequest): ObjectAndCompanion[Servicerequest_questionnaireRequest, Servicerequest_questionnaireRequest.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/servicerequest-questionnaireRequest")
   def apply(

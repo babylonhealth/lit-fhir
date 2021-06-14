@@ -23,11 +23,20 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProduct extends CompanionFor[MedicinalProduct] {
+  implicit def summonObjectAndCompanionMedicinalProduct_2139172693(
+      o: MedicinalProduct): ObjectAndCompanion[MedicinalProduct, MedicinalProduct.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MedicinalProduct
+  override type ParentType   = MedicinalProduct
   override val baseType: CompanionFor[ResourceType] = MedicinalProduct
+  override val parentType: CompanionFor[ParentType] = MedicinalProduct
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProduct")
   object ManufacturingBusinessOperation extends CompanionFor[ManufacturingBusinessOperation] {
+    implicit def summonObjectAndCompanionManufacturingBusinessOperation1738353525(
+        o: ManufacturingBusinessOperation): ObjectAndCompanion[ManufacturingBusinessOperation, ManufacturingBusinessOperation.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = ManufacturingBusinessOperation
+    override type ParentType   = ManufacturingBusinessOperation
+    override val parentType: CompanionFor[ResourceType] = ManufacturingBusinessOperation
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -141,9 +150,17 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Name extends CompanionFor[Name] {
+    implicit def summonObjectAndCompanionName700846909(o: Name): ObjectAndCompanion[Name, Name.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Name
+    override type ParentType   = Name
+    override val parentType: CompanionFor[ResourceType] = Name
     object NamePart extends CompanionFor[NamePart] {
+      implicit def summonObjectAndCompanionNamePart85319392(o: NamePart): ObjectAndCompanion[NamePart, NamePart.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = NamePart
+      override type ParentType   = NamePart
+      override val parentType: CompanionFor[ResourceType] = NamePart
       def apply(
           id: Option[String] = None,
           part: String,
@@ -206,7 +223,11 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object CountryLanguage extends CompanionFor[CountryLanguage] {
+      implicit def summonObjectAndCompanionCountryLanguage1136853973(
+          o: CountryLanguage): ObjectAndCompanion[CountryLanguage, CountryLanguage.type] = ObjectAndCompanion(o, this)
       override type ResourceType = CountryLanguage
+      override type ParentType   = CountryLanguage
+      override val parentType: CompanionFor[ResourceType] = CountryLanguage
       def apply(
           id: Option[String] = None,
           country: CodeableConcept,
@@ -351,8 +372,13 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SpecialDesignation extends CompanionFor[SpecialDesignation] {
+    implicit def summonObjectAndCompanionSpecialDesignation514366620(
+        o: SpecialDesignation): ObjectAndCompanion[SpecialDesignation, SpecialDesignation.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = SpecialDesignation
-    type IndicationChoice      = Choice[Union01025009075]
+    override type ParentType   = SpecialDesignation
+    override val parentType: CompanionFor[ResourceType] = SpecialDesignation
+    type IndicationChoice = Choice[Union01025009075]
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,

@@ -31,11 +31,19 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SearchParameter extends CompanionFor[SearchParameter] {
+  implicit def summonObjectAndCompanionSearchParameter1945156412(
+      o: SearchParameter): ObjectAndCompanion[SearchParameter, SearchParameter.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SearchParameter
+  override type ParentType   = SearchParameter
   override val baseType: CompanionFor[ResourceType] = SearchParameter
+  override val parentType: CompanionFor[ParentType] = SearchParameter
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SearchParameter")
   object Component extends CompanionFor[Component] {
+    implicit def summonObjectAndCompanionComponent_2033059278(
+        o: Component): ObjectAndCompanion[Component, Component.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Component
+    override type ParentType   = Component
+    override val parentType: CompanionFor[ResourceType] = Component
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,

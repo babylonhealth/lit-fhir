@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_gatewayDevice extends CompanionFor[Observation_gatewayDevice] {
+  implicit def summonObjectAndCompanionObservation_gatewayDevice554029894(
+      o: Observation_gatewayDevice): ObjectAndCompanion[Observation_gatewayDevice, Observation_gatewayDevice.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/observation-gatewayDevice")
   def apply(
       id: Option[String] = None,

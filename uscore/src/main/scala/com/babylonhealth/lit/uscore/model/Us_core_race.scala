@@ -25,8 +25,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_race extends CompanionFor[Us_core_race] {
+  implicit def summonObjectAndCompanionUs_core_race_273264191(
+      o: Us_core_race): ObjectAndCompanion[Us_core_race, Us_core_race.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-race")
   def apply(
       id: Option[String] = None,

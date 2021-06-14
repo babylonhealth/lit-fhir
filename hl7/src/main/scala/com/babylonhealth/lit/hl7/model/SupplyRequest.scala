@@ -24,12 +24,20 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SupplyRequest extends CompanionFor[SupplyRequest] {
+  implicit def summonObjectAndCompanionSupplyRequest_2068515553(
+      o: SupplyRequest): ObjectAndCompanion[SupplyRequest, SupplyRequest.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SupplyRequest
+  override type ParentType   = SupplyRequest
   override val baseType: CompanionFor[ResourceType] = SupplyRequest
+  override val parentType: CompanionFor[ParentType] = SupplyRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SupplyRequest")
   object Parameter extends CompanionFor[Parameter] {
+    implicit def summonObjectAndCompanionParameter734583021(
+        o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Parameter
-    type ValueChoice           = Choice[Union_1516277229]
+    override type ParentType   = Parameter
+    override val parentType: CompanionFor[ResourceType] = Parameter
+    type ValueChoice = Choice[Union_1516277229]
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,

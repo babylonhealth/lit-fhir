@@ -21,8 +21,12 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Count extends CompanionFor[Count] {
+  implicit def summonObjectAndCompanionCount195454229(o: Count): ObjectAndCompanion[Count, Count.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Count
+  override type ParentType   = Count
   override val baseType: CompanionFor[ResourceType] = Count
+  override val parentType: CompanionFor[ParentType] = Count
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Count")
   def apply(
       id: Option[String] = None,

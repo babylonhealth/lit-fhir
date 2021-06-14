@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_trusted_expansion extends CompanionFor[Valueset_trusted_expansion] {
+  implicit def summonObjectAndCompanionValueset_trusted_expansion763741425(
+      o: Valueset_trusted_expansion): ObjectAndCompanion[Valueset_trusted_expansion, Valueset_trusted_expansion.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-trusted-expansion")
   def apply(
       id: Option[String] = None,

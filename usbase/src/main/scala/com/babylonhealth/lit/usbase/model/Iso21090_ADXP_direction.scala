@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_ADXP_direction extends CompanionFor[Iso21090_ADXP_direction] {
+  implicit def summonObjectAndCompanionIso21090_ADXP_direction_302251784(
+      o: Iso21090_ADXP_direction): ObjectAndCompanion[Iso21090_ADXP_direction, Iso21090_ADXP_direction.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-direction")
   def apply(
       id: Option[String] = None,

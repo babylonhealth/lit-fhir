@@ -29,11 +29,20 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
+  implicit def summonObjectAndCompanionAllergyIntolerance1280800257(
+      o: AllergyIntolerance): ObjectAndCompanion[AllergyIntolerance, AllergyIntolerance.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = AllergyIntolerance
+  override type ParentType   = AllergyIntolerance
   override val baseType: CompanionFor[ResourceType] = AllergyIntolerance
+  override val parentType: CompanionFor[ParentType] = AllergyIntolerance
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/AllergyIntolerance")
   object Reaction extends CompanionFor[Reaction] {
+    implicit def summonObjectAndCompanionReaction_1152477549(o: Reaction): ObjectAndCompanion[Reaction, Reaction.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Reaction
+    override type ParentType   = Reaction
+    override val parentType: CompanionFor[ResourceType] = Reaction
     def apply(
         id: Option[String] = None,
         note: LitSeq[Annotation] = LitSeq.empty,

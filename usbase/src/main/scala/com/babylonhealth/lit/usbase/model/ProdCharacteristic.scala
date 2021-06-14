@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ProdCharacteristic extends CompanionFor[ProdCharacteristic] {
+  implicit def summonObjectAndCompanionProdCharacteristic1225700235(
+      o: ProdCharacteristic): ObjectAndCompanion[ProdCharacteristic, ProdCharacteristic.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = ProdCharacteristic
+  override type ParentType   = ProdCharacteristic
   override val baseType: CompanionFor[ResourceType] = ProdCharacteristic
+  override val parentType: CompanionFor[ParentType] = ProdCharacteristic
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ProdCharacteristic")
   def apply(
       id: Option[String] = None,

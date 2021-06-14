@@ -24,14 +24,26 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object AuditEvent extends CompanionFor[AuditEvent] {
+  implicit def summonObjectAndCompanionAuditEvent_1599306174(
+      o: AuditEvent): ObjectAndCompanion[AuditEvent, AuditEvent.type] = ObjectAndCompanion(o, this)
   override type ResourceType = AuditEvent
+  override type ParentType   = AuditEvent
   override val baseType: CompanionFor[ResourceType] = AuditEvent
+  override val parentType: CompanionFor[ParentType] = AuditEvent
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/AuditEvent")
   object Entity extends CompanionFor[Entity] {
+    implicit def summonObjectAndCompanionEntity_762684596(o: Entity): ObjectAndCompanion[Entity, Entity.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Entity
+    override type ParentType   = Entity
+    override val parentType: CompanionFor[ResourceType] = Entity
     object Detail extends CompanionFor[Detail] {
+      implicit def summonObjectAndCompanionDetail_1131957230(o: Detail): ObjectAndCompanion[Detail, Detail.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Detail
-      type ValueChoice           = Choice[Union00483057553]
+      override type ParentType   = Detail
+      override val parentType: CompanionFor[ResourceType] = Detail
+      type ValueChoice = Choice[Union00483057553]
       def apply(
           id: Option[String] = None,
           `type`: String,
@@ -230,9 +242,17 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Agent extends CompanionFor[Agent] {
+    implicit def summonObjectAndCompanionAgent_514685524(o: Agent): ObjectAndCompanion[Agent, Agent.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Agent
+    override type ParentType   = Agent
+    override val parentType: CompanionFor[ResourceType] = Agent
     object Network extends CompanionFor[Network] {
+      implicit def summonObjectAndCompanionNetwork632213723(o: Network): ObjectAndCompanion[Network, Network.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Network
+      override type ParentType   = Network
+      override val parentType: CompanionFor[ResourceType] = Network
       def apply(
           id: Option[String] = None,
           `type`: Option[NETWORK_TYPE] = None,
@@ -449,7 +469,11 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Source extends CompanionFor[Source] {
+    implicit def summonObjectAndCompanionSource_1520201403(o: Source): ObjectAndCompanion[Source, Source.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Source
+    override type ParentType   = Source
+    override val parentType: CompanionFor[ResourceType] = Source
     def apply(
         id: Option[String] = None,
         site: Option[String] = None,

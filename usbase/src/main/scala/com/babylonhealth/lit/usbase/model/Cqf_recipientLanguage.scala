@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_recipientLanguage extends CompanionFor[Cqf_recipientLanguage] {
+  implicit def summonObjectAndCompanionCqf_recipientLanguage_724764290(
+      o: Cqf_recipientLanguage): ObjectAndCompanion[Cqf_recipientLanguage, Cqf_recipientLanguage.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/cqf-recipientLanguage")
   def apply(
       id: Option[String] = None,

@@ -24,11 +24,19 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Account extends CompanionFor[Account] {
+  implicit def summonObjectAndCompanionAccount_1154572431(o: Account): ObjectAndCompanion[Account, Account.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Account
+  override type ParentType   = Account
   override val baseType: CompanionFor[ResourceType] = Account
+  override val parentType: CompanionFor[ParentType] = Account
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Account")
   object Guarantor extends CompanionFor[Guarantor] {
+    implicit def summonObjectAndCompanionGuarantor280006109(
+        o: Guarantor): ObjectAndCompanion[Guarantor, Guarantor.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Guarantor
+    override type ParentType   = Guarantor
+    override val parentType: CompanionFor[ResourceType] = Guarantor
     def apply(
         id: Option[String] = None,
         party: Reference,
@@ -98,7 +106,11 @@ object Account extends CompanionFor[Account] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Coverage extends CompanionFor[Coverage] {
+    implicit def summonObjectAndCompanionCoverage599728524(o: Coverage): ObjectAndCompanion[Coverage, Coverage.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Coverage
+    override type ParentType   = Coverage
+    override val parentType: CompanionFor[ResourceType] = Coverage
     def apply(
         id: Option[String] = None,
         coverage: Reference,

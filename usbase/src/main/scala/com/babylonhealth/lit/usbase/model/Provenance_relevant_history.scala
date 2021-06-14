@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Provenance_relevant_history extends CompanionFor[Provenance_relevant_history] {
+  implicit def summonObjectAndCompanionProvenance_relevant_history197070389(
+      o: Provenance_relevant_history): ObjectAndCompanion[Provenance_relevant_history, Provenance_relevant_history.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Provenance
+  override type ParentType   = Provenance
   override val baseType: CompanionFor[ResourceType] = Provenance
+  override val parentType: CompanionFor[ParentType] = Provenance
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/provenance-relevant-history")
   def apply(
       id: Option[String] = None,

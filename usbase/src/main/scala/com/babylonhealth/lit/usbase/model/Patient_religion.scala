@@ -24,8 +24,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Patient_religion extends CompanionFor[Patient_religion] {
+  implicit def summonObjectAndCompanionPatient_religion660184967(
+      o: Patient_religion): ObjectAndCompanion[Patient_religion, Patient_religion.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/patient-religion")
   def apply(
       id: Option[String] = None,

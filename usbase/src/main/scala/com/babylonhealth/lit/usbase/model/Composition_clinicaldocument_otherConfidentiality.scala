@@ -25,8 +25,13 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Composition_clinicaldocument_otherConfidentiality
     extends CompanionFor[Composition_clinicaldocument_otherConfidentiality] {
+  implicit def summonObjectAndCompanionComposition_clinicaldocument_otherConfidentiality_1267500347(
+      o: Composition_clinicaldocument_otherConfidentiality): ObjectAndCompanion[Composition_clinicaldocument_otherConfidentiality, Composition_clinicaldocument_otherConfidentiality.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/composition-clinicaldocument-otherConfidentiality")
   def apply(

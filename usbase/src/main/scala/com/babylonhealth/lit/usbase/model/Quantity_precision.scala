@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Quantity_precision extends CompanionFor[Quantity_precision] {
+  implicit def summonObjectAndCompanionQuantity_precision_2046040591(
+      o: Quantity_precision): ObjectAndCompanion[Quantity_precision, Quantity_precision.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/quantity-precision")
   def apply(
       id: Option[String] = None,

@@ -21,8 +21,12 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Expression extends CompanionFor[Expression] {
+  implicit def summonObjectAndCompanionExpression127883092(
+      o: Expression): ObjectAndCompanion[Expression, Expression.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Expression
+  override type ParentType   = Expression
   override val baseType: CompanionFor[ResourceType] = Expression
+  override val parentType: CompanionFor[ParentType] = Expression
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Expression")
   def apply(
       id: Option[String] = None,

@@ -23,11 +23,19 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PractitionerRole extends CompanionFor[PractitionerRole] {
+  implicit def summonObjectAndCompanionPractitionerRole1001182694(
+      o: PractitionerRole): ObjectAndCompanion[PractitionerRole, PractitionerRole.type] = ObjectAndCompanion(o, this)
   override type ResourceType = PractitionerRole
+  override type ParentType   = PractitionerRole
   override val baseType: CompanionFor[ResourceType] = PractitionerRole
+  override val parentType: CompanionFor[ParentType] = PractitionerRole
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/PractitionerRole")
   object AvailableTime extends CompanionFor[AvailableTime] {
+    implicit def summonObjectAndCompanionAvailableTime588019705(
+        o: AvailableTime): ObjectAndCompanion[AvailableTime, AvailableTime.type] = ObjectAndCompanion(o, this)
     override type ResourceType = AvailableTime
+    override type ParentType   = AvailableTime
+    override val parentType: CompanionFor[ResourceType] = AvailableTime
     def apply(
         id: Option[String] = None,
         allDay: Option[Boolean] = None,
@@ -105,7 +113,11 @@ object PractitionerRole extends CompanionFor[PractitionerRole] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object NotAvailable extends CompanionFor[NotAvailable] {
+    implicit def summonObjectAndCompanionNotAvailable_1246427876(
+        o: NotAvailable): ObjectAndCompanion[NotAvailable, NotAvailable.type] = ObjectAndCompanion(o, this)
     override type ResourceType = NotAvailable
+    override type ParentType   = NotAvailable
+    override val parentType: CompanionFor[ResourceType] = NotAvailable
     def apply(
         id: Option[String] = None,
         during: Option[Period] = None,

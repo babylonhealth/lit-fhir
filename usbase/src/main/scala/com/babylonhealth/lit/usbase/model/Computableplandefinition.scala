@@ -25,8 +25,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Computableplandefinition extends CompanionFor[Computableplandefinition] {
+  implicit def summonObjectAndCompanionComputableplandefinition_1227748029(
+      o: Computableplandefinition): ObjectAndCompanion[Computableplandefinition, Computableplandefinition.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = PlanDefinition
+  override type ParentType   = PlanDefinition
   override val baseType: CompanionFor[ResourceType] = PlanDefinition
+  override val parentType: CompanionFor[ParentType] = PlanDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/computableplandefinition")
   type SubjectChoice = Choice[Union01025009075]
   def apply(

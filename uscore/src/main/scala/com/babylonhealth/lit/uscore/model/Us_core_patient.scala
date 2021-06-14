@@ -26,8 +26,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_patient extends CompanionFor[Us_core_patient] {
+  implicit def summonObjectAndCompanionUs_core_patient_1938279562(
+      o: Us_core_patient): ObjectAndCompanion[Us_core_patient, Us_core_patient.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Patient
+  override type ParentType   = Patient
   override val baseType: CompanionFor[ResourceType] = Patient
+  override val parentType: CompanionFor[ParentType] = Patient
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient")
   type DeceasedChoice      = Choice[Union_2131715935]
   type MultipleBirthChoice = Choice[Union02065782851]

@@ -24,8 +24,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_label extends CompanionFor[Valueset_label] {
+  implicit def summonObjectAndCompanionValueset_label1001308403(
+      o: Valueset_label): ObjectAndCompanion[Valueset_label, Valueset_label.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-label")
   def apply(
       id: Option[String] = None,

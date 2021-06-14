@@ -309,7 +309,10 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
 
       val companionDef =
         s"""object $className extends CompanionFor[$className] {
+           |  implicit def summonObjectAndCompanion$className${field.hashCode().toString.replace('-', '_')}(o: $className): ObjectAndCompanion[$className, $className.type] = ObjectAndCompanion(o, this)
            |  override type ResourceType = $className
+           |  override type ParentType = $className
+           |  override val parentType: CompanionFor[ResourceType] = $className
            |  $recursiveClassDefsString
            |  $choiceAliases
            |  $applyImpl
@@ -580,11 +583,18 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
          |  * ${clean(constructorComments)}
          |  * ${clean(paramsComments)}
          |  */"""
+    val parentType =
+      if (topLevelClass.scalaBaseClassName == topLevelClass.scalaClassName)
+        topLevelClass.scalaBaseClassName
+      else topLevelClass.parentClass.getOrElse(topLevelClass).scalaClassName
     // build finally
     val fileStr =
       s"""object $className extends CompanionFor[$className] {
+         |  implicit def summonObjectAndCompanion$className${topLevelClass.hashCode().toString.replace('-', '_')}(o: $className): ObjectAndCompanion[$className, $className.type] = ObjectAndCompanion(o, this)
          |  override type ResourceType = ${topLevelClass.scalaBaseClassName}
+         |  override type ParentType = $parentType
          |  override val baseType: CompanionFor[ResourceType] = ${topLevelClass.scalaBaseClassName}
+         |  override val parentType: CompanionFor[ParentType] = $parentType
          |  override val profileUrl: Option[String] = Some("${topLevelClass.url}")
          |  $otherClassDefs
          |  $choiceAliases

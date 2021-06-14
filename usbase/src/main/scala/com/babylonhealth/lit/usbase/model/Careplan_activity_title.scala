@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Careplan_activity_title extends CompanionFor[Careplan_activity_title] {
+  implicit def summonObjectAndCompanionCareplan_activity_title_1014881746(
+      o: Careplan_activity_title): ObjectAndCompanion[Careplan_activity_title, Careplan_activity_title.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/careplan-activity-title")
   def apply(
       id: Option[String] = None,

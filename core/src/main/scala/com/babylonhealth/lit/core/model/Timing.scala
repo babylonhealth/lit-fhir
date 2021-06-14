@@ -21,12 +21,20 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Timing extends CompanionFor[Timing] {
+  implicit def summonObjectAndCompanionTiming_1598870660(o: Timing): ObjectAndCompanion[Timing, Timing.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Timing
+  override type ParentType   = Timing
   override val baseType: CompanionFor[ResourceType] = Timing
+  override val parentType: CompanionFor[ParentType] = Timing
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Timing")
   object Repeat extends CompanionFor[Repeat] {
+    implicit def summonObjectAndCompanionRepeat_442736056(o: Repeat): ObjectAndCompanion[Repeat, Repeat.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Repeat
-    type BoundsChoice          = Choice[Union_0731860109]
+    override type ParentType   = Repeat
+    override val parentType: CompanionFor[ResourceType] = Repeat
+    type BoundsChoice = Choice[Union_0731860109]
     def apply(
         id: Option[String] = None,
         when: LitSeq[EVENT_TIMING] = LitSeq.empty,

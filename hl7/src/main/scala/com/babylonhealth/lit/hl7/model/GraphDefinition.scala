@@ -30,15 +30,31 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object GraphDefinition extends CompanionFor[GraphDefinition] {
+  implicit def summonObjectAndCompanionGraphDefinition205161344(
+      o: GraphDefinition): ObjectAndCompanion[GraphDefinition, GraphDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = GraphDefinition
+  override type ParentType   = GraphDefinition
   override val baseType: CompanionFor[ResourceType] = GraphDefinition
+  override val parentType: CompanionFor[ParentType] = GraphDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/GraphDefinition")
   object Link extends CompanionFor[Link] {
+    implicit def summonObjectAndCompanionLink_347869784(o: Link): ObjectAndCompanion[Link, Link.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Link
+    override type ParentType   = Link
+    override val parentType: CompanionFor[ResourceType] = Link
     object Target extends CompanionFor[Target] {
+      implicit def summonObjectAndCompanionTarget1184040522(o: Target): ObjectAndCompanion[Target, Target.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Target
+      override type ParentType   = Target
+      override val parentType: CompanionFor[ResourceType] = Target
       object Compartment extends CompanionFor[Compartment] {
+        implicit def summonObjectAndCompanionCompartment_2132588120(
+            o: Compartment): ObjectAndCompanion[Compartment, Compartment.type] = ObjectAndCompanion(o, this)
         override type ResourceType = Compartment
+        override type ParentType   = Compartment
+        override val parentType: CompanionFor[ResourceType] = Compartment
         def apply(
             id: Option[String] = None,
             use: GRAPH_COMPARTMENT_USE,

@@ -24,13 +24,21 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RiskAssessment extends CompanionFor[RiskAssessment] {
+  implicit def summonObjectAndCompanionRiskAssessment_2084192793(
+      o: RiskAssessment): ObjectAndCompanion[RiskAssessment, RiskAssessment.type] = ObjectAndCompanion(o, this)
   override type ResourceType = RiskAssessment
+  override type ParentType   = RiskAssessment
   override val baseType: CompanionFor[ResourceType] = RiskAssessment
+  override val parentType: CompanionFor[ParentType] = RiskAssessment
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RiskAssessment")
   object Prediction extends CompanionFor[Prediction] {
+    implicit def summonObjectAndCompanionPrediction1468618818(
+        o: Prediction): ObjectAndCompanion[Prediction, Prediction.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Prediction
-    type WhenChoice            = Choice[Union01200936722]
-    type ProbabilityChoice     = Choice[Union_0831630297]
+    override type ParentType   = Prediction
+    override val parentType: CompanionFor[ResourceType] = Prediction
+    type WhenChoice        = Choice[Union01200936722]
+    type ProbabilityChoice = Choice[Union_0831630297]
     def apply(
         id: Option[String] = None,
         outcome: Option[CodeableConcept] = None,

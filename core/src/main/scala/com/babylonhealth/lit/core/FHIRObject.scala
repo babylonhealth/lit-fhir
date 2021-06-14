@@ -1,12 +1,12 @@
 package com.babylonhealth.lit.core
 
 import scala.collection.immutable.TreeMap
-import scala.reflect.ClassTag
+import scala.reflect.{ ClassTag, classTag }
 import scala.reflect.runtime.universe.{ RuntimeClass, typeOf }
 
 import cats.Monad
+import com.babylonhealth.lit.core
 import izumi.reflect.macrortti.LTag
-
 import com.babylonhealth.lit.core.TagSummoners.lTypeOf
 import com.babylonhealth.lit.core.model.{ Element, Extension, intSubSuffixes, stringSubSuffixes, typeSuffixMap }
 
@@ -34,6 +34,33 @@ abstract class FHIRObject(
   def updatePrimitiveAttributes(fn: FieldToElementLookup => FieldToElementLookup): this.type =
     withPrimitiveAttributes(fn(primitiveAttributes))
 
+  // This form is not typesafe (one can call it on any resource with any meta field), but it should either
+  // always or never throw on a given resourceType at a particular call-site.
+  // Prefer update/set/updateIfExists/updateAll from the implicitly-summoned `ObjectAndCompanion`
+  def updateFromField[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
+      field: FHIRComponentFieldMeta[T]
+  )(fn: T => T): UpType = {
+    val parent: CompanionFor[_ <: companion.ResourceType] = companion.leastParentWithField(field)
+    val currentValue = parent
+      .fieldsFromParent(this.asInstanceOf[parent.ResourceType])
+      .get // fieldsFromParent shouldn't be able to fail if upcasting...
+      .find(_.meta == field)
+      .get // leastParentWithField call should fail if this isn't found; this indicates an error in the value provided in `field` param
+      .value
+      .asInstanceOf[T]
+    val newVal = fn(currentValue)
+    withFieldUnsafe[T, companion.ResourceType](field.name, newVal)(
+      parent.thisClassTag.asInstanceOf[ClassTag[companion.ResourceType]],
+      parent.thisTypeTag.asInstanceOf[LTag[companion.ResourceType]]).asInstanceOf[UpType]
+  }
+  def setFromField[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
+      field: FHIRComponentFieldMeta[T]
+  )(newVal: T): UpType = {
+    val parent: CompanionFor[_ <: companion.ResourceType] = companion.leastParentWithField(field)
+    withFieldUnsafe[T, companion.ResourceType](field.name, newVal)(
+      parent.thisClassTag.asInstanceOf[ClassTag[companion.ResourceType]],
+      parent.thisTypeTag.asInstanceOf[LTag[companion.ResourceType]]).asInstanceOf[UpType]
+  }
   val extensions = new {
     def update(field: FHIRComponentFieldMeta[_])(
         update: LitSeq[Extension] => LitSeq[Extension]): FHIRObject.this.type = {
@@ -70,7 +97,7 @@ abstract class FHIRObject(
 
   def fields: Seq[FHIRComponentField[_]] = companion.fields(this)
 
-  def companion: CompanionFor[this.type]
+  val companion: CompanionFor[this.type]
 
   def thisClassName: String // For HL7 classes, this should be the same as `thisTypeName`, but will differ for domain-specific subclasses
   def thisTypeName: String

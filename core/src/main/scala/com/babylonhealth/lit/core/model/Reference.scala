@@ -21,8 +21,12 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Reference extends CompanionFor[Reference] {
+  implicit def summonObjectAndCompanionReference_27796748(o: Reference): ObjectAndCompanion[Reference, Reference.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Reference
+  override type ParentType   = Reference
   override val baseType: CompanionFor[ResourceType] = Reference
+  override val parentType: CompanionFor[ParentType] = Reference
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Reference")
   def apply(
       id: Option[String] = None,

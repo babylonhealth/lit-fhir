@@ -25,8 +25,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cdshooksrequestgroup extends CompanionFor[Cdshooksrequestgroup] {
+  implicit def summonObjectAndCompanionCdshooksrequestgroup1812111932(
+      o: Cdshooksrequestgroup): ObjectAndCompanion[Cdshooksrequestgroup, Cdshooksrequestgroup.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = RequestGroup
+  override type ParentType   = RequestGroup
   override val baseType: CompanionFor[ResourceType] = RequestGroup
+  override val parentType: CompanionFor[ParentType] = RequestGroup
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/cdshooksrequestgroup")
   def apply(
       id: Option[String] = None,

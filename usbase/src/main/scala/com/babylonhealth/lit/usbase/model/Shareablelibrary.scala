@@ -25,8 +25,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablelibrary extends CompanionFor[Shareablelibrary] {
+  implicit def summonObjectAndCompanionShareablelibrary469518197(
+      o: Shareablelibrary): ObjectAndCompanion[Shareablelibrary, Shareablelibrary.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Library
+  override type ParentType   = Library
   override val baseType: CompanionFor[ResourceType] = Library
+  override val parentType: CompanionFor[ParentType] = Library
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareablelibrary")
   type SubjectChoice = Choice[Union01025009075]
   def apply(

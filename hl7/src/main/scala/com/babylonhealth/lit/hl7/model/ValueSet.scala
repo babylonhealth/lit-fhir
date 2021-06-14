@@ -24,15 +24,31 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ValueSet extends CompanionFor[ValueSet] {
+  implicit def summonObjectAndCompanionValueSet_1801400970(o: ValueSet): ObjectAndCompanion[ValueSet, ValueSet.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = ValueSet
+  override type ParentType   = ValueSet
   override val baseType: CompanionFor[ResourceType] = ValueSet
+  override val parentType: CompanionFor[ParentType] = ValueSet
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ValueSet")
   object Compose extends CompanionFor[Compose] {
+    implicit def summonObjectAndCompanionCompose_1285096105(o: Compose): ObjectAndCompanion[Compose, Compose.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Compose
+    override type ParentType   = Compose
+    override val parentType: CompanionFor[ResourceType] = Compose
     object Include extends CompanionFor[Include] {
+      implicit def summonObjectAndCompanionInclude_1731662354(o: Include): ObjectAndCompanion[Include, Include.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Include
+      override type ParentType   = Include
+      override val parentType: CompanionFor[ResourceType] = Include
       object Filter extends CompanionFor[Filter] {
+        implicit def summonObjectAndCompanionFilter_35840940(o: Filter): ObjectAndCompanion[Filter, Filter.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = Filter
+        override type ParentType   = Filter
+        override val parentType: CompanionFor[ResourceType] = Filter
         def apply(
             id: Option[String] = None,
             op: FILTER_OPERATOR,
@@ -103,9 +119,17 @@ object ValueSet extends CompanionFor[ValueSet] {
             FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Concept extends CompanionFor[Concept] {
+        implicit def summonObjectAndCompanionConcept288873547(o: Concept): ObjectAndCompanion[Concept, Concept.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = Concept
+        override type ParentType   = Concept
+        override val parentType: CompanionFor[ResourceType] = Concept
         object Designation extends CompanionFor[Designation] {
+          implicit def summonObjectAndCompanionDesignation1490628532(
+              o: Designation): ObjectAndCompanion[Designation, Designation.type] = ObjectAndCompanion(o, this)
           override type ResourceType = Designation
+          override type ParentType   = Designation
+          override val parentType: CompanionFor[ResourceType] = Designation
           def apply(
               id: Option[String] = None,
               use: Option[Coding] = None,
@@ -410,9 +434,17 @@ object ValueSet extends CompanionFor[ValueSet] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Expansion extends CompanionFor[Expansion] {
+    implicit def summonObjectAndCompanionExpansion160822231(
+        o: Expansion): ObjectAndCompanion[Expansion, Expansion.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Expansion
+    override type ParentType   = Expansion
+    override val parentType: CompanionFor[ResourceType] = Expansion
     object Contains extends CompanionFor[Contains] {
+      implicit def summonObjectAndCompanionContains862214595(o: Contains): ObjectAndCompanion[Contains, Contains.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Contains
+      override type ParentType   = Contains
+      override val parentType: CompanionFor[ResourceType] = Contains
       def apply(
           id: Option[String] = None,
           code: Option[Code] = None,
@@ -549,8 +581,12 @@ object ValueSet extends CompanionFor[ValueSet] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Parameter extends CompanionFor[Parameter] {
+      implicit def summonObjectAndCompanionParameter_1883265533(
+          o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Parameter
-      type ValueChoice           = Choice[Union_1427970408]
+      override type ParentType   = Parameter
+      override val parentType: CompanionFor[ResourceType] = Parameter
+      type ValueChoice = Choice[Union_1427970408]
       def apply(
           id: Option[String] = None,
           name: String,

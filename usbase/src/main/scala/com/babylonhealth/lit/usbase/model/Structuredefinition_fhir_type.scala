@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_fhir_type extends CompanionFor[Structuredefinition_fhir_type] {
+  implicit def summonObjectAndCompanionStructuredefinition_fhir_type111468231(
+      o: Structuredefinition_fhir_type): ObjectAndCompanion[Structuredefinition_fhir_type, Structuredefinition_fhir_type.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type")
   def apply(

@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_allowedUnits extends CompanionFor[Elementdefinition_allowedUnits] {
+  implicit def summonObjectAndCompanionElementdefinition_allowedUnits_839586408(
+      o: Elementdefinition_allowedUnits): ObjectAndCompanion[Elementdefinition_allowedUnits, Elementdefinition_allowedUnits.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/elementdefinition-allowedUnits")
   type ValueChoice = Choice[Union01054268719]

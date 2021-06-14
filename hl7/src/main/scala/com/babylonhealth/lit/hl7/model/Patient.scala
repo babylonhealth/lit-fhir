@@ -24,11 +24,19 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Patient extends CompanionFor[Patient] {
+  implicit def summonObjectAndCompanionPatient_1573728148(o: Patient): ObjectAndCompanion[Patient, Patient.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Patient
+  override type ParentType   = Patient
   override val baseType: CompanionFor[ResourceType] = Patient
+  override val parentType: CompanionFor[ParentType] = Patient
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Patient")
   object Communication extends CompanionFor[Communication] {
+    implicit def summonObjectAndCompanionCommunication_1663907715(
+        o: Communication): ObjectAndCompanion[Communication, Communication.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Communication
+    override type ParentType   = Communication
+    override val parentType: CompanionFor[ResourceType] = Communication
     def apply(
         id: Option[String] = None,
         language: CodeableConcept,
@@ -91,7 +99,11 @@ object Patient extends CompanionFor[Patient] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Contact extends CompanionFor[Contact] {
+    implicit def summonObjectAndCompanionContact_554442437(o: Contact): ObjectAndCompanion[Contact, Contact.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Contact
+    override type ParentType   = Contact
+    override val parentType: CompanionFor[ResourceType] = Contact
     def apply(
         id: Option[String] = None,
         name: Option[HumanName] = None,
@@ -201,7 +213,11 @@ object Patient extends CompanionFor[Patient] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Link extends CompanionFor[Link] {
+    implicit def summonObjectAndCompanionLink1963560012(o: Link): ObjectAndCompanion[Link, Link.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Link
+    override type ParentType   = Link
+    override val parentType: CompanionFor[ResourceType] = Link
     def apply(
         id: Option[String] = None,
         `type`: LINK_TYPE,

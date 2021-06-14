@@ -24,11 +24,19 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Location extends CompanionFor[Location] {
+  implicit def summonObjectAndCompanionLocation_438021901(o: Location): ObjectAndCompanion[Location, Location.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Location
+  override type ParentType   = Location
   override val baseType: CompanionFor[ResourceType] = Location
+  override val parentType: CompanionFor[ParentType] = Location
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Location")
   object HoursOfOperation extends CompanionFor[HoursOfOperation] {
+    implicit def summonObjectAndCompanionHoursOfOperation915186623(
+        o: HoursOfOperation): ObjectAndCompanion[HoursOfOperation, HoursOfOperation.type] = ObjectAndCompanion(o, this)
     override type ResourceType = HoursOfOperation
+    override type ParentType   = HoursOfOperation
+    override val parentType: CompanionFor[ResourceType] = HoursOfOperation
     def apply(
         id: Option[String] = None,
         allDay: Option[Boolean] = None,
@@ -106,7 +114,11 @@ object Location extends CompanionFor[Location] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Position extends CompanionFor[Position] {
+    implicit def summonObjectAndCompanionPosition_1639349494(o: Position): ObjectAndCompanion[Position, Position.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Position
+    override type ParentType   = Position
+    override val parentType: CompanionFor[ResourceType] = Position
     def apply(
         id: Option[String] = None,
         latitude: BigDecimal,

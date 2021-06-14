@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_alternate extends CompanionFor[Codesystem_alternate] {
+  implicit def summonObjectAndCompanionCodesystem_alternate1173662786(
+      o: Codesystem_alternate): ObjectAndCompanion[Codesystem_alternate, Codesystem_alternate.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/codesystem-alternate")
   def apply(
       id: Option[String] = None,

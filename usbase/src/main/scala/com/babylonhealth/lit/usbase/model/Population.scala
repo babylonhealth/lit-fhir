@@ -24,8 +24,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Population extends CompanionFor[Population] {
+  implicit def summonObjectAndCompanionPopulation_11499230(
+      o: Population): ObjectAndCompanion[Population, Population.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Population
+  override type ParentType   = Population
   override val baseType: CompanionFor[ResourceType] = Population
+  override val parentType: CompanionFor[ParentType] = Population
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Population")
   type AgeChoice = Choice[Union_1946587936]
   def apply(

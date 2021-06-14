@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollowing] {
+  implicit def summonObjectAndCompanionCondition_occurredFollowing_627110841(
+      o: Condition_occurredFollowing): ObjectAndCompanion[Condition_occurredFollowing, Condition_occurredFollowing.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/condition-occurredFollowing")
   type ValueChoice = Choice[Union01025009075]
   def apply(

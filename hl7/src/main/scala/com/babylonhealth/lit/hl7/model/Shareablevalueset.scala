@@ -24,8 +24,12 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablevalueset extends CompanionFor[Shareablevalueset] {
+  implicit def summonObjectAndCompanionShareablevalueset1109654801(
+      o: Shareablevalueset): ObjectAndCompanion[Shareablevalueset, Shareablevalueset.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ValueSet
+  override type ParentType   = ValueSet
   override val baseType: CompanionFor[ResourceType] = ValueSet
+  override val parentType: CompanionFor[ParentType] = ValueSet
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareablevalueset")
   def apply(
       id: Option[String] = None,

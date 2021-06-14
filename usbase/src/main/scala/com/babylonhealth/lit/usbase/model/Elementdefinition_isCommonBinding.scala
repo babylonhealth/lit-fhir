@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_isCommonBinding extends CompanionFor[Elementdefinition_isCommonBinding] {
+  implicit def summonObjectAndCompanionElementdefinition_isCommonBinding_114695149(
+      o: Elementdefinition_isCommonBinding): ObjectAndCompanion[Elementdefinition_isCommonBinding, Elementdefinition_isCommonBinding.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding")
   def apply(

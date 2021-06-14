@@ -24,8 +24,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Relative_date extends CompanionFor[Relative_date] {
+  implicit def summonObjectAndCompanionRelative_date565733835(
+      o: Relative_date): ObjectAndCompanion[Relative_date, Relative_date.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/relative-date")
   def apply(
       id: Option[String] = None,

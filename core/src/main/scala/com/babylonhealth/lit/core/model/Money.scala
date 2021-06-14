@@ -21,8 +21,12 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Money extends CompanionFor[Money] {
+  implicit def summonObjectAndCompanionMoney_1188401209(o: Money): ObjectAndCompanion[Money, Money.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Money
+  override type ParentType   = Money
   override val baseType: CompanionFor[ResourceType] = Money
+  override val parentType: CompanionFor[ParentType] = Money
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Money")
   def apply(
       id: Option[String] = None,

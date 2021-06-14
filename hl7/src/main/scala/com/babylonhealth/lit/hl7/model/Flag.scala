@@ -24,8 +24,12 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Flag extends CompanionFor[Flag] {
+  implicit def summonObjectAndCompanionFlag1288767928(o: Flag): ObjectAndCompanion[Flag, Flag.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Flag
+  override type ParentType   = Flag
   override val baseType: CompanionFor[ResourceType] = Flag
+  override val parentType: CompanionFor[ParentType] = Flag
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Flag")
   def apply(
       id: Option[String] = None,

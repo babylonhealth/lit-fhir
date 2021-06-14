@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Humanname_assembly_order extends CompanionFor[Humanname_assembly_order] {
+  implicit def summonObjectAndCompanionHumanname_assembly_order994708067(
+      o: Humanname_assembly_order): ObjectAndCompanion[Humanname_assembly_order, Humanname_assembly_order.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/humanname-assembly-order")
   def apply(
       id: Option[String] = None,

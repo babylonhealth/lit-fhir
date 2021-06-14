@@ -24,11 +24,19 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Provenance extends CompanionFor[Provenance] {
+  implicit def summonObjectAndCompanionProvenance_1684056457(
+      o: Provenance): ObjectAndCompanion[Provenance, Provenance.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Provenance
+  override type ParentType   = Provenance
   override val baseType: CompanionFor[ResourceType] = Provenance
+  override val parentType: CompanionFor[ParentType] = Provenance
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Provenance")
   object Entity extends CompanionFor[Entity] {
+    implicit def summonObjectAndCompanionEntity_218802924(o: Entity): ObjectAndCompanion[Entity, Entity.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Entity
+    override type ParentType   = Entity
+    override val parentType: CompanionFor[ResourceType] = Entity
     def apply(
         id: Option[String] = None,
         role: PROVENANCE_ENTITY_ROLE,
@@ -98,7 +106,11 @@ object Provenance extends CompanionFor[Provenance] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Agent extends CompanionFor[Agent] {
+    implicit def summonObjectAndCompanionAgent_1391705225(o: Agent): ObjectAndCompanion[Agent, Agent.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Agent
+    override type ParentType   = Agent
+    override val parentType: CompanionFor[ResourceType] = Agent
     def apply(
         id: Option[String] = None,
         who: Reference,

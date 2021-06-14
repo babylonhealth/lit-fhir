@@ -24,13 +24,25 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ConceptMap extends CompanionFor[ConceptMap] {
+  implicit def summonObjectAndCompanionConceptMap_1559190174(
+      o: ConceptMap): ObjectAndCompanion[ConceptMap, ConceptMap.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ConceptMap
+  override type ParentType   = ConceptMap
   override val baseType: CompanionFor[ResourceType] = ConceptMap
+  override val parentType: CompanionFor[ParentType] = ConceptMap
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ConceptMap")
   object Group extends CompanionFor[Group] {
+    implicit def summonObjectAndCompanionGroup_161404415(o: Group): ObjectAndCompanion[Group, Group.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Group
+    override type ParentType   = Group
+    override val parentType: CompanionFor[ResourceType] = Group
     object Unmapped extends CompanionFor[Unmapped] {
+      implicit def summonObjectAndCompanionUnmapped1729374182(
+          o: Unmapped): ObjectAndCompanion[Unmapped, Unmapped.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Unmapped
+      override type ParentType   = Unmapped
+      override val parentType: CompanionFor[ResourceType] = Unmapped
       def apply(
           id: Option[String] = None,
           url: Option[Canonical] = None,
@@ -108,11 +120,23 @@ object ConceptMap extends CompanionFor[ConceptMap] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Element extends CompanionFor[Element] {
+      implicit def summonObjectAndCompanionElement1701927640(o: Element): ObjectAndCompanion[Element, Element.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Element
+      override type ParentType   = Element
+      override val parentType: CompanionFor[ResourceType] = Element
       object Target extends CompanionFor[Target] {
+        implicit def summonObjectAndCompanionTarget_1054624454(o: Target): ObjectAndCompanion[Target, Target.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = Target
+        override type ParentType   = Target
+        override val parentType: CompanionFor[ResourceType] = Target
         object DependsOn extends CompanionFor[DependsOn] {
+          implicit def summonObjectAndCompanionDependsOn_1655902441(
+              o: DependsOn): ObjectAndCompanion[DependsOn, DependsOn.type] = ObjectAndCompanion(o, this)
           override type ResourceType = DependsOn
+          override type ParentType   = DependsOn
+          override val parentType: CompanionFor[ResourceType] = DependsOn
           def apply(
               id: Option[String] = None,
               value: String,

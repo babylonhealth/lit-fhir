@@ -24,11 +24,19 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Procedure extends CompanionFor[Procedure] {
+  implicit def summonObjectAndCompanionProcedure_1476162394(
+      o: Procedure): ObjectAndCompanion[Procedure, Procedure.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Procedure
+  override type ParentType   = Procedure
   override val baseType: CompanionFor[ResourceType] = Procedure
+  override val parentType: CompanionFor[ParentType] = Procedure
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Procedure")
   object FocalDevice extends CompanionFor[FocalDevice] {
+    implicit def summonObjectAndCompanionFocalDevice387066849(
+        o: FocalDevice): ObjectAndCompanion[FocalDevice, FocalDevice.type] = ObjectAndCompanion(o, this)
     override type ResourceType = FocalDevice
+    override type ParentType   = FocalDevice
+    override val parentType: CompanionFor[ResourceType] = FocalDevice
     def apply(
         id: Option[String] = None,
         action: Option[CodeableConcept] = None,
@@ -91,7 +99,11 @@ object Procedure extends CompanionFor[Procedure] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Performer extends CompanionFor[Performer] {
+    implicit def summonObjectAndCompanionPerformer_379912351(
+        o: Performer): ObjectAndCompanion[Performer, Performer.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Performer
+    override type ParentType   = Performer
+    override val parentType: CompanionFor[ResourceType] = Performer
     def apply(
         id: Option[String] = None,
         actor: Reference,

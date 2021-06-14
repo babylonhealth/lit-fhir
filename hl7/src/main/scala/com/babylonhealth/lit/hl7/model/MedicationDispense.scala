@@ -24,11 +24,20 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationDispense extends CompanionFor[MedicationDispense] {
+  implicit def summonObjectAndCompanionMedicationDispense345204291(
+      o: MedicationDispense): ObjectAndCompanion[MedicationDispense, MedicationDispense.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = MedicationDispense
+  override type ParentType   = MedicationDispense
   override val baseType: CompanionFor[ResourceType] = MedicationDispense
+  override val parentType: CompanionFor[ParentType] = MedicationDispense
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicationDispense")
   object Substitution extends CompanionFor[Substitution] {
+    implicit def summonObjectAndCompanionSubstitution899943916(
+        o: Substitution): ObjectAndCompanion[Substitution, Substitution.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Substitution
+    override type ParentType   = Substitution
+    override val parentType: CompanionFor[ResourceType] = Substitution
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,
@@ -106,7 +115,11 @@ object MedicationDispense extends CompanionFor[MedicationDispense] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Performer extends CompanionFor[Performer] {
+    implicit def summonObjectAndCompanionPerformer_890094834(
+        o: Performer): ObjectAndCompanion[Performer, Performer.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Performer
+    override type ParentType   = Performer
+    override val parentType: CompanionFor[ResourceType] = Performer
     def apply(
         id: Option[String] = None,
         actor: Reference,

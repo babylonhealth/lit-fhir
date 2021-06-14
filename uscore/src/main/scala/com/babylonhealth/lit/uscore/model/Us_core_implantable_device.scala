@@ -26,8 +26,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_implantable_device extends CompanionFor[Us_core_implantable_device] {
+  implicit def summonObjectAndCompanionUs_core_implantable_device_1636097842(
+      o: Us_core_implantable_device): ObjectAndCompanion[Us_core_implantable_device, Us_core_implantable_device.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Device
+  override type ParentType   = Device
   override val baseType: CompanionFor[ResourceType] = Device
+  override val parentType: CompanionFor[ParentType] = Device
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-implantable-device")
   def apply(

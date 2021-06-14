@@ -24,11 +24,21 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ObservationDefinition extends CompanionFor[ObservationDefinition] {
+  implicit def summonObjectAndCompanionObservationDefinition_670710272(
+      o: ObservationDefinition): ObjectAndCompanion[ObservationDefinition, ObservationDefinition.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = ObservationDefinition
+  override type ParentType   = ObservationDefinition
   override val baseType: CompanionFor[ResourceType] = ObservationDefinition
+  override val parentType: CompanionFor[ParentType] = ObservationDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ObservationDefinition")
   object QuantitativeDetails extends CompanionFor[QuantitativeDetails] {
+    implicit def summonObjectAndCompanionQuantitativeDetails1005316963(
+        o: QuantitativeDetails): ObjectAndCompanion[QuantitativeDetails, QuantitativeDetails.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = QuantitativeDetails
+    override type ParentType   = QuantitativeDetails
+    override val parentType: CompanionFor[ResourceType] = QuantitativeDetails
     def apply(
         id: Option[String] = None,
         unit: Option[CodeableConcept] = None,
@@ -106,7 +116,12 @@ object ObservationDefinition extends CompanionFor[ObservationDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object QualifiedInterval extends CompanionFor[QualifiedInterval] {
+    implicit def summonObjectAndCompanionQualifiedInterval1621044709(
+        o: QualifiedInterval): ObjectAndCompanion[QualifiedInterval, QualifiedInterval.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = QualifiedInterval
+    override type ParentType   = QualifiedInterval
+    override val parentType: CompanionFor[ResourceType] = QualifiedInterval
     def apply(
         id: Option[String] = None,
         age: Option[Range] = None,

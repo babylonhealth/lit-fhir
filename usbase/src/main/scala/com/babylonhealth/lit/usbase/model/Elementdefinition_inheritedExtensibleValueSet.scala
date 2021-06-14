@@ -25,8 +25,13 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_inheritedExtensibleValueSet
     extends CompanionFor[Elementdefinition_inheritedExtensibleValueSet] {
+  implicit def summonObjectAndCompanionElementdefinition_inheritedExtensibleValueSet_1619388385(
+      o: Elementdefinition_inheritedExtensibleValueSet): ObjectAndCompanion[Elementdefinition_inheritedExtensibleValueSet, Elementdefinition_inheritedExtensibleValueSet.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/elementdefinition-inheritedExtensibleValueSet")
   type ValueChoice = Choice[Union00545979821]

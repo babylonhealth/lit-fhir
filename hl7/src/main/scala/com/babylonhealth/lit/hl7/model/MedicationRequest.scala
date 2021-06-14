@@ -30,13 +30,25 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationRequest extends CompanionFor[MedicationRequest] {
+  implicit def summonObjectAndCompanionMedicationRequest_689209929(
+      o: MedicationRequest): ObjectAndCompanion[MedicationRequest, MedicationRequest.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MedicationRequest
+  override type ParentType   = MedicationRequest
   override val baseType: CompanionFor[ResourceType] = MedicationRequest
+  override val parentType: CompanionFor[ParentType] = MedicationRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicationRequest")
   object DispenseRequest extends CompanionFor[DispenseRequest] {
+    implicit def summonObjectAndCompanionDispenseRequest_167184552(
+        o: DispenseRequest): ObjectAndCompanion[DispenseRequest, DispenseRequest.type] = ObjectAndCompanion(o, this)
     override type ResourceType = DispenseRequest
+    override type ParentType   = DispenseRequest
+    override val parentType: CompanionFor[ResourceType] = DispenseRequest
     object InitialFill extends CompanionFor[InitialFill] {
+      implicit def summonObjectAndCompanionInitialFill440401631(
+          o: InitialFill): ObjectAndCompanion[InitialFill, InitialFill.type] = ObjectAndCompanion(o, this)
       override type ResourceType = InitialFill
+      override type ParentType   = InitialFill
+      override val parentType: CompanionFor[ResourceType] = InitialFill
       def apply(
           id: Option[String] = None,
           quantity: Option[Quantity] = None,
@@ -221,8 +233,12 @@ object MedicationRequest extends CompanionFor[MedicationRequest] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Substitution extends CompanionFor[Substitution] {
+    implicit def summonObjectAndCompanionSubstitution_514322510(
+        o: Substitution): ObjectAndCompanion[Substitution, Substitution.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Substitution
-    type AllowedChoice         = Choice[Union_1768247138]
+    override type ParentType   = Substitution
+    override val parentType: CompanionFor[ResourceType] = Substitution
+    type AllowedChoice = Choice[Union_1768247138]
     def apply(
         id: Option[String] = None,
         reason: Option[CodeableConcept] = None,

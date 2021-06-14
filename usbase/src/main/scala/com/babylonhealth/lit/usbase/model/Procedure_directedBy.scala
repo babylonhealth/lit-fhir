@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Procedure_directedBy extends CompanionFor[Procedure_directedBy] {
+  implicit def summonObjectAndCompanionProcedure_directedBy_1579942698(
+      o: Procedure_directedBy): ObjectAndCompanion[Procedure_directedBy, Procedure_directedBy.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/procedure-directedBy")
   type ValueChoice = Choice[Union01025009075]
   def apply(

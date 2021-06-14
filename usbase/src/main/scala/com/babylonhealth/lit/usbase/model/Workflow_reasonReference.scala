@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Workflow_reasonReference extends CompanionFor[Workflow_reasonReference] {
+  implicit def summonObjectAndCompanionWorkflow_reasonReference234349803(
+      o: Workflow_reasonReference): ObjectAndCompanion[Workflow_reasonReference, Workflow_reasonReference.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/workflow-reasonReference")
   def apply(
       id: Option[String] = None,

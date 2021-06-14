@@ -21,8 +21,12 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object HumanName extends CompanionFor[HumanName] {
+  implicit def summonObjectAndCompanionHumanName1522302578(
+      o: HumanName): ObjectAndCompanion[HumanName, HumanName.type] = ObjectAndCompanion(o, this)
   override type ResourceType = HumanName
+  override type ParentType   = HumanName
   override val baseType: CompanionFor[ResourceType] = HumanName
+  override val parentType: CompanionFor[ParentType] = HumanName
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/HumanName")
   def apply(
       id: Option[String] = None,

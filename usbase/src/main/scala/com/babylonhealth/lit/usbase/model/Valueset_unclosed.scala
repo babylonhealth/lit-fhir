@@ -24,8 +24,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_unclosed extends CompanionFor[Valueset_unclosed] {
+  implicit def summonObjectAndCompanionValueset_unclosed_1175837477(
+      o: Valueset_unclosed): ObjectAndCompanion[Valueset_unclosed, Valueset_unclosed.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-unclosed")
   def apply(
       id: Option[String] = None,

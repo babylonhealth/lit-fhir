@@ -26,8 +26,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_diagnosticreport_note extends CompanionFor[Us_core_diagnosticreport_note] {
+  implicit def summonObjectAndCompanionUs_core_diagnosticreport_note1192811283(
+      o: Us_core_diagnosticreport_note): ObjectAndCompanion[Us_core_diagnosticreport_note, Us_core_diagnosticreport_note.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = DiagnosticReport
+  override type ParentType   = DiagnosticReport
   override val baseType: CompanionFor[ResourceType] = DiagnosticReport
+  override val parentType: CompanionFor[ParentType] = DiagnosticReport
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-note")
   type EffectiveChoice = Choice[Union_0934386166]

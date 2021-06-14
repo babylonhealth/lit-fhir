@@ -24,11 +24,20 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ClinicalImpression extends CompanionFor[ClinicalImpression] {
+  implicit def summonObjectAndCompanionClinicalImpression47404349(
+      o: ClinicalImpression): ObjectAndCompanion[ClinicalImpression, ClinicalImpression.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = ClinicalImpression
+  override type ParentType   = ClinicalImpression
   override val baseType: CompanionFor[ResourceType] = ClinicalImpression
+  override val parentType: CompanionFor[ParentType] = ClinicalImpression
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ClinicalImpression")
   object Investigation extends CompanionFor[Investigation] {
+    implicit def summonObjectAndCompanionInvestigation_1628114612(
+        o: Investigation): ObjectAndCompanion[Investigation, Investigation.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Investigation
+    override type ParentType   = Investigation
+    override val parentType: CompanionFor[ResourceType] = Investigation
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,
@@ -91,7 +100,11 @@ object ClinicalImpression extends CompanionFor[ClinicalImpression] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Finding extends CompanionFor[Finding] {
+    implicit def summonObjectAndCompanionFinding_673310315(o: Finding): ObjectAndCompanion[Finding, Finding.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Finding
+    override type ParentType   = Finding
+    override val parentType: CompanionFor[ResourceType] = Finding
     def apply(
         id: Option[String] = None,
         basis: Option[String] = None,

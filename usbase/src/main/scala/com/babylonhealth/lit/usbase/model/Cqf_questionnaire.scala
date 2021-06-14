@@ -25,8 +25,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_questionnaire extends CompanionFor[Cqf_questionnaire] {
+  implicit def summonObjectAndCompanionCqf_questionnaire_994507644(
+      o: Cqf_questionnaire): ObjectAndCompanion[Cqf_questionnaire, Cqf_questionnaire.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Questionnaire
+  override type ParentType   = Questionnaire
   override val baseType: CompanionFor[ResourceType] = Questionnaire
+  override val parentType: CompanionFor[ParentType] = Questionnaire
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/cqf-questionnaire")
   def apply(
       id: Option[String] = None,

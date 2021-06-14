@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_ADXP_streetAddressLine extends CompanionFor[Iso21090_ADXP_streetAddressLine] {
+  implicit def summonObjectAndCompanionIso21090_ADXP_streetAddressLine_533924810(
+      o: Iso21090_ADXP_streetAddressLine): ObjectAndCompanion[Iso21090_ADXP_streetAddressLine, Iso21090_ADXP_streetAddressLine.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetAddressLine")
   def apply(

@@ -24,13 +24,26 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
+  implicit def summonObjectAndCompanionSubstanceNucleicAcid_1070163246(
+      o: SubstanceNucleicAcid): ObjectAndCompanion[SubstanceNucleicAcid, SubstanceNucleicAcid.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = SubstanceNucleicAcid
+  override type ParentType   = SubstanceNucleicAcid
   override val baseType: CompanionFor[ResourceType] = SubstanceNucleicAcid
+  override val parentType: CompanionFor[ParentType] = SubstanceNucleicAcid
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceNucleicAcid")
   object Subunit extends CompanionFor[Subunit] {
+    implicit def summonObjectAndCompanionSubunit_1897125276(o: Subunit): ObjectAndCompanion[Subunit, Subunit.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Subunit
+    override type ParentType   = Subunit
+    override val parentType: CompanionFor[ResourceType] = Subunit
     object Sugar extends CompanionFor[Sugar] {
+      implicit def summonObjectAndCompanionSugar981335356(o: Sugar): ObjectAndCompanion[Sugar, Sugar.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Sugar
+      override type ParentType   = Sugar
+      override val parentType: CompanionFor[ResourceType] = Sugar
       def apply(
           id: Option[String] = None,
           name: Option[String] = None,
@@ -102,7 +115,11 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
           FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Linkage extends CompanionFor[Linkage] {
+      implicit def summonObjectAndCompanionLinkage_1469052777(o: Linkage): ObjectAndCompanion[Linkage, Linkage.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Linkage
+      override type ParentType   = Linkage
+      override val parentType: CompanionFor[ResourceType] = Linkage
       def apply(
           id: Option[String] = None,
           name: Option[String] = None,

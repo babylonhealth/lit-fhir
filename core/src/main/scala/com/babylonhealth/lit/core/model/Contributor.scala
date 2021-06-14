@@ -21,8 +21,12 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Contributor extends CompanionFor[Contributor] {
+  implicit def summonObjectAndCompanionContributor_1606151921(
+      o: Contributor): ObjectAndCompanion[Contributor, Contributor.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Contributor
+  override type ParentType   = Contributor
   override val baseType: CompanionFor[ResourceType] = Contributor
+  override val parentType: CompanionFor[ParentType] = Contributor
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Contributor")
   def apply(
       id: Option[String] = None,

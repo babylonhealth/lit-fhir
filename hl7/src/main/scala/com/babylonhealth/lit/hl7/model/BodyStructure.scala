@@ -23,8 +23,12 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object BodyStructure extends CompanionFor[BodyStructure] {
+  implicit def summonObjectAndCompanionBodyStructure_96377560(
+      o: BodyStructure): ObjectAndCompanion[BodyStructure, BodyStructure.type] = ObjectAndCompanion(o, this)
   override type ResourceType = BodyStructure
+  override type ParentType   = BodyStructure
   override val baseType: CompanionFor[ResourceType] = BodyStructure
+  override val parentType: CompanionFor[ParentType] = BodyStructure
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/BodyStructure")
   def apply(
       id: Option[String] = None,

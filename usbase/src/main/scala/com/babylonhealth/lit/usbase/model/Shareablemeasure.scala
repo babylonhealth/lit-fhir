@@ -25,8 +25,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablemeasure extends CompanionFor[Shareablemeasure] {
+  implicit def summonObjectAndCompanionShareablemeasure_722106430(
+      o: Shareablemeasure): ObjectAndCompanion[Shareablemeasure, Shareablemeasure.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Measure
+  override type ParentType   = Measure
   override val baseType: CompanionFor[ResourceType] = Measure
+  override val parentType: CompanionFor[ParentType] = Measure
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareablemeasure")
   type SubjectChoice = Choice[Union01025009075]
   def apply(

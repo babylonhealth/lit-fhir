@@ -25,8 +25,12 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Headcircum extends CompanionFor[Headcircum] {
+  implicit def summonObjectAndCompanionHeadcircum1281014741(
+      o: Headcircum): ObjectAndCompanion[Headcircum, Headcircum.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Observation
+  override type ParentType   = Vitalsigns
   override val baseType: CompanionFor[ResourceType] = Observation
+  override val parentType: CompanionFor[ParentType] = Vitalsigns
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/headcircum")
   type EffectiveChoice = Choice[Union_0934386166]
   def apply(

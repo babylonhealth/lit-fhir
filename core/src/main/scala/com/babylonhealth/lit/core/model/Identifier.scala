@@ -21,8 +21,12 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Identifier extends CompanionFor[Identifier] {
+  implicit def summonObjectAndCompanionIdentifier747166474(
+      o: Identifier): ObjectAndCompanion[Identifier, Identifier.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Identifier
+  override type ParentType   = Identifier
   override val baseType: CompanionFor[ResourceType] = Identifier
+  override val parentType: CompanionFor[ParentType] = Identifier
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Identifier")
   def apply(
       id: Option[String] = None,

@@ -24,8 +24,13 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_concept_comments extends CompanionFor[Codesystem_concept_comments] {
+  implicit def summonObjectAndCompanionCodesystem_concept_comments1091286907(
+      o: Codesystem_concept_comments): ObjectAndCompanion[Codesystem_concept_comments, Codesystem_concept_comments.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
+  override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
+  override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/codesystem-concept-comments")
   def apply(
       id: Option[String] = None,

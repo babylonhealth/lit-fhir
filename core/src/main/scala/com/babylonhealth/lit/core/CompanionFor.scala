@@ -10,8 +10,7 @@ import scala.util.{ Failure, Success, Try }
 import io.circe.{ Decoder, DecodingFailure, HCursor }
 import izumi.reflect.macrortti.LTag
 import org.slf4j.{ Logger, LoggerFactory }
-
-import com.babylonhealth.lit.core.model.{ Element, Resource, resourceTypeLookup, urlLookup }
+import com.babylonhealth.lit.core.model.{ Element, Extension, Resource, resourceTypeLookup, urlLookup }
 
 trait OptionSugar {
   implicit class RichT[T](val t: T) {
@@ -22,14 +21,44 @@ trait OptionSugar {
   }
 }
 
+case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor[_]](o: O, c: C) {
+  def update[T](fieldSelection: C => FHIRComponentFieldMeta[T])(fn: T => T): O =
+    o.updateFromField[T, O](fieldSelection(c))(fn)
+  def set[T](fieldSelection: C => FHIRComponentFieldMeta[T])(value: T): O =
+    o.setFromField[T, O](fieldSelection(c))(value)
+  def updateIfExists[T](fieldSelection: C => FHIRComponentFieldMeta[Option[T]])(fn: T => T): O =
+    o.updateFromField[Option[T], O](fieldSelection(c))(_ map fn)
+  def updateAll[T](fieldSelection: C => FHIRComponentFieldMeta[LitSeq[T]])(fn: T => T): O =
+    o.updateFromField[LitSeq[T], O](fieldSelection(c))(_ map fn)
+  def updateExtensions(field: C => FHIRComponentFieldMeta[_])(update: LitSeq[Extension] => LitSeq[Extension]): O =
+    o.extensions.update(field(c))(update)
+  def updateIds(field: C => FHIRComponentFieldMeta[_])(update: Option[String] => Option[String]): O =
+    o.ids.update(field(c))(update)
+  def setExtensions(field: C => FHIRComponentFieldMeta[_])(extension: LitSeq[Extension]): O =
+    o.extensions.set(field(c))(extension)
+  def setIds(field: C => FHIRComponentFieldMeta[_])(id: Option[String]): O    = o.ids.set(field(c))(id)
+  def getExtensions(field: C => FHIRComponentFieldMeta[_]): LitSeq[Extension] = o.extensions.get(field(c))
+  def getIds(field: C => FHIRComponentFieldMeta[_]): Option[String]           = o.ids.get(field(c))
+}
+
 abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: ClassTag[T @uncheckedVariance])
     extends JsonDecoderHelpers
     with OptionSugar {
   type ResourceType >: T <: FHIRObject
+  type ParentType >: T <: FHIRObject
   private val log: Logger = LoggerFactory.getLogger(getClass)
   val thisName: String
   val profileUrl: Option[String] = None
 
+  final private[core] def leastParentWithField(
+      f: FHIRComponentFieldMeta[_],
+      chain: List[CompanionFor[_]] = Nil
+  ): CompanionFor[_ <: ResourceType] = {
+    if (fieldsMeta.contains(f)) this.asInstanceOf[CompanionFor[_ <: ResourceType]]
+    else if (parentType eq this)
+      throw new RuntimeException(s"Unable to find field matching $f in ${chain.map(_.thisName).mkString(" <: ")}")
+    else parentType.leastParentWithField(f, chain :+ this)
+  }
   //  private val m = runtimeMirror(getClass.getClassLoader)
   //  lazy val classConstructor: Constructor[_] =
   //    thisClassTag.runtimeClass.getDeclaredConstructor(fieldsMeta.map(f => m.runtimeClass(f.tt.tag.typeSymbol.asClass)): _*)
@@ -80,6 +109,8 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
   def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]]
 
   def fields(t: T): Seq[FHIRComponentField[_]]
+
+  val parentType: CompanionFor[ParentType]
 
   val baseType: CompanionFor[T]
 
