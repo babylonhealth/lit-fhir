@@ -342,8 +342,7 @@ object Library extends CompanionFor[Library] {
     "type"         -> (obj => Seq(obj.`type`)),
     "predecessor"  -> (obj => obj.relatedArtifact.filter(_.`type`.name == "predecessor").flatMap(_.resource).toSeq),
     "context-type" -> (obj => obj.useContext.map(_.code).toSeq),
-    "derived-from" -> (obj =>
-      obj.relatedArtifact.filter(_.`type`.name == "derived-from").flatMap(_.resource).toSeq)
+    "derived-from" -> (obj => obj.relatedArtifact.filter(_.`type`.name == "derived-from").flatMap(_.resource).toSeq)
   )
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Library] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>

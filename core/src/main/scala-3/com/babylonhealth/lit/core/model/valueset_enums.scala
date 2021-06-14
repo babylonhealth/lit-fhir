@@ -321,7 +321,7 @@ enum EXPRESSION_LANGUAGE(val name: String, val display: Option[String], val syst
   case CQL extends EXPRESSION_LANGUAGE("text/cql", Some("CQL"), Some("http://hl7.org/fhir/expression-language"))
   case FHIRPATH extends EXPRESSION_LANGUAGE("text/fhirpath", Some("FHIRPath"), Some("http://hl7.org/fhir/expression-language"))
   case FHIR_QUERY extends EXPRESSION_LANGUAGE("application/x-fhir-query", Some("FHIR Query"), Some("http://hl7.org/fhir/expression-language"))
-case Other_(s: String) extends EXPRESSION_LANGUAGE(s, Some(s"Runtime value set extension ($s)"), None)
+  case Other_(s: String) extends EXPRESSION_LANGUAGE(s, Some(s"Runtime value set extension ($s)"), None)
 }
 object EXPRESSION_LANGUAGE extends ETypeWithFallback[EXPRESSION_LANGUAGE] with EType[EXPRESSION_LANGUAGE]("http://hl7.org/fhir/ValueSet/expression-language")  {
   def fallback(s: String): EXPRESSION_LANGUAGE = EXPRESSION_LANGUAGE.Other_(s)

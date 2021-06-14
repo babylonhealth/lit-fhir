@@ -319,8 +319,7 @@ object EventDefinition extends CompanionFor[EventDefinition] {
         obj.useContext.map(_.value).flatMap(_.as[Range]).toSeq),
     "predecessor"  -> (obj => obj.relatedArtifact.filter(_.`type`.name == "predecessor").flatMap(_.resource).toSeq),
     "context-type" -> (obj => obj.useContext.map(_.code).toSeq),
-    "derived-from" -> (obj =>
-      obj.relatedArtifact.filter(_.`type`.name == "derived-from").flatMap(_.resource).toSeq)
+    "derived-from" -> (obj => obj.relatedArtifact.filter(_.`type`.name == "derived-from").flatMap(_.resource).toSeq)
   )
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[EventDefinition] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>

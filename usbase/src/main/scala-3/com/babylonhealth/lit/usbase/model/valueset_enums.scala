@@ -8,14 +8,14 @@ import io.circe.{ Decoder, DecodingFailure, Encoder, HCursor, Json }
 import com.babylonhealth.lit.core.{ EnumBase, EType, ToCodingAble, ETypeWithFallback }
 import com.babylonhealth.lit.core.model.Coding
 enum CHOICE_LIST_ORIENTATION(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case HORIZONTAL extends CHOICE_LIST_ORIENTATION("horizontal", Some("Horizontal"), Some("http://terminology.hl7.org/CodeSystem/choice-list-orientation"))
+  case HORIZONTAL extends CHOICE_LIST_ORIENTATION("horizontal", Some("Horizontal"), Some("http://terminology.hl7.org/CodeSystem/choice-list-orientation"))
   case VERTICAL extends CHOICE_LIST_ORIENTATION("vertical", Some("Vertical"), Some("http://terminology.hl7.org/CodeSystem/choice-list-orientation"))
 }
 object CHOICE_LIST_ORIENTATION extends EType[CHOICE_LIST_ORIENTATION]("http://hl7.org/fhir/ValueSet/choice-list-orientation") 
 
 
 enum CONFORMANCE_EXPECTATION(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case MAY extends CONFORMANCE_EXPECTATION("MAY", Some("MAY"), Some("http://terminology.hl7.org/CodeSystem/conformance-expectation"))
+  case MAY extends CONFORMANCE_EXPECTATION("MAY", Some("MAY"), Some("http://terminology.hl7.org/CodeSystem/conformance-expectation"))
   case SHALL extends CONFORMANCE_EXPECTATION("SHALL", Some("SHALL"), Some("http://terminology.hl7.org/CodeSystem/conformance-expectation"))
   case SHOULD extends CONFORMANCE_EXPECTATION("SHOULD", Some("SHOULD"), Some("http://terminology.hl7.org/CodeSystem/conformance-expectation"))
   case SHOULD_NOT extends CONFORMANCE_EXPECTATION("SHOULD-NOT", Some("SHOULD-NOT"), Some("http://terminology.hl7.org/CodeSystem/conformance-expectation"))
@@ -24,7 +24,7 @@ object CONFORMANCE_EXPECTATION extends EType[CONFORMANCE_EXPECTATION]("http://hl
 
 
 enum DATA_ABSENT_REASON(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case ASKED_BUT_DECLINED extends DATA_ABSENT_REASON("asked-declined", Some("Asked But Declined"), Some("http://terminology.hl7.org/CodeSystem/data-absent-reason"))
+  case ASKED_BUT_DECLINED extends DATA_ABSENT_REASON("asked-declined", Some("Asked But Declined"), Some("http://terminology.hl7.org/CodeSystem/data-absent-reason"))
   case ASKED_BUT_UNKNOWN extends DATA_ABSENT_REASON("asked-unknown", Some("Asked But Unknown"), Some("http://terminology.hl7.org/CodeSystem/data-absent-reason"))
   case AS_TEXT extends DATA_ABSENT_REASON("as-text", Some("As Text"), Some("http://terminology.hl7.org/CodeSystem/data-absent-reason"))
   case ERROR extends DATA_ABSENT_REASON("error", Some("Error"), Some("http://terminology.hl7.org/CodeSystem/data-absent-reason"))
@@ -44,7 +44,7 @@ object DATA_ABSENT_REASON extends EType[DATA_ABSENT_REASON]("http://hl7.org/fhir
 
 
 enum DATA_TYPES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case ADDRESS extends DATA_TYPES("Address", Some("Address"), Some("http://hl7.org/fhir/data-types"))
+  case ADDRESS extends DATA_TYPES("Address", Some("Address"), Some("http://hl7.org/fhir/data-types"))
   case AGE extends DATA_TYPES("Age", Some("Age"), Some("http://hl7.org/fhir/data-types"))
   case ANNOTATION extends DATA_TYPES("Annotation", Some("Annotation"), Some("http://hl7.org/fhir/data-types"))
   case ATTACHMENT extends DATA_TYPES("Attachment", Some("Attachment"), Some("http://hl7.org/fhir/data-types"))
@@ -112,7 +112,7 @@ object DATA_TYPES extends EType[DATA_TYPES]("http://hl7.org/fhir/ValueSet/data-t
 
 
 enum EXPANSION_PARAMETER_SOURCE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case CODESYSTEM extends EXPANSION_PARAMETER_SOURCE("codesystem", Some("Code System"), Some("http://terminology.hl7.org/CodeSystem/expansion-parameter-source"))
+  case CODESYSTEM extends EXPANSION_PARAMETER_SOURCE("codesystem", Some("Code System"), Some("http://terminology.hl7.org/CodeSystem/expansion-parameter-source"))
   case INPUT extends EXPANSION_PARAMETER_SOURCE("input", Some("Client Input"), Some("http://terminology.hl7.org/CodeSystem/expansion-parameter-source"))
   case SERVER extends EXPANSION_PARAMETER_SOURCE("server", Some("Server Engine"), Some("http://terminology.hl7.org/CodeSystem/expansion-parameter-source"))
 }
@@ -120,7 +120,7 @@ object EXPANSION_PARAMETER_SOURCE extends EType[EXPANSION_PARAMETER_SOURCE]("htt
 
 
 enum EXPANSION_PROCESSING_RULE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case ALL_CODES extends EXPANSION_PROCESSING_RULE("all-codes", Some("All Codes"), Some("http://terminology.hl7.org/CodeSystem/expansion-processing-rule"))
+  case ALL_CODES extends EXPANSION_PROCESSING_RULE("all-codes", Some("All Codes"), Some("http://terminology.hl7.org/CodeSystem/expansion-processing-rule"))
   case GROUPS_ONLY extends EXPANSION_PROCESSING_RULE("groups-only", Some("Groups Only"), Some("http://terminology.hl7.org/CodeSystem/expansion-processing-rule"))
   case UNGROUPED extends EXPANSION_PROCESSING_RULE("ungrouped", Some("Groups + Ungrouped codes"), Some("http://terminology.hl7.org/CodeSystem/expansion-processing-rule"))
 }
@@ -128,7 +128,7 @@ object EXPANSION_PROCESSING_RULE extends EType[EXPANSION_PROCESSING_RULE]("http:
 
 
 enum HL7_WORK_GROUP(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case AID extends HL7_WORK_GROUP("aid", Some("Application Implementation and Design"), Some("http://terminology.hl7.org/CodeSystem/hl7-work-group"))
+  case AID extends HL7_WORK_GROUP("aid", Some("Application Implementation and Design"), Some("http://terminology.hl7.org/CodeSystem/hl7-work-group"))
   case BRR extends HL7_WORK_GROUP("brr", Some("Biomedical Research and Regulation"), Some("http://terminology.hl7.org/CodeSystem/hl7-work-group"))
   case CBCC extends HL7_WORK_GROUP("cbcc", Some("Community Based Collaborative Care"), Some("http://terminology.hl7.org/CodeSystem/hl7-work-group"))
   case CDS extends HL7_WORK_GROUP("cds", Some("Clinical Decision Support"), Some("http://terminology.hl7.org/CodeSystem/hl7-work-group"))
@@ -157,7 +157,7 @@ object HL7_WORK_GROUP extends EType[HL7_WORK_GROUP]("http://hl7.org/fhir/ValueSe
 
 
 enum IMPLANTSTATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case DISABLED extends IMPLANTSTATUS("disabled", Some("Disabled"), Some("http://terminology.hl7.org/CodeSystem/implantStatus"))
+  case DISABLED extends IMPLANTSTATUS("disabled", Some("Disabled"), Some("http://terminology.hl7.org/CodeSystem/implantStatus"))
   case FUNCTIONAL extends IMPLANTSTATUS("functional", Some("Functional"), Some("http://terminology.hl7.org/CodeSystem/implantStatus"))
   case NON_FUNCTIONAL extends IMPLANTSTATUS("non-functional", Some("Non-Functional"), Some("http://terminology.hl7.org/CodeSystem/implantStatus"))
   case UNKNOWN extends IMPLANTSTATUS("unknown", Some("Unknown"), Some("http://terminology.hl7.org/CodeSystem/implantStatus"))
@@ -166,7 +166,7 @@ object IMPLANTSTATUS extends EType[IMPLANTSTATUS]("http://hl7.org/fhir/ValueSet/
 
 
 enum MATCH_GRADE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case CERTAIN extends MATCH_GRADE("certain", Some("Certain Match"), Some("http://terminology.hl7.org/CodeSystem/match-grade"))
+  case CERTAIN extends MATCH_GRADE("certain", Some("Certain Match"), Some("http://terminology.hl7.org/CodeSystem/match-grade"))
   case CERTAINLY_NOT_A_MATCH extends MATCH_GRADE("certainly-not", Some("Certainly Not a Match"), Some("http://terminology.hl7.org/CodeSystem/match-grade"))
   case POSSIBLE extends MATCH_GRADE("possible", Some("Possible Match"), Some("http://terminology.hl7.org/CodeSystem/match-grade"))
   case PROBABLE extends MATCH_GRADE("probable", Some("Probable Match"), Some("http://terminology.hl7.org/CodeSystem/match-grade"))
@@ -175,7 +175,7 @@ object MATCH_GRADE extends EType[MATCH_GRADE]("http://hl7.org/fhir/ValueSet/matc
 
 
 enum NAME_ASSEMBLY_ORDER(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case F extends NAME_ASSEMBLY_ORDER("F", Some("Prefix Family Given Suffix"), Some("http://terminology.hl7.org/CodeSystem/v2-0444"))
+  case F extends NAME_ASSEMBLY_ORDER("F", Some("Prefix Family Given Suffix"), Some("http://terminology.hl7.org/CodeSystem/v2-0444"))
   case G extends NAME_ASSEMBLY_ORDER("G", Some("Prefix Given Family Suffix"), Some("http://terminology.hl7.org/CodeSystem/v2-0444"))
   case NL1 extends NAME_ASSEMBLY_ORDER("NL1", Some("Own Name"), Some("http://terminology.hl7.org/CodeSystem/name-assembly-order"))
   case NL2 extends NAME_ASSEMBLY_ORDER("NL2", Some("Partner Name"), Some("http://terminology.hl7.org/CodeSystem/name-assembly-order"))
@@ -187,7 +187,7 @@ object NAME_ASSEMBLY_ORDER extends EType[NAME_ASSEMBLY_ORDER]("http://hl7.org/fh
 
 
 enum NAME_PART_QUALIFIER(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case AC extends NAME_PART_QUALIFIER("AC", Some("Academic"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNamePartQualifierR2"))
+  case AC extends NAME_PART_QUALIFIER("AC", Some("Academic"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNamePartQualifierR2"))
   case AD extends NAME_PART_QUALIFIER("AD", Some("Acquired"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNamePartQualifierR2"))
   case BR extends NAME_PART_QUALIFIER("BR", Some("Birth"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNamePartQualifierR2"))
   case CL extends NAME_PART_QUALIFIER("CL", Some("Call me"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNamePartQualifierR2"))
@@ -204,7 +204,7 @@ object NAME_PART_QUALIFIER extends EType[NAME_PART_QUALIFIER]("http://hl7.org/fh
 
 
 enum NAME_V3_REPRESENTATION(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case ABC extends NAME_V3_REPRESENTATION("ABC", Some("ABC"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNameUse"))
+  case ABC extends NAME_V3_REPRESENTATION("ABC", Some("ABC"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNameUse"))
   case IDE extends NAME_V3_REPRESENTATION("IDE", Some("IDE"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNameUse"))
   case SYL extends NAME_V3_REPRESENTATION("SYL", Some("SYL"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNameUse"))
 }
@@ -212,7 +212,7 @@ object NAME_V3_REPRESENTATION extends EType[NAME_V3_REPRESENTATION]("http://hl7.
 
 
 enum POSTAL_ADDRESS_USE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case BAD extends POSTAL_ADDRESS_USE("BAD", Some("bad address"), Some("http://terminology.hl7.org/CodeSystem/v3-AddressUse"))
+  case BAD extends POSTAL_ADDRESS_USE("BAD", Some("bad address"), Some("http://terminology.hl7.org/CodeSystem/v3-AddressUse"))
   case CONF extends POSTAL_ADDRESS_USE("CONF", Some("confidential address"), Some("http://terminology.hl7.org/CodeSystem/v3-AddressUse"))
   case DIR extends POSTAL_ADDRESS_USE("DIR", Some("direct"), Some("http://terminology.hl7.org/CodeSystem/v3-AddressUse"))
   case HP extends POSTAL_ADDRESS_USE("HP", Some("primary home"), Some("http://terminology.hl7.org/CodeSystem/v3-AddressUse"))
@@ -225,7 +225,7 @@ object POSTAL_ADDRESS_USE extends EType[POSTAL_ADDRESS_USE]("http://hl7.org/fhir
 
 
 enum PROBABILITY_DISTRIBUTION_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case B extends PROBABILITY_DISTRIBUTION_TYPE("B", Some("beta"), Some("http://terminology.hl7.org/CodeSystem/v3-ProbabilityDistributionType"))
+  case B extends PROBABILITY_DISTRIBUTION_TYPE("B", Some("beta"), Some("http://terminology.hl7.org/CodeSystem/v3-ProbabilityDistributionType"))
   case E extends PROBABILITY_DISTRIBUTION_TYPE("E", Some("exponential"), Some("http://terminology.hl7.org/CodeSystem/v3-ProbabilityDistributionType"))
   case F extends PROBABILITY_DISTRIBUTION_TYPE("F", Some("F"), Some("http://terminology.hl7.org/CodeSystem/v3-ProbabilityDistributionType"))
   case G extends PROBABILITY_DISTRIBUTION_TYPE("G", Some("(gamma)"), Some("http://terminology.hl7.org/CodeSystem/v3-ProbabilityDistributionType"))
@@ -239,7 +239,7 @@ object PROBABILITY_DISTRIBUTION_TYPE extends EType[PROBABILITY_DISTRIBUTION_TYPE
 
 
 enum QUESTIONNAIRE_USAGE_MODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case CAPTURE extends QUESTIONNAIRE_USAGE_MODE("capture", Some("Capture Only"), Some("http://terminology.hl7.org/CodeSystem/questionnaire-usage-mode"))
+  case CAPTURE extends QUESTIONNAIRE_USAGE_MODE("capture", Some("Capture Only"), Some("http://terminology.hl7.org/CodeSystem/questionnaire-usage-mode"))
   case CAPTURE_DISPLAY extends QUESTIONNAIRE_USAGE_MODE("capture-display", Some("Capture & Display"), Some("http://terminology.hl7.org/CodeSystem/questionnaire-usage-mode"))
   case CAPTURE_DISPLAY_NON_EMPTY extends QUESTIONNAIRE_USAGE_MODE("capture-display-non-empty", Some("Capture or, if answered, Display"), Some("http://terminology.hl7.org/CodeSystem/questionnaire-usage-mode"))
   case DISPLAY extends QUESTIONNAIRE_USAGE_MODE("display", Some("Display Only"), Some("http://terminology.hl7.org/CodeSystem/questionnaire-usage-mode"))
@@ -249,7 +249,7 @@ object QUESTIONNAIRE_USAGE_MODE extends EType[QUESTIONNAIRE_USAGE_MODE]("http://
 
 
 enum RESOURCE_SECURITY_CATEGORY(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case ANONYMOUS extends RESOURCE_SECURITY_CATEGORY("anonymous", Some("Anonymous READ Access Resource"), Some("http://terminology.hl7.org/CodeSystem/resource-security-category"))
+  case ANONYMOUS extends RESOURCE_SECURITY_CATEGORY("anonymous", Some("Anonymous READ Access Resource"), Some("http://terminology.hl7.org/CodeSystem/resource-security-category"))
   case BUSINESS extends RESOURCE_SECURITY_CATEGORY("business", Some("Business Sensitive Resource"), Some("http://terminology.hl7.org/CodeSystem/resource-security-category"))
   case INDIVIDUAL extends RESOURCE_SECURITY_CATEGORY("individual", Some("Individual Sensitive Resource"), Some("http://terminology.hl7.org/CodeSystem/resource-security-category"))
   case NOT_CLASSIFIED extends RESOURCE_SECURITY_CATEGORY("not-classified", Some("Not classified"), Some("http://terminology.hl7.org/CodeSystem/resource-security-category"))
@@ -259,7 +259,7 @@ object RESOURCE_SECURITY_CATEGORY extends EType[RESOURCE_SECURITY_CATEGORY]("htt
 
 
 enum SMART_CAPABILITIES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case CONFIDENTIAL_CLIENT_PROFILE extends SMART_CAPABILITIES("client-confidential-symmetric", Some("Confidential Client Profile"), Some("http://terminology.hl7.org/CodeSystem/smart-capabilities"))
+  case CONFIDENTIAL_CLIENT_PROFILE extends SMART_CAPABILITIES("client-confidential-symmetric", Some("Confidential Client Profile"), Some("http://terminology.hl7.org/CodeSystem/smart-capabilities"))
   case CONTEXT_EHR_ENCOUNTER extends SMART_CAPABILITIES("context-ehr-encounter", Some("Allows \"Encounter Level Launch Context (EHR)\""), Some("http://terminology.hl7.org/CodeSystem/smart-capabilities"))
   case CONTEXT_EHR_PATIENT extends SMART_CAPABILITIES("context-ehr-patient", Some("Allows \"Patient Level Launch Context (EHR)\""), Some("http://terminology.hl7.org/CodeSystem/smart-capabilities"))
   case CONTEXT_PASSTHROUGH_BANNER extends SMART_CAPABILITIES("context-passthrough-banner", Some("Allows \"Need Patient Banner\""), Some("http://terminology.hl7.org/CodeSystem/smart-capabilities"))
@@ -278,7 +278,7 @@ object SMART_CAPABILITIES extends EType[SMART_CAPABILITIES]("http://hl7.org/fhir
 
 
 enum STANDARDS_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case DEPRECATED extends STANDARDS_STATUS("deprecated", Some("Deprecated"), Some("http://terminology.hl7.org/CodeSystem/standards-status"))
+  case DEPRECATED extends STANDARDS_STATUS("deprecated", Some("Deprecated"), Some("http://terminology.hl7.org/CodeSystem/standards-status"))
   case DRAFT extends STANDARDS_STATUS("draft", Some("Draft"), Some("http://terminology.hl7.org/CodeSystem/standards-status"))
   case EXTERNAL extends STANDARDS_STATUS("external", Some("External"), Some("http://terminology.hl7.org/CodeSystem/standards-status"))
   case INFORMATIVE extends STANDARDS_STATUS("informative", Some("Informative"), Some("http://terminology.hl7.org/CodeSystem/standards-status"))
@@ -289,7 +289,7 @@ object STANDARDS_STATUS extends EType[STANDARDS_STATUS]("http://hl7.org/fhir/Val
 
 
 enum TEMPLATE_STATUS_CODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case ACTIVE extends TEMPLATE_STATUS_CODE("active", Some("Active"), Some("urn:oid:2.16.840.1.113883.3.1937.98.5.8"))
+  case ACTIVE extends TEMPLATE_STATUS_CODE("active", Some("Active"), Some("urn:oid:2.16.840.1.113883.3.1937.98.5.8"))
   case CANCELLED extends TEMPLATE_STATUS_CODE("cancelled", Some("Cancelled"), Some("urn:oid:2.16.840.1.113883.3.1937.98.5.8"))
   case DRAFT extends TEMPLATE_STATUS_CODE("draft", Some("Draft"), Some("urn:oid:2.16.840.1.113883.3.1937.98.5.8"))
   case PENDING extends TEMPLATE_STATUS_CODE("pending", Some("Under pre-publication review"), Some("urn:oid:2.16.840.1.113883.3.1937.98.5.8"))
@@ -302,7 +302,7 @@ object TEMPLATE_STATUS_CODE extends EType[TEMPLATE_STATUS_CODE]("http://hl7.org/
 
 
 enum V3_ENTITYNAMEUSER2(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case A extends V3_ENTITYNAMEUSER2("A", Some("business name"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNameUseR2"))
+  case A extends V3_ENTITYNAMEUSER2("A", Some("business name"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNameUseR2"))
   case ABC extends V3_ENTITYNAMEUSER2("ABC", Some("alphabetic"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNameUseR2"))
   case ANON extends V3_ENTITYNAMEUSER2("ANON", Some("Anonymous"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNameUseR2"))
   case ASSUMED extends V3_ENTITYNAMEUSER2("Assumed", Some("Assumed"), Some("http://terminology.hl7.org/CodeSystem/v3-EntityNameUseR2"))
@@ -325,7 +325,7 @@ object V3_ENTITYNAMEUSER2 extends EType[V3_ENTITYNAMEUSER2]("http://terminology.
 
 
 enum V3_NULLFLAVOR(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case ASKU extends V3_NULLFLAVOR("ASKU", Some("asked but unknown"), Some("http://terminology.hl7.org/CodeSystem/v3-NullFlavor"))
+  case ASKU extends V3_NULLFLAVOR("ASKU", Some("asked but unknown"), Some("http://terminology.hl7.org/CodeSystem/v3-NullFlavor"))
   case DER extends V3_NULLFLAVOR("DER", Some("derived"), Some("http://terminology.hl7.org/CodeSystem/v3-NullFlavor"))
   case INV extends V3_NULLFLAVOR("INV", Some("invalid"), Some("http://terminology.hl7.org/CodeSystem/v3-NullFlavor"))
   case MSK extends V3_NULLFLAVOR("MSK", Some("masked"), Some("http://terminology.hl7.org/CodeSystem/v3-NullFlavor"))

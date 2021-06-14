@@ -25,15 +25,15 @@ import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
 import com.babylonhealth.lit.hl7.model._
 
 case class TestUnionWrapper1(field: Choice[String \/ Boolean]) extends FHIRObject {
-  def thisTypeName: String  = "TestUnionWrapper1"
+  def thisTypeName: String = "TestUnionWrapper1"
 }
 
 case class TestUnionWrapper2(field: Choice[String \/ Boolean \/ Int]) extends FHIRObject {
-  def thisTypeName: String  = "TestUnionWrapper2"
+  def thisTypeName: String = "TestUnionWrapper2"
 }
 
 case class TestUnionWrapper3(field: Choice[String \/ Boolean \/ Int], fieldCode: Code) extends FHIRObject {
-  def thisTypeName: String  = "TestUnionWrapper3"
+  def thisTypeName: String = "TestUnionWrapper3"
 }
 
 object TestUnionWrapper1 extends CompanionFor[TestUnionWrapper1] {
@@ -236,7 +236,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
       val jstr = x.asJson.noSpaces
       JSONAssert.assertEquals(jstr, expectedAccountJson, true)
       val deser = parse(jstr).flatMap(_.as[Account])
-      deser.left.foreach(e => println("ballz A)\t"+ e.toString))
+      deser.left.foreach(e => println("ballz A)\t" + e.toString))
       deser.isRight shouldEqual true
       deser.right.get shouldEqual x
       s.add(deser.right.get)
@@ -253,7 +253,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
       val jstr = x.asJson.noSpaces
       JSONAssert.assertEquals(jstr, expectedAccountJson, true)
       val deser = parse(jstr).flatMap(_.as[Account])
-      deser.left.foreach(e => println("ballz B)\t"+ e.toString))
+      deser.left.foreach(e => println("ballz B)\t" + e.toString))
       deser.isRight shouldEqual true
       deser.right.get shouldEqual x
       s.add(deser.right.get)

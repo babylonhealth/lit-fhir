@@ -258,7 +258,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         s""" {
            |  def fallback(s: String): $enumName = $enumName.Other_(s)
            |}""".stripMargin
-    val objectType = if (isExtensible) "ETypeWithFallback" else "EType"
+    val objectType = if (isExtensible) s"ETypeWithFallback[$enumName] with EType" else "EType"
 
     val reference = (codes.url, codes.version) match {
       case (Some(url), Some(version)) if Config.useVersionedReferencesForEnums => s"$url|$version"
@@ -570,7 +570,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
             ",\n",
             "\n)")
       }
-    }
+      // TODO: This final replaceAll should be removed once the fhirpath lib base can be bumped
+    }.replaceAll(".entryName", ".name")
     // comments
     val classDescription =
       topLevelClass.rawStructureDefinition.description
@@ -733,11 +734,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |import scala.concurrent.duration.Duration.Inf
       |import scala.concurrent.{ Await, Future, blocking }
       |import scala.jdk.CollectionConverters._
-      |import scala.reflect.runtime.universe.ModuleSymbol
       |import scala.util.Try
-      |import scala.collection.parallel.CollectionConverters._
       |
-      |import enumeratum.{ CirceEnum, Enum, EnumEntry }
       |import io.circe.{ Decoder, Encoder }
       |import io.github.classgraph.{ ClassGraph, ClassInfo, ScanResult }
       |import izumi.reflect.macrortti.{ LTag, LightTypeTag }
@@ -859,19 +857,19 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |  // TODO: Is this true? Can we make this more efficient plz?
       |  @deprecated("REALLY SLOW")
       |  val typeSuffixMap: LightTypeTag => Option[String] = {
-      |    new {
-      |      private val log: Logger = LoggerFactory.getLogger(getClass)
-      |      def doLog = {
-      |        val suffixes         = suffixTypeMap.values.toSeq
-      |        val distinctSuffixes = suffixes.distinct
-      |        if (distinctSuffixes.sizeCompare(suffixes) != 0) {
-      |          val dups = ArrayBuffer(suffixes: _*)
-      |          for (v <- distinctSuffixes) dups.remove(dups.indexOf(v))
-      |          log.info(
-      |            s"-->>> BAD INIT -- values for suffixTypeMap must be unique. Some clashes are: [${dups.take(5).mkString(", ")}]")
-      |        } else log.info("-->>> GOOD INIT -- values for suffixTypeMap are unique ")
-      |      }
-      |    }.doLog
+      |    //new {
+      |    //  private val log: Logger = LoggerFactory.getLogger(getClass)
+      |    //  def doLog = {
+      |    //    val suffixes         = suffixTypeMap.values.toSeq
+      |    //    val distinctSuffixes = suffixes.distinct
+      |    //    if (distinctSuffixes.sizeCompare(suffixes) != 0) {
+      |    //      val dups = ArrayBuffer(suffixes: _*)
+      |    //      for (v <- distinctSuffixes) dups.remove(dups.indexOf(v))
+      |    //      log.info(
+      |    //        s"-->>> BAD INIT -- values for suffixTypeMap must be unique. Some clashes are: [${dups.take(5).mkString(", ")}]")
+      |    //    } else log.info("-->>> GOOD INIT -- values for suffixTypeMap are unique ")
+      |    //  }
+      |    //}.doLog
       |    // 'assert' does not work in package objects WTF
       |    //    assert(
       |    //      suffixTypeMap.values.toSeq.distinct.sizeCompare(suffixTypeMap.values) == 0,
