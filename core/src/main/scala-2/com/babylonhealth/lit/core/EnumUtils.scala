@@ -1,7 +1,10 @@
 package com.babylonhealth.lit.core
-
 import enumeratum.{ Circe, Enum, EnumEntry }
 import io.circe.{ Decoder, DecodingFailure, Encoder, HCursor }
+
+import com.babylonhealth.lit.core.EnumBase
+
+trait EnumeratumBase extends EnumEntry with EnumBase { def name: String = entryName }
 
 trait FhirEnum[A <: EnumEntry] extends Enum[A] {
   def reference: String

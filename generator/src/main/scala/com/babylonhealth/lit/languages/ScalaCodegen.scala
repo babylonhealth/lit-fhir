@@ -220,7 +220,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     }
 
     s"""
-       |sealed abstract class $enumName(override val entryName: String) extends EnumEntry with Product with java.io.Serializable {
+       |sealed abstract class $enumName(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
        |  def display: Option[String]
        |  def system: Option[String]
        |  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
@@ -924,7 +924,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
        |import enumeratum.{ CirceEnum, Enum, EnumEntry }
        |
        |import com.babylonhealth.lit.core.model.Coding
-       |import com.babylonhealth.lit.core.{ FhirEnum, FhirCirceEnum, EnumWithFallback }
+       |import com.babylonhealth.lit.core.{ EnumeratumBase, FhirEnum, FhirCirceEnum, EnumWithFallback }
        |
        |$enumDecl
        |""".stripMargin

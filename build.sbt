@@ -7,14 +7,17 @@ val thisVersion = sys.props.get("version") getOrElse "local"
 
 val scala2Version = "2.13.5"
 val crossVersions = Seq(scala2Version, "3.0.0")
+
+def isScala2(version: String) = version startsWith "2"
+
 val V = new {
-  val circe                  = "0.13.0"
+  val circe                  = "0.14.1"
   val logback                = "1.2.3"
   val enumeratum             = "1.5.15"
   val scalaMeterVersion      = "0.20"
-  val izumiReflect           = "1.0.0-M12"
+  val izumiReflect           = "1.1.2"
   val litVersionForGenerator = "0.12.0"
-  val scalaTest              = "3.2.3"
+  val scalaTest              = "3.2.9"
   val jsonassert             = "1.5.0"
   val lombok                 = "1.16.22"
   val jUnit                  = "5.6.0"
@@ -30,10 +33,11 @@ def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
     "babylon-snapshots" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-snapshots",
     "babylon-releases" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-releases"
   ),
-  libraryDependencies += "org.scala-lang" % "scala-reflect" % scala2Version,
+  libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scala-lang" % "scala-reflect" % scala2Version)
+                           else Nil),
   scalacOptions += "-language:postfixOps"
 )
-val commonSettings  = commonSettingsWithCrossVersions(crossVersions)
+val commonSettings = commonSettingsWithCrossVersions(crossVersions)
 // for now, Java  modules will be compiled against scala 2 (it's been more thorougly tested, and the setFoo API from
 // class annotation macros is more convenient called from Java than the .set(_.foo) one, since it requires no implicits
 val commonJSettings = commonSettingsWithCrossVersions(Seq(scala2Version))
@@ -66,8 +70,8 @@ lazy val macros = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions += "-Ymacro-annotations",
-    libraryDependencies += "org.scalameta" %% "scalameta" % "4.3.15"
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
+    libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scalameta" %% "scalameta" % "4.3.15") else Nil)
   )
 
 lazy val generator = project
@@ -92,24 +96,22 @@ lazy val core = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions += "-Ymacro-annotations",
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
     libraryDependencies ++= Seq(
-      "io.circe"               %% "circe-core"                 % V.circe,
-      "io.circe"               %% "circe-generic"              % V.circe,
-      "io.circe"               %% "circe-parser"               % V.circe,
-      "com.lihaoyi"            %% "fastparse"                  % "2.2.2",
-      "com.typesafe"            % "config"                     % "1.4.0",
-      "ch.qos.logback"          % "logback-classic"            % V.logback,
-      "com.beachape"           %% "enumeratum"                 % V.enumeratum,
-      "com.beachape"           %% "enumeratum-circe"           % "1.5.23",
-      "io.github.classgraph"    % "classgraph"                 % "4.8.78",
-      "org.scala-lang.modules" %% "scala-parallel-collections" % "0.2.0",
-      "dev.zio"                %% "izumi-reflect"              % V.izumiReflect,
+      "io.circe"            %% "circe-core"      % V.circe,
+      "io.circe"            %% "circe-generic"   % V.circe,
+      "io.circe"            %% "circe-parser"    % V.circe,
+      "com.typesafe"         % "config"          % "1.4.0",
+      "ch.qos.logback"       % "logback-classic" % V.logback,
+      "io.github.classgraph" % "classgraph"      % "4.8.78",
+      "dev.zio"             %% "izumi-reflect"   % V.izumiReflect,
       // Test
       "org.scalatest"    %% "scalatest"         % V.scalaTest  % Test,
       "org.skyscreamer"   % "jsonassert"        % V.jsonassert % Test,
       "org.junit.jupiter" % "junit-jupiter-api" % V.jUnit      % Test
-    )
+    ) ++ (if (isScala2(scalaVersion.value))
+            Seq("com.beachape" %% "enumeratum" % V.enumeratum, "com.beachape" %% "enumeratum-circe" % "1.5.23")
+          else Nil)
   )
   .dependsOn(macros, common)
 
@@ -118,7 +120,7 @@ lazy val hl7 = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions += "-Ymacro-annotations",
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
     libraryDependencies ++= Seq(
       "dev.zio" %% "izumi-reflect" % V.izumiReflect,
       // Test
@@ -134,7 +136,7 @@ lazy val uscore = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions += "-Ymacro-annotations",
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
     libraryDependencies ++= Seq(
       "dev.zio"        %% "izumi-reflect" % V.izumiReflect,
       "org.scalatest"  %% "scalatest"     % V.scalaTest  % Test,
@@ -147,7 +149,7 @@ lazy val usbase = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions += "-Ymacro-annotations",
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
     libraryDependencies ++= Seq(
       "dev.zio"        %% "izumi-reflect" % V.izumiReflect,
       "org.scalatest"  %% "scalatest"     % V.scalaTest  % Test,
@@ -160,8 +162,9 @@ lazy val fhirpath = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions += "-Ymacro-annotations",
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Nil),
     libraryDependencies ++= Seq(
+      "com.lihaoyi"         %% "fastparse"       % "2.2.2",
       "dev.zio"  %% "izumi-reflect" % V.izumiReflect,
       "org.slf4j" % "slf4j-api"     % "1.7.30",
       // Test

@@ -33,7 +33,7 @@ object serdes extends Utils {
       case dt: FHIRDateTime   => Json fromString dt.fmt
       case d: FHIRDate        => Json fromString d.fmt
       case time: LocalTime    => time.asJson
-      case e: EnumEntry       => Encoder.encodeString(e.entryName)
+      case e: EnumBase        => Encoder.encodeString(e.name)
       case bytes: Array[Byte] => Json.fromString(Base64.getEncoder.encodeToString(bytes))
       case j: Json            => j
       // unused?
