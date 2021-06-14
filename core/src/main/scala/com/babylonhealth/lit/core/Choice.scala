@@ -58,9 +58,9 @@ final class ChoiceMap[T: LTag] private[core] (
     choice: Choice[T],
     partials: Map[String, (String, LTag[_], Function[_, _])]) {
   def orElse[From, To](fn: From => To)(implicit
-      @implicitNotFound("Cannot prove that ${X} ('from' type) is a viable type for union ${T}")
+      @implicitNotFound("Cannot prove that ${From} ('from' type) is a viable type for union ${T}")
       fromWitness: UnionWitness[T, From],
-      @implicitNotFound("Cannot prove that ${X} ('to' type) is a viable type for union ${T}")
+      @implicitNotFound("Cannot prove that ${To} ('to' type) is a viable type for union ${T}")
       toWitness: UnionWitness[T, To]
   ): ChoiceMap[T] = new ChoiceMap(choice, partials + (fromWitness.suffix -> (toWitness.suffix, toWitness.tt, fn)))
   def run: Choice[T] =
@@ -73,15 +73,15 @@ case class Choice[T](suffix: String, value: Any)(implicit val tt: LTag[T]) {
   type Union = T
 
   def fold[Init: LTag, To: LTag](fn: Init => To)(implicit
-      @implicitNotFound("Cannot prove that ${X} ('from' type) is a viable type for union ${T}")
+      @implicitNotFound("Cannot prove that ${Init} ('from' type) is a viable type for union ${T}")
       fromWitness: UnionWitness[T, Init]): ChoiceFold[T, To, Init] =
     new ChoiceFold[T, To, Init](this, Map(fromWitness.suffix -> fn))
 
   // Modify the held value, returning a type that can also be held in the union type
   def mapValue[From, To](fn: From => To)(implicit
-      @implicitNotFound("Cannot prove that ${X} ('from' type) is a viable type for union ${T}")
+      @implicitNotFound("Cannot prove that ${From} ('from' type) is a viable type for union ${T}")
       fromWitness: UnionWitness[T, From],
-      @implicitNotFound("Cannot prove that ${X} ('to' type) is a viable type for union ${T}")
+      @implicitNotFound("Cannot prove that ${To} ('to' type) is a viable type for union ${T}")
       toWitness: UnionWitness[T, To]
   ): ChoiceMap[T] = new ChoiceMap(this, Map(fromWitness.suffix -> (toWitness.suffix, toWitness.tt, fn)))
 
