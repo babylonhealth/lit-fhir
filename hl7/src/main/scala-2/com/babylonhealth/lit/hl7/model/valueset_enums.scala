@@ -3,10 +3,10 @@ package com.babylonhealth.lit.hl7
 import enumeratum.{ CirceEnum, Enum, EnumEntry }
 
 import com.babylonhealth.lit.core.model.Coding
-import com.babylonhealth.lit.core.{ FhirEnum, FhirCirceEnum, EnumWithFallback }
+import com.babylonhealth.lit.core.{ EnumeratumBase, FhirEnum, FhirCirceEnum, EnumWithFallback }
 
 sealed abstract class ACCOUNT_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -39,7 +39,7 @@ object ACCOUNT_STATUS extends FhirEnum[ACCOUNT_STATUS] with FhirCirceEnum[ACCOUN
 }
 
 sealed abstract class ACTION_CARDINALITY_BEHAVIOR(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -62,7 +62,7 @@ object ACTION_CARDINALITY_BEHAVIOR
 }
 
 sealed abstract class ACTION_CONDITION_KIND(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -87,7 +87,7 @@ object ACTION_CONDITION_KIND extends FhirEnum[ACTION_CONDITION_KIND] with FhirCi
 }
 
 sealed abstract class ACTION_GROUPING_BEHAVIOR(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -114,7 +114,7 @@ object ACTION_GROUPING_BEHAVIOR
 }
 
 sealed abstract class ACTION_PARTICIPANT_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -143,7 +143,7 @@ object ACTION_PARTICIPANT_TYPE extends FhirEnum[ACTION_PARTICIPANT_TYPE] with Fh
 }
 
 sealed abstract class ACTION_PRECHECK_BEHAVIOR(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -166,7 +166,7 @@ object ACTION_PRECHECK_BEHAVIOR
 }
 
 sealed abstract class ACTION_RELATIONSHIP_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -217,7 +217,7 @@ object ACTION_RELATIONSHIP_TYPE
 }
 
 sealed abstract class ACTION_REQUIRED_BEHAVIOR(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -244,7 +244,7 @@ object ACTION_REQUIRED_BEHAVIOR
 }
 
 sealed abstract class ACTION_SELECTION_BEHAVIOR(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -283,7 +283,7 @@ object ACTION_SELECTION_BEHAVIOR
 }
 
 sealed abstract class ADMINISTRATIVE_GENDER(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -312,7 +312,7 @@ object ADMINISTRATIVE_GENDER extends FhirEnum[ADMINISTRATIVE_GENDER] with FhirCi
 }
 
 sealed abstract class ADVERSE_EVENT_ACTUALITY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -333,7 +333,7 @@ object ADVERSE_EVENT_ACTUALITY extends FhirEnum[ADVERSE_EVENT_ACTUALITY] with Fh
 }
 
 sealed abstract class ALLERGY_INTOLERANCE_CATEGORY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -364,7 +364,7 @@ object ALLERGY_INTOLERANCE_CATEGORY
 }
 
 sealed abstract class ALLERGY_INTOLERANCE_CRITICALITY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -391,7 +391,7 @@ object ALLERGY_INTOLERANCE_CRITICALITY
 }
 
 sealed abstract class ALLERGY_INTOLERANCE_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -414,7 +414,7 @@ object ALLERGY_INTOLERANCE_TYPE
 }
 
 sealed abstract class APPOINTMENTSTATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -467,7 +467,7 @@ object APPOINTMENTSTATUS extends FhirEnum[APPOINTMENTSTATUS] with FhirCirceEnum[
 }
 
 sealed abstract class ASSERT_DIRECTION_CODES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -488,7 +488,7 @@ object ASSERT_DIRECTION_CODES extends FhirEnum[ASSERT_DIRECTION_CODES] with Fhir
 }
 
 sealed abstract class ASSERT_OPERATOR_CODES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -545,7 +545,7 @@ object ASSERT_OPERATOR_CODES extends FhirEnum[ASSERT_OPERATOR_CODES] with FhirCi
 }
 
 sealed abstract class ASSERT_RESPONSE_CODE_TYPES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -608,7 +608,7 @@ object ASSERT_RESPONSE_CODE_TYPES
 }
 
 sealed abstract class AUDIT_EVENT_ACTION(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -641,7 +641,7 @@ object AUDIT_EVENT_ACTION extends FhirEnum[AUDIT_EVENT_ACTION] with FhirCirceEnu
 }
 
 sealed abstract class AUDIT_EVENT_OUTCOME(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -670,7 +670,7 @@ object AUDIT_EVENT_OUTCOME extends FhirEnum[AUDIT_EVENT_OUTCOME] with FhirCirceE
 }
 
 sealed abstract class BINDING_STRENGTH(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -699,7 +699,7 @@ object BINDING_STRENGTH extends FhirEnum[BINDING_STRENGTH] with FhirCirceEnum[BI
 }
 
 sealed abstract class BUNDLE_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -748,7 +748,7 @@ object BUNDLE_TYPE extends FhirEnum[BUNDLE_TYPE] with FhirCirceEnum[BUNDLE_TYPE]
 }
 
 sealed abstract class CAPABILITY_STATEMENT_KIND(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -775,7 +775,7 @@ object CAPABILITY_STATEMENT_KIND
 }
 
 sealed abstract class CARE_PLAN_ACTIVITY_KIND(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -820,7 +820,7 @@ object CARE_PLAN_ACTIVITY_KIND extends FhirEnum[CARE_PLAN_ACTIVITY_KIND] with Fh
 }
 
 sealed abstract class CARE_PLAN_ACTIVITY_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -871,7 +871,7 @@ object CARE_PLAN_ACTIVITY_STATUS
 }
 
 sealed abstract class CARE_PLAN_INTENT(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -900,7 +900,7 @@ object CARE_PLAN_INTENT extends FhirEnum[CARE_PLAN_INTENT] with FhirCirceEnum[CA
 }
 
 sealed abstract class CARE_TEAM_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -933,7 +933,7 @@ object CARE_TEAM_STATUS extends FhirEnum[CARE_TEAM_STATUS] with FhirCirceEnum[CA
 }
 
 sealed abstract class CHARGEITEM_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -974,7 +974,7 @@ object CHARGEITEM_STATUS extends FhirEnum[CHARGEITEM_STATUS] with FhirCirceEnum[
 }
 
 sealed abstract class CLAIM_USE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -999,7 +999,7 @@ object CLAIM_USE extends FhirEnum[CLAIM_USE] with FhirCirceEnum[CLAIM_USE] {
 }
 
 sealed abstract class CLINICALIMPRESSION_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1026,7 +1026,7 @@ object CLINICALIMPRESSION_STATUS
 }
 
 sealed abstract class CODESYSTEM_CONTENT_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1059,7 +1059,7 @@ object CODESYSTEM_CONTENT_MODE extends FhirEnum[CODESYSTEM_CONTENT_MODE] with Fh
 }
 
 sealed abstract class CODESYSTEM_HIERARCHY_MEANING(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1090,7 +1090,7 @@ object CODESYSTEM_HIERARCHY_MEANING
 }
 
 sealed abstract class CODE_SEARCH_SUPPORT(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1111,7 +1111,7 @@ object CODE_SEARCH_SUPPORT extends FhirEnum[CODE_SEARCH_SUPPORT] with FhirCirceE
 }
 
 sealed abstract class COMPARTMENT_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1144,7 +1144,7 @@ object COMPARTMENT_TYPE extends FhirEnum[COMPARTMENT_TYPE] with FhirCirceEnum[CO
 }
 
 sealed abstract class COMPOSITION_ATTESTATION_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1175,7 +1175,7 @@ object COMPOSITION_ATTESTATION_MODE
 }
 
 sealed abstract class COMPOSITION_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1204,7 +1204,7 @@ object COMPOSITION_STATUS extends FhirEnum[COMPOSITION_STATUS] with FhirCirceEnu
 }
 
 sealed abstract class CONCEPTMAP_UNMAPPED_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1231,7 +1231,7 @@ object CONCEPTMAP_UNMAPPED_MODE
 }
 
 sealed abstract class CONCEPT_MAP_EQUIVALENCE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1284,7 +1284,7 @@ object CONCEPT_MAP_EQUIVALENCE extends FhirEnum[CONCEPT_MAP_EQUIVALENCE] with Fh
 }
 
 sealed abstract class CONCEPT_PROPERTY_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1325,7 +1325,7 @@ object CONCEPT_PROPERTY_TYPE extends FhirEnum[CONCEPT_PROPERTY_TYPE] with FhirCi
 }
 
 sealed abstract class CONDITIONAL_DELETE_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1352,7 +1352,7 @@ object CONDITIONAL_DELETE_STATUS
 }
 
 sealed abstract class CONDITIONAL_READ_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1381,7 +1381,7 @@ object CONDITIONAL_READ_STATUS extends FhirEnum[CONDITIONAL_READ_STATUS] with Fh
 }
 
 sealed abstract class CONSENT_DATA_MEANING(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1410,7 +1410,7 @@ object CONSENT_DATA_MEANING extends FhirEnum[CONSENT_DATA_MEANING] with FhirCirc
 }
 
 sealed abstract class CONSENT_PROVISION_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1431,7 +1431,7 @@ object CONSENT_PROVISION_TYPE extends FhirEnum[CONSENT_PROVISION_TYPE] with Fhir
 }
 
 sealed abstract class CONSENT_STATE_CODES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1468,7 +1468,7 @@ object CONSENT_STATE_CODES extends FhirEnum[CONSENT_STATE_CODES] with FhirCirceE
 }
 
 sealed abstract class CONSTRAINT_SEVERITY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1489,7 +1489,7 @@ object CONSTRAINT_SEVERITY extends FhirEnum[CONSTRAINT_SEVERITY] with FhirCirceE
 }
 
 sealed abstract class CONTRACT_PUBLICATIONSTATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1564,7 +1564,7 @@ object CONTRACT_PUBLICATIONSTATUS
 }
 
 sealed abstract class CONTRACT_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -1637,7 +1637,7 @@ object CONTRACT_STATUS extends FhirEnum[CONTRACT_STATUS] with FhirCirceEnum[CONT
 }
 
 sealed abstract class DEFINED_TYPES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2494,7 +2494,7 @@ object DEFINED_TYPES extends FhirEnum[DEFINED_TYPES] with FhirCirceEnum[DEFINED_
 }
 
 sealed abstract class DETECTEDISSUE_SEVERITY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2519,7 +2519,7 @@ object DETECTEDISSUE_SEVERITY extends FhirEnum[DETECTEDISSUE_SEVERITY] with Fhir
 }
 
 sealed abstract class DEVICE_NAMETYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2556,7 +2556,7 @@ object DEVICE_NAMETYPE extends FhirEnum[DEVICE_NAMETYPE] with FhirCirceEnum[DEVI
 }
 
 sealed abstract class DEVICE_STATEMENT_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2593,7 +2593,7 @@ object DEVICE_STATEMENT_STATUS extends FhirEnum[DEVICE_STATEMENT_STATUS] with Fh
 }
 
 sealed abstract class DEVICE_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2622,7 +2622,7 @@ object DEVICE_STATUS extends FhirEnum[DEVICE_STATUS] with FhirCirceEnum[DEVICE_S
 }
 
 sealed abstract class DIAGNOSTIC_REPORT_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2677,7 +2677,7 @@ object DIAGNOSTIC_REPORT_STATUS
 }
 
 sealed abstract class DISCRIMINATOR_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2710,7 +2710,7 @@ object DISCRIMINATOR_TYPE extends FhirEnum[DISCRIMINATOR_TYPE] with FhirCirceEnu
 }
 
 sealed abstract class DOCUMENT_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2731,7 +2731,7 @@ object DOCUMENT_MODE extends FhirEnum[DOCUMENT_MODE] with FhirCirceEnum[DOCUMENT
 }
 
 sealed abstract class DOCUMENT_REFERENCE_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2758,7 +2758,7 @@ object DOCUMENT_REFERENCE_STATUS
 }
 
 sealed abstract class DOCUMENT_RELATIONSHIP_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2789,7 +2789,7 @@ object DOCUMENT_RELATIONSHIP_TYPE
 }
 
 sealed abstract class ELIGIBILITYREQUEST_PURPOSE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2820,7 +2820,7 @@ object ELIGIBILITYREQUEST_PURPOSE
 }
 
 sealed abstract class ELIGIBILITYRESPONSE_PURPOSE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2851,7 +2851,7 @@ object ELIGIBILITYRESPONSE_PURPOSE
 }
 
 sealed abstract class ENCOUNTER_LOCATION_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2882,7 +2882,7 @@ object ENCOUNTER_LOCATION_STATUS
 }
 
 sealed abstract class ENCOUNTER_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2931,7 +2931,7 @@ object ENCOUNTER_STATUS extends FhirEnum[ENCOUNTER_STATUS] with FhirCirceEnum[EN
 }
 
 sealed abstract class ENDPOINT_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -2968,7 +2968,7 @@ object ENDPOINT_STATUS extends FhirEnum[ENDPOINT_STATUS] with FhirCirceEnum[ENDP
 }
 
 sealed abstract class EPISODE_OF_CARE_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3009,7 +3009,7 @@ object EPISODE_OF_CARE_STATUS extends FhirEnum[EPISODE_OF_CARE_STATUS] with Fhir
 }
 
 sealed abstract class EVENT_CAPABILITY_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3030,7 +3030,7 @@ object EVENT_CAPABILITY_MODE extends FhirEnum[EVENT_CAPABILITY_MODE] with FhirCi
 }
 
 sealed abstract class EVENT_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3075,7 +3075,7 @@ object EVENT_STATUS extends FhirEnum[EVENT_STATUS] with FhirCirceEnum[EVENT_STAT
 }
 
 sealed abstract class EXAMPLESCENARIO_ACTOR_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3098,7 +3098,7 @@ object EXAMPLESCENARIO_ACTOR_TYPE
 }
 
 sealed abstract class EXPLANATIONOFBENEFIT_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3129,7 +3129,7 @@ object EXPLANATIONOFBENEFIT_STATUS
 }
 
 sealed abstract class EXPOSURE_STATE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3150,7 +3150,7 @@ object EXPOSURE_STATE extends FhirEnum[EXPOSURE_STATE] with FhirCirceEnum[EXPOSU
 }
 
 sealed abstract class EXTENSION_CONTEXT_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3175,7 +3175,7 @@ object EXTENSION_CONTEXT_TYPE extends FhirEnum[EXTENSION_CONTEXT_TYPE] with Fhir
 }
 
 sealed abstract class FHIR_VERSION(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3276,7 +3276,7 @@ object FHIR_VERSION extends FhirEnum[FHIR_VERSION] with FhirCirceEnum[FHIR_VERSI
 }
 
 sealed abstract class FILTER_OPERATOR(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3325,7 +3325,7 @@ object FILTER_OPERATOR extends FhirEnum[FILTER_OPERATOR] with FhirCirceEnum[FILT
 }
 
 sealed abstract class FLAG_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3350,7 +3350,7 @@ object FLAG_STATUS extends FhirEnum[FLAG_STATUS] with FhirCirceEnum[FLAG_STATUS]
 }
 
 sealed abstract class FM_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3379,7 +3379,7 @@ object FM_STATUS extends FhirEnum[FM_STATUS] with FhirCirceEnum[FM_STATUS] {
 }
 
 sealed abstract class GOAL_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3428,7 +3428,7 @@ object GOAL_STATUS extends FhirEnum[GOAL_STATUS] with FhirCirceEnum[GOAL_STATUS]
 }
 
 sealed abstract class GRAPH_COMPARTMENT_RULE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3457,7 +3457,7 @@ object GRAPH_COMPARTMENT_RULE extends FhirEnum[GRAPH_COMPARTMENT_RULE] with Fhir
 }
 
 sealed abstract class GRAPH_COMPARTMENT_USE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3478,7 +3478,7 @@ object GRAPH_COMPARTMENT_USE extends FhirEnum[GRAPH_COMPARTMENT_USE] with FhirCi
 }
 
 sealed abstract class GROUP_MEASURE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3515,7 +3515,7 @@ object GROUP_MEASURE extends FhirEnum[GROUP_MEASURE] with FhirCirceEnum[GROUP_ME
 }
 
 sealed abstract class GROUP_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3552,7 +3552,7 @@ object GROUP_TYPE extends FhirEnum[GROUP_TYPE] with FhirCirceEnum[GROUP_TYPE] {
 }
 
 sealed abstract class GUIDANCE_RESPONSE_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3591,7 +3591,7 @@ object GUIDANCE_RESPONSE_STATUS
 }
 
 sealed abstract class GUIDE_PAGE_GENERATION(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3620,7 +3620,7 @@ object GUIDE_PAGE_GENERATION extends FhirEnum[GUIDE_PAGE_GENERATION] with FhirCi
 }
 
 sealed abstract class GUIDE_PARAMETER_CODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3673,7 +3673,7 @@ object GUIDE_PARAMETER_CODE extends FhirEnum[GUIDE_PARAMETER_CODE] with FhirCirc
 }
 
 sealed abstract class HISTORY_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3702,7 +3702,7 @@ object HISTORY_STATUS extends FhirEnum[HISTORY_STATUS] with FhirCirceEnum[HISTOR
 }
 
 sealed abstract class HTTP_OPERATIONS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3743,7 +3743,7 @@ object HTTP_OPERATIONS extends FhirEnum[HTTP_OPERATIONS] with FhirCirceEnum[HTTP
 }
 
 sealed abstract class HTTP_VERB(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3780,7 +3780,7 @@ object HTTP_VERB extends FhirEnum[HTTP_VERB] with FhirCirceEnum[HTTP_VERB] {
 }
 
 sealed abstract class IDENTITY_ASSURANCELEVEL(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3809,7 +3809,7 @@ object IDENTITY_ASSURANCELEVEL extends FhirEnum[IDENTITY_ASSURANCELEVEL] with Fh
 }
 
 sealed abstract class IMAGINGSTUDY_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3842,7 +3842,7 @@ object IMAGINGSTUDY_STATUS extends FhirEnum[IMAGINGSTUDY_STATUS] with FhirCirceE
 }
 
 sealed abstract class IMMUNIZATION_EVALUATION_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3865,7 +3865,7 @@ object IMMUNIZATION_EVALUATION_STATUS
 }
 
 sealed abstract class IMMUNIZATION_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3890,7 +3890,7 @@ object IMMUNIZATION_STATUS extends FhirEnum[IMMUNIZATION_STATUS] with FhirCirceE
 }
 
 sealed abstract class INVOICE_PRICECOMPONENTTYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3929,7 +3929,7 @@ object INVOICE_PRICECOMPONENTTYPE
 }
 
 sealed abstract class INVOICE_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3962,7 +3962,7 @@ object INVOICE_STATUS extends FhirEnum[INVOICE_STATUS] with FhirCirceEnum[INVOIC
 }
 
 sealed abstract class ISSUE_SEVERITY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -3991,7 +3991,7 @@ object ISSUE_SEVERITY extends FhirEnum[ISSUE_SEVERITY] with FhirCirceEnum[ISSUE_
 }
 
 sealed abstract class ISSUE_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4128,7 +4128,7 @@ object ISSUE_TYPE extends FhirEnum[ISSUE_TYPE] with FhirCirceEnum[ISSUE_TYPE] {
 }
 
 sealed abstract class ITEM_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4209,7 +4209,7 @@ object ITEM_TYPE extends FhirEnum[ITEM_TYPE] with FhirCirceEnum[ITEM_TYPE] {
 }
 
 sealed abstract class LINKAGE_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4234,7 +4234,7 @@ object LINKAGE_TYPE extends FhirEnum[LINKAGE_TYPE] with FhirCirceEnum[LINKAGE_TY
 }
 
 sealed abstract class LINK_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4263,7 +4263,7 @@ object LINK_TYPE extends FhirEnum[LINK_TYPE] with FhirCirceEnum[LINK_TYPE] {
 }
 
 sealed abstract class LIST_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4288,7 +4288,7 @@ object LIST_MODE extends FhirEnum[LIST_MODE] with FhirCirceEnum[LIST_MODE] {
 }
 
 sealed abstract class LIST_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4313,7 +4313,7 @@ object LIST_STATUS extends FhirEnum[LIST_STATUS] with FhirCirceEnum[LIST_STATUS]
 }
 
 sealed abstract class LOCATION_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4334,7 +4334,7 @@ object LOCATION_MODE extends FhirEnum[LOCATION_MODE] with FhirCirceEnum[LOCATION
 }
 
 sealed abstract class LOCATION_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4359,7 +4359,7 @@ object LOCATION_STATUS extends FhirEnum[LOCATION_STATUS] with FhirCirceEnum[LOCA
 }
 
 sealed abstract class MAP_CONTEXT_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4380,7 +4380,7 @@ object MAP_CONTEXT_TYPE extends FhirEnum[MAP_CONTEXT_TYPE] with FhirCirceEnum[MA
 }
 
 sealed abstract class MAP_GROUP_TYPE_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4405,7 +4405,7 @@ object MAP_GROUP_TYPE_MODE extends FhirEnum[MAP_GROUP_TYPE_MODE] with FhirCirceE
 }
 
 sealed abstract class MAP_INPUT_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4426,7 +4426,7 @@ object MAP_INPUT_MODE extends FhirEnum[MAP_INPUT_MODE] with FhirCirceEnum[MAP_IN
 }
 
 sealed abstract class MAP_MODEL_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4455,7 +4455,7 @@ object MAP_MODEL_MODE extends FhirEnum[MAP_MODEL_MODE] with FhirCirceEnum[MAP_MO
 }
 
 sealed abstract class MAP_SOURCE_LIST_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4488,7 +4488,7 @@ object MAP_SOURCE_LIST_MODE extends FhirEnum[MAP_SOURCE_LIST_MODE] with FhirCirc
 }
 
 sealed abstract class MAP_TARGET_LIST_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4517,7 +4517,7 @@ object MAP_TARGET_LIST_MODE extends FhirEnum[MAP_TARGET_LIST_MODE] with FhirCirc
 }
 
 sealed abstract class MAP_TRANSFORM(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4598,7 +4598,7 @@ object MAP_TRANSFORM extends FhirEnum[MAP_TRANSFORM] with FhirCirceEnum[MAP_TRAN
 }
 
 sealed abstract class MEASURE_REPORT_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4623,7 +4623,7 @@ object MEASURE_REPORT_STATUS extends FhirEnum[MEASURE_REPORT_STATUS] with FhirCi
 }
 
 sealed abstract class MEASURE_REPORT_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4652,7 +4652,7 @@ object MEASURE_REPORT_TYPE extends FhirEnum[MEASURE_REPORT_TYPE] with FhirCirceE
 }
 
 sealed abstract class MEDICATIONDISPENSE_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4703,7 +4703,7 @@ object MEDICATIONDISPENSE_STATUS
 }
 
 sealed abstract class MEDICATIONKNOWLEDGE_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4730,7 +4730,7 @@ object MEDICATIONKNOWLEDGE_STATUS
 }
 
 sealed abstract class MEDICATIONREQUEST_INTENT(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4777,7 +4777,7 @@ object MEDICATIONREQUEST_INTENT
 }
 
 sealed abstract class MEDICATIONREQUEST_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4824,7 +4824,7 @@ object MEDICATIONREQUEST_STATUS
 }
 
 sealed abstract class MEDICATION_ADMIN_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4865,7 +4865,7 @@ object MEDICATION_ADMIN_STATUS extends FhirEnum[MEDICATION_ADMIN_STATUS] with Fh
 }
 
 sealed abstract class MEDICATION_STATEMENT_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4912,7 +4912,7 @@ object MEDICATION_STATEMENT_STATUS
 }
 
 sealed abstract class MEDICATION_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4937,7 +4937,7 @@ object MEDICATION_STATUS extends FhirEnum[MEDICATION_STATUS] with FhirCirceEnum[
 }
 
 sealed abstract class MESSAGEHEADER_RESPONSE_REQUEST(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4968,7 +4968,7 @@ object MESSAGEHEADER_RESPONSE_REQUEST
 }
 
 sealed abstract class MESSAGE_SIGNIFICANCE_CATEGORY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -4995,7 +4995,7 @@ object MESSAGE_SIGNIFICANCE_CATEGORY
 }
 
 sealed abstract class METRIC_CALIBRATION_STATE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5026,7 +5026,7 @@ object METRIC_CALIBRATION_STATE
 }
 
 sealed abstract class METRIC_CALIBRATION_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5055,7 +5055,7 @@ object METRIC_CALIBRATION_TYPE extends FhirEnum[METRIC_CALIBRATION_TYPE] with Fh
 }
 
 sealed abstract class METRIC_CATEGORY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5084,7 +5084,7 @@ object METRIC_CATEGORY extends FhirEnum[METRIC_CATEGORY] with FhirCirceEnum[METR
 }
 
 sealed abstract class METRIC_COLOR(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5129,7 +5129,7 @@ object METRIC_COLOR extends FhirEnum[METRIC_COLOR] with FhirCirceEnum[METRIC_COL
 }
 
 sealed abstract class METRIC_OPERATIONAL_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5160,7 +5160,7 @@ object METRIC_OPERATIONAL_STATUS
 }
 
 sealed abstract class NAMINGSYSTEM_IDENTIFIER_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5191,7 +5191,7 @@ object NAMINGSYSTEM_IDENTIFIER_TYPE
 }
 
 sealed abstract class NAMINGSYSTEM_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5216,7 +5216,7 @@ object NAMINGSYSTEM_TYPE extends FhirEnum[NAMINGSYSTEM_TYPE] with FhirCirceEnum[
 }
 
 sealed abstract class NARRATIVE_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5245,7 +5245,7 @@ object NARRATIVE_STATUS extends FhirEnum[NARRATIVE_STATUS] with FhirCirceEnum[NA
 }
 
 sealed abstract class NETWORK_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5278,7 +5278,7 @@ object NETWORK_TYPE extends FhirEnum[NETWORK_TYPE] with FhirCirceEnum[NETWORK_TY
 }
 
 sealed abstract class NOTE_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5303,7 +5303,7 @@ object NOTE_TYPE extends FhirEnum[NOTE_TYPE] with FhirCirceEnum[NOTE_TYPE] {
 }
 
 sealed abstract class OBSERVATION_RANGE_CATEGORY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5330,7 +5330,7 @@ object OBSERVATION_RANGE_CATEGORY
 }
 
 sealed abstract class OBSERVATION_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5375,7 +5375,7 @@ object OBSERVATION_STATUS extends FhirEnum[OBSERVATION_STATUS] with FhirCirceEnu
 }
 
 sealed abstract class OPERATION_KIND(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5396,7 +5396,7 @@ object OPERATION_KIND extends FhirEnum[OPERATION_KIND] with FhirCirceEnum[OPERAT
 }
 
 sealed abstract class ORIENTATION_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5417,7 +5417,7 @@ object ORIENTATION_TYPE extends FhirEnum[ORIENTATION_TYPE] with FhirCirceEnum[OR
 }
 
 sealed abstract class PARTICIPANTREQUIRED(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5442,7 +5442,7 @@ object PARTICIPANTREQUIRED extends FhirEnum[PARTICIPANTREQUIRED] with FhirCirceE
 }
 
 sealed abstract class PARTICIPATIONSTATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5471,7 +5471,7 @@ object PARTICIPATIONSTATUS extends FhirEnum[PARTICIPATIONSTATUS] with FhirCirceE
 }
 
 sealed abstract class PERMITTED_DATA_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5528,7 +5528,7 @@ object PERMITTED_DATA_TYPE extends FhirEnum[PERMITTED_DATA_TYPE] with FhirCirceE
 }
 
 sealed abstract class PRODUCT_CATEGORY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5561,7 +5561,7 @@ object PRODUCT_CATEGORY extends FhirEnum[PRODUCT_CATEGORY] with FhirCirceEnum[PR
 }
 
 sealed abstract class PRODUCT_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5582,7 +5582,7 @@ object PRODUCT_STATUS extends FhirEnum[PRODUCT_STATUS] with FhirCirceEnum[PRODUC
 }
 
 sealed abstract class PRODUCT_STORAGE_SCALE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5607,7 +5607,7 @@ object PRODUCT_STORAGE_SCALE extends FhirEnum[PRODUCT_STORAGE_SCALE] with FhirCi
 }
 
 sealed abstract class PROPERTY_REPRESENTATION(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5640,7 +5640,7 @@ object PROPERTY_REPRESENTATION extends FhirEnum[PROPERTY_REPRESENTATION] with Fh
 }
 
 sealed abstract class PROVENANCE_ENTITY_ROLE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5673,7 +5673,7 @@ object PROVENANCE_ENTITY_ROLE extends FhirEnum[PROVENANCE_ENTITY_ROLE] with Fhir
 }
 
 sealed abstract class PUBLICATION_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5702,7 +5702,7 @@ object PUBLICATION_STATUS extends FhirEnum[PUBLICATION_STATUS] with FhirCirceEnu
 }
 
 sealed abstract class QUALITY_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5727,7 +5727,7 @@ object QUALITY_TYPE extends FhirEnum[QUALITY_TYPE] with FhirCirceEnum[QUALITY_TY
 }
 
 sealed abstract class QUESTIONNAIRE_ANSWERS_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5762,7 +5762,7 @@ object QUESTIONNAIRE_ANSWERS_STATUS
 }
 
 sealed abstract class QUESTIONNAIRE_ENABLE_BEHAVIOR(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5785,7 +5785,7 @@ object QUESTIONNAIRE_ENABLE_BEHAVIOR
 }
 
 sealed abstract class QUESTIONNAIRE_ENABLE_OPERATOR(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5828,7 +5828,7 @@ object QUESTIONNAIRE_ENABLE_OPERATOR
 }
 
 sealed abstract class REACTION_EVENT_SEVERITY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5853,7 +5853,7 @@ object REACTION_EVENT_SEVERITY extends FhirEnum[REACTION_EVENT_SEVERITY] with Fh
 }
 
 sealed abstract class REFERENCE_HANDLING_POLICY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5888,7 +5888,7 @@ object REFERENCE_HANDLING_POLICY
 }
 
 sealed abstract class REFERENCE_VERSION_RULES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5913,7 +5913,7 @@ object REFERENCE_VERSION_RULES extends FhirEnum[REFERENCE_VERSION_RULES] with Fh
 }
 
 sealed abstract class RELATION_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5934,7 +5934,7 @@ object RELATION_TYPE extends FhirEnum[RELATION_TYPE] with FhirCirceEnum[RELATION
 }
 
 sealed abstract class REMITTANCE_OUTCOME(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5963,7 +5963,7 @@ object REMITTANCE_OUTCOME extends FhirEnum[REMITTANCE_OUTCOME] with FhirCirceEnu
 }
 
 sealed abstract class REPORT_ACTION_RESULT_CODES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -5998,7 +5998,7 @@ object REPORT_ACTION_RESULT_CODES
 }
 
 sealed abstract class REPORT_PARTICIPANT_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6023,7 +6023,7 @@ object REPORT_PARTICIPANT_TYPE extends FhirEnum[REPORT_PARTICIPANT_TYPE] with Fh
 }
 
 sealed abstract class REPORT_RESULT_CODES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6048,7 +6048,7 @@ object REPORT_RESULT_CODES extends FhirEnum[REPORT_RESULT_CODES] with FhirCirceE
 }
 
 sealed abstract class REPORT_STATUS_CODES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6081,7 +6081,7 @@ object REPORT_STATUS_CODES extends FhirEnum[REPORT_STATUS_CODES] with FhirCirceE
 }
 
 sealed abstract class REPOSITORY_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6115,7 +6115,7 @@ object REPOSITORY_TYPE extends FhirEnum[REPOSITORY_TYPE] with FhirCirceEnum[REPO
 }
 
 sealed abstract class REQUEST_INTENT(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6164,7 +6164,7 @@ object REQUEST_INTENT extends FhirEnum[REQUEST_INTENT] with FhirCirceEnum[REQUES
 }
 
 sealed abstract class REQUEST_PRIORITY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6193,7 +6193,7 @@ object REQUEST_PRIORITY extends FhirEnum[REQUEST_PRIORITY] with FhirCirceEnum[RE
 }
 
 sealed abstract class REQUEST_RESOURCE_TYPES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6266,7 +6266,7 @@ object REQUEST_RESOURCE_TYPES extends FhirEnum[REQUEST_RESOURCE_TYPES] with Fhir
 }
 
 sealed abstract class REQUEST_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6307,7 +6307,7 @@ object REQUEST_STATUS extends FhirEnum[REQUEST_STATUS] with FhirCirceEnum[REQUES
 }
 
 sealed abstract class RESEARCH_ELEMENT_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6332,7 +6332,7 @@ object RESEARCH_ELEMENT_TYPE extends FhirEnum[RESEARCH_ELEMENT_TYPE] with FhirCi
 }
 
 sealed abstract class RESEARCH_STUDY_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6390,7 +6390,7 @@ object RESEARCH_STUDY_STATUS extends FhirEnum[RESEARCH_STUDY_STATUS] with FhirCi
 }
 
 sealed abstract class RESEARCH_SUBJECT_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6455,7 +6455,7 @@ object RESEARCH_SUBJECT_STATUS extends FhirEnum[RESEARCH_SUBJECT_STATUS] with Fh
 }
 
 sealed abstract class RESOURCE_AGGREGATION_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6482,7 +6482,7 @@ object RESOURCE_AGGREGATION_MODE
 }
 
 sealed abstract class RESOURCE_SLICING_RULES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -6507,7 +6507,7 @@ object RESOURCE_SLICING_RULES extends FhirEnum[RESOURCE_SLICING_RULES] with Fhir
 }
 
 sealed abstract class RESOURCE_TYPES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -7112,7 +7112,7 @@ object RESOURCE_TYPES extends FhirEnum[RESOURCE_TYPES] with FhirCirceEnum[RESOUR
 }
 
 sealed abstract class RESPONSE_CODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -7137,7 +7137,7 @@ object RESPONSE_CODE extends FhirEnum[RESPONSE_CODE] with FhirCirceEnum[RESPONSE
 }
 
 sealed abstract class RESTFUL_CAPABILITY_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -7158,7 +7158,7 @@ object RESTFUL_CAPABILITY_MODE extends FhirEnum[RESTFUL_CAPABILITY_MODE] with Fh
 }
 
 sealed abstract class SEARCH_COMPARATOR(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -7207,7 +7207,7 @@ object SEARCH_COMPARATOR extends FhirEnum[SEARCH_COMPARATOR] with FhirCirceEnum[
 }
 
 sealed abstract class SEARCH_ENTRY_MODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -7232,7 +7232,7 @@ object SEARCH_ENTRY_MODE extends FhirEnum[SEARCH_ENTRY_MODE] with FhirCirceEnum[
 }
 
 sealed abstract class SEARCH_MODIFIER_CODE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -7293,7 +7293,7 @@ object SEARCH_MODIFIER_CODE extends FhirEnum[SEARCH_MODIFIER_CODE] with FhirCirc
 }
 
 sealed abstract class SEARCH_PARAM_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -7342,7 +7342,7 @@ object SEARCH_PARAM_TYPE extends FhirEnum[SEARCH_PARAM_TYPE] with FhirCirceEnum[
 }
 
 sealed abstract class SEARCH_XPATH_USAGE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -7375,7 +7375,7 @@ object SEARCH_XPATH_USAGE extends FhirEnum[SEARCH_XPATH_USAGE] with FhirCirceEnu
 }
 
 sealed abstract class SEQUENCE_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -7400,7 +7400,7 @@ object SEQUENCE_TYPE extends FhirEnum[SEQUENCE_TYPE] with FhirCirceEnum[SEQUENCE
 }
 
 sealed abstract class SLOTSTATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -7433,7 +7433,7 @@ object SLOTSTATUS extends FhirEnum[SLOTSTATUS] with FhirCirceEnum[SLOTSTATUS] {
 }
 
 sealed abstract class SPDX_LICENSE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -8841,7 +8841,7 @@ object SPDX_LICENSE extends FhirEnum[SPDX_LICENSE] with FhirCirceEnum[SPDX_LICEN
 }
 
 sealed abstract class SPECIMEN_CONTAINED_PREFERENCE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -8864,7 +8864,7 @@ object SPECIMEN_CONTAINED_PREFERENCE
 }
 
 sealed abstract class SPECIMEN_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -8893,7 +8893,7 @@ object SPECIMEN_STATUS extends FhirEnum[SPECIMEN_STATUS] with FhirCirceEnum[SPEC
 }
 
 sealed abstract class STRAND_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -8914,7 +8914,7 @@ object STRAND_TYPE extends FhirEnum[STRAND_TYPE] with FhirCirceEnum[STRAND_TYPE]
 }
 
 sealed abstract class STRUCTURE_DEFINITION_KIND(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -8945,7 +8945,7 @@ object STRUCTURE_DEFINITION_KIND
 }
 
 sealed abstract class SUBSCRIPTION_CHANNEL_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -8980,7 +8980,7 @@ object SUBSCRIPTION_CHANNEL_TYPE
 }
 
 sealed abstract class SUBSCRIPTION_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9009,7 +9009,7 @@ object SUBSCRIPTION_STATUS extends FhirEnum[SUBSCRIPTION_STATUS] with FhirCirceE
 }
 
 sealed abstract class SUBSTANCE_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9034,7 +9034,7 @@ object SUBSTANCE_STATUS extends FhirEnum[SUBSTANCE_STATUS] with FhirCirceEnum[SU
 }
 
 sealed abstract class SUPPLYDELIVERY_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9063,7 +9063,7 @@ object SUPPLYDELIVERY_STATUS extends FhirEnum[SUPPLYDELIVERY_STATUS] with FhirCi
 }
 
 sealed abstract class SUPPLYREQUEST_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9104,7 +9104,7 @@ object SUPPLYREQUEST_STATUS extends FhirEnum[SUPPLYREQUEST_STATUS] with FhirCirc
 }
 
 sealed abstract class SYSTEM_RESTFUL_INTERACTION(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9135,7 +9135,7 @@ object SYSTEM_RESTFUL_INTERACTION
 }
 
 sealed abstract class TASK_INTENT(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9184,7 +9184,7 @@ object TASK_INTENT extends FhirEnum[TASK_INTENT] with FhirCirceEnum[TASK_INTENT]
 }
 
 sealed abstract class TASK_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9245,7 +9245,7 @@ object TASK_STATUS extends FhirEnum[TASK_STATUS] with FhirCirceEnum[TASK_STATUS]
 }
 
 sealed abstract class TYPE_DERIVATION_RULE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9266,7 +9266,7 @@ object TYPE_DERIVATION_RULE extends FhirEnum[TYPE_DERIVATION_RULE] with FhirCirc
 }
 
 sealed abstract class TYPE_RESTFUL_INTERACTION(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9317,7 +9317,7 @@ object TYPE_RESTFUL_INTERACTION
 }
 
 sealed abstract class UDI_ENTRY_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9354,7 +9354,7 @@ object UDI_ENTRY_TYPE extends FhirEnum[UDI_ENTRY_TYPE] with FhirCirceEnum[UDI_EN
 }
 
 sealed abstract class V3_CONFIDENTIALITYCLASSIFICATION(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9393,7 +9393,7 @@ object V3_CONFIDENTIALITYCLASSIFICATION
 }
 
 sealed abstract class VARIABLE_TYPE(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9418,7 +9418,7 @@ object VARIABLE_TYPE extends FhirEnum[VARIABLE_TYPE] with FhirCirceEnum[VARIABLE
 }
 
 sealed abstract class VERIFICATIONRESULT_STATUS(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9457,7 +9457,7 @@ object VERIFICATIONRESULT_STATUS
 }
 
 sealed abstract class VERSIONING_POLICY(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9482,7 +9482,7 @@ object VERSIONING_POLICY extends FhirEnum[VERSIONING_POLICY] with FhirCirceEnum[
 }
 
 sealed abstract class VISION_BASE_CODES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]
@@ -9511,7 +9511,7 @@ object VISION_BASE_CODES extends FhirEnum[VISION_BASE_CODES] with FhirCirceEnum[
 }
 
 sealed abstract class VISION_EYE_CODES(override val entryName: String)
-    extends EnumEntry
+    extends EnumeratumBase
     with Product
     with java.io.Serializable {
   def display: Option[String]

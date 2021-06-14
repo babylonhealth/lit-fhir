@@ -322,17 +322,17 @@ object Library extends CompanionFor[Library] {
     "context-type-quantity" -> (obj => obj.useContext.toSeq),
     "context"               -> (obj => obj.useContext.map(_.value).flatMap(_.as[CodeableConcept]).toSeq),
     "effective"             -> (obj => obj.effectivePeriod.toSeq),
-    "depends-on"            -> (obj => obj.relatedArtifact.filter(_.`type`.entryName == "depends-on").flatMap(_.resource).toSeq),
+    "depends-on"            -> (obj => obj.relatedArtifact.filter(_.`type`.name == "depends-on").flatMap(_.resource).toSeq),
     "date"                  -> (obj => obj.date.toSeq),
     "topic"                 -> (obj => obj.topic.toSeq),
     "identifier"            -> (obj => obj.identifier.toSeq),
     "url"                   -> (obj => obj.url.toSeq),
     "description"           -> (obj => obj.description.toSeq),
-    "successor"             -> (obj => obj.relatedArtifact.filter(_.`type`.entryName == "successor").flatMap(_.resource).toSeq),
+    "successor"             -> (obj => obj.relatedArtifact.filter(_.`type`.name == "successor").flatMap(_.resource).toSeq),
     "context-type-value"    -> (obj => obj.useContext.toSeq),
     "version"               -> (obj => obj.version.toSeq),
     "content-type"          -> (obj => obj.content.flatMap(_.contentType).toSeq),
-    "composed-of"           -> (obj => obj.relatedArtifact.filter(_.`type`.entryName == "composed-of").flatMap(_.resource).toSeq),
+    "composed-of"           -> (obj => obj.relatedArtifact.filter(_.`type`.name == "composed-of").flatMap(_.resource).toSeq),
     "status"                -> (obj => Seq(obj.status)),
     "publisher"             -> (obj => obj.publisher.toSeq),
     "title"                 -> (obj => obj.title.toSeq),
@@ -340,10 +340,10 @@ object Library extends CompanionFor[Library] {
       obj.useContext.map(_.value).flatMap(_.as[Quantity]).toSeq ++
         obj.useContext.map(_.value).flatMap(_.as[Range]).toSeq),
     "type"         -> (obj => Seq(obj.`type`)),
-    "predecessor"  -> (obj => obj.relatedArtifact.filter(_.`type`.entryName == "predecessor").flatMap(_.resource).toSeq),
+    "predecessor"  -> (obj => obj.relatedArtifact.filter(_.`type`.name == "predecessor").flatMap(_.resource).toSeq),
     "context-type" -> (obj => obj.useContext.map(_.code).toSeq),
     "derived-from" -> (obj =>
-      obj.relatedArtifact.filter(_.`type`.entryName == "derived-from").flatMap(_.resource).toSeq)
+      obj.relatedArtifact.filter(_.`type`.name == "derived-from").flatMap(_.resource).toSeq)
   )
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Library] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>

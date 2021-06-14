@@ -1,6 +1,5 @@
 package com.babylonhealth.lit.core
 
-import scala.reflect.runtime.universe.typeOf
 import scala.util.{ Failure, Success, Try }
 
 import io.circe.CursorOp.DeleteGoParent
@@ -9,6 +8,8 @@ import izumi.reflect.macrortti.LTag
 
 import com.babylonhealth.lit.core.TagSummoners.lTypeOf
 import com.babylonhealth.lit.core.model._
+
+trait EnumBase { def name: String }
 
 trait JsonDecoderHelpers extends BaseFieldDecoders {
 

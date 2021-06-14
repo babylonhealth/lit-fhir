@@ -22,6 +22,7 @@ trait OptionSugar {
 }
 
 case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor[_]](o: O, c: C) {
+  // normal field manipulation
   def update[T](fieldSelection: C => FHIRComponentFieldMeta[T])(fn: T => T): O =
     o.updateFromField[T, O](fieldSelection(c))(fn)
   def set[T](fieldSelection: C => FHIRComponentFieldMeta[T])(value: T): O =
@@ -30,6 +31,7 @@ case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor
     o.updateFromField[Option[T], O](fieldSelection(c))(_ map fn)
   def updateAll[T](fieldSelection: C => FHIRComponentFieldMeta[LitSeq[T]])(fn: T => T): O =
     o.updateFromField[LitSeq[T], O](fieldSelection(c))(_ map fn)
+  // primitive element field manipulation (could/should require that the type param T of the field isn't a FHIRObject...)
   def updateExtensions(field: C => FHIRComponentFieldMeta[_])(update: LitSeq[Extension] => LitSeq[Extension]): O =
     o.extensions.update(field(c))(update)
   def updateIds(field: C => FHIRComponentFieldMeta[_])(update: Option[String] => Option[String]): O =
@@ -41,23 +43,25 @@ case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor
   def getIds(field: C => FHIRComponentFieldMeta[_]): Option[String]           = o.ids.get(field(c))
 }
 
-abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: ClassTag[T @uncheckedVariance])
-    extends JsonDecoderHelpers
-    with OptionSugar {
+abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecoderHelpers with OptionSugar {
   type ResourceType >: T <: FHIRObject
   type ParentType >: T <: FHIRObject
-  private val log: Logger = LoggerFactory.getLogger(getClass)
+  private val log: Logger                          = LoggerFactory.getLogger(getClass)
+  val thisClassTag: ClassTag[T @uncheckedVariance] = implicitly[ClassTag[T]]
   val thisName: String
   val profileUrl: Option[String] = None
 
   final private[core] def leastParentWithField(
       f: FHIRComponentFieldMeta[_],
-      chain: List[CompanionFor[_]] = Nil
+      chain: List[CompanionFor[_ <: ResourceType]] = Nil
   ): CompanionFor[_ <: ResourceType] = {
     if (fieldsMeta.contains(f)) this.asInstanceOf[CompanionFor[_ <: ResourceType]]
     else if (parentType eq this)
       throw new RuntimeException(s"Unable to find field matching $f in ${chain.map(_.thisName).mkString(" <: ")}")
-    else parentType.leastParentWithField(f, chain :+ this)
+    else
+      parentType
+        .leastParentWithField(f, chain.asInstanceOf[List[CompanionFor[_ <: parentType.ResourceType]]] :+ this)
+        .asInstanceOf[CompanionFor[_ <: ResourceType]]
   }
   //  private val m = runtimeMirror(getClass.getClassLoader)
   //  lazy val classConstructor: Constructor[_] =
@@ -84,10 +88,10 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
 
   def checkUnknownFields(cursor: HCursor, keys: Set[String], keyPrefixes: Seq[Set[String]])(implicit
       decoderParams: DecoderParams): Try[Unit] =
-    if (decoderParams.ignoreUnknownFields) Success()
+    if (decoderParams.ignoreUnknownFields) Success(())
     else
       cursor.keys.toIterable.flatten.toSet diff (keys + "resourceType") match {
-        case s if s.isEmpty => Success()
+        case s if s.isEmpty => Success(())
         case s              =>
           // Remove at most one field for each choice, so that sending e.g. both effectivePeriod + effectiveDateTime is an error
           keyPrefixes.foldLeft(s)((acc, n) => acc -- acc.find(n)) match {
@@ -97,7 +101,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
                   s"Failed to decode: ignoreUnknownFields is false, and the following unexpected fields were seen: ${s
                     .mkString("[", ", ", "]")}",
                   cursor.history))
-            case s => Success()
+            case s => Success(())
           }
       }
 
@@ -115,7 +119,10 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
   val baseType: CompanionFor[T]
 
   protected lazy val (refMetas, otherMetas) = fieldsMeta.partition(_.isRef) match {
-    case (r, o) => (r.map(m => \/.validSuffixes(m.unwrappedTT).map(m.name + _)), o.map(_.name).toSet)
+    case (r, o) =>
+      (
+        r.map(m => \/.validSuffixes[m.Type](m.unwrappedTT.asInstanceOf[LTag[m.Type]]).map(m.name + _)),
+        o.map(_.name).toSet)
   }
 
   // TODO: Consider how we might determine a priority ordering for meta.profile
@@ -146,7 +153,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
                   companion.decodeThis(x)(params)
                 }
               }.flatten
-                .recoverWith { err =>
+                .recoverWith { case err: Throwable =>
                   val target =
                     if (isSubTypeOf(companion) && companion.thisClassTag != thisClassTag) s" as $thisName" else ""
                   val message = s"Unable to deserialize ${companion.thisName}$target"
@@ -184,7 +191,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
                log.debug(s"deserializing as $thisName")
                companion.decodeThis(x)(params)
              })
-              .recoverWith { error =>
+              .recoverWith { case error: Throwable =>
                 val profs = profiles.mkString("[", ",", "]")
                 log.warn(
                   s"meta.profile contains $profs, but this object fails to decode as ${companion.thisName}.",

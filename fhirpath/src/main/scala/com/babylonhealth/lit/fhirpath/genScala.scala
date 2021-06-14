@@ -64,8 +64,8 @@ object genScala {
     def mungedPropExpr =
       returnProps.base match {
         case Right(c) if c.unwrappedTT.tag <:< lTypeOf[EnumEntry] =>
-          if (returnProps.baseCardinality == ExactlyOne) s"$propExpr.entryName"
-          else s"$propExpr.map(_.entryName)"
+          if (returnProps.baseCardinality == ExactlyOne) s"$propExpr.name"
+          else s"$propExpr.map(_.name)"
         case _ => propExpr
       }
 

@@ -2,7 +2,6 @@ package com.babylonhealth.lit.core
 
 import scala.annotation.implicitNotFound
 
-import enumeratum.EnumEntry
 import izumi.reflect.macrortti.LTag
 
 import com.babylonhealth.lit.core.model.typeSuffixMap
@@ -24,10 +23,10 @@ object ChoiceImplicits {
     * macros left an unexpanded `U` type available to the macro (where the LHS value: Option[U] and the RHS value: Option[T])
     * and consequently the type checking cannot occur... This might well be a solvable issue, but I didn't get there...
     */
-  implicit def mkUnionWitnessBase[U](implicit tt: LTag[U]): UnionWitness[U, U] =
+  implicit def mkUnionWitnessBase[U](implicit ttt: LTag[U]): UnionWitness[U, U] =
     new UnionWitness {
       override def buildTo(t: U): U = t
-      override val suffix: String   = typeSuffixMap(tt.tag).get
+      override val suffix: String   = typeSuffixMap(ttt.tag).get
     }
 
   implicit def mkUnionWitnessL[L: LTag, R: LTag, T: LTag](implicit
@@ -57,9 +56,9 @@ object ChoiceImplicits {
     Choice.fromValAndSuffix[U, S](t, witness.suffix)
 
   // Use case for this constructor is specifically extensions which limit their value range to a single enum
-  def choice[U <: _ \/ _: LTag, S <: EnumEntry: LTag](t: S)(implicit
+  def choice[U <: _ \/ _: LTag, S <: EnumBase: LTag](t: S)(implicit
       @implicitNotFound("No Code or ${S} option for union ${U}") witness: UnionWitness[U, Code]): Choice[U] =
-    Choice.fromValAndSuffix[U, Code](t.entryName, "Code")
+    Choice.fromValAndSuffix[U, Code](t.name, "Code")
 
   implicit class WrapperRef[U, T](val ref: Choice[U]) {
     // like strictValueAs, but we can only call it when it's provable that Sub is a component of the union T

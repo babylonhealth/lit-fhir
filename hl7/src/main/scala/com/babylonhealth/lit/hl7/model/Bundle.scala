@@ -558,25 +558,27 @@ object Bundle extends CompanionFor[Bundle] {
         o.implicitRules,
         o.link,
         o.entry))
-  private val log: Logger       = LoggerFactory.getLogger(getClass)
+  private val log: Logger = LoggerFactory.getLogger(getClass)
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Bundle] =
-  checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ => 
-    Try {
-      val entries: LitSeq[Entry] =
-        if (!params.tolerantBundleDecoding) cursor.decodeAs[LitSeq[Entry]]("entry", Some(LitSeq.empty))
-        else
-          cursor.downField("entry")
-            .arrayCursors
-            .getOrElse(Iterable.empty)
-            .to(LitSeq)
-            .flatMap(j => j.as[Entry] match {
-              case Left(l) =>
-                log.error(
-                  s"failed to decode bundle field. Skipping because tolerantBundleDecoding = true. Json was ${j}, Error was:",
-                  l)
-                None
-              case Right(x) => Some(x)
-            })
+    checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
+      Try {
+        val entries: LitSeq[Entry] =
+          if (!params.tolerantBundleDecoding) cursor.decodeAs[LitSeq[Entry]]("entry", Some(LitSeq.empty))
+          else
+            cursor
+              .downField("entry")
+              .arrayCursors
+              .getOrElse(Iterable.empty)
+              .to(LitSeq)
+              .flatMap(j =>
+                j.as[Entry] match {
+                  case Left(l) =>
+                    log.error(
+                      s"failed to decode bundle field. Skipping because tolerantBundleDecoding = true. Json was ${j}, Error was:",
+                      l)
+                    None
+                  case Right(x) => Some(x)
+                })
         new Bundle(
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[Meta]]("meta", Some(None)),

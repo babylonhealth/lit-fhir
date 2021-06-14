@@ -7,11 +7,8 @@ import scala.collection.mutable.ArrayBuffer
 import scala.concurrent.duration.Duration.Inf
 import scala.concurrent.{ Await, Future, blocking }
 import scala.jdk.CollectionConverters._
-import scala.reflect.runtime.universe.ModuleSymbol
 import scala.util.Try
-import scala.collection.parallel.CollectionConverters._
 
-import enumeratum.{ CirceEnum, Enum, EnumEntry }
 import io.circe.{ Decoder, Encoder }
 import io.github.classgraph.{ ClassGraph, ClassInfo, ScanResult }
 import izumi.reflect.macrortti.{ LTag, LightTypeTag }
@@ -131,19 +128,19 @@ package object model {
   // TODO: Is this true? Can we make this more efficient plz?
   @deprecated("REALLY SLOW")
   val typeSuffixMap: LightTypeTag => Option[String] = {
-    new {
-      private val log: Logger = LoggerFactory.getLogger(getClass)
-      def doLog = {
-        val suffixes         = suffixTypeMap.values.toSeq
-        val distinctSuffixes = suffixes.distinct
-        if (distinctSuffixes.sizeCompare(suffixes) != 0) {
-          val dups = ArrayBuffer(suffixes: _*)
-          for (v <- distinctSuffixes) dups.remove(dups.indexOf(v))
-          log.info(
-            s"-->>> BAD INIT -- values for suffixTypeMap must be unique. Some clashes are: [${dups.take(5).mkString(", ")}]")
-        } else log.info("-->>> GOOD INIT -- values for suffixTypeMap are unique ")
-      }
-    }.doLog
+//    new Object {
+//      private val log: Logger = LoggerFactory.getLogger(getClass)
+//      def doLog = {
+//        val suffixes         = suffixTypeMap.values.toSeq
+//        val distinctSuffixes = suffixes.distinct
+//        if (distinctSuffixes.sizeCompare(suffixes) != 0) {
+//          val dups = ArrayBuffer(suffixes: _*)
+//          for (v <- distinctSuffixes) dups.remove(dups.indexOf(v))
+//          log.info(
+//            s"-->>> BAD INIT -- values for suffixTypeMap must be unique. Some clashes are: [${dups.take(5).mkString(", ")}]")
+//        } else log.info("-->>> GOOD INIT -- values for suffixTypeMap are unique ")
+//      }
+//    }.doLog
     // 'assert' does not work in package objects WTF
     //    assert(
     //      suffixTypeMap.values.toSeq.distinct.sizeCompare(suffixTypeMap.values) == 0,

@@ -14,7 +14,7 @@ object CodegenUtils {
 
   def fieldScalaName(noParensName: String): String =
     noParensName match {
-      case x @ ("class" | "type" | "abstract" | "for" | "import" | "extends") => s"`$x`"
+      case x @ ("class" | "type" | "abstract" | "for" | "import" | "extends" | "given") => s"`$x`"
       case x                                                                  => x
     }
 

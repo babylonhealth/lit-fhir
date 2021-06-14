@@ -84,7 +84,7 @@ object \/ {
     else if (lt.tag.withoutArgs =:= unappliedLTag) {
       val uTpe     = \::/[L, R]
       val (t1, t2) = lTypeTagsOf(uTpe)
-      if (canBe(uTpe, st)) LHS[L, R](build(t)(t1, t2, lTagOf[S]).asInstanceOf[L])
+      if (canBe(uTpe, st)) LHS[L, R](build(t)(t1.asInstanceOf[LTag[L]], t2.asInstanceOf[LTag[R]], lTagOf[S]).asInstanceOf[L])
       else throw new RuntimeException(s"Cannot ascribe type ${str[L \/ R](uTpe)} to type ${t.getClass} ()")
     } else
       throw new RuntimeException(s"Cannot ascribe type ${str[L \/ R](\::/[L, R])} to type ${t.getClass}:" +

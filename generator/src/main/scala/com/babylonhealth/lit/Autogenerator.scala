@@ -167,7 +167,9 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
     val scalaClassGenInfo: Seq[ClassGenInfo] = {
 
       val valueSetFiles =
-        valueSetEarliestDeclarations.byPackage.map { case (pkg, vs) => ScalaCodegen.genValueSetFile(pkg, vs.toMap) }
+        valueSetEarliestDeclarations.byPackage.flatMap { case (pkg, vs) =>
+          ScalaCodegen.genValueSetFiles(pkg, vs.toMap)
+        }
 
       val (element, backboneElement) = (topLevelClasses.get("Element"), topLevelClasses.get("BackboneElement"))
       val pkgAndValueSet = valueSetEarliestDeclarations.flat.map { case (a, b, _) =>
@@ -255,15 +257,20 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
         .distinct
         .foreach { p =>
           emptyCreate(s"$p/src/main/scala/com/babylonhealth/lit/$p/model")
+          emptyCreate(s"$p/src/main/scala-2/com/babylonhealth/lit/$p/model")
+          emptyCreate(s"$p/src/main/scala-3/com/babylonhealth/lit/$p/model")
           javaOutputLocations(p).foreach(emptyCreate)
         }
-      scalaClassGenInfo foreach { case ClassGenInfo(fc, fileName, pkg) =>
-        write(s"$pkg/src/main/scala/com/babylonhealth/lit/$pkg/model/$fileName.scala", fc)
+      scalaClassGenInfo foreach { case ClassGenInfo(fc, fileName, pkg, targetVersion) =>
+        val scalaDir = targetVersion
+          .map { case ScalaTarget.Scala2 => "scala-2"; case ScalaTarget.Scala3 => "scala-3" }
+          .getOrElse("scala")
+        write(s"$pkg/src/main/$scalaDir/com/babylonhealth/lit/$pkg/model/$fileName.scala", fc)
       }
-      javaClassGenInfo.toSeq.flatMap(_.builders) foreach { case ClassGenInfo(fc, fileName, pkg) =>
+      javaClassGenInfo.toSeq.flatMap(_.builders) foreach { case ClassGenInfo(fc, fileName, pkg, _) =>
         write(s"${javaOutputLocation(pkg).get}/builders/$fileName.java", fc)
       }
-      javaClassGenInfo.toSeq.flatMap(_.codes) foreach { case ClassGenInfo(fc, fileName, pkg) =>
+      javaClassGenInfo.toSeq.flatMap(_.codes) foreach { case ClassGenInfo(fc, fileName, pkg, _) =>
         write(s"${javaOutputLocation(pkg).get}/codes/$fileName.java", fc)
       }
       if (typescriptClassGenInfo.nonEmpty) new File(args.typescriptDir.get).mkdirs()

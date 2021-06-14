@@ -4,28 +4,12 @@ import java.time.ZonedDateTime
 import java.util.Date
 
 import scala.collection.mutable
+import scala.reflect.classTag
 import scala.util.{ Success, Try }
 
 import io.circe.HCursor
-
 import com.babylonhealth.lit.core.TagSummoners.{ lTagOf, lTypeOf }
-import com.babylonhealth.lit.core.{
-  Base64Binary,
-  BaseFieldDecoders,
-  Choice,
-  Code,
-  CompanionFor,
-  DecoderParams,
-  FHIRComponentField,
-  FHIRComponentFieldMeta,
-  FHIRDateTime,
-  FHIRObject,
-  LHS,
-  LitSeq,
-  Markdown,
-  RHS,
-  \/
-}
+import com.babylonhealth.lit.core._
 
 //import io.circe.generic.auto._
 import io.circe.Json
@@ -41,20 +25,14 @@ import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
 import com.babylonhealth.lit.hl7.model._
 
 case class TestUnionWrapper1(field: Choice[String \/ Boolean]) extends FHIRObject {
-  val companion             = TestUnionWrapper1.asInstanceOf[CompanionFor[this.type]]
-  def thisClassName: String = "TestUnionWrapper1"
   def thisTypeName: String  = "TestUnionWrapper1"
 }
 
 case class TestUnionWrapper2(field: Choice[String \/ Boolean \/ Int]) extends FHIRObject {
-  val companion             = TestUnionWrapper2.asInstanceOf[CompanionFor[this.type]]
-  def thisClassName: String = "TestUnionWrapper2"
   def thisTypeName: String  = "TestUnionWrapper2"
 }
 
 case class TestUnionWrapper3(field: Choice[String \/ Boolean \/ Int], fieldCode: Code) extends FHIRObject {
-  val companion             = TestUnionWrapper3.asInstanceOf[CompanionFor[this.type]]
-  def thisClassName: String = "TestUnionWrapper3"
   def thisTypeName: String  = "TestUnionWrapper3"
 }
 
@@ -137,8 +115,8 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
 //  implicit val accEncoder
 
   "other" in {
-    val x = Try(companionOf(lTagOf[Bundle.Entry]))
-    val y = Try(companionOf(lTagOf[Bundle.Entry.Response]))
+    val x = Try(companionOf(classTag[Bundle.Entry], lTagOf[Bundle.Entry]))
+    val y = Try(companionOf(classTag[Bundle.Entry.Response], lTagOf[Bundle.Entry.Response]))
     x.isSuccess shouldEqual true
     y.isSuccess shouldEqual true
     val codeTag = lTagOf[Code]
@@ -237,8 +215,8 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
         val strJson = str.asJson.noSpaces
         val deser   = decode[TestUnionWrapper1](strJson)
         deser.isRight shouldEqual true
-        println("`" + deser.right.get.field.value + "`", deser.right.get.field.value.getClass)
-        println("`" + str.field.value + "`", str.field.value.getClass)
+        println("`" + deser.right.get.field.value + "`\t" + deser.right.get.field.value.getClass.toString)
+        println("`" + str.field.value + "`\t" + str.field.value.getClass.toString)
         deser.right.get shouldEqual str
       }
       "deserialization (2)" in {
@@ -258,7 +236,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
       val jstr = x.asJson.noSpaces
       JSONAssert.assertEquals(jstr, expectedAccountJson, true)
       val deser = parse(jstr).flatMap(_.as[Account])
-      deser.left.foreach(e => println("ballz A)", e))
+      deser.left.foreach(e => println("ballz A)\t"+ e.toString))
       deser.isRight shouldEqual true
       deser.right.get shouldEqual x
       s.add(deser.right.get)
@@ -275,7 +253,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
       val jstr = x.asJson.noSpaces
       JSONAssert.assertEquals(jstr, expectedAccountJson, true)
       val deser = parse(jstr).flatMap(_.as[Account])
-      deser.left.foreach(e => println("ballz B)", e))
+      deser.left.foreach(e => println("ballz B)\t"+ e.toString))
       deser.isRight shouldEqual true
       deser.right.get shouldEqual x
       s.add(deser.right.get)
@@ -339,15 +317,6 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
   "println" in {
     val x = com.babylonhealth.lit.core.model.resourceTypeLookup.take(5)
     println(x.mkString("[", ";;", "]"))
-  }
-  "println x2" in {
-    import scala.reflect.runtime.universe.typeOf
-    println("-->>>", typeOf[\/[_, _]].erasure)
-    val x = typeOf[String \/ Int \/ Double]
-    println("-->>>", x, x.erasure, x.erasure =:= typeOf[\/[_, _]].erasure)
-    type Y = (String \/ Int \/ Double)
-    val y = typeOf[Y#Left]
-    println("-->>>", y, y.erasure, y.erasure =:= typeOf[\/[_, _]].erasure)
   }
 
 //    type SubOfString <: String
