@@ -60,7 +60,7 @@ object Extension extends CompanionFor[Extension] {
     FHIRComponentField[LitSeq[Extension]](extension, t.extension)
   )
   def extractId(t: Extension): Option[String]                   = t.id
-  private val log: Logger                                       = LoggerFactory.getLogger(getClass)
+  private val log: Logger = LoggerFactory.getLogger(getClass)
   def extractUrl(t: Extension): String                          = t.url
   def extractValue(t: Extension): Option[Extension.ValueChoice] = t.value
   def extractExtension(t: Extension): LitSeq[Extension]         = t.extension

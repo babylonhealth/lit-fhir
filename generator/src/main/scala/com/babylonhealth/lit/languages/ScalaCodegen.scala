@@ -719,8 +719,11 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         .groupBy(_._1)
         .map { case (pkg, unions) => pkg -> unions.map { case (_, b, c) => b -> c }.toMap }
 
-    lookups.map { case (pkg, classes) =>
-      ClassGenInfo(genPackageObject(pkg, unions.getOrElse(pkg, Map.empty), classes.toMap), "package", pkg)
+    lookups.flatMap { case (pkg, classes) =>
+      Seq(
+        ClassGenInfo(genPackageObject(pkg, unions.getOrElse(pkg, Map.empty), classes.toMap, ScalaTarget.Scala2), "package", pkg, Some(ScalaTarget.Scala2)),
+        ClassGenInfo(genPackageObject(pkg, unions.getOrElse(pkg, Map.empty), classes.toMap, ScalaTarget.Scala3), "package", pkg, Some(ScalaTarget.Scala3))
+      )
     }.toSeq
   }
 
@@ -882,7 +885,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |    }
       |  }
       |}""".stripMargin
-  def genPackageObject(pkg: String, _unionAliases: Map[String, Seq[String]], lookups: Map[String, String]): String = {
+  def genPackageObject(pkg: String, _unionAliases: Map[String, Seq[String]], lookups: Map[String, String], scalaVersion: ScalaTarget.ScalaTarget): String = {
     val head =
       if (pkg == "core") genPackageCore
       else
@@ -895,9 +898,10 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
            |import com.babylonhealth.lit.core.model._
            |import com.babylonhealth.lit.$pkg.model._
            |""".stripMargin
+    val unionGlyph = scalaVersion match { case ScalaTarget.Scala2 => "\\/" ; case ScalaTarget.Scala3 => "|" }
     val unionAliases =
       _unionAliases.toSeq
-        .map { case (a, t) => s"type $a = ${t.mkString("\\/")}" }
+        .map { case (a, t) => s"type $a = ${t.mkString(unionGlyph)}" }
         .sorted
         .mkString("\n  ")
     s"""$head
