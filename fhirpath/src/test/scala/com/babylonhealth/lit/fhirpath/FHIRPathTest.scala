@@ -512,6 +512,11 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
     evalFhirPath("Observation.status = 'amended'", observation) shouldEqual List(false)
   }
 
+  "can navigate to value[x] fields" in {
+    evalFhirPath("Observation.value.unit = 'mm'", observation) shouldEqual List(true)
+    evalFhirPath("Observation.valueQuantity.unit = 'mm'", observation) shouldEqual List(true)
+  }
+
   "Comparison operator tests " in {
     evalFhirPath("name.count() > 1") shouldEqual List(false)
     evalFhirPath("name.count() < 1") shouldEqual List(false)  

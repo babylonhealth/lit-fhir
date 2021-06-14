@@ -331,7 +331,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
   }
 
   "println" in {
-    val x = com.babylonhealth.lit.core.model.companionLookup.take(5)
+    val x = com.babylonhealth.lit.core.model.resourceTypeLookup.take(5)
     println(x.mkString("[", ";;", "]"))
   }
   "println x2" in {

@@ -8,7 +8,7 @@ import izumi.reflect.macrortti.{LTag, LightTypeTag}
 import com.babylonhealth.lit.common.CodegenUtils
 import com.babylonhealth.lit.core.TagSummoners.{lTagOf, lTypeOf}
 import com.babylonhealth.lit.core.{Choice, CompanionFor, FHIRComponentFieldMeta, FHIRObject, LitSeq, TagSummoners, Utils}
-import com.babylonhealth.lit.core.model.{Reference, companionLookup}
+import com.babylonhealth.lit.core.model.{Reference, resourceTypeLookup}
 import com.babylonhealth.lit.fhirpath.model._
 
 object genScala {
@@ -49,7 +49,7 @@ object genScala {
         else if (baseParams.baseCardinality == Optional) (s"$baseStr.flatMap(_.as[$typeName])", Optional)
         else (s"$baseStr.flatMap(_.as[$typeName])", Many)
     }
-    val companionMebbe: Option[CompanionFor[_ <: FHIRObject]] = companionLookup.get(typeName)
+    val companionMebbe: Option[CompanionFor[_ <: FHIRObject]] = resourceTypeLookup.get(typeName)
     val nextBase                                              = companionMebbe.fold(baseParams.base)(Left(_))
     GenScalaParams(nextBase, card, nextStr)
   }

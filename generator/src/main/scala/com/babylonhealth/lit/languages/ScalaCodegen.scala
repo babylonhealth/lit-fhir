@@ -420,16 +420,17 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     val eachFieldsMetaImpl = fields.map(f => f.fieldMeta(allClashingTypes)).mkString("\n    ")
     val fieldsMetaImpl =
       fields.map(_.scalaName).mkString("val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(", ", ", ")")
-    val getFieldsImpl = if (topLevelClass.typeName == topLevelClass.className)
-      s"""override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-         |override def fields(t: $className): Seq[FHIRComponentField[_]] = Seq(
-         |  ${fields.map(f => f.field(allClashingTypes)).mkString(",\n    ")}
-         |)""".stripMargin
-    else
-    s"""override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(Seq(
-       |  ${fields.map(f => f.field(allClashingTypes)).mkString(",\n    ")}
-       |))
-       |override def fields(t: $className): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get""".stripMargin
+    val getFieldsImpl =
+      if (topLevelClass.typeName == topLevelClass.className)
+        s"""override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
+           |override def fields(t: $className): Seq[FHIRComponentField[_]] = Seq(
+           |  ${fields.map(f => f.field(allClashingTypes)).mkString(",\n    ")}
+           |)""".stripMargin
+      else
+        s"""override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(Seq(
+           |  ${fields.map(f => f.field(allClashingTypes)).mkString(",\n    ")}
+           |))
+           |override def fields(t: $className): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get""".stripMargin
 
     def extractFieldsImpl                  = fields.map(f => f.getField(allClashingTypes)).mkString("\n    ")
     def unapplyField(f: BaseField): String = f.refineField(allClashingTypes, "o")
@@ -647,16 +648,21 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
   }
   def genPackageObjectFiles(
       moduleDependencies: ModuleDependencies,
-      _unionAliases: Map[String, (Seq[String], Seq[String])]): Seq[ClassGenInfo] =
-    _unionAliases
-      .map { case (unionName, (pkgs, unionTypes)) =>
-        (moduleDependencies.leastCommon(pkgs.toSet), unionName, unionTypes)
-      }
-      .groupBy(_._1)
-      .map { case (pkg, unions) =>
-        ClassGenInfo(genPackageObject(pkg, unions.map { case (_, b, c) => b -> c }.toMap), "package", pkg)
-      }
-      .toSeq
+      _unionAliases: Map[String, (Seq[String], Seq[String])],
+      classes: Seq[(String, TopLevelClass)]): Seq[ClassGenInfo] = {
+    val lookups = classes.groupMap(_._1) { case (_, c) => c.url -> c.scalaClassName }
+    val unions: Map[String, Map[String, Seq[String]]] =
+      _unionAliases
+        .map { case (unionName, (pkgs, unionTypes)) =>
+          (moduleDependencies.leastCommon(pkgs.toSet), unionName, unionTypes)
+        }
+        .groupBy(_._1)
+        .map { case (pkg, unions) => pkg -> unions.map { case (_, b, c) => b -> c }.toMap }
+
+    lookups.map { case (pkg, classes) =>
+      ClassGenInfo(genPackageObject(pkg, unions.getOrElse(pkg, Map.empty), classes.toMap), "package", pkg)
+    }.toSeq
+  }
 
   def genPackageCore: String =
     """package com.babylonhealth.lit.core
@@ -691,44 +697,24 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |import BaseFieldDecoders._
       |
       |package object model {
-      |  def extractCompanionsFromPath(classPathResults: Seq[ClassInfo]): Seq[CompanionFor[_ <: FHIRObject]] = {
-      |    import scala.concurrent.ExecutionContext.Implicits.global
-      |    Await
-      |      .result(
-      |        Future.traverse(classPathResults) { c =>
-      |          Future successful {
-      |            val companionObj: CompanionFor[_ <: FHIRObject] = {
-      |              val klass = Class.forName(c.getName)
-      |              val module = Utils.mirror.classSymbol(klass).companion.asInstanceOf[ModuleSymbol]
-      |              val instance = Utils.mirror.reflectModule(module).instance.asInstanceOf[CompanionFor[_ <: FHIRObject]]
-      |              instance
-      |            }
-      |            companionObj
-      |          }
-      |        },
-      |        Inf
-      |      )
+      |  def extractModuleFromPath(classPathResults: Seq[ClassInfo]): Seq[ModuleDict] = classPathResults.map { ci =>
+      |    val c = Class.forName(ci.getName)
+      |    c.getField("MODULE$").get(c).asInstanceOf[ModuleDict]
       |  }
-      |  lazy val companionLookup: Map[String, CompanionFor[_]] = blocking {
+      |  lazy val urlLookup: Map[String, CompanionFor[_ <: FHIRObject]] = blocking {
       |    println("Initialising lookups")
       |    val startTime                             = System.currentTimeMillis
       |    var scanResult: ScanResult                = null
       |    var lookups: Map[String, CompanionFor[_]] = null
       |    try {
       |      scanResult = new ClassGraph().whitelistPackages(Config.generatedNamespaces: _*).scan()
-      |      /// For some reason, the classloader gets stuck unless these objects are explicitly instantiated outside of the reflection...
-      |      def classloaderBypass = Seq(Age, Coding, Count, Distance, Duration, Expression, Quantity, Reference, Resource)
       |      val classPathResults = scanResult
-      |        .getSubclasses("com.babylonhealth.lit.core.FHIRObject")
-      |        .filter(!_.getSimpleName.contains('$'))
+      |        .getSubclasses("com.babylonhealth.lit.core.ModuleDict")
       |        .asScala
-      |      val companions = extractCompanionsFromPath(classPathResults.toSeq).toList
       |
-      |      lookups = companions.flatMap {
-      |        case x if x.profileUrl.isEmpty => println(s"FATAL ERROR: Some resource companions are missing the profileUrl field (${x.thisName})"); sys.exit(5)
-      |        case x if x eq x.baseType      => Seq(x.thisName -> x) ++ x.profileUrl.toSeq.map(_ -> x)
-      |        case x                         => x.profileUrl.toSeq.map(_ -> x)
-      |      }.toMap
+      |      val modules = extractModuleFromPath(classPathResults.toSeq).toList
+      |
+      |      lookups = modules.flatMap(_.lookup).toMap
       |    } finally if (scanResult != null) scanResult.close()
       |    if (lookups == null || lookups.size < 35) { // 35 classes inherit from FHIRObject just in core alone...
       |      println("FATAL ERROR: Unable to instantiate companionLookup map")
@@ -737,6 +723,12 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |    println(s"Successfully created ${lookups.size} lookup mappings in ${System.currentTimeMillis - startTime}ms")
       |    lookups
       |  }
+      |  lazy val resourceTypeLookup: Map[String, CompanionFor[_ <: FHIRObject]] =
+      |    urlLookup.collect { case (_, obj) if obj eq obj.baseType => obj.thisName -> obj }
+      |
+      |  @deprecated("Use urlLookup or resourceTypeLookup")
+      |  lazy val companionLookup: Map[String, CompanionFor[_ <: FHIRObject]] =
+      |    resourceTypeLookup ++ urlLookup
       |
       |  val suffixDecoderTypeTagMap: Map[String, DecoderAndTag[_]] = Map(
       |    "Dosage"          -> DecoderAndTag[Dosage](Dosage.decoder(_), lTagOf[Dosage]),
@@ -833,7 +825,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |    }
       |  }
       |}""".stripMargin
-  def genPackageObject(pkg: String, _unionAliases: Map[String, Seq[String]]): String = {
+  def genPackageObject(pkg: String, _unionAliases: Map[String, Seq[String]], lookups: Map[String, String]): String = {
     val head =
       if (pkg == "core") genPackageCore
       else
@@ -844,6 +836,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
            |
            |import com.babylonhealth.lit.core._
            |import com.babylonhealth.lit.core.model._
+           |import com.babylonhealth.lit.$pkg.model._
            |""".stripMargin
     val unionAliases =
       _unionAliases.toSeq
@@ -852,9 +845,13 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         .mkString("\n  ")
     s"""$head
        |
-       |object UnionAliases {
+       |${if (unionAliases.nonEmpty) s"""object UnionAliases {
        |  $unionAliases
        |}
+       |""" else ""}
+       |object Module extends ModuleDict(Map(${lookups
+      .map { case (url, obj) => s""""$url" -> $obj""" }
+      .mkString(", ")}))
        |
        |""".stripMargin
   }

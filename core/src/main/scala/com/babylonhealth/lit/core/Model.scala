@@ -8,12 +8,24 @@ import izumi.reflect.macrortti.LTag
 
 import com.babylonhealth.lit.core.model._
 
+class ModuleDict(val lookup: Map[String, CompanionFor[_]])
+
 case class FHIRComponentFieldMeta[T](name: String, tt: LTag[T], isRef: Boolean, unwrappedTT: LTag[_])
 
 case class FHIRComponentField[T](meta: FHIRComponentFieldMeta[T], value: T) {
   def isRef: Boolean = meta.isRef
 
   def name: String = meta.name
+
+  def suffixedName: Option[String] = suffixFor(value).map(name + _)
+
+  private def suffixFor(x: Any): Option[String] = x match {
+    case choice: Choice[_] => Some(choice.suffix)
+    case opt: Option[_]    => opt.flatMap(suffixFor)
+    case seq: LitSeq[_]    => suffixFor(seq.headOption)
+    case _                 => None
+  }
+
 }
 
 object PseudoLenses {
