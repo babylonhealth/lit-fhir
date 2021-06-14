@@ -3,7 +3,7 @@ package com.babylonhealth.lit.core
 import enumeratum.{ CirceEnum, Enum, EnumEntry }
 
 import com.babylonhealth.lit.core.model.Coding
-import com.babylonhealth.lit.core.{ FhirEnum, FhirCirceEnum, EnumWithFallback }
+import com.babylonhealth.lit.core.{ EnumeratumBase, FhirEnum, FhirCirceEnum, EnumWithFallback }
 
 sealed abstract class ADDRESS_TYPE(override val entryName: String)
     extends EnumeratumBase

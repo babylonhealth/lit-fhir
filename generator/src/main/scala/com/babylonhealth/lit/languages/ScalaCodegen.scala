@@ -243,23 +243,21 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       case _                         => true
     }
     def enumVal(v: CodeEnum) = {
-      val enumName = if (forceDisplayName) v.shoutyCamelName.getOrElse(v.getName) else v.getName
+      val enumValue = if (forceDisplayName) v.shoutyCamelName.getOrElse(v.getName) else v.getName
       val display = v.name
         .map("Some(\"" + _.replaceAll("\\s*[\n\r]\\s*", " ").replaceAllLiterally("\"", "\\\"") + "\")")
         .getOrElse("None")
       val system = v.system.map(s => s"""Some("$s")""") getOrElse "None"
-      s"""  case $enumName extends $enumName("${v.stringValue}", $display, $system)"""
+      s"""  case $enumValue extends $enumName("${v.stringValue}", $display, $system)"""
     }
     val (extraCase, fallback) =
       if (!isExtensible) ("", "")
       else
-        (
-          s"""
-             |case Other_(s: String) extends $enumName(s, Some(s"Runtime value set extension ($$s)"), None)""".stripMargin,
-          s""" {
-             |  def fallback(s: String): $enumName = $enumName.Other_(s)
-             |}""".stripMargin
-        )
+        s"""
+           |case Other_(s: String) extends $enumName(s, Some(s"Runtime value set extension ($$s)"), None)""".stripMargin ->
+        s""" {
+           |  def fallback(s: String): $enumName = $enumName.Other_(s)
+           |}""".stripMargin
     val objectType = if (isExtensible) "ETypeWithFallback" else "EType"
 
     val reference = (codes.url, codes.version) match {
