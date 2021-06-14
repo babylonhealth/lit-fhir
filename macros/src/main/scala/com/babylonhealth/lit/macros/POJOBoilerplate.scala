@@ -83,8 +83,8 @@ object boilerplateMethodsMacro {
             withCompanion(tpe.asInstanceOf[c.TypeName]))
             .asInstanceOf[List[Tree]]
         q"""class $tpe(..$params) extends $p(..$pparams) {
-         private final def set[T](f: String, v: T): $tpe          = withFieldUnsafe[T, $tpe](f, v)
-         private final def update[T](f: String, fn: T => T): $tpe = modifyFieldUnsafe[T, $tpe](f, fn)
+         private final def _set[T](f: String, v: T): $tpe          = withFieldUnsafe[T, $tpe](f, v)
+         private final def _update[T](f: String, fn: T => T): $tpe = modifyFieldUnsafe[T, $tpe](f, fn)
          ..$body
          ..$defdefdef
         }"""

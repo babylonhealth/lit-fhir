@@ -34,10 +34,10 @@ abstract class FHIRObject(
   def updatePrimitiveAttributes(fn: FieldToElementLookup => FieldToElementLookup): this.type =
     withPrimitiveAttributes(fn(primitiveAttributes))
 
-  // This form is potentially not typesafe (one can call it on any resource with any meta field), but it should either
+  // This form is not typesafe (one can call it on any resource with any meta field), but it should either
   // always or never throw on a given resourceType at a particular call-site.
-  // Prefer updating/setting/updateIfExists/updateAll from the implicitly-summoned `ObjectAndCompanion`
-  def `with`[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
+  // Prefer update/set/updateIfExists/updateAll from the implicitly-summoned `ObjectAndCompanion`
+  def updateFromField[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
       field: FHIRComponentFieldMeta[T]
   )(fn: T => T): UpType = {
     val parent: CompanionFor[_ <: companion.ResourceType] = companion.leastParentWithField(field)
@@ -53,7 +53,7 @@ abstract class FHIRObject(
       parent.thisClassTag.asInstanceOf[ClassTag[companion.ResourceType]],
       parent.thisTypeTag.asInstanceOf[LTag[companion.ResourceType]]).asInstanceOf[UpType]
   }
-  def sett[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
+  def setFromField[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
       field: FHIRComponentFieldMeta[T]
   )(newVal: T): UpType = {
     val parent: CompanionFor[_ <: companion.ResourceType] = companion.leastParentWithField(field)
