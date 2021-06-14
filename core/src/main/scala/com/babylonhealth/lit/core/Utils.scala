@@ -23,9 +23,6 @@ case class EncoderParams(
     addTopLevelResourceType: Boolean = false,
     stripPhantom: Boolean = true)
 
-object Utils {
-//  val mirror: ru.Mirror = ru.runtimeMirror(getClass.getClassLoader)
-}
 trait Utils {
   def companionClassName[T](tag: LTag[T]): String = {
     val repr = tag.tag.repr

@@ -3,12 +3,20 @@ package com.babylonhealth.lit.fhirpath
 import enumeratum.EnumEntry
 import scala.util.Try
 
-import izumi.reflect.macrortti.{LTag, LightTypeTag}
+import izumi.reflect.macrortti.{ LTag, LightTypeTag }
 
 import com.babylonhealth.lit.common.CodegenUtils
-import com.babylonhealth.lit.core.TagSummoners.{lTagOf, lTypeOf}
-import com.babylonhealth.lit.core.{Choice, CompanionFor, FHIRComponentFieldMeta, FHIRObject, LitSeq, TagSummoners, Utils}
-import com.babylonhealth.lit.core.model.{Reference, resourceTypeLookup}
+import com.babylonhealth.lit.core.TagSummoners.{ lTagOf, lTypeOf }
+import com.babylonhealth.lit.core.{
+  Choice,
+  CompanionFor,
+  FHIRComponentFieldMeta,
+  FHIRObject,
+  LitSeq,
+  TagSummoners,
+  Utils
+}
+import com.babylonhealth.lit.core.model.{ Reference, resourceTypeLookup }
 import com.babylonhealth.lit.fhirpath.model._
 
 object genScala {
@@ -226,17 +234,24 @@ object genScala {
       baseCardinality: FieldCardinality,
       rootStr: String = "_")
       extends Utils {
+
+    private def companionFromTagAlone[T <: FHIRObject](implicit tag: LTag[T]): CompanionFor[T] =
+      Try[CompanionFor[T]](
+        Class.forName(companionClassName[T](tag) + "$").getField("MODULE$").get(null).asInstanceOf[CompanionFor[T]]
+      ).fold(
+        e => throw new RuntimeException(s"Could not get companion object for type ${tag.tag.longName}", e),
+        identity)
     private def baseAsCompanion: CompanionFor[_ <: FHIRObject] =
       base match {
         case Left(c) => c
         case Right(meta) if meta.unwrappedTT.tag <:< lTypeOf[FHIRObject] =>
-          companionOf(meta.unwrappedTT.asInstanceOf[LTag[FHIRObject]])
+          companionFromTagAlone(meta.unwrappedTT.asInstanceOf[LTag[FHIRObject]])
       }
     def fields: String => FHIRComponentFieldMeta[_] = name => baseAsCompanion.fieldsMeta.find(_.name == name).get
     val companions: String => Either[CompanionFor[_], FHIRComponentFieldMeta[_]] = name =>
       fields(name) match {
         case meta if meta.unwrappedTT.tag <:< lTypeOf[FHIRObject] =>
-          Left(companionOf(meta.unwrappedTT.asInstanceOf[LTag[FHIRObject]]))
+          Left(companionFromTagAlone(meta.unwrappedTT.asInstanceOf[LTag[FHIRObject]]))
         case meta =>
           Right(meta)
       }
