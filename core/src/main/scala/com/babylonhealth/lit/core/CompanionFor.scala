@@ -22,6 +22,7 @@ trait OptionSugar {
 }
 
 case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor[_]](o: O, c: C) {
+  // normal field manipulation
   def update[T](fieldSelection: C => FHIRComponentFieldMeta[T])(fn: T => T): O =
     o.updateFromField[T, O](fieldSelection(c))(fn)
   def set[T](fieldSelection: C => FHIRComponentFieldMeta[T])(value: T): O =
@@ -30,6 +31,7 @@ case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor
     o.updateFromField[Option[T], O](fieldSelection(c))(_ map fn)
   def updateAll[T](fieldSelection: C => FHIRComponentFieldMeta[LitSeq[T]])(fn: T => T): O =
     o.updateFromField[LitSeq[T], O](fieldSelection(c))(_ map fn)
+  // primitive element field manipulation (could/should require that the type param T of the field isn't a FHIRObject...)
   def updateExtensions(field: C => FHIRComponentFieldMeta[_])(update: LitSeq[Extension] => LitSeq[Extension]): O =
     o.extensions.update(field(c))(update)
   def updateIds(field: C => FHIRComponentFieldMeta[_])(update: Option[String] => Option[String]): O =

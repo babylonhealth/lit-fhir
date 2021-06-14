@@ -187,7 +187,16 @@ object Cardinality {
   }
 }
 
-case class ClassGenInfo(fileContents: String, fileName: String, pkg: String)
+object ScalaTarget extends Enumeration {
+  val Scala2, Scala3 = Value
+  type ScalaTarget = Value
+}
+
+case class ClassGenInfo(
+    fileContents: String,
+    fileName: String,
+    pkg: String,
+    target: Option[ScalaTarget.ScalaTarget] = None)
 
 case class JavaClassGenInfo(builders: Seq[ClassGenInfo], codes: Seq[ClassGenInfo])
 

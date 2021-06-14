@@ -5,7 +5,8 @@ val artifactory     = s"https://$artifactoryHost/"
 
 val thisVersion = sys.props.get("version") getOrElse "local"
 
-val fullScalaVersion = "2.13.3"
+val scala2Version = "2.13.5"
+val crossVersions = Seq(scala2Version, "3.0.0")
 val V = new {
   val circe                  = "0.13.0"
   val logback                = "1.2.3"
@@ -19,18 +20,23 @@ val V = new {
   val jUnit                  = "5.6.0"
 }
 
-val commonSettings = Seq(
+def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
   version := thisVersion,
   organization := "com.babylonhealth.lit",
-  scalaVersion := fullScalaVersion,
+  scalaVersion := scala2Version,
+  crossScalaVersions := versions,
   resolvers ++= Seq(
     Resolver.mavenLocal,
     "babylon-snapshots" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-snapshots",
     "babylon-releases" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-releases"
   ),
-  libraryDependencies += "org.scala-lang" % "scala-reflect" % fullScalaVersion,
+  libraryDependencies += "org.scala-lang" % "scala-reflect" % scala2Version,
   scalacOptions += "-language:postfixOps"
 )
+val commonSettings  = commonSettingsWithCrossVersions(crossVersions)
+// for now, Java  modules will be compiled against scala 2 (it's been more thorougly tested, and the setFoo API from
+// class annotation macros is more convenient called from Java than the .set(_.foo) one, since it requires no implicits
+val commonJSettings = commonSettingsWithCrossVersions(Seq(scala2Version))
 val javaSettings = Seq(
   crossPaths := false,
   resolvers += Resolver.jcenterRepo,
@@ -66,7 +72,7 @@ lazy val macros = project
 
 lazy val generator = project
   .in(file("generator"))
-  .settings(commonSettings: _*)
+  .settings(commonJSettings: _*)
   .settings(publishSettings: _*)
   .settings(
     libraryDependencies ++= Seq(
@@ -167,7 +173,7 @@ lazy val fhirpath = project
 // Scalameter Benchmark tests
 lazy val bench = project
   .in(file("bench"))
-  .settings(commonSettings: _*)
+  .settings(commonJSettings: _*)
   .settings(
     resolvers += "Sonatype OSS Snapshots" at
       "https://oss.sonatype.org/content/repositories/releases",
@@ -186,7 +192,7 @@ lazy val bench = project
 
 lazy val coreJava = project
   .in(file("core_java"))
-  .settings(commonSettings: _*)
+  .settings(commonJSettings: _*)
   .settings(publishSettings: _*)
   .settings(
     crossPaths := false,
@@ -204,7 +210,7 @@ lazy val coreJava = project
 
 lazy val hl7Java = project
   .in(file("hl7_java"))
-  .settings(commonSettings: _*)
+  .settings(commonJSettings: _*)
   .settings(publishSettings: _*)
   .settings(javaSettings: _*)
   .dependsOn(core, hl7, coreJava)
@@ -212,7 +218,7 @@ lazy val hl7Java = project
 
 lazy val usbaseJava = project
   .in(file("usbase_java"))
-  .settings(commonSettings: _*)
+  .settings(commonJSettings: _*)
   .settings(publishSettings: _*)
   .settings(javaSettings: _*)
   .dependsOn(core, hl7, usbase, coreJava, hl7Java)
@@ -220,7 +226,7 @@ lazy val usbaseJava = project
 
 lazy val uscoreJava = project
   .in(file("uscore_java"))
-  .settings(commonSettings: _*)
+  .settings(commonJSettings: _*)
   .settings(publishSettings: _*)
   .settings(javaSettings: _*)
   .dependsOn(core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava)
