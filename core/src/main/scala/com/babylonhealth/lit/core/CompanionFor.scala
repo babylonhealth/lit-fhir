@@ -8,7 +8,7 @@ import scala.reflect.ClassTag
 import scala.util.{ Failure, Success, Try }
 
 import io.circe.{ Decoder, DecodingFailure, HCursor }
-import izumi.reflect.macrortti.LTag
+import izumi.reflect.macrortti.{ LTT, LTag }
 import org.slf4j.{ Logger, LoggerFactory }
 import com.babylonhealth.lit.core.model.{ Element, Resource, resourceTypeLookup, urlLookup }
 
@@ -32,6 +32,11 @@ case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor
     o.`with`[LitSeq[T], O](fieldSelection(c))(_ map fn)
 }
 
+object FieldSearchType extends Enumeration {
+  val Singleton, Empty, Many, Unknown = Value
+  type FieldSearchType = Value
+}
+import FieldSearchType._
 abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: ClassTag[T @uncheckedVariance])
     extends JsonDecoderHelpers
     with OptionSugar {
@@ -42,13 +47,39 @@ abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: C
   val profileUrl: Option[String] = None
 
   final private[core] def leastParentWithField(
-      f: FHIRComponentFieldMeta[_],
+      field: FHIRComponentFieldMeta[_],
+      tpe: FieldSearchType,
       chain: List[CompanionFor[_]] = Nil
-  ): CompanionFor[_ <: ResourceType] = {
-    if (fieldsMeta.contains(f)) this.asInstanceOf[CompanionFor[_ <: ResourceType]]
+  ): (CompanionFor[_ <: ResourceType], FHIRComponentFieldMeta[_]) = {
+    val matches =
+      if (!Config.finegrainedTypeRetentionOnCopy || tpe == FieldSearchType.Unknown) fieldsMeta.find(_ == field)
+      else if (field.isRef)
+        tpe match {
+          // Empty things can only exist on options and empty LitSeqs
+          case Empty =>
+            fieldsMeta.find(f =>
+              f.name == field.name && (f.tt.tag <:< LTT[Option[_]] ||
+                (f.tt.tag <:< LTT[LitSeq[_]] && !f.tt.tag.<:<(LTT[NonEmptyLitSeq[_]]))))
+          // TODO need to check types
+//          case Singleton => ???
+          // TODO need to check types
+//          case Many => ???
+          case _ => fieldsMeta.find(_ == field)
+        }
+      else
+        tpe match {
+          case Empty =>
+            fieldsMeta.find(f => f.name == field.name && f.tt != f.unwrappedTT && !f.tt.tag.<:<(LTT[NonEmptyLitSeq[_]]))
+          // fields do not 'exist' on a companion of empty, and no lists yet require 2+ values
+          case Singleton => fieldsMeta.find(f => f.name == field.name)
+          // Many things need a list
+          case Many => fieldsMeta.find(f => f.name == field.name && f.tt.tag <:< LTT[LitSeq[_]])
+          case _    => fieldsMeta.find(_ == field)
+        }
+    if (matches.nonEmpty) (this.asInstanceOf[CompanionFor[_ <: ResourceType]], matches.get)
     else if (parentType eq this)
-      throw new RuntimeException(s"Unable to find field matching $f in ${chain.map(_.thisName).mkString(" <: ")}")
-    else parentType.leastParentWithField(f, chain :+ this)
+      throw new RuntimeException(s"Unable to find field matching $field in ${chain.map(_.thisName).mkString(" <: ")}")
+    else parentType.leastParentWithField(field, tpe, chain :+ this)
   }
   //  private val m = runtimeMirror(getClass.getClassLoader)
   //  lazy val classConstructor: Constructor[_] =
