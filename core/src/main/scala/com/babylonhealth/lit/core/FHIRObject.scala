@@ -40,16 +40,18 @@ abstract class FHIRObject(
   def `with`[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
       field: FHIRComponentFieldMeta[T]
   )(fn: T => T): UpType = {
-    val levelToGoTo: CompanionFor[_ <: companion.ResourceType] = companion.leastParentWithField(field)
-    val currentValue = levelToGoTo
-      .fieldsFromParent(this.asInstanceOf[levelToGoTo.ResourceType])
+    val parent: CompanionFor[_ <: companion.ResourceType] = companion.leastParentWithField(field)
+    val currentValue = parent
+      .fieldsFromParent(this.asInstanceOf[parent.ResourceType])
       .get // fieldsFromParent shouldn't be able to fail if upcasting...
       .find(_.meta == field)
       .get // leastParentWithField call should fail if this isn't found; this indicates an error in the value provided in `field` param
       .value
       .asInstanceOf[T]
     val newVal = fn(currentValue)
-    withFieldUnsafe[T, UpType](field.name, newVal)
+    withFieldUnsafe[T, companion.ResourceType](field.name, newVal)(
+      parent.thisClassTag.asInstanceOf[ClassTag[companion.ResourceType]],
+      parent.thisTypeTag.asInstanceOf[LTag[companion.ResourceType]]).asInstanceOf[UpType]
   }
   def sett[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
       field: FHIRComponentFieldMeta[T]
