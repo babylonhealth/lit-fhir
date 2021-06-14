@@ -3,15 +3,14 @@ package com.babylonhealth.lit.core
 import java.time.{ LocalTime, ZonedDateTime }
 import java.util.{ Base64, UUID }
 
+import scala.reflect.ClassTag
 import scala.util.Try
 
-import enumeratum.EnumEntry
 import io.circe.parser.decode
 import io.circe.syntax._
 import io.circe.{ Decoder, Encoder, Json }
 import izumi.reflect.macrortti.LTag
 import org.slf4j.{ Logger, LoggerFactory }
-
 import com.babylonhealth.lit.core.model.{ Element, Resource, typeSuffixMap }
 
 object serdes extends Utils {
@@ -32,7 +31,7 @@ object serdes extends Utils {
       case d: ZonedDateTime   => Json fromString FHIRDateTimeSpecificity.Time.dtFormatter.format(d)
       case dt: FHIRDateTime   => Json fromString dt.fmt
       case d: FHIRDate        => Json fromString d.fmt
-      case time: LocalTime    => time.asJson
+      case time: LocalTime    => Json fromString time.toString
       case e: EnumBase        => Encoder.encodeString(e.name)
       case bytes: Array[Byte] => Json.fromString(Base64.getEncoder.encodeToString(bytes))
       case j: Json            => j
@@ -91,9 +90,8 @@ object serdes extends Utils {
   // convenience methods, primarily for calling from Java
   lazy val allGeneratedClasses: Seq[Class[_]] = model.urlLookup.values.map(_.thisClassTag.runtimeClass).toSeq
   lazy val companionClassMap: Map[Class[_], CompanionFor[_]] = allGeneratedClasses map { klass =>
-    val module = Utils.mirror.staticModule(klass.getName)
     val companionObj: CompanionFor[_ <: FHIRObject] =
-      Utils.mirror.reflectModule(module).instance.asInstanceOf[CompanionFor[_ <: FHIRObject]]
+      Class.forName(klass.getName + "$").getField("MODULE$").get(null).asInstanceOf[CompanionFor[_ <: FHIRObject]]
     klass -> companionObj
   } toMap
 
@@ -104,7 +102,8 @@ object serdes extends Utils {
   implicit def objectEncoder[T <: FHIRObject](implicit params: EncoderParams = EncoderParams()): Encoder[T] =
     Encoder.instance(encodeComponent)
 
-  implicit def objectDecoder[T <: FHIRObject: LTag](implicit params: DecoderParams = DecoderParams()): Decoder[T] =
+  implicit def objectDecoder[T <: FHIRObject: LTag: ClassTag](implicit
+      params: DecoderParams = DecoderParams()): Decoder[T] =
     Decoder.instanceTry {
       decodeMethodFor[T]
     }

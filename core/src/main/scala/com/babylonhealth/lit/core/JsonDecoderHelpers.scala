@@ -1,6 +1,5 @@
 package com.babylonhealth.lit.core
 
-import scala.reflect.runtime.universe.typeOf
 import scala.util.{ Failure, Success, Try }
 
 import io.circe.CursorOp.DeleteGoParent

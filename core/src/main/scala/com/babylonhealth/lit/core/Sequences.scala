@@ -96,6 +96,8 @@ class LitSeqIterator[+T](private val xs: Array[_], initialIndex: Int = 0)
   def previousIndex: Int = pos - 1
   // mutability. Unimplemented
   @throws(classOf[NotImplementedError]) @deprecated("Do not use -- this collection is immutable")
+  override def remove(): Unit = ???
+  @throws(classOf[NotImplementedError]) @deprecated("Do not use -- this collection is immutable")
   def add(x$1: T @uncheckedVariance): Unit = !!!
   @throws(classOf[NotImplementedError]) @deprecated("Do not use -- this collection is immutable")
   def set(x$1: T @uncheckedVariance): Unit = !!!
@@ -106,10 +108,10 @@ class LitSeq[+T] protected (protected val _contents: Array[Object])
     with PartialFunction[Int, T]
     with JList[T @uncheckedVariance] {
   // extra constructors
-  def this(coll: JCollection[T]) {
+  def this(coll: JCollection[T]) = {
     this(coll.toArray)
   }
-  def this(initial: Iterable[T]) {
+  def this(initial: Iterable[T]) = {
     this {
       val arr: Array[Object] = new Array[Object](initial.size)
       initial.zipWithIndex.foreach { case (o, i) => arr(i) = o.asInstanceOf[Object] }
@@ -196,12 +198,14 @@ class LitSeq[+T] protected (protected val _contents: Array[Object])
   // From JCollection
   override def contains(o: Object): Boolean                     = _contents.contains(o)
   override def containsAll(collection: JCollection[_]): Boolean = collection.stream().allMatch(_contents.contains)
-  override def toArray: Array[AnyRef]                           = toArray(new Array[T with Object](_contents.length)).asInstanceOf[Array[AnyRef]]
-  override def toArray[T](xs: Array[T with Object]): Array[T with Object] = {
-    assert(xs.length >= _contents.length)
-    for (i <- _contents.indices) xs(i) = _contents(i).asInstanceOf[T with Object]
-    xs
-  }
+  override def toArray: Array[AnyRef]                           = Array.copyOf(_contents, _contents.length)
+  override def toArray[T1](xs: Array[T1 with Object]): Array[T1 with Object] =
+    if (xs.length < _contents.length) toArray.asInstanceOf[Array[T1 with Object]]
+    else {
+      for (i <- _contents.indices) xs(i) = _contents(i).asInstanceOf[T1 with Object]
+      if (xs.length > _contents.length) xs(_contents.length) = null.asInstanceOf[T1 with Object]
+      xs
+    }
 
   // From JList
   def get(i: Int): T                              = apply(i)
@@ -253,10 +257,10 @@ class LitSeq[+T] protected (protected val _contents: Array[Object])
 class NonEmptyLitSeq[+T] protected (override protected val _contents: Array[Object], wasChecked: Boolean)
     extends LitSeq[T](_contents) {
   if (!wasChecked && _contents.isEmpty) throw new IllegalStateException(s"Non-empty seq can't be empty")
-  def this(initial: JCollection[T]) {
+  def this(initial: JCollection[T]) = {
     this(initial.toArray, false)
   }
-  def this(initial: Iterable[T]) {
+  def this(initial: Iterable[T]) = {
     this(
       {
         val arr: Array[Object] = new Array[Object](initial.size)

@@ -359,12 +359,12 @@ object PractitionerRole extends CompanionFor[PractitionerRole] {
     "date"         -> (obj => obj.period.toSeq),
     "practitioner" -> (obj => obj.practitioner.toSeq),
     "organization" -> (obj => obj.organization.toSeq),
-    "email"        -> (obj => obj.telecom.filter(_.system.map(_.entryName) contains "email").toSeq),
+    "email"        -> (obj => obj.telecom.filter(_.system.map(_.name) contains "email").toSeq),
     "identifier"   -> (obj => obj.identifier.toSeq),
     "role"         -> (obj => obj.code.toSeq),
     "endpoint"     -> (obj => obj.endpoint.toSeq),
     "telecom"      -> (obj => obj.telecom.toSeq),
-    "phone"        -> (obj => obj.telecom.filter(_.system.map(_.entryName) contains "phone").toSeq),
+    "phone"        -> (obj => obj.telecom.filter(_.system.map(_.name) contains "phone").toSeq),
     "active"       -> (obj => obj.active.toSeq)
   )
   def unapply(

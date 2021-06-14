@@ -257,7 +257,7 @@ object Practitioner extends CompanionFor[Practitioner] {
   override val searchParams: Map[String, Practitioner => Seq[Any]] = Map(
     "phonetic"           -> (obj => obj.name.toSeq),
     "communication"      -> (obj => obj.communication.toSeq),
-    "given"              -> (obj => obj.name.flatMap(_.given).toSeq),
+    "given"              -> (obj => obj.name.flatMap(_.`given`).toSeq),
     "address-state"      -> (obj => obj.address.flatMap(_.state).toSeq),
     "address-postalcode" -> (obj => obj.address.flatMap(_.postalCode).toSeq),
     "address-use"        -> (obj => obj.address.flatMap(_.use).toSeq),
@@ -265,11 +265,11 @@ object Practitioner extends CompanionFor[Practitioner] {
     "address-country"    -> (obj => obj.address.flatMap(_.country).toSeq),
     "address-city"       -> (obj => obj.address.flatMap(_.city).toSeq),
     "name"               -> (obj => obj.name.toSeq),
-    "email"              -> (obj => obj.telecom.filter(_.system.map(_.entryName) contains "email").toSeq),
+    "email"              -> (obj => obj.telecom.filter(_.system.map(_.name) contains "email").toSeq),
     "identifier"         -> (obj => obj.identifier.toSeq),
     "telecom"            -> (obj => obj.telecom.toSeq),
     "address"            -> (obj => obj.address.toSeq),
-    "phone"              -> (obj => obj.telecom.filter(_.system.map(_.entryName) contains "phone").toSeq),
+    "phone"              -> (obj => obj.telecom.filter(_.system.map(_.name) contains "phone").toSeq),
     "gender"             -> (obj => obj.gender.toSeq),
     "active"             -> (obj => obj.active.toSeq)
   )

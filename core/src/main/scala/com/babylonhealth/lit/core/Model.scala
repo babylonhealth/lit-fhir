@@ -10,7 +10,9 @@ import com.babylonhealth.lit.core.model._
 
 class ModuleDict(val lookup: Map[String, CompanionFor[_]])
 
-case class FHIRComponentFieldMeta[T](name: String, tt: LTag[T], isRef: Boolean, unwrappedTT: LTag[_])
+case class FHIRComponentFieldMeta[T](name: String, tt: LTag[T], isRef: Boolean, unwrappedTT: LTag[_]) {
+  type Type
+}
 
 case class FHIRComponentField[T](meta: FHIRComponentFieldMeta[T], value: T) {
   def isRef: Boolean = meta.isRef
@@ -49,20 +51,20 @@ object PseudoLenses {
     }
 
     def setNestedFieldUnsafe[T](nestingPath: String*)(newVal: T): C =
-      modifyNestedFieldUnsafe(nestingPath: _*)({ _: T =>
+      modifyNestedFieldUnsafe(nestingPath: _*)({ (_: T) =>
         newVal
       })
   }
 }
 
-trait FHIRComponent extends Utils { _: FHIRObject =>
+trait FHIRComponent extends Utils { self: FHIRObject =>
   def fields: Seq[FHIRComponentField[_]]
 
   def constructor: Constructor[_] = companion.classConstructor
 
   // sometimes we want to do ugly things with FHIR (e.g. given an arbitrary resource, extract the `subject` field if it's a `Reference`)
   def getFieldByClass[T](name: String, clazz: Class[T]): LitSeq[T] =
-    fields
+    FHIRComponent.this.fields
       .collectFirst { case f if f.meta.name == name => f.value }
       .to(LitSeq)
       .flatMap {
@@ -84,7 +86,7 @@ trait FHIRComponent extends Utils { _: FHIRObject =>
       }
 
   def getFieldByType[T: LTag](name: String): LitSeq[T] =
-    fields
+    FHIRComponent.this.fields
       .find(
         _.meta.name == name
       ) // performed first, since at most one field will have the same name, and if the second condition fails, we don't want to continue scanning the fields

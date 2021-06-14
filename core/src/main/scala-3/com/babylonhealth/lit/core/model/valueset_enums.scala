@@ -323,7 +323,7 @@ enum EXPRESSION_LANGUAGE(val name: String, val display: Option[String], val syst
   case FHIR_QUERY extends EXPRESSION_LANGUAGE("application/x-fhir-query", Some("FHIR Query"), Some("http://hl7.org/fhir/expression-language"))
 case Other_(s: String) extends EXPRESSION_LANGUAGE(s, Some(s"Runtime value set extension ($s)"), None)
 }
-object EXPRESSION_LANGUAGE extends ETypeWithFallback[EXPRESSION_LANGUAGE]("http://hl7.org/fhir/ValueSet/expression-language")  {
+object EXPRESSION_LANGUAGE extends ETypeWithFallback[EXPRESSION_LANGUAGE] with EType[EXPRESSION_LANGUAGE]("http://hl7.org/fhir/ValueSet/expression-language")  {
   def fallback(s: String): EXPRESSION_LANGUAGE = EXPRESSION_LANGUAGE.Other_(s)
 }
 
@@ -397,7 +397,7 @@ enum LANGUAGES(val name: String, val display: Option[String], val system: Option
   case ZH_TW extends LANGUAGES("zh-TW", Some("Chinese (Taiwan)"), Some("urn:ietf:bcp:47"))
 case Other_(s: String) extends LANGUAGES(s, Some(s"Runtime value set extension ($s)"), None)
 }
-object LANGUAGES extends ETypeWithFallback[LANGUAGES]("http://hl7.org/fhir/ValueSet/languages")  {
+object LANGUAGES extends ETypeWithFallback[LANGUAGES] with EType[LANGUAGES]("http://hl7.org/fhir/ValueSet/languages")  {
   def fallback(s: String): LANGUAGES = LANGUAGES.Other_(s)
 }
 

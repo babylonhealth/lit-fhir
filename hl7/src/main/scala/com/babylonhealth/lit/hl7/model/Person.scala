@@ -252,11 +252,11 @@ object Person extends CompanionFor[Person] {
     "organization"       -> (obj => obj.managingOrganization.toSeq),
     "address-city"       -> (obj => obj.address.flatMap(_.city).toSeq),
     "name"               -> (obj => obj.name.toSeq),
-    "email"              -> (obj => obj.telecom.filter(_.system.map(_.entryName) contains "email").toSeq),
+    "email"              -> (obj => obj.telecom.filter(_.system.map(_.name) contains "email").toSeq),
     "identifier"         -> (obj => obj.identifier.toSeq),
     "telecom"            -> (obj => obj.telecom.toSeq),
     "address"            -> (obj => obj.address.toSeq),
-    "phone"              -> (obj => obj.telecom.filter(_.system.map(_.entryName) contains "phone").toSeq),
+    "phone"              -> (obj => obj.telecom.filter(_.system.map(_.name) contains "phone").toSeq),
     "gender"             -> (obj => obj.gender.toSeq),
     "patient"            -> (obj => obj.link.map(_.target).filter(_.reference.exists(_.contains("Patient/"))).toSeq)
   )

@@ -85,7 +85,7 @@ case class Choice[T](suffix: String, value: Any)(implicit val tt: LTag[T]) {
       toWitness: UnionWitness[T, To]
   ): ChoiceMap[T] = new ChoiceMap(this, Map(fromWitness.suffix -> (toWitness.suffix, toWitness.tt, fn)))
 
-  lazy val d @ DecoderAndTag(_, elTT) =
+  val d @ DecoderAndTag(_, elTT) =
     model.suffixDecoderTypeTagMap.getOrElse(suffix, DecoderAndTag[Json](_ => implicitly, LTag[Json]))
   def json(implicit encoderParams: EncoderParams = EncoderParams()): Json = serdes.serializeField(value)
   def toSuperRefSafe[Sup <: _ \/ _](implicit supT: LTag[Sup]): Choice[Sup] =
@@ -99,7 +99,8 @@ case class Choice[T](suffix: String, value: Any)(implicit val tt: LTag[T]) {
   def toSuperRef[Sup <: _ \/ _](implicit supT: LTag[Sup]): Choice[Sup] = Choice[Sup](suffix, value)
 
   @deprecated("You don't want to instantiate the choice to a 'union' type, it's inefficient")
-  def toUnion: T = \/.builder(value.asInstanceOf[d.Type])(tt, elTT.asInstanceOf[LTag[d.Type]])
+  private def toUnion: T        = \/.builder[T, d.Type](value.asInstanceOf[d.Type])(tt, elTT.asInstanceOf[LTag[d.Type]])
+  override def toString: String = toUnion.asInstanceOf[_ \/ _].value.toString
 
   override def equals(obj: Any): Boolean =
     obj match {
