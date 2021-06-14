@@ -70,8 +70,7 @@ object boilerplateMethodsMacro {
     val classWithCopyMethods = annottee match {
       case q"class $tpe(..$params) extends $p(..$pparams) { ..$body } " =>
         val defdefdef: List[Tree] =
-          (idExtSugar(tpe.asInstanceOf[c.TypeName], p) ++
-            withDefx(tpe.asInstanceOf[c.TypeName], params, pparams).flatten ++
+          (withDefx(tpe.asInstanceOf[c.TypeName], params, pparams).flatten ++
             updateDefx(tpe.asInstanceOf[c.TypeName], params, pparams).flatten ++
             updateIfExistsDefx(tpe.asInstanceOf[c.TypeName], params, pparams).flatten ++
             withEqs(
