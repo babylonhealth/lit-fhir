@@ -254,7 +254,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       if (!isExtensible) ("", "")
       else
         s"""
-           |case Other_(s: String) extends $enumName(s, Some(s"Runtime value set extension ($$s)"), None)""".stripMargin ->
+           |  case Other_(s: String) extends $enumName(s, Some(s"Runtime value set extension ($$s)"), None)""".stripMargin ->
         s""" {
            |  def fallback(s: String): $enumName = $enumName.Other_(s)
            |}""".stripMargin
@@ -267,7 +267,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     }
 
     s"""enum $enumName(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-       |  ${codes.codes.map(enumVal).sorted.mkString("\n")}$extraCase
+       |${codes.codes.map(enumVal).sorted.mkString("\n")}$extraCase
        |}
        |object $enumName extends $objectType[$enumName]("$reference") $fallback
        |""".stripMargin

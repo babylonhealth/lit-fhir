@@ -16,15 +16,18 @@ trait ToCodingAble extends EnumBase {
 
 trait EType[A <: ToCodingAble](val reference: String) {
   def values: Array[A]
-  lazy val withName: String => A = values.map(x => x.name -> x).toMap
+  lazy val withName: String => A   = values.map(x => x.name -> x).toMap
   implicit val encoder: Encoder[A] = Encoder.instance[A](Json fromString _.name)
   implicit val decoder: Decoder[A] =
-    Decoder.instance[A](c => c.as[String].flatMap(s => Try(withName(s)).toEither.left.map { _ =>
-      val options =
-        if (values.size <= 10) s" Valid values are: '${values.map(_.name).mkString(", ")}'."
-        else ""
-      DecodingFailure(s"'$s' is not in $reference.$options", c.history)
-    }))
+    Decoder.instance[A](c =>
+      c.as[String]
+        .flatMap(s =>
+          Try(withName(s)).toEither.left.map { _ =>
+            val options =
+              if (values.size <= 10) s" Valid values are: '${values.map(_.name).mkString(", ")}'."
+              else ""
+            DecodingFailure(s"'$s' is not in $reference.$options", c.history)
+          }))
 }
 
 trait ETypeWithFallback[A <: ToCodingAble: ClassTag] extends EType[A] {
@@ -32,7 +35,11 @@ trait ETypeWithFallback[A <: ToCodingAble: ClassTag] extends EType[A] {
   // This is so, so stupid.. but there isn't any way to override the name of an enum, or to list the unparameterised
   // values if a single parameterised one exists. Anyway, this works as long as 'Other' is the last case.
   override lazy val values: Array[A] =
-    (0 to Int.MaxValue-1).view.map(i => Try(fromOrdinal(i))).takeWhile(_.isSuccess).collect{ case Success(v) => v }.toArray
+    (0 to Int.MaxValue - 1).view
+      .map(i => Try(fromOrdinal(i)))
+      .takeWhile(_.isSuccess)
+      .collect { case Success(v) => v }
+      .toArray
   def fallback(s: String): A
   override lazy val withName: String => A = values.map(x => x.name -> x).toMap.withDefault(fallback)
 }

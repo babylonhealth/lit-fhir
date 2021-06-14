@@ -8,7 +8,7 @@ import io.circe.{ Decoder, DecodingFailure, Encoder, HCursor, Json }
 import com.babylonhealth.lit.core.{ EnumBase, EType, ToCodingAble, ETypeWithFallback }
 import com.babylonhealth.lit.core.model.Coding
 enum ADDRESS_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case BOTH extends ADDRESS_TYPE("both", Some("Postal & Physical"), Some("http://hl7.org/fhir/address-type"))
+  case BOTH extends ADDRESS_TYPE("both", Some("Postal & Physical"), Some("http://hl7.org/fhir/address-type"))
   case PHYSICAL extends ADDRESS_TYPE("physical", Some("Physical"), Some("http://hl7.org/fhir/address-type"))
   case POSTAL extends ADDRESS_TYPE("postal", Some("Postal"), Some("http://hl7.org/fhir/address-type"))
 }
@@ -16,7 +16,7 @@ object ADDRESS_TYPE extends EType[ADDRESS_TYPE]("http://hl7.org/fhir/ValueSet/ad
 
 
 enum ADDRESS_USE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case BILLING extends ADDRESS_USE("billing", Some("Billing"), Some("http://hl7.org/fhir/address-use"))
+  case BILLING extends ADDRESS_USE("billing", Some("Billing"), Some("http://hl7.org/fhir/address-use"))
   case HOME extends ADDRESS_USE("home", Some("Home"), Some("http://hl7.org/fhir/address-use"))
   case OLD extends ADDRESS_USE("old", Some("Old / Incorrect"), Some("http://hl7.org/fhir/address-use"))
   case TEMP extends ADDRESS_USE("temp", Some("Temporary"), Some("http://hl7.org/fhir/address-use"))
@@ -26,7 +26,7 @@ object ADDRESS_USE extends EType[ADDRESS_USE]("http://hl7.org/fhir/ValueSet/addr
 
 
 enum ALL_TYPES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case ACCOUNT extends ALL_TYPES("Account", Some("Account"), Some("http://hl7.org/fhir/resource-types"))
+  case ACCOUNT extends ALL_TYPES("Account", Some("Account"), Some("http://hl7.org/fhir/resource-types"))
   case ACTIVITYDEFINITION extends ALL_TYPES("ActivityDefinition", Some("ActivityDefinition"), Some("http://hl7.org/fhir/resource-types"))
   case ADDRESS extends ALL_TYPES("Address", Some("Address"), Some("http://hl7.org/fhir/data-types"))
   case ADVERSEEVENT extends ALL_TYPES("AdverseEvent", Some("AdverseEvent"), Some("http://hl7.org/fhir/resource-types"))
@@ -244,7 +244,7 @@ object ALL_TYPES extends EType[ALL_TYPES]("http://hl7.org/fhir/ValueSet/all-type
 
 
 enum CONTACT_POINT_SYSTEM(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case EMAIL extends CONTACT_POINT_SYSTEM("email", Some("Email"), Some("http://hl7.org/fhir/contact-point-system"))
+  case EMAIL extends CONTACT_POINT_SYSTEM("email", Some("Email"), Some("http://hl7.org/fhir/contact-point-system"))
   case FAX extends CONTACT_POINT_SYSTEM("fax", Some("Fax"), Some("http://hl7.org/fhir/contact-point-system"))
   case OTHER extends CONTACT_POINT_SYSTEM("other", Some("Other"), Some("http://hl7.org/fhir/contact-point-system"))
   case PAGER extends CONTACT_POINT_SYSTEM("pager", Some("Pager"), Some("http://hl7.org/fhir/contact-point-system"))
@@ -256,7 +256,7 @@ object CONTACT_POINT_SYSTEM extends EType[CONTACT_POINT_SYSTEM]("http://hl7.org/
 
 
 enum CONTACT_POINT_USE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case HOME extends CONTACT_POINT_USE("home", Some("Home"), Some("http://hl7.org/fhir/contact-point-use"))
+  case HOME extends CONTACT_POINT_USE("home", Some("Home"), Some("http://hl7.org/fhir/contact-point-use"))
   case MOBILE extends CONTACT_POINT_USE("mobile", Some("Mobile"), Some("http://hl7.org/fhir/contact-point-use"))
   case OLD extends CONTACT_POINT_USE("old", Some("Old"), Some("http://hl7.org/fhir/contact-point-use"))
   case TEMP extends CONTACT_POINT_USE("temp", Some("Temp"), Some("http://hl7.org/fhir/contact-point-use"))
@@ -266,7 +266,7 @@ object CONTACT_POINT_USE extends EType[CONTACT_POINT_USE]("http://hl7.org/fhir/V
 
 
 enum CONTRIBUTOR_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case AUTHOR extends CONTRIBUTOR_TYPE("author", Some("Author"), Some("http://hl7.org/fhir/contributor-type"))
+  case AUTHOR extends CONTRIBUTOR_TYPE("author", Some("Author"), Some("http://hl7.org/fhir/contributor-type"))
   case EDITOR extends CONTRIBUTOR_TYPE("editor", Some("Editor"), Some("http://hl7.org/fhir/contributor-type"))
   case ENDORSER extends CONTRIBUTOR_TYPE("endorser", Some("Endorser"), Some("http://hl7.org/fhir/contributor-type"))
   case REVIEWER extends CONTRIBUTOR_TYPE("reviewer", Some("Reviewer"), Some("http://hl7.org/fhir/contributor-type"))
@@ -275,7 +275,7 @@ object CONTRIBUTOR_TYPE extends EType[CONTRIBUTOR_TYPE]("http://hl7.org/fhir/Val
 
 
 enum DAYS_OF_WEEK(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case FRI extends DAYS_OF_WEEK("fri", Some("Friday"), Some("http://hl7.org/fhir/days-of-week"))
+  case FRI extends DAYS_OF_WEEK("fri", Some("Friday"), Some("http://hl7.org/fhir/days-of-week"))
   case MON extends DAYS_OF_WEEK("mon", Some("Monday"), Some("http://hl7.org/fhir/days-of-week"))
   case SAT extends DAYS_OF_WEEK("sat", Some("Saturday"), Some("http://hl7.org/fhir/days-of-week"))
   case SUN extends DAYS_OF_WEEK("sun", Some("Sunday"), Some("http://hl7.org/fhir/days-of-week"))
@@ -287,7 +287,7 @@ object DAYS_OF_WEEK extends EType[DAYS_OF_WEEK]("http://hl7.org/fhir/ValueSet/da
 
 
 enum EVENT_TIMING(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case AC extends EVENT_TIMING("AC", Some("AC"), Some("http://terminology.hl7.org/CodeSystem/v3-TimingEvent"))
+  case AC extends EVENT_TIMING("AC", Some("AC"), Some("http://terminology.hl7.org/CodeSystem/v3-TimingEvent"))
   case ACD extends EVENT_TIMING("ACD", Some("ACD"), Some("http://terminology.hl7.org/CodeSystem/v3-TimingEvent"))
   case ACM extends EVENT_TIMING("ACM", Some("ACM"), Some("http://terminology.hl7.org/CodeSystem/v3-TimingEvent"))
   case ACV extends EVENT_TIMING("ACV", Some("ACV"), Some("http://terminology.hl7.org/CodeSystem/v3-TimingEvent"))
@@ -318,7 +318,7 @@ object EVENT_TIMING extends EType[EVENT_TIMING]("http://hl7.org/fhir/ValueSet/ev
 
 
 enum EXPRESSION_LANGUAGE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case CQL extends EXPRESSION_LANGUAGE("text/cql", Some("CQL"), Some("http://hl7.org/fhir/expression-language"))
+  case CQL extends EXPRESSION_LANGUAGE("text/cql", Some("CQL"), Some("http://hl7.org/fhir/expression-language"))
   case FHIRPATH extends EXPRESSION_LANGUAGE("text/fhirpath", Some("FHIRPath"), Some("http://hl7.org/fhir/expression-language"))
   case FHIR_QUERY extends EXPRESSION_LANGUAGE("application/x-fhir-query", Some("FHIR Query"), Some("http://hl7.org/fhir/expression-language"))
 case Other_(s: String) extends EXPRESSION_LANGUAGE(s, Some(s"Runtime value set extension ($s)"), None)
@@ -329,7 +329,7 @@ object EXPRESSION_LANGUAGE extends ETypeWithFallback[EXPRESSION_LANGUAGE] with E
 
 
 enum IDENTIFIER_USE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case OFFICIAL extends IDENTIFIER_USE("official", Some("Official"), Some("http://hl7.org/fhir/identifier-use"))
+  case OFFICIAL extends IDENTIFIER_USE("official", Some("Official"), Some("http://hl7.org/fhir/identifier-use"))
   case OLD extends IDENTIFIER_USE("old", Some("Old"), Some("http://hl7.org/fhir/identifier-use"))
   case SECONDARY extends IDENTIFIER_USE("secondary", Some("Secondary"), Some("http://hl7.org/fhir/identifier-use"))
   case TEMP extends IDENTIFIER_USE("temp", Some("Temp"), Some("http://hl7.org/fhir/identifier-use"))
@@ -339,7 +339,7 @@ object IDENTIFIER_USE extends EType[IDENTIFIER_USE]("http://hl7.org/fhir/ValueSe
 
 
 enum LANGUAGES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case AR extends LANGUAGES("ar", Some("Arabic"), Some("urn:ietf:bcp:47"))
+  case AR extends LANGUAGES("ar", Some("Arabic"), Some("urn:ietf:bcp:47"))
   case BN extends LANGUAGES("bn", Some("Bengali"), Some("urn:ietf:bcp:47"))
   case CS extends LANGUAGES("cs", Some("Czech"), Some("urn:ietf:bcp:47"))
   case DA extends LANGUAGES("da", Some("Danish"), Some("urn:ietf:bcp:47"))
@@ -395,7 +395,7 @@ enum LANGUAGES(val name: String, val display: Option[String], val system: Option
   case ZH_HK extends LANGUAGES("zh-HK", Some("Chinese (Hong Kong)"), Some("urn:ietf:bcp:47"))
   case ZH_SG extends LANGUAGES("zh-SG", Some("Chinese (Singapore)"), Some("urn:ietf:bcp:47"))
   case ZH_TW extends LANGUAGES("zh-TW", Some("Chinese (Taiwan)"), Some("urn:ietf:bcp:47"))
-case Other_(s: String) extends LANGUAGES(s, Some(s"Runtime value set extension ($s)"), None)
+  case Other_(s: String) extends LANGUAGES(s, Some(s"Runtime value set extension ($s)"), None)
 }
 object LANGUAGES extends ETypeWithFallback[LANGUAGES] with EType[LANGUAGES]("http://hl7.org/fhir/ValueSet/languages")  {
   def fallback(s: String): LANGUAGES = LANGUAGES.Other_(s)
@@ -403,7 +403,7 @@ object LANGUAGES extends ETypeWithFallback[LANGUAGES] with EType[LANGUAGES]("htt
 
 
 enum NAME_USE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case ANONYMOUS extends NAME_USE("anonymous", Some("Anonymous"), Some("http://hl7.org/fhir/name-use"))
+  case ANONYMOUS extends NAME_USE("anonymous", Some("Anonymous"), Some("http://hl7.org/fhir/name-use"))
   case MAIDEN extends NAME_USE("maiden", Some("Name changed for Marriage"), Some("http://hl7.org/fhir/name-use"))
   case NICKNAME extends NAME_USE("nickname", Some("Nickname"), Some("http://hl7.org/fhir/name-use"))
   case OFFICIAL extends NAME_USE("official", Some("Official"), Some("http://hl7.org/fhir/name-use"))
@@ -415,14 +415,14 @@ object NAME_USE extends EType[NAME_USE]("http://hl7.org/fhir/ValueSet/name-use")
 
 
 enum OPERATION_PARAMETER_USE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case IN extends OPERATION_PARAMETER_USE("in", Some("In"), Some("http://hl7.org/fhir/operation-parameter-use"))
+  case IN extends OPERATION_PARAMETER_USE("in", Some("In"), Some("http://hl7.org/fhir/operation-parameter-use"))
   case OUT extends OPERATION_PARAMETER_USE("out", Some("Out"), Some("http://hl7.org/fhir/operation-parameter-use"))
 }
 object OPERATION_PARAMETER_USE extends EType[OPERATION_PARAMETER_USE]("http://hl7.org/fhir/ValueSet/operation-parameter-use") 
 
 
 enum QUANTITY_COMPARATOR(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case GREATER_OR_EQUAL_TO extends QUANTITY_COMPARATOR(">=", Some("Greater or Equal to"), Some("http://hl7.org/fhir/quantity-comparator"))
+  case GREATER_OR_EQUAL_TO extends QUANTITY_COMPARATOR(">=", Some("Greater or Equal to"), Some("http://hl7.org/fhir/quantity-comparator"))
   case GREATER_THAN extends QUANTITY_COMPARATOR(">", Some("Greater than"), Some("http://hl7.org/fhir/quantity-comparator"))
   case LESS_OR_EQUAL_TO extends QUANTITY_COMPARATOR("<=", Some("Less or Equal to"), Some("http://hl7.org/fhir/quantity-comparator"))
   case LESS_THAN extends QUANTITY_COMPARATOR("<", Some("Less than"), Some("http://hl7.org/fhir/quantity-comparator"))
@@ -431,7 +431,7 @@ object QUANTITY_COMPARATOR extends EType[QUANTITY_COMPARATOR]("http://hl7.org/fh
 
 
 enum RELATED_ARTIFACT_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case CITATION extends RELATED_ARTIFACT_TYPE("citation", Some("Citation"), Some("http://hl7.org/fhir/related-artifact-type"))
+  case CITATION extends RELATED_ARTIFACT_TYPE("citation", Some("Citation"), Some("http://hl7.org/fhir/related-artifact-type"))
   case COMPOSED_OF extends RELATED_ARTIFACT_TYPE("composed-of", Some("Composed Of"), Some("http://hl7.org/fhir/related-artifact-type"))
   case DEPENDS_ON extends RELATED_ARTIFACT_TYPE("depends-on", Some("Depends On"), Some("http://hl7.org/fhir/related-artifact-type"))
   case DERIVED_FROM extends RELATED_ARTIFACT_TYPE("derived-from", Some("Derived From"), Some("http://hl7.org/fhir/related-artifact-type"))
@@ -444,14 +444,14 @@ object RELATED_ARTIFACT_TYPE extends EType[RELATED_ARTIFACT_TYPE]("http://hl7.or
 
 
 enum SORT_DIRECTION(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case ASCENDING extends SORT_DIRECTION("ascending", Some("Ascending"), Some("http://hl7.org/fhir/sort-direction"))
+  case ASCENDING extends SORT_DIRECTION("ascending", Some("Ascending"), Some("http://hl7.org/fhir/sort-direction"))
   case DESCENDING extends SORT_DIRECTION("descending", Some("Descending"), Some("http://hl7.org/fhir/sort-direction"))
 }
 object SORT_DIRECTION extends EType[SORT_DIRECTION]("http://hl7.org/fhir/ValueSet/sort-direction") 
 
 
 enum TRIGGER_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case DATA_ACCESSED extends TRIGGER_TYPE("data-accessed", Some("Data Accessed"), Some("http://hl7.org/fhir/trigger-type"))
+  case DATA_ACCESSED extends TRIGGER_TYPE("data-accessed", Some("Data Accessed"), Some("http://hl7.org/fhir/trigger-type"))
   case DATA_ACCESS_ENDED extends TRIGGER_TYPE("data-access-ended", Some("Data Access Ended"), Some("http://hl7.org/fhir/trigger-type"))
   case DATA_ADDED extends TRIGGER_TYPE("data-added", Some("Data Added"), Some("http://hl7.org/fhir/trigger-type"))
   case DATA_CHANGED extends TRIGGER_TYPE("data-changed", Some("Data Changed"), Some("http://hl7.org/fhir/trigger-type"))
@@ -464,7 +464,7 @@ object TRIGGER_TYPE extends EType[TRIGGER_TYPE]("http://hl7.org/fhir/ValueSet/tr
 
 
 enum UNITS_OF_TIME(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-    case A extends UNITS_OF_TIME("a", Some("year"), Some("http://unitsofmeasure.org"))
+  case A extends UNITS_OF_TIME("a", Some("year"), Some("http://unitsofmeasure.org"))
   case D extends UNITS_OF_TIME("d", Some("day"), Some("http://unitsofmeasure.org"))
   case H extends UNITS_OF_TIME("h", Some("hour"), Some("http://unitsofmeasure.org"))
   case MIN extends UNITS_OF_TIME("min", Some("minute"), Some("http://unitsofmeasure.org"))

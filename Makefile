@@ -17,7 +17,7 @@ benchmark:
 	$(SBT) "bench/testOnly *RegressionBenchmarks${BENCH_NUMBER}"
 
 compile-core:
-	$(SBT) macros/compile $(foreach i,$(ALL_MODULES),$i/compile) fhirpath/compile
+	$(SBT) +macros/compile $(foreach i,$(ALL_MODULES),+$i/compile) fhirpath/compile
 compile-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile)
 compile-proto:
@@ -29,34 +29,34 @@ compile: compile-core compile-java compile-proto compile-bench
 
 test-java:
 	$(SBT) macros/compile
-	$(SBT) $(foreach i,$(ALL_MODULES),$i/compile)
+	$(SBT) $(foreach i,$(ALL_MODULES),+$i/compile)
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile $iJava/test)
 
 test:
-	$(SBT) common/test generator/test macros/test
-	$(SBT) $(foreach i,$(CORE_MODULES),$i/test)
+	$(SBT) +common/test generator/test +macros/test
+	$(SBT) $(foreach i,$(CORE_MODULES),+$i/test)
 	$(SBT) $(foreach i,$(CORE_MODULES),$iJava/test)
-	$(SBT) $(foreach i,$(US_MODULES),$i/test)
+	$(SBT) $(foreach i,$(US_MODULES),+$i/test)
 	$(SBT) $(foreach i,$(US_MODULES),$iJava/test)
 	$(SBT) fhirpath/test
 	$(SBT) protoshim/test
 
 publish:
-	$(SBT) common/publish macros/publish
-	$(SBT) $(foreach i,$(ALL_MODULES),$i/publish)
+	$(SBT) +common/publish +macros/publish
+	$(SBT) $(foreach i,$(ALL_MODULES),+$i/publish)
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publish)
 	$(SBT) fhirpath/publish
 	$(SBT) gproto/publish
 	$(SBT) protoshim/publish
 
 publish-generator:
-	$(SBT_G) common/publish || echo "cannot publish commmon. Continuing anyway"
+	$(SBT_G) +common/publish || echo "cannot publish commmon. Continuing anyway"
 	$(SBT_G) generator/publish
 publish-local-generator:
-	$(SBT_G) common/publishLocal generator/publishLocal
+	$(SBT_G) +common/publishLocal generator/publishLocal
 
 publish-local-core:
-	$(SBT) common/publishLocal macros/publishLocal $(foreach i,$(ALL_MODULES),$i/publishLocal) fhirpath/publishLocal
+	$(SBT) +common/publishLocal +macros/publishLocal $(foreach i,$(ALL_MODULES),+$i/publishLocal) fhirpath/publishLocal
 publish-local-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publishLocal)
 publish-local-gproto:
@@ -66,12 +66,12 @@ publish-local: publish-local-core publish-local-java publish-local-gproto
 publish-java-m2:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publishM2)
 publish-m2:
-	$(SBT) common/publishM2 macros/publishM2
-	$(SBT) $(foreach i,$(ALL_MODULES),$i/publishM2 $iJava/publishM2)
+	$(SBT) +common/publishM2 +macros/publishM2
+	$(SBT) $(foreach i,$(ALL_MODULES),+$i/publishM2 $iJava/publishM2)
 	$(SBT) fhirpath/publishM2
 
 publish-all-local:
-	$(SBT) common/publishLocal common/publishM2 macros/publishLocal macros/publishM2 $(foreach i,$(ALL_MODULES),$i/publishLocal $i/publishM2 $iJava/publishLocal $iJava/publishM2)
+	$(SBT) +common/publishLocal +common/publishM2 +macros/publishLocal +macros/publishM2 $(foreach i,$(ALL_MODULES),+$i/publishLocal +$i/publishM2 $iJava/publishLocal $iJava/publishM2)
 
 build-hl7-class-models:
 	$(SBT) 'project generator' 'run "generate" \

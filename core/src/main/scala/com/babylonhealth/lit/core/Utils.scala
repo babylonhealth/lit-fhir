@@ -1,6 +1,6 @@
 package com.babylonhealth.lit.core
 
-import scala.reflect.{ClassTag, classTag}
+import scala.reflect.{ ClassTag, classTag }
 import scala.util.Try
 
 import io.circe.HCursor
