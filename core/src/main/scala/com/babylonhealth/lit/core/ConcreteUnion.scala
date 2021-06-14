@@ -77,20 +77,20 @@ object \/ {
     } else throw new RuntimeException(s"Cannot ascribe type ${str[To]} to type ${from.getClass}")
   }
 
-//  @deprecated("I think this is probably slow AF because of the 'canBe' check")
-//  def build[L, R, S](t: S)(implicit lt: LTag[L], rt: LTag[R], st: LTag[S]): L \/ R = {
-//    if (st.tag =:= lt.tag) LHS[L, R](t.asInstanceOf[L])
-//    else if (st.tag =:= rt.tag) RHS[L, R](t.asInstanceOf[R])
-//    else if (lt.tag.withoutArgs =:= unappliedLTag) {
-//      val uTpe     = \::/[L, R]
-//      val (t1, t2) = lTypeTagsOf(uTpe)
-//      if (canBe(uTpe, st)) LHS[L, R](build(t)(t1, t2, lTagOf[S]).asInstanceOf[L])
-//      else throw new RuntimeException(s"Cannot ascribe type ${str[L \/ R](uTpe)} to type ${t.getClass} ()")
-//    } else
-//      throw new RuntimeException(s"Cannot ascribe type ${str[L \/ R](\::/[L, R])} to type ${t.getClass}:" +
-//        s"  ( ${lt.tag} ) is not a union type, and does not match the runtime object's class ( ${t.getClass} ) - " +
-//        s"  RHS ( ${rt.tag} ) was not considered as union type because of the LHS aggregation of X \\/ Y \\/ Z chains")
-//  }
+  @deprecated("I think this is probably slow AF because of the 'canBe' check")
+  def build[L, R, S](t: S)(implicit lt: LTag[L], rt: LTag[R], st: LTag[S]): L \/ R = {
+    if (st.tag =:= lt.tag) LHS[L, R](t.asInstanceOf[L])
+    else if (st.tag =:= rt.tag) RHS[L, R](t.asInstanceOf[R])
+    else if (lt.tag.withoutArgs =:= unappliedLTag) {
+      val uTpe     = \::/[L, R]
+      val (t1, t2) = lTypeTagsOf(uTpe)
+      if (canBe(uTpe, st)) LHS[L, R](build(t)(t1.asInstanceOf[LTag[L]], t2.asInstanceOf[LTag[R]], lTagOf[S]).asInstanceOf[L])
+      else throw new RuntimeException(s"Cannot ascribe type ${str[L \/ R](uTpe)} to type ${t.getClass} ()")
+    } else
+      throw new RuntimeException(s"Cannot ascribe type ${str[L \/ R](\::/[L, R])} to type ${t.getClass}:" +
+        s"  ( ${lt.tag} ) is not a union type, and does not match the runtime object's class ( ${t.getClass} ) - " +
+        s"  RHS ( ${rt.tag} ) was not considered as union type because of the LHS aggregation of X \\/ Y \\/ Z chains")
+  }
 
   def lTypeSubsumesR[L <: _ \/ _: LTag, R <: _ \/ _: LTag]: Boolean = {
     val (t1, t2) = getUnionParams[R]

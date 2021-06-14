@@ -17,7 +17,7 @@ class LitSeqTest extends AnyFreeSpec with Matchers {
       y should not equal Seq(3, 6, 10)
       y should not equal Seq(3, 6, 9, 10)
       y.isInstanceOf[LitSeq[_]] shouldEqual true
-      println(y.toArray())
+      println(y.toArray)
       println(x.toSeq)
       println(LitSeq.empty)
       println(Some(1).to(LitSeq))

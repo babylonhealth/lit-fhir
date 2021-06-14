@@ -1,13 +1,12 @@
-package com.babylonhealth.lit.hl7.serdes
-
-import io.circe.parser.decode
-import io.circe.syntax._
-import org.scalatest.freespec.AnyFreeSpec
-import org.scalatest.matchers.should.Matchers
+package com.babylonhealth.lit.hl7
 
 import com.babylonhealth.lit.core.EXPRESSION_LANGUAGE
 import com.babylonhealth.lit.core.model.Expression
 import com.babylonhealth.lit.core.serdes._
+import io.circe.parser.decode
+import io.circe.syntax._
+import org.scalatest.freespec.AnyFreeSpec
+import org.scalatest.matchers.should.Matchers
 
 class EnumeratumSerdes extends AnyFreeSpec with Matchers {
   "foo" in {

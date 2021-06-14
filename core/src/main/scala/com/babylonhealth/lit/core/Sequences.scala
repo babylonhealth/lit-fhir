@@ -200,7 +200,7 @@ class LitSeq[+T] protected (protected val _contents: Array[Object])
   override def containsAll(collection: JCollection[_]): Boolean = collection.stream().allMatch(_contents.contains)
   override def toArray: Array[AnyRef]                           = Array.copyOf(_contents, _contents.length)
   override def toArray[T1](xs: Array[T1 with Object]): Array[T1 with Object] =
-    if (xs.length < _contents.length) toArray.asInstanceOf[Array[T1 with Object]]
+    if (xs.length < _contents.length) (toArray: Array[AnyRef]).asInstanceOf[Array[T1 with Object]]
     else {
       for (i <- _contents.indices) xs(i) = _contents(i).asInstanceOf[T1 with Object]
       if (xs.length > _contents.length) xs(_contents.length) = null.asInstanceOf[T1 with Object]

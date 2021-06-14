@@ -43,12 +43,11 @@ case class ObjectAndCompanion[O <: FHIRObject: LTag: ClassTag, C <: CompanionFor
   def getIds(field: C => FHIRComponentFieldMeta[_]): Option[String]           = o.ids.get(field(c))
 }
 
-abstract class CompanionFor[-T <: FHIRObject: LTag](implicit val thisClassTag: ClassTag[T @uncheckedVariance])
-    extends JsonDecoderHelpers
-    with OptionSugar {
+abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecoderHelpers with OptionSugar {
   type ResourceType >: T <: FHIRObject
   type ParentType >: T <: FHIRObject
-  private val log: Logger = LoggerFactory.getLogger(getClass)
+  private val log: Logger                          = LoggerFactory.getLogger(getClass)
+  val thisClassTag: ClassTag[T @uncheckedVariance] = implicitly[ClassTag[T]]
   val thisName: String
   val profileUrl: Option[String] = None
 

@@ -1,21 +1,18 @@
-package com.babylonhealth.lit.hl7.mutation
+package com.babylonhealth.lit.hl7
 
 import java.time.{ LocalTime, ZonedDateTime }
 
-import scala.reflect.runtime.universe.ModuleSymbol
-
-import org.scalatest.freespec.AnyFreeSpec
-import org.scalatest.matchers.should.Matchers
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.PseudoLenses._
 import com.babylonhealth.lit.core.model._
-import com.babylonhealth.lit.core.{ Choice, CompanionFor, FHIRComponentFieldMeta, FHIRObject, LitSeq, Utils, \/ }
-import com.babylonhealth.lit.hl7.{ BUNDLE_TYPE, OBSERVATION_STATUS }
+import com.babylonhealth.lit.core.{ Choice, LitSeq, \/ }
 import com.babylonhealth.lit.hl7.model._
-import izumi.reflect.macrortti.LTag
-import shapeless.ops.zipper.Up
+import com.babylonhealth.lit.hl7.{ BUNDLE_TYPE, OBSERVATION_STATUS }
+import org.scalatest.freespec.AnyFreeSpec
+import org.scalatest.matchers.should.Matchers
 
-class FauxLensTest extends AnyFreeSpec with Matchers {
+// Retaining for compatibility, and to enable a nicer Java API
+class OldFauxLensTest extends AnyFreeSpec with Matchers {
   val subjects: Seq[(Reference, Coding)] = Seq(
     (Reference(id = Some("wut")), Coding(system = Some("foo"), code = Some("bar"))),
     (Reference(id = Some("WUT")), Coding(system = Some("FOO"), code = Some("BAR")))
@@ -165,46 +162,6 @@ class FauxLensTest extends AnyFreeSpec with Matchers {
     }
     "typeSafety" in {
       assertTypeError("""observation1.updateValueIfExists(_.mapValue((_: Double) + 123).run)""")
-    }
-  }
-  "fold on a ref" - {
-    "can do" in {
-      def fold(r: Choice[Int \/ String]): Double = r.fold((_: Int).toDouble).and((_: String).length.toDouble).run
-    }
-    "can do b" in {
-      def fold(r: Choice[Int \/ String \/ Double]): Double =
-        r.fold((_: Int).toDouble).and((_: String).length.toDouble).and((d: Double) => d).run
-    }
-    "can do big" in {
-      def fold(r: Choice[
-        Boolean \/ CodeableConcept \/ Int \/ LocalTime \/ Period \/ Quantity \/ Range \/ Ratio \/ SampledData \/ String \/ ZonedDateTime]): Double =
-        r.fold((_: Boolean) => 0.3)
-          .and((_: CodeableConcept) => 0.4)
-          .and((_: Int).toDouble)
-          .and((_: LocalTime) => 0.5)
-          .and((_: Period) => 0.6)
-          .and((_: Quantity) => 0.6)
-          .and((_: Range) => 0.6)
-          .and((_: Ratio) => 0.6)
-          .and((_: SampledData) => 0.6)
-          .and((_: String) => 0.6)
-          .and((_: ZonedDateTime) => 0.6)
-          .run
-    }
-    "can't do if partial" in {
-      assertTypeError("""def fold(r: Choice[Int \/ String]): Double = r.fold((_: Int).toDouble).run""")
-    }
-    "can't do if wrong type" in {
-      assertTypeError(
-        """def fold(r: Choice[Int \/ String]): Double = r.fold((_: Int).toDouble).and((_: Array[_]).length.toDouble).run""")
-    }
-    "can't do if wrong order" in {
-      assertTypeError(
-        """def fold(r: Choice[Int \/ String]): Double = r.fold((_: String).length.toDouble).and((_: Int).toDouble).run""")
-    }
-    "can't do if too many" in {
-      assertTypeError(
-        """def fold(r: Choice[Int \/ String]): Double = r.fold((_: Int).toDouble).and((_: String).length.toDouble).and((_: String).length.toDouble).run""")
     }
   }
 }

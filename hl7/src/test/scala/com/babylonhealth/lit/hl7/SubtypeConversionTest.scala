@@ -5,7 +5,7 @@ import scala.util.Try
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
 
-import com.babylonhealth.lit.core.{ Code, PositiveInt, UnsignedInt }
+import com.babylonhealth.lit.core._
 
 class SubtypeConversionTest extends AnyFreeSpec with Matchers {
   "basic" - {
