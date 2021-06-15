@@ -6,7 +6,7 @@ val artifactory     = s"https://$artifactoryHost/"
 val thisVersion = sys.props.get("version") getOrElse "local"
 
 val scala2Version = "2.13.6"
-val crossVersions = Seq(scala2Version, "3.0.0")
+val crossVersions = Seq(scala2Version, "3.0.1-RC1")
 
 def isScala2(version: String) = version startsWith "2"
 
@@ -189,7 +189,7 @@ lazy val fhirpath = project
 // Scalameter Benchmark tests
 lazy val bench = project
   .in(file("bench"))
-  .settings(commonSettings: _*)
+  .settings(commonJSettings: _*)
   .settings(
     resolvers += "Sonatype OSS Snapshots" at
       "https://oss.sonatype.org/content/repositories/releases",
