@@ -2,7 +2,7 @@ package com.babylonhealth.lit.core
 
 import scala.annotation.implicitNotFound
 
-import izumi.reflect.macrortti.LTag
+import izumi.reflect.macrortti.{ LTag, LTT }
 
 import com.babylonhealth.lit.core.model.typeSuffixMap
 
@@ -26,7 +26,8 @@ object ChoiceImplicits {
     Choice.fromValAndSuffix[U, S](t, witness.suffix)
 
   // Use case for this constructor is specifically extensions which limit their value range to a single enum
-  def choice[U: LTag, S <: EnumBase: LTag](t: S)(implicit
+  // TODO: Doesn't work in scala 3
+  def choiceFromEnum[U: LTag, S <: EnumBase: LTag](t: S)(implicit
       @implicitNotFound("No Code or ${S} option for union ${U}") witness: UnionWitness[U, Code]): Choice[U] =
     Choice.fromValAndSuffix[U, Code](t.name, "Code")
 

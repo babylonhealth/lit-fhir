@@ -97,7 +97,7 @@ class Valueset_parameterSource(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(choiceFromEnum(value)),
       url = "http://hl7.org/fhir/StructureDefinition/valueset-parameterSource",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

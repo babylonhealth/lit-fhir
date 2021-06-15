@@ -57,7 +57,7 @@ object ChoiceImplicits {
     Choice.fromValAndSuffix[U, S](t, witness.suffix)
 
   // Use case for this constructor is specifically extensions which limit their value range to a single enum
-  def choice[U <: _ \/ _: LTag, S <: EnumBase: LTag](t: S)(implicit
+  def choiceFromEnum[U <: _ \/ _: LTag, S <: EnumBase: LTag](t: S)(implicit
       @implicitNotFound("No Code or ${S} option for union ${U}") witness: UnionWitness[U, Code]): Choice[U] =
     Choice.fromValAndSuffix[U, Code](t.name, "Code")
 

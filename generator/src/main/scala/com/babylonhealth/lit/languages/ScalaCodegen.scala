@@ -428,12 +428,13 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     def wrapIfParentIsOptional(f: BaseField): String = {
       val parentWasRefButThisAint = f.parent.map(_.types.size).exists(_ > 1) && f.types.size == 1
       val parentWasMoreReffy      = f.parent.map(_.types.size) exists (_ != f.types.size)
+      def thisIsAnEnum            = f.valueEnumeration.isDefined
 
       val parentCard = f.parent.map(_.cardinality).getOrElse(f.cardinality)
 
       val reffedValue = f.cardinality.applyFunction(f.scalaName) { x =>
         if (parentWasRefButThisAint) {
-          s"choice($x)"
+          if (thisIsAnEnum) s"choiceFromEnum($x)" else s"choice($x)"
         } else if (parentWasMoreReffy) {
           s"$x.toSuperRef"
         } else {

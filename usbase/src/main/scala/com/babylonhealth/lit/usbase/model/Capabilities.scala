@@ -95,7 +95,7 @@ class Capabilities(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(choiceFromEnum(value)),
       url = "http://fhir-registry.smarthealthit.org/StructureDefinition/capabilities",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"
