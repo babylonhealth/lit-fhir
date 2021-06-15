@@ -189,7 +189,7 @@ lazy val fhirpath = project
 // Scalameter Benchmark tests
 lazy val bench = project
   .in(file("bench"))
-  .settings(commonJSettings: _*)
+  .settings(commonSettings: _*)
   .settings(
     resolvers += "Sonatype OSS Snapshots" at
       "https://oss.sonatype.org/content/repositories/releases",
