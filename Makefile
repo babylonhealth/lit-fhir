@@ -17,6 +17,7 @@ benchmark:
 	$(SBT) "+bench/testOnly *RegressionBenchmarks${BENCH_NUMBER}"
 
 compile-core:
+	$(SBT) ++3.0.0 core/clean # Always need to clean core. Not sure why... 
 	$(SBT) +macros/compile $(foreach i,$(ALL_MODULES),+$i/compile) fhirpath/compile
 compile-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile)
