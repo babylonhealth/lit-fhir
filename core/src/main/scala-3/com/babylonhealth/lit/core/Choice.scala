@@ -66,12 +66,14 @@ object Choice {
 case class Choice[T](suffix: String, value: Any)(implicit val tt: LTag[T]) {
   type Union = T
 
+  // Probably redundant now that we have proper unions
 //  def fold[Init: LTag, To: LTag](fn: Init => To)(implicit
 //      @implicitNotFound("Cannot prove that ${Init} ('from' type) is a viable type for union ${T}")
 //      fromWitness: UnionWitness[T, Init]): ChoiceFold[T, To, Init] =
 //    new ChoiceFold[T, To, Init](this, Map(fromWitness.suffix -> fn))
 
   // Modify the held value, returning a type that can also be held in the union type
+  //g Probably redundant now that we have proper unions
 //  def mapValue[From, To](fn: From => To)(implicit
 //      @implicitNotFound("Cannot prove that ${From} ('from' type) is a viable type for union ${T}")
 //      fromWitness: UnionWitness[T, From],
@@ -82,7 +84,7 @@ case class Choice[T](suffix: String, value: Any)(implicit val tt: LTag[T]) {
   val d @ DecoderAndTag(_, elTT) =
     model.suffixDecoderTypeTagMap.getOrElse(suffix, DecoderAndTag[Json](_ => implicitly, LTag[Json]))
   def json(implicit encoderParams: EncoderParams = EncoderParams()): Json = serdes.serializeField(value)
-  def toSuperRefSafe[Sup >: T](implicit supT: LTag[Sup]): Choice[Sup] = Choice[Sup](suffix, value)
+  def toSuperRefSafe[Sup >: T](implicit supT: LTag[Sup]): Choice[Sup]     = Choice[Sup](suffix, value)
   // asInstanceOf is so we throw when bad
   def toSubRef[Sub <: T](implicit subT: LTag[Sub]): Choice[Sub] = Choice[Sub](suffix, value.asInstanceOf[Sub])
   def toSubRefNonUnion[Sub](implicit subT: LTag[Sub]): Sub =

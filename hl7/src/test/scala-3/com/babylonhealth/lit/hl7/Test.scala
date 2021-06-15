@@ -24,15 +24,15 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
 import com.babylonhealth.lit.hl7.model._
 
-case class TestUnionWrapper1(field: Choice[String \/ Boolean]) extends FHIRObject {
+case class TestUnionWrapper1(field: Choice[String | Boolean]) extends FHIRObject {
   def thisTypeName: String = "TestUnionWrapper1"
 }
 
-case class TestUnionWrapper2(field: Choice[String \/ Boolean \/ Int]) extends FHIRObject {
+case class TestUnionWrapper2(field: Choice[String | Boolean | Int]) extends FHIRObject {
   def thisTypeName: String = "TestUnionWrapper2"
 }
 
-case class TestUnionWrapper3(field: Choice[String \/ Boolean \/ Int], fieldCode: Code) extends FHIRObject {
+case class TestUnionWrapper3(field: Choice[String | Boolean | Int], fieldCode: Code) extends FHIRObject {
   def thisTypeName: String = "TestUnionWrapper3"
 }
 
@@ -43,8 +43,8 @@ object TestUnionWrapper1 extends CompanionFor[TestUnionWrapper1] {
   val parentType                          = TestUnionWrapper1
   val thisName: String                    = "TestUnionWrapper1"
   override val profileUrl: Option[String] = Some(thisName)
-  val field: FHIRComponentFieldMeta[Choice[String \/ Boolean]] =
-    FHIRComponentFieldMeta("field", lTagOf[Choice[String \/ Boolean]], true, lTagOf[Choice[String \/ Boolean]])
+  val field: FHIRComponentFieldMeta[Choice[String | Boolean]] =
+    FHIRComponentFieldMeta("field", lTagOf[Choice[String | Boolean]], true, lTagOf[Choice[String | Boolean]])
   val fieldsMeta                                                                      = Seq(field)
   override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: TestUnionWrapper1): Seq[FHIRComponentField[_]] =
@@ -62,12 +62,12 @@ object TestUnionWrapper2 extends CompanionFor[TestUnionWrapper2] {
   val parentType                          = TestUnionWrapper2
   val thisName: String                    = "TestUnionWrapper2"
   override val profileUrl: Option[String] = Some(thisName)
-  val field: FHIRComponentFieldMeta[Choice[String \/ Boolean \/ Int]] =
+  val field: FHIRComponentFieldMeta[Choice[String | Boolean | Int]] =
     FHIRComponentFieldMeta(
       "field",
-      lTagOf[Choice[String \/ Boolean \/ Int]],
+      lTagOf[Choice[String | Boolean | Int]],
       true,
-      lTagOf[Choice[String \/ Boolean \/ Int]])
+      lTagOf[Choice[String | Boolean | Int]])
   val fieldsMeta                                                                      = Seq(field)
   override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: TestUnionWrapper2): Seq[FHIRComponentField[_]] =
@@ -85,12 +85,12 @@ object TestUnionWrapper3 extends CompanionFor[TestUnionWrapper3] {
   val parentType                          = TestUnionWrapper3
   val thisName: String                    = "TestUnionWrapper3"
   override val profileUrl: Option[String] = Some(thisName)
-  val field: FHIRComponentFieldMeta[Choice[String \/ Boolean \/ Int]] =
+  val field: FHIRComponentFieldMeta[Choice[String | Boolean | Int]] =
     FHIRComponentFieldMeta(
       "field",
-      lTagOf[Choice[String \/ Boolean \/ Int]],
+      lTagOf[Choice[String | Boolean | Int]],
       true,
-      lTagOf[Choice[String \/ Boolean \/ Int]])
+      lTagOf[Choice[String | Boolean | Int]])
   val fieldCode: FHIRComponentFieldMeta[Code]                                         = FHIRComponentFieldMeta("fieldCode", lTagOf[Code], false, lTagOf[Code])
   val fieldsMeta                                                                      = Seq(field, fieldCode)
   override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
@@ -130,32 +130,32 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
   }
   "union methods" - {
     "can make a binary union" in {
-      val x: String \/ Boolean = \/ build "lol"
+      val x: String | Boolean = | build "lol"
       x should matchPattern { case LHS("lol") => }
-      val y: String \/ Boolean = \/ build false
+      val y: String | Boolean = | build false
       y should matchPattern { case RHS(false) => }
     }
     "can make a trinary union" in {
-      val x: String \/ Boolean \/ Int = \/ build "lol"
+      val x: String | Boolean | Int = | build "lol"
       x should matchPattern { case LHS(LHS("lol")) => }
-      val y: String \/ Boolean \/ Int = \/ build false
+      val y: String | Boolean | Int = | build false
       y should matchPattern { case LHS(RHS(false)) => }
-      val z: String \/ Boolean \/ Int = \/ build 123
+      val z: String | Boolean | Int = | build 123
       z should matchPattern { case RHS(123) => }
     }
     "can make a binary union (in Ref)" in {
 //      def x                         = Ref.apply _
-      val x: Choice[String \/ Boolean] = choice("lol")
+      val x: Choice[String | Boolean] = choice("lol")
       x.toUnion should matchPattern { case LHS("lol") => }
-      val y: Choice[String \/ Boolean] = choice(false)
+      val y: Choice[String | Boolean] = choice(false)
       y.toUnion should matchPattern { case RHS(false) => }
     }
     "can make a trinary union (in Ref)" in {
-      val x: Choice[String \/ Boolean \/ Int] = choice("lol")
+      val x: Choice[String | Boolean | Int] = choice("lol")
       x.toUnion should matchPattern { case LHS(LHS("lol")) => }
-      val y: Choice[String \/ Boolean \/ Int] = choice(false)
+      val y: Choice[String | Boolean | Int] = choice(false)
       y.toUnion should matchPattern { case LHS(RHS(false)) => }
-      val z: Choice[String \/ Boolean \/ Int] = choice(123)
+      val z: Choice[String | Boolean | Int] = choice(123)
       z.toUnion should matchPattern { case RHS(123) => }
     }
     "can make type inference for a binary union field" in {
@@ -263,7 +263,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
     }
   }
 
-  "serde for the \\/ union types" - {
+  "serde for the | union types" - {
     val time = FHIRDateTime(ZonedDateTime.now())
     val tStr = time.fmt
 
@@ -321,47 +321,47 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
 
 //    type SubOfString <: String
   // x2
-  type StrBool = String \/ Boolean
-  type StrInt  = String \/ Int
-  type IntBool = Int \/ Boolean
+  type StrBool = String | Boolean
+  type StrInt  = String | Int
+  type IntBool = Int | Boolean
   // x3
-  type StrBoolInt = String \/ Boolean \/ Int
-  type StrIntBool = String \/ Int \/ Boolean
-  type BoolIntStr = Boolean \/ Int \/ String
+  type StrBoolInt = String | Boolean | Int
+  type StrIntBool = String | Int | Boolean
+  type BoolIntStr = Boolean | Int | String
   "Further union tests" - {
     "union subsets (1x3)" in {
-      \/.canBe(lTagOf[String \/ Boolean \/ Int], lTagOf[String]) shouldEqual true
-      \/.canBe(lTagOf[StrBoolInt], lTagOf[String]) shouldEqual true
-      \/.canBe(lTagOf[StrBoolInt], lTagOf[Boolean]) shouldEqual true
-      \/.canBe(lTagOf[StrBoolInt], lTagOf[Int]) shouldEqual true
-      \/.canBe(lTagOf[StrBoolInt], lTagOf[Double]) shouldEqual false
-      \/.canBe(lTagOf[StrBoolInt], lTagOf[Date]) shouldEqual false
-      \/.canBe[String \/ Boolean \/ Int, String] shouldEqual true
-      \/.canBe[StrBoolInt, String] shouldEqual true
-      \/.canBe[StrBoolInt, Boolean] shouldEqual true
-      \/.canBe[StrBoolInt, Int] shouldEqual true
-      \/.canBe[StrBoolInt, Double] shouldEqual false
-      \/.canBe[StrBoolInt, Date] shouldEqual false
-      //      \/.lTypeSubsumesRIndividual(lTagOf[StrBoolInt], lTagOf[SubOfString]) shouldEqual false
+      |.canBe(lTagOf[String | Boolean | Int], lTagOf[String]) shouldEqual true
+      |.canBe(lTagOf[StrBoolInt], lTagOf[String]) shouldEqual true
+      |.canBe(lTagOf[StrBoolInt], lTagOf[Boolean]) shouldEqual true
+      |.canBe(lTagOf[StrBoolInt], lTagOf[Int]) shouldEqual true
+      |.canBe(lTagOf[StrBoolInt], lTagOf[Double]) shouldEqual false
+      |.canBe(lTagOf[StrBoolInt], lTagOf[Date]) shouldEqual false
+      |.canBe[String | Boolean | Int, String] shouldEqual true
+      |.canBe[StrBoolInt, String] shouldEqual true
+      |.canBe[StrBoolInt, Boolean] shouldEqual true
+      |.canBe[StrBoolInt, Int] shouldEqual true
+      |.canBe[StrBoolInt, Double] shouldEqual false
+      |.canBe[StrBoolInt, Date] shouldEqual false
+      //      |.lTypeSubsumesRIndividual(lTagOf[StrBoolInt], lTagOf[SubOfString]) shouldEqual false
     }
     "union subsets (2x3)" in {
-      \/.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrBool]) shouldEqual true
-      \/.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrInt]) shouldEqual true
-      \/.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[IntBool]) shouldEqual true
-      \/.lTypeSubsumesR(lTagOf[StrBool], lTagOf[StrBoolInt]) shouldEqual false
-      \/.lTypeSubsumesR(lTagOf[StrInt], lTagOf[StrBoolInt]) shouldEqual false
-      \/.lTypeSubsumesR(lTagOf[IntBool], lTagOf[StrBoolInt]) shouldEqual false
+      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrBool]) shouldEqual true
+      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrInt]) shouldEqual true
+      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[IntBool]) shouldEqual true
+      |.lTypeSubsumesR(lTagOf[StrBool], lTagOf[StrBoolInt]) shouldEqual false
+      |.lTypeSubsumesR(lTagOf[StrInt], lTagOf[StrBoolInt]) shouldEqual false
+      |.lTypeSubsumesR(lTagOf[IntBool], lTagOf[StrBoolInt]) shouldEqual false
     }
     "union subsets (3x3)" in {
-      \/.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrIntBool]) shouldEqual true
-      \/.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrIntBool]) shouldEqual true
-      \/.lTypeSubsumesR(lTagOf[BoolIntStr], lTagOf[StrIntBool]) shouldEqual true
-      \/.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrBoolInt]) shouldEqual true
-      \/.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrBoolInt]) shouldEqual true
-      \/.lTypeSubsumesR(lTagOf[BoolIntStr], lTagOf[StrBoolInt]) shouldEqual true
-      \/.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[BoolIntStr]) shouldEqual true
-      \/.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[BoolIntStr]) shouldEqual true
-      \/.lTypeSubsumesR(lTagOf[BoolIntStr], lTagOf[BoolIntStr]) shouldEqual true
+      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrIntBool]) shouldEqual true
+      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrIntBool]) shouldEqual true
+      |.lTypeSubsumesR(lTagOf[BoolIntStr], lTagOf[StrIntBool]) shouldEqual true
+      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrBoolInt]) shouldEqual true
+      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrBoolInt]) shouldEqual true
+      |.lTypeSubsumesR(lTagOf[BoolIntStr], lTagOf[StrBoolInt]) shouldEqual true
+      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[BoolIntStr]) shouldEqual true
+      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[BoolIntStr]) shouldEqual true
+      |.lTypeSubsumesR(lTagOf[BoolIntStr], lTagOf[BoolIntStr]) shouldEqual true
     }
   }
 
