@@ -11,8 +11,6 @@ import org.scalameter.{ Persistor, persistence }
 
 import com.babylonhealth.lit.hl7.BUNDLE_TYPE
 import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
-import com.babylonhealth.lit.core_java.LitUtils
-import com.babylonhealth.lit.core_java.LitUtils.defaultEncoderParams
 import com.babylonhealth.lit.hl7.model.{ Bundle, StructureDefinition }
 import com.babylonhealth.lit.protoshim.Translator
 

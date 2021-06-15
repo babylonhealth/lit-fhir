@@ -96,7 +96,8 @@ lazy val core = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Seq("-language:implicitConversions")),
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
+                       else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
       "io.circe"            %% "circe-core"      % V.circe,
       "io.circe"            %% "circe-generic"   % V.circe,
@@ -120,7 +121,8 @@ lazy val hl7 = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Seq("-language:implicitConversions")),
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
+                       else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
       "dev.zio" %% "izumi-reflect" % V.izumiReflect,
       // Test
@@ -136,7 +138,8 @@ lazy val uscore = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Seq("-language:implicitConversions")),
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
+                       else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
       "dev.zio"        %% "izumi-reflect" % V.izumiReflect,
       "org.scalatest"  %% "scalatest"     % V.scalaTest  % Test,
@@ -149,7 +152,8 @@ lazy val usbase = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Seq("-language:implicitConversions")),
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
+                       else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
       "dev.zio"        %% "izumi-reflect" % V.izumiReflect,
       "org.scalatest"  %% "scalatest"     % V.scalaTest  % Test,
@@ -162,11 +166,12 @@ lazy val fhirpath = project
   .settings(commonJSettings: _*) // TODO: crosspublish for scala 3.0.0
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Seq("-language:implicitConversions")),
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
+                       else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
-      "com.lihaoyi"         %% "fastparse"       % "2.2.2",
-      "dev.zio"  %% "izumi-reflect" % V.izumiReflect,
-      "org.slf4j" % "slf4j-api"     % "1.7.30",
+      "com.lihaoyi" %% "fastparse"     % "2.2.2",
+      "dev.zio"     %% "izumi-reflect" % V.izumiReflect,
+      "org.slf4j"    % "slf4j-api"     % "1.7.30",
       // Test
       "org.scalatest" %% "scalatest" % V.scalaTest % Test
     )
@@ -191,7 +196,7 @@ lazy val bench = project
     parallelExecution in Test := false,
     fork in Test := true
   )
-  .dependsOn(core, hl7, usbase, protoshim, coreJava)
+  .dependsOn(core, hl7, usbase, protoshim)
 
 lazy val coreJava = project
   .in(file("core_java"))

@@ -14,7 +14,7 @@ generated-compile:
 build: build-all-class-models test
 
 benchmark:
-	$(SBT) "bench/testOnly *RegressionBenchmarks${BENCH_NUMBER}"
+	$(SBT) "+bench/testOnly *RegressionBenchmarks${BENCH_NUMBER}"
 
 compile-core:
 	$(SBT) +macros/compile $(foreach i,$(ALL_MODULES),+$i/compile) fhirpath/compile
@@ -23,13 +23,13 @@ compile-java:
 compile-proto:
 	$(SBT) gproto/compile
 compile-bench:
-	$(SBT) bench/test:compile
+	$(SBT) +bench/test:compile
 compile: compile-core compile-java compile-proto compile-bench
-	$(SBT) bench/test:compile
+	$(SBT) +bench/test:compile
 
 test-java:
 	$(SBT) macros/compile
-	$(SBT) $(foreach i,$(ALL_MODULES),+$i/compile)
+	$(SBT) $(foreach i,$(ALL_MODULES),$i/compile)
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile $iJava/test)
 
 test:
@@ -39,7 +39,7 @@ test:
 	$(SBT) $(foreach i,$(US_MODULES),+$i/test)
 	$(SBT) $(foreach i,$(US_MODULES),$iJava/test)
 	$(SBT) fhirpath/test
-	$(SBT) protoshim/test
+	$(SBT) +protoshim/test
 
 publish:
 	$(SBT) +common/publish +macros/publish
@@ -47,7 +47,7 @@ publish:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publish)
 	$(SBT) fhirpath/publish
 	$(SBT) gproto/publish
-	$(SBT) protoshim/publish
+	$(SBT) +protoshim/publish
 
 publish-generator:
 	$(SBT_G) +common/publish || echo "cannot publish commmon. Continuing anyway"
@@ -60,7 +60,7 @@ publish-local-core:
 publish-local-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publishLocal)
 publish-local-gproto:
-	$(SBT) gproto/publishLocal protoshim/publishLocal
+	$(SBT) gproto/publishLocal +protoshim/publishLocal
 publish-local: publish-local-core publish-local-java publish-local-gproto
 
 publish-java-m2:
@@ -103,7 +103,7 @@ download-deps:
 	$(SBT) update || true
 
 clean-generated-scala:
-	rm -rf $(foreach i,$(ALL_MODULES),$i/src/main/scala/com/babylonhealth/lit/$i/model)
+	rm -rf $(foreach i,$(ALL_MODULES),$i/src/main/scala{-2,-3,}/com/babylonhealth/lit/$i/model)
 
 clean-generated-java:
 	rm -rf $(foreach i,$(ALL_MODULES),$i_java/src/main/java/com/babylonhealth/lit/$i_java/builders $i_java/src/main/java/com/babylonhealth/lit/$i_java/codes)
