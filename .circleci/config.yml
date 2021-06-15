@@ -70,7 +70,7 @@ jobs:
       - run:
           name: Build service
           command: make compile
-          no_output_timeout: 30m
+          no_output_timeout: 40m
       - save_build_cache
   publish_template: &publish_template
     docker:
