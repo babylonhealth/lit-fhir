@@ -10,7 +10,7 @@ import org.scalatest.matchers.should.Matchers
 import org.skyscreamer.jsonassert.JSONAssert
 
 import com.babylonhealth.lit.core.ChoiceImplicits._
-import com.babylonhealth.lit.core.{ FHIRDateTime, LitSeq }
+import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.core.model.{ CodeableConcept, Coding, Quantity, Reference, Resource }
 import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS

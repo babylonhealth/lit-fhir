@@ -96,6 +96,8 @@ lazy val core = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
+    // https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n
+    Compile / doc / sources := { Compile / doc / sources map { _.filterNot(_.getName endsWith ".scala") } value },
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
@@ -121,6 +123,8 @@ lazy val hl7 = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
+    // https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n
+    Compile / doc / sources := { Compile / doc / sources map { _.filterNot(_.getName endsWith ".scala") } value },
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
@@ -138,6 +142,8 @@ lazy val uscore = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
+    // https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n
+    Compile / doc / sources := { Compile / doc / sources map { _.filterNot(_.getName endsWith ".scala") } value },
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
@@ -152,6 +158,8 @@ lazy val usbase = project
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
+    // https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n
+    Compile / doc / sources := { Compile / doc / sources map { _.filterNot(_.getName endsWith ".scala") } value },
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(

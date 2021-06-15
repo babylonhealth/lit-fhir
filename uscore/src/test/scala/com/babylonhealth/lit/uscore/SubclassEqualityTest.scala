@@ -7,7 +7,7 @@ import org.scalatest.matchers.should.Matchers
 
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.model.{ CodeableConcept, Quantity, Reference }
-import com.babylonhealth.lit.core.{ FHIRDateTime, LitSeq }
+import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS
 import com.babylonhealth.lit.hl7.model.Observation
 import com.babylonhealth.lit.hl7.model.Observation.ReferenceRange

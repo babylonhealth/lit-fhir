@@ -11,7 +11,7 @@ import org.scalatest.matchers.should.Matchers
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
 import com.babylonhealth.lit.core.model.{ Attachment, CodeableConcept, Coding, Identifier, Reference }
-import com.babylonhealth.lit.core.{ Choice, FHIRDateTime, LitSeq }
+import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.hl7.model.Observation.ReferenceRange
 import com.babylonhealth.lit.hl7.{ DIAGNOSTIC_REPORT_STATUS, OBSERVATION_STATUS }
 import com.babylonhealth.lit.usbase.model.Triglyceride
@@ -26,7 +26,7 @@ class FromListAsTest extends AnyFreeSpec with Matchers {
       CodeableConcept(coding = LitSeq(Coding(system = Some("http://codingsystem.lo.wut"), code = Some("....IDK")))),
     referenceRange = ReferenceRange(text = Some("Some text"))
   )
-  val triglycWInt: Triglyceride = triglyc.withInterpretation(Some(CodeableConcept(text = Some("hi"))))
+  val triglycWInt: Triglyceride = triglyc.set(_.interpretation)(Some(CodeableConcept(text = Some("hi"))))
 
   val refRange =
     """,
