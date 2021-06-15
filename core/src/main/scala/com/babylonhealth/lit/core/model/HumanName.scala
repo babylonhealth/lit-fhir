@@ -116,18 +116,37 @@ object HumanName extends CompanionFor[HumanName] {
 
 /** Base StructureDefinition for HumanName Type: A human's name with the ability to identify parts and usage.
   *
-  *  Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a resource.)
+  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
+  * resource.)
   *
-  * @constructor Introduces the fields use, text, `given`, family, prefix, suffix, period.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param use - Identifies the purpose for this name.
-  * @param text - Specifies the entire name as it should be displayed e.g. on an application UI. This may be provided instead of or as well as the specific parts.
-  * @param `given` - Given name.
-  * @param family - The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father.
-  * @param prefix - Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name.
-  * @param suffix - Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name.
-  * @param period - Indicates the period of time when this name was valid for the named person.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
+  * @constructor
+  *   Introduces the fields use, text, `given`, family, prefix, suffix, period.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param use
+  *   - Identifies the purpose for this name.
+  * @param text
+  *   - Specifies the entire name as it should be displayed e.g. on an application UI. This may be provided instead of
+  *   or as well as the specific parts.
+  * @param `given`
+  *   - Given name.
+  * @param family
+  *   - The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the
+  *   first name of his father.
+  * @param prefix
+  *   - Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and
+  *   that appears at the start of the name.
+  * @param suffix
+  *   - Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and
+  *   that appears at the end of the name.
+  * @param period
+  *   - Indicates the period of time when this name was valid for the named person.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
+  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
+  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
+  *   part of the definition of the extension.
   */
 @POJOBoilerplate
 class HumanName(

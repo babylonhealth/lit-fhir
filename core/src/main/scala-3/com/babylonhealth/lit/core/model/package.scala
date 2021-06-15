@@ -19,7 +19,6 @@ import com.babylonhealth.lit.core.TagSummoners.{ lTagOf, lTypeOf }
 import com.babylonhealth.lit.core.serdes.objectDecoder
 import com.babylonhealth.lit.core.model._
 
-
 case class DecoderAndTag[T](decoder: DecoderParams => Decoder[T], typeTag: LTag[T]) {
   type Type = T
 }
@@ -115,7 +114,6 @@ package object model {
     "Decimal"           -> DecoderAndTag[BigDecimal](_ => Decoder.decodeBigDecimal, lTagOf[BigDecimal])
   )
 
-
   val suffixTypeMap: Map[String, LightTypeTag] =
     suffixDecoderTypeTagMap.map { case (k, v) =>
       k -> v.typeTag.tag
@@ -157,17 +155,59 @@ package object model {
 }
 
 object UnionAliases {
-  type Union01025009075 = CodeableConcept|Reference
-  type Union01639511888 = Quantity|Range
-  type Union_0119127717 = CodeableConcept|Quantity|Range|Reference
-  type Union_0575082635 = Quantity|Range|Ratio
-  type Union_0731860109 = Duration|Period|Range
-  type Union_1051729086 = FHIRDate|FHIRDateTime|Reference|Timing
-  type Union_1128709984 = Reference|String
-  type Union_1349125893 = Address|Age|Annotation|Attachment|Base64Binary|BigDecimal|Boolean|Canonical|Code|CodeableConcept|Coding|ContactDetail|ContactPoint|Contributor|Count|DataRequirement|Distance|Dosage|Duration|Expression|FHIRDate|FHIRDateTime|HumanName|Id|Identifier|Int|LocalTime|Markdown|Meta|Money|OID|ParameterDefinition|Period|PositiveInt|Quantity|Range|Ratio|Reference|RelatedArtifact|SampledData|Signature|String|Timing|TriggerDefinition|UUID|UnsignedInt|UriStr|UrlStr|UsageContext|ZonedDateTime
-  type Union_1768247138 = Boolean|CodeableConcept
-  type Union_1947777294 = Duration|FHIRDateTime|Period
+  type Union01025009075 = CodeableConcept | Reference
+  type Union01639511888 = Quantity | Range
+  type Union_0119127717 = CodeableConcept | Quantity | Range | Reference
+  type Union_0575082635 = Quantity | Range | Ratio
+  type Union_0731860109 = Duration | Period | Range
+  type Union_1051729086 = FHIRDate | FHIRDateTime | Reference | Timing
+  type Union_1128709984 = Reference | String
+  type Union_1349125893 = Address | Age | Annotation | Attachment | Base64Binary | BigDecimal | Boolean | Canonical |
+    Code | CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance |
+    Dosage | Duration | Expression | FHIRDate | FHIRDateTime | HumanName | Id | Identifier | Int | LocalTime |
+    Markdown | Meta | Money | OID | ParameterDefinition | Period | PositiveInt | Quantity | Range | Ratio | Reference |
+    RelatedArtifact | SampledData | Signature | String | Timing | TriggerDefinition | UUID | UnsignedInt | UriStr |
+    UrlStr | UsageContext | ZonedDateTime
+  type Union_1768247138 = Boolean | CodeableConcept
+  type Union_1947777294 = Duration | FHIRDateTime | Period
 }
 
-object Module extends ModuleDict(Map("http://hl7.org/fhir/StructureDefinition/Timing" -> Timing, "http://hl7.org/fhir/StructureDefinition/Duration" -> Duration, "http://hl7.org/fhir/StructureDefinition/Age" -> Age, "http://hl7.org/fhir/StructureDefinition/HumanName" -> HumanName, "http://hl7.org/fhir/StructureDefinition/UsageContext" -> UsageContext, "http://hl7.org/fhir/StructureDefinition/CodeableConcept" -> CodeableConcept, "http://hl7.org/fhir/StructureDefinition/Annotation" -> Annotation, "http://hl7.org/fhir/StructureDefinition/Element" -> Element, "http://hl7.org/fhir/StructureDefinition/ContactDetail" -> ContactDetail, "http://hl7.org/fhir/StructureDefinition/Reference" -> Reference, "http://hl7.org/fhir/StructureDefinition/Attachment" -> Attachment, "http://hl7.org/fhir/StructureDefinition/Count" -> Count, "http://hl7.org/fhir/StructureDefinition/Expression" -> Expression, "http://hl7.org/fhir/StructureDefinition/Signature" -> Signature, "http://hl7.org/fhir/StructureDefinition/Contributor" -> Contributor, "http://hl7.org/fhir/StructureDefinition/Period" -> Period, "http://hl7.org/fhir/StructureDefinition/Meta" -> Meta, "http://hl7.org/fhir/StructureDefinition/Money" -> Money, "http://hl7.org/fhir/StructureDefinition/Address" -> Address, "http://hl7.org/fhir/StructureDefinition/ContactPoint" -> ContactPoint, "http://hl7.org/fhir/StructureDefinition/ParameterDefinition" -> ParameterDefinition, "http://hl7.org/fhir/StructureDefinition/Identifier" -> Identifier, "http://hl7.org/fhir/StructureDefinition/BackboneElement" -> BackboneElement, "http://hl7.org/fhir/StructureDefinition/Dosage" -> Dosage, "http://hl7.org/fhir/StructureDefinition/Resource" -> Resource, "http://hl7.org/fhir/StructureDefinition/Extension" -> Extension, "http://hl7.org/fhir/StructureDefinition/Distance" -> Distance, "http://hl7.org/fhir/StructureDefinition/SampledData" -> SampledData, "http://hl7.org/fhir/StructureDefinition/Ratio" -> Ratio, "http://hl7.org/fhir/StructureDefinition/TriggerDefinition" -> TriggerDefinition, "http://hl7.org/fhir/StructureDefinition/Quantity" -> Quantity, "http://hl7.org/fhir/StructureDefinition/DataRequirement" -> DataRequirement, "http://hl7.org/fhir/StructureDefinition/Coding" -> Coding, "http://hl7.org/fhir/StructureDefinition/Range" -> Range, "http://hl7.org/fhir/StructureDefinition/RelatedArtifact" -> RelatedArtifact))
-
+object Module
+    extends ModuleDict(
+      Map(
+        "http://hl7.org/fhir/StructureDefinition/Timing"              -> Timing,
+        "http://hl7.org/fhir/StructureDefinition/Duration"            -> Duration,
+        "http://hl7.org/fhir/StructureDefinition/Age"                 -> Age,
+        "http://hl7.org/fhir/StructureDefinition/HumanName"           -> HumanName,
+        "http://hl7.org/fhir/StructureDefinition/UsageContext"        -> UsageContext,
+        "http://hl7.org/fhir/StructureDefinition/CodeableConcept"     -> CodeableConcept,
+        "http://hl7.org/fhir/StructureDefinition/Annotation"          -> Annotation,
+        "http://hl7.org/fhir/StructureDefinition/Element"             -> Element,
+        "http://hl7.org/fhir/StructureDefinition/ContactDetail"       -> ContactDetail,
+        "http://hl7.org/fhir/StructureDefinition/Reference"           -> Reference,
+        "http://hl7.org/fhir/StructureDefinition/Attachment"          -> Attachment,
+        "http://hl7.org/fhir/StructureDefinition/Count"               -> Count,
+        "http://hl7.org/fhir/StructureDefinition/Expression"          -> Expression,
+        "http://hl7.org/fhir/StructureDefinition/Signature"           -> Signature,
+        "http://hl7.org/fhir/StructureDefinition/Contributor"         -> Contributor,
+        "http://hl7.org/fhir/StructureDefinition/Period"              -> Period,
+        "http://hl7.org/fhir/StructureDefinition/Meta"                -> Meta,
+        "http://hl7.org/fhir/StructureDefinition/Money"               -> Money,
+        "http://hl7.org/fhir/StructureDefinition/Address"             -> Address,
+        "http://hl7.org/fhir/StructureDefinition/ContactPoint"        -> ContactPoint,
+        "http://hl7.org/fhir/StructureDefinition/ParameterDefinition" -> ParameterDefinition,
+        "http://hl7.org/fhir/StructureDefinition/Identifier"          -> Identifier,
+        "http://hl7.org/fhir/StructureDefinition/BackboneElement"     -> BackboneElement,
+        "http://hl7.org/fhir/StructureDefinition/Dosage"              -> Dosage,
+        "http://hl7.org/fhir/StructureDefinition/Resource"            -> Resource,
+        "http://hl7.org/fhir/StructureDefinition/Extension"           -> Extension,
+        "http://hl7.org/fhir/StructureDefinition/Distance"            -> Distance,
+        "http://hl7.org/fhir/StructureDefinition/SampledData"         -> SampledData,
+        "http://hl7.org/fhir/StructureDefinition/Ratio"               -> Ratio,
+        "http://hl7.org/fhir/StructureDefinition/TriggerDefinition"   -> TriggerDefinition,
+        "http://hl7.org/fhir/StructureDefinition/Quantity"            -> Quantity,
+        "http://hl7.org/fhir/StructureDefinition/DataRequirement"     -> DataRequirement,
+        "http://hl7.org/fhir/StructureDefinition/Coding"              -> Coding,
+        "http://hl7.org/fhir/StructureDefinition/Range"               -> Range,
+        "http://hl7.org/fhir/StructureDefinition/RelatedArtifact"     -> RelatedArtifact
+      ))

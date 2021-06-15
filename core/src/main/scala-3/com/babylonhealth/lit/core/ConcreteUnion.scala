@@ -4,7 +4,7 @@ import io.circe.{ Decoder, Json }
 import izumi.reflect.{ Tag, TagK, TagKK }
 import izumi.reflect.macrortti.{ LTag, LTT, LightTypeTag, LightTypeTagRef }
 
-import com.babylonhealth.lit.core.model.suffixTypeMap
+import com.babylonhealth.lit.core.model.{ suffixTypeMap, typeSuffixMap }
 
 object TagSummoners {
   def lTagOf[T: LTag]: LTag[T]       = implicitly[LTag[T]]
@@ -20,15 +20,16 @@ object \/ {
     map.get(_)
   }
 
-  def str[U: LTag]: String =
-    LTT[U].ref match {
+  def str[U](implicit tt: LTag[U]): String =
+    tt.tag.ref match {
       case LightTypeTagRef.UnionReference(refs) => refs.map(_.shortName).mkString(" \\/ ")
       case ref                                  => ref.shortName
     }
 
-  def validSuffixes[U: LTag]: Set[String] =
-    LTT[U].ref match {
+  def validSuffixes[U](implicit tt: LTag[U]): Set[String] = {
+    tt.tag.ref match {
       case LightTypeTagRef.UnionReference(refs) => refs.map(typeSuffixMap2).flatten.toSet
       case ref                                  => typeSuffixMap2(ref).toSet
     }
+  }
 }
