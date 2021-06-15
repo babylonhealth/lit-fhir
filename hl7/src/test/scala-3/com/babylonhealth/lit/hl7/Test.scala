@@ -17,6 +17,7 @@ import com.babylonhealth.lit.core._
 import io.circe.Json
 import io.circe.parser.{ decode, parse }
 import io.circe.syntax._
+import izumi.reflect.macrortti.LTT
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
 import org.skyscreamer.jsonassert.JSONAssert
@@ -30,7 +31,7 @@ import com.babylonhealth.lit.hl7.model._
 //    val field: Choice[String | Boolean],
 //    override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
 //    extends FHIRObject(FHIRObject.emptyAtts) {
-//  override val companion: CompanionFor[TestUnionWrapper1.this.type] = null
+////  override val companion: CompanionFor[TestUnionWrapper1.this.type] = null
 //  def thisTypeName: String                                          = "TestUnionWrapper1"
 //}
 
@@ -114,56 +115,56 @@ import com.babylonhealth.lit.hl7.model._
 //    )
 //}
 //
-//class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
-//  implicit def _fromSeq[T](seq: Seq[T]): LitSeq[T] = new LitSeq[T](seq)
-//  val expectedAccountJson =
-//    """{"id":"a", "resourceType": "Account", "name":"ok", "status":"entered-in-error"}"""
-////  implicit val accEncoder
-//
-//  "other" in {
-//    val x = Try(companionOf(classTag[Bundle.Entry], lTagOf[Bundle.Entry]))
-//    val y = Try(companionOf(classTag[Bundle.Entry.Response], lTagOf[Bundle.Entry.Response]))
-//    x.isSuccess shouldEqual true
-//    y.isSuccess shouldEqual true
-//    val codeTag = lTagOf[Code]
-//    val z       = companionClassName(codeTag)
-//    z shouldEqual "com.babylonhealth.lit.core.Code"
-//    (codeTag.tag <:< lTypeOf[String]) shouldEqual true
-//    val base64Tag = lTagOf[Base64Binary]
-//    (base64Tag.tag =:= lTypeOf[Array[Byte]]) shouldEqual true
-//    val w = companionClassName(base64Tag)
-//    w shouldEqual "scala.Array[=Byte]" // should it tho'?
-//  }
-//  "union methods" - {
-//    "can make a binary union" in {
-//      val x: String | Boolean = | build "lol"
-//      x should matchPattern { case LHS("lol") => }
-//      val y: String | Boolean = | build false
-//      y should matchPattern { case RHS(false) => }
-//    }
-//    "can make a trinary union" in {
-//      val x: String | Boolean | Int = | build "lol"
-//      x should matchPattern { case LHS(LHS("lol")) => }
-//      val y: String | Boolean | Int = | build false
-//      y should matchPattern { case LHS(RHS(false)) => }
-//      val z: String | Boolean | Int = | build 123
-//      z should matchPattern { case RHS(123) => }
-//    }
-//    "can make a binary union (in Ref)" in {
-////      def x                         = Ref.apply _
-//      val x: Choice[String | Boolean] = choice("lol")
-//      x.toUnion should matchPattern { case LHS("lol") => }
-//      val y: Choice[String | Boolean] = choice(false)
-//      y.toUnion should matchPattern { case RHS(false) => }
-//    }
-//    "can make a trinary union (in Ref)" in {
-//      val x: Choice[String | Boolean | Int] = choice("lol")
-//      x.toUnion should matchPattern { case LHS(LHS("lol")) => }
-//      val y: Choice[String | Boolean | Int] = choice(false)
-//      y.toUnion should matchPattern { case LHS(RHS(false)) => }
-//      val z: Choice[String | Boolean | Int] = choice(123)
-//      z.toUnion should matchPattern { case RHS(123) => }
-//    }
+class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
+  implicit def _fromSeq[T](seq: Seq[T]): LitSeq[T] = new LitSeq[T](seq)
+  val expectedAccountJson =
+    """{"id":"a", "resourceType": "Account", "name":"ok", "status":"entered-in-error"}"""
+//  implicit val accEncoder
+
+  "other" in {
+    val x = Try(companionOf(classTag[Bundle.Entry], lTagOf[Bundle.Entry]))
+    val y = Try(companionOf(classTag[Bundle.Entry.Response], lTagOf[Bundle.Entry.Response]))
+    x.isSuccess shouldEqual true
+    y.isSuccess shouldEqual true
+    val codeTag = lTagOf[Code]
+    val z       = companionClassName(codeTag)
+    z shouldEqual "com.babylonhealth.lit.core.Code"
+    (codeTag.tag <:< lTypeOf[String]) shouldEqual true
+    val base64Tag = lTagOf[Base64Binary]
+    (base64Tag.tag =:= lTypeOf[Array[Byte]]) shouldEqual true
+    val w = companionClassName(base64Tag)
+    w shouldEqual "scala.Array[=Byte]" // should it tho'?
+  }
+  "union methods" - {
+    "can make a binary union" in {
+      val x: String | Boolean = "lol"
+      x should matchPattern { case "lol": String => }
+      val y: String | Boolean = false
+      y should matchPattern { case false: Boolean => }
+    }
+    "can make a trinary union" in {
+      val x: String | Boolean | Int = "lol"
+      x should matchPattern { case "lol": String => }
+      val y: String | Boolean | Int = false
+      y should matchPattern { case false: Boolean => }
+      val z: String | Boolean | Int = 123
+      z should matchPattern { case 123: Int => }
+    }
+    "can make a binary union (in Ref)" in {
+//      def x                         = Ref.apply _
+      val x: Choice[String | Boolean] = choice("lol")
+      x.value should matchPattern { case "lol": String => }
+      val y: Choice[String | Boolean] = choice(false)
+      y.value should matchPattern { case false: Boolean => }
+    }
+    "can make a trinary union (in Ref)" in {
+      val x: Choice[String | Boolean | Int] = choice("lol")
+      x.value should matchPattern { case "lol": String => }
+      val y: Choice[String | Boolean | Int] = choice(false)
+      y.value should matchPattern { case false: Boolean => }
+      val z: Choice[String | Boolean | Int] = choice(123)
+      z.value should matchPattern { case 123: Int => }
+    }
 //    "can make type inference for a binary union field" in {
 //      val x = TestUnionWrapper1(choice("lol"))
 //      x should matchPattern { case TestUnionWrapper1(Choice("String", "lol")) => }
@@ -191,19 +192,19 @@ import com.babylonhealth.lit.hl7.model._
 //    "choice won't even compile if type is unascribable" in {
 //      assertTypeError("TestUnionWrapper2(choice(0.3))")
 //    }
-//  }
-//
-//  "serde" - {
-//    val x: Account = Account(
-//      id = Some("a"),
-//      name = Some("ok"),
-//      status = ACCOUNT_STATUS.ENTERED_IN_ERROR
-//    )
-//    "json serialization" in {
-//      val jstr = x.asJson.noSpaces
-//      JSONAssert.assertEquals(expectedAccountJson, jstr, true)
-//    }
-//    "union field [de]serialization" - {
+  }
+
+  "serde" - {
+    val x: Account = Account(
+      id = Some("a"),
+      name = Some("ok"),
+      status = ACCOUNT_STATUS.ENTERED_IN_ERROR
+    )
+    "json serialization" in {
+      val jstr = x.asJson.noSpaces
+      JSONAssert.assertEquals(expectedAccountJson, jstr, true)
+    }
+    "union field [de]serialization" - {
 //      "serialization (1)" in {
 //        val str         = TestUnionWrapper1(choice("entered-in-error"))
 //        val strJson     = str.asJson.noSpaces
@@ -232,168 +233,170 @@ import com.babylonhealth.lit.hl7.model._
 //        deser.isRight shouldEqual true
 //        deser.right.get shouldEqual bool
 //      }
-//    }
-//    "json deserialization, and equality" in {
-//      val s = mutable.Set[Account]()
-//      s.add(x)
-//      s.size shouldEqual 1
-//      s.add(x)
-//      s.size shouldEqual 1
-//      val jstr = x.asJson.noSpaces
-//      JSONAssert.assertEquals(jstr, expectedAccountJson, true)
-//      val deser = parse(jstr).flatMap(_.as[Account])
-//      deser.left.foreach(e => println("ballz A)\t" + e.toString))
-//      deser.isRight shouldEqual true
-//      deser.right.get shouldEqual x
-//      s.add(deser.right.get)
-//      s.size shouldEqual 1
-//      val reser = deser.right.get.asJson.noSpaces
-//      JSONAssert.assertEquals(jstr, reser, true)
-//    }
-//    "json deserialization, and equality x2" in {
-//      val s = mutable.Set[FHIRObject]()
-//      s.add(x)
-//      s.size shouldEqual 1
-//      s.add(x)
-//      s.size shouldEqual 1
-//      val jstr = x.asJson.noSpaces
-//      JSONAssert.assertEquals(jstr, expectedAccountJson, true)
-//      val deser = parse(jstr).flatMap(_.as[Account])
-//      deser.left.foreach(e => println("ballz B)\t" + e.toString))
-//      deser.isRight shouldEqual true
-//      deser.right.get shouldEqual x
-//      s.add(deser.right.get)
-//      s.size shouldEqual 1
-//      val reser = deser.right.get.asJson.noSpaces
-//      JSONAssert.assertEquals(jstr, reser, true)
-//    }
-//  }
-//
-//  "serde for the | union types" - {
-//    val time = FHIRDateTime(ZonedDateTime.now())
-//    val tStr = time.fmt
-//
-//    "Annotation with authorString field" in {
-//      val y1 = Annotation(
-//        Some("hi, I'm an ID"),
-//        Some(time),
-//        "asd".asInstanceOf[Markdown],
-//        LitSeq.empty,
-//        Some(choice("author!")))
-//      val jstr = y1.asJson.noSpaces
-//      println(jstr)
-//      val expected =
-//        s"""{"id":"hi, I'm an ID", "time":"$tStr", "text": "asd", "authorString":"author!"}"""
-//      println(expected)
-//      JSONAssert.assertEquals(expected, jstr, false)
-//    }
-//
-//    "Annotation with authorReference field" in {
-//      val y2 =
-//        Annotation(
-//          Some("hi, I'm an ID"),
-//          Some(time),
-//          "asd".asInstanceOf[Markdown],
-//          LitSeq.empty,
-//          Some(choice(new Reference())))
-//      val jstr = y2.asJson.noSpaces
-//      println(jstr)
-//      val expected =
-//        s"""{"id":"hi, I'm an ID", "time":"$tStr", "text": "asd", "authorReference":{}}}"""
-//      println(expected)
-//      JSONAssert.assertEquals(expected, jstr, false)
-//    }
-//  }
-//
-//  "equality test" in {
-//    val x1 = Duration(Some("1"), None, None, None, None, LitSeq.empty, None)
-//    val x2 = Quantity(Some("1"), None, None, None, None, LitSeq.empty, None)
-//    val x3 = Quantity(Some("1"), None, None, None, None, LitSeq.empty, None)
-//    x1 == x1 shouldEqual true
-//    x2 == x2 shouldEqual true
-//    x3 == x3 shouldEqual true
-//    x1.equals(x2) shouldEqual false
-//    x2.equals(x1) shouldEqual false
-//    x2.equals(x3) shouldEqual true
-//    x1 == x2 shouldEqual false
-//    x2 == x1 shouldEqual false
-//    x2 == x3 shouldEqual true
-//  }
-//
-//  "println" in {
-//    val x = com.babylonhealth.lit.core.model.resourceTypeLookup.take(5)
-//    println(x.mkString("[", ";;", "]"))
-//  }
-//
-////    type SubOfString <: String
-//  // x2
-//  type StrBool = String | Boolean
-//  type StrInt  = String | Int
-//  type IntBool = Int | Boolean
-//  // x3
-//  type StrBoolInt = String | Boolean | Int
-//  type StrIntBool = String | Int | Boolean
-//  type BoolIntStr = Boolean | Int | String
-//  "Further union tests" - {
-//    "union subsets (1x3)" in {
-//      |.canBe(lTagOf[String | Boolean | Int], lTagOf[String]) shouldEqual true
-//      |.canBe(lTagOf[StrBoolInt], lTagOf[String]) shouldEqual true
-//      |.canBe(lTagOf[StrBoolInt], lTagOf[Boolean]) shouldEqual true
-//      |.canBe(lTagOf[StrBoolInt], lTagOf[Int]) shouldEqual true
-//      |.canBe(lTagOf[StrBoolInt], lTagOf[Double]) shouldEqual false
-//      |.canBe(lTagOf[StrBoolInt], lTagOf[Date]) shouldEqual false
-//      |.canBe[String | Boolean | Int, String] shouldEqual true
-//      |.canBe[StrBoolInt, String] shouldEqual true
-//      |.canBe[StrBoolInt, Boolean] shouldEqual true
-//      |.canBe[StrBoolInt, Int] shouldEqual true
-//      |.canBe[StrBoolInt, Double] shouldEqual false
-//      |.canBe[StrBoolInt, Date] shouldEqual false
-//      //      |.lTypeSubsumesRIndividual(lTagOf[StrBoolInt], lTagOf[SubOfString]) shouldEqual false
-//    }
-//    "union subsets (2x3)" in {
-//      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrBool]) shouldEqual true
-//      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrInt]) shouldEqual true
-//      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[IntBool]) shouldEqual true
-//      |.lTypeSubsumesR(lTagOf[StrBool], lTagOf[StrBoolInt]) shouldEqual false
-//      |.lTypeSubsumesR(lTagOf[StrInt], lTagOf[StrBoolInt]) shouldEqual false
-//      |.lTypeSubsumesR(lTagOf[IntBool], lTagOf[StrBoolInt]) shouldEqual false
-//    }
-//    "union subsets (3x3)" in {
-//      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrIntBool]) shouldEqual true
-//      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrIntBool]) shouldEqual true
-//      |.lTypeSubsumesR(lTagOf[BoolIntStr], lTagOf[StrIntBool]) shouldEqual true
-//      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrBoolInt]) shouldEqual true
-//      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[StrBoolInt]) shouldEqual true
-//      |.lTypeSubsumesR(lTagOf[BoolIntStr], lTagOf[StrBoolInt]) shouldEqual true
-//      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[BoolIntStr]) shouldEqual true
-//      |.lTypeSubsumesR(lTagOf[StrBoolInt], lTagOf[BoolIntStr]) shouldEqual true
-//      |.lTypeSubsumesR(lTagOf[BoolIntStr], lTagOf[BoolIntStr]) shouldEqual true
-//    }
-//  }
-//
-//  "Choice[\"ProductShelfLife\"] serde" in {
-//    val choice = Choice["ProductShelfLife"]("", Json.fromString("asd"))
-//    val x      = DeviceDefinition(shelfLifeStorage = Seq(choice))
-////    val ser = x.asJson.noSpaces
-////    val expectedJson =
-////      """{"resourceType":"DeviceDefinition","shelfLifeStorage":["asd"]}"""
-////    JSONAssert.assertEquals(expectedJson, ser, true)
-////    val deser = parse(ser).flatMap(_.as[DeviceDefinition])
-////    deser.isRight shouldEqual true
-////    deser.right.get shouldEqual x
-////    val reser = deser.right.get.asJson.noSpaces
-////    JSONAssert.assertEquals(ser, reser, true)
-//  }
-//
-//  "Nested aliases compile" in {
-//    type Foo = Bundle.Entry.Request
-//    val z    = Bundle.Entry.Request(url = "http://example.com", method = HTTP_VERB.GET)
-//    val zd   = Bundle.Entry.Request.decoder(DecoderParams())
-//    val jstr = z.asJson.noSpaces
-//    val e    = zd.decodeJson(parse(jstr).toTry.get).toTry.get
-//    e shouldEqual z
-//  }
-//
+    }
+    "json deserialization, and equality" in {
+      val s = mutable.Set[Account]()
+      s.add(x)
+      s.size shouldEqual 1
+      s.add(x)
+      s.size shouldEqual 1
+      val jstr = x.asJson.noSpaces
+      JSONAssert.assertEquals(jstr, expectedAccountJson, true)
+      val deser = parse(jstr).flatMap(_.as[Account])
+      deser.left.foreach(e => println("ballz A)\t" + e.toString))
+      deser.isRight shouldEqual true
+      deser.right.get shouldEqual x
+      s.add(deser.right.get)
+      s.size shouldEqual 1
+      val reser = deser.right.get.asJson.noSpaces
+      JSONAssert.assertEquals(jstr, reser, true)
+    }
+    "json deserialization, and equality x2" in {
+      val s = mutable.Set[FHIRObject]()
+      s.add(x)
+      s.size shouldEqual 1
+      s.add(x)
+      s.size shouldEqual 1
+      val jstr = x.asJson.noSpaces
+      JSONAssert.assertEquals(jstr, expectedAccountJson, true)
+      val deser = parse(jstr).flatMap(_.as[Account])
+      deser.left.foreach(e => println("ballz B)\t" + e.toString))
+      deser.isRight shouldEqual true
+      deser.right.get shouldEqual x
+      s.add(deser.right.get)
+      s.size shouldEqual 1
+      val reser = deser.right.get.asJson.noSpaces
+      JSONAssert.assertEquals(jstr, reser, true)
+    }
+  }
+
+  "serde for the | union types" - {
+    val time = FHIRDateTime(ZonedDateTime.now())
+    val tStr = time.fmt
+
+    "Annotation with authorString field" in {
+      val y1 = Annotation(
+        Some("hi, I'm an ID"),
+        Some(time),
+        "asd".asInstanceOf[Markdown],
+        LitSeq.empty,
+        Some(choice("author!")))
+      val jstr = y1.asJson.noSpaces
+      println(jstr)
+      val expected =
+        s"""{"id":"hi, I'm an ID", "time":"$tStr", "text": "asd", "authorString":"author!"}"""
+      println(expected)
+      JSONAssert.assertEquals(expected, jstr, false)
+    }
+
+    "Annotation with authorReference field" in {
+      val y2 =
+        Annotation(
+          Some("hi, I'm an ID"),
+          Some(time),
+          "asd".asInstanceOf[Markdown],
+          LitSeq.empty,
+          Some(choice(new Reference())))
+      val jstr = y2.asJson.noSpaces
+      println(jstr)
+      val expected =
+        s"""{"id":"hi, I'm an ID", "time":"$tStr", "text": "asd", "authorReference":{}}}"""
+      println(expected)
+      JSONAssert.assertEquals(expected, jstr, false)
+    }
+  }
+
+  "equality test" in {
+    val x1 = Duration(Some("1"), None, None, None, None, LitSeq.empty, None)
+    val x2 = Quantity(Some("1"), None, None, None, None, LitSeq.empty, None)
+    val x3 = Quantity(Some("1"), None, None, None, None, LitSeq.empty, None)
+    x1 == x1 shouldEqual true
+    x2 == x2 shouldEqual true
+    x3 == x3 shouldEqual true
+    x1.equals(x2) shouldEqual false
+    x2.equals(x1) shouldEqual false
+    x2.equals(x3) shouldEqual true
+    x1 == x2 shouldEqual false
+    x2 == x1 shouldEqual false
+    x2 == x3 shouldEqual true
+  }
+
+  "println" in {
+    val x = com.babylonhealth.lit.core.model.resourceTypeLookup.take(5)
+    println(x.mkString("[", ";;", "]"))
+  }
+
+  type SubOfString <: String
+  // x2
+  type StrBool = String | Boolean
+  type StrInt  = String | Int
+  type IntBool = Int | Boolean
+  // x3
+  type StrBoolInt = String | Boolean | Int
+  type StrIntBool = String | Int | Boolean
+  type BoolIntStr = Boolean | Int | String
+  "Further union tests" - {
+    "union subsets (1x3)" in {
+      lTypeOf[String] <:< lTypeOf[String | Boolean | Int] shouldEqual true
+      lTypeOf[String] <:< lTypeOf[StrBoolInt] shouldEqual true
+      lTypeOf[Boolean] <:< lTypeOf[StrBoolInt] shouldEqual true
+      lTypeOf[Int] <:< lTypeOf[StrBoolInt] shouldEqual true
+      lTypeOf[Double] <:< lTypeOf[StrBoolInt] shouldEqual false
+      lTypeOf[Date] <:< lTypeOf[StrBoolInt] shouldEqual false
+      LTT[String] <:< LTT[String | Boolean | Int] shouldEqual true
+      LTT[String] <:< LTT[StrBoolInt] shouldEqual true
+      LTT[Boolean] <:< LTT[StrBoolInt] shouldEqual true
+      LTT[Int] <:< LTT[StrBoolInt] shouldEqual true
+      LTT[Double] <:< LTT[StrBoolInt] shouldEqual false
+      LTT[Date] <:< LTT[StrBoolInt] shouldEqual false
+    }
+    "union subsets (1x3) - type params should be treated as invariant" ignore {
+      lTypeOf[SubOfString] <:< lTypeOf[StrBoolInt] shouldEqual false
+    }
+    "union subsets (2x3)" ignore {
+      lTypeOf[StrBool] <:< lTypeOf[StrBoolInt] shouldEqual true
+      lTypeOf[StrInt] <:< lTypeOf[StrBoolInt] shouldEqual true
+      lTypeOf[IntBool] <:< lTypeOf[StrBoolInt] shouldEqual true
+      lTypeOf[StrBoolInt] <:< lTypeOf[StrBool] shouldEqual false
+      lTypeOf[StrBoolInt] <:< lTypeOf[StrInt] shouldEqual false
+      lTypeOf[StrBoolInt] <:< lTypeOf[IntBool] shouldEqual false
+    }
+    "union subsets (3x3)" in {
+      lTypeOf[StrIntBool] <:< lTypeOf[StrBoolInt] shouldEqual true
+      lTypeOf[StrIntBool] <:< lTypeOf[StrBoolInt] shouldEqual true
+      lTypeOf[StrIntBool] <:< lTypeOf[BoolIntStr] shouldEqual true
+      lTypeOf[StrBoolInt] <:< lTypeOf[StrBoolInt] shouldEqual true
+      lTypeOf[StrBoolInt] <:< lTypeOf[StrBoolInt] shouldEqual true
+      lTypeOf[StrBoolInt] <:< lTypeOf[BoolIntStr] shouldEqual true
+      lTypeOf[BoolIntStr] <:< lTypeOf[StrBoolInt] shouldEqual true
+      lTypeOf[BoolIntStr] <:< lTypeOf[StrBoolInt] shouldEqual true
+      lTypeOf[BoolIntStr] <:< lTypeOf[BoolIntStr] shouldEqual true
+    }
+  }
+
+  "Choice[\"ProductShelfLife\"] serde" in {
+    val choice = Choice["ProductShelfLife"]("", Json.fromString("asd"))
+    val x      = DeviceDefinition(shelfLifeStorage = Seq(choice))
+//    val ser = x.asJson.noSpaces
+//    val expectedJson =
+//      """{"resourceType":"DeviceDefinition","shelfLifeStorage":["asd"]}"""
+//    JSONAssert.assertEquals(expectedJson, ser, true)
+//    val deser = parse(ser).flatMap(_.as[DeviceDefinition])
+//    deser.isRight shouldEqual true
+//    deser.right.get shouldEqual x
+//    val reser = deser.right.get.asJson.noSpaces
+//    JSONAssert.assertEquals(ser, reser, true)
+  }
+
+  "Nested aliases compile" in {
+    type Foo = Bundle.Entry.Request
+    val z    = Bundle.Entry.Request(url = "http://example.com", method = HTTP_VERB.GET)
+    val zd   = Bundle.Entry.Request.decoder(DecoderParams())
+    val jstr = z.asJson.noSpaces
+    val e    = zd.decodeJson(parse(jstr).toTry.get).toTry.get
+    e shouldEqual z
+  }
+
 //  "can handle suffixes not being unique" in {
 //    val foo      = TestUnionWrapper3(choice(420), "lol")
 //    val fooStr   = foo.asJson.noSpaces
@@ -417,4 +420,4 @@ import com.babylonhealth.lit.hl7.model._
 //            "More than one field matching field[x] was found. Fields were: [fieldInteger, fieldString]") =>
 //    }
 //  }
-//}
+}

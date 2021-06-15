@@ -484,7 +484,7 @@ abstract class FHIRObject(
   private def refToString(r: Choice[_]): String =
     r.suffix match {
       case "" => s"<Any> = ${r.json}"
-      case s  => s"$s = ${r.toString}"
+      case s  => s"$s = ${r.value.toString}"
     }
 
   private def refishToString(r: Any): String =
