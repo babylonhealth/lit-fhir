@@ -31,7 +31,7 @@ object Iso21090_ADXP_deliveryMode extends CompanionFor[Iso21090_ADXP_deliveryMod
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-deliveryMode")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-deliveryMode")
   def apply(
       id: Option[String] = None,
       value: String,
@@ -69,18 +69,24 @@ object Iso21090_ADXP_deliveryMode extends CompanionFor[Iso21090_ADXP_deliveryMod
       ))
 }
 
-/** Indicates the type of service offered, method of delivery. For example: post office box, rural route, general delivery, etc.
+/** Indicates the type of service offered, method of delivery. For example: post office box, rural route, general
+  * delivery, etc.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
+  * found in all resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
+  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
+  *   the value of the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Iso21090_ADXP_deliveryMode(

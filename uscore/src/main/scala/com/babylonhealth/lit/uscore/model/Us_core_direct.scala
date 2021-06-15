@@ -31,7 +31,7 @@ object Us_core_direct extends CompanionFor[Us_core_direct] {
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct")
   def apply(
       id: Option[String] = None,
       value: Option[Boolean] = None,
@@ -76,17 +76,27 @@ object Us_core_direct extends CompanionFor[Us_core_direct] {
       ))
 }
 
-/** This email address is associated with a [direct](http://wiki.directproject.org/Addressing+Specification) service.  This extension can only be used on contact points where the system = 'email'
+/** This email address is associated with a [direct](http://wiki.directproject.org/Addressing+Specification) service.
+  * This extension can only be used on contact points where the system = 'email'
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
+  * found in all resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/R4/extensibility.html) for a list).
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Hardcodes the value of the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/R4/extensibility.html) for a list).
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
+  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
+  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
+  *   part of the definition of the extension.
   */
 @POJOBoilerplate
 class Us_core_direct(

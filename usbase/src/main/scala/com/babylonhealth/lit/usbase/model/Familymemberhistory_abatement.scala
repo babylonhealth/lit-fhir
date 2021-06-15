@@ -53,11 +53,11 @@ object Familymemberhistory_abatement extends CompanionFor[Familymemberhistory_ab
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Familymemberhistory_abatement.ValueChoice](value, t.value.get.toSubRef)
     ))
-  override def fields(t: Familymemberhistory_abatement): Seq[FHIRComponentField[_]]             = fieldsFromParent(t).get
-  def extractId(t: Familymemberhistory_abatement): Option[String]                               = t.id
+  override def fields(t: Familymemberhistory_abatement): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Familymemberhistory_abatement): Option[String]                   = t.id
   def extractValue(t: Familymemberhistory_abatement): Familymemberhistory_abatement.ValueChoice = t.value.get.toSubRef
-  override val thisName: String                                                                 = "Familymemberhistory_abatement"
-  override val searchParams: Map[String, Familymemberhistory_abatement => Seq[Any]]             = Extension.searchParams
+  override val thisName: String                                                     = "Familymemberhistory_abatement"
+  override val searchParams: Map[String, Familymemberhistory_abatement => Seq[Any]] = Extension.searchParams
   def unapply(o: Familymemberhistory_abatement): Option[(Option[String], Familymemberhistory_abatement.ValueChoice)] =
     Some((o.id, o.value.get.toSubRef))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Familymemberhistory_abatement] =
@@ -71,18 +71,24 @@ object Familymemberhistory_abatement extends CompanionFor[Familymemberhistory_ab
       ))
 }
 
-/** The approximate date, age, or flag indicating that the condition of the family member resolved. The abatement should only be specified if the condition is stated in the positive sense, i.e., the didNotHave flag is false.
+/** The approximate date, age, or flag indicating that the condition of the family member resolved. The abatement should
+  * only be specified if the condition is stated in the positive sense, i.e., the didNotHave flag is false.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
+  * found in all resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
+  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
+  *   the value of the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Familymemberhistory_abatement(

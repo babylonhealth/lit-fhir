@@ -38,7 +38,7 @@ object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinit
   override type ParentType   = ActivityDefinition
   override val baseType: CompanionFor[ResourceType] = ActivityDefinition
   override val parentType: CompanionFor[ParentType] = ActivityDefinition
-  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareableactivitydefinition")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/shareableactivitydefinition")
   type TimingChoice  = Choice[Union_0181779868]
   type SubjectChoice = Choice[Union01025009075]
   type ProductChoice = Choice[Union01025009075]
@@ -397,64 +397,64 @@ object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinit
       FHIRComponentField[LitSeq[ActivityDefinition.Participant]](participant, t.participant),
       FHIRComponentField[LitSeq[ActivityDefinition.DynamicValue]](dynamicValue, t.dynamicValue)
     ))
-  override def fields(t: Shareableactivitydefinition): Seq[FHIRComponentField[_]]                       = fieldsFromParent(t).get
-  def extractId(t: Shareableactivitydefinition): Option[String]                                         = t.id
-  def extractUrl(t: Shareableactivitydefinition): UriStr                                                = t.url.get
-  def extractMeta(t: Shareableactivitydefinition): Option[Meta]                                         = t.meta
-  def extractText(t: Shareableactivitydefinition): Option[Narrative]                                    = t.text
-  def extractName(t: Shareableactivitydefinition): String                                               = t.name.get
-  def extractDate(t: Shareableactivitydefinition): Option[FHIRDateTime]                                 = t.date
-  def extractKind(t: Shareableactivitydefinition): Option[REQUEST_RESOURCE_TYPES]                       = t.kind
-  def extractCode(t: Shareableactivitydefinition): Option[CodeableConcept]                              = t.code
-  def extractTitle(t: Shareableactivitydefinition): Option[String]                                      = t.title
-  def extractUsage(t: Shareableactivitydefinition): Option[String]                                      = t.usage
-  def extractTopic(t: Shareableactivitydefinition): LitSeq[CodeableConcept]                             = t.topic
-  def extractStatus(t: Shareableactivitydefinition): PUBLICATION_STATUS                                 = t.status
-  def extractAuthor(t: Shareableactivitydefinition): LitSeq[ContactDetail]                              = t.author
-  def extractEditor(t: Shareableactivitydefinition): LitSeq[ContactDetail]                              = t.editor
-  def extractIntent(t: Shareableactivitydefinition): Option[REQUEST_INTENT]                             = t.intent
-  def extractDosage(t: Shareableactivitydefinition): LitSeq[Dosage]                                     = t.dosage
-  def extractVersion(t: Shareableactivitydefinition): String                                            = t.version.get
-  def extractContact(t: Shareableactivitydefinition): LitSeq[ContactDetail]                             = t.contact
-  def extractPurpose(t: Shareableactivitydefinition): Option[Markdown]                                  = t.purpose
-  def extractLibrary(t: Shareableactivitydefinition): LitSeq[Canonical]                                 = t.library
-  def extractProfile(t: Shareableactivitydefinition): Option[Canonical]                                 = t.profile
-  def extractLanguage(t: Shareableactivitydefinition): Option[LANGUAGES]                                = t.language
-  def extractSubtitle(t: Shareableactivitydefinition): Option[String]                                   = t.subtitle
-  def extractReviewer(t: Shareableactivitydefinition): LitSeq[ContactDetail]                            = t.reviewer
-  def extractEndorser(t: Shareableactivitydefinition): LitSeq[ContactDetail]                            = t.endorser
-  def extractPriority(t: Shareableactivitydefinition): Option[REQUEST_PRIORITY]                         = t.priority
-  def extractLocation(t: Shareableactivitydefinition): Option[Reference]                                = t.location
-  def extractQuantity(t: Shareableactivitydefinition): Option[Quantity]                                 = t.quantity
-  def extractBodySite(t: Shareableactivitydefinition): LitSeq[CodeableConcept]                          = t.bodySite
-  def extractContained(t: Shareableactivitydefinition): LitSeq[Resource]                                = t.contained
-  def extractExtension(t: Shareableactivitydefinition): LitSeq[Extension]                               = t.extension
-  def extractPublisher(t: Shareableactivitydefinition): String                                          = t.publisher.get
-  def extractCopyright(t: Shareableactivitydefinition): Option[Markdown]                                = t.copyright
+  override def fields(t: Shareableactivitydefinition): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Shareableactivitydefinition): Option[String]                   = t.id
+  def extractUrl(t: Shareableactivitydefinition): UriStr                          = t.url.get
+  def extractMeta(t: Shareableactivitydefinition): Option[Meta]                   = t.meta
+  def extractText(t: Shareableactivitydefinition): Option[Narrative]              = t.text
+  def extractName(t: Shareableactivitydefinition): String                         = t.name.get
+  def extractDate(t: Shareableactivitydefinition): Option[FHIRDateTime]           = t.date
+  def extractKind(t: Shareableactivitydefinition): Option[REQUEST_RESOURCE_TYPES] = t.kind
+  def extractCode(t: Shareableactivitydefinition): Option[CodeableConcept]        = t.code
+  def extractTitle(t: Shareableactivitydefinition): Option[String]                = t.title
+  def extractUsage(t: Shareableactivitydefinition): Option[String]                = t.usage
+  def extractTopic(t: Shareableactivitydefinition): LitSeq[CodeableConcept]       = t.topic
+  def extractStatus(t: Shareableactivitydefinition): PUBLICATION_STATUS           = t.status
+  def extractAuthor(t: Shareableactivitydefinition): LitSeq[ContactDetail]        = t.author
+  def extractEditor(t: Shareableactivitydefinition): LitSeq[ContactDetail]        = t.editor
+  def extractIntent(t: Shareableactivitydefinition): Option[REQUEST_INTENT]       = t.intent
+  def extractDosage(t: Shareableactivitydefinition): LitSeq[Dosage]               = t.dosage
+  def extractVersion(t: Shareableactivitydefinition): String                      = t.version.get
+  def extractContact(t: Shareableactivitydefinition): LitSeq[ContactDetail]       = t.contact
+  def extractPurpose(t: Shareableactivitydefinition): Option[Markdown]            = t.purpose
+  def extractLibrary(t: Shareableactivitydefinition): LitSeq[Canonical]           = t.library
+  def extractProfile(t: Shareableactivitydefinition): Option[Canonical]           = t.profile
+  def extractLanguage(t: Shareableactivitydefinition): Option[LANGUAGES]          = t.language
+  def extractSubtitle(t: Shareableactivitydefinition): Option[String]             = t.subtitle
+  def extractReviewer(t: Shareableactivitydefinition): LitSeq[ContactDetail]      = t.reviewer
+  def extractEndorser(t: Shareableactivitydefinition): LitSeq[ContactDetail]      = t.endorser
+  def extractPriority(t: Shareableactivitydefinition): Option[REQUEST_PRIORITY]   = t.priority
+  def extractLocation(t: Shareableactivitydefinition): Option[Reference]          = t.location
+  def extractQuantity(t: Shareableactivitydefinition): Option[Quantity]           = t.quantity
+  def extractBodySite(t: Shareableactivitydefinition): LitSeq[CodeableConcept]    = t.bodySite
+  def extractContained(t: Shareableactivitydefinition): LitSeq[Resource]          = t.contained
+  def extractExtension(t: Shareableactivitydefinition): LitSeq[Extension]         = t.extension
+  def extractPublisher(t: Shareableactivitydefinition): String                    = t.publisher.get
+  def extractCopyright(t: Shareableactivitydefinition): Option[Markdown]          = t.copyright
   def extractTiming(t: Shareableactivitydefinition): Option[Shareableactivitydefinition.TimingChoice]   = t.timing
   def extractTransform(t: Shareableactivitydefinition): Option[Canonical]                               = t.transform
   def extractIdentifier(t: Shareableactivitydefinition): LitSeq[Identifier]                             = t.identifier
   def extractSubject(t: Shareableactivitydefinition): Option[Shareableactivitydefinition.SubjectChoice] = t.subject
   def extractUseContext(t: Shareableactivitydefinition): LitSeq[UsageContext]                           = t.useContext
   def extractProduct(t: Shareableactivitydefinition): Option[Shareableactivitydefinition.ProductChoice] = t.product
-  def extractDescription(t: Shareableactivitydefinition): Markdown                                      = t.description.get
-  def extractExperimental(t: Shareableactivitydefinition): Boolean                                      = t.experimental.get
-  def extractJurisdiction(t: Shareableactivitydefinition): LitSeq[CodeableConcept]                      = t.jurisdiction
-  def extractApprovalDate(t: Shareableactivitydefinition): Option[FHIRDate]                             = t.approvalDate
-  def extractDoNotPerform(t: Shareableactivitydefinition): Option[Boolean]                              = t.doNotPerform
-  def extractImplicitRules(t: Shareableactivitydefinition): Option[UriStr]                              = t.implicitRules
-  def extractLastReviewDate(t: Shareableactivitydefinition): Option[FHIRDate]                           = t.lastReviewDate
-  def extractEffectivePeriod(t: Shareableactivitydefinition): Option[Period]                            = t.effectivePeriod
-  def extractRelatedArtifact(t: Shareableactivitydefinition): LitSeq[RelatedArtifact]                   = t.relatedArtifact
-  def extractModifierExtension(t: Shareableactivitydefinition): LitSeq[Extension]                       = t.modifierExtension
-  def extractSpecimenRequirement(t: Shareableactivitydefinition): LitSeq[Reference]                     = t.specimenRequirement
-  def extractObservationRequirement(t: Shareableactivitydefinition): LitSeq[Reference]                  = t.observationRequirement
+  def extractDescription(t: Shareableactivitydefinition): Markdown                     = t.description.get
+  def extractExperimental(t: Shareableactivitydefinition): Boolean                     = t.experimental.get
+  def extractJurisdiction(t: Shareableactivitydefinition): LitSeq[CodeableConcept]     = t.jurisdiction
+  def extractApprovalDate(t: Shareableactivitydefinition): Option[FHIRDate]            = t.approvalDate
+  def extractDoNotPerform(t: Shareableactivitydefinition): Option[Boolean]             = t.doNotPerform
+  def extractImplicitRules(t: Shareableactivitydefinition): Option[UriStr]             = t.implicitRules
+  def extractLastReviewDate(t: Shareableactivitydefinition): Option[FHIRDate]          = t.lastReviewDate
+  def extractEffectivePeriod(t: Shareableactivitydefinition): Option[Period]           = t.effectivePeriod
+  def extractRelatedArtifact(t: Shareableactivitydefinition): LitSeq[RelatedArtifact]  = t.relatedArtifact
+  def extractModifierExtension(t: Shareableactivitydefinition): LitSeq[Extension]      = t.modifierExtension
+  def extractSpecimenRequirement(t: Shareableactivitydefinition): LitSeq[Reference]    = t.specimenRequirement
+  def extractObservationRequirement(t: Shareableactivitydefinition): LitSeq[Reference] = t.observationRequirement
   def extractObservationResultRequirement(t: Shareableactivitydefinition): LitSeq[Reference] =
     t.observationResultRequirement
   def extractParticipant(t: Shareableactivitydefinition): LitSeq[ActivityDefinition.Participant]   = t.participant
   def extractDynamicValue(t: Shareableactivitydefinition): LitSeq[ActivityDefinition.DynamicValue] = t.dynamicValue
-  override val thisName: String                                                                    = "Shareableactivitydefinition"
-  override val searchParams: Map[String, Shareableactivitydefinition => Seq[Any]]                  = ActivityDefinition.searchParams
+  override val thisName: String                                                   = "Shareableactivitydefinition"
+  override val searchParams: Map[String, Shareableactivitydefinition => Seq[Any]] = ActivityDefinition.searchParams
   // format: off
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Shareableactivitydefinition] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ => Try(
@@ -519,67 +519,169 @@ object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinit
   // format: on
 }
 
-/** Enforces the minimum information set for the activity definition metadata required by HL7 and other organizations that share and publish activity definitions
+/** Enforces the minimum information set for the activity definition metadata required by HL7 and other organizations
+  * that share and publish activity definitions
   *
-  *  Subclass of [[hl7.model.ActivityDefinition]] (This resource allows for the definition of some activity to be performed, independent of a particular patient, practitioner, or other performance context.)
+  * Subclass of [[hl7.model.ActivityDefinition]] (This resource allows for the definition of some activity to be
+  * performed, independent of a particular patient, practitioner, or other performance context.)
   *
-  * @constructor Inherits all params from parent.
-  *              Requires the following fields which were optional in the parent: url, name, version, publisher, description, experimental.
-  * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
-  * @param url - An absolute URI that is used to identify this activity definition when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this activity definition is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the activity definition is stored on different servers.
-  * @param meta - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.
-  * @param text - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.
-  * @param name - A natural language name identifying the activity definition. This name should be usable as an identifier for the module by machine processing applications such as code generation.
-  * @param date - The date  (and optionally time) when the activity definition was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the activity definition changes.
-  * @param kind - A description of the kind of resource the activity definition is representing. For example, a MedicationRequest, a ServiceRequest, or a CommunicationRequest. Typically, but not always, this is a Request resource.
-  * @param code - Detailed description of the type of activity; e.g. What lab test, what procedure, what kind of encounter.
-  * @param title - A short, descriptive, user-friendly title for the activity definition.
-  * @param usage - A detailed description of how the activity definition is used from a clinical perspective.
-  * @param topic - Descriptive topics related to the content of the activity. Topics provide a high-level categorization of the activity that can be useful for filtering and searching.
-  * @param status - The status of this activity definition. Enables tracking the life-cycle of the content.
-  * @param author - An individiual or organization primarily involved in the creation and maintenance of the content.
-  * @param editor - An individual or organization primarily responsible for internal coherence of the content.
-  * @param intent - Indicates the level of authority/intentionality associated with the activity and where the request should fit into the workflow chain.
-  * @param dosage - Provides detailed dosage instructions in the same way that they are described for MedicationRequest resources.
-  * @param version - The identifier that is used to identify this version of the activity definition when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the activity definition author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence. To provide a version consistent with the Decision Support Service specification, use the format Major.Minor.Revision (e.g. 1.0.0). For more information on versioning knowledge assets, refer to the Decision Support Service specification. Note that a version is required for non-experimental active assets.
-  * @param contact - Contact details to assist a user in finding and communicating with the publisher.
-  * @param purpose - Explanation of why this activity definition is needed and why it has been designed as it has.
-  * @param library - A reference to a Library resource containing any formal logic used by the activity definition.
-  * @param profile - A profile to which the target of the activity definition is expected to conform.
-  * @param language - The base language in which the resource is written.
-  * @param subtitle - An explanatory or alternate title for the activity definition giving additional information about its content.
-  * @param reviewer - An individual or organization primarily responsible for review of some aspect of the content.
-  * @param endorser - An individual or organization responsible for officially endorsing the content for use in some setting.
-  * @param priority - Indicates how quickly the activity  should be addressed with respect to other requests.
-  * @param location - Identifies the facility where the activity will occur; e.g. home, hospital, specific clinic, etc.
-  * @param quantity - Identifies the quantity expected to be consumed at once (per dose, per meal, etc.).
-  * @param bodySite - Indicates the sites on the subject's body where the procedure should be performed (I.e. the target sites).
-  * @param contained - These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
-  * @param publisher - The name of the organization or individual that published the activity definition.
-  * @param copyright - A copyright statement relating to the activity definition and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the activity definition.
-  * @param timing - The period, timing or frequency upon which the described activity is to occur.
-  * @param transform - A reference to a StructureMap resource that defines a transform that can be executed to produce the intent resource using the ActivityDefinition instance as the input.
-  * @param identifier - A formal identifier that is used to identify this activity definition when it is represented in other formats, or referenced in a specification, model, design or an instance.
-  * @param subject - A code or group definition that describes the intended subject of the activity being defined.
-  * @param useContext - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate activity definition instances.
-  * @param product - Identifies the food, drug or other product being consumed or supplied in the activity.
-  * @param description - A free text natural language description of the activity definition from a consumer's perspective.
-  * @param experimental - A Boolean value to indicate that this activity definition is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.
-  * @param jurisdiction - A legal or geographic region in which the activity definition is intended to be used.
-  * @param approvalDate - The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage.
-  * @param doNotPerform - Set this to true if the definition is to indicate that a particular activity should NOT be performed. If true, this element should be interpreted to reinforce a negative coding. For example NPO as a code with a doNotPerform of true would still indicate to NOT perform the action.
-  * @param implicitRules - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.
-  * @param lastReviewDate - The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date.
-  * @param effectivePeriod - The period during which the activity definition content was or is planned to be in active use.
-  * @param relatedArtifact - Related artifacts such as additional documentation, justification, or bibliographic references.
-  * @param modifierExtension - May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  * Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
-  * @param specimenRequirement - Defines specimen requirements for the action to be performed, such as required specimens for a lab test.
-  * @param observationRequirement - Defines observation requirements for the action to be performed, such as body weight or surface area.
-  * @param observationResultRequirement - Defines the observations that are expected to be produced by the action.
-  * @param participant - Indicates who should participate in performing the action described.
-  * @param dynamicValue - Dynamic values that will be evaluated to produce values for elements of the resulting resource. For example, if the dosage of a medication must be computed based on the patient's weight, a dynamic value would be used to specify an expression that calculated the weight, and the path on the request resource that would contain the result.
+  * @constructor
+  *   Inherits all params from parent. Requires the following fields which were optional in the parent: url, name,
+  *   version, publisher, description, experimental.
+  * @param id
+  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  * @param url
+  *   - An absolute URI that is used to identify this activity definition when it is referenced in a specification,
+  *   model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a
+  *   literal address at which at which an authoritative instance of this activity definition is (or will be) published.
+  *   This URL can be the target of a canonical reference. It SHALL remain the same when the activity definition is
+  *   stored on different servers.
+  * @param meta
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
+  *   content might not always be associated with version changes to the resource.
+  * @param text
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
+  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
+  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
+  *   define what content should be represented in the narrative to ensure clinical safety.
+  * @param name
+  *   - A natural language name identifying the activity definition. This name should be usable as an identifier for the
+  *   module by machine processing applications such as code generation.
+  * @param date
+  *   - The date (and optionally time) when the activity definition was published. The date must change when the
+  *   business version changes and it must change if the status code changes. In addition, it should change when the
+  *   substantive content of the activity definition changes.
+  * @param kind
+  *   - A description of the kind of resource the activity definition is representing. For example, a MedicationRequest,
+  *   a ServiceRequest, or a CommunicationRequest. Typically, but not always, this is a Request resource.
+  * @param code
+  *   - Detailed description of the type of activity; e.g. What lab test, what procedure, what kind of encounter.
+  * @param title
+  *   - A short, descriptive, user-friendly title for the activity definition.
+  * @param usage
+  *   - A detailed description of how the activity definition is used from a clinical perspective.
+  * @param topic
+  *   - Descriptive topics related to the content of the activity. Topics provide a high-level categorization of the
+  *   activity that can be useful for filtering and searching.
+  * @param status
+  *   - The status of this activity definition. Enables tracking the life-cycle of the content.
+  * @param author
+  *   - An individiual or organization primarily involved in the creation and maintenance of the content.
+  * @param editor
+  *   - An individual or organization primarily responsible for internal coherence of the content.
+  * @param intent
+  *   - Indicates the level of authority/intentionality associated with the activity and where the request should fit
+  *   into the workflow chain.
+  * @param dosage
+  *   - Provides detailed dosage instructions in the same way that they are described for MedicationRequest resources.
+  * @param version
+  *   - The identifier that is used to identify this version of the activity definition when it is referenced in a
+  *   specification, model, design or instance. This is an arbitrary value managed by the activity definition author and
+  *   is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version
+  *   is not available. There is also no expectation that versions can be placed in a lexicographical sequence. To
+  *   provide a version consistent with the Decision Support Service specification, use the format Major.Minor.Revision
+  *   (e.g. 1.0.0). For more information on versioning knowledge assets, refer to the Decision Support Service
+  *   specification. Note that a version is required for non-experimental active assets.
+  * @param contact
+  *   - Contact details to assist a user in finding and communicating with the publisher.
+  * @param purpose
+  *   - Explanation of why this activity definition is needed and why it has been designed as it has.
+  * @param library
+  *   - A reference to a Library resource containing any formal logic used by the activity definition.
+  * @param profile
+  *   - A profile to which the target of the activity definition is expected to conform.
+  * @param language
+  *   - The base language in which the resource is written.
+  * @param subtitle
+  *   - An explanatory or alternate title for the activity definition giving additional information about its content.
+  * @param reviewer
+  *   - An individual or organization primarily responsible for review of some aspect of the content.
+  * @param endorser
+  *   - An individual or organization responsible for officially endorsing the content for use in some setting.
+  * @param priority
+  *   - Indicates how quickly the activity should be addressed with respect to other requests.
+  * @param location
+  *   - Identifies the facility where the activity will occur; e.g. home, hospital, specific clinic, etc.
+  * @param quantity
+  *   - Identifies the quantity expected to be consumed at once (per dose, per meal, etc.).
+  * @param bodySite
+  *   - Indicates the sites on the subject's body where the procedure should be performed (I.e. the target sites).
+  * @param contained
+  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   identified independently, and nor can they have their own independent transaction scope.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
+  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
+  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
+  *   met as part of the definition of the extension.
+  * @param publisher
+  *   - The name of the organization or individual that published the activity definition.
+  * @param copyright
+  *   - A copyright statement relating to the activity definition and/or its contents. Copyright statements are
+  *   generally legal restrictions on the use and publishing of the activity definition.
+  * @param timing
+  *   - The period, timing or frequency upon which the described activity is to occur.
+  * @param transform
+  *   - A reference to a StructureMap resource that defines a transform that can be executed to produce the intent
+  *   resource using the ActivityDefinition instance as the input.
+  * @param identifier
+  *   - A formal identifier that is used to identify this activity definition when it is represented in other formats,
+  *   or referenced in a specification, model, design or an instance.
+  * @param subject
+  *   - A code or group definition that describes the intended subject of the activity being defined.
+  * @param useContext
+  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may
+  *   be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...)
+  *   and may be used to assist with indexing and searching for appropriate activity definition instances.
+  * @param product
+  *   - Identifies the food, drug or other product being consumed or supplied in the activity.
+  * @param description
+  *   - A free text natural language description of the activity definition from a consumer's perspective.
+  * @param experimental
+  *   - A Boolean value to indicate that this activity definition is authored for testing purposes (or
+  *   education/evaluation/marketing) and is not intended to be used for genuine usage.
+  * @param jurisdiction
+  *   - A legal or geographic region in which the activity definition is intended to be used.
+  * @param approvalDate
+  *   - The date on which the resource content was approved by the publisher. Approval happens once when the content is
+  *   officially approved for usage.
+  * @param doNotPerform
+  *   - Set this to true if the definition is to indicate that a particular activity should NOT be performed. If true,
+  *   this element should be interpreted to reinforce a negative coding. For example NPO as a code with a doNotPerform
+  *   of true would still indicate to NOT perform the action.
+  * @param implicitRules
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
+  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
+  *   along with other profiles etc.
+  * @param lastReviewDate
+  *   - The date on which the resource content was last reviewed. Review happens periodically after approval but does
+  *   not change the original approval date.
+  * @param effectivePeriod
+  *   - The period during which the activity definition content was or is planned to be in active use.
+  * @param relatedArtifact
+  *   - Related artifacts such as additional documentation, justification, or bibliographic references.
+  * @param modifierExtension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and
+  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
+  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
+  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
+  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
+  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
+  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
+  *   change the meaning of modifierExtension itself).
+  * @param specimenRequirement
+  *   - Defines specimen requirements for the action to be performed, such as required specimens for a lab test.
+  * @param observationRequirement
+  *   - Defines observation requirements for the action to be performed, such as body weight or surface area.
+  * @param observationResultRequirement
+  *   - Defines the observations that are expected to be produced by the action.
+  * @param participant
+  *   - Indicates who should participate in performing the action described.
+  * @param dynamicValue
+  *   - Dynamic values that will be evaluated to produce values for elements of the resulting resource. For example, if
+  *   the dosage of a medication must be computed based on the patient's weight, a dynamic value would be used to
+  *   specify an expression that calculated the weight, and the path on the request resource that would contain the
+  *   result.
   */
 @POJOBoilerplate
 class Shareableactivitydefinition(

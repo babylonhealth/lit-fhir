@@ -13,8 +13,8 @@ object UnionAliases {
   type Union00813350082 = Age | Boolean | FHIRDate
   type Union01054268719 = Canonical | CodeableConcept
   type Union01613806391 = BigDecimal | FHIRDate | FHIRDateTime | Int | LocalTime
-  type Union_1915626029 =
-    CodeableConcept | FHIRDateTime | LocalTime | Period | Quantity | Range | Ratio | SampledData | String
+  type Union_1915626029 = CodeableConcept | FHIRDateTime | LocalTime | Period | Quantity | Range | Ratio | SampledData |
+    String
   type Union_1946587936 = CodeableConcept | Range
 }
 

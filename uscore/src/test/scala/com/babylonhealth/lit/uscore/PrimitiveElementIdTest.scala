@@ -98,7 +98,7 @@ class PrimitiveElementIdTest extends AnyFreeSpec with Matchers {
 
   "can set extension with sugar" in {
     val value1: Extension.ValueChoice = choice(BigDecimal("789.987"))
-    val bar: Account                  = foo.extensions.set(Account.status)(LitSeq(Extension(url = "http://hi.ho", value = Some(value1))))
+    val bar: Account = foo.extensions.set(Account.status)(LitSeq(Extension(url = "http://hi.ho", value = Some(value1))))
     bar.extensions.get(Account.status) shouldEqual LitSeq(Extension(url = "http://hi.ho", value = Some(value1)))
     val bar2: Account = foo.setExtensions(_.status)(LitSeq(Extension(url = "http://hi.ho", value = Some(value1))))
     bar2.getExtensions(_.status) shouldEqual LitSeq(Extension(url = "http://hi.ho", value = Some(value1)))

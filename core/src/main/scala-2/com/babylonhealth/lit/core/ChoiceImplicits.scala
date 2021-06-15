@@ -20,9 +20,9 @@ abstract class UnionWitnessShim[U: LTag, T: LTag] {
 object ChoiceImplicits {
 
   /** This construction appears to be more powerful than an implicit macro construction, since it successfully infers an
-    * appropriate implicit for the `value = value.map(choice(_))` case, whereas experimenting with implicit
-    * macros left an unexpanded `U` type available to the macro (where the LHS value: Option[U] and the RHS value: Option[T])
-    * and consequently the type checking cannot occur... This might well be a solvable issue, but I didn't get there...
+    * appropriate implicit for the `value = value.map(choice(_))` case, whereas experimenting with implicit macros left
+    * an unexpanded `U` type available to the macro (where the LHS value: Option[U] and the RHS value: Option[T]) and
+    * consequently the type checking cannot occur... This might well be a solvable issue, but I didn't get there...
     */
   implicit def mkUnionWitnessBase[U](implicit ttt: LTag[U]): UnionWitness[U, U] =
     new UnionWitness {

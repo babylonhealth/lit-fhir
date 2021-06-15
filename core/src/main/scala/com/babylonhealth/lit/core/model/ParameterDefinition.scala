@@ -28,7 +28,7 @@ object ParameterDefinition extends CompanionFor[ParameterDefinition] {
   override type ParentType   = ParameterDefinition
   override val baseType: CompanionFor[ResourceType] = ParameterDefinition
   override val parentType: CompanionFor[ParentType] = ParameterDefinition
-  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ParameterDefinition")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/ParameterDefinition")
   def apply(
       id: Option[String] = None,
       use: OPERATION_PARAMETER_USE,
@@ -115,20 +115,38 @@ object ParameterDefinition extends CompanionFor[ParameterDefinition] {
       ))
 }
 
-/** Base StructureDefinition for ParameterDefinition Type: The parameters to the module. This collection specifies both the input and output parameters. Input parameters are provided by the caller as part of the $evaluate operation. Output parameters are included in the GuidanceResponse.
+/** Base StructureDefinition for ParameterDefinition Type: The parameters to the module. This collection specifies both
+  * the input and output parameters. Input parameters are provided by the caller as part of the $evaluate operation.
+  * Output parameters are included in the GuidanceResponse.
   *
-  *  Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a resource.)
+  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
+  * resource.)
   *
-  * @constructor Introduces the fields use, min, max, name, `type`, profile, documentation.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param use - Whether the parameter is input or output for the module.
-  * @param min - The minimum number of times this parameter SHALL appear in the request or response.
-  * @param max - The maximum number of times this element is permitted to appear in the request or response.
-  * @param name - The name of the parameter used to allow access to the value of the parameter in evaluation contexts.
-  * @param `type` - The type of the parameter.
-  * @param profile - If specified, this indicates a profile that the input data must conform to, or that the output data will conform to.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
-  * @param documentation - A brief discussion of what the parameter is for and how it is used by the module.
+  * @constructor
+  *   Introduces the fields use, min, max, name, `type`, profile, documentation.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param use
+  *   - Whether the parameter is input or output for the module.
+  * @param min
+  *   - The minimum number of times this parameter SHALL appear in the request or response.
+  * @param max
+  *   - The maximum number of times this element is permitted to appear in the request or response.
+  * @param name
+  *   - The name of the parameter used to allow access to the value of the parameter in evaluation contexts.
+  * @param `type`
+  *   - The type of the parameter.
+  * @param profile
+  *   - If specified, this indicates a profile that the input data must conform to, or that the output data will conform
+  *   to.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
+  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
+  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
+  *   part of the definition of the extension.
+  * @param documentation
+  *   - A brief discussion of what the parameter is for and how it is used by the module.
   */
 @POJOBoilerplate
 class ParameterDefinition(

@@ -197,14 +197,14 @@ abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecode
                log.debug(s"deserializing as $thisName")
                companion.decodeThis(x)(params)
              })
-              .recoverWith { case error: Throwable =>
-                val profs = profiles.mkString("[", ",", "]")
-                log.warn(
-                  s"meta.profile contains $profs, but this object fails to decode as ${companion.thisName}.",
-                  error)
-                if (params.tolerateProfileErrors) decodeWithResourceType else Failure(error)
-              }
-              .asInstanceOf[Try[T]]
+            .recoverWith { case error: Throwable =>
+              val profs = profiles.mkString("[", ",", "]")
+              log.warn(
+                s"meta.profile contains $profs, but this object fails to decode as ${companion.thisName}.",
+                error)
+              if (params.tolerateProfileErrors) decodeWithResourceType else Failure(error)
+            }
+            .asInstanceOf[Try[T]]
         }
     }
   }

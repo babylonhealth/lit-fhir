@@ -36,8 +36,8 @@ object serdes extends Utils {
       case bytes: Array[Byte] => Json.fromString(Base64.getEncoder.encodeToString(bytes))
       case j: Json            => j
       // unused?
-      case Left(l)   => serializeField(l)
-      case Right(l)  => serializeField(l)
+      case Left(l)  => serializeField(l)
+      case Right(l) => serializeField(l)
 //      case LHS(l)    => serializeField(l)
 //      case RHS(r)    => serializeField(r)
       case s: Double => Json fromDouble s getOrElse Json.Null

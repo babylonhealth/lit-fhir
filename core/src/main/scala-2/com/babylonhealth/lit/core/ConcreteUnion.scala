@@ -113,8 +113,8 @@ import com.babylonhealth.lit.core.\/.\::/
 
 /** Tends to accumulate on the left when used as Foo \/ Bar \/ Baz, so you'd have a LHS(LHS(Foo)) etc.
   *
-  * Operations on this class tend to be pretty slow because of all the <:< stuff, so avoid reification,
-  * and instead use this just for Choice[_] type parameters
+  * Operations on this class tend to be pretty slow because of all the <:< stuff, so avoid reification, and instead use
+  * this just for Choice[_] type parameters
   */
 sealed abstract class \/[L, R](implicit val ltt: LTag[L], val rtt: LTag[R]) {
   type Left  = L

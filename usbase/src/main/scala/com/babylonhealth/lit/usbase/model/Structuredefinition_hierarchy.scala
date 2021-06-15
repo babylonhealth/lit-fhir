@@ -54,8 +54,8 @@ object Structuredefinition_hierarchy extends CompanionFor[Structuredefinition_hi
     ))
   override def fields(t: Structuredefinition_hierarchy): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Structuredefinition_hierarchy): Option[String]                   = t.id
-  def extractValue(t: Structuredefinition_hierarchy): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
-  override val thisName: String                                                     = "Structuredefinition_hierarchy"
+  def extractValue(t: Structuredefinition_hierarchy): Boolean = t.value.get.toSubRefNonUnion[Boolean]
+  override val thisName: String                               = "Structuredefinition_hierarchy"
   override val searchParams: Map[String, Structuredefinition_hierarchy => Seq[Any]] = Extension.searchParams
   def unapply(o: Structuredefinition_hierarchy): Option[(Option[String], Boolean)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[Boolean]))
@@ -70,18 +70,24 @@ object Structuredefinition_hierarchy extends CompanionFor[Structuredefinition_hi
       ))
 }
 
-/** For circular references (references back to the same type of resource): whether they are allowed to transitively point back to the same instance (false), or whether the relationship must be a strict one-way hierarchy (true).
+/** For circular references (references back to the same type of resource): whether they are allowed to transitively
+  * point back to the same instance (false), or whether the relationship must be a strict one-way hierarchy (true).
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
+  * found in all resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
+  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
+  *   the value of the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Structuredefinition_hierarchy(

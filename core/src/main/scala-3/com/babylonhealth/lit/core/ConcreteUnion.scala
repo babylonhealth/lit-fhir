@@ -16,7 +16,7 @@ object \/ {
   def typetagFromType[T](tpe: LightTypeTag): LTag[T] = new LTag[T](tpe)
 
   val typeSuffixMap2: LightTypeTagRef => Option[String] = {
-    val map = suffixTypeMap.map{ case (suff, tpe) => tpe.ref -> suff }
+    val map = suffixTypeMap.map { case (suff, tpe) => tpe.ref -> suff }
     map.get(_)
   }
 

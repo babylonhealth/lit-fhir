@@ -7,7 +7,6 @@ import io.circe.{ Decoder, DecodingFailure, Encoder, HCursor, Json }
 
 import com.babylonhealth.lit.core.{ EnumBase, EType, ToCodingAble, ETypeWithFallback }
 import com.babylonhealth.lit.core.model.Coding
-
 enum CHOICE_LIST_ORIENTATION(val name: String, val display: Option[String], val system: Option[String])
     extends ToCodingAble {
   case HORIZONTAL

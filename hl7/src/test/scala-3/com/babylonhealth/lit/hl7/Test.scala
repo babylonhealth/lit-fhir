@@ -97,8 +97,8 @@ object TestUnionWrapper3 extends CompanionFor[TestUnionWrapper3] {
       lTagOf[Choice[String | Boolean | Int]],
       true,
       lTagOf[Choice[String | Boolean | Int]])
-  val fieldCode: FHIRComponentFieldMeta[Code]                                         = FHIRComponentFieldMeta("fieldCode", lTagOf[Code], false, lTagOf[Code])
-  val fieldsMeta                                                                      = Seq(field, fieldCode)
+  val fieldCode: FHIRComponentFieldMeta[Code] = FHIRComponentFieldMeta("fieldCode", lTagOf[Code], false, lTagOf[Code])
+  val fieldsMeta                              = Seq(field, fieldCode)
   override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: TestUnionWrapper3): Seq[FHIRComponentField[_]] =
     Seq(

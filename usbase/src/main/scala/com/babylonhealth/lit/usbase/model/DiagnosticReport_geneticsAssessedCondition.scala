@@ -56,7 +56,7 @@ object DiagnosticReport_geneticsAssessedCondition extends CompanionFor[Diagnosti
     t).get
   def extractId(t: DiagnosticReport_geneticsAssessedCondition): Option[String] = t.id
   def extractValue(t: DiagnosticReport_geneticsAssessedCondition): Reference   = t.value.get.toSubRefNonUnion[Reference]
-  override val thisName: String                                                = "DiagnosticReport_geneticsAssessedCondition"
+  override val thisName: String = "DiagnosticReport_geneticsAssessedCondition"
   override val searchParams: Map[String, DiagnosticReport_geneticsAssessedCondition => Seq[Any]] =
     Extension.searchParams
   def unapply(o: DiagnosticReport_geneticsAssessedCondition): Option[(Option[String], Reference)] = Some(
@@ -72,18 +72,24 @@ object DiagnosticReport_geneticsAssessedCondition extends CompanionFor[Diagnosti
       ))
 }
 
-/** Used to denote condition context for genetic testing, which may influence reported variants and interpretation for large genomic testing panels e.g. lung cancer or familial breast cancer.
+/** Used to denote condition context for genetic testing, which may influence reported variants and interpretation for
+  * large genomic testing panels e.g. lung cancer or familial breast cancer.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
+  * found in all resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
+  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
+  *   the value of the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class DiagnosticReport_geneticsAssessedCondition(

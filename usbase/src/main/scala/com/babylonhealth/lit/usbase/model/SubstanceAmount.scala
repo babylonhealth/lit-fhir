@@ -60,7 +60,7 @@ object SubstanceAmount extends CompanionFor[SubstanceAmount] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val highLimit: FHIRComponentFieldMeta[Option[Quantity]] =
       FHIRComponentFieldMeta("highLimit", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, lowLimit, extension, highLimit)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, lowLimit, extension, highLimit)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: ReferenceRange): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -167,19 +167,48 @@ object SubstanceAmount extends CompanionFor[SubstanceAmount] {
       ))
 }
 
-/** Base StructureDefinition for SubstanceAmount Type: Chemical substances are a single substance type whose primary defining element is the molecular structure. Chemical substances shall be defined on the basis of their complete covalent molecular structure; the presence of a salt (counter-ion) and/or solvates (water, alcohols) is also captured. Purity, grade, physical form or particle size are not taken into account in the definition of a chemical substance or in the assignment of a Substance ID.
+/** Base StructureDefinition for SubstanceAmount Type: Chemical substances are a single substance type whose primary
+  * defining element is the molecular structure. Chemical substances shall be defined on the basis of their complete
+  * covalent molecular structure; the presence of a salt (counter-ion) and/or solvates (water, alcohols) is also
+  * captured. Purity, grade, physical form or particle size are not taken into account in the definition of a chemical
+  * substance or in the assignment of a Substance ID.
   *
-  *  Subclass of [[core.model.BackboneElement]] (Base StructureDefinition for BackboneElement Type: Base definition for all elements that are defined inside a resource - but not those in a data type.)
+  * Subclass of [[core.model.BackboneElement]] (Base StructureDefinition for BackboneElement Type: Base definition for
+  * all elements that are defined inside a resource - but not those in a data type.)
   *
-  * @constructor Introduces the fields amount, amountType, amountText, referenceRange.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
-  * @param amount - Used to capture quantitative values for a variety of elements. If only limits are given, the arithmetic mean would be the average. If only a single definite value for a given element is given, it would be captured in this field.
-  * @param amountType - Most elements that require a quantitative value will also have a field called amount type. Amount type should always be specified because the actual value of the amount is often dependent on it. EXAMPLE: In capturing the actual relative amounts of substances or molecular fragments it is essential to indicate whether the amount refers to a mole ratio or weight ratio. For any given element an effort should be made to use same the amount type for all related definitional elements.
-  * @param amountText - A textual comment on a numeric value.
-  * @param modifierExtension - May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  * Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
-  * @param referenceRange - Reference range of possible or expected values.
+  * @constructor
+  *   Introduces the fields amount, amountType, amountText, referenceRange.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
+  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
+  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
+  *   part of the definition of the extension.
+  * @param amount
+  *   - Used to capture quantitative values for a variety of elements. If only limits are given, the arithmetic mean
+  *   would be the average. If only a single definite value for a given element is given, it would be captured in this
+  *   field.
+  * @param amountType
+  *   - Most elements that require a quantitative value will also have a field called amount type. Amount type should
+  *   always be specified because the actual value of the amount is often dependent on it. EXAMPLE: In capturing the
+  *   actual relative amounts of substances or molecular fragments it is essential to indicate whether the amount refers
+  *   to a mole ratio or weight ratio. For any given element an effort should be made to use same the amount type for
+  *   all related definitional elements.
+  * @param amountText
+  *   - A textual comment on a numeric value.
+  * @param modifierExtension
+  *   - May be used to represent additional information that is not part of the basic definition of the element and that
+  *   modifies the understanding of the element in which it is contained and/or the understanding of the containing
+  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
+  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
+  *   any implementer can define an extension, there is a set of requirements that SHALL be met as part of the
+  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
+  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
+  *   change the meaning of modifierExtension itself).
+  * @param referenceRange
+  *   - Reference range of possible or expected values.
   */
 @POJOBoilerplate
 class SubstanceAmount(

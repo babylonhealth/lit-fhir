@@ -31,7 +31,7 @@ object Observation_focusCode extends CompanionFor[Observation_focusCode] {
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/observation-focusCode")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/observation-focusCode")
   def apply(
       id: Option[String] = None,
       value: CodeableConcept,
@@ -53,8 +53,8 @@ object Observation_focusCode extends CompanionFor[Observation_focusCode] {
     ))
   override def fields(t: Observation_focusCode): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Observation_focusCode): Option[String]                   = t.id
-  def extractValue(t: Observation_focusCode): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
-  override val thisName: String                                             = "Observation_focusCode"
+  def extractValue(t: Observation_focusCode): CodeableConcept = t.value.get.toSubRefNonUnion[CodeableConcept]
+  override val thisName: String                               = "Observation_focusCode"
   override val searchParams: Map[String, Observation_focusCode => Seq[Any]] = Extension.searchParams
   def unapply(o: Observation_focusCode): Option[(Option[String], CodeableConcept)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
@@ -69,18 +69,27 @@ object Observation_focusCode extends CompanionFor[Observation_focusCode] {
       ))
 }
 
-/** A code representing the  focus of an observation when the focus is not the patient of record.  In other words, the focus of the observation is different from `Observation.subject`.   An example use case would be using the *Observation* resource to capture whether the mother is trained to change her child's tracheostomy tube.  In this example, the child is the patient of record and the mother is focal subject referenced using this extension.  Other example focal subjects include spouses, related persons, feti, or  donors.
+/** A code representing the focus of an observation when the focus is not the patient of record. In other words, the
+  * focus of the observation is different from `Observation.subject`. An example use case would be using the
+  * *Observation* resource to capture whether the mother is trained to change her child's tracheostomy tube. In this
+  * example, the child is the patient of record and the mother is focal subject referenced using this extension. Other
+  * example focal subjects include spouses, related persons, feti, or donors.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
+  * found in all resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
+  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
+  *   the value of the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Observation_focusCode(

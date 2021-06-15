@@ -5,16 +5,16 @@ import java.util.Date
 
 import scala.collection.mutable
 import scala.reflect.classTag
-import scala.util.{Success, Try}
+import scala.util.{ Success, Try }
 
 import io.circe.HCursor
 
-import com.babylonhealth.lit.core.TagSummoners.{lTagOf, lTypeOf}
+import com.babylonhealth.lit.core.TagSummoners.{ lTagOf, lTypeOf }
 import com.babylonhealth.lit.core._
 
 //import io.circe.generic.auto._
 import io.circe.Json
-import io.circe.parser.{decode, parse}
+import io.circe.parser.{ decode, parse }
 import io.circe.syntax._
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
@@ -22,7 +22,7 @@ import org.skyscreamer.jsonassert.JSONAssert
 
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.model._
-import com.babylonhealth.lit.core.serdes.{objectDecoder, objectEncoder}
+import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
 import com.babylonhealth.lit.hl7.model._
 
 case class TestUnionWrapper1(field: Choice[String \/ Boolean]) extends FHIRObject {
@@ -92,8 +92,8 @@ object TestUnionWrapper3 extends CompanionFor[TestUnionWrapper3] {
       lTagOf[Choice[String \/ Boolean \/ Int]],
       true,
       lTagOf[Choice[String \/ Boolean \/ Int]])
-  val fieldCode: FHIRComponentFieldMeta[Code]                                         = FHIRComponentFieldMeta("fieldCode", lTagOf[Code], false, lTagOf[Code])
-  val fieldsMeta                                                                      = Seq(field, fieldCode)
+  val fieldCode: FHIRComponentFieldMeta[Code] = FHIRComponentFieldMeta("fieldCode", lTagOf[Code], false, lTagOf[Code])
+  val fieldsMeta                              = Seq(field, fieldCode)
   override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: TestUnionWrapper3): Seq[FHIRComponentField[_]] =
     Seq(

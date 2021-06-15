@@ -177,7 +177,7 @@ class SerdeParameterisationTest extends AnyFreeSpec with Matchers with FileUtils
       implicit val params: DecoderParams = DecoderParams(flexibleCardinality = true)
       val decoded                        = decode[HumanName](bad)
       decoded.isRight shouldEqual true
-      decoded.right.get shouldEqual HumanName(family = Some("Sanchez"), given = LitSeq("Rick"))
+      decoded.right.get shouldEqual HumanName(family = Some("Sanchez"), `given` = LitSeq("Rick"))
     }
     "succeeds if array field is given as object if flexibleCardinality=true, even if it gets decoded via the decodeFromListAs path" in {
       val x1 = Triglyceride(

@@ -22,8 +22,8 @@ class OldMiscTest extends AnyFreeSpec with Matchers {
       val x: String | Boolean | Int = "lol"
       x should matchPattern { case "lol": String => }
       val y: String | Boolean | Int = false
-      y should matchPattern { case false : Boolean => }
-      val z: String | Boolean | Int =  123
+      y should matchPattern { case false: Boolean => }
+      val z: String | Boolean | Int = 123
       z should matchPattern { case 123: Int => }
     }
     "can make a binary union (in Ref)" in {
