@@ -15,8 +15,8 @@ class ExtensionExtraction extends AnyFreeSpec with Matchers {
   }
   "should copy ok" in {
     val ext  = Data_absent_reason(value = DATA_ABSENT_REASON.ASKED_BUT_DECLINED)
-    val ext1 = ext.withValue(DATA_ABSENT_REASON.TEMPORARILY_UNKNOWN)
-    val ext2 = ext1.withValue(DATA_ABSENT_REASON.ASKED_BUT_DECLINED)
+    val ext1 = ext.set(_.value)(DATA_ABSENT_REASON.TEMPORARILY_UNKNOWN)
+    val ext2 = ext1.set(_.value)(DATA_ABSENT_REASON.ASKED_BUT_DECLINED)
     ext2 shouldEqual ext
     ext1 shouldNot equal(ext)
     Data_absent_reason.extractValue(ext2) shouldEqual DATA_ABSENT_REASON.ASKED_BUT_DECLINED
