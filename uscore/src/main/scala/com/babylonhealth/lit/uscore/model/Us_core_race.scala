@@ -74,11 +74,11 @@ object Us_core_race extends CompanionFor[Us_core_race] {
   * Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for
   * representing race and ethnicity of which 921 reference race. The race concepts are grouped by and pre-mapped to the
   * 5 OMB race categories:
-  *   - American Indian or Alaska Native
-  *   - Asian
-  *   - Black or African American
-  *   - Native Hawaiian or Other Pacific Islander
-  *   - White.
+  * - American Indian or Alaska Native
+  * - Asian
+  * - Black or African American
+  * - Native Hawaiian or Other Pacific Islander
+  * - White.
   *
   * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
   * found in all resources.)

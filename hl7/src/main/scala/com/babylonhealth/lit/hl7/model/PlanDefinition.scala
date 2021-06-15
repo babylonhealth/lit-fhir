@@ -1229,8 +1229,8 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
   *   not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is
   *   not available. There is also no expectation that versions can be placed in a lexicographical sequence. To provide
   *   a version consistent with the Decision Support Service specification, use the format Major.Minor.Revision (e.g.
-  * 1.0.0). For more information on versioning knowledge assets, refer to the Decision Support Service specification.
-  * Note that a version is required for non-experimental active artifacts.
+  *   1.0.0). For more information on versioning knowledge assets, refer to the Decision Support Service specification.
+  *   Note that a version is required for non-experimental active artifacts.
   * @param contact
   *   - Contact details to assist a user in finding and communicating with the publisher.
   * @param purpose

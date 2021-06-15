@@ -13,8 +13,8 @@ import com.babylonhealth.lit.usbase.model.{ Data_absent_reason, Workflow_reasonC
 
 class EncodeAndDecodeExtensions extends AnyFreeSpec with Matchers {
   val askedButDeclined: DATA_ABSENT_REASON = DATA_ABSENT_REASON.ASKED_BUT_DECLINED
-  val ext1 = Workflow_reasonCode(value = CodeableConcept(text = Some("foo")))
-  val ext2 = Data_absent_reason(value = DATA_ABSENT_REASON.ASKED_BUT_DECLINED)
+  val ext1                                 = Workflow_reasonCode(value = CodeableConcept(text = Some("foo")))
+  val ext2                                 = Data_absent_reason(value = DATA_ABSENT_REASON.ASKED_BUT_DECLINED)
   val ext1Json =
     """{
       |  "url" : "http://hl7.org/fhir/StructureDefinition/workflow-reasonCode",

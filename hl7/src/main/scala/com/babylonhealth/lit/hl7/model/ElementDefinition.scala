@@ -1044,8 +1044,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
   *   pattern[x] array must (recursively) match at least one element from the instance array. When pattern[x] is used to
   *   constrain a complex object, it means that each property in the pattern must be present in the complex object, and
   *   its value must recursively match -- i.e.,
-  *   1. If primitive: it must match exactly the pattern value 2. If a complex object: it must match (recursively) the
-  *      pattern value 3. If an array: it must match (recursively) the pattern value.
+  * 1. If primitive: it must match exactly the pattern value 2. If a complex object: it must match (recursively) the
+  * pattern value 3. If an array: it must match (recursively) the pattern value.
   * @param isModifier
   *   - If true, the value of this element affects the interpretation of the element or resource that contains it, and
   *   the value of the element cannot be ignored. Typically, this is used for status, negation and qualification codes.
