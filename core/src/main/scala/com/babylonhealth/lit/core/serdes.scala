@@ -38,8 +38,8 @@ object serdes extends Utils {
       // unused?
       case Left(l)   => serializeField(l)
       case Right(l)  => serializeField(l)
-      case LHS(l)    => serializeField(l)
-      case RHS(r)    => serializeField(r)
+//      case LHS(l)    => serializeField(l)
+//      case RHS(r)    => serializeField(r)
       case s: Double => Json fromDouble s getOrElse Json.Null
       case x =>
         log.error(s"Unmatched case in serializeField (${x.getClass})")

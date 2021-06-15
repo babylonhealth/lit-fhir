@@ -13,24 +13,24 @@ class OldMiscTest extends AnyFreeSpec with Matchers {
 
   "union methods" - {
     "can make a binary union" in {
-      val x: String \/ Boolean = \/ build "lol"
-      x should matchPattern { case LHS("lol") => }
-      val y: String \/ Boolean = \/ build false
-      y should matchPattern { case RHS(false) => }
+      val x: String | Boolean = "lol"
+      x should matchPattern { case "lol": String => }
+      val y: String | Boolean = false
+      y should matchPattern { case false: Boolean => }
     }
     "can make a trinary union" in {
-      val x: String \/ Boolean \/ Int = \/ build "lol"
+      val x: String | Boolean | Int = "lol"
       x should matchPattern { case LHS(LHS("lol")) => }
-      val y: String \/ Boolean \/ Int = \/ build false
-      y should matchPattern { case LHS(RHS(false)) => }
-      val z: String \/ Boolean \/ Int = \/ build 123
-      z should matchPattern { case RHS(123) => }
+      val y: String | Boolean | Int = false
+      y should matchPattern { case false : Boolean => }
+      val z: String | Boolean | Int =  123
+      z should matchPattern { case 123: Int => }
     }
     "can make a binary union (in Ref)" in {
       //      def x                         = Ref.apply _
-      val x: Choice[String \/ Boolean] = choice("lol")
+      val x: Choice[String | Boolean] = choice("lol")
       x.toUnion should matchPattern { case LHS("lol") => }
-      val y: Choice[String \/ Boolean] = choice(false)
+      val y: Choice[String | Boolean] = choice(false)
       y.toUnion should matchPattern { case RHS(false) => }
     }
     "can make a trinary union (in Ref)" in {
