@@ -13,6 +13,9 @@ object TagSummoners {
 import TagSummoners._
 
 object \/ {
+  def \::/[L, R](implicit lt: LTag[L], rt: LTag[R]): LTag[L \/ R] =
+    new LTag[L \/ R](Tag.appliedTag(TagKK[\/], List(lt.tag, rt.tag)).tag)
+
   def typetagFromType[T](tpe: LightTypeTag): LTag[T] = new LTag[T](tpe)
 
   val unappliedLTag = TagKK[\/].tag.withoutArgs
@@ -105,6 +108,8 @@ object \/ {
       case t => typeSuffixMap(t).toSet
     }
 }
+
+import com.babylonhealth.lit.core.\/.\::/
 
 /** Tends to accumulate on the left when used as Foo \/ Bar \/ Baz, so you'd have a LHS(LHS(Foo)) etc.
   *

@@ -4,6 +4,7 @@ import scala.annotation.implicitNotFound
 
 import izumi.reflect.macrortti.LTag
 
+import com.babylonhealth.lit.core.\/.\::/
 import com.babylonhealth.lit.core.model.typeSuffixMap
 
 abstract class UnionWitness[U, T] private[core] (implicit ut: LTag[U], val tt: LTag[T]) {
