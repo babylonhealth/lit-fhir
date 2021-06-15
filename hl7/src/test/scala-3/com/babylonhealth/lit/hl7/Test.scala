@@ -27,94 +27,93 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
 import com.babylonhealth.lit.hl7.model._
 
-//case class TestUnionWrapper1(
-//    val field: Choice[String | Boolean],
-//    override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
-//    extends FHIRObject(FHIRObject.emptyAtts) {
-////  override val companion: CompanionFor[TestUnionWrapper1.this.type] = null
-//  def thisTypeName: String                                          = "TestUnionWrapper1"
-//}
+case class TestUnionWrapper1(
+    val field: Choice[String | Boolean],
+    override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
+    extends FHIRObject(FHIRObject.emptyAtts) {
+  def thisTypeName: String = "TestUnionWrapper1"
+}
 
-//case class TestUnionWrapper2(field: Choice[String | Boolean | Int]) extends FHIRObject {
-//  def thisTypeName: String = "TestUnionWrapper2"
-//}
-//
-//case class TestUnionWrapper3(field: Choice[String | Boolean | Int], fieldCode: Code) extends FHIRObject {
-//  def thisTypeName: String = "TestUnionWrapper3"
-//}
+case class TestUnionWrapper2(field: Choice[String | Boolean | Int]) extends FHIRObject {
+  def thisTypeName: String = "TestUnionWrapper2"
+}
 
-//object TestUnionWrapper1 extends CompanionFor[TestUnionWrapper1] {
-//  override type ResourceType = TestUnionWrapper1
-//  override type ParentType   = TestUnionWrapper1
-//  val baseType                            = TestUnionWrapper1
-//  val parentType                          = TestUnionWrapper1
-//  val thisName: String                    = "TestUnionWrapper1"
-//  override val profileUrl: Option[String] = Some(thisName)
-//  val field: FHIRComponentFieldMeta[Choice[String | Boolean]] =
-//    FHIRComponentFieldMeta("field", lTagOf[Choice[String | Boolean]], true, lTagOf[Choice[String | Boolean]])
-//  val fieldsMeta                                                                      = Seq(field)
-//  override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
-//  override def fields(t: TestUnionWrapper1): Seq[FHIRComponentField[_]] =
-//    Seq(FHIRComponentField(field, t.field))
-//  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper1] =
-//    Try(
-//      TestUnionWrapper1(cursor.decodeRef("field"))
-//    )
-//}
+case class TestUnionWrapper3(field: Choice[String | Boolean | Int], fieldCode: Code) extends FHIRObject {
+  def thisTypeName: String = "TestUnionWrapper3"
+}
 
-//object TestUnionWrapper2 extends CompanionFor[TestUnionWrapper2] {
-//  override type ResourceType = TestUnionWrapper2
-//  override type ParentType   = TestUnionWrapper2
-//  val baseType                            = TestUnionWrapper2
-//  val parentType                          = TestUnionWrapper2
-//  val thisName: String                    = "TestUnionWrapper2"
-//  override val profileUrl: Option[String] = Some(thisName)
-//  val field: FHIRComponentFieldMeta[Choice[String | Boolean | Int]] =
-//    FHIRComponentFieldMeta(
-//      "field",
-//      lTagOf[Choice[String | Boolean | Int]],
-//      true,
-//      lTagOf[Choice[String | Boolean | Int]])
-//  val fieldsMeta                                                                      = Seq(field)
-//  override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
-//  override def fields(t: TestUnionWrapper2): Seq[FHIRComponentField[_]] =
-//    Seq(FHIRComponentField(field, t.field))
-//  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper2] =
-//    Try(
-//      TestUnionWrapper2(cursor.decodeRef("field"))
-//    )
-//}
-//
-//object TestUnionWrapper3 extends CompanionFor[TestUnionWrapper3] {
-//  override type ResourceType = TestUnionWrapper3
-//  override type ParentType   = TestUnionWrapper3
-//  val baseType                            = TestUnionWrapper3
-//  val parentType                          = TestUnionWrapper3
-//  val thisName: String                    = "TestUnionWrapper3"
-//  override val profileUrl: Option[String] = Some(thisName)
-//  val field: FHIRComponentFieldMeta[Choice[String | Boolean | Int]] =
-//    FHIRComponentFieldMeta(
-//      "field",
-//      lTagOf[Choice[String | Boolean | Int]],
-//      true,
-//      lTagOf[Choice[String | Boolean | Int]])
-//  val fieldCode: FHIRComponentFieldMeta[Code]                                         = FHIRComponentFieldMeta("fieldCode", lTagOf[Code], false, lTagOf[Code])
-//  val fieldsMeta                                                                      = Seq(field, fieldCode)
-//  override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
-//  override def fields(t: TestUnionWrapper3): Seq[FHIRComponentField[_]] =
-//    Seq(
-//      FHIRComponentField(field, t.field),
-//      FHIRComponentField(fieldCode, t.fieldCode)
-//    )
-//  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper3] =
-//    Try(
-//      TestUnionWrapper3(
-//        cursor.decodeRef("field"),
-//        cursor.decodeAs[Code]("fieldCode", None)
-//      )
-//    )
-//}
-//
+object TestUnionWrapper1 extends CompanionFor[TestUnionWrapper1] {
+  override type ResourceType = TestUnionWrapper1
+  override type ParentType   = TestUnionWrapper1
+  val baseType                            = TestUnionWrapper1
+  val parentType                          = TestUnionWrapper1
+  val thisName: String                    = "TestUnionWrapper1"
+  override val profileUrl: Option[String] = Some(thisName)
+  val field: FHIRComponentFieldMeta[Choice[String | Boolean]] =
+    FHIRComponentFieldMeta("field", lTagOf[Choice[String | Boolean]], true, lTagOf[Choice[String | Boolean]])
+  val fieldsMeta                                                                      = Seq(field)
+  override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
+  override def fields(t: TestUnionWrapper1): Seq[FHIRComponentField[_]] =
+    Seq(FHIRComponentField(field, t.field))
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper1] =
+    Try(
+      TestUnionWrapper1(cursor.decodeRef("field"))
+    )
+}
+
+object TestUnionWrapper2 extends CompanionFor[TestUnionWrapper2] {
+  override type ResourceType = TestUnionWrapper2
+  override type ParentType   = TestUnionWrapper2
+  val baseType                            = TestUnionWrapper2
+  val parentType                          = TestUnionWrapper2
+  val thisName: String                    = "TestUnionWrapper2"
+  override val profileUrl: Option[String] = Some(thisName)
+  val field: FHIRComponentFieldMeta[Choice[String | Boolean | Int]] =
+    FHIRComponentFieldMeta(
+      "field",
+      lTagOf[Choice[String | Boolean | Int]],
+      true,
+      lTagOf[Choice[String | Boolean | Int]])
+  val fieldsMeta                                                                      = Seq(field)
+  override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
+  override def fields(t: TestUnionWrapper2): Seq[FHIRComponentField[_]] =
+    Seq(FHIRComponentField(field, t.field))
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper2] =
+    Try(
+      TestUnionWrapper2(cursor.decodeRef("field"))
+    )
+}
+
+object TestUnionWrapper3 extends CompanionFor[TestUnionWrapper3] {
+  override type ResourceType = TestUnionWrapper3
+  override type ParentType   = TestUnionWrapper3
+  val baseType                            = TestUnionWrapper3
+  val parentType                          = TestUnionWrapper3
+  val thisName: String                    = "TestUnionWrapper3"
+  override val profileUrl: Option[String] = Some(thisName)
+  val field: FHIRComponentFieldMeta[Choice[String | Boolean | Int]] =
+    FHIRComponentFieldMeta(
+      "field",
+      lTagOf[Choice[String | Boolean | Int]],
+      true,
+      lTagOf[Choice[String | Boolean | Int]])
+  val fieldCode: FHIRComponentFieldMeta[Code]                                         = FHIRComponentFieldMeta("fieldCode", lTagOf[Code], false, lTagOf[Code])
+  val fieldsMeta                                                                      = Seq(field, fieldCode)
+  override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
+  override def fields(t: TestUnionWrapper3): Seq[FHIRComponentField[_]] =
+    Seq(
+      FHIRComponentField(field, t.field),
+      FHIRComponentField(fieldCode, t.fieldCode)
+    )
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TestUnionWrapper3] =
+    Try(
+      TestUnionWrapper3(
+        cursor.decodeRef("field"),
+        cursor.decodeAs[Code]("fieldCode", None)
+      )
+    )
+}
+
 class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
   implicit def _fromSeq[T](seq: Seq[T]): LitSeq[T] = new LitSeq[T](seq)
   val expectedAccountJson =
@@ -165,23 +164,23 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
       val z: Choice[String | Boolean | Int] = choice(123)
       z.value should matchPattern { case 123: Int => }
     }
-//    "can make type inference for a binary union field" in {
-//      val x = TestUnionWrapper1(choice("lol"))
-//      x should matchPattern { case TestUnionWrapper1(Choice("String", "lol")) => }
-//      val y = TestUnionWrapper1(choice(false))
-//      y should matchPattern { case TestUnionWrapper1(Choice("Boolean", false)) =>
-//      }
-//    }
-//    "can make type inference for a trinary union field" in {
-//      val x = TestUnionWrapper2(choice("lol"))
-//      x should matchPattern { case TestUnionWrapper2(Choice("String", "lol")) => }
-//      val y = TestUnionWrapper2(choice(false))
-//      y should matchPattern { case TestUnionWrapper2(Choice("Boolean", false)) =>
-//      }
-//      val z = TestUnionWrapper2(choice(123))
-//      z should matchPattern { case TestUnionWrapper2(Choice("Integer", 123)) =>
-//      }
-//    }
+    "can make type inference for a binary union field" in {
+      val x = TestUnionWrapper1(choice("lol"))
+      x should matchPattern { case TestUnionWrapper1(Choice("String", "lol"), _) => }
+      val y = TestUnionWrapper1(choice(false))
+      y should matchPattern { case TestUnionWrapper1(Choice("Boolean", false), _) =>
+      }
+    }
+    "can make type inference for a trinary union field" in {
+      val x = TestUnionWrapper2(choice("lol"))
+      x should matchPattern { case TestUnionWrapper2(Choice("String", "lol")) => }
+      val y = TestUnionWrapper2(choice(false))
+      y should matchPattern { case TestUnionWrapper2(Choice("Boolean", false)) =>
+      }
+      val z = TestUnionWrapper2(choice(123))
+      z should matchPattern { case TestUnionWrapper2(Choice("Integer", 123)) =>
+      }
+    }
 //    "Ref.fromVal throws if type is unascribable" in {
 //      val x = Try(TestUnionWrapper2(Choice fromVal 0.3))
 //      x.isFailure shouldEqual true
@@ -189,9 +188,9 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
 //      throwable.isInstanceOf[RuntimeException] shouldEqual true
 //      throwable.getMessage shouldEqual "Cannot ascribe type String \\/ Boolean \\/ Int to type LTag(Double)"
 //    }
-//    "choice won't even compile if type is unascribable" in {
-//      assertTypeError("TestUnionWrapper2(choice(0.3))")
-//    }
+    "choice won't even compile if type is unascribable" in {
+      assertTypeError("TestUnionWrapper2(choice(0.3))")
+    }
   }
 
   "serde" - {
@@ -205,34 +204,34 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
       JSONAssert.assertEquals(expectedAccountJson, jstr, true)
     }
     "union field [de]serialization" - {
-//      "serialization (1)" in {
-//        val str         = TestUnionWrapper1(choice("entered-in-error"))
-//        val strJson     = str.asJson.noSpaces
-//        val expectedStr = """{"fieldString":"entered-in-error"}"""
-//        JSONAssert.assertEquals(expectedStr, strJson, true)
-//      }
-//      "serialization (2)" in {
-//        val bool        = TestUnionWrapper1(choice(false))
-//        val boolJson    = bool.asJson.noSpaces
-//        val expectedStr = """{"fieldBoolean":false}"""
-//        JSONAssert.assertEquals(expectedStr, boolJson, true)
-//      }
-//      "deserialization (1)" in {
-//        val str     = TestUnionWrapper1(choice("lol"))
-//        val strJson = str.asJson.noSpaces
-//        val deser   = decode[TestUnionWrapper1](strJson)
-//        deser.isRight shouldEqual true
-//        println("`" + deser.right.get.field.value + "`\t" + deser.right.get.field.value.getClass.toString)
-//        println("`" + str.field.value + "`\t" + str.field.value.getClass.toString)
-//        deser.right.get shouldEqual str
-//      }
-//      "deserialization (2)" in {
-//        val bool     = TestUnionWrapper1(choice(false))
-//        val boolJson = bool.asJson.noSpaces
-//        val deser    = decode[TestUnionWrapper1](boolJson)
-//        deser.isRight shouldEqual true
-//        deser.right.get shouldEqual bool
-//      }
+      "serialization (1)" in {
+        val str         = TestUnionWrapper1(choice("entered-in-error"))
+        val strJson     = str.asJson.noSpaces
+        val expectedStr = """{"fieldString":"entered-in-error"}"""
+        JSONAssert.assertEquals(expectedStr, strJson, true)
+      }
+      "serialization (2)" in {
+        val bool        = TestUnionWrapper1(choice(false))
+        val boolJson    = bool.asJson.noSpaces
+        val expectedStr = """{"fieldBoolean":false}"""
+        JSONAssert.assertEquals(expectedStr, boolJson, true)
+      }
+      "deserialization (1)" in {
+        val str     = TestUnionWrapper1(choice("lol"))
+        val strJson = str.asJson.noSpaces
+        val deser   = decode[TestUnionWrapper1](strJson)
+        deser.isRight shouldEqual true
+        println("`" + deser.right.get.field.value + "`\t" + deser.right.get.field.value.getClass.toString)
+        println("`" + str.field.value + "`\t" + str.field.value.getClass.toString)
+        deser.right.get shouldEqual str
+      }
+      "deserialization (2)" in {
+        val bool     = TestUnionWrapper1(choice(false))
+        val boolJson = bool.asJson.noSpaces
+        val deser    = decode[TestUnionWrapper1](boolJson)
+        deser.isRight shouldEqual true
+        deser.right.get shouldEqual bool
+      }
     }
     "json deserialization, and equality" in {
       val s = mutable.Set[Account]()
@@ -397,27 +396,27 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
     e shouldEqual z
   }
 
-//  "can handle suffixes not being unique" in {
-//    val foo      = TestUnionWrapper3(choice(420), "lol")
-//    val fooStr   = foo.asJson.noSpaces
-//    val expected = """{"fieldCode":"lol","fieldInteger":420}"""
-//    JSONAssert.assertEquals(expected, fooStr, true)
-//    println(fooStr)
-//    val foo2 = decode[TestUnionWrapper3](fooStr)
-//    foo2.isRight shouldEqual true
-//    foo2.right.get shouldEqual foo
-//  }
-//  "Throws if conflicts are found for suffixes" in {
-//    val bad  = """{"fieldCode":"lol","fieldString":"lol","fieldInteger":420}"""
-//    val foo2 = decode[TestUnionWrapper3](bad)
-//    foo2.isLeft shouldEqual true
-//    foo2.left.get.getMessage should matchPattern {
-//      case x: String
-//          if x.startsWith(
-//            "More than one field matching field[x] was found. Fields were: [fieldString, fieldInteger]") =>
-//      case x: String
-//          if x.startsWith(
-//            "More than one field matching field[x] was found. Fields were: [fieldInteger, fieldString]") =>
-//    }
-//  }
+  "can handle suffixes not being unique" in {
+    val foo      = TestUnionWrapper3(choice(420), "lol")
+    val fooStr   = foo.asJson.noSpaces
+    val expected = """{"fieldCode":"lol","fieldInteger":420}"""
+    JSONAssert.assertEquals(expected, fooStr, true)
+    println(fooStr)
+    val foo2 = decode[TestUnionWrapper3](fooStr)
+    foo2.isRight shouldEqual true
+    foo2.right.get shouldEqual foo
+  }
+  "Throws if conflicts are found for suffixes" in {
+    val bad  = """{"fieldCode":"lol","fieldString":"lol","fieldInteger":420}"""
+    val foo2 = decode[TestUnionWrapper3](bad)
+    foo2.isLeft shouldEqual true
+    foo2.left.get.getMessage should matchPattern {
+      case x: String
+          if x.startsWith(
+            "More than one field matching field[x] was found. Fields were: [fieldString, fieldInteger]") =>
+      case x: String
+          if x.startsWith(
+            "More than one field matching field[x] was found. Fields were: [fieldInteger, fieldString]") =>
+    }
+  }
 }

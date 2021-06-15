@@ -16,8 +16,10 @@ build: build-all-class-models test
 benchmark:
 	$(SBT) "+bench/testOnly *RegressionBenchmarks${BENCH_NUMBER}"
 
-compile-core:
-	$(SBT) ++3.0.0 core/clean # Always need to clean core. Not sure why... 
+clean-scala-3:
+	$(SBT) ++3.0.0 core/clean hl7/clean usbase/clean uscore/clean core/test:clean hl7/test:clean usbase/test:clean uscore/test:clean
+ # Always need to clean scala 3 build on changes r/n...
+compile-core: clean-scala-3
 	$(SBT) +macros/compile $(foreach i,$(ALL_MODULES),+$i/compile) fhirpath/compile
 compile-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile)
