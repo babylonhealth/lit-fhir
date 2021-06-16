@@ -25,7 +25,7 @@ class ExtensionExtraction extends AnyFreeSpec with Matchers {
   "Do things" in {
     val ext1 = Data_absent_reason(value = DATA_ABSENT_REASON.ASKED_BUT_DECLINED)
     val ext2 =
-      Extension(url = Data_absent_reason.profileUrl.get, value = Some(choice(DATA_ABSENT_REASON.ASKED_BUT_DECLINED)))
+      Extension(url = Data_absent_reason.profileUrl.get, value = Some(choiceFromEnum(DATA_ABSENT_REASON.ASKED_BUT_DECLINED)))
     val fs = Data_absent_reason.fieldsFromParent(ext2).get
     println(s"FS: ${fs}")
     val ext3 = Data_absent_reason.cast(ext2).get
