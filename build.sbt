@@ -1,3 +1,4 @@
+import sbt.Def
 import sbt.Keys.{ libraryDependencies, logBuffered }
 
 val artifactoryHost = "artifactory.ops.babylontech.co.uk"
@@ -6,7 +7,7 @@ val artifactory     = s"https://$artifactoryHost/"
 val thisVersion = sys.props.get("version") getOrElse "local"
 
 val scala2Version = "2.13.6"
-val crossVersions = Seq(scala2Version, "3.0.1-RC1")
+val crossVersions = Seq(scala2Version, "3.0.0")
 
 def isScala2(version: String) = version startsWith "2"
 
@@ -91,13 +92,25 @@ lazy val generator = project
   )
   .dependsOn(common)
 
+// https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n
+def docExcludes: Seq[Def.Setting[Task[Seq[File]]]] = Seq(
+  Compile / doc / sources := {
+    if (isScala2(scalaVersion.value)) Compile / doc / sources value
+    else Compile / doc / sources map { _.filterNot(_.getName endsWith ".scala") } value
+  },
+  Test / doc / sources := {
+    if (isScala2(scalaVersion.value)) Test / doc / sources value
+    else Test / doc / sources map { _.filterNot(_.getName endsWith ".scala") } value
+  }
+)
+
 lazy val core = project
   .in(file("core"))
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
+  .settings(docExcludes: _*)
   .settings(
-    // https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n
-    Compile / doc / sources := { Compile / doc / sources map { _.filterNot(_.getName endsWith ".scala") } value },
+    // https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n,
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
@@ -122,9 +135,8 @@ lazy val hl7 = project
   .in(file("hl7"))
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
+  .settings(docExcludes: _*)
   .settings(
-    // https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n
-    Compile / doc / sources := { Compile / doc / sources map { _.filterNot(_.getName endsWith ".scala") } value },
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
@@ -141,9 +153,8 @@ lazy val uscore = project
   .in(file("uscore"))
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
+  .settings(docExcludes: _*)
   .settings(
-    // https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n
-    Compile / doc / sources := { Compile / doc / sources map { _.filterNot(_.getName endsWith ".scala") } value },
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
@@ -157,9 +168,8 @@ lazy val usbase = project
   .in(file("usbase"))
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
+  .settings(docExcludes: _*)
   .settings(
-    // https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n
-    Compile / doc / sources := { Compile / doc / sources map { _.filterNot(_.getName endsWith ".scala") } value },
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
