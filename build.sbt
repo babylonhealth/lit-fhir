@@ -15,7 +15,7 @@ val V = new {
   val circe                  = "0.14.1"
   val logback                = "1.2.3"
   val enumeratum             = "1.5.15"
-  val scalaMeterVersion      = "0.20"
+  val scalaMeterVersion      = "0.22.BBL"
   val izumiReflect           = "1.1.2"
   val litVersionForGenerator = "0.12.0"
   val scalaTest              = "3.2.9"
@@ -27,7 +27,7 @@ val V = new {
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
   version := thisVersion,
   organization := "com.babylonhealth.lit",
-  scalaVersion := versions.last,
+  scalaVersion := scala2Version,
   crossScalaVersions := versions,
   resolvers ++= Seq(
     Resolver.mavenLocal,
@@ -36,7 +36,8 @@ def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
   ),
   libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scala-lang" % "scala-reflect" % scala2Version)
                            else Nil),
-  scalacOptions += "-language:postfixOps"
+  scalacOptions += "-language:postfixOps",
+  scalacOptions ++= (if (!isScala2(scalaVersion.value)) Seq("-Ytasty-reader") else Nil)
 )
 val commonSettings = commonSettingsWithCrossVersions(crossVersions)
 // for now, Java  modules will be compiled against scala 2 (it's been more thorougly tested, and the setFoo API from
@@ -199,7 +200,7 @@ lazy val fhirpath = project
 // Scalameter Benchmark tests
 lazy val bench = project
   .in(file("bench"))
-  .settings(commonJSettings: _*)
+  .settings(commonSettings: _*)
   .settings(
     resolvers += "Sonatype OSS Snapshots" at
       "https://oss.sonatype.org/content/repositories/releases",
