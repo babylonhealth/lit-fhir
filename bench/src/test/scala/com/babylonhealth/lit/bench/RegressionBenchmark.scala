@@ -93,7 +93,7 @@ object RegressionBenchmarks7 extends RegressionBenchmark {
 object RegressionBenchmarks8 extends RegressionBenchmark {
   performance of "lit_resource" in {
     measure method ">>" in {
-      using(singleTest) in (_ => sampleResource >> [BUNDLE_TYPE] ((_: BUNDLE_TYPE) => BUNDLE_TYPE.SEARCHSET))
+      using(singleTest) in (_ => sampleResource.>>[BUNDLE_TYPE]((_: BUNDLE_TYPE) => BUNDLE_TYPE.SEARCHSET))
     }
   }
 
@@ -112,7 +112,7 @@ object RegressionBenchmarks9 extends RegressionBenchmark {
 object RegressionBenchmarks10 extends RegressionBenchmark {
   performance of "lit_resource" in {
     measure method "^^" in {
-      using(singleTest) in (_ => sampleResource ^^ [BUNDLE_TYPE, BUNDLE_TYPE] identity[BUNDLE_TYPE])
+      using(singleTest) in (_ => sampleResource.^^[BUNDLE_TYPE, BUNDLE_TYPE](identity))
     }
   }
 

@@ -32,8 +32,7 @@ def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
   resolvers ++= Seq(
     Resolver.mavenLocal,
     "babylon-snapshots" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-snapshots",
-    "babylon-releases" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-releases",
-    "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots" // needed for jackson-module-scala:2.13.0-SNAPSHOT
+    "babylon-releases" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-releases"
   ),
   libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scala-lang" % "scala-reflect" % scala2Version)
                            else Nil),
@@ -203,8 +202,10 @@ lazy val bench = project
   .in(file("bench"))
   .settings(commonSettings: _*)
   .settings(
-    resolvers += "Sonatype OSS Snapshots" at
-      "https://oss.sonatype.org/content/repositories/releases",
+    resolvers ++= Seq(
+      "Sonatype OSS Releases" at "https://oss.sonatype.org/content/repositories/releases",
+      "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots" // needed for jackson-module-scala:2.13.0-SNAPSHOT
+    ),
     libraryDependencies ++= Seq(
       "ca.uhn.hapi.fhir"   % "hapi-fhir-structures-r4" % "4.0.3"             % Test,
       "org.jline"          % "jline"                   % "3.14.1"            % Test,
