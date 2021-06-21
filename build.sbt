@@ -32,7 +32,8 @@ def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
   resolvers ++= Seq(
     Resolver.mavenLocal,
     "babylon-snapshots" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-snapshots",
-    "babylon-releases" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-releases"
+    "babylon-releases" at "https://artifactory.ops.babylontech.co.uk/artifactory/babylon-maven-releases",
+    "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots" // needed for jackson-module-scala:2.13.0-SNAPSHOT
   ),
   libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scala-lang" % "scala-reflect" % scala2Version)
                            else Nil),
@@ -200,7 +201,7 @@ lazy val fhirpath = project
 // Scalameter Benchmark tests
 lazy val bench = project
   .in(file("bench"))
-  .settings(commonJSettings: _*)
+  .settings(commonSettings: _*)
   .settings(
     resolvers += "Sonatype OSS Snapshots" at
       "https://oss.sonatype.org/content/repositories/releases",
