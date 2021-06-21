@@ -5,6 +5,7 @@ import scala.annotation.implicitNotFound
 import io.circe.{ Decoder, Encoder, Json }
 import izumi.reflect.macrortti.LTag
 
+import com.babylonhealth.lit.core.\/.\::/
 import com.babylonhealth.lit.core.model.typeSuffixMap
 
 object Choice {

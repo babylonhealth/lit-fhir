@@ -100,18 +100,34 @@ object Expression extends CompanionFor[Expression] {
       ))
 }
 
-/** Base StructureDefinition for Expression Type: A expression that is evaluated in a specified context and returns a value. The context of use of the expression must specify the context in which the expression is evaluated, and how the result of the expression is used.
+/** Base StructureDefinition for Expression Type: A expression that is evaluated in a specified context and returns a
+  * value. The context of use of the expression must specify the context in which the expression is evaluated, and how
+  * the result of the expression is used.
   *
-  *  Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a resource.)
+  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
+  * resource.)
   *
-  * @constructor Introduces the fields name, language, reference, expression, description.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param name - A short name assigned to the expression to allow for multiple reuse of the expression in the context where it is defined.
-  * @param language - The media type of the language for the expression.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
-  * @param reference - A URI that defines where the expression is found.
-  * @param expression - An expression in the specified language that returns a value.
-  * @param description - A brief, natural language description of the condition that effectively communicates the intended semantics.
+  * @constructor
+  *   Introduces the fields name, language, reference, expression, description.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param name
+  *   - A short name assigned to the expression to allow for multiple reuse of the expression in the context where it is
+  *   defined.
+  * @param language
+  *   - The media type of the language for the expression.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
+  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
+  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
+  *   part of the definition of the extension.
+  * @param reference
+  *   - A URI that defines where the expression is found.
+  * @param expression
+  *   - An expression in the specified language that returns a value.
+  * @param description
+  *   - A brief, natural language description of the condition that effectively communicates the intended semantics.
   */
 @POJOBoilerplate
 class Expression(

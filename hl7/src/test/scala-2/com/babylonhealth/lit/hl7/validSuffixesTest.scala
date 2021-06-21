@@ -1,4 +1,4 @@
-package com.babylonhealth.lit.hl7
+package com.babylonhealth.lit.core
 
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers

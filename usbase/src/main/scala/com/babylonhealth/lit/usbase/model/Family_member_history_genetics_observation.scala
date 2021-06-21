@@ -56,7 +56,7 @@ object Family_member_history_genetics_observation extends CompanionFor[Family_me
     t).get
   def extractId(t: Family_member_history_genetics_observation): Option[String] = t.id
   def extractValue(t: Family_member_history_genetics_observation): Reference   = t.value.get.toSubRefNonUnion[Reference]
-  override val thisName: String                                                = "Family_member_history_genetics_observation"
+  override val thisName: String = "Family_member_history_genetics_observation"
   override val searchParams: Map[String, Family_member_history_genetics_observation => Seq[Any]] =
     Extension.searchParams
   def unapply(o: Family_member_history_genetics_observation): Option[(Option[String], Reference)] = Some(
@@ -72,18 +72,24 @@ object Family_member_history_genetics_observation extends CompanionFor[Family_me
       ))
 }
 
-/** Allows capturing risk-relevant observations about the relative that aren't themselves a specific health condition; e.g. Certain ethnic ancestries that are disease-relevant, presence of particular genetic markers, etc.
+/** Allows capturing risk-relevant observations about the relative that aren't themselves a specific health condition;
+  * e.g. Certain ethnic ancestries that are disease-relevant, presence of particular genetic markers, etc.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
+  * found in all resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
+  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
+  *   the value of the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Family_member_history_genetics_observation(

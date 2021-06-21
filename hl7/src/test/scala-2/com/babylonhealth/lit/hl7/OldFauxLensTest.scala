@@ -2,14 +2,14 @@ package com.babylonhealth.lit.hl7
 
 import java.time.{ LocalTime, ZonedDateTime }
 
+import org.scalatest.freespec.AnyFreeSpec
+import org.scalatest.matchers.should.Matchers
+
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.PseudoLenses._
 import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.core.{ Choice, LitSeq, \/ }
 import com.babylonhealth.lit.hl7.model._
-import com.babylonhealth.lit.hl7.{ BUNDLE_TYPE, OBSERVATION_STATUS }
-import org.scalatest.freespec.AnyFreeSpec
-import org.scalatest.matchers.should.Matchers
 
 // Retaining for compatibility, and to enable a nicer Java API
 class OldFauxLensTest extends AnyFreeSpec with Matchers {
@@ -77,32 +77,6 @@ class OldFauxLensTest extends AnyFreeSpec with Matchers {
     x.`type` shouldEqual LitSeq(ElementDefinition.Type(code = "Quantity"))
   }
 
-//  implicit
-//  case class HALP[O <: FHIRObject: LTag, C <: CompanionFor[_]](o: O, c: C) {
-//    def updating[T](fieldSelection: c.type => FHIRComponentFieldMeta[T])(fn: T => T): O =
-//      o.`with`[T, O](fieldSelection(c))(fn)(
-//        o.companion.baseType.thisClassTag.asInstanceOf,
-//        o.companion.baseType.thisTypeTag.asInstanceOf)
-//  }
-//  implicit def mkHALP[O <: FHIRObject: LTag](o: O)(implicit
-//      @inline c: CompanionFor[O] = o.companionOf[O](o.companion.thisTypeTag.asInstanceOf[LTag[O]])): HALP[O, c.type] = HALP(o, c)
-//  object Tmp extends com.babylonhealth.lit.core.Utils {
-//  def foo[T <: FHIRObject: LTag] = Utils.mirror
-//    .reflectModule(
-//      Utils.mirror.classSymbol(Class.forName(companionClassName(LTag[T]))).companion.asInstanceOf[ModuleSymbol])
-//    .instance
-//  type Foo[T <: FHIRObject: LTag] = companionOf[T].type
-//}
-//  implicit class RicherFHIRObject[O <: FHIRObject: LTag](o: O) {
-//    def updating[T](fieldSelection:( Up => FHIRComponentFieldMeta[T] forSome { type Up = o.companionOf[O].type})(fn: T => T): O =
-//      o.`with`[T, O](fieldSelection(c))(fn)(
-//        o.companion.baseType.thisClassTag.asInstanceOf,
-//        o.companion.baseType.thisTypeTag.asInstanceOf)
-//  }
-//  @inline implicit def mkThing[T <: FHIRObject](o: T): HALP[T, valueOf[CompanionFor[T]]] = {
-//    val c = Tmp.companionOf[T]
-//    HALP[T, c.type](o, c)
-//  }
   "Can modify a field with a keyword name (update sugar)" in {
     val e: ElementDefinition = ElementDefinition(path = "Observation.value[x]")
     val x: ElementDefinition = e.update(_.`type`)(_ => LitSeq(ElementDefinition.Type(code = "Quantity")))
@@ -136,7 +110,7 @@ class OldFauxLensTest extends AnyFreeSpec with Matchers {
     val observation3_modified = genObs(choice("1.23"))
 
     "simply" in {
-      observation1.updateValueIfExists(_.mapValue((_: Int) + 49).run) shouldEqual observation1_modified
+      observation1.updateIfExists(_.value)(_.mapValue((_: Int) + 49).run) shouldEqual observation1_modified
     }
     "chained" in {
       val bundle = Bundle(
@@ -146,10 +120,10 @@ class OldFauxLensTest extends AnyFreeSpec with Matchers {
         `type` = BUNDLE_TYPE.COLLECTION,
         entry = LitSeq(observation1_modified, observation2_modified, observation3_modified).map(o =>
           Bundle.Entry(resource = Some(o))))
-      val res_bundle = bundle.updateEntryIfExists {
-        _.updateResourceIfExists {
+      val res_bundle = bundle.updateAll(_.entry) {
+        _.updateIfExists(_.resource) {
           case resource: Observation =>
-            resource.updateValueIfExists(
+            resource.updateIfExists(_.value)(
               _.mapValue((_: Int) + 49)
                 .orElse((b: Boolean) => !b)
                 .orElse((_: Quantity).value.getOrElse(0).toString)
@@ -160,7 +134,47 @@ class OldFauxLensTest extends AnyFreeSpec with Matchers {
       res_bundle shouldEqual bundle2
     }
     "typeSafety" in {
-      assertTypeError("""observation1.updateValueIfExists(_.mapValue((_: Double) + 123).run)""")
+      assertTypeError("""observation1.updateIfExists(_.value)(_.mapValue((_: Double) + 123).run)""")
+    }
+  }
+  "fold on a ref" - {
+    "can do" in {
+      def fold(r: Choice[Int \/ String]): Double = r.fold((_: Int).toDouble).and((_: String).length.toDouble).run
+    }
+    "can do b" in {
+      def fold(r: Choice[Int \/ String \/ Double]): Double =
+        r.fold((_: Int).toDouble).and((_: String).length.toDouble).and((d: Double) => d).run
+    }
+    "can do big" in {
+      def fold(r: Choice[
+        Boolean \/ CodeableConcept \/ Int \/ LocalTime \/ Period \/ Quantity \/ Range \/ Ratio \/ SampledData \/ String \/ ZonedDateTime]): Double =
+        r.fold((_: Boolean) => 0.3)
+          .and((_: CodeableConcept) => 0.4)
+          .and((_: Int).toDouble)
+          .and((_: LocalTime) => 0.5)
+          .and((_: Period) => 0.6)
+          .and((_: Quantity) => 0.6)
+          .and((_: Range) => 0.6)
+          .and((_: Ratio) => 0.6)
+          .and((_: SampledData) => 0.6)
+          .and((_: String) => 0.6)
+          .and((_: ZonedDateTime) => 0.6)
+          .run
+    }
+    "can't do if partial" in {
+      assertTypeError("""def fold(r: Choice[Int \/ String]): Double = r.fold((_: Int).toDouble).run""")
+    }
+    "can't do if wrong type" in {
+      assertTypeError(
+        """def fold(r: Choice[Int \/ String]): Double = r.fold((_: Int).toDouble).and((_: Array[_]).length.toDouble).run""")
+    }
+    "can't do if wrong order" in {
+      assertTypeError(
+        """def fold(r: Choice[Int \/ String]): Double = r.fold((_: String).length.toDouble).and((_: Int).toDouble).run""")
+    }
+    "can't do if too many" in {
+      assertTypeError(
+        """def fold(r: Choice[Int \/ String]): Double = r.fold((_: Int).toDouble).and((_: String).length.toDouble).and((_: String).length.toDouble).run""")
     }
   }
 }

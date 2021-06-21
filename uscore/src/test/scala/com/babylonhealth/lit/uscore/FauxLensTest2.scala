@@ -1,6 +1,6 @@
 package com.babylonhealth.lit.uscore
 
-import com.babylonhealth.lit.core.LitSeq
+import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.hl7.{ CARE_PLAN_INTENT, NARRATIVE_STATUS, REQUEST_STATUS }

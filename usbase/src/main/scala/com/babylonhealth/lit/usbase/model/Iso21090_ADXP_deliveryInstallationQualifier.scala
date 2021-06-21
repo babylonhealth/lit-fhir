@@ -56,7 +56,7 @@ object Iso21090_ADXP_deliveryInstallationQualifier extends CompanionFor[Iso21090
     t).get
   def extractId(t: Iso21090_ADXP_deliveryInstallationQualifier): Option[String] = t.id
   def extractValue(t: Iso21090_ADXP_deliveryInstallationQualifier): String      = t.value.get.toSubRefNonUnion[String]
-  override val thisName: String                                                 = "Iso21090_ADXP_deliveryInstallationQualifier"
+  override val thisName: String = "Iso21090_ADXP_deliveryInstallationQualifier"
   override val searchParams: Map[String, Iso21090_ADXP_deliveryInstallationQualifier => Seq[Any]] =
     Extension.searchParams
   def unapply(o: Iso21090_ADXP_deliveryInstallationQualifier): Option[(Option[String], String)] = Some(
@@ -72,18 +72,24 @@ object Iso21090_ADXP_deliveryInstallationQualifier extends CompanionFor[Iso21090
       ))
 }
 
-/** A number, letter or name identifying a delivery installation. For example, for Station A, the delivery installation qualifier would be 'A'.
+/** A number, letter or name identifying a delivery installation. For example, for Station A, the delivery installation
+  * qualifier would be 'A'.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
+  * found in all resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
+  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
+  *   the value of the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Iso21090_ADXP_deliveryInstallationQualifier(

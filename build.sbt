@@ -1,3 +1,4 @@
+import sbt.Def
 import sbt.Keys.{ libraryDependencies, logBuffered }
 
 val artifactoryHost = "artifactory.ops.babylontech.co.uk"
@@ -5,8 +6,8 @@ val artifactory     = s"https://$artifactoryHost/"
 
 val thisVersion = sys.props.get("version") getOrElse "local"
 
-val scala2Version = "2.13.5"
-val crossVersions = Seq(scala2Version, "3.0.0")
+val scala2Version = "2.13.6"
+val crossVersions = Seq(scala2Version, "3.0.2-RC1-bin-20210618-515cb9f-NIGHTLY")
 
 def isScala2(version: String) = version startsWith "2"
 
@@ -14,7 +15,7 @@ val V = new {
   val circe                  = "0.14.1"
   val logback                = "1.2.3"
   val enumeratum             = "1.5.15"
-  val scalaMeterVersion      = "0.20"
+  val scalaMeterVersion      = "0.22.BBL"
   val izumiReflect           = "1.1.2"
   val litVersionForGenerator = "0.12.0"
   val scalaTest              = "3.2.9"
@@ -35,7 +36,8 @@ def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
   ),
   libraryDependencies ++= (if (isScala2(scalaVersion.value)) Seq("org.scala-lang" % "scala-reflect" % scala2Version)
                            else Nil),
-  scalacOptions += "-language:postfixOps"
+  scalacOptions += "-language:postfixOps",
+  scalacOptions ++= (if (!isScala2(scalaVersion.value)) Seq("-Ytasty-reader") else Nil)
 )
 val commonSettings = commonSettingsWithCrossVersions(crossVersions)
 // for now, Java  modules will be compiled against scala 2 (it's been more thorougly tested, and the setFoo API from
@@ -91,12 +93,27 @@ lazy val generator = project
   )
   .dependsOn(common)
 
+// https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n
+def docExcludes: Seq[Def.Setting[Task[Seq[File]]]] = Seq(
+  Compile / doc / sources := {
+    if (isScala2(scalaVersion.value)) Compile / doc / sources value
+    else Compile / doc / sources map { _.filterNot(_.getName endsWith ".scala") } value
+  },
+  Test / doc / sources := {
+    if (isScala2(scalaVersion.value)) Test / doc / sources value
+    else Test / doc / sources map { _.filterNot(_.getName endsWith ".scala") } value
+  }
+)
+
 lazy val core = project
   .in(file("core"))
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
+  .settings(docExcludes: _*)
   .settings(
-    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Seq("-language:implicitConversions")),
+    // https://github.com/lampepfl/dotty/issues/12834 - bug in doctool forbids us from generating doc for scala3 r/n,
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
+                       else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
       "io.circe"            %% "circe-core"      % V.circe,
       "io.circe"            %% "circe-generic"   % V.circe,
@@ -119,8 +136,10 @@ lazy val hl7 = project
   .in(file("hl7"))
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
+  .settings(docExcludes: _*)
   .settings(
-    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Seq("-language:implicitConversions")),
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
+                       else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
       "dev.zio" %% "izumi-reflect" % V.izumiReflect,
       // Test
@@ -135,8 +154,10 @@ lazy val uscore = project
   .in(file("uscore"))
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
+  .settings(docExcludes: _*)
   .settings(
-    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Seq("-language:implicitConversions")),
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
+                       else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
       "dev.zio"        %% "izumi-reflect" % V.izumiReflect,
       "org.scalatest"  %% "scalatest"     % V.scalaTest  % Test,
@@ -148,8 +169,10 @@ lazy val usbase = project
   .in(file("usbase"))
   .settings(commonSettings: _*)
   .settings(publishSettings: _*)
+  .settings(docExcludes: _*)
   .settings(
-    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Seq("-language:implicitConversions")),
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
+                       else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
       "dev.zio"        %% "izumi-reflect" % V.izumiReflect,
       "org.scalatest"  %% "scalatest"     % V.scalaTest  % Test,
@@ -162,11 +185,12 @@ lazy val fhirpath = project
   .settings(commonJSettings: _*) // TODO: crosspublish for scala 3.0.0
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations") else Seq("-language:implicitConversions")),
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
+                       else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
-      "com.lihaoyi"         %% "fastparse"       % "2.2.2",
-      "dev.zio"  %% "izumi-reflect" % V.izumiReflect,
-      "org.slf4j" % "slf4j-api"     % "1.7.30",
+      "com.lihaoyi" %% "fastparse"     % "2.2.2",
+      "dev.zio"     %% "izumi-reflect" % V.izumiReflect,
+      "org.slf4j"    % "slf4j-api"     % "1.7.30",
       // Test
       "org.scalatest" %% "scalatest" % V.scalaTest % Test
     )
@@ -176,10 +200,12 @@ lazy val fhirpath = project
 // Scalameter Benchmark tests
 lazy val bench = project
   .in(file("bench"))
-  .settings(commonJSettings: _*)
+  .settings(commonSettings: _*)
   .settings(
-    resolvers += "Sonatype OSS Snapshots" at
-      "https://oss.sonatype.org/content/repositories/releases",
+    resolvers ++= Seq(
+      "Sonatype OSS Releases" at "https://oss.sonatype.org/content/repositories/releases",
+      "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots" // needed for jackson-module-scala:2.13.0-SNAPSHOT
+    ),
     libraryDependencies ++= Seq(
       "ca.uhn.hapi.fhir"   % "hapi-fhir-structures-r4" % "4.0.3"             % Test,
       "org.jline"          % "jline"                   % "3.14.1"            % Test,
@@ -191,7 +217,7 @@ lazy val bench = project
     parallelExecution in Test := false,
     fork in Test := true
   )
-  .dependsOn(core, hl7, usbase, protoshim, coreJava)
+  .dependsOn(core, hl7, usbase, protoshim)
 
 lazy val coreJava = project
   .in(file("core_java"))
@@ -237,7 +263,7 @@ lazy val uscoreJava = project
 
 lazy val gproto = project
   .in(file("gproto"))
-  .settings(commonSettings: _*)
+  .settings(commonJSettings: _*)
   .settings(publishSettings: _*)
   .settings(
     libraryDependencies ++= Seq(

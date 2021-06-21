@@ -51,6 +51,12 @@ abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecode
   val thisName: String
   val profileUrl: Option[String] = None
 
+  def extract[O](fn: this.type => FHIRComponentFieldMeta[O])(t: T): O = {
+    val target: FHIRComponentFieldMeta[O] = fn(this)
+    // TODO: This would be more efficient if fields returned e.g. an ordered map..
+    fields(t).collectFirst { case FHIRComponentField(`target`, value) => value.asInstanceOf[O] }.get
+  }
+
   final private[core] def leastParentWithField(
       f: FHIRComponentFieldMeta[_],
       chain: List[CompanionFor[_ <: ResourceType]] = Nil
@@ -191,14 +197,14 @@ abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecode
                log.debug(s"deserializing as $thisName")
                companion.decodeThis(x)(params)
              })
-              .recoverWith { case error: Throwable =>
-                val profs = profiles.mkString("[", ",", "]")
-                log.warn(
-                  s"meta.profile contains $profs, but this object fails to decode as ${companion.thisName}.",
-                  error)
-                if (params.tolerateProfileErrors) decodeWithResourceType else Failure(error)
-              }
-              .asInstanceOf[Try[T]]
+            .recoverWith { case error: Throwable =>
+              val profs = profiles.mkString("[", ",", "]")
+              log.warn(
+                s"meta.profile contains $profs, but this object fails to decode as ${companion.thisName}.",
+                error)
+              if (params.tolerateProfileErrors) decodeWithResourceType else Failure(error)
+            }
+            .asInstanceOf[Try[T]]
         }
     }
   }

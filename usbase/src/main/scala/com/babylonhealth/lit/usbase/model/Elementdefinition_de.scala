@@ -31,7 +31,7 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
   override type ParentType   = ElementDefinition
   override val baseType: CompanionFor[ResourceType] = ElementDefinition
   override val parentType: CompanionFor[ParentType] = ElementDefinition
-  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-de")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-de")
   type MinValueChoice     = Choice[Union_0637176084]
   type MaxValueChoice     = Choice[Union_0637176084]
   type DefaultValueChoice = Choice[Union_1349125893]
@@ -247,38 +247,38 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
       FHIRComponentField[Option[ElementDefinition.Binding]](binding, t.binding),
       FHIRComponentField[LitSeq[ElementDefinition.Constraint]](constraint, t.constraint)
     ))
-  override def fields(t: Elementdefinition_de): Seq[FHIRComponentField[_]]                          = fieldsFromParent(t).get
-  def extractId(t: Elementdefinition_de): Option[String]                                            = t.id
-  def extractMin(t: Elementdefinition_de): Option[UnsignedInt]                                      = t.min
-  def extractMax(t: Elementdefinition_de): Option[String]                                           = t.max
-  def extractPath(t: Elementdefinition_de): String                                                  = t.path
-  def extractCode(t: Elementdefinition_de): LitSeq[Coding]                                          = t.code
-  def extractLabel(t: Elementdefinition_de): Option[String]                                         = t.label
-  def extractAlias(t: Elementdefinition_de): LitSeq[String]                                         = t.alias
-  def extractComment(t: Elementdefinition_de): Option[Markdown]                                     = t.comment
-  def extractExtension(t: Elementdefinition_de): LitSeq[Extension]                                  = t.extension
-  def extractSliceName(t: Elementdefinition_de): Option[String]                                     = t.sliceName
-  def extractMaxLength(t: Elementdefinition_de): Option[Int]                                        = t.maxLength
-  def extractCondition(t: Elementdefinition_de): LitSeq[Id]                                         = t.condition
-  def extractDefinition(t: Elementdefinition_de): Option[Markdown]                                  = t.definition
-  def extractMinValue(t: Elementdefinition_de): Option[Elementdefinition_de.MinValueChoice]         = t.minValue
-  def extractMaxValue(t: Elementdefinition_de): Option[Elementdefinition_de.MaxValueChoice]         = t.maxValue
-  def extractMustSupport(t: Elementdefinition_de): Option[Boolean]                                  = t.mustSupport
-  def extractRequirements(t: Elementdefinition_de): Option[Markdown]                                = t.requirements
-  def extractOrderMeaning(t: Elementdefinition_de): Option[String]                                  = t.orderMeaning
-  def extractBase(t: Elementdefinition_de): Option[ElementDefinition.Base]                          = t.base
+  override def fields(t: Elementdefinition_de): Seq[FHIRComponentField[_]]                  = fieldsFromParent(t).get
+  def extractId(t: Elementdefinition_de): Option[String]                                    = t.id
+  def extractMin(t: Elementdefinition_de): Option[UnsignedInt]                              = t.min
+  def extractMax(t: Elementdefinition_de): Option[String]                                   = t.max
+  def extractPath(t: Elementdefinition_de): String                                          = t.path
+  def extractCode(t: Elementdefinition_de): LitSeq[Coding]                                  = t.code
+  def extractLabel(t: Elementdefinition_de): Option[String]                                 = t.label
+  def extractAlias(t: Elementdefinition_de): LitSeq[String]                                 = t.alias
+  def extractComment(t: Elementdefinition_de): Option[Markdown]                             = t.comment
+  def extractExtension(t: Elementdefinition_de): LitSeq[Extension]                          = t.extension
+  def extractSliceName(t: Elementdefinition_de): Option[String]                             = t.sliceName
+  def extractMaxLength(t: Elementdefinition_de): Option[Int]                                = t.maxLength
+  def extractCondition(t: Elementdefinition_de): LitSeq[Id]                                 = t.condition
+  def extractDefinition(t: Elementdefinition_de): Option[Markdown]                          = t.definition
+  def extractMinValue(t: Elementdefinition_de): Option[Elementdefinition_de.MinValueChoice] = t.minValue
+  def extractMaxValue(t: Elementdefinition_de): Option[Elementdefinition_de.MaxValueChoice] = t.maxValue
+  def extractMustSupport(t: Elementdefinition_de): Option[Boolean]                          = t.mustSupport
+  def extractRequirements(t: Elementdefinition_de): Option[Markdown]                        = t.requirements
+  def extractOrderMeaning(t: Elementdefinition_de): Option[String]                          = t.orderMeaning
+  def extractBase(t: Elementdefinition_de): Option[ElementDefinition.Base]                  = t.base
   def extractDefaultValue(t: Elementdefinition_de): Option[Elementdefinition_de.DefaultValueChoice] = t.defaultValue
   def extractIsModifierReason(t: Elementdefinition_de): Option[String]                              = t.isModifierReason
-  def extractModifierExtension(t: Elementdefinition_de): LitSeq[Extension]                          = t.modifierExtension
-  def extractExample(t: Elementdefinition_de): LitSeq[ElementDefinition.Example]                    = t.example
-  def extractMapping(t: Elementdefinition_de): LitSeq[ElementDefinition.Mapping]                    = t.mapping
-  def extractType(t: Elementdefinition_de): LitSeq[ElementDefinition.Type]                          = t.`type`
-  def extractMeaningWhenMissing(t: Elementdefinition_de): Option[Markdown]                          = t.meaningWhenMissing
-  def extractSliceIsConstraining(t: Elementdefinition_de): Option[Boolean]                          = t.sliceIsConstraining
-  def extractBinding(t: Elementdefinition_de): Option[ElementDefinition.Binding]                    = t.binding
-  def extractConstraint(t: Elementdefinition_de): LitSeq[ElementDefinition.Constraint]              = t.constraint
-  override val thisName: String                                                                     = "Elementdefinition_de"
-  override val searchParams: Map[String, Elementdefinition_de => Seq[Any]]                          = ElementDefinition.searchParams
+  def extractModifierExtension(t: Elementdefinition_de): LitSeq[Extension]             = t.modifierExtension
+  def extractExample(t: Elementdefinition_de): LitSeq[ElementDefinition.Example]       = t.example
+  def extractMapping(t: Elementdefinition_de): LitSeq[ElementDefinition.Mapping]       = t.mapping
+  def extractType(t: Elementdefinition_de): LitSeq[ElementDefinition.Type]             = t.`type`
+  def extractMeaningWhenMissing(t: Elementdefinition_de): Option[Markdown]             = t.meaningWhenMissing
+  def extractSliceIsConstraining(t: Elementdefinition_de): Option[Boolean]             = t.sliceIsConstraining
+  def extractBinding(t: Elementdefinition_de): Option[ElementDefinition.Binding]       = t.binding
+  def extractConstraint(t: Elementdefinition_de): LitSeq[ElementDefinition.Constraint] = t.constraint
+  override val thisName: String                                                        = "Elementdefinition_de"
+  override val searchParams: Map[String, Elementdefinition_de => Seq[Any]]             = ElementDefinition.searchParams
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Elementdefinition_de] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -319,40 +319,108 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
 
 /** Identifies how the ElementDefinition data type is used when it appears within a data element
   *
-  *  Subclass of [[hl7.model.ElementDefinition]] (Base StructureDefinition for ElementDefinition Type: Captures constraints on each element within the resource, profile, or extension.)
+  * Subclass of [[hl7.model.ElementDefinition]] (Base StructureDefinition for ElementDefinition Type: Captures
+  * constraints on each element within the resource, profile, or extension.)
   *
-  * @constructor Inherits all params from parent.
-  *              Forbids the use of the following fields which were optional in the parent: short, fixed, isSummary, pattern, isModifier, representation, contentReference, slicing.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param min - The minimum number of times this element SHALL appear in the instance.
-  * @param max - The maximum number of times this element is permitted to appear in the instance.
-  * @param path - The path identifies the element and is expressed as a "."-separated list of ancestor elements, beginning with the name of the resource or extension.
-  * @param code - A code that has the same meaning as the element in a particular terminology.
-  * @param label - A single preferred label which is the text to display beside the element indicating its meaning or to use to prompt for the element in a user display or form.
-  * @param alias - Identifies additional names by which this element might also be known.
-  * @param comment - Explanatory notes and implementation guidance about the data element, including notes about how to use the data properly, exceptions to proper use, etc. (Note: The text you are reading is specified in ElementDefinition.comment).
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
-  * @param sliceName - The name of this element definition slice, when slicing is working. The name must be a token with no dots or spaces. This is a unique name referring to a specific set of constraints applied to this element, used to provide a name to different slices of the same element.
-  * @param maxLength - Indicates the maximum length in characters that is permitted to be present in conformant instances and which is expected to be supported by conformant consumers that support the element.
-  * @param condition - A reference to an invariant that may make additional statements about the cardinality or value in the instance.
-  * @param definition - Provides a complete explanation of the meaning of the data element for human readability.  For the case of elements derived from existing elements (e.g. constraints), the definition SHALL be consistent with the base definition, but convey the meaning of the element in the particular context of use of the resource. (Note: The text you are reading is specified in ElementDefinition.definition).
-  * @param minValue - The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.
-  * @param maxValue - The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.
-  * @param mustSupport - If true, implementations that produce or consume resources SHALL provide "support" for the element in some meaningful way.  If false, the element may be ignored and not supported. If false, whether to populate or use the data element in any way is at the discretion of the implementation.
-  * @param requirements - This element is for traceability of why the element was created and why the constraints exist as they do. This may be used to point to source materials or specifications that drove the structure of this element.
-  * @param orderMeaning - If present, indicates that the order of the repeating element has meaning and describes what that meaning is.  If absent, it means that the order of the element has no meaning.
-  * @param base - Information about the base definition of the element, provided to make it unnecessary for tools to trace the deviation of the element through the derived and related profiles. When the element definition is not the original definition of an element - i.g. either in a constraint on another type, or for elements from a super type in a snap shot - then the information in provided in the element definition may be different to the base definition. On the original definition of the element, it will be same.
-  * @param defaultValue - The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the abstract is false').
-  * @param isModifierReason - Explains how that element affects the interpretation of the resource or element that contains it.
-  * @param modifierExtension - May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  * Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
-  * @param example - A sample value for this element demonstrating the type of information that would typically be found in the element.
-  * @param mapping - Identifies a concept from an external specification that roughly corresponds to this element.
-  * @param `type` - The data type or resource that the value of this element is permitted to be.
-  * @param meaningWhenMissing - The Implicit meaning that is to be understood when this element is missing (e.g. 'when this element is missing, the period is ongoing').
-  * @param sliceIsConstraining - If true, indicates that this slice definition is constraining a slice definition with the same name in an inherited profile. If false, the slice is not overriding any slice in an inherited profile. If missing, the slice might or might not be overriding a slice in an inherited profile, depending on the sliceName.
-  * @param binding - Binds to a value set if this element is coded (code, Coding, CodeableConcept, Quantity), or the data types (string, uri).
-  * @param constraint - Formal constraints such as co-occurrence and other constraints that can be computationally evaluated within the context of the instance.
+  * @constructor
+  *   Inherits all params from parent. Forbids the use of the following fields which were optional in the parent: short,
+  *   fixed, isSummary, pattern, isModifier, representation, contentReference, slicing.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param min
+  *   - The minimum number of times this element SHALL appear in the instance.
+  * @param max
+  *   - The maximum number of times this element is permitted to appear in the instance.
+  * @param path
+  *   - The path identifies the element and is expressed as a "."-separated list of ancestor elements, beginning with
+  *   the name of the resource or extension.
+  * @param code
+  *   - A code that has the same meaning as the element in a particular terminology.
+  * @param label
+  *   - A single preferred label which is the text to display beside the element indicating its meaning or to use to
+  *   prompt for the element in a user display or form.
+  * @param alias
+  *   - Identifies additional names by which this element might also be known.
+  * @param comment
+  *   - Explanatory notes and implementation guidance about the data element, including notes about how to use the data
+  *   properly, exceptions to proper use, etc. (Note: The text you are reading is specified in
+  *   ElementDefinition.comment).
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
+  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
+  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
+  *   part of the definition of the extension.
+  * @param sliceName
+  *   - The name of this element definition slice, when slicing is working. The name must be a token with no dots or
+  *   spaces. This is a unique name referring to a specific set of constraints applied to this element, used to provide
+  *   a name to different slices of the same element.
+  * @param maxLength
+  *   - Indicates the maximum length in characters that is permitted to be present in conformant instances and which is
+  *   expected to be supported by conformant consumers that support the element.
+  * @param condition
+  *   - A reference to an invariant that may make additional statements about the cardinality or value in the instance.
+  * @param definition
+  *   - Provides a complete explanation of the meaning of the data element for human readability. For the case of
+  *   elements derived from existing elements (e.g. constraints), the definition SHALL be consistent with the base
+  *   definition, but convey the meaning of the element in the particular context of use of the resource. (Note: The
+  *   text you are reading is specified in ElementDefinition.definition).
+  * @param minValue
+  *   - The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime,
+  *   instant, time, decimal, integer, and Quantity.
+  * @param maxValue
+  *   - The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime,
+  *   instant, time, decimal, integer, and Quantity.
+  * @param mustSupport
+  *   - If true, implementations that produce or consume resources SHALL provide "support" for the element in some
+  *   meaningful way. If false, the element may be ignored and not supported. If false, whether to populate or use the
+  *   data element in any way is at the discretion of the implementation.
+  * @param requirements
+  *   - This element is for traceability of why the element was created and why the constraints exist as they do. This
+  *   may be used to point to source materials or specifications that drove the structure of this element.
+  * @param orderMeaning
+  *   - If present, indicates that the order of the repeating element has meaning and describes what that meaning is. If
+  *   absent, it means that the order of the element has no meaning.
+  * @param base
+  *   - Information about the base definition of the element, provided to make it unnecessary for tools to trace the
+  *   deviation of the element through the derived and related profiles. When the element definition is not the original
+  *   definition of an element - i.g. either in a constraint on another type, or for elements from a super type in a
+  *   snap shot - then the information in provided in the element definition may be different to the base definition. On
+  *   the original definition of the element, it will be same.
+  * @param defaultValue
+  *   - The value that should be used if there is no value stated in the instance (e.g. 'if not otherwise specified, the
+  *   abstract is false').
+  * @param isModifierReason
+  *   - Explains how that element affects the interpretation of the resource or element that contains it.
+  * @param modifierExtension
+  *   - May be used to represent additional information that is not part of the basic definition of the element and that
+  *   modifies the understanding of the element in which it is contained and/or the understanding of the containing
+  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
+  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
+  *   any implementer can define an extension, there is a set of requirements that SHALL be met as part of the
+  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
+  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
+  *   change the meaning of modifierExtension itself).
+  * @param example
+  *   - A sample value for this element demonstrating the type of information that would typically be found in the
+  *   element.
+  * @param mapping
+  *   - Identifies a concept from an external specification that roughly corresponds to this element.
+  * @param `type`
+  *   - The data type or resource that the value of this element is permitted to be.
+  * @param meaningWhenMissing
+  *   - The Implicit meaning that is to be understood when this element is missing (e.g. 'when this element is missing,
+  *   the period is ongoing').
+  * @param sliceIsConstraining
+  *   - If true, indicates that this slice definition is constraining a slice definition with the same name in an
+  *   inherited profile. If false, the slice is not overriding any slice in an inherited profile. If missing, the slice
+  *   might or might not be overriding a slice in an inherited profile, depending on the sliceName.
+  * @param binding
+  *   - Binds to a value set if this element is coded (code, Coding, CodeableConcept, Quantity), or the data types
+  *   (string, uri).
+  * @param constraint
+  *   - Formal constraints such as co-occurrence and other constraints that can be computationally evaluated within the
+  *   context of the instance.
   */
 @POJOBoilerplate
 class Elementdefinition_de(

@@ -31,7 +31,7 @@ object Device_implantStatus extends CompanionFor[Device_implantStatus] {
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/device-implantStatus")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/device-implantStatus")
   def apply(
       id: Option[String] = None,
       value: IMPLANTSTATUS,
@@ -53,8 +53,8 @@ object Device_implantStatus extends CompanionFor[Device_implantStatus] {
     ))
   override def fields(t: Device_implantStatus): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Device_implantStatus): Option[String]                   = t.id
-  def extractValue(t: Device_implantStatus): IMPLANTSTATUS                 = IMPLANTSTATUS.withName(t.value.get.toSubRefNonUnion[Code])
-  override val thisName: String                                            = "Device_implantStatus"
+  def extractValue(t: Device_implantStatus): IMPLANTSTATUS = IMPLANTSTATUS.withName(t.value.get.toSubRefNonUnion[Code])
+  override val thisName: String                            = "Device_implantStatus"
   override val searchParams: Map[String, Device_implantStatus => Seq[Any]] = Extension.searchParams
   def unapply(o: Device_implantStatus): Option[(Option[String], IMPLANTSTATUS)] = Some(
     (o.id, IMPLANTSTATUS.withName(o.value.get.toSubRefNonUnion[Code])))
@@ -69,18 +69,25 @@ object Device_implantStatus extends CompanionFor[Device_implantStatus] {
       ))
 }
 
-/** Codes to represent the functional status of a device implanted in a patient.  Both overall device status and an implant status need to be considered. The implant status should only be used when the [device status](device-definitions.html#Device.status) is `active `.
+/** Codes to represent the functional status of a device implanted in a patient. Both overall device status and an
+  * implant status need to be considered. The implant status should only be used when the [device
+  * status](device-definitions.html#Device.status) is `active `.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
+  * found in all resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
+  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
+  *   the value of the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Device_implantStatus(
@@ -89,7 +96,7 @@ class Device_implantStatus(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(choiceFromEnum(value)),
       url = "http://hl7.org/fhir/StructureDefinition/device-implantStatus",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

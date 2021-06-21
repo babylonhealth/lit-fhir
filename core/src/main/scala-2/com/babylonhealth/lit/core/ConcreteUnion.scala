@@ -13,6 +13,9 @@ object TagSummoners {
 import TagSummoners._
 
 object \/ {
+  def \::/[L, R](implicit lt: LTag[L], rt: LTag[R]): LTag[L \/ R] =
+    new LTag[L \/ R](Tag.appliedTag(TagKK[\/], List(lt.tag, rt.tag)).tag)
+
   def typetagFromType[T](tpe: LightTypeTag): LTag[T] = new LTag[T](tpe)
 
   val unappliedLTag = TagKK[\/].tag.withoutArgs
@@ -68,15 +71,6 @@ object \/ {
     } else throw new RuntimeException(s"Cannot ascribe type ${str[To]} to type ${from.getClass}")
   }
 
-  def builder2[To, From](from: From)(implicit tt: LTag[To], ft: LTag[From]): To = {
-    if (tt.tag =:= ft.tag) from.asInstanceOf[To]
-    else if (tt.tag.withoutArgs =:= unappliedLTag) {
-      val (t1, t2) = getUnionParams(tt)
-      if (t2 =:= ft.tag) RHS(from)(typetagFromType(t1), typetagFromType(t2)).asInstanceOf[To]
-      else LHS(builder(from)(typetagFromType(t1), ft))(typetagFromType(t1), typetagFromType(t2)).asInstanceOf[To]
-    } else throw new RuntimeException(s"Cannot ascribe type ${str[To]} to type ${from.getClass}")
-  }
-
   @deprecated("I think this is probably slow AF because of the 'canBe' check")
   def build[L, R, S](t: S)(implicit lt: LTag[L], rt: LTag[R], st: LTag[S]): L \/ R = {
     if (st.tag =:= lt.tag) LHS[L, R](t.asInstanceOf[L])
@@ -115,10 +109,12 @@ object \/ {
     }
 }
 
+import com.babylonhealth.lit.core.\/.\::/
+
 /** Tends to accumulate on the left when used as Foo \/ Bar \/ Baz, so you'd have a LHS(LHS(Foo)) etc.
   *
-  * Operations on this class tend to be pretty slow because of all the <:< stuff, so avoid reification,
-  * and instead use this just for Choice[_] type parameters
+  * Operations on this class tend to be pretty slow because of all the <:< stuff, so avoid reification, and instead use
+  * this just for Choice[_] type parameters
   */
 sealed abstract class \/[L, R](implicit val ltt: LTag[L], val rtt: LTag[R]) {
   type Left  = L

@@ -62,7 +62,7 @@ class Regressions extends AnyFreeSpec with Matchers {
   }
   "resource with extension-as-an-object in quantity should decode if flexibleCardinality=true" in {
     implicit val params: DecoderParams = DecoderParams(flexibleCardinality = true)
-    val res                            = decode[Resource]("""{
+    val res = decode[Resource]("""{
                                  |  "resourceType": "Observation",
                                  |  "id": "030cfd1231eb76c279236ebcc419341c",
                                  |  "status": "final",

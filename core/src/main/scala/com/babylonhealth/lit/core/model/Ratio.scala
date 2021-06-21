@@ -49,7 +49,7 @@ object Ratio extends CompanionFor[Ratio] {
     FHIRComponentFieldMeta("numerator", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
   val denominator: FHIRComponentFieldMeta[Option[Quantity]] =
     FHIRComponentFieldMeta("denominator", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, extension, numerator, denominator)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, numerator, denominator)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Ratio): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
@@ -77,15 +77,26 @@ object Ratio extends CompanionFor[Ratio] {
       ))
 }
 
-/** Base StructureDefinition for Ratio Type: A relationship of two Quantity values - expressed as a numerator and a denominator.
+/** Base StructureDefinition for Ratio Type: A relationship of two Quantity values - expressed as a numerator and a
+  * denominator.
   *
-  *  Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a resource.)
+  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
+  * resource.)
   *
-  * @constructor Introduces the fields numerator, denominator.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
-  * @param numerator - The value of the numerator.
-  * @param denominator - The value of the denominator.
+  * @constructor
+  *   Introduces the fields numerator, denominator.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
+  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
+  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
+  *   part of the definition of the extension.
+  * @param numerator
+  *   - The value of the numerator.
+  * @param denominator
+  *   - The value of the denominator.
   */
 @POJOBoilerplate
 class Ratio(

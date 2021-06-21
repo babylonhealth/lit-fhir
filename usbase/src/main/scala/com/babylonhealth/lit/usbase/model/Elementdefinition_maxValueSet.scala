@@ -53,11 +53,11 @@ object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxV
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Elementdefinition_maxValueSet.ValueChoice](value, t.value.get.toSubRef)
     ))
-  override def fields(t: Elementdefinition_maxValueSet): Seq[FHIRComponentField[_]]             = fieldsFromParent(t).get
-  def extractId(t: Elementdefinition_maxValueSet): Option[String]                               = t.id
+  override def fields(t: Elementdefinition_maxValueSet): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Elementdefinition_maxValueSet): Option[String]                   = t.id
   def extractValue(t: Elementdefinition_maxValueSet): Elementdefinition_maxValueSet.ValueChoice = t.value.get.toSubRef
-  override val thisName: String                                                                 = "Elementdefinition_maxValueSet"
-  override val searchParams: Map[String, Elementdefinition_maxValueSet => Seq[Any]]             = Extension.searchParams
+  override val thisName: String                                                     = "Elementdefinition_maxValueSet"
+  override val searchParams: Map[String, Elementdefinition_maxValueSet => Seq[Any]] = Extension.searchParams
   def unapply(o: Elementdefinition_maxValueSet): Option[(Option[String], Elementdefinition_maxValueSet.ValueChoice)] =
     Some((o.id, o.value.get.toSubRef))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Elementdefinition_maxValueSet] =
@@ -71,18 +71,25 @@ object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxV
       ))
 }
 
-/** The maximum allowable value set, for use when the binding strength is 'extensible' or 'preferred'. This value set is the value set from which additional codes can be taken from. This defines a 'required' binding over the top of the extensible binding.
+/** The maximum allowable value set, for use when the binding strength is 'extensible' or 'preferred'. This value set is
+  * the value set from which additional codes can be taken from. This defines a 'required' binding over the top of the
+  * extensible binding.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
+  * found in all resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
+  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
+  *   the value of the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Elementdefinition_maxValueSet(

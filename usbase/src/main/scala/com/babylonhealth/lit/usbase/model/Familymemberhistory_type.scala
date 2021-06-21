@@ -31,7 +31,7 @@ object Familymemberhistory_type extends CompanionFor[Familymemberhistory_type] {
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/familymemberhistory-type")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/familymemberhistory-type")
   def apply(
       id: Option[String] = None,
       value: CodeableConcept,
@@ -53,8 +53,8 @@ object Familymemberhistory_type extends CompanionFor[Familymemberhistory_type] {
     ))
   override def fields(t: Familymemberhistory_type): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Familymemberhistory_type): Option[String]                   = t.id
-  def extractValue(t: Familymemberhistory_type): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
-  override val thisName: String                                                = "Familymemberhistory_type"
+  def extractValue(t: Familymemberhistory_type): CodeableConcept = t.value.get.toSubRefNonUnion[CodeableConcept]
+  override val thisName: String                                  = "Familymemberhistory_type"
   override val searchParams: Map[String, Familymemberhistory_type => Seq[Any]] = Extension.searchParams
   def unapply(o: Familymemberhistory_type): Option[(Option[String], CodeableConcept)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
@@ -69,18 +69,24 @@ object Familymemberhistory_type extends CompanionFor[Familymemberhistory_type] {
       ))
 }
 
-/** Purpose of the family member history or why it was created, such as when family member history is targeted for cardiovascular health, mental health, or genetic counseling.
+/** Purpose of the family member history or why it was created, such as when family member history is targeted for
+  * cardiovascular health, mental health, or genetic counseling.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
+  * found in all resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
+  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
+  *   the value of the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
+  *   not contain spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Familymemberhistory_type(

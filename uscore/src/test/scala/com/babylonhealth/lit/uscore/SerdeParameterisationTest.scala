@@ -13,7 +13,7 @@ import com.babylonhealth.lit.common.FileUtils
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.model.{ CodeableConcept, Coding, HumanName, Meta, Quantity, Reference, Resource }
 import com.babylonhealth.lit.core.serdes.objectDecoder
-import com.babylonhealth.lit.core.{ Config, DecoderParams, FHIRDateTime, LitSeq }
+import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.hl7.model.Observation.ReferenceRange
 import com.babylonhealth.lit.hl7.{ BUNDLE_TYPE, OBSERVATION_STATUS }
 import com.babylonhealth.lit.hl7.model._
@@ -177,7 +177,7 @@ class SerdeParameterisationTest extends AnyFreeSpec with Matchers with FileUtils
       implicit val params: DecoderParams = DecoderParams(flexibleCardinality = true)
       val decoded                        = decode[HumanName](bad)
       decoded.isRight shouldEqual true
-      decoded.right.get shouldEqual HumanName(family = Some("Sanchez"), given = LitSeq("Rick"))
+      decoded.right.get shouldEqual HumanName(family = Some("Sanchez"), `given` = LitSeq("Rick"))
     }
     "succeeds if array field is given as object if flexibleCardinality=true, even if it gets decoded via the decodeFromListAs path" in {
       val x1 = Triglyceride(
@@ -188,7 +188,7 @@ class SerdeParameterisationTest extends AnyFreeSpec with Matchers with FileUtils
           CodeableConcept(coding = LitSeq(Coding(system = Some("http://codingsystem.lo.wut"), code = Some("....IDK")))),
         referenceRange = ReferenceRange()
       )
-      val x2 = x1.withInterpretation(Some(CodeableConcept(text = Some("hi"))))
+      val x2 = x1.set(_.interpretation)(Some(CodeableConcept(text = Some("hi"))))
       def bad(rr: String, interpretation: String) =
         s"""{
            |  "resourceType" : "Observation",
