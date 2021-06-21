@@ -7,7 +7,7 @@ val artifactory     = s"https://$artifactoryHost/"
 val thisVersion = sys.props.get("version") getOrElse "local"
 
 val scala2Version = "2.13.6"
-val crossVersions = Seq(scala2Version, "3.0.0")
+val crossVersions = Seq(scala2Version, "3.0.2-RC1-bin-20210618-515cb9f-NIGHTLY")
 
 def isScala2(version: String) = version startsWith "2"
 
@@ -27,7 +27,7 @@ val V = new {
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
   version := thisVersion,
   organization := "com.babylonhealth.lit",
-  scalaVersion := scala2Version,
+  scalaVersion := versions.last,
   crossScalaVersions := versions,
   resolvers ++= Seq(
     Resolver.mavenLocal,
