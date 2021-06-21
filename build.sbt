@@ -263,7 +263,7 @@ lazy val uscoreJava = project
 
 lazy val gproto = project
   .in(file("gproto"))
-  .settings(commonSettings: _*)
+  .settings(commonJSettings: _*)
   .settings(publishSettings: _*)
   .settings(
     libraryDependencies ++= Seq(
