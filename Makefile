@@ -104,7 +104,7 @@ clean-target:
 	rm -rf target/ */target
 
 download-deps:
-	$(SBT) update || true
+	$(SBT) +update || true
 
 clean-generated-scala:
 	rm -rf $(foreach i,$(ALL_MODULES),$i/src/main/scala{-2,-3,}/com/babylonhealth/lit/$i/model)
