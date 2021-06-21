@@ -5,7 +5,7 @@ import io.circe.syntax._
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
 
-import com.babylonhealth.lit.core.{ Code, DecoderParams }
+import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.model.{ CodeableConcept, Extension }
 import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
