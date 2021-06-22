@@ -80,7 +80,7 @@ build-hl7-class-models:
 	$(SBT) 'project generator' 'run "generate" \
 		--javaPackageSuffix=_java \
 		--typescriptDir="./generated_typescript"'
-	$(SBT) $(foreach i,$(CORE_MODULES),$i/scalafmtAll)
+	$(SBT) $(foreach i,$(CORE_MODULES),+$i/scalafmtAll)
 	$(SBT) $(foreach i,$(CORE_MODULES),$iJava/javafmt)
 	./apply_patches.sh
 
@@ -96,7 +96,7 @@ build-all-class-models:
 		--models="usbase=fhir/spec/hl7.fhir.r4.examples/4.0.1/package/StructureDefinition-*;uscore=fhir/spec/hl7.fhir.us.core/3.1.0/package/StructureDefinition-*" \
 		--javaPackageSuffix=_java \
 		--moduleDependencies="usbase<uscore"'
-	$(SBT) $(foreach i,$(ALL_MODULES),$i/scalafmtAll)
+	$(SBT) $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/javafmt)
 	./apply_patches.sh
 

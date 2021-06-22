@@ -22,7 +22,7 @@ object ChoiceImplicits {
   def buildTypeSafeUnion[U: LTag, S: LTag](t: S)(implicit witness: S <:< U): U = t
 
   def choice[U: LTag, S: LTag](t: S)(implicit
-  @implicitNotFound("Cannot prove that ${S} is a viable type for union ${U}") witness: UnionWitness[U, S]): Choice[U] =
+      @implicitNotFound("Cannot prove that ${S} is a viable type for union ${U}") witness: UnionWitness[U, S]): Choice[U] =
     Choice.fromValAndSuffix[U, S](t, witness.suffix)
 
   // Use case for this constructor is specifically extensions which limit their value range to a single enum

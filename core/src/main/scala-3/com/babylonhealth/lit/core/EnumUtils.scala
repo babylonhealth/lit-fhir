@@ -30,7 +30,7 @@ trait EType[A <: ToCodingAble](val reference: String) {
           }))
 }
 
-trait ETypeWithFallback[A <: ToCodingAble: ClassTag] extends EType[A] {
+trait ETypeWithFallback[A <: ToCodingAble](implicit aClassTag: ClassTag[A]) extends EType[A] {
   def fromOrdinal(i: Int): A
   // This is so, so stupid.. but there isn't any way to override the name of an enum, or to list the unparameterised
   // values if a single parameterised one exists. Anyway, this works as long as 'Other' is the last case.

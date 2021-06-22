@@ -112,7 +112,6 @@ class Resource(
   override val thisTypeName: String = "Resource"
   /// Patched-in methods:
   def getIdentifier: Option[String] = id map (i => s"$thisTypeName/$i")
-  def getVersionedIdentifier: Option[String] =
-    getIdentifier.zip(meta.flatMap(_.versionId)).map { case (i, v) => s"$i/_history/$v" }
+  def getVersionedIdentifier: Option[String] = getIdentifier.zip(meta.flatMap(_.versionId)).map{case (i, v) => s"$i/_history/$v"}
   def getMostSpecificIdentifier: Option[String] = getVersionedIdentifier orElse getIdentifier
 }
