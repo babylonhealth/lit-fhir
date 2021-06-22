@@ -24,62 +24,27 @@ object Choice {
   def decoder[T: LTag](prefix: String, path: String)(implicit params: DecoderParams): Decoder[Choice[T]] =
     decoder[T](path.drop(prefix.size))
 
-  @deprecated("Will be removed by 1.0.0")
-  def fromValNoTypecheck[T, O](o: O)(implicit tt: LTag[T], ot: LTag[O]): Choice[T] = {
-    Choice[T](typeSuffixMap(ot.tag).get, o)(tt)
-  }
-
-  def fromValAndSuffix[T, O](o: O, suffix: String)(implicit tt: LTag[T]): Choice[T] = {
+  def fromValAndSuffix[T, O <: T](o: O, suffix: String)(implicit tt: LTag[T]): Choice[T] = {
     Choice[T](suffix, o)(tt)
   }
 
-  def fromSuffix[V, U](suffix: String, value: V, meta: FHIRComponentFieldMeta[_]): Choice[U] =
+  def fromSuffix[U, V <: U](suffix: String, value: V, meta: FHIRComponentFieldMeta[_]): Choice[U] =
     Choice[U](suffix, value)(meta.unwrappedTT.asInstanceOf[LTag[U]])
 }
 
-//final class ChoiceFold[T: LTag, To: LTag, Built: LTag] private[core] (
-//    choice: Choice[T],
-//    fns: Map[String, Function[_, To]]) {
-//  def and[Next: LTag](x: Next => To)(implicit w: UnionWitness[T, Next]): ChoiceFold[T, To, Built \/ Next] =
-//    new ChoiceFold[T, To, Built \/ Next](choice, fns + (w.suffix -> x))(
-//      implicitly[LTag[T]],
-//      implicitly[LTag[To]],
-//      \::/[Built, Next])
-//  def run(implicit w: T =:= Built): To = fns(choice.suffix).asInstanceOf[Any => Any](choice.value).asInstanceOf[To]
-//}
-
-//final class ChoiceMap[T: LTag] private[core] (
-//    choice: Choice[T],
-//    partials: Map[String, (String, LTag[_], Function[_, _])]) {
-//  def orElse[From, To](fn: From => To)(implicit
-//      @implicitNotFound("Cannot prove that ${From} ('from' type) is a viable type for union ${T}")
-//      fromWitness: UnionWitness[T, From],
-//      @implicitNotFound("Cannot prove that ${To} ('to' type) is a viable type for union ${T}")
-//      toWitness: UnionWitness[T, To]
-//  ): ChoiceMap[T] = new ChoiceMap(choice, partials + (fromWitness.suffix -> (toWitness.suffix, toWitness.tt, fn)))
-//  def run: Choice[T] =
-//    partials.get(choice.suffix).map { case (newSuffix, _, fn) =>
-//      Choice(newSuffix, fn.asInstanceOf[Any => Any](choice.value))(choice.tt) //.asInstanceOf[Ref[T, _]]
-//    } getOrElse choice
-//}
-
+object As {
+  implicit def asAs[T: LTag](t: T): As[T] = new As[T](t)
+}
+case class As[T](t: T)(implicit val tag: LTag[T]) {
+  val suffix: String = \/.typeSuffixMap2(tag.tag.ref).get
+}
 case class Choice[T](suffix: String, value: Any)(implicit val tt: LTag[T]) {
   type Union = T
 
-  // Probably redundant now that we have proper unions
-//  def fold[Init: LTag, To: LTag](fn: Init => To)(implicit
-//      @implicitNotFound("Cannot prove that ${Init} ('from' type) is a viable type for union ${T}")
-//      fromWitness: UnionWitness[T, Init]): ChoiceFold[T, To, Init] =
-//    new ChoiceFold[T, To, Init](this, Map(fromWitness.suffix -> fn))
+  def mapValue(fn: PartialFunction[T, As[_ <: T]]): Choice[T] =
+    fn.andThen { case newValue: As[_] => Choice[T](newValue.suffix, newValue.t) }.applyOrElse(value.asInstanceOf[T], _ => this)
 
-  // Modify the held value, returning a type that can also be held in the union type
-  //g Probably redundant now that we have proper unions
-//  def mapValue[From, To](fn: From => To)(implicit
-//      @implicitNotFound("Cannot prove that ${From} ('from' type) is a viable type for union ${T}")
-//      fromWitness: UnionWitness[T, From],
-//      @implicitNotFound("Cannot prove that ${To} ('to' type) is a viable type for union ${T}")
-//      toWitness: UnionWitness[T, To]
-//  ): ChoiceMap[T] = new ChoiceMap(this, Map(fromWitness.suffix -> (toWitness.suffix, toWitness.tt, fn)))
+  def fold[To](fn: T => To): To = fn(value.asInstanceOf[T])
 
   val d @ DecoderAndTag(_, elTT) =
     model.suffixDecoderTypeTagMap.getOrElse(suffix, DecoderAndTag[Json](_ => implicitly, LTag[Json]))
@@ -91,7 +56,7 @@ case class Choice[T](suffix: String, value: Any)(implicit val tt: LTag[T]) {
     if (subT.tag =:= elTT.tag) value.asInstanceOf[Sub]
     else throw new RuntimeException(s"requested value type ${subT.tag} didn't match choice type ${elTT.tag}")
 
-  def toSuperRef[Sup](implicit supT: LTag[Sup]): Choice[Sup] = Choice[Sup](suffix, value)
+  def toSuperRef[Sup >: T](implicit supT: LTag[Sup]): Choice[Sup] = Choice[Sup](suffix, value)
 
   override def toString: String = s"Choice[${\/.str[T]}](${suffix}, ${value})"
 

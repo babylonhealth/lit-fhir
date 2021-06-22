@@ -4,6 +4,7 @@ import java.time.{ LocalTime, ZonedDateTime }
 
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
+
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.PseudoLenses._
 import com.babylonhealth.lit.core.model._
@@ -11,6 +12,7 @@ import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.hl7.{ BUNDLE_TYPE, OBSERVATION_STATUS }
 import com.babylonhealth.lit.hl7.model._
 import izumi.reflect.macrortti.LTag
+import org.scalatest.Assertion
 
 class NewFauxLensTest extends AnyFreeSpec with Matchers {
   val subjects: Seq[(Reference, Coding)] = Seq(
@@ -96,83 +98,85 @@ class NewFauxLensTest extends AnyFreeSpec with Matchers {
      */
   }
 
-//  "mapValue on a ref" - {
-//    def genObs(x: Choice[Boolean | Int | Quantity | String]): Observation =
-//      Observation(code = CodeableConcept(), status = OBSERVATION_STATUS.CANCELLED, value = Some(x.toSuperRef))
-//    val observation1 = genObs(choice(123))
-//    val observation2 = genObs(choice(false))
-//    val observation3 = genObs(choice(Quantity(unit = Some("ms"), value = Some(1.23))))
-//
-//    val observation1_modified = genObs(choice(172))
-//    val observation2_modified = genObs(choice(true))
-//    val observation3_modified = genObs(choice("1.23"))
-//
-//    "simply" in {
-//      observation1.updateIfExists(_.value)(_.mapValue((_: Int) + 49).run) shouldEqual observation1_modified
-//    }
-//    "chained" in {
-//      val bundle = Bundle(
-//        `type` = BUNDLE_TYPE.COLLECTION,
-//        entry = LitSeq(observation1, observation2, observation3).map(o => Bundle.Entry(resource = Some(o))))
-//      val bundle2 = Bundle(
-//        `type` = BUNDLE_TYPE.COLLECTION,
-//        entry = LitSeq(observation1_modified, observation2_modified, observation3_modified).map(o =>
-//          Bundle.Entry(resource = Some(o))))
-//      val res_bundle = bundle.updateAll(_.entry) {
-//        _.updateIfExists(_.resource) {
-//          case resource: Observation =>
-//            resource.updateIfExists(_.value)(
-//              _.mapValue((_: Int) + 49)
-//                .orElse((b: Boolean) => !b)
-//                .orElse((_: Quantity).value.getOrElse(0).toString)
-//                .run)
-//          case x => x
-//        }
-//      }
-//      res_bundle shouldEqual bundle2
-//    }
-//    "typeSafety" in {
-//      assertTypeError("""observation1.updateIfExists(_.value)(_.mapValue((_: Double) + 123).run)""")
-//    }
-//  }
-//  "fold on a ref" - {
-//    "can do" in {
-//      def fold(r: Choice[Int | String]): Double = r.fold((_: Int).toDouble).and((_: String).length.toDouble).run
-//    }
-//    "can do b" in {
-//      def fold(r: Choice[Int | String | Double]): Double =
-//        r.fold((_: Int).toDouble).and((_: String).length.toDouble).and((d: Double) => d).run
-//    }
-//    "can do big" in {
-//      def fold(r: Choice[
-//        Boolean | CodeableConcept | Int | LocalTime | Period | Quantity | Range | Ratio | SampledData | String | ZonedDateTime]): Double =
-//        r.fold((_: Boolean) => 0.3)
-//          .and((_: CodeableConcept) => 0.4)
-//          .and((_: Int).toDouble)
-//          .and((_: LocalTime) => 0.5)
-//          .and((_: Period) => 0.6)
-//          .and((_: Quantity) => 0.6)
-//          .and((_: Range) => 0.6)
-//          .and((_: Ratio) => 0.6)
-//          .and((_: SampledData) => 0.6)
-//          .and((_: String) => 0.6)
-//          .and((_: ZonedDateTime) => 0.6)
-//          .run
-//    }
-//    "can't do if partial" in {
-//      assertTypeError("""def fold(r: Choice[Int | String]): Double = r.fold((_: Int).toDouble).run""")
-//    }
-//    "can't do if wrong type" in {
-//      assertTypeError(
-//        """def fold(r: Choice[Int | String]): Double = r.fold((_: Int).toDouble).and((_: Array[_]).length.toDouble).run""")
-//    }
-//    "can't do if wrong order" in {
-//      assertTypeError(
-//        """def fold(r: Choice[Int | String]): Double = r.fold((_: String).length.toDouble).and((_: Int).toDouble).run""")
-//    }
-//    "can't do if too many" in {
-//      assertTypeError(
-//        """def fold(r: Choice[Int | String]): Double = r.fold((_: Int).toDouble).and((_: String).length.toDouble).and((_: String).length.toDouble).run""")
-//    }
-//  }
+  "mapValue on a ref" - {
+    def genObs(x: Choice[Boolean | Int | Quantity | String]): Observation =
+      Observation(code = CodeableConcept(), status = OBSERVATION_STATUS.CANCELLED, value = Some(x.toSuperRef))
+
+    val observation1 = genObs(choice(123))
+    val observation2 = genObs(choice(false))
+    val observation3 = genObs(choice(Quantity(unit = Some("ms"), value = Some(1.23))))
+
+    val observation1_modified = genObs(choice(172))
+    val observation2_modified = genObs(choice(true))
+    val observation3_modified = genObs(choice("1.23"))
+
+    "simply" in {
+      observation1.updateIfExists(_.value)(_.mapValue { case i: Int => i + 49 }) shouldEqual observation1_modified
+    }
+    "chained" in {
+      val bundle = Bundle(
+        `type` = BUNDLE_TYPE.COLLECTION,
+        entry = LitSeq(observation1, observation2, observation3).map(o => Bundle.Entry(resource = Some(o))))
+      val bundle2 = Bundle(
+        `type` = BUNDLE_TYPE.COLLECTION,
+        entry =
+          LitSeq(observation1_modified, observation2_modified, observation3_modified).map(o => Bundle.Entry(resource = Some(o))))
+      val res_bundle = bundle.updateAll(_.entry) {
+        _.updateIfExists(_.resource) {
+          case resource: Observation =>
+            resource.updateIfExists(_.value)(_.mapValue {
+              case i: Int      => i + 49
+              case b: Boolean  => !b
+              case q: Quantity => q.value.getOrElse(0).toString
+            })
+          case x => x
+        }
+      }
+      res_bundle shouldEqual bundle2
+    }
+
+    "typeSafety" in {
+      assertTypeError("""observation1.updateIfExists(_.value)(_.mapValue { case d: Double => d + 123 } )""")
+    }
+  }
+  "fold on a ref" - {
+    "can do" in {
+      def fold(r: Choice[Int | String]): Double = r.fold { case i: Int => i.toDouble; case s: String => s.length.toDouble }
+    }
+    "can do b" in {
+      def fold(r: Choice[Int | String | Double]): Double =
+        r.fold { case i: Int => i.toDouble; case s: String => s.length.toDouble; case d: Double => d }
+    }
+    "can do big" in {
+      def fold(
+          r: Choice[Boolean | CodeableConcept | Int | LocalTime | Period | Quantity | Range | Ratio | SampledData | String |
+            ZonedDateTime]): Double =
+        r.fold {
+          case _: Boolean         => 0.3
+          case _: CodeableConcept => 0.4
+          case i: Int             => i.toDouble
+          case _: LocalTime       => 0.5
+          case _: Period          => 0.6
+          case _: Quantity        => 0.6
+          case _: Range           => 0.6
+          case _: Ratio           => 0.6
+          case _: SampledData     => 0.6
+          case _: String          => 0.6
+          case _: ZonedDateTime   => 0.6
+        }
+    }
+    // TODO: Impl this
+    def assertThrowsWarning(s: String): Assertion = fail("unimplemented test")
+    "get warnings if partial" ignore {
+      assertThrowsWarning("""def fold(r: Choice[Int | String]): Double = r.fold{ case i: Int => i.toDouble }""")
+    }
+    "get warnings if wrong type" ignore {
+      assertDoesNotCompile(
+        """def fold(r: Choice[Int | String]): Double = r.fold{ case i: Int => i.toDouble; case a: Array[_] => a.length.toDouble }""")
+    }
+    "get warnings if too many" ignore {
+      assertThrowsWarning(
+        """def fold(r: Choice[Int | String]): Double = r.fold{ case i: Int => i.toDouble; case s: String => s.length.toDouble; case s: String => s.length.toDouble}""")
+    }
+  }
 }
