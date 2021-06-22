@@ -41,7 +41,7 @@ commands:
           key: test-cache-v1-{{ .Branch }}-{{ .Revision }}
           paths:
             - "~/project/test-targets.tar.gz"
-  restore_build_cache:
+  restore_test_cache:
     description: "Restore the test cache"
     steps:
       - restore_cache:
