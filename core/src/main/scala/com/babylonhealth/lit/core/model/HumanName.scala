@@ -21,8 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object HumanName extends CompanionFor[HumanName] {
-  implicit def summonObjectAndCompanionHumanName1522302578(
-      o: HumanName): ObjectAndCompanion[HumanName, HumanName.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionHumanName1522302578(o: HumanName): ObjectAndCompanion[HumanName, HumanName.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = HumanName
   override type ParentType   = HumanName
   override val baseType: CompanionFor[ResourceType] = HumanName
@@ -69,8 +69,7 @@ object HumanName extends CompanionFor[HumanName] {
     FHIRComponentFieldMeta("period", lTagOf[Option[Period]], false, lTagOf[Period])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-    Seq(id, use, text, `given`, family, prefix, suffix, period, extension)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, use, text, `given`, family, prefix, suffix, period, extension)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: HumanName): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
@@ -122,31 +121,31 @@ object HumanName extends CompanionFor[HumanName] {
   * @constructor
   *   Introduces the fields use, text, `given`, family, prefix, suffix, period.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param use
   *   - Identifies the purpose for this name.
   * @param text
-  *   - Specifies the entire name as it should be displayed e.g. on an application UI. This may be provided instead of
-  *   or as well as the specific parts.
+  *   - Specifies the entire name as it should be displayed e.g. on an application UI. This may be provided instead of or as well
+  *   as the specific parts.
   * @param `given`
   *   - Given name.
   * @param family
-  *   - The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the
-  *   first name of his father.
+  *   - The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name
+  *   of his father.
   * @param prefix
-  *   - Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and
-  *   that appears at the start of the name.
+  *   - Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears
+  *   at the start of the name.
   * @param suffix
-  *   - Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and
-  *   that appears at the end of the name.
+  *   - Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears
+  *   at the end of the name.
   * @param period
   *   - Indicates the period of time when this name was valid for the named person.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class HumanName(

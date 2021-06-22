@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Usagecontext_group extends CompanionFor[Usagecontext_group] {
   implicit def summonObjectAndCompanionUsagecontext_group293983857(
-      o: Usagecontext_group): ObjectAndCompanion[Usagecontext_group, Usagecontext_group.type] =
-    ObjectAndCompanion(o, this)
+      o: Usagecontext_group): ObjectAndCompanion[Usagecontext_group, Usagecontext_group.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,8 +55,7 @@ object Usagecontext_group extends CompanionFor[Usagecontext_group] {
   def extractValue(t: Usagecontext_group): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                          = "Usagecontext_group"
   override val searchParams: Map[String, Usagecontext_group => Seq[Any]] = Extension.searchParams
-  def unapply(o: Usagecontext_group): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[String]))
+  def unapply(o: Usagecontext_group): Option[(Option[String], String)]   = Some((o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Usagecontext_group] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,19 +67,18 @@ object Usagecontext_group extends CompanionFor[Usagecontext_group] {
       ))
 }
 
-/** Defines the group in which this usage context is a member. Multiple groups are "OR'ed", contexts within a group are
-  * "AND'ed".
+/** Defines the group in which this usage context is a member. Multiple groups are "OR'ed", contexts within a group are "AND'ed".
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

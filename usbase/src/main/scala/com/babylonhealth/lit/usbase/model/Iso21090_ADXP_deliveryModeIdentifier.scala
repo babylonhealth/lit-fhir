@@ -31,8 +31,7 @@ object Iso21090_ADXP_deliveryModeIdentifier extends CompanionFor[Iso21090_ADXP_d
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some(
-    "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-deliveryModeIdentifier")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-deliveryModeIdentifier")
   def apply(
       id: Option[String] = None,
       value: String,
@@ -54,8 +53,8 @@ object Iso21090_ADXP_deliveryModeIdentifier extends CompanionFor[Iso21090_ADXP_d
     ))
   override def fields(t: Iso21090_ADXP_deliveryModeIdentifier): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Iso21090_ADXP_deliveryModeIdentifier): Option[String]                   = t.id
-  def extractValue(t: Iso21090_ADXP_deliveryModeIdentifier): String = t.value.get.toSubRefNonUnion[String]
-  override val thisName: String                                     = "Iso21090_ADXP_deliveryModeIdentifier"
+  def extractValue(t: Iso21090_ADXP_deliveryModeIdentifier): String                        = t.value.get.toSubRefNonUnion[String]
+  override val thisName: String = "Iso21090_ADXP_deliveryModeIdentifier"
   override val searchParams: Map[String, Iso21090_ADXP_deliveryModeIdentifier => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_ADXP_deliveryModeIdentifier): Option[(Option[String], String)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[String]))
@@ -70,19 +69,19 @@ object Iso21090_ADXP_deliveryModeIdentifier extends CompanionFor[Iso21090_ADXP_d
       ))
 }
 
-/** Represents the routing information such as a letter carrier route number. It is the identifying number of the
-  * designator (the box number or rural route number).
+/** Represents the routing information such as a letter carrier route number. It is the identifying number of the designator (the
+  * box number or rural route number).
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

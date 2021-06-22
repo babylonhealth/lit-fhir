@@ -31,7 +31,7 @@ object Questionnaireresponse_author extends CompanionFor[Questionnaireresponse_a
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/questionnaireresponse-author")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/questionnaireresponse-author")
   def apply(
       id: Option[String] = None,
       value: Reference,
@@ -53,8 +53,8 @@ object Questionnaireresponse_author extends CompanionFor[Questionnaireresponse_a
     ))
   override def fields(t: Questionnaireresponse_author): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaireresponse_author): Option[String]                   = t.id
-  def extractValue(t: Questionnaireresponse_author): Reference = t.value.get.toSubRefNonUnion[Reference]
-  override val thisName: String                                = "Questionnaireresponse_author"
+  def extractValue(t: Questionnaireresponse_author): Reference                     = t.value.get.toSubRefNonUnion[Reference]
+  override val thisName: String                                                    = "Questionnaireresponse_author"
   override val searchParams: Map[String, Questionnaireresponse_author => Seq[Any]] = Extension.searchParams
   def unapply(o: Questionnaireresponse_author): Option[(Option[String], Reference)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[Reference]))
@@ -69,19 +69,18 @@ object Questionnaireresponse_author extends CompanionFor[Questionnaireresponse_a
       ))
 }
 
-/** Allows capturing, on a specific question or group of questions, exactly who was responsible for providing the
-  * answer(s).
+/** Allows capturing, on a specific question or group of questions, exactly who was responsible for providing the answer(s).
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

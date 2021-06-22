@@ -31,7 +31,7 @@ object Servicerequest_precondition extends CompanionFor[Servicerequest_precondit
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/servicerequest-precondition")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/servicerequest-precondition")
   def apply(
       id: Option[String] = None,
       value: CodeableConcept,
@@ -53,8 +53,8 @@ object Servicerequest_precondition extends CompanionFor[Servicerequest_precondit
     ))
   override def fields(t: Servicerequest_precondition): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Servicerequest_precondition): Option[String]                   = t.id
-  def extractValue(t: Servicerequest_precondition): CodeableConcept = t.value.get.toSubRefNonUnion[CodeableConcept]
-  override val thisName: String                                     = "Servicerequest_precondition"
+  def extractValue(t: Servicerequest_precondition): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
+  override val thisName: String                                                   = "Servicerequest_precondition"
   override val searchParams: Map[String, Servicerequest_precondition => Seq[Any]] = Extension.searchParams
   def unapply(o: Servicerequest_precondition): Option[(Option[String], CodeableConcept)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
@@ -69,20 +69,20 @@ object Servicerequest_precondition extends CompanionFor[Servicerequest_precondit
       ))
 }
 
-/** The condition or state of the patient, prior or during the diagnostic procedure or test, for example, fasting,
-  * at-rest, or post-operative. This captures circumstances that may influence the measured value and have bearing on
-  * the interpretation of the result.
+/** The condition or state of the patient, prior or during the diagnostic procedure or test, for example, fasting, at-rest, or
+  * post-operative. This captures circumstances that may influence the measured value and have bearing on the interpretation of
+  * the result.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

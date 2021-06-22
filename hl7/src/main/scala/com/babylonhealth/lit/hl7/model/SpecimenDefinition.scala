@@ -25,22 +25,21 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
   implicit def summonObjectAndCompanionSpecimenDefinition186247417(
-      o: SpecimenDefinition): ObjectAndCompanion[SpecimenDefinition, SpecimenDefinition.type] =
-    ObjectAndCompanion(o, this)
+      o: SpecimenDefinition): ObjectAndCompanion[SpecimenDefinition, SpecimenDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SpecimenDefinition
   override type ParentType   = SpecimenDefinition
   override val baseType: CompanionFor[ResourceType] = SpecimenDefinition
   override val parentType: CompanionFor[ParentType] = SpecimenDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SpecimenDefinition")
   object TypeTested extends CompanionFor[TypeTested] {
-    implicit def summonObjectAndCompanionTypeTested1057667372(
-        o: TypeTested): ObjectAndCompanion[TypeTested, TypeTested.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionTypeTested1057667372(o: TypeTested): ObjectAndCompanion[TypeTested, TypeTested.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = TypeTested
     override type ParentType   = TypeTested
     override val parentType: CompanionFor[ResourceType] = TypeTested
     object Handling extends CompanionFor[Handling] {
-      implicit def summonObjectAndCompanionHandling_752463348(
-          o: Handling): ObjectAndCompanion[Handling, Handling.type] = ObjectAndCompanion(o, this)
+      implicit def summonObjectAndCompanionHandling_752463348(o: Handling): ObjectAndCompanion[Handling, Handling.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Handling
       override type ParentType   = Handling
       override val parentType: CompanionFor[ResourceType] = Handling
@@ -65,15 +64,7 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
       )
       def unapply(
           o: Handling): Option[(Option[String], LitSeq[Extension], Option[Duration], Option[String], Option[Range], LitSeq[Extension], Option[CodeableConcept])] =
-        Some(
-          (
-            o.id,
-            o.extension,
-            o.maxDuration,
-            o.instruction,
-            o.temperatureRange,
-            o.modifierExtension,
-            o.temperatureQualifier))
+        Some((o.id, o.extension, o.maxDuration, o.instruction, o.temperatureRange, o.modifierExtension, o.temperatureQualifier))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -126,18 +117,17 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
         val temperatureRange: Option[Range] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         val temperatureQualifier: Option[CodeableConcept] = None,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Container extends CompanionFor[Container] {
-      implicit def summonObjectAndCompanionContainer_1458594556(
-          o: Container): ObjectAndCompanion[Container, Container.type] = ObjectAndCompanion(o, this)
+      implicit def summonObjectAndCompanionContainer_1458594556(o: Container): ObjectAndCompanion[Container, Container.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Container
       override type ParentType   = Container
       override val parentType: CompanionFor[ResourceType] = Container
       object Additive extends CompanionFor[Additive] {
-        implicit def summonObjectAndCompanionAdditive_858674879(
-            o: Additive): ObjectAndCompanion[Additive, Additive.type] = ObjectAndCompanion(o, this)
+        implicit def summonObjectAndCompanionAdditive_858674879(o: Additive): ObjectAndCompanion[Additive, Additive.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = Additive
         override type ParentType   = Additive
         override val parentType: CompanionFor[ResourceType] = Additive
@@ -155,9 +145,8 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
           modifierExtension,
           primitiveAttributes = primitiveAttributes
         )
-        def unapply(
-            o: Additive): Option[(Option[String], LitSeq[Extension], Additive.AdditiveChoice, LitSeq[Extension])] =
-          Some((o.id, o.extension, o.additive, o.modifierExtension))
+        def unapply(o: Additive): Option[(Option[String], LitSeq[Extension], Additive.AdditiveChoice, LitSeq[Extension])] = Some(
+          (o.id, o.extension, o.additive, o.modifierExtension))
         val id: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -194,8 +183,7 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
           override val extension: LitSeq[Extension] = LitSeq.empty,
           val additive: Additive.AdditiveChoice,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       type MinimumVolumeChoice = Choice[Union_2072987899]
       def apply(
@@ -257,27 +245,13 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
       val preparation: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("preparation", lTagOf[Option[String]], false, lTagOf[String])
       val minimumVolume: FHIRComponentFieldMeta[Option[Container.MinimumVolumeChoice]] =
-        FHIRComponentFieldMeta(
-          "minimumVolume",
-          lTagOf[Option[Container.MinimumVolumeChoice]],
-          true,
-          lTagOf[Union_2072987899])
+        FHIRComponentFieldMeta("minimumVolume", lTagOf[Option[Container.MinimumVolumeChoice]], true, lTagOf[Union_2072987899])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val additive: FHIRComponentFieldMeta[LitSeq[Container.Additive]] =
         FHIRComponentFieldMeta("additive", lTagOf[LitSeq[Container.Additive]], false, lTagOf[Container.Additive])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
-        id,
-        cap,
-        `type`,
-        material,
-        capacity,
-        extension,
-        description,
-        preparation,
-        minimumVolume,
-        modifierExtension,
-        additive)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+        Seq(id, cap, `type`, material, capacity, extension, description, preparation, minimumVolume, modifierExtension, additive)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Container): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
@@ -326,8 +300,7 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
         val minimumVolume: Option[Container.MinimumVolumeChoice] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         val additive: LitSeq[Container.Additive] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -380,11 +353,7 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
     val isDerived: FHIRComponentFieldMeta[Option[Boolean]] =
       FHIRComponentFieldMeta("isDerived", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
     val preference: FHIRComponentFieldMeta[SPECIMEN_CONTAINED_PREFERENCE] =
-      FHIRComponentFieldMeta(
-        "preference",
-        lTagOf[SPECIMEN_CONTAINED_PREFERENCE],
-        false,
-        lTagOf[SPECIMEN_CONTAINED_PREFERENCE])
+      FHIRComponentFieldMeta("preference", lTagOf[SPECIMEN_CONTAINED_PREFERENCE], false, lTagOf[SPECIMEN_CONTAINED_PREFERENCE])
     val requirement: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("requirement", lTagOf[Option[String]], false, lTagOf[String])
     val retentionTime: FHIRComponentFieldMeta[Option[Duration]] =
@@ -627,23 +596,23 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param language
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param identifier
   *   - A business identifier associated with the kind of specimen.
   * @param timeAspect
@@ -651,20 +620,19 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
   * @param collection
   *   - The action to be performed for collecting the specimen.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param typeCollected
   *   - The kind of material to be collected.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param patientPreparation
   *   - Preparation of the patient for specimen collection.
   * @param typeTested

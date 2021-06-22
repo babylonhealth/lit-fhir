@@ -48,11 +48,7 @@ class ParseTest extends AnyFreeSpec with Matchers with FileUtils {
     val x3: Choice[SharedTypes.StrInt] = choice(123)
     val entries                        = LoadsOfObservations.observations.map(o => Bundle.Entry(resource = Some(o)))
     val z =
-      new Bundle(
-        meta = None,
-        `type` = BUNDLE_TYPE.COLLECTION,
-        total = Some(53.asInstanceOf[UnsignedInt]),
-        entry = entries)
+      new Bundle(meta = None, `type` = BUNDLE_TYPE.COLLECTION, total = Some(53.asInstanceOf[UnsignedInt]), entry = entries)
     val rs1 = z.entry.map(_.resource.get)
     val rs2 = y.toTry.get.entry.map(_.resource.get)
     def printDiff(x: Resource, y: Resource): Option[String] = {

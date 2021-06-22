@@ -31,7 +31,7 @@ object Specimen_collectionPriority extends CompanionFor[Specimen_collectionPrior
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/specimen-collectionPriority")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/specimen-collectionPriority")
   def apply(
       id: Option[String] = None,
       value: CodeableConcept,
@@ -53,8 +53,8 @@ object Specimen_collectionPriority extends CompanionFor[Specimen_collectionPrior
     ))
   override def fields(t: Specimen_collectionPriority): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Specimen_collectionPriority): Option[String]                   = t.id
-  def extractValue(t: Specimen_collectionPriority): CodeableConcept = t.value.get.toSubRefNonUnion[CodeableConcept]
-  override val thisName: String                                     = "Specimen_collectionPriority"
+  def extractValue(t: Specimen_collectionPriority): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
+  override val thisName: String                                                   = "Specimen_collectionPriority"
   override val searchParams: Map[String, Specimen_collectionPriority => Seq[Any]] = Extension.searchParams
   def unapply(o: Specimen_collectionPriority): Option[(Option[String], CodeableConcept)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
@@ -71,16 +71,16 @@ object Specimen_collectionPriority extends CompanionFor[Specimen_collectionPrior
 
 /** The urgency of sample collection, such as STAT, ASAP, ASAP-ED, ROUTINE, ROUTINE-AM, etc….
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

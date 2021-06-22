@@ -31,8 +31,7 @@ class SerdeParameterisationTest extends AnyFreeSpec with Matchers with FileUtils
       coding = LitSeq( // TODO: constants should be accessible from library for common use case construction
         Coding(system = Some("http://codingsystem.lo.wut"), code = Some("....IDK")))),
     value = Some(Quantity()),
-    category =
-      LitSeq(CodeableConcept(coding = LitSeq(Coding(system = Some("http://category.system"), code = Some("foo")))))
+    category = LitSeq(CodeableConcept(coding = LitSeq(Coding(system = Some("http://category.system"), code = Some("foo")))))
   )
 
   "decoder params" - {
@@ -75,8 +74,7 @@ class SerdeParameterisationTest extends AnyFreeSpec with Matchers with FileUtils
       status = OBSERVATION_STATUS.AMENDED,
       effective = Some(choice(FHIRDateTime(ZonedDateTime.parse("2020-03-09T18:40:27.972Z")))),
       subject = Some(Reference(reference = Some("patient-123"))),
-      code =
-        CodeableConcept(coding = LitSeq(Coding(system = Some("http://codingsystem.lo.wut"), code = Some("....IDK")))),
+      code = CodeableConcept(coding = LitSeq(Coding(system = Some("http://codingsystem.lo.wut"), code = Some("....IDK")))),
       referenceRange = ReferenceRange()
     )
     def isSuccessful(decodedBadBundle: Try[Resource]) =
@@ -184,8 +182,7 @@ class SerdeParameterisationTest extends AnyFreeSpec with Matchers with FileUtils
         status = OBSERVATION_STATUS.AMENDED,
         effective = Some(choice(FHIRDateTime(ZonedDateTime.parse("2020-03-09T18:40:27.972Z")))),
         subject = Some(Reference(reference = Some("patient-123"))),
-        code =
-          CodeableConcept(coding = LitSeq(Coding(system = Some("http://codingsystem.lo.wut"), code = Some("....IDK")))),
+        code = CodeableConcept(coding = LitSeq(Coding(system = Some("http://codingsystem.lo.wut"), code = Some("....IDK")))),
         referenceRange = ReferenceRange()
       )
       val x2 = x1.set(_.interpretation)(Some(CodeableConcept(text = Some("hi"))))

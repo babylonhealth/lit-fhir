@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Parameters_fullUrl extends CompanionFor[Parameters_fullUrl] {
   implicit def summonObjectAndCompanionParameters_fullUrl_864292463(
-      o: Parameters_fullUrl): ObjectAndCompanion[Parameters_fullUrl, Parameters_fullUrl.type] =
-    ObjectAndCompanion(o, this)
+      o: Parameters_fullUrl): ObjectAndCompanion[Parameters_fullUrl, Parameters_fullUrl.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,8 +55,7 @@ object Parameters_fullUrl extends CompanionFor[Parameters_fullUrl] {
   def extractValue(t: Parameters_fullUrl): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                          = "Parameters_fullUrl"
   override val searchParams: Map[String, Parameters_fullUrl => Seq[Any]] = Extension.searchParams
-  def unapply(o: Parameters_fullUrl): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
+  def unapply(o: Parameters_fullUrl): Option[(Option[String], UriStr)]   = Some((o.id, o.value.get.toSubRefNonUnion[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Parameters_fullUrl] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,19 +67,19 @@ object Parameters_fullUrl extends CompanionFor[Parameters_fullUrl] {
       ))
 }
 
-/** This specifies the fullUrl for the resource in parameters.resource, if there is one. When fullUrl is provided, ithe
-  * [resource resolution method described for Bundle](bundle.html#references).
+/** This specifies the fullUrl for the resource in parameters.resource, if there is one. When fullUrl is provided, ithe [resource
+  * resolution method described for Bundle](bundle.html#references).
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

@@ -50,13 +50,12 @@ object Request_replaces extends CompanionFor[Request_replaces] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
-  override def fields(t: Request_replaces): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Request_replaces): Option[String]                   = t.id
-  def extractValue(t: Request_replaces): Reference                     = t.value.get.toSubRefNonUnion[Reference]
-  override val thisName: String                                        = "Request_replaces"
-  override val searchParams: Map[String, Request_replaces => Seq[Any]] = Extension.searchParams
-  def unapply(o: Request_replaces): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+  override def fields(t: Request_replaces): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
+  def extractId(t: Request_replaces): Option[String]                    = t.id
+  def extractValue(t: Request_replaces): Reference                      = t.value.get.toSubRefNonUnion[Reference]
+  override val thisName: String                                         = "Request_replaces"
+  override val searchParams: Map[String, Request_replaces => Seq[Any]]  = Extension.searchParams
+  def unapply(o: Request_replaces): Option[(Option[String], Reference)] = Some((o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Request_replaces] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -70,16 +69,16 @@ object Request_replaces extends CompanionFor[Request_replaces] {
 
 /** Completed or terminated request(s) whose function is taken by this new request.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

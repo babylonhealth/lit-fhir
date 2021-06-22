@@ -24,8 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Geolocation extends CompanionFor[Geolocation] {
-  implicit def summonObjectAndCompanionGeolocation_1944580352(
-      o: Geolocation): ObjectAndCompanion[Geolocation, Geolocation.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionGeolocation_1944580352(o: Geolocation): ObjectAndCompanion[Geolocation, Geolocation.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -50,13 +50,12 @@ object Geolocation extends CompanionFor[Geolocation] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
     ))
-  override def fields(t: Geolocation): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Geolocation): Option[String]                   = t.id
-  def extractExtension(t: Geolocation): NonEmptyLitSeq[Extension] = t.extension.asNonEmpty
-  override val thisName: String                                   = "Geolocation"
-  override val searchParams: Map[String, Geolocation => Seq[Any]] = Extension.searchParams
-  def unapply(o: Geolocation): Option[(Option[String], NonEmptyLitSeq[Extension])] = Some(
-    (o.id, o.extension.asNonEmpty))
+  override def fields(t: Geolocation): Seq[FHIRComponentField[_]]                  = fieldsFromParent(t).get
+  def extractId(t: Geolocation): Option[String]                                    = t.id
+  def extractExtension(t: Geolocation): NonEmptyLitSeq[Extension]                  = t.extension.asNonEmpty
+  override val thisName: String                                                    = "Geolocation"
+  override val searchParams: Map[String, Geolocation => Seq[Any]]                  = Extension.searchParams
+  def unapply(o: Geolocation): Option[(Option[String], NonEmptyLitSeq[Extension])] = Some((o.id, o.extension.asNonEmpty))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Geolocation] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -68,26 +67,25 @@ object Geolocation extends CompanionFor[Geolocation] {
       ))
 }
 
-/** The absolute geographic location of the Location, expressed using the WGS84 datum (This is the same co-ordinate
-  * system used in KML).
+/** The absolute geographic location of the Location, expressed using the WGS84 datum (This is the same co-ordinate system used in
+  * KML).
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Requires the following fields which were optional in the parent: extension.
-  *   Forbids the use of the following fields which were optional in the parent: value. Hardcodes the value of the
-  *   following fields: url.
+  *   Inherits all params from parent. Requires the following fields which were optional in the parent: extension. Forbids the use
+  *   of the following fields which were optional in the parent: value. Hardcodes the value of the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class Geolocation(

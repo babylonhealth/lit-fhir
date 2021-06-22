@@ -31,8 +31,7 @@ object Questionnaire_sliderStepValue extends CompanionFor[Questionnaire_sliderSt
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some(
-    "http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue")
   def apply(
       id: Option[String] = None,
       value: Int,
@@ -57,8 +56,7 @@ object Questionnaire_sliderStepValue extends CompanionFor[Questionnaire_sliderSt
   def extractValue(t: Questionnaire_sliderStepValue): Int                           = t.value.get.toSubRefNonUnion[Int]
   override val thisName: String                                                     = "Questionnaire_sliderStepValue"
   override val searchParams: Map[String, Questionnaire_sliderStepValue => Seq[Any]] = Extension.searchParams
-  def unapply(o: Questionnaire_sliderStepValue): Option[(Option[String], Int)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Int]))
+  def unapply(o: Questionnaire_sliderStepValue): Option[(Option[String], Int)] = Some((o.id, o.value.get.toSubRefNonUnion[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_sliderStepValue] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -72,16 +70,16 @@ object Questionnaire_sliderStepValue extends CompanionFor[Questionnaire_sliderSt
 
 /** For slider-based controls, indicates the step size to use when toggling the control up or down.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

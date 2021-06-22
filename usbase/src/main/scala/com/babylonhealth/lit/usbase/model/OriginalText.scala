@@ -67,21 +67,20 @@ object OriginalText extends CompanionFor[OriginalText] {
       ))
 }
 
-/** A human language representation of the concept (resource/element) as seen/selected/uttered by the user who entered
-  * the data and/or which represents the full intended meaning of the user. This can be provided either directly as
-  * text, or as a url that is a reference to a portion of the narrative of a resource
-  * ([DomainResource.text](narrative.html)).
+/** A human language representation of the concept (resource/element) as seen/selected/uttered by the user who entered the data
+  * and/or which represents the full intended meaning of the user. This can be provided either directly as text, or as a url that
+  * is a reference to a portion of the narrative of a resource ([DomainResource.text](narrative.html)).
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

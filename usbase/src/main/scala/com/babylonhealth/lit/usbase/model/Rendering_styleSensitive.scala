@@ -31,7 +31,7 @@ object Rendering_styleSensitive extends CompanionFor[Rendering_styleSensitive] {
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/rendering-styleSensitive")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/rendering-styleSensitive")
   def apply(
       id: Option[String] = None,
       value: Boolean,
@@ -69,20 +69,20 @@ object Rendering_styleSensitive extends CompanionFor[Rendering_styleSensitive] {
       ))
 }
 
-/** Indicates that the style extensions (style, markdown and xhtml) in this resource instance are essential to the
-  * interpretation of the instance and that systems that are not capable of rendering using those extensions should not
-  * be used to render the resource.
+/** Indicates that the style extensions (style, markdown and xhtml) in this resource instance are essential to the interpretation
+  * of the instance and that systems that are not capable of rendering using those extensions should not be used to render the
+  * resource.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

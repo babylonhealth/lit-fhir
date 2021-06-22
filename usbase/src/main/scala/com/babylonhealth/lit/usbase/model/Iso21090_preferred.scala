@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_preferred extends CompanionFor[Iso21090_preferred] {
   implicit def summonObjectAndCompanionIso21090_preferred207245357(
-      o: Iso21090_preferred): ObjectAndCompanion[Iso21090_preferred, Iso21090_preferred.type] =
-    ObjectAndCompanion(o, this)
+      o: Iso21090_preferred): ObjectAndCompanion[Iso21090_preferred, Iso21090_preferred.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,8 +55,7 @@ object Iso21090_preferred extends CompanionFor[Iso21090_preferred] {
   def extractValue(t: Iso21090_preferred): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                          = "Iso21090_preferred"
   override val searchParams: Map[String, Iso21090_preferred => Seq[Any]] = Extension.searchParams
-  def unapply(o: Iso21090_preferred): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
+  def unapply(o: Iso21090_preferred): Option[(Option[String], Boolean)]  = Some((o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_preferred] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +69,16 @@ object Iso21090_preferred extends CompanionFor[Iso21090_preferred] {
 
 /** Flag denoting whether parent item is preferred - e.g., a preferred address or telephone number.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

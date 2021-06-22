@@ -128,10 +128,7 @@ object DATA_ABSENT_REASON extends FhirEnum[DATA_ABSENT_REASON] with FhirCirceEnu
   }
 }
 
-sealed abstract class DATA_TYPES(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
+sealed abstract class DATA_TYPES(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
   def display: Option[String]
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
@@ -401,9 +398,7 @@ sealed abstract class EXPANSION_PARAMETER_SOURCE(override val entryName: String)
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
 }
-object EXPANSION_PARAMETER_SOURCE
-    extends FhirEnum[EXPANSION_PARAMETER_SOURCE]
-    with FhirCirceEnum[EXPANSION_PARAMETER_SOURCE] {
+object EXPANSION_PARAMETER_SOURCE extends FhirEnum[EXPANSION_PARAMETER_SOURCE] with FhirCirceEnum[EXPANSION_PARAMETER_SOURCE] {
   val reference = "http://hl7.org/fhir/ValueSet/expansion-parameter-source"
   val values    = findValues
   case object CODESYSTEM extends EXPANSION_PARAMETER_SOURCE("codesystem") {
@@ -428,9 +423,7 @@ sealed abstract class EXPANSION_PROCESSING_RULE(override val entryName: String)
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
 }
-object EXPANSION_PROCESSING_RULE
-    extends FhirEnum[EXPANSION_PROCESSING_RULE]
-    with FhirCirceEnum[EXPANSION_PROCESSING_RULE] {
+object EXPANSION_PROCESSING_RULE extends FhirEnum[EXPANSION_PROCESSING_RULE] with FhirCirceEnum[EXPANSION_PROCESSING_RULE] {
   val reference = "http://hl7.org/fhir/ValueSet/expansion-processing-rule"
   val values    = findValues
   case object ALL_CODES extends EXPANSION_PROCESSING_RULE("all-codes") {
@@ -585,10 +578,7 @@ object IMPLANTSTATUS extends FhirEnum[IMPLANTSTATUS] with FhirCirceEnum[IMPLANTS
   }
 }
 
-sealed abstract class MATCH_GRADE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
+sealed abstract class MATCH_GRADE(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
   def display: Option[String]
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
@@ -845,9 +835,7 @@ sealed abstract class QUESTIONNAIRE_USAGE_MODE(override val entryName: String)
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
 }
-object QUESTIONNAIRE_USAGE_MODE
-    extends FhirEnum[QUESTIONNAIRE_USAGE_MODE]
-    with FhirCirceEnum[QUESTIONNAIRE_USAGE_MODE] {
+object QUESTIONNAIRE_USAGE_MODE extends FhirEnum[QUESTIONNAIRE_USAGE_MODE] with FhirCirceEnum[QUESTIONNAIRE_USAGE_MODE] {
   val reference = "http://hl7.org/fhir/ValueSet/questionnaire-usage-mode"
   val values    = findValues
   case object CAPTURE extends QUESTIONNAIRE_USAGE_MODE("capture") {
@@ -880,9 +868,7 @@ sealed abstract class RESOURCE_SECURITY_CATEGORY(override val entryName: String)
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
 }
-object RESOURCE_SECURITY_CATEGORY
-    extends FhirEnum[RESOURCE_SECURITY_CATEGORY]
-    with FhirCirceEnum[RESOURCE_SECURITY_CATEGORY] {
+object RESOURCE_SECURITY_CATEGORY extends FhirEnum[RESOURCE_SECURITY_CATEGORY] with FhirCirceEnum[RESOURCE_SECURITY_CATEGORY] {
   val reference = "http://hl7.org/fhir/ValueSet/resource-security-category"
   val values    = findValues
   case object ANONYMOUS extends RESOURCE_SECURITY_CATEGORY("anonymous") {

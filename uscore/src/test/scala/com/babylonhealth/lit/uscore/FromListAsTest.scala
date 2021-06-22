@@ -22,8 +22,7 @@ class FromListAsTest extends AnyFreeSpec with Matchers {
     status = OBSERVATION_STATUS.AMENDED,
     effective = Some(choice(FHIRDateTime(ZonedDateTime.parse("2020-03-09T18:40:27.972Z")))),
     subject = Some(Reference(reference = Some("patient-123"))),
-    code =
-      CodeableConcept(coding = LitSeq(Coding(system = Some("http://codingsystem.lo.wut"), code = Some("....IDK")))),
+    code = CodeableConcept(coding = LitSeq(Coding(system = Some("http://codingsystem.lo.wut"), code = Some("....IDK")))),
     referenceRange = ReferenceRange(text = Some("Some text"))
   )
   val triglycWInt: Triglyceride = triglyc.set(_.interpretation)(Some(CodeableConcept(text = Some("hi"))))
@@ -111,16 +110,14 @@ class FromListAsTest extends AnyFreeSpec with Matchers {
     val decoded = decode[Triglyceride](full)
     decoded.isLeft shouldEqual true
     val err = decoded.left.get
-    err.getMessage should include(
-      "Too many elements provided for field interpretation - a maximum of one element is permitted")
+    err.getMessage should include("Too many elements provided for field interpretation - a maximum of one element is permitted")
   }
   "gives a good error message when there are too many elements for a listy field that's inherited by a non-listy non-optional child" in {
     val full    = triglyceride(rr = refRanges)
     val decoded = decode[Triglyceride](full)
     decoded.isLeft shouldEqual true
     val err = decoded.left.get
-    err.getMessage should include(
-      "Too many elements provided for field referenceRange - a maximum of one element is permitted")
+    err.getMessage should include("Too many elements provided for field referenceRange - a maximum of one element is permitted")
   }
   "gives a good error message when decoding an empty array to a NonEmptyLitSeq" in {
     val full =

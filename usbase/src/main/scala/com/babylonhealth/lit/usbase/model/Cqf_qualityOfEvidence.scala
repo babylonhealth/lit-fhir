@@ -31,7 +31,7 @@ object Cqf_qualityOfEvidence extends CompanionFor[Cqf_qualityOfEvidence] {
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/cqf-qualityOfEvidence")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/cqf-qualityOfEvidence")
   def apply(
       id: Option[String] = None,
       value: CodeableConcept,
@@ -53,8 +53,8 @@ object Cqf_qualityOfEvidence extends CompanionFor[Cqf_qualityOfEvidence] {
     ))
   override def fields(t: Cqf_qualityOfEvidence): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Cqf_qualityOfEvidence): Option[String]                   = t.id
-  def extractValue(t: Cqf_qualityOfEvidence): CodeableConcept = t.value.get.toSubRefNonUnion[CodeableConcept]
-  override val thisName: String                               = "Cqf_qualityOfEvidence"
+  def extractValue(t: Cqf_qualityOfEvidence): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
+  override val thisName: String                                             = "Cqf_qualityOfEvidence"
   override val searchParams: Map[String, Cqf_qualityOfEvidence => Seq[Any]] = Extension.searchParams
   def unapply(o: Cqf_qualityOfEvidence): Option[(Option[String], CodeableConcept)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
@@ -69,20 +69,19 @@ object Cqf_qualityOfEvidence extends CompanionFor[Cqf_qualityOfEvidence] {
       ))
 }
 
-/** The quality of the evidence described. The code system used specifies the quality scale used to grade this evidence
-  * source while the code specifies the actual quality score (represented as a coded value) associated with the
-  * evidence.
+/** The quality of the evidence described. The code system used specifies the quality scale used to grade this evidence source
+  * while the code specifies the actual quality score (represented as a coded value) associated with the evidence.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

@@ -88,11 +88,7 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val confidentialityIndicator: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-      FHIRComponentFieldMeta(
-        "confidentialityIndicator",
-        lTagOf[Option[CodeableConcept]],
-        false,
-        lTagOf[CodeableConcept])
+      FHIRComponentFieldMeta("confidentialityIndicator", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val authorisationReferenceNumber: FHIRComponentFieldMeta[Option[Identifier]] =
       FHIRComponentFieldMeta("authorisationReferenceNumber", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
@@ -150,8 +146,7 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Name extends CompanionFor[Name] {
-    implicit def summonObjectAndCompanionName700846909(o: Name): ObjectAndCompanion[Name, Name.type] =
-      ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionName700846909(o: Name): ObjectAndCompanion[Name, Name.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Name
     override type ParentType   = Name
     override val parentType: CompanionFor[ResourceType] = Name
@@ -219,8 +214,7 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
         val `type`: Coding,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object CountryLanguage extends CompanionFor[CountryLanguage] {
       implicit def summonObjectAndCompanionCountryLanguage1136853973(
@@ -260,8 +254,7 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
         FHIRComponentFieldMeta("jurisdiction", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-        Seq(id, country, language, extension, jurisdiction, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, country, language, extension, jurisdiction, modifierExtension)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: CountryLanguage): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
@@ -295,8 +288,7 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val jurisdiction: Option[CodeableConcept] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -329,13 +321,8 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
     val namePart: FHIRComponentFieldMeta[LitSeq[Name.NamePart]] =
       FHIRComponentFieldMeta("namePart", lTagOf[LitSeq[Name.NamePart]], false, lTagOf[Name.NamePart])
     val countryLanguage: FHIRComponentFieldMeta[LitSeq[Name.CountryLanguage]] =
-      FHIRComponentFieldMeta(
-        "countryLanguage",
-        lTagOf[LitSeq[Name.CountryLanguage]],
-        false,
-        lTagOf[Name.CountryLanguage])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, extension, productName, modifierExtension, namePart, countryLanguage)
+      FHIRComponentFieldMeta("countryLanguage", lTagOf[LitSeq[Name.CountryLanguage]], false, lTagOf[Name.CountryLanguage])
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, productName, modifierExtension, namePart, countryLanguage)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Name): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -373,8 +360,7 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SpecialDesignation extends CompanionFor[SpecialDesignation] {
     implicit def summonObjectAndCompanionSpecialDesignation514366620(
-        o: SpecialDesignation): ObjectAndCompanion[SpecialDesignation, SpecialDesignation.type] =
-      ObjectAndCompanion(o, this)
+        o: SpecialDesignation): ObjectAndCompanion[SpecialDesignation, SpecialDesignation.type] = ObjectAndCompanion(o, this)
     override type ResourceType = SpecialDesignation
     override type ParentType   = SpecialDesignation
     override val parentType: CompanionFor[ResourceType] = SpecialDesignation
@@ -435,11 +421,7 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
     val intendedUse: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("intendedUse", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val indication: FHIRComponentFieldMeta[Option[SpecialDesignation.IndicationChoice]] =
-      FHIRComponentFieldMeta(
-        "indication",
-        lTagOf[Option[SpecialDesignation.IndicationChoice]],
-        true,
-        lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("indication", lTagOf[Option[SpecialDesignation.IndicationChoice]], true, lTagOf[Union01025009075])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
@@ -583,11 +565,7 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
   val specialMeasures: FHIRComponentFieldMeta[LitSeq[String]] =
     FHIRComponentFieldMeta("specialMeasures", lTagOf[LitSeq[String]], false, lTagOf[String])
   val marketingStatus: FHIRComponentFieldMeta[LitSeq[Choice["MarketingStatus"]]] =
-    FHIRComponentFieldMeta(
-      "marketingStatus",
-      lTagOf[LitSeq[Choice["MarketingStatus"]]],
-      false,
-      lTagOf[Choice["MarketingStatus"]])
+    FHIRComponentFieldMeta("marketingStatus", lTagOf[LitSeq[Choice["MarketingStatus"]]], false, lTagOf[Choice["MarketingStatus"]])
   val attachedDocument: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("attachedDocument", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -603,17 +581,9 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
   val packagedMedicinalProduct: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("packagedMedicinalProduct", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val additionalMonitoringIndicator: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-    FHIRComponentFieldMeta(
-      "additionalMonitoringIndicator",
-      lTagOf[Option[CodeableConcept]],
-      false,
-      lTagOf[CodeableConcept])
+    FHIRComponentFieldMeta("additionalMonitoringIndicator", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val combinedPharmaceuticalDoseForm: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-    FHIRComponentFieldMeta(
-      "combinedPharmaceuticalDoseForm",
-      lTagOf[Option[CodeableConcept]],
-      false,
-      lTagOf[CodeableConcept])
+    FHIRComponentFieldMeta("combinedPharmaceuticalDoseForm", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val specialDesignation: FHIRComponentFieldMeta[LitSeq[MedicinalProduct.SpecialDesignation]] =
     FHIRComponentFieldMeta(
       "specialDesignation",
@@ -692,38 +662,36 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
       manufacturingBusinessOperation,
       t.manufacturingBusinessOperation)
   )
-  def extractId(t: MedicinalProduct): Option[String]                                 = t.id
-  def extractMeta(t: MedicinalProduct): Option[Meta]                                 = t.meta
-  def extractText(t: MedicinalProduct): Option[Narrative]                            = t.text
-  def extractType(t: MedicinalProduct): Option[CodeableConcept]                      = t.`type`
-  def extractDomain(t: MedicinalProduct): Option[Coding]                             = t.domain
-  def extractContact(t: MedicinalProduct): LitSeq[Reference]                         = t.contact
-  def extractLanguage(t: MedicinalProduct): Option[LANGUAGES]                        = t.language
-  def extractContained(t: MedicinalProduct): LitSeq[Resource]                        = t.contained
-  def extractExtension(t: MedicinalProduct): LitSeq[Extension]                       = t.extension
-  def extractIdentifier(t: MedicinalProduct): LitSeq[Identifier]                     = t.identifier
-  def extractMasterFile(t: MedicinalProduct): LitSeq[Reference]                      = t.masterFile
-  def extractImplicitRules(t: MedicinalProduct): Option[UriStr]                      = t.implicitRules
-  def extractClinicalTrial(t: MedicinalProduct): LitSeq[Reference]                   = t.clinicalTrial
-  def extractCrossReference(t: MedicinalProduct): LitSeq[Identifier]                 = t.crossReference
-  def extractSpecialMeasures(t: MedicinalProduct): LitSeq[String]                    = t.specialMeasures
-  def extractMarketingStatus(t: MedicinalProduct): LitSeq[Choice["MarketingStatus"]] = t.marketingStatus
-  def extractAttachedDocument(t: MedicinalProduct): LitSeq[Reference]                = t.attachedDocument
-  def extractModifierExtension(t: MedicinalProduct): LitSeq[Extension]               = t.modifierExtension
-  def extractLegalStatusOfSupply(t: MedicinalProduct): Option[CodeableConcept]       = t.legalStatusOfSupply
-  def extractProductClassification(t: MedicinalProduct): LitSeq[CodeableConcept]     = t.productClassification
-  def extractPharmaceuticalProduct(t: MedicinalProduct): LitSeq[Reference]           = t.pharmaceuticalProduct
-  def extractPaediatricUseIndicator(t: MedicinalProduct): Option[CodeableConcept]    = t.paediatricUseIndicator
-  def extractPackagedMedicinalProduct(t: MedicinalProduct): LitSeq[Reference]        = t.packagedMedicinalProduct
-  def extractAdditionalMonitoringIndicator(t: MedicinalProduct): Option[CodeableConcept] =
-    t.additionalMonitoringIndicator
-  def extractCombinedPharmaceuticalDoseForm(t: MedicinalProduct): Option[CodeableConcept] =
-    t.combinedPharmaceuticalDoseForm
+  def extractId(t: MedicinalProduct): Option[String]                                      = t.id
+  def extractMeta(t: MedicinalProduct): Option[Meta]                                      = t.meta
+  def extractText(t: MedicinalProduct): Option[Narrative]                                 = t.text
+  def extractType(t: MedicinalProduct): Option[CodeableConcept]                           = t.`type`
+  def extractDomain(t: MedicinalProduct): Option[Coding]                                  = t.domain
+  def extractContact(t: MedicinalProduct): LitSeq[Reference]                              = t.contact
+  def extractLanguage(t: MedicinalProduct): Option[LANGUAGES]                             = t.language
+  def extractContained(t: MedicinalProduct): LitSeq[Resource]                             = t.contained
+  def extractExtension(t: MedicinalProduct): LitSeq[Extension]                            = t.extension
+  def extractIdentifier(t: MedicinalProduct): LitSeq[Identifier]                          = t.identifier
+  def extractMasterFile(t: MedicinalProduct): LitSeq[Reference]                           = t.masterFile
+  def extractImplicitRules(t: MedicinalProduct): Option[UriStr]                           = t.implicitRules
+  def extractClinicalTrial(t: MedicinalProduct): LitSeq[Reference]                        = t.clinicalTrial
+  def extractCrossReference(t: MedicinalProduct): LitSeq[Identifier]                      = t.crossReference
+  def extractSpecialMeasures(t: MedicinalProduct): LitSeq[String]                         = t.specialMeasures
+  def extractMarketingStatus(t: MedicinalProduct): LitSeq[Choice["MarketingStatus"]]      = t.marketingStatus
+  def extractAttachedDocument(t: MedicinalProduct): LitSeq[Reference]                     = t.attachedDocument
+  def extractModifierExtension(t: MedicinalProduct): LitSeq[Extension]                    = t.modifierExtension
+  def extractLegalStatusOfSupply(t: MedicinalProduct): Option[CodeableConcept]            = t.legalStatusOfSupply
+  def extractProductClassification(t: MedicinalProduct): LitSeq[CodeableConcept]          = t.productClassification
+  def extractPharmaceuticalProduct(t: MedicinalProduct): LitSeq[Reference]                = t.pharmaceuticalProduct
+  def extractPaediatricUseIndicator(t: MedicinalProduct): Option[CodeableConcept]         = t.paediatricUseIndicator
+  def extractPackagedMedicinalProduct(t: MedicinalProduct): LitSeq[Reference]             = t.packagedMedicinalProduct
+  def extractAdditionalMonitoringIndicator(t: MedicinalProduct): Option[CodeableConcept]  = t.additionalMonitoringIndicator
+  def extractCombinedPharmaceuticalDoseForm(t: MedicinalProduct): Option[CodeableConcept] = t.combinedPharmaceuticalDoseForm
   def extractSpecialDesignation(t: MedicinalProduct): LitSeq[MedicinalProduct.SpecialDesignation] = t.specialDesignation
   def extractName(t: MedicinalProduct): NonEmptyLitSeq[MedicinalProduct.Name]                     = t.name
-  def extractManufacturingBusinessOperation(
-      t: MedicinalProduct): LitSeq[MedicinalProduct.ManufacturingBusinessOperation] = t.manufacturingBusinessOperation
-  override val thisName: String                                                     = "MedicinalProduct"
+  def extractManufacturingBusinessOperation(t: MedicinalProduct): LitSeq[MedicinalProduct.ManufacturingBusinessOperation] =
+    t.manufacturingBusinessOperation
+  override val thisName: String = "MedicinalProduct"
   override val searchParams: Map[String, MedicinalProduct => Seq[Any]] = Map(
     "identifier"    -> (obj => obj.identifier.toSeq),
     "name-language" -> (obj => obj.name.flatMap(_.countryLanguage).map(_.language).toSeq),
@@ -773,20 +741,20 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields `type`, domain, contact, identifier, masterFile, clinicalTrial, crossReference,
-  *   specialMeasures, marketingStatus, attachedDocument, legalStatusOfSupply, productClassification,
-  *   pharmaceuticalProduct, paediatricUseIndicator, packagedMedicinalProduct, additionalMonitoringIndicator,
-  *   combinedPharmaceuticalDoseForm, specialDesignation, name, manufacturingBusinessOperation.
+  *   Introduces the fields `type`, domain, contact, identifier, masterFile, clinicalTrial, crossReference, specialMeasures,
+  *   marketingStatus, attachedDocument, legalStatusOfSupply, productClassification, pharmaceuticalProduct,
+  *   paediatricUseIndicator, packagedMedicinalProduct, additionalMonitoringIndicator, combinedPharmaceuticalDoseForm,
+  *   specialDesignation, name, manufacturingBusinessOperation.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param `type`
   *   - Regulatory type, e.g. Investigational or Authorized.
   * @param domain
@@ -799,18 +767,18 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param identifier
   *   - Business identifier for this product. Could be an MPID.
   * @param masterFile
   *   - A master file for to the medicinal product (e.g. Pharmacovigilance System Master File).
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param clinicalTrial
   *   - Clinical trials or studies that this product is involved in.
   * @param crossReference
@@ -822,14 +790,13 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
   * @param attachedDocument
   *   - Supporting documentation, typically for regulatory submission.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param legalStatusOfSupply
   *   - The legal status of supply of the medicinal product as classified by the regulator.
   * @param productClassification

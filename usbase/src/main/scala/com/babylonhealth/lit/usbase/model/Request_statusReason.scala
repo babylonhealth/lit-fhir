@@ -25,13 +25,12 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Request_statusReason extends CompanionFor[Request_statusReason] {
   implicit def summonObjectAndCompanionRequest_statusReason_1412951788(
-      o: Request_statusReason): ObjectAndCompanion[Request_statusReason, Request_statusReason.type] =
-    ObjectAndCompanion(o, this)
+      o: Request_statusReason): ObjectAndCompanion[Request_statusReason, Request_statusReason.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/request-statusReason")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/request-statusReason")
   def apply(
       id: Option[String] = None,
       value: CodeableConcept,
@@ -53,8 +52,8 @@ object Request_statusReason extends CompanionFor[Request_statusReason] {
     ))
   override def fields(t: Request_statusReason): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Request_statusReason): Option[String]                   = t.id
-  def extractValue(t: Request_statusReason): CodeableConcept = t.value.get.toSubRefNonUnion[CodeableConcept]
-  override val thisName: String                              = "Request_statusReason"
+  def extractValue(t: Request_statusReason): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
+  override val thisName: String                                            = "Request_statusReason"
   override val searchParams: Map[String, Request_statusReason => Seq[Any]] = Extension.searchParams
   def unapply(o: Request_statusReason): Option[(Option[String], CodeableConcept)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
@@ -71,16 +70,16 @@ object Request_statusReason extends CompanionFor[Request_statusReason] {
 
 /** Captures the reason for the current state of the resource.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

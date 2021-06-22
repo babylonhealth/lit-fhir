@@ -24,8 +24,8 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Flag_detail extends CompanionFor[Flag_detail] {
-  implicit def summonObjectAndCompanionFlag_detail_123342934(
-      o: Flag_detail): ObjectAndCompanion[Flag_detail, Flag_detail.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionFlag_detail_123342934(o: Flag_detail): ObjectAndCompanion[Flag_detail, Flag_detail.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -50,13 +50,12 @@ object Flag_detail extends CompanionFor[Flag_detail] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
-  override def fields(t: Flag_detail): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Flag_detail): Option[String]                   = t.id
-  def extractValue(t: Flag_detail): Reference                     = t.value.get.toSubRefNonUnion[Reference]
-  override val thisName: String                                   = "Flag_detail"
-  override val searchParams: Map[String, Flag_detail => Seq[Any]] = Extension.searchParams
-  def unapply(o: Flag_detail): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+  override def fields(t: Flag_detail): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
+  def extractId(t: Flag_detail): Option[String]                    = t.id
+  def extractValue(t: Flag_detail): Reference                      = t.value.get.toSubRefNonUnion[Reference]
+  override val thisName: String                                    = "Flag_detail"
+  override val searchParams: Map[String, Flag_detail => Seq[Any]]  = Extension.searchParams
+  def unapply(o: Flag_detail): Option[(Option[String], Reference)] = Some((o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Flag_detail] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -68,19 +67,18 @@ object Flag_detail extends CompanionFor[Flag_detail] {
       ))
 }
 
-/** Points to the Observation, AllergyIntolerance or other record that provides additional supporting information about
-  * this flag.
+/** Points to the Observation, AllergyIntolerance or other record that provides additional supporting information about this flag.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

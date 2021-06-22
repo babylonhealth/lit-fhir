@@ -18,10 +18,7 @@ case class DecoderParams(
     tolerateExtensionErrors: Boolean = Config.tolerateExtensionErrors,
     decodeSpecificExtensions: Boolean = Config.decodeSpecificExtensions
 )
-case class EncoderParams(
-    addMissingMeta: Boolean = true,
-    addTopLevelResourceType: Boolean = false,
-    stripPhantom: Boolean = true)
+case class EncoderParams(addMissingMeta: Boolean = true, addTopLevelResourceType: Boolean = false, stripPhantom: Boolean = true)
 
 trait Utils {
   def companionClassName[T](tag: LTag[T]): String = {

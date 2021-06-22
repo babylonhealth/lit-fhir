@@ -50,13 +50,12 @@ object Variable extends CompanionFor[Variable] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Expression](value, t.value.get.toSubRefNonUnion[Expression])
     ))
-  override def fields(t: Variable): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Variable): Option[String]                   = t.id
-  def extractValue(t: Variable): Expression                    = t.value.get.toSubRefNonUnion[Expression]
-  override val thisName: String                                = "Variable"
-  override val searchParams: Map[String, Variable => Seq[Any]] = Extension.searchParams
-  def unapply(o: Variable): Option[(Option[String], Expression)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Expression]))
+  override def fields(t: Variable): Seq[FHIRComponentField[_]]   = fieldsFromParent(t).get
+  def extractId(t: Variable): Option[String]                     = t.id
+  def extractValue(t: Variable): Expression                      = t.value.get.toSubRefNonUnion[Expression]
+  override val thisName: String                                  = "Variable"
+  override val searchParams: Map[String, Variable => Seq[Any]]   = Extension.searchParams
+  def unapply(o: Variable): Option[(Option[String], Expression)] = Some((o.id, o.value.get.toSubRefNonUnion[Expression]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Variable] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -68,19 +67,19 @@ object Variable extends CompanionFor[Variable] {
       ))
 }
 
-/** Variable specifying a logic to generate a variable for use in subsequent logic. The name of the variable will be
-  * added to FHIRPath's context when processing descendants of the element that contains this extension.
+/** Variable specifying a logic to generate a variable for use in subsequent logic. The name of the variable will be added to
+  * FHIRPath's context when processing descendants of the element that contains this extension.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

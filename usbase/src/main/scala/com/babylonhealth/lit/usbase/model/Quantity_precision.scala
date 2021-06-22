@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Quantity_precision extends CompanionFor[Quantity_precision] {
   implicit def summonObjectAndCompanionQuantity_precision_2046040591(
-      o: Quantity_precision): ObjectAndCompanion[Quantity_precision, Quantity_precision.type] =
-    ObjectAndCompanion(o, this)
+      o: Quantity_precision): ObjectAndCompanion[Quantity_precision, Quantity_precision.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,7 +55,7 @@ object Quantity_precision extends CompanionFor[Quantity_precision] {
   def extractValue(t: Quantity_precision): Int                           = t.value.get.toSubRefNonUnion[Int]
   override val thisName: String                                          = "Quantity_precision"
   override val searchParams: Map[String, Quantity_precision => Seq[Any]] = Extension.searchParams
-  def unapply(o: Quantity_precision): Option[(Option[String], Int)] = Some((o.id, o.value.get.toSubRefNonUnion[Int]))
+  def unapply(o: Quantity_precision): Option[(Option[String], Int)]      = Some((o.id, o.value.get.toSubRefNonUnion[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Quantity_precision] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -68,19 +67,19 @@ object Quantity_precision extends CompanionFor[Quantity_precision] {
       ))
 }
 
-/** Explicit precision of the number. This is the number of significant decimal places after the decimal point,
-  * irrespective of how many are actually present in the explicitly represented decimal.
+/** Explicit precision of the number. This is the number of significant decimal places after the decimal point, irrespective of
+  * how many are actually present in the explicitly represented decimal.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

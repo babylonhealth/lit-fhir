@@ -21,8 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Annotation extends CompanionFor[Annotation] {
-  implicit def summonObjectAndCompanionAnnotation_1299111937(
-      o: Annotation): ObjectAndCompanion[Annotation, Annotation.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionAnnotation_1299111937(o: Annotation): ObjectAndCompanion[Annotation, Annotation.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Annotation
   override type ParentType   = Annotation
   override val baseType: CompanionFor[ResourceType] = Annotation
@@ -54,7 +54,7 @@ object Annotation extends CompanionFor[Annotation] {
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val author: FHIRComponentFieldMeta[Option[Annotation.AuthorChoice]] =
     FHIRComponentFieldMeta("author", lTagOf[Option[Annotation.AuthorChoice]], true, lTagOf[Union_1128709984])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, time, text, extension, author)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, time, text, extension, author)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: Annotation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
@@ -86,8 +86,8 @@ object Annotation extends CompanionFor[Annotation] {
       ))
 }
 
-/** Base StructureDefinition for Annotation Type: A text note which also contains information about who made the
-  * statement and when.
+/** Base StructureDefinition for Annotation Type: A text note which also contains information about who made the statement and
+  * when.
   *
   * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
   * resource.)
@@ -95,17 +95,17 @@ object Annotation extends CompanionFor[Annotation] {
   * @constructor
   *   Introduces the fields time, text, author.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param time
   *   - Indicates when this particular annotation was made.
   * @param text
   *   - The text of the annotation in markdown format.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param author
   *   - The individual responsible for making the annotation.
   */

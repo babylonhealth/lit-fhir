@@ -5,10 +5,7 @@ import enumeratum.{ CirceEnum, Enum, EnumEntry }
 import com.babylonhealth.lit.core.model.Coding
 import com.babylonhealth.lit.core.{ EnumeratumBase, FhirEnum, FhirCirceEnum, EnumWithFallback }
 
-sealed abstract class ADDRESS_TYPE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
+sealed abstract class ADDRESS_TYPE(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
   def display: Option[String]
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
@@ -30,10 +27,7 @@ object ADDRESS_TYPE extends FhirEnum[ADDRESS_TYPE] with FhirCirceEnum[ADDRESS_TY
   }
 }
 
-sealed abstract class ADDRESS_USE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
+sealed abstract class ADDRESS_USE(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
   def display: Option[String]
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
@@ -63,10 +57,7 @@ object ADDRESS_USE extends FhirEnum[ADDRESS_USE] with FhirCirceEnum[ADDRESS_USE]
   }
 }
 
-sealed abstract class ALL_TYPES(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
+sealed abstract class ALL_TYPES(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
   def display: Option[String]
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
@@ -1031,10 +1022,7 @@ object CONTRIBUTOR_TYPE extends FhirEnum[CONTRIBUTOR_TYPE] with FhirCirceEnum[CO
   }
 }
 
-sealed abstract class DAYS_OF_WEEK(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
+sealed abstract class DAYS_OF_WEEK(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
   def display: Option[String]
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
@@ -1072,10 +1060,7 @@ object DAYS_OF_WEEK extends FhirEnum[DAYS_OF_WEEK] with FhirCirceEnum[DAYS_OF_WE
   }
 }
 
-sealed abstract class EVENT_TIMING(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
+sealed abstract class EVENT_TIMING(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
   def display: Option[String]
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
@@ -1252,10 +1237,7 @@ object IDENTIFIER_USE extends FhirEnum[IDENTIFIER_USE] with FhirCirceEnum[IDENTI
   }
 }
 
-sealed abstract class LANGUAGES(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
+sealed abstract class LANGUAGES(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
   def display: Option[String]
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
@@ -1494,10 +1476,7 @@ object LANGUAGES extends FhirEnum[LANGUAGES] with EnumWithFallback[LANGUAGES] {
   override def fallback = Other_.apply
 }
 
-sealed abstract class NAME_USE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
+sealed abstract class NAME_USE(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
   def display: Option[String]
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
@@ -1651,10 +1630,7 @@ object SORT_DIRECTION extends FhirEnum[SORT_DIRECTION] with FhirCirceEnum[SORT_D
   }
 }
 
-sealed abstract class TRIGGER_TYPE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
+sealed abstract class TRIGGER_TYPE(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
   def display: Option[String]
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))

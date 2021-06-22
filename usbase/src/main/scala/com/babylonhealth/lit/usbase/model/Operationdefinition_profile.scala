@@ -31,7 +31,7 @@ object Operationdefinition_profile extends CompanionFor[Operationdefinition_prof
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/operationdefinition-profile")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/operationdefinition-profile")
   def apply(
       id: Option[String] = None,
       value: UriStr,
@@ -69,22 +69,21 @@ object Operationdefinition_profile extends CompanionFor[Operationdefinition_prof
       ))
 }
 
-/** Identifies a profile structure or implementation Guide that applies to the datatype this element refers to. If any
-  * profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to
-  * a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a
-  * canonical URL. When an implementation guide is specified, the type SHALL conform to at least one profile defined in
-  * the implementation guide.
+/** Identifies a profile structure or implementation Guide that applies to the datatype this element refers to. If any profiles
+  * are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained
+  * StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an
+  * implementation guide is specified, the type SHALL conform to at least one profile defined in the implementation guide.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

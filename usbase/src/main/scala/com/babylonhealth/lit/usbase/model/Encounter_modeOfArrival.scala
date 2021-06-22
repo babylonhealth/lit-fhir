@@ -31,7 +31,7 @@ object Encounter_modeOfArrival extends CompanionFor[Encounter_modeOfArrival] {
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/encounter-modeOfArrival")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/encounter-modeOfArrival")
   def apply(
       id: Option[String] = None,
       value: Coding,
@@ -56,8 +56,7 @@ object Encounter_modeOfArrival extends CompanionFor[Encounter_modeOfArrival] {
   def extractValue(t: Encounter_modeOfArrival): Coding                        = t.value.get.toSubRefNonUnion[Coding]
   override val thisName: String                                               = "Encounter_modeOfArrival"
   override val searchParams: Map[String, Encounter_modeOfArrival => Seq[Any]] = Extension.searchParams
-  def unapply(o: Encounter_modeOfArrival): Option[(Option[String], Coding)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Coding]))
+  def unapply(o: Encounter_modeOfArrival): Option[(Option[String], Coding)]   = Some((o.id, o.value.get.toSubRefNonUnion[Coding]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Encounter_modeOfArrival] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,19 +68,18 @@ object Encounter_modeOfArrival extends CompanionFor[Encounter_modeOfArrival] {
       ))
 }
 
-/** Identifies whether a patient arrives at the reporting facility via ambulance and the type of ambulance that was
-  * used.
+/** Identifies whether a patient arrives at the reporting facility via ambulance and the type of ambulance that was used.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

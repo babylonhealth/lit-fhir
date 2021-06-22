@@ -26,13 +26,10 @@ class Pulse_oximetryExampleTest extends AnyFreeSpec with Matchers {
     status = OBSERVATION_STATUS.FINAL,
     subject = Reference(reference = Some("Patient/1234567890")),
     category = LitSeq(
-      CodeableConcept(coding = LitSeq(
-        Coding(
-          system = Some("http://terminology.hl7.org/CodeSystem/observation-category"),
-          code = Some("vital-signs"))))),
+      CodeableConcept(coding =
+        LitSeq(Coding(system = Some("http://terminology.hl7.org/CodeSystem/observation-category"), code = Some("vital-signs"))))),
     effective = choice(time),
-    value =
-      Some(Quantity(system = Some("http://unitsofmeasure.org"), value = Some(94.3), code = Some("%"), unit = Some("%")))
+    value = Some(Quantity(system = Some("http://unitsofmeasure.org"), value = Some(94.3), code = Some("%"), unit = Some("%")))
   )
 
   val jsonStr: String =

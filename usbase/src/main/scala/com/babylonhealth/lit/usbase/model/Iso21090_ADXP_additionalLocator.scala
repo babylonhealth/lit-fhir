@@ -31,8 +31,7 @@ object Iso21090_ADXP_additionalLocator extends CompanionFor[Iso21090_ADXP_additi
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some(
-    "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator")
   def apply(
       id: Option[String] = None,
       value: String,
@@ -54,8 +53,8 @@ object Iso21090_ADXP_additionalLocator extends CompanionFor[Iso21090_ADXP_additi
     ))
   override def fields(t: Iso21090_ADXP_additionalLocator): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Iso21090_ADXP_additionalLocator): Option[String]                   = t.id
-  def extractValue(t: Iso21090_ADXP_additionalLocator): String = t.value.get.toSubRefNonUnion[String]
-  override val thisName: String                                = "Iso21090_ADXP_additionalLocator"
+  def extractValue(t: Iso21090_ADXP_additionalLocator): String                        = t.value.get.toSubRefNonUnion[String]
+  override val thisName: String                                                       = "Iso21090_ADXP_additionalLocator"
   override val searchParams: Map[String, Iso21090_ADXP_additionalLocator => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_ADXP_additionalLocator): Option[(Option[String], String)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[String]))
@@ -70,21 +69,21 @@ object Iso21090_ADXP_additionalLocator extends CompanionFor[Iso21090_ADXP_additi
       ))
 }
 
-/** This can be a unit designator, such as apartment number, suite number, or floor. There may be several unit
-  * designators in an address (e.g., "3rd floor, Appt. 342"). This can also be a designator pointing away from the
-  * location, rather than specifying a smaller location within some larger one (e.g., Dutch "t.o." means "opposite to"
-  * for house boats located across the street facing houses).
+/** This can be a unit designator, such as apartment number, suite number, or floor. There may be several unit designators in an
+  * address (e.g., "3rd floor, Appt. 342"). This can also be a designator pointing away from the location, rather than specifying
+  * a smaller location within some larger one (e.g., Dutch "t.o." means "opposite to" for house boats located across the street
+  * facing houses).
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

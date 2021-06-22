@@ -32,8 +32,8 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TestScript extends CompanionFor[TestScript] {
-  implicit def summonObjectAndCompanionTestScript1487921325(
-      o: TestScript): ObjectAndCompanion[TestScript, TestScript.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionTestScript1487921325(o: TestScript): ObjectAndCompanion[TestScript, TestScript.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = TestScript
   override type ParentType   = TestScript
   override val baseType: CompanionFor[ResourceType] = TestScript
@@ -121,11 +121,7 @@ object TestScript extends CompanionFor[TestScript] {
         val value: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("value", lTagOf[Option[String]], false, lTagOf[String])
         val operator: FHIRComponentFieldMeta[Option[ASSERT_OPERATOR_CODES]] =
-          FHIRComponentFieldMeta(
-            "operator",
-            lTagOf[Option[ASSERT_OPERATOR_CODES]],
-            false,
-            lTagOf[ASSERT_OPERATOR_CODES])
+          FHIRComponentFieldMeta("operator", lTagOf[Option[ASSERT_OPERATOR_CODES]], false, lTagOf[ASSERT_OPERATOR_CODES])
         val resource: FHIRComponentFieldMeta[Option[DEFINED_TYPES]] =
           FHIRComponentFieldMeta("resource", lTagOf[Option[DEFINED_TYPES]], false, lTagOf[DEFINED_TYPES])
         val response: FHIRComponentFieldMeta[Option[ASSERT_RESPONSE_CODE_TYPES]] =
@@ -139,11 +135,7 @@ object TestScript extends CompanionFor[TestScript] {
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val direction: FHIRComponentFieldMeta[Option[ASSERT_DIRECTION_CODES]] =
-          FHIRComponentFieldMeta(
-            "direction",
-            lTagOf[Option[ASSERT_DIRECTION_CODES]],
-            false,
-            lTagOf[ASSERT_DIRECTION_CODES])
+          FHIRComponentFieldMeta("direction", lTagOf[Option[ASSERT_DIRECTION_CODES]], false, lTagOf[ASSERT_DIRECTION_CODES])
         val minimumId: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("minimumId", lTagOf[Option[String]], false, lTagOf[String])
         val expression: FHIRComponentFieldMeta[Option[String]] =
@@ -291,12 +283,11 @@ object TestScript extends CompanionFor[TestScript] {
           val validateProfileId: Option[Id] = None,
           val compareToSourcePath: Option[String] = None,
           val compareToSourceExpression: Option[String] = None,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Operation extends CompanionFor[Operation] {
-        implicit def summonObjectAndCompanionOperation_1310128330(
-            o: Operation): ObjectAndCompanion[Operation, Operation.type] = ObjectAndCompanion(o, this)
+        implicit def summonObjectAndCompanionOperation_1310128330(o: Operation): ObjectAndCompanion[Operation, Operation.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = Operation
         override type ParentType   = Operation
         override val parentType: CompanionFor[ResourceType] = Operation
@@ -321,8 +312,7 @@ object TestScript extends CompanionFor[TestScript] {
             modifierExtension,
             primitiveAttributes = primitiveAttributes
           )
-          def unapply(
-              o: RequestHeader): Option[(Option[String], String, String, LitSeq[Extension], LitSeq[Extension])] = Some(
+          def unapply(o: RequestHeader): Option[(Option[String], String, String, LitSeq[Extension], LitSeq[Extension])] = Some(
             (o.id, o.field, o.value, o.extension, o.modifierExtension))
           val id: FHIRComponentFieldMeta[Option[String]] =
             FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -365,8 +355,7 @@ object TestScript extends CompanionFor[TestScript] {
             val value: String,
             override val extension: LitSeq[Extension] = LitSeq.empty,
             override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-            override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-              FHIRObject.emptyAtts)
+            override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
             extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
         def apply(
             id: Option[String] = None,
@@ -476,11 +465,7 @@ object TestScript extends CompanionFor[TestScript] {
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val requestHeader: FHIRComponentFieldMeta[LitSeq[Operation.RequestHeader]] =
-          FHIRComponentFieldMeta(
-            "requestHeader",
-            lTagOf[LitSeq[Operation.RequestHeader]],
-            false,
-            lTagOf[Operation.RequestHeader])
+          FHIRComponentFieldMeta("requestHeader", lTagOf[LitSeq[Operation.RequestHeader]], false, lTagOf[Operation.RequestHeader])
         val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
           id,
           url,
@@ -578,8 +563,7 @@ object TestScript extends CompanionFor[TestScript] {
           val encodeRequestUrl: Boolean,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           val requestHeader: LitSeq[Operation.RequestHeader] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
@@ -640,8 +624,7 @@ object TestScript extends CompanionFor[TestScript] {
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         val assert: Option[Action.Assert] = None,
         val operation: Option[Action.Operation] = None,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -656,8 +639,7 @@ object TestScript extends CompanionFor[TestScript] {
       action,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(
-        o: Setup): Option[(Option[String], LitSeq[Extension], LitSeq[Extension], NonEmptyLitSeq[Setup.Action])] = Some(
+    def unapply(o: Setup): Option[(Option[String], LitSeq[Extension], LitSeq[Extension], NonEmptyLitSeq[Setup.Action])] = Some(
       (o.id, o.extension, o.modifierExtension, o.action))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -724,8 +706,8 @@ object TestScript extends CompanionFor[TestScript] {
         modifierExtension,
         primitiveAttributes = primitiveAttributes
       )
-      def unapply(o: Link): Option[(Option[String], UriStr, LitSeq[Extension], Option[String], LitSeq[Extension])] =
-        Some((o.id, o.url, o.extension, o.description, o.modifierExtension))
+      def unapply(o: Link): Option[(Option[String], UriStr, LitSeq[Extension], Option[String], LitSeq[Extension])] = Some(
+        (o.id, o.url, o.extension, o.description, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
       val url: FHIRComponentFieldMeta[UriStr] =
@@ -767,12 +749,11 @@ object TestScript extends CompanionFor[TestScript] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val description: Option[String] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Capability extends CompanionFor[Capability] {
-      implicit def summonObjectAndCompanionCapability612174669(
-          o: Capability): ObjectAndCompanion[Capability, Capability.type] = ObjectAndCompanion(o, this)
+      implicit def summonObjectAndCompanionCapability612174669(o: Capability): ObjectAndCompanion[Capability, Capability.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Capability
       override type ParentType   = Capability
       override val parentType: CompanionFor[ResourceType] = Capability
@@ -882,8 +863,7 @@ object TestScript extends CompanionFor[TestScript] {
         val destination: Option[Int] = None,
         val capabilities: Canonical,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -912,11 +892,7 @@ object TestScript extends CompanionFor[TestScript] {
     val link: FHIRComponentFieldMeta[LitSeq[Metadata.Link]] =
       FHIRComponentFieldMeta("link", lTagOf[LitSeq[Metadata.Link]], false, lTagOf[Metadata.Link])
     val capability: FHIRComponentFieldMeta[NonEmptyLitSeq[Metadata.Capability]] =
-      FHIRComponentFieldMeta(
-        "capability",
-        lTagOf[NonEmptyLitSeq[Metadata.Capability]],
-        false,
-        lTagOf[Metadata.Capability])
+      FHIRComponentFieldMeta("capability", lTagOf[NonEmptyLitSeq[Metadata.Capability]], false, lTagOf[Metadata.Capability])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, modifierExtension, link, capability)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Metadata): Seq[FHIRComponentField[_]] = Seq(
@@ -975,8 +951,7 @@ object TestScript extends CompanionFor[TestScript] {
         modifierExtension,
         primitiveAttributes = primitiveAttributes
       )
-      def unapply(
-          o: Action): Option[(Option[String], LitSeq[Extension], TestScript.Setup.Action.Operation, LitSeq[Extension])] =
+      def unapply(o: Action): Option[(Option[String], LitSeq[Extension], TestScript.Setup.Action.Operation, LitSeq[Extension])] =
         Some((o.id, o.extension, o.operation, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -1018,8 +993,7 @@ object TestScript extends CompanionFor[TestScript] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val operation: TestScript.Setup.Action.Operation,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -1034,8 +1008,7 @@ object TestScript extends CompanionFor[TestScript] {
       action,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(
-        o: Teardown): Option[(Option[String], LitSeq[Extension], LitSeq[Extension], NonEmptyLitSeq[Teardown.Action])] =
+    def unapply(o: Teardown): Option[(Option[String], LitSeq[Extension], LitSeq[Extension], NonEmptyLitSeq[Teardown.Action])] =
       Some((o.id, o.extension, o.modifierExtension, o.action))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -1154,8 +1127,7 @@ object TestScript extends CompanionFor[TestScript] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val operation: Option[TestScript.Setup.Action.Operation] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -1361,18 +1333,8 @@ object TestScript extends CompanionFor[TestScript] {
       FHIRComponentFieldMeta("defaultValue", lTagOf[Option[String]], false, lTagOf[String])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
-      id,
-      name,
-      hint,
-      path,
-      sourceId,
-      extension,
-      expression,
-      description,
-      headerField,
-      defaultValue,
-      modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+      Seq(id, name, hint, path, sourceId, extension, expression, description, headerField, defaultValue, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Variable): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -1446,8 +1408,7 @@ object TestScript extends CompanionFor[TestScript] {
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(
-        o: Fixture): Option[(Option[String], Option[Reference], LitSeq[Extension], Boolean, Boolean, LitSeq[Extension])] =
+    def unapply(o: Fixture): Option[(Option[String], Option[Reference], LitSeq[Extension], Boolean, Boolean, LitSeq[Extension])] =
       Some((o.id, o.resource, o.extension, o.autocreate, o.autodelete, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -1461,8 +1422,7 @@ object TestScript extends CompanionFor[TestScript] {
       FHIRComponentFieldMeta("autodelete", lTagOf[Boolean], false, lTagOf[Boolean])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, resource, extension, autocreate, autodelete, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, resource, extension, autocreate, autodelete, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Fixture): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -1866,41 +1826,40 @@ object TestScript extends CompanionFor[TestScript] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, title, status, version, contact, purpose, profile, publisher, copyright,
-  *   identifier, useContext, description, experimental, jurisdiction, origin, fixture, variable, destination, test,
-  *   teardown, metadata, setup.
+  *   Introduces the fields url, name, date, title, status, version, contact, purpose, profile, publisher, copyright, identifier,
+  *   useContext, description, experimental, jurisdiction, origin, fixture, variable, destination, test, teardown, metadata,
+  *   setup.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
-  *   - An absolute URI that is used to identify this test script when it is referenced in a specification, model,
-  *   design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a
-  *   literal address at which at which an authoritative instance of this test script is (or will be) published. This
-  *   URL can be the target of a canonical reference. It SHALL remain the same when the test script is stored on
-  *   different servers.
+  *   - An absolute URI that is used to identify this test script when it is referenced in a specification, model, design or an
+  *   instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at
+  *   which an authoritative instance of this test script is (or will be) published. This URL can be the target of a canonical
+  *   reference. It SHALL remain the same when the test script is stored on different servers.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param name
-  *   - A natural language name identifying the test script. This name should be usable as an identifier for the module
-  *   by machine processing applications such as code generation.
+  *   - A natural language name identifying the test script. This name should be usable as an identifier for the module by machine
+  *   processing applications such as code generation.
   * @param date
-  *   - The date (and optionally time) when the test script was published. The date must change when the business
-  *   version changes and it must change if the status code changes. In addition, it should change when the substantive
-  *   content of the test script changes.
+  *   - The date (and optionally time) when the test script was published. The date must change when the business version changes
+  *   and it must change if the status code changes. In addition, it should change when the substantive content of the test script
+  *   changes.
   * @param title
   *   - A short, descriptive, user-friendly title for the test script.
   * @param status
   *   - The status of this test script. Enables tracking the life-cycle of the content.
   * @param version
-  *   - The identifier that is used to identify this version of the test script when it is referenced in a
-  *   specification, model, design or instance. This is an arbitrary value managed by the test script author and is not
-  *   expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not
-  *   available. There is also no expectation that versions can be placed in a lexicographical sequence.
+  *   - The identifier that is used to identify this version of the test script when it is referenced in a specification, model,
+  *   design or instance. This is an arbitrary value managed by the test script author and is not expected to be globally unique.
+  *   For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation
+  *   that versions can be placed in a lexicographical sequence.
   * @param contact
   *   - Contact details to assist a user in finding and communicating with the publisher.
   * @param purpose
@@ -1913,42 +1872,41 @@ object TestScript extends CompanionFor[TestScript] {
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param publisher
   *   - The name of the organization or individual that published the test script.
   * @param copyright
   *   - A copyright statement relating to the test script and/or its contents. Copyright statements are generally legal
   *   restrictions on the use and publishing of the test script.
   * @param identifier
-  *   - A formal identifier that is used to identify this test script when it is represented in other formats, or
-  *   referenced in a specification, model, design or an instance.
+  *   - A formal identifier that is used to identify this test script when it is represented in other formats, or referenced in a
+  *   specification, model, design or an instance.
   * @param useContext
-  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may
-  *   be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...)
-  *   and may be used to assist with indexing and searching for appropriate test script instances.
+  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be
+  *   general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be
+  *   used to assist with indexing and searching for appropriate test script instances.
   * @param description
   *   - A free text natural language description of the test script from a consumer's perspective.
   * @param experimental
-  *   - A Boolean value to indicate that this test script is authored for testing purposes (or
-  *   education/evaluation/marketing) and is not intended to be used for genuine usage.
+  *   - A Boolean value to indicate that this test script is authored for testing purposes (or education/evaluation/marketing) and
+  *   is not intended to be used for genuine usage.
   * @param jurisdiction
   *   - A legal or geographic region in which the test script is intended to be used.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param origin
   *   - An abstract server used in operations within this test script in the origin element.
   * @param fixture

@@ -20,9 +20,9 @@ abstract class UnionWitnessShim[U: LTag, T: LTag] {
 object ChoiceImplicits {
 
   /** This construction appears to be more powerful than an implicit macro construction, since it successfully infers an
-    * appropriate implicit for the `value = value.map(choice(_))` case, whereas experimenting with implicit macros left
-    * an unexpanded `U` type available to the macro (where the LHS value: Option[U] and the RHS value: Option[T]) and
-    * consequently the type checking cannot occur... This might well be a solvable issue, but I didn't get there...
+    * appropriate implicit for the `value = value.map(choice(_))` case, whereas experimenting with implicit macros left an
+    * unexpanded `U` type available to the macro (where the LHS value: Option[U] and the RHS value: Option[T]) and consequently
+    * the type checking cannot occur... This might well be a solvable issue, but I didn't get there...
     */
   implicit def mkUnionWitnessBase[U](implicit ttt: LTag[U]): UnionWitness[U, U] =
     new UnionWitness {
@@ -30,14 +30,12 @@ object ChoiceImplicits {
       override val suffix: String   = typeSuffixMap(ttt.tag).get
     }
 
-  implicit def mkUnionWitnessL[L: LTag, R: LTag, T: LTag](implicit
-      lwitness: UnionWitness[L, T]): UnionWitnessShim[L \/ R, T] =
+  implicit def mkUnionWitnessL[L: LTag, R: LTag, T: LTag](implicit lwitness: UnionWitness[L, T]): UnionWitnessShim[L \/ R, T] =
     new UnionWitnessShim[L \/ R, T]()(\::/[L, R], implicitly[LTag[T]]) {
       override def buildTo(t: T): L \/ R = LHS[L, R](lwitness.buildTo(t))
       override val suffix: String        = lwitness.suffix
     }
-  implicit def mkUnionWitnessR[L: LTag, R: LTag, T: LTag](implicit
-      rwitness: UnionWitness[R, T]): UnionWitnessShim[L \/ R, T] =
+  implicit def mkUnionWitnessR[L: LTag, R: LTag, T: LTag](implicit rwitness: UnionWitness[R, T]): UnionWitnessShim[L \/ R, T] =
     new UnionWitnessShim[L \/ R, T]()(\::/[L, R], implicitly[LTag[T]]) {
       override def buildTo(t: T): L \/ R = RHS[L, R](rwitness.buildTo(t))
       override val suffix: String        = rwitness.suffix
@@ -53,7 +51,7 @@ object ChoiceImplicits {
     witness.buildTo(t)
 
   def choice[U <: _ \/ _: LTag, S: LTag](t: S)(implicit
-  @implicitNotFound("Cannot prove that ${S} is a viable type for union ${U}") witness: UnionWitness[U, S]): Choice[U] =
+      @implicitNotFound("Cannot prove that ${S} is a viable type for union ${U}") witness: UnionWitness[U, S]): Choice[U] =
     Choice.fromValAndSuffix[U, S](t, witness.suffix)
 
   // Use case for this constructor is specifically extensions which limit their value range to a single enum

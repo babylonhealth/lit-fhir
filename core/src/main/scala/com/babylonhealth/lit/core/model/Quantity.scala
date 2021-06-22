@@ -99,9 +99,9 @@ object Quantity extends CompanionFor[Quantity] {
       ))
 }
 
-/** Base StructureDefinition for Quantity Type: A measured amount (or an amount that can potentially be measured). Note
-  * that measured amounts include amounts that are not precisely quantified, including amounts involving arbitrary units
-  * and floating currencies.
+/** Base StructureDefinition for Quantity Type: A measured amount (or an amount that can potentially be measured). Note that
+  * measured amounts include amounts that are not precisely quantified, including amounts involving arbitrary units and floating
+  * currencies.
   *
   * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
   * resource.)
@@ -109,8 +109,8 @@ object Quantity extends CompanionFor[Quantity] {
   * @constructor
   *   Introduces the fields unit, code, value, system, comparator.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param unit
   *   - A human-readable form of the unit.
   * @param code
@@ -120,13 +120,13 @@ object Quantity extends CompanionFor[Quantity] {
   * @param system
   *   - The identification of the system that provides the coded form of the unit.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param comparator
-  *   - How the value should be understood and represented - whether the actual value is greater or less than the stated
-  *   value due to measurement issues; e.g. if the comparator is "<" , then the real value is < stated value.
+  *   - How the value should be understood and represented - whether the actual value is greater or less than the stated value due
+  *   to measurement issues; e.g. if the comparator is "<" , then the real value is < stated value.
   */
 @POJOBoilerplate
 class Quantity(

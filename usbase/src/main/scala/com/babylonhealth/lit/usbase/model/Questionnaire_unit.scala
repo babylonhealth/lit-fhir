@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire_unit extends CompanionFor[Questionnaire_unit] {
   implicit def summonObjectAndCompanionQuestionnaire_unit1930078136(
-      o: Questionnaire_unit): ObjectAndCompanion[Questionnaire_unit, Questionnaire_unit.type] =
-    ObjectAndCompanion(o, this)
+      o: Questionnaire_unit): ObjectAndCompanion[Questionnaire_unit, Questionnaire_unit.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,8 +55,7 @@ object Questionnaire_unit extends CompanionFor[Questionnaire_unit] {
   def extractValue(t: Questionnaire_unit): Coding                        = t.value.get.toSubRefNonUnion[Coding]
   override val thisName: String                                          = "Questionnaire_unit"
   override val searchParams: Map[String, Questionnaire_unit => Seq[Any]] = Extension.searchParams
-  def unapply(o: Questionnaire_unit): Option[(Option[String], Coding)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Coding]))
+  def unapply(o: Questionnaire_unit): Option[(Option[String], Coding)]   = Some((o.id, o.value.get.toSubRefNonUnion[Coding]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire_unit] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,20 +67,20 @@ object Questionnaire_unit extends CompanionFor[Questionnaire_unit] {
       ))
 }
 
-/** Provides a computable unit of measure associated with numeric questions to support subsequent computation on
-  * responses. This is for use on items of type integer and decimal, and it's purpose is to support converting the
-  * integer or decimal answer into a Quantity when extracting the data into a resource.
+/** Provides a computable unit of measure associated with numeric questions to support subsequent computation on responses. This
+  * is for use on items of type integer and decimal, and it's purpose is to support converting the integer or decimal answer into
+  * a Quantity when extracting the data into a resource.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

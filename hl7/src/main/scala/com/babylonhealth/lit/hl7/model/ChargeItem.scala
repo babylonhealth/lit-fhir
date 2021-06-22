@@ -24,16 +24,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ChargeItem extends CompanionFor[ChargeItem] {
-  implicit def summonObjectAndCompanionChargeItem2028172658(
-      o: ChargeItem): ObjectAndCompanion[ChargeItem, ChargeItem.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionChargeItem2028172658(o: ChargeItem): ObjectAndCompanion[ChargeItem, ChargeItem.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = ChargeItem
   override type ParentType   = ChargeItem
   override val baseType: CompanionFor[ResourceType] = ChargeItem
   override val parentType: CompanionFor[ParentType] = ChargeItem
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ChargeItem")
   object Performer extends CompanionFor[Performer] {
-    implicit def summonObjectAndCompanionPerformer2103053223(
-        o: Performer): ObjectAndCompanion[Performer, Performer.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionPerformer2103053223(o: Performer): ObjectAndCompanion[Performer, Performer.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Performer
     override type ParentType   = Performer
     override val parentType: CompanionFor[ResourceType] = Performer
@@ -53,8 +53,8 @@ object ChargeItem extends CompanionFor[ChargeItem] {
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Performer): Option[(Option[String], Reference, Option[CodeableConcept], LitSeq[Extension], LitSeq[Extension])] =
-      Some((o.id, o.actor, o.function, o.extension, o.modifierExtension))
+        o: Performer): Option[(Option[String], Reference, Option[CodeableConcept], LitSeq[Extension], LitSeq[Extension])] = Some(
+      (o.id, o.actor, o.function, o.extension, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val actor: FHIRComponentFieldMeta[Reference] =
@@ -411,28 +411,26 @@ object ChargeItem extends CompanionFor[ChargeItem] {
       ))
 }
 
-/** The resource ChargeItem describes the provision of healthcare provider products for a certain patient, therefore
-  * referring not only to the product, but containing in addition details of the provision, like date, time, amounts and
-  * participating organizations and persons. Main Usage of the ChargeItem is to enable the billing process and internal
-  * cost allocation.
+/** The resource ChargeItem describes the provision of healthcare provider products for a certain patient, therefore referring not
+  * only to the product, but containing in addition details of the provision, like date, time, amounts and participating
+  * organizations and persons. Main Usage of the ChargeItem is to enable the billing process and internal cost allocation.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields code, note, status, partOf, reason, subject, context, enterer, service, account, quantity,
-  *   bodysite, identifier, costCenter, product, enteredDate, definitionUri, occurrence, priceOverride, factorOverride,
-  *   overrideReason, definitionCanonical, supportingInformation, performingOrganization, requestingOrganization,
-  *   performer.
+  *   Introduces the fields code, note, status, partOf, reason, subject, context, enterer, service, account, quantity, bodysite,
+  *   identifier, costCenter, product, enteredDate, definitionUri, occurrence, priceOverride, factorOverride, overrideReason,
+  *   definitionCanonical, supportingInformation, performingOrganization, requestingOrganization, performer.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param code
   *   - A code that identifies the charge, like a billing code.
   * @param note
@@ -463,23 +461,22 @@ object ChargeItem extends CompanionFor[ChargeItem] {
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param identifier
   *   - Identifiers assigned to this event performer or other systems.
   * @param costCenter
   *   - The financial cost center permits the tracking of charge attribution.
   * @param product
-  *   - Identifies the device, food, drug or other product being charged either by type code or reference to an
-  *   instance.
+  *   - Identifies the device, food, drug or other product being charged either by type code or reference to an instance.
   * @param enteredDate
   *   - Date the charge item was entered.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param definitionUri
   *   - References the (external) source of pricing information, rules of application for the code this ChargeItem uses.
   * @param occurrence
@@ -489,17 +486,16 @@ object ChargeItem extends CompanionFor[ChargeItem] {
   * @param factorOverride
   *   - Factor overriding the factor determined by the rules associated with the code.
   * @param overrideReason
-  *   - If the list price or the rule-based factor associated with the code is overridden, this attribute can capture a
-  *   text to indicate the reason for this action.
+  *   - If the list price or the rule-based factor associated with the code is overridden, this attribute can capture a text to
+  *   indicate the reason for this action.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param definitionCanonical
   *   - References the source of pricing information, rules of application for the code this ChargeItem uses.
   * @param supportingInformation

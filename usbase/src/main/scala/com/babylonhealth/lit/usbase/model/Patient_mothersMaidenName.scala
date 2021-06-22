@@ -31,7 +31,7 @@ object Patient_mothersMaidenName extends CompanionFor[Patient_mothersMaidenName]
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/patient-mothersMaidenName")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/patient-mothersMaidenName")
   def apply(
       id: Option[String] = None,
       value: String,
@@ -56,8 +56,7 @@ object Patient_mothersMaidenName extends CompanionFor[Patient_mothersMaidenName]
   def extractValue(t: Patient_mothersMaidenName): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                 = "Patient_mothersMaidenName"
   override val searchParams: Map[String, Patient_mothersMaidenName => Seq[Any]] = Extension.searchParams
-  def unapply(o: Patient_mothersMaidenName): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[String]))
+  def unapply(o: Patient_mothersMaidenName): Option[(Option[String], String)] = Some((o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Patient_mothersMaidenName] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +70,16 @@ object Patient_mothersMaidenName extends CompanionFor[Patient_mothersMaidenName]
 
 /** Mother's maiden (unmarried) name, commonly collected to help verify patient identity.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

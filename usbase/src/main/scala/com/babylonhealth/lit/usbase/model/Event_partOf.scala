@@ -50,13 +50,12 @@ object Event_partOf extends CompanionFor[Event_partOf] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
-  override def fields(t: Event_partOf): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Event_partOf): Option[String]                   = t.id
-  def extractValue(t: Event_partOf): Reference                     = t.value.get.toSubRefNonUnion[Reference]
-  override val thisName: String                                    = "Event_partOf"
-  override val searchParams: Map[String, Event_partOf => Seq[Any]] = Extension.searchParams
-  def unapply(o: Event_partOf): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+  override def fields(t: Event_partOf): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
+  def extractId(t: Event_partOf): Option[String]                    = t.id
+  def extractValue(t: Event_partOf): Reference                      = t.value.get.toSubRefNonUnion[Reference]
+  override val thisName: String                                     = "Event_partOf"
+  override val searchParams: Map[String, Event_partOf => Seq[Any]]  = Extension.searchParams
+  def unapply(o: Event_partOf): Option[(Option[String], Reference)] = Some((o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Event_partOf] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -70,16 +69,16 @@ object Event_partOf extends CompanionFor[Event_partOf] {
 
 /** A larger event of which this particular event is a component or step.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

@@ -20,8 +20,7 @@ class PrimitiveElementIdTest extends AnyFreeSpec with Matchers {
     implicitRules = Some("http://fooo.com/bar/baz"),
     primitiveAttributes = attrMap(
       Account.implicitRules -> PrimitiveElementInfo(
-        Element(
-          extension = LitSeq(Extension(url = "http://fooo.com/version", value = Some(choice("asd123": UriStr)))))),
+        Element(extension = LitSeq(Extension(url = "http://fooo.com/version", value = Some(choice("asd123": UriStr)))))),
       Account.status -> PrimitiveElementInfo(Element(id = Some("1234567890")))
     )
   )
@@ -174,8 +173,7 @@ class PrimitiveElementIdTest extends AnyFreeSpec with Matchers {
       Extension(url = "http://fooo.com/version", value = Some(choice("asd123": UriStr))))
     val bar2: Account =
       foo.updateExtensions(_.implicitRules)(updateExtension).extensions.update(Account.status)(updateExtension)
-    bar2.getExtensions(_.status) shouldEqual LitSeq(
-      Extension(url = "http://hi.ho", value = Some(choice(789.987: BigDecimal))))
+    bar2.getExtensions(_.status) shouldEqual LitSeq(Extension(url = "http://hi.ho", value = Some(choice(789.987: BigDecimal))))
     bar2.getExtensions(_.implicitRules) shouldEqual LitSeq(
       Extension(url = "http://fooo.com/version", value = Some(choice("asd123": UriStr))))
   }

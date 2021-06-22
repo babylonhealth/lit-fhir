@@ -25,13 +25,12 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationStatement extends CompanionFor[MedicationStatement] {
   implicit def summonObjectAndCompanionMedicationStatement1780285890(
-      o: MedicationStatement): ObjectAndCompanion[MedicationStatement, MedicationStatement.type] =
-    ObjectAndCompanion(o, this)
+      o: MedicationStatement): ObjectAndCompanion[MedicationStatement, MedicationStatement.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MedicationStatement
   override type ParentType   = MedicationStatement
   override val baseType: CompanionFor[ResourceType] = MedicationStatement
   override val parentType: CompanionFor[ParentType] = MedicationStatement
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/MedicationStatement")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicationStatement")
   type EffectiveChoice  = Choice[Union_0934386166]
   type MedicationChoice = Choice[Union01025009075]
   def apply(
@@ -126,11 +125,7 @@ object MedicationStatement extends CompanionFor[MedicationStatement] {
   val statusReason: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val effective: FHIRComponentFieldMeta[Option[MedicationStatement.EffectiveChoice]] =
-    FHIRComponentFieldMeta(
-      "effective",
-      lTagOf[Option[MedicationStatement.EffectiveChoice]],
-      true,
-      lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("effective", lTagOf[Option[MedicationStatement.EffectiveChoice]], true, lTagOf[Union_0934386166])
   val dateAsserted: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("dateAsserted", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -271,20 +266,19 @@ object MedicationStatement extends CompanionFor[MedicationStatement] {
       ))
 }
 
-/** A record of a medication that is being consumed by a patient. A MedicationStatement may indicate that the patient
-  * may be taking the medication now or has taken the medication in the past or will be taking the medication in the
-  * future. The source of this information can be the patient, significant other (such as a family member or spouse), or
-  * a clinician. A common scenario where this information is captured is during the history taking process during a
-  * patient visit or stay. The medication information may come from sources such as the patient's memory, from a
-  * prescription bottle, or from a list of medications the patient, clinician or other party maintains. The primary
-  * difference between a medication statement and a medication administration is that the medication administration has
-  * complete administration information and is based on actual administration information from the person who
-  * administered the medication. A medication statement is often, if not always, less specific. There is no required
-  * date/time when the medication was administered, in fact we only know that a source has reported the patient is
-  * taking this medication, where details such as time, quantity, or rate or even medication product may be incomplete
-  * or missing or less precise. As stated earlier, the medication statement information may come from the patient's
-  * memory, from a prescription bottle or from a list of medications the patient, clinician or other party maintains.
-  * Medication administration is more formal and is not missing detailed information.
+/** A record of a medication that is being consumed by a patient. A MedicationStatement may indicate that the patient may be
+  * taking the medication now or has taken the medication in the past or will be taking the medication in the future. The source
+  * of this information can be the patient, significant other (such as a family member or spouse), or a clinician. A common
+  * scenario where this information is captured is during the history taking process during a patient visit or stay. The
+  * medication information may come from sources such as the patient's memory, from a prescription bottle, or from a list of
+  * medications the patient, clinician or other party maintains. The primary difference between a medication statement and a
+  * medication administration is that the medication administration has complete administration information and is based on actual
+  * administration information from the person who administered the medication. A medication statement is often, if not always,
+  * less specific. There is no required date/time when the medication was administered, in fact we only know that a source has
+  * reported the patient is taking this medication, where details such as time, quantity, or rate or even medication product may
+  * be incomplete or missing or less precise. As stated earlier, the medication statement information may come from the patient's
+  * memory, from a prescription bottle or from a list of medications the patient, clinician or other party maintains. Medication
+  * administration is more formal and is not missing detailed information.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
@@ -294,20 +288,20 @@ object MedicationStatement extends CompanionFor[MedicationStatement] {
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param note
   *   - Provides extra information about the medication statement that is not conveyed by the other attributes.
   * @param partOf
   *   - A larger event of which this particular event is a component or step.
   * @param status
-  *   - A code representing the patient or other source's judgment about the state of the medication used that this
-  *   statement is about. Generally, this will be active or completed.
+  *   - A code representing the patient or other source's judgment about the state of the medication used that this statement is
+  *   about. Generally, this will be active or completed.
   * @param dosage
   *   - Indicates how the medication is/was or should be taken by the patient.
   * @param basedOn
@@ -324,49 +318,47 @@ object MedicationStatement extends CompanionFor[MedicationStatement] {
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param identifier
-  *   - Identifiers associated with this Medication Statement that are defined by business processes and/or used to
-  *   refer to it when a direct URL reference to the resource itself is not appropriate. They are business identifiers
-  *   assigned to this resource by the performer or other systems and remain constant as the resource is updated and
-  *   propagates from server to server.
+  *   - Identifiers associated with this Medication Statement that are defined by business processes and/or used to refer to it
+  *   when a direct URL reference to the resource itself is not appropriate. They are business identifiers assigned to this
+  *   resource by the performer or other systems and remain constant as the resource is updated and propagates from server to
+  *   server.
   * @param reasonCode
   *   - A reason for why the medication is being/was taken.
   * @param derivedFrom
-  *   - Allows linking the MedicationStatement to the underlying MedicationRequest, or to other information that
-  *   supports or is used to derive the MedicationStatement.
+  *   - Allows linking the MedicationStatement to the underlying MedicationRequest, or to other information that supports or is
+  *   used to derive the MedicationStatement.
   * @param statusReason
   *   - Captures the reason for the current state of the MedicationStatement.
   * @param effective
-  *   - The interval of time during which it is being asserted that the patient is/was/will be taking the medication (or
-  *   was not taking, when the MedicationStatement.taken element is No).
+  *   - The interval of time during which it is being asserted that the patient is/was/will be taking the medication (or was not
+  *   taking, when the MedicationStatement.taken element is No).
   * @param dateAsserted
   *   - The date when the medication statement was asserted by the information source.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param medication
-  *   - Identifies the medication being administered. This is either a link to a resource representing the details of
-  *   the medication or a simple attribute carrying a code that identifies the medication from a known list of
-  *   medications.
+  *   - Identifies the medication being administered. This is either a link to a resource representing the details of the
+  *   medication or a simple attribute carrying a code that identifies the medication from a known list of medications.
   * @param reasonReference
   *   - Condition or observation that supports why the medication is being/was taken.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param informationSource
-  *   - The person or organization that provided the information about the taking of this medication. Note: Use
-  *   derivedFrom when a MedicationStatement is derived from other resources, e.g. Claim or MedicationRequest.
+  *   - The person or organization that provided the information about the taking of this medication. Note: Use derivedFrom when a
+  *   MedicationStatement is derived from other resources, e.g. Claim or MedicationRequest.
   */
 @POJOBoilerplate
 class MedicationStatement(

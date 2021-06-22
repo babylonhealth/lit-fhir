@@ -31,8 +31,7 @@ object Hla_genotyping_results_glstring extends CompanionFor[Hla_genotyping_resul
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some(
-    "http://hl7.org/fhir/StructureDefinition/hla-genotyping-results-glstring")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/hla-genotyping-results-glstring")
   def apply(
       id: Option[String] = None,
       extension: LitSeq[Extension] = LitSeq.empty,
@@ -52,13 +51,12 @@ object Hla_genotyping_results_glstring extends CompanionFor[Hla_genotyping_resul
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension)
     ))
-  override def fields(t: Hla_genotyping_results_glstring): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Hla_genotyping_results_glstring): Option[String]                   = t.id
-  def extractExtension(t: Hla_genotyping_results_glstring): LitSeq[Extension]         = t.extension
-  override val thisName: String = "Hla_genotyping_results_glstring"
-  override val searchParams: Map[String, Hla_genotyping_results_glstring => Seq[Any]] = Extension.searchParams
-  def unapply(o: Hla_genotyping_results_glstring): Option[(Option[String], LitSeq[Extension])] = Some(
-    (o.id, o.extension))
+  override def fields(t: Hla_genotyping_results_glstring): Seq[FHIRComponentField[_]]          = fieldsFromParent(t).get
+  def extractId(t: Hla_genotyping_results_glstring): Option[String]                            = t.id
+  def extractExtension(t: Hla_genotyping_results_glstring): LitSeq[Extension]                  = t.extension
+  override val thisName: String                                                                = "Hla_genotyping_results_glstring"
+  override val searchParams: Map[String, Hla_genotyping_results_glstring => Seq[Any]]          = Extension.searchParams
+  def unapply(o: Hla_genotyping_results_glstring): Option[(Option[String], LitSeq[Extension])] = Some((o.id, o.extension))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Hla_genotyping_results_glstring] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -72,22 +70,22 @@ object Hla_genotyping_results_glstring extends CompanionFor[Hla_genotyping_resul
 
 /** glstring.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Forbids the use of the following fields which were optional in the parent: value.
-  *   Hardcodes the value of the following fields: url.
+  *   Inherits all params from parent. Forbids the use of the following fields which were optional in the parent: value. Hardcodes
+  *   the value of the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class Hla_genotyping_results_glstring(

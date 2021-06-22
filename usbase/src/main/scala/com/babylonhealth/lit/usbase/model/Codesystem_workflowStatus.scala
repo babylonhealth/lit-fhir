@@ -31,7 +31,7 @@ object Codesystem_workflowStatus extends CompanionFor[Codesystem_workflowStatus]
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/codesystem-workflowStatus")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/codesystem-workflowStatus")
   def apply(
       id: Option[String] = None,
       value: String,
@@ -56,8 +56,7 @@ object Codesystem_workflowStatus extends CompanionFor[Codesystem_workflowStatus]
   def extractValue(t: Codesystem_workflowStatus): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                                 = "Codesystem_workflowStatus"
   override val searchParams: Map[String, Codesystem_workflowStatus => Seq[Any]] = Extension.searchParams
-  def unapply(o: Codesystem_workflowStatus): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[String]))
+  def unapply(o: Codesystem_workflowStatus): Option[(Option[String], String)] = Some((o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Codesystem_workflowStatus] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,21 +68,21 @@ object Codesystem_workflowStatus extends CompanionFor[Codesystem_workflowStatus]
       ))
 }
 
-/** Workflow Status is used to represent details of the value set development process while the value set has an
-  * Activity Status of Preliminary. The development of a value set often follows a formal workflow process from
-  * initiation to completion, and this element carries the state variable for this state machine. The assumption is that
-  * when first created a value set would have a workflow state of Draft. Additional workflow states may be used.
+/** Workflow Status is used to represent details of the value set development process while the value set has an Activity Status
+  * of Preliminary. The development of a value set often follows a formal workflow process from initiation to completion, and this
+  * element carries the state variable for this state machine. The assumption is that when first created a value set would have a
+  * workflow state of Draft. Additional workflow states may be used.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

@@ -31,7 +31,7 @@ object DiagnosticReport_replaces extends CompanionFor[DiagnosticReport_replaces]
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/diagnosticReport-replaces")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/diagnosticReport-replaces")
   def apply(
       id: Option[String] = None,
       value: Reference,
@@ -53,8 +53,8 @@ object DiagnosticReport_replaces extends CompanionFor[DiagnosticReport_replaces]
     ))
   override def fields(t: DiagnosticReport_replaces): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: DiagnosticReport_replaces): Option[String]                   = t.id
-  def extractValue(t: DiagnosticReport_replaces): Reference = t.value.get.toSubRefNonUnion[Reference]
-  override val thisName: String                             = "DiagnosticReport_replaces"
+  def extractValue(t: DiagnosticReport_replaces): Reference                     = t.value.get.toSubRefNonUnion[Reference]
+  override val thisName: String                                                 = "DiagnosticReport_replaces"
   override val searchParams: Map[String, DiagnosticReport_replaces => Seq[Any]] = Extension.searchParams
   def unapply(o: DiagnosticReport_replaces): Option[(Option[String], Reference)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[Reference]))
@@ -69,21 +69,21 @@ object DiagnosticReport_replaces extends CompanionFor[DiagnosticReport_replaces]
       ))
 }
 
-/** The report replaces the target resource. For example, when a final anatomic pathology report replaces a preliminary
-  * anatomic pathology report replaces where the subsequent observation of case and report may be on more or different
-  * material (specimen). Note that this is not same concept as` DiagnosticReport.status` = preliminary of final, but
-  * industry definition of preliminary and final.
+/** The report replaces the target resource. For example, when a final anatomic pathology report replaces a preliminary anatomic
+  * pathology report replaces where the subsequent observation of case and report may be on more or different material (specimen).
+  * Note that this is not same concept as` DiagnosticReport.status` = preliminary of final, but industry definition of preliminary
+  * and final.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

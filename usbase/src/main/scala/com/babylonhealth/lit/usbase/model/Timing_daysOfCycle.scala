@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Timing_daysOfCycle extends CompanionFor[Timing_daysOfCycle] {
   implicit def summonObjectAndCompanionTiming_daysOfCycle521758718(
-      o: Timing_daysOfCycle): ObjectAndCompanion[Timing_daysOfCycle, Timing_daysOfCycle.type] =
-    ObjectAndCompanion(o, this)
+      o: Timing_daysOfCycle): ObjectAndCompanion[Timing_daysOfCycle, Timing_daysOfCycle.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -51,13 +50,12 @@ object Timing_daysOfCycle extends CompanionFor[Timing_daysOfCycle] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
     ))
-  override def fields(t: Timing_daysOfCycle): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Timing_daysOfCycle): Option[String]                   = t.id
-  def extractExtension(t: Timing_daysOfCycle): NonEmptyLitSeq[Extension] = t.extension.asNonEmpty
-  override val thisName: String                                          = "Timing_daysOfCycle"
-  override val searchParams: Map[String, Timing_daysOfCycle => Seq[Any]] = Extension.searchParams
-  def unapply(o: Timing_daysOfCycle): Option[(Option[String], NonEmptyLitSeq[Extension])] = Some(
-    (o.id, o.extension.asNonEmpty))
+  override def fields(t: Timing_daysOfCycle): Seq[FHIRComponentField[_]]                  = fieldsFromParent(t).get
+  def extractId(t: Timing_daysOfCycle): Option[String]                                    = t.id
+  def extractExtension(t: Timing_daysOfCycle): NonEmptyLitSeq[Extension]                  = t.extension.asNonEmpty
+  override val thisName: String                                                           = "Timing_daysOfCycle"
+  override val searchParams: Map[String, Timing_daysOfCycle => Seq[Any]]                  = Extension.searchParams
+  def unapply(o: Timing_daysOfCycle): Option[(Option[String], NonEmptyLitSeq[Extension])] = Some((o.id, o.extension.asNonEmpty))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Timing_daysOfCycle] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,26 +67,25 @@ object Timing_daysOfCycle extends CompanionFor[Timing_daysOfCycle] {
       ))
 }
 
-/** Days of a possibly repeating cycle on which the action is to be performed. The cycle is defined by the first action
-  * with a timing element that is a parent of the daysOfCycle.
+/** Days of a possibly repeating cycle on which the action is to be performed. The cycle is defined by the first action with a
+  * timing element that is a parent of the daysOfCycle.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Requires the following fields which were optional in the parent: extension.
-  *   Forbids the use of the following fields which were optional in the parent: value. Hardcodes the value of the
-  *   following fields: url.
+  *   Inherits all params from parent. Requires the following fields which were optional in the parent: extension. Forbids the use
+  *   of the following fields which were optional in the parent: value. Hardcodes the value of the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class Timing_daysOfCycle(

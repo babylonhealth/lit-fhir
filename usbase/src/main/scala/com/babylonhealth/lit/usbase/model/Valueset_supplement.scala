@@ -25,13 +25,12 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_supplement extends CompanionFor[Valueset_supplement] {
   implicit def summonObjectAndCompanionValueset_supplement1840413107(
-      o: Valueset_supplement): ObjectAndCompanion[Valueset_supplement, Valueset_supplement.type] =
-    ObjectAndCompanion(o, this)
+      o: Valueset_supplement): ObjectAndCompanion[Valueset_supplement, Valueset_supplement.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/valueset-supplement")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-supplement")
   def apply(
       id: Option[String] = None,
       value: Canonical,
@@ -51,13 +50,12 @@ object Valueset_supplement extends CompanionFor[Valueset_supplement] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Canonical](value, t.value.get.toSubRefNonUnion[Canonical])
     ))
-  override def fields(t: Valueset_supplement): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Valueset_supplement): Option[String]                   = t.id
-  def extractValue(t: Valueset_supplement): Canonical                     = t.value.get.toSubRefNonUnion[Canonical]
-  override val thisName: String                                           = "Valueset_supplement"
-  override val searchParams: Map[String, Valueset_supplement => Seq[Any]] = Extension.searchParams
-  def unapply(o: Valueset_supplement): Option[(Option[String], Canonical)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Canonical]))
+  override def fields(t: Valueset_supplement): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
+  def extractId(t: Valueset_supplement): Option[String]                    = t.id
+  def extractValue(t: Valueset_supplement): Canonical                      = t.value.get.toSubRefNonUnion[Canonical]
+  override val thisName: String                                            = "Valueset_supplement"
+  override val searchParams: Map[String, Valueset_supplement => Seq[Any]]  = Extension.searchParams
+  def unapply(o: Valueset_supplement): Option[(Option[String], Canonical)] = Some((o.id, o.value.get.toSubRefNonUnion[Canonical]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_supplement] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +69,16 @@ object Valueset_supplement extends CompanionFor[Valueset_supplement] {
 
 /** This extension declares that a value set depends on a particular supplement and should not be used in its absence.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

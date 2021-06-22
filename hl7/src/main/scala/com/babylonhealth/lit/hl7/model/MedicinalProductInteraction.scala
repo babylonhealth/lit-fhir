@@ -30,7 +30,7 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
   override type ParentType   = MedicinalProductInteraction
   override val baseType: CompanionFor[ResourceType] = MedicinalProductInteraction
   override val parentType: CompanionFor[ParentType] = MedicinalProductInteraction
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductInteraction")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductInteraction")
   object Interactant extends CompanionFor[Interactant] {
     implicit def summonObjectAndCompanionInteractant2141115057(
         o: Interactant): ObjectAndCompanion[Interactant, Interactant.type] = ObjectAndCompanion(o, this)
@@ -51,8 +51,7 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(
-        o: Interactant): Option[(Option[String], Interactant.ItemChoice, LitSeq[Extension], LitSeq[Extension])] = Some(
+    def unapply(o: Interactant): Option[(Option[String], Interactant.ItemChoice, LitSeq[Extension], LitSeq[Extension])] = Some(
       (o.id, o.item, o.extension, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -62,7 +61,7 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, item, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, item, extension, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Interactant): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -195,22 +194,21 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[LitSeq[MedicinalProductInteraction.Interactant]](interactant, t.interactant)
   )
-  def extractId(t: MedicinalProductInteraction): Option[String]                   = t.id
-  def extractMeta(t: MedicinalProductInteraction): Option[Meta]                   = t.meta
-  def extractText(t: MedicinalProductInteraction): Option[Narrative]              = t.text
-  def extractType(t: MedicinalProductInteraction): Option[CodeableConcept]        = t.`type`
-  def extractEffect(t: MedicinalProductInteraction): Option[CodeableConcept]      = t.effect
-  def extractSubject(t: MedicinalProductInteraction): LitSeq[Reference]           = t.subject
-  def extractLanguage(t: MedicinalProductInteraction): Option[LANGUAGES]          = t.language
-  def extractContained(t: MedicinalProductInteraction): LitSeq[Resource]          = t.contained
-  def extractExtension(t: MedicinalProductInteraction): LitSeq[Extension]         = t.extension
-  def extractIncidence(t: MedicinalProductInteraction): Option[CodeableConcept]   = t.incidence
-  def extractManagement(t: MedicinalProductInteraction): Option[CodeableConcept]  = t.management
-  def extractDescription(t: MedicinalProductInteraction): Option[String]          = t.description
-  def extractImplicitRules(t: MedicinalProductInteraction): Option[UriStr]        = t.implicitRules
-  def extractModifierExtension(t: MedicinalProductInteraction): LitSeq[Extension] = t.modifierExtension
-  def extractInteractant(t: MedicinalProductInteraction): LitSeq[MedicinalProductInteraction.Interactant] =
-    t.interactant
+  def extractId(t: MedicinalProductInteraction): Option[String]                                           = t.id
+  def extractMeta(t: MedicinalProductInteraction): Option[Meta]                                           = t.meta
+  def extractText(t: MedicinalProductInteraction): Option[Narrative]                                      = t.text
+  def extractType(t: MedicinalProductInteraction): Option[CodeableConcept]                                = t.`type`
+  def extractEffect(t: MedicinalProductInteraction): Option[CodeableConcept]                              = t.effect
+  def extractSubject(t: MedicinalProductInteraction): LitSeq[Reference]                                   = t.subject
+  def extractLanguage(t: MedicinalProductInteraction): Option[LANGUAGES]                                  = t.language
+  def extractContained(t: MedicinalProductInteraction): LitSeq[Resource]                                  = t.contained
+  def extractExtension(t: MedicinalProductInteraction): LitSeq[Extension]                                 = t.extension
+  def extractIncidence(t: MedicinalProductInteraction): Option[CodeableConcept]                           = t.incidence
+  def extractManagement(t: MedicinalProductInteraction): Option[CodeableConcept]                          = t.management
+  def extractDescription(t: MedicinalProductInteraction): Option[String]                                  = t.description
+  def extractImplicitRules(t: MedicinalProductInteraction): Option[UriStr]                                = t.implicitRules
+  def extractModifierExtension(t: MedicinalProductInteraction): LitSeq[Extension]                         = t.modifierExtension
+  def extractInteractant(t: MedicinalProductInteraction): LitSeq[MedicinalProductInteraction.Interactant] = t.interactant
   override val thisName: String = "MedicinalProductInteraction"
   override val searchParams: Map[String, MedicinalProductInteraction => Seq[Any]] = Map(
     "subject" -> (obj => obj.subject.toSeq)
@@ -267,13 +265,13 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param `type`
   *   - The type of the interaction e.g. drug-drug interaction, drug-food interaction, drug-lab test interaction.
   * @param effect
@@ -286,10 +284,10 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param incidence
   *   - The incidence of the interaction, e.g. theoretical, observed.
   * @param management
@@ -297,18 +295,17 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
   * @param description
   *   - The interaction described.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param interactant
   *   - The specific medication, food or laboratory test that interacts.
   */

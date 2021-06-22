@@ -44,9 +44,7 @@ object Choice {
     Choice[U](suffix, value)(meta.unwrappedTT.asInstanceOf[LTag[U]])
 }
 
-final class ChoiceFold[T: LTag, To: LTag, Built: LTag] private[core] (
-    choice: Choice[T],
-    fns: Map[String, Function[_, To]]) {
+final class ChoiceFold[T: LTag, To: LTag, Built: LTag] private[core] (choice: Choice[T], fns: Map[String, Function[_, To]]) {
   def and[Next: LTag](x: Next => To)(implicit w: UnionWitness[T, Next]): ChoiceFold[T, To, Built \/ Next] =
     new ChoiceFold[T, To, Built \/ Next](choice, fns + (w.suffix -> x))(
       implicitly[LTag[T]],
@@ -55,9 +53,7 @@ final class ChoiceFold[T: LTag, To: LTag, Built: LTag] private[core] (
   def run(implicit w: T =:= Built): To = fns(choice.suffix).asInstanceOf[Any => Any](choice.value).asInstanceOf[To]
 }
 
-final class ChoiceMap[T: LTag] private[core] (
-    choice: Choice[T],
-    partials: Map[String, (String, LTag[_], Function[_, _])]) {
+final class ChoiceMap[T: LTag] private[core] (choice: Choice[T], partials: Map[String, (String, LTag[_], Function[_, _])]) {
   def orElse[From, To](fn: From => To)(implicit
       @implicitNotFound("Cannot prove that ${From} ('from' type) is a viable type for union ${T}")
       fromWitness: UnionWitness[T, From],

@@ -30,10 +30,10 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
   override type ParentType   = SubstanceSpecification
   override val baseType: CompanionFor[ResourceType] = SubstanceSpecification
   override val parentType: CompanionFor[ParentType] = SubstanceSpecification
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/SubstanceSpecification")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceSpecification")
   object Structure extends CompanionFor[Structure] {
-    implicit def summonObjectAndCompanionStructure570612851(
-        o: Structure): ObjectAndCompanion[Structure, Structure.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionStructure570612851(o: Structure): ObjectAndCompanion[Structure, Structure.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Structure
     override type ParentType   = Structure
     override val parentType: CompanionFor[ResourceType] = Structure
@@ -75,8 +75,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
         FHIRComponentFieldMeta("representation", lTagOf[Option[String]], false, lTagOf[String])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-        Seq(id, `type`, extension, attachment, representation, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, extension, attachment, representation, modifierExtension)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Representation): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
@@ -110,8 +109,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
         val attachment: Option[Attachment] = None,
         val representation: Option[String] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Isotope extends CompanionFor[Isotope] {
       implicit def summonObjectAndCompanionIsotope1548369058(o: Isotope): ObjectAndCompanion[Isotope, Isotope.type] =
@@ -191,8 +189,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
           val amount: Option[Quantity] = None,
           override val extension: LitSeq[Extension] = LitSeq.empty,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
@@ -217,8 +214,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       )
       def unapply(
           o: Isotope): Option[(Option[String], Option[CodeableConcept], Option[Quantity], LitSeq[Extension], Option[Identifier], Option[CodeableConcept], LitSeq[Extension], Option[Isotope.MolecularWeight])] =
-        Some(
-          (o.id, o.name, o.halfLife, o.extension, o.identifier, o.substitution, o.modifierExtension, o.molecularWeight))
+        Some((o.id, o.name, o.halfLife, o.extension, o.identifier, o.substitution, o.modifierExtension, o.molecularWeight))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
       val name: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -234,11 +230,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val molecularWeight: FHIRComponentFieldMeta[Option[Isotope.MolecularWeight]] =
-        FHIRComponentFieldMeta(
-          "molecularWeight",
-          lTagOf[Option[Isotope.MolecularWeight]],
-          false,
-          lTagOf[Isotope.MolecularWeight])
+        FHIRComponentFieldMeta("molecularWeight", lTagOf[Option[Isotope.MolecularWeight]], false, lTagOf[Isotope.MolecularWeight])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
         Seq(id, name, halfLife, extension, identifier, substitution, modifierExtension, molecularWeight)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
@@ -280,8 +272,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
         val substitution: Option[CodeableConcept] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         val molecularWeight: Option[Isotope.MolecularWeight] = None,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -349,11 +340,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
     val molecularFormulaByMoiety: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("molecularFormulaByMoiety", lTagOf[Option[String]], false, lTagOf[String])
     val representation: FHIRComponentFieldMeta[LitSeq[Structure.Representation]] =
-      FHIRComponentFieldMeta(
-        "representation",
-        lTagOf[LitSeq[Structure.Representation]],
-        false,
-        lTagOf[Structure.Representation])
+      FHIRComponentFieldMeta("representation", lTagOf[LitSeq[Structure.Representation]], false, lTagOf[Structure.Representation])
     val isotope: FHIRComponentFieldMeta[LitSeq[Structure.Isotope]] =
       FHIRComponentFieldMeta("isotope", lTagOf[LitSeq[Structure.Isotope]], false, lTagOf[Structure.Isotope])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
@@ -376,9 +363,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
       FHIRComponentField[Option[CodeableConcept]](stereochemistry, t.stereochemistry),
       FHIRComponentField[Option[CodeableConcept]](opticalActivity, t.opticalActivity),
-      FHIRComponentField[Option[SubstanceSpecification.Structure.Isotope.MolecularWeight]](
-        molecularWeight,
-        t.molecularWeight),
+      FHIRComponentField[Option[SubstanceSpecification.Structure.Isotope.MolecularWeight]](molecularWeight, t.molecularWeight),
       FHIRComponentField[Option[String]](molecularFormula, t.molecularFormula),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
       FHIRComponentField[Option[String]](molecularFormulaByMoiety, t.molecularFormulaByMoiety),
@@ -396,9 +381,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[CodeableConcept]]("stereochemistry", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("opticalActivity", Some(None)),
-            cursor.decodeAs[Option[SubstanceSpecification.Structure.Isotope.MolecularWeight]](
-              "molecularWeight",
-              Some(None)),
+            cursor.decodeAs[Option[SubstanceSpecification.Structure.Isotope.MolecularWeight]]("molecularWeight", Some(None)),
             cursor.decodeAs[Option[String]]("molecularFormula", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[String]]("molecularFormulaByMoiety", Some(None)),
@@ -490,17 +473,8 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val amountRatioLowLimit: FHIRComponentFieldMeta[Option[Ratio]] =
       FHIRComponentFieldMeta("amountRatioLowLimit", lTagOf[Option[Ratio]], false, lTagOf[Ratio])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
-      id,
-      source,
-      extension,
-      amount,
-      isDefining,
-      amountType,
-      substance,
-      relationship,
-      modifierExtension,
-      amountRatioLowLimit)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+      Seq(id, source, extension, amount, isDefining, amountType, substance, relationship, modifierExtension, amountRatioLowLimit)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Relationship): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -549,8 +523,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Name extends CompanionFor[Name] {
-    implicit def summonObjectAndCompanionName20129648(o: Name): ObjectAndCompanion[Name, Name.type] =
-      ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionName20129648(o: Name): ObjectAndCompanion[Name, Name.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Name
     override type ParentType   = Name
     override val parentType: CompanionFor[ResourceType] = Name
@@ -626,8 +599,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val authority: Option[CodeableConcept] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -693,11 +665,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
     val source: FHIRComponentFieldMeta[LitSeq[Reference]] =
       FHIRComponentFieldMeta("source", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
     val synonym: FHIRComponentFieldMeta[LitSeq[SubstanceSpecification.Name]] =
-      FHIRComponentFieldMeta(
-        "synonym",
-        lTagOf[LitSeq[SubstanceSpecification.Name]],
-        false,
-        lTagOf[SubstanceSpecification.Name])
+      FHIRComponentFieldMeta("synonym", lTagOf[LitSeq[SubstanceSpecification.Name]], false, lTagOf[SubstanceSpecification.Name])
     val language: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
       FHIRComponentFieldMeta("language", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -951,17 +919,8 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       FHIRComponentFieldMeta("molecularFormula", lTagOf[Option[String]], false, lTagOf[String])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
-      id,
-      role,
-      name,
-      extension,
-      amount,
-      identifier,
-      stereochemistry,
-      opticalActivity,
-      molecularFormula,
-      modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+      Seq(id, role, name, extension, amount, identifier, stereochemistry, opticalActivity, molecularFormula, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Moiety): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -1010,8 +969,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Code extends CompanionFor[Code] {
-    implicit def summonObjectAndCompanionCode167919685(o: Code): ObjectAndCompanion[Code, Code.type] =
-      ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionCode167919685(o: Code): ObjectAndCompanion[Code, Code.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Code
     override type ParentType   = Code
     override val parentType: CompanionFor[ResourceType] = Code
@@ -1205,17 +1163,9 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
   val referenceInformation: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("referenceInformation", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val code: FHIRComponentFieldMeta[LitSeq[SubstanceSpecification.Code]] =
-    FHIRComponentFieldMeta(
-      "code",
-      lTagOf[LitSeq[SubstanceSpecification.Code]],
-      false,
-      lTagOf[SubstanceSpecification.Code])
+    FHIRComponentFieldMeta("code", lTagOf[LitSeq[SubstanceSpecification.Code]], false, lTagOf[SubstanceSpecification.Code])
   val moiety: FHIRComponentFieldMeta[LitSeq[SubstanceSpecification.Moiety]] =
-    FHIRComponentFieldMeta(
-      "moiety",
-      lTagOf[LitSeq[SubstanceSpecification.Moiety]],
-      false,
-      lTagOf[SubstanceSpecification.Moiety])
+    FHIRComponentFieldMeta("moiety", lTagOf[LitSeq[SubstanceSpecification.Moiety]], false, lTagOf[SubstanceSpecification.Moiety])
   val property: FHIRComponentFieldMeta[LitSeq[SubstanceSpecification.Property]] =
     FHIRComponentFieldMeta(
       "property",
@@ -1223,11 +1173,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       false,
       lTagOf[SubstanceSpecification.Property])
   val name: FHIRComponentFieldMeta[LitSeq[SubstanceSpecification.Name]] =
-    FHIRComponentFieldMeta(
-      "name",
-      lTagOf[LitSeq[SubstanceSpecification.Name]],
-      false,
-      lTagOf[SubstanceSpecification.Name])
+    FHIRComponentFieldMeta("name", lTagOf[LitSeq[SubstanceSpecification.Name]], false, lTagOf[SubstanceSpecification.Name])
   val relationship: FHIRComponentFieldMeta[LitSeq[SubstanceSpecification.Relationship]] =
     FHIRComponentFieldMeta(
       "relationship",
@@ -1289,9 +1235,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
     FHIRComponentField[Option[Reference]](nucleicAcid, t.nucleicAcid),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[Option[Reference]](sourceMaterial, t.sourceMaterial),
-    FHIRComponentField[LitSeq[SubstanceSpecification.Structure.Isotope.MolecularWeight]](
-      molecularWeight,
-      t.molecularWeight),
+    FHIRComponentField[LitSeq[SubstanceSpecification.Structure.Isotope.MolecularWeight]](molecularWeight, t.molecularWeight),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[Option[Reference]](referenceInformation, t.referenceInformation),
     FHIRComponentField[LitSeq[SubstanceSpecification.Code]](code, t.code),
@@ -1319,17 +1263,17 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
   def extractNucleicAcid(t: SubstanceSpecification): Option[Reference]    = t.nucleicAcid
   def extractImplicitRules(t: SubstanceSpecification): Option[UriStr]     = t.implicitRules
   def extractSourceMaterial(t: SubstanceSpecification): Option[Reference] = t.sourceMaterial
-  def extractMolecularWeight(
-      t: SubstanceSpecification): LitSeq[SubstanceSpecification.Structure.Isotope.MolecularWeight] = t.molecularWeight
-  def extractModifierExtension(t: SubstanceSpecification): LitSeq[Extension]                       = t.modifierExtension
-  def extractReferenceInformation(t: SubstanceSpecification): Option[Reference]           = t.referenceInformation
-  def extractCode(t: SubstanceSpecification): LitSeq[SubstanceSpecification.Code]         = t.code
-  def extractMoiety(t: SubstanceSpecification): LitSeq[SubstanceSpecification.Moiety]     = t.moiety
-  def extractProperty(t: SubstanceSpecification): LitSeq[SubstanceSpecification.Property] = t.property
-  def extractName(t: SubstanceSpecification): LitSeq[SubstanceSpecification.Name]         = t.name
+  def extractMolecularWeight(t: SubstanceSpecification): LitSeq[SubstanceSpecification.Structure.Isotope.MolecularWeight] =
+    t.molecularWeight
+  def extractModifierExtension(t: SubstanceSpecification): LitSeq[Extension]                      = t.modifierExtension
+  def extractReferenceInformation(t: SubstanceSpecification): Option[Reference]                   = t.referenceInformation
+  def extractCode(t: SubstanceSpecification): LitSeq[SubstanceSpecification.Code]                 = t.code
+  def extractMoiety(t: SubstanceSpecification): LitSeq[SubstanceSpecification.Moiety]             = t.moiety
+  def extractProperty(t: SubstanceSpecification): LitSeq[SubstanceSpecification.Property]         = t.property
+  def extractName(t: SubstanceSpecification): LitSeq[SubstanceSpecification.Name]                 = t.name
   def extractRelationship(t: SubstanceSpecification): LitSeq[SubstanceSpecification.Relationship] = t.relationship
   def extractStructure(t: SubstanceSpecification): Option[SubstanceSpecification.Structure]       = t.structure
-  override val thisName: String = "SubstanceSpecification"
+  override val thisName: String                                                                   = "SubstanceSpecification"
   override val searchParams: Map[String, SubstanceSpecification => Seq[Any]] = Map(
     "code" -> (obj => obj.code.flatMap(_.code).toSeq)
   )
@@ -1355,9 +1299,8 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
           cursor.decodeAs[Option[Reference]]("nucleicAcid", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[Option[Reference]]("sourceMaterial", Some(None)),
-          cursor.decodeAs[LitSeq[SubstanceSpecification.Structure.Isotope.MolecularWeight]](
-            "molecularWeight",
-            Some(LitSeq.empty)),
+          cursor
+            .decodeAs[LitSeq[SubstanceSpecification.Structure.Isotope.MolecularWeight]]("molecularWeight", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("referenceInformation", Some(None)),
           cursor.decodeAs[LitSeq[SubstanceSpecification.Code]]("code", Some(LitSeq.empty)),
@@ -1376,19 +1319,18 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields `type`, status, domain, source, comment, polymer, protein, identifier, description,
-  *   nucleicAcid, sourceMaterial, molecularWeight, referenceInformation, code, moiety, property, name, relationship,
-  *   structure.
+  *   Introduces the fields `type`, status, domain, source, comment, polymer, protein, identifier, description, nucleicAcid,
+  *   sourceMaterial, molecularWeight, referenceInformation, code, moiety, property, name, relationship, structure.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param `type`
   *   - High level categorization, e.g. polymer or nucleic acid.
   * @param status
@@ -1409,10 +1351,10 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param identifier
   *   - Identifier by which this substance is known.
   * @param description
@@ -1420,22 +1362,21 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
   * @param nucleicAcid
   *   - Data items specific to nucleic acids.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param sourceMaterial
   *   - Material or taxonomic/anatomical source for the substance.
   * @param molecularWeight
   *   - The molecular weight or weight range (for proteins, polymers or nucleic acids).
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param referenceInformation
   *   - General information detailing this substance.
   * @param code

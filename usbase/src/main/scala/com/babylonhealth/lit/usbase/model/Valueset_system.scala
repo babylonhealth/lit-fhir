@@ -50,13 +50,12 @@ object Valueset_system extends CompanionFor[Valueset_system] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Canonical](value, t.value.get.toSubRefNonUnion[Canonical])
     ))
-  override def fields(t: Valueset_system): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Valueset_system): Option[String]                   = t.id
-  def extractValue(t: Valueset_system): Canonical                     = t.value.get.toSubRefNonUnion[Canonical]
-  override val thisName: String                                       = "Valueset_system"
-  override val searchParams: Map[String, Valueset_system => Seq[Any]] = Extension.searchParams
-  def unapply(o: Valueset_system): Option[(Option[String], Canonical)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Canonical]))
+  override def fields(t: Valueset_system): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
+  def extractId(t: Valueset_system): Option[String]                    = t.id
+  def extractValue(t: Valueset_system): Canonical                      = t.value.get.toSubRefNonUnion[Canonical]
+  override val thisName: String                                        = "Valueset_system"
+  override val searchParams: Map[String, Valueset_system => Seq[Any]]  = Extension.searchParams
+  def unapply(o: Valueset_system): Option[(Option[String], Canonical)] = Some((o.id, o.value.get.toSubRefNonUnion[Canonical]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_system] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -70,16 +69,16 @@ object Valueset_system extends CompanionFor[Valueset_system] {
 
 /** Allows a direct reference to the code system for FHIR query.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

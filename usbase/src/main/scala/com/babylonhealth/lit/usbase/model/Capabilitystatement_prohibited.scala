@@ -31,8 +31,7 @@ object Capabilitystatement_prohibited extends CompanionFor[Capabilitystatement_p
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some(
-    "http://hl7.org/fhir/StructureDefinition/capabilitystatement-prohibited")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/capabilitystatement-prohibited")
   def apply(
       id: Option[String] = None,
       value: Boolean,
@@ -54,8 +53,8 @@ object Capabilitystatement_prohibited extends CompanionFor[Capabilitystatement_p
     ))
   override def fields(t: Capabilitystatement_prohibited): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Capabilitystatement_prohibited): Option[String]                   = t.id
-  def extractValue(t: Capabilitystatement_prohibited): Boolean = t.value.get.toSubRefNonUnion[Boolean]
-  override val thisName: String                                = "Capabilitystatement_prohibited"
+  def extractValue(t: Capabilitystatement_prohibited): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
+  override val thisName: String                                                      = "Capabilitystatement_prohibited"
   override val searchParams: Map[String, Capabilitystatement_prohibited => Seq[Any]] = Extension.searchParams
   def unapply(o: Capabilitystatement_prohibited): Option[(Option[String], Boolean)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[Boolean]))
@@ -70,19 +69,18 @@ object Capabilitystatement_prohibited extends CompanionFor[Capabilitystatement_p
       ))
 }
 
-/** If set to true, indicates that support for the specified behavior would make a system non-conformant with the
-  * specification.
+/** If set to true, indicates that support for the specified behavior would make a system non-conformant with the specification.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

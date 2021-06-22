@@ -27,12 +27,8 @@ class OldFauxLensTest extends AnyFreeSpec with Matchers {
   )
   def mkBundle(subjects: Seq[(Reference, Coding)]) = {
     val entries = subjects.map { case (subj, coding) =>
-      Bundle.Entry(
-        resource = Some(
-          Observation(
-            subject = Some(subj),
-            code = CodeableConcept(coding = LitSeq(coding)),
-            status = OBSERVATION_STATUS.UNKNOWN)))
+      Bundle.Entry(resource = Some(
+        Observation(subject = Some(subj), code = CodeableConcept(coding = LitSeq(coding)), status = OBSERVATION_STATUS.UNKNOWN)))
     }
     Bundle(entry = entries to LitSeq, `type` = BUNDLE_TYPE.COLLECTION)
   }
@@ -118,8 +114,8 @@ class OldFauxLensTest extends AnyFreeSpec with Matchers {
         entry = LitSeq(observation1, observation2, observation3).map(o => Bundle.Entry(resource = Some(o))))
       val bundle2 = Bundle(
         `type` = BUNDLE_TYPE.COLLECTION,
-        entry = LitSeq(observation1_modified, observation2_modified, observation3_modified).map(o =>
-          Bundle.Entry(resource = Some(o))))
+        entry =
+          LitSeq(observation1_modified, observation2_modified, observation3_modified).map(o => Bundle.Entry(resource = Some(o))))
       val res_bundle = bundle.updateAll(_.entry) {
         _.updateIfExists(_.resource) {
           case resource: Observation =>

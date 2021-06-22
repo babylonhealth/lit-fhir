@@ -31,7 +31,7 @@ object Us_core_ethnicity extends CompanionFor[Us_core_ethnicity] {
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity")
   def apply(
       id: Option[String] = None,
       extension: NonEmptyLitSeq[Extension],
@@ -51,13 +51,12 @@ object Us_core_ethnicity extends CompanionFor[Us_core_ethnicity] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
     ))
-  override def fields(t: Us_core_ethnicity): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Us_core_ethnicity): Option[String]                   = t.id
-  def extractExtension(t: Us_core_ethnicity): NonEmptyLitSeq[Extension] = t.extension.asNonEmpty
-  override val thisName: String                                         = "Us_core_ethnicity"
-  override val searchParams: Map[String, Us_core_ethnicity => Seq[Any]] = Extension.searchParams
-  def unapply(o: Us_core_ethnicity): Option[(Option[String], NonEmptyLitSeq[Extension])] = Some(
-    (o.id, o.extension.asNonEmpty))
+  override def fields(t: Us_core_ethnicity): Seq[FHIRComponentField[_]]                  = fieldsFromParent(t).get
+  def extractId(t: Us_core_ethnicity): Option[String]                                    = t.id
+  def extractExtension(t: Us_core_ethnicity): NonEmptyLitSeq[Extension]                  = t.extension.asNonEmpty
+  override val thisName: String                                                          = "Us_core_ethnicity"
+  override val searchParams: Map[String, Us_core_ethnicity => Seq[Any]]                  = Extension.searchParams
+  def unapply(o: Us_core_ethnicity): Option[(Option[String], NonEmptyLitSeq[Extension])] = Some((o.id, o.extension.asNonEmpty))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Us_core_ethnicity] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,29 +68,28 @@ object Us_core_ethnicity extends CompanionFor[Us_core_ethnicity] {
       ))
 }
 
-/** Concepts classifying the person into a named category of humans sharing common history, traits, geographical origin
-  * or nationality. The ethnicity codes used to represent these concepts are based upon the [CDC ethnicity and Ethnicity
-  * Code Set Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for
-  * representing race and ethnicity of which 43 reference ethnicity. The ethnicity concepts are grouped by and
-  * pre-mapped to the 2 OMB ethnicity categories: - Hispanic or Latino - Not Hispanic or Latino.
+/** Concepts classifying the person into a named category of humans sharing common history, traits, geographical origin or
+  * nationality. The ethnicity codes used to represent these concepts are based upon the [CDC ethnicity and Ethnicity Code Set
+  * Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for representing race
+  * and ethnicity of which 43 reference ethnicity. The ethnicity concepts are grouped by and pre-mapped to the 2 OMB ethnicity
+  * categories: - Hispanic or Latino - Not Hispanic or Latino.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Requires the following fields which were optional in the parent: extension.
-  *   Forbids the use of the following fields which were optional in the parent: value. Hardcodes the value of the
-  *   following fields: url.
+  *   Inherits all params from parent. Requires the following fields which were optional in the parent: extension. Forbids the use
+  *   of the following fields which were optional in the parent: value. Hardcodes the value of the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class Us_core_ethnicity(

@@ -13,10 +13,7 @@ object FHIRObject {
   implicit val metaOrdering: Ordering[FHIRComponentFieldMeta[_]]          = Ordering.by(_.name)
   val emptyAtts: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = TreeMap.empty
 
-  def attrMap(
-      el: (
-          FHIRComponentFieldMeta[_],
-          PrimitiveElementInfo)*): TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
+  def attrMap(el: (FHIRComponentFieldMeta[_], PrimitiveElementInfo)*): TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
     new TreeMap()(FHIRObject.metaOrdering) ++ el
 }
 
@@ -61,8 +58,7 @@ abstract class FHIRObject(
       parent.thisTypeTag.asInstanceOf[LTag[companion.ResourceType]]).asInstanceOf[UpType]
   }
   object extensions {
-    def update(field: FHIRComponentFieldMeta[_])(
-        update: LitSeq[Extension] => LitSeq[Extension]): FHIRObject.this.type = {
+    def update(field: FHIRComponentFieldMeta[_])(update: LitSeq[Extension] => LitSeq[Extension]): FHIRObject.this.type = {
       def updateExtension: Option[PrimitiveElementInfo] => Option[PrimitiveElementInfo] = {
         case None => Some(PrimitiveElementInfo(Element(extension = update(LitSeq.emptyInstance))))
         case Some(PrimitiveElementInfo(Element(id, ext), phantom)) =>
@@ -292,10 +288,7 @@ abstract class FHIRObject(
     >>>(fn, suff, cond)._1
   }
 
-  private final def >>>[T](
-      fn: T => T,
-      suffix: Option[String],
-      cond: (Any, LTag[_]) => Boolean): (this.type, Boolean) = {
+  private final def >>>[T](fn: T => T, suffix: Option[String], cond: (Any, LTag[_]) => Boolean): (this.type, Boolean) = {
     var changed = false
     def change[T](t: => T): T = { changed = true; t }
     val newFields = fields.map {
@@ -320,11 +313,11 @@ abstract class FHIRObject(
         if (cond(vs.head, meta.unwrappedTT)) change(vs map (v => fn(v.asInstanceOf[T])))
         // conceptually dodgy to only check head
         else if (vs.head.isInstanceOf[FHIRObject]) {
-          val (res, f) = vs.asInstanceOf[LitSeq[FHIRObject]].foldLeft(LitSeq.newBuilder[FHIRObject] -> false) {
-            case ((acc, flag), next) =>
+          val (res, f) =
+            vs.asInstanceOf[LitSeq[FHIRObject]].foldLeft(LitSeq.newBuilder[FHIRObject] -> false) { case ((acc, flag), next) =>
               val (n1, f1) = next >>> (fn, suffix, cond)
               acc.addOne(n1) -> (flag || f1)
-          }
+            }
           if (f) change(res.result()) else vs
         } else vs
       case FHIRComponentField(meta, opt @ Some(t)) =>
@@ -347,9 +340,9 @@ abstract class FHIRObject(
   }
 
   /** Bit faster than `>>`, but still much slower than using `update$foo` when possible. If you _must_ use it, then:
-    *   - `T` should not be a Choice[_], a LitSeq[_], an Option[_], or any 'subtyped' type (eg PositiveInt). You should
-    *     ensure, if T is a supertype of multiple valid choice values (e.g. T =:= Object), that the return value of fn
-    *     retains the same type as the input value.
+    *   - `T` should not be a Choice[_], a LitSeq[_], an Option[_], or any 'subtyped' type (eg PositiveInt). You should ensure, if
+    *     T is a supertype of multiple valid choice values (e.g. T =:= Object), that the return value of fn retains the same type
+    *     as the input value.
     */
   final def nodalMap[T](klass: Class[T], fn: T => T): this.type = nodalMapFlag(klass, fn)._1
   private final def nodalMapFlag[T](klass: Class[T], fn: T => T): (this.type, Boolean) = {
@@ -447,9 +440,9 @@ abstract class FHIRObject(
     */
   final def nodalExtract[From, To](klass: Class[From], fn: From => To): LitSeq[To] = nodalGetByClass(klass).map(fn)
 
-  /** Extract values of type From Unlike nodalMap, this is safe even if From is a Choice[_], a LitSeq[_] or an
-    * Option[_], however there remains a caveat with 'subtyped' types (eg PositiveInt), in that we can't differentiate
-    * them from the parent class Quite slow but faster than ^^
+  /** Extract values of type From Unlike nodalMap, this is safe even if From is a Choice[_], a LitSeq[_] or an Option[_], however
+    * there remains a caveat with 'subtyped' types (eg PositiveInt), in that we can't differentiate them from the parent class
+    * Quite slow but faster than ^^
     */
   final def nodalGetByClass[Target](klass: Class[Target]): LitSeq[Target] =
     fields.to(LitSeq).flatMap {

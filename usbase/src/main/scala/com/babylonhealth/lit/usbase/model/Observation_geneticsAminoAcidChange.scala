@@ -31,8 +31,7 @@ object Observation_geneticsAminoAcidChange extends CompanionFor[Observation_gene
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some(
-    "http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChange")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChange")
   def apply(
       id: Option[String] = None,
       extension: LitSeq[Extension] = LitSeq.empty,
@@ -55,10 +54,9 @@ object Observation_geneticsAminoAcidChange extends CompanionFor[Observation_gene
   override def fields(t: Observation_geneticsAminoAcidChange): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Observation_geneticsAminoAcidChange): Option[String]                   = t.id
   def extractExtension(t: Observation_geneticsAminoAcidChange): LitSeq[Extension]         = t.extension
-  override val thisName: String = "Observation_geneticsAminoAcidChange"
+  override val thisName: String                                                           = "Observation_geneticsAminoAcidChange"
   override val searchParams: Map[String, Observation_geneticsAminoAcidChange => Seq[Any]] = Extension.searchParams
-  def unapply(o: Observation_geneticsAminoAcidChange): Option[(Option[String], LitSeq[Extension])] = Some(
-    (o.id, o.extension))
+  def unapply(o: Observation_geneticsAminoAcidChange): Option[(Option[String], LitSeq[Extension])] = Some((o.id, o.extension))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Observation_geneticsAminoAcidChange] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -72,22 +70,22 @@ object Observation_geneticsAminoAcidChange extends CompanionFor[Observation_gene
 
 /** AminoAcidChange information.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Forbids the use of the following fields which were optional in the parent: value.
-  *   Hardcodes the value of the following fields: url.
+  *   Inherits all params from parent. Forbids the use of the following fields which were optional in the parent: value. Hardcodes
+  *   the value of the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class Observation_geneticsAminoAcidChange(

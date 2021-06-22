@@ -25,13 +25,12 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_TEL_address extends CompanionFor[Iso21090_TEL_address] {
   implicit def summonObjectAndCompanionIso21090_TEL_address_1652600132(
-      o: Iso21090_TEL_address): ObjectAndCompanion[Iso21090_TEL_address, Iso21090_TEL_address.type] =
-    ObjectAndCompanion(o, this)
+      o: Iso21090_TEL_address): ObjectAndCompanion[Iso21090_TEL_address, Iso21090_TEL_address.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/iso21090-TEL-address")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/iso21090-TEL-address")
   def apply(
       id: Option[String] = None,
       value: UrlStr,
@@ -56,8 +55,7 @@ object Iso21090_TEL_address extends CompanionFor[Iso21090_TEL_address] {
   def extractValue(t: Iso21090_TEL_address): UrlStr                        = t.value.get.toSubRefNonUnion[UrlStr]
   override val thisName: String                                            = "Iso21090_TEL_address"
   override val searchParams: Map[String, Iso21090_TEL_address => Seq[Any]] = Extension.searchParams
-  def unapply(o: Iso21090_TEL_address): Option[(Option[String], UrlStr)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[UrlStr]))
+  def unapply(o: Iso21090_TEL_address): Option[(Option[String], UrlStr)]   = Some((o.id, o.value.get.toSubRefNonUnion[UrlStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_TEL_address] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +69,16 @@ object Iso21090_TEL_address extends CompanionFor[Iso21090_TEL_address] {
 
 /** A V3 compliant, RFC 3966 conformant URI version of the telephone or fax number.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

@@ -208,10 +208,10 @@ class LitSeq[+T] protected (protected val _contents: Array[Object])
     }
 
   // From JList
-  def get(i: Int): T                            = apply(i)
-  def indexOf(x: Object): Int                   = _contents.indexOf(x)
-  def lastIndexOf(x: Object): Int               = _contents.lastIndexOf(x)
-  def subList(from: Int, until: Int): LitSeq[T] = new LitSeq[T](_contents.slice(from, until).toSeq.asInstanceOf[Seq[T]])
+  def get(i: Int): T                              = apply(i)
+  def indexOf(x: Object): Int                     = _contents.indexOf(x)
+  def lastIndexOf(x: Object): Int                 = _contents.lastIndexOf(x)
+  def subList(from: Int, until: Int): LitSeq[T]   = new LitSeq[T](_contents.slice(from, until).toSeq.asInstanceOf[Seq[T]])
   def listIterator(index: Int): LitSeqIterator[T] = new LitSeqIterator[T](_contents, index)
   def listIterator(): LitSeqIterator[T]           = new LitSeqIterator[T](_contents)
 

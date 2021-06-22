@@ -32,8 +32,8 @@ object Consent extends CompanionFor[Consent] {
   override val parentType: CompanionFor[ParentType] = Consent
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Consent")
   object Provision extends CompanionFor[Provision] {
-    implicit def summonObjectAndCompanionProvision_1997539014(
-        o: Provision): ObjectAndCompanion[Provision, Provision.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionProvision_1997539014(o: Provision): ObjectAndCompanion[Provision, Provision.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Provision
     override type ParentType   = Provision
     override val parentType: CompanionFor[ResourceType] = Provision
@@ -58,8 +58,7 @@ object Consent extends CompanionFor[Consent] {
         modifierExtension,
         primitiveAttributes = primitiveAttributes
       )
-      def unapply(
-          o: Data): Option[(Option[String], CONSENT_DATA_MEANING, LitSeq[Extension], Reference, LitSeq[Extension])] =
+      def unapply(o: Data): Option[(Option[String], CONSENT_DATA_MEANING, LitSeq[Extension], Reference, LitSeq[Extension])] =
         Some((o.id, o.meaning, o.extension, o.reference, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -102,8 +101,7 @@ object Consent extends CompanionFor[Consent] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val reference: Reference,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Actor extends CompanionFor[Actor] {
       implicit def summonObjectAndCompanionActor_1330133344(o: Actor): ObjectAndCompanion[Actor, Actor.type] =
@@ -126,8 +124,7 @@ object Consent extends CompanionFor[Consent] {
         modifierExtension,
         primitiveAttributes = primitiveAttributes
       )
-      def unapply(
-          o: Actor): Option[(Option[String], CodeableConcept, LitSeq[Extension], Reference, LitSeq[Extension])] = Some(
+      def unapply(o: Actor): Option[(Option[String], CodeableConcept, LitSeq[Extension], Reference, LitSeq[Extension])] = Some(
         (o.id, o.role, o.extension, o.reference, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -170,8 +167,7 @@ object Consent extends CompanionFor[Consent] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val reference: Reference,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -422,9 +418,8 @@ object Consent extends CompanionFor[Consent] {
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(
-        o: Policy): Option[(Option[String], Option[UriStr], LitSeq[Extension], Option[UriStr], LitSeq[Extension])] =
-      Some((o.id, o.uri, o.extension, o.authority, o.modifierExtension))
+    def unapply(o: Policy): Option[(Option[String], Option[UriStr], LitSeq[Extension], Option[UriStr], LitSeq[Extension])] = Some(
+      (o.id, o.uri, o.extension, o.authority, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val uri: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -699,27 +694,26 @@ object Consent extends CompanionFor[Consent] {
       ))
 }
 
-/** A record of a healthcare consumer’s choices, which permits or denies identified recipient(s) or recipient role(s) to
-  * perform one or more actions within a given policy context, for specific purposes and periods of time.
+/** A record of a healthcare consumer’s choices, which permits or denies identified recipient(s) or recipient role(s) to perform
+  * one or more actions within a given policy context, for specific purposes and periods of time.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields scope, status, patient, category, dateTime, performer, source, identifier, policyRule,
-  *   organization, policy, verification, provision.
+  *   Introduces the fields scope, status, patient, category, dateTime, performer, source, identifier, policyRule, organization,
+  *   policy, verification, provision.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param scope
-  *   - A selector of the type of consent being presented: ADR, Privacy, Treatment, Research. This list is now
-  *   extensible.
+  *   - A selector of the type of consent being presented: ADR, Privacy, Treatment, Research. This list is now extensible.
   * @param status
   *   - Indicates the current state of this consent.
   * @param patient
@@ -727,26 +721,26 @@ object Consent extends CompanionFor[Consent] {
   * @param language
   *   - The base language in which the resource is written.
   * @param category
-  *   - A classification of the type of consents found in the statement. This element supports indexing and retrieval of
-  *   consent statements.
+  *   - A classification of the type of consents found in the statement. This element supports indexing and retrieval of consent
+  *   statements.
   * @param dateTime
   *   - When this Consent was issued / created / indexed.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param performer
-  *   - Either the Grantor, which is the entity responsible for granting the rights listed in a Consent Directive or the
-  *   Grantee, which is the entity responsible for complying with the Consent Directive, including any obligations or
-  *   limitations on authorizations and enforcement of prohibitions.
+  *   - Either the Grantor, which is the entity responsible for granting the rights listed in a Consent Directive or the Grantee,
+  *   which is the entity responsible for complying with the Consent Directive, including any obligations or limitations on
+  *   authorizations and enforcement of prohibitions.
   * @param source
-  *   - The source on which this consent statement is based. The source might be a scanned original paper form, or a
-  *   reference to a consent that links back to such a source, a reference to a document repository (e.g. XDS) that
-  *   stores the original consent document.
+  *   - The source on which this consent statement is based. The source might be a scanned original paper form, or a reference to
+  *   a consent that links back to such a source, a reference to a document repository (e.g. XDS) that stores the original consent
+  *   document.
   * @param identifier
   *   - Unique identifier for this copy of the Consent Statement.
   * @param policyRule
@@ -754,27 +748,25 @@ object Consent extends CompanionFor[Consent] {
   * @param organization
   *   - The organization that manages the consent, and the framework within which it is executed.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param policy
-  *   - The references to the policies that are included in this consent scope. Policies may be organizational, but are
-  *   often defined jurisdictionally, or in law.
+  *   - The references to the policies that are included in this consent scope. Policies may be organizational, but are often
+  *   defined jurisdictionally, or in law.
   * @param verification
-  *   - Whether a treatment instruction (e.g. artificial respiration yes or no) was verified with the patient, his/her
-  *   family or another authorized person.
+  *   - Whether a treatment instruction (e.g. artificial respiration yes or no) was verified with the patient, his/her family or
+  *   another authorized person.
   * @param provision
-  *   - An exception to the base policy of this consent. An exception can be an addition or removal of access
-  *   permissions.
+  *   - An exception to the base policy of this consent. An exception can be an addition or removal of access permissions.
   */
 @POJOBoilerplate
 class Consent(

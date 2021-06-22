@@ -64,11 +64,7 @@ object TestUnionWrapper2 extends CompanionFor[TestUnionWrapper2] {
   val thisName: String                    = "TestUnionWrapper2"
   override val profileUrl: Option[String] = Some(thisName)
   val field: FHIRComponentFieldMeta[Choice[String \/ Boolean \/ Int]] =
-    FHIRComponentFieldMeta(
-      "field",
-      lTagOf[Choice[String \/ Boolean \/ Int]],
-      true,
-      lTagOf[Choice[String \/ Boolean \/ Int]])
+    FHIRComponentFieldMeta("field", lTagOf[Choice[String \/ Boolean \/ Int]], true, lTagOf[Choice[String \/ Boolean \/ Int]])
   val fieldsMeta                                                                      = Seq(field)
   override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: TestUnionWrapper2): Seq[FHIRComponentField[_]] =
@@ -87,11 +83,7 @@ object TestUnionWrapper3 extends CompanionFor[TestUnionWrapper3] {
   val thisName: String                    = "TestUnionWrapper3"
   override val profileUrl: Option[String] = Some(thisName)
   val field: FHIRComponentFieldMeta[Choice[String \/ Boolean \/ Int]] =
-    FHIRComponentFieldMeta(
-      "field",
-      lTagOf[Choice[String \/ Boolean \/ Int]],
-      true,
-      lTagOf[Choice[String \/ Boolean \/ Int]])
+    FHIRComponentFieldMeta("field", lTagOf[Choice[String \/ Boolean \/ Int]], true, lTagOf[Choice[String \/ Boolean \/ Int]])
   val fieldCode: FHIRComponentFieldMeta[Code] = FHIRComponentFieldMeta("fieldCode", lTagOf[Code], false, lTagOf[Code])
   val fieldsMeta                              = Seq(field, fieldCode)
   override def fieldsFromParent(t: ResourceType): Success[Seq[FHIRComponentField[_]]] = Success(fields(t))
@@ -269,12 +261,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
     val tStr = time.fmt
 
     "Annotation with authorString field" in {
-      val y1 = Annotation(
-        Some("hi, I'm an ID"),
-        Some(time),
-        "asd".asInstanceOf[Markdown],
-        LitSeq.empty,
-        Some(choice("author!")))
+      val y1 = Annotation(Some("hi, I'm an ID"), Some(time), "asd".asInstanceOf[Markdown], LitSeq.empty, Some(choice("author!")))
       val jstr = y1.asJson.noSpaces
       println(jstr)
       val expected =
@@ -285,12 +272,7 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
 
     "Annotation with authorReference field" in {
       val y2 =
-        Annotation(
-          Some("hi, I'm an ID"),
-          Some(time),
-          "asd".asInstanceOf[Markdown],
-          LitSeq.empty,
-          Some(choice(new Reference())))
+        Annotation(Some("hi, I'm an ID"), Some(time), "asd".asInstanceOf[Markdown], LitSeq.empty, Some(choice(new Reference())))
       val jstr = y2.asJson.noSpaces
       println(jstr)
       val expected =
@@ -405,11 +387,9 @@ class TestFooTest extends AnyFreeSpec with Matchers with BaseFieldDecoders {
     foo2.isLeft shouldEqual true
     foo2.left.get.getMessage should matchPattern {
       case x: String
-          if x.startsWith(
-            "More than one field matching field[x] was found. Fields were: [fieldString, fieldInteger]") =>
+          if x.startsWith("More than one field matching field[x] was found. Fields were: [fieldString, fieldInteger]") =>
       case x: String
-          if x.startsWith(
-            "More than one field matching field[x] was found. Fields were: [fieldInteger, fieldString]") =>
+          if x.startsWith("More than one field matching field[x] was found. Fields were: [fieldInteger, fieldString]") =>
     }
   }
 }

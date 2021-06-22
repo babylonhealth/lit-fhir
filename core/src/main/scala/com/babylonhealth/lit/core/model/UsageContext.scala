@@ -78,9 +78,9 @@ object UsageContext extends CompanionFor[UsageContext] {
       ))
 }
 
-/** Base StructureDefinition for UsageContext Type: Specifies clinical/business/etc. metadata that can be used to
-  * retrieve, index and/or categorize an artifact. This metadata can either be specific to the applicable population
-  * (e.g., age category, DRG) or the specific context of care (e.g., venue, care setting, provider of care).
+/** Base StructureDefinition for UsageContext Type: Specifies clinical/business/etc. metadata that can be used to retrieve, index
+  * and/or categorize an artifact. This metadata can either be specific to the applicable population (e.g., age category, DRG) or
+  * the specific context of care (e.g., venue, care setting, provider of care).
   *
   * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
   * resource.)
@@ -88,18 +88,17 @@ object UsageContext extends CompanionFor[UsageContext] {
   * @constructor
   *   Introduces the fields code, value.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param code
   *   - A code that identifies the type of context being specified by this usage context.
   * @param value
-  *   - A value that defines the context specified in this context of use. The interpretation of the value is defined by
-  *   the code.
+  *   - A value that defines the context specified in this context of use. The interpretation of the value is defined by the code.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class UsageContext(

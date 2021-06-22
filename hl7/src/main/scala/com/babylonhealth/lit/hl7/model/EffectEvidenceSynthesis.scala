@@ -31,7 +31,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
   override type ParentType   = EffectEvidenceSynthesis
   override val baseType: CompanionFor[ResourceType] = EffectEvidenceSynthesis
   override val parentType: CompanionFor[ParentType] = EffectEvidenceSynthesis
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/EffectEvidenceSynthesis")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/EffectEvidenceSynthesis")
   object EffectEstimate extends CompanionFor[EffectEstimate] {
     implicit def summonObjectAndCompanionEffectEstimate_439246549(
         o: EffectEstimate): ObjectAndCompanion[EffectEstimate, EffectEstimate.type] = ObjectAndCompanion(o, this)
@@ -40,8 +40,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
     override val parentType: CompanionFor[ResourceType] = EffectEstimate
     object PrecisionEstimate extends CompanionFor[PrecisionEstimate] {
       implicit def summonObjectAndCompanionPrecisionEstimate717905465(
-          o: PrecisionEstimate): ObjectAndCompanion[PrecisionEstimate, PrecisionEstimate.type] =
-        ObjectAndCompanion(o, this)
+          o: PrecisionEstimate): ObjectAndCompanion[PrecisionEstimate, PrecisionEstimate.type] = ObjectAndCompanion(o, this)
       override type ResourceType = PrecisionEstimate
       override type ParentType   = PrecisionEstimate
       override val parentType: CompanionFor[ResourceType] = PrecisionEstimate
@@ -118,8 +117,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
         val level: Option[BigDecimal] = None,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -226,8 +224,8 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Certainty extends CompanionFor[Certainty] {
-    implicit def summonObjectAndCompanionCertainty_250158880(
-        o: Certainty): ObjectAndCompanion[Certainty, Certainty.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionCertainty_250158880(o: Certainty): ObjectAndCompanion[Certainty, Certainty.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Certainty
     override type ParentType   = Certainty
     override val parentType: CompanionFor[ResourceType] = Certainty
@@ -304,8 +302,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
         val rating: LitSeq[CodeableConcept] = LitSeq.empty,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -343,8 +340,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
         lTagOf[LitSeq[Certainty.CertaintySubcomponent]],
         false,
         lTagOf[Certainty.CertaintySubcomponent])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, note, rating, extension, modifierExtension, certaintySubcomponent)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, note, rating, extension, modifierExtension, certaintySubcomponent)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Certainty): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -382,8 +378,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ResultsByExposure extends CompanionFor[ResultsByExposure] {
     implicit def summonObjectAndCompanionResultsByExposure190710627(
-        o: ResultsByExposure): ObjectAndCompanion[ResultsByExposure, ResultsByExposure.type] =
-      ObjectAndCompanion(o, this)
+        o: ResultsByExposure): ObjectAndCompanion[ResultsByExposure, ResultsByExposure.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ResultsByExposure
     override type ParentType   = ResultsByExposure
     override val parentType: CompanionFor[ResourceType] = ResultsByExposure
@@ -408,15 +403,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
     )
     def unapply(
         o: ResultsByExposure): Option[(Option[String], LitSeq[Extension], Option[String], Option[CodeableConcept], Option[EXPOSURE_STATE], LitSeq[Extension], Reference)] =
-      Some(
-        (
-          o.id,
-          o.extension,
-          o.description,
-          o.variantState,
-          o.exposureState,
-          o.modifierExtension,
-          o.riskEvidenceSynthesis))
+      Some((o.id, o.extension, o.description, o.variantState, o.exposureState, o.modifierExtension, o.riskEvidenceSynthesis))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -472,8 +459,8 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SampleSize extends CompanionFor[SampleSize] {
-    implicit def summonObjectAndCompanionSampleSize_310099578(
-        o: SampleSize): ObjectAndCompanion[SampleSize, SampleSize.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionSampleSize_310099578(o: SampleSize): ObjectAndCompanion[SampleSize, SampleSize.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = SampleSize
     override type ParentType   = SampleSize
     override val parentType: CompanionFor[ResourceType] = SampleSize
@@ -858,9 +845,8 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
   def extractSampleSize(t: EffectEvidenceSynthesis): Option[EffectEvidenceSynthesis.SampleSize] = t.sampleSize
   def extractResultsByExposure(t: EffectEvidenceSynthesis): LitSeq[EffectEvidenceSynthesis.ResultsByExposure] =
     t.resultsByExposure
-  def extractCertainty(t: EffectEvidenceSynthesis): LitSeq[EffectEvidenceSynthesis.Certainty] = t.certainty
-  def extractEffectEstimate(t: EffectEvidenceSynthesis): LitSeq[EffectEvidenceSynthesis.EffectEstimate] =
-    t.effectEstimate
+  def extractCertainty(t: EffectEvidenceSynthesis): LitSeq[EffectEvidenceSynthesis.Certainty]           = t.certainty
+  def extractEffectEstimate(t: EffectEvidenceSynthesis): LitSeq[EffectEvidenceSynthesis.EffectEstimate] = t.effectEstimate
   override val thisName: String = "EffectEvidenceSynthesis"
   override val searchParams: Map[String, EffectEvidenceSynthesis => Seq[Any]] = Map(
     "jurisdiction"          -> (obj => obj.jurisdiction.toSeq),
@@ -932,46 +918,45 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
       ))
 }
 
-/** The EffectEvidenceSynthesis resource describes the difference in an outcome between exposures states in a population
-  * where the effect estimate is derived from a combination of research studies.
+/** The EffectEvidenceSynthesis resource describes the difference in an outcome between exposures states in a population where the
+  * effect estimate is derived from a combination of research studies.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, note, title, topic, status, author, editor, version, contact, outcome,
-  *   reviewer, endorser, exposure, publisher, copyright, studyType, identifier, useContext, population, description,
-  *   jurisdiction, approvalDate, synthesisType, lastReviewDate, effectivePeriod, relatedArtifact, exposureAlternative,
-  *   sampleSize, resultsByExposure, certainty, effectEstimate.
+  *   Introduces the fields url, name, date, note, title, topic, status, author, editor, version, contact, outcome, reviewer,
+  *   endorser, exposure, publisher, copyright, studyType, identifier, useContext, population, description, jurisdiction,
+  *   approvalDate, synthesisType, lastReviewDate, effectivePeriod, relatedArtifact, exposureAlternative, sampleSize,
+  *   resultsByExposure, certainty, effectEstimate.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
-  *   - An absolute URI that is used to identify this effect evidence synthesis when it is referenced in a
-  *   specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique
-  *   and SHOULD be a literal address at which at which an authoritative instance of this effect evidence synthesis is
-  *   (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the
-  *   effect evidence synthesis is stored on different servers.
+  *   - An absolute URI that is used to identify this effect evidence synthesis when it is referenced in a specification, model,
+  *   design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address
+  *   at which at which an authoritative instance of this effect evidence synthesis is (or will be) published. This URL can be the
+  *   target of a canonical reference. It SHALL remain the same when the effect evidence synthesis is stored on different servers.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param name
-  *   - A natural language name identifying the effect evidence synthesis. This name should be usable as an identifier
-  *   for the module by machine processing applications such as code generation.
+  *   - A natural language name identifying the effect evidence synthesis. This name should be usable as an identifier for the
+  *   module by machine processing applications such as code generation.
   * @param date
-  *   - The date (and optionally time) when the effect evidence synthesis was published. The date must change when the
-  *   business version changes and it must change if the status code changes. In addition, it should change when the
-  *   substantive content of the effect evidence synthesis changes.
+  *   - The date (and optionally time) when the effect evidence synthesis was published. The date must change when the business
+  *   version changes and it must change if the status code changes. In addition, it should change when the substantive content of
+  *   the effect evidence synthesis changes.
   * @param note
   *   - A human-readable string to clarify or explain concepts about the resource.
   * @param title
   *   - A short, descriptive, user-friendly title for the effect evidence synthesis.
   * @param topic
-  *   - Descriptive topics related to the content of the EffectEvidenceSynthesis. Topics provide a high-level
-  *   categorization grouping types of EffectEvidenceSynthesiss that can be useful for filtering and searching.
+  *   - Descriptive topics related to the content of the EffectEvidenceSynthesis. Topics provide a high-level categorization
+  *   grouping types of EffectEvidenceSynthesiss that can be useful for filtering and searching.
   * @param status
   *   - The status of this effect evidence synthesis. Enables tracking the life-cycle of the content.
   * @param author
@@ -980,10 +965,9 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
   *   - An individual or organization primarily responsible for internal coherence of the content.
   * @param version
   *   - The identifier that is used to identify this version of the effect evidence synthesis when it is referenced in a
-  *   specification, model, design or instance. This is an arbitrary value managed by the effect evidence synthesis
-  *   author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a
-  *   managed version is not available. There is also no expectation that versions can be placed in a lexicographical
-  *   sequence.
+  *   specification, model, design or instance. This is an arbitrary value managed by the effect evidence synthesis author and is
+  *   not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not
+  *   available. There is also no expectation that versions can be placed in a lexicographical sequence.
   * @param contact
   *   - Contact details to assist a user in finding and communicating with the publisher.
   * @param outcome
@@ -1000,24 +984,24 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param publisher
   *   - The name of the organization or individual that published the effect evidence synthesis.
   * @param copyright
-  *   - A copyright statement relating to the effect evidence synthesis and/or its contents. Copyright statements are
-  *   generally legal restrictions on the use and publishing of the effect evidence synthesis.
+  *   - A copyright statement relating to the effect evidence synthesis and/or its contents. Copyright statements are generally
+  *   legal restrictions on the use and publishing of the effect evidence synthesis.
   * @param studyType
   *   - Type of study eg randomized trial.
   * @param identifier
-  *   - A formal identifier that is used to identify this effect evidence synthesis when it is represented in other
-  *   formats, or referenced in a specification, model, design or an instance.
+  *   - A formal identifier that is used to identify this effect evidence synthesis when it is represented in other formats, or
+  *   referenced in a specification, model, design or an instance.
   * @param useContext
-  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may
-  *   be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...)
-  *   and may be used to assist with indexing and searching for appropriate effect evidence synthesis instances.
+  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be
+  *   general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be
+  *   used to assist with indexing and searching for appropriate effect evidence synthesis instances.
   * @param population
   *   - A reference to a EvidenceVariable resource that defines the population for the research.
   * @param description
@@ -1025,30 +1009,29 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
   * @param jurisdiction
   *   - A legal or geographic region in which the effect evidence synthesis is intended to be used.
   * @param approvalDate
-  *   - The date on which the resource content was approved by the publisher. Approval happens once when the content is
-  *   officially approved for usage.
+  *   - The date on which the resource content was approved by the publisher. Approval happens once when the content is officially
+  *   approved for usage.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param synthesisType
   *   - Type of synthesis eg meta-analysis.
   * @param lastReviewDate
-  *   - The date on which the resource content was last reviewed. Review happens periodically after approval but does
-  *   not change the original approval date.
+  *   - The date on which the resource content was last reviewed. Review happens periodically after approval but does not change
+  *   the original approval date.
   * @param effectivePeriod
   *   - The period during which the effect evidence synthesis content was or is planned to be in active use.
   * @param relatedArtifact
   *   - Related artifacts such as additional documentation, justification, or bibliographic references.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param exposureAlternative
   *   - A reference to a EvidenceVariable resource that defines the comparison exposure for the research.
   * @param sampleSize

@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object OpenEHR_management extends CompanionFor[OpenEHR_management] {
   implicit def summonObjectAndCompanionOpenEHR_management_2096541472(
-      o: OpenEHR_management): ObjectAndCompanion[OpenEHR_management, OpenEHR_management.type] =
-    ObjectAndCompanion(o, this)
+      o: OpenEHR_management): ObjectAndCompanion[OpenEHR_management, OpenEHR_management.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,8 +55,7 @@ object OpenEHR_management extends CompanionFor[OpenEHR_management] {
   def extractValue(t: OpenEHR_management): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                          = "OpenEHR_management"
   override val searchParams: Map[String, OpenEHR_management => Seq[Any]] = Extension.searchParams
-  def unapply(o: OpenEHR_management): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[String]))
+  def unapply(o: OpenEHR_management): Option[(Option[String], String)]   = Some((o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[OpenEHR_management] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +69,16 @@ object OpenEHR_management extends CompanionFor[OpenEHR_management] {
 
 /** Text description about the clinical management provided.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

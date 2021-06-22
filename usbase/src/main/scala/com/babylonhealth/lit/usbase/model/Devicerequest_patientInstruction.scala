@@ -31,8 +31,7 @@ object Devicerequest_patientInstruction extends CompanionFor[Devicerequest_patie
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some(
-    "http://hl7.org/fhir/StructureDefinition/devicerequest-patientInstruction")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/devicerequest-patientInstruction")
   def apply(
       id: Option[String] = None,
       extension: NonEmptyLitSeq[Extension],
@@ -55,7 +54,7 @@ object Devicerequest_patientInstruction extends CompanionFor[Devicerequest_patie
   override def fields(t: Devicerequest_patientInstruction): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Devicerequest_patientInstruction): Option[String]                   = t.id
   def extractExtension(t: Devicerequest_patientInstruction): NonEmptyLitSeq[Extension] = t.extension.asNonEmpty
-  override val thisName: String = "Devicerequest_patientInstruction"
+  override val thisName: String                                                        = "Devicerequest_patientInstruction"
   override val searchParams: Map[String, Devicerequest_patientInstruction => Seq[Any]] = Extension.searchParams
   def unapply(o: Devicerequest_patientInstruction): Option[(Option[String], NonEmptyLitSeq[Extension])] = Some(
     (o.id, o.extension.asNonEmpty))
@@ -72,23 +71,22 @@ object Devicerequest_patientInstruction extends CompanionFor[Devicerequest_patie
 
 /** Simple concise instructions to be read by the patient. For example “twice a day” rather than “BID.”.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Requires the following fields which were optional in the parent: extension.
-  *   Forbids the use of the following fields which were optional in the parent: value. Hardcodes the value of the
-  *   following fields: url.
+  *   Inherits all params from parent. Requires the following fields which were optional in the parent: extension. Forbids the use
+  *   of the following fields which were optional in the parent: value. Hardcodes the value of the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class Devicerequest_patientInstruction(

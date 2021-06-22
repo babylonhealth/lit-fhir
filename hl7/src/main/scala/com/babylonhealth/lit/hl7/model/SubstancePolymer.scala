@@ -37,8 +37,8 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
     override type ParentType   = Repeat
     override val parentType: CompanionFor[ResourceType] = Repeat
     object RepeatUnit extends CompanionFor[RepeatUnit] {
-      implicit def summonObjectAndCompanionRepeatUnit_694363022(
-          o: RepeatUnit): ObjectAndCompanion[RepeatUnit, RepeatUnit.type] = ObjectAndCompanion(o, this)
+      implicit def summonObjectAndCompanionRepeatUnit_694363022(o: RepeatUnit): ObjectAndCompanion[RepeatUnit, RepeatUnit.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = RepeatUnit
       override type ParentType   = RepeatUnit
       override val parentType: CompanionFor[ResourceType] = RepeatUnit
@@ -72,11 +72,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
         val degree: FHIRComponentFieldMeta[Option[CodeableConcept]] =
           FHIRComponentFieldMeta("degree", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
         val amount: FHIRComponentFieldMeta[Option[Choice["SubstanceAmount"]]] =
-          FHIRComponentFieldMeta(
-            "amount",
-            lTagOf[Option[Choice["SubstanceAmount"]]],
-            false,
-            lTagOf[Choice["SubstanceAmount"]])
+          FHIRComponentFieldMeta("amount", lTagOf[Option[Choice["SubstanceAmount"]]], false, lTagOf[Choice["SubstanceAmount"]])
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -112,8 +108,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           val amount: Option[Choice["SubstanceAmount"]] = None,
           override val extension: LitSeq[Extension] = LitSeq.empty,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object StructuralRepresentation extends CompanionFor[StructuralRepresentation] {
         implicit def summonObjectAndCompanionStructuralRepresentation_535539170(
@@ -154,8 +149,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           FHIRComponentFieldMeta("representation", lTagOf[Option[String]], false, lTagOf[String])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-          Seq(id, `type`, extension, attachment, representation, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, extension, attachment, representation, modifierExtension)
         override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: StructuralRepresentation): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
@@ -189,8 +183,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           val attachment: Option[Attachment] = None,
           val representation: Option[String] = None,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
@@ -228,11 +221,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
       val amount: FHIRComponentFieldMeta[Option[Choice["SubstanceAmount"]]] =
-        FHIRComponentFieldMeta(
-          "amount",
-          lTagOf[Option[Choice["SubstanceAmount"]]],
-          false,
-          lTagOf[Choice["SubstanceAmount"]])
+        FHIRComponentFieldMeta("amount", lTagOf[Option[Choice["SubstanceAmount"]]], false, lTagOf[Choice["SubstanceAmount"]])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val repeatUnit: FHIRComponentFieldMeta[Option[String]] =
@@ -240,11 +229,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val orientationOfPolymerisation: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-        FHIRComponentFieldMeta(
-          "orientationOfPolymerisation",
-          lTagOf[Option[CodeableConcept]],
-          false,
-          lTagOf[CodeableConcept])
+        FHIRComponentFieldMeta("orientationOfPolymerisation", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
       val degreeOfPolymerisation: FHIRComponentFieldMeta[LitSeq[RepeatUnit.DegreeOfPolymerisation]] =
         FHIRComponentFieldMeta(
           "degreeOfPolymerisation",
@@ -275,9 +260,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
         FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
         FHIRComponentField[Option[CodeableConcept]](orientationOfPolymerisation, t.orientationOfPolymerisation),
         FHIRComponentField[LitSeq[RepeatUnit.DegreeOfPolymerisation]](degreeOfPolymerisation, t.degreeOfPolymerisation),
-        FHIRComponentField[LitSeq[RepeatUnit.StructuralRepresentation]](
-          structuralRepresentation,
-          t.structuralRepresentation)
+        FHIRComponentField[LitSeq[RepeatUnit.StructuralRepresentation]](structuralRepresentation, t.structuralRepresentation)
       )
       val baseType: CompanionFor[RepeatUnit] = this
       val thisName: String                   = "RepeatUnit"
@@ -292,8 +275,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               cursor.decodeAs[Option[CodeableConcept]]("orientationOfPolymerisation", Some(None)),
               cursor.decodeAs[LitSeq[RepeatUnit.DegreeOfPolymerisation]]("degreeOfPolymerisation", Some(LitSeq.empty)),
-              cursor
-                .decodeAs[LitSeq[RepeatUnit.StructuralRepresentation]]("structuralRepresentation", Some(LitSeq.empty)),
+              cursor.decodeAs[LitSeq[RepeatUnit.StructuralRepresentation]]("structuralRepresentation", Some(LitSeq.empty)),
               decodeAttributes(cursor)
             )
           ))
@@ -308,8 +290,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
         val orientationOfPolymerisation: Option[CodeableConcept] = None,
         val degreeOfPolymerisation: LitSeq[RepeatUnit.DegreeOfPolymerisation] = LitSeq.empty,
         val structuralRepresentation: LitSeq[RepeatUnit.StructuralRepresentation] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -396,15 +377,14 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object MonomerSet extends CompanionFor[MonomerSet] {
-    implicit def summonObjectAndCompanionMonomerSet640177791(
-        o: MonomerSet): ObjectAndCompanion[MonomerSet, MonomerSet.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionMonomerSet640177791(o: MonomerSet): ObjectAndCompanion[MonomerSet, MonomerSet.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = MonomerSet
     override type ParentType   = MonomerSet
     override val parentType: CompanionFor[ResourceType] = MonomerSet
     object StartingMaterial extends CompanionFor[StartingMaterial] {
       implicit def summonObjectAndCompanionStartingMaterial_339228462(
-          o: StartingMaterial): ObjectAndCompanion[StartingMaterial, StartingMaterial.type] =
-        ObjectAndCompanion(o, this)
+          o: StartingMaterial): ObjectAndCompanion[StartingMaterial, StartingMaterial.type] = ObjectAndCompanion(o, this)
       override type ResourceType = StartingMaterial
       override type ParentType   = StartingMaterial
       override val parentType: CompanionFor[ResourceType] = StartingMaterial
@@ -435,11 +415,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       val `type`: FHIRComponentFieldMeta[Option[CodeableConcept]] =
         FHIRComponentFieldMeta("type", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
       val amount: FHIRComponentFieldMeta[Option[Choice["SubstanceAmount"]]] =
-        FHIRComponentFieldMeta(
-          "amount",
-          lTagOf[Option[Choice["SubstanceAmount"]]],
-          false,
-          lTagOf[Choice["SubstanceAmount"]])
+        FHIRComponentFieldMeta("amount", lTagOf[Option[Choice["SubstanceAmount"]]], false, lTagOf[Choice["SubstanceAmount"]])
       val material: FHIRComponentFieldMeta[Option[CodeableConcept]] =
         FHIRComponentFieldMeta("material", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -448,8 +424,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
         FHIRComponentFieldMeta("isDefining", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-        Seq(id, `type`, amount, material, extension, isDefining, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, amount, material, extension, isDefining, modifierExtension)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: StartingMaterial): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
@@ -486,8 +461,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val isDefining: Option[Boolean] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -612,11 +586,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
   val copolymerConnectivity: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("copolymerConnectivity", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val monomerSet: FHIRComponentFieldMeta[LitSeq[SubstancePolymer.MonomerSet]] =
-    FHIRComponentFieldMeta(
-      "monomerSet",
-      lTagOf[LitSeq[SubstancePolymer.MonomerSet]],
-      false,
-      lTagOf[SubstancePolymer.MonomerSet])
+    FHIRComponentFieldMeta("monomerSet", lTagOf[LitSeq[SubstancePolymer.MonomerSet]], false, lTagOf[SubstancePolymer.MonomerSet])
   val repeat: FHIRComponentFieldMeta[LitSeq[SubstancePolymer.Repeat]] =
     FHIRComponentFieldMeta("repeat", lTagOf[LitSeq[SubstancePolymer.Repeat]], false, lTagOf[SubstancePolymer.Repeat])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
@@ -716,13 +686,13 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param `class`
   *   - Todo.
   * @param language
@@ -733,25 +703,24 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param modification
   *   - Todo.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param copolymerConnectivity
   *   - Todo.
   * @param monomerSet

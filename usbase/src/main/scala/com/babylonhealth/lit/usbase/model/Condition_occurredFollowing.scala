@@ -31,7 +31,7 @@ object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollow
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/condition-occurredFollowing")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/condition-occurredFollowing")
   type ValueChoice = Choice[Union01025009075]
   def apply(
       id: Option[String] = None,
@@ -55,8 +55,8 @@ object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollow
   override def fields(t: Condition_occurredFollowing): Seq[FHIRComponentField[_]]           = fieldsFromParent(t).get
   def extractId(t: Condition_occurredFollowing): Option[String]                             = t.id
   def extractValue(t: Condition_occurredFollowing): Condition_occurredFollowing.ValueChoice = t.value.get.toSubRef
-  override val thisName: String                                                   = "Condition_occurredFollowing"
-  override val searchParams: Map[String, Condition_occurredFollowing => Seq[Any]] = Extension.searchParams
+  override val thisName: String                                                             = "Condition_occurredFollowing"
+  override val searchParams: Map[String, Condition_occurredFollowing => Seq[Any]]           = Extension.searchParams
   def unapply(o: Condition_occurredFollowing): Option[(Option[String], Condition_occurredFollowing.ValueChoice)] = Some(
     (o.id, o.value.get.toSubRef))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Condition_occurredFollowing] =
@@ -72,16 +72,16 @@ object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollow
 
 /** Further conditions, problems, diagnoses, procedures or events or the substance that preceded this Condition.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

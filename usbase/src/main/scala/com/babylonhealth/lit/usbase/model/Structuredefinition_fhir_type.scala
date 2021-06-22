@@ -31,8 +31,7 @@ object Structuredefinition_fhir_type extends CompanionFor[Structuredefinition_fh
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some(
-    "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type")
   def apply(
       id: Option[String] = None,
       value: UrlStr,
@@ -54,8 +53,8 @@ object Structuredefinition_fhir_type extends CompanionFor[Structuredefinition_fh
     ))
   override def fields(t: Structuredefinition_fhir_type): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Structuredefinition_fhir_type): Option[String]                   = t.id
-  def extractValue(t: Structuredefinition_fhir_type): UrlStr = t.value.get.toSubRefNonUnion[UrlStr]
-  override val thisName: String                              = "Structuredefinition_fhir_type"
+  def extractValue(t: Structuredefinition_fhir_type): UrlStr                        = t.value.get.toSubRefNonUnion[UrlStr]
+  override val thisName: String                                                     = "Structuredefinition_fhir_type"
   override val searchParams: Map[String, Structuredefinition_fhir_type => Seq[Any]] = Extension.searchParams
   def unapply(o: Structuredefinition_fhir_type): Option[(Option[String], UrlStr)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[UrlStr]))
@@ -70,19 +69,19 @@ object Structuredefinition_fhir_type extends CompanionFor[Structuredefinition_fh
       ))
 }
 
-/** The formal FHIR type of a property - used for the value property of a primitive type (for which there is no type in
-  * the FHIR typing system), and Element.id and Extension.url.
+/** The formal FHIR type of a property - used for the value property of a primitive type (for which there is no type in the FHIR
+  * typing system), and Element.id and Extension.url.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

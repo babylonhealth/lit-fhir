@@ -38,8 +38,8 @@ object Measure extends CompanionFor[Measure] {
     override type ParentType   = Group
     override val parentType: CompanionFor[ResourceType] = Group
     object Population extends CompanionFor[Population] {
-      implicit def summonObjectAndCompanionPopulation859341301(
-          o: Population): ObjectAndCompanion[Population, Population.type] = ObjectAndCompanion(o, this)
+      implicit def summonObjectAndCompanionPopulation859341301(o: Population): ObjectAndCompanion[Population, Population.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Population
       override type ParentType   = Population
       override val parentType: CompanionFor[ResourceType] = Population
@@ -75,8 +75,7 @@ object Measure extends CompanionFor[Measure] {
         FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-        Seq(id, code, criteria, extension, description, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, criteria, extension, description, modifierExtension)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Population): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
@@ -110,18 +109,17 @@ object Measure extends CompanionFor[Measure] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val description: Option[String] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Stratifier extends CompanionFor[Stratifier] {
-      implicit def summonObjectAndCompanionStratifier_261112201(
-          o: Stratifier): ObjectAndCompanion[Stratifier, Stratifier.type] = ObjectAndCompanion(o, this)
+      implicit def summonObjectAndCompanionStratifier_261112201(o: Stratifier): ObjectAndCompanion[Stratifier, Stratifier.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Stratifier
       override type ParentType   = Stratifier
       override val parentType: CompanionFor[ResourceType] = Stratifier
       object Component extends CompanionFor[Component] {
-        implicit def summonObjectAndCompanionComponent1007370965(
-            o: Component): ObjectAndCompanion[Component, Component.type] = ObjectAndCompanion(o, this)
+        implicit def summonObjectAndCompanionComponent1007370965(o: Component): ObjectAndCompanion[Component, Component.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = Component
         override type ParentType   = Component
         override val parentType: CompanionFor[ResourceType] = Component
@@ -157,8 +155,7 @@ object Measure extends CompanionFor[Measure] {
           FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-          Seq(id, code, criteria, extension, description, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, criteria, extension, description, modifierExtension)
         override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Component): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
@@ -192,8 +189,7 @@ object Measure extends CompanionFor[Measure] {
           override val extension: LitSeq[Extension] = LitSeq.empty,
           val description: Option[String] = None,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
@@ -269,8 +265,7 @@ object Measure extends CompanionFor[Measure] {
         val description: Option[String] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         val component: LitSeq[Stratifier.Component] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -390,8 +385,7 @@ object Measure extends CompanionFor[Measure] {
       FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, code, usage, criteria, extension, description, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, usage, criteria, extension, description, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: SupplementalData): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -629,11 +623,7 @@ object Measure extends CompanionFor[Measure] {
   val clinicalRecommendationStatement: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("clinicalRecommendationStatement", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val supplementalData: FHIRComponentFieldMeta[LitSeq[Measure.SupplementalData]] =
-    FHIRComponentFieldMeta(
-      "supplementalData",
-      lTagOf[LitSeq[Measure.SupplementalData]],
-      false,
-      lTagOf[Measure.SupplementalData])
+    FHIRComponentFieldMeta("supplementalData", lTagOf[LitSeq[Measure.SupplementalData]], false, lTagOf[Measure.SupplementalData])
   val group: FHIRComponentFieldMeta[LitSeq[Measure.Group]] =
     FHIRComponentFieldMeta("group", lTagOf[LitSeq[Measure.Group]], false, lTagOf[Measure.Group])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
@@ -806,10 +796,10 @@ object Measure extends CompanionFor[Measure] {
     "successor"          -> (obj => obj.relatedArtifact.filter(_.`type`.name == "successor").flatMap(_.resource).toSeq),
     "context-type-value" -> (obj => obj.useContext.toSeq),
     "version"            -> (obj => obj.version.toSeq),
-    "composed-of" -> (obj => obj.relatedArtifact.filter(_.`type`.name == "composed-of").flatMap(_.resource).toSeq),
-    "status"      -> (obj => Seq(obj.status)),
-    "publisher"   -> (obj => obj.publisher.toSeq),
-    "title"       -> (obj => obj.title.toSeq),
+    "composed-of"        -> (obj => obj.relatedArtifact.filter(_.`type`.name == "composed-of").flatMap(_.resource).toSeq),
+    "status"             -> (obj => Seq(obj.status)),
+    "publisher"          -> (obj => obj.publisher.toSeq),
+    "title"              -> (obj => obj.title.toSeq),
     "context-quantity" -> (obj =>
       obj.useContext.map(_.value).flatMap(_.as[Quantity]).toSeq ++
         obj.useContext.map(_.value).flatMap(_.as[Range]).toSeq),
@@ -881,43 +871,43 @@ object Measure extends CompanionFor[Measure] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, `type`, title, usage, topic, status, author, editor, version, contact,
-  *   purpose, library, scoring, subtitle, reviewer, endorser, guidance, publisher, copyright, rationale, identifier,
-  *   subject, useContext, disclaimer, definition, description, experimental, jurisdiction, approvalDate,
-  *   lastReviewDate, riskAdjustment, effectivePeriod, relatedArtifact, rateAggregation, compositeScoring,
-  *   improvementNotation, clinicalRecommendationStatement, supplementalData, group.
+  *   Introduces the fields url, name, date, `type`, title, usage, topic, status, author, editor, version, contact, purpose,
+  *   library, scoring, subtitle, reviewer, endorser, guidance, publisher, copyright, rationale, identifier, subject, useContext,
+  *   disclaimer, definition, description, experimental, jurisdiction, approvalDate, lastReviewDate, riskAdjustment,
+  *   effectivePeriod, relatedArtifact, rateAggregation, compositeScoring, improvementNotation, clinicalRecommendationStatement,
+  *   supplementalData, group.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
-  *   - An absolute URI that is used to identify this measure when it is referenced in a specification, model, design or
-  *   an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address
-  *   at which at which an authoritative instance of this measure is (or will be) published. This URL can be the target
-  *   of a canonical reference. It SHALL remain the same when the measure is stored on different servers.
+  *   - An absolute URI that is used to identify this measure when it is referenced in a specification, model, design or an
+  *   instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at
+  *   which an authoritative instance of this measure is (or will be) published. This URL can be the target of a canonical
+  *   reference. It SHALL remain the same when the measure is stored on different servers.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param name
-  *   - A natural language name identifying the measure. This name should be usable as an identifier for the module by
-  *   machine processing applications such as code generation.
+  *   - A natural language name identifying the measure. This name should be usable as an identifier for the module by machine
+  *   processing applications such as code generation.
   * @param date
-  *   - The date (and optionally time) when the measure was published. The date must change when the business version
-  *   changes and it must change if the status code changes. In addition, it should change when the substantive content
-  *   of the measure changes.
+  *   - The date (and optionally time) when the measure was published. The date must change when the business version changes and
+  *   it must change if the status code changes. In addition, it should change when the substantive content of the measure
+  *   changes.
   * @param `type`
-  *   - Indicates whether the measure is used to examine a process, an outcome over time, a patient-reported outcome, or
-  *   a structure measure such as utilization.
+  *   - Indicates whether the measure is used to examine a process, an outcome over time, a patient-reported outcome, or a
+  *   structure measure such as utilization.
   * @param title
   *   - A short, descriptive, user-friendly title for the measure.
   * @param usage
   *   - A detailed description, from a clinical perspective, of how the measure is used.
   * @param topic
-  *   - Descriptive topics related to the content of the measure. Topics provide a high-level categorization grouping
-  *   types of measures that can be useful for filtering and searching.
+  *   - Descriptive topics related to the content of the measure. Topics provide a high-level categorization grouping types of
+  *   measures that can be useful for filtering and searching.
   * @param status
   *   - The status of this measure. Enables tracking the life-cycle of the content.
   * @param author
@@ -925,13 +915,12 @@ object Measure extends CompanionFor[Measure] {
   * @param editor
   *   - An individual or organization primarily responsible for internal coherence of the content.
   * @param version
-  *   - The identifier that is used to identify this version of the measure when it is referenced in a specification,
-  *   model, design or instance. This is an arbitrary value managed by the measure author and is not expected to be
-  *   globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There
-  *   is also no expectation that versions can be placed in a lexicographical sequence. To provide a version consistent
-  *   with the Decision Support Service specification, use the format Major.Minor.Revision (e.g. 1.0.0). For more
-  *   information on versioning knowledge assets, refer to the Decision Support Service specification. Note that a
-  *   version is required for non-experimental active artifacts.
+  *   - The identifier that is used to identify this version of the measure when it is referenced in a specification, model,
+  *   design or instance. This is an arbitrary value managed by the measure author and is not expected to be globally unique. For
+  *   example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that
+  *   versions can be placed in a lexicographical sequence. To provide a version consistent with the Decision Support Service
+  *   specification, use the format Major.Minor.Revision (e.g. 1.0.0). For more information on versioning knowledge assets, refer
+  *   to the Decision Support Service specification. Note that a version is required for non-experimental active artifacts.
   * @param contact
   *   - Contact details to assist a user in finding and communicating with the publisher.
   * @param purpose
@@ -939,8 +928,8 @@ object Measure extends CompanionFor[Measure] {
   * @param library
   *   - A reference to a Library resource containing the formal logic used by the measure.
   * @param scoring
-  *   - Indicates how the calculation is performed for the measure, including proportion, ratio, continuous-variable,
-  *   and cohort. The value set is extensible, allowing additional measure scoring types to be represented.
+  *   - Indicates how the calculation is performed for the measure, including proportion, ratio, continuous-variable, and cohort.
+  *   The value set is extensible, allowing additional measure scoring types to be represented.
   * @param language
   *   - The base language in which the resource is written.
   * @param subtitle
@@ -950,86 +939,84 @@ object Measure extends CompanionFor[Measure] {
   * @param endorser
   *   - An individual or organization responsible for officially endorsing the content for use in some setting.
   * @param guidance
-  *   - Additional guidance for the measure including how it can be used in a clinical context, and the intent of the
-  *   measure.
+  *   - Additional guidance for the measure including how it can be used in a clinical context, and the intent of the measure.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param publisher
   *   - The name of the organization or individual that published the measure.
   * @param copyright
-  *   - A copyright statement relating to the measure and/or its contents. Copyright statements are generally legal
-  *   restrictions on the use and publishing of the measure.
+  *   - A copyright statement relating to the measure and/or its contents. Copyright statements are generally legal restrictions
+  *   on the use and publishing of the measure.
   * @param rationale
-  *   - Provides a succinct statement of the need for the measure. Usually includes statements pertaining to importance
-  *   criterion: impact, gap in care, and evidence.
+  *   - Provides a succinct statement of the need for the measure. Usually includes statements pertaining to importance criterion:
+  *   impact, gap in care, and evidence.
   * @param identifier
-  *   - A formal identifier that is used to identify this measure when it is represented in other formats, or referenced
-  *   in a specification, model, design or an instance.
+  *   - A formal identifier that is used to identify this measure when it is represented in other formats, or referenced in a
+  *   specification, model, design or an instance.
   * @param subject
-  *   - The intended subjects for the measure. If this element is not provided, a Patient subject is assumed, but the
-  *   subject of the measure can be anything.
+  *   - The intended subjects for the measure. If this element is not provided, a Patient subject is assumed, but the subject of
+  *   the measure can be anything.
   * @param useContext
-  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may
-  *   be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...)
-  *   and may be used to assist with indexing and searching for appropriate measure instances.
+  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be
+  *   general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be
+  *   used to assist with indexing and searching for appropriate measure instances.
   * @param disclaimer
-  *   - Notices and disclaimers regarding the use of the measure or related to intellectual property (such as code
-  *   systems) referenced by the measure.
+  *   - Notices and disclaimers regarding the use of the measure or related to intellectual property (such as code systems)
+  *   referenced by the measure.
   * @param definition
   *   - Provides a description of an individual term used within the measure.
   * @param description
   *   - A free text natural language description of the measure from a consumer's perspective.
   * @param experimental
-  *   - A Boolean value to indicate that this measure is authored for testing purposes (or
-  *   education/evaluation/marketing) and is not intended to be used for genuine usage.
+  *   - A Boolean value to indicate that this measure is authored for testing purposes (or education/evaluation/marketing) and is
+  *   not intended to be used for genuine usage.
   * @param jurisdiction
   *   - A legal or geographic region in which the measure is intended to be used.
   * @param approvalDate
-  *   - The date on which the resource content was approved by the publisher. Approval happens once when the content is
-  *   officially approved for usage.
+  *   - The date on which the resource content was approved by the publisher. Approval happens once when the content is officially
+  *   approved for usage.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param lastReviewDate
-  *   - The date on which the resource content was last reviewed. Review happens periodically after approval but does
-  *   not change the original approval date.
+  *   - The date on which the resource content was last reviewed. Review happens periodically after approval but does not change
+  *   the original approval date.
   * @param riskAdjustment
-  *   - A description of the risk adjustment factors that may impact the resulting score for the measure and how they
-  *   may be accounted for when computing and reporting measure results.
+  *   - A description of the risk adjustment factors that may impact the resulting score for the measure and how they may be
+  *   accounted for when computing and reporting measure results.
   * @param effectivePeriod
   *   - The period during which the measure content was or is planned to be in active use.
   * @param relatedArtifact
   *   - Related artifacts such as additional documentation, justification, or bibliographic references.
   * @param rateAggregation
-  *   - Describes how to combine the information calculated, based on logic in each of several populations, into one
-  *   summarized result.
+  *   - Describes how to combine the information calculated, based on logic in each of several populations, into one summarized
+  *   result.
   * @param compositeScoring
-  *   - If this is a composite measure, the scoring method used to combine the component measures to determine the
-  *   composite score.
+  *   - If this is a composite measure, the scoring method used to combine the component measures to determine the composite
+  *   score.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param improvementNotation
-  *   - Information on whether an increase or decrease in score is the preferred result (e.g., a higher score indicates
-  *   better quality OR a lower score indicates better quality OR quality is within a range).
+  *   - Information on whether an increase or decrease in score is the preferred result (e.g., a higher score indicates better
+  *   quality OR a lower score indicates better quality OR quality is within a range).
   * @param clinicalRecommendationStatement
   *   - Provides a summary of relevant clinical guidelines or other clinical recommendations supporting the measure.
   * @param supplementalData
-  *   - The supplemental data criteria for the measure report, specified as either the name of a valid CQL expression
-  *   within a referenced library, or a valid FHIR Resource Path.
+  *   - The supplemental data criteria for the measure report, specified as either the name of a valid CQL expression within a
+  *   referenced library, or a valid FHIR Resource Path.
   * @param group
   *   - A group of population criteria for the measure.
   */

@@ -21,8 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Identifier extends CompanionFor[Identifier] {
-  implicit def summonObjectAndCompanionIdentifier747166474(
-      o: Identifier): ObjectAndCompanion[Identifier, Identifier.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionIdentifier747166474(o: Identifier): ObjectAndCompanion[Identifier, Identifier.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Identifier
   override type ParentType   = Identifier
   override val baseType: CompanionFor[ResourceType] = Identifier
@@ -106,8 +106,8 @@ object Identifier extends CompanionFor[Identifier] {
       ))
 }
 
-/** Base StructureDefinition for Identifier Type: An identifier - identifies some entity uniquely and unambiguously.
-  * Typically this is used for business identifiers.
+/** Base StructureDefinition for Identifier Type: An identifier - identifies some entity uniquely and unambiguously. Typically
+  * this is used for business identifiers.
   *
   * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
   * resource.)
@@ -115,15 +115,14 @@ object Identifier extends CompanionFor[Identifier] {
   * @constructor
   *   Introduces the fields use, `type`, value, system, period, assigner.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param use
   *   - The purpose of this identifier.
   * @param `type`
   *   - A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.
   * @param value
-  *   - The portion of the identifier typically relevant to the user and which is unique within the context of the
-  *   system.
+  *   - The portion of the identifier typically relevant to the user and which is unique within the context of the system.
   * @param system
   *   - Establishes the namespace for the value - that is, a URL that describes a set values that are unique.
   * @param period
@@ -131,10 +130,10 @@ object Identifier extends CompanionFor[Identifier] {
   * @param assigner
   *   - Organization that issued/manages the identifier.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class Identifier(

@@ -25,13 +25,12 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Auditevent_Encrypted extends CompanionFor[Auditevent_Encrypted] {
   implicit def summonObjectAndCompanionAuditevent_Encrypted1731401681(
-      o: Auditevent_Encrypted): ObjectAndCompanion[Auditevent_Encrypted, Auditevent_Encrypted.type] =
-    ObjectAndCompanion(o, this)
+      o: Auditevent_Encrypted): ObjectAndCompanion[Auditevent_Encrypted, Auditevent_Encrypted.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/auditevent-Encrypted")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/auditevent-Encrypted")
   def apply(
       id: Option[String] = None,
       value: Boolean,
@@ -56,8 +55,7 @@ object Auditevent_Encrypted extends CompanionFor[Auditevent_Encrypted] {
   def extractValue(t: Auditevent_Encrypted): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                            = "Auditevent_Encrypted"
   override val searchParams: Map[String, Auditevent_Encrypted => Seq[Any]] = Extension.searchParams
-  def unapply(o: Auditevent_Encrypted): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
+  def unapply(o: Auditevent_Encrypted): Option[(Option[String], Boolean)]  = Some((o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Auditevent_Encrypted] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +69,16 @@ object Auditevent_Encrypted extends CompanionFor[Auditevent_Encrypted] {
 
 /** True or False indicating whether the data was encrypted.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

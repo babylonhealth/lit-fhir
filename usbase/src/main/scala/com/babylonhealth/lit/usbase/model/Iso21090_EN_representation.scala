@@ -31,7 +31,7 @@ object Iso21090_EN_representation extends CompanionFor[Iso21090_EN_representatio
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/iso21090-EN-representation")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/iso21090-EN-representation")
   def apply(
       id: Option[String] = None,
       value: NAME_V3_REPRESENTATION,
@@ -49,9 +49,7 @@ object Iso21090_EN_representation extends CompanionFor[Iso21090_EN_representatio
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[NAME_V3_REPRESENTATION](
-        value,
-        NAME_V3_REPRESENTATION.withName(t.value.get.toSubRefNonUnion[Code]))
+      FHIRComponentField[NAME_V3_REPRESENTATION](value, NAME_V3_REPRESENTATION.withName(t.value.get.toSubRefNonUnion[Code]))
     ))
   override def fields(t: Iso21090_EN_representation): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Iso21090_EN_representation): Option[String]                   = t.id
@@ -74,16 +72,16 @@ object Iso21090_EN_representation extends CompanionFor[Iso21090_EN_representatio
 
 /** Name Representation.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

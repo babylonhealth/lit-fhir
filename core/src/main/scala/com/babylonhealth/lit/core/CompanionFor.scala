@@ -126,9 +126,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecode
 
   protected lazy val (refMetas, otherMetas) = fieldsMeta.partition(_.isRef) match {
     case (r, o) =>
-      (
-        r.map(m => \/.validSuffixes[m.Type](m.unwrappedTT.asInstanceOf[LTag[m.Type]]).map(m.name + _)),
-        o.map(_.name).toSet)
+      (r.map(m => \/.validSuffixes[m.Type](m.unwrappedTT.asInstanceOf[LTag[m.Type]]).map(m.name + _)), o.map(_.name).toSet)
   }
 
   // TODO: Consider how we might determine a priority ordering for meta.profile
@@ -185,8 +183,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecode
         getTargetProfile(profiles) match {
           case None =>
             if (params.logOnBadProfile)
-              log.warn(
-                s"No matching meta.profile found (No classes matched any of ${profiles.mkString("[", ",", "]")}))")
+              log.warn(s"No matching meta.profile found (No classes matched any of ${profiles.mkString("[", ",", "]")}))")
             decodeWithResourceType
           case Some(companion) =>
             // if companion from profile is less specific than this class:
@@ -199,9 +196,7 @@ abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecode
              })
             .recoverWith { case error: Throwable =>
               val profs = profiles.mkString("[", ",", "]")
-              log.warn(
-                s"meta.profile contains $profs, but this object fails to decode as ${companion.thisName}.",
-                error)
+              log.warn(s"meta.profile contains $profs, but this object fails to decode as ${companion.thisName}.", error)
               if (params.tolerateProfileErrors) decodeWithResourceType else Failure(error)
             }
             .asInstanceOf[Try[T]]

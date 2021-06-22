@@ -31,7 +31,7 @@ object Cqf_strengthOfRecommendation extends CompanionFor[Cqf_strengthOfRecommend
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/cqf-strengthOfRecommendation")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/cqf-strengthOfRecommendation")
   def apply(
       id: Option[String] = None,
       value: CodeableConcept,
@@ -53,8 +53,8 @@ object Cqf_strengthOfRecommendation extends CompanionFor[Cqf_strengthOfRecommend
     ))
   override def fields(t: Cqf_strengthOfRecommendation): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Cqf_strengthOfRecommendation): Option[String]                   = t.id
-  def extractValue(t: Cqf_strengthOfRecommendation): CodeableConcept = t.value.get.toSubRefNonUnion[CodeableConcept]
-  override val thisName: String                                      = "Cqf_strengthOfRecommendation"
+  def extractValue(t: Cqf_strengthOfRecommendation): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
+  override val thisName: String                                                    = "Cqf_strengthOfRecommendation"
   override val searchParams: Map[String, Cqf_strengthOfRecommendation => Seq[Any]] = Extension.searchParams
   def unapply(o: Cqf_strengthOfRecommendation): Option[(Option[String], CodeableConcept)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
@@ -69,20 +69,20 @@ object Cqf_strengthOfRecommendation extends CompanionFor[Cqf_strengthOfRecommend
       ))
 }
 
-/** The strength of the recommendation assigned to this reference. The code system used specifies the rating scale used
-  * to rate this recommendation while the code specifies the actual recommendation rating (represented as a coded value)
-  * associated with this recommendation.
+/** The strength of the recommendation assigned to this reference. The code system used specifies the rating scale used to rate
+  * this recommendation while the code specifies the actual recommendation rating (represented as a coded value) associated with
+  * this recommendation.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

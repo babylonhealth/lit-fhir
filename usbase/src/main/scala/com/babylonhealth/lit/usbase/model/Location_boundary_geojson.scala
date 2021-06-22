@@ -31,7 +31,7 @@ object Location_boundary_geojson extends CompanionFor[Location_boundary_geojson]
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/location-boundary-geojson")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/location-boundary-geojson")
   def apply(
       id: Option[String] = None,
       value: Attachment,
@@ -53,8 +53,8 @@ object Location_boundary_geojson extends CompanionFor[Location_boundary_geojson]
     ))
   override def fields(t: Location_boundary_geojson): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Location_boundary_geojson): Option[String]                   = t.id
-  def extractValue(t: Location_boundary_geojson): Attachment = t.value.get.toSubRefNonUnion[Attachment]
-  override val thisName: String                              = "Location_boundary_geojson"
+  def extractValue(t: Location_boundary_geojson): Attachment                    = t.value.get.toSubRefNonUnion[Attachment]
+  override val thisName: String                                                 = "Location_boundary_geojson"
   override val searchParams: Map[String, Location_boundary_geojson => Seq[Any]] = Extension.searchParams
   def unapply(o: Location_boundary_geojson): Option[(Option[String], Attachment)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[Attachment]))
@@ -72,16 +72,16 @@ object Location_boundary_geojson extends CompanionFor[Location_boundary_geojson]
 /** A boundary shape that represents the outside edge of the location (in GeoJSON format) This shape may have holes, and
   * disconnected shapes.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

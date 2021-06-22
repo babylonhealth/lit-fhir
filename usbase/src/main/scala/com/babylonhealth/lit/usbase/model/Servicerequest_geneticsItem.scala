@@ -31,7 +31,7 @@ object Servicerequest_geneticsItem extends CompanionFor[Servicerequest_geneticsI
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/servicerequest-geneticsItem")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/servicerequest-geneticsItem")
   def apply(
       id: Option[String] = None,
       extension: NonEmptyLitSeq[Extension],
@@ -69,26 +69,25 @@ object Servicerequest_geneticsItem extends CompanionFor[Servicerequest_geneticsI
       ))
 }
 
-/** The specific diagnostic investigations that are requested as part of this request. Sometimes, there can only be one
-  * item per request, but in most contexts, more than one investigation can be requested.
+/** The specific diagnostic investigations that are requested as part of this request. Sometimes, there can only be one item per
+  * request, but in most contexts, more than one investigation can be requested.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Requires the following fields which were optional in the parent: extension.
-  *   Forbids the use of the following fields which were optional in the parent: value. Hardcodes the value of the
-  *   following fields: url.
+  *   Inherits all params from parent. Requires the following fields which were optional in the parent: extension. Forbids the use
+  *   of the following fields which were optional in the parent: value. Hardcodes the value of the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class Servicerequest_geneticsItem(

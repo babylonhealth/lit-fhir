@@ -108,8 +108,7 @@ object Contract extends CompanionFor[Contract] {
           override val extension: LitSeq[Extension] = LitSeq.empty,
           val reference: NonEmptyLitSeq[Reference],
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Answer extends CompanionFor[Answer] {
         implicit def summonObjectAndCompanionAnswer682527430(o: Answer): ObjectAndCompanion[Answer, Answer.type] =
@@ -131,8 +130,8 @@ object Contract extends CompanionFor[Contract] {
           modifierExtension,
           primitiveAttributes = primitiveAttributes
         )
-        def unapply(o: Answer): Option[(Option[String], Answer.ValueChoice, LitSeq[Extension], LitSeq[Extension])] =
-          Some((o.id, o.value, o.extension, o.modifierExtension))
+        def unapply(o: Answer): Option[(Option[String], Answer.ValueChoice, LitSeq[Extension], LitSeq[Extension])] = Some(
+          (o.id, o.value, o.extension, o.modifierExtension))
         val id: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
         val value: FHIRComponentFieldMeta[Answer.ValueChoice] =
@@ -169,8 +168,7 @@ object Contract extends CompanionFor[Contract] {
           val value: Answer.ValueChoice,
           override val extension: LitSeq[Extension] = LitSeq.empty,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
@@ -314,8 +312,7 @@ object Contract extends CompanionFor[Contract] {
         val securityLabelNumber: LitSeq[UnsignedInt] = LitSeq.empty,
         val party: LitSeq[Offer.Party] = LitSeq.empty,
         val answer: LitSeq[Offer.Answer] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object SecurityLabel extends CompanionFor[SecurityLabel] {
       implicit def summonObjectAndCompanionSecurityLabel776358644(
@@ -397,8 +394,7 @@ object Contract extends CompanionFor[Contract] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val classification: Coding,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Action extends CompanionFor[Action] {
       implicit def summonObjectAndCompanionAction1630305455(o: Action): ObjectAndCompanion[Action, Action.type] =
@@ -471,8 +467,7 @@ object Contract extends CompanionFor[Contract] {
           override val extension: LitSeq[Extension] = LitSeq.empty,
           val reference: NonEmptyLitSeq[Reference],
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       type OccurrenceChoice = Choice[Union00609373412]
       def apply(
@@ -689,8 +684,7 @@ object Contract extends CompanionFor[Contract] {
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         val securityLabelNumber: LitSeq[UnsignedInt] = LitSeq.empty,
         val subject: LitSeq[Action.Subject] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Asset extends CompanionFor[Asset] {
       implicit def summonObjectAndCompanionAsset_588043774(o: Asset): ObjectAndCompanion[Asset, Asset.type] =
@@ -770,8 +764,7 @@ object Contract extends CompanionFor[Contract] {
           override val extension: LitSeq[Extension] = LitSeq.empty,
           val reference: Option[Reference] = None,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object ValuedItem extends CompanionFor[ValuedItem] {
         implicit def summonObjectAndCompanionValuedItem_200397922(
@@ -959,8 +952,7 @@ object Contract extends CompanionFor[Contract] {
           val effectiveTime: Option[FHIRDateTime] = None,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           val securityLabelNumber: LitSeq[UnsignedInt] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
@@ -1038,11 +1030,7 @@ object Contract extends CompanionFor[Contract] {
       val linkId: FHIRComponentFieldMeta[LitSeq[String]] =
         FHIRComponentFieldMeta("linkId", lTagOf[LitSeq[String]], false, lTagOf[String])
       val answer: FHIRComponentFieldMeta[LitSeq[Contract.Term.Offer.Answer]] =
-        FHIRComponentFieldMeta(
-          "answer",
-          lTagOf[LitSeq[Contract.Term.Offer.Answer]],
-          false,
-          lTagOf[Contract.Term.Offer.Answer])
+        FHIRComponentFieldMeta("answer", lTagOf[LitSeq[Contract.Term.Offer.Answer]], false, lTagOf[Contract.Term.Offer.Answer])
       val subtype: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
         FHIRComponentFieldMeta("subtype", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -1154,8 +1142,7 @@ object Contract extends CompanionFor[Contract] {
         val securityLabelNumber: LitSeq[UnsignedInt] = LitSeq.empty,
         val context: LitSeq[Asset.Context] = LitSeq.empty,
         val valuedItem: LitSeq[Asset.ValuedItem] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     type TopicChoice = Choice[Union01025009075]
     def apply(
@@ -1322,8 +1309,7 @@ object Contract extends CompanionFor[Contract] {
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ContentDefinition extends CompanionFor[ContentDefinition] {
     implicit def summonObjectAndCompanionContentDefinition_1752291012(
-        o: ContentDefinition): ObjectAndCompanion[ContentDefinition, ContentDefinition.type] =
-      ObjectAndCompanion(o, this)
+        o: ContentDefinition): ObjectAndCompanion[ContentDefinition, ContentDefinition.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ContentDefinition
     override type ParentType   = ContentDefinition
     override val parentType: CompanionFor[ResourceType] = ContentDefinition
@@ -1380,11 +1366,7 @@ object Contract extends CompanionFor[Contract] {
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val publicationStatus: FHIRComponentFieldMeta[CONTRACT_PUBLICATIONSTATUS] =
-      FHIRComponentFieldMeta(
-        "publicationStatus",
-        lTagOf[CONTRACT_PUBLICATIONSTATUS],
-        false,
-        lTagOf[CONTRACT_PUBLICATIONSTATUS])
+      FHIRComponentFieldMeta("publicationStatus", lTagOf[CONTRACT_PUBLICATIONSTATUS], false, lTagOf[CONTRACT_PUBLICATIONSTATUS])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, `type`, subType, extension, publisher, copyright, publicationDate, modifierExtension, publicationStatus)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
@@ -1451,8 +1433,8 @@ object Contract extends CompanionFor[Contract] {
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(o: Friendly): Option[(Option[String], LitSeq[Extension], Friendly.ContentChoice, LitSeq[Extension])] =
-      Some((o.id, o.extension, o.content, o.modifierExtension))
+    def unapply(o: Friendly): Option[(Option[String], LitSeq[Extension], Friendly.ContentChoice, LitSeq[Extension])] = Some(
+      (o.id, o.extension, o.content, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -1841,11 +1823,7 @@ object Contract extends CompanionFor[Contract] {
   val contentDerivative: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("contentDerivative", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val legallyBinding: FHIRComponentFieldMeta[Option[Contract.LegallyBindingChoice]] =
-    FHIRComponentFieldMeta(
-      "legallyBinding",
-      lTagOf[Option[Contract.LegallyBindingChoice]],
-      true,
-      lTagOf[Union_0340660840])
+    FHIRComponentFieldMeta("legallyBinding", lTagOf[Option[Contract.LegallyBindingChoice]], true, lTagOf[Union_0340660840])
   val instantiatesCanonical: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("instantiatesCanonical", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val rule: FHIRComponentFieldMeta[LitSeq[Contract.Rule]] =
@@ -2060,38 +2038,38 @@ object Contract extends CompanionFor[Contract] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields url, site, name, `type`, title, alias, scope, status, issued, domain, author, version,
-  *   applies, subject, subType, subtitle, topic, authority, identifier, legalState, expirationType, supportingInfo,
-  *   instantiatesUri, relevantHistory, contentDerivative, legallyBinding, instantiatesCanonical, rule, legal, signer,
-  *   friendly, contentDefinition, term.
+  *   Introduces the fields url, site, name, `type`, title, alias, scope, status, issued, domain, author, version, applies,
+  *   subject, subType, subtitle, topic, authority, identifier, legalState, expirationType, supportingInfo, instantiatesUri,
+  *   relevantHistory, contentDerivative, legallyBinding, instantiatesCanonical, rule, legal, signer, friendly, contentDefinition,
+  *   term.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
   *   - Canonical identifier for this contract, represented as a URI (globally unique).
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param site
   *   - Sites in which the contract is complied with, exercised, or in force.
   * @param name
-  *   - A natural language name identifying this Contract definition, derivative, or instance in any legal state.
-  *   Provides additional information about its content. This name should be usable as an identifier for the module by
-  *   machine processing applications such as code generation.
+  *   - A natural language name identifying this Contract definition, derivative, or instance in any legal state. Provides
+  *   additional information about its content. This name should be usable as an identifier for the module by machine processing
+  *   applications such as code generation.
   * @param `type`
-  *   - A high-level category for the legal instrument, whether constructed as a Contract definition, derivative, or
-  *   instance in any legal state. Provides additional information about its content within the context of the
-  *   Contract's scope to distinguish the kinds of systems that would be interested in the contract.
+  *   - A high-level category for the legal instrument, whether constructed as a Contract definition, derivative, or instance in
+  *   any legal state. Provides additional information about its content within the context of the Contract's scope to distinguish
+  *   the kinds of systems that would be interested in the contract.
   * @param title
-  *   - A short, descriptive, user-friendly title for this Contract definition, derivative, or instance in any legal
-  *   state.t giving additional information about its content.
+  *   - A short, descriptive, user-friendly title for this Contract definition, derivative, or instance in any legal state.t
+  *   giving additional information about its content.
   * @param alias
-  *   - Alternative representation of the title for this Contract definition, derivative, or instance in any legal
-  *   state., e.g., a domain specific contract number related to legislation.
+  *   - Alternative representation of the title for this Contract definition, derivative, or instance in any legal state., e.g., a
+  *   domain specific contract number related to legislation.
   * @param scope
   *   - A selector of legal concerns for this Contract definition, derivative, or instance in any legal state.
   * @param status
@@ -2099,12 +2077,10 @@ object Contract extends CompanionFor[Contract] {
   * @param issued
   *   - When this Contract was issued.
   * @param domain
-  *   - Recognized governance framework or system operating with a circumscribed scope in accordance with specified
-  *   principles, policies, processes or procedures for managing rights, actions, or behaviors of parties or principals
-  *   relative to resources.
+  *   - Recognized governance framework or system operating with a circumscribed scope in accordance with specified principles,
+  *   policies, processes or procedures for managing rights, actions, or behaviors of parties or principals relative to resources.
   * @param author
-  *   - The individual or organization that authored the Contract definition, derivative, or instance in any legal
-  *   state.
+  *   - The individual or organization that authored the Contract definition, derivative, or instance in any legal state.
   * @param version
   *   - An edition identifier used for business purposes to label business significant variants.
   * @param applies
@@ -2112,64 +2088,61 @@ object Contract extends CompanionFor[Contract] {
   * @param subject
   *   - The target entity impacted by or of interest to parties to the agreement.
   * @param subType
-  *   - Sub-category for the Contract that distinguishes the kinds of systems that would be interested in the Contract
-  *   within the context of the Contract's scope.
+  *   - Sub-category for the Contract that distinguishes the kinds of systems that would be interested in the Contract within the
+  *   context of the Contract's scope.
   * @param language
   *   - The base language in which the resource is written.
   * @param subtitle
-  *   - An explanatory or alternate user-friendly title for this Contract definition, derivative, or instance in any
-  *   legal state.t giving additional information about its content.
+  *   - An explanatory or alternate user-friendly title for this Contract definition, derivative, or instance in any legal state.t
+  *   giving additional information about its content.
   * @param topic
   *   - Narrows the range of legal concerns to focus on the achievement of specific contractual objectives.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param authority
-  *   - A formally or informally recognized grouping of people, principals, organizations, or jurisdictions formed for
-  *   the purpose of achieving some form of collective action such as the promulgation, administration and enforcement
-  *   of contracts and policies.
+  *   - A formally or informally recognized grouping of people, principals, organizations, or jurisdictions formed for the purpose
+  *   of achieving some form of collective action such as the promulgation, administration and enforcement of contracts and
+  *   policies.
   * @param identifier
   *   - Unique identifier for this Contract or a derivative that references a Source Contract.
   * @param legalState
-  *   - Legal states of the formation of a legal instrument, which is a formally executed written document that can be
-  *   formally attributed to its author, records and formally expresses a legally enforceable act, process, or
-  *   contractual duty, obligation, or right, and therefore evidences that act, process, or agreement.
+  *   - Legal states of the formation of a legal instrument, which is a formally executed written document that can be formally
+  *   attributed to its author, records and formally expresses a legally enforceable act, process, or contractual duty,
+  *   obligation, or right, and therefore evidences that act, process, or agreement.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param expirationType
-  *   - Event resulting in discontinuation or termination of this Contract instance by one or more parties to the
-  *   contract.
+  *   - Event resulting in discontinuation or termination of this Contract instance by one or more parties to the contract.
   * @param supportingInfo
   *   - Information that may be needed by/relevant to the performer in their execution of this term action.
   * @param instantiatesUri
   *   - The URL pointing to an externally maintained definition that is adhered to in whole or in part by this Contract.
   * @param relevantHistory
-  *   - Links to Provenance records for past versions of this Contract definition, derivative, or instance, which
-  *   identify key state transitions or updates that are likely to be relevant to a user looking at the current version
-  *   of the Contract. The Provence.entity indicates the target that was changed in the update.
+  *   - Links to Provenance records for past versions of this Contract definition, derivative, or instance, which identify key
+  *   state transitions or updates that are likely to be relevant to a user looking at the current version of the Contract. The
+  *   Provence.entity indicates the target that was changed in the update.
   *   http://build.fhir.org/provenance-definitions.html#Provenance.entity.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param contentDerivative
   *   - The minimal content derived from the basal information source at a specific stage in its lifecycle.
   * @param legallyBinding
-  *   - Legally binding Contract: This is the signed and legally recognized representation of the Contract, which is
-  *   considered the "source of truth" and which would be the basis for legal action related to enforcement of this
-  *   Contract.
+  *   - Legally binding Contract: This is the signed and legally recognized representation of the Contract, which is considered
+  *   the "source of truth" and which would be the basis for legal action related to enforcement of this Contract.
   * @param instantiatesCanonical
   *   - The URL pointing to a FHIR-defined Contract Definition that is adhered to in whole or part by this Contract.
   * @param rule
@@ -2177,18 +2150,17 @@ object Contract extends CompanionFor[Contract] {
   * @param legal
   *   - List of Legal expressions or representations of this Contract.
   * @param signer
-  *   - Parties with legal standing in the Contract, including the principal parties, the grantor(s) and grantee(s),
-  *   which are any person or organization bound by the contract, and any ancillary parties, which facilitate the
-  *   execution of the contract such as a notary or witness.
+  *   - Parties with legal standing in the Contract, including the principal parties, the grantor(s) and grantee(s), which are any
+  *   person or organization bound by the contract, and any ancillary parties, which facilitate the execution of the contract such
+  *   as a notary or witness.
   * @param friendly
-  *   - The "patient friendly language" versionof the Contract in whole or in parts. "Patient friendly language" means
-  *   the representation of the Contract and Contract Provisions in a manner that is readily accessible and
-  *   understandable by a layperson in accordance with best practices for communication styles that ensure that those
-  *   agreeing to or signing the Contract understand the roles, actions, obligations, responsibilities, and implication
-  *   of the agreement.
+  *   - The "patient friendly language" versionof the Contract in whole or in parts. "Patient friendly language" means the
+  *   representation of the Contract and Contract Provisions in a manner that is readily accessible and understandable by a
+  *   layperson in accordance with best practices for communication styles that ensure that those agreeing to or signing the
+  *   Contract understand the roles, actions, obligations, responsibilities, and implication of the agreement.
   * @param contentDefinition
-  *   - Precusory content developed with a focus and intent of supporting the formation a Contract instance, which may
-  *   be associated with and transformable into a Contract.
+  *   - Precusory content developed with a focus and intent of supporting the formation a Contract instance, which may be
+  *   associated with and transformable into a Contract.
   * @param term
   *   - One or more Contract Provisions, which may be related and conveyed as a group, and may contain nested groups.
   */

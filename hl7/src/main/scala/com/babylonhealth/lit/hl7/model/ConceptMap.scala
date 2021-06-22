@@ -24,8 +24,8 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ConceptMap extends CompanionFor[ConceptMap] {
-  implicit def summonObjectAndCompanionConceptMap_1559190174(
-      o: ConceptMap): ObjectAndCompanion[ConceptMap, ConceptMap.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionConceptMap_1559190174(o: ConceptMap): ObjectAndCompanion[ConceptMap, ConceptMap.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = ConceptMap
   override type ParentType   = ConceptMap
   override val baseType: CompanionFor[ResourceType] = ConceptMap
@@ -38,8 +38,8 @@ object ConceptMap extends CompanionFor[ConceptMap] {
     override type ParentType   = Group
     override val parentType: CompanionFor[ResourceType] = Group
     object Unmapped extends CompanionFor[Unmapped] {
-      implicit def summonObjectAndCompanionUnmapped1729374182(
-          o: Unmapped): ObjectAndCompanion[Unmapped, Unmapped.type] = ObjectAndCompanion(o, this)
+      implicit def summonObjectAndCompanionUnmapped1729374182(o: Unmapped): ObjectAndCompanion[Unmapped, Unmapped.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Unmapped
       override type ParentType   = Unmapped
       override val parentType: CompanionFor[ResourceType] = Unmapped
@@ -116,8 +116,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
         val display: Option[String] = None,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Element extends CompanionFor[Element] {
       implicit def summonObjectAndCompanionElement1701927640(o: Element): ObjectAndCompanion[Element, Element.type] =
@@ -132,8 +131,8 @@ object ConceptMap extends CompanionFor[ConceptMap] {
         override type ParentType   = Target
         override val parentType: CompanionFor[ResourceType] = Target
         object DependsOn extends CompanionFor[DependsOn] {
-          implicit def summonObjectAndCompanionDependsOn_1655902441(
-              o: DependsOn): ObjectAndCompanion[DependsOn, DependsOn.type] = ObjectAndCompanion(o, this)
+          implicit def summonObjectAndCompanionDependsOn_1655902441(o: DependsOn): ObjectAndCompanion[DependsOn, DependsOn.type] =
+            ObjectAndCompanion(o, this)
           override type ResourceType = DependsOn
           override type ParentType   = DependsOn
           override val parentType: CompanionFor[ResourceType] = DependsOn
@@ -173,8 +172,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
             FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
           val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
             FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-          val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-            Seq(id, value, system, display, property, extension, modifierExtension)
+          val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value, system, display, property, extension, modifierExtension)
           override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
           override def fields(t: DependsOn): Seq[FHIRComponentField[_]] = Seq(
             FHIRComponentField[Option[String]](id, t.id),
@@ -211,8 +209,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
             val property: UriStr,
             override val extension: LitSeq[Extension] = LitSeq.empty,
             override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-            override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-              FHIRObject.emptyAtts)
+            override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
             extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
         def apply(
             id: Option[String] = None,
@@ -239,17 +236,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
         )
         def unapply(
             o: Target): Option[(Option[String], Option[Code], Option[String], Option[String], LitSeq[ConceptMap.Group.Element.Target.DependsOn], LitSeq[Extension], CONCEPT_MAP_EQUIVALENCE, LitSeq[Extension], LitSeq[Target.DependsOn])] =
-          Some(
-            (
-              o.id,
-              o.code,
-              o.display,
-              o.comment,
-              o.product,
-              o.extension,
-              o.equivalence,
-              o.modifierExtension,
-              o.dependsOn))
+          Some((o.id, o.code, o.display, o.comment, o.product, o.extension, o.equivalence, o.modifierExtension, o.dependsOn))
         val id: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
         val code: FHIRComponentFieldMeta[Option[Code]] =
@@ -316,8 +303,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
           val equivalence: CONCEPT_MAP_EQUIVALENCE,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           val dependsOn: LitSeq[Target.DependsOn] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
@@ -385,8 +371,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         val target: LitSeq[Element.Target] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -413,17 +398,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
     )
     def unapply(
         o: Group): Option[(Option[String], Option[UriStr], Option[UriStr], LitSeq[Extension], Option[String], Option[String], LitSeq[Extension], Option[Group.Unmapped], NonEmptyLitSeq[Group.Element])] =
-      Some(
-        (
-          o.id,
-          o.source,
-          o.target,
-          o.extension,
-          o.sourceVersion,
-          o.targetVersion,
-          o.modifierExtension,
-          o.unmapped,
-          o.element))
+      Some((o.id, o.source, o.target, o.extension, o.sourceVersion, o.targetVersion, o.modifierExtension, o.unmapped, o.element))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val source: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -684,29 +659,29 @@ object ConceptMap extends CompanionFor[ConceptMap] {
   def extractGroup(t: ConceptMap): LitSeq[ConceptMap.Group]         = t.group
   override val thisName: String                                     = "ConceptMap"
   override val searchParams: Map[String, ConceptMap => Seq[Any]] = Map(
-    "jurisdiction"  -> (obj => obj.jurisdiction.toSeq),
-    "description"   -> (obj => obj.description.toSeq),
-    "context"       -> (obj => obj.useContext.map(_.value).flatMap(_.as[CodeableConcept]).toSeq),
-    "source-system" -> (obj => obj.group.flatMap(_.source).toSeq),
-    "target-code"   -> (obj => obj.group.flatMap(_.element).flatMap(_.target).flatMap(_.code).toSeq),
-    "date"          -> (obj => obj.date.toSeq),
-    "target-uri"    -> (obj => obj.target.flatMap(_.as[UriStr]).toSeq),
-    "target"        -> (obj => obj.target.flatMap(_.as[Canonical]).toSeq),
-    "product"       -> (obj => obj.group.flatMap(_.element).flatMap(_.target).flatMap(_.product).map(_.property).toSeq),
-    "name"          -> (obj => obj.name.toSeq),
-    "source-code"   -> (obj => obj.group.flatMap(_.element).flatMap(_.code).toSeq),
-    "source"        -> (obj => obj.source.flatMap(_.as[Canonical]).toSeq),
+    "jurisdiction"          -> (obj => obj.jurisdiction.toSeq),
+    "description"           -> (obj => obj.description.toSeq),
+    "context"               -> (obj => obj.useContext.map(_.value).flatMap(_.as[CodeableConcept]).toSeq),
+    "source-system"         -> (obj => obj.group.flatMap(_.source).toSeq),
+    "target-code"           -> (obj => obj.group.flatMap(_.element).flatMap(_.target).flatMap(_.code).toSeq),
+    "date"                  -> (obj => obj.date.toSeq),
+    "target-uri"            -> (obj => obj.target.flatMap(_.as[UriStr]).toSeq),
+    "target"                -> (obj => obj.target.flatMap(_.as[Canonical]).toSeq),
+    "product"               -> (obj => obj.group.flatMap(_.element).flatMap(_.target).flatMap(_.product).map(_.property).toSeq),
+    "name"                  -> (obj => obj.name.toSeq),
+    "source-code"           -> (obj => obj.group.flatMap(_.element).flatMap(_.code).toSeq),
+    "source"                -> (obj => obj.source.flatMap(_.as[Canonical]).toSeq),
     "context-type-quantity" -> (obj => obj.useContext.toSeq),
-    "dependson"  -> (obj => obj.group.flatMap(_.element).flatMap(_.target).flatMap(_.dependsOn).map(_.property).toSeq),
-    "identifier" -> (obj => obj.identifier.toSeq),
-    "url"        -> (obj => obj.url.toSeq),
-    "context-type-value" -> (obj => obj.useContext.toSeq),
-    "version"            -> (obj => obj.version.toSeq),
-    "target-system"      -> (obj => obj.group.flatMap(_.target).toSeq),
-    "source-uri"         -> (obj => obj.source.flatMap(_.as[UriStr]).toSeq),
-    "status"             -> (obj => Seq(obj.status)),
-    "publisher"          -> (obj => obj.publisher.toSeq),
-    "title"              -> (obj => obj.title.toSeq),
+    "dependson"             -> (obj => obj.group.flatMap(_.element).flatMap(_.target).flatMap(_.dependsOn).map(_.property).toSeq),
+    "identifier"            -> (obj => obj.identifier.toSeq),
+    "url"                   -> (obj => obj.url.toSeq),
+    "context-type-value"    -> (obj => obj.useContext.toSeq),
+    "version"               -> (obj => obj.version.toSeq),
+    "target-system"         -> (obj => obj.group.flatMap(_.target).toSeq),
+    "source-uri"            -> (obj => obj.source.flatMap(_.as[UriStr]).toSeq),
+    "status"                -> (obj => Seq(obj.status)),
+    "publisher"             -> (obj => obj.publisher.toSeq),
+    "title"                 -> (obj => obj.title.toSeq),
     "context-quantity" -> (obj =>
       obj.useContext.map(_.value).flatMap(_.as[Quantity]).toSeq ++
         obj.useContext.map(_.value).flatMap(_.as[Range]).toSeq),
@@ -748,46 +723,45 @@ object ConceptMap extends CompanionFor[ConceptMap] {
       ))
 }
 
-/** A statement of relationships from one set of concepts to one or more other concepts - either concepts in code
-  * systems, or data element/data element concepts, or classes in class models.
+/** A statement of relationships from one set of concepts to one or more other concepts - either concepts in code systems, or data
+  * element/data element concepts, or classes in class models.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, title, status, version, contact, purpose, publisher, copyright, source,
-  *   target, identifier, useContext, description, experimental, jurisdiction, group.
+  *   Introduces the fields url, name, date, title, status, version, contact, purpose, publisher, copyright, source, target,
+  *   identifier, useContext, description, experimental, jurisdiction, group.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
-  *   - An absolute URI that is used to identify this concept map when it is referenced in a specification, model,
-  *   design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a
-  *   literal address at which at which an authoritative instance of this concept map is (or will be) published. This
-  *   URL can be the target of a canonical reference. It SHALL remain the same when the concept map is stored on
-  *   different servers.
+  *   - An absolute URI that is used to identify this concept map when it is referenced in a specification, model, design or an
+  *   instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at
+  *   which an authoritative instance of this concept map is (or will be) published. This URL can be the target of a canonical
+  *   reference. It SHALL remain the same when the concept map is stored on different servers.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param name
-  *   - A natural language name identifying the concept map. This name should be usable as an identifier for the module
-  *   by machine processing applications such as code generation.
+  *   - A natural language name identifying the concept map. This name should be usable as an identifier for the module by machine
+  *   processing applications such as code generation.
   * @param date
-  *   - The date (and optionally time) when the concept map was published. The date must change when the business
-  *   version changes and it must change if the status code changes. In addition, it should change when the substantive
-  *   content of the concept map changes.
+  *   - The date (and optionally time) when the concept map was published. The date must change when the business version changes
+  *   and it must change if the status code changes. In addition, it should change when the substantive content of the concept map
+  *   changes.
   * @param title
   *   - A short, descriptive, user-friendly title for the concept map.
   * @param status
   *   - The status of this concept map. Enables tracking the life-cycle of the content.
   * @param version
-  *   - The identifier that is used to identify this version of the concept map when it is referenced in a
-  *   specification, model, design or instance. This is an arbitrary value managed by the concept map author and is not
-  *   expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not
-  *   available. There is also no expectation that versions can be placed in a lexicographical sequence.
+  *   - The identifier that is used to identify this version of the concept map when it is referenced in a specification, model,
+  *   design or instance. This is an arbitrary value managed by the concept map author and is not expected to be globally unique.
+  *   For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation
+  *   that versions can be placed in a lexicographical sequence.
   * @param contact
   *   - Contact details to assist a user in finding and communicating with the publisher.
   * @param purpose
@@ -798,48 +772,47 @@ object ConceptMap extends CompanionFor[ConceptMap] {
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param publisher
   *   - The name of the organization or individual that published the concept map.
   * @param copyright
   *   - A copyright statement relating to the concept map and/or its contents. Copyright statements are generally legal
   *   restrictions on the use and publishing of the concept map.
   * @param source
-  *   - Identifier for the source value set that contains the concepts that are being mapped and provides context for
-  *   the mappings.
+  *   - Identifier for the source value set that contains the concepts that are being mapped and provides context for the
+  *   mappings.
   * @param target
-  *   - The target value set provides context for the mappings. Note that the mapping is made between concepts, not
-  *   between value sets, but the value set provides important context about how the concept mapping choices are made.
+  *   - The target value set provides context for the mappings. Note that the mapping is made between concepts, not between value
+  *   sets, but the value set provides important context about how the concept mapping choices are made.
   * @param identifier
-  *   - A formal identifier that is used to identify this concept map when it is represented in other formats, or
-  *   referenced in a specification, model, design or an instance.
+  *   - A formal identifier that is used to identify this concept map when it is represented in other formats, or referenced in a
+  *   specification, model, design or an instance.
   * @param useContext
-  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may
-  *   be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...)
-  *   and may be used to assist with indexing and searching for appropriate concept map instances.
+  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be
+  *   general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be
+  *   used to assist with indexing and searching for appropriate concept map instances.
   * @param description
   *   - A free text natural language description of the concept map from a consumer's perspective.
   * @param experimental
-  *   - A Boolean value to indicate that this concept map is authored for testing purposes (or
-  *   education/evaluation/marketing) and is not intended to be used for genuine usage.
+  *   - A Boolean value to indicate that this concept map is authored for testing purposes (or education/evaluation/marketing) and
+  *   is not intended to be used for genuine usage.
   * @param jurisdiction
   *   - A legal or geographic region in which the concept map is intended to be used.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param group
   *   - A group of mappings that all have the same source and target system.
   */

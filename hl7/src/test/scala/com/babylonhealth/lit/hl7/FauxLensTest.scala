@@ -23,12 +23,8 @@ class FauxLensTest extends AnyFreeSpec with Matchers {
   )
   def mkBundle(subjects: Seq[(Reference, Coding)]) = {
     val entries = subjects.map { case (subj, coding) =>
-      Bundle.Entry(
-        resource = Some(
-          Observation(
-            subject = Some(subj),
-            code = CodeableConcept(coding = LitSeq(coding)),
-            status = OBSERVATION_STATUS.UNKNOWN)))
+      Bundle.Entry(resource = Some(
+        Observation(subject = Some(subj), code = CodeableConcept(coding = LitSeq(coding)), status = OBSERVATION_STATUS.UNKNOWN)))
     }
     Bundle(entry = entries to LitSeq, `type` = BUNDLE_TYPE.COLLECTION)
   }

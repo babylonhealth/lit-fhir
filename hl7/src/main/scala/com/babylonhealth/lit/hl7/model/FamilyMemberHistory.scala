@@ -25,16 +25,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object FamilyMemberHistory extends CompanionFor[FamilyMemberHistory] {
   implicit def summonObjectAndCompanionFamilyMemberHistory_1217627902(
-      o: FamilyMemberHistory): ObjectAndCompanion[FamilyMemberHistory, FamilyMemberHistory.type] =
-    ObjectAndCompanion(o, this)
+      o: FamilyMemberHistory): ObjectAndCompanion[FamilyMemberHistory, FamilyMemberHistory.type] = ObjectAndCompanion(o, this)
   override type ResourceType = FamilyMemberHistory
   override type ParentType   = FamilyMemberHistory
   override val baseType: CompanionFor[ResourceType] = FamilyMemberHistory
   override val parentType: CompanionFor[ParentType] = FamilyMemberHistory
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory")
   object Condition extends CompanionFor[Condition] {
-    implicit def summonObjectAndCompanionCondition_659715343(
-        o: Condition): ObjectAndCompanion[Condition, Condition.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionCondition_659715343(o: Condition): ObjectAndCompanion[Condition, Condition.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Condition
     override type ParentType   = Condition
     override val parentType: CompanionFor[ResourceType] = Condition
@@ -215,11 +214,7 @@ object FamilyMemberHistory extends CompanionFor[FamilyMemberHistory] {
   val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val deceased: FHIRComponentFieldMeta[Option[FamilyMemberHistory.DeceasedChoice]] =
-    FHIRComponentFieldMeta(
-      "deceased",
-      lTagOf[Option[FamilyMemberHistory.DeceasedChoice]],
-      true,
-      lTagOf[Union_0966801288])
+    FHIRComponentFieldMeta("deceased", lTagOf[Option[FamilyMemberHistory.DeceasedChoice]], true, lTagOf[Union_0966801288])
   val relationship: FHIRComponentFieldMeta[CodeableConcept] =
     FHIRComponentFieldMeta("relationship", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
   val estimatedAge: FHIRComponentFieldMeta[Option[Boolean]] =
@@ -377,27 +372,27 @@ object FamilyMemberHistory extends CompanionFor[FamilyMemberHistory] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields sex, date, name, note, status, age, patient, born, identifier, reasonCode, deceased,
-  *   relationship, estimatedAge, instantiatesUri, reasonReference, dataAbsentReason, instantiatesCanonical, condition.
+  *   Introduces the fields sex, date, name, note, status, age, patient, born, identifier, reasonCode, deceased, relationship,
+  *   estimatedAge, instantiatesUri, reasonReference, dataAbsentReason, instantiatesCanonical, condition.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param sex
   *   - The birth sex of the family member.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param date
   *   - The date (and possibly time) when the family member history was recorded or last updated.
   * @param name
   *   - This will either be a name or a description; e.g. "Aunt Susan", "my cousin with the red hair".
   * @param note
-  *   - This property allows a non condition-specific note to the made about the related person. Ideally, the note would
-  *   be in the condition property, but this is not always possible.
+  *   - This property allows a non condition-specific note to the made about the related person. Ideally, the note would be in the
+  *   condition property, but this is not always possible.
   * @param status
   *   - A code specifying the status of the record of the family history of a specific family member.
   * @param age
@@ -412,50 +407,47 @@ object FamilyMemberHistory extends CompanionFor[FamilyMemberHistory] {
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param identifier
-  *   - Business identifiers assigned to this family member history by the performer or other systems which remain
-  *   constant as the resource is updated and propagates from server to server.
+  *   - Business identifiers assigned to this family member history by the performer or other systems which remain constant as the
+  *   resource is updated and propagates from server to server.
   * @param reasonCode
   *   - Describes why the family member history occurred in coded or textual form.
   * @param deceased
-  *   - Deceased flag or the actual or approximate age of the relative at the time of death for the family member
-  *   history record.
+  *   - Deceased flag or the actual or approximate age of the relative at the time of death for the family member history record.
   * @param relationship
   *   - The type of relationship this person has to the patient (father, mother, brother etc.).
   * @param estimatedAge
   *   - If true, indicates that the age value specified is an estimated value.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param instantiatesUri
-  *   - The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered
-  *   to in whole or in part by this FamilyMemberHistory.
+  *   - The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole
+  *   or in part by this FamilyMemberHistory.
   * @param reasonReference
-  *   - Indicates a Condition, Observation, AllergyIntolerance, or QuestionnaireResponse that justifies this family
-  *   member history event.
+  *   - Indicates a Condition, Observation, AllergyIntolerance, or QuestionnaireResponse that justifies this family member history
+  *   event.
   * @param dataAbsentReason
   *   - Describes why the family member's history is not available.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param instantiatesCanonical
-  *   - The URL pointing to a FHIR-defined protocol, guideline, orderset or other definition that is adhered to in whole
-  *   or in part by this FamilyMemberHistory.
+  *   - The URL pointing to a FHIR-defined protocol, guideline, orderset or other definition that is adhered to in whole or in
+  *   part by this FamilyMemberHistory.
   * @param condition
-  *   - The significant Conditions (or condition) that the family member had. This is a repeating section to allow a
-  *   system to represent more than one condition per resource, though there is nothing stopping multiple resources -
-  *   one per condition.
+  *   - The significant Conditions (or condition) that the family member had. This is a repeating section to allow a system to
+  *   represent more than one condition per resource, though there is nothing stopping multiple resources - one per condition.
   */
 @POJOBoilerplate
 class FamilyMemberHistory(

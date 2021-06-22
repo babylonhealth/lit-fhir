@@ -31,7 +31,7 @@ object Allergyintolerance_certainty extends CompanionFor[Allergyintolerance_cert
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/allergyintolerance-certainty")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/allergyintolerance-certainty")
   def apply(
       id: Option[String] = None,
       value: CodeableConcept,
@@ -53,8 +53,8 @@ object Allergyintolerance_certainty extends CompanionFor[Allergyintolerance_cert
     ))
   override def fields(t: Allergyintolerance_certainty): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Allergyintolerance_certainty): Option[String]                   = t.id
-  def extractValue(t: Allergyintolerance_certainty): CodeableConcept = t.value.get.toSubRefNonUnion[CodeableConcept]
-  override val thisName: String                                      = "Allergyintolerance_certainty"
+  def extractValue(t: Allergyintolerance_certainty): CodeableConcept               = t.value.get.toSubRefNonUnion[CodeableConcept]
+  override val thisName: String                                                    = "Allergyintolerance_certainty"
   override val searchParams: Map[String, Allergyintolerance_certainty => Seq[Any]] = Extension.searchParams
   def unapply(o: Allergyintolerance_certainty): Option[(Option[String], CodeableConcept)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[CodeableConcept]))
@@ -69,19 +69,19 @@ object Allergyintolerance_certainty extends CompanionFor[Allergyintolerance_cert
       ))
 }
 
-/** Statement about the degree of clinical certainty that the specific substance was the cause of the manifestation in
-  * this reaction event.
+/** Statement about the degree of clinical certainty that the specific substance was the cause of the manifestation in this
+  * reaction event.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

@@ -62,8 +62,7 @@ object Immunization extends CompanionFor[Immunization] {
     )
     def unapply(
         o: ProtocolApplied): Option[(Option[String], Option[String], LitSeq[Extension], Option[Reference], LitSeq[CodeableConcept], ProtocolApplied.DoseNumberChoice, Option[ProtocolApplied.SeriesDosesChoice], LitSeq[Extension])] =
-      Some(
-        (o.id, o.series, o.extension, o.authority, o.targetDisease, o.doseNumber, o.seriesDoses, o.modifierExtension))
+      Some((o.id, o.series, o.extension, o.authority, o.targetDisease, o.doseNumber, o.seriesDoses, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val series: FHIRComponentFieldMeta[Option[String]] =
@@ -77,11 +76,7 @@ object Immunization extends CompanionFor[Immunization] {
     val doseNumber: FHIRComponentFieldMeta[ProtocolApplied.DoseNumberChoice] =
       FHIRComponentFieldMeta("doseNumber", lTagOf[ProtocolApplied.DoseNumberChoice], true, lTagOf[Union_0839638734])
     val seriesDoses: FHIRComponentFieldMeta[Option[ProtocolApplied.SeriesDosesChoice]] =
-      FHIRComponentFieldMeta(
-        "seriesDoses",
-        lTagOf[Option[ProtocolApplied.SeriesDosesChoice]],
-        true,
-        lTagOf[Union_0839638734])
+      FHIRComponentFieldMeta("seriesDoses", lTagOf[Option[ProtocolApplied.SeriesDosesChoice]], true, lTagOf[Union_0839638734])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
@@ -128,8 +123,8 @@ object Immunization extends CompanionFor[Immunization] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Education extends CompanionFor[Education] {
-    implicit def summonObjectAndCompanionEducation_1642300874(
-        o: Education): ObjectAndCompanion[Education, Education.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionEducation_1642300874(o: Education): ObjectAndCompanion[Education, Education.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Education
     override type ParentType   = Education
     override val parentType: CompanionFor[ResourceType] = Education
@@ -210,8 +205,8 @@ object Immunization extends CompanionFor[Immunization] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Performer extends CompanionFor[Performer] {
-    implicit def summonObjectAndCompanionPerformer419551073(
-        o: Performer): ObjectAndCompanion[Performer, Performer.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionPerformer419551073(o: Performer): ObjectAndCompanion[Performer, Performer.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Performer
     override type ParentType   = Performer
     override val parentType: CompanionFor[ResourceType] = Performer
@@ -231,8 +226,8 @@ object Immunization extends CompanionFor[Immunization] {
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Performer): Option[(Option[String], Reference, Option[CodeableConcept], LitSeq[Extension], LitSeq[Extension])] =
-      Some((o.id, o.actor, o.function, o.extension, o.modifierExtension))
+        o: Performer): Option[(Option[String], Reference, Option[CodeableConcept], LitSeq[Extension], LitSeq[Extension])] = Some(
+      (o.id, o.actor, o.function, o.extension, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val actor: FHIRComponentFieldMeta[Reference] =
@@ -681,26 +676,25 @@ object Immunization extends CompanionFor[Immunization] {
       ))
 }
 
-/** Describes the event of a patient being administered a vaccine or a record of an immunization as reported by a
-  * patient, a clinician or another party.
+/** Describes the event of a patient being administered a vaccine or a record of an immunization as reported by a patient, a
+  * clinician or another party.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields site, note, route, status, patient, recorded, location, encounter, lotNumber, identifier,
-  *   reasonCode, vaccineCode, isSubpotent, statusReason, reportOrigin, manufacturer, doseQuantity, occurrence,
-  *   primarySource, fundingSource, expirationDate, reasonReference, subpotentReason, programEligibility, reaction,
-  *   performer, education, protocolApplied.
+  *   Introduces the fields site, note, route, status, patient, recorded, location, encounter, lotNumber, identifier, reasonCode,
+  *   vaccineCode, isSubpotent, statusReason, reportOrigin, manufacturer, doseQuantity, occurrence, primarySource, fundingSource,
+  *   expirationDate, reasonReference, subpotentReason, programEligibility, reaction, performer, education, protocolApplied.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param site
   *   - Body site where vaccine was administered.
   * @param note
@@ -714,21 +708,21 @@ object Immunization extends CompanionFor[Immunization] {
   * @param language
   *   - The base language in which the resource is written.
   * @param recorded
-  *   - The date the occurrence of the immunization was first captured in the record - potentially significantly after
-  *   the occurrence of the event.
+  *   - The date the occurrence of the immunization was first captured in the record - potentially significantly after the
+  *   occurrence of the event.
   * @param location
   *   - The service delivery location where the vaccine administration occurred.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param encounter
-  *   - The visit or admission or other contact between patient and health care provider the immunization was performed
-  *   as part of.
+  *   - The visit or admission or other contact between patient and health care provider the immunization was performed as part
+  *   of.
   * @param lotNumber
   *   - Lot number of the vaccine product.
   * @param identifier
@@ -749,18 +743,18 @@ object Immunization extends CompanionFor[Immunization] {
   * @param doseQuantity
   *   - The quantity of vaccine product that was administered.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param occurrence
   *   - Date vaccine administered or was to be administered.
   * @param primarySource
-  *   - An indication that the content of the record is based on information from the person who administered the
-  *   vaccine. This reflects the context under which the data was originally recorded.
+  *   - An indication that the content of the record is based on information from the person who administered the vaccine. This
+  *   reflects the context under which the data was originally recorded.
   * @param fundingSource
-  *   - Indicates the source of the vaccine actually administered. This may be different than the patient eligibility
-  *   (e.g. the patient may be eligible for a publically purchased vaccine but due to inventory issues, vaccine
-  *   purchased with private funds was actually administered).
+  *   - Indicates the source of the vaccine actually administered. This may be different than the patient eligibility (e.g. the
+  *   patient may be eligible for a publically purchased vaccine but due to inventory issues, vaccine purchased with private funds
+  *   was actually administered).
   * @param expirationDate
   *   - Date vaccine batch expires.
   * @param reasonReference
@@ -768,14 +762,13 @@ object Immunization extends CompanionFor[Immunization] {
   * @param subpotentReason
   *   - Reason why a dose is considered to be subpotent.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param programEligibility
   *   - Indicates a patient's eligibility for a funding program.
   * @param reaction

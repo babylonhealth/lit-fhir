@@ -52,9 +52,8 @@ object Iso21090_EN_use extends CompanionFor[Iso21090_EN_use] {
     ))
   override def fields(t: Iso21090_EN_use): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Iso21090_EN_use): Option[String]                   = t.id
-  def extractValue(t: Iso21090_EN_use): V3_ENTITYNAMEUSER2 =
-    V3_ENTITYNAMEUSER2.withName(t.value.get.toSubRefNonUnion[Code])
-  override val thisName: String                                       = "Iso21090_EN_use"
+  def extractValue(t: Iso21090_EN_use): V3_ENTITYNAMEUSER2 = V3_ENTITYNAMEUSER2.withName(t.value.get.toSubRefNonUnion[Code])
+  override val thisName: String                            = "Iso21090_EN_use"
   override val searchParams: Map[String, Iso21090_EN_use => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_EN_use): Option[(Option[String], V3_ENTITYNAMEUSER2)] = Some(
     (o.id, V3_ENTITYNAMEUSER2.withName(o.value.get.toSubRefNonUnion[Code])))
@@ -71,16 +70,16 @@ object Iso21090_EN_use extends CompanionFor[Iso21090_EN_use] {
 
 /** A set of codes advising a system or user which name in a set of names to select for a given purpose.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

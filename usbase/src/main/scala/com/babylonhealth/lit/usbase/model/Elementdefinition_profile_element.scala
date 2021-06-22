@@ -31,8 +31,7 @@ object Elementdefinition_profile_element extends CompanionFor[Elementdefinition_
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some(
-    "http://hl7.org/fhir/StructureDefinition/elementdefinition-profile-element")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-profile-element")
   def apply(
       id: Option[String] = None,
       value: String,
@@ -54,8 +53,8 @@ object Elementdefinition_profile_element extends CompanionFor[Elementdefinition_
     ))
   override def fields(t: Elementdefinition_profile_element): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Elementdefinition_profile_element): Option[String]                   = t.id
-  def extractValue(t: Elementdefinition_profile_element): String = t.value.get.toSubRefNonUnion[String]
-  override val thisName: String                                  = "Elementdefinition_profile_element"
+  def extractValue(t: Elementdefinition_profile_element): String                        = t.value.get.toSubRefNonUnion[String]
+  override val thisName: String                                                         = "Elementdefinition_profile_element"
   override val searchParams: Map[String, Elementdefinition_profile_element => Seq[Any]] = Extension.searchParams
   def unapply(o: Elementdefinition_profile_element): Option[(Option[String], String)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[String]))
@@ -70,19 +69,19 @@ object Elementdefinition_profile_element extends CompanionFor[Elementdefinition_
       ))
 }
 
-/** The specific element to use in the referenced profile. This is used when a backbone element is being profiled,
-  * rather than an established type.
+/** The specific element to use in the referenced profile. This is used when a backbone element is being profiled, rather than an
+  * established type.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

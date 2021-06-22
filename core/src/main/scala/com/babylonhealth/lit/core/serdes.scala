@@ -56,8 +56,7 @@ object serdes extends Utils {
       case x => // this case implies we're dealing with a subclass that specifies a single type for a reffish field
         log.error("THIS CASE SHOULD BE IMPOSSIBLE")
         val value = typeSuffixMap(t.tag)
-          .getOrElse(
-            throw new RuntimeException(s"Could not find the type suffix for ${t.tag} when encoding ${name}[x]"))
+          .getOrElse(throw new RuntimeException(s"Could not find the type suffix for ${t.tag} when encoding ${name}[x]"))
         (name + value) -> serializeField(x)
     }
 
@@ -67,8 +66,7 @@ object serdes extends Utils {
       if (encoderParams.addTopLevelResourceType) encoderParams.copy(addTopLevelResourceType = false) else encoderParams
     val fields = a.companion.baseType.fields(a)
     val fs: Seq[(String, Json)] = fields.map {
-      case FHIRComponentField(meta, _)
-          if encoderParams.stripPhantom && a.primitiveAttributes.get(meta).exists(_.phantom) =>
+      case FHIRComponentField(meta, _) if encoderParams.stripPhantom && a.primitiveAttributes.get(meta).exists(_.phantom) =>
         "" -> Json.Null
       case FHIRComponentField(FHIRComponentFieldMeta(name, t, true, _), value) =>
         encodeRefish(name, value, t)(newParams)
@@ -84,8 +82,7 @@ object serdes extends Utils {
     val attributes: Seq[(String, Json)] = a.primitiveAttributes.map { case (k, v) =>
       ('_' +: k.name) -> encodeComponent(v.element)(newParams)
     }.toSeq
-    Json.fromFields(
-      (resourceType.toSeq ++ fs ++ attributes).filterNot(x => x._2.isNull || x._2.asArray.exists(_.isEmpty)))
+    Json.fromFields((resourceType.toSeq ++ fs ++ attributes).filterNot(x => x._2.isNull || x._2.asArray.exists(_.isEmpty)))
   }
   // convenience methods, primarily for calling from Java
   lazy val allGeneratedClasses: Seq[Class[_]] = model.urlLookup.values.map(_.thisClassTag.runtimeClass).toSeq
@@ -102,8 +99,7 @@ object serdes extends Utils {
   implicit def objectEncoder[T <: FHIRObject](implicit params: EncoderParams = EncoderParams()): Encoder[T] =
     Encoder.instance(encodeComponent)
 
-  implicit def objectDecoder[T <: FHIRObject: LTag: ClassTag](implicit
-      params: DecoderParams = DecoderParams()): Decoder[T] =
+  implicit def objectDecoder[T <: FHIRObject: LTag: ClassTag](implicit params: DecoderParams = DecoderParams()): Decoder[T] =
     Decoder.instanceTry {
       decodeMethodFor[T]
     }

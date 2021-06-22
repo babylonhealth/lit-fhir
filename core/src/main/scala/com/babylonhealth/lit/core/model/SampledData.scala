@@ -21,8 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SampledData extends CompanionFor[SampledData] {
-  implicit def summonObjectAndCompanionSampledData1351591863(
-      o: SampledData): ObjectAndCompanion[SampledData, SampledData.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionSampledData1351591863(o: SampledData): ObjectAndCompanion[SampledData, SampledData.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = SampledData
   override type ParentType   = SampledData
   override val baseType: CompanionFor[ResourceType] = SampledData
@@ -114,8 +114,8 @@ object SampledData extends CompanionFor[SampledData] {
       ))
 }
 
-/** Base StructureDefinition for SampledData Type: A series of measurements taken by a device, with upper and lower
-  * limits. There may be more than one dimension in the data.
+/** Base StructureDefinition for SampledData Type: A series of measurements taken by a device, with upper and lower limits. There
+  * may be more than one dimension in the data.
   *
   * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
   * resource.)
@@ -123,33 +123,32 @@ object SampledData extends CompanionFor[SampledData] {
   * @constructor
   *   Introduces the fields data, origin, period, factor, lowerLimit, upperLimit, dimensions.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param data
-  *   - A series of data points which are decimal values separated by a single space (character u20). The special values
-  *   "E" (error), "L" (below detection limit) and "U" (above detection limit) can also be used in place of a decimal
-  *   value.
+  *   - A series of data points which are decimal values separated by a single space (character u20). The special values "E"
+  *   (error), "L" (below detection limit) and "U" (above detection limit) can also be used in place of a decimal value.
   * @param origin
-  *   - The base quantity that a measured value of zero represents. In addition, this provides the units of the entire
-  *   measurement series.
+  *   - The base quantity that a measured value of zero represents. In addition, this provides the units of the entire measurement
+  *   series.
   * @param period
   *   - The length of time between sampling times, measured in milliseconds.
   * @param factor
   *   - A correction factor that is applied to the sampled data points before they are added to the origin.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param lowerLimit
-  *   - The lower limit of detection of the measured points. This is needed if any of the data points have the value "L"
-  *   (lower than detection limit).
+  *   - The lower limit of detection of the measured points. This is needed if any of the data points have the value "L" (lower
+  *   than detection limit).
   * @param upperLimit
-  *   - The upper limit of detection of the measured points. This is needed if any of the data points have the value "U"
-  *   (higher than detection limit).
+  *   - The upper limit of detection of the measured points. This is needed if any of the data points have the value "U" (higher
+  *   than detection limit).
   * @param dimensions
-  *   - The number of sample points at each time point. If this value is greater than one, then the dimensions will be
-  *   interlaced - all the sample points for a point in time will be recorded at once.
+  *   - The number of sample points at each time point. If this value is greater than one, then the dimensions will be interlaced
+  *   - all the sample points for a point in time will be recorded at once.
   */
 @POJOBoilerplate
 class SampledData(

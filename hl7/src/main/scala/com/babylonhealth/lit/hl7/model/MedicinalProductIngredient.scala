@@ -30,24 +30,22 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
   override type ParentType   = MedicinalProductIngredient
   override val baseType: CompanionFor[ResourceType] = MedicinalProductIngredient
   override val parentType: CompanionFor[ParentType] = MedicinalProductIngredient
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductIngredient")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductIngredient")
   object SpecifiedSubstance extends CompanionFor[SpecifiedSubstance] {
     implicit def summonObjectAndCompanionSpecifiedSubstance_2017027232(
-        o: SpecifiedSubstance): ObjectAndCompanion[SpecifiedSubstance, SpecifiedSubstance.type] =
-      ObjectAndCompanion(o, this)
+        o: SpecifiedSubstance): ObjectAndCompanion[SpecifiedSubstance, SpecifiedSubstance.type] = ObjectAndCompanion(o, this)
     override type ResourceType = SpecifiedSubstance
     override type ParentType   = SpecifiedSubstance
     override val parentType: CompanionFor[ResourceType] = SpecifiedSubstance
     object Strength extends CompanionFor[Strength] {
-      implicit def summonObjectAndCompanionStrength_693863080(
-          o: Strength): ObjectAndCompanion[Strength, Strength.type] = ObjectAndCompanion(o, this)
+      implicit def summonObjectAndCompanionStrength_693863080(o: Strength): ObjectAndCompanion[Strength, Strength.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Strength
       override type ParentType   = Strength
       override val parentType: CompanionFor[ResourceType] = Strength
       object ReferenceStrength extends CompanionFor[ReferenceStrength] {
         implicit def summonObjectAndCompanionReferenceStrength_981305079(
-            o: ReferenceStrength): ObjectAndCompanion[ReferenceStrength, ReferenceStrength.type] =
-          ObjectAndCompanion(o, this)
+            o: ReferenceStrength): ObjectAndCompanion[ReferenceStrength, ReferenceStrength.type] = ObjectAndCompanion(o, this)
         override type ResourceType = ReferenceStrength
         override type ParentType   = ReferenceStrength
         override val parentType: CompanionFor[ResourceType] = ReferenceStrength
@@ -75,15 +73,7 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
         def unapply(
             o: ReferenceStrength): Option[(Option[String], LitSeq[CodeableConcept], Ratio, LitSeq[Extension], Option[CodeableConcept], Option[Ratio], Option[String], LitSeq[Extension])] =
           Some(
-            (
-              o.id,
-              o.country,
-              o.strength,
-              o.extension,
-              o.substance,
-              o.strengthLowLimit,
-              o.measurementPoint,
-              o.modifierExtension))
+            (o.id, o.country, o.strength, o.extension, o.substance, o.strengthLowLimit, o.measurementPoint, o.modifierExtension))
         val id: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
         val country: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -141,8 +131,7 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
           val strengthLowLimit: Option[Ratio] = None,
           val measurementPoint: Option[String] = None,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
@@ -263,8 +252,7 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
         val presentationLowLimit: Option[Ratio] = None,
         val concentrationLowLimit: Option[Ratio] = None,
         val referenceStrength: LitSeq[Strength.ReferenceStrength] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -301,13 +289,8 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val strength: FHIRComponentFieldMeta[LitSeq[SpecifiedSubstance.Strength]] =
-      FHIRComponentFieldMeta(
-        "strength",
-        lTagOf[LitSeq[SpecifiedSubstance.Strength]],
-        false,
-        lTagOf[SpecifiedSubstance.Strength])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, code, group, extension, confidentiality, modifierExtension, strength)
+      FHIRComponentFieldMeta("strength", lTagOf[LitSeq[SpecifiedSubstance.Strength]], false, lTagOf[SpecifiedSubstance.Strength])
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, group, extension, confidentiality, modifierExtension, strength)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: SpecifiedSubstance): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -347,8 +330,8 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Substance extends CompanionFor[Substance] {
-    implicit def summonObjectAndCompanionSubstance1154424708(
-        o: Substance): ObjectAndCompanion[Substance, Substance.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionSubstance1154424708(o: Substance): ObjectAndCompanion[Substance, Substance.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Substance
     override type ParentType   = Substance
     override val parentType: CompanionFor[ResourceType] = Substance
@@ -402,8 +385,7 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
           new Substance(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[CodeableConcept]("code", None),
-            cursor
-              .decodeAs[LitSeq[MedicinalProductIngredient.SpecifiedSubstance.Strength]]("strength", Some(LitSeq.empty)),
+            cursor.decodeAs[LitSeq[MedicinalProductIngredient.SpecifiedSubstance.Strength]]("strength", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
@@ -521,18 +503,18 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
     FHIRComponentField[Option[MedicinalProductIngredient.Substance]](substance, t.substance),
     FHIRComponentField[LitSeq[MedicinalProductIngredient.SpecifiedSubstance]](specifiedSubstance, t.specifiedSubstance)
   )
-  def extractId(t: MedicinalProductIngredient): Option[String]                   = t.id
-  def extractMeta(t: MedicinalProductIngredient): Option[Meta]                   = t.meta
-  def extractText(t: MedicinalProductIngredient): Option[Narrative]              = t.text
-  def extractRole(t: MedicinalProductIngredient): CodeableConcept                = t.role
-  def extractLanguage(t: MedicinalProductIngredient): Option[LANGUAGES]          = t.language
-  def extractContained(t: MedicinalProductIngredient): LitSeq[Resource]          = t.contained
-  def extractExtension(t: MedicinalProductIngredient): LitSeq[Extension]         = t.extension
-  def extractIdentifier(t: MedicinalProductIngredient): Option[Identifier]       = t.identifier
-  def extractManufacturer(t: MedicinalProductIngredient): LitSeq[Reference]      = t.manufacturer
-  def extractImplicitRules(t: MedicinalProductIngredient): Option[UriStr]        = t.implicitRules
-  def extractModifierExtension(t: MedicinalProductIngredient): LitSeq[Extension] = t.modifierExtension
-  def extractAllergenicIndicator(t: MedicinalProductIngredient): Option[Boolean] = t.allergenicIndicator
+  def extractId(t: MedicinalProductIngredient): Option[String]                                      = t.id
+  def extractMeta(t: MedicinalProductIngredient): Option[Meta]                                      = t.meta
+  def extractText(t: MedicinalProductIngredient): Option[Narrative]                                 = t.text
+  def extractRole(t: MedicinalProductIngredient): CodeableConcept                                   = t.role
+  def extractLanguage(t: MedicinalProductIngredient): Option[LANGUAGES]                             = t.language
+  def extractContained(t: MedicinalProductIngredient): LitSeq[Resource]                             = t.contained
+  def extractExtension(t: MedicinalProductIngredient): LitSeq[Extension]                            = t.extension
+  def extractIdentifier(t: MedicinalProductIngredient): Option[Identifier]                          = t.identifier
+  def extractManufacturer(t: MedicinalProductIngredient): LitSeq[Reference]                         = t.manufacturer
+  def extractImplicitRules(t: MedicinalProductIngredient): Option[UriStr]                           = t.implicitRules
+  def extractModifierExtension(t: MedicinalProductIngredient): LitSeq[Extension]                    = t.modifierExtension
+  def extractAllergenicIndicator(t: MedicinalProductIngredient): Option[Boolean]                    = t.allergenicIndicator
   def extractSubstance(t: MedicinalProductIngredient): Option[MedicinalProductIngredient.Substance] = t.substance
   def extractSpecifiedSubstance(t: MedicinalProductIngredient): LitSeq[MedicinalProductIngredient.SpecifiedSubstance] =
     t.specifiedSubstance
@@ -572,8 +554,7 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Boolean]]("allergenicIndicator", Some(None)),
           cursor.decodeAs[Option[MedicinalProductIngredient.Substance]]("substance", Some(None)),
-          cursor
-            .decodeAs[LitSeq[MedicinalProductIngredient.SpecifiedSubstance]]("specifiedSubstance", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[MedicinalProductIngredient.SpecifiedSubstance]]("specifiedSubstance", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
       ))
@@ -588,13 +569,13 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param role
   *   - Ingredient role e.g. Active ingredient, excipient.
   * @param language
@@ -603,28 +584,27 @@ object MedicinalProductIngredient extends CompanionFor[MedicinalProductIngredien
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param identifier
-  *   - The identifier(s) of this Ingredient that are assigned by business processes and/or used to refer to it when a
-  *   direct URL reference to the resource itself is not appropriate.
+  *   - The identifier(s) of this Ingredient that are assigned by business processes and/or used to refer to it when a direct URL
+  *   reference to the resource itself is not appropriate.
   * @param manufacturer
   *   - Manufacturer of this Ingredient.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param allergenicIndicator
   *   - If the ingredient is a known or suspected allergen.
   * @param substance

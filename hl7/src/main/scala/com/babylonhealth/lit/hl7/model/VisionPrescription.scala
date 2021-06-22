@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object VisionPrescription extends CompanionFor[VisionPrescription] {
   implicit def summonObjectAndCompanionVisionPrescription_20967432(
-      o: VisionPrescription): ObjectAndCompanion[VisionPrescription, VisionPrescription.type] =
-    ObjectAndCompanion(o, this)
+      o: VisionPrescription): ObjectAndCompanion[VisionPrescription, VisionPrescription.type] = ObjectAndCompanion(o, this)
   override type ResourceType = VisionPrescription
   override type ParentType   = VisionPrescription
   override val baseType: CompanionFor[ResourceType] = VisionPrescription
@@ -34,8 +33,7 @@ object VisionPrescription extends CompanionFor[VisionPrescription] {
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/VisionPrescription")
   object LensSpecification extends CompanionFor[LensSpecification] {
     implicit def summonObjectAndCompanionLensSpecification_1359361219(
-        o: LensSpecification): ObjectAndCompanion[LensSpecification, LensSpecification.type] =
-      ObjectAndCompanion(o, this)
+        o: LensSpecification): ObjectAndCompanion[LensSpecification, LensSpecification.type] = ObjectAndCompanion(o, this)
     override type ResourceType = LensSpecification
     override type ParentType   = LensSpecification
     override val parentType: CompanionFor[ResourceType] = LensSpecification
@@ -60,9 +58,8 @@ object VisionPrescription extends CompanionFor[VisionPrescription] {
         modifierExtension,
         primitiveAttributes = primitiveAttributes
       )
-      def unapply(
-          o: Prism): Option[(Option[String], VISION_BASE_CODES, BigDecimal, LitSeq[Extension], LitSeq[Extension])] =
-        Some((o.id, o.base, o.amount, o.extension, o.modifierExtension))
+      def unapply(o: Prism): Option[(Option[String], VISION_BASE_CODES, BigDecimal, LitSeq[Extension], LitSeq[Extension])] = Some(
+        (o.id, o.base, o.amount, o.extension, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
       val base: FHIRComponentFieldMeta[VISION_BASE_CODES] =
@@ -104,8 +101,7 @@ object VisionPrescription extends CompanionFor[VisionPrescription] {
         val amount: BigDecimal,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -397,24 +393,23 @@ object VisionPrescription extends CompanionFor[VisionPrescription] {
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[NonEmptyLitSeq[VisionPrescription.LensSpecification]](lensSpecification, t.lensSpecification)
   )
-  def extractId(t: VisionPrescription): Option[String]                   = t.id
-  def extractMeta(t: VisionPrescription): Option[Meta]                   = t.meta
-  def extractText(t: VisionPrescription): Option[Narrative]              = t.text
-  def extractStatus(t: VisionPrescription): FM_STATUS                    = t.status
-  def extractCreated(t: VisionPrescription): FHIRDateTime                = t.created
-  def extractPatient(t: VisionPrescription): Reference                   = t.patient
-  def extractLanguage(t: VisionPrescription): Option[LANGUAGES]          = t.language
-  def extractContained(t: VisionPrescription): LitSeq[Resource]          = t.contained
-  def extractExtension(t: VisionPrescription): LitSeq[Extension]         = t.extension
-  def extractEncounter(t: VisionPrescription): Option[Reference]         = t.encounter
-  def extractIdentifier(t: VisionPrescription): LitSeq[Identifier]       = t.identifier
-  def extractPrescriber(t: VisionPrescription): Reference                = t.prescriber
-  def extractDateWritten(t: VisionPrescription): FHIRDateTime            = t.dateWritten
-  def extractImplicitRules(t: VisionPrescription): Option[UriStr]        = t.implicitRules
-  def extractModifierExtension(t: VisionPrescription): LitSeq[Extension] = t.modifierExtension
-  def extractLensSpecification(t: VisionPrescription): NonEmptyLitSeq[VisionPrescription.LensSpecification] =
-    t.lensSpecification
-  override val thisName: String = "VisionPrescription"
+  def extractId(t: VisionPrescription): Option[String]                                                      = t.id
+  def extractMeta(t: VisionPrescription): Option[Meta]                                                      = t.meta
+  def extractText(t: VisionPrescription): Option[Narrative]                                                 = t.text
+  def extractStatus(t: VisionPrescription): FM_STATUS                                                       = t.status
+  def extractCreated(t: VisionPrescription): FHIRDateTime                                                   = t.created
+  def extractPatient(t: VisionPrescription): Reference                                                      = t.patient
+  def extractLanguage(t: VisionPrescription): Option[LANGUAGES]                                             = t.language
+  def extractContained(t: VisionPrescription): LitSeq[Resource]                                             = t.contained
+  def extractExtension(t: VisionPrescription): LitSeq[Extension]                                            = t.extension
+  def extractEncounter(t: VisionPrescription): Option[Reference]                                            = t.encounter
+  def extractIdentifier(t: VisionPrescription): LitSeq[Identifier]                                          = t.identifier
+  def extractPrescriber(t: VisionPrescription): Reference                                                   = t.prescriber
+  def extractDateWritten(t: VisionPrescription): FHIRDateTime                                               = t.dateWritten
+  def extractImplicitRules(t: VisionPrescription): Option[UriStr]                                           = t.implicitRules
+  def extractModifierExtension(t: VisionPrescription): LitSeq[Extension]                                    = t.modifierExtension
+  def extractLensSpecification(t: VisionPrescription): NonEmptyLitSeq[VisionPrescription.LensSpecification] = t.lensSpecification
+  override val thisName: String                                                                             = "VisionPrescription"
   override val searchParams: Map[String, VisionPrescription => Seq[Any]] = Map(
     "datewritten" -> (obj => Seq(obj.dateWritten)),
     "status"      -> (obj => Seq(obj.status)),
@@ -477,13 +472,13 @@ object VisionPrescription extends CompanionFor[VisionPrescription] {
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param status
   *   - The status of the resource instance.
   * @param created
@@ -496,13 +491,13 @@ object VisionPrescription extends CompanionFor[VisionPrescription] {
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param encounter
-  *   - A reference to a resource that identifies the particular occurrence of contact between patient and health care
-  *   provider during which the prescription was issued.
+  *   - A reference to a resource that identifies the particular occurrence of contact between patient and health care provider
+  *   during which the prescription was issued.
   * @param identifier
   *   - A unique identifier assigned to this vision prescription.
   * @param prescriber
@@ -510,21 +505,20 @@ object VisionPrescription extends CompanionFor[VisionPrescription] {
   * @param dateWritten
   *   - The date (and perhaps time) when the prescription was written.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param lensSpecification
-  *   - Contain the details of the individual lens specifications and serves as the authorization for the fullfillment
-  *   by certified professionals.
+  *   - Contain the details of the individual lens specifications and serves as the authorization for the fullfillment by
+  *   certified professionals.
   */
 @POJOBoilerplate
 class VisionPrescription(

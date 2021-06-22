@@ -23,16 +23,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Parameters extends CompanionFor[Parameters] {
-  implicit def summonObjectAndCompanionParameters313477919(
-      o: Parameters): ObjectAndCompanion[Parameters, Parameters.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionParameters313477919(o: Parameters): ObjectAndCompanion[Parameters, Parameters.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Parameters
   override type ParentType   = Parameters
   override val baseType: CompanionFor[ResourceType] = Parameters
   override val parentType: CompanionFor[ParentType] = Parameters
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Parameters")
   object Parameter extends CompanionFor[Parameter] {
-    implicit def summonObjectAndCompanionParameter581972308(
-        o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionParameter581972308(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Parameter
     override type ParentType   = Parameter
     override val parentType: CompanionFor[ResourceType] = Parameter
@@ -169,8 +169,8 @@ object Parameters extends CompanionFor[Parameters] {
       ))
 }
 
-/** This resource is a non-persisted resource used to pass information into and back from an
-  * [operation](operations.html). It has no other use, and there is no RESTful endpoint associated with it.
+/** This resource is a non-persisted resource used to pass information into and back from an [operation](operations.html). It has
+  * no other use, and there is no RESTful endpoint associated with it.
   *
   * Subclass of [[core.model.Resource]] (This is the base resource type for everything.)
   *
@@ -179,14 +179,14 @@ object Parameters extends CompanionFor[Parameters] {
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param language
   *   - The base language in which the resource is written.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param parameter
   *   - A parameter passed to or received from the operation.
   */

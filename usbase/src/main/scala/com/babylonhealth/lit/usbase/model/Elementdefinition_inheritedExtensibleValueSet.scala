@@ -23,8 +23,7 @@ import com.babylonhealth.lit.usbase.UnionAliases._
 import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
-object Elementdefinition_inheritedExtensibleValueSet
-    extends CompanionFor[Elementdefinition_inheritedExtensibleValueSet] {
+object Elementdefinition_inheritedExtensibleValueSet extends CompanionFor[Elementdefinition_inheritedExtensibleValueSet] {
   implicit def summonObjectAndCompanionElementdefinition_inheritedExtensibleValueSet_1619388385(
       o: Elementdefinition_inheritedExtensibleValueSet): ObjectAndCompanion[Elementdefinition_inheritedExtensibleValueSet, Elementdefinition_inheritedExtensibleValueSet.type] =
     ObjectAndCompanion(o, this)
@@ -58,15 +57,12 @@ object Elementdefinition_inheritedExtensibleValueSet
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Elementdefinition_inheritedExtensibleValueSet.ValueChoice](value, t.value.get.toSubRef)
     ))
-  override def fields(t: Elementdefinition_inheritedExtensibleValueSet): Seq[FHIRComponentField[_]] = fieldsFromParent(
-    t).get
-  def extractId(t: Elementdefinition_inheritedExtensibleValueSet): Option[String] = t.id
-  def extractValue(
-      t: Elementdefinition_inheritedExtensibleValueSet): Elementdefinition_inheritedExtensibleValueSet.ValueChoice =
+  override def fields(t: Elementdefinition_inheritedExtensibleValueSet): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Elementdefinition_inheritedExtensibleValueSet): Option[String]                   = t.id
+  def extractValue(t: Elementdefinition_inheritedExtensibleValueSet): Elementdefinition_inheritedExtensibleValueSet.ValueChoice =
     t.value.get.toSubRef
   override val thisName: String = "Elementdefinition_inheritedExtensibleValueSet"
-  override val searchParams: Map[String, Elementdefinition_inheritedExtensibleValueSet => Seq[Any]] =
-    Extension.searchParams
+  override val searchParams: Map[String, Elementdefinition_inheritedExtensibleValueSet => Seq[Any]] = Extension.searchParams
   def unapply(
       o: Elementdefinition_inheritedExtensibleValueSet): Option[(Option[String], Elementdefinition_inheritedExtensibleValueSet.ValueChoice)] =
     Some((o.id, o.value.get.toSubRef))
@@ -81,20 +77,19 @@ object Elementdefinition_inheritedExtensibleValueSet
       ))
 }
 
-/** A reference to an extensible value set specified in a parent profie in order to allow a conformance checking tool to
-  * validate that a code not in the extensible value set of the profile is not violating rules defined by parent profile
-  * bindings.
+/** A reference to an extensible value set specified in a parent profie in order to allow a conformance checking tool to validate
+  * that a code not in the extensible value set of the profile is not violating rules defined by parent profile bindings.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

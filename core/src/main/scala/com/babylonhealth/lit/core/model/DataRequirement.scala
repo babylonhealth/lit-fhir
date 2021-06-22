@@ -29,8 +29,8 @@ object DataRequirement extends CompanionFor[DataRequirement] {
   override val parentType: CompanionFor[ParentType] = DataRequirement
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DataRequirement")
   object DateFilter extends CompanionFor[DateFilter] {
-    implicit def summonObjectAndCompanionDateFilter167096238(
-        o: DateFilter): ObjectAndCompanion[DateFilter, DateFilter.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionDateFilter167096238(o: DateFilter): ObjectAndCompanion[DateFilter, DateFilter.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = DateFilter
     override type ParentType   = DateFilter
     override val parentType: CompanionFor[ResourceType] = DateFilter
@@ -63,7 +63,7 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val searchParam: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("searchParam", lTagOf[Option[String]], false, lTagOf[String])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, path, value, extension, searchParam)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, path, value, extension, searchParam)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: DateFilter): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -97,8 +97,8 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object CodeFilter extends CompanionFor[CodeFilter] {
-    implicit def summonObjectAndCompanionCodeFilter540025153(
-        o: CodeFilter): ObjectAndCompanion[CodeFilter, CodeFilter.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionCodeFilter540025153(o: CodeFilter): ObjectAndCompanion[CodeFilter, CodeFilter.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = CodeFilter
     override type ParentType   = CodeFilter
     override val parentType: CompanionFor[ResourceType] = CodeFilter
@@ -171,8 +171,7 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Sort extends CompanionFor[Sort] {
-    implicit def summonObjectAndCompanionSort725645701(o: Sort): ObjectAndCompanion[Sort, Sort.type] =
-      ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionSort725645701(o: Sort): ObjectAndCompanion[Sort, Sort.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Sort
     override type ParentType   = Sort
     override val parentType: CompanionFor[ResourceType] = Sort
@@ -199,7 +198,7 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val direction: FHIRComponentFieldMeta[SORT_DIRECTION] =
       FHIRComponentFieldMeta("direction", lTagOf[SORT_DIRECTION], false, lTagOf[SORT_DIRECTION])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, path, extension, direction)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, path, extension, direction)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Sort): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -272,17 +271,9 @@ object DataRequirement extends CompanionFor[DataRequirement] {
   val sort: FHIRComponentFieldMeta[LitSeq[DataRequirement.Sort]] =
     FHIRComponentFieldMeta("sort", lTagOf[LitSeq[DataRequirement.Sort]], false, lTagOf[DataRequirement.Sort])
   val codeFilter: FHIRComponentFieldMeta[LitSeq[DataRequirement.CodeFilter]] =
-    FHIRComponentFieldMeta(
-      "codeFilter",
-      lTagOf[LitSeq[DataRequirement.CodeFilter]],
-      false,
-      lTagOf[DataRequirement.CodeFilter])
+    FHIRComponentFieldMeta("codeFilter", lTagOf[LitSeq[DataRequirement.CodeFilter]], false, lTagOf[DataRequirement.CodeFilter])
   val dateFilter: FHIRComponentFieldMeta[LitSeq[DataRequirement.DateFilter]] =
-    FHIRComponentFieldMeta(
-      "dateFilter",
-      lTagOf[LitSeq[DataRequirement.DateFilter]],
-      false,
-      lTagOf[DataRequirement.DateFilter])
+    FHIRComponentFieldMeta("dateFilter", lTagOf[LitSeq[DataRequirement.DateFilter]], false, lTagOf[DataRequirement.DateFilter])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
     Seq(id, `type`, limit, profile, extension, subject, mustSupport, sort, codeFilter, dateFilter)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
@@ -311,8 +302,7 @@ object DataRequirement extends CompanionFor[DataRequirement] {
   override val thisName: String                                                 = "DataRequirement"
   def unapply(
       o: DataRequirement): Option[(Option[String], ALL_TYPES, Option[PositiveInt], LitSeq[Canonical], LitSeq[Extension], Option[DataRequirement.SubjectChoice], LitSeq[String], LitSeq[DataRequirement.Sort], LitSeq[DataRequirement.CodeFilter], LitSeq[DataRequirement.DateFilter])] =
-    Some(
-      (o.id, o.`type`, o.limit, o.profile, o.extension, o.subject, o.mustSupport, o.sort, o.codeFilter, o.dateFilter))
+    Some((o.id, o.`type`, o.limit, o.profile, o.extension, o.subject, o.mustSupport, o.sort, o.codeFilter, o.dateFilter))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[DataRequirement] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -332,8 +322,8 @@ object DataRequirement extends CompanionFor[DataRequirement] {
       ))
 }
 
-/** Base StructureDefinition for DataRequirement Type: Describes a required data item for evaluation in terms of the
-  * type of data, and optional code or date-based filters of the data.
+/** Base StructureDefinition for DataRequirement Type: Describes a required data item for evaluation in terms of the type of data,
+  * and optional code or date-based filters of the data.
   *
   * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
   * resource.)
@@ -341,39 +331,36 @@ object DataRequirement extends CompanionFor[DataRequirement] {
   * @constructor
   *   Introduces the fields `type`, limit, profile, subject, mustSupport, sort, codeFilter, dateFilter.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param `type`
-  *   - The type of the required data, specified as the type name of a resource. For profiles, this value is set to the
-  *   type of the base resource of the profile.
+  *   - The type of the required data, specified as the type name of a resource. For profiles, this value is set to the type of
+  *   the base resource of the profile.
   * @param limit
   *   - Specifies a maximum number of results that are required (uses the _count search parameter).
   * @param profile
   *   - The profile of the required data, specified as the uri of the profile definition.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the element. To make
-  *   the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use
-  *   of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as
-  *   part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param subject
   *   - The intended subjects of the data requirement. If this element is not provided, a Patient subject is assumed.
   * @param mustSupport
-  *   - Indicates that specific elements of the type are referenced by the knowledge module and must be supported by the
-  *   consumer in order to obtain an effective evaluation. This does not mean that a value is required for this element,
-  *   only that the consuming system must understand the element and be able to provide values for it if they are
-  *   available. The value of mustSupport SHALL be a FHIRPath resolveable on the type of the DataRequirement. The path
-  *   SHALL consist only of identifiers, constant indexers, and .resolve() (see the [Simple FHIRPath
-  *   Profile](fhirpath.html#simple) for full details).
+  *   - Indicates that specific elements of the type are referenced by the knowledge module and must be supported by the consumer
+  *   in order to obtain an effective evaluation. This does not mean that a value is required for this element, only that the
+  *   consuming system must understand the element and be able to provide values for it if they are available. The value of
+  *   mustSupport SHALL be a FHIRPath resolveable on the type of the DataRequirement. The path SHALL consist only of identifiers,
+  *   constant indexers, and .resolve() (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).
   * @param sort
   *   - Specifies the order of the results to be returned.
   * @param codeFilter
-  *   - Code filters specify additional constraints on the data, specifying the value set of interest for a particular
-  *   element of the data. Each code filter defines an additional constraint on the data, i.e. code filters are AND'ed,
-  *   not OR'ed.
+  *   - Code filters specify additional constraints on the data, specifying the value set of interest for a particular element of
+  *   the data. Each code filter defines an additional constraint on the data, i.e. code filters are AND'ed, not OR'ed.
   * @param dateFilter
-  *   - Date filters specify additional constraints on the data in terms of the applicable date range for specific
-  *   elements. Each date filter specifies an additional constraint on the data, i.e. date filters are AND'ed, not
-  *   OR'ed.
+  *   - Date filters specify additional constraints on the data in terms of the applicable date range for specific elements. Each
+  *   date filter specifies an additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
   */
 @POJOBoilerplate
 class DataRequirement(

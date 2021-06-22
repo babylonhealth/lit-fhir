@@ -25,13 +25,12 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_deprecated extends CompanionFor[Valueset_deprecated] {
   implicit def summonObjectAndCompanionValueset_deprecated1627556611(
-      o: Valueset_deprecated): ObjectAndCompanion[Valueset_deprecated, Valueset_deprecated.type] =
-    ObjectAndCompanion(o, this)
+      o: Valueset_deprecated): ObjectAndCompanion[Valueset_deprecated, Valueset_deprecated.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/valueset-deprecated")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/valueset-deprecated")
   def apply(
       id: Option[String] = None,
       value: Boolean,
@@ -56,8 +55,7 @@ object Valueset_deprecated extends CompanionFor[Valueset_deprecated] {
   def extractValue(t: Valueset_deprecated): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                           = "Valueset_deprecated"
   override val searchParams: Map[String, Valueset_deprecated => Seq[Any]] = Extension.searchParams
-  def unapply(o: Valueset_deprecated): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
+  def unapply(o: Valueset_deprecated): Option[(Option[String], Boolean)]  = Some((o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_deprecated] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,19 +67,19 @@ object Valueset_deprecated extends CompanionFor[Valueset_deprecated] {
       ))
 }
 
-/** if ture, indicates that the concept is deprecated from the value set - that is, it should not be used, and is
-  * planned to be withdrawn.
+/** if ture, indicates that the concept is deprecated from the value set - that is, it should not be used, and is planned to be
+  * withdrawn.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

@@ -31,8 +31,7 @@ object Iso21090_ADXP_streetAddressLine extends CompanionFor[Iso21090_ADXP_street
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some(
-    "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetAddressLine")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetAddressLine")
   def apply(
       id: Option[String] = None,
       value: String,
@@ -54,8 +53,8 @@ object Iso21090_ADXP_streetAddressLine extends CompanionFor[Iso21090_ADXP_street
     ))
   override def fields(t: Iso21090_ADXP_streetAddressLine): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Iso21090_ADXP_streetAddressLine): Option[String]                   = t.id
-  def extractValue(t: Iso21090_ADXP_streetAddressLine): String = t.value.get.toSubRefNonUnion[String]
-  override val thisName: String                                = "Iso21090_ADXP_streetAddressLine"
+  def extractValue(t: Iso21090_ADXP_streetAddressLine): String                        = t.value.get.toSubRefNonUnion[String]
+  override val thisName: String                                                       = "Iso21090_ADXP_streetAddressLine"
   override val searchParams: Map[String, Iso21090_ADXP_streetAddressLine => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_ADXP_streetAddressLine): Option[(Option[String], String)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[String]))
@@ -70,19 +69,19 @@ object Iso21090_ADXP_streetAddressLine extends CompanionFor[Iso21090_ADXP_street
       ))
 }
 
-/** A street address line is frequently used instead of breaking out building number, street name, street type, etc. An
-  * address generally has only a delivery address line or a street address line, but not both.
+/** A street address line is frequently used instead of breaking out building number, street name, street type, etc. An address
+  * generally has only a delivery address line or a street address line, but not both.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

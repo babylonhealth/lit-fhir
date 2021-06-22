@@ -25,13 +25,12 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Organization_period extends CompanionFor[Organization_period] {
   implicit def summonObjectAndCompanionOrganization_period791217034(
-      o: Organization_period): ObjectAndCompanion[Organization_period, Organization_period.type] =
-    ObjectAndCompanion(o, this)
+      o: Organization_period): ObjectAndCompanion[Organization_period, Organization_period.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/organization-period")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/organization-period")
   def apply(
       id: Option[String] = None,
       value: Period,
@@ -56,8 +55,7 @@ object Organization_period extends CompanionFor[Organization_period] {
   def extractValue(t: Organization_period): Period                        = t.value.get.toSubRefNonUnion[Period]
   override val thisName: String                                           = "Organization_period"
   override val searchParams: Map[String, Organization_period => Seq[Any]] = Extension.searchParams
-  def unapply(o: Organization_period): Option[(Option[String], Period)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Period]))
+  def unapply(o: Organization_period): Option[(Option[String], Period)]   = Some((o.id, o.value.get.toSubRefNonUnion[Period]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Organization_period] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +69,16 @@ object Organization_period extends CompanionFor[Organization_period] {
 
 /** The date range that this organization should be considered available.
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value

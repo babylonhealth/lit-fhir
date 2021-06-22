@@ -60,16 +60,12 @@ class DateTimeSerdeTest extends AnyFreeSpec with Matchers {
     "handles time string" in {
       checkIdempotency(
         timeStr,
-        FHIRDateTime(
-          ZonedDateTime.of(2019, 7, 19, 19, 37, 42, 7 * 1000000, ZoneOffset.UTC),
-          FHIRDateTimeSpecificity.Time))
+        FHIRDateTime(ZonedDateTime.of(2019, 7, 19, 19, 37, 42, 7 * 1000000, ZoneOffset.UTC), FHIRDateTimeSpecificity.Time))
     }
     "handles timezone string (1)" in {
       checkIdempotency(
         timeZonedPlusStr,
-        FHIRDateTime(
-          ZonedDateTime.of(2019, 7, 19, 19, 37, 42, 6 * 1000000, ZoneOffset.ofHours(4)),
-          FHIRDateTimeSpecificity.Time))
+        FHIRDateTime(ZonedDateTime.of(2019, 7, 19, 19, 37, 42, 6 * 1000000, ZoneOffset.ofHours(4)), FHIRDateTimeSpecificity.Time))
     }
     "handles timezone string (2)" in {
       checkIdempotency(

@@ -32,16 +32,15 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImplementationGuide extends CompanionFor[ImplementationGuide] {
   implicit def summonObjectAndCompanionImplementationGuide_1287252645(
-      o: ImplementationGuide): ObjectAndCompanion[ImplementationGuide, ImplementationGuide.type] =
-    ObjectAndCompanion(o, this)
+      o: ImplementationGuide): ObjectAndCompanion[ImplementationGuide, ImplementationGuide.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ImplementationGuide
   override type ParentType   = ImplementationGuide
   override val baseType: CompanionFor[ResourceType] = ImplementationGuide
   override val parentType: CompanionFor[ParentType] = ImplementationGuide
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/ImplementationGuide")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImplementationGuide")
   object Definition extends CompanionFor[Definition] {
-    implicit def summonObjectAndCompanionDefinition_24755189(
-        o: Definition): ObjectAndCompanion[Definition, Definition.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionDefinition_24755189(o: Definition): ObjectAndCompanion[Definition, Definition.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Definition
     override type ParentType   = Definition
     override val parentType: CompanionFor[ResourceType] = Definition
@@ -92,8 +91,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         FHIRComponentFieldMeta("generation", lTagOf[GUIDE_PAGE_GENERATION], false, lTagOf[GUIDE_PAGE_GENERATION])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-        Seq(id, page, title, name, extension, generation, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, page, title, name, extension, generation, modifierExtension)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Page): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
@@ -130,12 +128,11 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val generation: GUIDE_PAGE_GENERATION,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Grouping extends CompanionFor[Grouping] {
-      implicit def summonObjectAndCompanionGrouping_1891537565(
-          o: Grouping): ObjectAndCompanion[Grouping, Grouping.type] = ObjectAndCompanion(o, this)
+      implicit def summonObjectAndCompanionGrouping_1891537565(o: Grouping): ObjectAndCompanion[Grouping, Grouping.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Grouping
       override type ParentType   = Grouping
       override val parentType: CompanionFor[ResourceType] = Grouping
@@ -154,8 +151,8 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         modifierExtension,
         primitiveAttributes = primitiveAttributes
       )
-      def unapply(o: Grouping): Option[(Option[String], String, LitSeq[Extension], Option[String], LitSeq[Extension])] =
-        Some((o.id, o.name, o.extension, o.description, o.modifierExtension))
+      def unapply(o: Grouping): Option[(Option[String], String, LitSeq[Extension], Option[String], LitSeq[Extension])] = Some(
+        (o.id, o.name, o.extension, o.description, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
       val name: FHIRComponentFieldMeta[String] =
@@ -197,12 +194,11 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val description: Option[String] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Resource extends CompanionFor[Resource] {
-      implicit def summonObjectAndCompanionResource_1972596763(
-          o: Resource): ObjectAndCompanion[Resource, Resource.type] = ObjectAndCompanion(o, this)
+      implicit def summonObjectAndCompanionResource_1972596763(o: Resource): ObjectAndCompanion[Resource, Resource.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Resource
       override type ParentType   = Resource
       override val parentType: CompanionFor[ResourceType] = Resource
@@ -232,17 +228,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       )
       def unapply(
           o: Resource): Option[(Option[String], Option[String], LitSeq[Extension], Reference, Option[Resource.ExampleChoice], Option[Id], LitSeq[FHIR_VERSION], Option[String], LitSeq[Extension])] =
-        Some(
-          (
-            o.id,
-            o.name,
-            o.extension,
-            o.reference,
-            o.example,
-            o.groupingId,
-            o.fhirVersion,
-            o.description,
-            o.modifierExtension))
+        Some((o.id, o.name, o.extension, o.reference, o.example, o.groupingId, o.fhirVersion, o.description, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
       val name: FHIRComponentFieldMeta[Option[String]] =
@@ -305,12 +291,11 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         val fhirVersion: LitSeq[FHIR_VERSION] = LitSeq.empty,
         val description: Option[String] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Template extends CompanionFor[Template] {
-      implicit def summonObjectAndCompanionTemplate_797767143(
-          o: Template): ObjectAndCompanion[Template, Template.type] = ObjectAndCompanion(o, this)
+      implicit def summonObjectAndCompanionTemplate_797767143(o: Template): ObjectAndCompanion[Template, Template.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Template
       override type ParentType   = Template
       override val parentType: CompanionFor[ResourceType] = Template
@@ -331,8 +316,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         modifierExtension,
         primitiveAttributes = primitiveAttributes
       )
-      def unapply(
-          o: Template): Option[(Option[String], Code, Option[String], String, LitSeq[Extension], LitSeq[Extension])] =
+      def unapply(o: Template): Option[(Option[String], Code, Option[String], String, LitSeq[Extension], LitSeq[Extension])] =
         Some((o.id, o.code, o.scope, o.source, o.extension, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -380,12 +364,11 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         val source: String,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Parameter extends CompanionFor[Parameter] {
-      implicit def summonObjectAndCompanionParameter2003777080(
-          o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] = ObjectAndCompanion(o, this)
+      implicit def summonObjectAndCompanionParameter2003777080(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Parameter
       override type ParentType   = Parameter
       override val parentType: CompanionFor[ResourceType] = Parameter
@@ -404,8 +387,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         modifierExtension,
         primitiveAttributes = primitiveAttributes
       )
-      def unapply(
-          o: Parameter): Option[(Option[String], GUIDE_PARAMETER_CODE, String, LitSeq[Extension], LitSeq[Extension])] =
+      def unapply(o: Parameter): Option[(Option[String], GUIDE_PARAMETER_CODE, String, LitSeq[Extension], LitSeq[Extension])] =
         Some((o.id, o.code, o.value, o.extension, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -448,8 +430,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         val value: String,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -486,11 +467,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
     val grouping: FHIRComponentFieldMeta[LitSeq[Definition.Grouping]] =
       FHIRComponentFieldMeta("grouping", lTagOf[LitSeq[Definition.Grouping]], false, lTagOf[Definition.Grouping])
     val resource: FHIRComponentFieldMeta[NonEmptyLitSeq[Definition.Resource]] =
-      FHIRComponentFieldMeta(
-        "resource",
-        lTagOf[NonEmptyLitSeq[Definition.Resource]],
-        false,
-        lTagOf[Definition.Resource])
+      FHIRComponentFieldMeta("resource", lTagOf[NonEmptyLitSeq[Definition.Resource]], false, lTagOf[Definition.Resource])
     val template: FHIRComponentFieldMeta[LitSeq[Definition.Template]] =
       FHIRComponentFieldMeta("template", lTagOf[LitSeq[Definition.Template]], false, lTagOf[Definition.Template])
     val parameter: FHIRComponentFieldMeta[LitSeq[Definition.Parameter]] =
@@ -568,8 +545,8 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         primitiveAttributes = primitiveAttributes
       )
       def unapply(
-          o: Page): Option[(Option[String], String, Option[String], LitSeq[String], LitSeq[Extension], LitSeq[Extension])] =
-        Some((o.id, o.name, o.title, o.anchor, o.extension, o.modifierExtension))
+          o: Page): Option[(Option[String], String, Option[String], LitSeq[String], LitSeq[Extension], LitSeq[Extension])] = Some(
+        (o.id, o.name, o.title, o.anchor, o.extension, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
       val name: FHIRComponentFieldMeta[String] =
@@ -616,8 +593,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         val anchor: LitSeq[String] = LitSeq.empty,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Resource extends CompanionFor[Resource] {
       implicit def summonObjectAndCompanionResource695211414(o: Resource): ObjectAndCompanion[Resource, Resource.type] =
@@ -658,8 +634,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         FHIRComponentFieldMeta("relativePath", lTagOf[Option[UrlStr]], false, lTagOf[UrlStr])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-        Seq(id, extension, reference, example, relativePath, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, reference, example, relativePath, modifierExtension)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Resource): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
@@ -693,8 +668,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         val example: Option[Resource.ExampleChoice] = None,
         val relativePath: Option[UrlStr] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -780,8 +754,8 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object DependsOn extends CompanionFor[DependsOn] {
-    implicit def summonObjectAndCompanionDependsOn1096932494(
-        o: DependsOn): ObjectAndCompanion[DependsOn, DependsOn.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionDependsOn1096932494(o: DependsOn): ObjectAndCompanion[DependsOn, DependsOn.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = DependsOn
     override type ParentType   = DependsOn
     override val parentType: CompanionFor[ResourceType] = DependsOn
@@ -874,8 +848,8 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(o: Global): Option[(Option[String], RESOURCE_TYPES, Canonical, LitSeq[Extension], LitSeq[Extension])] =
-      Some((o.id, o.`type`, o.profile, o.extension, o.modifierExtension))
+    def unapply(o: Global): Option[(Option[String], RESOURCE_TYPES, Canonical, LitSeq[Extension], LitSeq[Extension])] = Some(
+      (o.id, o.`type`, o.profile, o.extension, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val `type`: FHIRComponentFieldMeta[RESOURCE_TYPES] =
@@ -1029,11 +1003,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val global: FHIRComponentFieldMeta[LitSeq[ImplementationGuide.Global]] =
-    FHIRComponentFieldMeta(
-      "global",
-      lTagOf[LitSeq[ImplementationGuide.Global]],
-      false,
-      lTagOf[ImplementationGuide.Global])
+    FHIRComponentFieldMeta("global", lTagOf[LitSeq[ImplementationGuide.Global]], false, lTagOf[ImplementationGuide.Global])
   val dependsOn: FHIRComponentFieldMeta[LitSeq[ImplementationGuide.DependsOn]] =
     FHIRComponentFieldMeta(
       "dependsOn",
@@ -1041,11 +1011,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       false,
       lTagOf[ImplementationGuide.DependsOn])
   val manifest: FHIRComponentFieldMeta[Option[ImplementationGuide.Manifest]] =
-    FHIRComponentFieldMeta(
-      "manifest",
-      lTagOf[Option[ImplementationGuide.Manifest]],
-      false,
-      lTagOf[ImplementationGuide.Manifest])
+    FHIRComponentFieldMeta("manifest", lTagOf[Option[ImplementationGuide.Manifest]], false, lTagOf[ImplementationGuide.Manifest])
   val definition: FHIRComponentFieldMeta[Option[ImplementationGuide.Definition]] =
     FHIRComponentFieldMeta(
       "definition",
@@ -1201,9 +1167,9 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       ))
 }
 
-/** A set of rules of how a particular interoperability or standards problem is solved - typically through the use of
-  * FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to
-  * publish a computable definition of all the parts.
+/** A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR
+  * resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a
+  * computable definition of all the parts.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
@@ -1213,35 +1179,34 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
-  *   - An absolute URI that is used to identify this implementation guide when it is referenced in a specification,
-  *   model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a
-  *   literal address at which at which an authoritative instance of this implementation guide is (or will be)
-  *   published. This URL can be the target of a canonical reference. It SHALL remain the same when the implementation
-  *   guide is stored on different servers.
+  *   - An absolute URI that is used to identify this implementation guide when it is referenced in a specification, model, design
+  *   or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at
+  *   which at which an authoritative instance of this implementation guide is (or will be) published. This URL can be the target
+  *   of a canonical reference. It SHALL remain the same when the implementation guide is stored on different servers.
   * @param meta
-  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the
-  *   content might not always be associated with version changes to the resource.
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
   * @param text
-  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of
-  *   the resource to a human. The narrative need not encode all the structured data, but is required to contain
-  *   sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may
-  *   define what content should be represented in the narrative to ensure clinical safety.
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
   * @param name
-  *   - A natural language name identifying the implementation guide. This name should be usable as an identifier for
-  *   the module by machine processing applications such as code generation.
+  *   - A natural language name identifying the implementation guide. This name should be usable as an identifier for the module
+  *   by machine processing applications such as code generation.
   * @param date
-  *   - The date (and optionally time) when the implementation guide was published. The date must change when the
-  *   business version changes and it must change if the status code changes. In addition, it should change when the
-  *   substantive content of the implementation guide changes.
+  *   - The date (and optionally time) when the implementation guide was published. The date must change when the business version
+  *   changes and it must change if the status code changes. In addition, it should change when the substantive content of the
+  *   implementation guide changes.
   * @param title
   *   - A short, descriptive, user-friendly title for the implementation guide.
   * @param status
   *   - The status of this implementation guide. Enables tracking the life-cycle of the content.
   * @param version
-  *   - The identifier that is used to identify this version of the implementation guide when it is referenced in a
-  *   specification, model, design or instance. This is an arbitrary value managed by the implementation guide author
-  *   and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed
-  *   version is not available. There is also no expectation that versions can be placed in a lexicographical sequence.
+  *   - The identifier that is used to identify this version of the implementation guide when it is referenced in a specification,
+  *   model, design or instance. This is an arbitrary value managed by the implementation guide author and is not expected to be
+  *   globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also
+  *   no expectation that versions can be placed in a lexicographical sequence.
   * @param contact
   *   - Contact details to assist a user in finding and communicating with the publisher.
   * @param license
@@ -1252,52 +1217,50 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
   *   identified independently, and nor can they have their own independent transaction scope.
   * @param extension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource. To
-  *   make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and
-  *   use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be
-  *   met as part of the definition of the extension.
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   * @param publisher
   *   - The name of the organization or individual that published the implementation guide.
   * @param copyright
-  *   - A copyright statement relating to the implementation guide and/or its contents. Copyright statements are
-  *   generally legal restrictions on the use and publishing of the implementation guide.
+  *   - A copyright statement relating to the implementation guide and/or its contents. Copyright statements are generally legal
+  *   restrictions on the use and publishing of the implementation guide.
   * @param packageId
-  *   - The NPM package name for this Implementation Guide, used in the NPM package distribution, which is the primary
-  *   mechanism by which FHIR based tooling manages IG dependencies. This value must be globally unique, and should be
-  *   assigned with care.
+  *   - The NPM package name for this Implementation Guide, used in the NPM package distribution, which is the primary mechanism
+  *   by which FHIR based tooling manages IG dependencies. This value must be globally unique, and should be assigned with care.
   * @param useContext
-  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may
-  *   be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...)
-  *   and may be used to assist with indexing and searching for appropriate implementation guide instances.
+  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be
+  *   general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be
+  *   used to assist with indexing and searching for appropriate implementation guide instances.
   * @param description
   *   - A free text natural language description of the implementation guide from a consumer's perspective.
   * @param fhirVersion
-  *   - The version(s) of the FHIR specification that this ImplementationGuide targets - e.g. describes how to use. The
-  *   value of this element is the formal version of the specification, without the revision number, e.g.
-  *   [publication].[major].[minor], which is 4.0.1. for this version.
+  *   - The version(s) of the FHIR specification that this ImplementationGuide targets - e.g. describes how to use. The value of
+  *   this element is the formal version of the specification, without the revision number, e.g. [publication].[major].[minor],
+  *   which is 4.0.1. for this version.
   * @param experimental
   *   - A Boolean value to indicate that this implementation guide is authored for testing purposes (or
   *   education/evaluation/marketing) and is not intended to be used for genuine usage.
   * @param jurisdiction
   *   - A legal or geographic region in which the implementation guide is intended to be used.
   * @param implicitRules
-  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood
-  *   when processing the content. Often, this is a reference to an implementation guide that defines the special rules
-  *   along with other profiles etc.
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
   * @param modifierExtension
-  *   - May be used to represent additional information that is not part of the basic definition of the resource and
-  *   that modifies the understanding of the element that contains it and/or the understanding of the containing
-  *   element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions
-  *   safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though
-  *   any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the
-  *   definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  *   Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot
-  *   change the meaning of modifierExtension itself).
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param global
   *   - A set of profiles that all resources covered by this implementation guide must conform to.
   * @param dependsOn
-  *   - Another implementation guide that this implementation depends on. Typically, an implementation guide uses value
-  *   sets, profiles etc.defined in other implementation guides.
+  *   - Another implementation guide that this implementation depends on. Typically, an implementation guide uses value sets,
+  *   profiles etc.defined in other implementation guides.
   * @param manifest
   *   - Information about an assembled implementation guide, created by the publication tooling.
   * @param definition

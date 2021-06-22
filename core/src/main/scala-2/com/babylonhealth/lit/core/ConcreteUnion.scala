@@ -47,9 +47,7 @@ object \/ {
 
   def lTypeTagsOf[U <: _ \/ _](implicit tt: LTag[U]): (LTag[_], LTag[_]) = {
     val (lhst, _) = getUnionParams[U]
-    assert(
-      lhst.withoutArgs =:= unappliedLTag,
-      s"Cannot destructure this union any further -- ${tt} doesn't have a union LHS")
+    assert(lhst.withoutArgs =:= unappliedLTag, s"Cannot destructure this union any further -- ${tt} doesn't have a union LHS")
     val (t1, t2) = getUnionParams(typetagFromType(lhst))
     (typetagFromType(t1), typetagFromType(t2))
   }
@@ -82,9 +80,10 @@ object \/ {
         LHS[L, R](build(t)(t1.asInstanceOf[LTag[L]], t2.asInstanceOf[LTag[R]], lTagOf[S]).asInstanceOf[L])
       else throw new RuntimeException(s"Cannot ascribe type ${str[L \/ R](uTpe)} to type ${t.getClass} ()")
     } else
-      throw new RuntimeException(s"Cannot ascribe type ${str[L \/ R](\::/[L, R])} to type ${t.getClass}:" +
-        s"  ( ${lt.tag} ) is not a union type, and does not match the runtime object's class ( ${t.getClass} ) - " +
-        s"  RHS ( ${rt.tag} ) was not considered as union type because of the LHS aggregation of X \\/ Y \\/ Z chains")
+      throw new RuntimeException(
+        s"Cannot ascribe type ${str[L \/ R](\::/[L, R])} to type ${t.getClass}:" +
+          s"  ( ${lt.tag} ) is not a union type, and does not match the runtime object's class ( ${t.getClass} ) - " +
+          s"  RHS ( ${rt.tag} ) was not considered as union type because of the LHS aggregation of X \\/ Y \\/ Z chains")
   }
 
   def lTypeSubsumesR[L <: _ \/ _: LTag, R <: _ \/ _: LTag]: Boolean = {
@@ -113,8 +112,8 @@ import com.babylonhealth.lit.core.\/.\::/
 
 /** Tends to accumulate on the left when used as Foo \/ Bar \/ Baz, so you'd have a LHS(LHS(Foo)) etc.
   *
-  * Operations on this class tend to be pretty slow because of all the <:< stuff, so avoid reification, and instead use
-  * this just for Choice[_] type parameters
+  * Operations on this class tend to be pretty slow because of all the <:< stuff, so avoid reification, and instead use this just
+  * for Choice[_] type parameters
   */
 sealed abstract class \/[L, R](implicit val ltt: LTag[L], val rtt: LTag[R]) {
   type Left  = L

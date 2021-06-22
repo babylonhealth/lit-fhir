@@ -31,7 +31,7 @@ object Observation_timeOffset extends CompanionFor[Observation_timeOffset] {
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/observation-timeOffset")
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/observation-timeOffset")
   def apply(
       id: Option[String] = None,
       value: Int,
@@ -56,8 +56,7 @@ object Observation_timeOffset extends CompanionFor[Observation_timeOffset] {
   def extractValue(t: Observation_timeOffset): Int                           = t.value.get.toSubRefNonUnion[Int]
   override val thisName: String                                              = "Observation_timeOffset"
   override val searchParams: Map[String, Observation_timeOffset => Seq[Any]] = Extension.searchParams
-  def unapply(o: Observation_timeOffset): Option[(Option[String], Int)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Int]))
+  def unapply(o: Observation_timeOffset): Option[(Option[String], Int)]      = Some((o.id, o.value.get.toSubRefNonUnion[Int]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Observation_timeOffset] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,21 +68,20 @@ object Observation_timeOffset extends CompanionFor[Observation_timeOffset] {
       ))
 }
 
-/** A specific offset time in milliseconds from the stated time in the Observation.appliesDateTime to allow for
-  * representation of sequential recording of sampled data from the same lead or data stream. For example, an ECG
-  * recorder may record sequentially 3 leads four time to receive 12-lead ECG, see [ISO
-  * 22077](https://www.iso.org/obp/ui/#iso:std:61871:en).
+/** A specific offset time in milliseconds from the stated time in the Observation.appliesDateTime to allow for representation of
+  * sequential recording of sampled data from the same lead or data stream. For example, an ECG recorder may record sequentially 3
+  * leads four time to receive 12-lead ECG, see [ISO 22077](https://www.iso.org/obp/ui/#iso:std:61871:en).
   *
-  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element -
-  * found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in
-  *   the parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes
-  *   the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
   * @param id
-  *   - Unique id for the element within a resource (for internal references). This may be any string value that does
-  *   not contain spaces.
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
   * @param url
   *   - Source of the definition for the extension code - a logical name or a URL.
   * @param value
