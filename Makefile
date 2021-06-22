@@ -18,8 +18,8 @@ benchmark:
 
 clean-scala-3:
 	$(SBT) ++3.0.0 core/clean hl7/clean usbase/clean uscore/clean core/test:clean hl7/test:clean usbase/test:clean uscore/test:clean
- # Always need to clean scala 3 build on changes r/n...
-compile-core: #clean-scala-3
+
+compile-core:
 	$(SBT) +macros/compile $(foreach i,$(ALL_MODULES),+$i/compile) fhirpath/compile
 compile-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile)
@@ -90,7 +90,7 @@ build-all-class-models-dry:
 		--javaPackageSuffix=_java \
 		--moduleDependencies="usbase<uscore" \
 		--dryRun'
-# TODO: Fix or mitigate formatting bug in core/src/test/scala-3/com/babylonhealth/lit/core/EnumTest.scala
+
 build-all-class-models:
 	$(SBT) 'project generator' 'run "generate" \
 		--models="usbase=fhir/spec/hl7.fhir.r4.examples/4.0.1/package/StructureDefinition-*;uscore=fhir/spec/hl7.fhir.us.core/3.1.0/package/StructureDefinition-*" \
