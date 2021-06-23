@@ -18,7 +18,7 @@ import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
 
 import com.babylonhealth.lit.core.ChoiceImplicits._
-import com.babylonhealth.lit.core.LitSeq
+import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.core.model.{
   CodeableConcept => LitCodeableConcept,
   Identifier => LitIdentifier,

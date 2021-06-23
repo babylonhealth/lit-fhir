@@ -185,7 +185,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
        |""".stripMargin
   }
 
-  def enumDeclaration(forceDisplayName: Boolean = false)(valueSet: String, codes: CodeValueSet): String = {
+  def scala2EnumDeclaration(forceDisplayName: Boolean = false)(valueSet: String, codes: CodeValueSet): String = {
     val enumName = EnumerationUtils.valueSetToEnumName(valueSet)
     val isExtensible: Boolean = codes.binding match {
       case BINDING_STRENGTH.EXAMPLE =>
@@ -220,7 +220,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     }
 
     s"""
-       |sealed abstract class $enumName(override val entryName: String) extends EnumEntry with Product with java.io.Serializable {
+       |sealed abstract class $enumName(override val entryName: String) extends EnumeratumBase with Product with java.io.Serializable {
        |  def display: Option[String]
        |  def system: Option[String]
        |  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
@@ -230,6 +230,46 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
        |  val values = findValues
        |${codes.codes.map(enumVal).sorted.mkString("\n")}
        |$extraCase}
+       |""".stripMargin
+  }
+  def scala3EnumDeclaration(forceDisplayName: Boolean = false)(valueSet: String, codes: CodeValueSet): String = {
+    val enumName = EnumerationUtils.valueSetToEnumName(valueSet)
+    val isExtensible: Boolean = codes.binding match {
+      case BINDING_STRENGTH.EXAMPLE =>
+        println(s"Shouldn't even be generating enums for an example binding, but tried to for $valueSet")
+        sys.exit(1)
+        ???
+      case BINDING_STRENGTH.REQUIRED => false
+      case _                         => true
+    }
+    def enumVal(v: CodeEnum) = {
+      val enumValue = if (forceDisplayName) v.shoutyCamelName.getOrElse(v.getName) else v.getName
+      val display = v.name
+        .map("Some(\"" + _.replaceAll("\\s*[\n\r]\\s*", " ").replaceAllLiterally("\"", "\\\"") + "\")")
+        .getOrElse("None")
+      val system = v.system.map(s => s"""Some("$s")""") getOrElse "None"
+      s"""  case $enumValue extends $enumName("${v.stringValue}", $display, $system)"""
+    }
+    val (extraCase, fallback) =
+      if (!isExtensible) ("", "")
+      else
+        s"""
+           |  case Other_(s: String) extends $enumName(s, Some(s"Runtime value set extension ($$s)"), None)""".stripMargin ->
+        s""" {
+           |  def fallback(s: String): $enumName = $enumName.Other_(s)
+           |}""".stripMargin
+    val objectType = if (isExtensible) s"ETypeWithFallback[$enumName] with EType" else "EType"
+
+    val reference = (codes.url, codes.version) match {
+      case (Some(url), Some(version)) if Config.useVersionedReferencesForEnums => s"$url|$version"
+      case (Some(url), _)                                                      => url
+      case _                                                                   => valueSet
+    }
+
+    s"""enum $enumName(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
+       |${codes.codes.map(enumVal).sorted.mkString("\n")}$extraCase
+       |}
+       |object $enumName extends $objectType[$enumName]("$reference") $fallback
        |""".stripMargin
   }
 
@@ -309,7 +349,10 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
 
       val companionDef =
         s"""object $className extends CompanionFor[$className] {
-           |  implicit def summonObjectAndCompanion$className${field.hashCode().toString.replace('-', '_')}(o: $className): ObjectAndCompanion[$className, $className.type] = ObjectAndCompanion(o, this)
+           |  implicit def summonObjectAndCompanion$className${field
+          .hashCode()
+          .toString
+          .replace('-', '_')}(o: $className): ObjectAndCompanion[$className, $className.type] = ObjectAndCompanion(o, this)
            |  override type ResourceType = $className
            |  override type ParentType = $className
            |  override val parentType: CompanionFor[ResourceType] = $className
@@ -385,12 +428,13 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     def wrapIfParentIsOptional(f: BaseField): String = {
       val parentWasRefButThisAint = f.parent.map(_.types.size).exists(_ > 1) && f.types.size == 1
       val parentWasMoreReffy      = f.parent.map(_.types.size) exists (_ != f.types.size)
+      def thisIsAnEnum            = f.valueEnumeration.isDefined
 
       val parentCard = f.parent.map(_.cardinality).getOrElse(f.cardinality)
 
       val reffedValue = f.cardinality.applyFunction(f.scalaName) { x =>
         if (parentWasRefButThisAint) {
-          s"choice($x)"
+          if (thisIsAnEnum) s"choiceFromEnum($x)" else s"choice($x)"
         } else if (parentWasMoreReffy) {
           s"$x.toSuperRef"
         } else {
@@ -527,7 +571,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
             ",\n",
             "\n)")
       }
-    }
+      // TODO: This final replaceAll should be removed once the fhirpath lib base can be bumped
+    }.replaceAll(".entryName", ".name")
     // comments
     val classDescription =
       topLevelClass.rawStructureDefinition.description
@@ -590,7 +635,10 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
     // build finally
     val fileStr =
       s"""object $className extends CompanionFor[$className] {
-         |  implicit def summonObjectAndCompanion$className${topLevelClass.hashCode().toString.replace('-', '_')}(o: $className): ObjectAndCompanion[$className, $className.type] = ObjectAndCompanion(o, this)
+         |  implicit def summonObjectAndCompanion$className${topLevelClass
+        .hashCode()
+        .toString
+        .replace('-', '_')}(o: $className): ObjectAndCompanion[$className, $className.type] = ObjectAndCompanion(o, this)
          |  override type ResourceType = ${topLevelClass.scalaBaseClassName}
          |  override type ParentType = $parentType
          |  override val baseType: CompanionFor[ResourceType] = ${topLevelClass.scalaBaseClassName}
@@ -651,10 +699,13 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       case "uuid"     => "_ => Decoder.decodeUUID"
       case _          => s"$s.decoder(_)"
     }
-  def genValueSetFile(pkg: String, valueSets: Map[String, CodeValueSet]): ClassGenInfo = {
+  def genValueSetFiles(pkg: String, valueSets: Map[String, CodeValueSet]): Seq[ClassGenInfo] = {
     println(
       s">> GENNING VALUE SETS FOR ${pkg}:\n${valueSets.size} valueSets, including: ${valueSets.keys.take(10).mkString(", ")}")
-    ClassGenInfo(genEnums(pkg, valueSets), "valueset_enums", pkg)
+    Seq(
+      ClassGenInfo(genScala2Enums(pkg, valueSets), "valueset_enums", pkg, Some(ScalaTarget.Scala2)),
+      ClassGenInfo(genScala3Enums(pkg, valueSets), "valueset_enums", pkg, Some(ScalaTarget.Scala3))
+    )
   }
   def genPackageObjectFiles(
       moduleDependencies: ModuleDependencies,
@@ -669,8 +720,11 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         .groupBy(_._1)
         .map { case (pkg, unions) => pkg -> unions.map { case (_, b, c) => b -> c }.toMap }
 
-    lookups.map { case (pkg, classes) =>
-      ClassGenInfo(genPackageObject(pkg, unions.getOrElse(pkg, Map.empty), classes.toMap), "package", pkg)
+    lookups.flatMap { case (pkg, classes) =>
+      Seq(
+        ClassGenInfo(genPackageObject(pkg, unions.getOrElse(pkg, Map.empty), classes.toMap, ScalaTarget.Scala2), "package", pkg, Some(ScalaTarget.Scala2)),
+        ClassGenInfo(genPackageObject(pkg, unions.getOrElse(pkg, Map.empty), classes.toMap, ScalaTarget.Scala3), "package", pkg, Some(ScalaTarget.Scala3))
+      )
     }.toSeq
   }
 
@@ -684,11 +738,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |import scala.concurrent.duration.Duration.Inf
       |import scala.concurrent.{ Await, Future, blocking }
       |import scala.jdk.CollectionConverters._
-      |import scala.reflect.runtime.universe.ModuleSymbol
       |import scala.util.Try
-      |import scala.collection.parallel.CollectionConverters._
       |
-      |import enumeratum.{ CirceEnum, Enum, EnumEntry }
       |import io.circe.{ Decoder, Encoder }
       |import io.github.classgraph.{ ClassGraph, ClassInfo, ScanResult }
       |import izumi.reflect.macrortti.{ LTag, LightTypeTag }
@@ -810,19 +861,19 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |  // TODO: Is this true? Can we make this more efficient plz?
       |  @deprecated("REALLY SLOW")
       |  val typeSuffixMap: LightTypeTag => Option[String] = {
-      |    new {
-      |      private val log: Logger = LoggerFactory.getLogger(getClass)
-      |      def doLog = {
-      |        val suffixes         = suffixTypeMap.values.toSeq
-      |        val distinctSuffixes = suffixes.distinct
-      |        if (distinctSuffixes.sizeCompare(suffixes) != 0) {
-      |          val dups = ArrayBuffer(suffixes: _*)
-      |          for (v <- distinctSuffixes) dups.remove(dups.indexOf(v))
-      |          log.info(
-      |            s"-->>> BAD INIT -- values for suffixTypeMap must be unique. Some clashes are: [${dups.take(5).mkString(", ")}]")
-      |        } else log.info("-->>> GOOD INIT -- values for suffixTypeMap are unique ")
-      |      }
-      |    }.doLog
+      |    //new {
+      |    //  private val log: Logger = LoggerFactory.getLogger(getClass)
+      |    //  def doLog = {
+      |    //    val suffixes         = suffixTypeMap.values.toSeq
+      |    //    val distinctSuffixes = suffixes.distinct
+      |    //    if (distinctSuffixes.sizeCompare(suffixes) != 0) {
+      |    //      val dups = ArrayBuffer(suffixes: _*)
+      |    //      for (v <- distinctSuffixes) dups.remove(dups.indexOf(v))
+      |    //      log.info(
+      |    //        s"-->>> BAD INIT -- values for suffixTypeMap must be unique. Some clashes are: [${dups.take(5).mkString(", ")}]")
+      |    //    } else log.info("-->>> GOOD INIT -- values for suffixTypeMap are unique ")
+      |    //  }
+      |    //}.doLog
       |    // 'assert' does not work in package objects WTF
       |    //    assert(
       |    //      suffixTypeMap.values.toSeq.distinct.sizeCompare(suffixTypeMap.values) == 0,
@@ -835,7 +886,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |    }
       |  }
       |}""".stripMargin
-  def genPackageObject(pkg: String, _unionAliases: Map[String, Seq[String]], lookups: Map[String, String]): String = {
+  def genPackageObject(pkg: String, _unionAliases: Map[String, Seq[String]], lookups: Map[String, String], scalaVersion: ScalaTarget.ScalaTarget): String = {
     val head =
       if (pkg == "core") genPackageCore
       else
@@ -848,9 +899,10 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
            |import com.babylonhealth.lit.core.model._
            |import com.babylonhealth.lit.$pkg.model._
            |""".stripMargin
+    val unionGlyph = scalaVersion match { case ScalaTarget.Scala2 => "\\/" ; case ScalaTarget.Scala3 => "|" }
     val unionAliases =
       _unionAliases.toSeq
-        .map { case (a, t) => s"type $a = ${t.mkString("\\/")}" }
+        .map { case (a, t) => s"type $a = ${t.mkString(unionGlyph)}" }
         .sorted
         .mkString("\n  ")
     s"""$head
@@ -865,16 +917,31 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
        |
        |""".stripMargin
   }
-  def genEnums(pkg: String, valueSets: Map[String, CodeValueSet]): String = {
+  def genScala2Enums(pkg: String, valueSets: Map[String, CodeValueSet]): String = {
     val enumDecl =
-      valueSets.toSeq.distinctBy(_._1.split('|').head).map((enumDeclaration() _).tupled).sorted.mkString("\n\n")
+      valueSets.toSeq.distinctBy(_._1.split('|').head).map((scala2EnumDeclaration() _).tupled).sorted.mkString("\n\n")
     s"""package com.babylonhealth.lit.$pkg
        |
        |import enumeratum.{ CirceEnum, Enum, EnumEntry }
        |
        |import com.babylonhealth.lit.core.model.Coding
-       |import com.babylonhealth.lit.core.{ FhirEnum, FhirCirceEnum, EnumWithFallback }
+       |import com.babylonhealth.lit.core.{ EnumeratumBase, FhirEnum, FhirCirceEnum, EnumWithFallback }
        |
+       |$enumDecl
+       |""".stripMargin
+  }
+  def genScala3Enums(pkg: String, valueSets: Map[String, CodeValueSet]): String = {
+    val enumDecl =
+      valueSets.toSeq.distinctBy(_._1.split('|').head).map((scala3EnumDeclaration() _).tupled).sorted.mkString("\n\n")
+    s"""package com.babylonhealth.lit.$pkg
+       |
+       |import scala.reflect.ClassTag
+       |import scala.util.{ Success, Try }
+       |
+       |import io.circe.{ Decoder, DecodingFailure, Encoder, HCursor, Json }
+       |
+       |import com.babylonhealth.lit.core.{ EnumBase, EType, ToCodingAble, ETypeWithFallback }
+       |import com.babylonhealth.lit.core.model.Coding
        |$enumDecl
        |""".stripMargin
   }

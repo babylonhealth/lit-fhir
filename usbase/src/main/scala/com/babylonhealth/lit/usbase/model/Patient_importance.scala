@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Patient_importance extends CompanionFor[Patient_importance] {
   implicit def summonObjectAndCompanionPatient_importance_1434024735(
-      o: Patient_importance): ObjectAndCompanion[Patient_importance, Patient_importance.type] =
-    ObjectAndCompanion(o, this)
+      o: Patient_importance): ObjectAndCompanion[Patient_importance, Patient_importance.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -71,16 +70,21 @@ object Patient_importance extends CompanionFor[Patient_importance] {
 
 /** The importance of the patient (e.g. VIP).
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Patient_importance(

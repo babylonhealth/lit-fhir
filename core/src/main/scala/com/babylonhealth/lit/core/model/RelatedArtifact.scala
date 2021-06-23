@@ -69,8 +69,7 @@ object RelatedArtifact extends CompanionFor[RelatedArtifact] {
     FHIRComponentFieldMeta("resource", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-    Seq(id, url, `type`, label, display, citation, document, resource, extension)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, `type`, label, display, citation, document, resource, extension)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: RelatedArtifact): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
@@ -114,20 +113,37 @@ object RelatedArtifact extends CompanionFor[RelatedArtifact] {
       ))
 }
 
-/** Base StructureDefinition for RelatedArtifact Type: Related artifacts such as additional documentation, justification, or bibliographic references.
+/** Base StructureDefinition for RelatedArtifact Type: Related artifacts such as additional documentation, justification, or
+  * bibliographic references.
   *
-  *  Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a resource.)
+  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
+  * resource.)
   *
-  * @constructor Introduces the fields url, `type`, label, display, citation, document, resource.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - A url for the artifact that can be followed to access the actual content.
-  * @param `type` - The type of relationship to the related artifact.
-  * @param label - A short label that can be used to reference the citation from elsewhere in the containing artifact, such as a footnote index.
-  * @param display - A brief description of the document or knowledge resource being referenced, suitable for display to a consumer.
-  * @param citation - A bibliographic citation for the related artifact. This text SHOULD be formatted according to an accepted citation format.
-  * @param document - The document being referenced, represented as an attachment. This is exclusive with the resource element.
-  * @param resource - The related resource, such as a library, value set, profile, or other knowledge resource.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
+  * @constructor
+  *   Introduces the fields url, `type`, label, display, citation, document, resource.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - A url for the artifact that can be followed to access the actual content.
+  * @param `type`
+  *   - The type of relationship to the related artifact.
+  * @param label
+  *   - A short label that can be used to reference the citation from elsewhere in the containing artifact, such as a footnote
+  *   index.
+  * @param display
+  *   - A brief description of the document or knowledge resource being referenced, suitable for display to a consumer.
+  * @param citation
+  *   - A bibliographic citation for the related artifact. This text SHOULD be formatted according to an accepted citation format.
+  * @param document
+  *   - The document being referenced, represented as an attachment. This is exclusive with the resource element.
+  * @param resource
+  *   - The related resource, such as a library, value set, profile, or other knowledge resource.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class RelatedArtifact(

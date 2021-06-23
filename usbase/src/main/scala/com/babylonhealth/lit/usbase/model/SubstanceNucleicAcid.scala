@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
   implicit def summonObjectAndCompanionSubstanceNucleicAcid_1070163246(
-      o: SubstanceNucleicAcid): ObjectAndCompanion[SubstanceNucleicAcid, SubstanceNucleicAcid.type] =
-    ObjectAndCompanion(o, this)
+      o: SubstanceNucleicAcid): ObjectAndCompanion[SubstanceNucleicAcid, SubstanceNucleicAcid.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SubstanceNucleicAcid
   override type ParentType   = SubstanceNucleicAcid
   override val baseType: CompanionFor[ResourceType] = SubstanceNucleicAcid
@@ -76,8 +75,7 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
         FHIRComponentFieldMeta("residueSite", lTagOf[Option[String]], false, lTagOf[String])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-        Seq(id, name, extension, identifier, residueSite, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, extension, identifier, residueSite, modifierExtension)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Sugar): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
@@ -111,8 +109,7 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
         val identifier: Option[Identifier] = None,
         val residueSite: Option[String] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Linkage extends CompanionFor[Linkage] {
       implicit def summonObjectAndCompanionLinkage_1469052777(o: Linkage): ObjectAndCompanion[Linkage, Linkage.type] =
@@ -194,8 +191,7 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
         val residueSite: Option[String] = None,
         val connectivity: Option[String] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -261,18 +257,8 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
       FHIRComponentFieldMeta("sugar", lTagOf[LitSeq[Subunit.Sugar]], false, lTagOf[Subunit.Sugar])
     val linkage: FHIRComponentFieldMeta[LitSeq[Subunit.Linkage]] =
       FHIRComponentFieldMeta("linkage", lTagOf[LitSeq[Subunit.Linkage]], false, lTagOf[Subunit.Linkage])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
-      id,
-      length,
-      subunit,
-      sequence,
-      extension,
-      fivePrime,
-      threePrime,
-      modifierExtension,
-      sequenceAttachment,
-      sugar,
-      linkage)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+      Seq(id, length, subunit, sequence, extension, fivePrime, threePrime, modifierExtension, sequenceAttachment, sugar, linkage)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Subunit): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -379,11 +365,7 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
   val oligoNucleotideType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("oligoNucleotideType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val subunit: FHIRComponentFieldMeta[LitSeq[SubstanceNucleicAcid.Subunit]] =
-    FHIRComponentFieldMeta(
-      "subunit",
-      lTagOf[LitSeq[SubstanceNucleicAcid.Subunit]],
-      false,
-      lTagOf[SubstanceNucleicAcid.Subunit])
+    FHIRComponentFieldMeta("subunit", lTagOf[LitSeq[SubstanceNucleicAcid.Subunit]], false, lTagOf[SubstanceNucleicAcid.Subunit])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
     id,
     meta,
@@ -468,25 +450,60 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
       ))
 }
 
-/** Nucleic acids are defined by three distinct elements: the base, sugar and linkage. Individual substance/moiety IDs will be created for each of these elements. The nucleotide sequence will be always entered in the 5’-3’ direction.
+/** Nucleic acids are defined by three distinct elements: the base, sugar and linkage. Individual substance/moiety IDs will be
+  * created for each of these elements. The nucleotide sequence will be always entered in the 5’-3’ direction.
   *
-  *  Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
-  * @constructor Introduces the fields sequenceType, numberOfSubunits, areaOfHybridisation, oligoNucleotideType, subunit.
-  * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
-  * @param meta - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.
-  * @param text - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.
-  * @param language - The base language in which the resource is written.
-  * @param contained - These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
-  * @param sequenceType - The type of the sequence shall be specified based on a controlled vocabulary.
-  * @param implicitRules - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.
-  * @param numberOfSubunits - The number of linear sequences of nucleotides linked through phosphodiester bonds shall be described. Subunits would be strands of nucleic acids that are tightly associated typically through Watson-Crick base pairing. NOTE: If not specified in the reference source, the assumption is that there is 1 subunit.
-  * @param modifierExtension - May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  * Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
-  * @param areaOfHybridisation - The area of hybridisation shall be described if applicable for double stranded RNA or DNA. The number associated with the subunit followed by the number associated to the residue shall be specified in increasing order. The underscore “” shall be used as separator as follows: “Subunitnumber Residue”.
-  * @param oligoNucleotideType - (TBC).
-  * @param subunit - Subunits are listed in order of decreasing length; sequences of the same length will be ordered by molecular weight; subunits that have identical sequences will be repeated multiple times.
+  * @constructor
+  *   Introduces the fields sequenceType, numberOfSubunits, areaOfHybridisation, oligoNucleotideType, subunit.
+  * @param id
+  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  * @param meta
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
+  * @param text
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
+  * @param language
+  *   - The base language in which the resource is written.
+  * @param contained
+  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   identified independently, and nor can they have their own independent transaction scope.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
+  * @param sequenceType
+  *   - The type of the sequence shall be specified based on a controlled vocabulary.
+  * @param implicitRules
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
+  * @param numberOfSubunits
+  *   - The number of linear sequences of nucleotides linked through phosphodiester bonds shall be described. Subunits would be
+  *   strands of nucleic acids that are tightly associated typically through Watson-Crick base pairing. NOTE: If not specified in
+  *   the reference source, the assumption is that there is 1 subunit.
+  * @param modifierExtension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param areaOfHybridisation
+  *   - The area of hybridisation shall be described if applicable for double stranded RNA or DNA. The number associated with the
+  *   subunit followed by the number associated to the residue shall be specified in increasing order. The underscore “” shall be
+  *   used as separator as follows: “Subunitnumber Residue”.
+  * @param oligoNucleotideType
+  *   - (TBC).
+  * @param subunit
+  *   - Subunits are listed in order of decreasing length; sequences of the same length will be ordered by molecular weight;
+  *   subunits that have identical sequences will be repeated multiple times.
   */
 @POJOBoilerplate
 class SubstanceNucleicAcid(

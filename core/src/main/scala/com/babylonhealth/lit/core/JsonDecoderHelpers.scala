@@ -1,6 +1,5 @@
 package com.babylonhealth.lit.core
 
-import scala.reflect.runtime.universe.typeOf
 import scala.util.{ Failure, Success, Try }
 
 import io.circe.CursorOp.DeleteGoParent
@@ -9,6 +8,8 @@ import izumi.reflect.macrortti.LTag
 
 import com.babylonhealth.lit.core.TagSummoners.lTypeOf
 import com.babylonhealth.lit.core.model._
+
+trait EnumBase { def name: String }
 
 trait JsonDecoderHelpers extends BaseFieldDecoders {
 
@@ -55,9 +56,7 @@ trait JsonDecoderHelpers extends BaseFieldDecoders {
         if (params.flexibleCardinality) c.downArray.success.getOrElse(c) else c.downArray
 
       val decoded = cursor.downField(fieldName).success.map(getArray).map(_.as[T].toTry.get)
-      decoded orElse default getOrElse (throw DecodingFailure(
-        s"Could not find required field $fieldName",
-        cursor.history))
+      decoded orElse default getOrElse (throw DecodingFailure(s"Could not find required field $fieldName", cursor.history))
     }
 
     def decodeAs[T: Decoder: LTag](fieldName: String, default: Option[T])(implicit params: DecoderParams): T = {
@@ -67,8 +66,7 @@ trait JsonDecoderHelpers extends BaseFieldDecoders {
         case None if params.createPhantomValues =>
           default getOrElse tryCreatePhantomType[T](fieldName)
             .fold(
-              t =>
-                throw DecodingFailure(s"No value found for required field '${fieldName}'", cursor.history).initCause(t),
+              t => throw DecodingFailure(s"No value found for required field '${fieldName}'", cursor.history).initCause(t),
               identity)
         case None =>
           default getOrElse (throw DecodingFailure(s"Could not find required field $fieldName", cursor.history))

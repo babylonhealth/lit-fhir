@@ -90,8 +90,7 @@ object StructureMap extends CompanionFor[StructureMap] {
         FHIRComponentFieldMeta("documentation", lTagOf[Option[String]], false, lTagOf[String])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-        Seq(id, name, `type`, mode, extension, documentation, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, `type`, mode, extension, documentation, modifierExtension)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Input): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
@@ -128,8 +127,7 @@ object StructureMap extends CompanionFor[StructureMap] {
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val documentation: Option[String] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Rule extends CompanionFor[Rule] {
       implicit def summonObjectAndCompanionRule_210748660(o: Rule): ObjectAndCompanion[Rule, Rule.type] =
@@ -220,11 +218,7 @@ object StructureMap extends CompanionFor[StructureMap] {
         val logMessage: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("logMessage", lTagOf[Option[String]], false, lTagOf[String])
         val defaultValue: FHIRComponentFieldMeta[Option[Source.DefaultValueChoice]] =
-          FHIRComponentFieldMeta(
-            "defaultValue",
-            lTagOf[Option[Source.DefaultValueChoice]],
-            true,
-            lTagOf[Union_1349125893])
+          FHIRComponentFieldMeta("defaultValue", lTagOf[Option[Source.DefaultValueChoice]], true, lTagOf[Union_1349125893])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
@@ -299,12 +293,11 @@ object StructureMap extends CompanionFor[StructureMap] {
           val logMessage: Option[String] = None,
           val defaultValue: Option[Source.DefaultValueChoice] = None,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Dependent extends CompanionFor[Dependent] {
-        implicit def summonObjectAndCompanionDependent1812723523(
-            o: Dependent): ObjectAndCompanion[Dependent, Dependent.type] = ObjectAndCompanion(o, this)
+        implicit def summonObjectAndCompanionDependent1812723523(o: Dependent): ObjectAndCompanion[Dependent, Dependent.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = Dependent
         override type ParentType   = Dependent
         override val parentType: CompanionFor[ResourceType] = Dependent
@@ -323,8 +316,7 @@ object StructureMap extends CompanionFor[StructureMap] {
           modifierExtension,
           primitiveAttributes = primitiveAttributes
         )
-        def unapply(
-            o: Dependent): Option[(Option[String], Id, NonEmptyLitSeq[String], LitSeq[Extension], LitSeq[Extension])] =
+        def unapply(o: Dependent): Option[(Option[String], Id, NonEmptyLitSeq[String], LitSeq[Extension], LitSeq[Extension])] =
           Some((o.id, o.name, o.variable, o.extension, o.modifierExtension))
         val id: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -336,7 +328,7 @@ object StructureMap extends CompanionFor[StructureMap] {
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, name, variable, extension, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, variable, extension, modifierExtension)
         override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Dependent): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
@@ -367,8 +359,7 @@ object StructureMap extends CompanionFor[StructureMap] {
           val variable: NonEmptyLitSeq[String],
           override val extension: LitSeq[Extension] = LitSeq.empty,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Target extends CompanionFor[Target] {
         implicit def summonObjectAndCompanionTarget557868457(o: Target): ObjectAndCompanion[Target, Target.type] =
@@ -377,8 +368,8 @@ object StructureMap extends CompanionFor[StructureMap] {
         override type ParentType   = Target
         override val parentType: CompanionFor[ResourceType] = Target
         object Parameter extends CompanionFor[Parameter] {
-          implicit def summonObjectAndCompanionParameter1829935754(
-              o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] = ObjectAndCompanion(o, this)
+          implicit def summonObjectAndCompanionParameter1829935754(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
+            ObjectAndCompanion(o, this)
           override type ResourceType = Parameter
           override type ParentType   = Parameter
           override val parentType: CompanionFor[ResourceType] = Parameter
@@ -396,9 +387,8 @@ object StructureMap extends CompanionFor[StructureMap] {
             modifierExtension,
             primitiveAttributes = primitiveAttributes
           )
-          def unapply(
-              o: Parameter): Option[(Option[String], Parameter.ValueChoice, LitSeq[Extension], LitSeq[Extension])] =
-            Some((o.id, o.value, o.extension, o.modifierExtension))
+          def unapply(o: Parameter): Option[(Option[String], Parameter.ValueChoice, LitSeq[Extension], LitSeq[Extension])] = Some(
+            (o.id, o.value, o.extension, o.modifierExtension))
           val id: FHIRComponentFieldMeta[Option[String]] =
             FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
           val value: FHIRComponentFieldMeta[Parameter.ValueChoice] =
@@ -407,7 +397,7 @@ object StructureMap extends CompanionFor[StructureMap] {
             FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
           val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
             FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-          val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, value, extension, modifierExtension)
+          val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value, extension, modifierExtension)
           override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
           override def fields(t: Parameter): Seq[FHIRComponentField[_]] = Seq(
             FHIRComponentField[Option[String]](id, t.id),
@@ -435,8 +425,7 @@ object StructureMap extends CompanionFor[StructureMap] {
             val value: Parameter.ValueChoice,
             override val extension: LitSeq[Extension] = LitSeq.empty,
             override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-            override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-              FHIRObject.emptyAtts)
+            override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
             extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
         def apply(
             id: Option[String] = None,
@@ -562,8 +551,7 @@ object StructureMap extends CompanionFor[StructureMap] {
           val contextType: Option[MAP_CONTEXT_TYPE] = None,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           val parameter: LitSeq[Target.Parameter] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
@@ -653,8 +641,7 @@ object StructureMap extends CompanionFor[StructureMap] {
         val source: NonEmptyLitSeq[Rule.Source],
         val dependent: LitSeq[Rule.Dependent] = LitSeq.empty,
         val target: LitSeq[Rule.Target] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -747,8 +734,8 @@ object StructureMap extends CompanionFor[StructureMap] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Structure extends CompanionFor[Structure] {
-    implicit def summonObjectAndCompanionStructure33291370(
-        o: Structure): ObjectAndCompanion[Structure, Structure.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionStructure33291370(o: Structure): ObjectAndCompanion[Structure, Structure.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Structure
     override type ParentType   = Structure
     override val parentType: CompanionFor[ResourceType] = Structure
@@ -788,8 +775,7 @@ object StructureMap extends CompanionFor[StructureMap] {
       FHIRComponentFieldMeta("documentation", lTagOf[Option[String]], false, lTagOf[String])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, url, mode, alias, extension, documentation, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, url, mode, alias, extension, documentation, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Structure): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -1077,36 +1063,94 @@ object StructureMap extends CompanionFor[StructureMap] {
 
 /** A Map of relationships between 2 structures that can be used to transform data.
   *
-  *  Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
-  * @constructor Introduces the fields url, name, date, title, status, `import`, version, contact, purpose, publisher, copyright, identifier, useContext, description, experimental, jurisdiction, structure, group.
-  * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
-  * @param url - An absolute URI that is used to identify this structure map when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this structure map is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the structure map is stored on different servers.
-  * @param meta - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.
-  * @param text - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.
-  * @param name - A natural language name identifying the structure map. This name should be usable as an identifier for the module by machine processing applications such as code generation.
-  * @param date - The date  (and optionally time) when the structure map was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the structure map changes.
-  * @param title - A short, descriptive, user-friendly title for the structure map.
-  * @param status - The status of this structure map. Enables tracking the life-cycle of the content.
-  * @param `import` - Other maps used by this map (canonical URLs).
-  * @param version - The identifier that is used to identify this version of the structure map when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the structure map author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence.
-  * @param contact - Contact details to assist a user in finding and communicating with the publisher.
-  * @param purpose - Explanation of why this structure map is needed and why it has been designed as it has.
-  * @param language - The base language in which the resource is written.
-  * @param contained - These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
-  * @param publisher - The name of the organization or individual that published the structure map.
-  * @param copyright - A copyright statement relating to the structure map and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the structure map.
-  * @param identifier - A formal identifier that is used to identify this structure map when it is represented in other formats, or referenced in a specification, model, design or an instance.
-  * @param useContext - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate structure map instances.
-  * @param description - A free text natural language description of the structure map from a consumer's perspective.
-  * @param experimental - A Boolean value to indicate that this structure map is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.
-  * @param jurisdiction - A legal or geographic region in which the structure map is intended to be used.
-  * @param implicitRules - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.
-  * @param modifierExtension - May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  * Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
-  * @param structure - A structure definition used by this map. The structure definition may describe instances that are converted, or the instances that are produced.
-  * @param group - Organizes the mapping into manageable chunks for human review/ease of maintenance.
+  * @constructor
+  *   Introduces the fields url, name, date, title, status, `import`, version, contact, purpose, publisher, copyright, identifier,
+  *   useContext, description, experimental, jurisdiction, structure, group.
+  * @param id
+  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  * @param url
+  *   - An absolute URI that is used to identify this structure map when it is referenced in a specification, model, design or an
+  *   instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at
+  *   which an authoritative instance of this structure map is (or will be) published. This URL can be the target of a canonical
+  *   reference. It SHALL remain the same when the structure map is stored on different servers.
+  * @param meta
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
+  * @param text
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
+  * @param name
+  *   - A natural language name identifying the structure map. This name should be usable as an identifier for the module by
+  *   machine processing applications such as code generation.
+  * @param date
+  *   - The date (and optionally time) when the structure map was published. The date must change when the business version
+  *   changes and it must change if the status code changes. In addition, it should change when the substantive content of the
+  *   structure map changes.
+  * @param title
+  *   - A short, descriptive, user-friendly title for the structure map.
+  * @param status
+  *   - The status of this structure map. Enables tracking the life-cycle of the content.
+  * @param `import`
+  *   - Other maps used by this map (canonical URLs).
+  * @param version
+  *   - The identifier that is used to identify this version of the structure map when it is referenced in a specification, model,
+  *   design or instance. This is an arbitrary value managed by the structure map author and is not expected to be globally
+  *   unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no
+  *   expectation that versions can be placed in a lexicographical sequence.
+  * @param contact
+  *   - Contact details to assist a user in finding and communicating with the publisher.
+  * @param purpose
+  *   - Explanation of why this structure map is needed and why it has been designed as it has.
+  * @param language
+  *   - The base language in which the resource is written.
+  * @param contained
+  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   identified independently, and nor can they have their own independent transaction scope.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
+  * @param publisher
+  *   - The name of the organization or individual that published the structure map.
+  * @param copyright
+  *   - A copyright statement relating to the structure map and/or its contents. Copyright statements are generally legal
+  *   restrictions on the use and publishing of the structure map.
+  * @param identifier
+  *   - A formal identifier that is used to identify this structure map when it is represented in other formats, or referenced in
+  *   a specification, model, design or an instance.
+  * @param useContext
+  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be
+  *   general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be
+  *   used to assist with indexing and searching for appropriate structure map instances.
+  * @param description
+  *   - A free text natural language description of the structure map from a consumer's perspective.
+  * @param experimental
+  *   - A Boolean value to indicate that this structure map is authored for testing purposes (or education/evaluation/marketing)
+  *   and is not intended to be used for genuine usage.
+  * @param jurisdiction
+  *   - A legal or geographic region in which the structure map is intended to be used.
+  * @param implicitRules
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
+  * @param modifierExtension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param structure
+  *   - A structure definition used by this map. The structure definition may describe instances that are converted, or the
+  *   instances that are produced.
+  * @param group
+  *   - Organizes the mapping into manageable chunks for human review/ease of maintenance.
   */
 @POJOBoilerplate
 class StructureMap(

@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Contactpoint_country extends CompanionFor[Contactpoint_country] {
   implicit def summonObjectAndCompanionContactpoint_country721919047(
-      o: Contactpoint_country): ObjectAndCompanion[Contactpoint_country, Contactpoint_country.type] =
-    ObjectAndCompanion(o, this)
+      o: Contactpoint_country): ObjectAndCompanion[Contactpoint_country, Contactpoint_country.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,8 +55,7 @@ object Contactpoint_country extends CompanionFor[Contactpoint_country] {
   def extractValue(t: Contactpoint_country): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                            = "Contactpoint_country"
   override val searchParams: Map[String, Contactpoint_country => Seq[Any]] = Extension.searchParams
-  def unapply(o: Contactpoint_country): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[String]))
+  def unapply(o: Contactpoint_country): Option[(Option[String], String)]   = Some((o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Contactpoint_country] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,18 +67,24 @@ object Contactpoint_country extends CompanionFor[Contactpoint_country] {
       ))
 }
 
-/** The country code as defined by the ITU. This extension is used when a system wishes to designate specific parts of a phone number (and potentially place constraints on which components must be present and how they're filled in).
+/** The country code as defined by the ITU. This extension is used when a system wishes to designate specific parts of a phone
+  * number (and potentially place constraints on which components must be present and how they're filled in).
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Contactpoint_country(

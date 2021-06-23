@@ -67,18 +67,25 @@ object Tz_code extends CompanionFor[Tz_code] {
       ))
 }
 
-/** An IANA timezone code for  the timezone offset per [BCP 175](https://www.iana.org/go/rfc6557). The offset is specified as part of a dateTime/instant (or using the tzOffset extension on a date if necessary). The timezone code may also be provided to allow for human display of the location associated with the offset.
+/** An IANA timezone code for the timezone offset per [BCP 175](https://www.iana.org/go/rfc6557). The offset is specified as part
+  * of a dateTime/instant (or using the tzOffset extension on a date if necessary). The timezone code may also be provided to
+  * allow for human display of the location associated with the offset.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Tz_code(

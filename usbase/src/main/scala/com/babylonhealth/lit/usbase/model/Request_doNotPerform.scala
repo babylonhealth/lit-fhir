@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Request_doNotPerform extends CompanionFor[Request_doNotPerform] {
   implicit def summonObjectAndCompanionRequest_doNotPerform_99070762(
-      o: Request_doNotPerform): ObjectAndCompanion[Request_doNotPerform, Request_doNotPerform.type] =
-    ObjectAndCompanion(o, this)
+      o: Request_doNotPerform): ObjectAndCompanion[Request_doNotPerform, Request_doNotPerform.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,8 +55,7 @@ object Request_doNotPerform extends CompanionFor[Request_doNotPerform] {
   def extractValue(t: Request_doNotPerform): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                            = "Request_doNotPerform"
   override val searchParams: Map[String, Request_doNotPerform => Seq[Any]] = Extension.searchParams
-  def unapply(o: Request_doNotPerform): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
+  def unapply(o: Request_doNotPerform): Option[(Option[String], Boolean)]  = Some((o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Request_doNotPerform] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +69,21 @@ object Request_doNotPerform extends CompanionFor[Request_doNotPerform] {
 
 /** If true indicates that the request is asking for the specified action to not occur.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Request_doNotPerform(

@@ -44,8 +44,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       override type ParentType   = Detail
       override val parentType: CompanionFor[ResourceType] = Detail
       object SubDetail extends CompanionFor[SubDetail] {
-        implicit def summonObjectAndCompanionSubDetail_1063947171(
-            o: SubDetail): ObjectAndCompanion[SubDetail, SubDetail.type] = ObjectAndCompanion(o, this)
+        implicit def summonObjectAndCompanionSubDetail_1063947171(o: SubDetail): ObjectAndCompanion[SubDetail, SubDetail.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = SubDetail
         override type ParentType   = SubDetail
         override val parentType: CompanionFor[ResourceType] = SubDetail
@@ -177,8 +177,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
           val adjudication: NonEmptyLitSeq[ClaimResponse.Item.Adjudication],
           val productOrService: CodeableConcept,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
@@ -317,8 +316,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
         val productOrService: CodeableConcept,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         val subDetail: LitSeq[Detail.SubDetail] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     type ServicedChoice = Choice[Union_0503196159]
     type LocationChoice = Choice[Union_0316522316]
@@ -591,8 +589,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-        Seq(id, value, reason, amount, category, extension, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value, reason, amount, category, extension, modifierExtension)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Adjudication): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
@@ -629,8 +626,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
         val category: CodeableConcept,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Detail extends CompanionFor[Detail] {
       implicit def summonObjectAndCompanionDetail_722948934(o: Detail): ObjectAndCompanion[Detail, Detail.type] =
@@ -639,8 +635,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       override type ParentType   = Detail
       override val parentType: CompanionFor[ResourceType] = Detail
       object SubDetail extends CompanionFor[SubDetail] {
-        implicit def summonObjectAndCompanionSubDetail_33173921(
-            o: SubDetail): ObjectAndCompanion[SubDetail, SubDetail.type] = ObjectAndCompanion(o, this)
+        implicit def summonObjectAndCompanionSubDetail_33173921(o: SubDetail): ObjectAndCompanion[SubDetail, SubDetail.type] =
+          ObjectAndCompanion(o, this)
         override type ResourceType = SubDetail
         override type ParentType   = SubDetail
         override val parentType: CompanionFor[ResourceType] = SubDetail
@@ -715,8 +711,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
           val adjudication: LitSeq[ClaimResponse.Item.Adjudication] = LitSeq.empty,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           val subDetailSequence: PositiveInt,
-          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-            FHIRObject.emptyAtts)
+          override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
@@ -796,8 +791,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
         val detailSequence: PositiveInt,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         val subDetail: LitSeq[Detail.SubDetail] = LitSeq.empty,
-        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] =
-          FHIRObject.emptyAtts)
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
@@ -832,11 +826,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val adjudication: FHIRComponentFieldMeta[NonEmptyLitSeq[Item.Adjudication]] =
-      FHIRComponentFieldMeta(
-        "adjudication",
-        lTagOf[NonEmptyLitSeq[Item.Adjudication]],
-        false,
-        lTagOf[Item.Adjudication])
+      FHIRComponentFieldMeta("adjudication", lTagOf[NonEmptyLitSeq[Item.Adjudication]], false, lTagOf[Item.Adjudication])
     val detail: FHIRComponentFieldMeta[LitSeq[Item.Detail]] =
       FHIRComponentFieldMeta("detail", lTagOf[LitSeq[Item.Detail]], false, lTagOf[Item.Detail])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
@@ -880,8 +870,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Insurance extends CompanionFor[Insurance] {
-    implicit def summonObjectAndCompanionInsurance_1132913284(
-        o: Insurance): ObjectAndCompanion[Insurance, Insurance.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionInsurance_1132913284(o: Insurance): ObjectAndCompanion[Insurance, Insurance.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Insurance
     override type ParentType   = Insurance
     override val parentType: CompanionFor[ResourceType] = Insurance
@@ -908,16 +898,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
     )
     def unapply(
         o: Insurance): Option[(Option[String], Boolean, PositiveInt, Reference, LitSeq[Extension], Option[Reference], LitSeq[Extension], Option[String])] =
-      Some(
-        (
-          o.id,
-          o.focal,
-          o.sequence,
-          o.coverage,
-          o.extension,
-          o.claimResponse,
-          o.modifierExtension,
-          o.businessArrangement))
+      Some((o.id, o.focal, o.sequence, o.coverage, o.extension, o.claimResponse, o.modifierExtension, o.businessArrangement))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val focal: FHIRComponentFieldMeta[Boolean] =
@@ -978,8 +959,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ProcessNote extends CompanionFor[ProcessNote] {
-    implicit def summonObjectAndCompanionProcessNote385381832(
-        o: ProcessNote): ObjectAndCompanion[ProcessNote, ProcessNote.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionProcessNote385381832(o: ProcessNote): ObjectAndCompanion[ProcessNote, ProcessNote.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = ProcessNote
     override type ParentType   = ProcessNote
     override val parentType: CompanionFor[ResourceType] = ProcessNote
@@ -1019,8 +1000,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, `type`, text, number, language, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, text, number, language, extension, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: ProcessNote): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -1090,17 +1070,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
     )
     def unapply(
         o: Payment): Option[(Option[String], CodeableConcept, Option[FHIRDate], Money, LitSeq[Extension], Option[Money], Option[Identifier], Option[CodeableConcept], LitSeq[Extension])] =
-      Some(
-        (
-          o.id,
-          o.`type`,
-          o.date,
-          o.amount,
-          o.extension,
-          o.adjustment,
-          o.identifier,
-          o.adjustmentReason,
-          o.modifierExtension))
+      Some((o.id, o.`type`, o.date, o.amount, o.extension, o.adjustment, o.identifier, o.adjustmentReason, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val `type`: FHIRComponentFieldMeta[CodeableConcept] =
@@ -1268,8 +1238,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(o: Total): Option[(Option[String], Money, CodeableConcept, LitSeq[Extension], LitSeq[Extension])] =
-      Some((o.id, o.amount, o.category, o.extension, o.modifierExtension))
+    def unapply(o: Total): Option[(Option[String], Money, CodeableConcept, LitSeq[Extension], LitSeq[Extension])] = Some(
+      (o.id, o.amount, o.category, o.extension, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val amount: FHIRComponentFieldMeta[Money] =
@@ -1280,7 +1250,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, amount, category, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, amount, category, extension, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Total): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -1455,11 +1425,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
   val payment: FHIRComponentFieldMeta[Option[ClaimResponse.Payment]] =
     FHIRComponentFieldMeta("payment", lTagOf[Option[ClaimResponse.Payment]], false, lTagOf[ClaimResponse.Payment])
   val processNote: FHIRComponentFieldMeta[LitSeq[ClaimResponse.ProcessNote]] =
-    FHIRComponentFieldMeta(
-      "processNote",
-      lTagOf[LitSeq[ClaimResponse.ProcessNote]],
-      false,
-      lTagOf[ClaimResponse.ProcessNote])
+    FHIRComponentFieldMeta("processNote", lTagOf[LitSeq[ClaimResponse.ProcessNote]], false, lTagOf[ClaimResponse.ProcessNote])
   val insurance: FHIRComponentFieldMeta[LitSeq[ClaimResponse.Insurance]] =
     FHIRComponentFieldMeta("insurance", lTagOf[LitSeq[ClaimResponse.Insurance]], false, lTagOf[ClaimResponse.Insurance])
   val item: FHIRComponentFieldMeta[LitSeq[ClaimResponse.Item]] =
@@ -1636,45 +1602,105 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
 
 /** This resource provides the adjudication details from the processing of a Claim resource.
   *
-  *  Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
-  * @constructor Introduces the fields use, `type`, form, status, subType, patient, created, insurer, request, outcome, formCode, requestor, payeeType, identifier, preAuthRef, disposition, adjudication, fundsReserve, preAuthPeriod, communicationRequest, total, error, payment, processNote, insurance, item, addItem.
-  * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
-  * @param use - A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.
-  * @param meta - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.
-  * @param text - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.
-  * @param `type` - A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.
-  * @param form - The actual form, by reference or inclusion, for printing the content or an EOB.
-  * @param status - The status of the resource instance.
-  * @param subType - A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.
-  * @param patient - The party to whom the professional services and/or products have been supplied or are being considered and for whom actual for facast reimbursement is sought.
-  * @param created - The date this resource was created.
-  * @param insurer - The party responsible for authorization, adjudication and reimbursement.
-  * @param request - Original request resource reference.
-  * @param outcome - The outcome of the claim, predetermination, or preauthorization processing.
-  * @param language - The base language in which the resource is written.
-  * @param formCode - A code for the form to be used for printing the content.
-  * @param contained - These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
-  * @param requestor - The provider which is responsible for the claim, predetermination or preauthorization.
-  * @param payeeType - Type of Party to be reimbursed: subscriber, provider, other.
-  * @param identifier - A unique identifier assigned to this claim response.
-  * @param preAuthRef - Reference from the Insurer which is used in later communications which refers to this adjudication.
-  * @param disposition - A human readable description of the status of the adjudication.
-  * @param adjudication - The adjudication results which are presented at the header level rather than at the line-item or add-item levels.
-  * @param fundsReserve - A code, used only on a response to a preauthorization, to indicate whether the benefits payable have been reserved and for whom.
-  * @param implicitRules - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.
-  * @param preAuthPeriod - The time frame during which this authorization is effective.
-  * @param modifierExtension - May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  * Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
-  * @param communicationRequest - Request for additional supporting or authorizing information.
-  * @param total - Categorized monetary totals for the adjudication.
-  * @param error - Errors encountered during the processing of the adjudication.
-  * @param payment - Payment details for the adjudication of the claim.
-  * @param processNote - A note that describes or explains adjudication results in a human readable form.
-  * @param insurance - Financial instruments for reimbursement for the health care products and services specified on the claim.
-  * @param item - A claim line. Either a simple (a product or service) or a 'group' of details which can also be a simple items or groups of sub-details.
-  * @param addItem - The first-tier service adjudications for payor added product or service lines.
+  * @constructor
+  *   Introduces the fields use, `type`, form, status, subType, patient, created, insurer, request, outcome, formCode, requestor,
+  *   payeeType, identifier, preAuthRef, disposition, adjudication, fundsReserve, preAuthPeriod, communicationRequest, total,
+  *   error, payment, processNote, insurance, item, addItem.
+  * @param id
+  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  * @param use
+  *   - A code to indicate whether the nature of the request is: to request adjudication of products and services previously
+  *   rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding
+  *   adjudication of the listed products and services which could be provided in the future.
+  * @param meta
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
+  * @param text
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
+  * @param `type`
+  *   - A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a
+  *   specialty service.
+  * @param form
+  *   - The actual form, by reference or inclusion, for printing the content or an EOB.
+  * @param status
+  *   - The status of the resource instance.
+  * @param subType
+  *   - A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a
+  *   specialty service.
+  * @param patient
+  *   - The party to whom the professional services and/or products have been supplied or are being considered and for whom actual
+  *   for facast reimbursement is sought.
+  * @param created
+  *   - The date this resource was created.
+  * @param insurer
+  *   - The party responsible for authorization, adjudication and reimbursement.
+  * @param request
+  *   - Original request resource reference.
+  * @param outcome
+  *   - The outcome of the claim, predetermination, or preauthorization processing.
+  * @param language
+  *   - The base language in which the resource is written.
+  * @param formCode
+  *   - A code for the form to be used for printing the content.
+  * @param contained
+  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   identified independently, and nor can they have their own independent transaction scope.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
+  * @param requestor
+  *   - The provider which is responsible for the claim, predetermination or preauthorization.
+  * @param payeeType
+  *   - Type of Party to be reimbursed: subscriber, provider, other.
+  * @param identifier
+  *   - A unique identifier assigned to this claim response.
+  * @param preAuthRef
+  *   - Reference from the Insurer which is used in later communications which refers to this adjudication.
+  * @param disposition
+  *   - A human readable description of the status of the adjudication.
+  * @param adjudication
+  *   - The adjudication results which are presented at the header level rather than at the line-item or add-item levels.
+  * @param fundsReserve
+  *   - A code, used only on a response to a preauthorization, to indicate whether the benefits payable have been reserved and for
+  *   whom.
+  * @param implicitRules
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
+  * @param preAuthPeriod
+  *   - The time frame during which this authorization is effective.
+  * @param modifierExtension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param communicationRequest
+  *   - Request for additional supporting or authorizing information.
+  * @param total
+  *   - Categorized monetary totals for the adjudication.
+  * @param error
+  *   - Errors encountered during the processing of the adjudication.
+  * @param payment
+  *   - Payment details for the adjudication of the claim.
+  * @param processNote
+  *   - A note that describes or explains adjudication results in a human readable form.
+  * @param insurance
+  *   - Financial instruments for reimbursement for the health care products and services specified on the claim.
+  * @param item
+  *   - A claim line. Either a simple (a product or service) or a 'group' of details which can also be a simple items or groups of
+  *   sub-details.
+  * @param addItem
+  *   - The first-tier service adjudications for payor added product or service lines.
   */
 @POJOBoilerplate
 class ClaimResponse(

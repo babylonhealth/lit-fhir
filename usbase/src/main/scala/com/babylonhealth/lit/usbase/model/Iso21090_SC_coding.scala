@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_SC_coding extends CompanionFor[Iso21090_SC_coding] {
   implicit def summonObjectAndCompanionIso21090_SC_coding455572919(
-      o: Iso21090_SC_coding): ObjectAndCompanion[Iso21090_SC_coding, Iso21090_SC_coding.type] =
-    ObjectAndCompanion(o, this)
+      o: Iso21090_SC_coding): ObjectAndCompanion[Iso21090_SC_coding, Iso21090_SC_coding.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,8 +55,7 @@ object Iso21090_SC_coding extends CompanionFor[Iso21090_SC_coding] {
   def extractValue(t: Iso21090_SC_coding): Coding                        = t.value.get.toSubRefNonUnion[Coding]
   override val thisName: String                                          = "Iso21090_SC_coding"
   override val searchParams: Map[String, Iso21090_SC_coding => Seq[Any]] = Extension.searchParams
-  def unapply(o: Iso21090_SC_coding): Option[(Option[String], Coding)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Coding]))
+  def unapply(o: Iso21090_SC_coding): Option[(Option[String], Coding)]   = Some((o.id, o.value.get.toSubRefNonUnion[Coding]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Iso21090_SC_coding] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +69,21 @@ object Iso21090_SC_coding extends CompanionFor[Iso21090_SC_coding] {
 
 /** Provides a coded expression for the content represented in a string.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Iso21090_SC_coding(

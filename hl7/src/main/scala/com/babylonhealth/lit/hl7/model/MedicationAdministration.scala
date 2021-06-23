@@ -33,8 +33,8 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
   override val parentType: CompanionFor[ParentType] = MedicationAdministration
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicationAdministration")
   object Performer extends CompanionFor[Performer] {
-    implicit def summonObjectAndCompanionPerformer_1388735003(
-        o: Performer): ObjectAndCompanion[Performer, Performer.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionPerformer_1388735003(o: Performer): ObjectAndCompanion[Performer, Performer.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Performer
     override type ParentType   = Performer
     override val parentType: CompanionFor[ResourceType] = Performer
@@ -54,8 +54,8 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Performer): Option[(Option[String], Reference, Option[CodeableConcept], LitSeq[Extension], LitSeq[Extension])] =
-      Some((o.id, o.actor, o.function, o.extension, o.modifierExtension))
+        o: Performer): Option[(Option[String], Reference, Option[CodeableConcept], LitSeq[Extension], LitSeq[Extension])] = Some(
+      (o.id, o.actor, o.function, o.extension, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val actor: FHIRComponentFieldMeta[Reference] =
@@ -66,7 +66,7 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, actor, function, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, actor, function, extension, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Performer): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -150,8 +150,7 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, text, site, dose, route, method, rate, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, text, site, dose, route, method, rate, extension, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Dosage): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -294,21 +293,13 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
   val statusReason: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val effective: FHIRComponentFieldMeta[MedicationAdministration.EffectiveChoice] =
-    FHIRComponentFieldMeta(
-      "effective",
-      lTagOf[MedicationAdministration.EffectiveChoice],
-      true,
-      lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("effective", lTagOf[MedicationAdministration.EffectiveChoice], true, lTagOf[Union_0934386166])
   val eventHistory: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("eventHistory", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val medication: FHIRComponentFieldMeta[MedicationAdministration.MedicationChoice] =
-    FHIRComponentFieldMeta(
-      "medication",
-      lTagOf[MedicationAdministration.MedicationChoice],
-      true,
-      lTagOf[Union01025009075])
+    FHIRComponentFieldMeta("medication", lTagOf[MedicationAdministration.MedicationChoice], true, lTagOf[Union01025009075])
   val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -465,39 +456,94 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
       ))
 }
 
-/** Describes the event of a patient consuming or otherwise being administered a medication.  This may be as simple as swallowing a tablet or it may be a long running infusion.  Related resources tie this event to the authorizing prescription, and the specific encounter between patient and health care practitioner.
+/** Describes the event of a patient consuming or otherwise being administered a medication. This may be as simple as swallowing a
+  * tablet or it may be a long running infusion. Related resources tie this event to the authorizing prescription, and the
+  * specific encounter between patient and health care practitioner.
   *
-  *  Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
-  * @constructor Introduces the fields note, partOf, status, device, subject, context, request, category, identifier, reasonCode, instantiates, statusReason, effective, eventHistory, medication, reasonReference, supportingInformation, dosage, performer.
-  * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
-  * @param meta - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.
-  * @param text - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.
-  * @param note - Extra information about the medication administration that is not conveyed by the other attributes.
-  * @param partOf - A larger event of which this particular event is a component or step.
-  * @param status - Will generally be set to show that the administration has been completed.  For some long running administrations such as infusions, it is possible for an administration to be started but not completed or it may be paused while some other process is under way.
-  * @param device - The device used in administering the medication to the patient.  For example, a particular infusion pump.
-  * @param subject - The person or animal or group receiving the medication.
-  * @param context - The visit, admission, or other contact between patient and health care provider during which the medication administration was performed.
-  * @param request - The original request, instruction or authority to perform the administration.
-  * @param language - The base language in which the resource is written.
-  * @param category - Indicates where the medication is expected to be consumed or administered.
-  * @param contained - These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
-  * @param identifier - Identifiers associated with this Medication Administration that are defined by business processes and/or used to refer to it when a direct URL reference to the resource itself is not appropriate. They are business identifiers assigned to this resource by the performer or other systems and remain constant as the resource is updated and propagates from server to server.
-  * @param reasonCode - A code indicating why the medication was given.
-  * @param instantiates - A protocol, guideline, orderset, or other definition that was adhered to in whole or in part by this event.
-  * @param statusReason - A code indicating why the administration was not performed.
-  * @param effective - A specific date/time or interval of time during which the administration took place (or did not take place, when the 'notGiven' attribute is true). For many administrations, such as swallowing a tablet the use of dateTime is more appropriate.
-  * @param eventHistory - A summary of the events of interest that have occurred, such as when the administration was verified.
-  * @param implicitRules - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.
-  * @param medication - Identifies the medication that was administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications.
-  * @param reasonReference - Condition or observation that supports why the medication was administered.
-  * @param modifierExtension - May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  * Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
-  * @param supportingInformation - Additional information (for example, patient height and weight) that supports the administration of the medication.
-  * @param dosage - Describes the medication dosage information details e.g. dose, rate, site, route, etc.
-  * @param performer - Indicates who or what performed the medication administration and how they were involved.
+  * @constructor
+  *   Introduces the fields note, partOf, status, device, subject, context, request, category, identifier, reasonCode,
+  *   instantiates, statusReason, effective, eventHistory, medication, reasonReference, supportingInformation, dosage, performer.
+  * @param id
+  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  * @param meta
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
+  * @param text
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
+  * @param note
+  *   - Extra information about the medication administration that is not conveyed by the other attributes.
+  * @param partOf
+  *   - A larger event of which this particular event is a component or step.
+  * @param status
+  *   - Will generally be set to show that the administration has been completed. For some long running administrations such as
+  *   infusions, it is possible for an administration to be started but not completed or it may be paused while some other process
+  *   is under way.
+  * @param device
+  *   - The device used in administering the medication to the patient. For example, a particular infusion pump.
+  * @param subject
+  *   - The person or animal or group receiving the medication.
+  * @param context
+  *   - The visit, admission, or other contact between patient and health care provider during which the medication administration
+  *   was performed.
+  * @param request
+  *   - The original request, instruction or authority to perform the administration.
+  * @param language
+  *   - The base language in which the resource is written.
+  * @param category
+  *   - Indicates where the medication is expected to be consumed or administered.
+  * @param contained
+  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   identified independently, and nor can they have their own independent transaction scope.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
+  * @param identifier
+  *   - Identifiers associated with this Medication Administration that are defined by business processes and/or used to refer to
+  *   it when a direct URL reference to the resource itself is not appropriate. They are business identifiers assigned to this
+  *   resource by the performer or other systems and remain constant as the resource is updated and propagates from server to
+  *   server.
+  * @param reasonCode
+  *   - A code indicating why the medication was given.
+  * @param instantiates
+  *   - A protocol, guideline, orderset, or other definition that was adhered to in whole or in part by this event.
+  * @param statusReason
+  *   - A code indicating why the administration was not performed.
+  * @param effective
+  *   - A specific date/time or interval of time during which the administration took place (or did not take place, when the
+  *   'notGiven' attribute is true). For many administrations, such as swallowing a tablet the use of dateTime is more
+  *   appropriate.
+  * @param eventHistory
+  *   - A summary of the events of interest that have occurred, such as when the administration was verified.
+  * @param implicitRules
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
+  * @param medication
+  *   - Identifies the medication that was administered. This is either a link to a resource representing the details of the
+  *   medication or a simple attribute carrying a code that identifies the medication from a known list of medications.
+  * @param reasonReference
+  *   - Condition or observation that supports why the medication was administered.
+  * @param modifierExtension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param supportingInformation
+  *   - Additional information (for example, patient height and weight) that supports the administration of the medication.
+  * @param dosage
+  *   - Describes the medication dosage information details e.g. dose, rate, site, route, etc.
+  * @param performer
+  *   - Indicates who or what performed the medication administration and how they were involved.
   */
 @POJOBoilerplate
 class MedicationAdministration(

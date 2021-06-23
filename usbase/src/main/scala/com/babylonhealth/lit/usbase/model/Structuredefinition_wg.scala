@@ -53,9 +53,8 @@ object Structuredefinition_wg extends CompanionFor[Structuredefinition_wg] {
     ))
   override def fields(t: Structuredefinition_wg): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Structuredefinition_wg): Option[String]                   = t.id
-  def extractValue(t: Structuredefinition_wg): HL7_WORK_GROUP =
-    HL7_WORK_GROUP.withName(t.value.get.toSubRefNonUnion[Code])
-  override val thisName: String                                              = "Structuredefinition_wg"
+  def extractValue(t: Structuredefinition_wg): HL7_WORK_GROUP = HL7_WORK_GROUP.withName(t.value.get.toSubRefNonUnion[Code])
+  override val thisName: String                               = "Structuredefinition_wg"
   override val searchParams: Map[String, Structuredefinition_wg => Seq[Any]] = Extension.searchParams
   def unapply(o: Structuredefinition_wg): Option[(Option[String], HL7_WORK_GROUP)] = Some(
     (o.id, HL7_WORK_GROUP.withName(o.value.get.toSubRefNonUnion[Code])))
@@ -72,16 +71,21 @@ object Structuredefinition_wg extends CompanionFor[Structuredefinition_wg] {
 
 /** The work group that owns and maintains this resource.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Structuredefinition_wg(
@@ -90,7 +94,7 @@ class Structuredefinition_wg(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(choiceFromEnum(value)),
       url = "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

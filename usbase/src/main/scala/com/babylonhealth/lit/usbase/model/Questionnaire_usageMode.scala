@@ -49,9 +49,7 @@ object Questionnaire_usageMode extends CompanionFor[Questionnaire_usageMode] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[QUESTIONNAIRE_USAGE_MODE](
-        value,
-        QUESTIONNAIRE_USAGE_MODE.withName(t.value.get.toSubRefNonUnion[Code]))
+      FHIRComponentField[QUESTIONNAIRE_USAGE_MODE](value, QUESTIONNAIRE_USAGE_MODE.withName(t.value.get.toSubRefNonUnion[Code]))
     ))
   override def fields(t: Questionnaire_usageMode): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Questionnaire_usageMode): Option[String]                   = t.id
@@ -74,16 +72,21 @@ object Questionnaire_usageMode extends CompanionFor[Questionnaire_usageMode] {
 
 /** Identifies that the specified element should only appear in certain "modes" of operation.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Questionnaire_usageMode(
@@ -92,7 +95,7 @@ class Questionnaire_usageMode(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(choiceFromEnum(value)),
       url = "http://hl7.org/fhir/StructureDefinition/questionnaire-usageMode",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

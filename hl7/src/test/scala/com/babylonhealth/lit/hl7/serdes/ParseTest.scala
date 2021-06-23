@@ -14,10 +14,9 @@ import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.model.{ Quantity, Resource }
 import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
 import com.babylonhealth.lit.core.{ Choice, UnsignedInt, \/ }
-import com.babylonhealth.lit.hl7.BUNDLE_TYPE
+import com.babylonhealth.lit.hl7.{ BUNDLE_TYPE, LoadsOfObservations, SharedTypes }
 import com.babylonhealth.lit.hl7.model.Bundle
 import com.babylonhealth.lit.common.FileUtils
-import com.babylonhealth.lit.hl7.LoadsOfObservations
 
 class ParseTest extends AnyFreeSpec with Matchers with FileUtils {
 
@@ -38,7 +37,7 @@ class ParseTest extends AnyFreeSpec with Matchers with FileUtils {
 
   "missing and null fields are None where applicable..." in {
     val x =
-      choice[Quantity \/ String \/ Boolean, Quantity](Quantity(unit = Some("10^9/L"), value = Some(0.6)))
+      choice[SharedTypes.QuantStrBool, Quantity](Quantity(unit = Some("10^9/L"), value = Some(0.6)))
     println(x.json.noSpaces)
     x.json.noSpaces.contains("null") shouldEqual false
   }
@@ -46,14 +45,10 @@ class ParseTest extends AnyFreeSpec with Matchers with FileUtils {
     val x = slurpRsc("exampleBundle.json")
     val y = decode[Bundle](x)
 
-    val x3: Choice[String \/ Int] = choice(123)
-    val entries                   = LoadsOfObservations.observations.map(o => Bundle.Entry(resource = Some(o)))
+    val x3: Choice[SharedTypes.StrInt] = choice(123)
+    val entries                        = LoadsOfObservations.observations.map(o => Bundle.Entry(resource = Some(o)))
     val z =
-      new Bundle(
-        meta = None,
-        `type` = BUNDLE_TYPE.COLLECTION,
-        total = Some(53.asInstanceOf[UnsignedInt]),
-        entry = entries)
+      new Bundle(meta = None, `type` = BUNDLE_TYPE.COLLECTION, total = Some(53.asInstanceOf[UnsignedInt]), entry = entries)
     val rs1 = z.entry.map(_.resource.get)
     val rs2 = y.toTry.get.entry.map(_.resource.get)
     def printDiff(x: Resource, y: Resource): Option[String] = {

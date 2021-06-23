@@ -53,8 +53,8 @@ object EpisodeOfCare extends CompanionFor[EpisodeOfCare] {
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: StatusHistory): Option[(Option[String], EPISODE_OF_CARE_STATUS, Period, LitSeq[Extension], LitSeq[Extension])] =
-      Some((o.id, o.status, o.period, o.extension, o.modifierExtension))
+        o: StatusHistory): Option[(Option[String], EPISODE_OF_CARE_STATUS, Period, LitSeq[Extension], LitSeq[Extension])] = Some(
+      (o.id, o.status, o.period, o.extension, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val status: FHIRComponentFieldMeta[EPISODE_OF_CARE_STATUS] =
@@ -65,7 +65,7 @@ object EpisodeOfCare extends CompanionFor[EpisodeOfCare] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, status, period, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, status, period, extension, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: StatusHistory): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -99,8 +99,8 @@ object EpisodeOfCare extends CompanionFor[EpisodeOfCare] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Diagnosis extends CompanionFor[Diagnosis] {
-    implicit def summonObjectAndCompanionDiagnosis_602285976(
-        o: Diagnosis): ObjectAndCompanion[Diagnosis, Diagnosis.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionDiagnosis_602285976(o: Diagnosis): ObjectAndCompanion[Diagnosis, Diagnosis.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Diagnosis
     override type ParentType   = Diagnosis
     override val parentType: CompanionFor[ResourceType] = Diagnosis
@@ -136,7 +136,7 @@ object EpisodeOfCare extends CompanionFor[EpisodeOfCare] {
       FHIRComponentFieldMeta("condition", lTagOf[Reference], false, lTagOf[Reference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, role, rank, extension, condition, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, role, rank, extension, condition, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Diagnosis): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -391,32 +391,72 @@ object EpisodeOfCare extends CompanionFor[EpisodeOfCare] {
       ))
 }
 
-/** An association between a patient and an organization / healthcare provider(s) during which time encounters may occur. The managing organization assumes a level of responsibility for the patient during this time.
+/** An association between a patient and an organization / healthcare provider(s) during which time encounters may occur. The
+  * managing organization assumes a level of responsibility for the patient during this time.
   *
-  *  Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
-  * @constructor Introduces the fields `type`, team, status, period, patient, account, identifier, careManager, referralRequest, managingOrganization, diagnosis, statusHistory.
-  * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
-  * @param meta - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.
-  * @param text - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.
-  * @param `type` - A classification of the type of episode of care; e.g. specialist referral, disease management, type of funded care.
-  * @param team - The list of practitioners that may be facilitating this episode of care for specific purposes.
-  * @param status - planned | waitlist | active | onhold | finished | cancelled.
-  * @param period - The interval during which the managing organization assumes the defined responsibility.
-  * @param patient - The patient who is the focus of this episode of care.
-  * @param account - The set of accounts that may be used for billing for this EpisodeOfCare.
-  * @param language - The base language in which the resource is written.
-  * @param contained - These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
-  * @param identifier - The EpisodeOfCare may be known by different identifiers for different contexts of use, such as when an external agency is tracking the Episode for funding purposes.
-  * @param careManager - The practitioner that is the care manager/care coordinator for this patient.
-  * @param implicitRules - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.
-  * @param referralRequest - Referral Request(s) that are fulfilled by this EpisodeOfCare, incoming referrals.
-  * @param modifierExtension - May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  * Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
-  * @param managingOrganization - The organization that has assumed the specific responsibilities for the specified duration.
-  * @param diagnosis - The list of diagnosis relevant to this episode of care.
-  * @param statusHistory - The history of statuses that the EpisodeOfCare has been through (without requiring processing the history of the resource).
+  * @constructor
+  *   Introduces the fields `type`, team, status, period, patient, account, identifier, careManager, referralRequest,
+  *   managingOrganization, diagnosis, statusHistory.
+  * @param id
+  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  * @param meta
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
+  * @param text
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
+  * @param `type`
+  *   - A classification of the type of episode of care; e.g. specialist referral, disease management, type of funded care.
+  * @param team
+  *   - The list of practitioners that may be facilitating this episode of care for specific purposes.
+  * @param status
+  *   - planned | waitlist | active | onhold | finished | cancelled.
+  * @param period
+  *   - The interval during which the managing organization assumes the defined responsibility.
+  * @param patient
+  *   - The patient who is the focus of this episode of care.
+  * @param account
+  *   - The set of accounts that may be used for billing for this EpisodeOfCare.
+  * @param language
+  *   - The base language in which the resource is written.
+  * @param contained
+  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   identified independently, and nor can they have their own independent transaction scope.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
+  * @param identifier
+  *   - The EpisodeOfCare may be known by different identifiers for different contexts of use, such as when an external agency is
+  *   tracking the Episode for funding purposes.
+  * @param careManager
+  *   - The practitioner that is the care manager/care coordinator for this patient.
+  * @param implicitRules
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
+  * @param referralRequest
+  *   - Referral Request(s) that are fulfilled by this EpisodeOfCare, incoming referrals.
+  * @param modifierExtension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param managingOrganization
+  *   - The organization that has assumed the specific responsibilities for the specified duration.
+  * @param diagnosis
+  *   - The list of diagnosis relevant to this episode of care.
+  * @param statusHistory
+  *   - The history of statuses that the EpisodeOfCare has been through (without requiring processing the history of the
+  *   resource).
   */
 @POJOBoilerplate
 class EpisodeOfCare(

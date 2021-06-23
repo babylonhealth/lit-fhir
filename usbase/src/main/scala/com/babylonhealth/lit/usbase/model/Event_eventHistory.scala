@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Event_eventHistory extends CompanionFor[Event_eventHistory] {
   implicit def summonObjectAndCompanionEvent_eventHistory1736503752(
-      o: Event_eventHistory): ObjectAndCompanion[Event_eventHistory, Event_eventHistory.type] =
-    ObjectAndCompanion(o, this)
+      o: Event_eventHistory): ObjectAndCompanion[Event_eventHistory, Event_eventHistory.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -51,13 +50,12 @@ object Event_eventHistory extends CompanionFor[Event_eventHistory] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
-  override def fields(t: Event_eventHistory): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Event_eventHistory): Option[String]                   = t.id
-  def extractValue(t: Event_eventHistory): Reference                     = t.value.get.toSubRefNonUnion[Reference]
-  override val thisName: String                                          = "Event_eventHistory"
-  override val searchParams: Map[String, Event_eventHistory => Seq[Any]] = Extension.searchParams
-  def unapply(o: Event_eventHistory): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+  override def fields(t: Event_eventHistory): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
+  def extractId(t: Event_eventHistory): Option[String]                    = t.id
+  def extractValue(t: Event_eventHistory): Reference                      = t.value.get.toSubRefNonUnion[Reference]
+  override val thisName: String                                           = "Event_eventHistory"
+  override val searchParams: Map[String, Event_eventHistory => Seq[Any]]  = Extension.searchParams
+  def unapply(o: Event_eventHistory): Option[(Option[String], Reference)] = Some((o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Event_eventHistory] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,18 +67,27 @@ object Event_eventHistory extends CompanionFor[Event_eventHistory] {
       ))
 }
 
-/** Links to *Provenance* records for past versions of this resource that document  key state transitions or updates that are deemed “relevant” or important to a user looking at the current version of the resource. E.g, when an observation was verified or corrected.  This extension does not point to the Provenance associated with the current version of the resource - as it would be created after this version existed. The *Provenance* for the current version can be retrieved with a [` _revinclude`](search.html#revinclude).
+/** Links to *Provenance* records for past versions of this resource that document key state transitions or updates that are
+  * deemed “relevant” or important to a user looking at the current version of the resource. E.g, when an observation was verified
+  * or corrected. This extension does not point to the Provenance associated with the current version of the resource - as it
+  * would be created after this version existed. The *Provenance* for the current version can be retrieved with a [`
+  * _revinclude`](search.html#revinclude).
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Event_eventHistory(

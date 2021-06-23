@@ -30,6 +30,29 @@ commands:
       - run:
           name: untar classfiles
           command: if [ -f targets.tar.gz ]; then tar -xf targets.tar.gz; fi
+  save_test_cache:
+    description: "Save the test cache"
+    steps:
+      - run:
+          name: Tar classfiles
+          command: find -name target -exec tar -zcf test-targets.tar.gz -H posix {} + && find -name target -exec rm -r {} +
+      - save_cache:
+          name: Saving test cache
+          key: test-cache-v1-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - "~/project/test-targets.tar.gz"
+  restore_test_cache:
+    description: "Restore the test cache"
+    steps:
+      - restore_cache:
+          name: Restoring test cache
+          keys:
+            - test-cache-v1-{{ .Branch }}-{{ .Revision }}
+            - test-cache-v1-{{ .Branch }}-
+            - test-cache-v1-
+      - run:
+          name: untar classfiles
+          command: if [ -f test-targets.tar.gz ]; then tar --skip-old-files -xf test-targets.tar.gz; fi
 
 
 jobs:
@@ -37,7 +60,7 @@ jobs:
     docker:
       - image: circleci/openjdk:11-jdk
     working_directory: ~/project
-    resource_class: large
+    resource_class: xlarge
     steps:
       - checkout
       - run:
@@ -70,7 +93,7 @@ jobs:
       - run:
           name: Build service
           command: make compile
-          no_output_timeout: 30m
+          no_output_timeout: 40m
       - save_build_cache
   publish_template: &publish_template
     docker:
@@ -80,6 +103,7 @@ jobs:
     steps:
       - checkout
       - restore_build_cache
+      - restore_test_cache
       - run:
           name: Build service
           command: make ${CIRCLE_JOB}
@@ -96,10 +120,12 @@ jobs:
     steps:
       - checkout
       - restore_build_cache
+      - restore_test_cache
       - run:
-          name: Build service
+          name: Test service
           command: make compile-core compile-java compile-proto test
           no_output_timeout: 30m
+      - save_test_cache
   benchmark_template: &benchmark_template
     docker:
       - image: circleci/openjdk:11-jdk
@@ -110,15 +136,15 @@ jobs:
       - restore_build_cache
       - restore_cache:
           keys:
-            - bench-v5-{{ .Environment.CIRCLE_JOB }}-{{ .Revision }}
-            - bench-v5-{{ .Environment.CIRCLE_JOB }}-
+            - bench-v6-{{ .Environment.CIRCLE_JOB }}-{{ .Revision }}
+            - bench-v6-{{ .Environment.CIRCLE_JOB }}-
           paths:
             - "~/project/bench/target/benchmarks"
       - run:
           name: Run performance regression tests {{ .Environment.CIRCLE_JOB }}
           command: git apply bench.patch && make benchmark
       - save_cache:
-          key: bench-v5-{{ .Environment.CIRCLE_JOB }}-{{ .Revision }}
+          key: bench-v6-{{ .Environment.CIRCLE_JOB }}-{{ .Revision }}
           paths:
             - "~/project/bench/target/benchmarks"
       - store_artifacts:

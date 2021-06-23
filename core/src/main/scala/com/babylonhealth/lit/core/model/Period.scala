@@ -62,8 +62,8 @@ object Period extends CompanionFor[Period] {
   def extractStart(t: Period): Option[FHIRDateTime]  = t.start
   def extractExtension(t: Period): LitSeq[Extension] = t.extension
   override val thisName: String                      = "Period"
-  def unapply(o: Period): Option[(Option[String], Option[FHIRDateTime], Option[FHIRDateTime], LitSeq[Extension])] =
-    Some((o.id, o.end, o.start, o.extension))
+  def unapply(o: Period): Option[(Option[String], Option[FHIRDateTime], Option[FHIRDateTime], LitSeq[Extension])] = Some(
+    (o.id, o.end, o.start, o.extension))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Period] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -79,13 +79,25 @@ object Period extends CompanionFor[Period] {
 
 /** Base StructureDefinition for Period Type: A time period defined by a start and end date and optionally time.
   *
-  *  Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a resource.)
+  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
+  * resource.)
   *
-  * @constructor Introduces the fields end, start.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param end - The end of the period. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.
-  * @param start - The start of the period. The boundary is inclusive.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
+  * @constructor
+  *   Introduces the fields end, start.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param end
+  *   - The end of the period. If the end of the period is missing, it means no end was known or planned at the time the instance
+  *   was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to
+  *   end at that time.
+  * @param start
+  *   - The start of the period. The boundary is inclusive.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class Period(

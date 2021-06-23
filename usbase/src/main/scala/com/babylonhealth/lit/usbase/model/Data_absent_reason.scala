@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Data_absent_reason extends CompanionFor[Data_absent_reason] {
   implicit def summonObjectAndCompanionData_absent_reason_1845545037(
-      o: Data_absent_reason): ObjectAndCompanion[Data_absent_reason, Data_absent_reason.type] =
-    ObjectAndCompanion(o, this)
+      o: Data_absent_reason): ObjectAndCompanion[Data_absent_reason, Data_absent_reason.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -53,9 +52,8 @@ object Data_absent_reason extends CompanionFor[Data_absent_reason] {
     ))
   override def fields(t: Data_absent_reason): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Data_absent_reason): Option[String]                   = t.id
-  def extractValue(t: Data_absent_reason): DATA_ABSENT_REASON =
-    DATA_ABSENT_REASON.withName(t.value.get.toSubRefNonUnion[Code])
-  override val thisName: String                                          = "Data_absent_reason"
+  def extractValue(t: Data_absent_reason): DATA_ABSENT_REASON = DATA_ABSENT_REASON.withName(t.value.get.toSubRefNonUnion[Code])
+  override val thisName: String                               = "Data_absent_reason"
   override val searchParams: Map[String, Data_absent_reason => Seq[Any]] = Extension.searchParams
   def unapply(o: Data_absent_reason): Option[(Option[String], DATA_ABSENT_REASON)] = Some(
     (o.id, DATA_ABSENT_REASON.withName(o.value.get.toSubRefNonUnion[Code])))
@@ -72,16 +70,21 @@ object Data_absent_reason extends CompanionFor[Data_absent_reason] {
 
 /** Provides a reason why the expected value or elements in the element that is extended are missing.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Data_absent_reason(
@@ -90,7 +93,7 @@ class Data_absent_reason(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(choiceFromEnum(value)),
       url = "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Contactpoint_local extends CompanionFor[Contactpoint_local] {
   implicit def summonObjectAndCompanionContactpoint_local1498920535(
-      o: Contactpoint_local): ObjectAndCompanion[Contactpoint_local, Contactpoint_local.type] =
-    ObjectAndCompanion(o, this)
+      o: Contactpoint_local): ObjectAndCompanion[Contactpoint_local, Contactpoint_local.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,8 +55,7 @@ object Contactpoint_local extends CompanionFor[Contactpoint_local] {
   def extractValue(t: Contactpoint_local): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                          = "Contactpoint_local"
   override val searchParams: Map[String, Contactpoint_local => Seq[Any]] = Extension.searchParams
-  def unapply(o: Contactpoint_local): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[String]))
+  def unapply(o: Contactpoint_local): Option[(Option[String], String)]   = Some((o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Contactpoint_local] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,18 +67,25 @@ object Contactpoint_local extends CompanionFor[Contactpoint_local] {
       ))
 }
 
-/** The local number that must be dialed to connect within the area/city/zone. This extension is used when a system wishes to designate specific parts of a phone number (and potentially place constraints on which components must be present and how they're filled in).
+/** The local number that must be dialed to connect within the area/city/zone. This extension is used when a system wishes to
+  * designate specific parts of a phone number (and potentially place constraints on which components must be present and how
+  * they're filled in).
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Contactpoint_local(

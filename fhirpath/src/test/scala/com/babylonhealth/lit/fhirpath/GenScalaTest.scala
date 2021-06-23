@@ -23,13 +23,13 @@ class GenScalaTest extends AnyFreeSpec with Matchers {
     "obj.birthDate.toSeq"
   }
   expect(Patient, "Patient.name.given") {
-    "obj.name.flatMap(_.given).toSeq"
+    "obj.name.flatMap(_.`given`).toSeq"
   }
   expect(Patient, "(Patient.deceased as dateTime)") {
     "obj.deceased.flatMap(_.as[FHIRDateTime]).toSeq"
   }
   expect(Patient, "Patient.telecom.where(system='email')") {
-    "obj.telecom.filter(_.system.map(_.entryName) contains \"email\").toSeq"
+    "obj.telecom.filter(_.system.map(_.name) contains \"email\").toSeq"
   }
   expect(Patient, "Patient.deceased.exists() and Patient.deceased != false") {
     "Seq(obj.deceased.nonEmpty && !obj.deceased.contains(false))"

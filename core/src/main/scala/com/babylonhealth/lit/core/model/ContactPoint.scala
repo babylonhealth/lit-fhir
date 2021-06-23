@@ -61,7 +61,7 @@ object ContactPoint extends CompanionFor[ContactPoint] {
     FHIRComponentFieldMeta("period", lTagOf[Option[Period]], false, lTagOf[Period])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, use, rank, value, system, period, extension)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, use, rank, value, system, period, extension)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ContactPoint): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
@@ -99,18 +99,34 @@ object ContactPoint extends CompanionFor[ContactPoint] {
       ))
 }
 
-/** Base StructureDefinition for ContactPoint Type: Details for all kinds of technology mediated contact points for a person or organization, including telephone, email, etc.
+/** Base StructureDefinition for ContactPoint Type: Details for all kinds of technology mediated contact points for a person or
+  * organization, including telephone, email, etc.
   *
-  *  Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a resource.)
+  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
+  * resource.)
   *
-  * @constructor Introduces the fields use, rank, value, system, period.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param use - Identifies the purpose for the contact point.
-  * @param rank - Specifies a preferred order in which to use a set of contacts. ContactPoints with lower rank values are more preferred than those with higher rank values.
-  * @param value - The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).
-  * @param system - Telecommunications form for contact point - what communications system is required to make use of the contact.
-  * @param period - Time period when the contact point was/is in use.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
+  * @constructor
+  *   Introduces the fields use, rank, value, system, period.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param use
+  *   - Identifies the purpose for the contact point.
+  * @param rank
+  *   - Specifies a preferred order in which to use a set of contacts. ContactPoints with lower rank values are more preferred
+  *   than those with higher rank values.
+  * @param value
+  *   - The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number
+  *   or email address).
+  * @param system
+  *   - Telecommunications form for contact point - what communications system is required to make use of the contact.
+  * @param period
+  *   - Time period when the contact point was/is in use.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class ContactPoint(

@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_relativeDateTime extends CompanionFor[Cqf_relativeDateTime] {
   implicit def summonObjectAndCompanionCqf_relativeDateTime1075936037(
-      o: Cqf_relativeDateTime): ObjectAndCompanion[Cqf_relativeDateTime, Cqf_relativeDateTime.type] =
-    ObjectAndCompanion(o, this)
+      o: Cqf_relativeDateTime): ObjectAndCompanion[Cqf_relativeDateTime, Cqf_relativeDateTime.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -51,13 +50,12 @@ object Cqf_relativeDateTime extends CompanionFor[Cqf_relativeDateTime] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[NonEmptyLitSeq[Extension]](extension, t.extension.asNonEmpty)
     ))
-  override def fields(t: Cqf_relativeDateTime): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Cqf_relativeDateTime): Option[String]                   = t.id
-  def extractExtension(t: Cqf_relativeDateTime): NonEmptyLitSeq[Extension] = t.extension.asNonEmpty
-  override val thisName: String                                            = "Cqf_relativeDateTime"
-  override val searchParams: Map[String, Cqf_relativeDateTime => Seq[Any]] = Extension.searchParams
-  def unapply(o: Cqf_relativeDateTime): Option[(Option[String], NonEmptyLitSeq[Extension])] = Some(
-    (o.id, o.extension.asNonEmpty))
+  override def fields(t: Cqf_relativeDateTime): Seq[FHIRComponentField[_]]                  = fieldsFromParent(t).get
+  def extractId(t: Cqf_relativeDateTime): Option[String]                                    = t.id
+  def extractExtension(t: Cqf_relativeDateTime): NonEmptyLitSeq[Extension]                  = t.extension.asNonEmpty
+  override val thisName: String                                                             = "Cqf_relativeDateTime"
+  override val searchParams: Map[String, Cqf_relativeDateTime => Seq[Any]]                  = Extension.searchParams
+  def unapply(o: Cqf_relativeDateTime): Option[(Option[String], NonEmptyLitSeq[Extension])] = Some((o.id, o.extension.asNonEmpty))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Cqf_relativeDateTime] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,15 +69,22 @@ object Cqf_relativeDateTime extends CompanionFor[Cqf_relativeDateTime] {
 
 /** A date/time value that is determined based on a duration offset from a target event.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Requires the following fields which were optional in the parent: extension.
-  *              Forbids the use of the following fields which were optional in the parent: value.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
+  * @constructor
+  *   Inherits all params from parent. Requires the following fields which were optional in the parent: extension. Forbids the use
+  *   of the following fields which were optional in the parent: value. Hardcodes the value of the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class Cqf_relativeDateTime(

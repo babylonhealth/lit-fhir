@@ -14,18 +14,21 @@ generated-compile:
 build: build-all-class-models test
 
 benchmark:
-	$(SBT) "bench/testOnly *RegressionBenchmarks${BENCH_NUMBER}"
+	$(SBT) "+bench/testOnly *RegressionBenchmarks${BENCH_NUMBER}"
+
+clean-scala-3:
+	$(SBT) ++3.0.0 core/clean hl7/clean usbase/clean uscore/clean core/test:clean hl7/test:clean usbase/test:clean uscore/test:clean
 
 compile-core:
-	$(SBT) macros/compile $(foreach i,$(ALL_MODULES),$i/compile) fhirpath/compile
+	$(SBT) +macros/compile $(foreach i,$(ALL_MODULES),+$i/compile) fhirpath/compile
 compile-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile)
 compile-proto:
 	$(SBT) gproto/compile
 compile-bench:
-	$(SBT) bench/test:compile
+	$(SBT) +bench/test:compile
 compile: compile-core compile-java compile-proto compile-bench
-	$(SBT) bench/test:compile
+	$(SBT) +bench/test:compile
 
 test-java:
 	$(SBT) macros/compile
@@ -33,51 +36,51 @@ test-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile $iJava/test)
 
 test:
-	$(SBT) common/test generator/test macros/test
-	$(SBT) $(foreach i,$(CORE_MODULES),$i/test)
+	$(SBT) +common/test generator/test +macros/test
+	$(SBT) $(foreach i,$(CORE_MODULES),+$i/test)
 	$(SBT) $(foreach i,$(CORE_MODULES),$iJava/test)
-	$(SBT) $(foreach i,$(US_MODULES),$i/test)
+	$(SBT) $(foreach i,$(US_MODULES),+$i/test)
 	$(SBT) $(foreach i,$(US_MODULES),$iJava/test)
 	$(SBT) fhirpath/test
-	$(SBT) protoshim/test
+	$(SBT) +protoshim/test
 
 publish:
-	$(SBT) common/publish macros/publish
-	$(SBT) $(foreach i,$(ALL_MODULES),$i/publish)
+	$(SBT) +common/publish +macros/publish
+	$(SBT) $(foreach i,$(ALL_MODULES),+$i/publish)
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publish)
 	$(SBT) fhirpath/publish
 	$(SBT) gproto/publish
-	$(SBT) protoshim/publish
+	$(SBT) +protoshim/publish
 
 publish-generator:
-	$(SBT_G) common/publish || echo "cannot publish commmon. Continuing anyway"
+	$(SBT_G) +common/publish || echo "cannot publish commmon. Continuing anyway"
 	$(SBT_G) generator/publish
 publish-local-generator:
-	$(SBT_G) common/publishLocal generator/publishLocal
+	$(SBT_G) +common/publishLocal generator/publishLocal
 
 publish-local-core:
-	$(SBT) common/publishLocal macros/publishLocal $(foreach i,$(ALL_MODULES),$i/publishLocal) fhirpath/publishLocal
+	$(SBT) +common/publishLocal +macros/publishLocal $(foreach i,$(ALL_MODULES),+$i/publishLocal) fhirpath/publishLocal
 publish-local-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publishLocal)
 publish-local-gproto:
-	$(SBT) gproto/publishLocal protoshim/publishLocal
+	$(SBT) gproto/publishLocal +protoshim/publishLocal
 publish-local: publish-local-core publish-local-java publish-local-gproto
 
 publish-java-m2:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publishM2)
 publish-m2:
-	$(SBT) common/publishM2 macros/publishM2
-	$(SBT) $(foreach i,$(ALL_MODULES),$i/publishM2 $iJava/publishM2)
+	$(SBT) +common/publishM2 +macros/publishM2
+	$(SBT) $(foreach i,$(ALL_MODULES),+$i/publishM2 $iJava/publishM2)
 	$(SBT) fhirpath/publishM2
 
 publish-all-local:
-	$(SBT) common/publishLocal common/publishM2 macros/publishLocal macros/publishM2 $(foreach i,$(ALL_MODULES),$i/publishLocal $i/publishM2 $iJava/publishLocal $iJava/publishM2)
+	$(SBT) +common/publishLocal +common/publishM2 +macros/publishLocal +macros/publishM2 $(foreach i,$(ALL_MODULES),+$i/publishLocal +$i/publishM2 $iJava/publishLocal $iJava/publishM2)
 
 build-hl7-class-models:
 	$(SBT) 'project generator' 'run "generate" \
 		--javaPackageSuffix=_java \
 		--typescriptDir="./generated_typescript"'
-	$(SBT) $(foreach i,$(CORE_MODULES),$i/scalafmtAll)
+	$(SBT) $(foreach i,$(CORE_MODULES),+$i/scalafmtAll)
 	$(SBT) $(foreach i,$(CORE_MODULES),$iJava/javafmt)
 	./apply_patches.sh
 
@@ -87,12 +90,13 @@ build-all-class-models-dry:
 		--javaPackageSuffix=_java \
 		--moduleDependencies="usbase<uscore" \
 		--dryRun'
+
 build-all-class-models:
 	$(SBT) 'project generator' 'run "generate" \
 		--models="usbase=fhir/spec/hl7.fhir.r4.examples/4.0.1/package/StructureDefinition-*;uscore=fhir/spec/hl7.fhir.us.core/3.1.0/package/StructureDefinition-*" \
 		--javaPackageSuffix=_java \
 		--moduleDependencies="usbase<uscore"'
-	$(SBT) $(foreach i,$(ALL_MODULES),$i/scalafmtAll)
+	$(SBT) $(foreach i,$(ALL_MODULES),+$i/scalafmtAll)
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/javafmt)
 	./apply_patches.sh
 
@@ -100,10 +104,10 @@ clean-target:
 	rm -rf target/ */target
 
 download-deps:
-	$(SBT) update || true
+	$(SBT) +update || true
 
 clean-generated-scala:
-	rm -rf $(foreach i,$(ALL_MODULES),$i/src/main/scala/com/babylonhealth/lit/$i/model)
+	rm -rf $(foreach i,$(ALL_MODULES),$i/src/main/scala{-2,-3,}/com/babylonhealth/lit/$i/model)
 
 clean-generated-java:
 	rm -rf $(foreach i,$(ALL_MODULES),$i_java/src/main/java/com/babylonhealth/lit/$i_java/builders $i_java/src/main/java/com/babylonhealth/lit/$i_java/codes)

@@ -9,7 +9,7 @@ import org.scalatest.matchers.should.Matchers
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.model.{ CodeableConcept, Coding, Extension, Quantity, Reference, Resource }
 import com.babylonhealth.lit.core.serdes.objectDecoder
-import com.babylonhealth.lit.core.{ DecoderParams, FHIRDateTime, LitSeq }
+import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS
 import com.babylonhealth.lit.hl7.model.Observation
 
@@ -62,7 +62,7 @@ class Regressions extends AnyFreeSpec with Matchers {
   }
   "resource with extension-as-an-object in quantity should decode if flexibleCardinality=true" in {
     implicit val params: DecoderParams = DecoderParams(flexibleCardinality = true)
-    val res                            = decode[Resource]("""{
+    val res = decode[Resource]("""{
                                  |  "resourceType": "Observation",
                                  |  "id": "030cfd1231eb76c279236ebcc419341c",
                                  |  "status": "final",

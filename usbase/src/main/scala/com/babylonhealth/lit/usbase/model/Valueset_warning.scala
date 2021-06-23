@@ -55,8 +55,7 @@ object Valueset_warning extends CompanionFor[Valueset_warning] {
   def extractValue(t: Valueset_warning): Markdown                      = t.value.get.toSubRefNonUnion[Markdown]
   override val thisName: String                                        = "Valueset_warning"
   override val searchParams: Map[String, Valueset_warning => Seq[Any]] = Extension.searchParams
-  def unapply(o: Valueset_warning): Option[(Option[String], Markdown)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Markdown]))
+  def unapply(o: Valueset_warning): Option[(Option[String], Markdown)] = Some((o.id, o.value.get.toSubRefNonUnion[Markdown]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Valueset_warning] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -70,16 +69,21 @@ object Valueset_warning extends CompanionFor[Valueset_warning] {
 
 /** An extra warning about the correct use of the value set.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Valueset_warning(

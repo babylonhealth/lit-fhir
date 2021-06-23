@@ -51,7 +51,7 @@ trait BaseFieldDecoders extends Utils {
   }
 
   implicit def decodeEither[A, B](implicit decoderA: Decoder[A], decoderB: Decoder[B]): Decoder[Either[A, B]] =
-    Decoder.instanceTry { c: HCursor =>
+    Decoder.instanceTry { (c: HCursor) =>
       c.as[A] match {
         case Right(a) => Success(Left(a))
         case Left(err) =>
@@ -95,15 +95,9 @@ trait BaseFieldDecoders extends Utils {
       case yearsOnly(y) =>
         Try(FHIRDateTime(ZonedDateTime.of(y.toInt, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC), FHIRDateTimeSpecificity.Year))
       case yearsAndMonths(y, m) =>
-        Try(
-          FHIRDateTime(
-            ZonedDateTime.of(y.toInt, m.toInt, 1, 0, 0, 0, 0, ZoneOffset.UTC),
-            FHIRDateTimeSpecificity.Month))
+        Try(FHIRDateTime(ZonedDateTime.of(y.toInt, m.toInt, 1, 0, 0, 0, 0, ZoneOffset.UTC), FHIRDateTimeSpecificity.Month))
       case yearsMonthsAndDays(y, m, d) =>
-        Try(
-          FHIRDateTime(
-            ZonedDateTime.of(y.toInt, m.toInt, d.toInt, 0, 0, 0, 0, ZoneOffset.UTC),
-            FHIRDateTimeSpecificity.Day))
+        Try(FHIRDateTime(ZonedDateTime.of(y.toInt, m.toInt, d.toInt, 0, 0, 0, 0, ZoneOffset.UTC), FHIRDateTimeSpecificity.Day))
       case x => Try(FHIRDateTime(ZonedDateTime.parse(x), FHIRDateTimeSpecificity.Time))
     }
   implicit val encoderFHIRDateTime: Encoder[FHIRDateTime] = Encoder.encodeString.contramap(_.fmt)

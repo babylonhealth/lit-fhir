@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_calculatedValue extends CompanionFor[Cqf_calculatedValue] {
   implicit def summonObjectAndCompanionCqf_calculatedValue_923131191(
-      o: Cqf_calculatedValue): ObjectAndCompanion[Cqf_calculatedValue, Cqf_calculatedValue.type] =
-    ObjectAndCompanion(o, this)
+      o: Cqf_calculatedValue): ObjectAndCompanion[Cqf_calculatedValue, Cqf_calculatedValue.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,8 +55,7 @@ object Cqf_calculatedValue extends CompanionFor[Cqf_calculatedValue] {
   def extractValue(t: Cqf_calculatedValue): String                        = t.value.get.toSubRefNonUnion[String]
   override val thisName: String                                           = "Cqf_calculatedValue"
   override val searchParams: Map[String, Cqf_calculatedValue => Seq[Any]] = Extension.searchParams
-  def unapply(o: Cqf_calculatedValue): Option[(Option[String], String)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[String]))
+  def unapply(o: Cqf_calculatedValue): Option[(Option[String], String)]   = Some((o.id, o.value.get.toSubRefNonUnion[String]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Cqf_calculatedValue] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +69,21 @@ object Cqf_calculatedValue extends CompanionFor[Cqf_calculatedValue] {
 
 /** The name of an expression in a referenced library that determines a calculated value.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Cqf_calculatedValue(

@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_nullFlavor extends CompanionFor[Iso21090_nullFlavor] {
   implicit def summonObjectAndCompanionIso21090_nullFlavor_1486781131(
-      o: Iso21090_nullFlavor): ObjectAndCompanion[Iso21090_nullFlavor, Iso21090_nullFlavor.type] =
-    ObjectAndCompanion(o, this)
+      o: Iso21090_nullFlavor): ObjectAndCompanion[Iso21090_nullFlavor, Iso21090_nullFlavor.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -53,8 +52,8 @@ object Iso21090_nullFlavor extends CompanionFor[Iso21090_nullFlavor] {
     ))
   override def fields(t: Iso21090_nullFlavor): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
   def extractId(t: Iso21090_nullFlavor): Option[String]                   = t.id
-  def extractValue(t: Iso21090_nullFlavor): V3_NULLFLAVOR                 = V3_NULLFLAVOR.withName(t.value.get.toSubRefNonUnion[Code])
-  override val thisName: String                                           = "Iso21090_nullFlavor"
+  def extractValue(t: Iso21090_nullFlavor): V3_NULLFLAVOR = V3_NULLFLAVOR.withName(t.value.get.toSubRefNonUnion[Code])
+  override val thisName: String                           = "Iso21090_nullFlavor"
   override val searchParams: Map[String, Iso21090_nullFlavor => Seq[Any]] = Extension.searchParams
   def unapply(o: Iso21090_nullFlavor): Option[(Option[String], V3_NULLFLAVOR)] = Some(
     (o.id, V3_NULLFLAVOR.withName(o.value.get.toSubRefNonUnion[Code])))
@@ -71,16 +70,21 @@ object Iso21090_nullFlavor extends CompanionFor[Iso21090_nullFlavor] {
 
 /** If the value is not a proper value, indicates the reason.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Iso21090_nullFlavor(
@@ -89,7 +93,7 @@ class Iso21090_nullFlavor(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(choiceFromEnum(value)),
       url = "http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

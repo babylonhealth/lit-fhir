@@ -24,8 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Task extends CompanionFor[Task] {
-  implicit def summonObjectAndCompanionTask1301031953(o: Task): ObjectAndCompanion[Task, Task.type] =
-    ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionTask1301031953(o: Task): ObjectAndCompanion[Task, Task.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Task
   override type ParentType   = Task
   override val baseType: CompanionFor[ResourceType] = Task
@@ -69,8 +68,7 @@ object Task extends CompanionFor[Task] {
       FHIRComponentFieldMeta("repetitions", lTagOf[Option[PositiveInt]], false, lTagOf[PositiveInt])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, period, extension, recipient, repetitions, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, period, extension, recipient, repetitions, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Restriction): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -128,8 +126,7 @@ object Task extends CompanionFor[Task] {
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(
-        o: Output): Option[(Option[String], CodeableConcept, Output.ValueChoice, LitSeq[Extension], LitSeq[Extension])] =
+    def unapply(o: Output): Option[(Option[String], CodeableConcept, Output.ValueChoice, LitSeq[Extension], LitSeq[Extension])] =
       Some((o.id, o.`type`, o.value, o.extension, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -141,7 +138,7 @@ object Task extends CompanionFor[Task] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, value, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, value, extension, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Output): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -196,8 +193,7 @@ object Task extends CompanionFor[Task] {
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(
-        o: Input): Option[(Option[String], CodeableConcept, Input.ValueChoice, LitSeq[Extension], LitSeq[Extension])] =
+    def unapply(o: Input): Option[(Option[String], CodeableConcept, Input.ValueChoice, LitSeq[Extension], LitSeq[Extension])] =
       Some((o.id, o.`type`, o.value, o.extension, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -209,7 +205,7 @@ object Task extends CompanionFor[Task] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, `type`, value, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, value, extension, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Input): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -597,49 +593,116 @@ object Task extends CompanionFor[Task] {
 
 /** A task to be performed.
   *
-  *  Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
-  * @constructor Introduces the fields `for`, code, note, focus, owner, partOf, status, intent, basedOn, priority, location, encounter, requester, insurance, identifier, authoredOn, reasonCode, description, statusReason, lastModified, performerType, businessStatus, instantiatesUri, groupIdentifier, executionPeriod, reasonReference, relevantHistory, instantiatesCanonical, input, output, restriction.
-  * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
-  * @param `for` - The entity who benefits from the performance of the service specified in the task (e.g., the patient).
-  * @param meta - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.
-  * @param text - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.
-  * @param code - A name or code (or both) briefly describing what the task involves.
-  * @param note - Free-text information captured about the task as it progresses.
-  * @param focus - The request being actioned or the resource being manipulated by this task.
-  * @param owner - Individual organization or Device currently responsible for task execution.
-  * @param partOf - Task that this particular task is part of.
-  * @param status - The current status of the task.
-  * @param intent - Indicates the "level" of actionability associated with the Task, i.e. i+R[9]Cs this a proposed task, a planned task, an actionable task, etc.
-  * @param basedOn - BasedOn refers to a higher-level authorization that triggered the creation of the task.  It references a "request" resource such as a ServiceRequest, MedicationRequest, ServiceRequest, CarePlan, etc. which is distinct from the "request" resource the task is seeking to fulfill.  This latter resource is referenced by FocusOn.  For example, based on a ServiceRequest (= BasedOn), a task is created to fulfill a procedureRequest ( = FocusOn ) to collect a specimen from a patient.
-  * @param language - The base language in which the resource is written.
-  * @param priority - Indicates how quickly the Task should be addressed with respect to other requests.
-  * @param location - Principal physical location where the this task is performed.
-  * @param contained - These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
-  * @param encounter - The healthcare event  (e.g. a patient and healthcare provider interaction) during which this task was created.
-  * @param requester - The creator of the task.
-  * @param insurance - Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be relevant to the Task.
-  * @param identifier - The business identifier for this task.
-  * @param authoredOn - The date and time this task was created.
-  * @param reasonCode - A description or code indicating why this task needs to be performed.
-  * @param description - A free-text description of what is to be performed.
-  * @param statusReason - An explanation as to why this task is held, failed, was refused, etc.
-  * @param lastModified - The date and time of last modification to this task.
-  * @param implicitRules - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.
-  * @param performerType - The kind of participant that should perform the task.
-  * @param businessStatus - Contains business-specific nuances of the business state.
-  * @param instantiatesUri - The URL pointing to an *externally* maintained  protocol, guideline, orderset or other definition that is adhered to in whole or in part by this Task.
-  * @param groupIdentifier - An identifier that links together multiple tasks and other requests that were created in the same context.
-  * @param executionPeriod - Identifies the time action was first taken against the task (start) and/or the time final action was taken against the task prior to marking it as completed (end).
-  * @param reasonReference - A resource reference indicating why this task needs to be performed.
-  * @param relevantHistory - Links to Provenance records for past versions of this Task that identify key state transitions or updates that are likely to be relevant to a user looking at the current version of the task.
-  * @param modifierExtension - May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.
-  * Modifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
-  * @param instantiatesCanonical - The URL pointing to a *FHIR*-defined protocol, guideline, orderset or other definition that is adhered to in whole or in part by this Task.
-  * @param input - Additional information that may be needed in the execution of the task.
-  * @param output - Outputs produced by the Task.
-  * @param restriction - If the Task.focus is a request resource and the task is seeking fulfillment (i.e. is asking for the request to be actioned), this element identifies any limitations on what parts of the referenced request should be actioned.
+  * @constructor
+  *   Introduces the fields `for`, code, note, focus, owner, partOf, status, intent, basedOn, priority, location, encounter,
+  *   requester, insurance, identifier, authoredOn, reasonCode, description, statusReason, lastModified, performerType,
+  *   businessStatus, instantiatesUri, groupIdentifier, executionPeriod, reasonReference, relevantHistory, instantiatesCanonical,
+  *   input, output, restriction.
+  * @param id
+  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  * @param `for`
+  *   - The entity who benefits from the performance of the service specified in the task (e.g., the patient).
+  * @param meta
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
+  * @param text
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
+  * @param code
+  *   - A name or code (or both) briefly describing what the task involves.
+  * @param note
+  *   - Free-text information captured about the task as it progresses.
+  * @param focus
+  *   - The request being actioned or the resource being manipulated by this task.
+  * @param owner
+  *   - Individual organization or Device currently responsible for task execution.
+  * @param partOf
+  *   - Task that this particular task is part of.
+  * @param status
+  *   - The current status of the task.
+  * @param intent
+  *   - Indicates the "level" of actionability associated with the Task, i.e. i+R[9]Cs this a proposed task, a planned task, an
+  *   actionable task, etc.
+  * @param basedOn
+  *   - BasedOn refers to a higher-level authorization that triggered the creation of the task. It references a "request" resource
+  *   such as a ServiceRequest, MedicationRequest, ServiceRequest, CarePlan, etc. which is distinct from the "request" resource
+  *   the task is seeking to fulfill. This latter resource is referenced by FocusOn. For example, based on a ServiceRequest (=
+  *   BasedOn), a task is created to fulfill a procedureRequest ( = FocusOn ) to collect a specimen from a patient.
+  * @param language
+  *   - The base language in which the resource is written.
+  * @param priority
+  *   - Indicates how quickly the Task should be addressed with respect to other requests.
+  * @param location
+  *   - Principal physical location where the this task is performed.
+  * @param contained
+  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   identified independently, and nor can they have their own independent transaction scope.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
+  * @param encounter
+  *   - The healthcare event (e.g. a patient and healthcare provider interaction) during which this task was created.
+  * @param requester
+  *   - The creator of the task.
+  * @param insurance
+  *   - Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be relevant to the Task.
+  * @param identifier
+  *   - The business identifier for this task.
+  * @param authoredOn
+  *   - The date and time this task was created.
+  * @param reasonCode
+  *   - A description or code indicating why this task needs to be performed.
+  * @param description
+  *   - A free-text description of what is to be performed.
+  * @param statusReason
+  *   - An explanation as to why this task is held, failed, was refused, etc.
+  * @param lastModified
+  *   - The date and time of last modification to this task.
+  * @param implicitRules
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
+  * @param performerType
+  *   - The kind of participant that should perform the task.
+  * @param businessStatus
+  *   - Contains business-specific nuances of the business state.
+  * @param instantiatesUri
+  *   - The URL pointing to an *externally* maintained protocol, guideline, orderset or other definition that is adhered to in
+  *   whole or in part by this Task.
+  * @param groupIdentifier
+  *   - An identifier that links together multiple tasks and other requests that were created in the same context.
+  * @param executionPeriod
+  *   - Identifies the time action was first taken against the task (start) and/or the time final action was taken against the
+  *   task prior to marking it as completed (end).
+  * @param reasonReference
+  *   - A resource reference indicating why this task needs to be performed.
+  * @param relevantHistory
+  *   - Links to Provenance records for past versions of this Task that identify key state transitions or updates that are likely
+  *   to be relevant to a user looking at the current version of the task.
+  * @param modifierExtension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param instantiatesCanonical
+  *   - The URL pointing to a *FHIR*-defined protocol, guideline, orderset or other definition that is adhered to in whole or in
+  *   part by this Task.
+  * @param input
+  *   - Additional information that may be needed in the execution of the task.
+  * @param output
+  *   - Outputs produced by the Task.
+  * @param restriction
+  *   - If the Task.focus is a request resource and the task is seeking fulfillment (i.e. is asking for the request to be
+  *   actioned), this element identifies any limitations on what parts of the referenced request should be actioned.
   */
 @POJOBoilerplate
 class Task(

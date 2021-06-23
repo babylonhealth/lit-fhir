@@ -8,7 +8,7 @@ import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.FHIRObject.attrMap
 import com.babylonhealth.lit.core.model.{ CodeableConcept, Element, Extension, Quantity, Reference }
 import com.babylonhealth.lit.core.serdes._
-import com.babylonhealth.lit.core.{ FHIRDateTime, LitSeq, PrimitiveElementInfo, UriStr }
+import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.hl7.{ ACCOUNT_STATUS, OBSERVATION_STATUS }
 import com.babylonhealth.lit.hl7.model.Account
 import com.babylonhealth.lit.hl7.model.Observation.ReferenceRange
@@ -20,8 +20,7 @@ class PrimitiveElementIdTest extends AnyFreeSpec with Matchers {
     implicitRules = Some("http://fooo.com/bar/baz"),
     primitiveAttributes = attrMap(
       Account.implicitRules -> PrimitiveElementInfo(
-        Element(
-          extension = LitSeq(Extension(url = "http://fooo.com/version", value = Some(choice("asd123": UriStr)))))),
+        Element(extension = LitSeq(Extension(url = "http://fooo.com/version", value = Some(choice("asd123": UriStr)))))),
       Account.status -> PrimitiveElementInfo(Element(id = Some("1234567890")))
     )
   )
@@ -98,7 +97,7 @@ class PrimitiveElementIdTest extends AnyFreeSpec with Matchers {
 
   "can set extension with sugar" in {
     val value1: Extension.ValueChoice = choice(BigDecimal("789.987"))
-    val bar: Account                  = foo.extensions.set(Account.status)(LitSeq(Extension(url = "http://hi.ho", value = Some(value1))))
+    val bar: Account = foo.extensions.set(Account.status)(LitSeq(Extension(url = "http://hi.ho", value = Some(value1))))
     bar.extensions.get(Account.status) shouldEqual LitSeq(Extension(url = "http://hi.ho", value = Some(value1)))
     val bar2: Account = foo.setExtensions(_.status)(LitSeq(Extension(url = "http://hi.ho", value = Some(value1))))
     bar2.getExtensions(_.status) shouldEqual LitSeq(Extension(url = "http://hi.ho", value = Some(value1)))
@@ -108,7 +107,7 @@ class PrimitiveElementIdTest extends AnyFreeSpec with Matchers {
     def updateId: Option[PrimitiveElementInfo] => Option[PrimitiveElementInfo] = {
       case Some(PrimitiveElementInfo(Element(None, extensions), phantom)) =>
         Some(PrimitiveElementInfo(Element(Some("new-id"), extensions), phantom))
-      case Some(pei: PrimitiveElementInfo) => Some(pei.copy(element = pei.element.updateIdIfExists(_.reverse)))
+      case Some(pei: PrimitiveElementInfo) => Some(pei.copy(element = pei.element.updateIfExists(_.id)(_.reverse)))
       case None                            => Some(PrimitiveElementInfo(Element(id = Some("new-id"))))
     }
 
@@ -174,8 +173,7 @@ class PrimitiveElementIdTest extends AnyFreeSpec with Matchers {
       Extension(url = "http://fooo.com/version", value = Some(choice("asd123": UriStr))))
     val bar2: Account =
       foo.updateExtensions(_.implicitRules)(updateExtension).extensions.update(Account.status)(updateExtension)
-    bar2.getExtensions(_.status) shouldEqual LitSeq(
-      Extension(url = "http://hi.ho", value = Some(choice(789.987: BigDecimal))))
+    bar2.getExtensions(_.status) shouldEqual LitSeq(Extension(url = "http://hi.ho", value = Some(choice(789.987: BigDecimal))))
     bar2.getExtensions(_.implicitRules) shouldEqual LitSeq(
       Extension(url = "http://fooo.com/version", value = Some(choice("asd123": UriStr))))
   }

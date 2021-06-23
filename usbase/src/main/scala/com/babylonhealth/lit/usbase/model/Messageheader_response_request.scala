@@ -31,8 +31,7 @@ object Messageheader_response_request extends CompanionFor[Messageheader_respons
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
-  override val profileUrl: Option[String] = Some(
-    "http://hl7.org/fhir/StructureDefinition/messageheader-response-request")
+  override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/messageheader-response-request")
   def apply(
       id: Option[String] = None,
       value: MESSAGEHEADER_RESPONSE_REQUEST,
@@ -45,11 +44,7 @@ object Messageheader_response_request extends CompanionFor[Messageheader_respons
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[MESSAGEHEADER_RESPONSE_REQUEST] =
-    FHIRComponentFieldMeta(
-      "value",
-      lTagOf[MESSAGEHEADER_RESPONSE_REQUEST],
-      true,
-      lTagOf[MESSAGEHEADER_RESPONSE_REQUEST])
+    FHIRComponentFieldMeta("value", lTagOf[MESSAGEHEADER_RESPONSE_REQUEST], true, lTagOf[MESSAGEHEADER_RESPONSE_REQUEST])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -77,18 +72,24 @@ object Messageheader_response_request extends CompanionFor[Messageheader_respons
       ))
 }
 
-/** This extension enables the capability currently available through MSH-16 (Application Level acknowledgement) in HL7 Version 2 to declare at a message instance level whether a response is required or only upon error or success, or never.
+/** This extension enables the capability currently available through MSH-16 (Application Level acknowledgement) in HL7 Version 2
+  * to declare at a message instance level whether a response is required or only upon error or success, or never.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Messageheader_response_request(
@@ -97,7 +98,7 @@ class Messageheader_response_request(
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends Extension(
       id = id,
-      value = Some(choice(value)),
+      value = Some(choiceFromEnum(value)),
       url = "http://hl7.org/fhir/StructureDefinition/messageheader-response-request",
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Extension"

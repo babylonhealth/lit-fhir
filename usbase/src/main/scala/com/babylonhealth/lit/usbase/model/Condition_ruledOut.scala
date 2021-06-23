@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Condition_ruledOut extends CompanionFor[Condition_ruledOut] {
   implicit def summonObjectAndCompanionCondition_ruledOut_887714800(
-      o: Condition_ruledOut): ObjectAndCompanion[Condition_ruledOut, Condition_ruledOut.type] =
-    ObjectAndCompanion(o, this)
+      o: Condition_ruledOut): ObjectAndCompanion[Condition_ruledOut, Condition_ruledOut.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -51,13 +50,12 @@ object Condition_ruledOut extends CompanionFor[Condition_ruledOut] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
-  override def fields(t: Condition_ruledOut): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Condition_ruledOut): Option[String]                   = t.id
-  def extractValue(t: Condition_ruledOut): Reference                     = t.value.get.toSubRefNonUnion[Reference]
-  override val thisName: String                                          = "Condition_ruledOut"
-  override val searchParams: Map[String, Condition_ruledOut => Seq[Any]] = Extension.searchParams
-  def unapply(o: Condition_ruledOut): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+  override def fields(t: Condition_ruledOut): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
+  def extractId(t: Condition_ruledOut): Option[String]                    = t.id
+  def extractValue(t: Condition_ruledOut): Reference                      = t.value.get.toSubRefNonUnion[Reference]
+  override val thisName: String                                           = "Condition_ruledOut"
+  override val searchParams: Map[String, Condition_ruledOut => Seq[Any]]  = Extension.searchParams
+  def unapply(o: Condition_ruledOut): Option[(Option[String], Reference)] = Some((o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Condition_ruledOut] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +69,21 @@ object Condition_ruledOut extends CompanionFor[Condition_ruledOut] {
 
 /** Identifies what potential diagnoses have been ruled out for this condition.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Condition_ruledOut(

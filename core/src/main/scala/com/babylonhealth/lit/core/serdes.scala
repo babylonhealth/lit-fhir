@@ -3,15 +3,14 @@ package com.babylonhealth.lit.core
 import java.time.{ LocalTime, ZonedDateTime }
 import java.util.{ Base64, UUID }
 
+import scala.reflect.ClassTag
 import scala.util.Try
 
-import enumeratum.EnumEntry
 import io.circe.parser.decode
 import io.circe.syntax._
 import io.circe.{ Decoder, Encoder, Json }
 import izumi.reflect.macrortti.LTag
 import org.slf4j.{ Logger, LoggerFactory }
-
 import com.babylonhealth.lit.core.model.{ Element, Resource, typeSuffixMap }
 
 object serdes extends Utils {
@@ -32,15 +31,15 @@ object serdes extends Utils {
       case d: ZonedDateTime   => Json fromString FHIRDateTimeSpecificity.Time.dtFormatter.format(d)
       case dt: FHIRDateTime   => Json fromString dt.fmt
       case d: FHIRDate        => Json fromString d.fmt
-      case time: LocalTime    => time.asJson
-      case e: EnumEntry       => Encoder.encodeString(e.entryName)
+      case time: LocalTime    => Json fromString time.toString
+      case e: EnumBase        => Encoder.encodeString(e.name)
       case bytes: Array[Byte] => Json.fromString(Base64.getEncoder.encodeToString(bytes))
       case j: Json            => j
       // unused?
-      case Left(l)   => serializeField(l)
-      case Right(l)  => serializeField(l)
-      case LHS(l)    => serializeField(l)
-      case RHS(r)    => serializeField(r)
+      case Left(l)  => serializeField(l)
+      case Right(l) => serializeField(l)
+//      case LHS(l)    => serializeField(l)
+//      case RHS(r)    => serializeField(r)
       case s: Double => Json fromDouble s getOrElse Json.Null
       case x =>
         log.error(s"Unmatched case in serializeField (${x.getClass})")
@@ -57,8 +56,7 @@ object serdes extends Utils {
       case x => // this case implies we're dealing with a subclass that specifies a single type for a reffish field
         log.error("THIS CASE SHOULD BE IMPOSSIBLE")
         val value = typeSuffixMap(t.tag)
-          .getOrElse(
-            throw new RuntimeException(s"Could not find the type suffix for ${t.tag} when encoding ${name}[x]"))
+          .getOrElse(throw new RuntimeException(s"Could not find the type suffix for ${t.tag} when encoding ${name}[x]"))
         (name + value) -> serializeField(x)
     }
 
@@ -68,8 +66,7 @@ object serdes extends Utils {
       if (encoderParams.addTopLevelResourceType) encoderParams.copy(addTopLevelResourceType = false) else encoderParams
     val fields = a.companion.baseType.fields(a)
     val fs: Seq[(String, Json)] = fields.map {
-      case FHIRComponentField(meta, _)
-          if encoderParams.stripPhantom && a.primitiveAttributes.get(meta).exists(_.phantom) =>
+      case FHIRComponentField(meta, _) if encoderParams.stripPhantom && a.primitiveAttributes.get(meta).exists(_.phantom) =>
         "" -> Json.Null
       case FHIRComponentField(FHIRComponentFieldMeta(name, t, true, _), value) =>
         encodeRefish(name, value, t)(newParams)
@@ -85,15 +82,13 @@ object serdes extends Utils {
     val attributes: Seq[(String, Json)] = a.primitiveAttributes.map { case (k, v) =>
       ('_' +: k.name) -> encodeComponent(v.element)(newParams)
     }.toSeq
-    Json.fromFields(
-      (resourceType.toSeq ++ fs ++ attributes).filterNot(x => x._2.isNull || x._2.asArray.exists(_.isEmpty)))
+    Json.fromFields((resourceType.toSeq ++ fs ++ attributes).filterNot(x => x._2.isNull || x._2.asArray.exists(_.isEmpty)))
   }
   // convenience methods, primarily for calling from Java
   lazy val allGeneratedClasses: Seq[Class[_]] = model.urlLookup.values.map(_.thisClassTag.runtimeClass).toSeq
   lazy val companionClassMap: Map[Class[_], CompanionFor[_]] = allGeneratedClasses map { klass =>
-    val module = Utils.mirror.staticModule(klass.getName)
     val companionObj: CompanionFor[_ <: FHIRObject] =
-      Utils.mirror.reflectModule(module).instance.asInstanceOf[CompanionFor[_ <: FHIRObject]]
+      Class.forName(klass.getName + "$").getField("MODULE$").get(null).asInstanceOf[CompanionFor[_ <: FHIRObject]]
     klass -> companionObj
   } toMap
 
@@ -104,7 +99,7 @@ object serdes extends Utils {
   implicit def objectEncoder[T <: FHIRObject](implicit params: EncoderParams = EncoderParams()): Encoder[T] =
     Encoder.instance(encodeComponent)
 
-  implicit def objectDecoder[T <: FHIRObject: LTag](implicit params: DecoderParams = DecoderParams()): Decoder[T] =
+  implicit def objectDecoder[T <: FHIRObject: LTag: ClassTag](implicit params: DecoderParams = DecoderParams()): Decoder[T] =
     Decoder.instanceTry {
       decodeMethodFor[T]
     }

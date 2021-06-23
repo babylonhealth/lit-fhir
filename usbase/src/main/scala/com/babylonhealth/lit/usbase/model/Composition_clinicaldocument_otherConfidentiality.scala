@@ -23,8 +23,7 @@ import com.babylonhealth.lit.usbase.UnionAliases._
 import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
-object Composition_clinicaldocument_otherConfidentiality
-    extends CompanionFor[Composition_clinicaldocument_otherConfidentiality] {
+object Composition_clinicaldocument_otherConfidentiality extends CompanionFor[Composition_clinicaldocument_otherConfidentiality] {
   implicit def summonObjectAndCompanionComposition_clinicaldocument_otherConfidentiality_1267500347(
       o: Composition_clinicaldocument_otherConfidentiality): ObjectAndCompanion[Composition_clinicaldocument_otherConfidentiality, Composition_clinicaldocument_otherConfidentiality.type] =
     ObjectAndCompanion(o, this)
@@ -53,17 +52,14 @@ object Composition_clinicaldocument_otherConfidentiality
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Coding](value, t.value.get.toSubRefNonUnion[Coding])
     ))
-  override def fields(t: Composition_clinicaldocument_otherConfidentiality): Seq[FHIRComponentField[_]] =
-    fieldsFromParent(t).get
-  def extractId(t: Composition_clinicaldocument_otherConfidentiality): Option[String] = t.id
-  def extractValue(t: Composition_clinicaldocument_otherConfidentiality): Coding      = t.value.get.toSubRefNonUnion[Coding]
-  override val thisName: String                                                       = "Composition_clinicaldocument_otherConfidentiality"
-  override val searchParams: Map[String, Composition_clinicaldocument_otherConfidentiality => Seq[Any]] =
-    Extension.searchParams
+  override def fields(t: Composition_clinicaldocument_otherConfidentiality): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
+  def extractId(t: Composition_clinicaldocument_otherConfidentiality): Option[String]                   = t.id
+  def extractValue(t: Composition_clinicaldocument_otherConfidentiality): Coding = t.value.get.toSubRefNonUnion[Coding]
+  override val thisName: String = "Composition_clinicaldocument_otherConfidentiality"
+  override val searchParams: Map[String, Composition_clinicaldocument_otherConfidentiality => Seq[Any]] = Extension.searchParams
   def unapply(o: Composition_clinicaldocument_otherConfidentiality): Option[(Option[String], Coding)] = Some(
     (o.id, o.value.get.toSubRefNonUnion[Coding]))
-  def decodeThis(cursor: HCursor)(implicit
-      params: DecoderParams): Try[Composition_clinicaldocument_otherConfidentiality] =
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Composition_clinicaldocument_otherConfidentiality] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new Composition_clinicaldocument_otherConfidentiality(
@@ -76,16 +72,21 @@ object Composition_clinicaldocument_otherConfidentiality
 
 /** Carries additional confidentiality codes beyond the base fixed code specified in the CDA document.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Composition_clinicaldocument_otherConfidentiality(

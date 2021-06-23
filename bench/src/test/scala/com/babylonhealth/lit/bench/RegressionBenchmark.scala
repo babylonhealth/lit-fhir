@@ -11,8 +11,6 @@ import org.scalameter.{ Persistor, persistence }
 
 import com.babylonhealth.lit.hl7.BUNDLE_TYPE
 import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
-import com.babylonhealth.lit.core_java.LitUtils
-import com.babylonhealth.lit.core_java.LitUtils.defaultEncoderParams
 import com.babylonhealth.lit.hl7.model.{ Bundle, StructureDefinition }
 import com.babylonhealth.lit.protoshim.Translator
 
@@ -95,7 +93,7 @@ object RegressionBenchmarks7 extends RegressionBenchmark {
 object RegressionBenchmarks8 extends RegressionBenchmark {
   performance of "lit_resource" in {
     measure method ">>" in {
-      using(singleTest) in (_ => sampleResource >> [BUNDLE_TYPE] ((_: BUNDLE_TYPE) => BUNDLE_TYPE.SEARCHSET))
+      using(singleTest) in (_ => sampleResource.>>[BUNDLE_TYPE]((_: BUNDLE_TYPE) => BUNDLE_TYPE.SEARCHSET))
     }
   }
 
@@ -114,7 +112,7 @@ object RegressionBenchmarks9 extends RegressionBenchmark {
 object RegressionBenchmarks10 extends RegressionBenchmark {
   performance of "lit_resource" in {
     measure method "^^" in {
-      using(singleTest) in (_ => sampleResource ^^ [BUNDLE_TYPE, BUNDLE_TYPE] identity[BUNDLE_TYPE])
+      using(singleTest) in (_ => sampleResource.^^[BUNDLE_TYPE, BUNDLE_TYPE](identity))
     }
   }
 

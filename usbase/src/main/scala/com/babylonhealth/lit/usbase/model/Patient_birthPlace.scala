@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Patient_birthPlace extends CompanionFor[Patient_birthPlace] {
   implicit def summonObjectAndCompanionPatient_birthPlace_103034260(
-      o: Patient_birthPlace): ObjectAndCompanion[Patient_birthPlace, Patient_birthPlace.type] =
-    ObjectAndCompanion(o, this)
+      o: Patient_birthPlace): ObjectAndCompanion[Patient_birthPlace, Patient_birthPlace.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,8 +55,7 @@ object Patient_birthPlace extends CompanionFor[Patient_birthPlace] {
   def extractValue(t: Patient_birthPlace): Address                       = t.value.get.toSubRefNonUnion[Address]
   override val thisName: String                                          = "Patient_birthPlace"
   override val searchParams: Map[String, Patient_birthPlace => Seq[Any]] = Extension.searchParams
-  def unapply(o: Patient_birthPlace): Option[(Option[String], Address)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Address]))
+  def unapply(o: Patient_birthPlace): Option[(Option[String], Address)]  = Some((o.id, o.value.get.toSubRefNonUnion[Address]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Patient_birthPlace] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,18 +67,24 @@ object Patient_birthPlace extends CompanionFor[Patient_birthPlace] {
       ))
 }
 
-/** The registered place of birth of the patient. A sytem may use the address.text if they don't store the birthPlace address in discrete elements.
+/** The registered place of birth of the patient. A sytem may use the address.text if they don't store the birthPlace address in
+  * discrete elements.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Patient_birthPlace(

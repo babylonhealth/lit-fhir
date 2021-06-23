@@ -98,16 +98,28 @@ object SimpleQuantity extends CompanionFor[SimpleQuantity] {
 
 /** A fixed quantity (no comparator)
   *
-  *  Subclass of [[core.model.Quantity]] (Base StructureDefinition for Quantity Type: A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts that are not precisely quantified, including amounts involving arbitrary units and floating currencies.)
+  * Subclass of [[core.model.Quantity]] (Base StructureDefinition for Quantity Type: A measured amount (or an amount that can
+  * potentially be measured). Note that measured amounts include amounts that are not precisely quantified, including amounts
+  * involving arbitrary units and floating currencies.)
   *
-  * @constructor Inherits all params from parent.
-  *              Forbids the use of the following fields which were optional in the parent: comparator.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param unit - A human-readable form of the unit.
-  * @param code - A computer processable form of the unit in some unit representation system.
-  * @param value - The value of the measured amount. The value includes an implicit precision in the presentation of the value.
-  * @param system - The identification of the system that provides the coded form of the unit.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
+  * @constructor
+  *   Inherits all params from parent. Forbids the use of the following fields which were optional in the parent: comparator.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param unit
+  *   - A human-readable form of the unit.
+  * @param code
+  *   - A computer processable form of the unit in some unit representation system.
+  * @param value
+  *   - The value of the measured amount. The value includes an implicit precision in the presentation of the value.
+  * @param system
+  *   - The identification of the system that provides the coded form of the unit.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class SimpleQuantity(

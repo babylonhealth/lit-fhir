@@ -21,8 +21,8 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Contributor extends CompanionFor[Contributor] {
-  implicit def summonObjectAndCompanionContributor_1606151921(
-      o: Contributor): ObjectAndCompanion[Contributor, Contributor.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionContributor_1606151921(o: Contributor): ObjectAndCompanion[Contributor, Contributor.type] =
+    ObjectAndCompanion(o, this)
   override type ResourceType = Contributor
   override type ParentType   = Contributor
   override val baseType: CompanionFor[ResourceType] = Contributor
@@ -68,8 +68,7 @@ object Contributor extends CompanionFor[Contributor] {
   def extractContact(t: Contributor): LitSeq[ContactDetail] = t.contact
   def extractExtension(t: Contributor): LitSeq[Extension]   = t.extension
   override val thisName: String                             = "Contributor"
-  def unapply(
-      o: Contributor): Option[(Option[String], CONTRIBUTOR_TYPE, String, LitSeq[ContactDetail], LitSeq[Extension])] =
+  def unapply(o: Contributor): Option[(Option[String], CONTRIBUTOR_TYPE, String, LitSeq[ContactDetail], LitSeq[Extension])] =
     Some((o.id, o.`type`, o.name, o.contact, o.extension))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Contributor] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
@@ -85,16 +84,28 @@ object Contributor extends CompanionFor[Contributor] {
       ))
 }
 
-/** Base StructureDefinition for Contributor Type: A contributor to the content of a knowledge asset, including authors, editors, reviewers, and endorsers.
+/** Base StructureDefinition for Contributor Type: A contributor to the content of a knowledge asset, including authors, editors,
+  * reviewers, and endorsers.
   *
-  *  Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a resource.)
+  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
+  * resource.)
   *
-  * @constructor Introduces the fields `type`, name, contact.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param `type` - The type of contributor.
-  * @param name - The name of the individual or organization responsible for the contribution.
-  * @param contact - Contact details to assist a user in finding and communicating with the contributor.
-  * @param extension - May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
+  * @constructor
+  *   Introduces the fields `type`, name, contact.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param `type`
+  *   - The type of contributor.
+  * @param name
+  *   - The name of the individual or organization responsible for the contribution.
+  * @param contact
+  *   - Contact details to assist a user in finding and communicating with the contributor.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
   */
 @POJOBoilerplate
 class Contributor(

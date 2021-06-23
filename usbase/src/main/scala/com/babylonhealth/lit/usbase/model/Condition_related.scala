@@ -50,13 +50,12 @@ object Condition_related extends CompanionFor[Condition_related] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Reference](value, t.value.get.toSubRefNonUnion[Reference])
     ))
-  override def fields(t: Condition_related): Seq[FHIRComponentField[_]] = fieldsFromParent(t).get
-  def extractId(t: Condition_related): Option[String]                   = t.id
-  def extractValue(t: Condition_related): Reference                     = t.value.get.toSubRefNonUnion[Reference]
-  override val thisName: String                                         = "Condition_related"
-  override val searchParams: Map[String, Condition_related => Seq[Any]] = Extension.searchParams
-  def unapply(o: Condition_related): Option[(Option[String], Reference)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Reference]))
+  override def fields(t: Condition_related): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
+  def extractId(t: Condition_related): Option[String]                    = t.id
+  def extractValue(t: Condition_related): Reference                      = t.value.get.toSubRefNonUnion[Reference]
+  override val thisName: String                                          = "Condition_related"
+  override val searchParams: Map[String, Condition_related => Seq[Any]]  = Extension.searchParams
+  def unapply(o: Condition_related): Option[(Option[String], Reference)] = Some((o.id, o.value.get.toSubRefNonUnion[Reference]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Condition_related] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -70,16 +69,21 @@ object Condition_related extends CompanionFor[Condition_related] {
 
 /** This condition has an unspecified relationship with another condition.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Condition_related(

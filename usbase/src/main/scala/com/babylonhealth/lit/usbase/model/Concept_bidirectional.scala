@@ -56,8 +56,7 @@ object Concept_bidirectional extends CompanionFor[Concept_bidirectional] {
   def extractValue(t: Concept_bidirectional): Boolean                       = t.value.get.toSubRefNonUnion[Boolean]
   override val thisName: String                                             = "Concept_bidirectional"
   override val searchParams: Map[String, Concept_bidirectional => Seq[Any]] = Extension.searchParams
-  def unapply(o: Concept_bidirectional): Option[(Option[String], Boolean)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Boolean]))
+  def unapply(o: Concept_bidirectional): Option[(Option[String], Boolean)]  = Some((o.id, o.value.get.toSubRefNonUnion[Boolean]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Concept_bidirectional] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +70,21 @@ object Concept_bidirectional extends CompanionFor[Concept_bidirectional] {
 
 /** Set to true if the concept map can be safely intepreted in reversse.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Concept_bidirectional(

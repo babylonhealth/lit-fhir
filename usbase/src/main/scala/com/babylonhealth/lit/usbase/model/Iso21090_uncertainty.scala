@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_uncertainty extends CompanionFor[Iso21090_uncertainty] {
   implicit def summonObjectAndCompanionIso21090_uncertainty_1183257806(
-      o: Iso21090_uncertainty): ObjectAndCompanion[Iso21090_uncertainty, Iso21090_uncertainty.type] =
-    ObjectAndCompanion(o, this)
+      o: Iso21090_uncertainty): ObjectAndCompanion[Iso21090_uncertainty, Iso21090_uncertainty.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -69,18 +68,24 @@ object Iso21090_uncertainty extends CompanionFor[Iso21090_uncertainty] {
       ))
 }
 
-/** The primary measure of variance/uncertainty of the value (the square root of the sum of the squares of the differences between all data points and the mean).
+/** The primary measure of variance/uncertainty of the value (the square root of the sum of the squares of the differences between
+  * all data points and the mean).
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Iso21090_uncertainty(

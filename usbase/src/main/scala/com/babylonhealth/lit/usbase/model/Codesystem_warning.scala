@@ -25,8 +25,7 @@ import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_warning extends CompanionFor[Codesystem_warning] {
   implicit def summonObjectAndCompanionCodesystem_warning114625929(
-      o: Codesystem_warning): ObjectAndCompanion[Codesystem_warning, Codesystem_warning.type] =
-    ObjectAndCompanion(o, this)
+      o: Codesystem_warning): ObjectAndCompanion[Codesystem_warning, Codesystem_warning.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
@@ -56,8 +55,7 @@ object Codesystem_warning extends CompanionFor[Codesystem_warning] {
   def extractValue(t: Codesystem_warning): Markdown                      = t.value.get.toSubRefNonUnion[Markdown]
   override val thisName: String                                          = "Codesystem_warning"
   override val searchParams: Map[String, Codesystem_warning => Seq[Any]] = Extension.searchParams
-  def unapply(o: Codesystem_warning): Option[(Option[String], Markdown)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[Markdown]))
+  def unapply(o: Codesystem_warning): Option[(Option[String], Markdown)] = Some((o.id, o.value.get.toSubRefNonUnion[Markdown]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Codesystem_warning] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -71,16 +69,21 @@ object Codesystem_warning extends CompanionFor[Codesystem_warning] {
 
 /** An extra warning about the correct use of the value set.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Codesystem_warning(

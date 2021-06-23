@@ -56,8 +56,7 @@ object Workflow_instantiatesUri extends CompanionFor[Workflow_instantiatesUri] {
   def extractValue(t: Workflow_instantiatesUri): UriStr                        = t.value.get.toSubRefNonUnion[UriStr]
   override val thisName: String                                                = "Workflow_instantiatesUri"
   override val searchParams: Map[String, Workflow_instantiatesUri => Seq[Any]] = Extension.searchParams
-  def unapply(o: Workflow_instantiatesUri): Option[(Option[String], UriStr)] = Some(
-    (o.id, o.value.get.toSubRefNonUnion[UriStr]))
+  def unapply(o: Workflow_instantiatesUri): Option[(Option[String], UriStr)] = Some((o.id, o.value.get.toSubRefNonUnion[UriStr]))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Workflow_instantiatesUri] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -69,18 +68,24 @@ object Workflow_instantiatesUri extends CompanionFor[Workflow_instantiatesUri] {
       ))
 }
 
-/** The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by the event or request resource.
+/** The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or
+  * in part by the event or request resource.
   *
-  *  Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all resources.)
+  * Subclass of [[core.model.Extension]] (Base StructureDefinition for Extension Type: Optional Extension Element - found in all
+  * resources.)
   *
-  * @constructor Inherits all params from parent.
-  *              Refines the types of: value.
-  *              Requires the following fields which were optional in the parent: value.
-  *              Forbids the use of the following fields which were optional in the parent: extension.
-  *              Hardcodes the value of the following fields: url.
-  * @param id - Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.
-  * @param url - Source of the definition for the extension code - a logical name or a URL.
-  * @param value - Value of extension - must be one of a constrained set of the data types (see [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+  * @constructor
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: value. Forbids the use of the following fields which were optional in the parent: extension. Hardcodes the value of
+  *   the following fields: url.
+  * @param id
+  *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
+  *   spaces.
+  * @param url
+  *   - Source of the definition for the extension code - a logical name or a URL.
+  * @param value
+  *   - Value of extension - must be one of a constrained set of the data types (see
+  *   [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
   */
 @POJOBoilerplate
 class Workflow_instantiatesUri(
