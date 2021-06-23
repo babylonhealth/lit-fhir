@@ -166,10 +166,10 @@ object RegressionBenchmarks15 extends RegressionBenchmark {
   performance of "updating" in {
     measure method "update (ascending)" in {
       using(singleTest) in (_ =>
-        o.asInstanceOf[CarePlan].setting(_.text)(Some(Narrative(div = "<div/>", status = NARRATIVE_STATUS.EMPTY))))
+        o.asInstanceOf[CarePlan].set(_.text)(Some(Narrative(div = "<div/>", status = NARRATIVE_STATUS.EMPTY))))
     }
     measure method "update (near)" in {
-      using(singleTest) in (_ => o.setting(_.text)(Narrative(div = "<div/>", status = NARRATIVE_STATUS.EMPTY)))
+      using(singleTest) in (_ => o.set(_.text)(Narrative(div = "<div/>", status = NARRATIVE_STATUS.EMPTY)))
     }
   }
 
