@@ -52,7 +52,7 @@ commands:
             - test-cache-v1-
       - run:
           name: untar classfiles
-          command: if [ -f test-targets.tar.gz ]; then tar -xf --skip-old-files test-targets.tar.gz; fi
+          command: if [ -f test-targets.tar.gz ]; then tar --skip-old-files -xf test-targets.tar.gz; fi
 
 
 jobs:
