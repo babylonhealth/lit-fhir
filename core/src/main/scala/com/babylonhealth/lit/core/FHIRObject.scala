@@ -5,7 +5,7 @@ import scala.reflect.{ ClassTag, classTag }
 
 import cats.Monad
 import com.babylonhealth.lit.core
-import izumi.reflect.macrortti.LTag
+import izumi.reflect.macrortti.{ LTT, LTag }
 import com.babylonhealth.lit.core.TagSummoners.lTypeOf
 import com.babylonhealth.lit.core.model.{ Element, Extension, intSubSuffixes, stringSubSuffixes, typeSuffixMap }
 
@@ -36,24 +36,59 @@ abstract class FHIRObject(
   def updateFromField[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
       field: FHIRComponentFieldMeta[T]
   )(fn: T => T): UpType = {
-    val parent: CompanionFor[_ <: companion.ResourceType] = companion.leastParentWithField(field)
-    val currentValue = parent
-      .fieldsFromParent(this.asInstanceOf[parent.ResourceType])
+    val (parentish, _) = companion.leastParentWithField(field, FieldSearchType.Unknown)
+    val currentValue = parentish
+      .fieldsFromParent(this.asInstanceOf[parentish.ResourceType])
       .get // fieldsFromParent shouldn't be able to fail if upcasting...
       .find(_.meta == field)
       .get // leastParentWithField call should fail if this isn't found; this indicates an error in the value provided in `field` param
       .value
       .asInstanceOf[T]
     val newVal = fn(currentValue)
-    withFieldUnsafe[T, companion.ResourceType](field.name, newVal)(
+    val tpe: FieldSearchType.FieldSearchType = newVal match {
+      case _ if !Config.finegrainedTypeRetentionOnCopy => FieldSearchType.Unknown
+      case None | LitSeq.emptyInstance                 => FieldSearchType.Empty
+      case l: LitSeq[_]                                => if (l.size == 1) FieldSearchType.Singleton else FieldSearchType.Many
+      case _                                           => FieldSearchType.Singleton
+    }
+    val (parent, parentField) = companion.leastParentWithField(field, tpe)
+    val nxtVal = newVal match {
+      case x if !Config.finegrainedTypeRetentionOnCopy => x
+      case Some(x)                                     => if (parentField.tt.tag.<:<(LTT[Option[_]])) Some(x) else x
+      case l: LitSeq[_] =>
+        if (l.length == 1) {
+          if (parentField.tt.tag.<:<(LTT[Option[_]])) l.headOption
+          else if (parentField.tt.tag.<:<(LTT[LitSeq[_]])) l
+          else l.head
+        } else l
+      case x => x
+    }
+    withFieldUnsafe[Any, companion.ResourceType](field.name, nxtVal)(
       parent.thisClassTag.asInstanceOf[ClassTag[companion.ResourceType]],
       parent.thisTypeTag.asInstanceOf[LTag[companion.ResourceType]]).asInstanceOf[UpType]
   }
   def setFromField[T, UpType >: this.type <: FHIRObject: ClassTag: LTag](
       field: FHIRComponentFieldMeta[T]
   )(newVal: T): UpType = {
-    val parent: CompanionFor[_ <: companion.ResourceType] = companion.leastParentWithField(field)
-    withFieldUnsafe[T, companion.ResourceType](field.name, newVal)(
+    val tpe: FieldSearchType.FieldSearchType = newVal match {
+      case _ if !Config.finegrainedTypeRetentionOnCopy => FieldSearchType.Unknown
+      case None | LitSeq.emptyInstance                 => FieldSearchType.Empty
+      case l: LitSeq[_]                                => if (l.size == 1) FieldSearchType.Singleton else FieldSearchType.Many
+      case _                                           => FieldSearchType.Singleton
+    }
+    val (parent, parentField) = companion.leastParentWithField(field, tpe)
+    val nxtVal = newVal match {
+      case x if !Config.finegrainedTypeRetentionOnCopy => x
+      case Some(x)                                     => if (parentField.tt.tag.<:<(LTT[Option[_]])) Some(x) else x
+      case l: LitSeq[_] =>
+        if (l.length == 1) {
+          if (parentField.tt.tag.<:<(LTT[Option[_]])) l.headOption
+          else if (parentField.tt.tag.<:<(LTT[LitSeq[_]])) l
+          else l.head
+        } else l
+      case x => x
+    }
+    withFieldUnsafe[Any, companion.ResourceType](field.name, nxtVal)(
       parent.thisClassTag.asInstanceOf[ClassTag[companion.ResourceType]],
       parent.thisTypeTag.asInstanceOf[LTag[companion.ResourceType]]).asInstanceOf[UpType]
   }

@@ -9,10 +9,13 @@ import org.hl7.fhir.r4.model.{ Bundle => HBundle, StructureDefinition => HSD }
 import org.scalameter.api._
 import org.scalameter.{ Persistor, persistence }
 
-import com.babylonhealth.lit.hl7.BUNDLE_TYPE
+import com.babylonhealth.lit.core.LitSeq
+import com.babylonhealth.lit.core.model.{ CodeableConcept, Reference }
 import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
-import com.babylonhealth.lit.hl7.model.{ Bundle, StructureDefinition }
+import com.babylonhealth.lit.hl7.{ BUNDLE_TYPE, CARE_PLAN_INTENT, NARRATIVE_STATUS, REQUEST_STATUS }
+import com.babylonhealth.lit.hl7.model.{ Bundle, CarePlan, Narrative, StructureDefinition }
 import com.babylonhealth.lit.protoshim.Translator
+import com.babylonhealth.lit.uscore.model.Us_core_careplan
 
 abstract class RegressionBenchmark extends Bench.OfflineRegressionReport {
   def index: Int
@@ -151,4 +154,24 @@ object RegressionBenchmarks14 extends RegressionBenchmark {
   }
 
   def index: Int = 14
+}
+object RegressionBenchmarks15 extends RegressionBenchmark {
+  val o: Us_core_careplan = Us_core_careplan(
+    status = REQUEST_STATUS.REVOKED,
+    intent = CARE_PLAN_INTENT.PROPOSAL,
+    subject = Reference(),
+    category = LitSeq(CodeableConcept()),
+    text = Narrative(div = "<>", status = NARRATIVE_STATUS.EMPTY)
+  )
+  performance of "updating" in {
+    measure method "update (ascending)" in {
+      using(singleTest) in (_ =>
+        o.asInstanceOf[CarePlan].setting(_.text)(Some(Narrative(div = "<div/>", status = NARRATIVE_STATUS.EMPTY))))
+    }
+    measure method "update (near)" in {
+      using(singleTest) in (_ => o.setting(_.text)(Narrative(div = "<div/>", status = NARRATIVE_STATUS.EMPTY)))
+    }
+  }
+
+  def index: Int = 15
 }

@@ -52,7 +52,7 @@ class FauxLensTest2 extends AnyFreeSpec with Matchers {
       val x = o.asInstanceOf[CarePlan].set(_.status)(REQUEST_STATUS.DRAFT)
       x.getClass shouldEqual classOf[Us_core_careplan]
     }
-    "Retain specific type when setting a field 'as parent' to Some(...) when required in existing" ignore {
+    "Retain specific type when setting a field 'as parent' to Some(...) when required in existing" in {
       val x = o.asInstanceOf[CarePlan].set(_.text)(Some(Narrative(div = "<div/>", status = NARRATIVE_STATUS.EMPTY)))
       x.getClass shouldEqual classOf[Us_core_careplan]
     }
@@ -81,8 +81,8 @@ class FauxLensTest2 extends AnyFreeSpec with Matchers {
       val x = o.asInstanceOf[CarePlan].update(_.status)(_ => REQUEST_STATUS.DRAFT)
       x.getClass shouldEqual classOf[Us_core_careplan]
     }
-    "Retain specific type when setting a field 'as parent' to Some(...) when required in existing" ignore {
-      val x = o.asInstanceOf[CarePlan].updateIfExists(_.text)(_.set(_.div)("<div/>"))
+    "Retain specific type when setting a field 'as parent' to Some(...) when required in existing" in {
+      val x = o.asInstanceOf[CarePlan].set(_.text)(Some(Narrative(div = "<div/>", status = NARRATIVE_STATUS.EMPTY)))
       x.getClass shouldEqual classOf[Us_core_careplan]
     }
   }
