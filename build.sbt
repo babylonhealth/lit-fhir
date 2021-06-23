@@ -173,9 +173,9 @@ lazy val fhirpath = project
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
-      "com.lihaoyi" %% "fastparse"     % "2.2.2",
-      "dev.zio"     %% "izumi-reflect" % V.izumiReflect,
-      "org.slf4j"    % "slf4j-api"     % "1.7.30",
+      "org.typelevel" %% "cats-parse"    % "0.3.3",
+      "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
+      "org.slf4j"      % "slf4j-api"     % "1.7.30",
       // Test
       "org.scalatest" %% "scalatest" % V.scalaTest % Test
     )
