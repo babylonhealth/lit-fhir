@@ -103,6 +103,7 @@ jobs:
     steps:
       - checkout
       - restore_build_cache
+      - restore_test_cache
       - run:
           name: Build service
           command: make ${CIRCLE_JOB}
