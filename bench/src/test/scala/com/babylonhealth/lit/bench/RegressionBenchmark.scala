@@ -9,7 +9,7 @@ import org.hl7.fhir.r4.model.{ Bundle => HBundle, StructureDefinition => HSD }
 import org.scalameter.api._
 import org.scalameter.{ Persistor, persistence }
 
-import com.babylonhealth.lit.core.LitSeq
+import com.babylonhealth.lit.core.{ LitSeq, toXHTML }
 import com.babylonhealth.lit.core.model.{ CodeableConcept, Reference }
 import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
 import com.babylonhealth.lit.hl7.{ BUNDLE_TYPE, CARE_PLAN_INTENT, NARRATIVE_STATUS, REQUEST_STATUS }
