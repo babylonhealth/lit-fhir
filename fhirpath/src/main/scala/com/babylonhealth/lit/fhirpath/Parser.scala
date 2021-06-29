@@ -1,99 +1,114 @@
 package com.babylonhealth.lit.fhirpath
 
-import fastparse._
+//import fastparse._
+import cats.data.NonEmptyList
+import cats.parse.{ Parser0 => CatsParser0, _ }
+import cats.parse.Parser._
 
 import com.babylonhealth.lit.core.model.Quantity
 import com.babylonhealth.lit.fhirpath.Parser.ParseException
 import com.babylonhealth.lit.fhirpath.model._
-import fastparse.JavaWhitespace.whitespace
+//import fastparse.JavaWhitespace.whitespace
+
+object Parsed {
+  sealed trait Result[+T] { def isSuccess: Boolean }
+  case class Success[T](value: T, idx: Int)               extends Result[T]       { override def isSuccess: Boolean = true  }
+  case class Failure(label: String, index: Int, e: Error) extends Result[Nothing] { override def isSuccess: Boolean = false }
+}
 
 trait Parser extends Lexer {
 
-  def parse(str: String): Parsed[Expr] = fastparse.parse(str, top(_))
+  def parse(str: String): Parsed.Result[Expr] = top.parseAll(str) match {
+    case Left(e)  => Parsed.Failure("Fail", e.failedAtOffset, e)
+    case Right(v) => Parsed.Success(v, str.length - 1)
+  }
+  def parseToEither(str: String): Either[Error, Expr] = top.parseAll(str)
 
   // Example of trace error message:
   //   getIndexed | [ \t] ~ descendAndMaybeIndex | StringIn("or", "and") | end-of-input):1:5, found ".$%^.isInv"
   // Weird and verbose but still useful
   def parseUnsafe(str: String): Expr =
-    parse(str) match {
-      case Parsed.Success(value, _) => value
-      case failure: Parsed.Failure  => throw new ParseException(failure.trace().aggregateMsg)
+    parseToEither(str) match {
+      case Right(value)  => value
+      case Left(failure) => throw new ParseException(failure.expected.map(_.toString).toList.mkString("\n -[and]- "))
     }
 
   import Lexer.RichParser
 
-  def top[_: P]: P[Expr] = expression ~ End
+  def top: P0[Expr] = expression
 
-  def expression[_: P]: P[Expr] = P(impliesExpr)
+  def expression: P[Expr] = impliesExpr
 
   // Handles precedence by descending from lowest to highest precedence operators
-  def impliesExpr[_: P]: P[Expr] = orExpr ~ ("implies".as(Implies) ~/ orExpr).rep map foldBinOp
-  def orExpr[_: P]: P[Expr]      = andExpr ~ (("or".as(Or) | "xor".as(Xor)) ~/ andExpr).rep map foldBinOp
-  def andExpr[_: P]: P[Expr]     = inExpr ~ ("and".as(And) ~/ inExpr).rep map foldBinOp
-  def inExpr[_: P]: P[Expr]      = eqExpr ~ (("in".as(In) | "contains".as(Contains)) ~/ eqExpr).rep map foldBinOp
-  def eqExpr[_: P]: P[Expr]      = ineqExpr ~ (eqOp ~/ ineqExpr).rep map foldBinOp
-  def ineqExpr[_: P]: P[Expr]    = unionExpr ~ (ineqOp ~/ unionExpr).rep map foldBinOp
-  def unionExpr[_: P]: P[Expr]   = typeExpr ~ ("|".as(Union) ~/ typeExpr).rep map foldBinOp
-  def typeExpr[_: P]: P[Expr]    = addExpr ~ (typeOp ~/ typeSpecifier).rep map foldOp(TypeOperation)
-  def addExpr[_: P]: P[Expr]     = multExpr ~ ((signOp | "&".as(StringConcat)) ~/ multExpr).rep map foldBinOp
-  def multExpr[_: P]: P[Expr]    = unaryExpr ~ (multOp ~/ unaryExpr).rep map foldBinOp
-  def unaryExpr[_: P]: P[Expr]   = (signOp ~/ term map UnaryOperation.tupled) | term
+  def impliesExpr: P[Expr] = orExpr ~ ("implies".as(Implies) ~ orExpr).rep map foldBinOp
+  def orExpr: P[Expr]      = andExpr ~ (("or".as(Or) | "xor".as(Xor)) ~ andExpr).rep map foldBinOp
+  def andExpr: P[Expr]     = inExpr ~ ("and".as(And) ~ inExpr).rep map foldBinOp
+  def inExpr: P[Expr]      = eqExpr ~ (("in".as(In) | "contains".as(Contains)) ~ eqExpr).rep map foldBinOp
+  def eqExpr: P[Expr]      = ineqExpr ~ (eqOp ~ ineqExpr).rep map foldBinOp
+  def ineqExpr: P[Expr]    = unionExpr ~ (ineqOp ~ unionExpr).rep map foldBinOp
+  def unionExpr: P[Expr]   = typeExpr ~ ("|".as(Union) ~ typeExpr).rep map foldBinOp
+  def typeExpr: P[Expr]    = addExpr ~ (typeOp ~ typeSpecifier).rep map { case (e, l) => foldOp(TypeOperation)(e, l.toList) }
+  def addExpr: P[Expr]     = multExpr ~ ((signOp | "&".as(StringConcat)) ~ multExpr).rep map foldBinOp
+  def multExpr: P[Expr]    = unaryExpr ~ (multOp ~ unaryExpr).rep map foldBinOp
+  def unaryExpr: P[Expr]   = (signOp ~ term map UnaryOperation.tupled) | term
 
-  private val foldBinOp: ((Expr, Seq[(BinaryOperator, Expr)])) => Expr = foldOp(BinaryOperation)
+  private val foldBinOp: ((Expr, NonEmptyList[(BinaryOperator, Expr)])) => Expr = { case (e, l) =>
+    foldOp(BinaryOperation)(e, l.toList)
+  }
 
   private def foldOp[Op, Arg](f: (Expr, Op, Arg) => Expr): ((Expr, Seq[(Op, Arg)])) => Expr = { case (head, tail) =>
     tail.foldLeft(head) { case (accum, (op, next)) => f(accum, op, next) }
   }
 
-  def term[_: P]: P[Expr] = atom ~ termSuffix.rep map { case (a, suffixes) => suffixes.foldLeft(a) { (x, y) => y(x) } }
+  def term: P[Expr] = atom ~ termSuffix.rep map { case (a, suffixes) => suffixes.foldLeft(a) { (x, y) => y(x) } }
 
-  def termSuffix[_: P]: P[Expr => Expr] = indexTerm | typeFunc | invocTerm
+  def termSuffix: P[Expr => Expr] = indexTerm | typeFunc | invocTerm
 
-  private def indexTerm[_: P] = "[" ~/ expression.map(e => model.Index(_, e)) ~ "]"
-  private def typeFunc[_: P] = "." ~ typeOp ~ "(" ~/ typeSpecifier ~ ")" map { case (op, t) =>
+  private def indexTerm: P[Expr => Expr] = char('[') *> expression.map(e => model.Index(_, e)) <* char(']')
+  private def typeFunc: P[Expr => Expr] = char('.') *> (typeOp <* char('(')) ~ typeSpecifier <* char(')') map { case (op, t) =>
     TypeOperation(_, op, t)
   }
-  private def invocTerm[_: P] = "." ~/ invocation map { i => InvocationExpr(_, i) }
+  private def invocTerm: P[Expr => Expr] = char('.') *> invocation map { i => InvocationExpr(_, i) }
 
-  def atom[_: P]: P[Expr] =
-    P(functionCall | rootPath | fieldAccess | dollarKeyword | literal | envVar | "(" ~/ expression ~ ")")
+  def atom: P[Expr] =
+    (functionCall | rootPath | fieldAccess | dollarKeyword | literal | envVar | (char('(') *> expression <* char(')')))
 
-  private def rootPath[_: P]: P[RootPath] = P(typeSpecifier).map(RootPath)
+  private def rootPath: P[RootPath] = typeSpecifier.map(RootPath)
 
-  def literal[_: P]: P[Literal] = P(("{" ~ "}").map(_ => Empty) | singleValue)
+  def literal: P[Literal] = ((char('{') ~ char('}')).void.map(_ => Empty) | singleValue)
 
-  private def singleValue[_: P]: P[SingleValue] =
+  private def singleValue: P[SingleValue] =
     (quantity | boolean | str | decimal | int | dateTime | date | time).map(Value.wrapSystem).map(SingleValue)
 
-  def envVar[_: P]: P[Expr] = "%" ~~ (identifier | str) map EnvironmentVariable
+  def envVar: P[Expr] = char('%') *> (identifier | str) map EnvironmentVariable
 
-  def invocation[_: P]: P[Invocation] = P(functionCall | fieldAccess | dollarKeyword)
+  def invocation: P[Invocation] = P(functionCall | fieldAccess | dollarKeyword)
 
-  def fieldAccess[_: P]: P[FieldAccess] = identifier.map(FieldAccess)
+  def fieldAccess: P[FieldAccess] = identifier.map(FieldAccess)
 
-  def functionCall[_: P]: P[Invocation] = P(ofType | normalFunction)
-  def normalFunction[_: P]: P[Func]     = identifier ~ "(" ~/ paramList ~ ")" map Func.tupled
-  def ofType[_: P]: P[OfType]           = "ofType" ~ "(" ~/ typeSpecifier ~ ")" map OfType
+  def functionCall: P[Invocation] = P(ofType | normalFunction)
+  def normalFunction: P[Func]     = (identifier <* char('(')) ~ paramList <* char(')') map Func.tupled
+  def ofType: P[OfType]           = string("ofType") *> char('(') *> typeSpecifier <* char(')') map OfType
 
-  def paramList[_: P]: P[Seq[Expr]] = P(expression.rep(sep = ","))
+  def paramList: P[Seq[Expr]] = expression.repSep(sep = char(',')).map(_.toList)
 
-  def dollarKeyword[_: P]: P[Invocation] = "$this".as(This) | "$index".as(IndexInvoc) | "$total".as(Total)
+  def dollarKeyword: P[Invocation] = "$this".as(This) | "$index".as(IndexInvoc) | "$total".as(Total)
 
-  def typeOp[_: P]: P[TypeOperator]                      = "as".as(As) | "is".as(Is)
-  def signOp[_: P]: P[UnaryOperator with BinaryOperator] = "+".as(Plus) | "-".as(Minus)
-  def multOp[_: P]: P[BinaryOperator]                    = "*".as(Mult) | "/".as(Div) | "div".as(TruncDiv) | "mod".as(Mod)
-  def eqOp[_: P]: P[BinaryOperator]                      = "=".as(Eq) | "~".as(Equiv) | "!=".as(Neq) | "!~".as(Nequiv)
-  def ineqOp[_: P]: P[BinaryOperator]                    = "<=".as(Lte) | ">=".as(Gte) | "<".as(Lt) | ">".as(Gt)
+  def typeOp: P[TypeOperator]                      = "as".as(As) | "is".as(Is)
+  def signOp: P[UnaryOperator with BinaryOperator] = "+".as(Plus) | "-".as(Minus)
+  def multOp: P[BinaryOperator]                    = "*".as(Mult) | "/".as(Div) | "div".as(TruncDiv) | "mod".as(Mod)
+  def eqOp: P[BinaryOperator]                      = "=".as(Eq) | "~".as(Equiv) | "!=".as(Neq) | "!~".as(Nequiv)
+  def ineqOp: P[BinaryOperator]                    = "<=".as(Lte) | ">=".as(Gte) | "<".as(Lt) | ">".as(Gt)
 
-  def quantity[_: P]: P[Quantity] =
+  def quantity: P[Quantity] =
     P(decimalOrInt ~ unit) map { case (value, unit) =>
       Quantity(value = Some(value), unit = Some(unit))
     }
 
-  def typeSpecifier[_: P]: P[TypeSpecifier] =
-    P(
-      (("FHIR" ~ ".").? ~ fhirType map ("FHIR"         -> _)) |
-        (("System" ~ ".").? ~ systemType map ("System" -> _))
+  def typeSpecifier: P[TypeSpecifier] =
+    (
+      ((string("FHIR") ~ char('.')).? ~~> fhirType map ("FHIR"         -> _)) |
+        ((string("System") ~ char('.')).? ~~> systemType map ("System" -> _))
     ).map(TypeSpecifier.tupled)
 
   implicit class FHIRPathHelper(val sc: StringContext) {

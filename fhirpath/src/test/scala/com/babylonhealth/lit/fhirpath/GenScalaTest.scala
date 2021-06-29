@@ -67,7 +67,7 @@ class GenScalaTest extends AnyFreeSpec with Matchers {
   def expect(companion: CompanionFor[_ <: FHIRObject], fhirPath: String)(expected: String)(implicit
       pos: source.Position): Unit = {
     fhirPath in {
-      val expr   = fastparse.parse(fhirPath, Parser.top(_)).get.value
+      val expr   = Parser.parseToEither(fhirPath).toOption.get
       val params = GenScalaParams(Left(companion), ExactlyOne, "obj")
       val result = genScala.gen(expr, params)
       val str = result.baseCardinality match {

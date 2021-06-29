@@ -167,13 +167,13 @@ lazy val usbase = project
 
 lazy val fhirpath = project
   .in(file("fhirpath"))
-  .settings(commonJSettings: _*) // TODO: crosspublish for scala 3.0.0
+  .settings(commonSettings: _*) // TODO: crosspublish for scala 3.0.0
   .settings(publishSettings: _*)
   .settings(
-    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations")
+    scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations", "-deprecation")
                        else Seq("-language:implicitConversions")),
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-parse"    % "0.3.3",
+      "org.typelevel" %% "cats-parse"    % "0.3.4",
       "dev.zio"       %% "izumi-reflect" % V.izumiReflect,
       "org.slf4j"      % "slf4j-api"     % "1.7.30",
       // Test

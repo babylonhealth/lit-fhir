@@ -6,7 +6,7 @@ import cats.instances.list._
 import cats.syntax.functor._
 import cats.Monad
 import cats.Traverse.ops.toAllTraverseOps
-import fastparse.Parsed
+import cats.parse.{ Parser => CatsParser, _ }
 import org.slf4j.LoggerFactory
 
 import scala.language.experimental.macros
@@ -205,13 +205,13 @@ class DefaultFuncs[F[+_]: MErr](implicit fhirClient: FHIRReadClient[F]) extends 
     input tryCollect {
       case d: FHIRDate      => Some(d)
       case dt: FHIRDateTime => Some(dateTimeToDate(dt))
-      case s: String        => parse(s, Lexer.partialDate(_))
+      case s: String        => Lexer.partialDate.parse(s).toOption.map(_._2)
     }
   def toDateTime(input: Value): Option[FHIRDateTime] =
     input tryCollect {
       case d: FHIRDate      => Some(dateToDateTime(d))
       case dt: FHIRDateTime => Some(dt)
-      case s: String        => parse(s, Lexer.partialDateOrDateTime(_))
+      case s: String        => Lexer.partialDateOrDateTime.parse(s).toOption.map(_._2)
     }
   def toDecimal(input: Value): Option[BigDecimal] =
     input tryCollect {
@@ -227,8 +227,9 @@ class DefaultFuncs[F[+_]: MErr](implicit fhirClient: FHIRReadClient[F]) extends 
       case d: BigDecimal => Some(unitQuantity(d))
       case false         => Some(unitQuantity(BigDecimal(0d)))
       case true          => Some(unitQuantity(BigDecimal(1d)))
-      case s: String     => parse(s, Parser.quantity(_)) orElse parse(s, Parser.decimalOrInt(_)).map(unitQuantity)
-      case q: Quantity   => Some(q)
+      case s: String =>
+        Parser.quantity.parse(s).toOption.map(_._2) orElse Parser.decimalOrInt.parse(s).toOption.map(_._2).map(unitQuantity)
+      case q: Quantity => Some(q)
     }
   def toStringValue(input: Value): Option[String] =
     input collect {
@@ -240,17 +241,12 @@ class DefaultFuncs[F[+_]: MErr](implicit fhirClient: FHIRReadClient[F]) extends 
       case d: FHIRDate     => d.fmt
       case d: FHIRDateTime => d.fmt
       case q: Quantity if q.value.isDefined =>
-        s"${q.value.get} '${(q.unit orElse when(q.system.contains("http://unitsofmeasure.org"))(q.code).flatten).getOrElse("")}'"
+        s"""${q.value.get} '${(q.unit orElse when(q.system.contains("http://unitsofmeasure.org"))(q.code).flatten)
+          .getOrElse("")}'"""
     }
   def toTime(input: Value): Option[LocalTime] =
     input tryCollect {
       case t: LocalTime => Some(t)
-      case s: String    => parse(s, Lexer.partialTime(_))
-    }
-
-  private def parse[T](str: String, parser: fastparse.P[_] => fastparse.P[T]): Option[T] =
-    fastparse.parse(str, parser) match {
-      case Parsed.Success(value, idx) => when(idx == str.length)(value)
-      case _: Parsed.Failure          => None
+      case s: String    => Lexer.partialTime.parse(s).toOption.map(_._2)
     }
 }

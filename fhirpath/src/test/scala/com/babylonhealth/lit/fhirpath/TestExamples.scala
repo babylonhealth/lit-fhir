@@ -18,11 +18,10 @@ import com.babylonhealth.lit.core.model.Resource
 import com.babylonhealth.lit.core.serdes.decodeFHIRObject
 import com.babylonhealth.lit.fhirpath.model.Expr
 
-/**
-  * Tests examples from resources/tests-fhir-r4.xml, using the example resources in resources/r4/input.
+/** Tests examples from resources/tests-fhir-r4.xml, using the example resources in resources/r4/input.
   *
-  * Examples were downloaded from http://hl7.org/fhirpath/tests.html, the XML resources were converted to JSON and some
-  * of the test cases were fixed (some tags were in the wrong place).
+  * Examples were downloaded from http://hl7.org/fhirpath/tests.html, the XML resources were converted to JSON and some of the
+  * test cases were fixed (some tags were in the wrong place).
   */
 class TestExamples extends AnyFunSpec with Matchers {
 
@@ -184,7 +183,7 @@ class TestExamples extends AnyFunSpec with Matchers {
         case "dateTime" => FHIRDateTime.parse(text)
         case "decimal"  => BigDecimal(text)
         case "integer"  => text.toInt
-        case "Quantity" => fastparse.parse(text, Parser.quantity(_)).get.value
+        case "Quantity" => Parser.quantity.parse(text).toOption.get._2
         case "string"   => text
         case "time"     => LocalTime.parse(text)
       }
