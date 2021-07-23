@@ -16,7 +16,7 @@ trait Lexer {
   def dateTime: P[FHIRDateTime] = char('@') *> partialDateTime
   def time: P[LocalTime]        = string("@T") *> partialTime
 
-  def partialDateOrDateTime: P[FHIRDateTime] = partialDateTime | partialDate.map(dateToDateTime)
+  def partialDateOrDateTime: P[FHIRDateTime] = partialDateTime.backtrack | partialDate.map(dateToDateTime)
 
   def partialDate: P[FHIRDate] =
     nDigits(4) ~ ("-" *> nDigits(2)).rep0(0, 2) map { case (y, md) =>
@@ -34,16 +34,21 @@ trait Lexer {
     }
 
   def partialTime: CatsParser0[LocalTime] =
-    nDigits(2).? ~ (char(':') *> nDigits(2)).rep0(0, 2) ~ ((char('.') *> CatsParser.charIn('0' to '9').rep).? map {
-      case None    => 0
-      case Some(x) => String.format("%-9s", x.toList.mkString).replace(" ", "0").toInt
-    }) map { case ((h, m_s), ns) =>
-      val (m, s) = m_s match {
-        case Nil       => 0 -> 0
-        case Seq(m)    => m -> 0
-        case Seq(m, s) => m -> s
-      }
-      LocalTime.of(h getOrElse 0, m, s, ns)
+    nDigits(2).?.flatMap {
+      case None => pure(LocalTime.of(0, 0, 0, 0))
+      case Some(h) =>
+        (char(':') *> nDigits(2)).rep0(0, 2).flatMap {
+          case Nil      => pure(LocalTime.of(h, 0, 0, 0))
+          case m :: Nil => pure(LocalTime.of(h, m, 0, 0))
+          case m :: s :: Nil =>
+            (char('.') *> CatsParser.charIn('0' to '9').rep(1, 9)).backtrack.?.map {
+              case None => LocalTime.of(h, m, s, 0)
+              case Some(ps) =>
+                val ns = String.format("%-9s", ps.toList.mkString).replace(" ", "0").toInt
+                LocalTime.of(h, m, s, ns)
+            }
+
+        }
     }
 
   private def timeZone: CatsParser0[ZoneOffset] =
@@ -102,8 +107,8 @@ object Lexer extends Lexer {
     def as[V](value: V): P[V] = string(parser).void.map(_ => value)
   }
 
-  private val whitespace: P[Unit]    = CatsParser.charIn(" \t\r\n").void
-  private val whitespaces0: P0[Unit] = whitespace.rep0.void
+  private val whitespace: P[Unit] = CatsParser.charIn(" \t\r\n").void
+  val whitespaces0: P0[Unit]      = whitespace.rep0.void
   implicit class RichParser_2[A](p: P[A]) {
     // like `~` but permits optional whitespace
     def ~+[B](that: CatsParser0[B]): P[(A, B)] = p ~ (whitespaces0 *> that)

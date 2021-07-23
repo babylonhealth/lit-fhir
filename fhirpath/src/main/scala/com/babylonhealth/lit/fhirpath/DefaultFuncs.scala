@@ -205,13 +205,13 @@ class DefaultFuncs[F[+_]: MErr](implicit fhirClient: FHIRReadClient[F]) extends 
     input tryCollect {
       case d: FHIRDate      => Some(d)
       case dt: FHIRDateTime => Some(dateTimeToDate(dt))
-      case s: String        => Lexer.partialDate.parse(s).toOption.map(_._2)
+      case s: String        => Lexer.partialDate.parseAll(s).toOption
     }
   def toDateTime(input: Value): Option[FHIRDateTime] =
     input tryCollect {
       case d: FHIRDate      => Some(dateToDateTime(d))
       case dt: FHIRDateTime => Some(dt)
-      case s: String        => Lexer.partialDateOrDateTime.parse(s).toOption.map(_._2)
+      case s: String        => Lexer.partialDateOrDateTime.parseAll(s).toOption
     }
   def toDecimal(input: Value): Option[BigDecimal] =
     input tryCollect {
@@ -228,7 +228,7 @@ class DefaultFuncs[F[+_]: MErr](implicit fhirClient: FHIRReadClient[F]) extends 
       case false         => Some(unitQuantity(BigDecimal(0d)))
       case true          => Some(unitQuantity(BigDecimal(1d)))
       case s: String =>
-        Parser.quantity.parse(s).toOption.map(_._2) orElse Parser.decimalOrInt.parse(s).toOption.map(_._2).map(unitQuantity)
+        Parser.quantity.parseAll(s).toOption orElse Parser.decimalOrInt.parseAll(s).toOption.map(unitQuantity)
       case q: Quantity => Some(q)
     }
   def toStringValue(input: Value): Option[String] =
@@ -247,6 +247,6 @@ class DefaultFuncs[F[+_]: MErr](implicit fhirClient: FHIRReadClient[F]) extends 
   def toTime(input: Value): Option[LocalTime] =
     input tryCollect {
       case t: LocalTime => Some(t)
-      case s: String    => Lexer.partialTime.parse(s).toOption.map(_._2)
+      case s: String    => Lexer.partialTime.parseAll(s).toOption
     }
 }

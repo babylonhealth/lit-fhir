@@ -6,6 +6,7 @@ import cats.parse.{ Parser0 => CatsParser0, _ }
 import cats.parse.Parser._
 
 import com.babylonhealth.lit.core.model.Quantity
+import com.babylonhealth.lit.fhirpath.Lexer.whitespaces0
 import com.babylonhealth.lit.fhirpath.Parser.ParseException
 import com.babylonhealth.lit.fhirpath.model._
 //import fastparse.JavaWhitespace.whitespace
@@ -48,13 +49,13 @@ trait Parser extends Lexer {
   def eqExpr: P[Expr]      = P(ineqExpr ~+ (eqOp ~+ ineqExpr).rep0 map foldBinOp)
   def ineqExpr: P[Expr]    = P(unionExpr ~+ (ineqOp ~+ unionExpr).rep0 map foldBinOp)
   def unionExpr: P[Expr]   = P(typeExpr ~+ ("|".as(Union) ~+ typeExpr).rep0 map foldBinOp)
-  def typeExpr: P[Expr]    = P(addExpr ~+ (typeOp ~+ typeSpecifier).rep0 map { case (e, l) => foldOp(TypeOperation)(e, l.toList) })
+  def typeExpr: P[Expr]    = P(addExpr ~+ (typeOp ~+ typeSpecifier).rep0 map { case (e, l) => foldOp(TypeOperation)(e, l) })
   def addExpr: P[Expr]     = P(multExpr ~+ ((signOp | "&".as(StringConcat)) ~+ multExpr).rep0 map foldBinOp)
   def multExpr: P[Expr]    = P(unaryExpr ~+ (multOp ~+ unaryExpr).rep0 map foldBinOp)
   def unaryExpr: P[Expr]   = P((signOp ~+ term map (UnaryOperation.apply _).tupled) | term)
 
   private val foldBinOp: ((Expr, List[(BinaryOperator, Expr)])) => Expr = { case (e, l) =>
-    foldOp(BinaryOperation)(e, l.toList)
+    foldOp(BinaryOperation)(e, l)
   }
 
   private def foldOp[Op, Arg](f: (Expr, Op, Arg) => Expr): ((Expr, Seq[(Op, Arg)])) => Expr = { case (head, tail) =>
@@ -72,14 +73,18 @@ trait Parser extends Lexer {
   private def invocTerm: P[Expr => Expr] = char('.') *> invocation map { i => InvocationExpr(_, i) }
 
   def atom: P[Expr] =
-    P(functionCall.backtrack | rootPath | fieldAccess.backtrack | dollarKeyword | literal | envVar | (char('(') *> expression <* char(')')))
+    P(
+      functionCall.backtrack | rootPath | fieldAccess.backtrack | dollarKeyword | literal | envVar |
+        (char('(') *> expression <* char(')')))
 
   private def rootPath: P[RootPath] = typeSpecifier.map(RootPath)
 
   def literal: P[Literal] = ((char('{') ~+ char('}')).void.map(_ => Empty) | singleValue)
 
   def singleValue: P[SingleValue] =
-    (quantity.backtrack | boolean | str | decimal.backtrack | int | time | dateTime.backtrack | date).map(Value.wrapSystem).map(SingleValue)
+    (quantity.backtrack | boolean | str | decimal.backtrack | int | time | dateTime.backtrack | date)
+      .map(Value.wrapSystem)
+      .map(SingleValue)
 
   def envVar: P[Expr] = char('%') *> (identifier | str) map EnvironmentVariable
 
@@ -91,7 +96,7 @@ trait Parser extends Lexer {
   def normalFunction: P[Func]     = (identifier <* char('(')) ~+ paramList <* char(')') map (Func.apply _).tupled
   def ofType: P[OfType]           = string("ofType") *> char('(') *> typeSpecifier <* char(')') map OfType
 
-  def paramList: P0[Seq[Expr]] = expression.repSep0(sep = char(',')).map(_.toList)
+  def paramList: P0[Seq[Expr]] = expression.repSep0(sep = whitespaces0 *> char(',') <* whitespaces0).map(_.toList)
 
   def dollarKeyword: P[Invocation] = "$this".as(This) | "$index".as(IndexInvoc) | "$total".as(Total)
 
