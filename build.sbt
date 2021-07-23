@@ -167,7 +167,7 @@ lazy val usbase = project
 
 lazy val fhirpath = project
   .in(file("fhirpath"))
-  .settings(commonSettings: _*) // TODO: crosspublish for scala 3.0.0
+  .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
     scalacOptions ++= (if (isScala2(scalaVersion.value)) Seq("-Ymacro-annotations", "-deprecation")

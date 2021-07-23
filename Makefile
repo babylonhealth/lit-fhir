@@ -20,7 +20,7 @@ clean-scala-3:
 	$(SBT) ++3.0.0 core/clean hl7/clean usbase/clean uscore/clean core/test:clean hl7/test:clean usbase/test:clean uscore/test:clean
 
 compile-core:
-	$(SBT) +macros/compile $(foreach i,$(ALL_MODULES),+$i/compile) fhirpath/compile
+	$(SBT) +macros/compile $(foreach i,$(ALL_MODULES),+$i/compile) +fhirpath/compile
 compile-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile)
 compile-proto:
@@ -41,14 +41,14 @@ test:
 	$(SBT) $(foreach i,$(CORE_MODULES),$iJava/test)
 	$(SBT) $(foreach i,$(US_MODULES),+$i/test)
 	$(SBT) $(foreach i,$(US_MODULES),$iJava/test)
-	$(SBT) fhirpath/test
+	$(SBT) +fhirpath/test
 	$(SBT) +protoshim/test
 
 publish:
 	$(SBT) +common/publish +macros/publish
 	$(SBT) $(foreach i,$(ALL_MODULES),+$i/publish)
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publish)
-	$(SBT) fhirpath/publish
+	$(SBT) +fhirpath/publish
 	$(SBT) gproto/publish
 	$(SBT) +protoshim/publish
 
@@ -59,7 +59,7 @@ publish-local-generator:
 	$(SBT_G) +common/publishLocal generator/publishLocal
 
 publish-local-core:
-	$(SBT) +common/publishLocal +macros/publishLocal $(foreach i,$(ALL_MODULES),+$i/publishLocal) fhirpath/publishLocal
+	$(SBT) +common/publishLocal +macros/publishLocal $(foreach i,$(ALL_MODULES),+$i/publishLocal) +fhirpath/publishLocal
 publish-local-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/publishLocal)
 publish-local-gproto:
@@ -71,7 +71,7 @@ publish-java-m2:
 publish-m2:
 	$(SBT) +common/publishM2 +macros/publishM2
 	$(SBT) $(foreach i,$(ALL_MODULES),+$i/publishM2 $iJava/publishM2)
-	$(SBT) fhirpath/publishM2
+	$(SBT) +fhirpath/publishM2
 
 publish-all-local:
 	$(SBT) +common/publishLocal +common/publishM2 +macros/publishLocal +macros/publishM2 $(foreach i,$(ALL_MODULES),+$i/publishLocal +$i/publishM2 $iJava/publishLocal $iJava/publishM2)
