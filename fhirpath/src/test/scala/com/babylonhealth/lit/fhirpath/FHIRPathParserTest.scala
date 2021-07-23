@@ -1,15 +1,14 @@
 package com.babylonhealth.lit.fhirpath
 
+import scala.util.Try
+
 import org.scalactic.source
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
-import scala.util.Try
 
-import cats.parse.{ Parser => CatsParser }
-
-import com.babylonhealth.lit.fhirpath.model._
 import com.babylonhealth.lit.fhirpath.conversions._
 import com.babylonhealth.lit.fhirpath.genScala._
+import com.babylonhealth.lit.fhirpath.model._
 import com.babylonhealth.lit.hl7.model.{ DeviceRequest, Patient }
 
 class FHIRPathParserTest extends AnyFreeSpec with Matchers {
@@ -325,11 +324,11 @@ class FHIRPathParserTest extends AnyFreeSpec with Matchers {
       "(ConceptMap.source as canonical)",
       _ shouldEqual TypeOperation(root("ConceptMap")("source"), As, TypeSpecifier("FHIR", "canonical"))
     )
-    // TODO: Come back to this one
-    "do it all" ignore {
+
+    "do it all" in {
       val expr = "DeviceRequest.code as CodeableConcept"
       parser.top.parse(expr) match {
-        case Right((s, v: Expr)) if s.trim == expr.trim =>
+        case Right((s, v: Expr)) if s == "" =>
           v shouldEqual TypeOperation(root("DeviceRequest")("code"), As, TypeSpecifier("FHIR", "CodeableConcept"))
           val x = genScala.gen(v, GenScalaParams(Left(DeviceRequest), ExactlyOne, "obj"))
           x.rootStr shouldEqual "obj.code.as[CodeableConcept]"
