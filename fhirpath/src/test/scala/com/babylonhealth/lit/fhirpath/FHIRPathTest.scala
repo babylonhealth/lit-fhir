@@ -1,11 +1,10 @@
 package com.babylonhealth.lit.fhirpath
 
 import cats.instances.either._
-import fastparse.Parsed
 
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.model._
-import com.babylonhealth.lit.core.{ toCode, FHIRDate, FHIRDateTime, LitSeq }
+import com.babylonhealth.lit.core.{ toCode, FHIRDate, FHIRDateTime, LitSeq, toUri }
 import com.babylonhealth.lit.hl7.{ BUNDLE_TYPE, OBSERVATION_STATUS, QUESTIONNAIRE_ANSWERS_STATUS }
 import java.time.{ LocalTime, ZonedDateTime }
 
@@ -24,7 +23,7 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
   val observation = Observation(
     code = CodeableConcept(
       coding = LitSeq(
-        Coding(system = Some("Code-123"), code = Some("Code-123"))
+        Coding(system = Some(toUri("Code-123")), code = Some(toCode("Code-123")))
       )),
     value = Some(choice(Quantity(unit = Some("mm"), value = Some(12.3)))),
     status = OBSERVATION_STATUS.FINAL,
@@ -126,7 +125,7 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
         .toTry
         .get shouldEqual List(3)
     }
-    val bundle2 = bundle.updateEntry(e => e ++ e)
+    val bundle2 = bundle.update(_.entry)(e => e ++ e)
     "distinct()" in {
       bundle2.entry.size shouldEqual 6
       parser
@@ -306,7 +305,7 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
     }
 
     "or operation" in {
-      val bundle2 = bundle.updateEntry(e => e ++ e)
+      val bundle2 = bundle.update(_.entry)(e => e ++ e)
       parser
         .parseUnsafe("Bundle.entry.resource.empty() or Bundle.aa.empty()")[EitherErr](bundle2)
         .toTry
@@ -434,7 +433,7 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
       .parseUnsafe("Patient.deceased.exists() and Patient.deceased != false")[EitherErr](patient)
       .toTry
       .get shouldEqual List(false)
-    val deadPatient: Patient = patient.withDeceased(Some(choice(true)))
+    val deadPatient: Patient = patient.set(_.deceased)(Some(choice(true)))
     deadPatient.deceased.get.value shouldEqual true
     parser
       .parseUnsafe("Patient.deceased.exists()")[EitherErr](deadPatient)
@@ -479,8 +478,8 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
 
   // http://hl7.org/fhirpath/#keywords
   "Reserved words cannot be used in paths" in {
-    parser.parse("Patient.true") should matchPattern { case Parsed.Failure(_) => }
-    parser.parse("Patient.and") should matchPattern { case Parsed.Failure(_) => }
+    parser.parse("Patient.true") should matchPattern { case Parsed.Failure(_, _, _) => }
+    parser.parse("Patient.and") should matchPattern { case Parsed.Failure(_, _, _) => }
   }
 
   // http://hl7.org/fhirpath/#literals-2
@@ -502,8 +501,8 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
 
   "whitespace is not ignored in tokens" in {
     evalFhirPath("\"   hello\"") shouldEqual List("   hello")
-    parser.parse("3 . 1      4") should matchPattern { case Parsed.Failure(_) => }
-    parser.parse("h e     l  l o w o r l d") should matchPattern { case Parsed.Failure(_) => }
+    parser.parse("3 . 1      4") should matchPattern { case Parsed.Failure(_, _, _) => }
+    parser.parse("h e     l  l o w o r l d") should matchPattern { case Parsed.Failure(_, _, _) => }
   }
 
   "codes are equal to strings" in {

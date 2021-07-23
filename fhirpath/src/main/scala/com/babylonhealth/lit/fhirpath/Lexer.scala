@@ -57,7 +57,7 @@ trait Lexer {
 
   // Restrict to lower-case to avoid mixing up with type names - not matching the spec but ¯\_(ツ)_/¯
   def regularIdentifier: P[String] =
-    (CatsParser.charIn(('a' to 'z') :+ '_') ~~ CatsParser.ignoreCaseCharIn(('a' to 'z') ++ ('0' to '9') :+ '_').rep) map {
+    (CatsParser.charIn(('a' to 'z') :+ '_') ~ CatsParser.ignoreCaseCharIn(('a' to 'z') ++ ('0' to '9') :+ '_').rep) map {
       case (h, t) => t.prepend(h).toList.mkString
     } filter {
       !reservedWords.contains(_)
@@ -65,8 +65,8 @@ trait Lexer {
   def escapedIdentifier: P[String] = "`" *> CatsParser.charsWhile(_ != '`') <* string("`")
 
   def str: P[String]         = dblQuoteStr | sglQuoteStr
-  def dblQuoteStr: P[String] = "\"" *> (string("'") | strChars | escape).rep.map(_.toList.mkString) <* string("\"")
-  def sglQuoteStr: P[String] = string("'") *> (string("\"") | strChars | escape).rep.map(_.toList.mkString) <* string("'")
+  def dblQuoteStr: P[String] = char('"') *> (char('\'') | strChars | escape).rep0.map(_.mkString) <* char('"')
+  def sglQuoteStr: P[String] = char('\'') *> (char('"') | strChars | escape).rep0.map(_.mkString) <* char('\'')
 
   private def strChars: P[String] = CatsParser.charsWhile(c => c != '"' & c != '\'' && c != '\\')
   private def escape: P[String] =
@@ -100,6 +100,13 @@ trait Lexer {
 object Lexer extends Lexer {
   implicit class RichParser(parser: String) {
     def as[V](value: V): P[V] = string(parser).void.map(_ => value)
+  }
+
+  private val whitespace: P[Unit]    = CatsParser.charIn(" \t\r\n").void
+  private val whitespaces0: P0[Unit] = whitespace.rep0.void
+  implicit class RichParser_2[A](p: P[A]) {
+    // like `~` but permits optional whitespace
+    def ~+[B](that: CatsParser0[B]): P[(A, B)] = p ~ (whitespaces0 *> that)
   }
 
   // This is a bit boilerplate-y, but fastparse needs the literal strings in order for the macro to be able to build an

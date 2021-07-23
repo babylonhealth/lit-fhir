@@ -25,7 +25,7 @@ trait Parser extends Lexer {
   def parseToEither(str: String): Either[Error, Expr] = top.parseAll(str)
 
   // Example of trace error message:
-  //   getIndexed | [ \t] ~ descendAndMaybeIndex | StringIn("or", "and") | end-of-input):1:5, found ".$%^.isInv"
+  //   getIndexed | [ \t] ~+ descendAndMaybeIndex | StringIn("or", "and") | end-of-input):1:5, found ".$%^.isInv"
   // Weird and verbose but still useful
   def parseUnsafe(str: String): Expr =
     parseToEither(str) match {
@@ -41,17 +41,17 @@ trait Parser extends Lexer {
   def expression: P[Expr] = impliesExpr
 
   // Handles precedence by descending from lowest to highest precedence operators
-  def impliesExpr: P[Expr] = P(orExpr ~ ("implies".as(Implies) ~ orExpr).rep0 map foldBinOp)
-  def orExpr: P[Expr]      = P(andExpr ~ (("or".as(Or) | "xor".as(Xor)) ~ andExpr).rep0 map foldBinOp)
-  def andExpr: P[Expr]     = P(inExpr ~ ("and".as(And) ~ inExpr).rep0 map foldBinOp)
-  def inExpr: P[Expr]      = P(eqExpr ~ (("in".as(In) | "contains".as(Contains)) ~ eqExpr).rep0 map foldBinOp)
-  def eqExpr: P[Expr]      = P(ineqExpr ~ (eqOp ~ ineqExpr).rep0 map foldBinOp)
-  def ineqExpr: P[Expr]    = P(unionExpr ~ (ineqOp ~ unionExpr).rep0 map foldBinOp)
-  def unionExpr: P[Expr]   = P(typeExpr ~ ("|".as(Union) ~ typeExpr).rep0 map foldBinOp)
-  def typeExpr: P[Expr]    = P(addExpr ~ (typeOp ~ typeSpecifier).rep0 map { case (e, l) => foldOp(TypeOperation)(e, l.toList) })
-  def addExpr: P[Expr]     = P(multExpr ~ ((signOp | "&".as(StringConcat)) ~ multExpr).rep0 map foldBinOp)
-  def multExpr: P[Expr]    = P(unaryExpr ~ (multOp ~ unaryExpr).rep0 map foldBinOp)
-  def unaryExpr: P[Expr]   = P((signOp ~ term map (UnaryOperation.apply _).tupled) | term)
+  def impliesExpr: P[Expr] = P(orExpr ~+ ("implies".as(Implies) ~+ orExpr).rep0 map foldBinOp)
+  def orExpr: P[Expr]      = P(andExpr ~+ (("or".as(Or) | "xor".as(Xor)) ~+ andExpr).rep0 map foldBinOp)
+  def andExpr: P[Expr]     = P(inExpr ~+ ("and".as(And) ~+ inExpr).rep0 map foldBinOp)
+  def inExpr: P[Expr]      = P(eqExpr ~+ (("in".as(In) | "contains".as(Contains)) ~+ eqExpr).rep0 map foldBinOp)
+  def eqExpr: P[Expr]      = P(ineqExpr ~+ (eqOp ~+ ineqExpr).rep0 map foldBinOp)
+  def ineqExpr: P[Expr]    = P(unionExpr ~+ (ineqOp ~+ unionExpr).rep0 map foldBinOp)
+  def unionExpr: P[Expr]   = P(typeExpr ~+ ("|".as(Union) ~+ typeExpr).rep0 map foldBinOp)
+  def typeExpr: P[Expr]    = P(addExpr ~+ (typeOp ~+ typeSpecifier).rep0 map { case (e, l) => foldOp(TypeOperation)(e, l.toList) })
+  def addExpr: P[Expr]     = P(multExpr ~+ ((signOp | "&".as(StringConcat)) ~+ multExpr).rep0 map foldBinOp)
+  def multExpr: P[Expr]    = P(unaryExpr ~+ (multOp ~+ unaryExpr).rep0 map foldBinOp)
+  def unaryExpr: P[Expr]   = P((signOp ~+ term map (UnaryOperation.apply _).tupled) | term)
 
   private val foldBinOp: ((Expr, List[(BinaryOperator, Expr)])) => Expr = { case (e, l) =>
     foldOp(BinaryOperation)(e, l.toList)
@@ -61,22 +61,22 @@ trait Parser extends Lexer {
     tail.foldLeft(head) { case (accum, (op, next)) => f(accum, op, next) }
   }
 
-  def term: P[Expr] = atom ~ termSuffix.rep0 map { case (a, suffixes) => suffixes.foldLeft(a) { (x, y) => y(x) } }
+  def term: P[Expr] = atom ~+ termSuffix.rep0 map { case (a, suffixes) => suffixes.foldLeft(a) { (x, y) => y(x) } }
 
   def termSuffix: P[Expr => Expr] = indexTerm | typeFunc.backtrack | invocTerm
 
   private def indexTerm: P[Expr => Expr] = char('[') *> expression.map(e => model.Index(_, e)) <* char(']')
-  private def typeFunc: P[Expr => Expr] = char('.') *> (typeOp <* char('(')) ~ typeSpecifier <* char(')') map { case (op, t) =>
+  private def typeFunc: P[Expr => Expr] = char('.') *> (typeOp <* char('(')) ~+ typeSpecifier <* char(')') map { case (op, t) =>
     TypeOperation(_, op, t)
   }
   private def invocTerm: P[Expr => Expr] = char('.') *> invocation map { i => InvocationExpr(_, i) }
 
   def atom: P[Expr] =
-    P(functionCall | rootPath | fieldAccess | dollarKeyword | literal | envVar | (char('(') *> expression <* char(')')))
+    P(functionCall.backtrack | rootPath | fieldAccess | dollarKeyword | literal | envVar | (char('(') *> expression <* char(')')))
 
   private def rootPath: P[RootPath] = typeSpecifier.map(RootPath)
 
-  def literal: P[Literal] = ((char('{') ~ char('}')).void.map(_ => Empty) | singleValue)
+  def literal: P[Literal] = ((char('{') ~+ char('}')).void.map(_ => Empty) | singleValue)
 
   private def singleValue: P[SingleValue] =
     (quantity | boolean | str | decimal | int | dateTime | date | time).map(Value.wrapSystem).map(SingleValue)
@@ -88,7 +88,7 @@ trait Parser extends Lexer {
   def fieldAccess: P[FieldAccess] = identifier.map(FieldAccess)
 
   def functionCall: P[Invocation] = ofType | normalFunction
-  def normalFunction: P[Func]     = (identifier <* char('(')) ~ paramList <* char(')') map (Func.apply _).tupled
+  def normalFunction: P[Func]     = (identifier <* char('(')) ~+ paramList <* char(')') map (Func.apply _).tupled
   def ofType: P[OfType]           = string("ofType") *> char('(') *> typeSpecifier <* char(')') map OfType
 
   def paramList: P0[Seq[Expr]] = expression.repSep0(sep = char(',')).map(_.toList)
@@ -108,8 +108,8 @@ trait Parser extends Lexer {
 
   def typeSpecifier: P[TypeSpecifier] =
     (
-      ((string("FHIR") ~ char('.')).? ~~> fhirType map ("FHIR"         -> _)) |
-        ((string("System") ~ char('.')).? ~~> systemType map ("System" -> _))
+      ((string("FHIR") ~+ char('.')).? ~~> fhirType map ("FHIR"         -> _)) |
+        ((string("System") ~+ char('.')).? ~~> systemType map ("System" -> _))
     ).map((TypeSpecifier.apply _).tupled)
 
   implicit class FHIRPathHelper(val sc: StringContext) {

@@ -178,7 +178,6 @@ class TestExamples extends AnyFunSpec with Matchers {
       attr(node, "type") match {
         case "boolean"  => text.toBoolean
         case "code"     => text
-        case "code"     => text
         case "date"     => FHIRDate.parse(text)
         case "dateTime" => FHIRDateTime.parse(text)
         case "decimal"  => BigDecimal(text)

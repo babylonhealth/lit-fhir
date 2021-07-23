@@ -22,6 +22,15 @@ class FHIRPathParserTest extends AnyFreeSpec with Matchers {
 
   def literal[T: AsValue](x: T): SingleValue = SingleValue(Value.wrap(x))
 
+  private def printFailure(p1: Any, prefix: String = ""): Unit =
+    p1 match {
+      case Parsed.Failure(label, index, e) =>
+        println(prefix+"label)" + label)
+        println(prefix+"index)" + index)
+        println(prefix+"e.failedAtOffset)" + e.failedAtOffset)
+        println(prefix+"e.expected)" + e.expected)
+      case _ =>
+    }
   "Base case works" in {
     val p1 = Parser.parse("Patient.name.given")
     p1.isSuccess shouldEqual true
@@ -83,6 +92,7 @@ class FHIRPathParserTest extends AnyFreeSpec with Matchers {
 
   "parses a 'startsWith' inside a 'where'" in {
     val p1 = parser.parse("Bundle.entry.resource.where(id.startsWith('patient') = true)")
+    printFailure(p1, "1)")
     p1.isSuccess shouldEqual true
     val Parsed.Success(value, successIndex) = p1
     value shouldEqual root("Bundle")("entry")("resource").invoke(
@@ -221,7 +231,7 @@ class FHIRPathParserTest extends AnyFreeSpec with Matchers {
     }
     "Account.subject.where(resolve() is Patient)" in {
       val res = parser.top.parse("Account.subject.where(resolve() is Patient)")
-      res should matchPattern { case Parsed.Success(_, _) =>
+      res should matchPattern { case Right((_, _)) =>
       }
     }
   }
@@ -259,7 +269,7 @@ class FHIRPathParserTest extends AnyFreeSpec with Matchers {
     expr in {
       val res = ps.parse(expr)
       res should matchPattern {
-        case Parsed.Success(_, i) if i == expr.trim.length =>
+        case Right(("", _)) =>
       }
     }
   val ext_1 = "http://hl7.org/fhir/StructureDefinition/questionnaireresponse-isSubject"
