@@ -49,9 +49,7 @@ class GenScalaTest extends AnyFreeSpec with Matchers {
   expect(Bundle, "Bundle.entry[0].resource") {
     "obj.entry.flatMap(_.resource).toSeq" // TODO: this seems wrong, but just trying to replicate current behaviour
   }
-  expect(
-    QuestionnaireResponse,
-    "QuestionnaireResponse.item.where(hasExtension('foo')).answer.value.ofType(Reference)") {
+  expect(QuestionnaireResponse, "QuestionnaireResponse.item.where(hasExtension('foo')).answer.value.ofType(Reference)") {
     "obj.item.filter(_.extension.exists(_.url == \"foo\")).flatMap(_.answer).flatMap(_.value).flatMap(_.as[Reference]).toSeq"
   }
   expect(CommunicationRequest, "(CommunicationRequest.occurrence as dateTime)") {

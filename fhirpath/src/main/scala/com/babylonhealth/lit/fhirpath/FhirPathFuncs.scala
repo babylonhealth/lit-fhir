@@ -12,9 +12,8 @@ import scala.util.Try
 import com.babylonhealth.lit.fhirpath.conversions.{ AsCollection, FromExpr, ToCollection }
 import com.babylonhealth.lit.fhirpath.model.{ Expr, This }
 
-/**
-  * For defining FHIR path functions. Extend this trait and define them with [[FuncName.:=]].
-  * Then you can look them up with [[lookupFunction]].
+/** For defining FHIR path functions. Extend this trait and define them with [[FuncName.:=]]. Then you can look them up with
+  * [[lookupFunction]].
   */
 abstract class FhirPathFuncs[F[+_]: MErr] extends Builtins[F] {
 
@@ -89,8 +88,7 @@ abstract class FhirPathFuncs[F[+_]: MErr] extends Builtins[F] {
   // lift2(f): List[Value] => (Expr, Expr) => F[List[Value]]
 
   // Lift a unary function
-  def lift1[A, T](f: A => T)(
-      input: List[Value])(implicit a: AsCollection[A, F], t: ToCollection[T, F]): F[List[Value]] = {
+  def lift1[A, T](f: A => T)(input: List[Value])(implicit a: AsCollection[A, F], t: ToCollection[T, F]): F[List[Value]] = {
     val result = for {
       a      <- OptionT(a.get(input))
       result <- wrapResult(f(a))
@@ -130,8 +128,7 @@ abstract class FhirPathFuncs[F[+_]: MErr] extends Builtins[F] {
   }
 
   // Lift a quaternary function
-  def lift4[A, B, C, D, T](f: (A, B, C, D) => T)(
-      input: List[Value])(exprA: Expr, exprB: Expr, exprC: Expr, exprD: Expr)(implicit
+  def lift4[A, B, C, D, T](f: (A, B, C, D) => T)(input: List[Value])(exprA: Expr, exprB: Expr, exprC: Expr, exprD: Expr)(implicit
       a: FromExpr[A, F],
       b: FromExpr[B, F],
       c: FromExpr[C, F],

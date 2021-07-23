@@ -12,7 +12,7 @@ import com.babylonhealth.lit.core.model.{ Quantity, Resource }
 import com.babylonhealth.lit.core.FHIRDateTimeSpecificity.Day
 
 package object fhirpath {
-  type P[T] = CatsParser[T]
+  type P[T]  = CatsParser[T]
   type P0[T] = CatsParser0[T]
   def P[T](t: => CatsParser[T]): CatsParser[T] = cats.Defer[CatsParser].defer(t)
   implicit class FastPathCompat[A](t: CatsParser0[A]) {

@@ -6,8 +6,8 @@ import fastparse.Parsed
 import com.babylonhealth.lit.core.ChoiceImplicits._
 import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.core.{ toCode, FHIRDate, FHIRDateTime, LitSeq }
-import com.babylonhealth.lit.hl7.{ BUNDLE_TYPE,OBSERVATION_STATUS, QUESTIONNAIRE_ANSWERS_STATUS }
-import java.time.{LocalTime, ZonedDateTime}
+import com.babylonhealth.lit.hl7.{ BUNDLE_TYPE, OBSERVATION_STATUS, QUESTIONNAIRE_ANSWERS_STATUS }
+import java.time.{ LocalTime, ZonedDateTime }
 
 import com.babylonhealth.lit.hl7.model._
 import org.scalatest.freespec.AnyFreeSpec
@@ -18,7 +18,7 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
   val patient =
     Patient(
       id = Some("patient123"),
-      name = LitSeq(HumanName(given = LitSeq("Walter"), family = Some("White"))),
+      name = LitSeq(HumanName(`given` = LitSeq("Walter"), family = Some("White"))),
       extension = LitSeq(Extension(url = "http://a.123", value = Some(choice(toCode("a patient extension")))))
     )
   val observation = Observation(
@@ -55,7 +55,8 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
   }
   "Base case returns error if type mismatch on initial element" in {
     val p1 = parser.parseUnsafe("Account.name.given")
-    p1[EitherErr](patient).left.get.getMessage should fullyMatch regex "This FHIR path expects the initial object to be a .*Account, but it's a Patient"
+    p1[EitherErr](
+      patient).left.get.getMessage should fullyMatch regex "This FHIR path expects the initial object to be a .*Account, but it's a Patient"
   }
   "Base case works without initial root" in {
     val p1 = parser.parseUnsafe("name.given")
@@ -72,7 +73,7 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
   }
   "omg works w/ syntax" in {
     import parser._
-    fhir"Patient.name.given" [EitherErr](patient).toTry.get shouldEqual List("Walter")
+    fhir"Patient.name.given".apply[EitherErr](patient).toTry.get shouldEqual List("Walter")
   }
   "resolve might work" in {
     parser.parseUnsafe("Bundle.entry.resource.subject.resolve().name.given")[EitherErr](bundle).toTry.get shouldEqual List(
@@ -343,8 +344,8 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
         .get shouldEqual List(true)
 
       parser
-        .parseUnsafe("name.given.startsWith('Wlt') or (name.given.endsWith('alter') and name.given.contains('alsst'))")[EitherErr](
-          patient)
+        .parseUnsafe("name.given.startsWith('Wlt') or (name.given.endsWith('alter') and name.given.contains('alsst'))")[
+          EitherErr](patient)
         .toTry
         .get shouldEqual List(false)
     }
@@ -399,15 +400,13 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
   s"QuestionnaireResponse.item.where(hasExtension('$ext_1')).answer.value.ofType(Reference)" in {
     val item1 = QuestionnaireResponse
       .Item(
-        answer =
-          LitSeq(QuestionnaireResponse.Item.Answer(value = Some(choice(Reference(reference = Some("YES MATE")))))),
+        answer = LitSeq(QuestionnaireResponse.Item.Answer(value = Some(choice(Reference(reference = Some("YES MATE")))))),
         text = Some("this"),
         extension = LitSeq(Extension(url = ext_1, value = Some(choice(3)))),
         linkId = "lolwut"
       )
     val item2 = QuestionnaireResponse.Item(
-      answer =
-        LitSeq(QuestionnaireResponse.Item.Answer(value = Some(choice(Reference(reference = Some("NO LADDIE")))))),
+      answer = LitSeq(QuestionnaireResponse.Item.Answer(value = Some(choice(Reference(reference = Some("NO LADDIE")))))),
       text = Some("not this, though"),
       extension = LitSeq(Extension(url = ext_2, value = Some(choice("foooo")))),
       linkId = "no thanks!"
@@ -425,8 +424,8 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
       .toTry
       .get shouldEqual List(false)
     parser
-      .parseUnsafe(
-        s"QuestionnaireResponse.item.where(hasExtension('$ext_1')).answer.value.ofType(Reference).reference")[EitherErr](qr)
+      .parseUnsafe(s"QuestionnaireResponse.item.where(hasExtension('$ext_1')).answer.value.ofType(Reference).reference")[
+        EitherErr](qr)
       .toTry
       .get shouldEqual List(toCode("YES MATE"))
   }
@@ -519,11 +518,11 @@ class FHIRPathTest extends AnyFreeSpec with Matchers {
 
   "Comparison operator tests " in {
     evalFhirPath("name.count() > 1") shouldEqual List(false)
-    evalFhirPath("name.count() < 1") shouldEqual List(false)  
-    evalFhirPath("name.count() = 1") shouldEqual List(true)  
-    evalFhirPath("name.count() != 1") shouldEqual List(false) 
-    evalFhirPath("name.count() > 0") shouldEqual List(true) 
-    evalFhirPath("name.count() < 8") shouldEqual List(true) 
+    evalFhirPath("name.count() < 1") shouldEqual List(false)
+    evalFhirPath("name.count() = 1") shouldEqual List(true)
+    evalFhirPath("name.count() != 1") shouldEqual List(false)
+    evalFhirPath("name.count() > 0") shouldEqual List(true)
+    evalFhirPath("name.count() < 8") shouldEqual List(true)
   }
 
   "Root path behaviour" - {
