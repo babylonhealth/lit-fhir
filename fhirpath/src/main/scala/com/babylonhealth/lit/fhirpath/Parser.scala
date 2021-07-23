@@ -34,25 +34,26 @@ trait Parser extends Lexer {
     }
 
   import Lexer.RichParser
+  import Lexer.RichParser_2
 
-  def top: P0[Expr] = expression
+  def top: P[Expr] = expression
 
   def expression: P[Expr] = impliesExpr
 
   // Handles precedence by descending from lowest to highest precedence operators
-  def impliesExpr: P[Expr] = orExpr ~ ("implies".as(Implies) ~ orExpr).rep map foldBinOp
-  def orExpr: P[Expr]      = andExpr ~ (("or".as(Or) | "xor".as(Xor)) ~ andExpr).rep map foldBinOp
-  def andExpr: P[Expr]     = inExpr ~ ("and".as(And) ~ inExpr).rep map foldBinOp
-  def inExpr: P[Expr]      = eqExpr ~ (("in".as(In) | "contains".as(Contains)) ~ eqExpr).rep map foldBinOp
-  def eqExpr: P[Expr]      = ineqExpr ~ (eqOp ~ ineqExpr).rep map foldBinOp
-  def ineqExpr: P[Expr]    = unionExpr ~ (ineqOp ~ unionExpr).rep map foldBinOp
-  def unionExpr: P[Expr]   = typeExpr ~ ("|".as(Union) ~ typeExpr).rep map foldBinOp
-  def typeExpr: P[Expr]    = addExpr ~ (typeOp ~ typeSpecifier).rep map { case (e, l) => foldOp(TypeOperation)(e, l.toList) }
-  def addExpr: P[Expr]     = multExpr ~ ((signOp | "&".as(StringConcat)) ~ multExpr).rep map foldBinOp
-  def multExpr: P[Expr]    = unaryExpr ~ (multOp ~ unaryExpr).rep map foldBinOp
-  def unaryExpr: P[Expr]   = (signOp ~ term map (UnaryOperation.apply _).tupled) | term
+  def impliesExpr: P[Expr] = P(orExpr ~ ("implies".as(Implies) ~ orExpr).rep0 map foldBinOp)
+  def orExpr: P[Expr]      = P(andExpr ~ (("or".as(Or) | "xor".as(Xor)) ~ andExpr).rep0 map foldBinOp)
+  def andExpr: P[Expr]     = P(inExpr ~ ("and".as(And) ~ inExpr).rep0 map foldBinOp)
+  def inExpr: P[Expr]      = P(eqExpr ~ (("in".as(In) | "contains".as(Contains)) ~ eqExpr).rep0 map foldBinOp)
+  def eqExpr: P[Expr]      = P(ineqExpr ~ (eqOp ~ ineqExpr).rep0 map foldBinOp)
+  def ineqExpr: P[Expr]    = P(unionExpr ~ (ineqOp ~ unionExpr).rep0 map foldBinOp)
+  def unionExpr: P[Expr]   = P(typeExpr ~ ("|".as(Union) ~ typeExpr).rep0 map foldBinOp)
+  def typeExpr: P[Expr]    = P(addExpr ~ (typeOp ~ typeSpecifier).rep0 map { case (e, l) => foldOp(TypeOperation)(e, l.toList) })
+  def addExpr: P[Expr]     = P(multExpr ~ ((signOp | "&".as(StringConcat)) ~ multExpr).rep0 map foldBinOp)
+  def multExpr: P[Expr]    = P(unaryExpr ~ (multOp ~ unaryExpr).rep0 map foldBinOp)
+  def unaryExpr: P[Expr]   = P((signOp ~ term map (UnaryOperation.apply _).tupled) | term)
 
-  private val foldBinOp: ((Expr, NonEmptyList[(BinaryOperator, Expr)])) => Expr = { case (e, l) =>
+  private val foldBinOp: ((Expr, List[(BinaryOperator, Expr)])) => Expr = { case (e, l) =>
     foldOp(BinaryOperation)(e, l.toList)
   }
 
@@ -60,9 +61,9 @@ trait Parser extends Lexer {
     tail.foldLeft(head) { case (accum, (op, next)) => f(accum, op, next) }
   }
 
-  def term: P[Expr] = atom ~ termSuffix.rep map { case (a, suffixes) => suffixes.foldLeft(a) { (x, y) => y(x) } }
+  def term: P[Expr] = atom ~ termSuffix.rep0 map { case (a, suffixes) => suffixes.foldLeft(a) { (x, y) => y(x) } }
 
-  def termSuffix: P[Expr => Expr] = indexTerm | typeFunc | invocTerm
+  def termSuffix: P[Expr => Expr] = indexTerm | typeFunc.backtrack | invocTerm
 
   private def indexTerm: P[Expr => Expr] = char('[') *> expression.map(e => model.Index(_, e)) <* char(']')
   private def typeFunc: P[Expr => Expr] = char('.') *> (typeOp <* char('(')) ~ typeSpecifier <* char(')') map { case (op, t) =>
@@ -71,7 +72,7 @@ trait Parser extends Lexer {
   private def invocTerm: P[Expr => Expr] = char('.') *> invocation map { i => InvocationExpr(_, i) }
 
   def atom: P[Expr] =
-    (functionCall | rootPath | fieldAccess | dollarKeyword | literal | envVar | (char('(') *> expression <* char(')')))
+    P(functionCall | rootPath | fieldAccess | dollarKeyword | literal | envVar | (char('(') *> expression <* char(')')))
 
   private def rootPath: P[RootPath] = typeSpecifier.map(RootPath)
 
@@ -82,15 +83,15 @@ trait Parser extends Lexer {
 
   def envVar: P[Expr] = char('%') *> (identifier | str) map EnvironmentVariable
 
-  def invocation: P[Invocation] = P(functionCall | fieldAccess | dollarKeyword)
+  def invocation: P[Invocation] = functionCall.backtrack | fieldAccess | dollarKeyword
 
   def fieldAccess: P[FieldAccess] = identifier.map(FieldAccess)
 
-  def functionCall: P[Invocation] = P(ofType | normalFunction)
+  def functionCall: P[Invocation] = ofType | normalFunction
   def normalFunction: P[Func]     = (identifier <* char('(')) ~ paramList <* char(')') map (Func.apply _).tupled
   def ofType: P[OfType]           = string("ofType") *> char('(') *> typeSpecifier <* char(')') map OfType
 
-  def paramList: P[Seq[Expr]] = expression.repSep(sep = char(',')).map(_.toList)
+  def paramList: P0[Seq[Expr]] = expression.repSep0(sep = char(',')).map(_.toList)
 
   def dollarKeyword: P[Invocation] = "$this".as(This) | "$index".as(IndexInvoc) | "$total".as(Total)
 
@@ -101,7 +102,7 @@ trait Parser extends Lexer {
   def ineqOp: P[BinaryOperator]                    = "<=".as(Lte) | ">=".as(Gte) | "<".as(Lt) | ">".as(Gt)
 
   def quantity: P[Quantity] =
-    P(decimalOrInt ~ unit) map { case (value, unit) =>
+    decimalOrInt ~ unit map { case (value, unit) =>
       Quantity(value = Some(value), unit = Some(unit))
     }
 

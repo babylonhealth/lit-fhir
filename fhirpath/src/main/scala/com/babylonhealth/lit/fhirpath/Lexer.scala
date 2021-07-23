@@ -12,8 +12,8 @@ import com.babylonhealth.lit.fhirpath.Lexer.{ reservedWords, RichParser, fhirTyp
 /** Based on http://hl7.org/fhirpath/grammar.html
   */
 trait Lexer {
-  def date: P[FHIRDate]         = string("@") *> partialDate
-  def dateTime: P[FHIRDateTime] = string("@") *> partialDateTime
+  def date: P[FHIRDate]         = char('@') *> partialDate
+  def dateTime: P[FHIRDateTime] = char('@') *> partialDateTime
   def time: P[LocalTime]        = string("@T") *> partialTime
 
   def partialDateOrDateTime: P[FHIRDateTime] = partialDateTime | partialDate.map(dateToDateTime)
@@ -64,7 +64,7 @@ trait Lexer {
     }
   def escapedIdentifier: P[String] = "`" *> CatsParser.charsWhile(_ != '`') <* string("`")
 
-  def str: P[String]         = P(dblQuoteStr | sglQuoteStr)
+  def str: P[String]         = dblQuoteStr | sglQuoteStr
   def dblQuoteStr: P[String] = "\"" *> (string("'") | strChars | escape).rep.map(_.toList.mkString) <* string("\"")
   def sglQuoteStr: P[String] = string("'") *> (string("\"") | strChars | escape).rep.map(_.toList.mkString) <* string("'")
 
@@ -82,11 +82,11 @@ trait Lexer {
 
   def boolean: P[Boolean] = string("true").as(true) | string("false").as(false)
 
-  def unit: P[String] = P(sglQuoteStr | builtinUnit)
+  def unit: P[String] = sglQuoteStr | builtinUnit
 
   private def builtinUnit: P[String] =
-    (CatsParser.stringIn(Seq("year", "month", "week", "day", "hour", "minute", "second", "millisecond")) <* char('s').?).map(u =>
-      f"{$u}")
+    (CatsParser.stringIn(Seq("year", "month", "week", "day", "hour", "minute", "second", "millisecond")) <* char('s').?)
+      .map(u => f"{$u}")
 
   def fhirType: P[String] = optionalBackticks(fhirTypeName)
   def systemType: P[String] =
