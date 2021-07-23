@@ -123,8 +123,7 @@ abstract class Builtins[F[+_]: MErr] {
 
   def as(typeSpecifier: TypeSpecifier)(input: Value): Option[Value] = when(is(typeSpecifier)(input))(input)
 
-  def unsupported[F1[+_]: MErr]: F1[List[Value]] =
-    new UnsupportedOperationException("Unsupported function").raiseError[F1, List[Value]]
+  def unsupported: F[List[Value]] = new UnsupportedOperationException("Unsupported function").raiseError
 
   private val systemTypes = Set("Boolean", "String", "Integer", "Decimal", "Date", "DateTime", "Time")
 }

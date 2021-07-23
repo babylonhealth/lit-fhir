@@ -38,7 +38,7 @@ class DefaultFuncs[F[+_]: MErr](implicit fhirClient: FHIRReadClient[F]) extends 
   // http://hl7.org/fhirpath/#filtering-and-projection
   "where"  := where _
   "select" := { (input: List[Value], projection: Value => F[List[Value]]) => input.flatTraverse(projection) }
-  "repeat" := { (_: List[Value], _: Value => F[List[Value]]) => unsupported[F] }
+  "repeat" := { (_: List[Value], _: Value => F[List[Value]]) => unsupported }
 
   // http://hl7.org/fhirpath/#subsetting
   "single"    := { (input: Value) => input }
@@ -95,16 +95,16 @@ class DefaultFuncs[F[+_]: MErr](implicit fhirClient: FHIRReadClient[F]) extends 
   "toChars" := { (input: String) => input.map(_.toString).toList }
 
   // http://hl7.org/fhirpath/#math
-  "abs"      := { (_: Value) => unsupported[F] }
+  "abs"      := { (_: Value) => unsupported }
   "ceiling"  := { (input: BigDecimal) => input.setScale(0, CEILING).toInt }
-  "exp"      := { (_: Value) => unsupported[F] }
+  "exp"      := { (_: Value) => unsupported }
   "floor"    := { (input: BigDecimal) => input.setScale(0, FLOOR).toInt }
-  "ln"       := { (_: Value) => unsupported[F] }
-  "log"      := { (_: Value, _: BigDecimal) => unsupported[F] }
-  "power"    := { (_: Value, _: Value) => unsupported[F] }
+  "ln"       := { (_: Value) => unsupported }
+  "log"      := { (_: Value, _: BigDecimal) => unsupported }
+  "power"    := { (_: Value, _: Value) => unsupported }
   "round"    := { (input: BigDecimal) => input.setScale(0, HALF_UP).toInt }
   "round"    := { (input: BigDecimal, precision: Int) => input.setScale(precision, HALF_UP) }
-  "sqrt"     := { (_: Value) => unsupported[F] }
+  "sqrt"     := { (_: Value) => unsupported }
   "truncate" := { (input: BigDecimal) => input.setScale(0, DOWN).toInt }
 
   // http://hl7.org/fhirpath/#tree-navigation
@@ -122,16 +122,16 @@ class DefaultFuncs[F[+_]: MErr](implicit fhirClient: FHIRReadClient[F]) extends 
   "not" := { (input: Boolean) => !input }
 
   // http://hl7.org/fhirpath/#aggregates
-  "aggregate" := { (_: List[Value], _: Expr) => unsupported[F] }
-  "aggregate" := { (_: List[Value], _: Expr, _: Value) => unsupported[F] }
+  "aggregate" := { (_: List[Value], _: Expr) => unsupported }
+  "aggregate" := { (_: List[Value], _: Expr, _: Value) => unsupported }
 
   // http://hl7.org/fhirpath/index.html#types-and-reflection
-  "type" := { (_: List[Value]) => unsupported[F] }
+  "type" := { (_: List[Value]) => unsupported }
 
   // https://hl7.org/fhir/fhirpath.html#functions
   "extension" := { (input: List[Value], url: String) => input.flatMap(_.extensions).flatten.filter(_.url == url) }
-  "hasValue"  := { (_: List[Value]) => unsupported[F] }
-  "getValue"  := { (_: List[Value]) => unsupported[F] }
+  "hasValue"  := { (_: List[Value]) => unsupported }
+  "getValue"  := { (_: List[Value]) => unsupported }
   "resolve" := { (input: List[Value]) =>
     input
       .flatMap {
@@ -142,14 +142,14 @@ class DefaultFuncs[F[+_]: MErr](implicit fhirClient: FHIRReadClient[F]) extends 
       }
       .traverse(fhirClient.read)
   }
-  "elementDefinition" := { (_: List[Value]) => unsupported[F] }
-  "slice"             := { (_: List[Value], _: String, _: String) => unsupported[F] }
-  "checkModifiers"    := { (_: List[Value], _: List[String]) => unsupported[F] }
-  "conformsTo"        := { (_: List[Value], _: String) => unsupported[F] }
-  "memberOf"          := { (_: List[Value], _: String) => unsupported[F] }
-  "subsumes"          := { (_: List[Value], _: Value) => unsupported[F] }
-  "subsumedBy"        := { (_: List[Value], _: Value) => unsupported[F] }
-  "htmlChecks"        := { (_: List[Value]) => unsupported[F] }
+  "elementDefinition" := { (_: List[Value]) => unsupported }
+  "slice"             := { (_: List[Value], _: String, _: String) => unsupported }
+  "checkModifiers"    := { (_: List[Value], _: List[String]) => unsupported }
+  "conformsTo"        := { (_: List[Value], _: String) => unsupported }
+  "memberOf"          := { (_: List[Value], _: String) => unsupported }
+  "subsumes"          := { (_: List[Value], _: Value) => unsupported }
+  "subsumedBy"        := { (_: List[Value], _: Value) => unsupported }
+  "htmlChecks"        := { (_: List[Value]) => unsupported }
 
   // A mysterious function that only exists on one hl7 profile and has no definition anywhere we can find
   "hasExtension" := { (input: List[Value], url: String) =>
