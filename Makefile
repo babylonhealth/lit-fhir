@@ -27,7 +27,7 @@ compile-proto:
 	$(SBT) gproto/compile
 compile-bench:
 	$(SBT) +bench/test:compile
-compile: clean-scala-3 compile-core compile-java compile-proto compile-bench
+compile: compile-core compile-java compile-proto compile-bench
 	$(SBT) +bench/test:compile
 
 test-java:
