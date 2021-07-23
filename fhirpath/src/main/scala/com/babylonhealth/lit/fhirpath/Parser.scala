@@ -72,14 +72,14 @@ trait Parser extends Lexer {
   private def invocTerm: P[Expr => Expr] = char('.') *> invocation map { i => InvocationExpr(_, i) }
 
   def atom: P[Expr] =
-    P(functionCall.backtrack | rootPath | fieldAccess | dollarKeyword | literal | envVar | (char('(') *> expression <* char(')')))
+    P(functionCall.backtrack | rootPath | fieldAccess.backtrack | dollarKeyword | literal | envVar | (char('(') *> expression <* char(')')))
 
   private def rootPath: P[RootPath] = typeSpecifier.map(RootPath)
 
   def literal: P[Literal] = ((char('{') ~+ char('}')).void.map(_ => Empty) | singleValue)
 
-  private def singleValue: P[SingleValue] =
-    (quantity | boolean | str | decimal | int | dateTime | date | time).map(Value.wrapSystem).map(SingleValue)
+  def singleValue: P[SingleValue] =
+    (quantity.backtrack | boolean | str | decimal.backtrack | int | time | dateTime.backtrack | date).map(Value.wrapSystem).map(SingleValue)
 
   def envVar: P[Expr] = char('%') *> (identifier | str) map EnvironmentVariable
 
@@ -102,7 +102,7 @@ trait Parser extends Lexer {
   def ineqOp: P[BinaryOperator]                    = "<=".as(Lte) | ">=".as(Gte) | "<".as(Lt) | ">".as(Gt)
 
   def quantity: P[Quantity] =
-    decimalOrInt ~ unit map { case (value, unit) =>
+    decimalOrInt ~+ unit map { case (value, unit) =>
       Quantity(value = Some(value), unit = Some(unit))
     }
 

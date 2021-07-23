@@ -34,9 +34,9 @@ trait Lexer {
     }
 
   def partialTime: CatsParser0[LocalTime] =
-    nDigits(2).? ~ (":" *> nDigits(2)).rep0(0, 2) ~ (("." *> CatsParser.charIn('0' to '9').rep).? map {
+    nDigits(2).? ~ (char(':') *> nDigits(2)).rep0(0, 2) ~ ((char('.') *> CatsParser.charIn('0' to '9').rep).? map {
       case None    => 0
-      case Some(x) => String.format("%-9s", x).replace(" ", "0").toInt
+      case Some(x) => String.format("%-9s", x.toList.mkString).replace(" ", "0").toInt
     }) map { case ((h, m_s), ns) =>
       val (m, s) = m_s match {
         case Nil       => 0 -> 0
@@ -57,12 +57,12 @@ trait Lexer {
 
   // Restrict to lower-case to avoid mixing up with type names - not matching the spec but ¯\_(ツ)_/¯
   def regularIdentifier: P[String] =
-    (CatsParser.charIn(('a' to 'z') :+ '_') ~ CatsParser.ignoreCaseCharIn(('a' to 'z') ++ ('0' to '9') :+ '_').rep) map {
-      case (h, t) => t.prepend(h).toList.mkString
+    (CatsParser.charIn(('a' to 'z') :+ '_') ~ CatsParser.ignoreCaseCharIn(('a' to 'z') ++ ('0' to '9') :+ '_').rep0) map {
+      case (h, t) => (h +: t).mkString
     } filter {
       !reservedWords.contains(_)
     }
-  def escapedIdentifier: P[String] = "`" *> CatsParser.charsWhile(_ != '`') <* string("`")
+  def escapedIdentifier: P[String] = char('`') *> CatsParser.charsWhile(_ != '`') <* char('`')
 
   def str: P[String]         = dblQuoteStr | sglQuoteStr
   def dblQuoteStr: P[String] = char('"') *> (char('\'') | strChars | escape).rep0.map(_.mkString) <* char('"')
@@ -77,10 +77,10 @@ trait Lexer {
 
   private def digits: P[String]   = CatsParser.charIn('0' to '9').rep map { _.toList.mkString }
   def int: P[Int]                 = digits map { _.toInt }
-  def decimal: P[BigDecimal]      = (digits ~ char('.') ~ digits) map { case ((a, b), c) => BigDecimal(s"$a$b$c") }
-  def decimalOrInt: P[BigDecimal] = decimal | int.map(BigDecimal(_))
+  def decimal: P[BigDecimal]      = (digits ~ char('.').void ~ digits) map { case ((a, _), c) => BigDecimal(s"$a.$c") }
+  def decimalOrInt: P[BigDecimal] = decimal.backtrack | int.map(BigDecimal(_))
 
-  def boolean: P[Boolean] = string("true").as(true) | string("false").as(false)
+  def boolean: P[Boolean] = "true".as(true) | "false".as(false)
 
   def unit: P[String] = sglQuoteStr | builtinUnit
 
