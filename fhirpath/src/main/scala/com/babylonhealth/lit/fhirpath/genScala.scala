@@ -1,21 +1,12 @@
 package com.babylonhealth.lit.fhirpath
 
-import enumeratum.EnumEntry
 import scala.util.Try
 
 import izumi.reflect.macrortti.{ LTag, LightTypeTag }
 
 import com.babylonhealth.lit.common.CodegenUtils
 import com.babylonhealth.lit.core.TagSummoners.{ lTagOf, lTypeOf }
-import com.babylonhealth.lit.core.{
-  Choice,
-  CompanionFor,
-  FHIRComponentFieldMeta,
-  FHIRObject,
-  LitSeq,
-  TagSummoners,
-  Utils
-}
+import com.babylonhealth.lit.core.{ Choice, CompanionFor, EnumBase, FHIRComponentFieldMeta, FHIRObject, LitSeq, Utils }
 import com.babylonhealth.lit.core.model.{ Reference, resourceTypeLookup }
 import com.babylonhealth.lit.fhirpath.model._
 
@@ -71,7 +62,7 @@ object genScala {
     // munged because the fhirpath comparison literals will be strings
     def mungedPropExpr =
       returnProps.base match {
-        case Right(c) if c.unwrappedTT.tag <:< lTypeOf[EnumEntry] =>
+        case Right(c) if c.unwrappedTT.tag <:< lTypeOf[EnumBase] =>
           if (returnProps.baseCardinality == ExactlyOne) s"$propExpr.name"
           else s"$propExpr.map(_.name)"
         case _ => propExpr
@@ -83,16 +74,14 @@ object genScala {
       if (operation.op == Eq || operation.op == Contains)
         (baseParams.base, baseParams.baseCardinality, returnProps.baseCardinality) match {
           case (Right(meta), ExactlyOne, ExactlyOne) if meta.unwrappedTT.tag.withoutArgs =:= choiceTypeNoArgs =>
-            s"""$baseStr.seqIf($mungedPropExpr.value == $filterValueString)""" -> baseParams.copy(baseCardinality =
-              Many)
+            s"""$baseStr.seqIf($mungedPropExpr.value == $filterValueString)""" -> baseParams.copy(baseCardinality = Many)
           case (_, ExactlyOne, ExactlyOne) =>
             s"""$baseStr.seqIf($mungedPropExpr == $filterValueString)""" -> baseParams.copy(baseCardinality = Many)
           case (Right(meta), ExactlyOne, _) if meta.unwrappedTT.tag.withoutArgs =:= choiceTypeNoArgs =>
             s"""$baseStr.seqIf($mungedPropExpr.map(_.value) contains $filterValueString)""" -> baseParams
               .copy(baseCardinality = Many)
           case (_, ExactlyOne, _) =>
-            s"""$baseStr.seqIf($mungedPropExpr contains $filterValueString)""" -> baseParams.copy(baseCardinality =
-              Many)
+            s"""$baseStr.seqIf($mungedPropExpr contains $filterValueString)""" -> baseParams.copy(baseCardinality = Many)
           case (Right(meta), _, ExactlyOne) if meta.unwrappedTT.tag.withoutArgs =:= choiceTypeNoArgs =>
             s"$baseStr.filter($mungedPropExpr.value == $filterValueString)" -> baseParams
           case (_, _, ExactlyOne) => s"$baseStr.filter($mungedPropExpr == $filterValueString)" -> baseParams
@@ -103,16 +92,14 @@ object genScala {
       else if (operation.op == Neq)
         (baseParams.base, baseParams.baseCardinality, returnProps.baseCardinality) match {
           case (Right(meta), ExactlyOne, ExactlyOne) if meta.unwrappedTT.tag.withoutArgs =:= choiceTypeNoArgs =>
-            s"""$baseStr.seqIf($mungedPropExpr.value != $filterValueString)""" -> baseParams.copy(baseCardinality =
-              Many)
+            s"""$baseStr.seqIf($mungedPropExpr.value != $filterValueString)""" -> baseParams.copy(baseCardinality = Many)
           case (_, ExactlyOne, ExactlyOne) =>
             s"""$baseStr.seqIf($mungedPropExpr != $filterValueString)""" -> baseParams.copy(baseCardinality = Many)
           case (Right(meta), ExactlyOne, _) if meta.unwrappedTT.tag.withoutArgs =:= choiceTypeNoArgs =>
             s"""$baseStr.seqIf(!$mungedPropExpr.exists(_.value == $filterValueString))""" -> baseParams
               .copy(baseCardinality = Many)
           case (_, ExactlyOne, _) =>
-            s"""$baseStr.seqIf(!$mungedPropExpr.contains($filterValueString))""" -> baseParams.copy(baseCardinality =
-              Many)
+            s"""$baseStr.seqIf(!$mungedPropExpr.contains($filterValueString))""" -> baseParams.copy(baseCardinality = Many)
           case (Right(meta), _, ExactlyOne) if meta.unwrappedTT.tag.withoutArgs =:= choiceTypeNoArgs =>
             s"$baseStr.filter($mungedPropExpr.value != $filterValueString)" -> baseParams
           case (_, _, ExactlyOne) => s"$baseStr.filter($mungedPropExpr != $filterValueString)" -> baseParams
@@ -144,8 +131,7 @@ object genScala {
         else
           s"""$root.filter(_.contains("$typeName/"))"""
       else
-        throw new RuntimeException(
-          s"${nextParams.base.map(_.tt).left.map(_.thisName)} is neither a String nor a Reference")
+        throw new RuntimeException(s"${nextParams.base.map(_.tt).left.map(_.thisName)} is neither a String nor a Reference")
     nextParams.copy(rootStr = str, baseCardinality = Many)
   }
 
@@ -238,9 +224,7 @@ object genScala {
     private def companionFromTagAlone[T <: FHIRObject](implicit tag: LTag[T]): CompanionFor[T] =
       Try[CompanionFor[T]](
         Class.forName(companionClassName[T](tag) + "$").getField("MODULE$").get(null).asInstanceOf[CompanionFor[T]]
-      ).fold(
-        e => throw new RuntimeException(s"Could not get companion object for type ${tag.tag.longName}", e),
-        identity)
+      ).fold(e => throw new RuntimeException(s"Could not get companion object for type ${tag.tag.longName}", e), identity)
     private def baseAsCompanion: CompanionFor[_ <: FHIRObject] =
       base match {
         case Left(c) => c

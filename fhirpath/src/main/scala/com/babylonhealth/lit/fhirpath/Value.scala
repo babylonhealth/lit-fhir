@@ -8,14 +8,9 @@ import cats.syntax.applicativeError._
 import cats.syntax.flatMap._
 import cats.syntax.try_._
 import cats.syntax.apply._
-import cats.syntax.choice
-import enumeratum.EnumEntry
 
-import scala.meta.internal.javacp.BaseType.F
-import scala.util.Try
-
-import com.babylonhealth.lit.core.{ Choice, FHIRComponentFieldMeta, FHIRDate, FHIRDateTime, FHIRObject }
-import com.babylonhealth.lit.core.model.{ Element, Extension, Quantity }
+import com.babylonhealth.lit.core.{Choice, EnumBase, FHIRComponentFieldMeta, FHIRDate, FHIRDateTime, FHIRObject}
+import com.babylonhealth.lit.core.model.{Element, Extension, Quantity}
 import com.babylonhealth.lit.fhirpath.conversions._
 import com.babylonhealth.lit.hl7.model.DomainResource
 
@@ -126,8 +121,8 @@ object Value {
 
   // Perform implicit conversions to make left and right the same type (if possible)
   def normalize(left: Value, right: Value): (Any, Any) = (left.inner, right.inner) match {
-    case (l: String, r: EnumEntry)      => (l, r.entryName)
-    case (l: EnumEntry, r: String)      => (l.entryName, r)
+    case (l: String, r: EnumBase)      => (l, r.name)
+    case (l: EnumBase, r: String)      => (l.name, r)
     case (l: Int, r: BigDecimal)        => (BigDecimal(l), r)
     case (l: BigDecimal, r: Int)        => (l, BigDecimal(r))
     case (l: Quantity, r: Int)          => (l, unitQuantity(r))

@@ -50,7 +50,7 @@ trait Parser extends Lexer {
   def typeExpr: P[Expr]    = addExpr ~ (typeOp ~ typeSpecifier).rep map { case (e, l) => foldOp(TypeOperation)(e, l.toList) }
   def addExpr: P[Expr]     = multExpr ~ ((signOp | "&".as(StringConcat)) ~ multExpr).rep map foldBinOp
   def multExpr: P[Expr]    = unaryExpr ~ (multOp ~ unaryExpr).rep map foldBinOp
-  def unaryExpr: P[Expr]   = (signOp ~ term map UnaryOperation.tupled) | term
+  def unaryExpr: P[Expr]   = (signOp ~ term map (UnaryOperation.apply _).tupled) | term
 
   private val foldBinOp: ((Expr, NonEmptyList[(BinaryOperator, Expr)])) => Expr = { case (e, l) =>
     foldOp(BinaryOperation)(e, l.toList)
@@ -87,7 +87,7 @@ trait Parser extends Lexer {
   def fieldAccess: P[FieldAccess] = identifier.map(FieldAccess)
 
   def functionCall: P[Invocation] = P(ofType | normalFunction)
-  def normalFunction: P[Func]     = (identifier <* char('(')) ~ paramList <* char(')') map Func.tupled
+  def normalFunction: P[Func]     = (identifier <* char('(')) ~ paramList <* char(')') map (Func.apply _).tupled
   def ofType: P[OfType]           = string("ofType") *> char('(') *> typeSpecifier <* char(')') map OfType
 
   def paramList: P[Seq[Expr]] = expression.repSep(sep = char(',')).map(_.toList)
@@ -109,7 +109,7 @@ trait Parser extends Lexer {
     (
       ((string("FHIR") ~ char('.')).? ~~> fhirType map ("FHIR"         -> _)) |
         ((string("System") ~ char('.')).? ~~> systemType map ("System" -> _))
-    ).map(TypeSpecifier.tupled)
+    ).map((TypeSpecifier.apply _).tupled)
 
   implicit class FHIRPathHelper(val sc: StringContext) {
     def fhir(args: Any*): Expr = parseUnsafe(sc.parts.head)
