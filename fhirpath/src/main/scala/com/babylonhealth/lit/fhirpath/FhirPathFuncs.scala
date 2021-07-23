@@ -16,7 +16,7 @@ import com.babylonhealth.lit.fhirpath.model.{ Expr, This }
   * For defining FHIR path functions. Extend this trait and define them with [[FuncName.:=]].
   * Then you can look them up with [[lookupFunction]].
   */
-abstract class FhirPathFuncs[F[+_]: MErr] extends Builtins {
+abstract class FhirPathFuncs[F[+_]: MErr] extends Builtins[F] {
 
   // Note: numArgs does not count the input, e.g. `Patient.name.first()` takes 0 arguments.
   case class FhirPathFunc(name: String, numArgs: Int)(f: (List[Value], Seq[Expr]) => F[List[Value]]) {
