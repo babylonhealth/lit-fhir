@@ -1,15 +1,11 @@
 package com.babylonhealth.lit.fhirpath
 
-//import fastparse._
-import cats.data.NonEmptyList
-import cats.parse.{ Parser0 => CatsParser0, _ }
 import cats.parse.Parser._
 
 import com.babylonhealth.lit.core.model.Quantity
 import com.babylonhealth.lit.fhirpath.Lexer.whitespaces0
 import com.babylonhealth.lit.fhirpath.Parser.ParseException
 import com.babylonhealth.lit.fhirpath.model._
-//import fastparse.JavaWhitespace.whitespace
 
 object Parsed {
   sealed trait Result[+T] { def isSuccess: Boolean }
@@ -34,8 +30,7 @@ trait Parser extends Lexer {
       case Left(failure) => throw new ParseException(failure.expected.map(_.toString).toList.mkString("\n -[and]- "))
     }
 
-  import Lexer.RichParser
-  import Lexer.RichParser_2
+  import Lexer.{ RichParser, RichParser_2 }
 
   def top: P[Expr] = expression
 

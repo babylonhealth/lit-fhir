@@ -20,13 +20,7 @@ package object fhirpath {
     def ~~>[B](that: P[B]): P[B] =
       CatsParser.product01(t.void, that).map(_._2)
   }
-  implicit class FastPathCompat1[A](t: P[A]) {
-    def ~~[B](that: CatsParser0[B]): P[(A, B)] =
-      CatsParser.product10(t, that)
-  }
   implicit class FastPathCompat2(t: String) {
-//    def ~~[B](that: P[B]): P[(String, B)] =
-//      CatsParser.product01(string(t), that)
     def *>[B](that: P[B]): P[B] = string(t) *> that
   }
   type MErr[F[_]] = MonadError[F, _ >: Exception]
