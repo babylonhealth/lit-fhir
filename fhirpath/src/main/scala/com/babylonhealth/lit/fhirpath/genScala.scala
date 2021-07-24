@@ -234,10 +234,8 @@ object genScala {
     def fields: String => FHIRComponentFieldMeta[_] = name => baseAsCompanion.fieldsMeta.find(_.name == name).get
     val companions: String => Either[CompanionFor[_], FHIRComponentFieldMeta[_]] = name =>
       fields(name) match {
-        case meta if meta.unwrappedTT.tag <:< lTypeOf[FHIRObject] =>
-          Left(companionFromTagAlone(meta.unwrappedTT.asInstanceOf[LTag[FHIRObject]]))
-        case meta =>
-          Right(meta)
+        case meta if meta.isRef || !(meta.unwrappedTT.tag <:< lTypeOf[FHIRObject]) => Right(meta)
+        case meta => Left(companionFromTagAlone(meta.unwrappedTT.asInstanceOf[LTag[FHIRObject]]))
       }
     def deriveCardinality(name: String): FieldCardinality =
       Try(fields(name)).fold(

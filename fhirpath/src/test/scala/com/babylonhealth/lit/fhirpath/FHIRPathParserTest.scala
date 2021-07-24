@@ -325,6 +325,20 @@ class FHIRPathParserTest extends AnyFreeSpec with Matchers {
       _ shouldEqual TypeOperation(root("ConceptMap")("source"), As, TypeSpecifier("FHIR", "canonical"))
     )
 
+    "do a bit" in {
+      val expr = "DeviceRequest.code"
+      parser.top.parse(expr) match {
+        case Right((s, v: Expr)) if s == "" =>
+          v shouldEqual root("DeviceRequest")("code")
+          v shouldEqual InvocationExpr(RootPath(TypeSpecifier("FHIR", "DeviceRequest")), FieldAccess("code"))
+          val x = genScala.gen(v, GenScalaParams(Left(DeviceRequest), ExactlyOne, "obj"))
+          x.rootStr shouldEqual "obj.code"
+          x.baseCardinality shouldEqual ExactlyOne
+        case Right((s, _)) => fail(s"Expected to parse:\n$expr\nParsed only:\n${s}")
+        case Left(f)       => fail(s"Parsing failed:\n$f")
+      }
+    }
+
     "do it all" in {
       val expr = "DeviceRequest.code as CodeableConcept"
       parser.top.parse(expr) match {
