@@ -7,7 +7,7 @@ import cats.syntax.option._
 import cats.Traverse.ops.toAllTraverseOps
 import cats.implicits.catsSyntaxApplicativeErrorId
 import cats.instances.list._
-import com.babylonhealth.lit.core.{Choice, FHIRObject}
+import com.babylonhealth.lit.core.{ Choice, FHIRObject }
 import com.babylonhealth.lit.fhirpath.conversions._
 import com.babylonhealth.lit.fhirpath.model._
 
@@ -19,8 +19,8 @@ class Evaluator[F[+_]: MErr](implicit functions: FhirPathFuncs[F]) {
     expr match {
       case InvocationExpr(expr, invocation)       => expr(input) >>= (invocation(_))
       case Index(expr, index)                     => lift2(functions.index)(input)(expr, index)
-      case TypeOperation(expr, Is, typeSpecifier) => expr(input) >>= lift1(functions.is(typeSpecifier))
-      case TypeOperation(expr, As, typeSpecifier) => expr(input) >>= lift1(functions.as(typeSpecifier))
+      case TypeOperation(expr, Is, typeSpecifier) => expr(input) >>= lift1[Value, Boolean](functions.is(typeSpecifier))
+      case TypeOperation(expr, As, typeSpecifier) => expr(input) >>= lift1[Value, Option[Value]](functions.as(typeSpecifier))
       case BinaryOperation(left, op, right)       => applyBinaryOperator(op)(input)(left, right)
       case UnaryOperation(op, expr)               => expr(input) >>= applyUnaryOperator(op)
       case r: RootPath                            => evalRootPath(r, input)
@@ -37,34 +37,34 @@ class Evaluator[F[+_]: MErr](implicit functions: FhirPathFuncs[F]) {
 
   private def applyBinaryOperator(op: BinaryOperator): List[Value] => (Expr, Expr) => F[List[Value]] =
     op match {
-      case Union        => lift2(functions.union)
-      case Lte          => lift2(functions.lte)
-      case Lt           => lift2(functions.lt)
-      case Gt           => lift2(functions.gt)
-      case Gte          => lift2(functions.gte)
-      case Eq           => lift2(functions.eq)
-      case Equiv        => lift2(functions.equiv)
-      case Neq          => lift2(functions.neq)
-      case Nequiv       => lift2(functions.nequiv)
-      case In           => lift2(functions.in)
-      case Contains     => lift2(functions.contains)
-      case And          => lift2(functions.and)
-      case Or           => lift2(functions.or)
-      case Xor          => lift2(functions.xor)
-      case Implies      => lift2(functions.implies)
-      case StringConcat => lift2(functions.stringConcat)
-      case Plus         => lift2(functions.add)
-      case Minus        => lift2(functions.sub)
-      case Mult         => lift2(functions.mult)
-      case Div          => lift2(functions.div)
-      case TruncDiv     => lift2(functions.truncDiv)
-      case Mod          => lift2(functions.mod)
+      case Union        => lift2[List[Value], List[Value], List[Value]](functions.union)
+      case Lte          => lift2[Value, Value, F[Boolean]](functions.lte)
+      case Lt           => lift2[Value, Value, F[Boolean]](functions.lt)
+      case Gt           => lift2[Value, Value, F[Boolean]](functions.gt)
+      case Gte          => lift2[Value, Value, F[Boolean]](functions.gte)
+      case Eq           => lift2[List[Value], List[Value], Option[Boolean]](functions.eq)
+      case Equiv        => lift2[List[Value], List[Value], F[List[Value]]](functions.equiv)
+      case Neq          => lift2[List[Value], List[Value], Option[Boolean]](functions.neq)
+      case Nequiv       => lift2[List[Value], List[Value], F[List[Value]]](functions.nequiv)
+      case In           => lift2[Value, List[Value], Boolean](functions.in)
+      case Contains     => lift2[List[Value], Value, Boolean](functions.contains)
+      case And          => lift2[Option[Boolean], Option[Boolean], Option[Boolean]](functions.and)
+      case Or           => lift2[Option[Boolean], Option[Boolean], Option[Boolean]](functions.or)
+      case Xor          => lift2[Boolean, Boolean, Boolean](functions.xor)
+      case Implies      => lift2[Option[Boolean], Option[Boolean], Option[Boolean]](functions.implies)
+      case StringConcat => lift2[Option[String], Option[String], String](functions.stringConcat)
+      case Plus         => lift2[Value, Value, Value](functions.add)
+      case Minus        => lift2[Value, Value, Value](functions.sub)
+      case Mult         => lift2[Value, Value, Value](functions.mult)
+      case Div          => lift2[Value, Value, Option[Value]](functions.div)
+      case TruncDiv     => lift2[Value, Value, Option[Value]](functions.truncDiv)
+      case Mod          => lift2[Value, Value, Option[Value]](functions.mod)
     }
 
   private def applyUnaryOperator(op: UnaryOperator): List[Value] => F[List[Value]] =
     op match {
-      case Plus  => lift1(functions.pos)
-      case Minus => lift1(functions.neg)
+      case Plus  => lift1[Value, Value](functions.pos)
+      case Minus => lift1[Value, Value](functions.neg)
     }
 
   private def evalFunc(func: Func, input: List[Value]): F[List[Value]] =
@@ -100,10 +100,11 @@ class Evaluator[F[+_]: MErr](implicit functions: FhirPathFuncs[F]) {
     for {
       value <- input
       field <- value fold {
-        case obj: FHIRObject => obj.children { field =>
-          field.name == name || field.suffixedName.contains(name)
-        }
-        case _               => Nil
+        case obj: FHIRObject =>
+          obj.children { field =>
+            field.name == name || field.suffixedName.contains(name)
+          }
+        case _ => Nil
       }
     } yield field
 

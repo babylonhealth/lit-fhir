@@ -7,6 +7,8 @@ import cats.syntax.applicative._
 import cats.syntax.applicativeError._
 import scala.reflect.{ ClassTag, classTag }
 
+import izumi.reflect.macrortti.LTag
+
 import com.babylonhealth.lit.core.TagSummoners.lTypeOf
 import com.babylonhealth.lit.core.model.Quantity
 import com.babylonhealth.lit.core.serdes.companionClassName
@@ -85,7 +87,7 @@ abstract class Builtins[F[+_]: MErr] {
     input fold {
       case i: Int        => Value.wrap(-i)
       case b: BigDecimal => Value.wrap(-b)
-      case q: Quantity   => Value.wrap(q.updateValueIfExists(-_))
+      case q: Quantity   => Value.wrap(q.updateIfExists(_.value)(-_))
       case _             => throw new Exception(f"$input isn't a number")
     }
 
@@ -101,7 +103,7 @@ abstract class Builtins[F[+_]: MErr] {
     val tt = typeSpecifier.asTypeTag.get
     val asClass: ClassTag[_] = {
       if (tt.tag <:< lTypeOf[FHIRObject])
-        ClassTag(Class.forName(companionClassName(tt)))     // fhir objects need funky lookups
+        ClassTag(Class.forName(companionClassName(tt.asInstanceOf[LTag[Any]]))) // fhir objects need funky lookups
       else if (tt.tag <:< lTypeOf[String]) classTag[String] // subtypes don't have corresponding classes, need the UB
       else if (tt.tag <:< lTypeOf[Int]) classTag[Int]
       else if (tt.tag =:= lTypeOf[Array[Byte]])

@@ -49,9 +49,7 @@ class GenScalaTest extends AnyFreeSpec with Matchers {
   expect(Bundle, "Bundle.entry[0].resource") {
     "obj.entry.flatMap(_.resource).toSeq" // TODO: this seems wrong, but just trying to replicate current behaviour
   }
-  expect(
-    QuestionnaireResponse,
-    "QuestionnaireResponse.item.where(hasExtension('foo')).answer.value.ofType(Reference)") {
+  expect(QuestionnaireResponse, "QuestionnaireResponse.item.where(hasExtension('foo')).answer.value.ofType(Reference)") {
     "obj.item.filter(_.extension.exists(_.url == \"foo\")).flatMap(_.answer).flatMap(_.value).flatMap(_.as[Reference]).toSeq"
   }
   expect(CommunicationRequest, "(CommunicationRequest.occurrence as dateTime)") {
@@ -67,7 +65,7 @@ class GenScalaTest extends AnyFreeSpec with Matchers {
   def expect(companion: CompanionFor[_ <: FHIRObject], fhirPath: String)(expected: String)(implicit
       pos: source.Position): Unit = {
     fhirPath in {
-      val expr   = fastparse.parse(fhirPath, Parser.top(_)).get.value
+      val expr   = Parser.parseToEither(fhirPath).toOption.get
       val params = GenScalaParams(Left(companion), ExactlyOne, "obj")
       val result = genScala.gen(expr, params)
       val str = result.baseCardinality match {

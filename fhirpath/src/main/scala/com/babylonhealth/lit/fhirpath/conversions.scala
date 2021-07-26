@@ -16,8 +16,8 @@ import com.babylonhealth.lit.core.{ FHIRDate, FHIRDateTime, FHIRObject }
 import com.babylonhealth.lit.core.model.Quantity
 import com.babylonhealth.lit.fhirpath.model.Expr
 
-/** Implicit magic that lets you write neat fhirpath function definitions, by providing ways to convert to and from
-  * [[Value]]s, [[List]]s and [[Expr]]s.
+/** Implicit magic that lets you write neat fhirpath function definitions, by providing ways to convert to and from [[Value]] s,
+  * [[List]] s and [[Expr]] s.
   */
 object conversions {
 
@@ -37,8 +37,8 @@ object conversions {
     def get(list: List[Value]): F[Option[T]]
   }
 
-  /** Converts from a fhirpath expression into [[T]], to support higher-order fhirpath functions.
-    * e.g. [[impls.functions.where]] takes a predicate - we use [[predFromExpr]]`: FromExpr[T => F[Boolean], F]` to create it.
+  /** Converts from a fhirpath expression into [[T]], to support higher-order fhirpath functions. e.g. [[impls.functions.where]]
+    * takes a predicate - we use [[predFromExpr]] `: FromExpr[T => F[Boolean], F]` to create it.
     */
   trait FromExpr[T, F[+_]] {
     def get(expr: Expr, input: List[Value]): F[Option[T]]
@@ -79,8 +79,7 @@ object conversions {
   implicit val asTime: AsValue[LocalTime]                          = converter()
   implicit def asFhirObject[T <: FHIRObject: ClassTag]: AsValue[T] = converter()
 
-  implicit def collectionFromExpr[T, F[+_]: MErr: FhirPathFuncs](implicit
-      asCollection: AsCollection[T, F]): FromExpr[T, F] =
+  implicit def collectionFromExpr[T, F[+_]: MErr: FhirPathFuncs](implicit asCollection: AsCollection[T, F]): FromExpr[T, F] =
     (expr, input) => expr(input) >>= asCollection.get
 
   implicit def exprIsExpr[F[+_]: MErr]: FromExpr[Expr, F] = (expr, _) => expr.some.pure[F]
@@ -108,8 +107,7 @@ object conversions {
       override def get(list: List[Value]): F[Option[List[T]]] = list.traverse(asValue.get[F]).map(_.some)
     }
 
-  implicit def optionAsCollection[T: AsValue, F[+_]: MErr](implicit
-      asColl: AsCollection[T, F]): AsCollection[Option[T], F] =
+  implicit def optionAsCollection[T: AsValue, F[+_]: MErr](implicit asColl: AsCollection[T, F]): AsCollection[Option[T], F] =
     new AsCollection[Option[T], F] {
       override def wrap(inner: Option[T]): F[List[Value]]       = inner.map(Value.wrap[T]).toList.pure[F]
       override def get(list: List[Value]): F[Option[Option[T]]] = asColl.get(list).map(Some(_))

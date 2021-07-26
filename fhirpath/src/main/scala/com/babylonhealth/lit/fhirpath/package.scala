@@ -2,21 +2,22 @@ package com.babylonhealth.lit
 
 import java.time.ZoneOffset
 
+import cats.parse.{ Parser => CatsParser, Parser0 => CatsParser0 }
+import cats.parse.Parser.string
 import cats.MonadError
 import cats.syntax.option._
 
-import com.babylonhealth.lit.core.{
-  FHIRComponentField,
-  FHIRDate,
-  FHIRDateSpecificity,
-  FHIRDateTime,
-  FHIRObject,
-  LitSeq
-}
+import com.babylonhealth.lit.core.{ FHIRComponentField, FHIRDate, FHIRDateSpecificity, FHIRDateTime, FHIRObject, LitSeq }
 import com.babylonhealth.lit.core.model.{ Quantity, Resource }
 import com.babylonhealth.lit.core.FHIRDateTimeSpecificity.Day
 
 package object fhirpath {
+  type P[T]  = CatsParser[T]
+  type P0[T] = CatsParser0[T]
+  def P[T](t: => CatsParser[T]): CatsParser[T] = cats.Defer[CatsParser].defer(t)
+  implicit class FastPathCompat2(t: String) {
+    def *>[B](that: P[B]): P[B] = string(t) *> that
+  }
   type MErr[F[_]] = MonadError[F, _ >: Exception]
 
   trait FHIRReadClient[F[_]] {

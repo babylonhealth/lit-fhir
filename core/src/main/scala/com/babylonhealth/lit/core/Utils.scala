@@ -31,7 +31,7 @@ trait Utils {
       val end          = full.stripPrefix(stub)
       stub + end.replace(".", "$")
     } else repr
-  }
+  }.replace("$$", "$")
   def companionOf[T <: FHIRObject: ClassTag](implicit tag: LTag[T]): CompanionFor[T] =
     Try[CompanionFor[T]](
       Class.forName(classTag[T].runtimeClass.getName + "$").getField("MODULE$").get(null).asInstanceOf[CompanionFor[T]]

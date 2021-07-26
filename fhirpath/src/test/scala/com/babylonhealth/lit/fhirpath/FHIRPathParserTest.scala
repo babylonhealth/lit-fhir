@@ -1,15 +1,14 @@
 package com.babylonhealth.lit.fhirpath
 
-import fastparse.Parsed
+import scala.util.Try
+
 import org.scalactic.source
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
 
-import scala.util.Try
-
-import com.babylonhealth.lit.fhirpath.model._
 import com.babylonhealth.lit.fhirpath.conversions._
 import com.babylonhealth.lit.fhirpath.genScala._
+import com.babylonhealth.lit.fhirpath.model._
 import com.babylonhealth.lit.hl7.model.{ DeviceRequest, Patient }
 
 class FHIRPathParserTest extends AnyFreeSpec with Matchers {
@@ -183,122 +182,114 @@ class FHIRPathParserTest extends AnyFreeSpec with Matchers {
     }
 
     "should indicate where they failed" in {
-      val tryParse = Try {
-        parser.parseUnsafe("theFirstBitWhichIsFine.$%^.theEnd")
+      val tryParse = parser.parseToEither("theFirstBitWhichIsFine.$%^.theEnd")
+      tryParse match {
+        case Left(e) => e.failedAtOffset shouldEqual "theFirstBitWhichIsFine.".length
+        case _       => fail("parsing bad expression succeded")
       }
-
-      val error = tryParse.toEither.left.get
-
-      error.getMessage should include("$%^")
-      error.getMessage shouldNot include("theFirstBitWhichIsFine")
     }
   }
-  import fastparse._
   "entry.resource.where(extension.value is code)" - {
     "Code" in {
-      val res = parse("code", Parser.fhirType(_))
-      res should matchPattern { case Parsed.Success(_, _) =>
+      val res = Parser.fhirType.parse("code")
+      res should matchPattern { case Right((_, _)) =>
       }
     }
   }
   "Account.subject.where(resolve() is Patient)" - {
     "resolve()" in {
-      val res = parse("resolve()", Parser.functionCall(_))
-      res should matchPattern { case Parsed.Success(_, _) =>
+      val res = Parser.functionCall.parse("resolve()")
+      res should matchPattern { case Right((_, _)) =>
       }
     }
     "resolve() is Patient" in {
-      val res = parse("resolve() is Patient", Parser.typeExpr(_))
-      res should matchPattern { case Parsed.Success(_, _) =>
+      val res = Parser.typeExpr.parse("resolve() is Patient")
+      res should matchPattern { case Right((_, _)) =>
       }
     }
     "where(resolve() is Patient)" in {
-      val res = parse("where(resolve() is Patient)", Parser.functionCall(_))
+      val res = Parser.functionCall.parse("where(resolve() is Patient)")
       res match {
-        case Parsed.Failure(label, index, extra) => println("oh. No. ...", label, extra.trace().longAggregateMsg)
-        case _                                   =>
+        case Left(err) => println("oh. No. ..." + err.toString)
+        case _         =>
       }
-      res should matchPattern { case Parsed.Success(_, _) =>
+      res should matchPattern { case Right((_, _)) =>
       }
     }
     "Account.subject.where(resolve() is Patient)" in {
-      val res = parse("Account.subject.where(resolve() is Patient)", parser.top(_))
-      res should matchPattern { case Parsed.Success(_, _) =>
+      val res = parser.top.parse("Account.subject.where(resolve() is Patient)")
+      res should matchPattern { case Right((_, _)) =>
       }
     }
   }
   "Account.subject.where(resolve() as Patient)" - {
     "resolve() as Patient" in {
-      val res = parse("resolve() as Patient", Parser.typeExpr(_), verboseFailures = true)
+      val res = Parser.typeExpr.parse("resolve() as Patient")
       res match {
-        case v @ Parsed.Success(v1, _) => println(s"!!2 ${v.toString()}")
-        case _                         =>
+        case v @ Right(_) => println(s"!!2 ${v.toString}")
+        case _            =>
       }
-      res should matchPattern { case Parsed.Success(_, _) =>
+      res should matchPattern { case Right((_, _)) =>
       }
     }
     "where(resolve() as Patient)" in {
-      val res = parse("where(resolve() as Patient)", Parser.functionCall(_), verboseFailures = true)
+      val res = Parser.functionCall.parse("where(resolve() as Patient)")
       res match {
-        case Parsed.Failure(label, index, extra) => println("oh. No. ...", label, extra.trace().longAggregateMsg)
-        case _                                   =>
+        case Left(err) => println("oh. No. ..." + err.toString)
+        case _         =>
       }
-      res should matchPattern { case Parsed.Success(_, _) =>
+      res should matchPattern { case Right((_, _)) =>
       }
     }
     "Account.subject.where(resolve() as Patient)" in {
-      val res = parse("Bundle.entry.resource as Patient", parser.top(_), verboseFailures = true)
-      res should matchPattern { case Parsed.Success(_, _) =>
+      val res = parser.top.parse("Bundle.entry.resource as Patient")
+      res should matchPattern { case Right((_, _)) =>
       }
     }
     "entry.resource.extension.value as code" in {
-      val res = parse("entry.resource.extension.value as code", parser.top(_), verboseFailures = true)
-      res should matchPattern { case Parsed.Success(_, _) =>
+      val res = parser.top.parse("entry.resource.extension.value as code")
+      res should matchPattern { case Right((_, _)) =>
       }
     }
   }
-  def check[T](expr: String, ps: P[_] => P[T])(implicit pos: source.Position) =
+  def check[T](expr: String, ps: P0[T])(implicit pos: source.Position) =
     expr in {
-      val res = parse(expr, ps, verboseFailures = true)
-      res should matchPattern {
-        case Parsed.Success(_, i) if i == expr.trim.length =>
+      val res = ps.parse(expr)
+      res should matchPattern { case Right(("", _)) =>
       }
     }
   val ext_1 = "http://hl7.org/fhir/StructureDefinition/questionnaireresponse-isSubject"
   s"QuestionnaireResponse.item.where(hasExtension('$ext_1')).answer.value.ofType(Reference)" - {
-    check("value.ofType(Reference)", Parser.term(_))
-    check(s"'$ext_1'", Parser.literal(_))
-    check("hasExtension('$ext_1')", Parser.functionCall(_))
-    check(
-      s"QuestionnaireResponse.item.where(hasExtension('$ext_1')).answer.value.ofType(Reference)",
-      Parser.expression(_))
+    check("value.ofType(Reference)", Parser.term)
+    check(s"'$ext_1'", Parser.literal)
+    check("hasExtension('$ext_1')", Parser.functionCall)
+    check(s"QuestionnaireResponse.item.where(hasExtension('$ext_1')).answer.value.ofType(Reference)", Parser.expression)
   }
   "Patient.deceased.exists() and Patient.deceased != false" - {
-    check("Patient.deceased.exists()", parser.top(_))
-    check("Patient.deceased != false", parser.top(_))
-    check("Patient.deceased.exists() and Patient.deceased != false", parser.top(_))
+    check("Patient.deceased.exists()", parser.top)
+    check("Patient.deceased != false", parser.top)
+    check("Patient.deceased.exists() and Patient.deceased != false", parser.top)
   }
   "parse Patient.deceased != false correctly" in {
-    val res    = parse("Patient.deceased != false", parser.top(_)).get.value
+    val res    = parser.top.parse("Patient.deceased != false").toOption.get._2
     val pclass = classOf[Patient]
     res shouldEqual BinaryOperation(root("Patient")("deceased"), Neq, literal(false))
   }
   "parse \"Measure.relatedArtifact.where(type='composed-of').resource\"" in {
-    val res = parse("Measure.relatedArtifact.where(type='composed-of').resource", parser.top(_))
-    res should matchPattern { case Parsed.Success(_, i) =>
+    val res = parser.top.parse("Measure.relatedArtifact.where(type='composed-of').resource")
+    res should matchPattern { case Right((_, i)) =>
     }
-    res.get.value shouldEqual root("Measure")("relatedArtifact")
+    res.toOption.get._2 shouldEqual root("Measure")("relatedArtifact")
       .invoke(Func("where", Seq(BinaryOperation(FieldAccess("type"), Eq, literal("composed-of")))))("resource")
   }
 
   "searchParam requirements" - {
     def check[T](expr: String, expect: Expr => Unit)(implicit pos: source.Position): Unit =
       expr in {
-        val res = parse(expr, parser.top(_), verboseFailures = true)
+        val res = parser.top.parseAll(expr)
         res match {
-          case Parsed.Success(v: Expr, i) if i == expr.trim.length => expect(v)
-          case Parsed.Success(_, i)                                => fail(s"Expected to parse:\n$expr\nParsed only:\n${expr.take(i)}")
-          case Parsed.Failure(f)                                   => fail(s"Parsing failed:\n$f")
+          case Right(v) => expect(v)
+          case Left(e)  => fail(s"Expected to parse:\n$expr\nbut failed with\n$e")
         }
       }
     val patientClass = classOf[Patient]
@@ -330,16 +321,31 @@ class FHIRPathParserTest extends AnyFreeSpec with Matchers {
       "(ConceptMap.source as canonical)",
       _ shouldEqual TypeOperation(root("ConceptMap")("source"), As, TypeSpecifier("FHIR", "canonical"))
     )
+
+    "do a bit" in {
+      val expr = "DeviceRequest.code"
+      parser.top.parse(expr) match {
+        case Right((s, v: Expr)) if s == "" =>
+          v shouldEqual root("DeviceRequest")("code")
+          v shouldEqual InvocationExpr(RootPath(TypeSpecifier("FHIR", "DeviceRequest")), FieldAccess("code"))
+          val x = genScala.gen(v, GenScalaParams(Left(DeviceRequest), ExactlyOne, "obj"))
+          x.rootStr shouldEqual "obj.code"
+          x.baseCardinality shouldEqual ExactlyOne
+        case Right((s, _)) => fail(s"Expected to parse:\n$expr\nParsed only:\n${s}")
+        case Left(f)       => fail(s"Parsing failed:\n$f")
+      }
+    }
+
     "do it all" in {
       val expr = "DeviceRequest.code as CodeableConcept"
-      parse(expr, parser.top(_), verboseFailures = true) match {
-        case Parsed.Success(v: Expr, i) if i == expr.trim.length =>
+      parser.top.parse(expr) match {
+        case Right((s, v: Expr)) if s == "" =>
           v shouldEqual TypeOperation(root("DeviceRequest")("code"), As, TypeSpecifier("FHIR", "CodeableConcept"))
           val x = genScala.gen(v, GenScalaParams(Left(DeviceRequest), ExactlyOne, "obj"))
           x.rootStr shouldEqual "obj.code.as[CodeableConcept]"
           x.baseCardinality shouldEqual Optional
-        case Parsed.Success(_, i) => fail(s"Expected to parse:\n$expr\nParsed only:\n${expr.take(i)}")
-        case Parsed.Failure(f)    => fail(s"Parsing failed:\n$f")
+        case Right((s, _)) => fail(s"Expected to parse:\n$expr\nParsed only:\n${s}")
+        case Left(f)       => fail(s"Parsing failed:\n$f")
       }
     }
   }
