@@ -15,11 +15,6 @@ package object fhirpath {
   type P[T]  = CatsParser[T]
   type P0[T] = CatsParser0[T]
   def P[T](t: => CatsParser[T]): CatsParser[T] = cats.Defer[CatsParser].defer(t)
-  implicit class FastPathCompat[A](t: CatsParser0[A]) {
-
-    def ~~>[B](that: P[B]): P[B] =
-      CatsParser.product01(t.void, that).map(_._2)
-  }
   implicit class FastPathCompat2(t: String) {
     def *>[B](that: P[B]): P[B] = string(t) *> that
   }
