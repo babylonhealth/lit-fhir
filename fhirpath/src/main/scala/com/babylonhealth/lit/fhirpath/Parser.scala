@@ -32,10 +32,12 @@ trait Parser extends Lexer {
 
   import Lexer.{ RichParser, RichParser_2 }
 
-  def top: P[Expr] = expression
+  /// Top vals
+  val expression: P[Expr] = impliesExpr
 
-  def expression: P[Expr] = impliesExpr
+  val top: P[Expr] = expression
 
+  /// Mutually-recursive defs
   // Handles precedence by descending from lowest to highest precedence operators
   def impliesExpr: P[Expr] = P(orExpr ~+ ("implies".as(Implies) ~+ orExpr).rep0 map foldBinOp)
   def orExpr: P[Expr]      = P(andExpr ~+ (("or".as(Or) | "xor".as(Xor)) ~+ andExpr).rep0 map foldBinOp)
@@ -57,60 +59,62 @@ trait Parser extends Lexer {
     tail.foldLeft(head) { case (accum, (op, next)) => f(accum, op, next) }
   }
 
-  def term: P[Expr] = atom ~+ termSuffix.rep0 map { case (a, suffixes) => suffixes.foldLeft(a) { (x, y) => y(x) } }
-
-  def termSuffix: P[Expr => Expr] = indexTerm | typeFunc.backtrack | invocTerm
-
-  private def indexTerm: P[Expr => Expr] = char('[') *> expression.map(e => model.Index(_, e)) <* char(']')
-  private def typeFunc: P[Expr => Expr] = char('.') *> (typeOp <* char('(')) ~+ typeSpecifier <* char(')') map { case (op, t) =>
-    TypeOperation(_, op, t)
-  }
-  private def invocTerm: P[Expr => Expr] = char('.') *> invocation map { i => InvocationExpr(_, i) }
-
   def atom: P[Expr] =
     P(
       functionCall.backtrack | rootPath | fieldAccess.backtrack | dollarKeyword | literal | envVar |
         (char('(') *> expression <* char(')')))
 
-  private def rootPath: P[RootPath] = typeSpecifier.map(RootPath)
+  /// Bottom vals
+  private val indexTerm: P[Expr => Expr] = char('[') *> expression.map(e => model.Index(_, e)) <* char(']')
 
-  def literal: P[Literal] = ((char('{') ~+ char('}')).void.map(_ => Empty) | singleValue)
+  val typeSpecifier: P[TypeSpecifier] =
+    (
+      ((string("FHIR") ~+ char('.')).?.with1 *> fhirType map ("FHIR"         -> _)) |
+        ((string("System") ~+ char('.')).?.with1 *> systemType map ("System" -> _))
+    ).map((TypeSpecifier.apply _).tupled)
 
-  def singleValue: P[SingleValue] =
-    (quantity.backtrack | boolean | str | decimal.backtrack | int | time | dateTime.backtrack | date)
-      .map(Value.wrapSystem)
-      .map(SingleValue)
+  private val rootPath: P[RootPath] = typeSpecifier.map(RootPath)
 
-  def envVar: P[Expr] = char('%') *> (identifier | str) map EnvironmentVariable
-
-  def invocation: P[Invocation] = functionCall.backtrack | fieldAccess | dollarKeyword
-
-  def fieldAccess: P[FieldAccess] = identifier.map(FieldAccess)
-
-  def functionCall: P[Invocation] = ofType | normalFunction
-  def normalFunction: P[Func]     = (identifier <* char('(')) ~+ paramList <* char(')') map (Func.apply _).tupled
-  def ofType: P[OfType]           = string("ofType") *> char('(') *> typeSpecifier <* char(')') map OfType
-
-  def paramList: P0[Seq[Expr]] = expression.repSep0(sep = whitespaces0 *> char(',') <* whitespaces0).map(_.toList)
-
-  def dollarKeyword: P[Invocation] = "$this".as(This) | "$index".as(IndexInvoc) | "$total".as(Total)
-
-  def typeOp: P[TypeOperator]                      = "as".as(As) | "is".as(Is)
-  def signOp: P[UnaryOperator with BinaryOperator] = "+".as(Plus) | "-".as(Minus)
-  def multOp: P[BinaryOperator]                    = "*".as(Mult) | "/".as(Div) | "div".as(TruncDiv) | "mod".as(Mod)
-  def eqOp: P[BinaryOperator]                      = "=".as(Eq) | "~".as(Equiv) | "!=".as(Neq) | "!~".as(Nequiv)
-  def ineqOp: P[BinaryOperator]                    = "<=".as(Lte) | ">=".as(Gte) | "<".as(Lt) | ">".as(Gt)
-
-  def quantity: P[Quantity] =
+  val quantity: P[Quantity] =
     decimalOrInt ~+ unit map { case (value, unit) =>
       Quantity(value = Some(value), unit = Some(unit))
     }
+  val singleValue: P[SingleValue] =
+    (quantity.backtrack | boolean | str | decimal.backtrack | int | time | dateTime.backtrack | date)
+      .map(Value.wrapSystem)
+      .map(SingleValue)
+  val literal: P[Literal] = ((char('{') ~+ char('}')).void.map(_ => Empty) | singleValue)
 
-  def typeSpecifier: P[TypeSpecifier] =
-    (
-      ((string("FHIR") ~+ char('.')).? ~~> fhirType map ("FHIR"         -> _)) |
-        ((string("System") ~+ char('.')).? ~~> systemType map ("System" -> _))
-    ).map((TypeSpecifier.apply _).tupled)
+  val envVar: P[Expr] = char('%') *> (identifier | str) map EnvironmentVariable
+
+  val fieldAccess: P[FieldAccess] = identifier.map(FieldAccess)
+
+  val paramList: P0[Seq[Expr]] = expression.repSep0(sep = whitespaces0 *> char(',') <* whitespaces0).map(_.toList)
+  val normalFunction: P[Func]  = (identifier <* char('(')) ~+ paramList <* char(')') map (Func.apply _).tupled
+
+  val dollarKeyword: P[Invocation] = "$this".as(This) | "$index".as(IndexInvoc) | "$total".as(Total)
+
+  val typeOp: P[TypeOperator]                      = "as".as(As) | "is".as(Is)
+  val signOp: P[UnaryOperator with BinaryOperator] = "+".as(Plus) | "-".as(Minus)
+  val multOp: P[BinaryOperator]                    = "*".as(Mult) | "/".as(Div) | "div".as(TruncDiv) | "mod".as(Mod)
+  val eqOp: P[BinaryOperator]                      = "=".as(Eq) | "~".as(Equiv) | "!=".as(Neq) | "!~".as(Nequiv)
+  val ineqOp: P[BinaryOperator]                    = "<=".as(Lte) | ">=".as(Gte) | "<".as(Lt) | ">".as(Gt)
+
+  private val typeFunc: P[Expr => Expr] = char('.') *> (typeOp <* char('(')) ~+ typeSpecifier <* char(')') map { case (op, t) =>
+    TypeOperation(_, op, t)
+  }
+
+  val ofType: P[OfType] = string("ofType") *> char('(') *> typeSpecifier <* char(')') map OfType
+
+  val functionCall: P[Invocation] = ofType | normalFunction
+
+  val invocation: P[Invocation] = functionCall.backtrack | fieldAccess | dollarKeyword
+
+  private val invocTerm: P[Expr => Expr] = char('.') *> invocation map { i => InvocationExpr(_, i) }
+
+  val termSuffix: P[Expr => Expr] = indexTerm | typeFunc.backtrack | invocTerm
+
+  val term: P[Expr] = atom ~+ termSuffix.rep0 map { case (a, suffixes) => suffixes.foldLeft(a) { (x, y) => y(x) } }
 
   implicit class FHIRPathHelper(val sc: StringContext) {
     def fhir(args: Any*): Expr = parseUnsafe(sc.parts.head)

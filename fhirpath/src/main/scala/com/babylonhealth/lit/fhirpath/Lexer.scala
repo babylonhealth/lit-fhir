@@ -12,13 +12,9 @@ import com.babylonhealth.lit.fhirpath.Lexer.{ reservedWords, RichParser, fhirTyp
 /** Based on http://hl7.org/fhirpath/grammar.html
   */
 trait Lexer {
-  def date: P[FHIRDate]         = char('@') *> partialDate
-  def dateTime: P[FHIRDateTime] = char('@') *> partialDateTime
-  def time: P[LocalTime]        = string("@T") *> partialTime
 
-  def partialDateOrDateTime: P[FHIRDateTime] = partialDateTime.backtrack | partialDate.map(dateToDateTime)
-
-  def partialDate: P[FHIRDate] =
+  /// Date, Time and DateTime
+  val partialDate: P[FHIRDate] =
     nDigits(4) ~ ("-" *> nDigits(2)).rep0(0, 2) map { case (y, md) =>
       val (m, d) = md.length match {
         case 0 => 1       -> 1
@@ -28,73 +24,78 @@ trait Lexer {
       FHIRDate(LocalDate.of(y, m, d))
     }
 
-  def partialDateTime: P[FHIRDateTime] =
-    (partialDate <* string("T")) ~ partialTime ~ timeZone map { case ((d, t), tz) =>
-      FHIRDateTime(ZonedDateTime.of(d.date, t, tz))
-    }
-
-  def partialTime: CatsParser0[LocalTime] =
-    nDigits(2).?.flatMap {
-      case None => pure(LocalTime.of(0, 0, 0, 0))
-      case Some(h) =>
-        (char(':') *> nDigits(2)).rep0(0, 2).flatMap {
-          case Nil      => pure(LocalTime.of(h, 0, 0, 0))
-          case m :: Nil => pure(LocalTime.of(h, m, 0, 0))
-          case m :: s :: Nil =>
-            (char('.') *> CatsParser.charIn('0' to '9').rep(1, 9)).backtrack.?.map {
-              case None => LocalTime.of(h, m, s, 0)
-              case Some(ps) =>
-                val ns = String.format("%-9s", ps.toList.mkString).replace(" ", "0").toInt
-                LocalTime.of(h, m, s, ns)
-            }
-
+  val partialTime: CatsParser0[LocalTime] =
+    (nDigits(2) ~ (char(':') *> nDigits(2)).rep0(0, 2) ~ (char('.') *> CatsParser.charIn('0' to '9').rep(1, 9)).backtrack.?).map {
+      case ((h, m_s), ps) =>
+        val (m, s) = m_s match {
+          case Nil           => (0, 0)
+          case h :: Nil      => (h, 0)
+          case h :: m :: Nil => (h, m)
         }
-    }
+        val ns = ps match {
+          case None     => 0
+          case Some(ps) => String.format("%-9s", ps.toList.mkString).replace(" ", "0").toInt
+        }
+        LocalTime.of(h, m, s, ns)
+    } | pure(LocalTime.of(0, 0, 0, 0))
 
-  private def timeZone: CatsParser0[ZoneOffset] =
+  private val timeZone: CatsParser0[ZoneOffset] =
     (CatsParser.charIn('+', '-') ~ nDigits(2) ~ (string(":") *> nDigits(2))).map {
       case (('+', b), c) => ZoneOffset.ofHoursMinutes(b, c)
       case (('-', b), c) => ZoneOffset.ofHoursMinutes(-b, -c)
-    } | (string("Z") | string0("")).map(_ => ZoneOffset.UTC)
+    } | char('Z').?.void.map(_ => ZoneOffset.UTC)
 
-  // http://hl7.org/fhirpath/#identifiers
-  def identifier: P[String] = regularIdentifier | escapedIdentifier
+  val partialDateTime: P[FHIRDateTime] =
+    (partialDate <* string("T")) ~ partialTime ~ timeZone map { case ((d, t), tz) =>
+      FHIRDateTime(ZonedDateTime.of(d.date, t, tz))
+    }
+  val partialDateOrDateTime: P[FHIRDateTime] = partialDateTime.backtrack | partialDate.map(dateToDateTime)
 
+  val date: P[FHIRDate]         = char('@') *> partialDate
+  val dateTime: P[FHIRDateTime] = char('@') *> partialDateTime
+  val time: P[LocalTime]        = string("@T") *> partialTime
+
+  /// Identifiers::
   // Restrict to lower-case to avoid mixing up with type names - not matching the spec but ¯\_(ツ)_/¯
-  def regularIdentifier: P[String] =
+  val regularIdentifier: P[String] =
     (CatsParser.charIn(('a' to 'z') :+ '_') ~ CatsParser.ignoreCaseCharIn(('a' to 'z') ++ ('0' to '9') :+ '_').rep0) map {
       case (h, t) => (h +: t).mkString
     } filter {
       !reservedWords.contains(_)
     }
-  def escapedIdentifier: P[String] = char('`') *> CatsParser.charsWhile(_ != '`') <* char('`')
+  val escapedIdentifier: P[String] = char('`') *> CatsParser.charsWhile(_ != '`') <* char('`')
+  // http://hl7.org/fhirpath/#identifiers
+  val identifier: P[String] = regularIdentifier | escapedIdentifier
 
-  def str: P[String]         = dblQuoteStr | sglQuoteStr
-  def dblQuoteStr: P[String] = char('"') *> (char('\'') | strChars | escape).rep0.map(_.mkString) <* char('"')
-  def sglQuoteStr: P[String] = char('\'') *> (char('"') | strChars | escape).rep0.map(_.mkString) <* char('\'')
-
-  private def strChars: P[String] = CatsParser.charsWhile(c => c != '"' & c != '\'' && c != '\\')
-  private def escape: P[String] =
+  /// Strings
+  private val strChars: P[String] = CatsParser.charsWhile(c => c != '"' & c != '\'' && c != '\\')
+  private val hex: P[Char]        = CatsParser.ignoreCaseCharIn(('a' to 'f') ++ ('0' to '9'))
+  private val unicode: P[String]  = "u" *> hex.rep(4, 4) map { v => parseInt(v.toList.mkString, 16).toChar.toString }
+  private val escape: P[String] =
     "\\" *> (CatsParser.charIn('\'', '"', '`', '\\', '/').map(_ +: "") |
       "r".as("\r") | "n".as("\n") | "t".as("\t") | "f".as("\f") | unicode)
-  private def unicode: P[String] = "u" *> hex.rep(4, 4) map { v => parseInt(v.toList.mkString, 16).toChar.toString }
-  private def hex: P[Char]       = CatsParser.ignoreCaseCharIn(('a' to 'f') ++ ('0' to '9'))
 
-  private def digits: P[String]   = CatsParser.charIn('0' to '9').rep map { _.toList.mkString }
-  def int: P[Int]                 = digits map { _.toInt }
-  def decimal: P[BigDecimal]      = (digits ~ char('.').void ~ digits) map { case ((a, _), c) => BigDecimal(s"$a.$c") }
-  def decimalOrInt: P[BigDecimal] = decimal.backtrack | int.map(BigDecimal(_))
+  val dblQuoteStr: P[String] = char('"') *> (char('\'') | strChars | escape).rep0.map(_.mkString) <* char('"')
+  val sglQuoteStr: P[String] = char('\'') *> (char('"') | strChars | escape).rep0.map(_.mkString) <* char('\'')
+  val str: P[String]         = dblQuoteStr | sglQuoteStr
 
-  def boolean: P[Boolean] = "true".as(true) | "false".as(false)
+  /// Numeric
+  private val digits: P[String]   = CatsParser.charIn('0' to '9').rep map { _.toList.mkString }
+  val int: P[Int]                 = digits map { _.toInt }
+  val decimal: P[BigDecimal]      = (digits ~ char('.').void ~ digits) map { case ((a, _), c) => BigDecimal(s"$a.$c") }
+  val decimalOrInt: P[BigDecimal] = decimal.backtrack | int.map(BigDecimal(_))
 
-  def unit: P[String] = sglQuoteStr | builtinUnit
+  /// Bool
+  val boolean: P[Boolean] = "true".as(true) | "false".as(false)
 
-  private def builtinUnit: P[String] =
+  /// Quantity units
+  private val builtinUnit: P[String] =
     (CatsParser.stringIn(Seq("year", "month", "week", "day", "hour", "minute", "second", "millisecond")) <* char('s').?)
       .map(u => f"{$u}")
+  val unit: P[String] = sglQuoteStr | builtinUnit
 
-  def fhirType: P[String] = optionalBackticks(fhirTypeName)
-  def systemType: P[String] =
+  val fhirType: P[String] = optionalBackticks(fhirTypeName)
+  val systemType: P[String] =
     optionalBackticks(CatsParser.stringIn(Seq("Boolean", "String", "Integer", "Decimal", "Date", "DateTime", "Time", "Quantity")))
 
   private def optionalBackticks[T](p: => P[T]): P[T] = p | (char('`') *> p <* char('`'))
