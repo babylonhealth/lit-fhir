@@ -180,16 +180,13 @@ class FHIRPathParserTest extends AnyFreeSpec with Matchers {
 
       error.getMessage shouldNot be("")
     }
-    // TODO: Come back to this one
-    "should indicate where they failed" ignore {
-      val tryParse = Try {
-        parser.parseUnsafe("theFirstBitWhichIsFine.$%^.theEnd")
+
+    "should indicate where they failed" in {
+      val tryParse = parser.parseToEither("theFirstBitWhichIsFine.$%^.theEnd")
+      tryParse match {
+        case Left(e) => e.failedAtOffset shouldEqual "theFirstBitWhichIsFine.".length
+        case _       => fail("parsing bad expression succeded")
       }
-
-      val error = tryParse.toEither.left.get
-
-      error.getMessage should include("$%^")
-      error.getMessage shouldNot include("theFirstBitWhichIsFine")
     }
   }
   "entry.resource.where(extension.value is code)" - {
