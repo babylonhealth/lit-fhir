@@ -43,7 +43,7 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
           .groupBy(_._1.id.get.split(':')(0))
           .map { case (id, els) =>
             val (Vector((master, idx)), rest) = els.partition(_._1.id.get == id)
-            val restWithTrimmedIds            = rest.map(_._1.updateIdIfExists(_.split(':')(1)))
+            val restWithTrimmedIds            = rest.map(_._1.updateIfExists(_.id)(_.split(':')(1)))
             val partitionedRest               = restWithTrimmedIds.groupBy(_.id.get.split("\\.").head).values.toVector
             val foldedSliceChildren           = partitionedRest.map(part => foldElements(part, permitRecurse = false))
             ElementWithSlices(master, foldedSliceChildren) -> idx
@@ -145,20 +145,19 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       s"Cannot have circular dependencies between generated modules (dependency chain is ${modules.mkString(" -> ")}")
     println("No circular dependencies in models")
     val topLevelClasses: TopLevelClasses =
-      TopLevelClasses(
-        sortedLocations.foldLeft(Map.empty[String, Map[String, TopLevelClass]]) { case (baseFields, loc) =>
-          try {
-            val topLevelClass = genFieldsForClass(loc, baseFields, fetchValueSet)
-            baseFields.updatedWith(topLevelClass.className) {
-              case None    => Some(Map(topLevelClass.targetDir -> topLevelClass))
-              case Some(v) => Some(v + (topLevelClass.targetDir -> topLevelClass))
-            }
-          } catch {
-            case NonFatal(ex) =>
-              log.error(s"Unable to gen Base fields for $loc", ex)
-              baseFields
+      TopLevelClasses(sortedLocations.foldLeft(Map.empty[String, Map[String, TopLevelClass]]) { case (baseFields, loc) =>
+        try {
+          val topLevelClass = genFieldsForClass(loc, baseFields, fetchValueSet)
+          baseFields.updatedWith(topLevelClass.className) {
+            case None    => Some(Map(topLevelClass.targetDir -> topLevelClass))
+            case Some(v) => Some(v + (topLevelClass.targetDir -> topLevelClass))
           }
-        })
+        } catch {
+          case NonFatal(ex) =>
+            log.error(s"Unable to gen Base fields for $loc", ex)
+            baseFields
+        }
+      })
     val valueSetDecls: ValueSetDecls = ValueSetDecls(topLevelClasses.classes.flatMap {
       _._2.flatMap { case (pkg, x) => x.valueSets.map { case (k, v) => (pkg, k, v) } }
     }.toSeq).stripVersions
@@ -177,21 +176,22 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       }
       val allFHIRClasses: Seq[ClassGenInfo] = topLevelClasses.classes.toSeq.flatMap { case (o, m) =>
         m.flatMap { case (pkg, k: TopLevelClass) =>
-          try Some(
-            ScalaCodegen
-              .genTheScalaForClass(
-                k,
-                k.targetDir,
-                element,
-                backboneElement,
-                topLevelClasses,
-                args.moduleDependencies,
-                pkgAndValueSet,
-                ElementTreee.getUnionTypes.values.map(args.moduleDependencies leastCommon _._1.toSet).toSet
-              ))
+          try
+            Some(
+              ScalaCodegen
+                .genTheScalaForClass(
+                  k,
+                  k.targetDir,
+                  element,
+                  backboneElement,
+                  topLevelClasses,
+                  args.moduleDependencies,
+                  pkgAndValueSet,
+                  ElementTreee.getUnionTypes.values.map(args.moduleDependencies leastCommon _._1.toSet).toSet
+                ))
           catch {
             case NonFatal(ex) =>
-              println(s"Unable to gen Scala file for $pkg.$o", ex)
+              println(s"Unable to gen Scala file for $pkg.$o $ex")
               ex.printStackTrace()
               None
           }

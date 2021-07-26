@@ -18,7 +18,7 @@ val V = new {
   val enumeratum             = "1.5.15"
   val scalaMeterVersion      = "0.22.BBL"
   val izumiReflect           = "1.1.2"
-  val litVersionForGenerator = "0.12.2"
+  val litVersionForGenerator = "0.13.0"
   val scalaTest              = "3.2.9"
   val jsonassert             = "1.5.0"
   val lombok                 = "1.16.22"
@@ -79,14 +79,14 @@ lazy val macros = project
 
 lazy val generator = project
   .in(file("generator"))
-  .settings(commonJSettings: _*)
+  .settings(commonSettings: _*)
   .settings(publishSettings: _*)
   .settings(
     libraryDependencies ++= Seq(
       // Runtime deps
       "com.babylonhealth.lit" %% "hl7"         % V.litVersionForGenerator,
       "com.babylonhealth.lit" %% "fhirpath"    % V.litVersionForGenerator,
-      "org.typelevel"         %% "cats-effect" % "2.3.1",
+      "org.typelevel"         %% "cats-effect" % "3.1.1",
       // Test deps
       "org.scalatest"  %% "scalatest"  % V.scalaTest  % Test,
       "org.skyscreamer" % "jsonassert" % V.jsonassert % Test

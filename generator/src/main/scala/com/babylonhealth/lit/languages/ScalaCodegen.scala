@@ -15,8 +15,7 @@ trait BaseFieldImplicits {
     def modifiedFields: Seq[BaseField] = {
       topLevelClass.fields
         .filter(f =>
-          f.cardinality != Zero && !(topLevelClass.parentClass.exists(
-            _.className == "Extension") && f.scalaName == "url"))
+          f.cardinality != Zero && !(topLevelClass.parentClass.exists(_.className == "Extension") && f.scalaName == "url"))
         .map { bf =>
           val default: Option[String] = // TODO Should this list include parents? Should it have a priority ordering?
             if (bf.scalaName == "meta" && bf.types == Seq("Meta") && topLevelClass.isProfile)
@@ -54,8 +53,8 @@ trait BaseFieldImplicits {
             }
           }
         } else if (!baseField.isGenerated && clashingClasses(baseString)) baseString match {
-          case "UnsignedInt" | "PositiveInt" | "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "OID" |
-              "UriStr" | "UrlStr" | "XHTML" =>
+          case "UnsignedInt" | "PositiveInt" | "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" |
+              "UrlStr" | "XHTML" =>
             s"com.babylonhealth.lit.core.$baseString"
           case x => s"core.model.$x" // TODO: This isn't sound
         }
@@ -152,9 +151,9 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       packageStr: String,
       valueSetLookups: Seq[(String, String)]): String = {
     val parentPackages: Seq[String] = moduleDependencies.getParents(packageStr).toSeq
-    val vs = valueSetLookups.groupBy(_._1).map { case (pkg, enum) =>
-      if (enum.size == 1) s"import com.babylonhealth.lit.$pkg.${enum.head._2}"
-      else s"import com.babylonhealth.lit.$pkg.{ ${enum.map(_._2).mkString(", ")} }"
+    val vs = valueSetLookups.groupBy(_._1).map { case (pkg, enums) =>
+      if (enums.size == 1) s"import com.babylonhealth.lit.$pkg.${enums.head._2}"
+      else s"import com.babylonhealth.lit.$pkg.{ ${enums.map(_._2).mkString(", ")} }"
     }
     val parentsAndSelf = (parentPackages :+ packageStr).distinct
     s"""package com.babylonhealth.lit.$packageStr.model
@@ -535,7 +534,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
 
     val parser = Try(new SimpleFHIRPathParser(topLevelClass, allTopLevelElements))
     parser.failed.foreach { t =>
-      println("BAD STUFF::", t.getMessage)
+      println(s"BAD STUFF:: ${t.getMessage}")
       t.printStackTrace
     }
     val searchParameters: String = {
@@ -601,7 +600,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         s"\n  *              Refines the types of: ${refinedTypes.map(_._2.scalaName).mkString(", ")}. "
       else ""}${if (newlyRequired.nonEmpty)
         s"\n  *              Requires the following fields which were optional in the parent: ${newlyRequired.map(_._2.scalaName).mkString(", ")}. "
-      else ""}${if (forbidden.nonEmpty) s"\n  *              Forbids the use of the following fields which were optional in the parent: ${forbidden.map(_._2.scalaName).mkString(", ")}. "
+      else ""}${if (forbidden.nonEmpty)
+        s"\n  *              Forbids the use of the following fields which were optional in the parent: ${forbidden.map(_._2.scalaName).mkString(", ")}. "
       else ""}${if (hardCoded.nonEmpty)
         s"\n  *              Hardcodes the value of the following fields: ${hardCoded.map(_._2.scalaName).mkString(", ")}. "
       else ""}"
@@ -676,16 +676,13 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         // TODO: Currently we don't handle shadowing of valuesets...
         case (x, s) => (moduleDependencies.leastCommon(s.map(_._1).toSet), x)
       }
-    ClassGenInfo(
-      commonScalaHead(packagesWithNewTypes, moduleDependencies, packageStr, valueSet) + fileStr,
-      className,
-      packageStr)
+    ClassGenInfo(commonScalaHead(packagesWithNewTypes, moduleDependencies, packageStr, valueSet) + fileStr, className, packageStr)
   }
 
   def getDecoderFn(s: String): String =
     s.toLowerCase() match {
-      case "base64binary" | "canonical" | "code" | "id" | "markdown" | "oid" | "positiveint" | "unsignedint" | "uri" |
-          "url" | "xhtml" =>
+      case "base64binary" | "canonical" | "code" | "id" | "markdown" | "oid" | "positiveint" | "unsignedint" | "uri" | "url" |
+          "xhtml" =>
         val camelSuffix: String = s.head.toLower +: s.tail
         s"_ => ${camelSuffix}Decoder"
       case "boolean"  => "_ => Decoder.decodeBoolean"
@@ -722,8 +719,16 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
 
     lookups.flatMap { case (pkg, classes) =>
       Seq(
-        ClassGenInfo(genPackageObject(pkg, unions.getOrElse(pkg, Map.empty), classes.toMap, ScalaTarget.Scala2), "package", pkg, Some(ScalaTarget.Scala2)),
-        ClassGenInfo(genPackageObject(pkg, unions.getOrElse(pkg, Map.empty), classes.toMap, ScalaTarget.Scala3), "package", pkg, Some(ScalaTarget.Scala3))
+        ClassGenInfo(
+          genPackageObject(pkg, unions.getOrElse(pkg, Map.empty), classes.toMap, ScalaTarget.Scala2),
+          "package",
+          pkg,
+          Some(ScalaTarget.Scala2)),
+        ClassGenInfo(
+          genPackageObject(pkg, unions.getOrElse(pkg, Map.empty), classes.toMap, ScalaTarget.Scala3),
+          "package",
+          pkg,
+          Some(ScalaTarget.Scala3))
       )
     }.toSeq
   }
@@ -886,7 +891,11 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
       |    }
       |  }
       |}""".stripMargin
-  def genPackageObject(pkg: String, _unionAliases: Map[String, Seq[String]], lookups: Map[String, String], scalaVersion: ScalaTarget.ScalaTarget): String = {
+  def genPackageObject(
+      pkg: String,
+      _unionAliases: Map[String, Seq[String]],
+      lookups: Map[String, String],
+      scalaVersion: ScalaTarget.ScalaTarget): String = {
     val head =
       if (pkg == "core") genPackageCore
       else
@@ -899,7 +908,7 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
            |import com.babylonhealth.lit.core.model._
            |import com.babylonhealth.lit.$pkg.model._
            |""".stripMargin
-    val unionGlyph = scalaVersion match { case ScalaTarget.Scala2 => "\\/" ; case ScalaTarget.Scala3 => "|" }
+    val unionGlyph = scalaVersion match { case ScalaTarget.Scala2 => "\\/"; case ScalaTarget.Scala3 => "|" }
     val unionAliases =
       _unionAliases.toSeq
         .map { case (a, t) => s"type $a = ${t.mkString(unionGlyph)}" }

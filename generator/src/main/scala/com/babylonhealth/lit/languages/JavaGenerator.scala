@@ -155,10 +155,7 @@ trait JavaGenerator extends Commonish {
       val cast = if (isErasedRef) f.cardinality.castUnchecked("Choice") else ""
       cast + f.cardinality.convertJavaToScala(possiblyObjectCast, eraseUninferrableChoices(f))
     }
-    def genOptionalFieldAppenders(
-        optionalFields: Seq[BaseField],
-        builderName: String,
-        targetClassName: String): String =
+    def genOptionalFieldAppenders(optionalFields: Seq[BaseField], builderName: String, targetClassName: String): String =
       optionalFields
         .map { f =>
           val javaDoc =
@@ -167,9 +164,7 @@ trait JavaGenerator extends Commonish {
                |  */
                |""".stripMargin
           if (f.types.size == 1) {
-            s"""${javaDoc}public $builderName with${f.capitalName}(@NonNull ${toBuilderMutatorType(
-              f,
-              wrapInOptional = false)} ${f.javaName}) {
+            s"""${javaDoc}public $builderName with${f.capitalName}(@NonNull ${toBuilderMutatorType(f, wrapInOptional = false)} ${f.javaName}) {
                |  this.${f.javaName} = ${f.cardinality.wrapJavaValue(f.javaName)};
                |  return this;
                |}""".stripMargin +
@@ -358,11 +353,7 @@ trait JavaGenerator extends Commonish {
     if (s.contains("`")) s"""($enumName) $enumName.withName("${s.filterNot(_ == '`')}")"""
     else s"$enumName.$s$$.MODULE$$"
   def javaEnum(e: String): String = if (e.contains("`")) '_' +: e.filterNot(_ == '`').replaceAll("\\.", "_") else e
-  def genereteCodeAlias(
-      pkg: String,
-      javaSuffix: String,
-      name: String,
-      values: NonEmptyLitSeq[CodeEnum]): ClassGenInfo = {
+  def genereteCodeAlias(pkg: String, javaSuffix: String, name: String, values: NonEmptyLitSeq[CodeEnum]): ClassGenInfo = {
     val enumName = EnumerationUtils.valueSetToEnumName(name)
     val decls = values
       .map { e =>
