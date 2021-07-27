@@ -5,9 +5,8 @@ import scala.annotation.tailrec
 trait Commonish {
 
   def isPrimitiveSuffix(s: String): Boolean = s.toLowerCase() match {
-    case "boolean" | "positiveint" | "unsignedint" | "base64binary" | "canonical" | "code" | "id" | "markdown" |
-        "string" | "integer" | "decimal" | "uuid" | "oid" | "xhtml" | "url" | "uri" | "instant" | "datetime" | "date" |
-        "time" =>
+    case "boolean" | "positiveint" | "unsignedint" | "base64binary" | "canonical" | "code" | "id" | "markdown" | "string" |
+        "integer" | "decimal" | "uuid" | "oid" | "xhtml" | "url" | "uri" | "instant" | "datetime" | "date" | "time" =>
       true
     case _ => false
   }
@@ -15,8 +14,7 @@ trait Commonish {
   val experimentalModel = """Choice\["(.+)"\]""".r
   def typeLookup(s: String): String = s match {
     case fhirSystemType(x) => x
-    case "boolean" | "positiveInt" | "unsignedInt" | "base64Binary" | "canonical" | "code" | "id" | "markdown" |
-        "string" =>
+    case "boolean" | "positiveInt" | "unsignedInt" | "base64Binary" | "canonical" | "code" | "id" | "markdown" | "string" =>
       s.capitalize
     case "integer"                => "Int"
     case "decimal"                => "BigDecimal"
@@ -34,8 +32,7 @@ trait Commonish {
     case x      => x
   }
   def inverseTypeLookup(s: String): String = s match {
-    case "Boolean" | "PositiveInt" | "UnsignedInt" | "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" |
-        "String" =>
+    case "Boolean" | "PositiveInt" | "UnsignedInt" | "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "String" =>
       s.head.toLower +: s.tail
     case "Int"                    => "integer"
     case "BigDecimal"             => "decimal"

@@ -39,7 +39,7 @@ test-java:
 	$(SBT) $(foreach i,$(ALL_MODULES),$iJava/compile $iJava/test)
 
 test:
-	$(SBT) +common/test generator/test +macros/test
+	$(SBT) +common/test +generator/test +macros/test
 	$(SBT) $(foreach i,$(CORE_MODULES),+$i/test)
 	$(SBT) $(foreach i,$(CORE_MODULES),$iJava/test)
 	$(SBT) $(foreach i,$(US_MODULES),+$i/test)
@@ -57,9 +57,9 @@ publish:
 
 publish-generator:
 	$(SBT_G) +common/publish || echo "cannot publish commmon. Continuing anyway"
-	$(SBT_G) generator/publish
+	$(SBT_G) +generator/publish
 publish-local-generator:
-	$(SBT_G) +common/publishLocal generator/publishLocal
+	$(SBT_G) +common/publishLocal +generator/publishLocal
 
 publish-local-core:
 	$(SBT) +common/publishLocal +macros/publishLocal $(foreach i,$(ALL_MODULES),+$i/publishLocal) +fhirpath/publishLocal

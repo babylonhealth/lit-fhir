@@ -20,8 +20,8 @@ object TypescriptCodegen {
     def toTSType(s: String): String =
       (s match {
         case "PositiveInt" | "UnsignedInt" | "Int" | "BigDecimal" => "number"
-        case "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" | "UrlStr" | "XHTML" |
-            "String" | "UUID" =>
+        case "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" | "UrlStr" | "XHTML" | "String" |
+            "UUID" =>
           "string"
         case "ZonedDateTime" | "FHIRDateTime" | "LocalDate" | "LocalTime" => "Date"
         case "Element"                                                    => "FHIRElement"

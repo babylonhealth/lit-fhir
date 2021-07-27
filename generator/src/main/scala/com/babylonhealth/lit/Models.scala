@@ -111,7 +111,7 @@ case class TopLevelClasses(
     case empty if empty.isEmpty            => println(s"can't find any ${className}"); None
     case one if one.size == 1              => Some(one.head._2)
     case many if pkg.exists(many.contains) => many.get(pkg.get)
-    case many                              => println(s"Found too many ${className} in packages ${many.map(_._1).mkString(" &")}"); None
+    case many => println(s"Found too many ${className} in packages ${many.map(_._1).mkString(" &")}"); None
   }
 }
 case class TopLevelClass(
@@ -192,11 +192,7 @@ object ScalaTarget extends Enumeration {
   type ScalaTarget = Value
 }
 
-case class ClassGenInfo(
-    fileContents: String,
-    fileName: String,
-    pkg: String,
-    target: Option[ScalaTarget.ScalaTarget] = None)
+case class ClassGenInfo(fileContents: String, fileName: String, pkg: String, target: Option[ScalaTarget.ScalaTarget] = None)
 
 case class JavaClassGenInfo(builders: Seq[ClassGenInfo], codes: Seq[ClassGenInfo])
 

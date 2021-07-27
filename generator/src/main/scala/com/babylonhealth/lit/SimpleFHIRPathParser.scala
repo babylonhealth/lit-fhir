@@ -11,13 +11,13 @@ import com.babylonhealth.lit.fhirpath._
 import com.babylonhealth.lit.fhirpath.genScala.{ ExactlyOne, FieldCardinality, GenScalaParams }
 import com.babylonhealth.lit.languages.BaseFieldImplicits
 
-class SimpleFHIRPathParser(topLevelClass: TopLevelClass, allTopLevelElements: TopLevelClasses)
-    extends BaseFieldImplicits {
+class SimpleFHIRPathParser(topLevelClass: TopLevelClass, allTopLevelElements: TopLevelClasses) extends BaseFieldImplicits {
   val fields = topLevelClass.fields
 
   type Id[+T] = T
   private val resolver: FHIRReadClient[Id] = (url: String) => ???
-  implicit val _asdlkjfds = new MonadError[Id, Throwable] { // TODO: I'm sure this exists somewhere else...
+  // TODO: I'm sure this exists somewhere in cats...
+  implicit val _asdlkjfds: MonadError[Id, Throwable] = new MonadError[Id, Throwable] {
     override def flatMap[A, B](fa: Id[A])(f: A => Id[B]): Id[B] = f(fa)
     @tailrec
     override def tailRecM[A, B](a: A)(f: A => Id[Either[A, B]]): Id[B] =
@@ -53,7 +53,7 @@ class SimpleFHIRPathParser(topLevelClass: TopLevelClass, allTopLevelElements: To
         else {
           val expr                                             = Try(Parser.parseUnsafe(s)) getOrElse { System.exit(1); ??? }
           val topLevelCompanion: CompanionFor[_ <: FHIRObject] = companionLookup(topLevelClass.scalaClassName)
-          val p                                                = genScala.gen(expr, GenScalaParams(Left(topLevelCompanion), ExactlyOne, "obj"))
+          val p = genScala.gen(expr, GenScalaParams(Left(topLevelCompanion), ExactlyOne, "obj"))
           Seq((p.rootStr, p.baseCardinality))
         }
       }
