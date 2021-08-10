@@ -2,6 +2,9 @@ package com.babylonhealth.lit.hl7
 
 import java.time.ZonedDateTime
 
+import scala.util.Failure
+
+import io.circe.{ DecodingFailure, Json }
 import io.circe.parser.decode
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
@@ -104,6 +107,16 @@ class Regressions extends AnyFreeSpec with Matchers {
         ))),
       subject = Some(Reference(reference = Some("Patient/420420")))
     )
+  }
+
+  "FHIR object decoders should fail if attempting to decode a json type that isn't an object" in {
+    implicit val decoderParams: DecoderParams = DecoderParams()
+    val x                                     = CodeableConcept.decoder.decodeJson(Json.fromString("asd"))
+    x should matchPattern { case Left(DecodingFailure("Cannot decode a json String as a FHIR object", _)) =>
+    }
+    val y = CodeableConcept.decoder.decodeJson(Json.arr())
+    y should matchPattern { case Left(DecodingFailure("Cannot decode a json Array as a FHIR object", _)) =>
+    }
   }
 
 }

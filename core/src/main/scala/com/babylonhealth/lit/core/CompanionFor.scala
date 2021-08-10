@@ -10,6 +10,7 @@ import scala.util.{ Failure, Success, Try }
 import io.circe.{ Decoder, DecodingFailure, HCursor }
 import izumi.reflect.macrortti.LTag
 import org.slf4j.{ Logger, LoggerFactory }
+
 import com.babylonhealth.lit.core.model.{ Element, Extension, Resource, resourceTypeLookup, urlLookup }
 
 trait OptionSugar {
@@ -135,74 +136,76 @@ abstract class CompanionFor[-T <: FHIRObject: LTag: ClassTag] extends JsonDecode
   private def getTargetType(target: String): Option[CompanionFor[_]] =
     resourceTypeLookup.get(target)
 
-  def parameterisedDecode(x: HCursor, params: DecoderParams): Try[T @uncheckedVariance] = {
-    def decodeThisAsThis: Try[T @uncheckedVariance] = decodeThis(x)(params)
+  def parameterisedDecode(x: HCursor, params: DecoderParams): Try[T @uncheckedVariance] =
+    if (!x.value.isObject) Failure(DecodingFailure(s"Cannot decode a json ${x.value.name} as a FHIR object", x.history))
+    else {
+      def decodeThisAsThis: Try[T @uncheckedVariance] = decodeThis(x)(params)
 
-    def decodeWithResourceType: Try[T @uncheckedVariance] =
-      x.downField("resourceType").as[String] match {
-        case Right(resourceTypeField) =>
-          getTargetType(resourceTypeField) match {
-            case None =>
-              Failure(
-                DecodingFailure(
-                  s"No matching profiles found (resourceType is $resourceTypeField, but no matching class was found)",
-                  x.history))
-            case Some(companion) =>
-              Try {
-                if (isSubTypeOf(companion)) {
-                  log.debug(s"deserializing as $thisName")
-                  decodeThisAsThis
-                } else {
-                  log.debug(s"deserializing as ${companion.thisName}")
-                  companion.decodeThis(x)(params)
-                }
-              }.flatten
-                .recoverWith { case err: Throwable =>
-                  val target =
-                    if (isSubTypeOf(companion) && companion.thisClassTag != thisClassTag) s" as $thisName" else ""
-                  val message = s"Unable to deserialize ${companion.thisName}$target"
-                  val newErr = err match {
-                    case e: DecodingFailure => e.withMessage(s"$message (${e.message})")
-                    case e                  => DecodingFailure(s"$message (${e.getMessage})", x.history).initCause(e)
+      def decodeWithResourceType: Try[T @uncheckedVariance] =
+        x.downField("resourceType").as[String] match {
+          case Right(resourceTypeField) =>
+            getTargetType(resourceTypeField) match {
+              case None =>
+                Failure(
+                  DecodingFailure(
+                    s"No matching profiles found (resourceType is $resourceTypeField, but no matching class was found)",
+                    x.history))
+              case Some(companion) =>
+                Try {
+                  if (isSubTypeOf(companion)) {
+                    log.debug(s"deserializing as $thisName")
+                    decodeThisAsThis
+                  } else {
+                    log.debug(s"deserializing as ${companion.thisName}")
+                    companion.decodeThis(x)(params)
                   }
-                  Failure(newErr)
-                }
-                .asInstanceOf[Try[T]]
-          }
-        case Left(_) if thisClassTag.runtimeClass.isAssignableFrom(classOf[Resource]) =>
-          Failure(
-            DecodingFailure(
-              "A resourceType field must be present in order to decode a json object to a FHIR resource",
-              x.history))
-        case Left(_) => decodeThisAsThis
-      }
-
-    x.downField("meta").downField("profile").as[Seq[String]] match {
-      case Left(_) | Right(Nil) => decodeWithResourceType
-      case Right(profiles) =>
-        getTargetProfile(profiles) match {
-          case None =>
-            if (params.logOnBadProfile)
-              log.warn(s"No matching meta.profile found (No classes matched any of ${profiles.mkString("[", ",", "]")}))")
-            decodeWithResourceType
-          case Some(companion) =>
-            // if companion from profile is less specific than this class:
-            (if (companion.thisClassTag.runtimeClass.isAssignableFrom(thisClassTag.runtimeClass)) {
-               log.debug(s"deserializing as ${companion.thisName}")
-               decodeThisAsThis
-             } else {
-               log.debug(s"deserializing as $thisName")
-               companion.decodeThis(x)(params)
-             })
-            .recoverWith { case error: Throwable =>
-              val profs = profiles.mkString("[", ",", "]")
-              log.warn(s"meta.profile contains $profs, but this object fails to decode as ${companion.thisName}.", error)
-              if (params.tolerateProfileErrors) decodeWithResourceType else Failure(error)
+                }.flatten
+                  .recoverWith { case err: Throwable =>
+                    val target =
+                      if (isSubTypeOf(companion) && companion.thisClassTag != thisClassTag) s" as $thisName" else ""
+                    val message = s"Unable to deserialize ${companion.thisName}$target"
+                    val newErr = err match {
+                      case e: DecodingFailure => e.withMessage(s"$message (${e.message})")
+                      case e                  => DecodingFailure(s"$message (${e.getMessage})", x.history).initCause(e)
+                    }
+                    Failure(newErr)
+                  }
+                  .asInstanceOf[Try[T]]
             }
-            .asInstanceOf[Try[T]]
+          case Left(_) if thisClassTag.runtimeClass.isAssignableFrom(classOf[Resource]) =>
+            Failure(
+              DecodingFailure(
+                "A resourceType field must be present in order to decode a json object to a FHIR resource",
+                x.history))
+          case Left(_) => decodeThisAsThis
         }
+
+      x.downField("meta").downField("profile").as[Seq[String]] match {
+        case Left(_) | Right(Nil) => decodeWithResourceType
+        case Right(profiles) =>
+          getTargetProfile(profiles) match {
+            case None =>
+              if (params.logOnBadProfile)
+                log.warn(s"No matching meta.profile found (No classes matched any of ${profiles.mkString("[", ",", "]")}))")
+              decodeWithResourceType
+            case Some(companion) =>
+              // if companion from profile is less specific than this class:
+              (if (companion.thisClassTag.runtimeClass.isAssignableFrom(thisClassTag.runtimeClass)) {
+                 log.debug(s"deserializing as ${companion.thisName}")
+                 decodeThisAsThis
+               } else {
+                 log.debug(s"deserializing as $thisName")
+                 companion.decodeThis(x)(params)
+               })
+              .recoverWith { case error: Throwable =>
+                val profs = profiles.mkString("[", ",", "]")
+                log.warn(s"meta.profile contains $profs, but this object fails to decode as ${companion.thisName}.", error)
+                if (params.tolerateProfileErrors) decodeWithResourceType else Failure(error)
+              }
+              .asInstanceOf[Try[T]]
+          }
+      }
     }
-  }
 
   def decoder(implicit params: DecoderParams): Decoder[T @uncheckedVariance] =
     Decoder.instanceTry {
