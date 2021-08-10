@@ -139,20 +139,20 @@
           "value": "+33 (237) 998327"
         }
       ],
-      "address": [
-        {
-          "use": "home",
-          "type": "both",
-          "line": "534 Erewhon St",
-          "city": "PleasantVille",
-          "district": "Rainbow",
-          "state": "Vic",
-          "postalCode": "3999",
-          "period": {
-            "start": "1974-12-25"
-          }
+      "address": {
+        "use": "home",
+        "type": "both",
+        "line": [
+          "534 Erewhon St"
+        ],
+        "city": "PleasantVille",
+        "district": "Rainbow",
+        "state": "Vic",
+        "postalCode": "3999",
+        "period": {
+          "start": "1974-12-25"
         }
-      ],
+      },
       "gender": "female",
       "period": {
         "start": "2012"
