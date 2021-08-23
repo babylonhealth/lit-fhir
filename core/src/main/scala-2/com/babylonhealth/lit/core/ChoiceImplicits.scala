@@ -1,8 +1,9 @@
 package com.babylonhealth.lit.core
 
 import scala.annotation.implicitNotFound
+import scala.reflect.runtime.universe.TypeTag
 
-import izumi.reflect.macrortti.LTag
+import izumi.reflect.macrortti.{ LTT, LTag }
 
 import com.babylonhealth.lit.core.\/.\::/
 import com.babylonhealth.lit.core.model.typeSuffixMap
@@ -53,6 +54,11 @@ object ChoiceImplicits {
   def choice[U <: _ \/ _: LTag, S: LTag](t: S)(implicit
       @implicitNotFound("Cannot prove that ${S} is a viable type for union ${U}") witness: UnionWitness[U, S]): Choice[U] =
     Choice.fromValAndSuffix[U, S](t, witness.suffix)
+
+  // Semantically redundant, but works around a macro expansion issue in intelliJ
+  def choose[U <: _ \/ _: TypeTag, S: TypeTag](t: S)(implicit
+      @implicitNotFound("Cannot prove that ${S} is a viable type for union ${U}") witness: UnionWitness[U, S]): Choice[U] =
+    Choice.fromValAndSuffix[U, S](t, witness.suffix)(LTag(LTT[U]))
 
   // Use case for this constructor is specifically extensions which limit their value range to a single enum
   def choiceFromEnum[U <: _ \/ _: LTag, S <: EnumBase: LTag](t: S)(implicit
