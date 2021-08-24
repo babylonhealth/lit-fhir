@@ -24,6 +24,7 @@ commands:
       - restore_cache:
           name: Restoring build cache
           keys:
+            - build-cache-v3-master-
             - build-cache-v3-{{ .Branch }}-{{ .Revision }}
             - build-cache-v3-{{ .Branch }}-
             - build-cache-v3-

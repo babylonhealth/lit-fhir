@@ -103,7 +103,7 @@ class LitSeqIterator[+T](private val xs: Array[_], initialIndex: Int = 0)
   def set(x$1: T @uncheckedVariance): Unit = !!!
 }
 
-class LitSeq[+T] protected (protected val _contents: Array[Object])
+sealed class LitSeq[+T] protected (protected val _contents: Array[Object])
     extends scala.collection.IterableOps[T, LitSeq, LitSeq[T]]
     with PartialFunction[Int, T]
     with JList[T @uncheckedVariance] {
@@ -254,7 +254,7 @@ class LitSeq[+T] protected (protected val _contents: Array[Object])
   def refine: LitSeq[T]             = if (_contents.isEmpty) LitSeq.empty else new NonEmptyLitSeq[T](toSeq)
 }
 
-class NonEmptyLitSeq[+T] protected (override protected val _contents: Array[Object], wasChecked: Boolean)
+sealed class NonEmptyLitSeq[+T] protected (override protected val _contents: Array[Object], wasChecked: Boolean)
     extends LitSeq[T](_contents) {
   if (!wasChecked && _contents.isEmpty) throw new IllegalStateException(s"Non-empty seq can't be empty")
   def this(initial: JCollection[T]) = {

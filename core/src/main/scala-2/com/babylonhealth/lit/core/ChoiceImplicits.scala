@@ -8,6 +8,7 @@ import izumi.reflect.macrortti.{ LTT, LTag }
 import com.babylonhealth.lit.core.\/.\::/
 import com.babylonhealth.lit.core.model.typeSuffixMap
 
+@implicitNotFound("Cannot prove that ${S} is a viable type for union ${U}")
 abstract class UnionWitness[U, T] private[core] (implicit ut: LTag[U], val tt: LTag[T]) {
   def buildTo(t: T): U
   val suffix: String
