@@ -185,16 +185,16 @@ object Statistic extends CompanionFor[Statistic] {
       extends Element(id = id, extension = extension)
   object AttributeEstimate extends CompanionFor[AttributeEstimate] {
     implicit def summonObjectAndCompanionAttributeEstimate_154586528(
-        o: AttributeEstimate): ObjectAndCompanion[AttributeEstimate, AttributeEstimate.type] = ObjectAndCompanion(o, this)
-    override type ResourceType = AttributeEstimate
-    override type ParentType   = AttributeEstimate
-    override val parentType: CompanionFor[ResourceType] = AttributeEstimate
-    object AttributeEstimate extends CompanionFor[AttributeEstimate] {
+        o: Statistic.AttributeEstimate): ObjectAndCompanion[Statistic.AttributeEstimate, Statistic.AttributeEstimate.type] = ObjectAndCompanion(o, this)
+    override type ResourceType = Statistic.AttributeEstimate
+    override type ParentType   = Statistic.AttributeEstimate
+    override val parentType: CompanionFor[ResourceType] = Statistic.AttributeEstimate
+    object AttributeEstimate extends CompanionFor[Statistic.AttributeEstimate.AttributeEstimate] {
       implicit def summonObjectAndCompanionAttributeEstimate426035384(
-          o: AttributeEstimate): ObjectAndCompanion[AttributeEstimate, AttributeEstimate.type] = ObjectAndCompanion(o, this)
-      override type ResourceType = AttributeEstimate
-      override type ParentType   = AttributeEstimate
-      override val parentType: CompanionFor[ResourceType] = AttributeEstimate
+          o: Statistic.AttributeEstimate.AttributeEstimate): ObjectAndCompanion[Statistic.AttributeEstimate.AttributeEstimate, Statistic.AttributeEstimate.AttributeEstimate.type] = ObjectAndCompanion(o, this)
+      override type ResourceType = Statistic.AttributeEstimate.AttributeEstimate
+      override type ParentType   = Statistic.AttributeEstimate.AttributeEstimate
+      override val parentType: CompanionFor[ResourceType] = Statistic.AttributeEstimate.AttributeEstimate
       def apply(
           id: Option[String] = None,
           note: LitSeq[Annotation] = LitSeq.empty,
@@ -288,7 +288,7 @@ object Statistic extends CompanionFor[Statistic] {
         description: Option[String] = None,
         attributeEstimate: LitSeq[AttributeEstimate.AttributeEstimate] = LitSeq.empty,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-    ): AttributeEstimate = new AttributeEstimate(
+    ): Statistic.AttributeEstimate = new Statistic.AttributeEstimate(
       id,
       note,
       `type`,
@@ -339,12 +339,12 @@ object Statistic extends CompanionFor[Statistic] {
       FHIRComponentField[Option[String]](description, t.description),
       FHIRComponentField[LitSeq[AttributeEstimate.AttributeEstimate]](attributeEstimate, t.attributeEstimate)
     )
-    val baseType: CompanionFor[AttributeEstimate] = this
+    val baseType: CompanionFor[Statistic.AttributeEstimate] = this
     val thisName: String                          = "AttributeEstimate"
     def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[AttributeEstimate] =
       checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
         Try(
-          new AttributeEstimate(
+          new Statistic.AttributeEstimate(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
             cursor.decodeAs[Option[CodeableConcept]]("type", Some(None)),
