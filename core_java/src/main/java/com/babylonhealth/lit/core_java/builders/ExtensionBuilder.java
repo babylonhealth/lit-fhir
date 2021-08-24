@@ -39,7 +39,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface ExtensionBuilder extends ElementBuilder {
+public interface ExtensionBuilder extends DataTypeBuilder {
   public Extension build();
 
   public static Impl init(String url) {
@@ -135,6 +135,10 @@ public interface ExtensionBuilder extends ElementBuilder {
   }
 
   public static ChoiceAll value(Identifier i) {
+    return new ChoiceAll(i);
+  }
+
+  public static ChoiceAll value(Integer64 i) {
     return new ChoiceAll(i);
   }
 
@@ -279,10 +283,10 @@ public interface ExtensionBuilder extends ElementBuilder {
      *     be one of Address, Age, Annotation, Attachment, byte[], BigDecimal, Boolean, String,
      *     CodeableConcept, Coding, ContactDetail, ContactPoint, Contributor, Count,
      *     DataRequirement, Distance, Dosage, Duration, Expression, FHIRDate, FHIRDateTime,
-     *     HumanName, Identifier, Integer, LocalTime, Meta, Money, ParameterDefinition, Period,
-     *     Quantity, Range, Ratio, Reference, RelatedArtifact, SampledData, Signature, Timing,
-     *     TriggerDefinition, UUID, UsageContext, ZonedDateTime. To pass the value in, wrap with one
-     *     of the ExtensionBuilder.value static methods
+     *     HumanName, Identifier, Integer, Integer64, LocalTime, Meta, Money, ParameterDefinition,
+     *     Period, Quantity, Range, Ratio, Reference, RelatedArtifact, SampledData, Signature,
+     *     Timing, TriggerDefinition, UUID, UsageContext, ZonedDateTime. To pass the value in, wrap
+     *     with one of the ExtensionBuilder.value static methods
      */
     public ExtensionBuilder.Impl withValue(@NonNull ChoiceAll value) {
       this.value = Optional.of(value);

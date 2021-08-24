@@ -87,6 +87,9 @@ object Resource extends CompanionFor[Resource] {
 
 /** This is the base resource type for everything.
   *
+  * Subclass of [[core.model.Base]] (Base StructureDefinition for Base Type: Base definition for all types defined in FHIR type
+  * system.)
+  *
   * @constructor
   *   Introduces the fields id, meta, language, implicitRules.
   * @param id
@@ -108,7 +111,7 @@ class Resource(
     val language: Option[LANGUAGES] = None,
     val implicitRules: Option[UriStr] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends FHIRObject(primitiveAttributes = primitiveAttributes) {
+) extends Base(primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Resource"
   /// Patched-in methods:
   def getIdentifier: Option[String] = id map (i => s"$thisTypeName/$i")

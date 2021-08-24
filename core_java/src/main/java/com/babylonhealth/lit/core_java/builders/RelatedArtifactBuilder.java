@@ -39,7 +39,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface RelatedArtifactBuilder extends ElementBuilder {
+public interface RelatedArtifactBuilder extends DataTypeBuilder {
   public RelatedArtifact build();
 
   public static Impl init(RELATED_ARTIFACT_TYPE _type) {

@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.hl7.GOAL_STATUS
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
@@ -214,7 +215,6 @@ object Us_core_goal extends CompanionFor[Us_core_goal] {
   def extractAchievementStatus(t: Us_core_goal): Option[CodeableConcept] = t.achievementStatus
   def extractTarget(t: Us_core_goal): LitSeq[Goal.Target]                = t.target
   override val thisName: String                                          = "Us_core_goal"
-  override val searchParams: Map[String, Us_core_goal => Seq[Any]]       = Goal.searchParams
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Us_core_goal] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -255,7 +255,7 @@ object Us_core_goal extends CompanionFor[Us_core_goal] {
   * objective, etc.)
   *
   * @constructor
-  *   Inherits all params from parent.
+  *   Introduces the fields expressedBy, outcomeCode, outcomeReference.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -340,12 +340,12 @@ class Us_core_goal(
     override val identifier: LitSeq[Identifier] = LitSeq.empty,
     override val statusDate: Option[FHIRDate] = None,
     override val description: CodeableConcept,
-    override val expressedBy: Option[Reference] = None,
-    override val outcomeCode: LitSeq[CodeableConcept] = LitSeq.empty,
+    val expressedBy: Option[Reference] = None,
+    val outcomeCode: LitSeq[CodeableConcept] = LitSeq.empty,
     override val statusReason: Option[String] = None,
     override val implicitRules: Option[UriStr] = None,
     override val lifecycleStatus: GOAL_STATUS,
-    override val outcomeReference: LitSeq[Reference] = LitSeq.empty,
+    val outcomeReference: LitSeq[Reference] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     override val achievementStatus: Option[CodeableConcept] = None,
     override val target: LitSeq[Goal.Target] = LitSeq.empty,
@@ -366,12 +366,9 @@ class Us_core_goal(
       identifier = identifier,
       statusDate = statusDate,
       description = description,
-      expressedBy = expressedBy,
-      outcomeCode = outcomeCode,
       statusReason = statusReason,
       implicitRules = implicitRules,
       lifecycleStatus = lifecycleStatus,
-      outcomeReference = outcomeReference,
       modifierExtension = modifierExtension,
       achievementStatus = achievementStatus,
       target = target,

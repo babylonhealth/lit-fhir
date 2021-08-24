@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.hl7.{ COMPOSITION_STATUS, DOCUMENT_REFERENCE_STATUS }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
@@ -34,6 +35,120 @@ object Us_core_documentreference extends CompanionFor[Us_core_documentreference]
   override val baseType: CompanionFor[ResourceType] = DocumentReference
   override val parentType: CompanionFor[ParentType] = DocumentReference
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-documentreference")
+  object Context extends CompanionFor[Context] {
+    implicit def summonObjectAndCompanionContext_1491180574(o: Context): ObjectAndCompanion[Context, Context.type] =
+      ObjectAndCompanion(o, this)
+    override type ResourceType = Context
+    override type ParentType   = Context
+    override val parentType: CompanionFor[ResourceType] = Context
+    def apply(
+        id: Option[String] = None,
+        event: LitSeq[CodeableConcept] = LitSeq.empty,
+        period: Option[Period] = None,
+        related: LitSeq[Reference] = LitSeq.empty,
+        extension: LitSeq[Extension] = LitSeq.empty,
+        encounter: Option[Reference] = None,
+        facilityType: Option[CodeableConcept] = None,
+        practiceSetting: Option[CodeableConcept] = None,
+        modifierExtension: LitSeq[Extension] = LitSeq.empty,
+        sourcePatientInfo: Option[Reference] = None,
+        primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
+    ): Context = new Context(
+      id,
+      event,
+      period,
+      related,
+      extension,
+      encounter,
+      facilityType,
+      practiceSetting,
+      modifierExtension,
+      sourcePatientInfo,
+      primitiveAttributes = primitiveAttributes
+    )
+    def unapply(
+        o: Context): Option[(Option[String], LitSeq[CodeableConcept], Option[Period], LitSeq[Reference], LitSeq[Extension], Option[Reference], Option[CodeableConcept], Option[CodeableConcept], LitSeq[Extension], Option[Reference])] =
+      Some(
+        (
+          o.id,
+          o.event,
+          o.period,
+          o.related,
+          o.extension,
+          o.encounter,
+          o.facilityType,
+          o.practiceSetting,
+          o.modifierExtension,
+          o.sourcePatientInfo))
+    val id: FHIRComponentFieldMeta[Option[String]] =
+      FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
+    val event: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
+      FHIRComponentFieldMeta("event", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
+    val period: FHIRComponentFieldMeta[Option[Period]] =
+      FHIRComponentFieldMeta("period", lTagOf[Option[Period]], false, lTagOf[Period])
+    val related: FHIRComponentFieldMeta[LitSeq[Reference]] =
+      FHIRComponentFieldMeta("related", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
+    val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+      FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+    val encounter: FHIRComponentFieldMeta[Option[Reference]] =
+      FHIRComponentFieldMeta("encounter", lTagOf[Option[Reference]], false, lTagOf[Reference])
+    val facilityType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+      FHIRComponentFieldMeta("facilityType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+    val practiceSetting: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+      FHIRComponentFieldMeta("practiceSetting", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+    val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+      FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+    val sourcePatientInfo: FHIRComponentFieldMeta[Option[Reference]] =
+      FHIRComponentFieldMeta("sourcePatientInfo", lTagOf[Option[Reference]], false, lTagOf[Reference])
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+      Seq(id, event, period, related, extension, encounter, facilityType, practiceSetting, modifierExtension, sourcePatientInfo)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
+    override def fields(t: Context): Seq[FHIRComponentField[_]] = Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[LitSeq[CodeableConcept]](event, t.event),
+      FHIRComponentField[Option[Period]](period, t.period),
+      FHIRComponentField[LitSeq[Reference]](related, t.related),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](encounter, t.encounter),
+      FHIRComponentField[Option[CodeableConcept]](facilityType, t.facilityType),
+      FHIRComponentField[Option[CodeableConcept]](practiceSetting, t.practiceSetting),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Option[Reference]](sourcePatientInfo, t.sourcePatientInfo)
+    )
+    val baseType: CompanionFor[Context] = this
+    val thisName: String                = "Context"
+    def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Context] =
+      checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
+        Try(
+          new Context(
+            cursor.decodeAs[Option[String]]("id", Some(None)),
+            cursor.decodeAs[LitSeq[CodeableConcept]]("event", Some(LitSeq.empty)),
+            cursor.decodeAs[Option[Period]]("period", Some(None)),
+            cursor.decodeAs[LitSeq[Reference]]("related", Some(LitSeq.empty)),
+            cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+            cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
+            cursor.decodeAs[Option[CodeableConcept]]("facilityType", Some(None)),
+            cursor.decodeAs[Option[CodeableConcept]]("practiceSetting", Some(None)),
+            cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+            cursor.decodeAs[Option[Reference]]("sourcePatientInfo", Some(None)),
+            decodeAttributes(cursor)
+          )
+        ))
+  }
+  @POJOBoilerplate
+  class Context(
+      override val id: Option[String] = None,
+      val event: LitSeq[CodeableConcept] = LitSeq.empty,
+      val period: Option[Period] = None,
+      val related: LitSeq[Reference] = LitSeq.empty,
+      override val extension: LitSeq[Extension] = LitSeq.empty,
+      val encounter: Option[Reference] = None,
+      val facilityType: Option[CodeableConcept] = None,
+      val practiceSetting: Option[CodeableConcept] = None,
+      override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
+      val sourcePatientInfo: Option[Reference] = None,
+      override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
+      extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -57,7 +172,7 @@ object Us_core_documentreference extends CompanionFor[Us_core_documentreference]
       securityLabel: LitSeq[CodeableConcept] = LitSeq.empty,
       masterIdentifier: Option[Identifier] = None,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
-      context: Option[DocumentReference.Context] = None,
+      context: Option[Us_core_documentreference.Context] = None,
       relatesTo: LitSeq[DocumentReference.RelatesTo] = LitSeq.empty,
       content: DocumentReference.Content,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
@@ -130,8 +245,12 @@ object Us_core_documentreference extends CompanionFor[Us_core_documentreference]
     FHIRComponentFieldMeta("masterIdentifier", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val context: FHIRComponentFieldMeta[Option[DocumentReference.Context]] =
-    FHIRComponentFieldMeta("context", lTagOf[Option[DocumentReference.Context]], false, lTagOf[DocumentReference.Context])
+  val context: FHIRComponentFieldMeta[Option[Us_core_documentreference.Context]] =
+    FHIRComponentFieldMeta(
+      "context",
+      lTagOf[Option[Us_core_documentreference.Context]],
+      false,
+      lTagOf[Us_core_documentreference.Context])
   val relatesTo: FHIRComponentFieldMeta[LitSeq[DocumentReference.RelatesTo]] =
     FHIRComponentFieldMeta("relatesTo", lTagOf[LitSeq[DocumentReference.RelatesTo]], false, lTagOf[DocumentReference.RelatesTo])
   val content: FHIRComponentFieldMeta[DocumentReference.Content] =
@@ -185,37 +304,36 @@ object Us_core_documentreference extends CompanionFor[Us_core_documentreference]
       FHIRComponentField[LitSeq[CodeableConcept]](securityLabel, t.securityLabel),
       FHIRComponentField[Option[Identifier]](masterIdentifier, t.masterIdentifier),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-      FHIRComponentField[Option[DocumentReference.Context]](context, t.context),
+      FHIRComponentField[Option[Us_core_documentreference.Context]](context, t.context),
       FHIRComponentField[LitSeq[DocumentReference.RelatesTo]](relatesTo, t.relatesTo),
       FHIRComponentField[DocumentReference.Content](content, t.content.head)
     ))
-  override def fields(t: Us_core_documentreference): Seq[FHIRComponentField[_]]           = fieldsFromParent(t).get
-  def extractId(t: Us_core_documentreference): Option[String]                             = t.id
-  def extractMeta(t: Us_core_documentreference): Option[Meta]                             = t.meta
-  def extractText(t: Us_core_documentreference): Option[Narrative]                        = t.text
-  def extractType(t: Us_core_documentreference): CodeableConcept                          = t.`type`.get
-  def extractDate(t: Us_core_documentreference): Option[ZonedDateTime]                    = t.date
-  def extractStatus(t: Us_core_documentreference): DOCUMENT_REFERENCE_STATUS              = t.status
-  def extractAuthor(t: Us_core_documentreference): LitSeq[Reference]                      = t.author
-  def extractSubject(t: Us_core_documentreference): Reference                             = t.subject.get
-  def extractLanguage(t: Us_core_documentreference): Option[LANGUAGES]                    = t.language
-  def extractCategory(t: Us_core_documentreference): NonEmptyLitSeq[CodeableConcept]      = t.category.asNonEmpty
-  def extractContained(t: Us_core_documentreference): LitSeq[Resource]                    = t.contained
-  def extractExtension(t: Us_core_documentreference): LitSeq[Extension]                   = t.extension
-  def extractDocStatus(t: Us_core_documentreference): Option[COMPOSITION_STATUS]          = t.docStatus
-  def extractCustodian(t: Us_core_documentreference): Option[Reference]                   = t.custodian
-  def extractIdentifier(t: Us_core_documentreference): LitSeq[Identifier]                 = t.identifier
-  def extractDescription(t: Us_core_documentreference): Option[String]                    = t.description
-  def extractImplicitRules(t: Us_core_documentreference): Option[UriStr]                  = t.implicitRules
-  def extractAuthenticator(t: Us_core_documentreference): Option[Reference]               = t.authenticator
-  def extractSecurityLabel(t: Us_core_documentreference): LitSeq[CodeableConcept]         = t.securityLabel
-  def extractMasterIdentifier(t: Us_core_documentreference): Option[Identifier]           = t.masterIdentifier
-  def extractModifierExtension(t: Us_core_documentreference): LitSeq[Extension]           = t.modifierExtension
-  def extractContext(t: Us_core_documentreference): Option[DocumentReference.Context]     = t.context
-  def extractRelatesTo(t: Us_core_documentreference): LitSeq[DocumentReference.RelatesTo] = t.relatesTo
-  def extractContent(t: Us_core_documentreference): DocumentReference.Content             = t.content.head
-  override val thisName: String                                                           = "Us_core_documentreference"
-  override val searchParams: Map[String, Us_core_documentreference => Seq[Any]]           = DocumentReference.searchParams
+  override def fields(t: Us_core_documentreference): Seq[FHIRComponentField[_]]               = fieldsFromParent(t).get
+  def extractId(t: Us_core_documentreference): Option[String]                                 = t.id
+  def extractMeta(t: Us_core_documentreference): Option[Meta]                                 = t.meta
+  def extractText(t: Us_core_documentreference): Option[Narrative]                            = t.text
+  def extractType(t: Us_core_documentreference): CodeableConcept                              = t.`type`.get
+  def extractDate(t: Us_core_documentreference): Option[ZonedDateTime]                        = t.date
+  def extractStatus(t: Us_core_documentreference): DOCUMENT_REFERENCE_STATUS                  = t.status
+  def extractAuthor(t: Us_core_documentreference): LitSeq[Reference]                          = t.author
+  def extractSubject(t: Us_core_documentreference): Reference                                 = t.subject.get
+  def extractLanguage(t: Us_core_documentreference): Option[LANGUAGES]                        = t.language
+  def extractCategory(t: Us_core_documentreference): NonEmptyLitSeq[CodeableConcept]          = t.category.asNonEmpty
+  def extractContained(t: Us_core_documentreference): LitSeq[Resource]                        = t.contained
+  def extractExtension(t: Us_core_documentreference): LitSeq[Extension]                       = t.extension
+  def extractDocStatus(t: Us_core_documentreference): Option[COMPOSITION_STATUS]              = t.docStatus
+  def extractCustodian(t: Us_core_documentreference): Option[Reference]                       = t.custodian
+  def extractIdentifier(t: Us_core_documentreference): LitSeq[Identifier]                     = t.identifier
+  def extractDescription(t: Us_core_documentreference): Option[String]                        = t.description
+  def extractImplicitRules(t: Us_core_documentreference): Option[UriStr]                      = t.implicitRules
+  def extractAuthenticator(t: Us_core_documentreference): Option[Reference]                   = t.authenticator
+  def extractSecurityLabel(t: Us_core_documentreference): LitSeq[CodeableConcept]             = t.securityLabel
+  def extractMasterIdentifier(t: Us_core_documentreference): Option[Identifier]               = t.masterIdentifier
+  def extractModifierExtension(t: Us_core_documentreference): LitSeq[Extension]               = t.modifierExtension
+  def extractContext(t: Us_core_documentreference): Option[Us_core_documentreference.Context] = t.context
+  def extractRelatesTo(t: Us_core_documentreference): LitSeq[DocumentReference.RelatesTo]     = t.relatesTo
+  def extractContent(t: Us_core_documentreference): DocumentReference.Content                 = t.content.head
+  override val thisName: String                                                               = "Us_core_documentreference"
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Us_core_documentreference] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -241,7 +359,7 @@ object Us_core_documentreference extends CompanionFor[Us_core_documentreference]
           cursor.decodeAs[LitSeq[CodeableConcept]]("securityLabel", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Identifier]]("masterIdentifier", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-          cursor.decodeAs[Option[DocumentReference.Context]]("context", Some(None)),
+          cursor.decodeAs[Option[Us_core_documentreference.Context]]("context", Some(None)),
           cursor.decodeAs[LitSeq[DocumentReference.RelatesTo]]("relatesTo", Some(LitSeq.empty)),
           cursor.decodeFromListAs[DocumentReference.Content]("content", None),
           decodeAttributes(cursor)
@@ -251,13 +369,16 @@ object Us_core_documentreference extends CompanionFor[Us_core_documentreference]
 
 /** The document reference profile used in US Core.
   *
-  * Subclass of [[hl7.model.DocumentReference]] (A reference to a document of any kind for any purpose. Provides metadata about
-  * the document so that the document can be discovered and managed. The scope of a document is any seralized object with a
-  * mime-type, so includes formal patient centric documents (CDA), cliical notes, scanned paper, and non-patient specific
-  * documents like policy text.)
+  * Subclass of [[hl7.model.DocumentReference]] (A reference to a document of any kind for any purpose. While the term “document”
+  * implies a more narrow focus, for this resource this "document" encompasses *any* serialized object with a mime-type, it
+  * includes formal patient-centric documents (CDA), clinical notes, scanned paper, non-patient specific documents like policy
+  * text, as well as a photo, video, or audio recording acquired or used in healthcare. The DocumentReference resource provides
+  * metadata about the document so that the document can be discovered and managed. The actual content may be inline base64
+  * encoded data or provided by direct reference.)
   *
   * @constructor
-  *   Inherits all params from parent. Requires the following fields which were optional in the parent: `type`, subject, category.
+  *   Introduces the fields authenticator, masterIdentifier, context. Requires the following fields which were optional in the
+  *   parent: `type`, subject, category.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -348,13 +469,13 @@ class Us_core_documentreference(
     override val docStatus: Option[COMPOSITION_STATUS] = None,
     override val custodian: Option[Reference] = None,
     override val identifier: LitSeq[Identifier] = LitSeq.empty,
-    override val description: Option[String] = None,
+    description: Option[String] = None,
     override val implicitRules: Option[UriStr] = None,
-    override val authenticator: Option[Reference] = None,
+    val authenticator: Option[Reference] = None,
     override val securityLabel: LitSeq[CodeableConcept] = LitSeq.empty,
-    override val masterIdentifier: Option[Identifier] = None,
+    val masterIdentifier: Option[Identifier] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-    override val context: Option[DocumentReference.Context] = None,
+    val context: Option[Us_core_documentreference.Context] = None,
     override val relatesTo: LitSeq[DocumentReference.RelatesTo] = LitSeq.empty,
     content: DocumentReference.Content,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
@@ -376,12 +497,9 @@ class Us_core_documentreference(
       identifier = identifier,
       description = description,
       implicitRules = implicitRules,
-      authenticator = authenticator,
       securityLabel = securityLabel,
-      masterIdentifier = masterIdentifier,
       modifierExtension = modifierExtension,
       content = LitSeq(content),
-      context = context,
       relatesTo = relatesTo,
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "DocumentReference"

@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.hl7.CARE_TEAM_STATUS
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
@@ -192,7 +193,6 @@ object Us_core_careteam extends CompanionFor[Us_core_careteam] {
   def extractManagingOrganization(t: Us_core_careteam): LitSeq[Reference]           = t.managingOrganization
   def extractParticipant(t: Us_core_careteam): NonEmptyLitSeq[CareTeam.Participant] = t.participant.asNonEmpty
   override val thisName: String                                                     = "Us_core_careteam"
-  override val searchParams: Map[String, Us_core_careteam => Seq[Any]]              = CareTeam.searchParams
   def unapply(
       o: Us_core_careteam): Option[(Option[String], Option[Meta], Option[Narrative], Option[String], LitSeq[Annotation], Option[CARE_TEAM_STATUS], Option[Period], Reference, LitSeq[ContactPoint], Option[LANGUAGES], LitSeq[CodeableConcept], LitSeq[Resource], LitSeq[Extension], Option[Reference], LitSeq[Identifier], LitSeq[CodeableConcept], Option[UriStr], LitSeq[Reference], LitSeq[Extension], LitSeq[Reference], NonEmptyLitSeq[CareTeam.Participant])] =
     Some(
@@ -252,10 +252,11 @@ object Us_core_careteam extends CompanionFor[Us_core_careteam] {
   * Team.
   *
   * Subclass of [[hl7.model.CareTeam]] (The Care Team includes all the people and organizations who plan to participate in the
-  * coordination and delivery of care for a patient.)
+  * coordination and delivery of care.)
   *
   * @constructor
-  *   Inherits all params from parent. Requires the following fields which were optional in the parent: subject, participant.
+  *   Introduces the fields encounter, reasonCode, reasonReference. Requires the following fields which were optional in the
+  *   parent: subject, participant.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -333,11 +334,11 @@ class Us_core_careteam(
     override val category: LitSeq[CodeableConcept] = LitSeq.empty,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    override val encounter: Option[Reference] = None,
+    val encounter: Option[Reference] = None,
     override val identifier: LitSeq[Identifier] = LitSeq.empty,
-    override val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
+    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
-    override val reasonReference: LitSeq[Reference] = LitSeq.empty,
+    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     override val managingOrganization: LitSeq[Reference] = LitSeq.empty,
     participant: NonEmptyLitSeq[CareTeam.Participant],
@@ -356,11 +357,8 @@ class Us_core_careteam(
       category = category,
       contained = contained,
       extension = extension,
-      encounter = encounter,
       identifier = identifier,
-      reasonCode = reasonCode,
       implicitRules = implicitRules,
-      reasonReference = reasonReference,
       modifierExtension = modifierExtension,
       managingOrganization = managingOrganization,
       participant = participant.refine,

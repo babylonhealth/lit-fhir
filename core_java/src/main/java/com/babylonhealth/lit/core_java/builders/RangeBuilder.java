@@ -39,7 +39,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface RangeBuilder extends ElementBuilder {
+public interface RangeBuilder extends DataTypeBuilder {
   public Range build();
 
   public static Impl init() {

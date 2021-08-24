@@ -79,8 +79,8 @@ object Period extends CompanionFor[Period] {
 
 /** Base StructureDefinition for Period Type: A time period defined by a start and end date and optionally time.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields end, start.
@@ -106,6 +106,6 @@ class Period(
     val start: Option[FHIRDateTime] = None,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Period"
 }

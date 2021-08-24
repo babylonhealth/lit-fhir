@@ -94,8 +94,8 @@ object Reference extends CompanionFor[Reference] {
 
 /** Base StructureDefinition for Reference Type: A reference from one resource to another.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields `type`, display, reference, identifier.
@@ -136,6 +136,6 @@ class Reference(
     val reference: Option[String] = None,
     val identifier: Option[Identifier] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Reference"
 }

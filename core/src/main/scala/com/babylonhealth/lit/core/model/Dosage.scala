@@ -268,8 +268,8 @@ object Dosage extends CompanionFor[Dosage] {
 
 /** Base StructureDefinition for Dosage Type: Indicates how the medication is/was taken or should be taken by the patient.
   *
-  * Subclass of [[core.model.BackboneElement]] (Base StructureDefinition for BackboneElement Type: Base definition for all
-  * elements that are defined inside a resource - but not those in a data type.)
+  * Subclass of [[core.model.BackboneType]] (Base StructureDefinition for BackboneType Type: Base definition for the few data
+  * types that are allowed to carry modifier extensions.)
   *
   * @constructor
   *   Introduces the fields text, site, route, timing, method, sequence, asNeeded, maxDosePerPeriod, patientInstruction,
@@ -339,7 +339,7 @@ class Dosage(
     val doseAndRate: LitSeq[Dosage.DoseAndRate] = LitSeq.empty,
     val maxDosePerAdministration: Option[Quantity] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends BackboneElement(
+) extends BackboneType(
       id = id,
       extension = extension,
       modifierExtension = modifierExtension,

@@ -87,8 +87,8 @@ object Contributor extends CompanionFor[Contributor] {
 /** Base StructureDefinition for Contributor Type: A contributor to the content of a knowledge asset, including authors, editors,
   * reviewers, and endorsers.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields `type`, name, contact.
@@ -115,6 +115,6 @@ class Contributor(
     val contact: LitSeq[ContactDetail] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Contributor"
 }

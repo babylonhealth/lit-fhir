@@ -1,0 +1,14 @@
+{
+  "name": "hl7.fhir.r5.examples",
+  "version": "4.6.0",
+  "fhirVersions" : [ "4.6.0" ],
+  "type": "fhir.examples",
+  "license": "CC0-1.0",
+  "canonical": "http://hl7.org/fhir",
+  "tools-version" : 3,
+  "homepage": "http://hl7.org/fhir/2021May",
+  "title": "FHIR R5 package : Examples",
+  "description": "Example resources in the R5 version of the FHIR standard (Ballot #1)",
+  "author": "HL7 Inc",
+  "url": "http://hl7.org/fhir/2021May"
+}

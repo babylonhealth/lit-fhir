@@ -1,5 +1,68 @@
 [
   {
+    "name": "_text",
+    "expression": null,
+    "base": [
+      "DomainResource"
+    ]
+  },
+  {
+    "name": "_content",
+    "expression": null,
+    "base": [
+      "Resource"
+    ]
+  },
+  {
+    "name": "_id",
+    "expression": "Resource.id",
+    "base": [
+      "Resource"
+    ]
+  },
+  {
+    "name": "_lastUpdated",
+    "expression": "Resource.meta.lastUpdated",
+    "base": [
+      "Resource"
+    ]
+  },
+  {
+    "name": "_profile",
+    "expression": "Resource.meta.profile",
+    "base": [
+      "Resource"
+    ]
+  },
+  {
+    "name": "_query",
+    "expression": null,
+    "base": [
+      "Resource"
+    ]
+  },
+  {
+    "name": "_security",
+    "expression": "Resource.meta.security",
+    "base": [
+      "Resource"
+    ]
+  },
+  {
+    "name": "_source",
+    "expression": "Resource.meta.source",
+    "base": [
+      "Resource"
+    ]
+  },
+  {
+    "name": "_tag",
+    "expression": "Resource.meta.tag",
+    "base": [
+      "Resource"
+    ]
+  },
+  {
     "name": "identifier",
     "expression": "Account.identifier",
     "base": [
@@ -63,6 +126,13 @@
     ]
   },
   {
+    "name": "context",
+    "expression": "(ActivityDefinition.useContext.value as CodeableConcept)",
+    "base": [
+      "ActivityDefinition"
+    ]
+  },
+  {
     "name": "context-quantity",
     "expression": "(ActivityDefinition.useContext.value as Quantity) | (ActivityDefinition.useContext.value as Range)",
     "base": [
@@ -70,29 +140,8 @@
     ]
   },
   {
-    "name": "context-type-quantity",
-    "expression": "ActivityDefinition.useContext",
-    "base": [
-      "ActivityDefinition"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "ActivityDefinition.useContext",
-    "base": [
-      "ActivityDefinition"
-    ]
-  },
-  {
     "name": "context-type",
     "expression": "ActivityDefinition.useContext.code",
-    "base": [
-      "ActivityDefinition"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(ActivityDefinition.useContext.value as CodeableConcept)",
     "base": [
       "ActivityDefinition"
     ]
@@ -210,6 +259,76 @@
     ]
   },
   {
+    "name": "context-type-quantity",
+    "expression": "ActivityDefinition.useContext",
+    "base": [
+      "ActivityDefinition"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "ActivityDefinition.useContext",
+    "base": [
+      "ActivityDefinition"
+    ]
+  },
+  {
+    "name": "device",
+    "expression": "AdministrableProductDefinition.device",
+    "base": [
+      "AdministrableProductDefinition"
+    ]
+  },
+  {
+    "name": "dose-form",
+    "expression": "AdministrableProductDefinition.administrableDoseForm",
+    "base": [
+      "AdministrableProductDefinition"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "AdministrableProductDefinition.identifier",
+    "base": [
+      "AdministrableProductDefinition"
+    ]
+  },
+  {
+    "name": "ingredient",
+    "expression": "AdministrableProductDefinition.ingredient",
+    "base": [
+      "AdministrableProductDefinition"
+    ]
+  },
+  {
+    "name": "manufactured-item",
+    "expression": "AdministrableProductDefinition.producedFrom",
+    "base": [
+      "AdministrableProductDefinition"
+    ]
+  },
+  {
+    "name": "route",
+    "expression": "AdministrableProductDefinition.routeOfAdministration.code",
+    "base": [
+      "AdministrableProductDefinition"
+    ]
+  },
+  {
+    "name": "subject",
+    "expression": "AdministrableProductDefinition.subject",
+    "base": [
+      "AdministrableProductDefinition"
+    ]
+  },
+  {
+    "name": "target-species",
+    "expression": "AdministrableProductDefinition.routeOfAdministration.targetSpecies.code",
+    "base": [
+      "AdministrableProductDefinition"
+    ]
+  },
+  {
     "name": "actuality",
     "expression": "AdverseEvent.actuality",
     "base": [
@@ -224,15 +343,22 @@
     ]
   },
   {
-    "name": "date",
-    "expression": "AdverseEvent.date",
+    "name": "code",
+    "expression": "AdverseEvent.code",
     "base": [
       "AdverseEvent"
     ]
   },
   {
-    "name": "event",
-    "expression": "AdverseEvent.event",
+    "name": "date",
+    "expression": "AdverseEvent.occurrence",
+    "base": [
+      "AdverseEvent"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "AdverseEvent.identifier",
     "base": [
       "AdverseEvent"
     ]
@@ -240,6 +366,13 @@
   {
     "name": "location",
     "expression": "AdverseEvent.location",
+    "base": [
+      "AdverseEvent"
+    ]
+  },
+  {
+    "name": "patient",
+    "expression": "AdverseEvent.subject",
     "base": [
       "AdverseEvent"
     ]
@@ -266,8 +399,8 @@
     ]
   },
   {
-    "name": "severity",
-    "expression": "AdverseEvent.severity",
+    "name": "status",
+    "expression": "AdverseEvent.status",
     "base": [
       "AdverseEvent"
     ]
@@ -288,7 +421,7 @@
   },
   {
     "name": "substance",
-    "expression": "AdverseEvent.suspectEntity.instance",
+    "expression": "(AdverseEvent.suspectEntity.instance as Reference)",
     "base": [
       "AdverseEvent"
     ]
@@ -315,10 +448,89 @@
     ]
   },
   {
+    "name": "code",
+    "expression": "AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | DeviceRequest.code.concept | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | MedicationAdministration.medication.concept | MedicationDispense.medication.concept | MedicationRequest.medication.concept | MedicationUsage.medication.concept | Observation.code | Procedure.code | ServiceRequest.code",
+    "base": [
+      "AllergyIntolerance",
+      "Condition",
+      "DeviceRequest",
+      "DiagnosticReport",
+      "FamilyMemberHistory",
+      "List",
+      "Medication",
+      "MedicationAdministration",
+      "MedicationDispense",
+      "MedicationRequest",
+      "MedicationUsage",
+      "Observation",
+      "Procedure",
+      "ServiceRequest"
+    ]
+  },
+  {
     "name": "criticality",
     "expression": "AllergyIntolerance.criticality",
     "base": [
       "AllergyIntolerance"
+    ]
+  },
+  {
+    "name": "date",
+    "expression": "AllergyIntolerance.recordedDate | CarePlan.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | (Immunization.occurrence as dateTime) | List.date | Observation.effective | Procedure.occurrence | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn",
+    "base": [
+      "AllergyIntolerance",
+      "CarePlan",
+      "CareTeam",
+      "ClinicalImpression",
+      "Composition",
+      "Consent",
+      "DiagnosticReport",
+      "Encounter",
+      "EpisodeOfCare",
+      "FamilyMemberHistory",
+      "Flag",
+      "Immunization",
+      "List",
+      "Observation",
+      "Procedure",
+      "RiskAssessment",
+      "SupplyRequest"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.content.identifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationUsage.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier",
+    "base": [
+      "AllergyIntolerance",
+      "CarePlan",
+      "CareTeam",
+      "Composition",
+      "Condition",
+      "Consent",
+      "DetectedIssue",
+      "DeviceRequest",
+      "DiagnosticReport",
+      "DocumentManifest",
+      "DocumentReference",
+      "Encounter",
+      "EpisodeOfCare",
+      "FamilyMemberHistory",
+      "Goal",
+      "ImagingStudy",
+      "Immunization",
+      "List",
+      "MedicationAdministration",
+      "MedicationDispense",
+      "MedicationRequest",
+      "MedicationUsage",
+      "NutritionOrder",
+      "Observation",
+      "Procedure",
+      "RiskAssessment",
+      "ServiceRequest",
+      "SupplyDelivery",
+      "SupplyRequest",
+      "VisionPrescription"
     ]
   },
   {
@@ -329,17 +541,55 @@
     ]
   },
   {
-    "name": "manifestation",
-    "expression": "AllergyIntolerance.reaction.manifestation",
+    "name": "manifestation-code",
+    "expression": "AllergyIntolerance.reaction.manifestation.concept",
     "base": [
       "AllergyIntolerance"
     ]
   },
   {
-    "name": "onset",
-    "expression": "AllergyIntolerance.reaction.onset",
+    "name": "manifestation-reference",
+    "expression": "AllergyIntolerance.reaction.manifestation.reference",
     "base": [
       "AllergyIntolerance"
+    ]
+  },
+  {
+    "name": "patient",
+    "expression": "AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.subject.where(resolve() is Patient) | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUsage.subject | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationUsage.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient",
+    "base": [
+      "AllergyIntolerance",
+      "CarePlan",
+      "CareTeam",
+      "ClinicalImpression",
+      "Composition",
+      "Condition",
+      "Consent",
+      "DetectedIssue",
+      "DeviceRequest",
+      "DeviceUsage",
+      "DiagnosticReport",
+      "DocumentManifest",
+      "DocumentReference",
+      "Encounter",
+      "EpisodeOfCare",
+      "FamilyMemberHistory",
+      "Flag",
+      "Goal",
+      "ImagingStudy",
+      "Immunization",
+      "List",
+      "MedicationAdministration",
+      "MedicationDispense",
+      "MedicationRequest",
+      "MedicationUsage",
+      "NutritionOrder",
+      "Observation",
+      "Procedure",
+      "RiskAssessment",
+      "ServiceRequest",
+      "SupplyDelivery",
+      "VisionPrescription"
     ]
   },
   {
@@ -361,6 +611,18 @@
     "expression": "AllergyIntolerance.reaction.severity",
     "base": [
       "AllergyIntolerance"
+    ]
+  },
+  {
+    "name": "type",
+    "expression": "AllergyIntolerance.type | Composition.type | DocumentManifest.type | DocumentReference.type | Encounter.type | EpisodeOfCare.type",
+    "base": [
+      "AllergyIntolerance",
+      "Composition",
+      "DocumentManifest",
+      "DocumentReference",
+      "Encounter",
+      "EpisodeOfCare"
     ]
   },
   {
@@ -435,14 +697,14 @@
   },
   {
     "name": "reason-code",
-    "expression": "Appointment.reasonCode",
+    "expression": "Appointment.reason.concept",
     "base": [
       "Appointment"
     ]
   },
   {
     "name": "reason-reference",
-    "expression": "Appointment.reasonReference",
+    "expression": "Appointment.reason.reference",
     "base": [
       "Appointment"
     ]
@@ -553,6 +815,13 @@
     ]
   },
   {
+    "name": "agent",
+    "expression": "AuditEvent.agent.who",
+    "base": [
+      "AuditEvent"
+    ]
+  },
+  {
     "name": "agent-name",
     "expression": "AuditEvent.agent.name",
     "base": [
@@ -567,13 +836,6 @@
     ]
   },
   {
-    "name": "agent",
-    "expression": "AuditEvent.agent.who",
-    "base": [
-      "AuditEvent"
-    ]
-  },
-  {
     "name": "altid",
     "expression": "AuditEvent.agent.altId",
     "base": [
@@ -581,8 +843,29 @@
     ]
   },
   {
+    "name": "based-on",
+    "expression": "AuditEvent.basedOn",
+    "base": [
+      "AuditEvent"
+    ]
+  },
+  {
     "name": "date",
     "expression": "AuditEvent.recorded",
+    "base": [
+      "AuditEvent"
+    ]
+  },
+  {
+    "name": "encounter",
+    "expression": "AuditEvent.encounter",
+    "base": [
+      "AuditEvent"
+    ]
+  },
+  {
+    "name": "entity",
+    "expression": "AuditEvent.entity.what",
     "base": [
       "AuditEvent"
     ]
@@ -609,13 +892,6 @@
     ]
   },
   {
-    "name": "entity",
-    "expression": "AuditEvent.entity.what",
-    "base": [
-      "AuditEvent"
-    ]
-  },
-  {
     "name": "outcome",
     "expression": "AuditEvent.outcome",
     "base": [
@@ -632,6 +908,13 @@
   {
     "name": "policy",
     "expression": "AuditEvent.agent.policy",
+    "base": [
+      "AuditEvent"
+    ]
+  },
+  {
+    "name": "purpose",
+    "expression": "AuditEvent.purposeOfEvent | AuditEvent.agent.purposeOfUse",
     "base": [
       "AuditEvent"
     ]
@@ -770,6 +1053,106 @@
     ]
   },
   {
+    "name": "context",
+    "expression": "(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)",
+    "base": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "CompartmentDefinition",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
+    ]
+  },
+  {
+    "name": "context-quantity",
+    "expression": "(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)",
+    "base": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "CompartmentDefinition",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
+    ]
+  },
+  {
+    "name": "context-type",
+    "expression": "CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code",
+    "base": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "CompartmentDefinition",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
+    ]
+  },
+  {
+    "name": "date",
+    "expression": "CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date",
+    "base": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "CompartmentDefinition",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
+    ]
+  },
+  {
+    "name": "description",
+    "expression": "CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description",
+    "base": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "CompartmentDefinition",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
+    ]
+  },
+  {
     "name": "fhirversion",
     "expression": "CapabilityStatement.version",
     "base": [
@@ -791,6 +1174,25 @@
     ]
   },
   {
+    "name": "jurisdiction",
+    "expression": "CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction",
+    "base": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
+    ]
+  },
+  {
     "name": "mode",
     "expression": "CapabilityStatement.rest.mode",
     "base": [
@@ -798,15 +1200,55 @@
     ]
   },
   {
-    "name": "resource-profile",
-    "expression": "CapabilityStatement.rest.resource.profile",
+    "name": "name",
+    "expression": "CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name",
     "base": [
-      "CapabilityStatement"
+      "CapabilityStatement",
+      "CodeSystem",
+      "CompartmentDefinition",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
+    ]
+  },
+  {
+    "name": "publisher",
+    "expression": "CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher",
+    "base": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "CompartmentDefinition",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
     ]
   },
   {
     "name": "resource",
     "expression": "CapabilityStatement.rest.resource.type",
+    "base": [
+      "CapabilityStatement"
+    ]
+  },
+  {
+    "name": "resource-profile",
+    "expression": "CapabilityStatement.rest.resource.profile",
     "base": [
       "CapabilityStatement"
     ]
@@ -826,6 +1268,26 @@
     ]
   },
   {
+    "name": "status",
+    "expression": "CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status",
+    "base": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "CompartmentDefinition",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
+    ]
+  },
+  {
     "name": "supported-profile",
     "expression": "CapabilityStatement.rest.resource.supportedProfile",
     "base": [
@@ -833,22 +1295,279 @@
     ]
   },
   {
-    "name": "activity-code",
-    "expression": "CarePlan.activity.detail.code",
+    "name": "title",
+    "expression": "CapabilityStatement.title | CodeSystem.title | ConceptMap.title | ImplementationGuide.title | MessageDefinition.title | OperationDefinition.title | StructureDefinition.title | StructureMap.title | TerminologyCapabilities.title | ValueSet.title",
     "base": [
-      "CarePlan"
+      "CapabilityStatement",
+      "CodeSystem",
+      "ConceptMap",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "OperationDefinition",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
     ]
   },
   {
-    "name": "activity-date",
-    "expression": "CarePlan.activity.detail.scheduled",
+    "name": "url",
+    "expression": "CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | NamingSystem.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url",
+    "base": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "CompartmentDefinition",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
+    ]
+  },
+  {
+    "name": "version",
+    "expression": "CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | NamingSystem.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version",
+    "base": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "CompartmentDefinition",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
+    ]
+  },
+  {
+    "name": "context-type-quantity",
+    "expression": "CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext",
+    "base": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "CompartmentDefinition",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext",
+    "base": [
+      "CapabilityStatement",
+      "CodeSystem",
+      "CompartmentDefinition",
+      "ConceptMap",
+      "GraphDefinition",
+      "ImplementationGuide",
+      "MessageDefinition",
+      "NamingSystem",
+      "OperationDefinition",
+      "SearchParameter",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
+    ]
+  },
+  {
+    "name": "context",
+    "expression": "(CapabilityStatement2.useContext.value as CodeableConcept)",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "context-quantity",
+    "expression": "(CapabilityStatement2.useContext.value as Quantity) | (CapabilityStatement2.useContext.value as Range)",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "context-type",
+    "expression": "CapabilityStatement2.useContext.code",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "date",
+    "expression": "CapabilityStatement2.date",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "description",
+    "expression": "CapabilityStatement2.description",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "fhirversion",
+    "expression": "CapabilityStatement2.version",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "format",
+    "expression": "CapabilityStatement2.format",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "guide",
+    "expression": "CapabilityStatement2.implementationGuide",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "jurisdiction",
+    "expression": "CapabilityStatement2.jurisdiction",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "mode",
+    "expression": "CapabilityStatement2.rest.mode",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "name",
+    "expression": "CapabilityStatement2.name",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "publisher",
+    "expression": "CapabilityStatement2.publisher",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "resource",
+    "expression": "CapabilityStatement2.rest.resource.type",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "resource-profile",
+    "expression": "CapabilityStatement2.rest.resource.profile",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "software",
+    "expression": "CapabilityStatement2.software.name",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "CapabilityStatement2.status",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "supported-profile",
+    "expression": "CapabilityStatement2.rest.resource.supportedProfile",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "title",
+    "expression": "CapabilityStatement2.title",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "url",
+    "expression": "CapabilityStatement2.url",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "version",
+    "expression": "CapabilityStatement2.version",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "context-type-quantity",
+    "expression": "CapabilityStatement2.useContext",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "CapabilityStatement2.useContext",
+    "base": [
+      "CapabilityStatement2"
+    ]
+  },
+  {
+    "name": "activity-code",
+    "expression": "CarePlan.activity.plannedActivityDetail.code",
     "base": [
       "CarePlan"
     ]
   },
   {
     "name": "activity-reference",
-    "expression": "CarePlan.activity.reference",
+    "expression": "CarePlan.activity.plannedActivityReference",
+    "base": [
+      "CarePlan"
+    ]
+  },
+  {
+    "name": "activity-scheduled-date",
+    "expression": "CarePlan.activity.plannedActivityDetail.scheduled.as(Timing) | CarePlan.activity.plannedActivityDetail.scheduled.as(Period)",
+    "base": [
+      "CarePlan"
+    ]
+  },
+  {
+    "name": "activity-scheduled-string",
+    "expression": "CarePlan.activity.plannedActivityDetail.scheduled.as(string)",
     "base": [
       "CarePlan"
     ]
@@ -876,7 +1595,7 @@
   },
   {
     "name": "condition",
-    "expression": "CarePlan.addresses",
+    "expression": "CarePlan.addresses.reference",
     "base": [
       "CarePlan"
     ]
@@ -925,7 +1644,7 @@
   },
   {
     "name": "performer",
-    "expression": "CarePlan.activity.detail.performer",
+    "expression": "CarePlan.activity.plannedActivityDetail.performer",
     "base": [
       "CarePlan"
     ]
@@ -959,8 +1678,8 @@
     ]
   },
   {
-    "name": "encounter",
-    "expression": "CareTeam.encounter",
+    "name": "name",
+    "expression": "CareTeam.name | CareTeam.extension('http://hl7.org/fhir/StructureDefinition/careteam-alias')",
     "base": [
       "CareTeam"
     ]
@@ -984,6 +1703,55 @@
     "expression": "CareTeam.subject",
     "base": [
       "CareTeam"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "CatalogEntry.identifier",
+    "base": [
+      "CatalogEntry"
+    ]
+  },
+  {
+    "name": "name",
+    "expression": "CatalogEntry.name",
+    "base": [
+      "CatalogEntry"
+    ]
+  },
+  {
+    "name": "orderable",
+    "expression": "CatalogEntry.orderable",
+    "base": [
+      "CatalogEntry"
+    ]
+  },
+  {
+    "name": "referenced-item",
+    "expression": "CatalogEntry.referencedItem",
+    "base": [
+      "CatalogEntry"
+    ]
+  },
+  {
+    "name": "related-entry",
+    "expression": "CatalogEntry.relatedEntry.target",
+    "base": [
+      "CatalogEntry"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "CatalogEntry.status",
+    "base": [
+      "CatalogEntry"
+    ]
+  },
+  {
+    "name": "type",
+    "expression": "CatalogEntry.type",
+    "base": [
+      "CatalogEntry"
     ]
   },
   {
@@ -1106,6 +1874,13 @@
     ]
   },
   {
+    "name": "context",
+    "expression": "(ChargeItemDefinition.useContext.value as CodeableConcept)",
+    "base": [
+      "ChargeItemDefinition"
+    ]
+  },
+  {
     "name": "context-quantity",
     "expression": "(ChargeItemDefinition.useContext.value as Quantity) | (ChargeItemDefinition.useContext.value as Range)",
     "base": [
@@ -1113,29 +1888,8 @@
     ]
   },
   {
-    "name": "context-type-quantity",
-    "expression": "ChargeItemDefinition.useContext",
-    "base": [
-      "ChargeItemDefinition"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "ChargeItemDefinition.useContext",
-    "base": [
-      "ChargeItemDefinition"
-    ]
-  },
-  {
     "name": "context-type",
     "expression": "ChargeItemDefinition.useContext.code",
-    "base": [
-      "ChargeItemDefinition"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(ChargeItemDefinition.useContext.value as CodeableConcept)",
     "base": [
       "ChargeItemDefinition"
     ]
@@ -1208,6 +1962,132 @@
     "expression": "ChargeItemDefinition.version",
     "base": [
       "ChargeItemDefinition"
+    ]
+  },
+  {
+    "name": "context-type-quantity",
+    "expression": "ChargeItemDefinition.useContext",
+    "base": [
+      "ChargeItemDefinition"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "ChargeItemDefinition.useContext",
+    "base": [
+      "ChargeItemDefinition"
+    ]
+  },
+  {
+    "name": "context",
+    "expression": "(Citation.useContext.value as CodeableConcept)",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "context-quantity",
+    "expression": "(Citation.useContext.value as Quantity) | (Citation.useContext.value as Range)",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "context-type",
+    "expression": "Citation.useContext.code",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "date",
+    "expression": "Citation.date",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "description",
+    "expression": "Citation.description",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "effective",
+    "expression": "Citation.effectivePeriod",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "Citation.identifier",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "jurisdiction",
+    "expression": "Citation.jurisdiction",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "name",
+    "expression": "Citation.name",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "publisher",
+    "expression": "Citation.publisher",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "Citation.status",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "title",
+    "expression": "Citation.title",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "url",
+    "expression": "Citation.url",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "version",
+    "expression": "Citation.version",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "context-type-quantity",
+    "expression": "Citation.useContext",
+    "base": [
+      "Citation"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "Citation.useContext",
+    "base": [
+      "Citation"
     ]
   },
   {
@@ -1407,13 +2287,6 @@
     ]
   },
   {
-    "name": "assessor",
-    "expression": "ClinicalImpression.assessor",
-    "base": [
-      "ClinicalImpression"
-    ]
-  },
-  {
     "name": "encounter",
     "expression": "ClinicalImpression.encounter",
     "base": [
@@ -1422,14 +2295,14 @@
   },
   {
     "name": "finding-code",
-    "expression": "ClinicalImpression.finding.itemCodeableConcept",
+    "expression": "ClinicalImpression.finding.item.concept",
     "base": [
       "ClinicalImpression"
     ]
   },
   {
     "name": "finding-ref",
-    "expression": "ClinicalImpression.finding.itemReference",
+    "expression": "ClinicalImpression.finding.item.reference",
     "base": [
       "ClinicalImpression"
     ]
@@ -1442,8 +2315,8 @@
     ]
   },
   {
-    "name": "investigation",
-    "expression": "ClinicalImpression.investigation.item",
+    "name": "performer",
+    "expression": "ClinicalImpression.performer",
     "base": [
       "ClinicalImpression"
     ]
@@ -1484,6 +2357,83 @@
     ]
   },
   {
+    "name": "contraindication",
+    "expression": "ClinicalUseIssue.contraindication.diseaseSymptomProcedure",
+    "base": [
+      "ClinicalUseIssue"
+    ]
+  },
+  {
+    "name": "contraindication-reference",
+    "expression": "ClinicalUseIssue.contraindication.diseaseSymptomProcedure",
+    "base": [
+      "ClinicalUseIssue"
+    ]
+  },
+  {
+    "name": "effect",
+    "expression": "ClinicalUseIssue.undesirableEffect.symptomConditionEffect",
+    "base": [
+      "ClinicalUseIssue"
+    ]
+  },
+  {
+    "name": "effect-reference",
+    "expression": "ClinicalUseIssue.undesirableEffect.symptomConditionEffect",
+    "base": [
+      "ClinicalUseIssue"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "ClinicalUseIssue.identifier",
+    "base": [
+      "ClinicalUseIssue"
+    ]
+  },
+  {
+    "name": "indication",
+    "expression": "ClinicalUseIssue.indication.diseaseSymptomProcedure",
+    "base": [
+      "ClinicalUseIssue"
+    ]
+  },
+  {
+    "name": "indication-reference",
+    "expression": "ClinicalUseIssue.indication.diseaseSymptomProcedure",
+    "base": [
+      "ClinicalUseIssue"
+    ]
+  },
+  {
+    "name": "interaction",
+    "expression": "ClinicalUseIssue.interaction.type",
+    "base": [
+      "ClinicalUseIssue"
+    ]
+  },
+  {
+    "name": "product",
+    "expression": "ClinicalUseIssue.subject.where(resolve() is MedicinalProductDefinition)",
+    "base": [
+      "ClinicalUseIssue"
+    ]
+  },
+  {
+    "name": "subject",
+    "expression": "ClinicalUseIssue.subject",
+    "base": [
+      "ClinicalUseIssue"
+    ]
+  },
+  {
+    "name": "type",
+    "expression": "ClinicalUseIssue.type",
+    "base": [
+      "ClinicalUseIssue"
+    ]
+  },
+  {
     "name": "code",
     "expression": "CodeSystem.concept.code",
     "base": [
@@ -1495,6 +2445,19 @@
     "expression": "CodeSystem.content",
     "base": [
       "CodeSystem"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "CodeSystem.identifier | ConceptMap.identifier | MessageDefinition.identifier | StructureDefinition.identifier | StructureMap.identifier | TerminologyCapabilities.identifier | ValueSet.identifier",
+    "base": [
+      "CodeSystem",
+      "ConceptMap",
+      "MessageDefinition",
+      "StructureDefinition",
+      "StructureMap",
+      "TerminologyCapabilities",
+      "ValueSet"
     ]
   },
   {
@@ -1624,6 +2587,13 @@
     ]
   },
   {
+    "name": "topic",
+    "expression": "Communication.topic",
+    "base": [
+      "Communication"
+    ]
+  },
+  {
     "name": "authored",
     "expression": "CommunicationRequest.authoredOn",
     "base": [
@@ -1666,6 +2636,13 @@
     ]
   },
   {
+    "name": "information-provider",
+    "expression": "CommunicationRequest.informationProvider",
+    "base": [
+      "CommunicationRequest"
+    ]
+  },
+  {
     "name": "medium",
     "expression": "CommunicationRequest.medium",
     "base": [
@@ -1674,7 +2651,7 @@
   },
   {
     "name": "occurrence",
-    "expression": "(CommunicationRequest.occurrence as dateTime)",
+    "expression": "CommunicationRequest.occurrence.as(dateTime) | CommunicationRequest.occurrence.as(Period)",
     "base": [
       "CommunicationRequest"
     ]
@@ -1710,13 +2687,6 @@
   {
     "name": "requester",
     "expression": "CommunicationRequest.requester",
-    "base": [
-      "CommunicationRequest"
-    ]
-  },
-  {
-    "name": "sender",
-    "expression": "CommunicationRequest.sender",
     "base": [
       "CommunicationRequest"
     ]
@@ -1782,6 +2752,24 @@
     "expression": "Composition.event.code",
     "base": [
       "Composition"
+    ]
+  },
+  {
+    "name": "encounter",
+    "expression": "Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.encounter | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter",
+    "base": [
+      "Composition",
+      "DeviceRequest",
+      "DiagnosticReport",
+      "DocumentReference",
+      "Flag",
+      "List",
+      "NutritionOrder",
+      "Observation",
+      "Procedure",
+      "RiskAssessment",
+      "ServiceRequest",
+      "VisionPrescription"
     ]
   },
   {
@@ -1862,6 +2850,13 @@
     ]
   },
   {
+    "name": "source",
+    "expression": "(ConceptMap.source as canonical)",
+    "base": [
+      "ConceptMap"
+    ]
+  },
+  {
     "name": "source-code",
     "expression": "ConceptMap.group.element.code",
     "base": [
@@ -1883,8 +2878,8 @@
     ]
   },
   {
-    "name": "source",
-    "expression": "(ConceptMap.source as canonical)",
+    "name": "target",
+    "expression": "(ConceptMap.target as canonical)",
     "base": [
       "ConceptMap"
     ]
@@ -1906,13 +2901,6 @@
   {
     "name": "target-uri",
     "expression": "(ConceptMap.target as uri)",
-    "base": [
-      "ConceptMap"
-    ]
-  },
-  {
-    "name": "target",
-    "expression": "(ConceptMap.target as canonical)",
     "base": [
       "ConceptMap"
     ]
@@ -1974,15 +2962,15 @@
     ]
   },
   {
-    "name": "evidence-detail",
-    "expression": "Condition.evidence.detail",
+    "name": "evidence",
+    "expression": "Condition.evidence.code",
     "base": [
       "Condition"
     ]
   },
   {
-    "name": "evidence",
-    "expression": "Condition.evidence.code",
+    "name": "evidence-detail",
+    "expression": "Condition.evidence.detail",
     "base": [
       "Condition"
     ]
@@ -2044,6 +3032,111 @@
     ]
   },
   {
+    "name": "context",
+    "expression": "(ConditionDefinition.useContext.value as CodeableConcept)",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "context-quantity",
+    "expression": "(ConditionDefinition.useContext.value as Quantity) | (ConditionDefinition.useContext.value as Range)",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "context-type",
+    "expression": "ConditionDefinition.useContext.code",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "date",
+    "expression": "ConditionDefinition.date",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "description",
+    "expression": "ConditionDefinition.description",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "ConditionDefinition.identifier",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "jurisdiction",
+    "expression": "ConditionDefinition.jurisdiction",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "name",
+    "expression": "ConditionDefinition.name",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "publisher",
+    "expression": "ConditionDefinition.publisher",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "ConditionDefinition.status",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "title",
+    "expression": "ConditionDefinition.title",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "url",
+    "expression": "ConditionDefinition.url",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "version",
+    "expression": "ConditionDefinition.version",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "context-type-quantity",
+    "expression": "ConditionDefinition.useContext",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "ConditionDefinition.useContext",
+    "base": [
+      "ConditionDefinition"
+    ]
+  },
+  {
     "name": "action",
     "expression": "Consent.provision.action",
     "base": [
@@ -2072,6 +3165,13 @@
     ]
   },
   {
+    "name": "controller",
+    "expression": "Consent.controller",
+    "base": [
+      "Consent"
+    ]
+  },
+  {
     "name": "data",
     "expression": "Consent.provision.data.reference",
     "base": [
@@ -2079,8 +3179,8 @@
     ]
   },
   {
-    "name": "organization",
-    "expression": "Consent.organization",
+    "name": "manager",
+    "expression": "Consent.manager",
     "base": [
       "Consent"
     ]
@@ -2088,6 +3188,13 @@
   {
     "name": "period",
     "expression": "Consent.provision.period",
+    "base": [
+      "Consent"
+    ]
+  },
+  {
+    "name": "policy-uri",
+    "expression": "Consent.policy.uri",
     "base": [
       "Consent"
     ]
@@ -2115,7 +3222,7 @@
   },
   {
     "name": "source-reference",
-    "expression": "Consent.source",
+    "expression": "Consent.sourceReference",
     "base": [
       "Consent"
     ]
@@ -2123,6 +3230,27 @@
   {
     "name": "status",
     "expression": "Consent.status",
+    "base": [
+      "Consent"
+    ]
+  },
+  {
+    "name": "subject",
+    "expression": "Consent.subject",
+    "base": [
+      "Consent"
+    ]
+  },
+  {
+    "name": "verified",
+    "expression": "Consent.verification.verified",
+    "base": [
+      "Consent"
+    ]
+  },
+  {
+    "name": "verified-date",
+    "expression": "Consent.verification.verificationDate",
     "base": [
       "Consent"
     ]
@@ -2415,8 +3543,29 @@
     ]
   },
   {
+    "name": "status",
+    "expression": "DetectedIssue.status",
+    "base": [
+      "DetectedIssue"
+    ]
+  },
+  {
+    "name": "definition",
+    "expression": "Device.definition",
+    "base": [
+      "Device"
+    ]
+  },
+  {
     "name": "device-name",
     "expression": "Device.deviceName.name | Device.type.coding.display | Device.type.text",
+    "base": [
+      "Device"
+    ]
+  },
+  {
+    "name": "expiration-date",
+    "expression": "Device.expirationDate",
     "base": [
       "Device"
     ]
@@ -2431,6 +3580,20 @@
   {
     "name": "location",
     "expression": "Device.location",
+    "base": [
+      "Device"
+    ]
+  },
+  {
+    "name": "lot-number",
+    "expression": "Device.lotNumber",
+    "base": [
+      "Device"
+    ]
+  },
+  {
+    "name": "manufacture-date",
+    "expression": "Device.manufactureDate",
     "base": [
       "Device"
     ]
@@ -2457,8 +3620,22 @@
     ]
   },
   {
+    "name": "parent",
+    "expression": "Device.parent",
+    "base": [
+      "Device"
+    ]
+  },
+  {
     "name": "patient",
     "expression": "Device.patient",
+    "base": [
+      "Device"
+    ]
+  },
+  {
+    "name": "serial-number",
+    "expression": "Device.serialNumber",
     "base": [
       "Device"
     ]
@@ -2494,6 +3671,13 @@
   {
     "name": "url",
     "expression": "Device.url",
+    "base": [
+      "Device"
+    ]
+  },
+  {
+    "name": "version",
+    "expression": "Device.version.value",
     "base": [
       "Device"
     ]
@@ -2570,7 +3754,7 @@
   },
   {
     "name": "device",
-    "expression": "(DeviceRequest.code as Reference)",
+    "expression": "DeviceRequest.code.reference",
     "base": [
       "DeviceRequest"
     ]
@@ -2654,23 +3838,23 @@
   },
   {
     "name": "device",
-    "expression": "DeviceUseStatement.device",
+    "expression": "DeviceUsage.device.concept",
     "base": [
-      "DeviceUseStatement"
+      "DeviceUsage"
     ]
   },
   {
     "name": "identifier",
-    "expression": "DeviceUseStatement.identifier",
+    "expression": "DeviceUsage.identifier",
     "base": [
-      "DeviceUseStatement"
+      "DeviceUsage"
     ]
   },
   {
     "name": "subject",
-    "expression": "DeviceUseStatement.subject",
+    "expression": "DeviceUsage.subject",
     "base": [
-      "DeviceUseStatement"
+      "DeviceUsage"
     ]
   },
   {
@@ -2821,8 +4005,8 @@
     ]
   },
   {
-    "name": "authenticator",
-    "expression": "DocumentReference.authenticator",
+    "name": "attester",
+    "expression": "DocumentReference.attester.party",
     "base": [
       "DocumentReference"
     ]
@@ -2830,6 +4014,13 @@
   {
     "name": "author",
     "expression": "DocumentReference.author",
+    "base": [
+      "DocumentReference"
+    ]
+  },
+  {
+    "name": "based-on",
+    "expression": "DocumentReference.basedOn",
     "base": [
       "DocumentReference"
     ]
@@ -2844,6 +4035,13 @@
   {
     "name": "contenttype",
     "expression": "DocumentReference.content.attachment.contentType",
+    "base": [
+      "DocumentReference"
+    ]
+  },
+  {
+    "name": "creation",
+    "expression": "DocumentReference.content.attachment.creation",
     "base": [
       "DocumentReference"
     ]
@@ -2870,15 +4068,22 @@
     ]
   },
   {
+    "name": "doc-status",
+    "expression": "DocumentReference.docStatus",
+    "base": [
+      "DocumentReference"
+    ]
+  },
+  {
     "name": "event",
-    "expression": "DocumentReference.context.event",
+    "expression": "DocumentReference.event",
     "base": [
       "DocumentReference"
     ]
   },
   {
     "name": "facility",
-    "expression": "DocumentReference.context.facilityType",
+    "expression": "DocumentReference.facilityType",
     "base": [
       "DocumentReference"
     ]
@@ -2906,14 +4111,14 @@
   },
   {
     "name": "period",
-    "expression": "DocumentReference.context.period",
+    "expression": "DocumentReference.period",
     "base": [
       "DocumentReference"
     ]
   },
   {
     "name": "related",
-    "expression": "DocumentReference.context.related",
+    "expression": "DocumentReference.related",
     "base": [
       "DocumentReference"
     ]
@@ -2933,13 +4138,6 @@
     ]
   },
   {
-    "name": "relationship",
-    "expression": "DocumentReference.relatesTo",
-    "base": [
-      "DocumentReference"
-    ]
-  },
-  {
     "name": "security-label",
     "expression": "DocumentReference.securityLabel",
     "base": [
@@ -2948,7 +4146,7 @@
   },
   {
     "name": "setting",
-    "expression": "DocumentReference.context.practiceSetting",
+    "expression": "DocumentReference.practiceSetting",
     "base": [
       "DocumentReference"
     ]
@@ -2968,122 +4166,10 @@
     ]
   },
   {
-    "name": "_text",
-    "expression": null,
+    "name": "relationship",
+    "expression": "DocumentReference.relatesTo",
     "base": [
-      "DomainResource"
-    ]
-  },
-  {
-    "name": "context-quantity",
-    "expression": "(EffectEvidenceSynthesis.useContext.value as Quantity) | (EffectEvidenceSynthesis.useContext.value as Range)",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "context-type-quantity",
-    "expression": "EffectEvidenceSynthesis.useContext",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "EffectEvidenceSynthesis.useContext",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "context-type",
-    "expression": "EffectEvidenceSynthesis.useContext.code",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(EffectEvidenceSynthesis.useContext.value as CodeableConcept)",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "date",
-    "expression": "EffectEvidenceSynthesis.date",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "description",
-    "expression": "EffectEvidenceSynthesis.description",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "effective",
-    "expression": "EffectEvidenceSynthesis.effectivePeriod",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "identifier",
-    "expression": "EffectEvidenceSynthesis.identifier",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "jurisdiction",
-    "expression": "EffectEvidenceSynthesis.jurisdiction",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "name",
-    "expression": "EffectEvidenceSynthesis.name",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "publisher",
-    "expression": "EffectEvidenceSynthesis.publisher",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "status",
-    "expression": "EffectEvidenceSynthesis.status",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "title",
-    "expression": "EffectEvidenceSynthesis.title",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "url",
-    "expression": "EffectEvidenceSynthesis.url",
-    "base": [
-      "EffectEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "version",
-    "expression": "EffectEvidenceSynthesis.version",
-    "base": [
-      "EffectEvidenceSynthesis"
+      "DocumentReference"
     ]
   },
   {
@@ -3136,15 +4222,15 @@
     ]
   },
   {
-    "name": "location-period",
-    "expression": "Encounter.location.period",
+    "name": "location",
+    "expression": "Encounter.location.location",
     "base": [
       "Encounter"
     ]
   },
   {
-    "name": "location",
-    "expression": "Encounter.location.location",
+    "name": "location-period",
+    "expression": "Encounter.location.period",
     "base": [
       "Encounter"
     ]
@@ -3157,15 +4243,15 @@
     ]
   },
   {
-    "name": "participant-type",
-    "expression": "Encounter.participant.type",
+    "name": "participant",
+    "expression": "Encounter.participant.individual",
     "base": [
       "Encounter"
     ]
   },
   {
-    "name": "participant",
-    "expression": "Encounter.participant.individual",
+    "name": "participant-type",
+    "expression": "Encounter.participant.type",
     "base": [
       "Encounter"
     ]
@@ -3179,14 +4265,14 @@
   },
   {
     "name": "reason-code",
-    "expression": "Encounter.reasonCode",
+    "expression": "Encounter.reason.concept",
     "base": [
       "Encounter"
     ]
   },
   {
     "name": "reason-reference",
-    "expression": "Encounter.reasonReference",
+    "expression": "Encounter.reason.reference",
     "base": [
       "Encounter"
     ]
@@ -3215,6 +4301,13 @@
   {
     "name": "subject",
     "expression": "Encounter.subject",
+    "base": [
+      "Encounter"
+    ]
+  },
+  {
+    "name": "subject-status",
+    "expression": "Encounter.subjectStatus",
     "base": [
       "Encounter"
     ]
@@ -3353,6 +4446,13 @@
     ]
   },
   {
+    "name": "context",
+    "expression": "(EventDefinition.useContext.value as CodeableConcept)",
+    "base": [
+      "EventDefinition"
+    ]
+  },
+  {
     "name": "context-quantity",
     "expression": "(EventDefinition.useContext.value as Quantity) | (EventDefinition.useContext.value as Range)",
     "base": [
@@ -3360,29 +4460,8 @@
     ]
   },
   {
-    "name": "context-type-quantity",
-    "expression": "EventDefinition.useContext",
-    "base": [
-      "EventDefinition"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "EventDefinition.useContext",
-    "base": [
-      "EventDefinition"
-    ]
-  },
-  {
     "name": "context-type",
     "expression": "EventDefinition.useContext.code",
-    "base": [
-      "EventDefinition"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(EventDefinition.useContext.value as CodeableConcept)",
     "base": [
       "EventDefinition"
     ]
@@ -3500,8 +4579,22 @@
     ]
   },
   {
-    "name": "composed-of",
-    "expression": "Evidence.relatedArtifact.where(type='composed-of').resource",
+    "name": "context-type-quantity",
+    "expression": "EventDefinition.useContext",
+    "base": [
+      "EventDefinition"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "EventDefinition.useContext",
+    "base": [
+      "EventDefinition"
+    ]
+  },
+  {
+    "name": "context",
+    "expression": "(Evidence.useContext.value as CodeableConcept)",
     "base": [
       "Evidence"
     ]
@@ -3514,29 +4607,8 @@
     ]
   },
   {
-    "name": "context-type-quantity",
-    "expression": "Evidence.useContext",
-    "base": [
-      "Evidence"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "Evidence.useContext",
-    "base": [
-      "Evidence"
-    ]
-  },
-  {
     "name": "context-type",
     "expression": "Evidence.useContext.code",
-    "base": [
-      "Evidence"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(Evidence.useContext.value as CodeableConcept)",
     "base": [
       "Evidence"
     ]
@@ -3549,20 +4621,6 @@
     ]
   },
   {
-    "name": "depends-on",
-    "expression": "Evidence.relatedArtifact.where(type='depends-on').resource",
-    "base": [
-      "Evidence"
-    ]
-  },
-  {
-    "name": "derived-from",
-    "expression": "Evidence.relatedArtifact.where(type='derived-from').resource",
-    "base": [
-      "Evidence"
-    ]
-  },
-  {
     "name": "description",
     "expression": "Evidence.description",
     "base": [
@@ -3570,36 +4628,8 @@
     ]
   },
   {
-    "name": "effective",
-    "expression": "Evidence.effectivePeriod",
-    "base": [
-      "Evidence"
-    ]
-  },
-  {
     "name": "identifier",
     "expression": "Evidence.identifier",
-    "base": [
-      "Evidence"
-    ]
-  },
-  {
-    "name": "jurisdiction",
-    "expression": "Evidence.jurisdiction",
-    "base": [
-      "Evidence"
-    ]
-  },
-  {
-    "name": "name",
-    "expression": "Evidence.name",
-    "base": [
-      "Evidence"
-    ]
-  },
-  {
-    "name": "predecessor",
-    "expression": "Evidence.relatedArtifact.where(type='predecessor').resource",
     "base": [
       "Evidence"
     ]
@@ -3619,22 +4649,8 @@
     ]
   },
   {
-    "name": "successor",
-    "expression": "Evidence.relatedArtifact.where(type='successor').resource",
-    "base": [
-      "Evidence"
-    ]
-  },
-  {
     "name": "title",
     "expression": "Evidence.title",
-    "base": [
-      "Evidence"
-    ]
-  },
-  {
-    "name": "topic",
-    "expression": "Evidence.topic",
     "base": [
       "Evidence"
     ]
@@ -3654,8 +4670,92 @@
     ]
   },
   {
+    "name": "context-type-quantity",
+    "expression": "Evidence.useContext",
+    "base": [
+      "Evidence"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "Evidence.useContext",
+    "base": [
+      "Evidence"
+    ]
+  },
+  {
+    "name": "context",
+    "expression": "(EvidenceReport.useContext.value as CodeableConcept)",
+    "base": [
+      "EvidenceReport"
+    ]
+  },
+  {
+    "name": "context-quantity",
+    "expression": "(EvidenceReport.useContext.value as Quantity) | (EvidenceReport.useContext.value as Range)",
+    "base": [
+      "EvidenceReport"
+    ]
+  },
+  {
+    "name": "context-type",
+    "expression": "EvidenceReport.useContext.code",
+    "base": [
+      "EvidenceReport"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "EvidenceReport.identifier",
+    "base": [
+      "EvidenceReport"
+    ]
+  },
+  {
+    "name": "publisher",
+    "expression": "EvidenceReport.publisher",
+    "base": [
+      "EvidenceReport"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "EvidenceReport.status",
+    "base": [
+      "EvidenceReport"
+    ]
+  },
+  {
+    "name": "url",
+    "expression": "EvidenceReport.url",
+    "base": [
+      "EvidenceReport"
+    ]
+  },
+  {
+    "name": "context-type-quantity",
+    "expression": "EvidenceReport.useContext",
+    "base": [
+      "EvidenceReport"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "EvidenceReport.useContext",
+    "base": [
+      "EvidenceReport"
+    ]
+  },
+  {
     "name": "composed-of",
     "expression": "EvidenceVariable.relatedArtifact.where(type='composed-of').resource",
+    "base": [
+      "EvidenceVariable"
+    ]
+  },
+  {
+    "name": "context",
+    "expression": "(EvidenceVariable.useContext.value as CodeableConcept)",
     "base": [
       "EvidenceVariable"
     ]
@@ -3668,29 +4768,8 @@
     ]
   },
   {
-    "name": "context-type-quantity",
-    "expression": "EvidenceVariable.useContext",
-    "base": [
-      "EvidenceVariable"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "EvidenceVariable.useContext",
-    "base": [
-      "EvidenceVariable"
-    ]
-  },
-  {
     "name": "context-type",
     "expression": "EvidenceVariable.useContext.code",
-    "base": [
-      "EvidenceVariable"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(EvidenceVariable.useContext.value as CodeableConcept)",
     "base": [
       "EvidenceVariable"
     ]
@@ -3724,22 +4803,8 @@
     ]
   },
   {
-    "name": "effective",
-    "expression": "EvidenceVariable.effectivePeriod",
-    "base": [
-      "EvidenceVariable"
-    ]
-  },
-  {
     "name": "identifier",
     "expression": "EvidenceVariable.identifier",
-    "base": [
-      "EvidenceVariable"
-    ]
-  },
-  {
-    "name": "jurisdiction",
-    "expression": "EvidenceVariable.jurisdiction",
     "base": [
       "EvidenceVariable"
     ]
@@ -3788,7 +4853,7 @@
   },
   {
     "name": "topic",
-    "expression": "EvidenceVariable.topic",
+    "expression": null,
     "base": [
       "EvidenceVariable"
     ]
@@ -3808,6 +4873,27 @@
     ]
   },
   {
+    "name": "context-type-quantity",
+    "expression": "EvidenceVariable.useContext",
+    "base": [
+      "EvidenceVariable"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "EvidenceVariable.useContext",
+    "base": [
+      "EvidenceVariable"
+    ]
+  },
+  {
+    "name": "context",
+    "expression": "(ExampleScenario.useContext.value as CodeableConcept)",
+    "base": [
+      "ExampleScenario"
+    ]
+  },
+  {
     "name": "context-quantity",
     "expression": "(ExampleScenario.useContext.value as Quantity) | (ExampleScenario.useContext.value as Range)",
     "base": [
@@ -3815,29 +4901,8 @@
     ]
   },
   {
-    "name": "context-type-quantity",
-    "expression": "ExampleScenario.useContext",
-    "base": [
-      "ExampleScenario"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "ExampleScenario.useContext",
-    "base": [
-      "ExampleScenario"
-    ]
-  },
-  {
     "name": "context-type",
     "expression": "ExampleScenario.useContext.code",
-    "base": [
-      "ExampleScenario"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(ExampleScenario.useContext.value as CodeableConcept)",
     "base": [
       "ExampleScenario"
     ]
@@ -3894,6 +4959,20 @@
   {
     "name": "version",
     "expression": "ExampleScenario.version",
+    "base": [
+      "ExampleScenario"
+    ]
+  },
+  {
+    "name": "context-type-quantity",
+    "expression": "ExampleScenario.useContext",
+    "base": [
+      "ExampleScenario"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "ExampleScenario.useContext",
     "base": [
       "ExampleScenario"
     ]
@@ -4067,6 +5146,13 @@
     ]
   },
   {
+    "name": "status",
+    "expression": "Flag.status",
+    "base": [
+      "Flag"
+    ]
+  },
+  {
     "name": "subject",
     "expression": "Flag.subject",
     "base": [
@@ -4130,13 +5216,6 @@
     ]
   },
   {
-    "name": "characteristic-value",
-    "expression": "Group.characteristic",
-    "base": [
-      "Group"
-    ]
-  },
-  {
     "name": "characteristic",
     "expression": "Group.characteristic.code",
     "base": [
@@ -4193,6 +5272,13 @@
     ]
   },
   {
+    "name": "characteristic-value",
+    "expression": "Group.characteristic",
+    "base": [
+      "Group"
+    ]
+  },
+  {
     "name": "identifier",
     "expression": "GuidanceResponse.identifier",
     "base": [
@@ -4209,6 +5295,13 @@
   {
     "name": "request",
     "expression": "GuidanceResponse.requestIdentifier",
+    "base": [
+      "GuidanceResponse"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "GuidanceResponse.status",
     "base": [
       "GuidanceResponse"
     ]
@@ -4369,7 +5462,7 @@
   },
   {
     "name": "reason",
-    "expression": "ImagingStudy.reasonCode",
+    "expression": null,
     "base": [
       "ImagingStudy"
     ]
@@ -4438,13 +5531,6 @@
     ]
   },
   {
-    "name": "reaction-date",
-    "expression": "Immunization.reaction.date",
-    "base": [
-      "Immunization"
-    ]
-  },
-  {
     "name": "reaction",
     "expression": "Immunization.reaction.detail",
     "base": [
@@ -4452,15 +5538,22 @@
     ]
   },
   {
+    "name": "reaction-date",
+    "expression": "Immunization.reaction.date",
+    "base": [
+      "Immunization"
+    ]
+  },
+  {
     "name": "reason-code",
-    "expression": "Immunization.reasonCode",
+    "expression": "Immunization.reason.concept",
     "base": [
       "Immunization"
     ]
   },
   {
     "name": "reason-reference",
-    "expression": "Immunization.reasonReference",
+    "expression": "Immunization.reason.reference",
     "base": [
       "Immunization"
     ]
@@ -4473,15 +5566,15 @@
     ]
   },
   {
-    "name": "status-reason",
-    "expression": "Immunization.statusReason",
+    "name": "status",
+    "expression": "Immunization.status",
     "base": [
       "Immunization"
     ]
   },
   {
-    "name": "status",
-    "expression": "Immunization.status",
+    "name": "status-reason",
+    "expression": "Immunization.statusReason",
     "base": [
       "Immunization"
     ]
@@ -4634,6 +5727,83 @@
     ]
   },
   {
+    "name": "function",
+    "expression": "Ingredient.function",
+    "base": [
+      "Ingredient"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "Ingredient.identifier",
+    "base": [
+      "Ingredient"
+    ]
+  },
+  {
+    "name": "manufacturer",
+    "expression": "Ingredient.manufacturer",
+    "base": [
+      "Ingredient"
+    ]
+  },
+  {
+    "name": "role",
+    "expression": "Ingredient.role",
+    "base": [
+      "Ingredient"
+    ]
+  },
+  {
+    "name": "specified-substance",
+    "expression": "Ingredient.specifiedSubstance.code.reference",
+    "base": [
+      "Ingredient"
+    ]
+  },
+  {
+    "name": "specified-substance-code",
+    "expression": "Ingredient.specifiedSubstance.code.concept",
+    "base": [
+      "Ingredient"
+    ]
+  },
+  {
+    "name": "specified-substance-definition",
+    "expression": "Ingredient.specifiedSubstance.code.reference",
+    "base": [
+      "Ingredient"
+    ]
+  },
+  {
+    "name": "substance",
+    "expression": "Ingredient.substance.code.reference",
+    "base": [
+      "Ingredient"
+    ]
+  },
+  {
+    "name": "substance-code",
+    "expression": "Ingredient.substance.code.concept",
+    "base": [
+      "Ingredient"
+    ]
+  },
+  {
+    "name": "substance-definition",
+    "expression": "Ingredient.substance.code.reference",
+    "base": [
+      "Ingredient"
+    ]
+  },
+  {
+    "name": "address",
+    "expression": "InsurancePlan.contact.address",
+    "base": [
+      "InsurancePlan"
+    ]
+  },
+  {
     "name": "address-city",
     "expression": "InsurancePlan.contact.address.city",
     "base": [
@@ -4664,13 +5834,6 @@
   {
     "name": "address-use",
     "expression": "InsurancePlan.contact.address.use",
-    "base": [
-      "InsurancePlan"
-    ]
-  },
-  {
-    "name": "address",
-    "expression": "InsurancePlan.contact.address",
     "base": [
       "InsurancePlan"
     ]
@@ -4760,15 +5923,15 @@
     ]
   },
   {
-    "name": "participant-role",
-    "expression": "Invoice.participant.role",
+    "name": "participant",
+    "expression": "Invoice.participant.actor",
     "base": [
       "Invoice"
     ]
   },
   {
-    "name": "participant",
-    "expression": "Invoice.participant.actor",
+    "name": "participant-role",
+    "expression": "Invoice.participant.role",
     "base": [
       "Invoice"
     ]
@@ -4837,6 +6000,13 @@
     ]
   },
   {
+    "name": "context",
+    "expression": "(Library.useContext.value as CodeableConcept)",
+    "base": [
+      "Library"
+    ]
+  },
+  {
     "name": "context-quantity",
     "expression": "(Library.useContext.value as Quantity) | (Library.useContext.value as Range)",
     "base": [
@@ -4844,29 +6014,8 @@
     ]
   },
   {
-    "name": "context-type-quantity",
-    "expression": "Library.useContext",
-    "base": [
-      "Library"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "Library.useContext",
-    "base": [
-      "Library"
-    ]
-  },
-  {
     "name": "context-type",
     "expression": "Library.useContext.code",
-    "base": [
-      "Library"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(Library.useContext.value as CodeableConcept)",
     "base": [
       "Library"
     ]
@@ -4991,6 +6140,20 @@
     ]
   },
   {
+    "name": "context-type-quantity",
+    "expression": "Library.useContext",
+    "base": [
+      "Library"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "Library.useContext",
+    "base": [
+      "Library"
+    ]
+  },
+  {
     "name": "author",
     "expression": "Linkage.author",
     "base": [
@@ -5061,6 +6224,13 @@
     ]
   },
   {
+    "name": "address",
+    "expression": "Location.address",
+    "base": [
+      "Location"
+    ]
+  },
+  {
     "name": "address-city",
     "expression": "Location.address.city",
     "base": [
@@ -5091,13 +6261,6 @@
   {
     "name": "address-use",
     "expression": "Location.address.use",
-    "base": [
-      "Location"
-    ]
-  },
-  {
-    "name": "address",
-    "expression": "Location.address",
     "base": [
       "Location"
     ]
@@ -5166,8 +6329,43 @@
     ]
   },
   {
+    "name": "dose-form",
+    "expression": "ManufacturedItemDefinition.manufacturedDoseForm",
+    "base": [
+      "ManufacturedItemDefinition"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "ManufacturedItemDefinition.identifier",
+    "base": [
+      "ManufacturedItemDefinition"
+    ]
+  },
+  {
+    "name": "ingredient",
+    "expression": "ManufacturedItemDefinition.ingredient.reference",
+    "base": [
+      "ManufacturedItemDefinition"
+    ]
+  },
+  {
+    "name": "ingredient-code",
+    "expression": "ManufacturedItemDefinition.ingredient.concept",
+    "base": [
+      "ManufacturedItemDefinition"
+    ]
+  },
+  {
     "name": "composed-of",
     "expression": "Measure.relatedArtifact.where(type='composed-of').resource",
+    "base": [
+      "Measure"
+    ]
+  },
+  {
+    "name": "context",
+    "expression": "(Measure.useContext.value as CodeableConcept)",
     "base": [
       "Measure"
     ]
@@ -5180,29 +6378,8 @@
     ]
   },
   {
-    "name": "context-type-quantity",
-    "expression": "Measure.useContext",
-    "base": [
-      "Measure"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "Measure.useContext",
-    "base": [
-      "Measure"
-    ]
-  },
-  {
     "name": "context-type",
     "expression": "Measure.useContext.code",
-    "base": [
-      "Measure"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(Measure.useContext.value as CodeableConcept)",
     "base": [
       "Measure"
     ]
@@ -5320,6 +6497,20 @@
     ]
   },
   {
+    "name": "context-type-quantity",
+    "expression": "Measure.useContext",
+    "base": [
+      "Measure"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "Measure.useContext",
+    "base": [
+      "Measure"
+    ]
+  },
+  {
     "name": "date",
     "expression": "MeasureReport.date",
     "base": [
@@ -5383,97 +6574,6 @@
     ]
   },
   {
-    "name": "based-on",
-    "expression": "Media.basedOn",
-    "base": [
-      "Media"
-    ]
-  },
-  {
-    "name": "created",
-    "expression": "Media.created",
-    "base": [
-      "Media"
-    ]
-  },
-  {
-    "name": "device",
-    "expression": "Media.device",
-    "base": [
-      "Media"
-    ]
-  },
-  {
-    "name": "encounter",
-    "expression": "Media.encounter",
-    "base": [
-      "Media"
-    ]
-  },
-  {
-    "name": "identifier",
-    "expression": "Media.identifier",
-    "base": [
-      "Media"
-    ]
-  },
-  {
-    "name": "modality",
-    "expression": "Media.modality",
-    "base": [
-      "Media"
-    ]
-  },
-  {
-    "name": "operator",
-    "expression": "Media.operator",
-    "base": [
-      "Media"
-    ]
-  },
-  {
-    "name": "patient",
-    "expression": "Media.subject.where(resolve() is Patient)",
-    "base": [
-      "Media"
-    ]
-  },
-  {
-    "name": "site",
-    "expression": "Media.bodySite",
-    "base": [
-      "Media"
-    ]
-  },
-  {
-    "name": "status",
-    "expression": "Media.status",
-    "base": [
-      "Media"
-    ]
-  },
-  {
-    "name": "subject",
-    "expression": "Media.subject",
-    "base": [
-      "Media"
-    ]
-  },
-  {
-    "name": "type",
-    "expression": "Media.type",
-    "base": [
-      "Media"
-    ]
-  },
-  {
-    "name": "view",
-    "expression": "Media.view",
-    "base": [
-      "Media"
-    ]
-  },
-  {
     "name": "expiration-date",
     "expression": "Medication.batch.expirationDate",
     "base": [
@@ -5482,7 +6582,7 @@
   },
   {
     "name": "form",
-    "expression": "Medication.form",
+    "expression": null,
     "base": [
       "Medication"
     ]
@@ -5495,15 +6595,15 @@
     ]
   },
   {
-    "name": "ingredient-code",
-    "expression": "(Medication.ingredient.item as CodeableConcept)",
+    "name": "ingredient",
+    "expression": "Medication.ingredient.item.reference",
     "base": [
       "Medication"
     ]
   },
   {
-    "name": "ingredient",
-    "expression": "(Medication.ingredient.item as Reference)",
+    "name": "ingredient-code",
+    "expression": "Medication.ingredient.item.concept",
     "base": [
       "Medication"
     ]
@@ -5516,8 +6616,8 @@
     ]
   },
   {
-    "name": "manufacturer",
-    "expression": "Medication.manufacturer",
+    "name": "sponsor",
+    "expression": "Medication.sponsor",
     "base": [
       "Medication"
     ]
@@ -5530,8 +6630,8 @@
     ]
   },
   {
-    "name": "context",
-    "expression": "MedicationAdministration.context",
+    "name": "date",
+    "expression": "MedicationAdministration.occurence",
     "base": [
       "MedicationAdministration"
     ]
@@ -5544,10 +6644,21 @@
     ]
   },
   {
-    "name": "effective-time",
-    "expression": "MedicationAdministration.effective",
+    "name": "encounter",
+    "expression": "MedicationAdministration.encounter | MedicationRequest.encounter",
     "base": [
-      "MedicationAdministration"
+      "MedicationAdministration",
+      "MedicationRequest"
+    ]
+  },
+  {
+    "name": "medication",
+    "expression": "MedicationAdministration.medication.reference | MedicationDispense.medication.reference | MedicationRequest.medication.reference | MedicationUsage.medication.reference",
+    "base": [
+      "MedicationAdministration",
+      "MedicationDispense",
+      "MedicationRequest",
+      "MedicationUsage"
     ]
   },
   {
@@ -5559,7 +6670,14 @@
   },
   {
     "name": "reason-given",
-    "expression": "MedicationAdministration.reasonCode",
+    "expression": "MedicationAdministration.reason.reference",
+    "base": [
+      "MedicationAdministration"
+    ]
+  },
+  {
+    "name": "reason-given-code",
+    "expression": "MedicationAdministration.reason.concept",
     "base": [
       "MedicationAdministration"
     ]
@@ -5579,17 +6697,20 @@
     ]
   },
   {
+    "name": "status",
+    "expression": "MedicationAdministration.status | MedicationDispense.status | MedicationRequest.status | MedicationUsage.status",
+    "base": [
+      "MedicationAdministration",
+      "MedicationDispense",
+      "MedicationRequest",
+      "MedicationUsage"
+    ]
+  },
+  {
     "name": "subject",
     "expression": "MedicationAdministration.subject",
     "base": [
       "MedicationAdministration"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "MedicationDispense.context",
-    "base": [
-      "MedicationDispense"
     ]
   },
   {
@@ -5600,8 +6721,22 @@
     ]
   },
   {
+    "name": "encounter",
+    "expression": "MedicationDispense.encounter",
+    "base": [
+      "MedicationDispense"
+    ]
+  },
+  {
     "name": "performer",
     "expression": "MedicationDispense.performer.actor",
+    "base": [
+      "MedicationDispense"
+    ]
+  },
+  {
+    "name": "prescription",
+    "expression": "MedicationDispense.authorizingPrescription",
     "base": [
       "MedicationDispense"
     ]
@@ -5649,15 +6784,15 @@
     ]
   },
   {
-    "name": "classification-type",
-    "expression": "MedicationKnowledge.medicineClassification.type",
+    "name": "classification",
+    "expression": "MedicationKnowledge.medicineClassification.classification",
     "base": [
       "MedicationKnowledge"
     ]
   },
   {
-    "name": "classification",
-    "expression": "MedicationKnowledge.medicineClassification.classification",
+    "name": "classification-type",
+    "expression": "MedicationKnowledge.medicineClassification.type",
     "base": [
       "MedicationKnowledge"
     ]
@@ -5677,22 +6812,22 @@
     ]
   },
   {
-    "name": "ingredient-code",
-    "expression": "(MedicationKnowledge.ingredient.item as CodeableConcept)",
+    "name": "identifier",
+    "expression": "MedicationKnowledge.identifier",
     "base": [
       "MedicationKnowledge"
     ]
   },
   {
     "name": "ingredient",
-    "expression": "(MedicationKnowledge.ingredient.item as Reference)",
+    "expression": "MedicationKnowledge.ingredient.item.reference",
     "base": [
       "MedicationKnowledge"
     ]
   },
   {
-    "name": "manufacturer",
-    "expression": "MedicationKnowledge.manufacturer",
+    "name": "ingredient-code",
+    "expression": "MedicationKnowledge.ingredient.item.concept",
     "base": [
       "MedicationKnowledge"
     ]
@@ -5712,13 +6847,6 @@
     ]
   },
   {
-    "name": "monograph-type",
-    "expression": "MedicationKnowledge.monograph.type",
-    "base": [
-      "MedicationKnowledge"
-    ]
-  },
-  {
     "name": "monograph",
     "expression": "MedicationKnowledge.monograph.source",
     "base": [
@@ -5726,8 +6854,43 @@
     ]
   },
   {
+    "name": "monograph-type",
+    "expression": "MedicationKnowledge.monograph.type",
+    "base": [
+      "MedicationKnowledge"
+    ]
+  },
+  {
+    "name": "packaging-cost",
+    "expression": null,
+    "base": [
+      "MedicationKnowledge"
+    ]
+  },
+  {
+    "name": "packaging-cost-concept",
+    "expression": null,
+    "base": [
+      "MedicationKnowledge"
+    ]
+  },
+  {
+    "name": "product-type",
+    "expression": "MedicationKnowledge.productType",
+    "base": [
+      "MedicationKnowledge"
+    ]
+  },
+  {
     "name": "source-cost",
     "expression": "MedicationKnowledge.cost.source",
+    "base": [
+      "MedicationKnowledge"
+    ]
+  },
+  {
+    "name": "sponsor",
+    "expression": "MedicationKnowledge.sponsor",
     "base": [
       "MedicationKnowledge"
     ]
@@ -5754,8 +6917,15 @@
     ]
   },
   {
+    "name": "combo-date",
+    "expression": "MedicationRequest.dosageInstruction.timing.event | (MedicationRequest.dosageInstruction.timing.repeat.bounds as Period)",
+    "base": [
+      "MedicationRequest"
+    ]
+  },
+  {
     "name": "intended-dispenser",
-    "expression": "MedicationRequest.dispenseRequest.performer",
+    "expression": "MedicationRequest.dispenseRequest.dispenser",
     "base": [
       "MedicationRequest"
     ]
@@ -5803,164 +6973,136 @@
     ]
   },
   {
-    "name": "category",
-    "expression": "MedicationStatement.category",
+    "name": "adherence",
+    "expression": "MedicationUsage.adherence",
     "base": [
-      "MedicationStatement"
+      "MedicationUsage"
     ]
   },
   {
-    "name": "context",
-    "expression": "MedicationStatement.context",
+    "name": "category",
+    "expression": "MedicationUsage.category",
     "base": [
-      "MedicationStatement"
+      "MedicationUsage"
     ]
   },
   {
     "name": "effective",
-    "expression": "MedicationStatement.effective",
+    "expression": "MedicationUsage.effective",
     "base": [
-      "MedicationStatement"
+      "MedicationUsage"
+    ]
+  },
+  {
+    "name": "encounter",
+    "expression": "MedicationUsage.encounter",
+    "base": [
+      "MedicationUsage"
     ]
   },
   {
     "name": "part-of",
-    "expression": "MedicationStatement.partOf",
+    "expression": "MedicationUsage.partOf",
     "base": [
-      "MedicationStatement"
+      "MedicationUsage"
     ]
   },
   {
     "name": "source",
-    "expression": "MedicationStatement.informationSource",
+    "expression": "MedicationUsage.informationSource",
     "base": [
-      "MedicationStatement"
+      "MedicationUsage"
     ]
   },
   {
     "name": "subject",
-    "expression": "MedicationStatement.subject",
+    "expression": "MedicationUsage.subject",
     "base": [
-      "MedicationStatement"
+      "MedicationUsage"
+    ]
+  },
+  {
+    "name": "characteristic",
+    "expression": "MedicinalProductDefinition.characteristic",
+    "base": [
+      "MedicinalProductDefinition"
+    ]
+  },
+  {
+    "name": "contact",
+    "expression": "MedicinalProductDefinition.contact.contact",
+    "base": [
+      "MedicinalProductDefinition"
+    ]
+  },
+  {
+    "name": "domain",
+    "expression": "MedicinalProductDefinition.domain",
+    "base": [
+      "MedicinalProductDefinition"
     ]
   },
   {
     "name": "identifier",
-    "expression": "MedicinalProduct.identifier",
+    "expression": "MedicinalProductDefinition.identifier",
     "base": [
-      "MedicinalProduct"
+      "MedicinalProductDefinition"
     ]
   },
   {
-    "name": "name-language",
-    "expression": "MedicinalProduct.name.countryLanguage.language",
+    "name": "ingredient",
+    "expression": "MedicinalProductDefinition.ingredient.reference",
     "base": [
-      "MedicinalProduct"
+      "MedicinalProductDefinition"
+    ]
+  },
+  {
+    "name": "ingredient-code",
+    "expression": "MedicinalProductDefinition.ingredient.concept",
+    "base": [
+      "MedicinalProductDefinition"
+    ]
+  },
+  {
+    "name": "master-file",
+    "expression": "MedicinalProductDefinition.masterFile",
+    "base": [
+      "MedicinalProductDefinition"
     ]
   },
   {
     "name": "name",
-    "expression": "MedicinalProduct.name.productName",
+    "expression": "MedicinalProductDefinition.name.productName",
     "base": [
-      "MedicinalProduct"
+      "MedicinalProductDefinition"
     ]
   },
   {
-    "name": "country",
-    "expression": "MedicinalProductAuthorization.country",
+    "name": "name-language",
+    "expression": "MedicinalProductDefinition.name.countryLanguage.language",
     "base": [
-      "MedicinalProductAuthorization"
+      "MedicinalProductDefinition"
     ]
   },
   {
-    "name": "holder",
-    "expression": "MedicinalProductAuthorization.holder",
+    "name": "product-classification",
+    "expression": "MedicinalProductDefinition.classification",
     "base": [
-      "MedicinalProductAuthorization"
-    ]
-  },
-  {
-    "name": "identifier",
-    "expression": "MedicinalProductAuthorization.identifier",
-    "base": [
-      "MedicinalProductAuthorization"
+      "MedicinalProductDefinition"
     ]
   },
   {
     "name": "status",
-    "expression": "MedicinalProductAuthorization.status",
+    "expression": "MedicinalProductDefinition.status",
     "base": [
-      "MedicinalProductAuthorization"
+      "MedicinalProductDefinition"
     ]
   },
   {
-    "name": "subject",
-    "expression": "MedicinalProductAuthorization.subject",
+    "name": "type",
+    "expression": "MedicinalProductDefinition.type",
     "base": [
-      "MedicinalProductAuthorization"
-    ]
-  },
-  {
-    "name": "subject",
-    "expression": "MedicinalProductContraindication.subject",
-    "base": [
-      "MedicinalProductContraindication"
-    ]
-  },
-  {
-    "name": "subject",
-    "expression": "MedicinalProductIndication.subject",
-    "base": [
-      "MedicinalProductIndication"
-    ]
-  },
-  {
-    "name": "subject",
-    "expression": "MedicinalProductInteraction.subject",
-    "base": [
-      "MedicinalProductInteraction"
-    ]
-  },
-  {
-    "name": "identifier",
-    "expression": "MedicinalProductPackaged.identifier",
-    "base": [
-      "MedicinalProductPackaged"
-    ]
-  },
-  {
-    "name": "subject",
-    "expression": "MedicinalProductPackaged.subject",
-    "base": [
-      "MedicinalProductPackaged"
-    ]
-  },
-  {
-    "name": "identifier",
-    "expression": "MedicinalProductPharmaceutical.identifier",
-    "base": [
-      "MedicinalProductPharmaceutical"
-    ]
-  },
-  {
-    "name": "route",
-    "expression": "MedicinalProductPharmaceutical.routeOfAdministration.code",
-    "base": [
-      "MedicinalProductPharmaceutical"
-    ]
-  },
-  {
-    "name": "target-species",
-    "expression": "MedicinalProductPharmaceutical.routeOfAdministration.targetSpecies.code",
-    "base": [
-      "MedicinalProductPharmaceutical"
-    ]
-  },
-  {
-    "name": "subject",
-    "expression": "MedicinalProductUndesirableEffect.subject",
-    "base": [
-      "MedicinalProductUndesirableEffect"
+      "MedicinalProductDefinition"
     ]
   },
   {
@@ -6006,15 +7148,15 @@
     ]
   },
   {
-    "name": "destination-uri",
-    "expression": "MessageHeader.destination.endpoint",
+    "name": "destination",
+    "expression": "MessageHeader.destination.name",
     "base": [
       "MessageHeader"
     ]
   },
   {
-    "name": "destination",
-    "expression": "MessageHeader.destination.name",
+    "name": "destination-uri",
+    "expression": "MessageHeader.destination.endpoint",
     "base": [
       "MessageHeader"
     ]
@@ -6069,15 +7211,15 @@
     ]
   },
   {
-    "name": "source-uri",
-    "expression": "MessageHeader.source.endpoint",
+    "name": "source",
+    "expression": "MessageHeader.source.name",
     "base": [
       "MessageHeader"
     ]
   },
   {
-    "name": "source",
-    "expression": "MessageHeader.source.name",
+    "name": "source-uri",
+    "expression": "MessageHeader.source.endpoint",
     "base": [
       "MessageHeader"
     ]
@@ -6087,20 +7229,6 @@
     "expression": "MessageHeader.destination.target",
     "base": [
       "MessageHeader"
-    ]
-  },
-  {
-    "name": "chromosome-variant-coordinate",
-    "expression": "MolecularSequence.variant",
-    "base": [
-      "MolecularSequence"
-    ]
-  },
-  {
-    "name": "chromosome-window-coordinate",
-    "expression": "MolecularSequence.referenceSeq",
-    "base": [
-      "MolecularSequence"
     ]
   },
   {
@@ -6120,20 +7248,6 @@
   {
     "name": "patient",
     "expression": "MolecularSequence.patient",
-    "base": [
-      "MolecularSequence"
-    ]
-  },
-  {
-    "name": "referenceseqid-variant-coordinate",
-    "expression": "MolecularSequence.variant",
-    "base": [
-      "MolecularSequence"
-    ]
-  },
-  {
-    "name": "referenceseqid-window-coordinate",
-    "expression": "MolecularSequence.referenceSeq",
     "base": [
       "MolecularSequence"
     ]
@@ -6176,6 +7290,34 @@
   {
     "name": "window-start",
     "expression": "MolecularSequence.referenceSeq.windowStart",
+    "base": [
+      "MolecularSequence"
+    ]
+  },
+  {
+    "name": "chromosome-variant-coordinate",
+    "expression": "MolecularSequence.variant",
+    "base": [
+      "MolecularSequence"
+    ]
+  },
+  {
+    "name": "chromosome-window-coordinate",
+    "expression": "MolecularSequence.referenceSeq",
+    "base": [
+      "MolecularSequence"
+    ]
+  },
+  {
+    "name": "referenceseqid-variant-coordinate",
+    "expression": "MolecularSequence.variant",
+    "base": [
+      "MolecularSequence"
+    ]
+  },
+  {
+    "name": "referenceseqid-window-coordinate",
+    "expression": "MolecularSequence.referenceSeq",
     "base": [
       "MolecularSequence"
     ]
@@ -6234,6 +7376,76 @@
     "expression": "NamingSystem.uniqueId.value",
     "base": [
       "NamingSystem"
+    ]
+  },
+  {
+    "name": "code",
+    "expression": "NutritionIntake.code",
+    "base": [
+      "NutritionIntake"
+    ]
+  },
+  {
+    "name": "date",
+    "expression": "NutritionIntake.occurrence",
+    "base": [
+      "NutritionIntake"
+    ]
+  },
+  {
+    "name": "encounter",
+    "expression": "NutritionIntake.encounter",
+    "base": [
+      "NutritionIntake"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "NutritionIntake.identifier",
+    "base": [
+      "NutritionIntake"
+    ]
+  },
+  {
+    "name": "nutrition",
+    "expression": "NutritionIntake.consumedItem.nutritionProduct",
+    "base": [
+      "NutritionIntake"
+    ]
+  },
+  {
+    "name": "part-of",
+    "expression": "NutritionIntake.partOf",
+    "base": [
+      "NutritionIntake"
+    ]
+  },
+  {
+    "name": "patient",
+    "expression": "NutritionIntake.subject.where(resolve() is Patient)",
+    "base": [
+      "NutritionIntake"
+    ]
+  },
+  {
+    "name": "source",
+    "expression": "(NutritionIntake.reported as Reference)",
+    "base": [
+      "NutritionIntake"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "NutritionIntake.status",
+    "base": [
+      "NutritionIntake"
+    ]
+  },
+  {
+    "name": "subject",
+    "expression": "NutritionIntake.subject",
+    "base": [
+      "NutritionIntake"
     ]
   },
   {
@@ -6300,6 +7512,20 @@
     ]
   },
   {
+    "name": "identifier",
+    "expression": "NutritionProduct.instance.identifier",
+    "base": [
+      "NutritionProduct"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "NutritionProduct.status",
+    "base": [
+      "NutritionProduct"
+    ]
+  },
+  {
     "name": "based-on",
     "expression": "Observation.basedOn",
     "base": [
@@ -6309,48 +7535,6 @@
   {
     "name": "category",
     "expression": "Observation.category",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "code-value-concept",
-    "expression": "Observation",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "code-value-date",
-    "expression": "Observation",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "code-value-quantity",
-    "expression": "Observation",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "code-value-string",
-    "expression": "Observation",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "combo-code-value-concept",
-    "expression": "Observation | Observation.component",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "combo-code-value-quantity",
-    "expression": "Observation | Observation.component",
     "base": [
       "Observation"
     ]
@@ -6379,20 +7563,6 @@
   {
     "name": "combo-value-quantity",
     "expression": "(Observation.value as Quantity) | (Observation.value as SampledData) | (Observation.component.value as Quantity) | (Observation.component.value as SampledData)",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "component-code-value-concept",
-    "expression": "Observation.component",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "component-code-value-quantity",
-    "expression": "Observation.component",
     "base": [
       "Observation"
     ]
@@ -6531,6 +7701,118 @@
     ]
   },
   {
+    "name": "code-value-concept",
+    "expression": "Observation",
+    "base": [
+      "Observation"
+    ]
+  },
+  {
+    "name": "code-value-date",
+    "expression": "Observation",
+    "base": [
+      "Observation"
+    ]
+  },
+  {
+    "name": "code-value-quantity",
+    "expression": "Observation",
+    "base": [
+      "Observation"
+    ]
+  },
+  {
+    "name": "code-value-string",
+    "expression": "Observation",
+    "base": [
+      "Observation"
+    ]
+  },
+  {
+    "name": "combo-code-value-concept",
+    "expression": "Observation | Observation.component",
+    "base": [
+      "Observation"
+    ]
+  },
+  {
+    "name": "combo-code-value-quantity",
+    "expression": "Observation | Observation.component",
+    "base": [
+      "Observation"
+    ]
+  },
+  {
+    "name": "component-code-value-concept",
+    "expression": "Observation.component",
+    "base": [
+      "Observation"
+    ]
+  },
+  {
+    "name": "component-code-value-quantity",
+    "expression": "Observation.component",
+    "base": [
+      "Observation"
+    ]
+  },
+  {
+    "name": "category",
+    "expression": "ObservationDefinition.category",
+    "base": [
+      "ObservationDefinition"
+    ]
+  },
+  {
+    "name": "code",
+    "expression": "ObservationDefinition.code",
+    "base": [
+      "ObservationDefinition"
+    ]
+  },
+  {
+    "name": "experimental",
+    "expression": "ObservationDefinition.experimental",
+    "base": [
+      "ObservationDefinition"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "ObservationDefinition.identifier",
+    "base": [
+      "ObservationDefinition"
+    ]
+  },
+  {
+    "name": "method",
+    "expression": "ObservationDefinition.method",
+    "base": [
+      "ObservationDefinition"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "ObservationDefinition.status",
+    "base": [
+      "ObservationDefinition"
+    ]
+  },
+  {
+    "name": "title",
+    "expression": "ObservationDefinition.title",
+    "base": [
+      "ObservationDefinition"
+    ]
+  },
+  {
+    "name": "url",
+    "expression": "ObservationDefinition.url",
+    "base": [
+      "ObservationDefinition"
+    ]
+  },
+  {
     "name": "base",
     "expression": "OperationDefinition.base",
     "base": [
@@ -6594,6 +7876,13 @@
     ]
   },
   {
+    "name": "address",
+    "expression": "Organization.address",
+    "base": [
+      "Organization"
+    ]
+  },
+  {
     "name": "address-city",
     "expression": "Organization.address.city",
     "base": [
@@ -6624,13 +7913,6 @@
   {
     "name": "address-use",
     "expression": "Organization.address.use",
-    "base": [
-      "Organization"
-    ]
-  },
-  {
-    "name": "address",
-    "expression": "Organization.address",
     "base": [
       "Organization"
     ]
@@ -6776,10 +8058,156 @@
     ]
   },
   {
+    "name": "biological",
+    "expression": "PackagedProductDefinition.package.containedItem.item.reference",
+    "base": [
+      "PackagedProductDefinition"
+    ]
+  },
+  {
+    "name": "contained-item",
+    "expression": "PackagedProductDefinition.package.containedItem.item.reference",
+    "base": [
+      "PackagedProductDefinition"
+    ]
+  },
+  {
+    "name": "device",
+    "expression": "PackagedProductDefinition.package.containedItem.item.reference",
+    "base": [
+      "PackagedProductDefinition"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "PackagedProductDefinition.identifier",
+    "base": [
+      "PackagedProductDefinition"
+    ]
+  },
+  {
+    "name": "manufactured-item",
+    "expression": "PackagedProductDefinition.package.containedItem.item.reference",
+    "base": [
+      "PackagedProductDefinition"
+    ]
+  },
+  {
+    "name": "medication",
+    "expression": "PackagedProductDefinition.package.containedItem.item.reference",
+    "base": [
+      "PackagedProductDefinition"
+    ]
+  },
+  {
+    "name": "name",
+    "expression": "PackagedProductDefinition.name",
+    "base": [
+      "PackagedProductDefinition"
+    ]
+  },
+  {
+    "name": "nutrition",
+    "expression": "PackagedProductDefinition.package.containedItem.item.reference",
+    "base": [
+      "PackagedProductDefinition"
+    ]
+  },
+  {
+    "name": "package",
+    "expression": "PackagedProductDefinition.package.containedItem.item.reference",
+    "base": [
+      "PackagedProductDefinition"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "PackagedProductDefinition.status",
+    "base": [
+      "PackagedProductDefinition"
+    ]
+  },
+  {
+    "name": "subject",
+    "expression": "PackagedProductDefinition.subject",
+    "base": [
+      "PackagedProductDefinition"
+    ]
+  },
+  {
     "name": "active",
     "expression": "Patient.active",
     "base": [
       "Patient"
+    ]
+  },
+  {
+    "name": "address",
+    "expression": "Patient.address | Person.address | Practitioner.address | RelatedPerson.address",
+    "base": [
+      "Patient",
+      "Person",
+      "Practitioner",
+      "RelatedPerson"
+    ]
+  },
+  {
+    "name": "address-city",
+    "expression": "Patient.address.city | Person.address.city | Practitioner.address.city | RelatedPerson.address.city",
+    "base": [
+      "Patient",
+      "Person",
+      "Practitioner",
+      "RelatedPerson"
+    ]
+  },
+  {
+    "name": "address-country",
+    "expression": "Patient.address.country | Person.address.country | Practitioner.address.country | RelatedPerson.address.country",
+    "base": [
+      "Patient",
+      "Person",
+      "Practitioner",
+      "RelatedPerson"
+    ]
+  },
+  {
+    "name": "address-postalcode",
+    "expression": "Patient.address.postalCode | Person.address.postalCode | Practitioner.address.postalCode | RelatedPerson.address.postalCode",
+    "base": [
+      "Patient",
+      "Person",
+      "Practitioner",
+      "RelatedPerson"
+    ]
+  },
+  {
+    "name": "address-state",
+    "expression": "Patient.address.state | Person.address.state | Practitioner.address.state | RelatedPerson.address.state",
+    "base": [
+      "Patient",
+      "Person",
+      "Practitioner",
+      "RelatedPerson"
+    ]
+  },
+  {
+    "name": "address-use",
+    "expression": "Patient.address.use | Person.address.use | Practitioner.address.use | RelatedPerson.address.use",
+    "base": [
+      "Patient",
+      "Person",
+      "Practitioner",
+      "RelatedPerson"
+    ]
+  },
+  {
+    "name": "birthdate",
+    "expression": "Patient.birthDate | Person.birthDate | RelatedPerson.birthDate",
+    "base": [
+      "Patient",
+      "Person",
+      "RelatedPerson"
     ]
   },
   {
@@ -6797,10 +8225,47 @@
     ]
   },
   {
+    "name": "email",
+    "expression": "Patient.telecom.where(system='email') | Person.telecom.where(system='email') | Practitioner.telecom.where(system='email') | PractitionerRole.telecom.where(system='email') | RelatedPerson.telecom.where(system='email')",
+    "base": [
+      "Patient",
+      "Person",
+      "Practitioner",
+      "PractitionerRole",
+      "RelatedPerson"
+    ]
+  },
+  {
+    "name": "family",
+    "expression": "Patient.name.family | Practitioner.name.family",
+    "base": [
+      "Patient",
+      "Practitioner"
+    ]
+  },
+  {
+    "name": "gender",
+    "expression": "Patient.gender | Person.gender | Practitioner.gender | RelatedPerson.gender",
+    "base": [
+      "Patient",
+      "Person",
+      "Practitioner",
+      "RelatedPerson"
+    ]
+  },
+  {
     "name": "general-practitioner",
     "expression": "Patient.generalPractitioner",
     "base": [
       "Patient"
+    ]
+  },
+  {
+    "name": "given",
+    "expression": "Patient.name.given | Practitioner.name.given",
+    "base": [
+      "Patient",
+      "Practitioner"
     ]
   },
   {
@@ -6836,6 +8301,38 @@
     "expression": "Patient.managingOrganization",
     "base": [
       "Patient"
+    ]
+  },
+  {
+    "name": "phone",
+    "expression": "Patient.telecom.where(system='phone') | Person.telecom.where(system='phone') | Practitioner.telecom.where(system='phone') | PractitionerRole.telecom.where(system='phone') | RelatedPerson.telecom.where(system='phone')",
+    "base": [
+      "Patient",
+      "Person",
+      "Practitioner",
+      "PractitionerRole",
+      "RelatedPerson"
+    ]
+  },
+  {
+    "name": "phonetic",
+    "expression": "Patient.name | Person.name | Practitioner.name | RelatedPerson.name",
+    "base": [
+      "Patient",
+      "Person",
+      "Practitioner",
+      "RelatedPerson"
+    ]
+  },
+  {
+    "name": "telecom",
+    "expression": "Patient.telecom | Person.telecom | Practitioner.telecom | PractitionerRole.telecom | RelatedPerson.telecom",
+    "base": [
+      "Patient",
+      "Person",
+      "Practitioner",
+      "PractitionerRole",
+      "RelatedPerson"
     ]
   },
   {
@@ -6944,6 +8441,13 @@
     ]
   },
   {
+    "name": "status",
+    "expression": "Permission.status",
+    "base": [
+      "Permission"
+    ]
+  },
+  {
     "name": "identifier",
     "expression": "Person.identifier",
     "base": [
@@ -7000,6 +8504,13 @@
     ]
   },
   {
+    "name": "context",
+    "expression": "(PlanDefinition.useContext.value as CodeableConcept)",
+    "base": [
+      "PlanDefinition"
+    ]
+  },
+  {
     "name": "context-quantity",
     "expression": "(PlanDefinition.useContext.value as Quantity) | (PlanDefinition.useContext.value as Range)",
     "base": [
@@ -7007,29 +8518,8 @@
     ]
   },
   {
-    "name": "context-type-quantity",
-    "expression": "PlanDefinition.useContext",
-    "base": [
-      "PlanDefinition"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "PlanDefinition.useContext",
-    "base": [
-      "PlanDefinition"
-    ]
-  },
-  {
     "name": "context-type",
     "expression": "PlanDefinition.useContext.code",
-    "base": [
-      "PlanDefinition"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(PlanDefinition.useContext.value as CodeableConcept)",
     "base": [
       "PlanDefinition"
     ]
@@ -7156,6 +8646,20 @@
   {
     "name": "version",
     "expression": "PlanDefinition.version",
+    "base": [
+      "PlanDefinition"
+    ]
+  },
+  {
+    "name": "context-type-quantity",
+    "expression": "PlanDefinition.useContext",
+    "base": [
+      "PlanDefinition"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "PlanDefinition.useContext",
     "base": [
       "PlanDefinition"
     ]
@@ -7309,14 +8813,21 @@
   },
   {
     "name": "reason-code",
-    "expression": "Procedure.reasonCode",
+    "expression": "Procedure.reason.concept",
     "base": [
       "Procedure"
     ]
   },
   {
     "name": "reason-reference",
-    "expression": "Procedure.reasonReference",
+    "expression": "Procedure.reason.reference",
+    "base": [
+      "Procedure"
+    ]
+  },
+  {
+    "name": "report",
+    "expression": "Procedure.report",
     "base": [
       "Procedure"
     ]
@@ -7336,6 +8847,20 @@
     ]
   },
   {
+    "name": "activity",
+    "expression": "Provenance.activity",
+    "base": [
+      "Provenance"
+    ]
+  },
+  {
+    "name": "agent",
+    "expression": "Provenance.agent.who",
+    "base": [
+      "Provenance"
+    ]
+  },
+  {
     "name": "agent-role",
     "expression": "Provenance.agent.role",
     "base": [
@@ -7350,8 +8875,15 @@
     ]
   },
   {
-    "name": "agent",
-    "expression": "Provenance.agent.who",
+    "name": "based-on",
+    "expression": "Provenance.basedOn",
+    "base": [
+      "Provenance"
+    ]
+  },
+  {
+    "name": "encounter",
+    "expression": "Provenance.encounter",
     "base": [
       "Provenance"
     ]
@@ -7406,8 +8938,15 @@
     ]
   },
   {
-    "name": "code",
-    "expression": "Questionnaire.item.code",
+    "name": "combo-code",
+    "expression": "Questionnaire.code | Questionnaire.item.code",
+    "base": [
+      "Questionnaire"
+    ]
+  },
+  {
+    "name": "context",
+    "expression": "(Questionnaire.useContext.value as CodeableConcept)",
     "base": [
       "Questionnaire"
     ]
@@ -7420,29 +8959,8 @@
     ]
   },
   {
-    "name": "context-type-quantity",
-    "expression": "Questionnaire.useContext",
-    "base": [
-      "Questionnaire"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "Questionnaire.useContext",
-    "base": [
-      "Questionnaire"
-    ]
-  },
-  {
     "name": "context-type",
     "expression": "Questionnaire.useContext.code",
-    "base": [
-      "Questionnaire"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(Questionnaire.useContext.value as CodeableConcept)",
     "base": [
       "Questionnaire"
     ]
@@ -7483,6 +9001,13 @@
     ]
   },
   {
+    "name": "item-code",
+    "expression": "Questionnaire.item.code",
+    "base": [
+      "Questionnaire"
+    ]
+  },
+  {
     "name": "jurisdiction",
     "expression": "Questionnaire.jurisdiction",
     "base": [
@@ -7499,6 +9024,13 @@
   {
     "name": "publisher",
     "expression": "Questionnaire.publisher",
+    "base": [
+      "Questionnaire"
+    ]
+  },
+  {
+    "name": "questionnaire-code",
+    "expression": "Questionnaire.code",
     "base": [
       "Questionnaire"
     ]
@@ -7539,6 +9071,20 @@
     ]
   },
   {
+    "name": "context-type-quantity",
+    "expression": "Questionnaire.useContext",
+    "base": [
+      "Questionnaire"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "Questionnaire.useContext",
+    "base": [
+      "Questionnaire"
+    ]
+  },
+  {
     "name": "author",
     "expression": "QuestionnaireResponse.author",
     "base": [
@@ -7569,6 +9115,13 @@
   {
     "name": "identifier",
     "expression": "QuestionnaireResponse.identifier",
+    "base": [
+      "QuestionnaireResponse"
+    ]
+  },
+  {
+    "name": "item-subject",
+    "expression": "QuestionnaireResponse.item.where(extension('http://hl7.org/fhir/StructureDefinition/questionnaireresponse-isSubject').exists()).answer.value.ofType(Reference)",
     "base": [
       "QuestionnaireResponse"
     ]
@@ -7613,6 +9166,55 @@
     "expression": "QuestionnaireResponse.subject",
     "base": [
       "QuestionnaireResponse"
+    ]
+  },
+  {
+    "name": "case",
+    "expression": "RegulatedAuthorization.case.identifier",
+    "base": [
+      "RegulatedAuthorization"
+    ]
+  },
+  {
+    "name": "case-type",
+    "expression": "RegulatedAuthorization.case.type",
+    "base": [
+      "RegulatedAuthorization"
+    ]
+  },
+  {
+    "name": "holder",
+    "expression": "RegulatedAuthorization.holder",
+    "base": [
+      "RegulatedAuthorization"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "RegulatedAuthorization.identifier",
+    "base": [
+      "RegulatedAuthorization"
+    ]
+  },
+  {
+    "name": "region",
+    "expression": "RegulatedAuthorization.region",
+    "base": [
+      "RegulatedAuthorization"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "RegulatedAuthorization.status",
+    "base": [
+      "RegulatedAuthorization"
+    ]
+  },
+  {
+    "name": "subject",
+    "expression": "RegulatedAuthorization.subject",
+    "base": [
+      "RegulatedAuthorization"
     ]
   },
   {
@@ -7715,7 +9317,7 @@
   },
   {
     "name": "participant",
-    "expression": "RequestGroup.action.participant",
+    "expression": "RequestGroup.action.participant.actor",
     "base": [
       "RequestGroup"
     ]
@@ -7749,316 +9351,15 @@
     ]
   },
   {
-    "name": "composed-of",
-    "expression": "ResearchDefinition.relatedArtifact.where(type='composed-of').resource",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "context-quantity",
-    "expression": "(ResearchDefinition.useContext.value as Quantity) | (ResearchDefinition.useContext.value as Range)",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "context-type-quantity",
-    "expression": "ResearchDefinition.useContext",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "ResearchDefinition.useContext",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "context-type",
-    "expression": "ResearchDefinition.useContext.code",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(ResearchDefinition.useContext.value as CodeableConcept)",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "date",
-    "expression": "ResearchDefinition.date",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "depends-on",
-    "expression": "ResearchDefinition.relatedArtifact.where(type='depends-on').resource | ResearchDefinition.library",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "derived-from",
-    "expression": "ResearchDefinition.relatedArtifact.where(type='derived-from').resource",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "description",
-    "expression": "ResearchDefinition.description",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "effective",
-    "expression": "ResearchDefinition.effectivePeriod",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "identifier",
-    "expression": "ResearchDefinition.identifier",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "jurisdiction",
-    "expression": "ResearchDefinition.jurisdiction",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "name",
-    "expression": "ResearchDefinition.name",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "predecessor",
-    "expression": "ResearchDefinition.relatedArtifact.where(type='predecessor').resource",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "publisher",
-    "expression": "ResearchDefinition.publisher",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "status",
-    "expression": "ResearchDefinition.status",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "successor",
-    "expression": "ResearchDefinition.relatedArtifact.where(type='successor').resource",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "title",
-    "expression": "ResearchDefinition.title",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "topic",
-    "expression": "ResearchDefinition.topic",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "url",
-    "expression": "ResearchDefinition.url",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "version",
-    "expression": "ResearchDefinition.version",
-    "base": [
-      "ResearchDefinition"
-    ]
-  },
-  {
-    "name": "composed-of",
-    "expression": "ResearchElementDefinition.relatedArtifact.where(type='composed-of').resource",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "context-quantity",
-    "expression": "(ResearchElementDefinition.useContext.value as Quantity) | (ResearchElementDefinition.useContext.value as Range)",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "context-type-quantity",
-    "expression": "ResearchElementDefinition.useContext",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "ResearchElementDefinition.useContext",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "context-type",
-    "expression": "ResearchElementDefinition.useContext.code",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(ResearchElementDefinition.useContext.value as CodeableConcept)",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "date",
-    "expression": "ResearchElementDefinition.date",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "depends-on",
-    "expression": "ResearchElementDefinition.relatedArtifact.where(type='depends-on').resource | ResearchElementDefinition.library",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "derived-from",
-    "expression": "ResearchElementDefinition.relatedArtifact.where(type='derived-from').resource",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "description",
-    "expression": "ResearchElementDefinition.description",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "effective",
-    "expression": "ResearchElementDefinition.effectivePeriod",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "identifier",
-    "expression": "ResearchElementDefinition.identifier",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "jurisdiction",
-    "expression": "ResearchElementDefinition.jurisdiction",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "name",
-    "expression": "ResearchElementDefinition.name",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "predecessor",
-    "expression": "ResearchElementDefinition.relatedArtifact.where(type='predecessor').resource",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "publisher",
-    "expression": "ResearchElementDefinition.publisher",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "status",
-    "expression": "ResearchElementDefinition.status",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "successor",
-    "expression": "ResearchElementDefinition.relatedArtifact.where(type='successor').resource",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "title",
-    "expression": "ResearchElementDefinition.title",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "topic",
-    "expression": "ResearchElementDefinition.topic",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "url",
-    "expression": "ResearchElementDefinition.url",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
-    "name": "version",
-    "expression": "ResearchElementDefinition.version",
-    "base": [
-      "ResearchElementDefinition"
-    ]
-  },
-  {
     "name": "category",
     "expression": "ResearchStudy.category",
+    "base": [
+      "ResearchStudy"
+    ]
+  },
+  {
+    "name": "condition",
+    "expression": "ResearchStudy.condition",
     "base": [
       "ResearchStudy"
     ]
@@ -8120,6 +9421,20 @@
     ]
   },
   {
+    "name": "recruitment_actual",
+    "expression": "ResearchStudy.recruitment.actualNumber",
+    "base": [
+      "ResearchStudy"
+    ]
+  },
+  {
+    "name": "recruitment_target",
+    "expression": "ResearchStudy.recruitment.targetNumber",
+    "base": [
+      "ResearchStudy"
+    ]
+  },
+  {
     "name": "site",
     "expression": "ResearchStudy.site",
     "base": [
@@ -8162,15 +9477,8 @@
     ]
   },
   {
-    "name": "individual",
-    "expression": "ResearchSubject.individual",
-    "base": [
-      "ResearchSubject"
-    ]
-  },
-  {
     "name": "patient",
-    "expression": "ResearchSubject.individual",
+    "expression": "ResearchSubject.subject",
     "base": [
       "ResearchSubject"
     ]
@@ -8190,59 +9498,17 @@
     ]
   },
   {
-    "name": "_content",
-    "expression": null,
+    "name": "subject",
+    "expression": "ResearchSubject.subject",
     "base": [
-      "Resource"
+      "ResearchSubject"
     ]
   },
   {
-    "name": "_id",
-    "expression": "Resource.id",
+    "name": "subject_state",
+    "expression": "ResearchSubject.progress.subjectState",
     "base": [
-      "Resource"
-    ]
-  },
-  {
-    "name": "_lastUpdated",
-    "expression": "Resource.meta.lastUpdated",
-    "base": [
-      "Resource"
-    ]
-  },
-  {
-    "name": "_profile",
-    "expression": "Resource.meta.profile",
-    "base": [
-      "Resource"
-    ]
-  },
-  {
-    "name": "_query",
-    "expression": null,
-    "base": [
-      "Resource"
-    ]
-  },
-  {
-    "name": "_security",
-    "expression": "Resource.meta.security",
-    "base": [
-      "Resource"
-    ]
-  },
-  {
-    "name": "_source",
-    "expression": "Resource.meta.source",
-    "base": [
-      "Resource"
-    ]
-  },
-  {
-    "name": "_tag",
-    "expression": "Resource.meta.tag",
-    "base": [
-      "Resource"
+      "ResearchSubject"
     ]
   },
   {
@@ -8285,118 +9551,6 @@
     "expression": "RiskAssessment.subject",
     "base": [
       "RiskAssessment"
-    ]
-  },
-  {
-    "name": "context-quantity",
-    "expression": "(RiskEvidenceSynthesis.useContext.value as Quantity) | (RiskEvidenceSynthesis.useContext.value as Range)",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "context-type-quantity",
-    "expression": "RiskEvidenceSynthesis.useContext",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "RiskEvidenceSynthesis.useContext",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "context-type",
-    "expression": "RiskEvidenceSynthesis.useContext.code",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(RiskEvidenceSynthesis.useContext.value as CodeableConcept)",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "date",
-    "expression": "RiskEvidenceSynthesis.date",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "description",
-    "expression": "RiskEvidenceSynthesis.description",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "effective",
-    "expression": "RiskEvidenceSynthesis.effectivePeriod",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "identifier",
-    "expression": "RiskEvidenceSynthesis.identifier",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "jurisdiction",
-    "expression": "RiskEvidenceSynthesis.jurisdiction",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "name",
-    "expression": "RiskEvidenceSynthesis.name",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "publisher",
-    "expression": "RiskEvidenceSynthesis.publisher",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "status",
-    "expression": "RiskEvidenceSynthesis.status",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "title",
-    "expression": "RiskEvidenceSynthesis.title",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "url",
-    "expression": "RiskEvidenceSynthesis.url",
-    "base": [
-      "RiskEvidenceSynthesis"
-    ]
-  },
-  {
-    "name": "version",
-    "expression": "RiskEvidenceSynthesis.version",
-    "base": [
-      "RiskEvidenceSynthesis"
     ]
   },
   {
@@ -8547,15 +9701,15 @@
     ]
   },
   {
-    "name": "performer-type",
-    "expression": "ServiceRequest.performerType",
+    "name": "performer",
+    "expression": "ServiceRequest.performer",
     "base": [
       "ServiceRequest"
     ]
   },
   {
-    "name": "performer",
-    "expression": "ServiceRequest.performer",
+    "name": "performer-type",
+    "expression": "ServiceRequest.performerType",
     "base": [
       "ServiceRequest"
     ]
@@ -8694,15 +9848,15 @@
     ]
   },
   {
-    "name": "container-id",
-    "expression": "Specimen.container.identifier",
+    "name": "container",
+    "expression": "Specimen.container.type",
     "base": [
       "Specimen"
     ]
   },
   {
-    "name": "container",
-    "expression": "Specimen.container.type",
+    "name": "container-id",
+    "expression": "Specimen.container.identifier",
     "base": [
       "Specimen"
     ]
@@ -8757,8 +9911,36 @@
     ]
   },
   {
+    "name": "experimental",
+    "expression": "SpecimenDefinition.experimental",
+    "base": [
+      "SpecimenDefinition"
+    ]
+  },
+  {
     "name": "identifier",
     "expression": "SpecimenDefinition.identifier",
+    "base": [
+      "SpecimenDefinition"
+    ]
+  },
+  {
+    "name": "is-derived",
+    "expression": "SpecimenDefinition.typeTested.isDerived",
+    "base": [
+      "SpecimenDefinition"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "SpecimenDefinition.status",
+    "base": [
+      "SpecimenDefinition"
+    ]
+  },
+  {
+    "name": "title",
+    "expression": "SpecimenDefinition.title",
     "base": [
       "SpecimenDefinition"
     ]
@@ -8771,6 +9953,20 @@
     ]
   },
   {
+    "name": "type-tested",
+    "expression": "SpecimenDefinition.typeTested.type",
+    "base": [
+      "SpecimenDefinition"
+    ]
+  },
+  {
+    "name": "url",
+    "expression": "SpecimenDefinition.url",
+    "base": [
+      "SpecimenDefinition"
+    ]
+  },
+  {
     "name": "abstract",
     "expression": "StructureDefinition.abstract",
     "base": [
@@ -8778,15 +9974,15 @@
     ]
   },
   {
-    "name": "base-path",
-    "expression": "StructureDefinition.snapshot.element.base.path | StructureDefinition.differential.element.base.path",
+    "name": "base",
+    "expression": "StructureDefinition.baseDefinition",
     "base": [
       "StructureDefinition"
     ]
   },
   {
-    "name": "base",
-    "expression": "StructureDefinition.baseDefinition",
+    "name": "base-path",
+    "expression": "StructureDefinition.snapshot.element.base.path | StructureDefinition.differential.element.base.path",
     "base": [
       "StructureDefinition"
     ]
@@ -8807,7 +10003,7 @@
   },
   {
     "name": "ext-context",
-    "expression": "StructureDefinition.context.type",
+    "expression": "StructureDefinition.context",
     "base": [
       "StructureDefinition"
     ]
@@ -8855,15 +10051,15 @@
     ]
   },
   {
-    "name": "criteria",
-    "expression": "Subscription.criteria",
+    "name": "identifier",
+    "expression": "Subscription.identifier",
     "base": [
       "Subscription"
     ]
   },
   {
     "name": "payload",
-    "expression": "Subscription.channel.payload",
+    "expression": null,
     "base": [
       "Subscription"
     ]
@@ -8877,16 +10073,86 @@
   },
   {
     "name": "type",
-    "expression": "Subscription.channel.type",
+    "expression": null,
     "base": [
       "Subscription"
     ]
   },
   {
     "name": "url",
-    "expression": "Subscription.channel.endpoint",
+    "expression": null,
     "base": [
       "Subscription"
+    ]
+  },
+  {
+    "name": "date",
+    "expression": "SubscriptionTopic.date",
+    "base": [
+      "SubscriptionTopic"
+    ]
+  },
+  {
+    "name": "derived-or-self",
+    "expression": "SubscriptionTopic.url | SubscriptionTopic.derivedFrom",
+    "base": [
+      "SubscriptionTopic"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "SubscriptionTopic.identifier",
+    "base": [
+      "SubscriptionTopic"
+    ]
+  },
+  {
+    "name": "publisher",
+    "expression": "SubscriptionTopic.publisher",
+    "base": [
+      "SubscriptionTopic"
+    ]
+  },
+  {
+    "name": "resource-type",
+    "expression": "SubscriptionTopic.resourceTrigger.resourceType",
+    "base": [
+      "SubscriptionTopic"
+    ]
+  },
+  {
+    "name": "status",
+    "expression": "SubscriptionTopic.status",
+    "base": [
+      "SubscriptionTopic"
+    ]
+  },
+  {
+    "name": "title",
+    "expression": "SubscriptionTopic.title",
+    "base": [
+      "SubscriptionTopic"
+    ]
+  },
+  {
+    "name": "trigger-description",
+    "expression": "SubscriptionTopic.resourceTrigger.description",
+    "base": [
+      "SubscriptionTopic"
+    ]
+  },
+  {
+    "name": "url",
+    "expression": "SubscriptionTopic.url",
+    "base": [
+      "SubscriptionTopic"
+    ]
+  },
+  {
+    "name": "version",
+    "expression": "SubscriptionTopic.version",
+    "base": [
+      "SubscriptionTopic"
     ]
   },
   {
@@ -8898,21 +10164,21 @@
   },
   {
     "name": "code",
-    "expression": "Substance.code | (Substance.ingredient.substance as CodeableConcept)",
+    "expression": "Substance.code.concept | (Substance.ingredient.substance as CodeableConcept)",
     "base": [
       "Substance"
     ]
   },
   {
-    "name": "container-identifier",
-    "expression": "Substance.instance.identifier",
+    "name": "code-reference",
+    "expression": "Substance.code.reference",
     "base": [
       "Substance"
     ]
   },
   {
     "name": "expiry",
-    "expression": "Substance.instance.expiry",
+    "expression": "Substance.expiry",
     "base": [
       "Substance"
     ]
@@ -8926,7 +10192,7 @@
   },
   {
     "name": "quantity",
-    "expression": "Substance.instance.quantity",
+    "expression": "Substance.quantity",
     "base": [
       "Substance"
     ]
@@ -8946,10 +10212,38 @@
     ]
   },
   {
-    "name": "code",
-    "expression": "SubstanceSpecification.code.code",
+    "name": "category",
+    "expression": "SubstanceDefinition.category",
     "base": [
-      "SubstanceSpecification"
+      "SubstanceDefinition"
+    ]
+  },
+  {
+    "name": "code",
+    "expression": "SubstanceDefinition.code.code",
+    "base": [
+      "SubstanceDefinition"
+    ]
+  },
+  {
+    "name": "domain",
+    "expression": "SubstanceDefinition.domain",
+    "base": [
+      "SubstanceDefinition"
+    ]
+  },
+  {
+    "name": "identifier",
+    "expression": "SubstanceDefinition.identifier",
+    "base": [
+      "SubstanceDefinition"
+    ]
+  },
+  {
+    "name": "name",
+    "expression": "SubstanceDefinition.name.name",
+    "base": [
+      "SubstanceDefinition"
     ]
   },
   {
@@ -9184,6 +10478,13 @@
     ]
   },
   {
+    "name": "context",
+    "expression": "(TestScript.useContext.value as CodeableConcept)",
+    "base": [
+      "TestScript"
+    ]
+  },
+  {
     "name": "context-quantity",
     "expression": "(TestScript.useContext.value as Quantity) | (TestScript.useContext.value as Range)",
     "base": [
@@ -9191,29 +10492,8 @@
     ]
   },
   {
-    "name": "context-type-quantity",
-    "expression": "TestScript.useContext",
-    "base": [
-      "TestScript"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "TestScript.useContext",
-    "base": [
-      "TestScript"
-    ]
-  },
-  {
     "name": "context-type",
     "expression": "TestScript.useContext.code",
-    "base": [
-      "TestScript"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(TestScript.useContext.value as CodeableConcept)",
     "base": [
       "TestScript"
     ]
@@ -9261,6 +10541,13 @@
     ]
   },
   {
+    "name": "scope-artifact",
+    "expression": "TestScript.scope.artifact",
+    "base": [
+      "TestScript"
+    ]
+  },
+  {
     "name": "status",
     "expression": "TestScript.status",
     "base": [
@@ -9291,6 +10578,34 @@
   {
     "name": "version",
     "expression": "TestScript.version",
+    "base": [
+      "TestScript"
+    ]
+  },
+  {
+    "name": "context-type-quantity",
+    "expression": "TestScript.useContext",
+    "base": [
+      "TestScript"
+    ]
+  },
+  {
+    "name": "context-type-value",
+    "expression": "TestScript.useContext",
+    "base": [
+      "TestScript"
+    ]
+  },
+  {
+    "name": "scope-artifact-conformance",
+    "expression": "TestScript.scope",
+    "base": [
+      "TestScript"
+    ]
+  },
+  {
+    "name": "scope-artifact-phase",
+    "expression": "TestScript.scope",
     "base": [
       "TestScript"
     ]
@@ -9343,771 +10658,5 @@
     "base": [
       "VisionPrescription"
     ]
-  },
-  {
-    "name": "code",
-    "expression": "AllergyIntolerance.code | AllergyIntolerance.reaction.substance | Condition.code | (DeviceRequest.code as CodeableConcept) | DiagnosticReport.code | FamilyMemberHistory.condition.code | List.code | Medication.code | (MedicationAdministration.medication as CodeableConcept) | (MedicationDispense.medication as CodeableConcept) | (MedicationRequest.medication as CodeableConcept) | (MedicationStatement.medication as CodeableConcept) | Observation.code | Procedure.code | ServiceRequest.code",
-    "base": [
-      "AllergyIntolerance",
-      "Condition",
-      "DeviceRequest",
-      "DiagnosticReport",
-      "FamilyMemberHistory",
-      "List",
-      "Medication",
-      "MedicationAdministration",
-      "MedicationDispense",
-      "MedicationRequest",
-      "MedicationStatement",
-      "Observation",
-      "Procedure",
-      "ServiceRequest"
-    ]
-  },
-  {
-    "name": "date",
-    "expression": "AllergyIntolerance.recordedDate | CarePlan.period | CareTeam.period | ClinicalImpression.date | Composition.date | Consent.dateTime | DiagnosticReport.effective | Encounter.period | EpisodeOfCare.period | FamilyMemberHistory.date | Flag.period | Immunization.occurrence | List.date | Observation.effective | Procedure.performed | (RiskAssessment.occurrence as dateTime) | SupplyRequest.authoredOn",
-    "base": [
-      "AllergyIntolerance",
-      "CarePlan",
-      "CareTeam",
-      "ClinicalImpression",
-      "Composition",
-      "Consent",
-      "DiagnosticReport",
-      "Encounter",
-      "EpisodeOfCare",
-      "FamilyMemberHistory",
-      "Flag",
-      "Immunization",
-      "List",
-      "Observation",
-      "Procedure",
-      "RiskAssessment",
-      "SupplyRequest"
-    ]
-  },
-  {
-    "name": "encounter",
-    "expression": "Composition.encounter | DeviceRequest.encounter | DiagnosticReport.encounter | DocumentReference.context.encounter | Flag.encounter | List.encounter | NutritionOrder.encounter | Observation.encounter | Procedure.encounter | RiskAssessment.encounter | ServiceRequest.encounter | VisionPrescription.encounter",
-    "base": [
-      "Composition",
-      "DeviceRequest",
-      "DiagnosticReport",
-      "DocumentReference",
-      "Flag",
-      "List",
-      "NutritionOrder",
-      "Observation",
-      "Procedure",
-      "RiskAssessment",
-      "ServiceRequest",
-      "VisionPrescription"
-    ]
-  },
-  {
-    "name": "identifier",
-    "expression": "AllergyIntolerance.identifier | CarePlan.identifier | CareTeam.identifier | Composition.identifier | Condition.identifier | Consent.identifier | DetectedIssue.identifier | DeviceRequest.identifier | DiagnosticReport.identifier | DocumentManifest.masterIdentifier | DocumentManifest.identifier | DocumentReference.masterIdentifier | DocumentReference.identifier | Encounter.identifier | EpisodeOfCare.identifier | FamilyMemberHistory.identifier | Goal.identifier | ImagingStudy.identifier | Immunization.identifier | List.identifier | MedicationAdministration.identifier | MedicationDispense.identifier | MedicationRequest.identifier | MedicationStatement.identifier | NutritionOrder.identifier | Observation.identifier | Procedure.identifier | RiskAssessment.identifier | ServiceRequest.identifier | SupplyDelivery.identifier | SupplyRequest.identifier | VisionPrescription.identifier",
-    "base": [
-      "AllergyIntolerance",
-      "CarePlan",
-      "CareTeam",
-      "Composition",
-      "Condition",
-      "Consent",
-      "DetectedIssue",
-      "DeviceRequest",
-      "DiagnosticReport",
-      "DocumentManifest",
-      "DocumentReference",
-      "Encounter",
-      "EpisodeOfCare",
-      "FamilyMemberHistory",
-      "Goal",
-      "ImagingStudy",
-      "Immunization",
-      "List",
-      "MedicationAdministration",
-      "MedicationDispense",
-      "MedicationRequest",
-      "MedicationStatement",
-      "NutritionOrder",
-      "Observation",
-      "Procedure",
-      "RiskAssessment",
-      "ServiceRequest",
-      "SupplyDelivery",
-      "SupplyRequest",
-      "VisionPrescription"
-    ]
-  },
-  {
-    "name": "patient",
-    "expression": "AllergyIntolerance.patient | CarePlan.subject.where(resolve() is Patient) | CareTeam.subject.where(resolve() is Patient) | ClinicalImpression.subject.where(resolve() is Patient) | Composition.subject.where(resolve() is Patient) | Condition.subject.where(resolve() is Patient) | Consent.patient | DetectedIssue.patient | DeviceRequest.subject.where(resolve() is Patient) | DeviceUseStatement.subject | DiagnosticReport.subject.where(resolve() is Patient) | DocumentManifest.subject.where(resolve() is Patient) | DocumentReference.subject.where(resolve() is Patient) | Encounter.subject.where(resolve() is Patient) | EpisodeOfCare.patient | FamilyMemberHistory.patient | Flag.subject.where(resolve() is Patient) | Goal.subject.where(resolve() is Patient) | ImagingStudy.subject.where(resolve() is Patient) | Immunization.patient | List.subject.where(resolve() is Patient) | MedicationAdministration.subject.where(resolve() is Patient) | MedicationDispense.subject.where(resolve() is Patient) | MedicationRequest.subject.where(resolve() is Patient) | MedicationStatement.subject.where(resolve() is Patient) | NutritionOrder.patient | Observation.subject.where(resolve() is Patient) | Procedure.subject.where(resolve() is Patient) | RiskAssessment.subject.where(resolve() is Patient) | ServiceRequest.subject.where(resolve() is Patient) | SupplyDelivery.patient | VisionPrescription.patient",
-    "base": [
-      "AllergyIntolerance",
-      "CarePlan",
-      "CareTeam",
-      "ClinicalImpression",
-      "Composition",
-      "Condition",
-      "Consent",
-      "DetectedIssue",
-      "DeviceRequest",
-      "DeviceUseStatement",
-      "DiagnosticReport",
-      "DocumentManifest",
-      "DocumentReference",
-      "Encounter",
-      "EpisodeOfCare",
-      "FamilyMemberHistory",
-      "Flag",
-      "Goal",
-      "ImagingStudy",
-      "Immunization",
-      "List",
-      "MedicationAdministration",
-      "MedicationDispense",
-      "MedicationRequest",
-      "MedicationStatement",
-      "NutritionOrder",
-      "Observation",
-      "Procedure",
-      "RiskAssessment",
-      "ServiceRequest",
-      "SupplyDelivery",
-      "VisionPrescription"
-    ]
-  },
-  {
-    "name": "type",
-    "expression": "AllergyIntolerance.type | Composition.type | DocumentManifest.type | DocumentReference.type | Encounter.type | EpisodeOfCare.type",
-    "base": [
-      "AllergyIntolerance",
-      "Composition",
-      "DocumentManifest",
-      "DocumentReference",
-      "Encounter",
-      "EpisodeOfCare"
-    ]
-  },
-  {
-    "name": "author",
-    "expression": null,
-    "base": null
-  },
-  {
-    "name": "effective",
-    "expression": null,
-    "base": null
-  },
-  {
-    "name": "end",
-    "expression": null,
-    "base": null
-  },
-  {
-    "name": "keyword",
-    "expression": null,
-    "base": null
-  },
-  {
-    "name": "workflow",
-    "expression": null,
-    "base": null
-  },
-  {
-    "name": "context-quantity",
-    "expression": "(CapabilityStatement.useContext.value as Quantity) | (CapabilityStatement.useContext.value as Range) | (CodeSystem.useContext.value as Quantity) | (CodeSystem.useContext.value as Range) | (CompartmentDefinition.useContext.value as Quantity) | (CompartmentDefinition.useContext.value as Range) | (ConceptMap.useContext.value as Quantity) | (ConceptMap.useContext.value as Range) | (GraphDefinition.useContext.value as Quantity) | (GraphDefinition.useContext.value as Range) | (ImplementationGuide.useContext.value as Quantity) | (ImplementationGuide.useContext.value as Range) | (MessageDefinition.useContext.value as Quantity) | (MessageDefinition.useContext.value as Range) | (NamingSystem.useContext.value as Quantity) | (NamingSystem.useContext.value as Range) | (OperationDefinition.useContext.value as Quantity) | (OperationDefinition.useContext.value as Range) | (SearchParameter.useContext.value as Quantity) | (SearchParameter.useContext.value as Range) | (StructureDefinition.useContext.value as Quantity) | (StructureDefinition.useContext.value as Range) | (StructureMap.useContext.value as Quantity) | (StructureMap.useContext.value as Range) | (TerminologyCapabilities.useContext.value as Quantity) | (TerminologyCapabilities.useContext.value as Range) | (ValueSet.useContext.value as Quantity) | (ValueSet.useContext.value as Range)",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "CompartmentDefinition",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "NamingSystem",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "context-type-quantity",
-    "expression": "CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "CompartmentDefinition",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "NamingSystem",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "context-type-value",
-    "expression": "CapabilityStatement.useContext | CodeSystem.useContext | CompartmentDefinition.useContext | ConceptMap.useContext | GraphDefinition.useContext | ImplementationGuide.useContext | MessageDefinition.useContext | NamingSystem.useContext | OperationDefinition.useContext | SearchParameter.useContext | StructureDefinition.useContext | StructureMap.useContext | TerminologyCapabilities.useContext | ValueSet.useContext",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "CompartmentDefinition",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "NamingSystem",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "context-type",
-    "expression": "CapabilityStatement.useContext.code | CodeSystem.useContext.code | CompartmentDefinition.useContext.code | ConceptMap.useContext.code | GraphDefinition.useContext.code | ImplementationGuide.useContext.code | MessageDefinition.useContext.code | NamingSystem.useContext.code | OperationDefinition.useContext.code | SearchParameter.useContext.code | StructureDefinition.useContext.code | StructureMap.useContext.code | TerminologyCapabilities.useContext.code | ValueSet.useContext.code",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "CompartmentDefinition",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "NamingSystem",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "context",
-    "expression": "(CapabilityStatement.useContext.value as CodeableConcept) | (CodeSystem.useContext.value as CodeableConcept) | (CompartmentDefinition.useContext.value as CodeableConcept) | (ConceptMap.useContext.value as CodeableConcept) | (GraphDefinition.useContext.value as CodeableConcept) | (ImplementationGuide.useContext.value as CodeableConcept) | (MessageDefinition.useContext.value as CodeableConcept) | (NamingSystem.useContext.value as CodeableConcept) | (OperationDefinition.useContext.value as CodeableConcept) | (SearchParameter.useContext.value as CodeableConcept) | (StructureDefinition.useContext.value as CodeableConcept) | (StructureMap.useContext.value as CodeableConcept) | (TerminologyCapabilities.useContext.value as CodeableConcept) | (ValueSet.useContext.value as CodeableConcept)",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "CompartmentDefinition",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "NamingSystem",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "date",
-    "expression": "CapabilityStatement.date | CodeSystem.date | CompartmentDefinition.date | ConceptMap.date | GraphDefinition.date | ImplementationGuide.date | MessageDefinition.date | NamingSystem.date | OperationDefinition.date | SearchParameter.date | StructureDefinition.date | StructureMap.date | TerminologyCapabilities.date | ValueSet.date",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "CompartmentDefinition",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "NamingSystem",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "description",
-    "expression": "CapabilityStatement.description | CodeSystem.description | CompartmentDefinition.description | ConceptMap.description | GraphDefinition.description | ImplementationGuide.description | MessageDefinition.description | NamingSystem.description | OperationDefinition.description | SearchParameter.description | StructureDefinition.description | StructureMap.description | TerminologyCapabilities.description | ValueSet.description",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "CompartmentDefinition",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "NamingSystem",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "identifier",
-    "expression": "CodeSystem.identifier | ConceptMap.identifier | MessageDefinition.identifier | StructureDefinition.identifier | StructureMap.identifier | ValueSet.identifier",
-    "base": [
-      "CodeSystem",
-      "ConceptMap",
-      "MessageDefinition",
-      "StructureDefinition",
-      "StructureMap",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "jurisdiction",
-    "expression": "CapabilityStatement.jurisdiction | CodeSystem.jurisdiction | ConceptMap.jurisdiction | GraphDefinition.jurisdiction | ImplementationGuide.jurisdiction | MessageDefinition.jurisdiction | NamingSystem.jurisdiction | OperationDefinition.jurisdiction | SearchParameter.jurisdiction | StructureDefinition.jurisdiction | StructureMap.jurisdiction | TerminologyCapabilities.jurisdiction | ValueSet.jurisdiction",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "NamingSystem",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "name",
-    "expression": "CapabilityStatement.name | CodeSystem.name | CompartmentDefinition.name | ConceptMap.name | GraphDefinition.name | ImplementationGuide.name | MessageDefinition.name | NamingSystem.name | OperationDefinition.name | SearchParameter.name | StructureDefinition.name | StructureMap.name | TerminologyCapabilities.name | ValueSet.name",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "CompartmentDefinition",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "NamingSystem",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "publisher",
-    "expression": "CapabilityStatement.publisher | CodeSystem.publisher | CompartmentDefinition.publisher | ConceptMap.publisher | GraphDefinition.publisher | ImplementationGuide.publisher | MessageDefinition.publisher | NamingSystem.publisher | OperationDefinition.publisher | SearchParameter.publisher | StructureDefinition.publisher | StructureMap.publisher | TerminologyCapabilities.publisher | ValueSet.publisher",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "CompartmentDefinition",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "NamingSystem",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "status",
-    "expression": "CapabilityStatement.status | CodeSystem.status | CompartmentDefinition.status | ConceptMap.status | GraphDefinition.status | ImplementationGuide.status | MessageDefinition.status | NamingSystem.status | OperationDefinition.status | SearchParameter.status | StructureDefinition.status | StructureMap.status | TerminologyCapabilities.status | ValueSet.status",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "CompartmentDefinition",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "NamingSystem",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "title",
-    "expression": "CapabilityStatement.title | CodeSystem.title | ConceptMap.title | ImplementationGuide.title | MessageDefinition.title | OperationDefinition.title | StructureDefinition.title | StructureMap.title | TerminologyCapabilities.title | ValueSet.title",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "ConceptMap",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "OperationDefinition",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "url",
-    "expression": "CapabilityStatement.url | CodeSystem.url | CompartmentDefinition.url | ConceptMap.url | GraphDefinition.url | ImplementationGuide.url | MessageDefinition.url | OperationDefinition.url | SearchParameter.url | StructureDefinition.url | StructureMap.url | TerminologyCapabilities.url | ValueSet.url",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "CompartmentDefinition",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "version",
-    "expression": "CapabilityStatement.version | CodeSystem.version | CompartmentDefinition.version | ConceptMap.version | GraphDefinition.version | ImplementationGuide.version | MessageDefinition.version | OperationDefinition.version | SearchParameter.version | StructureDefinition.version | StructureMap.version | TerminologyCapabilities.version | ValueSet.version",
-    "base": [
-      "CapabilityStatement",
-      "CodeSystem",
-      "CompartmentDefinition",
-      "ConceptMap",
-      "GraphDefinition",
-      "ImplementationGuide",
-      "MessageDefinition",
-      "OperationDefinition",
-      "SearchParameter",
-      "StructureDefinition",
-      "StructureMap",
-      "TerminologyCapabilities",
-      "ValueSet"
-    ]
-  },
-  {
-    "name": "din",
-    "expression": "Device.extension('http://hl7.org/fhir/SearchParameter/device-extensions-Device-din')",
-    "base": [
-      "Device"
-    ]
-  },
-  {
-    "name": "assessed-condition",
-    "expression": "DiagnosticReport.extension('http://hl7.org/fhir/StructureDefinition/DiagnosticReport-geneticsAssessedCondition')",
-    "base": [
-      "DiagnosticReport"
-    ]
-  },
-  {
-    "name": "Example Search Parameter on an extension",
-    "expression": "DocumentReference.extension('http://example.org/fhir/StructureDefinition/participation-agreement')",
-    "base": [
-      "Patient"
-    ]
-  },
-  {
-    "name": "Example Search Parameter",
-    "expression": "Condition.subject",
-    "base": [
-      "Condition"
-    ]
-  },
-  {
-    "name": "ID-SEARCH-PARAMETER",
-    "expression": "id",
-    "base": [
-      "Resource"
-    ]
-  },
-  {
-    "name": "FilterSearchParameter",
-    "expression": null,
-    "base": [
-      "Resource"
-    ]
-  },
-  {
-    "name": "address-city",
-    "expression": "Patient.address.city | Person.address.city | Practitioner.address.city | RelatedPerson.address.city",
-    "base": [
-      "Patient",
-      "Person",
-      "Practitioner",
-      "RelatedPerson"
-    ]
-  },
-  {
-    "name": "address-country",
-    "expression": "Patient.address.country | Person.address.country | Practitioner.address.country | RelatedPerson.address.country",
-    "base": [
-      "Patient",
-      "Person",
-      "Practitioner",
-      "RelatedPerson"
-    ]
-  },
-  {
-    "name": "address-postalcode",
-    "expression": "Patient.address.postalCode | Person.address.postalCode | Practitioner.address.postalCode | RelatedPerson.address.postalCode",
-    "base": [
-      "Patient",
-      "Person",
-      "Practitioner",
-      "RelatedPerson"
-    ]
-  },
-  {
-    "name": "address-state",
-    "expression": "Patient.address.state | Person.address.state | Practitioner.address.state | RelatedPerson.address.state",
-    "base": [
-      "Patient",
-      "Person",
-      "Practitioner",
-      "RelatedPerson"
-    ]
-  },
-  {
-    "name": "address-use",
-    "expression": "Patient.address.use | Person.address.use | Practitioner.address.use | RelatedPerson.address.use",
-    "base": [
-      "Patient",
-      "Person",
-      "Practitioner",
-      "RelatedPerson"
-    ]
-  },
-  {
-    "name": "address",
-    "expression": "Patient.address | Person.address | Practitioner.address | RelatedPerson.address",
-    "base": [
-      "Patient",
-      "Person",
-      "Practitioner",
-      "RelatedPerson"
-    ]
-  },
-  {
-    "name": "birthdate",
-    "expression": "Patient.birthDate | Person.birthDate | RelatedPerson.birthDate",
-    "base": [
-      "Patient",
-      "Person",
-      "RelatedPerson"
-    ]
-  },
-  {
-    "name": "email",
-    "expression": "Patient.telecom.where(system='email') | Person.telecom.where(system='email') | Practitioner.telecom.where(system='email') | PractitionerRole.telecom.where(system='email') | RelatedPerson.telecom.where(system='email')",
-    "base": [
-      "Patient",
-      "Person",
-      "Practitioner",
-      "PractitionerRole",
-      "RelatedPerson"
-    ]
-  },
-  {
-    "name": "family",
-    "expression": "Patient.name.family | Practitioner.name.family",
-    "base": [
-      "Patient",
-      "Practitioner"
-    ]
-  },
-  {
-    "name": "gender",
-    "expression": "Patient.gender | Person.gender | Practitioner.gender | RelatedPerson.gender",
-    "base": [
-      "Patient",
-      "Person",
-      "Practitioner",
-      "RelatedPerson"
-    ]
-  },
-  {
-    "name": "given",
-    "expression": "Patient.name.given | Practitioner.name.given",
-    "base": [
-      "Patient",
-      "Practitioner"
-    ]
-  },
-  {
-    "name": "phone",
-    "expression": "Patient.telecom.where(system='phone') | Person.telecom.where(system='phone') | Practitioner.telecom.where(system='phone') | PractitionerRole.telecom.where(system='phone') | RelatedPerson.telecom.where(system='phone')",
-    "base": [
-      "Patient",
-      "Person",
-      "Practitioner",
-      "PractitionerRole",
-      "RelatedPerson"
-    ]
-  },
-  {
-    "name": "phonetic",
-    "expression": "Patient.name | Person.name | Practitioner.name | RelatedPerson.name",
-    "base": [
-      "Patient",
-      "Person",
-      "Practitioner",
-      "RelatedPerson"
-    ]
-  },
-  {
-    "name": "telecom",
-    "expression": "Patient.telecom | Person.telecom | Practitioner.telecom | PractitionerRole.telecom | RelatedPerson.telecom",
-    "base": [
-      "Patient",
-      "Person",
-      "Practitioner",
-      "PractitionerRole",
-      "RelatedPerson"
-    ]
-  },
-  {
-    "name": "date",
-    "expression": "MedicationRequest.dosageInstruction.timing.event",
-    "base": [
-      "MedicationRequest"
-    ]
-  },
-  {
-    "name": "encounter",
-    "expression": "MedicationRequest.encounter",
-    "base": [
-      "MedicationRequest"
-    ]
-  },
-  {
-    "name": "medication",
-    "expression": "(MedicationAdministration.medication as Reference) | (MedicationDispense.medication as Reference) | (MedicationRequest.medication as Reference) | (MedicationStatement.medication as Reference)",
-    "base": [
-      "MedicationAdministration",
-      "MedicationDispense",
-      "MedicationRequest",
-      "MedicationStatement"
-    ]
-  },
-  {
-    "name": "prescription",
-    "expression": "MedicationDispense.authorizingPrescription",
-    "base": [
-      "MedicationDispense"
-    ]
-  },
-  {
-    "name": "status",
-    "expression": "MedicationAdministration.status | MedicationDispense.status | MedicationRequest.status | MedicationStatement.status",
-    "base": [
-      "MedicationAdministration",
-      "MedicationDispense",
-      "MedicationRequest",
-      "MedicationStatement"
-    ]
-  },
-  {
-    "name": "amino-acid-change",
-    "expression": "Observation.extension('http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChangeName')",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "dna-variant",
-    "expression": "Observation.extension('http://hl7.org/fhir/StructureDefinition/observation-geneticsDnaVariant')",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "gene-amino-acid-change",
-    "expression": "Observation.extension('http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChangeName')",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "gene-dnavariant",
-    "expression": "Observation.extension('http://hl7.org/fhir/StructureDefinition/observation-geneticsDnaVariant')",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "gene-identifier",
-    "expression": "Observation.extension('http://hl7.org/fhir/StructureDefinition/observation-geneticsGene')",
-    "base": [
-      "Observation"
-    ]
-  },
-  {
-    "name": "age",
-    "expression": null,
-    "base": [
-      "Patient"
-    ]
-  },
-  {
-    "name": "birthOrderBoolean",
-    "expression": null,
-    "base": [
-      "Patient"
-    ]
-  },
-  {
-    "name": "mothersMaidenName",
-    "expression": "Patient.extension('http://hl7.org/fhir/StructureDefinition/patient-extensions-Patient-mothersMaidenName')",
-    "base": [
-      "Patient"
-    ]
-  },
-  {
-    "name": "item-subject",
-    "expression": "QuestionnaireResponse.item.where(hasExtension('http://hl7.org/fhir/StructureDefinition/questionnaireresponse-isSubject')).answer.value.ofType(Reference)",
-    "base": [
-      "QuestionnaireResponse"
-    ]
-  },
-  {
-    "name": "author",
-    "expression": null,
-    "base": null
-  },
-  {
-    "name": "effective",
-    "expression": null,
-    "base": null
-  },
-  {
-    "name": "end",
-    "expression": null,
-    "base": null
-  },
-  {
-    "name": "keyword",
-    "expression": null,
-    "base": null
-  },
-  {
-    "name": "workflow",
-    "expression": null,
-    "base": null
   }
 ]

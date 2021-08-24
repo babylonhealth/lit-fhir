@@ -115,8 +115,8 @@ object HumanName extends CompanionFor[HumanName] {
 
 /** Base StructureDefinition for HumanName Type: A human's name with the ability to identify parts and usage.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields use, text, `given`, family, prefix, suffix, period.
@@ -159,6 +159,6 @@ class HumanName(
     val period: Option[Period] = None,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "HumanName"
 }

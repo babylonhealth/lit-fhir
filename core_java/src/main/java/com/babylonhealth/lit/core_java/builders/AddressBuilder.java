@@ -40,7 +40,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface AddressBuilder extends ElementBuilder {
+public interface AddressBuilder extends DataTypeBuilder {
   public Address build();
 
   public static Impl init() {

@@ -139,3 +139,10 @@ find-weird-ones:
 	cat generator/src/main/resources/searchParams.json | jq '.[] | select(.base[1] != null) | .name'
 	echo NO EXPRESSION:
 	cat generator/src/main/resources/searchParams/SearchParameter-* | jq 'select (.expression == null) | .id'
+
+munge-search-params:
+	cat examples/package/search-parameters.json \
+		| jq '.entry[].resource | { name: .name, expression: .expression, base: .base} ' \
+		| jq -s . \
+		> generator/src/main/resources/searchParams.json
+	rm -rf generator/src/main/resources/searchParams

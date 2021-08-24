@@ -108,8 +108,8 @@ object Meta extends CompanionFor[Meta] {
 /** Base StructureDefinition for Meta Type: The metadata about a resource. This is content in the resource that is maintained by
   * the infrastructure. Changes to the content might not always be associated with version changes to the resource.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields tag, source, profile, security, versionId, lastUpdated.
@@ -152,6 +152,6 @@ class Meta(
     val versionId: Option[Id] = None,
     val lastUpdated: Option[ZonedDateTime] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Meta"
 }

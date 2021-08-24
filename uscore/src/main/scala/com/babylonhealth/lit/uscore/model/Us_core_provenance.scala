@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate

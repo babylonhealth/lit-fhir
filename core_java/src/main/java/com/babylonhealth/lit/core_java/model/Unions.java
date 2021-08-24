@@ -185,33 +185,35 @@ public class Unions {
                                                                                                                                                                                                   $bslash$div<
                                                                                                                                                                                                       $bslash$div<
                                                                                                                                                                                                           $bslash$div<
-                                                                                                                                                                                                              Address,
-                                                                                                                                                                                                              Age>,
-                                                                                                                                                                                                          Annotation>,
-                                                                                                                                                                                                      Attachment>,
-                                                                                                                                                                                                  byte
-                                                                                                                                                                                                      []>,
-                                                                                                                                                                                              BigDecimal>,
-                                                                                                                                                                                          Boolean>,
+                                                                                                                                                                                                              $bslash$div<
+                                                                                                                                                                                                                  Address,
+                                                                                                                                                                                                                  Age>,
+                                                                                                                                                                                                              Annotation>,
+                                                                                                                                                                                                          Attachment>,
+                                                                                                                                                                                                      byte
+                                                                                                                                                                                                          []>,
+                                                                                                                                                                                                  BigDecimal>,
+                                                                                                                                                                                              Boolean>,
+                                                                                                                                                                                          String>,
                                                                                                                                                                                       String>,
-                                                                                                                                                                                  String>,
-                                                                                                                                                                              CodeableConcept>,
-                                                                                                                                                                          Coding>,
-                                                                                                                                                                      ContactDetail>,
-                                                                                                                                                                  ContactPoint>,
-                                                                                                                                                              Contributor>,
-                                                                                                                                                          Count>,
-                                                                                                                                                      DataRequirement>,
-                                                                                                                                                  Distance>,
-                                                                                                                                              Dosage>,
-                                                                                                                                          Duration>,
-                                                                                                                                      Expression>,
-                                                                                                                                  FHIRDate>,
-                                                                                                                              FHIRDateTime>,
-                                                                                                                          HumanName>,
-                                                                                                                      String>,
-                                                                                                                  Identifier>,
-                                                                                                              Integer>,
+                                                                                                                                                                                  CodeableConcept>,
+                                                                                                                                                                              Coding>,
+                                                                                                                                                                          ContactDetail>,
+                                                                                                                                                                      ContactPoint>,
+                                                                                                                                                                  Contributor>,
+                                                                                                                                                              Count>,
+                                                                                                                                                          DataRequirement>,
+                                                                                                                                                      Distance>,
+                                                                                                                                                  Dosage>,
+                                                                                                                                              Duration>,
+                                                                                                                                          Expression>,
+                                                                                                                                      FHIRDate>,
+                                                                                                                                  FHIRDateTime>,
+                                                                                                                              HumanName>,
+                                                                                                                          String>,
+                                                                                                                      Identifier>,
+                                                                                                                  Integer>,
+                                                                                                              Integer64>,
                                                                                                           LocalTime>,
                                                                                                       String>,
                                                                                                   Meta>,
@@ -322,6 +324,10 @@ public class Unions {
 
     public ChoiceAll(Identifier arg) {
       super("Identifier", arg, (LTag) UnionAliases.UnionAllTag());
+    }
+
+    public ChoiceAll(Integer64 arg) {
+      super("Integer64", arg, (LTag) UnionAliases.UnionAllTag());
     }
 
     public ChoiceAll(LocalTime arg) {

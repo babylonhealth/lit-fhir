@@ -39,7 +39,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface AttachmentBuilder extends ElementBuilder {
+public interface AttachmentBuilder extends DataTypeBuilder {
   public Attachment build();
 
   public static Impl init() {
@@ -54,11 +54,16 @@ public interface AttachmentBuilder extends ElementBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();
     private Optional<byte[]> data = Optional.empty();
-    private Optional<Integer> size = Optional.empty();
+    private Optional<Integer64> size = Optional.empty();
     private Optional<byte[]> hash = Optional.empty();
     private Optional<String> title = Optional.empty();
+    private Optional<Integer> width = Optional.empty();
+    private Optional<Integer> pages = Optional.empty();
+    private Optional<Integer> height = Optional.empty();
+    private Optional<Integer> frames = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
     private Optional<FHIRDateTime> creation = Optional.empty();
+    private Optional<BigDecimal> duration = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> contentType = Optional.empty();
 
@@ -87,7 +92,7 @@ public interface AttachmentBuilder extends ElementBuilder {
      * @param size - The number of bytes of data that make up this attachment (before base64
      *     encoding, if that is done).
      */
-    public AttachmentBuilder.Impl withSize(@NonNull Integer size) {
+    public AttachmentBuilder.Impl withSize(@NonNull Integer64 size) {
       this.size = Optional.of(size);
       return this;
     }
@@ -101,6 +106,31 @@ public interface AttachmentBuilder extends ElementBuilder {
       this.title = Optional.of(title);
       return this;
     }
+    /** @param width - Width of the image in pixels (photo/video). */
+    public AttachmentBuilder.Impl withWidth(@NonNull Integer width) {
+      this.width = Optional.of(width);
+      return this;
+    }
+    /** @param pages - The number of pages when printed. */
+    public AttachmentBuilder.Impl withPages(@NonNull Integer pages) {
+      this.pages = Optional.of(pages);
+      return this;
+    }
+    /** @param height - Height of the image in pixels (photo/video). */
+    public AttachmentBuilder.Impl withHeight(@NonNull Integer height) {
+      this.height = Optional.of(height);
+      return this;
+    }
+    /**
+     * @param frames - The number of frames in a photo. This is used with a multi-page fax, or an
+     *     imaging acquisition context that takes multiple slices in a single image, or an animated
+     *     gif. If there is more than one frame, this SHALL have a value in order to alert interface
+     *     software that a multi-frame capable rendering widget is required.
+     */
+    public AttachmentBuilder.Impl withFrames(@NonNull Integer frames) {
+      this.frames = Optional.of(frames);
+      return this;
+    }
     /**
      * @param language - The human language of the content. The value can be any valid value
      *     according to BCP 47.
@@ -112,6 +142,11 @@ public interface AttachmentBuilder extends ElementBuilder {
     /** @param creation - The date that the attachment was first created. */
     public AttachmentBuilder.Impl withCreation(@NonNull FHIRDateTime creation) {
       this.creation = Optional.of(creation);
+      return this;
+    }
+    /** @param duration - The duration of the recording in seconds - for audio and video. */
+    public AttachmentBuilder.Impl withDuration(@NonNull BigDecimal duration) {
+      this.duration = Optional.of(duration);
       return this;
     }
     /**
@@ -156,11 +191,16 @@ public interface AttachmentBuilder extends ElementBuilder {
           OptionConverters.toScala(id),
           OptionConverters.toScala(url),
           OptionConverters.toScala(data),
-          OptionConverters.toScala(size.map(x -> (Object) x)),
+          OptionConverters.toScala(size),
           OptionConverters.toScala(hash),
           OptionConverters.toScala(title),
+          OptionConverters.toScala(width.map(x -> (Object) x)),
+          OptionConverters.toScala(pages.map(x -> (Object) x)),
+          OptionConverters.toScala(height.map(x -> (Object) x)),
+          OptionConverters.toScala(frames.map(x -> (Object) x)),
           OptionConverters.toScala(language),
           OptionConverters.toScala(creation),
+          OptionConverters.toScala(duration),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(contentType),
           LitUtils.emptyMetaElMap());

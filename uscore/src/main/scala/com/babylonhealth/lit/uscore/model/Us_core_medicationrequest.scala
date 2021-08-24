@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.hl7.{
   REQUEST_INTENT,
   MEDICATIONREQUEST_INTENT,
@@ -350,8 +351,7 @@ object Us_core_medicationrequest extends CompanionFor[Us_core_medicationrequest]
   def extractSubstitution(t: Us_core_medicationrequest): Option[MedicationRequest.Substitution]       = t.substitution
   def extractDosageInstruction(t: Us_core_medicationrequest): LitSeq[Dosage]                          = t.dosageInstruction
   def extractDispenseRequest(t: Us_core_medicationrequest): Option[MedicationRequest.DispenseRequest] = t.dispenseRequest
-  override val thisName: String                                                 = "Us_core_medicationrequest"
-  override val searchParams: Map[String, Us_core_medicationrequest => Seq[Any]] = MedicationRequest.searchParams
+  override val thisName: String = "Us_core_medicationrequest"
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Us_core_medicationrequest] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -410,7 +410,8 @@ object Us_core_medicationrequest extends CompanionFor[Us_core_medicationrequest]
   * harmonize with workflow patterns.)
   *
   * @constructor
-  *   Inherits all params from parent. Requires the following fields which were optional in the parent: requester, authoredOn.
+  *   Introduces the fields reasonCode, reported, medication, reasonReference. Requires the following fields which were optional
+  *   in the parent: requester, authoredOn.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -548,16 +549,16 @@ class Us_core_medicationrequest(
     override val insurance: LitSeq[Reference] = LitSeq.empty,
     override val identifier: LitSeq[Identifier] = LitSeq.empty,
     authoredOn: FHIRDateTime,
-    override val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
-    override val reported: Option[Us_core_medicationrequest.ReportedChoice] = None,
+    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
+    val reported: Option[Us_core_medicationrequest.ReportedChoice] = None,
     override val statusReason: Option[CodeableConcept] = None,
     override val doNotPerform: Option[Boolean] = None,
     override val eventHistory: LitSeq[Reference] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
-    override val medication: Us_core_medicationrequest.MedicationChoice,
+    val medication: Us_core_medicationrequest.MedicationChoice,
     override val performerType: Option[CodeableConcept] = None,
     override val detectedIssue: LitSeq[Reference] = LitSeq.empty,
-    override val reasonReference: LitSeq[Reference] = LitSeq.empty,
+    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     override val instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
     override val groupIdentifier: Option[Identifier] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
@@ -581,6 +582,7 @@ class Us_core_medicationrequest(
       language = language,
       category = category,
       priority = priority,
+      reported = reported,
       recorder = recorder,
       contained = contained,
       extension = extension,
@@ -589,17 +591,14 @@ class Us_core_medicationrequest(
       performer = performer,
       insurance = insurance,
       identifier = identifier,
+      medication = medication,
       authoredOn = Some(authoredOn),
-      reasonCode = reasonCode,
-      reported = reported,
       statusReason = statusReason,
       doNotPerform = doNotPerform,
       eventHistory = eventHistory,
       implicitRules = implicitRules,
-      medication = medication,
       performerType = performerType,
       detectedIssue = detectedIssue,
-      reasonReference = reasonReference,
       instantiatesUri = instantiatesUri,
       groupIdentifier = groupIdentifier,
       modifierExtension = modifierExtension,

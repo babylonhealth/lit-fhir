@@ -59,204 +59,204 @@ public interface Us_core_raceBuilder extends ExtensionBuilder {
     return new Impl(new LitSeq<>(extension).map(ExtensionBuilder::build));
   }
 
-  public static ChoiceAll value(Address a) {
-    return new ChoiceAll(a);
+  public static Choice_1666105572 value(Address a) {
+    return new Choice_1666105572(a);
   }
 
-  public static ChoiceAll value(Age a) {
-    return new ChoiceAll(a);
+  public static Choice_1666105572 value(Age a) {
+    return new Choice_1666105572(a);
   }
 
-  public static ChoiceAll value(Annotation a) {
-    return new ChoiceAll(a);
+  public static Choice_1666105572 value(Annotation a) {
+    return new Choice_1666105572(a);
   }
 
-  public static ChoiceAll value(Attachment a) {
-    return new ChoiceAll(a);
+  public static Choice_1666105572 value(Attachment a) {
+    return new Choice_1666105572(a);
   }
 
-  public static ChoiceAll value(byte[] b) {
-    return new ChoiceAll(b);
+  public static Choice_1666105572 value(byte[] b) {
+    return new Choice_1666105572(b);
   }
 
-  public static ChoiceAll value(BigDecimal b) {
-    return new ChoiceAll(b);
+  public static Choice_1666105572 value(BigDecimal b) {
+    return new Choice_1666105572(b);
   }
 
-  public static ChoiceAll value(Boolean b) {
-    return new ChoiceAll(b);
+  public static Choice_1666105572 value(Boolean b) {
+    return new Choice_1666105572(b);
   }
 
-  public static ChoiceAll value(CodeableConcept c) {
-    return new ChoiceAll(c);
+  public static Choice_1666105572 value(CodeableConcept c) {
+    return new Choice_1666105572(c);
   }
 
-  public static ChoiceAll value(Coding c) {
-    return new ChoiceAll(c);
+  public static Choice_1666105572 value(Coding c) {
+    return new Choice_1666105572(c);
   }
 
-  public static ChoiceAll value(ContactDetail c) {
-    return new ChoiceAll(c);
+  public static Choice_1666105572 value(ContactDetail c) {
+    return new Choice_1666105572(c);
   }
 
-  public static ChoiceAll value(ContactPoint c) {
-    return new ChoiceAll(c);
+  public static Choice_1666105572 value(ContactPoint c) {
+    return new Choice_1666105572(c);
   }
 
-  public static ChoiceAll value(Contributor c) {
-    return new ChoiceAll(c);
+  public static Choice_1666105572 value(Contributor c) {
+    return new Choice_1666105572(c);
   }
 
-  public static ChoiceAll value(Count c) {
-    return new ChoiceAll(c);
+  public static Choice_1666105572 value(Count c) {
+    return new Choice_1666105572(c);
   }
 
-  public static ChoiceAll value(DataRequirement d) {
-    return new ChoiceAll(d);
+  public static Choice_1666105572 value(DataRequirement d) {
+    return new Choice_1666105572(d);
   }
 
-  public static ChoiceAll value(Distance d) {
-    return new ChoiceAll(d);
+  public static Choice_1666105572 value(Distance d) {
+    return new Choice_1666105572(d);
   }
 
-  public static ChoiceAll value(Dosage d) {
-    return new ChoiceAll(d);
+  public static Choice_1666105572 value(Dosage d) {
+    return new Choice_1666105572(d);
   }
 
-  public static ChoiceAll value(Duration d) {
-    return new ChoiceAll(d);
+  public static Choice_1666105572 value(Duration d) {
+    return new Choice_1666105572(d);
   }
 
-  public static ChoiceAll value(Expression e) {
-    return new ChoiceAll(e);
+  public static Choice_1666105572 value(Expression e) {
+    return new Choice_1666105572(e);
   }
 
-  public static ChoiceAll value(FHIRDate f) {
-    return new ChoiceAll(f);
+  public static Choice_1666105572 value(FHIRDate f) {
+    return new Choice_1666105572(f);
   }
 
-  public static ChoiceAll value(FHIRDateTime f) {
-    return new ChoiceAll(f);
+  public static Choice_1666105572 value(FHIRDateTime f) {
+    return new Choice_1666105572(f);
   }
 
-  public static ChoiceAll value(HumanName h) {
-    return new ChoiceAll(h);
+  public static Choice_1666105572 value(HumanName h) {
+    return new Choice_1666105572(h);
   }
 
-  public static ChoiceAll value(Identifier i) {
-    return new ChoiceAll(i);
+  public static Choice_1666105572 value(Identifier i) {
+    return new Choice_1666105572(i);
   }
 
-  public static ChoiceAll value(LocalTime l) {
-    return new ChoiceAll(l);
+  public static Choice_1666105572 value(LocalTime l) {
+    return new Choice_1666105572(l);
   }
 
-  public static ChoiceAll value(Meta m) {
-    return new ChoiceAll(m);
+  public static Choice_1666105572 value(Meta m) {
+    return new Choice_1666105572(m);
   }
 
-  public static ChoiceAll value(Money m) {
-    return new ChoiceAll(m);
+  public static Choice_1666105572 value(Money m) {
+    return new Choice_1666105572(m);
   }
 
-  public static ChoiceAll value(ParameterDefinition p) {
-    return new ChoiceAll(p);
+  public static Choice_1666105572 value(ParameterDefinition p) {
+    return new Choice_1666105572(p);
   }
 
-  public static ChoiceAll value(Period p) {
-    return new ChoiceAll(p);
+  public static Choice_1666105572 value(Period p) {
+    return new Choice_1666105572(p);
   }
 
-  public static ChoiceAll value(Quantity q) {
-    return new ChoiceAll(q);
+  public static Choice_1666105572 value(Quantity q) {
+    return new Choice_1666105572(q);
   }
 
-  public static ChoiceAll value(Range r) {
-    return new ChoiceAll(r);
+  public static Choice_1666105572 value(Range r) {
+    return new Choice_1666105572(r);
   }
 
-  public static ChoiceAll value(Ratio r) {
-    return new ChoiceAll(r);
+  public static Choice_1666105572 value(Ratio r) {
+    return new Choice_1666105572(r);
   }
 
-  public static ChoiceAll value(Reference r) {
-    return new ChoiceAll(r);
+  public static Choice_1666105572 value(Reference r) {
+    return new Choice_1666105572(r);
   }
 
-  public static ChoiceAll value(RelatedArtifact r) {
-    return new ChoiceAll(r);
+  public static Choice_1666105572 value(RelatedArtifact r) {
+    return new Choice_1666105572(r);
   }
 
-  public static ChoiceAll value(SampledData s) {
-    return new ChoiceAll(s);
+  public static Choice_1666105572 value(SampledData s) {
+    return new Choice_1666105572(s);
   }
 
-  public static ChoiceAll value(Signature s) {
-    return new ChoiceAll(s);
+  public static Choice_1666105572 value(Signature s) {
+    return new Choice_1666105572(s);
   }
 
-  public static ChoiceAll value(Timing t) {
-    return new ChoiceAll(t);
+  public static Choice_1666105572 value(Timing t) {
+    return new Choice_1666105572(t);
   }
 
-  public static ChoiceAll value(TriggerDefinition t) {
-    return new ChoiceAll(t);
+  public static Choice_1666105572 value(TriggerDefinition t) {
+    return new Choice_1666105572(t);
   }
 
-  public static ChoiceAll value(UUID u) {
-    return new ChoiceAll(u);
+  public static Choice_1666105572 value(UUID u) {
+    return new Choice_1666105572(u);
   }
 
-  public static ChoiceAll value(UsageContext u) {
-    return new ChoiceAll(u);
+  public static Choice_1666105572 value(UsageContext u) {
+    return new Choice_1666105572(u);
   }
 
-  public static ChoiceAll value(ZonedDateTime z) {
-    return new ChoiceAll(z);
+  public static Choice_1666105572 value(ZonedDateTime z) {
+    return new Choice_1666105572(z);
   }
 
-  public static ChoiceAll valueCanonical(String s) {
-    return ChoiceAll.ChoiceAllCanonical(s);
+  public static Choice_1666105572 valueCanonical(String s) {
+    return Choice_1666105572.Choice_1666105572Canonical(s);
   }
 
-  public static ChoiceAll valueCode(String s) {
-    return ChoiceAll.ChoiceAllCode(s);
+  public static Choice_1666105572 valueCode(String s) {
+    return Choice_1666105572.Choice_1666105572Code(s);
   }
 
-  public static ChoiceAll valueId(String s) {
-    return ChoiceAll.ChoiceAllId(s);
+  public static Choice_1666105572 valueId(String s) {
+    return Choice_1666105572.Choice_1666105572Id(s);
   }
 
-  public static ChoiceAll valueInteger(Integer i) {
-    return ChoiceAll.ChoiceAllInt(i);
+  public static Choice_1666105572 valueInteger(Integer i) {
+    return Choice_1666105572.Choice_1666105572Int(i);
   }
 
-  public static ChoiceAll valueMarkdown(String s) {
-    return ChoiceAll.ChoiceAllMarkdown(s);
+  public static Choice_1666105572 valueMarkdown(String s) {
+    return Choice_1666105572.Choice_1666105572Markdown(s);
   }
 
-  public static ChoiceAll valueOid(String s) {
-    return ChoiceAll.ChoiceAllOID(s);
+  public static Choice_1666105572 valueOid(String s) {
+    return Choice_1666105572.Choice_1666105572OID(s);
   }
 
-  public static ChoiceAll valuePositiveInt(Integer i) {
-    return ChoiceAll.ChoiceAllPositiveInt(i);
+  public static Choice_1666105572 valuePositiveInt(Integer i) {
+    return Choice_1666105572.Choice_1666105572PositiveInt(i);
   }
 
-  public static ChoiceAll valueString(String s) {
-    return ChoiceAll.ChoiceAllString(s);
+  public static Choice_1666105572 valueString(String s) {
+    return Choice_1666105572.Choice_1666105572String(s);
   }
 
-  public static ChoiceAll valueUnsignedInt(Integer i) {
-    return ChoiceAll.ChoiceAllUnsignedInt(i);
+  public static Choice_1666105572 valueUnsignedInt(Integer i) {
+    return Choice_1666105572.Choice_1666105572UnsignedInt(i);
   }
 
-  public static ChoiceAll valueUri(String s) {
-    return ChoiceAll.ChoiceAllUriStr(s);
+  public static Choice_1666105572 valueUri(String s) {
+    return Choice_1666105572.Choice_1666105572UriStr(s);
   }
 
-  public static ChoiceAll valueUrl(String s) {
-    return ChoiceAll.ChoiceAllUrlStr(s);
+  public static Choice_1666105572 valueUrl(String s) {
+    return Choice_1666105572.Choice_1666105572UrlStr(s);
   }
 
   public class Impl implements Us_core_raceBuilder {

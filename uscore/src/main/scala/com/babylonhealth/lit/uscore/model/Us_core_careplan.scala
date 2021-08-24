@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.hl7.{ CARE_PLAN_INTENT, REQUEST_STATUS }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
@@ -420,7 +421,7 @@ class Us_core_careplan(
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     override val encounter: Option[Reference] = None,
-    override val addresses: LitSeq[Reference] = LitSeq.empty,
+    addresses: LitSeq[Reference] = LitSeq.empty,
     override val identifier: LitSeq[Identifier] = LitSeq.empty,
     override val description: Option[String] = None,
     override val contributor: LitSeq[Reference] = LitSeq.empty,

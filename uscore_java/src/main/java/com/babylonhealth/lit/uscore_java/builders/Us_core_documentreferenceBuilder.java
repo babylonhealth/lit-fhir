@@ -103,7 +103,7 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
     private Collection<CodeableConcept> securityLabel = Collections.emptyList();
     private Optional<Identifier> masterIdentifier = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Optional<DocumentReference.Context> context = Optional.empty();
+    private Optional<Us_core_documentreference.Context> context = Optional.empty();
     private Collection<DocumentReference.RelatesTo> relatesTo = Collections.emptyList();
     private DocumentReference.Content content;
 
@@ -416,13 +416,13 @@ public interface Us_core_documentreferenceBuilder extends DocumentReferenceBuild
     }
     /** @param context - The clinical context in which the document was prepared. */
     public Us_core_documentreferenceBuilder.Impl withContext(
-        @NonNull DocumentReference.Context context) {
+        @NonNull Us_core_documentreference.Context context) {
       this.context = Optional.of(context);
       return this;
     }
 
     public Us_core_documentreferenceBuilder.Impl withContext(
-        @NonNull DocumentReference_ContextBuilder context) {
+        @NonNull Us_core_documentreference_ContextBuilder context) {
       this.context = Optional.of(context.build());
       return this;
     }

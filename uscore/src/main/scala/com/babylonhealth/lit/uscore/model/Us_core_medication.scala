@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.hl7.MEDICATION_STATUS
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
@@ -156,7 +157,6 @@ object Us_core_medication extends CompanionFor[Us_core_medication] {
   def extractBatch(t: Us_core_medication): Option[Medication.Batch]           = t.batch
   def extractIngredient(t: Us_core_medication): LitSeq[Medication.Ingredient] = t.ingredient
   override val thisName: String                                               = "Us_core_medication"
-  override val searchParams: Map[String, Us_core_medication => Seq[Any]]      = Medication.searchParams
   def unapply(
       o: Us_core_medication): Option[(Option[String], Option[Meta], Option[Narrative], CodeableConcept, Option[CodeableConcept], Option[MEDICATION_STATUS], Option[Ratio], Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], LitSeq[Identifier], Option[Reference], Option[UriStr], LitSeq[Extension], Option[Medication.Batch], LitSeq[Medication.Ingredient])] =
     Some(
@@ -205,12 +205,12 @@ object Us_core_medication extends CompanionFor[Us_core_medication] {
 /** Defines constraints and extensions on the Medication resource for the minimal set of data to query and retrieve patient
   * retrieving patient's medication information.
   *
-  * Subclass of [[hl7.model.Medication]] (This resource is primarily used for the identification and definition of a medication
-  * for the purposes of prescribing, dispensing, and administering a medication as well as for making statements about medication
-  * use.)
+  * Subclass of [[hl7.model.Medication]] (This resource is primarily used for the identification and definition of a medication,
+  * including ingredients, for the purposes of prescribing, dispensing, and administering a medication as well as for making
+  * statements about medication use.)
   *
   * @constructor
-  *   Inherits all params from parent. Requires the following fields which were optional in the parent: code.
+  *   Introduces the fields form, manufacturer. Requires the following fields which were optional in the parent: code.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -272,14 +272,14 @@ class Us_core_medication(
       new Meta(profile = LitSeq("http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication"))),
     override val text: Option[Narrative] = None,
     code: CodeableConcept,
-    override val form: Option[CodeableConcept] = None,
+    val form: Option[CodeableConcept] = None,
     override val status: Option[MEDICATION_STATUS] = None,
     override val amount: Option[Ratio] = None,
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     override val identifier: LitSeq[Identifier] = LitSeq.empty,
-    override val manufacturer: Option[Reference] = None,
+    val manufacturer: Option[Reference] = None,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     override val batch: Option[Medication.Batch] = None,
@@ -290,14 +290,12 @@ class Us_core_medication(
       meta = meta,
       text = text,
       code = Some(code),
-      form = form,
       status = status,
       amount = amount,
       language = language,
       contained = contained,
       extension = extension,
       identifier = identifier,
-      manufacturer = manufacturer,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       batch = batch,

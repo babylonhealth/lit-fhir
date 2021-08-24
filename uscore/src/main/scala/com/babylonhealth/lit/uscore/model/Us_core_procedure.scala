@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.hl7.EVENT_STATUS
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
@@ -235,7 +236,7 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
       FHIRComponentField[Reference](subject, t.subject),
       FHIRComponentField[Option[CodeableConcept]](outcome, t.outcome),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
-      FHIRComponentField[Option[CodeableConcept]](category, t.category),
+      FHIRComponentField[Option[CodeableConcept]](category, t.category.headOption),
       FHIRComponentField[Option[Reference]](recorder, t.recorder),
       FHIRComponentField[Option[Reference]](asserter, t.asserter),
       FHIRComponentField[Option[Reference]](location, t.location),
@@ -248,7 +249,7 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
       FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
       FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
       FHIRComponentField[Option[CodeableConcept]](statusReason, t.statusReason),
-      FHIRComponentField[Us_core_procedure.PerformedChoice](performed, t.performed.get.toSubRef),
+      FHIRComponentField[Us_core_procedure.PerformedChoice](performed, t.performed),
       FHIRComponentField[LitSeq[CodeableConcept]](complication, t.complication),
       FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
       FHIRComponentField[LitSeq[Reference]](usedReference, t.usedReference),
@@ -273,7 +274,7 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
   def extractSubject(t: Us_core_procedure): Reference                           = t.subject
   def extractOutcome(t: Us_core_procedure): Option[CodeableConcept]             = t.outcome
   def extractLanguage(t: Us_core_procedure): Option[LANGUAGES]                  = t.language
-  def extractCategory(t: Us_core_procedure): Option[CodeableConcept]            = t.category
+  def extractCategory(t: Us_core_procedure): Option[CodeableConcept]            = t.category.headOption
   def extractRecorder(t: Us_core_procedure): Option[Reference]                  = t.recorder
   def extractAsserter(t: Us_core_procedure): Option[Reference]                  = t.asserter
   def extractLocation(t: Us_core_procedure): Option[Reference]                  = t.location
@@ -286,7 +287,7 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
   def extractIdentifier(t: Us_core_procedure): LitSeq[Identifier]               = t.identifier
   def extractReasonCode(t: Us_core_procedure): LitSeq[CodeableConcept]          = t.reasonCode
   def extractStatusReason(t: Us_core_procedure): Option[CodeableConcept]        = t.statusReason
-  def extractPerformed(t: Us_core_procedure): Us_core_procedure.PerformedChoice = t.performed.get.toSubRef
+  def extractPerformed(t: Us_core_procedure): Us_core_procedure.PerformedChoice = t.performed
   def extractComplication(t: Us_core_procedure): LitSeq[CodeableConcept]        = t.complication
   def extractImplicitRules(t: Us_core_procedure): Option[UriStr]                = t.implicitRules
   def extractUsedReference(t: Us_core_procedure): LitSeq[Reference]             = t.usedReference
@@ -298,7 +299,6 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
   def extractPerformer(t: Us_core_procedure): LitSeq[Procedure.Performer]       = t.performer
   def extractFocalDevice(t: Us_core_procedure): LitSeq[Procedure.FocalDevice]   = t.focalDevice
   override val thisName: String                                                 = "Us_core_procedure"
-  override val searchParams: Map[String, Us_core_procedure => Seq[Any]]         = Procedure.searchParams
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Us_core_procedure] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -315,7 +315,7 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
           cursor.decodeAs[Reference]("subject", None),
           cursor.decodeAs[Option[CodeableConcept]]("outcome", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
-          cursor.decodeAs[Option[CodeableConcept]]("category", Some(None)),
+          cursor.decodeFromListAs[Option[CodeableConcept]]("category", Some(None)),
           cursor.decodeAs[Option[Reference]]("recorder", Some(None)),
           cursor.decodeAs[Option[Reference]]("asserter", Some(None)),
           cursor.decodeAs[Option[Reference]]("location", Some(None)),
@@ -347,12 +347,14 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
 /** Defines constraints and extensions on the Procedure resource for the minimal set of data to query and retrieve patient's
   * procedure information.
   *
-  * Subclass of [[hl7.model.Procedure]] (An action that is or was performed on or for a patient. This can be a physical
-  * intervention like an operation, or less invasive like long term services, counseling, or hypnotherapy.)
+  * Subclass of [[hl7.model.Procedure]] (An action that is or was performed on or for a patient, practitioner, device,
+  * organization, or location. For example, this can be a physical intervention on a patient like an operation, or less invasive
+  * like long term services, counseling, or hypnotherapy. This can be a quality or safety inspection for a location, organization,
+  * or device. This can be an accreditation procedure on a practitioner for licensing.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: performed. Requires the following fields which were optional in the
-  *   parent: code, performed.
+  *   Introduces the fields asserter, usedCode, reasonCode, performed, usedReference, reasonReference. Requires the following
+  *   fields which were optional in the parent: code.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -469,25 +471,25 @@ class Us_core_procedure(
     override val subject: Reference,
     override val outcome: Option[CodeableConcept] = None,
     override val language: Option[LANGUAGES] = None,
-    override val category: Option[CodeableConcept] = None,
+    category: Option[CodeableConcept] = None,
     override val recorder: Option[Reference] = None,
-    override val asserter: Option[Reference] = None,
+    val asserter: Option[Reference] = None,
     override val location: Option[Reference] = None,
     override val bodySite: LitSeq[CodeableConcept] = LitSeq.empty,
     override val followUp: LitSeq[CodeableConcept] = LitSeq.empty,
-    override val usedCode: LitSeq[CodeableConcept] = LitSeq.empty,
+    val usedCode: LitSeq[CodeableConcept] = LitSeq.empty,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     override val encounter: Option[Reference] = None,
     override val identifier: LitSeq[Identifier] = LitSeq.empty,
-    override val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
+    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     override val statusReason: Option[CodeableConcept] = None,
-    performed: Us_core_procedure.PerformedChoice,
+    val performed: Us_core_procedure.PerformedChoice,
     override val complication: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
-    override val usedReference: LitSeq[Reference] = LitSeq.empty,
+    val usedReference: LitSeq[Reference] = LitSeq.empty,
     override val instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
-    override val reasonReference: LitSeq[Reference] = LitSeq.empty,
+    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     override val complicationDetail: LitSeq[Reference] = LitSeq.empty,
     override val instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
@@ -507,25 +509,19 @@ class Us_core_procedure(
       subject = subject,
       outcome = outcome,
       language = language,
-      category = category,
+      category = category.to(LitSeq),
       recorder = recorder,
-      asserter = asserter,
       location = location,
       bodySite = bodySite,
       followUp = followUp,
-      usedCode = usedCode,
       contained = contained,
       extension = extension,
       encounter = encounter,
       identifier = identifier,
-      reasonCode = reasonCode,
       statusReason = statusReason,
-      performed = Some(performed.toSuperRef),
       complication = complication,
       implicitRules = implicitRules,
-      usedReference = usedReference,
       instantiatesUri = instantiatesUri,
-      reasonReference = reasonReference,
       modifierExtension = modifierExtension,
       complicationDetail = complicationDetail,
       instantiatesCanonical = instantiatesCanonical,

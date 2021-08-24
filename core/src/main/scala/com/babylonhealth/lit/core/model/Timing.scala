@@ -285,8 +285,8 @@ object Timing extends CompanionFor[Timing] {
   * medications. They are also used when planning care of various kinds, and may be used for reporting the schedule to which past
   * regular activities were carried out.
   *
-  * Subclass of [[core.model.BackboneElement]] (Base StructureDefinition for BackboneElement Type: Base definition for all
-  * elements that are defined inside a resource - but not those in a data type.)
+  * Subclass of [[core.model.BackboneType]] (Base StructureDefinition for BackboneType Type: Base definition for the few data
+  * types that are allowed to carry modifier extensions.)
   *
   * @constructor
   *   Introduces the fields code, event, repeat.
@@ -325,7 +325,7 @@ class Timing(
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val repeat: Option[Timing.Repeat] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends BackboneElement(
+) extends BackboneType(
       id = id,
       extension = extension,
       modifierExtension = modifierExtension,

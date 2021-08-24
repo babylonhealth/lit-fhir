@@ -103,8 +103,8 @@ object Quantity extends CompanionFor[Quantity] {
   * measured amounts include amounts that are not precisely quantified, including amounts involving arbitrary units and floating
   * currencies.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields unit, code, value, system, comparator.
@@ -138,6 +138,6 @@ class Quantity(
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val comparator: Option[QUANTITY_COMPARATOR] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Quantity"
 }

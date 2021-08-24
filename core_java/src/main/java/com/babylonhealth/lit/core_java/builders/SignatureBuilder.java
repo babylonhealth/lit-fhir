@@ -39,7 +39,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface SignatureBuilder extends ElementBuilder {
+public interface SignatureBuilder extends DataTypeBuilder {
   public Signature build();
 
   public static Impl init(Reference who, Collection<Coding> _type, ZonedDateTime when) {

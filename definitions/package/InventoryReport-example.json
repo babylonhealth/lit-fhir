@@ -1,0 +1,11 @@
+{
+  "resourceType": "InventoryReport",
+  "id": "example",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>status</b>: draft</p><p><b>countType</b>: snapshot</p><p><b>reportedDateTime</b>: 2020-09-22</p></div>"
+  },
+  "status": "draft",
+  "countType": "snapshot",
+  "reportedDateTime": "2020-09-22"
+}

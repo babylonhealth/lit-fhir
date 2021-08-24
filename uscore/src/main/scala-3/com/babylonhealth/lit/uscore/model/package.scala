@@ -9,6 +9,12 @@ import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.uscore.model._
 
+object UnionAliases {
+  type UnionPositiveIntOrString = PositiveInt | String
+
+  val UnionPositiveIntOrStringTag: LTag[UnionPositiveIntOrString] = LTag[UnionPositiveIntOrString]
+}
+
 object Module
     extends ModuleDict(
       Map(

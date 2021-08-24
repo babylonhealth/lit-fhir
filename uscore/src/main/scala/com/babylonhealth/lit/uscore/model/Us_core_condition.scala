@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -188,7 +189,7 @@ object Us_core_condition extends CompanionFor[Us_core_condition] {
       FHIRComponentField[Option[Us_core_condition.AbatementChoice]](abatement, t.abatement),
       FHIRComponentField[Option[FHIRDateTime]](recordedDate, t.recordedDate),
       FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-      FHIRComponentField[Option[CodeableConcept]](clinicalStatus, t.clinicalStatus),
+      FHIRComponentField[Option[CodeableConcept]](clinicalStatus, Some(t.clinicalStatus)),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
       FHIRComponentField[Option[CodeableConcept]](verificationStatus, t.verificationStatus),
       FHIRComponentField[LitSeq[Condition.Stage]](stage, t.stage),
@@ -215,7 +216,7 @@ object Us_core_condition extends CompanionFor[Us_core_condition] {
   def extractAbatement(t: Us_core_condition): Option[Us_core_condition.AbatementChoice] = t.abatement
   def extractRecordedDate(t: Us_core_condition): Option[FHIRDateTime]                   = t.recordedDate
   def extractImplicitRules(t: Us_core_condition): Option[UriStr]                        = t.implicitRules
-  def extractClinicalStatus(t: Us_core_condition): Option[CodeableConcept]              = t.clinicalStatus
+  def extractClinicalStatus(t: Us_core_condition): Option[CodeableConcept]              = Some(t.clinicalStatus)
   def extractModifierExtension(t: Us_core_condition): LitSeq[Extension]                 = t.modifierExtension
   def extractVerificationStatus(t: Us_core_condition): Option[CodeableConcept]          = t.verificationStatus
   def extractStage(t: Us_core_condition): LitSeq[Condition.Stage]                       = t.stage
@@ -360,7 +361,7 @@ class Us_core_condition(
     override val abatement: Option[Us_core_condition.AbatementChoice] = None,
     override val recordedDate: Option[FHIRDateTime] = None,
     override val implicitRules: Option[UriStr] = None,
-    override val clinicalStatus: Option[CodeableConcept] = None,
+    clinicalStatus: Option[CodeableConcept] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     override val verificationStatus: Option[CodeableConcept] = None,
     override val stage: LitSeq[Condition.Stage] = LitSeq.empty,
@@ -387,7 +388,7 @@ class Us_core_condition(
       abatement = abatement,
       recordedDate = recordedDate,
       implicitRules = implicitRules,
-      clinicalStatus = clinicalStatus,
+      clinicalStatus = clinicalStatus.get,
       modifierExtension = modifierExtension,
       verificationStatus = verificationStatus,
       stage = stage,

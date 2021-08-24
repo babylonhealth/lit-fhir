@@ -79,8 +79,8 @@ object Ratio extends CompanionFor[Ratio] {
 
 /** Base StructureDefinition for Ratio Type: A relationship of two Quantity values - expressed as a numerator and a denominator.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields numerator, denominator.
@@ -104,6 +104,6 @@ class Ratio(
     val numerator: Option[Quantity] = None,
     val denominator: Option[Quantity] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Ratio"
 }

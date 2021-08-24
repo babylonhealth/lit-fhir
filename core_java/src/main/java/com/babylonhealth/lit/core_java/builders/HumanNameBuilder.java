@@ -39,7 +39,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface HumanNameBuilder extends ElementBuilder {
+public interface HumanNameBuilder extends DataTypeBuilder {
   public HumanName build();
 
   public static Impl init() {

@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.hl7.IMMUNIZATION_STATUS
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
@@ -303,7 +304,6 @@ object Us_core_immunization extends CompanionFor[Us_core_immunization] {
   def extractEducation(t: Us_core_immunization): LitSeq[Immunization.Education]             = t.education
   def extractProtocolApplied(t: Us_core_immunization): LitSeq[Immunization.ProtocolApplied] = t.protocolApplied
   override val thisName: String                                                             = "Us_core_immunization"
-  override val searchParams: Map[String, Us_core_immunization => Seq[Any]]                  = Immunization.searchParams
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Us_core_immunization] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -356,7 +356,8 @@ object Us_core_immunization extends CompanionFor[Us_core_immunization] {
   * immunization as reported by a patient, a clinician or another party.)
   *
   * @constructor
-  *   Inherits all params from parent. Requires the following fields which were optional in the parent: primarySource.
+  *   Introduces the fields reasonCode, reportOrigin, reasonReference. Requires the following fields which were optional in the
+  *   parent: primarySource.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -471,11 +472,11 @@ class Us_core_immunization(
     override val encounter: Option[Reference] = None,
     override val lotNumber: Option[String] = None,
     override val identifier: LitSeq[Identifier] = LitSeq.empty,
-    override val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
+    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     override val vaccineCode: CodeableConcept,
     override val isSubpotent: Option[Boolean] = None,
     override val statusReason: Option[CodeableConcept] = None,
-    override val reportOrigin: Option[CodeableConcept] = None,
+    val reportOrigin: Option[CodeableConcept] = None,
     override val manufacturer: Option[Reference] = None,
     override val doseQuantity: Option[Quantity] = None,
     override val implicitRules: Option[UriStr] = None,
@@ -483,7 +484,7 @@ class Us_core_immunization(
     primarySource: Boolean,
     override val fundingSource: Option[CodeableConcept] = None,
     override val expirationDate: Option[FHIRDate] = None,
-    override val reasonReference: LitSeq[Reference] = LitSeq.empty,
+    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     override val subpotentReason: LitSeq[CodeableConcept] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     override val programEligibility: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -506,14 +507,12 @@ class Us_core_immunization(
       location = location,
       contained = contained,
       extension = extension,
-      encounter = encounter,
       lotNumber = lotNumber,
+      encounter = encounter,
       identifier = identifier,
-      reasonCode = reasonCode,
       vaccineCode = vaccineCode,
       isSubpotent = isSubpotent,
       statusReason = statusReason,
-      reportOrigin = reportOrigin,
       manufacturer = manufacturer,
       doseQuantity = doseQuantity,
       implicitRules = implicitRules,
@@ -521,7 +520,6 @@ class Us_core_immunization(
       primarySource = Some(primarySource),
       fundingSource = fundingSource,
       expirationDate = expirationDate,
-      reasonReference = reasonReference,
       subpotentReason = subpotentReason,
       modifierExtension = modifierExtension,
       programEligibility = programEligibility,

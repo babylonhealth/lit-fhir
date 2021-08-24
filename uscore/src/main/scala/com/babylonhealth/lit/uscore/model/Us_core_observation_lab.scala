@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
@@ -229,7 +230,7 @@ object Us_core_observation_lab extends CompanionFor[Us_core_observation_lab] {
       FHIRComponentField[Reference](subject, t.subject.get),
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category.asNonEmpty),
-      FHIRComponentField[Option[Us_core_observation_lab.ValueChoice]](value, t.value),
+      FHIRComponentField[Option[Us_core_observation_lab.ValueChoice]](value, t.value.map(_.toSubRef)),
       FHIRComponentField[Option[CodeableConcept]](bodySite, t.bodySite),
       FHIRComponentField[Option[Reference]](specimen, t.specimen),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -263,7 +264,7 @@ object Us_core_observation_lab extends CompanionFor[Us_core_observation_lab] {
   def extractSubject(t: Us_core_observation_lab): Reference                                         = t.subject.get
   def extractLanguage(t: Us_core_observation_lab): Option[LANGUAGES]                                = t.language
   def extractCategory(t: Us_core_observation_lab): NonEmptyLitSeq[CodeableConcept]                  = t.category.asNonEmpty
-  def extractValue(t: Us_core_observation_lab): Option[Us_core_observation_lab.ValueChoice]         = t.value
+  def extractValue(t: Us_core_observation_lab): Option[Us_core_observation_lab.ValueChoice]         = t.value.map(_.toSubRef)
   def extractBodySite(t: Us_core_observation_lab): Option[CodeableConcept]                          = t.bodySite
   def extractSpecimen(t: Us_core_observation_lab): Option[Reference]                                = t.specimen
   def extractContained(t: Us_core_observation_lab): LitSeq[Resource]                                = t.contained
@@ -329,8 +330,8 @@ object Us_core_observation_lab extends CompanionFor[Us_core_observation_lab] {
   * Subclass of [[hl7.model.Observation]] (Measurements and simple assertions made about a patient, device or other subject.)
   *
   * @constructor
-  *   Inherits all params from parent. Refines the types of: effective. Requires the following fields which were optional in the
-  *   parent: subject, category.
+  *   Inherits all params from parent. Refines the types of: value, effective. Requires the following fields which were optional
+  *   in the parent: subject, category.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -450,7 +451,7 @@ class Us_core_observation_lab(
     subject: Reference,
     override val language: Option[LANGUAGES] = None,
     category: NonEmptyLitSeq[CodeableConcept],
-    override val value: Option[Us_core_observation_lab.ValueChoice] = None,
+    value: Option[Us_core_observation_lab.ValueChoice] = None,
     override val bodySite: Option[CodeableConcept] = None,
     override val specimen: Option[Reference] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
@@ -484,7 +485,7 @@ class Us_core_observation_lab(
       subject = Some(subject),
       language = language,
       category = category.refine,
-      value = value,
+      value = value.map(_.toSuperRef),
       bodySite = bodySite,
       specimen = specimen,
       contained = contained,

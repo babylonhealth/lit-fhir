@@ -40,7 +40,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface ParameterDefinitionBuilder extends ElementBuilder {
+public interface ParameterDefinitionBuilder extends DataTypeBuilder {
   public ParameterDefinition build();
 
   public static Impl init(OPERATION_PARAMETER_USE use, ALL_TYPES _type) {

@@ -119,8 +119,8 @@ object Signature extends CompanionFor[Signature] {
   * simple as a graphical image representing a hand-written signature, or a signature ceremony Different signature approaches have
   * different utilities.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields who, `type`, when, data, sigFormat, onBehalfOf, targetFormat.
@@ -161,6 +161,6 @@ class Signature(
     val onBehalfOf: Option[Reference] = None,
     val targetFormat: Option[Code] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Signature"
 }

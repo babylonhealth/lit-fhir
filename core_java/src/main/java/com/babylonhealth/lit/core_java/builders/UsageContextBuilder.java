@@ -39,7 +39,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface UsageContextBuilder extends ElementBuilder {
+public interface UsageContextBuilder extends DataTypeBuilder {
   public UsageContext build();
 
   public static Impl init(Coding code, @NonNull Choice_1548929031 value) {

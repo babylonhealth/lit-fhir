@@ -102,8 +102,8 @@ object ContactPoint extends CompanionFor[ContactPoint] {
 /** Base StructureDefinition for ContactPoint Type: Details for all kinds of technology mediated contact points for a person or
   * organization, including telephone, email, etc.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields use, rank, value, system, period.
@@ -138,6 +138,6 @@ class ContactPoint(
     val period: Option[Period] = None,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "ContactPoint"
 }

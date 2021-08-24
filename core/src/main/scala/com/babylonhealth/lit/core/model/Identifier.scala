@@ -109,8 +109,8 @@ object Identifier extends CompanionFor[Identifier] {
 /** Base StructureDefinition for Identifier Type: An identifier - identifies some entity uniquely and unambiguously. Typically
   * this is used for business identifiers.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields use, `type`, value, system, period, assigner.
@@ -146,6 +146,6 @@ class Identifier(
     val assigner: Option[Reference] = None,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Identifier"
 }

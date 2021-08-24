@@ -19,7 +19,8 @@ object CodegenUtils {
     }
 
   def profileScalaName(name: String): String = name match {
-    case "List"              => "FHIRList" // TODO: Do we _really_ need to rename List to FHIRList now?
+    case "List"              => "FHIRList"   // TODO: Do we _really_ need to rename List to FHIRList now?
+    case "Option"            => "FHIROption" // TODO: Do we _really_ need to rename List to FHIRList now?
     case x if x.head.isDigit => s"_${x.replaceAll("-", "_")}"
     case x                   => x.capitalize.replaceAll("-", "_")
   }

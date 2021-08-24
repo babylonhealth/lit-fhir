@@ -116,8 +116,8 @@ object RelatedArtifact extends CompanionFor[RelatedArtifact] {
 /** Base StructureDefinition for RelatedArtifact Type: Related artifacts such as additional documentation, justification, or
   * bibliographic references.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields url, `type`, label, display, citation, document, resource.
@@ -157,6 +157,6 @@ class RelatedArtifact(
     val resource: Option[Canonical] = None,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "RelatedArtifact"
 }

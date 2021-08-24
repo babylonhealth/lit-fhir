@@ -39,7 +39,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface TriggerDefinitionBuilder extends ElementBuilder {
+public interface TriggerDefinitionBuilder extends DataTypeBuilder {
   public TriggerDefinition build();
 
   public static Impl init(TRIGGER_TYPE _type) {

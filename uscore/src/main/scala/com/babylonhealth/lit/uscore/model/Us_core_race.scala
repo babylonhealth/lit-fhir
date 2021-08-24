@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -82,8 +83,9 @@ object Us_core_race extends CompanionFor[Us_core_race] {
   * resources.)
   *
   * @constructor
-  *   Inherits all params from parent. Requires the following fields which were optional in the parent: extension. Forbids the use
-  *   of the following fields which were optional in the parent: value. Hardcodes the value of the following fields: url.
+  *   Inherits all params from parent. Refines the types of: value. Requires the following fields which were optional in the
+  *   parent: extension. Forbids the use of the following fields which were optional in the parent: value. Hardcodes the value of
+  *   the following fields: url.
   * @param id
   *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
   *   spaces.

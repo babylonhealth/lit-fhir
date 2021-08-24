@@ -64,6 +64,9 @@ object Element extends CompanionFor[Element] {
 
 /** Base StructureDefinition for Element Type: Base definition for all elements in a resource.
   *
+  * Subclass of [[core.model.Base]] (Base StructureDefinition for Base Type: Base definition for all types defined in FHIR type
+  * system.)
+  *
   * @constructor
   *   Introduces the fields id, extension.
   * @param id
@@ -80,6 +83,6 @@ class Element(
     val id: Option[String] = None,
     val extension: LitSeq[Extension] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends FHIRObject(primitiveAttributes = primitiveAttributes) {
+) extends Base(primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Element"
 }

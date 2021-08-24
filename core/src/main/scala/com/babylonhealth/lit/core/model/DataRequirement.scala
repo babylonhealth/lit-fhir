@@ -330,8 +330,8 @@ object DataRequirement extends CompanionFor[DataRequirement] {
 /** Base StructureDefinition for DataRequirement Type: Describes a required data item for evaluation in terms of the type of data,
   * and optional code or date-based filters of the data.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields `type`, limit, profile, subject, mustSupport, sort, codeFilter, dateFilter.
@@ -380,6 +380,6 @@ class DataRequirement(
     val codeFilter: LitSeq[DataRequirement.CodeFilter] = LitSeq.empty,
     val dateFilter: LitSeq[DataRequirement.DateFilter] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "DataRequirement"
 }

@@ -1,0 +1,31 @@
+{
+  "resourceType": "DeviceUsage",
+  "id": "example",
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><p><b>identifier</b>: id: 51ebb7a9-4e3a-4360-9a05-0cc2d869086f</p><p><b>status</b>: active</p><p><b>subject</b>: <a>Generated Summary: Medical record number: 12345 (USUAL); active; Peter James Chalmers (OFFICIAL), Jim , Peter James Windsor (MAIDEN); , Phone: (03) 5555 6473, Phone: (03) 3410 5613, Phone: (03) 5555 8834; gender: male; birthDate: 1974-12-25; </a></p><h3>Devices</h3><table><tr><td>-</td></tr><tr><td>*</td></tr></table><h3>Reasons</h3><table><tr><td>-</td></tr><tr><td>*</td></tr></table></div>"
+  },
+  "identifier": [
+    {
+      "system": "http:goodhealth.org/identifiers",
+      "value": "51ebb7a9-4e3a-4360-9a05-0cc2d869086f"
+    }
+  ],
+  "status": "active",
+  "subject": {
+    "reference": "Patient/example"
+  },
+  "device": {
+    "reference": {
+      "reference": "Device/example"
+    }
+  },
+  "reason": [
+    {
+      "reference": {
+        "reference": "Condition/example",
+        "display": "PHx of Appendectomy (surgery)"
+      }
+    }
+  ]
+}

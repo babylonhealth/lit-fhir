@@ -157,9 +157,10 @@ object UnionAliases {
   type Union01658422381 = FHIRDate | FHIRDateTime | Reference | Timing
   type UnionAll = Address | Age | Annotation | Attachment | Base64Binary | BigDecimal | Boolean | Canonical | Code |
     CodeableConcept | Coding | ContactDetail | ContactPoint | Contributor | Count | DataRequirement | Distance | Dosage |
-    Duration | Expression | FHIRDate | FHIRDateTime | HumanName | Id | Identifier | Int | LocalTime | Markdown | Meta | Money |
-    OID | ParameterDefinition | Period | PositiveInt | Quantity | Range | Ratio | Reference | RelatedArtifact | SampledData |
-    Signature | String | Timing | TriggerDefinition | UUID | UnsignedInt | UriStr | UrlStr | UsageContext | ZonedDateTime
+    Duration | Expression | FHIRDate | FHIRDateTime | HumanName | Id | Identifier | Int | Integer64 | LocalTime | Markdown |
+    Meta | Money | OID | ParameterDefinition | Period | PositiveInt | Quantity | Range | Ratio | Reference | RelatedArtifact |
+    SampledData | Signature | String | Timing | TriggerDefinition | UUID | UnsignedInt | UriStr | UrlStr | UsageContext |
+    ZonedDateTime
   type UnionBooleanOrCodeableConcept   = Boolean | CodeableConcept
   type UnionCodeableConceptOrReference = CodeableConcept | Reference
   type UnionDurationOrDateTimeOrPeriod = Duration | FHIRDateTime | Period
@@ -184,11 +185,8 @@ object UnionAliases {
 object Module
     extends ModuleDict(
       Map(
-        "http://hl7.org/fhir/StructureDefinition/Timing"              -> Timing,
         "http://hl7.org/fhir/StructureDefinition/Duration"            -> Duration,
         "http://hl7.org/fhir/StructureDefinition/Age"                 -> Age,
-        "http://hl7.org/fhir/StructureDefinition/HumanName"           -> HumanName,
-        "http://hl7.org/fhir/StructureDefinition/UsageContext"        -> UsageContext,
         "http://hl7.org/fhir/StructureDefinition/CodeableConcept"     -> CodeableConcept,
         "http://hl7.org/fhir/StructureDefinition/Annotation"          -> Annotation,
         "http://hl7.org/fhir/StructureDefinition/Element"             -> Element,
@@ -196,6 +194,8 @@ object Module
         "http://hl7.org/fhir/StructureDefinition/Reference"           -> Reference,
         "http://hl7.org/fhir/StructureDefinition/Attachment"          -> Attachment,
         "http://hl7.org/fhir/StructureDefinition/Count"               -> Count,
+        "http://hl7.org/fhir/StructureDefinition/Base"                -> Base,
+        "http://hl7.org/fhir/StructureDefinition/Timing"              -> Timing,
         "http://hl7.org/fhir/StructureDefinition/Expression"          -> Expression,
         "http://hl7.org/fhir/StructureDefinition/Signature"           -> Signature,
         "http://hl7.org/fhir/StructureDefinition/Contributor"         -> Contributor,
@@ -203,6 +203,10 @@ object Module
         "http://hl7.org/fhir/StructureDefinition/Meta"                -> Meta,
         "http://hl7.org/fhir/StructureDefinition/Money"               -> Money,
         "http://hl7.org/fhir/StructureDefinition/Address"             -> Address,
+        "http://hl7.org/fhir/StructureDefinition/DataType"            -> DataType,
+        "http://hl7.org/fhir/StructureDefinition/HumanName"           -> HumanName,
+        "http://hl7.org/fhir/StructureDefinition/BackboneType"        -> BackboneType,
+        "http://hl7.org/fhir/StructureDefinition/UsageContext"        -> UsageContext,
         "http://hl7.org/fhir/StructureDefinition/ContactPoint"        -> ContactPoint,
         "http://hl7.org/fhir/StructureDefinition/ParameterDefinition" -> ParameterDefinition,
         "http://hl7.org/fhir/StructureDefinition/Identifier"          -> Identifier,

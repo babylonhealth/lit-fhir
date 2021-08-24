@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.hl7.DIAGNOSTIC_REPORT_STATUS
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
@@ -274,9 +275,10 @@ object Us_core_diagnosticreport_note extends CompanionFor[Us_core_diagnosticrepo
   * diagnostic reports associated with clinical notes for a patient
   *
   * Subclass of [[hl7.model.DiagnosticReport]] (The findings and interpretation of diagnostic tests performed on patients, groups
-  * of patients, devices, and locations, and/or specimens derived from these. The report includes clinical context such as
-  * requesting and provider information, and some mix of atomic results, images, textual and coded interpretations, and formatted
-  * representation of diagnostic reports.)
+  * of patients, products, substances, devices, and locations, and/or specimens derived from these. The report includes clinical
+  * context such as requesting provider information, and some mix of atomic results, images, textual and coded interpretations,
+  * and formatted representation of diagnostic reports. The report also includes non-clinical context such as batch analysis and
+  * stability reporting of products and substances.)
   *
   * @constructor
   *   Inherits all params from parent. Requires the following fields which were optional in the parent: subject, category,

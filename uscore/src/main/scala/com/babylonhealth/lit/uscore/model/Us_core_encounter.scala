@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.hl7.ENCOUNTER_STATUS
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
@@ -262,7 +263,6 @@ object Us_core_encounter extends CompanionFor[Us_core_encounter] {
   def extractStatusHistory(t: Us_core_encounter): LitSeq[Encounter.StatusHistory]     = t.statusHistory
   def extractHospitalization(t: Us_core_encounter): Option[Encounter.Hospitalization] = t.hospitalization
   override val thisName: String                                                       = "Us_core_encounter"
-  override val searchParams: Map[String, Us_core_encounter => Seq[Any]]               = Encounter.searchParams
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Us_core_encounter] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -309,7 +309,8 @@ object Us_core_encounter extends CompanionFor[Us_core_encounter] {
   * healthcare service(s) or assessing the health status of a patient.)
   *
   * @constructor
-  *   Inherits all params from parent. Requires the following fields which were optional in the parent: `type`, subject.
+  *   Introduces the fields reasonCode, reasonReference. Requires the following fields which were optional in the parent: `type`,
+  *   subject.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -420,12 +421,12 @@ class Us_core_encounter(
     override val priority: Option[CodeableConcept] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    override val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
+    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     override val serviceType: Option[CodeableConcept] = None,
     override val appointment: LitSeq[Reference] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     override val episodeOfCare: LitSeq[Reference] = LitSeq.empty,
-    override val reasonReference: LitSeq[Reference] = LitSeq.empty,
+    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     override val serviceProvider: Option[Reference] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     override val identifier: LitSeq[Identifier] = LitSeq.empty,
@@ -454,12 +455,10 @@ class Us_core_encounter(
       contained = contained,
       extension = extension,
       identifier = identifier,
-      reasonCode = reasonCode,
       serviceType = serviceType,
       appointment = appointment,
       implicitRules = implicitRules,
       episodeOfCare = episodeOfCare,
-      reasonReference = reasonReference,
       serviceProvider = serviceProvider,
       modifierExtension = modifierExtension,
       location = location,

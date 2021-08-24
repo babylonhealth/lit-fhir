@@ -103,8 +103,8 @@ object Expression extends CompanionFor[Expression] {
   * context of use of the expression must specify the context in which the expression is evaluated, and how the result of the
   * expression is used.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields name, language, reference, expression, description.
@@ -137,6 +137,6 @@ class Expression(
     val expression: Option[String] = None,
     val description: Option[String] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Expression"
 }

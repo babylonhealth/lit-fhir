@@ -80,8 +80,8 @@ object CodeableConcept extends CompanionFor[CodeableConcept] {
 /** Base StructureDefinition for CodeableConcept Type: A concept that may be defined by a formal reference to a terminology or
   * ontology or may be provided by text.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields text, coding.
@@ -106,6 +106,6 @@ class CodeableConcept(
     val coding: LitSeq[Coding] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "CodeableConcept"
 }

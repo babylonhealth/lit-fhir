@@ -101,8 +101,8 @@ object Coding extends CompanionFor[Coding] {
 
 /** Base StructureDefinition for Coding Type: A reference to a code defined by a terminology system.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields code, system, version, display, userSelected.
@@ -138,6 +138,6 @@ class Coding(
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val userSelected: Option[Boolean] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Coding"
 }

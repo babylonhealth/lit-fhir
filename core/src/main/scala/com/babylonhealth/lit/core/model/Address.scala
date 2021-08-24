@@ -139,8 +139,8 @@ object Address extends CompanionFor[Address] {
   * definition formats). This data type may be used to convey addresses for use in delivering mail as well as for visiting
   * locations which might not be valid for mail delivery. There are a variety of postal address formats defined around the world.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields use, `type`, text, line, city, state, period, country, district, postalCode.
@@ -192,6 +192,6 @@ class Address(
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val postalCode: Option[String] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Address"
 }

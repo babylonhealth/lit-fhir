@@ -20,6 +20,7 @@ import com.babylonhealth.lit.usbase.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.usbase.UnionAliases._
+import com.babylonhealth.lit.uscore.UnionAliases._
 import com.babylonhealth.lit.hl7.DEVICE_STATUS
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
@@ -218,7 +219,7 @@ object Us_core_implantable_device extends CompanionFor[Us_core_implantable_devic
       FHIRComponentField[Option[UriStr]](url, t.url),
       FHIRComponentField[Option[Meta]](meta, t.meta),
       FHIRComponentField[Option[Narrative]](text, t.text),
-      FHIRComponentField[CodeableConcept](`type`, t.`type`.get),
+      FHIRComponentField[CodeableConcept](`type`, t.`type`.head),
       FHIRComponentField[LitSeq[Annotation]](note, t.note),
       FHIRComponentField[Option[Reference]](owner, t.owner),
       FHIRComponentField[Option[DEVICE_STATUS]](status, t.status),
@@ -254,7 +255,7 @@ object Us_core_implantable_device extends CompanionFor[Us_core_implantable_devic
   def extractUrl(t: Us_core_implantable_device): Option[UriStr]                           = t.url
   def extractMeta(t: Us_core_implantable_device): Option[Meta]                            = t.meta
   def extractText(t: Us_core_implantable_device): Option[Narrative]                       = t.text
-  def extractType(t: Us_core_implantable_device): CodeableConcept                         = t.`type`.get
+  def extractType(t: Us_core_implantable_device): CodeableConcept                         = t.`type`.head
   def extractNote(t: Us_core_implantable_device): LitSeq[Annotation]                      = t.note
   def extractOwner(t: Us_core_implantable_device): Option[Reference]                      = t.owner
   def extractStatus(t: Us_core_implantable_device): Option[DEVICE_STATUS]                 = t.status
@@ -294,7 +295,7 @@ object Us_core_implantable_device extends CompanionFor[Us_core_implantable_devic
           cursor.decodeAs[Option[UriStr]]("url", Some(None)),
           cursor.decodeAs[Option[Meta]]("meta", Some(None)),
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
-          cursor.decodeAs[CodeableConcept]("type", None),
+          cursor.decodeFromListAs[CodeableConcept]("type", None),
           cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("owner", Some(None)),
           cursor.decodeAs[Option[DEVICE_STATUS]]("status", Some(None)),
@@ -471,7 +472,7 @@ class Us_core_implantable_device(
       url = url,
       meta = meta,
       text = text,
-      `type` = Some(`type`),
+      `type` = LitSeq(`type`),
       note = note,
       owner = owner,
       status = status,
