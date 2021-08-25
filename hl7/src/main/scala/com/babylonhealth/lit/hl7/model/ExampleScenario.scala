@@ -1000,11 +1000,10 @@ object ExampleScenario extends CompanionFor[ExampleScenario] {
 
 /** Example of workflow instance.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.CanonicalResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, status, version, contact, purpose, workflow, publisher, copyright, identifier,
-  *   useContext, experimental, jurisdiction, actor, process, instance.
+  *   Introduces the fields workflow, actor, process, instance.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -1045,7 +1044,7 @@ object ExampleScenario extends CompanionFor[ExampleScenario] {
   *   - Another nested workflow.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -1090,38 +1089,51 @@ object ExampleScenario extends CompanionFor[ExampleScenario] {
 @POJOBoilerplate
 class ExampleScenario(
     override val id: Option[String] = None,
-    val url: Option[UriStr] = None,
+    override val url: Option[UriStr] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: Option[String] = None,
-    val date: Option[FHIRDateTime] = None,
-    val status: PUBLICATION_STATUS,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    override val name: Option[String] = None,
+    override val date: Option[FHIRDateTime] = None,
+    override val status: PUBLICATION_STATUS,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     override val language: Option[LANGUAGES] = None,
     val workflow: LitSeq[Canonical] = LitSeq.empty,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val copyright: Option[Markdown] = None,
-    val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val publisher: Option[String] = None,
+    override val copyright: Option[Markdown] = None,
+    override val identifier: LitSeq[Identifier] = LitSeq.empty,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val actor: LitSeq[ExampleScenario.Actor] = LitSeq.empty,
     val process: LitSeq[ExampleScenario.Process] = LitSeq.empty,
     val instance: LitSeq[ExampleScenario.Instance] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends CanonicalResource(
       id = id,
+      url = url,
       meta = meta,
       text = text,
+      name = name,
+      date = date,
+      status = status,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
       contained = contained,
       extension = extension,
+      publisher = publisher,
+      copyright = copyright,
+      identifier = identifier,
+      useContext = useContext,
+      experimental = experimental,
+      jurisdiction = jurisdiction,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {

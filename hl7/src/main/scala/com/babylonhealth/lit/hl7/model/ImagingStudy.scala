@@ -347,12 +347,73 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
       val performer: LitSeq[Series.Performer] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
+  object Procedure extends CompanionFor[Procedure] {
+    implicit def summonObjectAndCompanionProcedure_1301161246(o: Procedure): ObjectAndCompanion[Procedure, Procedure.type] =
+      ObjectAndCompanion(o, this)
+    override type ResourceType = Procedure
+    override type ParentType   = Procedure
+    override val parentType: CompanionFor[ResourceType] = Procedure
+    type ValueChoice = Choice[UnionCodeableConceptOrReference]
+    def apply(
+        id: Option[String] = None,
+        value: Procedure.ValueChoice,
+        extension: LitSeq[Extension] = LitSeq.empty,
+        modifierExtension: LitSeq[Extension] = LitSeq.empty,
+        primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
+    ): Procedure = new Procedure(
+      id,
+      value,
+      extension,
+      modifierExtension,
+      primitiveAttributes = primitiveAttributes
+    )
+    def unapply(o: Procedure): Option[(Option[String], Procedure.ValueChoice, LitSeq[Extension], LitSeq[Extension])] = Some(
+      (o.id, o.value, o.extension, o.modifierExtension))
+    val id: FHIRComponentFieldMeta[Option[String]] =
+      FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
+    val value: FHIRComponentFieldMeta[Procedure.ValueChoice] =
+      FHIRComponentFieldMeta("value", lTagOf[Procedure.ValueChoice], true, lTagOf[UnionCodeableConceptOrReference])
+    val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+      FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+    val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+      FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, value, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
+    override def fields(t: Procedure): Seq[FHIRComponentField[_]] = Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Procedure.ValueChoice](value, t.value),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
+    )
+    val baseType: CompanionFor[Procedure] = this
+    val thisName: String                  = "Procedure"
+    def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Procedure] =
+      checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
+        Try(
+          new Procedure(
+            cursor.decodeAs[Option[String]]("id", Some(None)),
+            cursor.decodeRef[UnionCodeableConceptOrReference]("value"),
+            cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+            cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+            decodeAttributes(cursor)
+          )
+        ))
+  }
+  @POJOBoilerplate
+  class Procedure(
+      override val id: Option[String] = None,
+      val value: Procedure.ValueChoice,
+      override val extension: LitSeq[Extension] = LitSeq.empty,
+      override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
+      override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
+      extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
       text: Option[Narrative] = None,
       note: LitSeq[Annotation] = LitSeq.empty,
       status: IMAGINGSTUDY_STATUS,
+      reason: LitSeq[CodeableReference] = LitSeq.empty,
       subject: Reference,
       started: Option[FHIRDateTime] = None,
       basedOn: LitSeq[Reference] = LitSeq.empty,
@@ -365,16 +426,13 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
       extension: LitSeq[Extension] = LitSeq.empty,
       encounter: Option[Reference] = None,
       identifier: LitSeq[Identifier] = LitSeq.empty,
-      reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
       interpreter: LitSeq[Reference] = LitSeq.empty,
       description: Option[String] = None,
       implicitRules: Option[UriStr] = None,
-      procedureCode: LitSeq[CodeableConcept] = LitSeq.empty,
       numberOfSeries: Option[UnsignedInt] = None,
-      reasonReference: LitSeq[Reference] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       numberOfInstances: Option[UnsignedInt] = None,
-      procedureReference: Option[Reference] = None,
+      procedure: LitSeq[ImagingStudy.Procedure] = LitSeq.empty,
       series: LitSeq[ImagingStudy.Series] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): ImagingStudy = new ImagingStudy(
@@ -383,6 +441,7 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
     text,
     note,
     status,
+    reason,
     subject,
     started,
     basedOn,
@@ -395,16 +454,13 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
     extension,
     encounter,
     identifier,
-    reasonCode,
     interpreter,
     description,
     implicitRules,
-    procedureCode,
     numberOfSeries,
-    reasonReference,
     modifierExtension,
     numberOfInstances,
-    procedureReference,
+    procedure,
     series,
     primitiveAttributes = primitiveAttributes
   )
@@ -418,6 +474,8 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
     FHIRComponentFieldMeta("note", lTagOf[LitSeq[Annotation]], false, lTagOf[Annotation])
   val status: FHIRComponentFieldMeta[IMAGINGSTUDY_STATUS] =
     FHIRComponentFieldMeta("status", lTagOf[IMAGINGSTUDY_STATUS], false, lTagOf[IMAGINGSTUDY_STATUS])
+  val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val subject: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("subject", lTagOf[Reference], false, lTagOf[Reference])
   val started: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
@@ -442,26 +500,20 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
     FHIRComponentFieldMeta("encounter", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
-  val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val interpreter: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("interpreter", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val description: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
-  val procedureCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("procedureCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val numberOfSeries: FHIRComponentFieldMeta[Option[UnsignedInt]] =
     FHIRComponentFieldMeta("numberOfSeries", lTagOf[Option[UnsignedInt]], false, lTagOf[UnsignedInt])
-  val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val numberOfInstances: FHIRComponentFieldMeta[Option[UnsignedInt]] =
     FHIRComponentFieldMeta("numberOfInstances", lTagOf[Option[UnsignedInt]], false, lTagOf[UnsignedInt])
-  val procedureReference: FHIRComponentFieldMeta[Option[Reference]] =
-    FHIRComponentFieldMeta("procedureReference", lTagOf[Option[Reference]], false, lTagOf[Reference])
+  val procedure: FHIRComponentFieldMeta[LitSeq[ImagingStudy.Procedure]] =
+    FHIRComponentFieldMeta("procedure", lTagOf[LitSeq[ImagingStudy.Procedure]], false, lTagOf[ImagingStudy.Procedure])
   val series: FHIRComponentFieldMeta[LitSeq[ImagingStudy.Series]] =
     FHIRComponentFieldMeta("series", lTagOf[LitSeq[ImagingStudy.Series]], false, lTagOf[ImagingStudy.Series])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
@@ -470,6 +522,7 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
     text,
     note,
     status,
+    reason,
     subject,
     started,
     basedOn,
@@ -482,16 +535,13 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
     extension,
     encounter,
     identifier,
-    reasonCode,
     interpreter,
     description,
     implicitRules,
-    procedureCode,
     numberOfSeries,
-    reasonReference,
     modifierExtension,
     numberOfInstances,
-    procedureReference,
+    procedure,
     series
   )
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
@@ -501,6 +551,7 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
     FHIRComponentField[Option[Narrative]](text, t.text),
     FHIRComponentField[LitSeq[Annotation]](note, t.note),
     FHIRComponentField[IMAGINGSTUDY_STATUS](status, t.status),
+    FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
     FHIRComponentField[Reference](subject, t.subject),
     FHIRComponentField[Option[FHIRDateTime]](started, t.started),
     FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
@@ -513,47 +564,42 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[Reference]](encounter, t.encounter),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
     FHIRComponentField[LitSeq[Reference]](interpreter, t.interpreter),
     FHIRComponentField[Option[String]](description, t.description),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[CodeableConcept]](procedureCode, t.procedureCode),
     FHIRComponentField[Option[UnsignedInt]](numberOfSeries, t.numberOfSeries),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[Option[UnsignedInt]](numberOfInstances, t.numberOfInstances),
-    FHIRComponentField[Option[Reference]](procedureReference, t.procedureReference),
+    FHIRComponentField[LitSeq[ImagingStudy.Procedure]](procedure, t.procedure),
     FHIRComponentField[LitSeq[ImagingStudy.Series]](series, t.series)
   )
-  def extractId(t: ImagingStudy): Option[String]                     = t.id
-  def extractMeta(t: ImagingStudy): Option[Meta]                     = t.meta
-  def extractText(t: ImagingStudy): Option[Narrative]                = t.text
-  def extractNote(t: ImagingStudy): LitSeq[Annotation]               = t.note
-  def extractStatus(t: ImagingStudy): IMAGINGSTUDY_STATUS            = t.status
-  def extractSubject(t: ImagingStudy): Reference                     = t.subject
-  def extractStarted(t: ImagingStudy): Option[FHIRDateTime]          = t.started
-  def extractBasedOn(t: ImagingStudy): LitSeq[Reference]             = t.basedOn
-  def extractLanguage(t: ImagingStudy): Option[LANGUAGES]            = t.language
-  def extractModality(t: ImagingStudy): LitSeq[Coding]               = t.modality
-  def extractReferrer(t: ImagingStudy): Option[Reference]            = t.referrer
-  def extractEndpoint(t: ImagingStudy): LitSeq[Reference]            = t.endpoint
-  def extractLocation(t: ImagingStudy): Option[Reference]            = t.location
-  def extractContained(t: ImagingStudy): LitSeq[Resource]            = t.contained
-  def extractExtension(t: ImagingStudy): LitSeq[Extension]           = t.extension
-  def extractEncounter(t: ImagingStudy): Option[Reference]           = t.encounter
-  def extractIdentifier(t: ImagingStudy): LitSeq[Identifier]         = t.identifier
-  def extractReasonCode(t: ImagingStudy): LitSeq[CodeableConcept]    = t.reasonCode
-  def extractInterpreter(t: ImagingStudy): LitSeq[Reference]         = t.interpreter
-  def extractDescription(t: ImagingStudy): Option[String]            = t.description
-  def extractImplicitRules(t: ImagingStudy): Option[UriStr]          = t.implicitRules
-  def extractProcedureCode(t: ImagingStudy): LitSeq[CodeableConcept] = t.procedureCode
-  def extractNumberOfSeries(t: ImagingStudy): Option[UnsignedInt]    = t.numberOfSeries
-  def extractReasonReference(t: ImagingStudy): LitSeq[Reference]     = t.reasonReference
-  def extractModifierExtension(t: ImagingStudy): LitSeq[Extension]   = t.modifierExtension
-  def extractNumberOfInstances(t: ImagingStudy): Option[UnsignedInt] = t.numberOfInstances
-  def extractProcedureReference(t: ImagingStudy): Option[Reference]  = t.procedureReference
-  def extractSeries(t: ImagingStudy): LitSeq[ImagingStudy.Series]    = t.series
-  override val thisName: String                                      = "ImagingStudy"
+  def extractId(t: ImagingStudy): Option[String]                        = t.id
+  def extractMeta(t: ImagingStudy): Option[Meta]                        = t.meta
+  def extractText(t: ImagingStudy): Option[Narrative]                   = t.text
+  def extractNote(t: ImagingStudy): LitSeq[Annotation]                  = t.note
+  def extractStatus(t: ImagingStudy): IMAGINGSTUDY_STATUS               = t.status
+  def extractReason(t: ImagingStudy): LitSeq[CodeableReference]         = t.reason
+  def extractSubject(t: ImagingStudy): Reference                        = t.subject
+  def extractStarted(t: ImagingStudy): Option[FHIRDateTime]             = t.started
+  def extractBasedOn(t: ImagingStudy): LitSeq[Reference]                = t.basedOn
+  def extractLanguage(t: ImagingStudy): Option[LANGUAGES]               = t.language
+  def extractModality(t: ImagingStudy): LitSeq[Coding]                  = t.modality
+  def extractReferrer(t: ImagingStudy): Option[Reference]               = t.referrer
+  def extractEndpoint(t: ImagingStudy): LitSeq[Reference]               = t.endpoint
+  def extractLocation(t: ImagingStudy): Option[Reference]               = t.location
+  def extractContained(t: ImagingStudy): LitSeq[Resource]               = t.contained
+  def extractExtension(t: ImagingStudy): LitSeq[Extension]              = t.extension
+  def extractEncounter(t: ImagingStudy): Option[Reference]              = t.encounter
+  def extractIdentifier(t: ImagingStudy): LitSeq[Identifier]            = t.identifier
+  def extractInterpreter(t: ImagingStudy): LitSeq[Reference]            = t.interpreter
+  def extractDescription(t: ImagingStudy): Option[String]               = t.description
+  def extractImplicitRules(t: ImagingStudy): Option[UriStr]             = t.implicitRules
+  def extractNumberOfSeries(t: ImagingStudy): Option[UnsignedInt]       = t.numberOfSeries
+  def extractModifierExtension(t: ImagingStudy): LitSeq[Extension]      = t.modifierExtension
+  def extractNumberOfInstances(t: ImagingStudy): Option[UnsignedInt]    = t.numberOfInstances
+  def extractProcedure(t: ImagingStudy): LitSeq[ImagingStudy.Procedure] = t.procedure
+  def extractSeries(t: ImagingStudy): LitSeq[ImagingStudy.Series]       = t.series
+  override val thisName: String                                         = "ImagingStudy"
   override val searchParams: Map[String, ImagingStudy => Seq[Any]] = Map(
     "series"      -> (obj => obj.series.map(_.uid).toSeq),
     "basedon"     -> (obj => obj.basedOn.toSeq),
@@ -561,7 +607,6 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
     "identifier"  -> (obj => obj.identifier.toSeq),
     "dicom-class" -> (obj => obj.series.flatMap(_.instance).map(_.sopClass).toSeq),
     "instance"    -> (obj => obj.series.flatMap(_.instance).map(_.uid).toSeq),
-    "reason"      -> (obj => obj.reasonCode.toSeq),
     "bodysite"    -> (obj => obj.series.flatMap(_.bodySite).toSeq),
     "endpoint" -> (obj =>
       obj.endpoint.toSeq ++
@@ -584,6 +629,7 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
           cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
           cursor.decodeAs[IMAGINGSTUDY_STATUS]("status", None),
+          cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
           cursor.decodeAs[Reference]("subject", None),
           cursor.decodeAs[Option[FHIRDateTime]]("started", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("basedOn", Some(LitSeq.empty)),
@@ -596,16 +642,13 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("interpreter", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("description", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("procedureCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UnsignedInt]]("numberOfSeries", Some(None)),
-          cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UnsignedInt]]("numberOfInstances", Some(None)),
-          cursor.decodeAs[Option[Reference]]("procedureReference", Some(None)),
+          cursor.decodeAs[LitSeq[ImagingStudy.Procedure]]("procedure", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[ImagingStudy.Series]]("series", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
@@ -619,9 +662,8 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields note, status, subject, started, basedOn, modality, referrer, endpoint, location, encounter,
-  *   identifier, reasonCode, interpreter, description, procedureCode, numberOfSeries, reasonReference, numberOfInstances,
-  *   procedureReference, series.
+  *   Introduces the fields note, status, reason, subject, started, basedOn, modality, referrer, endpoint, location, encounter,
+  *   identifier, interpreter, description, numberOfSeries, numberOfInstances, procedure, series.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -636,7 +678,11 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
   *   - Per the recommended DICOM mapping, this element is derived from the Study Description attribute (0008,1030). Observations
   *   or findings about the imaging study should be recorded in another resource, e.g. Observation, and not in this element.
   * @param status
-  *   - The current state of the ImagingStudy.
+  *   - The current state of the ImagingStudy resource. This is not the status of any ServiceRequest or Task resources associated
+  *   with the ImagingStudy.
+  * @param reason
+  *   - Description of clinical condition indicating why the ImagingStudy was requested, and/or Indicates another resource whose
+  *   existence justifies this Study.
   * @param subject
   *   - The subject, typically a patient, of the imaging study.
   * @param started
@@ -646,8 +692,7 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
   * @param language
   *   - The base language in which the resource is written.
   * @param modality
-  *   - A list of all the series.modality values that are actual acquisition modalities, i.e. those in the DICOM Context Group 29
-  *   (value set OID 1.2.840.10008.6.1.19).
+  *   - A list of all the distinct values of series.modality. This may include both acquisition and non-acquisition modalities.
   * @param referrer
   *   - The requesting/referring physician.
   * @param endpoint
@@ -658,7 +703,7 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
   *   - The principal physical location where the ImagingStudy was performed.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -667,9 +712,7 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
   * @param encounter
   *   - The healthcare event (e.g. a patient and healthcare provider interaction) during which this ImagingStudy is made.
   * @param identifier
-  *   - Identifiers for the ImagingStudy such as DICOM Study Instance UID, and Accession Number.
-  * @param reasonCode
-  *   - Description of clinical condition indicating why the ImagingStudy was requested.
+  *   - Identifiers for the ImagingStudy such as DICOM Study Instance UID.
   * @param interpreter
   *   - Who read the study and interpreted the images or other content.
   * @param description
@@ -679,13 +722,9 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
-  * @param procedureCode
-  *   - The code for the performed procedure type.
   * @param numberOfSeries
   *   - Number of Series in the Study. This value given may be larger than the number of series elements this Resource contains
   *   due to resource availability, security, or other factors. This element should be present if any series elements are present.
-  * @param reasonReference
-  *   - Indicates another resource whose existence justifies this Study.
   * @param modifierExtension
   *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
   *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
@@ -698,8 +737,8 @@ object ImagingStudy extends CompanionFor[ImagingStudy] {
   *   - Number of SOP Instances in Study. This value given may be larger than the number of instance elements this resource
   *   contains due to resource availability, security, or other factors. This element should be present if any instance elements
   *   are present.
-  * @param procedureReference
-  *   - The procedure which this ImagingStudy was part of.
+  * @param procedure
+  *   - The procedure or code from which this ImagingStudy was part of.
   * @param series
   *   - Each study has one or more series of images or other content.
   */
@@ -710,6 +749,7 @@ class ImagingStudy(
     override val text: Option[Narrative] = None,
     val note: LitSeq[Annotation] = LitSeq.empty,
     val status: IMAGINGSTUDY_STATUS,
+    val reason: LitSeq[CodeableReference] = LitSeq.empty,
     val subject: Reference,
     val started: Option[FHIRDateTime] = None,
     val basedOn: LitSeq[Reference] = LitSeq.empty,
@@ -722,16 +762,13 @@ class ImagingStudy(
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val encounter: Option[Reference] = None,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     val interpreter: LitSeq[Reference] = LitSeq.empty,
     val description: Option[String] = None,
     override val implicitRules: Option[UriStr] = None,
-    val procedureCode: LitSeq[CodeableConcept] = LitSeq.empty,
     val numberOfSeries: Option[UnsignedInt] = None,
-    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val numberOfInstances: Option[UnsignedInt] = None,
-    val procedureReference: Option[Reference] = None,
+    val procedure: LitSeq[ImagingStudy.Procedure] = LitSeq.empty,
     val series: LitSeq[ImagingStudy.Series] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends DomainResource(

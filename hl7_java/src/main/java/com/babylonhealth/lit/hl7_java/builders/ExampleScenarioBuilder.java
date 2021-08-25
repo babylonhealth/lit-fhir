@@ -43,7 +43,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface ExampleScenarioBuilder extends DomainResourceBuilder {
+public interface ExampleScenarioBuilder extends CanonicalResourceBuilder {
   public ExampleScenario build();
 
   public static Impl init(PUBLICATION_STATUS status) {
@@ -219,8 +219,8 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ExampleScenarioBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -228,8 +228,8 @@ public interface ExampleScenarioBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ExampleScenarioBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);

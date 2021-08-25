@@ -64,7 +64,8 @@ public interface Device_DeviceNameBuilder {
      * Required fields for {@link Device.DeviceName}
      *
      * @param name
-     * @param _type - The kind or type of device.
+     * @param _type - The kind or type of device. A device instance may have more than one type - in
+     *     which case those are the types that apply to the specific instance of the device.
      */
     public Impl(String name, DEVICE_NAMETYPE _type) {
       this.name = name;

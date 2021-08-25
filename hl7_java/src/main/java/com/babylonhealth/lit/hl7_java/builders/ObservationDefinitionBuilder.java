@@ -34,6 +34,7 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.PERMITTED_DATA_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -46,35 +47,57 @@ import static java.util.stream.Collectors.toList;
 public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
   public ObservationDefinition build();
 
-  public static Impl init(CodeableConcept code) {
-    return new Impl(code);
+  public static Impl init(CodeableConcept code, PUBLICATION_STATUS status) {
+    return new Impl(code, status);
   }
 
-  public static Impl builder(CodeableConceptBuilder code) {
-    return new Impl(code.build());
+  public static Impl builder(CodeableConceptBuilder code, PUBLICATION_STATUS status) {
+    return new Impl(code.build(), status);
   }
 
   public class Impl implements ObservationDefinitionBuilder {
     private Optional<String> id = Optional.empty();
+    private Optional<String> url = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
+    private Optional<String> name = Optional.empty();
+    private Optional<FHIRDateTime> date = Optional.empty();
     private CodeableConcept code;
+    private Optional<String> title = Optional.empty();
+    private PUBLICATION_STATUS status;
     private Optional<CodeableConcept> method = Optional.empty();
+    private Collection<Reference> device = Collections.emptyList();
+    private Optional<String> version = Optional.empty();
+    private Collection<ContactDetail> contact = Collections.emptyList();
+    private Optional<String> purpose = Optional.empty();
+    private Optional<CodeableConcept> subject = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category = Collections.emptyList();
+    private Optional<CodeableConcept> bodySite = Optional.empty();
+    private Collection<Reference> specimen = Collections.emptyList();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Collection<Identifier> identifier = Collections.emptyList();
+    private Optional<Reference> publisher = Optional.empty();
+    private Optional<String> copyright = Optional.empty();
+    private Collection<Reference> hasMember = Collections.emptyList();
+    private Optional<Identifier> identifier = Optional.empty();
+    private Collection<UsageContext> useContext = Collections.emptyList();
+    private Optional<String> description = Optional.empty();
+    private Optional<Boolean> experimental = Optional.empty();
+    private Collection<CodeableConcept> jurisdiction = Collections.emptyList();
+    private Optional<FHIRDate> approvalDate = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
+    private Optional<CodeableConcept> performerType = Optional.empty();
+    private Optional<FHIRDate> lastReviewDate = Optional.empty();
+    private Collection<String> derivedFromUri = Collections.emptyList();
+    private Optional<Period> effectivePeriod = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<PERMITTED_DATA_TYPE> permittedDataType = Collections.emptyList();
-    private Optional<Reference> validCodedValueSet = Optional.empty();
     private Optional<String> preferredReportName = Optional.empty();
-    private Optional<Reference> normalCodedValueSet = Optional.empty();
-    private Optional<Reference> abnormalCodedValueSet = Optional.empty();
-    private Optional<Reference> criticalCodedValueSet = Optional.empty();
+    private Collection<String> derivedFromCanonical = Collections.emptyList();
     private Optional<Boolean> multipleResultsAllowed = Optional.empty();
-    private Collection<ObservationDefinition.QualifiedInterval> qualifiedInterval =
+    private Collection<ObservationDefinition.Component> component = Collections.emptyList();
+    private Collection<ObservationDefinition.QualifiedValue> qualifiedValue =
         Collections.emptyList();
     private Optional<ObservationDefinition.QuantitativeDetails> quantitativeDetails =
         Optional.empty();
@@ -84,9 +107,11 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
      *
      * @param code - Describes what will be observed. Sometimes this is called the observation
      *     "name".
+     * @param status - The current state of the ObservationDefinition.
      */
-    public Impl(CodeableConcept code) {
+    public Impl(CodeableConcept code, PUBLICATION_STATUS status) {
       this.code = code;
+      this.status = status;
     }
 
     /**
@@ -95,6 +120,17 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
      */
     public ObservationDefinitionBuilder.Impl withId(@NonNull String id) {
       this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param url - An absolute URL that is used to identify this ObservationDefinition when it is
+     *     referenced in a specification, model, design or an instance. This SHALL be a URL, SHOULD
+     *     be globally unique, and SHOULD be an address at which this ObservationDefinition is (or
+     *     will be) published. The URL SHOULD include the major version of the
+     *     ObservationDefinition. For more information see Technical and Business Versions.
+     */
+    public ObservationDefinitionBuilder.Impl withUrl(@NonNull String url) {
+      this.url = Optional.of(url);
       return this;
     }
     /**
@@ -127,6 +163,30 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text.build());
       return this;
     }
+    /**
+     * @param name - A natural language name identifying the ObservationDefinition. This name should
+     *     be usable as an identifier for the module by machine processing applications such as code
+     *     generation.
+     */
+    public ObservationDefinitionBuilder.Impl withName(@NonNull String name) {
+      this.name = Optional.of(name);
+      return this;
+    }
+    /**
+     * @param date - The date (and optionally time) when the ObservationDefinition was published.
+     *     The date must change when the business version changes and it must change if the status
+     *     code changes. In addition, it should change when the substantive content of the
+     *     ObservationDefinition changes.
+     */
+    public ObservationDefinitionBuilder.Impl withDate(@NonNull FHIRDateTime date) {
+      this.date = Optional.of(date);
+      return this;
+    }
+    /** @param title - A short, descriptive, user-friendly title for the ObservationDefinition. */
+    public ObservationDefinitionBuilder.Impl withTitle(@NonNull String title) {
+      this.title = Optional.of(title);
+      return this;
+    }
     /** @param method - The method or technique used to perform the observation. */
     public ObservationDefinitionBuilder.Impl withMethod(@NonNull CodeableConcept method) {
       this.method = Optional.of(method);
@@ -135,6 +195,82 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
 
     public ObservationDefinitionBuilder.Impl withMethod(@NonNull CodeableConceptBuilder method) {
       this.method = Optional.of(method.build());
+      return this;
+    }
+    /**
+     * @param device - The measurement model of device or actual device used to produce observations
+     *     of this type.
+     */
+    public ObservationDefinitionBuilder.Impl withDevice(@NonNull Reference... device) {
+      this.device = Arrays.asList(device);
+      return this;
+    }
+    /**
+     * @param device - The measurement model of device or actual device used to produce observations
+     *     of this type.
+     */
+    public ObservationDefinitionBuilder.Impl withDevice(@NonNull Collection<Reference> device) {
+      this.device = Collections.unmodifiableCollection(device);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withDevice(@NonNull ReferenceBuilder... device) {
+      this.device = Arrays.stream(device).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param version - The identifier that is used to identify this version of the
+     *     ObservationDefinition when it is referenced in a specification, model, design or
+     *     instance. This is an arbitrary value managed by the ObservationDefinition author and is
+     *     not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd)
+     *     if a managed version is not available. There is also no expectation that versions are
+     *     orderable.
+     */
+    public ObservationDefinitionBuilder.Impl withVersion(@NonNull String version) {
+      this.version = Optional.of(version);
+      return this;
+    }
+    /**
+     * @param contact - Contact details to assist a user in finding and communicating with the
+     *     publisher.
+     */
+    public ObservationDefinitionBuilder.Impl withContact(@NonNull ContactDetail... contact) {
+      this.contact = Arrays.asList(contact);
+      return this;
+    }
+    /**
+     * @param contact - Contact details to assist a user in finding and communicating with the
+     *     publisher.
+     */
+    public ObservationDefinitionBuilder.Impl withContact(
+        @NonNull Collection<ContactDetail> contact) {
+      this.contact = Collections.unmodifiableCollection(contact);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withContact(@NonNull ContactDetailBuilder... contact) {
+      this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param purpose - Explains why this ObservationDefinition is needed and why it has been
+     *     designed as it has.
+     */
+    public ObservationDefinitionBuilder.Impl withPurpose(@NonNull String purpose) {
+      this.purpose = Optional.of(purpose);
+      return this;
+    }
+    /**
+     * @param subject - A code that describes the intended kind of subject of Observation instances
+     *     conforming to this ObservationDefinition.
+     */
+    public ObservationDefinitionBuilder.Impl withSubject(@NonNull CodeableConcept subject) {
+      this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withSubject(@NonNull CodeableConceptBuilder subject) {
+      this.subject = Optional.of(subject.build());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -159,10 +295,36 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param bodySite - The site on the subject's body where the observation is to be made. */
+    public ObservationDefinitionBuilder.Impl withBodySite(@NonNull CodeableConcept bodySite) {
+      this.bodySite = Optional.of(bodySite);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withBodySite(
+        @NonNull CodeableConceptBuilder bodySite) {
+      this.bodySite = Optional.of(bodySite.build());
+      return this;
+    }
+    /** @param specimen - The kind of specimen that this type of observation is produced on. */
+    public ObservationDefinitionBuilder.Impl withSpecimen(@NonNull Reference... specimen) {
+      this.specimen = Arrays.asList(specimen);
+      return this;
+    }
+    /** @param specimen - The kind of specimen that this type of observation is produced on. */
+    public ObservationDefinitionBuilder.Impl withSpecimen(@NonNull Collection<Reference> specimen) {
+      this.specimen = Collections.unmodifiableCollection(specimen);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withSpecimen(@NonNull ReferenceBuilder... specimen) {
+      this.specimen = Arrays.stream(specimen).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ObservationDefinitionBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -170,8 +332,8 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ObservationDefinitionBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
@@ -211,21 +373,140 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param identifier - A unique identifier assigned to this ObservationDefinition artifact. */
-    public ObservationDefinitionBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
-      this.identifier = Arrays.asList(identifier);
-      return this;
-    }
-    /** @param identifier - A unique identifier assigned to this ObservationDefinition artifact. */
-    public ObservationDefinitionBuilder.Impl withIdentifier(
-        @NonNull Collection<Identifier> identifier) {
-      this.identifier = Collections.unmodifiableCollection(identifier);
+    /**
+     * @param publisher - Helps establish the "authority/credibility" of the ObservationDefinition.
+     *     May also allow for contact.
+     */
+    public ObservationDefinitionBuilder.Impl withPublisher(@NonNull Reference publisher) {
+      this.publisher = Optional.of(publisher);
       return this;
     }
 
-    public ObservationDefinitionBuilder.Impl withIdentifier(
-        @NonNull IdentifierBuilder... identifier) {
-      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+    public ObservationDefinitionBuilder.Impl withPublisher(@NonNull ReferenceBuilder publisher) {
+      this.publisher = Optional.of(publisher.build());
+      return this;
+    }
+    /**
+     * @param copyright - Copyright statement relating to the ObservationDefinition and/or its
+     *     contents. Copyright statements are generally legal restrictions on the use and publishing
+     *     of the ObservationDefinition.
+     */
+    public ObservationDefinitionBuilder.Impl withCopyright(@NonNull String copyright) {
+      this.copyright = Optional.of(copyright);
+      return this;
+    }
+    /**
+     * @param hasMember - This ObservationDefinition defines a group observation (e.g. a battery, a
+     *     panel of tests, a set of vital sign measurements) that includes the target as a member of
+     *     the group.
+     */
+    public ObservationDefinitionBuilder.Impl withHasMember(@NonNull Reference... hasMember) {
+      this.hasMember = Arrays.asList(hasMember);
+      return this;
+    }
+    /**
+     * @param hasMember - This ObservationDefinition defines a group observation (e.g. a battery, a
+     *     panel of tests, a set of vital sign measurements) that includes the target as a member of
+     *     the group.
+     */
+    public ObservationDefinitionBuilder.Impl withHasMember(
+        @NonNull Collection<Reference> hasMember) {
+      this.hasMember = Collections.unmodifiableCollection(hasMember);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withHasMember(@NonNull ReferenceBuilder... hasMember) {
+      this.hasMember = Arrays.stream(hasMember).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param identifier - Business identifiers assigned to this ObservationDefinition. by the
+     *     performer and/or other systems. These identifiers remain constant as the resource is
+     *     updated and propagates from server to server.
+     */
+    public ObservationDefinitionBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
+      this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
+      return this;
+    }
+    /**
+     * @param useContext - The content was developed with a focus and intent of supporting the
+     *     contexts that are listed. These contexts may be general categories (gender, age, ...) or
+     *     may be references to specific programs (insurance plans, studies, ...) and may be used to
+     *     assist with indexing and searching for appropriate ObservationDefinition instances.
+     */
+    public ObservationDefinitionBuilder.Impl withUseContext(@NonNull UsageContext... useContext) {
+      this.useContext = Arrays.asList(useContext);
+      return this;
+    }
+    /**
+     * @param useContext - The content was developed with a focus and intent of supporting the
+     *     contexts that are listed. These contexts may be general categories (gender, age, ...) or
+     *     may be references to specific programs (insurance plans, studies, ...) and may be used to
+     *     assist with indexing and searching for appropriate ObservationDefinition instances.
+     */
+    public ObservationDefinitionBuilder.Impl withUseContext(
+        @NonNull Collection<UsageContext> useContext) {
+      this.useContext = Collections.unmodifiableCollection(useContext);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withUseContext(
+        @NonNull UsageContextBuilder... useContext) {
+      this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param description - A free text natural language description of the ObservationDefinition
+     *     from the consumer's perspective.
+     */
+    public ObservationDefinitionBuilder.Impl withDescription(@NonNull String description) {
+      this.description = Optional.of(description);
+      return this;
+    }
+    /**
+     * @param experimental - A flag to indicate that this ObservationDefinition is authored for
+     *     testing purposes (or education/evaluation/marketing), and is not intended to be used for
+     *     genuine usage.
+     */
+    public ObservationDefinitionBuilder.Impl withExperimental(@NonNull Boolean experimental) {
+      this.experimental = Optional.of(experimental);
+      return this;
+    }
+    /**
+     * @param jurisdiction - A jurisdiction in which the ObservationDefinition is intended to be
+     *     used.
+     */
+    public ObservationDefinitionBuilder.Impl withJurisdiction(
+        @NonNull CodeableConcept... jurisdiction) {
+      this.jurisdiction = Arrays.asList(jurisdiction);
+      return this;
+    }
+    /**
+     * @param jurisdiction - A jurisdiction in which the ObservationDefinition is intended to be
+     *     used.
+     */
+    public ObservationDefinitionBuilder.Impl withJurisdiction(
+        @NonNull Collection<CodeableConcept> jurisdiction) {
+      this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withJurisdiction(
+        @NonNull CodeableConceptBuilder... jurisdiction) {
+      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param approvalDate - The date on which the asset content was approved by the publisher.
+     *     Approval happens once when the content is officially approved for usage.
+     */
+    public ObservationDefinitionBuilder.Impl withApprovalDate(@NonNull FHIRDate approvalDate) {
+      this.approvalDate = Optional.of(approvalDate);
       return this;
     }
     /**
@@ -236,6 +517,60 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
      */
     public ObservationDefinitionBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
       this.implicitRules = Optional.of(implicitRules);
+      return this;
+    }
+    /**
+     * @param performerType - The type of individual/organization/device that is expected to act
+     *     upon instances of this definition.
+     */
+    public ObservationDefinitionBuilder.Impl withPerformerType(
+        @NonNull CodeableConcept performerType) {
+      this.performerType = Optional.of(performerType);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withPerformerType(
+        @NonNull CodeableConceptBuilder performerType) {
+      this.performerType = Optional.of(performerType.build());
+      return this;
+    }
+    /**
+     * @param lastReviewDate - The date on which the asset content was last reviewed. Review happens
+     *     periodically after that, but doesn't change the original approval date.
+     */
+    public ObservationDefinitionBuilder.Impl withLastReviewDate(@NonNull FHIRDate lastReviewDate) {
+      this.lastReviewDate = Optional.of(lastReviewDate);
+      return this;
+    }
+    /**
+     * @param derivedFromUri - The URL pointing to an externally-defined observation definition,
+     *     guideline or other definition that is adhered to in whole or in part by this definition.
+     */
+    public ObservationDefinitionBuilder.Impl withDerivedFromUri(@NonNull String... derivedFromUri) {
+      this.derivedFromUri = Arrays.asList(derivedFromUri);
+      return this;
+    }
+    /**
+     * @param derivedFromUri - The URL pointing to an externally-defined observation definition,
+     *     guideline or other definition that is adhered to in whole or in part by this definition.
+     */
+    public ObservationDefinitionBuilder.Impl withDerivedFromUri(
+        @NonNull Collection<String> derivedFromUri) {
+      this.derivedFromUri = Collections.unmodifiableCollection(derivedFromUri);
+      return this;
+    }
+    /**
+     * @param effectivePeriod - The period during which the ObservationDefinition content was or is
+     *     planned to be effective.
+     */
+    public ObservationDefinitionBuilder.Impl withEffectivePeriod(@NonNull Period effectivePeriod) {
+      this.effectivePeriod = Optional.of(effectivePeriod);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withEffectivePeriod(
+        @NonNull PeriodBuilder effectivePeriod) {
+      this.effectivePeriod = Optional.of(effectivePeriod.build());
       return this;
     }
     /**
@@ -300,21 +635,6 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param validCodedValueSet - The set of valid coded results for the observations conforming to
-     *     this ObservationDefinition.
-     */
-    public ObservationDefinitionBuilder.Impl withValidCodedValueSet(
-        @NonNull Reference validCodedValueSet) {
-      this.validCodedValueSet = Optional.of(validCodedValueSet);
-      return this;
-    }
-
-    public ObservationDefinitionBuilder.Impl withValidCodedValueSet(
-        @NonNull ReferenceBuilder validCodedValueSet) {
-      this.validCodedValueSet = Optional.of(validCodedValueSet.build());
-      return this;
-    }
-    /**
      * @param preferredReportName - The preferred name to be used when reporting the results of
      *     observations conforming to this ObservationDefinition.
      */
@@ -324,48 +644,21 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param normalCodedValueSet - The set of normal coded results for the observations conforming
-     *     to this ObservationDefinition.
+     * @param derivedFromCanonical - The canonical URL pointing to another FHIR-defined
+     *     ObservationDefinition that is adhered to in whole or in part by this definition.
      */
-    public ObservationDefinitionBuilder.Impl withNormalCodedValueSet(
-        @NonNull Reference normalCodedValueSet) {
-      this.normalCodedValueSet = Optional.of(normalCodedValueSet);
-      return this;
-    }
-
-    public ObservationDefinitionBuilder.Impl withNormalCodedValueSet(
-        @NonNull ReferenceBuilder normalCodedValueSet) {
-      this.normalCodedValueSet = Optional.of(normalCodedValueSet.build());
+    public ObservationDefinitionBuilder.Impl withDerivedFromCanonical(
+        @NonNull String... derivedFromCanonical) {
+      this.derivedFromCanonical = Arrays.asList(derivedFromCanonical);
       return this;
     }
     /**
-     * @param abnormalCodedValueSet - The set of abnormal coded results for the observation
-     *     conforming to this ObservationDefinition.
+     * @param derivedFromCanonical - The canonical URL pointing to another FHIR-defined
+     *     ObservationDefinition that is adhered to in whole or in part by this definition.
      */
-    public ObservationDefinitionBuilder.Impl withAbnormalCodedValueSet(
-        @NonNull Reference abnormalCodedValueSet) {
-      this.abnormalCodedValueSet = Optional.of(abnormalCodedValueSet);
-      return this;
-    }
-
-    public ObservationDefinitionBuilder.Impl withAbnormalCodedValueSet(
-        @NonNull ReferenceBuilder abnormalCodedValueSet) {
-      this.abnormalCodedValueSet = Optional.of(abnormalCodedValueSet.build());
-      return this;
-    }
-    /**
-     * @param criticalCodedValueSet - The set of critical coded results for the observation
-     *     conforming to this ObservationDefinition.
-     */
-    public ObservationDefinitionBuilder.Impl withCriticalCodedValueSet(
-        @NonNull Reference criticalCodedValueSet) {
-      this.criticalCodedValueSet = Optional.of(criticalCodedValueSet);
-      return this;
-    }
-
-    public ObservationDefinitionBuilder.Impl withCriticalCodedValueSet(
-        @NonNull ReferenceBuilder criticalCodedValueSet) {
-      this.criticalCodedValueSet = Optional.of(criticalCodedValueSet.build());
+    public ObservationDefinitionBuilder.Impl withDerivedFromCanonical(
+        @NonNull Collection<String> derivedFromCanonical) {
+      this.derivedFromCanonical = Collections.unmodifiableCollection(derivedFromCanonical);
       return this;
     }
     /**
@@ -378,32 +671,58 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param qualifiedInterval - Multiple ranges of results qualified by different contexts for
-     *     ordinal or continuous observations conforming to this ObservationDefinition.
+     * @param component - Some observations have multiple component observations, expressed as
+     *     separate code value pairs.
      */
-    public ObservationDefinitionBuilder.Impl withQualifiedInterval(
-        @NonNull ObservationDefinition.QualifiedInterval... qualifiedInterval) {
-      this.qualifiedInterval = Arrays.asList(qualifiedInterval);
+    public ObservationDefinitionBuilder.Impl withComponent(
+        @NonNull ObservationDefinition.Component... component) {
+      this.component = Arrays.asList(component);
       return this;
     }
     /**
-     * @param qualifiedInterval - Multiple ranges of results qualified by different contexts for
-     *     ordinal or continuous observations conforming to this ObservationDefinition.
+     * @param component - Some observations have multiple component observations, expressed as
+     *     separate code value pairs.
      */
-    public ObservationDefinitionBuilder.Impl withQualifiedInterval(
-        @NonNull Collection<ObservationDefinition.QualifiedInterval> qualifiedInterval) {
-      this.qualifiedInterval = Collections.unmodifiableCollection(qualifiedInterval);
+    public ObservationDefinitionBuilder.Impl withComponent(
+        @NonNull Collection<ObservationDefinition.Component> component) {
+      this.component = Collections.unmodifiableCollection(component);
       return this;
     }
 
-    public ObservationDefinitionBuilder.Impl withQualifiedInterval(
-        @NonNull ObservationDefinition_QualifiedIntervalBuilder... qualifiedInterval) {
-      this.qualifiedInterval =
-          Arrays.stream(qualifiedInterval).map(e -> e.build()).collect(toList());
+    public ObservationDefinitionBuilder.Impl withComponent(
+        @NonNull ObservationDefinition_ComponentBuilder... component) {
+      this.component = Arrays.stream(component).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
-     * @param quantitativeDetails - Characteristics for quantitative results of this observation.
+     * @param qualifiedValue - A set of qualified values associated with a context and a set of
+     *     conditions - provides a range for quantitative and ordinal observations and a collection
+     *     of value sets for qualitative observations.
+     */
+    public ObservationDefinitionBuilder.Impl withQualifiedValue(
+        @NonNull ObservationDefinition.QualifiedValue... qualifiedValue) {
+      this.qualifiedValue = Arrays.asList(qualifiedValue);
+      return this;
+    }
+    /**
+     * @param qualifiedValue - A set of qualified values associated with a context and a set of
+     *     conditions - provides a range for quantitative and ordinal observations and a collection
+     *     of value sets for qualitative observations.
+     */
+    public ObservationDefinitionBuilder.Impl withQualifiedValue(
+        @NonNull Collection<ObservationDefinition.QualifiedValue> qualifiedValue) {
+      this.qualifiedValue = Collections.unmodifiableCollection(qualifiedValue);
+      return this;
+    }
+
+    public ObservationDefinitionBuilder.Impl withQualifiedValue(
+        @NonNull ObservationDefinition_QualifiedValueBuilder... qualifiedValue) {
+      this.qualifiedValue = Arrays.stream(qualifiedValue).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param quantitativeDetails - Characteristics for quantitative results of observations
+     *     conforming to this ObservationDefinition.
      */
     public ObservationDefinitionBuilder.Impl withQuantitativeDetails(
         @NonNull ObservationDefinition.QuantitativeDetails quantitativeDetails) {
@@ -425,25 +744,47 @@ public interface ObservationDefinitionBuilder extends DomainResourceBuilder {
     public ObservationDefinition build() {
       return new ObservationDefinition(
           OptionConverters.toScala(id),
+          OptionConverters.toScala(url),
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
+          OptionConverters.toScala(name),
+          OptionConverters.toScala(date),
           code,
+          OptionConverters.toScala(title),
+          status,
           OptionConverters.toScala(method),
+          device.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(version),
+          contact.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(purpose),
+          OptionConverters.toScala(subject),
           OptionConverters.toScala(language),
           category.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(bodySite),
+          specimen.stream().collect(new LitSeqJCollector<>()),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
-          identifier.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(publisher),
+          OptionConverters.toScala(copyright),
+          hasMember.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(identifier),
+          useContext.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(description),
+          OptionConverters.toScala(experimental.map(x -> (Object) x)),
+          jurisdiction.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(approvalDate),
           OptionConverters.toScala(implicitRules),
+          OptionConverters.toScala(performerType),
+          OptionConverters.toScala(lastReviewDate),
+          derivedFromUri.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(effectivePeriod),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           permittedDataType.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(validCodedValueSet),
           OptionConverters.toScala(preferredReportName),
-          OptionConverters.toScala(normalCodedValueSet),
-          OptionConverters.toScala(abnormalCodedValueSet),
-          OptionConverters.toScala(criticalCodedValueSet),
+          derivedFromCanonical.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(multipleResultsAllowed.map(x -> (Object) x)),
-          qualifiedInterval.stream().collect(new LitSeqJCollector<>()),
+          component.stream().collect(new LitSeqJCollector<>()),
+          qualifiedValue.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(quantitativeDetails),
           LitUtils.emptyMetaElMap());
     }

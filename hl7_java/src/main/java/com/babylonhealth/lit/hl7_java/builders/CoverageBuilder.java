@@ -75,7 +75,7 @@ public interface CoverageBuilder extends DomainResourceBuilder {
     private Reference beneficiary;
     private Optional<Boolean> subrogation = Optional.empty();
     private Optional<Reference> policyHolder = Optional.empty();
-    private Optional<String> subscriberId = Optional.empty();
+    private Optional<Identifier> subscriberId = Optional.empty();
     private Optional<CodeableConcept> relationship = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -203,8 +203,8 @@ public interface CoverageBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CoverageBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -212,8 +212,8 @@ public interface CoverageBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CoverageBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -251,7 +251,7 @@ public interface CoverageBuilder extends DomainResourceBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param dependent - A unique identifier for a dependent under the coverage. */
+    /** @param dependent - A designator for a dependent under the coverage. */
     public CoverageBuilder.Impl withDependent(@NonNull String dependent) {
       this.dependent = Optional.of(dependent);
       return this;
@@ -304,8 +304,13 @@ public interface CoverageBuilder extends DomainResourceBuilder {
       return this;
     }
     /** @param subscriberId - The insurer assigned ID for the Subscriber. */
-    public CoverageBuilder.Impl withSubscriberId(@NonNull String subscriberId) {
+    public CoverageBuilder.Impl withSubscriberId(@NonNull Identifier subscriberId) {
       this.subscriberId = Optional.of(subscriberId);
+      return this;
+    }
+
+    public CoverageBuilder.Impl withSubscriberId(@NonNull IdentifierBuilder subscriberId) {
+      this.subscriberId = Optional.of(subscriberId.build());
       return this;
     }
     /** @param relationship - The relationship of beneficiary (patient) to the subscriber. */

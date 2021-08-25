@@ -70,6 +70,8 @@ public interface Questionnaire_ItemBuilder {
     private Optional<String> definition = Optional.empty();
     private Optional<QUESTIONNAIRE_ENABLE_BEHAVIOR> enableBehavior = Optional.empty();
     private Optional<String> answerValueSet = Optional.empty();
+    private Optional<String> disabledDisplay = Optional.empty();
+    private Optional<String> answerConstraint = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Questionnaire$Item$Initial> initial = Collections.emptyList();
     private Collection<Questionnaire$Item$EnableWhen> enableWhen = Collections.emptyList();
@@ -215,6 +217,16 @@ public interface Questionnaire_ItemBuilder {
       this.answerValueSet = Optional.of(answerValueSet);
       return this;
     }
+    /** @param disabledDisplay */
+    public Questionnaire_ItemBuilder.Impl withDisabledDisplay(@NonNull String disabledDisplay) {
+      this.disabledDisplay = Optional.of(disabledDisplay);
+      return this;
+    }
+    /** @param answerConstraint */
+    public Questionnaire_ItemBuilder.Impl withAnswerConstraint(@NonNull String answerConstraint) {
+      this.answerConstraint = Optional.of(answerConstraint);
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -330,6 +342,8 @@ public interface Questionnaire_ItemBuilder {
           OptionConverters.toScala(definition),
           OptionConverters.toScala(enableBehavior),
           OptionConverters.toScala(answerValueSet),
+          OptionConverters.toScala(disabledDisplay),
+          OptionConverters.toScala(answerConstraint),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           initial.stream().collect(new LitSeqJCollector<>()),
           enableWhen.stream().collect(new LitSeqJCollector<>()),

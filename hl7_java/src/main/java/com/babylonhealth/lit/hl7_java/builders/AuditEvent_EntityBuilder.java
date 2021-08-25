@@ -62,7 +62,6 @@ public interface AuditEvent_EntityBuilder {
     private Optional<byte[]> query = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Coding> lifecycle = Optional.empty();
-    private Optional<String> description = Optional.empty();
     private Collection<Coding> securityLabel = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<AuditEvent$Entity$Detail> detail = Collections.emptyList();
@@ -158,11 +157,6 @@ public interface AuditEvent_EntityBuilder {
       this.lifecycle = Optional.of(lifecycle.build());
       return this;
     }
-    /** @param description */
-    public AuditEvent_EntityBuilder.Impl withDescription(@NonNull String description) {
-      this.description = Optional.of(description);
-      return this;
-    }
     /** @param securityLabel */
     public AuditEvent_EntityBuilder.Impl withSecurityLabel(@NonNull Coding... securityLabel) {
       this.securityLabel = Arrays.asList(securityLabel);
@@ -251,7 +245,6 @@ public interface AuditEvent_EntityBuilder {
           OptionConverters.toScala(query),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(lifecycle),
-          OptionConverters.toScala(description),
           securityLabel.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           detail.stream().collect(new LitSeqJCollector<>()),

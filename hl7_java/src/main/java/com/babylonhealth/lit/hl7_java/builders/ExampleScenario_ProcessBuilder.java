@@ -66,7 +66,7 @@ public interface ExampleScenario_ProcessBuilder {
     /**
      * Required fields for {@link ExampleScenario.Process}
      *
-     * @param title
+     * @param title - A short, descriptive, user-friendly title for the {{title}}.
      */
     public Impl(String title) {
       this.title = title;
@@ -109,7 +109,10 @@ public interface ExampleScenario_ProcessBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param description */
+    /**
+     * @param description - A free text natural language description of the {{title}} from a
+     *     consumer's perspective.
+     */
     public ExampleScenario_ProcessBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);
       return this;

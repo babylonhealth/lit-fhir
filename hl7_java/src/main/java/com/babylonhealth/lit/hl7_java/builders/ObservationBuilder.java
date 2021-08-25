@@ -54,48 +54,52 @@ public interface ObservationBuilder extends DomainResourceBuilder {
     return new Impl(code.build(), status);
   }
 
-  public static Choice02118820890 value(Boolean b) {
-    return new Choice02118820890(b);
+  public static Choice01718482969 value(Attachment a) {
+    return new Choice01718482969(a);
   }
 
-  public static Choice02118820890 value(CodeableConcept c) {
-    return new Choice02118820890(c);
+  public static Choice01718482969 value(Boolean b) {
+    return new Choice01718482969(b);
   }
 
-  public static Choice02118820890 value(FHIRDateTime f) {
-    return new Choice02118820890(f);
+  public static Choice01718482969 value(CodeableConcept c) {
+    return new Choice01718482969(c);
   }
 
-  public static Choice02118820890 value(Integer i) {
-    return new Choice02118820890(i);
+  public static Choice01718482969 value(FHIRDateTime f) {
+    return new Choice01718482969(f);
   }
 
-  public static Choice02118820890 value(LocalTime l) {
-    return new Choice02118820890(l);
+  public static Choice01718482969 value(Integer i) {
+    return new Choice01718482969(i);
   }
 
-  public static Choice02118820890 value(Period p) {
-    return new Choice02118820890(p);
+  public static Choice01718482969 value(LocalTime l) {
+    return new Choice01718482969(l);
   }
 
-  public static Choice02118820890 value(Quantity q) {
-    return new Choice02118820890(q);
+  public static Choice01718482969 value(Period p) {
+    return new Choice01718482969(p);
   }
 
-  public static Choice02118820890 value(Range r) {
-    return new Choice02118820890(r);
+  public static Choice01718482969 value(Quantity q) {
+    return new Choice01718482969(q);
   }
 
-  public static Choice02118820890 value(Ratio r) {
-    return new Choice02118820890(r);
+  public static Choice01718482969 value(Range r) {
+    return new Choice01718482969(r);
   }
 
-  public static Choice02118820890 value(SampledData s) {
-    return new Choice02118820890(s);
+  public static Choice01718482969 value(Ratio r) {
+    return new Choice01718482969(r);
   }
 
-  public static Choice02118820890 value(String s) {
-    return new Choice02118820890(s);
+  public static Choice01718482969 value(SampledData s) {
+    return new Choice01718482969(s);
+  }
+
+  public static Choice01718482969 value(String s) {
+    return new Choice01718482969(s);
   }
 
   public static Choice00107722725 effective(FHIRDateTime f) {
@@ -114,6 +118,14 @@ public interface ObservationBuilder extends DomainResourceBuilder {
     return new Choice00107722725(z);
   }
 
+  public static ChoiceCanonicalOrReference instantiates(String s) {
+    return new ChoiceCanonicalOrReference(s);
+  }
+
+  public static ChoiceCanonicalOrReference instantiates(Reference r) {
+    return new ChoiceCanonicalOrReference(r);
+  }
+
   public class Impl implements ObservationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
@@ -130,7 +142,7 @@ public interface ObservationBuilder extends DomainResourceBuilder {
     private Optional<Reference> subject = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category = Collections.emptyList();
-    private Optional<Choice02118820890> value = Optional.empty();
+    private Optional<Choice01718482969> value = Optional.empty();
     private Optional<CodeableConcept> bodySite = Optional.empty();
     private Optional<Reference> specimen = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
@@ -143,6 +155,7 @@ public interface ObservationBuilder extends DomainResourceBuilder {
     private Optional<Choice00107722725> effective = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<CodeableConcept> interpretation = Collections.emptyList();
+    private Optional<ChoiceCanonicalOrReference> instantiates = Optional.empty();
     private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Observation.Component> component = Collections.emptyList();
@@ -318,11 +331,11 @@ public interface ObservationBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param subject - The patient, or group of patients, location, or device this observation is
-     *     about and into whose record the observation is placed. If the actual focus of the
-     *     observation is different from the subject (or a sample of, part, or region of the
-     *     subject), the `focus` element or the `code` itself specifies the actual focus of the
-     *     observation.
+     * @param subject - The patient, or group of patients, location, device, organization, procedure
+     *     or practitioner this observation is about and into whose or what record the observation
+     *     is placed. If the actual focus of the observation is different from the subject (or a
+     *     sample of, part, or region of the subject), the `focus` element or the `code` itself
+     *     specifies the actual focus of the observation.
      */
     public ObservationBuilder.Impl withSubject(@NonNull Reference subject) {
       this.subject = Optional.of(subject);
@@ -355,12 +368,12 @@ public interface ObservationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param value - The information determined as a result of making the observation, if the
-     *     information has a simple value. Field is a 'choice' field. Type should be one of Boolean,
-     *     CodeableConcept, FHIRDateTime, Integer, LocalTime, Period, Quantity, Range, Ratio,
-     *     SampledData, String. To pass the value in, wrap with one of the ObservationBuilder.value
-     *     static methods
+     *     information has a simple value. Field is a 'choice' field. Type should be one of
+     *     Attachment, Boolean, CodeableConcept, FHIRDateTime, Integer, LocalTime, Period, Quantity,
+     *     Range, Ratio, SampledData, String. To pass the value in, wrap with one of the
+     *     ObservationBuilder.value static methods
      */
-    public ObservationBuilder.Impl withValue(@NonNull Choice02118820890 value) {
+    public ObservationBuilder.Impl withValue(@NonNull Choice01718482969 value) {
       this.value = Optional.of(value);
       return this;
     }
@@ -389,8 +402,8 @@ public interface ObservationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ObservationBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -398,8 +411,8 @@ public interface ObservationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ObservationBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -571,6 +584,17 @@ public interface ObservationBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param instantiates - The reference to a FHIR ObservationDefinition resource that provides
+     *     the definition that is adhered to in whole or in part by this Observation instance. Field
+     *     is a 'choice' field. Type should be one of String, Reference. To pass the value in, wrap
+     *     with one of the ObservationBuilder.instantiates static methods
+     */
+    public ObservationBuilder.Impl withInstantiates(
+        @NonNull ChoiceCanonicalOrReference instantiates) {
+      this.instantiates = Optional.of(instantiates);
+      return this;
+    }
+    /**
      * @param dataAbsentReason - Provides a reason why the expected value in the element
      *     Observation.value[x] is missing.
      */
@@ -717,6 +741,7 @@ public interface ObservationBuilder extends DomainResourceBuilder {
           (Option) OptionConverters.toScala(effective),
           OptionConverters.toScala(implicitRules),
           interpretation.stream().collect(new LitSeqJCollector<>()),
+          (Option) OptionConverters.toScala(instantiates),
           OptionConverters.toScala(dataAbsentReason),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           component.stream().collect(new LitSeqJCollector<>()),

@@ -44,7 +44,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface QuestionnaireBuilder extends DomainResourceBuilder {
+public interface QuestionnaireBuilder extends MetadataResourceBuilder {
   public Questionnaire build();
 
   public static Impl init(PUBLICATION_STATUS status) {
@@ -108,10 +108,10 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
     /**
      * @param url - An absolute URI that is used to identify this questionnaire when it is
      *     referenced in a specification, model, design or an instance; also called its canonical
-     *     identifier. This SHOULD be globally unique and SHOULD be a literal address at which at
-     *     which an authoritative instance of this questionnaire is (or will be) published. This URL
-     *     can be the target of a canonical reference. It SHALL remain the same when the
-     *     questionnaire is stored on different servers.
+     *     identifier. This SHOULD be globally unique and SHOULD be a literal address at which an
+     *     authoritative instance of this questionnaire is (or will be) published. This URL can be
+     *     the target of a canonical reference. It SHALL remain the same when the questionnaire is
+     *     stored on different servers.
      */
     public QuestionnaireBuilder.Impl withUrl(@NonNull String url) {
       this.url = Optional.of(url);
@@ -239,8 +239,8 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public QuestionnaireBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -248,8 +248,8 @@ public interface QuestionnaireBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public QuestionnaireBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);

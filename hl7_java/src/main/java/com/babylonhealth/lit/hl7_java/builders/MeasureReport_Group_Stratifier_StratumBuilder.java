@@ -53,11 +53,55 @@ public interface MeasureReport_Group_Stratifier_StratumBuilder {
     return new Impl();
   }
 
+  public static Choice_1690912481 value(Boolean b) {
+    return new Choice_1690912481(b);
+  }
+
+  public static Choice_1690912481 value(CodeableConcept c) {
+    return new Choice_1690912481(c);
+  }
+
+  public static Choice_1690912481 value(Quantity q) {
+    return new Choice_1690912481(q);
+  }
+
+  public static Choice_1690912481 value(Range r) {
+    return new Choice_1690912481(r);
+  }
+
+  public static Choice_1690912481 value(Reference r) {
+    return new Choice_1690912481(r);
+  }
+
+  public static Choice02123692961 measureScore(CodeableConcept c) {
+    return new Choice02123692961(c);
+  }
+
+  public static Choice02123692961 measureScore(Duration d) {
+    return new Choice02123692961(d);
+  }
+
+  public static Choice02123692961 measureScore(FHIRDateTime f) {
+    return new Choice02123692961(f);
+  }
+
+  public static Choice02123692961 measureScore(Period p) {
+    return new Choice02123692961(p);
+  }
+
+  public static Choice02123692961 measureScore(Quantity q) {
+    return new Choice02123692961(q);
+  }
+
+  public static Choice02123692961 measureScore(Range r) {
+    return new Choice02123692961(r);
+  }
+
   public class Impl implements MeasureReport_Group_Stratifier_StratumBuilder {
     private Optional<String> id = Optional.empty();
-    private Optional<CodeableConcept> value = Optional.empty();
+    private Optional<Choice_1690912481> value = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Quantity> measureScore = Optional.empty();
+    private Optional<Choice02123692961> measureScore = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<MeasureReport$Group$Stratifier$Stratum$Component> component =
         Collections.emptyList();
@@ -75,16 +119,14 @@ public interface MeasureReport_Group_Stratifier_StratumBuilder {
       this.id = Optional.of(id);
       return this;
     }
-    /** @param value */
+    /**
+     * @param value Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
+     *     Quantity, Range, Reference. To pass the value in, wrap with one of the
+     *     MeasureReport_Group_Stratifier_StratumBuilder.value static methods
+     */
     public MeasureReport_Group_Stratifier_StratumBuilder.Impl withValue(
-        @NonNull CodeableConcept value) {
+        @NonNull Choice_1690912481 value) {
       this.value = Optional.of(value);
-      return this;
-    }
-
-    public MeasureReport_Group_Stratifier_StratumBuilder.Impl withValue(
-        @NonNull CodeableConceptBuilder value) {
-      this.value = Optional.of(value.build());
       return this;
     }
     /**
@@ -117,16 +159,14 @@ public interface MeasureReport_Group_Stratifier_StratumBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param measureScore */
+    /**
+     * @param measureScore Field is a 'choice' field. Type should be one of CodeableConcept,
+     *     Duration, FHIRDateTime, Period, Quantity, Range. To pass the value in, wrap with one of
+     *     the MeasureReport_Group_Stratifier_StratumBuilder.measureScore static methods
+     */
     public MeasureReport_Group_Stratifier_StratumBuilder.Impl withMeasureScore(
-        @NonNull Quantity measureScore) {
+        @NonNull Choice02123692961 measureScore) {
       this.measureScore = Optional.of(measureScore);
-      return this;
-    }
-
-    public MeasureReport_Group_Stratifier_StratumBuilder.Impl withMeasureScore(
-        @NonNull QuantityBuilder measureScore) {
-      this.measureScore = Optional.of(measureScore.build());
       return this;
     }
     /**
@@ -212,9 +252,9 @@ public interface MeasureReport_Group_Stratifier_StratumBuilder {
     public MeasureReport$Group$Stratifier$Stratum build() {
       return new MeasureReport$Group$Stratifier$Stratum(
           OptionConverters.toScala(id),
-          OptionConverters.toScala(value),
+          (Option) OptionConverters.toScala(value),
           extension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(measureScore),
+          (Option) OptionConverters.toScala(measureScore),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           component.stream().collect(new LitSeqJCollector<>()),
           population.stream().collect(new LitSeqJCollector<>()),

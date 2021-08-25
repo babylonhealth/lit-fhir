@@ -74,9 +74,8 @@ public interface ImagingStudy_SeriesBuilder {
      * Required fields for {@link ImagingStudy.Series}
      *
      * @param uid
-     * @param modality - A list of all the series.modality values that are actual acquisition
-     *     modalities, i.e. those in the DICOM Context Group 29 (value set OID
-     *     1.2.840.10008.6.1.19).
+     * @param modality - A list of all the distinct values of series.modality. This may include both
+     *     acquisition and non-acquisition modalities.
      */
     public Impl(String uid, Coding modality) {
       this.uid = uid;

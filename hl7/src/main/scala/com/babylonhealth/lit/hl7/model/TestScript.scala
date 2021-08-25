@@ -77,6 +77,7 @@ object TestScript extends CompanionFor[TestScript] {
             warningOnly: Boolean,
             responseCode: Option[String] = None,
             requestMethod: Option[HTTP_OPERATIONS] = None,
+            stopTestOnFail: Boolean,
             navigationLinks: Option[Boolean] = None,
             modifierExtension: LitSeq[Extension] = LitSeq.empty,
             compareToSourceId: Option[String] = None,
@@ -104,6 +105,7 @@ object TestScript extends CompanionFor[TestScript] {
           warningOnly,
           responseCode,
           requestMethod,
+          stopTestOnFail,
           navigationLinks,
           modifierExtension,
           compareToSourceId,
@@ -154,6 +156,8 @@ object TestScript extends CompanionFor[TestScript] {
           FHIRComponentFieldMeta("responseCode", lTagOf[Option[String]], false, lTagOf[String])
         val requestMethod: FHIRComponentFieldMeta[Option[HTTP_OPERATIONS]] =
           FHIRComponentFieldMeta("requestMethod", lTagOf[Option[HTTP_OPERATIONS]], false, lTagOf[HTTP_OPERATIONS])
+        val stopTestOnFail: FHIRComponentFieldMeta[Boolean] =
+          FHIRComponentFieldMeta("stopTestOnFail", lTagOf[Boolean], false, lTagOf[Boolean])
         val navigationLinks: FHIRComponentFieldMeta[Option[Boolean]] =
           FHIRComponentFieldMeta("navigationLinks", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -186,6 +190,7 @@ object TestScript extends CompanionFor[TestScript] {
           warningOnly,
           responseCode,
           requestMethod,
+          stopTestOnFail,
           navigationLinks,
           modifierExtension,
           compareToSourceId,
@@ -214,6 +219,7 @@ object TestScript extends CompanionFor[TestScript] {
           FHIRComponentField[Boolean](warningOnly, t.warningOnly),
           FHIRComponentField[Option[String]](responseCode, t.responseCode),
           FHIRComponentField[Option[HTTP_OPERATIONS]](requestMethod, t.requestMethod),
+          FHIRComponentField[Boolean](stopTestOnFail, t.stopTestOnFail),
           FHIRComponentField[Option[Boolean]](navigationLinks, t.navigationLinks),
           FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
           FHIRComponentField[Option[String]](compareToSourceId, t.compareToSourceId),
@@ -246,6 +252,7 @@ object TestScript extends CompanionFor[TestScript] {
                 cursor.decodeAs[Boolean]("warningOnly", None),
                 cursor.decodeAs[Option[String]]("responseCode", Some(None)),
                 cursor.decodeAs[Option[HTTP_OPERATIONS]]("requestMethod", Some(None)),
+                cursor.decodeAs[Boolean]("stopTestOnFail", None),
                 cursor.decodeAs[Option[Boolean]]("navigationLinks", Some(None)),
                 cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
                 cursor.decodeAs[Option[String]]("compareToSourceId", Some(None)),
@@ -277,6 +284,7 @@ object TestScript extends CompanionFor[TestScript] {
           val warningOnly: Boolean,
           val responseCode: Option[String] = None,
           val requestMethod: Option[HTTP_OPERATIONS] = None,
+          val stopTestOnFail: Boolean,
           val navigationLinks: Option[Boolean] = None,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           val compareToSourceId: Option[String] = None,
@@ -1524,6 +1532,80 @@ object TestScript extends CompanionFor[TestScript] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
+  object Scope extends CompanionFor[Scope] {
+    implicit def summonObjectAndCompanionScope_1178906566(o: Scope): ObjectAndCompanion[Scope, Scope.type] =
+      ObjectAndCompanion(o, this)
+    override type ResourceType = Scope
+    override type ParentType   = Scope
+    override val parentType: CompanionFor[ResourceType] = Scope
+    def apply(
+        id: Option[String] = None,
+        phase: Option[CodeableConcept] = None,
+        artifact: Canonical,
+        extension: LitSeq[Extension] = LitSeq.empty,
+        conformance: Option[CodeableConcept] = None,
+        modifierExtension: LitSeq[Extension] = LitSeq.empty,
+        primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
+    ): Scope = new Scope(
+      id,
+      phase,
+      artifact,
+      extension,
+      conformance,
+      modifierExtension,
+      primitiveAttributes = primitiveAttributes
+    )
+    def unapply(
+        o: Scope): Option[(Option[String], Option[CodeableConcept], Canonical, LitSeq[Extension], Option[CodeableConcept], LitSeq[Extension])] =
+      Some((o.id, o.phase, o.artifact, o.extension, o.conformance, o.modifierExtension))
+    val id: FHIRComponentFieldMeta[Option[String]] =
+      FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
+    val phase: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+      FHIRComponentFieldMeta("phase", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+    val artifact: FHIRComponentFieldMeta[Canonical] =
+      FHIRComponentFieldMeta("artifact", lTagOf[Canonical], false, lTagOf[Canonical])
+    val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+      FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+    val conformance: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+      FHIRComponentFieldMeta("conformance", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+    val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+      FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, phase, artifact, extension, conformance, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
+    override def fields(t: Scope): Seq[FHIRComponentField[_]] = Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[CodeableConcept]](phase, t.phase),
+      FHIRComponentField[Canonical](artifact, t.artifact),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[CodeableConcept]](conformance, t.conformance),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
+    )
+    val baseType: CompanionFor[Scope] = this
+    val thisName: String              = "Scope"
+    def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Scope] =
+      checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
+        Try(
+          new Scope(
+            cursor.decodeAs[Option[String]]("id", Some(None)),
+            cursor.decodeAs[Option[CodeableConcept]]("phase", Some(None)),
+            cursor.decodeAs[Canonical]("artifact", None),
+            cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+            cursor.decodeAs[Option[CodeableConcept]]("conformance", Some(None)),
+            cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+            decodeAttributes(cursor)
+          )
+        ))
+  }
+  @POJOBoilerplate
+  class Scope(
+      override val id: Option[String] = None,
+      val phase: Option[CodeableConcept] = None,
+      val artifact: Canonical,
+      override val extension: LitSeq[Extension] = LitSeq.empty,
+      val conformance: Option[CodeableConcept] = None,
+      override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
+      override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
+      extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   def apply(
       id: Option[String] = None,
       url: UriStr,
@@ -1549,6 +1631,7 @@ object TestScript extends CompanionFor[TestScript] {
       jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
+      scope: LitSeq[TestScript.Scope] = LitSeq.empty,
       origin: LitSeq[TestScript.Origin] = LitSeq.empty,
       fixture: LitSeq[TestScript.Fixture] = LitSeq.empty,
       variable: LitSeq[TestScript.Variable] = LitSeq.empty,
@@ -1583,6 +1666,7 @@ object TestScript extends CompanionFor[TestScript] {
     jurisdiction,
     implicitRules,
     modifierExtension,
+    scope,
     origin,
     fixture,
     variable,
@@ -1641,6 +1725,8 @@ object TestScript extends CompanionFor[TestScript] {
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  val scope: FHIRComponentFieldMeta[LitSeq[TestScript.Scope]] =
+    FHIRComponentFieldMeta("scope", lTagOf[LitSeq[TestScript.Scope]], false, lTagOf[TestScript.Scope])
   val origin: FHIRComponentFieldMeta[LitSeq[TestScript.Origin]] =
     FHIRComponentFieldMeta("origin", lTagOf[LitSeq[TestScript.Origin]], false, lTagOf[TestScript.Origin])
   val fixture: FHIRComponentFieldMeta[LitSeq[TestScript.Fixture]] =
@@ -1682,6 +1768,7 @@ object TestScript extends CompanionFor[TestScript] {
     jurisdiction,
     implicitRules,
     modifierExtension,
+    scope,
     origin,
     fixture,
     variable,
@@ -1694,10 +1781,10 @@ object TestScript extends CompanionFor[TestScript] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: TestScript): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[UriStr](url, t.url),
+    FHIRComponentField[UriStr](url, t.url.get),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name),
+    FHIRComponentField[String](name, t.name.get),
     FHIRComponentField[Option[FHIRDateTime]](date, t.date),
     FHIRComponentField[Option[String]](title, t.title),
     FHIRComponentField[PUBLICATION_STATUS](status, t.status),
@@ -1710,13 +1797,14 @@ object TestScript extends CompanionFor[TestScript] {
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[String]](publisher, t.publisher),
     FHIRComponentField[Option[Markdown]](copyright, t.copyright),
-    FHIRComponentField[Option[Identifier]](identifier, t.identifier),
+    FHIRComponentField[Option[Identifier]](identifier, t.identifier.headOption),
     FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
     FHIRComponentField[Option[Markdown]](description, t.description),
     FHIRComponentField[Option[Boolean]](experimental, t.experimental),
     FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+    FHIRComponentField[LitSeq[TestScript.Scope]](scope, t.scope),
     FHIRComponentField[LitSeq[TestScript.Origin]](origin, t.origin),
     FHIRComponentField[LitSeq[TestScript.Fixture]](fixture, t.fixture),
     FHIRComponentField[LitSeq[TestScript.Variable]](variable, t.variable),
@@ -1727,10 +1815,10 @@ object TestScript extends CompanionFor[TestScript] {
     FHIRComponentField[Option[TestScript.Setup]](setup, t.setup)
   )
   def extractId(t: TestScript): Option[String]                          = t.id
-  def extractUrl(t: TestScript): UriStr                                 = t.url
+  def extractUrl(t: TestScript): UriStr                                 = t.url.get
   def extractMeta(t: TestScript): Option[Meta]                          = t.meta
   def extractText(t: TestScript): Option[Narrative]                     = t.text
-  def extractName(t: TestScript): String                                = t.name
+  def extractName(t: TestScript): String                                = t.name.get
   def extractDate(t: TestScript): Option[FHIRDateTime]                  = t.date
   def extractTitle(t: TestScript): Option[String]                       = t.title
   def extractStatus(t: TestScript): PUBLICATION_STATUS                  = t.status
@@ -1743,13 +1831,14 @@ object TestScript extends CompanionFor[TestScript] {
   def extractExtension(t: TestScript): LitSeq[Extension]                = t.extension
   def extractPublisher(t: TestScript): Option[String]                   = t.publisher
   def extractCopyright(t: TestScript): Option[Markdown]                 = t.copyright
-  def extractIdentifier(t: TestScript): Option[Identifier]              = t.identifier
+  def extractIdentifier(t: TestScript): Option[Identifier]              = t.identifier.headOption
   def extractUseContext(t: TestScript): LitSeq[UsageContext]            = t.useContext
   def extractDescription(t: TestScript): Option[Markdown]               = t.description
   def extractExperimental(t: TestScript): Option[Boolean]               = t.experimental
   def extractJurisdiction(t: TestScript): LitSeq[CodeableConcept]       = t.jurisdiction
   def extractImplicitRules(t: TestScript): Option[UriStr]               = t.implicitRules
   def extractModifierExtension(t: TestScript): LitSeq[Extension]        = t.modifierExtension
+  def extractScope(t: TestScript): LitSeq[TestScript.Scope]             = t.scope
   def extractOrigin(t: TestScript): LitSeq[TestScript.Origin]           = t.origin
   def extractFixture(t: TestScript): LitSeq[TestScript.Fixture]         = t.fixture
   def extractVariable(t: TestScript): LitSeq[TestScript.Variable]       = t.variable
@@ -1760,21 +1849,24 @@ object TestScript extends CompanionFor[TestScript] {
   def extractSetup(t: TestScript): Option[TestScript.Setup]             = t.setup
   override val thisName: String                                         = "TestScript"
   override val searchParams: Map[String, TestScript => Seq[Any]] = Map(
-    "jurisdiction"          -> (obj => obj.jurisdiction.toSeq),
-    "name"                  -> (obj => Seq(obj.name)),
-    "context-type-quantity" -> (obj => obj.useContext.toSeq),
-    "description"           -> (obj => obj.description.toSeq),
-    "context"               -> (obj => obj.useContext.map(_.value).flatMap(_.as[CodeableConcept]).toSeq),
-    "date"                  -> (obj => obj.date.toSeq),
-    "testscript-capability" -> (obj => obj.metadata.toSeq.flatMap(_.capability).flatMap(_.description).toSeq),
-    "context-type"          -> (obj => obj.useContext.map(_.code).toSeq),
-    "identifier"            -> (obj => obj.identifier.toSeq),
-    "url"                   -> (obj => Seq(obj.url)),
-    "context-type-value"    -> (obj => obj.useContext.toSeq),
-    "version"               -> (obj => obj.version.toSeq),
-    "status"                -> (obj => Seq(obj.status)),
-    "publisher"             -> (obj => obj.publisher.toSeq),
-    "title"                 -> (obj => obj.title.toSeq),
+    "jurisdiction"               -> (obj => obj.jurisdiction.toSeq),
+    "name"                       -> (obj => Seq(obj.name)),
+    "context-type-quantity"      -> (obj => obj.useContext.toSeq),
+    "description"                -> (obj => obj.description.toSeq),
+    "context"                    -> (obj => obj.useContext.map(_.value).flatMap(_.as[CodeableConcept]).toSeq),
+    "scope-artifact-phase"       -> (obj => obj.scope.toSeq),
+    "date"                       -> (obj => obj.date.toSeq),
+    "testscript-capability"      -> (obj => obj.metadata.toSeq.flatMap(_.capability).flatMap(_.description).toSeq),
+    "context-type"               -> (obj => obj.useContext.map(_.code).toSeq),
+    "identifier"                 -> (obj => obj.identifier.toSeq),
+    "url"                        -> (obj => Seq(obj.url)),
+    "scope-artifact-conformance" -> (obj => obj.scope.toSeq),
+    "scope-artifact"             -> (obj => obj.scope.map(_.artifact).toSeq),
+    "context-type-value"         -> (obj => obj.useContext.toSeq),
+    "version"                    -> (obj => obj.version.toSeq),
+    "status"                     -> (obj => Seq(obj.status)),
+    "publisher"                  -> (obj => obj.publisher.toSeq),
+    "title"                      -> (obj => obj.title.toSeq),
     "context-quantity" -> (obj =>
       obj.useContext.map(_.value).flatMap(_.as[Quantity]).toSeq ++
         obj.useContext.map(_.value).flatMap(_.as[Range]).toSeq)
@@ -1800,13 +1892,14 @@ object TestScript extends CompanionFor[TestScript] {
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("publisher", Some(None)),
           cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
-          cursor.decodeAs[Option[Identifier]]("identifier", Some(None)),
+          cursor.decodeFromListAs[Option[Identifier]]("identifier", Some(None)),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Markdown]]("description", Some(None)),
           cursor.decodeAs[Option[Boolean]]("experimental", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("jurisdiction", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[TestScript.Scope]]("scope", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[TestScript.Origin]]("origin", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[TestScript.Fixture]]("fixture", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[TestScript.Variable]]("variable", Some(LitSeq.empty)),
@@ -1823,12 +1916,11 @@ object TestScript extends CompanionFor[TestScript] {
 /** A structured set of tests against a FHIR server or client implementation to determine compliance against the FHIR
   * specification.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.CanonicalResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, title, status, version, contact, purpose, profile, publisher, copyright, identifier,
-  *   useContext, description, experimental, jurisdiction, origin, fixture, variable, destination, test, teardown, metadata,
-  *   setup.
+  *   Introduces the fields profile, scope, origin, fixture, variable, destination, test, teardown, metadata, setup. Requires the
+  *   following fields which were optional in the parent: url, name.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -1870,7 +1962,7 @@ object TestScript extends CompanionFor[TestScript] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -1907,6 +1999,9 @@ object TestScript extends CompanionFor[TestScript] {
   *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
   *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param scope
+  *   - The scope indicates a conformance artifact that is tested by the test(s) within this test case and the expectation of the
+  *   test outcome(s) as well as the intended test phase inclusion.
   * @param origin
   *   - An abstract server used in operations within this test script in the origin element.
   * @param fixture
@@ -1927,29 +2022,30 @@ object TestScript extends CompanionFor[TestScript] {
 @POJOBoilerplate
 class TestScript(
     override val id: Option[String] = None,
-    val url: UriStr,
+    url: UriStr,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: String,
-    val date: Option[FHIRDateTime] = None,
-    val title: Option[String] = None,
-    val status: PUBLICATION_STATUS,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    name: String,
+    override val date: Option[FHIRDateTime] = None,
+    override val title: Option[String] = None,
+    override val status: PUBLICATION_STATUS,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     val profile: LitSeq[Reference] = LitSeq.empty,
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val copyright: Option[Markdown] = None,
-    val identifier: Option[Identifier] = None,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
-    val description: Option[Markdown] = None,
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val publisher: Option[String] = None,
+    override val copyright: Option[Markdown] = None,
+    identifier: Option[Identifier] = None,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val description: Option[Markdown] = None,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
+    val scope: LitSeq[TestScript.Scope] = LitSeq.empty,
     val origin: LitSeq[TestScript.Origin] = LitSeq.empty,
     val fixture: LitSeq[TestScript.Fixture] = LitSeq.empty,
     val variable: LitSeq[TestScript.Variable] = LitSeq.empty,
@@ -1959,13 +2055,28 @@ class TestScript(
     val metadata: Option[TestScript.Metadata] = None,
     val setup: Option[TestScript.Setup] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends CanonicalResource(
       id = id,
+      url = Some(url),
       meta = meta,
       text = text,
+      name = Some(name),
+      date = date,
+      title = title,
+      status = status,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
       contained = contained,
       extension = extension,
+      publisher = publisher,
+      copyright = copyright,
+      identifier = identifier.to(LitSeq),
+      useContext = useContext,
+      description = description,
+      experimental = experimental,
+      jurisdiction = jurisdiction,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {

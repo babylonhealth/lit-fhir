@@ -59,32 +59,26 @@ public interface ConsentBuilder extends DomainResourceBuilder {
         scope.build(), status, new LitSeq<>(category).map(CodeableConceptBuilder::build));
   }
 
-  public static ChoiceAttachmentOrReference source(Attachment a) {
-    return new ChoiceAttachmentOrReference(a);
-  }
-
-  public static ChoiceAttachmentOrReference source(Reference r) {
-    return new ChoiceAttachmentOrReference(r);
-  }
-
   public class Impl implements ConsentBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
     private CodeableConcept scope;
     private CONSENT_STATE_CODES status;
-    private Optional<Reference> patient = Optional.empty();
+    private Optional<Reference> subject = Optional.empty();
+    private Collection<Reference> manager = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category;
     private Optional<FHIRDateTime> dateTime = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Reference> performer = Collections.emptyList();
-    private Optional<ChoiceAttachmentOrReference> source = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
+    private Collection<Reference> controller = Collections.emptyList();
     private Optional<CodeableConcept> policyRule = Optional.empty();
-    private Collection<Reference> organization = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
+    private Collection<Reference> sourceReference = Collections.emptyList();
+    private Collection<Attachment> sourceAttachment = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Consent.Policy> policy = Collections.emptyList();
     private Collection<Consent.Verification> verification = Collections.emptyList();
@@ -93,9 +87,9 @@ public interface ConsentBuilder extends DomainResourceBuilder {
     /**
      * Required fields for {@link Consent}
      *
-     * @param scope - A selector of the type of consent being presented: ADR, Privacy, Treatment,
-     *     Research. This list is now extensible.
-     * @param status - Indicates the current state of this consent.
+     * @param scope - A selector of the type of consent being presented with the base being Privacy,
+     *     Treatment, or Research.
+     * @param status - Indicates the current state of this Consent resource.
      * @param category - A classification of the type of consents found in the statement. This
      *     element supports indexing and retrieval of consent statements.
      */
@@ -144,14 +138,29 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text.build());
       return this;
     }
-    /** @param patient - The patient/healthcare consumer to whom this consent applies. */
-    public ConsentBuilder.Impl withPatient(@NonNull Reference patient) {
-      this.patient = Optional.of(patient);
+    /** @param subject - The patient/healthcare practitioner to whom this consent applies. */
+    public ConsentBuilder.Impl withSubject(@NonNull Reference subject) {
+      this.subject = Optional.of(subject);
       return this;
     }
 
-    public ConsentBuilder.Impl withPatient(@NonNull ReferenceBuilder patient) {
-      this.patient = Optional.of(patient.build());
+    public ConsentBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
+      return this;
+    }
+    /** @param manager - The actor that manages the consent through its lifecycle. */
+    public ConsentBuilder.Impl withManager(@NonNull Reference... manager) {
+      this.manager = Arrays.asList(manager);
+      return this;
+    }
+    /** @param manager - The actor that manages the consent through its lifecycle. */
+    public ConsentBuilder.Impl withManager(@NonNull Collection<Reference> manager) {
+      this.manager = Collections.unmodifiableCollection(manager);
+      return this;
+    }
+
+    public ConsentBuilder.Impl withManager(@NonNull ReferenceBuilder... manager) {
+      this.manager = Arrays.stream(manager).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -159,15 +168,15 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       this.language = Optional.of(language);
       return this;
     }
-    /** @param dateTime - When this Consent was issued / created / indexed. */
+    /** @param dateTime - Date and time the consent instance was agreed to. */
     public ConsentBuilder.Impl withDateTime(@NonNull FHIRDateTime dateTime) {
       this.dateTime = Optional.of(dateTime);
       return this;
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ConsentBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -175,8 +184,8 @@ public interface ConsentBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ConsentBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -239,17 +248,6 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       this.performer = Arrays.stream(performer).map(e -> e.build()).collect(toList());
       return this;
     }
-    /**
-     * @param source - The source on which this consent statement is based. The source might be a
-     *     scanned original paper form, or a reference to a consent that links back to such a
-     *     source, a reference to a document repository (e.g. XDS) that stores the original consent
-     *     document. Field is a 'choice' field. Type should be one of Attachment, Reference. To pass
-     *     the value in, wrap with one of the ConsentBuilder.source static methods
-     */
-    public ConsentBuilder.Impl withSource(@NonNull ChoiceAttachmentOrReference source) {
-      this.source = Optional.of(source);
-      return this;
-    }
     /** @param identifier - Unique identifier for this copy of the Consent Statement. */
     public ConsentBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
@@ -265,6 +263,21 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param controller - The actor that controls/enforces the access according to the consent. */
+    public ConsentBuilder.Impl withController(@NonNull Reference... controller) {
+      this.controller = Arrays.asList(controller);
+      return this;
+    }
+    /** @param controller - The actor that controls/enforces the access according to the consent. */
+    public ConsentBuilder.Impl withController(@NonNull Collection<Reference> controller) {
+      this.controller = Collections.unmodifiableCollection(controller);
+      return this;
+    }
+
+    public ConsentBuilder.Impl withController(@NonNull ReferenceBuilder... controller) {
+      this.controller = Arrays.stream(controller).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param policyRule - A reference to the specific base computable regulation or policy. */
     public ConsentBuilder.Impl withPolicyRule(@NonNull CodeableConcept policyRule) {
       this.policyRule = Optional.of(policyRule);
@@ -276,27 +289,6 @@ public interface ConsentBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param organization - The organization that manages the consent, and the framework within
-     *     which it is executed.
-     */
-    public ConsentBuilder.Impl withOrganization(@NonNull Reference... organization) {
-      this.organization = Arrays.asList(organization);
-      return this;
-    }
-    /**
-     * @param organization - The organization that manages the consent, and the framework within
-     *     which it is executed.
-     */
-    public ConsentBuilder.Impl withOrganization(@NonNull Collection<Reference> organization) {
-      this.organization = Collections.unmodifiableCollection(organization);
-      return this;
-    }
-
-    public ConsentBuilder.Impl withOrganization(@NonNull ReferenceBuilder... organization) {
-      this.organization = Arrays.stream(organization).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
      *     reference to an implementation guide that defines the special rules along with other
@@ -304,6 +296,50 @@ public interface ConsentBuilder extends DomainResourceBuilder {
      */
     public ConsentBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
       this.implicitRules = Optional.of(implicitRules);
+      return this;
+    }
+    /**
+     * @param sourceReference - A reference to a consent that links back to such a source, a
+     *     reference to a document repository (e.g. XDS) that stores the original consent document.
+     */
+    public ConsentBuilder.Impl withSourceReference(@NonNull Reference... sourceReference) {
+      this.sourceReference = Arrays.asList(sourceReference);
+      return this;
+    }
+    /**
+     * @param sourceReference - A reference to a consent that links back to such a source, a
+     *     reference to a document repository (e.g. XDS) that stores the original consent document.
+     */
+    public ConsentBuilder.Impl withSourceReference(@NonNull Collection<Reference> sourceReference) {
+      this.sourceReference = Collections.unmodifiableCollection(sourceReference);
+      return this;
+    }
+
+    public ConsentBuilder.Impl withSourceReference(@NonNull ReferenceBuilder... sourceReference) {
+      this.sourceReference = Arrays.stream(sourceReference).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param sourceAttachment - The source on which this consent statement is based. The source
+     *     might be a scanned original paper form.
+     */
+    public ConsentBuilder.Impl withSourceAttachment(@NonNull Attachment... sourceAttachment) {
+      this.sourceAttachment = Arrays.asList(sourceAttachment);
+      return this;
+    }
+    /**
+     * @param sourceAttachment - The source on which this consent statement is based. The source
+     *     might be a scanned original paper form.
+     */
+    public ConsentBuilder.Impl withSourceAttachment(
+        @NonNull Collection<Attachment> sourceAttachment) {
+      this.sourceAttachment = Collections.unmodifiableCollection(sourceAttachment);
+      return this;
+    }
+
+    public ConsentBuilder.Impl withSourceAttachment(
+        @NonNull AttachmentBuilder... sourceAttachment) {
+      this.sourceAttachment = Arrays.stream(sourceAttachment).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -418,18 +454,20 @@ public interface ConsentBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(text),
           scope,
           status,
-          OptionConverters.toScala(patient),
+          OptionConverters.toScala(subject),
+          manager.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
           category.stream().collect(new NonEmptyLitSeqJCollector<>()),
           OptionConverters.toScala(dateTime),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           performer.stream().collect(new LitSeqJCollector<>()),
-          (Option) OptionConverters.toScala(source),
           identifier.stream().collect(new LitSeqJCollector<>()),
+          controller.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(policyRule),
-          organization.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
+          sourceReference.stream().collect(new LitSeqJCollector<>()),
+          sourceAttachment.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           policy.stream().collect(new LitSeqJCollector<>()),
           verification.stream().collect(new LitSeqJCollector<>()),

@@ -59,7 +59,9 @@ public interface Measure_Group_PopulationBuilder {
     private Expression criteria;
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> description = Optional.empty();
+    private Optional<CodeableConcept> aggregateMethod = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Optional<String> inputPopulationId = Optional.empty();
 
     /**
      * Required fields for {@link Measure$Group$Population}
@@ -125,6 +127,18 @@ public interface Measure_Group_PopulationBuilder {
       this.description = Optional.of(description);
       return this;
     }
+    /** @param aggregateMethod */
+    public Measure_Group_PopulationBuilder.Impl withAggregateMethod(
+        @NonNull CodeableConcept aggregateMethod) {
+      this.aggregateMethod = Optional.of(aggregateMethod);
+      return this;
+    }
+
+    public Measure_Group_PopulationBuilder.Impl withAggregateMethod(
+        @NonNull CodeableConceptBuilder aggregateMethod) {
+      this.aggregateMethod = Optional.of(aggregateMethod.build());
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -168,6 +182,12 @@ public interface Measure_Group_PopulationBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param inputPopulationId */
+    public Measure_Group_PopulationBuilder.Impl withInputPopulationId(
+        @NonNull String inputPopulationId) {
+      this.inputPopulationId = Optional.of(inputPopulationId);
+      return this;
+    }
 
     public Measure$Group$Population build() {
       return new Measure$Group$Population(
@@ -176,7 +196,9 @@ public interface Measure_Group_PopulationBuilder {
           criteria,
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(description),
+          OptionConverters.toScala(aggregateMethod),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(inputPopulationId),
           LitUtils.emptyMetaElMap());
     }
   }

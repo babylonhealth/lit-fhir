@@ -543,6 +543,7 @@ object Encounter extends CompanionFor[Encounter] {
       status: ENCOUNTER_STATUS,
       period: Option[Period] = None,
       length: Option[Duration] = None,
+      reason: LitSeq[CodeableReference] = LitSeq.empty,
       partOf: Option[Reference] = None,
       subject: Option[Reference] = None,
       basedOn: LitSeq[Reference] = LitSeq.empty,
@@ -552,12 +553,11 @@ object Encounter extends CompanionFor[Encounter] {
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
       identifier: LitSeq[Identifier] = LitSeq.empty,
-      reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
       serviceType: Option[CodeableConcept] = None,
       appointment: LitSeq[Reference] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
+      subjectStatus: Option[CodeableConcept] = None,
       episodeOfCare: LitSeq[Reference] = LitSeq.empty,
-      reasonReference: LitSeq[Reference] = LitSeq.empty,
       serviceProvider: Option[Reference] = None,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       location: LitSeq[Encounter.Location] = LitSeq.empty,
@@ -576,6 +576,7 @@ object Encounter extends CompanionFor[Encounter] {
     status,
     period,
     length,
+    reason,
     partOf,
     subject,
     basedOn,
@@ -585,12 +586,11 @@ object Encounter extends CompanionFor[Encounter] {
     contained,
     extension,
     identifier,
-    reasonCode,
     serviceType,
     appointment,
     implicitRules,
+    subjectStatus,
     episodeOfCare,
-    reasonReference,
     serviceProvider,
     modifierExtension,
     location,
@@ -617,6 +617,8 @@ object Encounter extends CompanionFor[Encounter] {
     FHIRComponentFieldMeta("period", lTagOf[Option[Period]], false, lTagOf[Period])
   val length: FHIRComponentFieldMeta[Option[Duration]] =
     FHIRComponentFieldMeta("length", lTagOf[Option[Duration]], false, lTagOf[Duration])
+  val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val partOf: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("partOf", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val subject: FHIRComponentFieldMeta[Option[Reference]] =
@@ -635,18 +637,16 @@ object Encounter extends CompanionFor[Encounter] {
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
-  val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val serviceType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("serviceType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val appointment: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("appointment", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
+  val subjectStatus: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+    FHIRComponentFieldMeta("subjectStatus", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val episodeOfCare: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("episodeOfCare", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
-  val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val serviceProvider: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("serviceProvider", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -672,6 +672,7 @@ object Encounter extends CompanionFor[Encounter] {
     status,
     period,
     length,
+    reason,
     partOf,
     subject,
     basedOn,
@@ -681,12 +682,11 @@ object Encounter extends CompanionFor[Encounter] {
     contained,
     extension,
     identifier,
-    reasonCode,
     serviceType,
     appointment,
     implicitRules,
+    subjectStatus,
     episodeOfCare,
-    reasonReference,
     serviceProvider,
     modifierExtension,
     location,
@@ -706,6 +706,7 @@ object Encounter extends CompanionFor[Encounter] {
     FHIRComponentField[ENCOUNTER_STATUS](status, t.status),
     FHIRComponentField[Option[Period]](period, t.period),
     FHIRComponentField[Option[Duration]](length, t.length),
+    FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
     FHIRComponentField[Option[Reference]](partOf, t.partOf),
     FHIRComponentField[Option[Reference]](subject, t.subject),
     FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
@@ -715,12 +716,11 @@ object Encounter extends CompanionFor[Encounter] {
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
     FHIRComponentField[Option[CodeableConcept]](serviceType, t.serviceType),
     FHIRComponentField[LitSeq[Reference]](appointment, t.appointment),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+    FHIRComponentField[Option[CodeableConcept]](subjectStatus, t.subjectStatus),
     FHIRComponentField[LitSeq[Reference]](episodeOfCare, t.episodeOfCare),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
     FHIRComponentField[Option[Reference]](serviceProvider, t.serviceProvider),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[LitSeq[Encounter.Location]](location, t.location),
@@ -738,6 +738,7 @@ object Encounter extends CompanionFor[Encounter] {
   def extractStatus(t: Encounter): ENCOUNTER_STATUS                           = t.status
   def extractPeriod(t: Encounter): Option[Period]                             = t.period
   def extractLength(t: Encounter): Option[Duration]                           = t.length
+  def extractReason(t: Encounter): LitSeq[CodeableReference]                  = t.reason
   def extractPartOf(t: Encounter): Option[Reference]                          = t.partOf
   def extractSubject(t: Encounter): Option[Reference]                         = t.subject
   def extractBasedOn(t: Encounter): LitSeq[Reference]                         = t.basedOn
@@ -747,12 +748,11 @@ object Encounter extends CompanionFor[Encounter] {
   def extractContained(t: Encounter): LitSeq[Resource]                        = t.contained
   def extractExtension(t: Encounter): LitSeq[Extension]                       = t.extension
   def extractIdentifier(t: Encounter): LitSeq[Identifier]                     = t.identifier
-  def extractReasonCode(t: Encounter): LitSeq[CodeableConcept]                = t.reasonCode
   def extractServiceType(t: Encounter): Option[CodeableConcept]               = t.serviceType
   def extractAppointment(t: Encounter): LitSeq[Reference]                     = t.appointment
   def extractImplicitRules(t: Encounter): Option[UriStr]                      = t.implicitRules
+  def extractSubjectStatus(t: Encounter): Option[CodeableConcept]             = t.subjectStatus
   def extractEpisodeOfCare(t: Encounter): LitSeq[Reference]                   = t.episodeOfCare
-  def extractReasonReference(t: Encounter): LitSeq[Reference]                 = t.reasonReference
   def extractServiceProvider(t: Encounter): Option[Reference]                 = t.serviceProvider
   def extractModifierExtension(t: Encounter): LitSeq[Extension]               = t.modifierExtension
   def extractLocation(t: Encounter): LitSeq[Encounter.Location]               = t.location
@@ -763,10 +763,9 @@ object Encounter extends CompanionFor[Encounter] {
   def extractHospitalization(t: Encounter): Option[Encounter.Hospitalization] = t.hospitalization
   override val thisName: String                                               = "Encounter"
   override val searchParams: Map[String, Encounter => Seq[Any]] = Map(
-    "location-period"     -> (obj => obj.location.flatMap(_.period).toSeq),
     "subject"             -> (obj => obj.subject.toSeq),
     "identifier"          -> (obj => obj.identifier.toSeq),
-    "reason-code"         -> (obj => obj.reasonCode.toSeq),
+    "reason-code"         -> (obj => obj.reason.flatMap(_.concept).toSeq),
     "episode-of-care"     -> (obj => obj.episodeOfCare.toSeq),
     "participant-type"    -> (obj => obj.participant.flatMap(_.`type`).toSeq),
     "special-arrangement" -> (obj => obj.hospitalization.toSeq.flatMap(_.specialArrangement).toSeq),
@@ -775,11 +774,13 @@ object Encounter extends CompanionFor[Encounter] {
     "account"             -> (obj => obj.account.toSeq),
     "appointment"         -> (obj => obj.appointment.toSeq),
     "based-on"            -> (obj => obj.basedOn.toSeq),
-    "reason-reference"    -> (obj => obj.reasonReference.toSeq),
+    "reason-reference"    -> (obj => obj.reason.flatMap(_.reference).toSeq),
     "patient"             -> (obj => obj.subject.filter(_.reference.exists(_.contains("Patient/"))).toSeq),
     "practitioner" -> (obj =>
       obj.participant.flatMap(_.individual).filter(_.reference.exists(_.contains("Practitioner/"))).toSeq),
     "participant"      -> (obj => obj.participant.flatMap(_.individual).toSeq),
+    "location-period"  -> (obj => obj.location.flatMap(_.period).toSeq),
+    "subject-status"   -> (obj => obj.subjectStatus.toSeq),
     "diagnosis"        -> (obj => obj.diagnosis.map(_.condition).toSeq),
     "location"         -> (obj => obj.location.map(_.location).toSeq),
     "class"            -> (obj => Seq(obj.`class`)),
@@ -800,6 +801,7 @@ object Encounter extends CompanionFor[Encounter] {
           cursor.decodeAs[ENCOUNTER_STATUS]("status", None),
           cursor.decodeAs[Option[Period]]("period", Some(None)),
           cursor.decodeAs[Option[Duration]]("length", Some(None)),
+          cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("partOf", Some(None)),
           cursor.decodeAs[Option[Reference]]("subject", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("basedOn", Some(LitSeq.empty)),
@@ -809,12 +811,11 @@ object Encounter extends CompanionFor[Encounter] {
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("serviceType", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("appointment", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
+          cursor.decodeAs[Option[CodeableConcept]]("subjectStatus", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("episodeOfCare", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("serviceProvider", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Encounter.Location]]("location", Some(LitSeq.empty)),
@@ -834,8 +835,8 @@ object Encounter extends CompanionFor[Encounter] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields `type`, `class`, status, period, length, partOf, subject, basedOn, account, priority, identifier,
-  *   reasonCode, serviceType, appointment, episodeOfCare, reasonReference, serviceProvider, location, diagnosis, participant,
+  *   Introduces the fields `type`, `class`, status, period, length, reason, partOf, subject, basedOn, account, priority,
+  *   identifier, serviceType, appointment, subjectStatus, episodeOfCare, serviceProvider, location, diagnosis, participant,
   *   classHistory, statusHistory, hospitalization.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
@@ -853,11 +854,14 @@ object Encounter extends CompanionFor[Encounter] {
   *   - Concepts representing classification of patient encounter such as ambulatory (outpatient), inpatient, emergency, home
   *   health or others due to local variations.
   * @param status
-  *   - planned | arrived | triaged | in-progress | onleave | finished | cancelled +.
+  *   - planned | in-progress | onhold | completed | cancelled | entered-in-error | unknown.
   * @param period
   *   - The start and end time of the encounter.
   * @param length
   *   - Quantity of time the encounter lasted. This excludes the time during leaves of absence.
+  * @param reason
+  *   - Reason the encounter takes place, expressed as a code or a reference to another resource. For admissions, this can be used
+  *   for a coded admission diagnosis.
   * @param partOf
   *   - Another Encounter of which this encounter is a part of (administratively or in time).
   * @param subject
@@ -872,7 +876,7 @@ object Encounter extends CompanionFor[Encounter] {
   *   - Indicates the urgency of the encounter.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -880,8 +884,6 @@ object Encounter extends CompanionFor[Encounter] {
   *   of the extension.
   * @param identifier
   *   - Identifier(s) by which this encounter is known.
-  * @param reasonCode
-  *   - Reason the encounter takes place, expressed as a code. For admissions, this can be used for a coded admission diagnosis.
   * @param serviceType
   *   - Broad categorization of the service that is to be provided (e.g. cardiology).
   * @param appointment
@@ -890,14 +892,15 @@ object Encounter extends CompanionFor[Encounter] {
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
+  * @param subjectStatus
+  *   - The subjectStatus value can be used to track the patient's status within the encounter. It details whether the patient has
+  *   arrived or departed, has been triaged or is currently in a waiting status.
   * @param episodeOfCare
   *   - Where a specific encounter should be classified as a part of a specific episode(s) of care this field should be used. This
   *   association can facilitate grouping of related encounters together for a specific purpose, such as government reporting,
   *   issue tracking, association via a common problem. The association is recorded on the encounter as these are typically
   *   created after the episode of care and grouped on entry rather than editing the episode of care to append another encounter
   *   to it (the episode of care could span years).
-  * @param reasonReference
-  *   - Reason the encounter takes place, expressed as a code. For admissions, this can be used for a coded admission diagnosis.
   * @param serviceProvider
   *   - The organization that is primarily responsible for this Encounter's services. This MAY be the same as the organization on
   *   the Patient record, however it could be different, such as if the actor performing the services was from an external
@@ -938,6 +941,7 @@ class Encounter(
     val status: ENCOUNTER_STATUS,
     val period: Option[Period] = None,
     val length: Option[Duration] = None,
+    val reason: LitSeq[CodeableReference] = LitSeq.empty,
     val partOf: Option[Reference] = None,
     val subject: Option[Reference] = None,
     val basedOn: LitSeq[Reference] = LitSeq.empty,
@@ -947,12 +951,11 @@ class Encounter(
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     val serviceType: Option[CodeableConcept] = None,
     val appointment: LitSeq[Reference] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
+    val subjectStatus: Option[CodeableConcept] = None,
     val episodeOfCare: LitSeq[Reference] = LitSeq.empty,
-    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     val serviceProvider: Option[Reference] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val location: LitSeq[Encounter.Location] = LitSeq.empty,

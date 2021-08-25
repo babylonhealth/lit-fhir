@@ -48,24 +48,13 @@ import static java.util.stream.Collectors.toList;
 public interface DeviceRequestBuilder extends DomainResourceBuilder {
   public DeviceRequest build();
 
-  public static Impl init(
-      REQUEST_INTENT intent, @NonNull ChoiceCodeableConceptOrReference code, Reference subject) {
-    return new Impl(intent, code, subject);
+  public static Impl init(CodeableReference code, REQUEST_INTENT intent, Reference subject) {
+    return new Impl(code, intent, subject);
   }
 
   public static Impl builder(
-      REQUEST_INTENT intent,
-      @NonNull ChoiceCodeableConceptOrReference code,
-      ReferenceBuilder subject) {
-    return new Impl(intent, code, subject.build());
-  }
-
-  public static ChoiceCodeableConceptOrReference code(CodeableConcept c) {
-    return new ChoiceCodeableConceptOrReference(c);
-  }
-
-  public static ChoiceCodeableConceptOrReference code(Reference r) {
-    return new ChoiceCodeableConceptOrReference(r);
+      CodeableReferenceBuilder code, REQUEST_INTENT intent, ReferenceBuilder subject) {
+    return new Impl(code.build(), intent, subject.build());
   }
 
   public static ChoiceDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
@@ -84,14 +73,16 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
+    private CodeableReference code;
     private Collection<Annotation> note = Collections.emptyList();
     private Optional<REQUEST_STATUS> status = Optional.empty();
     private REQUEST_INTENT intent;
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Collection<Reference> basedOn = Collections.emptyList();
-    private ChoiceCodeableConceptOrReference code;
     private Reference subject;
     private Optional<LANGUAGES> language = Optional.empty();
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
+    private Optional<Integer> quantity = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> encounter = Optional.empty();
@@ -100,15 +91,14 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     private Collection<Reference> insurance = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<FHIRDateTime> authoredOn = Optional.empty();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Collection<Reference> priorRequest = Collections.emptyList();
+    private Optional<Boolean> doNotPerform = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Optional<CodeableConcept> performerType = Optional.empty();
     private Collection<Reference> supportingInfo = Collections.emptyList();
     private Collection<String> instantiatesUri = Collections.emptyList();
     private Optional<Identifier> groupIdentifier = Optional.empty();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Reference> relevantHistory = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<String> instantiatesCanonical = Collections.emptyList();
@@ -117,16 +107,13 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     /**
      * Required fields for {@link DeviceRequest}
      *
+     * @param code - The details of the device to be used.
      * @param intent - Whether the request is a proposal, plan, an original order or a reflex order.
-     * @param code - The details of the device to be used. Field is a 'choice' field. Type should be
-     *     one of CodeableConcept, Reference. To pass the value in, wrap with one of the
-     *     DeviceRequestBuilder.code static methods
      * @param subject - The patient who will use the device.
      */
-    public Impl(
-        REQUEST_INTENT intent, @NonNull ChoiceCodeableConceptOrReference code, Reference subject) {
-      this.intent = intent;
+    public Impl(CodeableReference code, REQUEST_INTENT intent, Reference subject) {
       this.code = code;
+      this.intent = intent;
       this.subject = subject;
     }
 
@@ -196,6 +183,21 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.status = Optional.of(status);
       return this;
     }
+    /** @param reason - Reason or justification for the use of this device. */
+    public DeviceRequestBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /** @param reason - Reason or justification for the use of this device. */
+    public DeviceRequestBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public DeviceRequestBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param basedOn - Plan/proposal/order fulfilled by this request. */
     public DeviceRequestBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
       this.basedOn = Arrays.asList(basedOn);
@@ -217,17 +219,22 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param priority - Indicates how quickly the {{title}} should be addressed with respect to
-     *     other requests.
+     * @param priority - Indicates how quickly the request should be addressed with respect to other
+     *     requests.
      */
     public DeviceRequestBuilder.Impl withPriority(@NonNull REQUEST_PRIORITY priority) {
       this.priority = Optional.of(priority);
       return this;
     }
+    /** @param quantity - The number of devices to be provided. */
+    public DeviceRequestBuilder.Impl withQuantity(@NonNull Integer quantity) {
+      this.quantity = Optional.of(quantity);
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public DeviceRequestBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -235,8 +242,8 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public DeviceRequestBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -288,8 +295,8 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param requester - The individual who initiated the request and has responsibility for its
-     *     activation.
+     * @param requester - The individual or entity who initiated the request and has responsibility
+     *     for its activation.
      */
     public DeviceRequestBuilder.Impl withRequester(@NonNull Reference requester) {
       this.requester = Optional.of(requester);
@@ -300,7 +307,10 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.requester = Optional.of(requester.build());
       return this;
     }
-    /** @param performer - The desired performer for doing the diagnostic testing. */
+    /**
+     * @param performer - The desired individual or entity to provide the device to the subject of
+     *     the request (e.g., patient, location).
+     */
     public DeviceRequestBuilder.Impl withPerformer(@NonNull Reference performer) {
       this.performer = Optional.of(performer);
       return this;
@@ -351,22 +361,6 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.authoredOn = Optional.of(authoredOn);
       return this;
     }
-    /** @param reasonCode - Reason or justification for the use of this device. */
-    public DeviceRequestBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /** @param reasonCode - Reason or justification for the use of this device. */
-    public DeviceRequestBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public DeviceRequestBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /**
      * @param priorRequest - The request takes the place of the referenced completed or terminated
      *     request(s).
@@ -386,6 +380,16 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
 
     public DeviceRequestBuilder.Impl withPriorRequest(@NonNull ReferenceBuilder... priorRequest) {
       this.priorRequest = Arrays.stream(priorRequest).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param doNotPerform - If true, indicates that the provider is asking for the patient to
+     *     either stop using or to not start using the specified device or category of devices. For
+     *     example, the patient has undergone surgery and the provider is indicating that the
+     *     patient should not wear contact lenses.
+     */
+    public DeviceRequestBuilder.Impl withDoNotPerform(@NonNull Boolean doNotPerform) {
+      this.doNotPerform = Optional.of(doNotPerform);
       return this;
     }
     /**
@@ -411,7 +415,10 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
       this.occurrence = Optional.of(occurrence);
       return this;
     }
-    /** @param performerType - Desired type of performer for doing the diagnostic testing. */
+    /**
+     * @param performerType - The desired kind of individual or entity to provide the device to the
+     *     subject of the request (e.g., patient, location).
+     */
     public DeviceRequestBuilder.Impl withPerformerType(@NonNull CodeableConcept performerType) {
       this.performerType = Optional.of(performerType);
       return this;
@@ -475,23 +482,6 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     public DeviceRequestBuilder.Impl withGroupIdentifier(
         @NonNull IdentifierBuilder groupIdentifier) {
       this.groupIdentifier = Optional.of(groupIdentifier.build());
-      return this;
-    }
-    /** @param reasonReference - Reason or justification for the use of this device. */
-    public DeviceRequestBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /** @param reasonReference - Reason or justification for the use of this device. */
-    public DeviceRequestBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public DeviceRequestBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param relevantHistory - Key events in the history of the request. */
@@ -608,14 +598,16 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(id),
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
+          code,
           note.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(status),
           intent,
+          reason.stream().collect(new LitSeqJCollector<>()),
           basedOn.stream().collect(new LitSeqJCollector<>()),
-          code,
           subject,
           OptionConverters.toScala(language),
           OptionConverters.toScala(priority),
+          OptionConverters.toScala(quantity.map(x -> (Object) x)),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(encounter),
@@ -624,15 +616,14 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
           insurance.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(authoredOn),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           priorRequest.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
           OptionConverters.toScala(implicitRules),
           (Option) OptionConverters.toScala(occurrence),
           OptionConverters.toScala(performerType),
           supportingInfo.stream().collect(new LitSeqJCollector<>()),
           instantiatesUri.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(groupIdentifier),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           relevantHistory.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),

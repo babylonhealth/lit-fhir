@@ -43,7 +43,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface PlanDefinitionBuilder extends DomainResourceBuilder {
+public interface PlanDefinitionBuilder extends MetadataResourceBuilder {
   public PlanDefinition build();
 
   public static Impl init(PUBLICATION_STATUS status) {
@@ -54,12 +54,16 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
-  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
-    return new ChoiceCodeableConceptOrReference(c);
+  public static ChoiceCanonicalOrCodeableConceptOrReference subject(String s) {
+    return new ChoiceCanonicalOrCodeableConceptOrReference(s);
   }
 
-  public static ChoiceCodeableConceptOrReference subject(Reference r) {
-    return new ChoiceCodeableConceptOrReference(r);
+  public static ChoiceCanonicalOrCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCanonicalOrCodeableConceptOrReference(c);
+  }
+
+  public static ChoiceCanonicalOrCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCanonicalOrCodeableConceptOrReference(r);
   }
 
   public class Impl implements PlanDefinitionBuilder {
@@ -89,7 +93,7 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
     private Optional<String> publisher = Optional.empty();
     private Optional<String> copyright = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
+    private Optional<ChoiceCanonicalOrCodeableConceptOrReference> subject = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<Boolean> experimental = Optional.empty();
@@ -101,6 +105,7 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
     private Collection<RelatedArtifact> relatedArtifact = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<PlanDefinition.Goal> goal = Collections.emptyList();
+    private Collection<PlanDefinition.Actor> actor = Collections.emptyList();
     private Collection<PlanDefinition.Action> action = Collections.emptyList();
 
     /**
@@ -390,8 +395,8 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public PlanDefinitionBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -399,8 +404,8 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public PlanDefinitionBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -479,12 +484,17 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param subject - A code or group definition that describes the intended subject of the plan
-     *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
-     *     To pass the value in, wrap with one of the PlanDefinitionBuilder.subject static methods
+     * @param subject - A code, group definition, or canonical reference that describes or
+     *     identifies the intended subject of the plan definition. Canonical references are allowed
+     *     to support the definition of protocols for drug and substance quality specifications, and
+     *     is allowed to reference a MedicinalProductDefinition, SubstanceDefinition,
+     *     AdministrableProductDefinition, ManufacturedItemDefinition, or PackagedProductDefinition
+     *     resource. Field is a 'choice' field. Type should be one of String, CodeableConcept,
+     *     Reference. To pass the value in, wrap with one of the PlanDefinitionBuilder.subject
+     *     static methods
      */
     public PlanDefinitionBuilder.Impl withSubject(
-        @NonNull ChoiceCodeableConceptOrReference subject) {
+        @NonNull ChoiceCanonicalOrCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }
@@ -660,18 +670,20 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param goal - Goals that describe what the activities within the plan are intended to
-     *     achieve. For example, weight loss, restoring an activity of daily living, obtaining herd
-     *     immunity via immunization, meeting a process improvement objective, etc.
+     * @param goal - A goal describes an expected outcome that activities within the plan are
+     *     intended to achieve. For example, weight loss, restoring an activity of daily living,
+     *     obtaining herd immunity via immunization, meeting a process improvement objective,
+     *     meeting the acceptance criteria for a test as specified by a quality specification, etc.
      */
     public PlanDefinitionBuilder.Impl withGoal(@NonNull PlanDefinition.Goal... goal) {
       this.goal = Arrays.asList(goal);
       return this;
     }
     /**
-     * @param goal - Goals that describe what the activities within the plan are intended to
-     *     achieve. For example, weight loss, restoring an activity of daily living, obtaining herd
-     *     immunity via immunization, meeting a process improvement objective, etc.
+     * @param goal - A goal describes an expected outcome that activities within the plan are
+     *     intended to achieve. For example, weight loss, restoring an activity of daily living,
+     *     obtaining herd immunity via immunization, meeting a process improvement objective,
+     *     meeting the acceptance criteria for a test as specified by a quality specification, etc.
      */
     public PlanDefinitionBuilder.Impl withGoal(@NonNull Collection<PlanDefinition.Goal> goal) {
       this.goal = Collections.unmodifiableCollection(goal);
@@ -682,12 +694,45 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
       this.goal = Arrays.stream(goal).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param action - An action or group of actions to be taken as part of the plan. */
+    /**
+     * @param actor - Actors represent the individuals or groups involved in the execution of the
+     *     defined set of activities.
+     */
+    public PlanDefinitionBuilder.Impl withActor(@NonNull PlanDefinition.Actor... actor) {
+      this.actor = Arrays.asList(actor);
+      return this;
+    }
+    /**
+     * @param actor - Actors represent the individuals or groups involved in the execution of the
+     *     defined set of activities.
+     */
+    public PlanDefinitionBuilder.Impl withActor(@NonNull Collection<PlanDefinition.Actor> actor) {
+      this.actor = Collections.unmodifiableCollection(actor);
+      return this;
+    }
+
+    public PlanDefinitionBuilder.Impl withActor(@NonNull PlanDefinition_ActorBuilder... actor) {
+      this.actor = Arrays.stream(actor).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param action - An action or group of actions to be taken as part of the plan. For example,
+     *     in clinical care, an action would be to prescribe a particular indicated medication, or
+     *     perform a particular test as appropriate. In pharmaceutical quality, an action would be
+     *     the test that needs to be performed on a drug product as defined in the quality
+     *     specification.
+     */
     public PlanDefinitionBuilder.Impl withAction(@NonNull PlanDefinition.Action... action) {
       this.action = Arrays.asList(action);
       return this;
     }
-    /** @param action - An action or group of actions to be taken as part of the plan. */
+    /**
+     * @param action - An action or group of actions to be taken as part of the plan. For example,
+     *     in clinical care, an action would be to prescribe a particular indicated medication, or
+     *     perform a particular test as appropriate. In pharmaceutical quality, an action would be
+     *     the test that needs to be performed on a drug product as defined in the quality
+     *     specification.
+     */
     public PlanDefinitionBuilder.Impl withAction(
         @NonNull Collection<PlanDefinition.Action> action) {
       this.action = Collections.unmodifiableCollection(action);
@@ -744,6 +789,7 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
           relatedArtifact.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           goal.stream().collect(new LitSeqJCollector<>()),
+          actor.stream().collect(new LitSeqJCollector<>()),
           action.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

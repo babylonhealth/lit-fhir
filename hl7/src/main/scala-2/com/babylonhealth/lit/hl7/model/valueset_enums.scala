@@ -624,35 +624,6 @@ object AUDIT_EVENT_ACTION extends FhirEnum[AUDIT_EVENT_ACTION] with FhirCirceEnu
   }
 }
 
-sealed abstract class AUDIT_EVENT_OUTCOME(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object AUDIT_EVENT_OUTCOME extends FhirEnum[AUDIT_EVENT_OUTCOME] with FhirCirceEnum[AUDIT_EVENT_OUTCOME] {
-  val reference = "http://hl7.org/fhir/ValueSet/audit-event-outcome"
-  val values    = findValues
-  case object MAJOR_FAILURE extends AUDIT_EVENT_OUTCOME("12") {
-    def display: Option[String] = Some("Major failure")
-    def system: Option[String]  = Some("http://hl7.org/fhir/audit-event-outcome")
-  }
-  case object MINOR_FAILURE extends AUDIT_EVENT_OUTCOME("4") {
-    def display: Option[String] = Some("Minor failure")
-    def system: Option[String]  = Some("http://hl7.org/fhir/audit-event-outcome")
-  }
-  case object SERIOUS_FAILURE extends AUDIT_EVENT_OUTCOME("8") {
-    def display: Option[String] = Some("Serious failure")
-    def system: Option[String]  = Some("http://hl7.org/fhir/audit-event-outcome")
-  }
-  case object SUCCESS extends AUDIT_EVENT_OUTCOME("0") {
-    def display: Option[String] = Some("Success")
-    def system: Option[String]  = Some("http://hl7.org/fhir/audit-event-outcome")
-  }
-}
-
 sealed abstract class BINDING_STRENGTH(override val entryName: String)
     extends EnumeratumBase
     with Product
@@ -972,31 +943,6 @@ object CLAIM_USE extends FhirEnum[CLAIM_USE] with FhirCirceEnum[CLAIM_USE] {
   }
 }
 
-sealed abstract class CLINICALIMPRESSION_STATUS(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object CLINICALIMPRESSION_STATUS extends FhirEnum[CLINICALIMPRESSION_STATUS] with FhirCirceEnum[CLINICALIMPRESSION_STATUS] {
-  val reference = "http://hl7.org/fhir/ValueSet/clinicalimpression-status"
-  val values    = findValues
-  case object COMPLETED extends CLINICALIMPRESSION_STATUS("completed") {
-    def display: Option[String] = Some("completed")
-    def system: Option[String]  = Some("http://hl7.org/fhir/event-status")
-  }
-  case object ENTERED_IN_ERROR extends CLINICALIMPRESSION_STATUS("entered-in-error") {
-    def display: Option[String] = Some("entered-in-error")
-    def system: Option[String]  = Some("http://hl7.org/fhir/event-status")
-  }
-  case object IN_PROGRESS extends CLINICALIMPRESSION_STATUS("in-progress") {
-    def display: Option[String] = Some("in-progress")
-    def system: Option[String]  = Some("http://hl7.org/fhir/event-status")
-  }
-}
-
 sealed abstract class CODESYSTEM_CONTENT_MODE(override val entryName: String)
     extends EnumeratumBase
     with Product
@@ -1197,59 +1143,6 @@ object CONCEPTMAP_UNMAPPED_MODE extends FhirEnum[CONCEPTMAP_UNMAPPED_MODE] with 
   case object PROVIDED extends CONCEPTMAP_UNMAPPED_MODE("provided") {
     def display: Option[String] = Some("Provided Code")
     def system: Option[String]  = Some("http://hl7.org/fhir/conceptmap-unmapped-mode")
-  }
-}
-
-sealed abstract class CONCEPT_MAP_EQUIVALENCE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object CONCEPT_MAP_EQUIVALENCE extends FhirEnum[CONCEPT_MAP_EQUIVALENCE] with FhirCirceEnum[CONCEPT_MAP_EQUIVALENCE] {
-  val reference = "http://hl7.org/fhir/ValueSet/concept-map-equivalence"
-  val values    = findValues
-  case object DISJOINT extends CONCEPT_MAP_EQUIVALENCE("disjoint") {
-    def display: Option[String] = Some("Disjoint")
-    def system: Option[String]  = Some("http://hl7.org/fhir/concept-map-equivalence")
-  }
-  case object EQUAL extends CONCEPT_MAP_EQUIVALENCE("equal") {
-    def display: Option[String] = Some("Equal")
-    def system: Option[String]  = Some("http://hl7.org/fhir/concept-map-equivalence")
-  }
-  case object EQUIVALENT extends CONCEPT_MAP_EQUIVALENCE("equivalent") {
-    def display: Option[String] = Some("Equivalent")
-    def system: Option[String]  = Some("http://hl7.org/fhir/concept-map-equivalence")
-  }
-  case object INEXACT extends CONCEPT_MAP_EQUIVALENCE("inexact") {
-    def display: Option[String] = Some("Inexact")
-    def system: Option[String]  = Some("http://hl7.org/fhir/concept-map-equivalence")
-  }
-  case object NARROWER extends CONCEPT_MAP_EQUIVALENCE("narrower") {
-    def display: Option[String] = Some("Narrower")
-    def system: Option[String]  = Some("http://hl7.org/fhir/concept-map-equivalence")
-  }
-  case object RELATEDTO extends CONCEPT_MAP_EQUIVALENCE("relatedto") {
-    def display: Option[String] = Some("Related To")
-    def system: Option[String]  = Some("http://hl7.org/fhir/concept-map-equivalence")
-  }
-  case object SPECIALIZES extends CONCEPT_MAP_EQUIVALENCE("specializes") {
-    def display: Option[String] = Some("Specializes")
-    def system: Option[String]  = Some("http://hl7.org/fhir/concept-map-equivalence")
-  }
-  case object SUBSUMES extends CONCEPT_MAP_EQUIVALENCE("subsumes") {
-    def display: Option[String] = Some("Subsumes")
-    def system: Option[String]  = Some("http://hl7.org/fhir/concept-map-equivalence")
-  }
-  case object UNMATCHED extends CONCEPT_MAP_EQUIVALENCE("unmatched") {
-    def display: Option[String] = Some("Unmatched")
-    def system: Option[String]  = Some("http://hl7.org/fhir/concept-map-equivalence")
-  }
-  case object WIDER extends CONCEPT_MAP_EQUIVALENCE("wider") {
-    def display: Option[String] = Some("Wider")
-    def system: Option[String]  = Some("http://hl7.org/fhir/concept-map-equivalence")
   }
 }
 
@@ -2521,43 +2414,6 @@ object DEVICE_NAMETYPE extends FhirEnum[DEVICE_NAMETYPE] with FhirCirceEnum[DEVI
   }
 }
 
-sealed abstract class DEVICE_STATEMENT_STATUS(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object DEVICE_STATEMENT_STATUS extends FhirEnum[DEVICE_STATEMENT_STATUS] with FhirCirceEnum[DEVICE_STATEMENT_STATUS] {
-  val reference = "http://hl7.org/fhir/ValueSet/device-statement-status"
-  val values    = findValues
-  case object ACTIVE extends DEVICE_STATEMENT_STATUS("active") {
-    def display: Option[String] = Some("Active")
-    def system: Option[String]  = Some("http://hl7.org/fhir/device-statement-status")
-  }
-  case object COMPLETED extends DEVICE_STATEMENT_STATUS("completed") {
-    def display: Option[String] = Some("Completed")
-    def system: Option[String]  = Some("http://hl7.org/fhir/device-statement-status")
-  }
-  case object ENTERED_IN_ERROR extends DEVICE_STATEMENT_STATUS("entered-in-error") {
-    def display: Option[String] = Some("Entered in Error")
-    def system: Option[String]  = Some("http://hl7.org/fhir/device-statement-status")
-  }
-  case object INTENDED extends DEVICE_STATEMENT_STATUS("intended") {
-    def display: Option[String] = Some("Intended")
-    def system: Option[String]  = Some("http://hl7.org/fhir/device-statement-status")
-  }
-  case object ON_HOLD extends DEVICE_STATEMENT_STATUS("on-hold") {
-    def display: Option[String] = Some("On Hold")
-    def system: Option[String]  = Some("http://hl7.org/fhir/device-statement-status")
-  }
-  case object STOPPED extends DEVICE_STATEMENT_STATUS("stopped") {
-    def display: Option[String] = Some("Stopped")
-    def system: Option[String]  = Some("http://hl7.org/fhir/device-statement-status")
-  }
-}
-
 sealed abstract class DEVICE_STATUS(override val entryName: String)
     extends EnumeratumBase
     with Product
@@ -3075,27 +2931,6 @@ object EXPLANATIONOFBENEFIT_STATUS extends FhirEnum[EXPLANATIONOFBENEFIT_STATUS]
   }
 }
 
-sealed abstract class EXPOSURE_STATE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object EXPOSURE_STATE extends FhirEnum[EXPOSURE_STATE] with FhirCirceEnum[EXPOSURE_STATE] {
-  val reference = "http://hl7.org/fhir/ValueSet/exposure-state"
-  val values    = findValues
-  case object EXPOSURE extends EXPOSURE_STATE("exposure") {
-    def display: Option[String] = Some("Exposure")
-    def system: Option[String]  = Some("http://hl7.org/fhir/exposure-state")
-  }
-  case object EXPOSURE_ALTERNATIVE extends EXPOSURE_STATE("exposure-alternative") {
-    def display: Option[String] = Some("Exposure Alternative")
-    def system: Option[String]  = Some("http://hl7.org/fhir/exposure-state")
-  }
-}
-
 sealed abstract class EXTENSION_CONTEXT_TYPE(override val entryName: String)
     extends EnumeratumBase
     with Product
@@ -3546,59 +3381,6 @@ object GUIDE_PAGE_GENERATION extends FhirEnum[GUIDE_PAGE_GENERATION] with FhirCi
   case object XML extends GUIDE_PAGE_GENERATION("xml") {
     def display: Option[String] = Some("XML")
     def system: Option[String]  = Some("http://hl7.org/fhir/guide-page-generation")
-  }
-}
-
-sealed abstract class GUIDE_PARAMETER_CODE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object GUIDE_PARAMETER_CODE extends FhirEnum[GUIDE_PARAMETER_CODE] with FhirCirceEnum[GUIDE_PARAMETER_CODE] {
-  val reference = "http://hl7.org/fhir/ValueSet/guide-parameter-code"
-  val values    = findValues
-  case object APPLY extends GUIDE_PARAMETER_CODE("apply") {
-    def display: Option[String] = Some("Apply Metadata Value")
-    def system: Option[String]  = Some("http://hl7.org/fhir/guide-parameter-code")
-  }
-  case object BROKEN_LINKS_RULE extends GUIDE_PARAMETER_CODE("rule-broken-links") {
-    def display: Option[String] = Some("Broken Links Rule")
-    def system: Option[String]  = Some("http://hl7.org/fhir/guide-parameter-code")
-  }
-  case object EXPANSION_PROFILE extends GUIDE_PARAMETER_CODE("expansion-parameter") {
-    def display: Option[String] = Some("Expansion Profile")
-    def system: Option[String]  = Some("http://hl7.org/fhir/guide-parameter-code")
-  }
-  case object GENERATE_JSON extends GUIDE_PARAMETER_CODE("generate-json") {
-    def display: Option[String] = Some("Generate JSON")
-    def system: Option[String]  = Some("http://hl7.org/fhir/guide-parameter-code")
-  }
-  case object GENERATE_TURTLE extends GUIDE_PARAMETER_CODE("generate-turtle") {
-    def display: Option[String] = Some("Generate Turtle")
-    def system: Option[String]  = Some("http://hl7.org/fhir/guide-parameter-code")
-  }
-  case object GENERATE_XML extends GUIDE_PARAMETER_CODE("generate-xml") {
-    def display: Option[String] = Some("Generate XML")
-    def system: Option[String]  = Some("http://hl7.org/fhir/guide-parameter-code")
-  }
-  case object HTML_TEMPLATE extends GUIDE_PARAMETER_CODE("html-template") {
-    def display: Option[String] = Some("HTML Template")
-    def system: Option[String]  = Some("http://hl7.org/fhir/guide-parameter-code")
-  }
-  case object PAGES_PATH extends GUIDE_PARAMETER_CODE("path-pages") {
-    def display: Option[String] = Some("Pages Path")
-    def system: Option[String]  = Some("http://hl7.org/fhir/guide-parameter-code")
-  }
-  case object RESOURCE_PATH extends GUIDE_PARAMETER_CODE("path-resource") {
-    def display: Option[String] = Some("Resource Path")
-    def system: Option[String]  = Some("http://hl7.org/fhir/guide-parameter-code")
-  }
-  case object TERMINOLOGY_CACHE_PATH extends GUIDE_PARAMETER_CODE("path-tx-cache") {
-    def display: Option[String] = Some("Terminology Cache Path")
-    def system: Option[String]  = Some("http://hl7.org/fhir/guide-parameter-code")
   }
 }
 
@@ -4265,27 +4047,6 @@ object LOCATION_STATUS extends FhirEnum[LOCATION_STATUS] with FhirCirceEnum[LOCA
   }
 }
 
-sealed abstract class MAP_CONTEXT_TYPE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object MAP_CONTEXT_TYPE extends FhirEnum[MAP_CONTEXT_TYPE] with FhirCirceEnum[MAP_CONTEXT_TYPE] {
-  val reference = "http://hl7.org/fhir/ValueSet/map-context-type"
-  val values    = findValues
-  case object TYPE extends MAP_CONTEXT_TYPE("type") {
-    def display: Option[String] = Some("Type")
-    def system: Option[String]  = Some("http://hl7.org/fhir/map-context-type")
-  }
-  case object VARIABLE extends MAP_CONTEXT_TYPE("variable") {
-    def display: Option[String] = Some("Variable")
-    def system: Option[String]  = Some("http://hl7.org/fhir/map-context-type")
-  }
-}
-
 sealed abstract class MAP_GROUP_TYPE_MODE(override val entryName: String)
     extends EnumeratumBase
     with Product
@@ -4760,51 +4521,6 @@ object MEDICATION_ADMIN_STATUS extends FhirEnum[MEDICATION_ADMIN_STATUS] with Fh
   case object UNKNOWN extends MEDICATION_ADMIN_STATUS("unknown") {
     def display: Option[String] = Some("Unknown")
     def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/medication-admin-status")
-  }
-}
-
-sealed abstract class MEDICATION_STATEMENT_STATUS(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object MEDICATION_STATEMENT_STATUS extends FhirEnum[MEDICATION_STATEMENT_STATUS] with FhirCirceEnum[MEDICATION_STATEMENT_STATUS] {
-  val reference = "http://hl7.org/fhir/ValueSet/medication-statement-status"
-  val values    = findValues
-  case object ACTIVE extends MEDICATION_STATEMENT_STATUS("active") {
-    def display: Option[String] = Some("Active")
-    def system: Option[String]  = Some("http://hl7.org/fhir/CodeSystem/medication-statement-status")
-  }
-  case object COMPLETED extends MEDICATION_STATEMENT_STATUS("completed") {
-    def display: Option[String] = Some("Completed")
-    def system: Option[String]  = Some("http://hl7.org/fhir/CodeSystem/medication-statement-status")
-  }
-  case object ENTERED_IN_ERROR extends MEDICATION_STATEMENT_STATUS("entered-in-error") {
-    def display: Option[String] = Some("Entered in Error")
-    def system: Option[String]  = Some("http://hl7.org/fhir/CodeSystem/medication-statement-status")
-  }
-  case object INTENDED extends MEDICATION_STATEMENT_STATUS("intended") {
-    def display: Option[String] = Some("Intended")
-    def system: Option[String]  = Some("http://hl7.org/fhir/CodeSystem/medication-statement-status")
-  }
-  case object NOT_TAKEN extends MEDICATION_STATEMENT_STATUS("not-taken") {
-    def display: Option[String] = Some("Not Taken")
-    def system: Option[String]  = Some("http://hl7.org/fhir/CodeSystem/medication-statement-status")
-  }
-  case object ON_HOLD extends MEDICATION_STATEMENT_STATUS("on-hold") {
-    def display: Option[String] = Some("On Hold")
-    def system: Option[String]  = Some("http://hl7.org/fhir/CodeSystem/medication-statement-status")
-  }
-  case object STOPPED extends MEDICATION_STATEMENT_STATUS("stopped") {
-    def display: Option[String] = Some("Stopped")
-    def system: Option[String]  = Some("http://hl7.org/fhir/CodeSystem/medication-statement-status")
-  }
-  case object UNKNOWN extends MEDICATION_STATEMENT_STATUS("unknown") {
-    def display: Option[String] = Some("Unknown")
-    def system: Option[String]  = Some("http://hl7.org/fhir/CodeSystem/medication-statement-status")
   }
 }
 
@@ -5442,27 +5158,6 @@ object PRODUCT_CATEGORY extends FhirEnum[PRODUCT_CATEGORY] with FhirCirceEnum[PR
   }
 }
 
-sealed abstract class PRODUCT_STATUS(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object PRODUCT_STATUS extends FhirEnum[PRODUCT_STATUS] with FhirCirceEnum[PRODUCT_STATUS] {
-  val reference = "http://hl7.org/fhir/ValueSet/product-status"
-  val values    = findValues
-  case object AVAILABLE extends PRODUCT_STATUS("available") {
-    def display: Option[String] = Some("Available")
-    def system: Option[String]  = Some("http://hl7.org/fhir/product-status")
-  }
-  case object UNAVAILABLE extends PRODUCT_STATUS("unavailable") {
-    def display: Option[String] = Some("Unavailable")
-    def system: Option[String]  = Some("http://hl7.org/fhir/product-status")
-  }
-}
-
 sealed abstract class PRODUCT_STORAGE_SCALE(override val entryName: String)
     extends EnumeratumBase
     with Product
@@ -5786,56 +5481,6 @@ object REFERENCE_VERSION_RULES extends FhirEnum[REFERENCE_VERSION_RULES] with Fh
   case object SPECIFIC extends REFERENCE_VERSION_RULES("specific") {
     def display: Option[String] = Some("Version Specific")
     def system: Option[String]  = Some("http://hl7.org/fhir/reference-version-rules")
-  }
-}
-
-sealed abstract class RELATION_TYPE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object RELATION_TYPE extends FhirEnum[RELATION_TYPE] with FhirCirceEnum[RELATION_TYPE] {
-  val reference = "http://hl7.org/fhir/ValueSet/relation-type"
-  val values    = findValues
-  case object REPLACED_BY extends RELATION_TYPE("is-replaced-by") {
-    def display: Option[String] = Some("Replaced By")
-    def system: Option[String]  = Some("http://hl7.org/fhir/relation-type")
-  }
-  case object TRIGGERS extends RELATION_TYPE("triggers") {
-    def display: Option[String] = Some("Triggers")
-    def system: Option[String]  = Some("http://hl7.org/fhir/relation-type")
-  }
-}
-
-sealed abstract class REMITTANCE_OUTCOME(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object REMITTANCE_OUTCOME extends FhirEnum[REMITTANCE_OUTCOME] with FhirCirceEnum[REMITTANCE_OUTCOME] {
-  val reference = "http://hl7.org/fhir/ValueSet/remittance-outcome"
-  val values    = findValues
-  case object COMPLETE extends REMITTANCE_OUTCOME("complete") {
-    def display: Option[String] = Some("Processing Complete")
-    def system: Option[String]  = Some("http://hl7.org/fhir/remittance-outcome")
-  }
-  case object ERROR extends REMITTANCE_OUTCOME("error") {
-    def display: Option[String] = Some("Error")
-    def system: Option[String]  = Some("http://hl7.org/fhir/remittance-outcome")
-  }
-  case object PARTIAL extends REMITTANCE_OUTCOME("partial") {
-    def display: Option[String] = Some("Partial Processing")
-    def system: Option[String]  = Some("http://hl7.org/fhir/remittance-outcome")
-  }
-  case object QUEUED extends REMITTANCE_OUTCOME("queued") {
-    def display: Option[String] = Some("Queued")
-    def system: Option[String]  = Some("http://hl7.org/fhir/remittance-outcome")
   }
 }
 
@@ -6178,154 +5823,6 @@ object REQUEST_STATUS extends FhirEnum[REQUEST_STATUS] with FhirCirceEnum[REQUES
   case object UNKNOWN extends REQUEST_STATUS("unknown") {
     def display: Option[String] = Some("Unknown")
     def system: Option[String]  = Some("http://hl7.org/fhir/request-status")
-  }
-}
-
-sealed abstract class RESEARCH_ELEMENT_TYPE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object RESEARCH_ELEMENT_TYPE extends FhirEnum[RESEARCH_ELEMENT_TYPE] with FhirCirceEnum[RESEARCH_ELEMENT_TYPE] {
-  val reference = "http://hl7.org/fhir/ValueSet/research-element-type"
-  val values    = findValues
-  case object EXPOSURE extends RESEARCH_ELEMENT_TYPE("exposure") {
-    def display: Option[String] = Some("Exposure")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-element-type")
-  }
-  case object OUTCOME extends RESEARCH_ELEMENT_TYPE("outcome") {
-    def display: Option[String] = Some("Outcome")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-element-type")
-  }
-  case object POPULATION extends RESEARCH_ELEMENT_TYPE("population") {
-    def display: Option[String] = Some("Population")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-element-type")
-  }
-}
-
-sealed abstract class RESEARCH_STUDY_STATUS(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object RESEARCH_STUDY_STATUS extends FhirEnum[RESEARCH_STUDY_STATUS] with FhirCirceEnum[RESEARCH_STUDY_STATUS] {
-  val reference = "http://hl7.org/fhir/ValueSet/research-study-status"
-  val values    = findValues
-  case object ACTIVE extends RESEARCH_STUDY_STATUS("active") {
-    def display: Option[String] = Some("Active")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-study-status")
-  }
-  case object ADMINISTRATIVELY_COMPLETED extends RESEARCH_STUDY_STATUS("administratively-completed") {
-    def display: Option[String] = Some("Administratively Completed")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-study-status")
-  }
-  case object APPROVED extends RESEARCH_STUDY_STATUS("approved") {
-    def display: Option[String] = Some("Approved")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-study-status")
-  }
-  case object CLOSED_TO_ACCRUAL extends RESEARCH_STUDY_STATUS("closed-to-accrual") {
-    def display: Option[String] = Some("Closed to Accrual")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-study-status")
-  }
-  case object CLOSED_TO_ACCRUAL_AND_INTERVENTION extends RESEARCH_STUDY_STATUS("closed-to-accrual-and-intervention") {
-    def display: Option[String] = Some("Closed to Accrual and Intervention")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-study-status")
-  }
-  case object COMPLETED extends RESEARCH_STUDY_STATUS("completed") {
-    def display: Option[String] = Some("Completed")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-study-status")
-  }
-  case object DISAPPROVED extends RESEARCH_STUDY_STATUS("disapproved") {
-    def display: Option[String] = Some("Disapproved")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-study-status")
-  }
-  case object IN_REVIEW extends RESEARCH_STUDY_STATUS("in-review") {
-    def display: Option[String] = Some("In Review")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-study-status")
-  }
-  case object TEMPORARILY_CLOSED_TO_ACCRUAL extends RESEARCH_STUDY_STATUS("temporarily-closed-to-accrual") {
-    def display: Option[String] = Some("Temporarily Closed to Accrual")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-study-status")
-  }
-  case object TEMPORARILY_CLOSED_TO_ACCRUAL_AND_INTERVENTION
-      extends RESEARCH_STUDY_STATUS("temporarily-closed-to-accrual-and-intervention") {
-    def display: Option[String] = Some("Temporarily Closed to Accrual and Intervention")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-study-status")
-  }
-  case object WITHDRAWN extends RESEARCH_STUDY_STATUS("withdrawn") {
-    def display: Option[String] = Some("Withdrawn")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-study-status")
-  }
-}
-
-sealed abstract class RESEARCH_SUBJECT_STATUS(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object RESEARCH_SUBJECT_STATUS extends FhirEnum[RESEARCH_SUBJECT_STATUS] with FhirCirceEnum[RESEARCH_SUBJECT_STATUS] {
-  val reference = "http://hl7.org/fhir/ValueSet/research-subject-status"
-  val values    = findValues
-  case object CANDIDATE extends RESEARCH_SUBJECT_STATUS("candidate") {
-    def display: Option[String] = Some("Candidate")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
-  }
-  case object ELIGIBLE extends RESEARCH_SUBJECT_STATUS("eligible") {
-    def display: Option[String] = Some("Eligible")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
-  }
-  case object FOLLOW_UP extends RESEARCH_SUBJECT_STATUS("follow-up") {
-    def display: Option[String] = Some("Follow-up")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
-  }
-  case object INELIGIBLE extends RESEARCH_SUBJECT_STATUS("ineligible") {
-    def display: Option[String] = Some("Ineligible")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
-  }
-  case object NOT_REGISTERED extends RESEARCH_SUBJECT_STATUS("not-registered") {
-    def display: Option[String] = Some("Not Registered")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
-  }
-  case object OFF_STUDY extends RESEARCH_SUBJECT_STATUS("off-study") {
-    def display: Option[String] = Some("Off-study")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
-  }
-  case object ON_STUDY extends RESEARCH_SUBJECT_STATUS("on-study") {
-    def display: Option[String] = Some("On-study")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
-  }
-  case object ON_STUDY_INTERVENTION extends RESEARCH_SUBJECT_STATUS("on-study-intervention") {
-    def display: Option[String] = Some("On-study-intervention")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
-  }
-  case object ON_STUDY_OBSERVATION extends RESEARCH_SUBJECT_STATUS("on-study-observation") {
-    def display: Option[String] = Some("On-study-observation")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
-  }
-  case object PENDING_ON_STUDY extends RESEARCH_SUBJECT_STATUS("pending-on-study") {
-    def display: Option[String] = Some("Pending on-study")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
-  }
-  case object POTENTIAL_CANDIDATE extends RESEARCH_SUBJECT_STATUS("potential-candidate") {
-    def display: Option[String] = Some("Potential Candidate")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
-  }
-  case object SCREENING extends RESEARCH_SUBJECT_STATUS("screening") {
-    def display: Option[String] = Some("Screening")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
-  }
-  case object WITHDRAWN extends RESEARCH_SUBJECT_STATUS("withdrawn") {
-    def display: Option[String] = Some("Withdrawn")
-    def system: Option[String]  = Some("http://hl7.org/fhir/research-subject-status")
   }
 }
 
@@ -8796,68 +8293,6 @@ object STRUCTURE_DEFINITION_KIND extends FhirEnum[STRUCTURE_DEFINITION_KIND] wit
   }
 }
 
-sealed abstract class SUBSCRIPTION_CHANNEL_TYPE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object SUBSCRIPTION_CHANNEL_TYPE extends FhirEnum[SUBSCRIPTION_CHANNEL_TYPE] with FhirCirceEnum[SUBSCRIPTION_CHANNEL_TYPE] {
-  val reference = "http://hl7.org/fhir/ValueSet/subscription-channel-type"
-  val values    = findValues
-  case object EMAIL extends SUBSCRIPTION_CHANNEL_TYPE("email") {
-    def display: Option[String] = Some("Email")
-    def system: Option[String]  = Some("http://hl7.org/fhir/subscription-channel-type")
-  }
-  case object MESSAGE extends SUBSCRIPTION_CHANNEL_TYPE("message") {
-    def display: Option[String] = Some("Message")
-    def system: Option[String]  = Some("http://hl7.org/fhir/subscription-channel-type")
-  }
-  case object REST_HOOK extends SUBSCRIPTION_CHANNEL_TYPE("rest-hook") {
-    def display: Option[String] = Some("Rest Hook")
-    def system: Option[String]  = Some("http://hl7.org/fhir/subscription-channel-type")
-  }
-  case object SMS extends SUBSCRIPTION_CHANNEL_TYPE("sms") {
-    def display: Option[String] = Some("SMS")
-    def system: Option[String]  = Some("http://hl7.org/fhir/subscription-channel-type")
-  }
-  case object WEBSOCKET extends SUBSCRIPTION_CHANNEL_TYPE("websocket") {
-    def display: Option[String] = Some("Websocket")
-    def system: Option[String]  = Some("http://hl7.org/fhir/subscription-channel-type")
-  }
-}
-
-sealed abstract class SUBSCRIPTION_STATUS(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object SUBSCRIPTION_STATUS extends FhirEnum[SUBSCRIPTION_STATUS] with FhirCirceEnum[SUBSCRIPTION_STATUS] {
-  val reference = "http://hl7.org/fhir/ValueSet/subscription-status"
-  val values    = findValues
-  case object ACTIVE extends SUBSCRIPTION_STATUS("active") {
-    def display: Option[String] = Some("Active")
-    def system: Option[String]  = Some("http://hl7.org/fhir/subscription-status")
-  }
-  case object ERROR extends SUBSCRIPTION_STATUS("error") {
-    def display: Option[String] = Some("Error")
-    def system: Option[String]  = Some("http://hl7.org/fhir/subscription-status")
-  }
-  case object OFF extends SUBSCRIPTION_STATUS("off") {
-    def display: Option[String] = Some("Off")
-    def system: Option[String]  = Some("http://hl7.org/fhir/subscription-status")
-  }
-  case object REQUESTED extends SUBSCRIPTION_STATUS("requested") {
-    def display: Option[String] = Some("Requested")
-    def system: Option[String]  = Some("http://hl7.org/fhir/subscription-status")
-  }
-}
-
 sealed abstract class SUBSTANCE_STATUS(override val entryName: String)
     extends EnumeratumBase
     with Product
@@ -9193,7 +8628,7 @@ object UDI_ENTRY_TYPE extends FhirEnum[UDI_ENTRY_TYPE] with FhirCirceEnum[UDI_EN
   }
 }
 
-sealed abstract class V3_CONFIDENTIALITYCLASSIFICATION(override val entryName: String)
+sealed abstract class V3_CONFIDENTIALITY(override val entryName: String)
     extends EnumeratumBase
     with Product
     with java.io.Serializable {
@@ -9201,59 +8636,88 @@ sealed abstract class V3_CONFIDENTIALITYCLASSIFICATION(override val entryName: S
   def system: Option[String]
   def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
 }
-object V3_CONFIDENTIALITYCLASSIFICATION
-    extends FhirEnum[V3_CONFIDENTIALITYCLASSIFICATION]
-    with FhirCirceEnum[V3_CONFIDENTIALITYCLASSIFICATION] {
-  val reference = "http://terminology.hl7.org/ValueSet/v3-ConfidentialityClassification"
+object V3_CONFIDENTIALITY extends FhirEnum[V3_CONFIDENTIALITY] with FhirCirceEnum[V3_CONFIDENTIALITY] {
+  val reference = "http://terminology.hl7.org/ValueSet/v3-Confidentiality"
   val values    = findValues
-  case object L extends V3_CONFIDENTIALITYCLASSIFICATION("L") {
-    def display: Option[String] = Some("L")
+  case object B extends V3_CONFIDENTIALITY("B") {
+    def display: Option[String] = Some("business")
     def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
   }
-  case object M extends V3_CONFIDENTIALITYCLASSIFICATION("M") {
-    def display: Option[String] = Some("M")
+  case object C extends V3_CONFIDENTIALITY("C") {
+    def display: Option[String] = Some("celebrity")
     def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
   }
-  case object N extends V3_CONFIDENTIALITYCLASSIFICATION("N") {
-    def display: Option[String] = Some("N")
+  case object CONFIDENTIALITY extends V3_CONFIDENTIALITY("_Confidentiality") {
+    def display: Option[String] = Some("Confidentiality")
     def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
   }
-  case object R extends V3_CONFIDENTIALITYCLASSIFICATION("R") {
-    def display: Option[String] = Some("R")
+  case object CONFIDENTIALITYBYACCESSKIND extends V3_CONFIDENTIALITY("_ConfidentialityByAccessKind") {
+    def display: Option[String] = Some("ConfidentialityByAccessKind")
     def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
   }
-  case object U extends V3_CONFIDENTIALITYCLASSIFICATION("U") {
-    def display: Option[String] = Some("U")
+  case object CONFIDENTIALITYBYINFOTYPE extends V3_CONFIDENTIALITY("_ConfidentialityByInfoType") {
+    def display: Option[String] = Some("ConfidentialityByInfoType")
     def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
   }
-  case object V extends V3_CONFIDENTIALITYCLASSIFICATION("V") {
-    def display: Option[String] = Some("V")
+  case object CONFIDENTIALITYMODIFIERS extends V3_CONFIDENTIALITY("_ConfidentialityModifiers") {
+    def display: Option[String] = Some("ConfidentialityModifiers")
     def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
   }
-}
-
-sealed abstract class VARIABLE_TYPE(override val entryName: String)
-    extends EnumeratumBase
-    with Product
-    with java.io.Serializable {
-  def display: Option[String]
-  def system: Option[String]
-  def toCoding: Option[Coding] = system.map(s => Coding(system = Some(s), code = Some(entryName), display = display))
-}
-object VARIABLE_TYPE extends FhirEnum[VARIABLE_TYPE] with FhirCirceEnum[VARIABLE_TYPE] {
-  val reference = "http://hl7.org/fhir/ValueSet/variable-type"
-  val values    = findValues
-  case object CONTINUOUS extends VARIABLE_TYPE("continuous") {
-    def display: Option[String] = Some("Continuous")
-    def system: Option[String]  = Some("http://hl7.org/fhir/variable-type")
+  case object D extends V3_CONFIDENTIALITY("D") {
+    def display: Option[String] = Some("clinician")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
   }
-  case object DESCRIPTIVE extends VARIABLE_TYPE("descriptive") {
-    def display: Option[String] = Some("Descriptive")
-    def system: Option[String]  = Some("http://hl7.org/fhir/variable-type")
+  case object ETH extends V3_CONFIDENTIALITY("ETH") {
+    def display: Option[String] = Some("substance abuse related")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
   }
-  case object DICHOTOMOUS extends VARIABLE_TYPE("dichotomous") {
-    def display: Option[String] = Some("Dichotomous")
-    def system: Option[String]  = Some("http://hl7.org/fhir/variable-type")
+  case object HIV extends V3_CONFIDENTIALITY("HIV") {
+    def display: Option[String] = Some("HIV related")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
+  }
+  case object I extends V3_CONFIDENTIALITY("I") {
+    def display: Option[String] = Some("individual")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
+  }
+  case object L extends V3_CONFIDENTIALITY("L") {
+    def display: Option[String] = Some("low")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
+  }
+  case object M extends V3_CONFIDENTIALITY("M") {
+    def display: Option[String] = Some("moderate")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
+  }
+  case object N extends V3_CONFIDENTIALITY("N") {
+    def display: Option[String] = Some("normal")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
+  }
+  case object PSY extends V3_CONFIDENTIALITY("PSY") {
+    def display: Option[String] = Some("psychiatry relate")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
+  }
+  case object R extends V3_CONFIDENTIALITY("R") {
+    def display: Option[String] = Some("restricted")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
+  }
+  case object S extends V3_CONFIDENTIALITY("S") {
+    def display: Option[String] = Some("sensitive")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
+  }
+  case object SDV extends V3_CONFIDENTIALITY("SDV") {
+    def display: Option[String] = Some("sexual and domestic violence related")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
+  }
+  case object T extends V3_CONFIDENTIALITY("T") {
+    def display: Option[String] = Some("taboo")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
+  }
+  case object U extends V3_CONFIDENTIALITY("U") {
+    def display: Option[String] = Some("unrestricted")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
+  }
+  case object V extends V3_CONFIDENTIALITY("V") {
+    def display: Option[String] = Some("very restricted")
+    def system: Option[String]  = Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality")
   }
 }
 

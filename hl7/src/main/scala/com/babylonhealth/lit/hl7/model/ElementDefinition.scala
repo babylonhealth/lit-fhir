@@ -615,8 +615,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       extends Element(id = id, extension = extension)
   type FixedChoice        = Choice[UnionAll]
   type PatternChoice      = Choice[UnionAll]
-  type MinValueChoice     = Choice[Union01480857620]
-  type MaxValueChoice     = Choice[Union01480857620]
+  type MinValueChoice     = Choice[Union00492977252]
+  type MaxValueChoice     = Choice[Union00492977252]
   type DefaultValueChoice = Choice[UnionAll]
   def apply(
       id: Option[String] = None,
@@ -734,9 +734,9 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
   val isModifier: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("isModifier", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val minValue: FHIRComponentFieldMeta[Option[ElementDefinition.MinValueChoice]] =
-    FHIRComponentFieldMeta("minValue", lTagOf[Option[ElementDefinition.MinValueChoice]], true, lTagOf[Union01480857620])
+    FHIRComponentFieldMeta("minValue", lTagOf[Option[ElementDefinition.MinValueChoice]], true, lTagOf[Union00492977252])
   val maxValue: FHIRComponentFieldMeta[Option[ElementDefinition.MaxValueChoice]] =
-    FHIRComponentFieldMeta("maxValue", lTagOf[Option[ElementDefinition.MaxValueChoice]], true, lTagOf[Union01480857620])
+    FHIRComponentFieldMeta("maxValue", lTagOf[Option[ElementDefinition.MaxValueChoice]], true, lTagOf[Union00492977252])
   val mustSupport: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("mustSupport", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val requirements: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -914,8 +914,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
           cursor.decodeAs[Option[Markdown]]("definition", Some(None)),
           cursor.decodeOptRef[UnionAll]("pattern"),
           cursor.decodeAs[Option[Boolean]]("isModifier", Some(None)),
-          cursor.decodeOptRef[Union01480857620]("minValue"),
-          cursor.decodeOptRef[Union01480857620]("maxValue"),
+          cursor.decodeOptRef[Union00492977252]("minValue"),
+          cursor.decodeOptRef[Union00492977252]("maxValue"),
           cursor.decodeAs[Option[Boolean]]("mustSupport", Some(None)),
           cursor.decodeAs[Option[Markdown]]("requirements", Some(None)),
           cursor.decodeAs[Option[String]]("orderMeaning", Some(None)),
@@ -941,8 +941,8 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
 /** Base StructureDefinition for ElementDefinition Type: Captures constraints on each element within the resource, profile, or
   * extension.
   *
-  * Subclass of [[core.model.BackboneElement]] (Base StructureDefinition for BackboneElement Type: Base definition for all
-  * elements that are defined inside a resource - but not those in a data type.)
+  * Subclass of [[core.model.BackboneType]] (Base StructureDefinition for BackboneType Type: Base definition for the few data
+  * types that are allowed to carry modifier extensions.)
   *
   * @constructor
   *   Introduces the fields min, max, path, code, label, short, alias, comment, fixed, sliceName, maxLength, condition, isSummary,
@@ -1116,7 +1116,7 @@ class ElementDefinition(
     val constraint: LitSeq[ElementDefinition.Constraint] = LitSeq.empty,
     val slicing: Option[ElementDefinition.Slicing] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends BackboneElement(
+) extends BackboneType(
       id = id,
       extension = extension,
       modifierExtension = modifierExtension,

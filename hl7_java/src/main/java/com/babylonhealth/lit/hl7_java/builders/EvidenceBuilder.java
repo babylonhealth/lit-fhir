@@ -43,15 +43,27 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface EvidenceBuilder extends DomainResourceBuilder {
+public interface EvidenceBuilder extends MetadataResourceBuilder {
   public Evidence build();
 
-  public static Impl init(PUBLICATION_STATUS status, Reference exposureBackground) {
-    return new Impl(status, exposureBackground);
+  public static Impl init(
+      PUBLICATION_STATUS status, Collection<Evidence.VariableDefinition> variableDefinition) {
+    return new Impl(status, variableDefinition);
   }
 
-  public static Impl builder(PUBLICATION_STATUS status, ReferenceBuilder exposureBackground) {
-    return new Impl(status, exposureBackground.build());
+  public static Impl builder(
+      PUBLICATION_STATUS status,
+      Collection<Evidence_VariableDefinitionBuilder> variableDefinition) {
+    return new Impl(
+        status, new LitSeq<>(variableDefinition).map(Evidence_VariableDefinitionBuilder::build));
+  }
+
+  public static ChoiceMarkdownOrReference citeAs(String s) {
+    return new ChoiceMarkdownOrReference(s);
+  }
+
+  public static ChoiceMarkdownOrReference citeAs(Reference r) {
+    return new ChoiceMarkdownOrReference(r);
   }
 
   public class Impl implements EvidenceBuilder {
@@ -59,49 +71,47 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
     private Optional<String> url = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
-    private Optional<String> name = Optional.empty();
     private Optional<FHIRDateTime> date = Optional.empty();
     private Collection<Annotation> note = Collections.emptyList();
     private Optional<String> title = Optional.empty();
-    private Collection<CodeableConcept> topic = Collections.emptyList();
     private PUBLICATION_STATUS status;
     private Collection<ContactDetail> author = Collections.emptyList();
     private Collection<ContactDetail> editor = Collections.emptyList();
     private Optional<String> version = Optional.empty();
     private Collection<ContactDetail> contact = Collections.emptyList();
-    private Collection<Reference> outcome = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
-    private Optional<String> subtitle = Optional.empty();
     private Collection<ContactDetail> reviewer = Collections.emptyList();
     private Collection<ContactDetail> endorser = Collections.emptyList();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
+    private Optional<ChoiceMarkdownOrReference> citeAs = Optional.empty();
     private Optional<String> publisher = Optional.empty();
-    private Optional<String> copyright = Optional.empty();
+    private Optional<String> assertion = Optional.empty();
+    private Optional<CodeableConcept> studyType = Optional.empty();
+    private Collection<Statistic> statistic = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<String> shortTitle = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<String> description = Optional.empty();
-    private Collection<CodeableConcept> jurisdiction = Collections.emptyList();
     private Optional<FHIRDate> approvalDate = Optional.empty();
+    private Collection<OrderedDistribution> distribution = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
+    private Optional<CodeableConcept> synthesisType = Optional.empty();
     private Optional<FHIRDate> lastReviewDate = Optional.empty();
-    private Optional<Period> effectivePeriod = Optional.empty();
     private Collection<RelatedArtifact> relatedArtifact = Collections.emptyList();
-    private Collection<Reference> exposureVariant = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Reference exposureBackground;
+    private Collection<Evidence.Certainty> certainty = Collections.emptyList();
+    private Collection<Evidence.VariableDefinition> variableDefinition;
 
     /**
      * Required fields for {@link Evidence}
      *
-     * @param status - The status of this evidence. Enables tracking the life-cycle of the content.
-     * @param exposureBackground - A reference to a EvidenceVariable resource that defines the
-     *     population for the research.
+     * @param status - The status of this summary. Enables tracking the life-cycle of the content.
+     * @param variableDefinition - Evidence variable such as population, exposure, or outcome.
      */
-    public Impl(PUBLICATION_STATUS status, Reference exposureBackground) {
+    public Impl(
+        PUBLICATION_STATUS status, Collection<Evidence.VariableDefinition> variableDefinition) {
       this.status = status;
-      this.exposureBackground = exposureBackground;
+      this.variableDefinition = variableDefinition;
     }
 
     /**
@@ -116,8 +126,8 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
      * @param url - An absolute URI that is used to identify this evidence when it is referenced in
      *     a specification, model, design or an instance; also called its canonical identifier. This
      *     SHOULD be globally unique and SHOULD be a literal address at which at which an
-     *     authoritative instance of this evidence is (or will be) published. This URL can be the
-     *     target of a canonical reference. It SHALL remain the same when the evidence is stored on
+     *     authoritative instance of this summary is (or will be) published. This URL can be the
+     *     target of a canonical reference. It SHALL remain the same when the summary is stored on
      *     different servers.
      */
     public EvidenceBuilder.Impl withUrl(@NonNull String url) {
@@ -155,28 +165,20 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param name - A natural language name identifying the evidence. This name should be usable as
-     *     an identifier for the module by machine processing applications such as code generation.
-     */
-    public EvidenceBuilder.Impl withName(@NonNull String name) {
-      this.name = Optional.of(name);
-      return this;
-    }
-    /**
-     * @param date - The date (and optionally time) when the evidence was published. The date must
+     * @param date - The date (and optionally time) when the summary was published. The date must
      *     change when the business version changes and it must change if the status code changes.
-     *     In addition, it should change when the substantive content of the evidence changes.
+     *     In addition, it should change when the substantive content of the summary changes.
      */
     public EvidenceBuilder.Impl withDate(@NonNull FHIRDateTime date) {
       this.date = Optional.of(date);
       return this;
     }
-    /** @param note - A human-readable string to clarify or explain concepts about the resource. */
+    /** @param note - Footnotes and/or explanatory notes. */
     public EvidenceBuilder.Impl withNote(@NonNull Annotation... note) {
       this.note = Arrays.asList(note);
       return this;
     }
-    /** @param note - A human-readable string to clarify or explain concepts about the resource. */
+    /** @param note - Footnotes and/or explanatory notes. */
     public EvidenceBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
       this.note = Collections.unmodifiableCollection(note);
       return this;
@@ -186,45 +188,22 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
       this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param title - A short, descriptive, user-friendly title for the evidence. */
+    /** @param title - A short, descriptive, user-friendly title for the summary. */
     public EvidenceBuilder.Impl withTitle(@NonNull String title) {
       this.title = Optional.of(title);
       return this;
     }
     /**
-     * @param topic - Descriptive topics related to the content of the Evidence. Topics provide a
-     *     high-level categorization grouping types of Evidences that can be useful for filtering
-     *     and searching.
-     */
-    public EvidenceBuilder.Impl withTopic(@NonNull CodeableConcept... topic) {
-      this.topic = Arrays.asList(topic);
-      return this;
-    }
-    /**
-     * @param topic - Descriptive topics related to the content of the Evidence. Topics provide a
-     *     high-level categorization grouping types of Evidences that can be useful for filtering
-     *     and searching.
-     */
-    public EvidenceBuilder.Impl withTopic(@NonNull Collection<CodeableConcept> topic) {
-      this.topic = Collections.unmodifiableCollection(topic);
-      return this;
-    }
-
-    public EvidenceBuilder.Impl withTopic(@NonNull CodeableConceptBuilder... topic) {
-      this.topic = Arrays.stream(topic).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
-     * @param author - An individiual or organization primarily involved in the creation and
-     *     maintenance of the content.
+     * @param author - An individiual, organization, or device primarily involved in the creation
+     *     and maintenance of the content.
      */
     public EvidenceBuilder.Impl withAuthor(@NonNull ContactDetail... author) {
       this.author = Arrays.asList(author);
       return this;
     }
     /**
-     * @param author - An individiual or organization primarily involved in the creation and
-     *     maintenance of the content.
+     * @param author - An individiual, organization, or device primarily involved in the creation
+     *     and maintenance of the content.
      */
     public EvidenceBuilder.Impl withAuthor(@NonNull Collection<ContactDetail> author) {
       this.author = Collections.unmodifiableCollection(author);
@@ -236,16 +215,16 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param editor - An individual or organization primarily responsible for internal coherence of
-     *     the content.
+     * @param editor - An individiual, organization, or device primarily responsible for internal
+     *     coherence of the content.
      */
     public EvidenceBuilder.Impl withEditor(@NonNull ContactDetail... editor) {
       this.editor = Arrays.asList(editor);
       return this;
     }
     /**
-     * @param editor - An individual or organization primarily responsible for internal coherence of
-     *     the content.
+     * @param editor - An individiual, organization, or device primarily responsible for internal
+     *     coherence of the content.
      */
     public EvidenceBuilder.Impl withEditor(@NonNull Collection<ContactDetail> editor) {
       this.editor = Collections.unmodifiableCollection(editor);
@@ -257,15 +236,11 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param version - The identifier that is used to identify this version of the evidence when it
+     * @param version - The identifier that is used to identify this version of the summary when it
      *     is referenced in a specification, model, design or instance. This is an arbitrary value
-     *     managed by the evidence author and is not expected to be globally unique. For example, it
+     *     managed by the summary author and is not expected to be globally unique. For example, it
      *     might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also
-     *     no expectation that versions can be placed in a lexicographical sequence. To provide a
-     *     version consistent with the Decision Support Service specification, use the format
-     *     Major.Minor.Revision (e.g. 1.0.0). For more information on versioning knowledge assets,
-     *     refer to the Decision Support Service specification. Note that a version is required for
-     *     non-experimental active artifacts.
+     *     no expectation that versions can be placed in a lexicographical sequence.
      */
     public EvidenceBuilder.Impl withVersion(@NonNull String version) {
       this.version = Optional.of(version);
@@ -292,51 +267,22 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
       this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
-    /**
-     * @param outcome - A reference to a EvidenceVariable resomece that defines the outcome for the
-     *     research.
-     */
-    public EvidenceBuilder.Impl withOutcome(@NonNull Reference... outcome) {
-      this.outcome = Arrays.asList(outcome);
-      return this;
-    }
-    /**
-     * @param outcome - A reference to a EvidenceVariable resomece that defines the outcome for the
-     *     research.
-     */
-    public EvidenceBuilder.Impl withOutcome(@NonNull Collection<Reference> outcome) {
-      this.outcome = Collections.unmodifiableCollection(outcome);
-      return this;
-    }
-
-    public EvidenceBuilder.Impl withOutcome(@NonNull ReferenceBuilder... outcome) {
-      this.outcome = Arrays.stream(outcome).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /** @param language - The base language in which the resource is written. */
     public EvidenceBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
       return this;
     }
     /**
-     * @param subtitle - An explanatory or alternate title for the Evidence giving additional
-     *     information about its content.
-     */
-    public EvidenceBuilder.Impl withSubtitle(@NonNull String subtitle) {
-      this.subtitle = Optional.of(subtitle);
-      return this;
-    }
-    /**
-     * @param reviewer - An individual or organization primarily responsible for review of some
-     *     aspect of the content.
+     * @param reviewer - An individiual, organization, or device primarily responsible for review of
+     *     some aspect of the content.
      */
     public EvidenceBuilder.Impl withReviewer(@NonNull ContactDetail... reviewer) {
       this.reviewer = Arrays.asList(reviewer);
       return this;
     }
     /**
-     * @param reviewer - An individual or organization primarily responsible for review of some
-     *     aspect of the content.
+     * @param reviewer - An individiual, organization, or device primarily responsible for review of
+     *     some aspect of the content.
      */
     public EvidenceBuilder.Impl withReviewer(@NonNull Collection<ContactDetail> reviewer) {
       this.reviewer = Collections.unmodifiableCollection(reviewer);
@@ -348,16 +294,16 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param endorser - An individual or organization responsible for officially endorsing the
-     *     content for use in some setting.
+     * @param endorser - An individiual, organization, or device responsible for officially
+     *     endorsing the content for use in some setting.
      */
     public EvidenceBuilder.Impl withEndorser(@NonNull ContactDetail... endorser) {
       this.endorser = Arrays.asList(endorser);
       return this;
     }
     /**
-     * @param endorser - An individual or organization responsible for officially endorsing the
-     *     content for use in some setting.
+     * @param endorser - An individiual, organization, or device responsible for officially
+     *     endorsing the content for use in some setting.
      */
     public EvidenceBuilder.Impl withEndorser(@NonNull Collection<ContactDetail> endorser) {
       this.endorser = Collections.unmodifiableCollection(endorser);
@@ -370,8 +316,8 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public EvidenceBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -379,8 +325,8 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public EvidenceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -419,23 +365,53 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param citeAs - Citation Resource or display of suggested citation for this evidence. Field
+     *     is a 'choice' field. Type should be one of String, Reference. To pass the value in, wrap
+     *     with one of the EvidenceBuilder.citeAs static methods
+     */
+    public EvidenceBuilder.Impl withCiteAs(@NonNull ChoiceMarkdownOrReference citeAs) {
+      this.citeAs = Optional.of(citeAs);
+      return this;
+    }
+    /**
      * @param publisher - The name of the organization or individual that published the evidence.
      */
     public EvidenceBuilder.Impl withPublisher(@NonNull String publisher) {
       this.publisher = Optional.of(publisher);
       return this;
     }
-    /**
-     * @param copyright - A copyright statement relating to the evidence and/or its contents.
-     *     Copyright statements are generally legal restrictions on the use and publishing of the
-     *     evidence.
-     */
-    public EvidenceBuilder.Impl withCopyright(@NonNull String copyright) {
-      this.copyright = Optional.of(copyright);
+    /** @param assertion - Declarative description of the Evidence. */
+    public EvidenceBuilder.Impl withAssertion(@NonNull String assertion) {
+      this.assertion = Optional.of(assertion);
+      return this;
+    }
+    /** @param studyType - The type of study that produced this evidence. */
+    public EvidenceBuilder.Impl withStudyType(@NonNull CodeableConcept studyType) {
+      this.studyType = Optional.of(studyType);
+      return this;
+    }
+
+    public EvidenceBuilder.Impl withStudyType(@NonNull CodeableConceptBuilder studyType) {
+      this.studyType = Optional.of(studyType.build());
+      return this;
+    }
+    /** @param statistic - Values and parameters for a single statistic. */
+    public EvidenceBuilder.Impl withStatistic(@NonNull Statistic... statistic) {
+      this.statistic = Arrays.asList(statistic);
+      return this;
+    }
+    /** @param statistic - Values and parameters for a single statistic. */
+    public EvidenceBuilder.Impl withStatistic(@NonNull Collection<Statistic> statistic) {
+      this.statistic = Collections.unmodifiableCollection(statistic);
+      return this;
+    }
+
+    public EvidenceBuilder.Impl withStatistic(@NonNull StatisticBuilder... statistic) {
+      this.statistic = Arrays.stream(statistic).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
-     * @param identifier - A formal identifier that is used to identify this evidence when it is
+     * @param identifier - A formal identifier that is used to identify this summary when it is
      *     represented in other formats, or referenced in a specification, model, design or an
      *     instance.
      */
@@ -444,7 +420,7 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param identifier - A formal identifier that is used to identify this evidence when it is
+     * @param identifier - A formal identifier that is used to identify this summary when it is
      *     represented in other formats, or referenced in a specification, model, design or an
      *     instance.
      */
@@ -455,14 +431,6 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
 
     public EvidenceBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
       this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
-     * @param shortTitle - The short title provides an alternate title for use in informal
-     *     descriptive contexts where the full, formal title is not necessary.
-     */
-    public EvidenceBuilder.Impl withShortTitle(@NonNull String shortTitle) {
-      this.shortTitle = Optional.of(shortTitle);
       return this;
     }
     /**
@@ -499,33 +467,28 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param jurisdiction - A legal or geographic region in which the evidence is intended to be
-     *     used.
-     */
-    public EvidenceBuilder.Impl withJurisdiction(@NonNull CodeableConcept... jurisdiction) {
-      this.jurisdiction = Arrays.asList(jurisdiction);
-      return this;
-    }
-    /**
-     * @param jurisdiction - A legal or geographic region in which the evidence is intended to be
-     *     used.
-     */
-    public EvidenceBuilder.Impl withJurisdiction(
-        @NonNull Collection<CodeableConcept> jurisdiction) {
-      this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
-      return this;
-    }
-
-    public EvidenceBuilder.Impl withJurisdiction(@NonNull CodeableConceptBuilder... jurisdiction) {
-      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
      * @param approvalDate - The date on which the resource content was approved by the publisher.
      *     Approval happens once when the content is officially approved for usage.
      */
     public EvidenceBuilder.Impl withApprovalDate(@NonNull FHIRDate approvalDate) {
       this.approvalDate = Optional.of(approvalDate);
+      return this;
+    }
+    /** @param distribution - An ordered group of statistics. */
+    public EvidenceBuilder.Impl withDistribution(@NonNull OrderedDistribution... distribution) {
+      this.distribution = Arrays.asList(distribution);
+      return this;
+    }
+    /** @param distribution - An ordered group of statistics. */
+    public EvidenceBuilder.Impl withDistribution(
+        @NonNull Collection<OrderedDistribution> distribution) {
+      this.distribution = Collections.unmodifiableCollection(distribution);
+      return this;
+    }
+
+    public EvidenceBuilder.Impl withDistribution(
+        @NonNull OrderedDistributionBuilder... distribution) {
+      this.distribution = Arrays.stream(distribution).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -538,6 +501,16 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
       this.implicitRules = Optional.of(implicitRules);
       return this;
     }
+    /** @param synthesisType - The method to combine studies. */
+    public EvidenceBuilder.Impl withSynthesisType(@NonNull CodeableConcept synthesisType) {
+      this.synthesisType = Optional.of(synthesisType);
+      return this;
+    }
+
+    public EvidenceBuilder.Impl withSynthesisType(@NonNull CodeableConceptBuilder synthesisType) {
+      this.synthesisType = Optional.of(synthesisType.build());
+      return this;
+    }
     /**
      * @param lastReviewDate - The date on which the resource content was last reviewed. Review
      *     happens periodically after approval but does not change the original approval date.
@@ -546,31 +519,12 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
       this.lastReviewDate = Optional.of(lastReviewDate);
       return this;
     }
-    /**
-     * @param effectivePeriod - The period during which the evidence content was or is planned to be
-     *     in active use.
-     */
-    public EvidenceBuilder.Impl withEffectivePeriod(@NonNull Period effectivePeriod) {
-      this.effectivePeriod = Optional.of(effectivePeriod);
-      return this;
-    }
-
-    public EvidenceBuilder.Impl withEffectivePeriod(@NonNull PeriodBuilder effectivePeriod) {
-      this.effectivePeriod = Optional.of(effectivePeriod.build());
-      return this;
-    }
-    /**
-     * @param relatedArtifact - Related artifacts such as additional documentation, justification,
-     *     or bibliographic references.
-     */
+    /** @param relatedArtifact - Link or citation to artifact associated with the summary. */
     public EvidenceBuilder.Impl withRelatedArtifact(@NonNull RelatedArtifact... relatedArtifact) {
       this.relatedArtifact = Arrays.asList(relatedArtifact);
       return this;
     }
-    /**
-     * @param relatedArtifact - Related artifacts such as additional documentation, justification,
-     *     or bibliographic references.
-     */
+    /** @param relatedArtifact - Link or citation to artifact associated with the summary. */
     public EvidenceBuilder.Impl withRelatedArtifact(
         @NonNull Collection<RelatedArtifact> relatedArtifact) {
       this.relatedArtifact = Collections.unmodifiableCollection(relatedArtifact);
@@ -580,28 +534,6 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
     public EvidenceBuilder.Impl withRelatedArtifact(
         @NonNull RelatedArtifactBuilder... relatedArtifact) {
       this.relatedArtifact = Arrays.stream(relatedArtifact).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
-     * @param exposureVariant - A reference to a EvidenceVariable resource that defines the exposure
-     *     for the research.
-     */
-    public EvidenceBuilder.Impl withExposureVariant(@NonNull Reference... exposureVariant) {
-      this.exposureVariant = Arrays.asList(exposureVariant);
-      return this;
-    }
-    /**
-     * @param exposureVariant - A reference to a EvidenceVariable resource that defines the exposure
-     *     for the research.
-     */
-    public EvidenceBuilder.Impl withExposureVariant(
-        @NonNull Collection<Reference> exposureVariant) {
-      this.exposureVariant = Collections.unmodifiableCollection(exposureVariant);
-      return this;
-    }
-
-    public EvidenceBuilder.Impl withExposureVariant(@NonNull ReferenceBuilder... exposureVariant) {
-      this.exposureVariant = Arrays.stream(exposureVariant).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -646,6 +578,27 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param certainty - Assessment of certainty, confidence in the estimates, or quality of the
+     *     evidence.
+     */
+    public EvidenceBuilder.Impl withCertainty(@NonNull Evidence.Certainty... certainty) {
+      this.certainty = Arrays.asList(certainty);
+      return this;
+    }
+    /**
+     * @param certainty - Assessment of certainty, confidence in the estimates, or quality of the
+     *     evidence.
+     */
+    public EvidenceBuilder.Impl withCertainty(@NonNull Collection<Evidence.Certainty> certainty) {
+      this.certainty = Collections.unmodifiableCollection(certainty);
+      return this;
+    }
+
+    public EvidenceBuilder.Impl withCertainty(@NonNull Evidence_CertaintyBuilder... certainty) {
+      this.certainty = Arrays.stream(certainty).map(e -> e.build()).collect(toList());
+      return this;
+    }
 
     public EvidenceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
@@ -658,38 +611,36 @@ public interface EvidenceBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(url),
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
-          OptionConverters.toScala(name),
           OptionConverters.toScala(date),
           note.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(title),
-          topic.stream().collect(new LitSeqJCollector<>()),
           status,
           author.stream().collect(new LitSeqJCollector<>()),
           editor.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(version),
           contact.stream().collect(new LitSeqJCollector<>()),
-          outcome.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
-          OptionConverters.toScala(subtitle),
           reviewer.stream().collect(new LitSeqJCollector<>()),
           endorser.stream().collect(new LitSeqJCollector<>()),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
+          (Option) OptionConverters.toScala(citeAs),
           OptionConverters.toScala(publisher),
-          OptionConverters.toScala(copyright),
+          OptionConverters.toScala(assertion),
+          OptionConverters.toScala(studyType),
+          statistic.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(shortTitle),
           useContext.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(description),
-          jurisdiction.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(approvalDate),
+          distribution.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
+          OptionConverters.toScala(synthesisType),
           OptionConverters.toScala(lastReviewDate),
-          OptionConverters.toScala(effectivePeriod),
           relatedArtifact.stream().collect(new LitSeqJCollector<>()),
-          exposureVariant.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          exposureBackground,
+          certainty.stream().collect(new LitSeqJCollector<>()),
+          variableDefinition.stream().collect(new NonEmptyLitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }
   }

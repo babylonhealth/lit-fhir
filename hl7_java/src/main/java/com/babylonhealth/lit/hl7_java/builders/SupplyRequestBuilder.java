@@ -47,21 +47,12 @@ import static java.util.stream.Collectors.toList;
 public interface SupplyRequestBuilder extends DomainResourceBuilder {
   public SupplyRequest build();
 
-  public static Impl init(@NonNull ChoiceCodeableConceptOrReference item, Quantity quantity) {
+  public static Impl init(CodeableReference item, Quantity quantity) {
     return new Impl(item, quantity);
   }
 
-  public static Impl builder(
-      @NonNull ChoiceCodeableConceptOrReference item, QuantityBuilder quantity) {
-    return new Impl(item, quantity.build());
-  }
-
-  public static ChoiceCodeableConceptOrReference item(CodeableConcept c) {
-    return new ChoiceCodeableConceptOrReference(c);
-  }
-
-  public static ChoiceCodeableConceptOrReference item(Reference r) {
-    return new ChoiceCodeableConceptOrReference(r);
+  public static Impl builder(CodeableReferenceBuilder item, QuantityBuilder quantity) {
+    return new Impl(item.build(), quantity.build());
   }
 
   public static ChoiceDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
@@ -80,8 +71,9 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
+    private CodeableReference item;
     private Optional<SUPPLYREQUEST_STATUS> status = Optional.empty();
-    private ChoiceCodeableConceptOrReference item;
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
     private Optional<CodeableConcept> category = Optional.empty();
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
@@ -93,11 +85,9 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
     private Optional<Reference> deliverTo = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<FHIRDateTime> authoredOn = Optional.empty();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<Reference> deliverFrom = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<SupplyRequest.Parameter> parameter = Collections.emptyList();
 
@@ -106,11 +96,10 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
      *
      * @param item - The item that is requested to be supplied. This is either a link to a resource
      *     representing the details of the item or a code that identifies the item from a known
-     *     list. Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
-     *     pass the value in, wrap with one of the SupplyRequestBuilder.item static methods
+     *     list.
      * @param quantity - The amount that is being ordered of the indicated item.
      */
-    public Impl(@NonNull ChoiceCodeableConceptOrReference item, Quantity quantity) {
+    public Impl(CodeableReference item, Quantity quantity) {
       this.item = item;
       this.quantity = quantity;
     }
@@ -158,6 +147,21 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
       this.status = Optional.of(status);
       return this;
     }
+    /** @param reason - The reason why the supply item was requested. */
+    public SupplyRequestBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /** @param reason - The reason why the supply item was requested. */
+    public SupplyRequestBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public SupplyRequestBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public SupplyRequestBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -201,8 +205,8 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public SupplyRequestBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -210,8 +214,8 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public SupplyRequestBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -297,22 +301,6 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
       this.authoredOn = Optional.of(authoredOn);
       return this;
     }
-    /** @param reasonCode - The reason why the supply item was requested. */
-    public SupplyRequestBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /** @param reasonCode - The reason why the supply item was requested. */
-    public SupplyRequestBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public SupplyRequestBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /** @param deliverFrom - Where the supply is expected to come from. */
     public SupplyRequestBuilder.Impl withDeliverFrom(@NonNull Reference deliverFrom) {
       this.deliverFrom = Optional.of(deliverFrom);
@@ -341,23 +329,6 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
     public SupplyRequestBuilder.Impl withOccurrence(
         @NonNull ChoiceDateTimeOrPeriodOrTiming occurrence) {
       this.occurrence = Optional.of(occurrence);
-      return this;
-    }
-    /** @param reasonReference - The reason why the supply item was requested. */
-    public SupplyRequestBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /** @param reasonReference - The reason why the supply item was requested. */
-    public SupplyRequestBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public SupplyRequestBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -437,8 +408,9 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(id),
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
-          OptionConverters.toScala(status),
           item,
+          OptionConverters.toScala(status),
+          reason.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
           OptionConverters.toScala(category),
           OptionConverters.toScala(priority),
@@ -450,11 +422,9 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(deliverTo),
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(authoredOn),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(deliverFrom),
           OptionConverters.toScala(implicitRules),
           (Option) OptionConverters.toScala(occurrence),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           parameter.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());

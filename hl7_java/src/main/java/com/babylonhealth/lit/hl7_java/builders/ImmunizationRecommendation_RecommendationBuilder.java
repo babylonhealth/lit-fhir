@@ -53,33 +53,17 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
     return new Impl(forecastStatus.build());
   }
 
-  public static ChoicePositiveIntOrString doseNumber(Integer i) {
-    return new ChoicePositiveIntOrString(i);
-  }
-
-  public static ChoicePositiveIntOrString doseNumber(String s) {
-    return new ChoicePositiveIntOrString(s);
-  }
-
-  public static ChoicePositiveIntOrString seriesDoses(Integer i) {
-    return new ChoicePositiveIntOrString(i);
-  }
-
-  public static ChoicePositiveIntOrString seriesDoses(String s) {
-    return new ChoicePositiveIntOrString(s);
-  }
-
   public class Impl implements ImmunizationRecommendation_RecommendationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> series = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
+    private Optional<String> doseNumber = Optional.empty();
     private Collection<CodeableConcept> vaccineCode = Collections.emptyList();
     private Optional<String> description = Optional.empty();
-    private Optional<CodeableConcept> targetDisease = Optional.empty();
-    private Optional<ChoicePositiveIntOrString> doseNumber = Optional.empty();
+    private Optional<String> seriesDoses = Optional.empty();
+    private Collection<CodeableConcept> targetDisease = Collections.emptyList();
     private CodeableConcept forecastStatus;
     private Collection<CodeableConcept> forecastReason = Collections.emptyList();
-    private Optional<ChoicePositiveIntOrString> seriesDoses = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Reference> supportingImmunization = Collections.emptyList();
     private Collection<CodeableConcept> contraindicatedVaccineCode = Collections.emptyList();
@@ -140,6 +124,12 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param doseNumber */
+    public ImmunizationRecommendation_RecommendationBuilder.Impl withDoseNumber(
+        @NonNull String doseNumber) {
+      this.doseNumber = Optional.of(doseNumber);
+      return this;
+    }
     /** @param vaccineCode */
     public ImmunizationRecommendation_RecommendationBuilder.Impl withVaccineCode(
         @NonNull CodeableConcept... vaccineCode) {
@@ -164,26 +154,28 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
       this.description = Optional.of(description);
       return this;
     }
+    /** @param seriesDoses */
+    public ImmunizationRecommendation_RecommendationBuilder.Impl withSeriesDoses(
+        @NonNull String seriesDoses) {
+      this.seriesDoses = Optional.of(seriesDoses);
+      return this;
+    }
     /** @param targetDisease */
     public ImmunizationRecommendation_RecommendationBuilder.Impl withTargetDisease(
-        @NonNull CodeableConcept targetDisease) {
-      this.targetDisease = Optional.of(targetDisease);
+        @NonNull CodeableConcept... targetDisease) {
+      this.targetDisease = Arrays.asList(targetDisease);
+      return this;
+    }
+    /** @param targetDisease */
+    public ImmunizationRecommendation_RecommendationBuilder.Impl withTargetDisease(
+        @NonNull Collection<CodeableConcept> targetDisease) {
+      this.targetDisease = Collections.unmodifiableCollection(targetDisease);
       return this;
     }
 
     public ImmunizationRecommendation_RecommendationBuilder.Impl withTargetDisease(
-        @NonNull CodeableConceptBuilder targetDisease) {
-      this.targetDisease = Optional.of(targetDisease.build());
-      return this;
-    }
-    /**
-     * @param doseNumber Field is a 'choice' field. Type should be one of Integer, String. To pass
-     *     the value in, wrap with one of the
-     *     ImmunizationRecommendation_RecommendationBuilder.doseNumber static methods
-     */
-    public ImmunizationRecommendation_RecommendationBuilder.Impl withDoseNumber(
-        @NonNull ChoicePositiveIntOrString doseNumber) {
-      this.doseNumber = Optional.of(doseNumber);
+        @NonNull CodeableConceptBuilder... targetDisease) {
+      this.targetDisease = Arrays.stream(targetDisease).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param forecastReason */
@@ -202,16 +194,6 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
     public ImmunizationRecommendation_RecommendationBuilder.Impl withForecastReason(
         @NonNull CodeableConceptBuilder... forecastReason) {
       this.forecastReason = Arrays.stream(forecastReason).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
-     * @param seriesDoses Field is a 'choice' field. Type should be one of Integer, String. To pass
-     *     the value in, wrap with one of the
-     *     ImmunizationRecommendation_RecommendationBuilder.seriesDoses static methods
-     */
-    public ImmunizationRecommendation_RecommendationBuilder.Impl withSeriesDoses(
-        @NonNull ChoicePositiveIntOrString seriesDoses) {
-      this.seriesDoses = Optional.of(seriesDoses);
       return this;
     }
     /**
@@ -341,13 +323,13 @@ public interface ImmunizationRecommendation_RecommendationBuilder {
           OptionConverters.toScala(id),
           OptionConverters.toScala(series),
           extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(doseNumber),
           vaccineCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(description),
-          OptionConverters.toScala(targetDisease),
-          (Option) OptionConverters.toScala(doseNumber),
+          OptionConverters.toScala(seriesDoses),
+          targetDisease.stream().collect(new LitSeqJCollector<>()),
           forecastStatus,
           forecastReason.stream().collect(new LitSeqJCollector<>()),
-          (Option) OptionConverters.toScala(seriesDoses),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           supportingImmunization.stream().collect(new LitSeqJCollector<>()),
           contraindicatedVaccineCode.stream().collect(new LitSeqJCollector<>()),

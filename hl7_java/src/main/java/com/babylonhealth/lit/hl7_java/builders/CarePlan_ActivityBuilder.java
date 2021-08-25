@@ -57,11 +57,11 @@ public interface CarePlan_ActivityBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Annotation> progress = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Reference> reference = Optional.empty();
-    private Collection<Reference> outcomeReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Collection<CodeableConcept> outcomeCodeableConcept = Collections.emptyList();
-    private Optional<CarePlan$Activity$Detail> detail = Optional.empty();
+    private Collection<CodeableReference> performedActivity = Collections.emptyList();
+    private Optional<Reference> plannedActivityReference = Optional.empty();
+    private Optional<CarePlan$Activity$PlannedActivityDetail> plannedActivityDetail =
+        Optional.empty();
 
     /** Required fields for {@link CarePlan.Activity} */
     public Impl() {}
@@ -116,34 +116,6 @@ public interface CarePlan_ActivityBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param reference */
-    public CarePlan_ActivityBuilder.Impl withReference(@NonNull Reference reference) {
-      this.reference = Optional.of(reference);
-      return this;
-    }
-
-    public CarePlan_ActivityBuilder.Impl withReference(@NonNull ReferenceBuilder reference) {
-      this.reference = Optional.of(reference.build());
-      return this;
-    }
-    /** @param outcomeReference */
-    public CarePlan_ActivityBuilder.Impl withOutcomeReference(
-        @NonNull Reference... outcomeReference) {
-      this.outcomeReference = Arrays.asList(outcomeReference);
-      return this;
-    }
-    /** @param outcomeReference */
-    public CarePlan_ActivityBuilder.Impl withOutcomeReference(
-        @NonNull Collection<Reference> outcomeReference) {
-      this.outcomeReference = Collections.unmodifiableCollection(outcomeReference);
-      return this;
-    }
-
-    public CarePlan_ActivityBuilder.Impl withOutcomeReference(
-        @NonNull ReferenceBuilder... outcomeReference) {
-      this.outcomeReference = Arrays.stream(outcomeReference).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -187,34 +159,47 @@ public interface CarePlan_ActivityBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param outcomeCodeableConcept */
-    public CarePlan_ActivityBuilder.Impl withOutcomeCodeableConcept(
-        @NonNull CodeableConcept... outcomeCodeableConcept) {
-      this.outcomeCodeableConcept = Arrays.asList(outcomeCodeableConcept);
+    /** @param performedActivity */
+    public CarePlan_ActivityBuilder.Impl withPerformedActivity(
+        @NonNull CodeableReference... performedActivity) {
+      this.performedActivity = Arrays.asList(performedActivity);
       return this;
     }
-    /** @param outcomeCodeableConcept */
-    public CarePlan_ActivityBuilder.Impl withOutcomeCodeableConcept(
-        @NonNull Collection<CodeableConcept> outcomeCodeableConcept) {
-      this.outcomeCodeableConcept = Collections.unmodifiableCollection(outcomeCodeableConcept);
-      return this;
-    }
-
-    public CarePlan_ActivityBuilder.Impl withOutcomeCodeableConcept(
-        @NonNull CodeableConceptBuilder... outcomeCodeableConcept) {
-      this.outcomeCodeableConcept =
-          Arrays.stream(outcomeCodeableConcept).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /** @param detail */
-    public CarePlan_ActivityBuilder.Impl withDetail(@NonNull CarePlan$Activity$Detail detail) {
-      this.detail = Optional.of(detail);
+    /** @param performedActivity */
+    public CarePlan_ActivityBuilder.Impl withPerformedActivity(
+        @NonNull Collection<CodeableReference> performedActivity) {
+      this.performedActivity = Collections.unmodifiableCollection(performedActivity);
       return this;
     }
 
-    public CarePlan_ActivityBuilder.Impl withDetail(
-        @NonNull CarePlan_Activity_DetailBuilder detail) {
-      this.detail = Optional.of(detail.build());
+    public CarePlan_ActivityBuilder.Impl withPerformedActivity(
+        @NonNull CodeableReferenceBuilder... performedActivity) {
+      this.performedActivity =
+          Arrays.stream(performedActivity).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param plannedActivityReference */
+    public CarePlan_ActivityBuilder.Impl withPlannedActivityReference(
+        @NonNull Reference plannedActivityReference) {
+      this.plannedActivityReference = Optional.of(plannedActivityReference);
+      return this;
+    }
+
+    public CarePlan_ActivityBuilder.Impl withPlannedActivityReference(
+        @NonNull ReferenceBuilder plannedActivityReference) {
+      this.plannedActivityReference = Optional.of(plannedActivityReference.build());
+      return this;
+    }
+    /** @param plannedActivityDetail */
+    public CarePlan_ActivityBuilder.Impl withPlannedActivityDetail(
+        @NonNull CarePlan$Activity$PlannedActivityDetail plannedActivityDetail) {
+      this.plannedActivityDetail = Optional.of(plannedActivityDetail);
+      return this;
+    }
+
+    public CarePlan_ActivityBuilder.Impl withPlannedActivityDetail(
+        @NonNull CarePlan_Activity_PlannedActivityDetailBuilder plannedActivityDetail) {
+      this.plannedActivityDetail = Optional.of(plannedActivityDetail.build());
       return this;
     }
 
@@ -223,11 +208,10 @@ public interface CarePlan_ActivityBuilder {
           OptionConverters.toScala(id),
           progress.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(reference),
-          outcomeReference.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          outcomeCodeableConcept.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(detail),
+          performedActivity.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(plannedActivityReference),
+          OptionConverters.toScala(plannedActivityDetail),
           LitUtils.emptyMetaElMap());
     }
   }

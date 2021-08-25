@@ -53,13 +53,21 @@ public interface CareTeam_ParticipantBuilder {
     return new Impl();
   }
 
+  public static ChoicePeriodOrTiming coverage(Period p) {
+    return new ChoicePeriodOrTiming(p);
+  }
+
+  public static ChoicePeriodOrTiming coverage(Timing t) {
+    return new ChoicePeriodOrTiming(t);
+  }
+
   public class Impl implements CareTeam_ParticipantBuilder {
     private Optional<String> id = Optional.empty();
-    private Collection<CodeableConcept> role = Collections.emptyList();
+    private Optional<CodeableConcept> role = Optional.empty();
     private Optional<Reference> member = Optional.empty();
-    private Optional<Period> period = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> onBehalfOf = Optional.empty();
+    private Optional<ChoicePeriodOrTiming> coverage = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /** Required fields for {@link CareTeam.Participant} */
@@ -74,18 +82,13 @@ public interface CareTeam_ParticipantBuilder {
       return this;
     }
     /** @param role */
-    public CareTeam_ParticipantBuilder.Impl withRole(@NonNull CodeableConcept... role) {
-      this.role = Arrays.asList(role);
-      return this;
-    }
-    /** @param role */
-    public CareTeam_ParticipantBuilder.Impl withRole(@NonNull Collection<CodeableConcept> role) {
-      this.role = Collections.unmodifiableCollection(role);
+    public CareTeam_ParticipantBuilder.Impl withRole(@NonNull CodeableConcept role) {
+      this.role = Optional.of(role);
       return this;
     }
 
-    public CareTeam_ParticipantBuilder.Impl withRole(@NonNull CodeableConceptBuilder... role) {
-      this.role = Arrays.stream(role).map(e -> e.build()).collect(toList());
+    public CareTeam_ParticipantBuilder.Impl withRole(@NonNull CodeableConceptBuilder role) {
+      this.role = Optional.of(role.build());
       return this;
     }
     /** @param member */
@@ -96,16 +99,6 @@ public interface CareTeam_ParticipantBuilder {
 
     public CareTeam_ParticipantBuilder.Impl withMember(@NonNull ReferenceBuilder member) {
       this.member = Optional.of(member.build());
-      return this;
-    }
-    /** @param period - Indicates when the team did (or is intended to) come into effect and end. */
-    public CareTeam_ParticipantBuilder.Impl withPeriod(@NonNull Period period) {
-      this.period = Optional.of(period);
-      return this;
-    }
-
-    public CareTeam_ParticipantBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
-      this.period = Optional.of(period.build());
       return this;
     }
     /**
@@ -144,6 +137,14 @@ public interface CareTeam_ParticipantBuilder {
 
     public CareTeam_ParticipantBuilder.Impl withOnBehalfOf(@NonNull ReferenceBuilder onBehalfOf) {
       this.onBehalfOf = Optional.of(onBehalfOf.build());
+      return this;
+    }
+    /**
+     * @param coverage Field is a 'choice' field. Type should be one of Period, Timing. To pass the
+     *     value in, wrap with one of the CareTeam_ParticipantBuilder.coverage static methods
+     */
+    public CareTeam_ParticipantBuilder.Impl withCoverage(@NonNull ChoicePeriodOrTiming coverage) {
+      this.coverage = Optional.of(coverage);
       return this;
     }
     /**
@@ -193,11 +194,11 @@ public interface CareTeam_ParticipantBuilder {
     public CareTeam.Participant build() {
       return new CareTeam.Participant(
           OptionConverters.toScala(id),
-          role.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(role),
           OptionConverters.toScala(member),
-          OptionConverters.toScala(period),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(onBehalfOf),
+          (Option) OptionConverters.toScala(coverage),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

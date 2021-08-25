@@ -34,7 +34,6 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
-import com.babylonhealth.lit.hl7.VARIABLE_TYPE;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -44,19 +43,15 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface EvidenceVariableBuilder extends DomainResourceBuilder {
+public interface EvidenceVariableBuilder extends MetadataResourceBuilder {
   public EvidenceVariable build();
 
-  public static Impl init(
-      PUBLICATION_STATUS status, Collection<EvidenceVariable.Characteristic> characteristic) {
-    return new Impl(status, characteristic);
+  public static Impl init(PUBLICATION_STATUS status) {
+    return new Impl(status);
   }
 
-  public static Impl builder(
-      PUBLICATION_STATUS status,
-      Collection<EvidenceVariable_CharacteristicBuilder> characteristic) {
-    return new Impl(
-        status, new LitSeq<>(characteristic).map(EvidenceVariable_CharacteristicBuilder::build));
+  public static Impl builder(PUBLICATION_STATUS status) {
+    return new Impl(status);
   }
 
   public class Impl implements EvidenceVariableBuilder {
@@ -67,47 +62,40 @@ public interface EvidenceVariableBuilder extends DomainResourceBuilder {
     private Optional<String> name = Optional.empty();
     private Optional<FHIRDateTime> date = Optional.empty();
     private Collection<Annotation> note = Collections.emptyList();
-    private Optional<VARIABLE_TYPE> _type = Optional.empty();
     private Optional<String> title = Optional.empty();
-    private Collection<CodeableConcept> topic = Collections.emptyList();
     private PUBLICATION_STATUS status;
     private Collection<ContactDetail> author = Collections.emptyList();
     private Collection<ContactDetail> editor = Collections.emptyList();
+    private Optional<Boolean> actual = Optional.empty();
     private Optional<String> version = Optional.empty();
     private Collection<ContactDetail> contact = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
     private Optional<String> subtitle = Optional.empty();
     private Collection<ContactDetail> reviewer = Collections.emptyList();
     private Collection<ContactDetail> endorser = Collections.emptyList();
+    private Optional<String> handling = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> publisher = Optional.empty();
-    private Optional<String> copyright = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> shortTitle = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<String> description = Optional.empty();
-    private Collection<CodeableConcept> jurisdiction = Collections.emptyList();
-    private Optional<FHIRDate> approvalDate = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<FHIRDate> lastReviewDate = Optional.empty();
-    private Optional<Period> effectivePeriod = Optional.empty();
     private Collection<RelatedArtifact> relatedArtifact = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Collection<EvidenceVariable.Characteristic> characteristic;
+    private Optional<String> characteristicCombination = Optional.empty();
+    private Collection<EvidenceVariable.Category> category = Collections.emptyList();
+    private Collection<EvidenceVariable.Characteristic> characteristic = Collections.emptyList();
 
     /**
      * Required fields for {@link EvidenceVariable}
      *
      * @param status - The status of this evidence variable. Enables tracking the life-cycle of the
      *     content.
-     * @param characteristic - A characteristic that defines the members of the evidence element.
-     *     Multiple characteristics are applied with "and" semantics.
      */
-    public Impl(
-        PUBLICATION_STATUS status, Collection<EvidenceVariable.Characteristic> characteristic) {
+    public Impl(PUBLICATION_STATUS status) {
       this.status = status;
-      this.characteristic = characteristic;
     }
 
     /**
@@ -194,37 +182,9 @@ public interface EvidenceVariableBuilder extends DomainResourceBuilder {
       this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param _type - The type of evidence element, a population, an exposure, or an outcome. */
-    public EvidenceVariableBuilder.Impl withType(@NonNull VARIABLE_TYPE _type) {
-      this._type = Optional.of(_type);
-      return this;
-    }
     /** @param title - A short, descriptive, user-friendly title for the evidence variable. */
     public EvidenceVariableBuilder.Impl withTitle(@NonNull String title) {
       this.title = Optional.of(title);
-      return this;
-    }
-    /**
-     * @param topic - Descriptive topics related to the content of the EvidenceVariable. Topics
-     *     provide a high-level categorization grouping types of EvidenceVariables that can be
-     *     useful for filtering and searching.
-     */
-    public EvidenceVariableBuilder.Impl withTopic(@NonNull CodeableConcept... topic) {
-      this.topic = Arrays.asList(topic);
-      return this;
-    }
-    /**
-     * @param topic - Descriptive topics related to the content of the EvidenceVariable. Topics
-     *     provide a high-level categorization grouping types of EvidenceVariables that can be
-     *     useful for filtering and searching.
-     */
-    public EvidenceVariableBuilder.Impl withTopic(@NonNull Collection<CodeableConcept> topic) {
-      this.topic = Collections.unmodifiableCollection(topic);
-      return this;
-    }
-
-    public EvidenceVariableBuilder.Impl withTopic(@NonNull CodeableConceptBuilder... topic) {
-      this.topic = Arrays.stream(topic).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -267,6 +227,14 @@ public interface EvidenceVariableBuilder extends DomainResourceBuilder {
 
     public EvidenceVariableBuilder.Impl withEditor(@NonNull ContactDetailBuilder... editor) {
       this.editor = Arrays.stream(editor).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param actual - True if the actual variable measured, false if a conceptual representation of
+     *     the intended variable.
+     */
+    public EvidenceVariableBuilder.Impl withActual(@NonNull Boolean actual) {
+      this.actual = Optional.of(actual);
       return this;
     }
     /**
@@ -360,10 +328,15 @@ public interface EvidenceVariableBuilder extends DomainResourceBuilder {
       this.endorser = Arrays.stream(endorser).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param handling - Used for an outcome to classify. */
+    public EvidenceVariableBuilder.Impl withHandling(@NonNull String handling) {
+      this.handling = Optional.of(handling);
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public EvidenceVariableBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -371,8 +344,8 @@ public interface EvidenceVariableBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public EvidenceVariableBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -416,15 +389,6 @@ public interface EvidenceVariableBuilder extends DomainResourceBuilder {
      */
     public EvidenceVariableBuilder.Impl withPublisher(@NonNull String publisher) {
       this.publisher = Optional.of(publisher);
-      return this;
-    }
-    /**
-     * @param copyright - A copyright statement relating to the evidence variable and/or its
-     *     contents. Copyright statements are generally legal restrictions on the use and publishing
-     *     of the evidence variable.
-     */
-    public EvidenceVariableBuilder.Impl withCopyright(@NonNull String copyright) {
-      this.copyright = Optional.of(copyright);
       return this;
     }
     /**
@@ -493,37 +457,6 @@ public interface EvidenceVariableBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param jurisdiction - A legal or geographic region in which the evidence variable is intended
-     *     to be used.
-     */
-    public EvidenceVariableBuilder.Impl withJurisdiction(@NonNull CodeableConcept... jurisdiction) {
-      this.jurisdiction = Arrays.asList(jurisdiction);
-      return this;
-    }
-    /**
-     * @param jurisdiction - A legal or geographic region in which the evidence variable is intended
-     *     to be used.
-     */
-    public EvidenceVariableBuilder.Impl withJurisdiction(
-        @NonNull Collection<CodeableConcept> jurisdiction) {
-      this.jurisdiction = Collections.unmodifiableCollection(jurisdiction);
-      return this;
-    }
-
-    public EvidenceVariableBuilder.Impl withJurisdiction(
-        @NonNull CodeableConceptBuilder... jurisdiction) {
-      this.jurisdiction = Arrays.stream(jurisdiction).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
-     * @param approvalDate - The date on which the resource content was approved by the publisher.
-     *     Approval happens once when the content is officially approved for usage.
-     */
-    public EvidenceVariableBuilder.Impl withApprovalDate(@NonNull FHIRDate approvalDate) {
-      this.approvalDate = Optional.of(approvalDate);
-      return this;
-    }
-    /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
      *     reference to an implementation guide that defines the special rules along with other
@@ -531,28 +464,6 @@ public interface EvidenceVariableBuilder extends DomainResourceBuilder {
      */
     public EvidenceVariableBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
       this.implicitRules = Optional.of(implicitRules);
-      return this;
-    }
-    /**
-     * @param lastReviewDate - The date on which the resource content was last reviewed. Review
-     *     happens periodically after approval but does not change the original approval date.
-     */
-    public EvidenceVariableBuilder.Impl withLastReviewDate(@NonNull FHIRDate lastReviewDate) {
-      this.lastReviewDate = Optional.of(lastReviewDate);
-      return this;
-    }
-    /**
-     * @param effectivePeriod - The period during which the evidence variable content was or is
-     *     planned to be in active use.
-     */
-    public EvidenceVariableBuilder.Impl withEffectivePeriod(@NonNull Period effectivePeriod) {
-      this.effectivePeriod = Optional.of(effectivePeriod);
-      return this;
-    }
-
-    public EvidenceVariableBuilder.Impl withEffectivePeriod(
-        @NonNull PeriodBuilder effectivePeriod) {
-      this.effectivePeriod = Optional.of(effectivePeriod.build());
       return this;
     }
     /**
@@ -622,6 +533,63 @@ public interface EvidenceVariableBuilder extends DomainResourceBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param characteristicCombination - Used to specify if two or more characteristics are
+     *     combined with OR or AND.
+     */
+    public EvidenceVariableBuilder.Impl withCharacteristicCombination(
+        @NonNull String characteristicCombination) {
+      this.characteristicCombination = Optional.of(characteristicCombination);
+      return this;
+    }
+    /**
+     * @param category - A grouping (or set of values) described along with other groupings to
+     *     specify the set of groupings allowed for the variable.
+     */
+    public EvidenceVariableBuilder.Impl withCategory(
+        @NonNull EvidenceVariable.Category... category) {
+      this.category = Arrays.asList(category);
+      return this;
+    }
+    /**
+     * @param category - A grouping (or set of values) described along with other groupings to
+     *     specify the set of groupings allowed for the variable.
+     */
+    public EvidenceVariableBuilder.Impl withCategory(
+        @NonNull Collection<EvidenceVariable.Category> category) {
+      this.category = Collections.unmodifiableCollection(category);
+      return this;
+    }
+
+    public EvidenceVariableBuilder.Impl withCategory(
+        @NonNull EvidenceVariable_CategoryBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param characteristic - A characteristic that defines the members of the evidence element.
+     *     Multiple characteristics are applied with "and" semantics.
+     */
+    public EvidenceVariableBuilder.Impl withCharacteristic(
+        @NonNull EvidenceVariable.Characteristic... characteristic) {
+      this.characteristic = Arrays.asList(characteristic);
+      return this;
+    }
+    /**
+     * @param characteristic - A characteristic that defines the members of the evidence element.
+     *     Multiple characteristics are applied with "and" semantics.
+     */
+    public EvidenceVariableBuilder.Impl withCharacteristic(
+        @NonNull Collection<EvidenceVariable.Characteristic> characteristic) {
+      this.characteristic = Collections.unmodifiableCollection(characteristic);
+      return this;
+    }
+
+    public EvidenceVariableBuilder.Impl withCharacteristic(
+        @NonNull EvidenceVariable_CharacteristicBuilder... characteristic) {
+      this.characteristic = Arrays.stream(characteristic).map(e -> e.build()).collect(toList());
+      return this;
+    }
 
     public EvidenceVariableBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
@@ -637,34 +605,31 @@ public interface EvidenceVariableBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(name),
           OptionConverters.toScala(date),
           note.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(_type),
           OptionConverters.toScala(title),
-          topic.stream().collect(new LitSeqJCollector<>()),
           status,
           author.stream().collect(new LitSeqJCollector<>()),
           editor.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(actual.map(x -> (Object) x)),
           OptionConverters.toScala(version),
           contact.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
           OptionConverters.toScala(subtitle),
           reviewer.stream().collect(new LitSeqJCollector<>()),
           endorser.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(handling),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(publisher),
-          OptionConverters.toScala(copyright),
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(shortTitle),
           useContext.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(description),
-          jurisdiction.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(approvalDate),
           OptionConverters.toScala(implicitRules),
-          OptionConverters.toScala(lastReviewDate),
-          OptionConverters.toScala(effectivePeriod),
           relatedArtifact.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          characteristic.stream().collect(new NonEmptyLitSeqJCollector<>()),
+          OptionConverters.toScala(characteristicCombination),
+          category.stream().collect(new LitSeqJCollector<>()),
+          characteristic.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }
   }

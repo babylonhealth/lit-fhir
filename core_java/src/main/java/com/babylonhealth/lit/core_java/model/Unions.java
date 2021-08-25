@@ -213,8 +213,8 @@ public class Unions {
                                                                                                                           String>,
                                                                                                                       Identifier>,
                                                                                                                   Integer>,
-                                                                                                              Integer64>,
-                                                                                                          LocalTime>,
+                                                                                                              LocalTime>,
+                                                                                                          Long>,
                                                                                                       String>,
                                                                                                   Meta>,
                                                                                               Money>,
@@ -326,12 +326,12 @@ public class Unions {
       super("Identifier", arg, (LTag) UnionAliases.UnionAllTag());
     }
 
-    public ChoiceAll(Integer64 arg) {
-      super("Integer64", arg, (LTag) UnionAliases.UnionAllTag());
-    }
-
     public ChoiceAll(LocalTime arg) {
       super("Time", arg, (LTag) UnionAliases.UnionAllTag());
+    }
+
+    public ChoiceAll(Long arg) {
+      super("Integer64", arg, (LTag) UnionAliases.UnionAllTag());
     }
 
     public ChoiceAll(Meta arg) {

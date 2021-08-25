@@ -45,27 +45,37 @@ import static java.util.stream.Collectors.toList;
 public interface AdverseEvent_SuspectEntityBuilder {
   public AdverseEvent.SuspectEntity build();
 
-  public static Impl init(Reference instance) {
+  public static Impl init(@NonNull ChoiceCodeableConceptOrReference instance) {
     return new Impl(instance);
   }
 
-  public static Impl builder(ReferenceBuilder instance) {
-    return new Impl(instance.build());
+  public static Impl builder(@NonNull ChoiceCodeableConceptOrReference instance) {
+    return new Impl(instance);
+  }
+
+  public static ChoiceCodeableConceptOrReference instance(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
+  }
+
+  public static ChoiceCodeableConceptOrReference instance(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements AdverseEvent_SuspectEntityBuilder {
     private Optional<String> id = Optional.empty();
-    private Reference instance;
     private Collection<Extension> extension = Collections.emptyList();
+    private ChoiceCodeableConceptOrReference instance;
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Collection<AdverseEvent$SuspectEntity$Causality> causality = Collections.emptyList();
+    private Optional<AdverseEvent$SuspectEntity$Causality> causality = Optional.empty();
 
     /**
      * Required fields for {@link AdverseEvent.SuspectEntity}
      *
-     * @param instance
+     * @param instance Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+     *     To pass the value in, wrap with one of the AdverseEvent_SuspectEntityBuilder.instance
+     *     static methods
      */
-    public Impl(Reference instance) {
+    public Impl(@NonNull ChoiceCodeableConceptOrReference instance) {
       this.instance = instance;
     }
 
@@ -151,30 +161,24 @@ public interface AdverseEvent_SuspectEntityBuilder {
     }
     /** @param causality */
     public AdverseEvent_SuspectEntityBuilder.Impl withCausality(
-        @NonNull AdverseEvent$SuspectEntity$Causality... causality) {
-      this.causality = Arrays.asList(causality);
-      return this;
-    }
-    /** @param causality */
-    public AdverseEvent_SuspectEntityBuilder.Impl withCausality(
-        @NonNull Collection<AdverseEvent$SuspectEntity$Causality> causality) {
-      this.causality = Collections.unmodifiableCollection(causality);
+        @NonNull AdverseEvent$SuspectEntity$Causality causality) {
+      this.causality = Optional.of(causality);
       return this;
     }
 
     public AdverseEvent_SuspectEntityBuilder.Impl withCausality(
-        @NonNull AdverseEvent_SuspectEntity_CausalityBuilder... causality) {
-      this.causality = Arrays.stream(causality).map(e -> e.build()).collect(toList());
+        @NonNull AdverseEvent_SuspectEntity_CausalityBuilder causality) {
+      this.causality = Optional.of(causality.build());
       return this;
     }
 
     public AdverseEvent.SuspectEntity build() {
       return new AdverseEvent.SuspectEntity(
           OptionConverters.toScala(id),
-          instance,
           extension.stream().collect(new LitSeqJCollector<>()),
+          instance,
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          causality.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(causality),
           LitUtils.emptyMetaElMap());
     }
   }

@@ -74,7 +74,9 @@ public interface ImmunizationRecommendationBuilder extends DomainResourceBuilder
     private Optional<Reference> authority = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
+    private Collection<String> instantiatesUri = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Collection<String> instantiatesCanonical = Collections.emptyList();
     private Collection<ImmunizationRecommendation.Recommendation> recommendation;
 
     /**
@@ -138,8 +140,8 @@ public interface ImmunizationRecommendationBuilder extends DomainResourceBuilder
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ImmunizationRecommendationBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -147,8 +149,8 @@ public interface ImmunizationRecommendationBuilder extends DomainResourceBuilder
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ImmunizationRecommendationBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
@@ -234,6 +236,26 @@ public interface ImmunizationRecommendationBuilder extends DomainResourceBuilder
       return this;
     }
     /**
+     * @param instantiatesUri - The URL pointing to an externally maintained protocol, guideline or
+     *     other definition that is adhered to in whole or in part by this
+     *     ImmunizationRecommendation.
+     */
+    public ImmunizationRecommendationBuilder.Impl withInstantiatesUri(
+        @NonNull String... instantiatesUri) {
+      this.instantiatesUri = Arrays.asList(instantiatesUri);
+      return this;
+    }
+    /**
+     * @param instantiatesUri - The URL pointing to an externally maintained protocol, guideline or
+     *     other definition that is adhered to in whole or in part by this
+     *     ImmunizationRecommendation.
+     */
+    public ImmunizationRecommendationBuilder.Impl withInstantiatesUri(
+        @NonNull Collection<String> instantiatesUri) {
+      this.instantiatesUri = Collections.unmodifiableCollection(instantiatesUri);
+      return this;
+    }
+    /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
      *     element that contains it and/or the understanding of the containing element's
@@ -276,6 +298,26 @@ public interface ImmunizationRecommendationBuilder extends DomainResourceBuilder
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param instantiatesCanonical - The URL pointing to a FHIR-defined protocol, guideline or
+     *     other definition that is adhered to in whole or in part by this
+     *     ImmunizationRecommendation.
+     */
+    public ImmunizationRecommendationBuilder.Impl withInstantiatesCanonical(
+        @NonNull String... instantiatesCanonical) {
+      this.instantiatesCanonical = Arrays.asList(instantiatesCanonical);
+      return this;
+    }
+    /**
+     * @param instantiatesCanonical - The URL pointing to a FHIR-defined protocol, guideline or
+     *     other definition that is adhered to in whole or in part by this
+     *     ImmunizationRecommendation.
+     */
+    public ImmunizationRecommendationBuilder.Impl withInstantiatesCanonical(
+        @NonNull Collection<String> instantiatesCanonical) {
+      this.instantiatesCanonical = Collections.unmodifiableCollection(instantiatesCanonical);
+      return this;
+    }
 
     public ImmunizationRecommendationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
@@ -295,7 +337,9 @@ public interface ImmunizationRecommendationBuilder extends DomainResourceBuilder
           OptionConverters.toScala(authority),
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
+          instantiatesUri.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
           recommendation.stream().collect(new NonEmptyLitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

@@ -35,7 +35,6 @@ import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.FM_STATUS;
-import com.babylonhealth.lit.hl7.REMITTANCE_OUTCOME;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -61,7 +60,7 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
     private Optional<Narrative> text = Optional.empty();
     private Optional<FM_STATUS> status = Optional.empty();
     private Optional<Reference> request = Optional.empty();
-    private Optional<REMITTANCE_OUTCOME> outcome = Optional.empty();
+    private Optional<String> outcome = Optional.empty();
     private Optional<FHIRDateTime> created = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
@@ -130,7 +129,7 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
       return this;
     }
     /** @param outcome - Processing status: error, complete. */
-    public EnrollmentResponseBuilder.Impl withOutcome(@NonNull REMITTANCE_OUTCOME outcome) {
+    public EnrollmentResponseBuilder.Impl withOutcome(@NonNull String outcome) {
       this.outcome = Optional.of(outcome);
       return this;
     }
@@ -148,8 +147,8 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public EnrollmentResponseBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -157,8 +156,8 @@ public interface EnrollmentResponseBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public EnrollmentResponseBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);

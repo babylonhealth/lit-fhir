@@ -157,6 +157,7 @@ object Flag extends CompanionFor[Flag] {
     "subject"    -> (obj => Seq(obj.subject)),
     "identifier" -> (obj => obj.identifier.toSeq),
     "date"       -> (obj => obj.period.toSeq),
+    "status"     -> (obj => Seq(obj.status)),
     "encounter"  -> (obj => obj.encounter.toSeq),
     "patient"    -> (obj => obj.subject.seqIf(_.reference.exists(_.contains("Patient/"))).toSeq)
   )
@@ -239,7 +240,7 @@ object Flag extends CompanionFor[Flag] {
   *   filtering which flags are displayed to particular user or in a given context.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.

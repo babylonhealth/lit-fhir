@@ -34,7 +34,7 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
-import com.babylonhealth.lit.hl7.CLINICALIMPRESSION_STATUS;
+import com.babylonhealth.lit.hl7.EVENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -46,11 +46,11 @@ import static java.util.stream.Collectors.toList;
 public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
   public ClinicalImpression build();
 
-  public static Impl init(CLINICALIMPRESSION_STATUS status, Reference subject) {
+  public static Impl init(EVENT_STATUS status, Reference subject) {
     return new Impl(status, subject);
   }
 
-  public static Impl builder(CLINICALIMPRESSION_STATUS status, ReferenceBuilder subject) {
+  public static Impl builder(EVENT_STATUS status, ReferenceBuilder subject) {
     return new Impl(status, subject.build());
   }
 
@@ -66,20 +66,19 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
-    private Optional<CodeableConcept> code = Optional.empty();
     private Optional<FHIRDateTime> date = Optional.empty();
     private Collection<Annotation> note = Collections.emptyList();
-    private CLINICALIMPRESSION_STATUS status;
+    private EVENT_STATUS status;
     private Reference subject;
     private Collection<Reference> problem = Collections.emptyList();
     private Optional<String> summary = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
-    private Optional<Reference> assessor = Optional.empty();
     private Optional<Reference> previous = Optional.empty();
     private Collection<String> protocol = Collections.emptyList();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> encounter = Optional.empty();
+    private Optional<Reference> performer = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<CodeableConcept> statusReason = Optional.empty();
@@ -90,7 +89,6 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
     private Collection<Reference> prognosisReference = Collections.emptyList();
     private Collection<CodeableConcept> prognosisCodeableConcept = Collections.emptyList();
     private Collection<ClinicalImpression.Finding> finding = Collections.emptyList();
-    private Collection<ClinicalImpression.Investigation> investigation = Collections.emptyList();
 
     /**
      * Required fields for {@link ClinicalImpression}
@@ -98,7 +96,7 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
      * @param status - Identifies the workflow status of the assessment.
      * @param subject - The patient or group of individuals assessed as part of this record.
      */
-    public Impl(CLINICALIMPRESSION_STATUS status, Reference subject) {
+    public Impl(EVENT_STATUS status, Reference subject) {
       this.status = status;
       this.subject = subject;
     }
@@ -139,16 +137,6 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
 
     public ClinicalImpressionBuilder.Impl withText(@NonNull NarrativeBuilder text) {
       this.text = Optional.of(text.build());
-      return this;
-    }
-    /** @param code - Categorizes the type of clinical assessment performed. */
-    public ClinicalImpressionBuilder.Impl withCode(@NonNull CodeableConcept code) {
-      this.code = Optional.of(code);
-      return this;
-    }
-
-    public ClinicalImpressionBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
-      this.code = Optional.of(code.build());
       return this;
     }
     /** @param date - Indicates when the documentation of the assessment was complete. */
@@ -202,16 +190,6 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       this.language = Optional.of(language);
       return this;
     }
-    /** @param assessor - The clinician performing the assessment. */
-    public ClinicalImpressionBuilder.Impl withAssessor(@NonNull Reference assessor) {
-      this.assessor = Optional.of(assessor);
-      return this;
-    }
-
-    public ClinicalImpressionBuilder.Impl withAssessor(@NonNull ReferenceBuilder assessor) {
-      this.assessor = Optional.of(assessor.build());
-      return this;
-    }
     /**
      * @param previous - A reference to the last assessment that was conducted on this patient.
      *     Assessments are often/usually ongoing in nature; a care provider (practitioner or team)
@@ -245,8 +223,8 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ClinicalImpressionBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -254,8 +232,8 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ClinicalImpressionBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -304,6 +282,16 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
 
     public ClinicalImpressionBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
       this.encounter = Optional.of(encounter.build());
+      return this;
+    }
+    /** @param performer - The clinician performing the assessment. */
+    public ClinicalImpressionBuilder.Impl withPerformer(@NonNull Reference performer) {
+      this.performer = Optional.of(performer);
+      return this;
+    }
+
+    public ClinicalImpressionBuilder.Impl withPerformer(@NonNull ReferenceBuilder performer) {
+      this.performer = Optional.of(performer.build());
       return this;
     }
     /**
@@ -370,12 +358,18 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       this.implicitRules = Optional.of(implicitRules);
       return this;
     }
-    /** @param supportingInfo - Information supporting the clinical impression. */
+    /**
+     * @param supportingInfo - Information supporting the clinical impression, which can contain
+     *     investigation results.
+     */
     public ClinicalImpressionBuilder.Impl withSupportingInfo(@NonNull Reference... supportingInfo) {
       this.supportingInfo = Arrays.asList(supportingInfo);
       return this;
     }
-    /** @param supportingInfo - Information supporting the clinical impression. */
+    /**
+     * @param supportingInfo - Information supporting the clinical impression, which can contain
+     *     investigation results.
+     */
     public ClinicalImpressionBuilder.Impl withSupportingInfo(
         @NonNull Collection<Reference> supportingInfo) {
       this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
@@ -492,34 +486,6 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
       this.finding = Arrays.stream(finding).map(e -> e.build()).collect(toList());
       return this;
     }
-    /**
-     * @param investigation - One or more sets of investigations (signs, symptoms, etc.). The actual
-     *     grouping of investigations varies greatly depending on the type and context of the
-     *     assessment. These investigations may include data generated during the assessment
-     *     process, or data previously generated and recorded that is pertinent to the outcomes.
-     */
-    public ClinicalImpressionBuilder.Impl withInvestigation(
-        @NonNull ClinicalImpression.Investigation... investigation) {
-      this.investigation = Arrays.asList(investigation);
-      return this;
-    }
-    /**
-     * @param investigation - One or more sets of investigations (signs, symptoms, etc.). The actual
-     *     grouping of investigations varies greatly depending on the type and context of the
-     *     assessment. These investigations may include data generated during the assessment
-     *     process, or data previously generated and recorded that is pertinent to the outcomes.
-     */
-    public ClinicalImpressionBuilder.Impl withInvestigation(
-        @NonNull Collection<ClinicalImpression.Investigation> investigation) {
-      this.investigation = Collections.unmodifiableCollection(investigation);
-      return this;
-    }
-
-    public ClinicalImpressionBuilder.Impl withInvestigation(
-        @NonNull ClinicalImpression_InvestigationBuilder... investigation) {
-      this.investigation = Arrays.stream(investigation).map(e -> e.build()).collect(toList());
-      return this;
-    }
 
     public ClinicalImpressionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
@@ -531,7 +497,6 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(id),
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
-          OptionConverters.toScala(code),
           OptionConverters.toScala(date),
           note.stream().collect(new LitSeqJCollector<>()),
           status,
@@ -539,12 +504,12 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
           problem.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(summary),
           OptionConverters.toScala(language),
-          OptionConverters.toScala(assessor),
           OptionConverters.toScala(previous),
           protocol.stream().collect(new LitSeqJCollector<>()),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(encounter),
+          OptionConverters.toScala(performer),
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(description),
           OptionConverters.toScala(statusReason),
@@ -555,7 +520,6 @@ public interface ClinicalImpressionBuilder extends DomainResourceBuilder {
           prognosisReference.stream().collect(new LitSeqJCollector<>()),
           prognosisCodeableConcept.stream().collect(new LitSeqJCollector<>()),
           finding.stream().collect(new LitSeqJCollector<>()),
-          investigation.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }
   }

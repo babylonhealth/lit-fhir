@@ -72,6 +72,7 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
     private Optional<Reference> parent = Optional.empty();
     private OBSERVATION_STATUS status;
     private Optional<CodeableConcept> method = Optional.empty();
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Optional<Reference> basedOn = Optional.empty();
     private Reference subject;
     private Optional<LANGUAGES> language = Optional.empty();
@@ -81,11 +82,9 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
     private Optional<Reference> condition = Optional.empty();
     private Optional<Reference> performer = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<String> mitigation = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Optional<ChoiceDateTimeOrPeriod> occurrence = Optional.empty();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<RiskAssessment.Prediction> prediction = Collections.emptyList();
 
@@ -207,6 +206,21 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       this.method = Optional.of(method.build());
       return this;
     }
+    /** @param reason - The reason the risk assessment was performed. */
+    public RiskAssessmentBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /** @param reason - The reason the risk assessment was performed. */
+    public RiskAssessmentBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public RiskAssessmentBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param basedOn - A reference to the request that is fulfilled by this risk assessment. */
     public RiskAssessmentBuilder.Impl withBasedOn(@NonNull Reference basedOn) {
       this.basedOn = Optional.of(basedOn);
@@ -224,8 +238,8 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public RiskAssessmentBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -233,8 +247,8 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public RiskAssessmentBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -320,23 +334,6 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
       this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param reasonCode - The reason the risk assessment was performed. */
-    public RiskAssessmentBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /** @param reasonCode - The reason the risk assessment was performed. */
-    public RiskAssessmentBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public RiskAssessmentBuilder.Impl withReasonCode(
-        @NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /**
      * @param mitigation - A description of the steps that might be taken to reduce the identified
      *     risk(s).
@@ -362,27 +359,6 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
      */
     public RiskAssessmentBuilder.Impl withOccurrence(@NonNull ChoiceDateTimeOrPeriod occurrence) {
       this.occurrence = Optional.of(occurrence);
-      return this;
-    }
-    /**
-     * @param reasonReference - Resources supporting the reason the risk assessment was performed.
-     */
-    public RiskAssessmentBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /**
-     * @param reasonReference - Resources supporting the reason the risk assessment was performed.
-     */
-    public RiskAssessmentBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public RiskAssessmentBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -463,6 +439,7 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(parent),
           status,
           OptionConverters.toScala(method),
+          reason.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(basedOn),
           subject,
           OptionConverters.toScala(language),
@@ -472,11 +449,9 @@ public interface RiskAssessmentBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(condition),
           OptionConverters.toScala(performer),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(mitigation),
           OptionConverters.toScala(implicitRules),
           (Option) OptionConverters.toScala(occurrence),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           prediction.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());

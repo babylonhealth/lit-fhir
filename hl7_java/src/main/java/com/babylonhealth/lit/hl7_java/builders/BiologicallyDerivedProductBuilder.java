@@ -34,7 +34,6 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
-import com.babylonhealth.lit.hl7.PRODUCT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.PRODUCT_CATEGORY;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -59,7 +58,7 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
-    private Optional<PRODUCT_STATUS> status = Optional.empty();
+    private Optional<String> status = Optional.empty();
     private Collection<Reference> parent = Collections.emptyList();
     private Collection<Reference> request = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
@@ -118,7 +117,7 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
       return this;
     }
     /** @param status - Whether the product is currently available. */
-    public BiologicallyDerivedProductBuilder.Impl withStatus(@NonNull PRODUCT_STATUS status) {
+    public BiologicallyDerivedProductBuilder.Impl withStatus(@NonNull String status) {
       this.status = Optional.of(status);
       return this;
     }
@@ -167,8 +166,8 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public BiologicallyDerivedProductBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -176,8 +175,8 @@ public interface BiologicallyDerivedProductBuilder extends DomainResourceBuilder
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public BiologicallyDerivedProductBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {

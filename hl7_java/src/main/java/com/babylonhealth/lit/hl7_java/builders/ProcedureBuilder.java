@@ -54,24 +54,36 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
     return new Impl(status, subject.build());
   }
 
-  public static Choice01474038381 performed(Age a) {
-    return new Choice01474038381(a);
+  public static ChoiceBooleanOrReference reported(Boolean b) {
+    return new ChoiceBooleanOrReference(b);
   }
 
-  public static Choice01474038381 performed(FHIRDateTime f) {
-    return new Choice01474038381(f);
+  public static ChoiceBooleanOrReference reported(Reference r) {
+    return new ChoiceBooleanOrReference(r);
   }
 
-  public static Choice01474038381 performed(Period p) {
-    return new Choice01474038381(p);
+  public static Choice00955719581 occurrence(Age a) {
+    return new Choice00955719581(a);
   }
 
-  public static Choice01474038381 performed(Range r) {
-    return new Choice01474038381(r);
+  public static Choice00955719581 occurrence(FHIRDateTime f) {
+    return new Choice00955719581(f);
   }
 
-  public static Choice01474038381 performed(String s) {
-    return new Choice01474038381(s);
+  public static Choice00955719581 occurrence(Period p) {
+    return new Choice00955719581(p);
+  }
+
+  public static Choice00955719581 occurrence(Range r) {
+    return new Choice00955719581(r);
+  }
+
+  public static Choice00955719581 occurrence(String s) {
+    return new Choice00955719581(s);
+  }
+
+  public static Choice00955719581 occurrence(Timing t) {
+    return new Choice00955719581(t);
   }
 
   public class Impl implements ProcedureBuilder {
@@ -80,32 +92,32 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
     private Optional<Narrative> text = Optional.empty();
     private Optional<CodeableConcept> code = Optional.empty();
     private Collection<Annotation> note = Collections.emptyList();
+    private Collection<CodeableReference> used = Collections.emptyList();
     private Collection<Reference> partOf = Collections.emptyList();
     private EVENT_STATUS status;
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Collection<Reference> report = Collections.emptyList();
     private Collection<Reference> basedOn = Collections.emptyList();
     private Reference subject;
     private Optional<CodeableConcept> outcome = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
-    private Optional<CodeableConcept> category = Optional.empty();
+    private Collection<CodeableConcept> category = Collections.emptyList();
+    private Optional<FHIRDateTime> recorded = Optional.empty();
     private Optional<Reference> recorder = Optional.empty();
-    private Optional<Reference> asserter = Optional.empty();
     private Optional<Reference> location = Optional.empty();
     private Collection<CodeableConcept> bodySite = Collections.emptyList();
     private Collection<CodeableConcept> followUp = Collections.emptyList();
-    private Collection<CodeableConcept> usedCode = Collections.emptyList();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> encounter = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
+    private Optional<ChoiceBooleanOrReference> reported = Optional.empty();
     private Optional<CodeableConcept> statusReason = Optional.empty();
-    private Optional<Choice01474038381> performed = Optional.empty();
     private Collection<CodeableConcept> complication = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private Collection<Reference> usedReference = Collections.emptyList();
+    private Optional<Choice00955719581> occurrence = Optional.empty();
+    private Collection<Reference> supportingInfo = Collections.emptyList();
     private Collection<String> instantiatesUri = Collections.emptyList();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Reference> complicationDetail = Collections.emptyList();
     private Collection<String> instantiatesCanonical = Collections.emptyList();
@@ -117,7 +129,10 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
      *
      * @param status - A code specifying the state of the procedure. Generally, this will be the
      *     in-progress or completed state.
-     * @param subject - The person, animal or group on which the procedure was performed.
+     * @param subject - On whom or what the procedure was performed. This is usually an individual
+     *     human, but can also be performed on animals, groups of humans or animals, organizations
+     *     or practitioners (for licensing), locations or devices (for safety inspections or
+     *     regulatory authorizations).
      */
     public Impl(EVENT_STATUS status, Reference subject) {
       this.status = status;
@@ -190,6 +205,27 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param used - Identifies medications, devices and any other substance used as part of the
+     *     procedure.
+     */
+    public ProcedureBuilder.Impl withUsed(@NonNull CodeableReference... used) {
+      this.used = Arrays.asList(used);
+      return this;
+    }
+    /**
+     * @param used - Identifies medications, devices and any other substance used as part of the
+     *     procedure.
+     */
+    public ProcedureBuilder.Impl withUsed(@NonNull Collection<CodeableReference> used) {
+      this.used = Collections.unmodifiableCollection(used);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withUsed(@NonNull CodeableReferenceBuilder... used) {
+      this.used = Arrays.stream(used).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param partOf - A larger event of which this particular procedure is a component or step. */
     public ProcedureBuilder.Impl withPartOf(@NonNull Reference... partOf) {
       this.partOf = Arrays.asList(partOf);
@@ -203,6 +239,29 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
 
     public ProcedureBuilder.Impl withPartOf(@NonNull ReferenceBuilder... partOf) {
       this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param reason - The coded reason or reference why the procedure was performed. This may be a
+     *     coded entity of some type, or may simply be present as text, or may be a reference to one
+     *     of several resources that justify the procedure.
+     */
+    public ProcedureBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /**
+     * @param reason - The coded reason or reference why the procedure was performed. This may be a
+     *     coded entity of some type, or may simply be present as text, or may be a reference to one
+     *     of several resources that justify the procedure.
+     */
+    public ProcedureBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public ProcedureBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param report - This could be a histology result, pathology report, surgical report, etc. */
@@ -263,13 +322,29 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
      * @param category - A code that classifies the procedure for searching, sorting and display
      *     purposes (e.g. "Surgical Procedure").
      */
-    public ProcedureBuilder.Impl withCategory(@NonNull CodeableConcept category) {
-      this.category = Optional.of(category);
+    public ProcedureBuilder.Impl withCategory(@NonNull CodeableConcept... category) {
+      this.category = Arrays.asList(category);
+      return this;
+    }
+    /**
+     * @param category - A code that classifies the procedure for searching, sorting and display
+     *     purposes (e.g. "Surgical Procedure").
+     */
+    public ProcedureBuilder.Impl withCategory(@NonNull Collection<CodeableConcept> category) {
+      this.category = Collections.unmodifiableCollection(category);
       return this;
     }
 
-    public ProcedureBuilder.Impl withCategory(@NonNull CodeableConceptBuilder category) {
-      this.category = Optional.of(category.build());
+    public ProcedureBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param recorded - The date the occurrence of the procedure was first captured in the record
+     *     regardless of Procedure.status (potentially after the occurrence of the event).
+     */
+    public ProcedureBuilder.Impl withRecorded(@NonNull FHIRDateTime recorded) {
+      this.recorded = Optional.of(recorded);
       return this;
     }
     /**
@@ -283,16 +358,6 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
 
     public ProcedureBuilder.Impl withRecorder(@NonNull ReferenceBuilder recorder) {
       this.recorder = Optional.of(recorder.build());
-      return this;
-    }
-    /** @param asserter - Individual who is making the procedure statement. */
-    public ProcedureBuilder.Impl withAsserter(@NonNull Reference asserter) {
-      this.asserter = Optional.of(asserter);
-      return this;
-    }
-
-    public ProcedureBuilder.Impl withAsserter(@NonNull ReferenceBuilder asserter) {
-      this.asserter = Optional.of(asserter.build());
       return this;
     }
     /**
@@ -352,25 +417,10 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       this.followUp = Arrays.stream(followUp).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param usedCode - Identifies coded items that were used as part of the procedure. */
-    public ProcedureBuilder.Impl withUsedCode(@NonNull CodeableConcept... usedCode) {
-      this.usedCode = Arrays.asList(usedCode);
-      return this;
-    }
-    /** @param usedCode - Identifies coded items that were used as part of the procedure. */
-    public ProcedureBuilder.Impl withUsedCode(@NonNull Collection<CodeableConcept> usedCode) {
-      this.usedCode = Collections.unmodifiableCollection(usedCode);
-      return this;
-    }
-
-    public ProcedureBuilder.Impl withUsedCode(@NonNull CodeableConceptBuilder... usedCode) {
-      this.usedCode = Arrays.stream(usedCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ProcedureBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -378,8 +428,8 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ProcedureBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -454,24 +504,14 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param reasonCode - The coded reason why the procedure was performed. This may be a coded
-     *     entity of some type, or may simply be present as text.
+     * @param reported - Indicates if this record was captured as a secondary 'reported' record
+     *     rather than as an original primary source-of-truth record. It may also indicate the
+     *     source of the report. Field is a 'choice' field. Type should be one of Boolean,
+     *     Reference. To pass the value in, wrap with one of the ProcedureBuilder.reported static
+     *     methods
      */
-    public ProcedureBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /**
-     * @param reasonCode - The coded reason why the procedure was performed. This may be a coded
-     *     entity of some type, or may simply be present as text.
-     */
-    public ProcedureBuilder.Impl withReasonCode(@NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public ProcedureBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
+    public ProcedureBuilder.Impl withReported(@NonNull ChoiceBooleanOrReference reported) {
+      this.reported = Optional.of(reported);
       return this;
     }
     /** @param statusReason - Captures the reason for the current state of the procedure. */
@@ -482,17 +522,6 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
 
     public ProcedureBuilder.Impl withStatusReason(@NonNull CodeableConceptBuilder statusReason) {
       this.statusReason = Optional.of(statusReason.build());
-      return this;
-    }
-    /**
-     * @param performed - Estimated or actual date, date-time, period, or age when the procedure was
-     *     performed. Allows a period to support complex procedures that span more than one date,
-     *     and also allows for the length of the procedure to be captured. Field is a 'choice'
-     *     field. Type should be one of Age, FHIRDateTime, Period, Range, String. To pass the value
-     *     in, wrap with one of the ProcedureBuilder.performed static methods
-     */
-    public ProcedureBuilder.Impl withPerformed(@NonNull Choice01474038381 performed) {
-      this.performed = Optional.of(performed);
       return this;
     }
     /**
@@ -532,24 +561,39 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param usedReference - Identifies medications, devices and any other substance used as part
-     *     of the procedure.
+     * @param occurrence - Estimated or actual date, date-time, period, or age when the procedure
+     *     did occur or is occurring. Allows a period to support complex procedures that span more
+     *     than one date, and also allows for the length of the procedure to be captured. Field is a
+     *     'choice' field. Type should be one of Age, FHIRDateTime, Period, Range, String, Timing.
+     *     To pass the value in, wrap with one of the ProcedureBuilder.occurrence static methods
      */
-    public ProcedureBuilder.Impl withUsedReference(@NonNull Reference... usedReference) {
-      this.usedReference = Arrays.asList(usedReference);
+    public ProcedureBuilder.Impl withOccurrence(@NonNull Choice00955719581 occurrence) {
+      this.occurrence = Optional.of(occurrence);
       return this;
     }
     /**
-     * @param usedReference - Identifies medications, devices and any other substance used as part
-     *     of the procedure.
+     * @param supportingInfo - Other resources from the patient record that may be relevant to the
+     *     procedure. The information from these resources was either used to create the instance or
+     *     is provided to help with its interpretation. This extension should not be used if more
+     *     specific inline elements or extensions are available.
      */
-    public ProcedureBuilder.Impl withUsedReference(@NonNull Collection<Reference> usedReference) {
-      this.usedReference = Collections.unmodifiableCollection(usedReference);
+    public ProcedureBuilder.Impl withSupportingInfo(@NonNull Reference... supportingInfo) {
+      this.supportingInfo = Arrays.asList(supportingInfo);
+      return this;
+    }
+    /**
+     * @param supportingInfo - Other resources from the patient record that may be relevant to the
+     *     procedure. The information from these resources was either used to create the instance or
+     *     is provided to help with its interpretation. This extension should not be used if more
+     *     specific inline elements or extensions are available.
+     */
+    public ProcedureBuilder.Impl withSupportingInfo(@NonNull Collection<Reference> supportingInfo) {
+      this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
       return this;
     }
 
-    public ProcedureBuilder.Impl withUsedReference(@NonNull ReferenceBuilder... usedReference) {
-      this.usedReference = Arrays.stream(usedReference).map(e -> e.build()).collect(toList());
+    public ProcedureBuilder.Impl withSupportingInfo(@NonNull ReferenceBuilder... supportingInfo) {
+      this.supportingInfo = Arrays.stream(supportingInfo).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -566,22 +610,6 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
      */
     public ProcedureBuilder.Impl withInstantiatesUri(@NonNull Collection<String> instantiatesUri) {
       this.instantiatesUri = Collections.unmodifiableCollection(instantiatesUri);
-      return this;
-    }
-    /** @param reasonReference - The justification of why the procedure was performed. */
-    public ProcedureBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /** @param reasonReference - The justification of why the procedure was performed. */
-    public ProcedureBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public ProcedureBuilder.Impl withReasonReference(@NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -721,32 +749,32 @@ public interface ProcedureBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(text),
           OptionConverters.toScala(code),
           note.stream().collect(new LitSeqJCollector<>()),
+          used.stream().collect(new LitSeqJCollector<>()),
           partOf.stream().collect(new LitSeqJCollector<>()),
           status,
+          reason.stream().collect(new LitSeqJCollector<>()),
           report.stream().collect(new LitSeqJCollector<>()),
           basedOn.stream().collect(new LitSeqJCollector<>()),
           subject,
           OptionConverters.toScala(outcome),
           OptionConverters.toScala(language),
-          OptionConverters.toScala(category),
+          category.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(recorded),
           OptionConverters.toScala(recorder),
-          OptionConverters.toScala(asserter),
           OptionConverters.toScala(location),
           bodySite.stream().collect(new LitSeqJCollector<>()),
           followUp.stream().collect(new LitSeqJCollector<>()),
-          usedCode.stream().collect(new LitSeqJCollector<>()),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(encounter),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
+          (Option) OptionConverters.toScala(reported),
           OptionConverters.toScala(statusReason),
-          (Option) OptionConverters.toScala(performed),
           complication.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
-          usedReference.stream().collect(new LitSeqJCollector<>()),
+          (Option) OptionConverters.toScala(occurrence),
+          supportingInfo.stream().collect(new LitSeqJCollector<>()),
           instantiatesUri.stream().collect(new LitSeqJCollector<>()),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           complicationDetail.stream().collect(new LitSeqJCollector<>()),
           instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),

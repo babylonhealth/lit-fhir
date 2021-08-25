@@ -18,7 +18,7 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
-import com.babylonhealth.lit.hl7.{ NOTE_TYPE, REMITTANCE_OUTCOME, FM_STATUS }
+import com.babylonhealth.lit.hl7.{ NOTE_TYPE, FM_STATUS }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -257,7 +257,7 @@ object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
       period: Option[Period] = None,
       created: FHIRDateTime,
       request: Option[Reference] = None,
-      outcome: Option[REMITTANCE_OUTCOME] = None,
+      outcome: Option[Code] = None,
       language: Option[LANGUAGES] = None,
       formCode: Option[CodeableConcept] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
@@ -314,8 +314,8 @@ object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
     FHIRComponentFieldMeta("created", lTagOf[FHIRDateTime], false, lTagOf[FHIRDateTime])
   val request: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("request", lTagOf[Option[Reference]], false, lTagOf[Reference])
-  val outcome: FHIRComponentFieldMeta[Option[REMITTANCE_OUTCOME]] =
-    FHIRComponentFieldMeta("outcome", lTagOf[Option[REMITTANCE_OUTCOME]], false, lTagOf[REMITTANCE_OUTCOME])
+  val outcome: FHIRComponentFieldMeta[Option[Code]] =
+    FHIRComponentFieldMeta("outcome", lTagOf[Option[Code]], false, lTagOf[Code])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val formCode: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -384,7 +384,7 @@ object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
     FHIRComponentField[Option[Period]](period, t.period),
     FHIRComponentField[FHIRDateTime](created, t.created),
     FHIRComponentField[Option[Reference]](request, t.request),
-    FHIRComponentField[Option[REMITTANCE_OUTCOME]](outcome, t.outcome),
+    FHIRComponentField[Option[Code]](outcome, t.outcome),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[Option[CodeableConcept]](formCode, t.formCode),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -408,7 +408,7 @@ object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
   def extractPeriod(t: PaymentReconciliation): Option[Period]                                 = t.period
   def extractCreated(t: PaymentReconciliation): FHIRDateTime                                  = t.created
   def extractRequest(t: PaymentReconciliation): Option[Reference]                             = t.request
-  def extractOutcome(t: PaymentReconciliation): Option[REMITTANCE_OUTCOME]                    = t.outcome
+  def extractOutcome(t: PaymentReconciliation): Option[Code]                                  = t.outcome
   def extractLanguage(t: PaymentReconciliation): Option[LANGUAGES]                            = t.language
   def extractFormCode(t: PaymentReconciliation): Option[CodeableConcept]                      = t.formCode
   def extractContained(t: PaymentReconciliation): LitSeq[Resource]                            = t.contained
@@ -446,7 +446,7 @@ object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
           cursor.decodeAs[Option[Period]]("period", Some(None)),
           cursor.decodeAs[FHIRDateTime]("created", None),
           cursor.decodeAs[Option[Reference]]("request", Some(None)),
-          cursor.decodeAs[Option[REMITTANCE_OUTCOME]]("outcome", Some(None)),
+          cursor.decodeAs[Option[Code]]("outcome", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("formCode", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
@@ -500,7 +500,7 @@ object PaymentReconciliation extends CompanionFor[PaymentReconciliation] {
   *   - A code for the form to be used for printing the content.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -546,7 +546,7 @@ class PaymentReconciliation(
     val period: Option[Period] = None,
     val created: FHIRDateTime,
     val request: Option[Reference] = None,
-    val outcome: Option[REMITTANCE_OUTCOME] = None,
+    val outcome: Option[Code] = None,
     override val language: Option[LANGUAGES] = None,
     val formCode: Option[CodeableConcept] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,

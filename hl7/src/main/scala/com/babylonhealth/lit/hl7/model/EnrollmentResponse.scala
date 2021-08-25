@@ -18,7 +18,7 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
-import com.babylonhealth.lit.hl7.{ REMITTANCE_OUTCOME, FM_STATUS }
+import com.babylonhealth.lit.hl7.FM_STATUS
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -37,7 +37,7 @@ object EnrollmentResponse extends CompanionFor[EnrollmentResponse] {
       text: Option[Narrative] = None,
       status: Option[FM_STATUS] = None,
       request: Option[Reference] = None,
-      outcome: Option[REMITTANCE_OUTCOME] = None,
+      outcome: Option[Code] = None,
       created: Option[FHIRDateTime] = None,
       language: Option[LANGUAGES] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
@@ -78,8 +78,8 @@ object EnrollmentResponse extends CompanionFor[EnrollmentResponse] {
     FHIRComponentFieldMeta("status", lTagOf[Option[FM_STATUS]], false, lTagOf[FM_STATUS])
   val request: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("request", lTagOf[Option[Reference]], false, lTagOf[Reference])
-  val outcome: FHIRComponentFieldMeta[Option[REMITTANCE_OUTCOME]] =
-    FHIRComponentFieldMeta("outcome", lTagOf[Option[REMITTANCE_OUTCOME]], false, lTagOf[REMITTANCE_OUTCOME])
+  val outcome: FHIRComponentFieldMeta[Option[Code]] =
+    FHIRComponentFieldMeta("outcome", lTagOf[Option[Code]], false, lTagOf[Code])
   val created: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("created", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
@@ -125,7 +125,7 @@ object EnrollmentResponse extends CompanionFor[EnrollmentResponse] {
     FHIRComponentField[Option[Narrative]](text, t.text),
     FHIRComponentField[Option[FM_STATUS]](status, t.status),
     FHIRComponentField[Option[Reference]](request, t.request),
-    FHIRComponentField[Option[REMITTANCE_OUTCOME]](outcome, t.outcome),
+    FHIRComponentField[Option[Code]](outcome, t.outcome),
     FHIRComponentField[Option[FHIRDateTime]](created, t.created),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -142,7 +142,7 @@ object EnrollmentResponse extends CompanionFor[EnrollmentResponse] {
   def extractText(t: EnrollmentResponse): Option[Narrative]              = t.text
   def extractStatus(t: EnrollmentResponse): Option[FM_STATUS]            = t.status
   def extractRequest(t: EnrollmentResponse): Option[Reference]           = t.request
-  def extractOutcome(t: EnrollmentResponse): Option[REMITTANCE_OUTCOME]  = t.outcome
+  def extractOutcome(t: EnrollmentResponse): Option[Code]                = t.outcome
   def extractCreated(t: EnrollmentResponse): Option[FHIRDateTime]        = t.created
   def extractLanguage(t: EnrollmentResponse): Option[LANGUAGES]          = t.language
   def extractContained(t: EnrollmentResponse): LitSeq[Resource]          = t.contained
@@ -160,7 +160,7 @@ object EnrollmentResponse extends CompanionFor[EnrollmentResponse] {
     "status"     -> (obj => obj.status.toSeq)
   )
   def unapply(
-      o: EnrollmentResponse): Option[(Option[String], Option[Meta], Option[Narrative], Option[FM_STATUS], Option[Reference], Option[REMITTANCE_OUTCOME], Option[FHIRDateTime], Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], LitSeq[Identifier], Option[String], Option[Reference], Option[UriStr], Option[Reference], LitSeq[Extension])] =
+      o: EnrollmentResponse): Option[(Option[String], Option[Meta], Option[Narrative], Option[FM_STATUS], Option[Reference], Option[Code], Option[FHIRDateTime], Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], LitSeq[Identifier], Option[String], Option[Reference], Option[UriStr], Option[Reference], LitSeq[Extension])] =
     Some(
       (
         o.id,
@@ -188,7 +188,7 @@ object EnrollmentResponse extends CompanionFor[EnrollmentResponse] {
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
           cursor.decodeAs[Option[FM_STATUS]]("status", Some(None)),
           cursor.decodeAs[Option[Reference]]("request", Some(None)),
-          cursor.decodeAs[Option[REMITTANCE_OUTCOME]]("outcome", Some(None)),
+          cursor.decodeAs[Option[Code]]("outcome", Some(None)),
           cursor.decodeAs[Option[FHIRDateTime]]("created", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
@@ -232,7 +232,7 @@ object EnrollmentResponse extends CompanionFor[EnrollmentResponse] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -266,7 +266,7 @@ class EnrollmentResponse(
     override val text: Option[Narrative] = None,
     val status: Option[FM_STATUS] = None,
     val request: Option[Reference] = None,
-    val outcome: Option[REMITTANCE_OUTCOME] = None,
+    val outcome: Option[Code] = None,
     val created: Option[FHIRDateTime] = None,
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,

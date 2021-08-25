@@ -144,16 +144,10 @@ sealed class LitSeq[+T] private[core] (protected val _contents: Array[Object])
     iterableFactory.from(new View.Appended(this, elem)).asInstanceOf[NonEmptyLitSeq[T]]
   def ++[T1 >: T](suffix: NonEmptyLitSeq[T1]): NonEmptyLitSeq[T1] =
     iterableFactory
-      .from(suffix match {
-        case xs: Iterable[T] => new View.Concat(this, xs)
-        case xs              => iterator ++ xs.iterator
-      })
+      .from(iterator ++ suffix.iterator)
       .asInstanceOf[NonEmptyLitSeq[T]]
   def ++[T1 >: T](suffix: Iterable[T1]): LitSeq[T1] =
-    iterableFactory.from(suffix match {
-      case xs: Iterable[T] => new View.Concat(this, xs)
-      case xs              => iterator ++ xs.iterator
-    })
+    iterableFactory.from(new View.Concat(this, suffix))
   def distinctBy[B](f: T => B): LitSeq[T] = fromSpecific(new View.DistinctBy(this, f))
   def distinct: LitSeq[T]                 = distinctBy(identity)
   def reverse: LitSeq[T]                  = fromSpecific(reversed)

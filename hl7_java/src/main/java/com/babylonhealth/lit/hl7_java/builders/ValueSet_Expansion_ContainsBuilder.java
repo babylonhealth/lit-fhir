@@ -66,6 +66,7 @@ public interface ValueSet_Expansion_ContainsBuilder {
     private Collection<ValueSet$Compose$Include$Concept$Designation> designation =
         Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Collection<ValueSet$Expansion$Contains$Property> property = Collections.emptyList();
 
     /** Required fields for {@link ValueSet$Expansion$Contains} */
     public Impl() {}
@@ -222,6 +223,24 @@ public interface ValueSet_Expansion_ContainsBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param property */
+    public ValueSet_Expansion_ContainsBuilder.Impl withProperty(
+        @NonNull ValueSet$Expansion$Contains$Property... property) {
+      this.property = Arrays.asList(property);
+      return this;
+    }
+    /** @param property */
+    public ValueSet_Expansion_ContainsBuilder.Impl withProperty(
+        @NonNull Collection<ValueSet$Expansion$Contains$Property> property) {
+      this.property = Collections.unmodifiableCollection(property);
+      return this;
+    }
+
+    public ValueSet_Expansion_ContainsBuilder.Impl withProperty(
+        @NonNull ValueSet_Expansion_Contains_PropertyBuilder... property) {
+      this.property = Arrays.stream(property).map(e -> e.build()).collect(toList());
+      return this;
+    }
 
     public ValueSet$Expansion$Contains build() {
       return new ValueSet$Expansion$Contains(
@@ -236,6 +255,7 @@ public interface ValueSet_Expansion_ContainsBuilder {
           extension.stream().collect(new LitSeqJCollector<>()),
           designation.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          property.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }
   }

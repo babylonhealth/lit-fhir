@@ -138,11 +138,11 @@ public interface ExtensionBuilder extends DataTypeBuilder {
     return new ChoiceAll(i);
   }
 
-  public static ChoiceAll value(Integer64 i) {
-    return new ChoiceAll(i);
+  public static ChoiceAll value(LocalTime l) {
+    return new ChoiceAll(l);
   }
 
-  public static ChoiceAll value(LocalTime l) {
+  public static ChoiceAll value(Long l) {
     return new ChoiceAll(l);
   }
 
@@ -283,7 +283,7 @@ public interface ExtensionBuilder extends DataTypeBuilder {
      *     be one of Address, Age, Annotation, Attachment, byte[], BigDecimal, Boolean, String,
      *     CodeableConcept, Coding, ContactDetail, ContactPoint, Contributor, Count,
      *     DataRequirement, Distance, Dosage, Duration, Expression, FHIRDate, FHIRDateTime,
-     *     HumanName, Identifier, Integer, Integer64, LocalTime, Meta, Money, ParameterDefinition,
+     *     HumanName, Identifier, Integer, LocalTime, Long, Meta, Money, ParameterDefinition,
      *     Period, Quantity, Range, Ratio, Reference, RelatedArtifact, SampledData, Signature,
      *     Timing, TriggerDefinition, UUID, UsageContext, ZonedDateTime. To pass the value in, wrap
      *     with one of the ExtensionBuilder.value static methods

@@ -58,11 +58,13 @@ public interface SpecimenDefinition_TypeTestedBuilder {
     private Optional<CodeableConcept> _type = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Boolean> isDerived = Optional.empty();
+    private Optional<Boolean> singleUse = Optional.empty();
     private SPECIMEN_CONTAINED_PREFERENCE preference;
     private Optional<String> requirement = Optional.empty();
     private Optional<Duration> retentionTime = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<CodeableConcept> rejectionCriterion = Collections.emptyList();
+    private Collection<CodeableConcept> testingDestination = Collections.emptyList();
     private Collection<SpecimenDefinition$TypeTested$Handling> handling = Collections.emptyList();
     private Optional<SpecimenDefinition$TypeTested$Container> container = Optional.empty();
 
@@ -127,6 +129,11 @@ public interface SpecimenDefinition_TypeTestedBuilder {
     /** @param isDerived */
     public SpecimenDefinition_TypeTestedBuilder.Impl withIsDerived(@NonNull Boolean isDerived) {
       this.isDerived = Optional.of(isDerived);
+      return this;
+    }
+    /** @param singleUse */
+    public SpecimenDefinition_TypeTestedBuilder.Impl withSingleUse(@NonNull Boolean singleUse) {
+      this.singleUse = Optional.of(singleUse);
       return this;
     }
     /** @param requirement */
@@ -208,6 +215,25 @@ public interface SpecimenDefinition_TypeTestedBuilder {
           Arrays.stream(rejectionCriterion).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param testingDestination */
+    public SpecimenDefinition_TypeTestedBuilder.Impl withTestingDestination(
+        @NonNull CodeableConcept... testingDestination) {
+      this.testingDestination = Arrays.asList(testingDestination);
+      return this;
+    }
+    /** @param testingDestination */
+    public SpecimenDefinition_TypeTestedBuilder.Impl withTestingDestination(
+        @NonNull Collection<CodeableConcept> testingDestination) {
+      this.testingDestination = Collections.unmodifiableCollection(testingDestination);
+      return this;
+    }
+
+    public SpecimenDefinition_TypeTestedBuilder.Impl withTestingDestination(
+        @NonNull CodeableConceptBuilder... testingDestination) {
+      this.testingDestination =
+          Arrays.stream(testingDestination).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param handling */
     public SpecimenDefinition_TypeTestedBuilder.Impl withHandling(
         @NonNull SpecimenDefinition$TypeTested$Handling... handling) {
@@ -245,11 +271,13 @@ public interface SpecimenDefinition_TypeTestedBuilder {
           OptionConverters.toScala(_type),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(isDerived.map(x -> (Object) x)),
+          OptionConverters.toScala(singleUse.map(x -> (Object) x)),
           preference,
           OptionConverters.toScala(requirement),
           OptionConverters.toScala(retentionTime),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           rejectionCriterion.stream().collect(new LitSeqJCollector<>()),
+          testingDestination.stream().collect(new LitSeqJCollector<>()),
           handling.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(container),
           LitUtils.emptyMetaElMap());

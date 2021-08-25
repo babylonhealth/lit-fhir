@@ -34,7 +34,7 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
-
+import com.babylonhealth.lit.core.ALL_TYPES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
 
@@ -56,9 +56,14 @@ public interface Measure_GroupBuilder {
   public class Impl implements Measure_GroupBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> code = Optional.empty();
+    private Collection<CodeableConcept> _type = Collections.emptyList();
+    private Optional<ALL_TYPES> basis = Optional.empty();
+    private Optional<CodeableConcept> scoring = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> description = Optional.empty();
+    private Optional<CodeableConcept> scoringUnit = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Optional<CodeableConcept> improvementNotation = Optional.empty();
     private Collection<Measure$Group$Population> population = Collections.emptyList();
     private Collection<Measure$Group$Stratifier> stratifier = Collections.emptyList();
 
@@ -81,6 +86,54 @@ public interface Measure_GroupBuilder {
 
     public Measure_GroupBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
       this.code = Optional.of(code.build());
+      return this;
+    }
+    /**
+     * @param _type - Indicates whether the measure is used to examine a process, an outcome over
+     *     time, a patient-reported outcome, or a structure measure such as utilization.
+     */
+    public Measure_GroupBuilder.Impl withType(@NonNull CodeableConcept... _type) {
+      this._type = Arrays.asList(_type);
+      return this;
+    }
+    /**
+     * @param _type - Indicates whether the measure is used to examine a process, an outcome over
+     *     time, a patient-reported outcome, or a structure measure such as utilization.
+     */
+    public Measure_GroupBuilder.Impl withType(@NonNull Collection<CodeableConcept> _type) {
+      this._type = Collections.unmodifiableCollection(_type);
+      return this;
+    }
+
+    public Measure_GroupBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param basis - The population basis specifies the type of elements in the population. For a
+     *     subject-based measure, this is boolean (because the subject and the population basis are
+     *     the same, and the population criteria define yes/no values for each individual in the
+     *     population). For measures that have a population basis that is different than the
+     *     subject, this element specifies the type of the population basis. For example, an
+     *     encounter-based measure has a subject of Patient and a population basis of Encounter, and
+     *     the population criteria all return lists of Encounters.
+     */
+    public Measure_GroupBuilder.Impl withBasis(@NonNull ALL_TYPES basis) {
+      this.basis = Optional.of(basis);
+      return this;
+    }
+    /**
+     * @param scoring - Indicates how the calculation is performed for the measure, including
+     *     proportion, ratio, continuous-variable, and cohort. The value set is extensible, allowing
+     *     additional measure scoring types to be represented.
+     */
+    public Measure_GroupBuilder.Impl withScoring(@NonNull CodeableConcept scoring) {
+      this.scoring = Optional.of(scoring);
+      return this;
+    }
+
+    public Measure_GroupBuilder.Impl withScoring(@NonNull CodeableConceptBuilder scoring) {
+      this.scoring = Optional.of(scoring.build());
       return this;
     }
     /**
@@ -116,6 +169,19 @@ public interface Measure_GroupBuilder {
      */
     public Measure_GroupBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);
+      return this;
+    }
+    /**
+     * @param scoringUnit - Defines the expected units of measure for the measure score. This
+     *     element SHOULD be specified as a UCUM unit.
+     */
+    public Measure_GroupBuilder.Impl withScoringUnit(@NonNull CodeableConcept scoringUnit) {
+      this.scoringUnit = Optional.of(scoringUnit);
+      return this;
+    }
+
+    public Measure_GroupBuilder.Impl withScoringUnit(@NonNull CodeableConceptBuilder scoringUnit) {
+      this.scoringUnit = Optional.of(scoringUnit.build());
       return this;
     }
     /**
@@ -161,6 +227,22 @@ public interface Measure_GroupBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param improvementNotation - Information on whether an increase or decrease in score is the
+     *     preferred result (e.g., a higher score indicates better quality OR a lower score
+     *     indicates better quality OR quality is within a range).
+     */
+    public Measure_GroupBuilder.Impl withImprovementNotation(
+        @NonNull CodeableConcept improvementNotation) {
+      this.improvementNotation = Optional.of(improvementNotation);
+      return this;
+    }
+
+    public Measure_GroupBuilder.Impl withImprovementNotation(
+        @NonNull CodeableConceptBuilder improvementNotation) {
+      this.improvementNotation = Optional.of(improvementNotation.build());
+      return this;
+    }
     /** @param population */
     public Measure_GroupBuilder.Impl withPopulation(
         @NonNull Measure$Group$Population... population) {
@@ -202,9 +284,14 @@ public interface Measure_GroupBuilder {
       return new Measure.Group(
           OptionConverters.toScala(id),
           OptionConverters.toScala(code),
+          _type.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(basis),
+          OptionConverters.toScala(scoring),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(description),
+          OptionConverters.toScala(scoringUnit),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(improvementNotation),
           population.stream().collect(new LitSeqJCollector<>()),
           stratifier.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());

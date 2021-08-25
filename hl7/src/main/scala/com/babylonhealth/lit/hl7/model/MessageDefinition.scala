@@ -370,7 +370,7 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
     FHIRComponentField[Option[String]](name, t.name),
-    FHIRComponentField[FHIRDateTime](date, t.date),
+    FHIRComponentField[FHIRDateTime](date, t.date.get),
     FHIRComponentField[Option[Canonical]](base, t.base),
     FHIRComponentField[Option[String]](title, t.title),
     FHIRComponentField[LitSeq[Canonical]](graph, t.graph),
@@ -403,7 +403,7 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
   def extractMeta(t: MessageDefinition): Option[Meta]                                         = t.meta
   def extractText(t: MessageDefinition): Option[Narrative]                                    = t.text
   def extractName(t: MessageDefinition): Option[String]                                       = t.name
-  def extractDate(t: MessageDefinition): FHIRDateTime                                         = t.date
+  def extractDate(t: MessageDefinition): FHIRDateTime                                         = t.date.get
   def extractBase(t: MessageDefinition): Option[Canonical]                                    = t.base
   def extractTitle(t: MessageDefinition): Option[String]                                      = t.title
   def extractGraph(t: MessageDefinition): LitSeq[Canonical]                                   = t.graph
@@ -498,12 +498,11 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
 /** Defines the characteristics of a message that can be shared between systems, including the type of event that initiates the
   * message, the content to be transmitted and what response(s), if any, are permitted.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.CanonicalResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, base, title, graph, status, parent, version, contact, purpose, replaces, event,
-  *   category, publisher, copyright, identifier, useContext, description, experimental, jurisdiction, responseRequired, focus,
-  *   allowedResponse.
+  *   Introduces the fields base, graph, parent, replaces, event, category, responseRequired, focus, allowedResponse. Requires the
+  *   following fields which were optional in the parent: date.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -555,7 +554,7 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
   *   - The impact of the content of the message.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -603,45 +602,60 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
 @POJOBoilerplate
 class MessageDefinition(
     override val id: Option[String] = None,
-    val url: Option[UriStr] = None,
+    override val url: Option[UriStr] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: Option[String] = None,
-    val date: FHIRDateTime,
+    override val name: Option[String] = None,
+    date: FHIRDateTime,
     val base: Option[Canonical] = None,
-    val title: Option[String] = None,
+    override val title: Option[String] = None,
     val graph: LitSeq[Canonical] = LitSeq.empty,
-    val status: PUBLICATION_STATUS,
+    override val status: PUBLICATION_STATUS,
     val parent: LitSeq[Canonical] = LitSeq.empty,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     override val language: Option[LANGUAGES] = None,
     val replaces: LitSeq[Canonical] = LitSeq.empty,
     val event: MessageDefinition.EventChoice,
     val category: Option[MESSAGE_SIGNIFICANCE_CATEGORY] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val copyright: Option[Markdown] = None,
-    val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
-    val description: Option[Markdown] = None,
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val publisher: Option[String] = None,
+    override val copyright: Option[Markdown] = None,
+    override val identifier: LitSeq[Identifier] = LitSeq.empty,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val description: Option[Markdown] = None,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     val responseRequired: Option[MESSAGEHEADER_RESPONSE_REQUEST] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val focus: LitSeq[MessageDefinition.Focus] = LitSeq.empty,
     val allowedResponse: LitSeq[MessageDefinition.AllowedResponse] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends CanonicalResource(
       id = id,
+      url = url,
       meta = meta,
       text = text,
+      name = name,
+      date = Some(date),
+      title = title,
+      status = status,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
       contained = contained,
       extension = extension,
+      publisher = publisher,
+      copyright = copyright,
+      identifier = identifier,
+      useContext = useContext,
+      description = description,
+      experimental = experimental,
+      jurisdiction = jurisdiction,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {

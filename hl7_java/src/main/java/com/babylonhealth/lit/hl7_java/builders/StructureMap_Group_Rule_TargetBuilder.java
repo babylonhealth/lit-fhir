@@ -36,7 +36,6 @@ import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MAP_TARGET_LIST_MODE;
 import com.babylonhealth.lit.hl7.MAP_TRANSFORM;
-import com.babylonhealth.lit.hl7.MAP_CONTEXT_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
 
@@ -64,7 +63,6 @@ public interface StructureMap_Group_Rule_TargetBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<MAP_TRANSFORM> transform = Optional.empty();
     private Optional<String> listRuleId = Optional.empty();
-    private Optional<MAP_CONTEXT_TYPE> contextType = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<StructureMap$Group$Rule$Target$Parameter> parameter =
         Collections.emptyList();
@@ -148,12 +146,6 @@ public interface StructureMap_Group_Rule_TargetBuilder {
       this.listRuleId = Optional.of(listRuleId);
       return this;
     }
-    /** @param contextType */
-    public StructureMap_Group_Rule_TargetBuilder.Impl withContextType(
-        @NonNull MAP_CONTEXT_TYPE contextType) {
-      this.contextType = Optional.of(contextType);
-      return this;
-    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -226,7 +218,6 @@ public interface StructureMap_Group_Rule_TargetBuilder {
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(transform),
           OptionConverters.toScala(listRuleId),
-          OptionConverters.toScala(contextType),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           parameter.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());

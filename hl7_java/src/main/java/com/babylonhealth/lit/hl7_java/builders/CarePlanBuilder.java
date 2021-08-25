@@ -78,7 +78,7 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> encounter = Optional.empty();
-    private Collection<Reference> addresses = Collections.emptyList();
+    private Collection<CodeableReference> addresses = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Collection<Reference> contributor = Collections.emptyList();
@@ -315,8 +315,8 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CarePlanBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -324,8 +324,8 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CarePlanBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -380,7 +380,7 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
      * @param addresses - Identifies the conditions/problems/concerns/diagnoses/etc. whose
      *     management and/or mitigation are handled by this plan.
      */
-    public CarePlanBuilder.Impl withAddresses(@NonNull Reference... addresses) {
+    public CarePlanBuilder.Impl withAddresses(@NonNull CodeableReference... addresses) {
       this.addresses = Arrays.asList(addresses);
       return this;
     }
@@ -388,12 +388,12 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
      * @param addresses - Identifies the conditions/problems/concerns/diagnoses/etc. whose
      *     management and/or mitigation are handled by this plan.
      */
-    public CarePlanBuilder.Impl withAddresses(@NonNull Collection<Reference> addresses) {
+    public CarePlanBuilder.Impl withAddresses(@NonNull Collection<CodeableReference> addresses) {
       this.addresses = Collections.unmodifiableCollection(addresses);
       return this;
     }
 
-    public CarePlanBuilder.Impl withAddresses(@NonNull ReferenceBuilder... addresses) {
+    public CarePlanBuilder.Impl withAddresses(@NonNull CodeableReferenceBuilder... addresses) {
       this.addresses = Arrays.stream(addresses).map(e -> e.build()).collect(toList());
       return this;
     }
@@ -560,16 +560,18 @@ public interface CarePlanBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param activity - Identifies a planned action to occur as part of the plan. For example, a
-     *     medication to be used, lab tests to perform, self-monitoring, education, etc.
+     * @param activity - Identifies an action that has occurred or is a planned action to occur as
+     *     part of the plan. For example, a medication to be used, lab tests to perform,
+     *     self-monitoring that has occurred, education etc.
      */
     public CarePlanBuilder.Impl withActivity(@NonNull CarePlan.Activity... activity) {
       this.activity = Arrays.asList(activity);
       return this;
     }
     /**
-     * @param activity - Identifies a planned action to occur as part of the plan. For example, a
-     *     medication to be used, lab tests to perform, self-monitoring, education, etc.
+     * @param activity - Identifies an action that has occurred or is a planned action to occur as
+     *     part of the plan. For example, a medication to be used, lab tests to perform,
+     *     self-monitoring that has occurred, education etc.
      */
     public CarePlanBuilder.Impl withActivity(@NonNull Collection<CarePlan.Activity> activity) {
       this.activity = Collections.unmodifiableCollection(activity);

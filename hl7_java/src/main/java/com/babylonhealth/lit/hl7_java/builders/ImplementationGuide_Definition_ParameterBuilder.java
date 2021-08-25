@@ -34,7 +34,7 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
-import com.babylonhealth.lit.hl7.GUIDE_PARAMETER_CODE;
+
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
 
@@ -45,17 +45,17 @@ import static java.util.stream.Collectors.toList;
 public interface ImplementationGuide_Definition_ParameterBuilder {
   public ImplementationGuide$Definition$Parameter build();
 
-  public static Impl init(GUIDE_PARAMETER_CODE code, String value) {
+  public static Impl init(String code, String value) {
     return new Impl(code, value);
   }
 
-  public static Impl builder(GUIDE_PARAMETER_CODE code, String value) {
+  public static Impl builder(String code, String value) {
     return new Impl(code, value);
   }
 
   public class Impl implements ImplementationGuide_Definition_ParameterBuilder {
     private Optional<String> id = Optional.empty();
-    private GUIDE_PARAMETER_CODE code;
+    private String code;
     private String value;
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -66,7 +66,7 @@ public interface ImplementationGuide_Definition_ParameterBuilder {
      * @param code
      * @param value
      */
-    public Impl(GUIDE_PARAMETER_CODE code, String value) {
+    public Impl(String code, String value) {
       this.code = code;
       this.value = value;
     }

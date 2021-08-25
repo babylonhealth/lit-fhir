@@ -45,6 +45,7 @@ object NamingSystem extends CompanionFor[NamingSystem] {
         comment: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
         preferred: Option[Boolean] = None,
+        authoritative: Option[Boolean] = None,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
     ): UniqueId = new UniqueId(
@@ -55,12 +56,13 @@ object NamingSystem extends CompanionFor[NamingSystem] {
       comment,
       extension,
       preferred,
+      authoritative,
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: UniqueId): Option[(Option[String], NAMINGSYSTEM_IDENTIFIER_TYPE, String, Option[Period], Option[String], LitSeq[Extension], Option[Boolean], LitSeq[Extension])] =
-      Some((o.id, o.`type`, o.value, o.period, o.comment, o.extension, o.preferred, o.modifierExtension))
+        o: UniqueId): Option[(Option[String], NAMINGSYSTEM_IDENTIFIER_TYPE, String, Option[Period], Option[String], LitSeq[Extension], Option[Boolean], Option[Boolean], LitSeq[Extension])] =
+      Some((o.id, o.`type`, o.value, o.period, o.comment, o.extension, o.preferred, o.authoritative, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val `type`: FHIRComponentFieldMeta[NAMINGSYSTEM_IDENTIFIER_TYPE] =
@@ -75,10 +77,12 @@ object NamingSystem extends CompanionFor[NamingSystem] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val preferred: FHIRComponentFieldMeta[Option[Boolean]] =
       FHIRComponentFieldMeta("preferred", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
+    val authoritative: FHIRComponentFieldMeta[Option[Boolean]] =
+      FHIRComponentFieldMeta("authoritative", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, `type`, value, period, comment, extension, preferred, modifierExtension)
+      Seq(id, `type`, value, period, comment, extension, preferred, authoritative, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: UniqueId): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -88,6 +92,7 @@ object NamingSystem extends CompanionFor[NamingSystem] {
       FHIRComponentField[Option[String]](comment, t.comment),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
       FHIRComponentField[Option[Boolean]](preferred, t.preferred),
+      FHIRComponentField[Option[Boolean]](authoritative, t.authoritative),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
     )
     val baseType: CompanionFor[UniqueId] = this
@@ -103,6 +108,7 @@ object NamingSystem extends CompanionFor[NamingSystem] {
             cursor.decodeAs[Option[String]]("comment", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[Boolean]]("preferred", Some(None)),
+            cursor.decodeAs[Option[Boolean]]("authoritative", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -117,19 +123,23 @@ object NamingSystem extends CompanionFor[NamingSystem] {
       val comment: Option[String] = None,
       override val extension: LitSeq[Extension] = LitSeq.empty,
       val preferred: Option[Boolean] = None,
+      val authoritative: Option[Boolean] = None,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   def apply(
       id: Option[String] = None,
+      url: Option[UriStr] = None,
       meta: Option[Meta] = None,
       text: Option[Narrative] = None,
       name: String,
       kind: NAMINGSYSTEM_TYPE,
       date: FHIRDateTime,
       `type`: Option[CodeableConcept] = None,
+      title: Option[String] = None,
       usage: Option[String] = None,
       status: PUBLICATION_STATUS,
+      version: Option[String] = None,
       contact: LitSeq[ContactDetail] = LitSeq.empty,
       language: Option[LANGUAGES] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
@@ -145,14 +155,17 @@ object NamingSystem extends CompanionFor[NamingSystem] {
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): NamingSystem = new NamingSystem(
     id,
+    url,
     meta,
     text,
     name,
     kind,
     date,
     `type`,
+    title,
     usage,
     status,
+    version,
     contact,
     language,
     contained,
@@ -169,6 +182,8 @@ object NamingSystem extends CompanionFor[NamingSystem] {
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
+  val url: FHIRComponentFieldMeta[Option[UriStr]] =
+    FHIRComponentFieldMeta("url", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val meta: FHIRComponentFieldMeta[Option[Meta]] =
     FHIRComponentFieldMeta("meta", lTagOf[Option[Meta]], false, lTagOf[Meta])
   val text: FHIRComponentFieldMeta[Option[Narrative]] =
@@ -181,10 +196,14 @@ object NamingSystem extends CompanionFor[NamingSystem] {
     FHIRComponentFieldMeta("date", lTagOf[FHIRDateTime], false, lTagOf[FHIRDateTime])
   val `type`: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("type", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val title: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("title", lTagOf[Option[String]], false, lTagOf[String])
   val usage: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("usage", lTagOf[Option[String]], false, lTagOf[String])
   val status: FHIRComponentFieldMeta[PUBLICATION_STATUS] =
     FHIRComponentFieldMeta("status", lTagOf[PUBLICATION_STATUS], false, lTagOf[PUBLICATION_STATUS])
+  val version: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("version", lTagOf[Option[String]], false, lTagOf[String])
   val contact: FHIRComponentFieldMeta[LitSeq[ContactDetail]] =
     FHIRComponentFieldMeta("contact", lTagOf[LitSeq[ContactDetail]], false, lTagOf[ContactDetail])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
@@ -211,14 +230,17 @@ object NamingSystem extends CompanionFor[NamingSystem] {
     FHIRComponentFieldMeta("uniqueId", lTagOf[NonEmptyLitSeq[NamingSystem.UniqueId]], false, lTagOf[NamingSystem.UniqueId])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
     id,
+    url,
     meta,
     text,
     name,
     kind,
     date,
     `type`,
+    title,
     usage,
     status,
+    version,
     contact,
     language,
     contained,
@@ -235,14 +257,17 @@ object NamingSystem extends CompanionFor[NamingSystem] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: NamingSystem): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
+    FHIRComponentField[Option[UriStr]](url, t.url),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name),
+    FHIRComponentField[String](name, t.name.get),
     FHIRComponentField[NAMINGSYSTEM_TYPE](kind, t.kind),
-    FHIRComponentField[FHIRDateTime](date, t.date),
+    FHIRComponentField[FHIRDateTime](date, t.date.get),
     FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
+    FHIRComponentField[Option[String]](title, t.title),
     FHIRComponentField[Option[String]](usage, t.usage),
     FHIRComponentField[PUBLICATION_STATUS](status, t.status),
+    FHIRComponentField[Option[String]](version, t.version),
     FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -257,14 +282,17 @@ object NamingSystem extends CompanionFor[NamingSystem] {
     FHIRComponentField[NonEmptyLitSeq[NamingSystem.UniqueId]](uniqueId, t.uniqueId)
   )
   def extractId(t: NamingSystem): Option[String]                              = t.id
+  def extractUrl(t: NamingSystem): Option[UriStr]                             = t.url
   def extractMeta(t: NamingSystem): Option[Meta]                              = t.meta
   def extractText(t: NamingSystem): Option[Narrative]                         = t.text
-  def extractName(t: NamingSystem): String                                    = t.name
+  def extractName(t: NamingSystem): String                                    = t.name.get
   def extractKind(t: NamingSystem): NAMINGSYSTEM_TYPE                         = t.kind
-  def extractDate(t: NamingSystem): FHIRDateTime                              = t.date
+  def extractDate(t: NamingSystem): FHIRDateTime                              = t.date.get
   def extractType(t: NamingSystem): Option[CodeableConcept]                   = t.`type`
+  def extractTitle(t: NamingSystem): Option[String]                           = t.title
   def extractUsage(t: NamingSystem): Option[String]                           = t.usage
   def extractStatus(t: NamingSystem): PUBLICATION_STATUS                      = t.status
+  def extractVersion(t: NamingSystem): Option[String]                         = t.version
   def extractContact(t: NamingSystem): LitSeq[ContactDetail]                  = t.contact
   def extractLanguage(t: NamingSystem): Option[LANGUAGES]                     = t.language
   def extractContained(t: NamingSystem): LitSeq[Resource]                     = t.contained
@@ -283,14 +311,16 @@ object NamingSystem extends CompanionFor[NamingSystem] {
     "id-type"               -> (obj => obj.uniqueId.map(_.`type`).toSeq),
     "name"                  -> (obj => Seq(obj.name)),
     "context-type-quantity" -> (obj => obj.useContext.toSeq),
+    "url"                   -> (obj => obj.url.toSeq),
     "description"           -> (obj => obj.description.toSeq),
     "contact"               -> (obj => obj.contact.flatMap(_.name).toSeq),
-    "context-type-value"    -> (obj => obj.useContext.toSeq),
     "date"                  -> (obj => Seq(obj.date)),
     "telecom"               -> (obj => obj.contact.flatMap(_.telecom).toSeq),
     "value"                 -> (obj => obj.uniqueId.map(_.value).toSeq),
     "context"               -> (obj => obj.useContext.map(_.value).flatMap(_.as[CodeableConcept]).toSeq),
     "responsible"           -> (obj => obj.responsible.toSeq),
+    "context-type-value"    -> (obj => obj.useContext.toSeq),
+    "version"               -> (obj => obj.version.toSeq),
     "status"                -> (obj => Seq(obj.status)),
     "publisher"             -> (obj => obj.publisher.toSeq),
     "kind"                  -> (obj => Seq(obj.kind)),
@@ -301,44 +331,22 @@ object NamingSystem extends CompanionFor[NamingSystem] {
     "context-type" -> (obj => obj.useContext.map(_.code).toSeq),
     "period"       -> (obj => obj.uniqueId.flatMap(_.period).toSeq)
   )
-  def unapply(
-      o: NamingSystem): Option[(Option[String], Option[Meta], Option[Narrative], String, NAMINGSYSTEM_TYPE, FHIRDateTime, Option[CodeableConcept], Option[String], PUBLICATION_STATUS, LitSeq[ContactDetail], Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], Option[String], LitSeq[UsageContext], Option[String], Option[Markdown], LitSeq[CodeableConcept], Option[UriStr], LitSeq[Extension], NonEmptyLitSeq[NamingSystem.UniqueId])] =
-    Some(
-      (
-        o.id,
-        o.meta,
-        o.text,
-        o.name,
-        o.kind,
-        o.date,
-        o.`type`,
-        o.usage,
-        o.status,
-        o.contact,
-        o.language,
-        o.contained,
-        o.extension,
-        o.publisher,
-        o.useContext,
-        o.responsible,
-        o.description,
-        o.jurisdiction,
-        o.implicitRules,
-        o.modifierExtension,
-        o.uniqueId))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[NamingSystem] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
         new NamingSystem(
           cursor.decodeAs[Option[String]]("id", Some(None)),
+          cursor.decodeAs[Option[UriStr]]("url", Some(None)),
           cursor.decodeAs[Option[Meta]]("meta", Some(None)),
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
           cursor.decodeAs[String]("name", None),
           cursor.decodeAs[NAMINGSYSTEM_TYPE]("kind", None),
           cursor.decodeAs[FHIRDateTime]("date", None),
           cursor.decodeAs[Option[CodeableConcept]]("type", Some(None)),
+          cursor.decodeAs[Option[String]]("title", Some(None)),
           cursor.decodeAs[Option[String]]("usage", Some(None)),
           cursor.decodeAs[PUBLICATION_STATUS]("status", None),
+          cursor.decodeAs[Option[String]]("version", Some(None)),
           cursor.decodeAs[LitSeq[ContactDetail]]("contact", Some(LitSeq.empty)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
@@ -359,13 +367,18 @@ object NamingSystem extends CompanionFor[NamingSystem] {
 /** A curated namespace that issues unique symbols within that namespace for the identification of concepts, people, devices, etc.
   * Represents a "System" used within the Identifier and Coding data types.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.CanonicalResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields name, kind, date, `type`, usage, status, contact, publisher, useContext, responsible, description,
-  *   jurisdiction, uniqueId.
+  *   Introduces the fields kind, `type`, usage, responsible, uniqueId. Requires the following fields which were optional in the
+  *   parent: name, date.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  * @param url
+  *   - An absolute URI that is used to identify this naming system when it is referenced in a specification, model, design or an
+  *   instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at
+  *   which an authoritative instance of this naming system is (or will be) published. This URL can be the target of a canonical
+  *   reference. It SHALL remain the same when the naming system is stored on different servers.
   * @param meta
   *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
   *   not always be associated with version changes to the resource.
@@ -385,18 +398,25 @@ object NamingSystem extends CompanionFor[NamingSystem] {
   *   naming system changes.
   * @param `type`
   *   - Categorizes a naming system for easier search by grouping related naming systems.
+  * @param title
+  *   - A short, descriptive, user-friendly title for the naming system.
   * @param usage
   *   - Provides guidance on the use of the namespace, including the handling of formatting characters, use of upper vs. lower
   *   case, etc.
   * @param status
   *   - The status of this naming system. Enables tracking the life-cycle of the content.
+  * @param version
+  *   - The identifier that is used to identify this version of the naming system when it is referenced in a specification, model,
+  *   design or instance. This is an arbitrary value managed by the naming system author and is not expected to be globally
+  *   unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no
+  *   expectation that versions can be placed in a lexicographical sequence.
   * @param contact
   *   - Contact details to assist a user in finding and communicating with the publisher.
   * @param language
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -434,34 +454,48 @@ object NamingSystem extends CompanionFor[NamingSystem] {
 @POJOBoilerplate
 class NamingSystem(
     override val id: Option[String] = None,
+    override val url: Option[UriStr] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: String,
+    name: String,
     val kind: NAMINGSYSTEM_TYPE,
-    val date: FHIRDateTime,
+    date: FHIRDateTime,
     val `type`: Option[CodeableConcept] = None,
+    override val title: Option[String] = None,
     val usage: Option[String] = None,
-    val status: PUBLICATION_STATUS,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val status: PUBLICATION_STATUS,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val publisher: Option[String] = None,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
     val responsible: Option[String] = None,
-    val description: Option[Markdown] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val description: Option[Markdown] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val uniqueId: NonEmptyLitSeq[NamingSystem.UniqueId],
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends CanonicalResource(
       id = id,
+      url = url,
       meta = meta,
       text = text,
+      name = Some(name),
+      date = Some(date),
+      title = title,
+      status = status,
+      version = version,
+      contact = contact,
       language = language,
       contained = contained,
       extension = extension,
+      publisher = publisher,
+      useContext = useContext,
+      description = description,
+      jurisdiction = jurisdiction,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {

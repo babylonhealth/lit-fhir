@@ -87,7 +87,7 @@ public interface MedicationRequest_SubstitutionBuilder {
       this.id = Optional.of(id);
       return this;
     }
-    /** @param reason */
+    /** @param reason - The reason or the indication for ordering or not ordering the medication. */
     public MedicationRequest_SubstitutionBuilder.Impl withReason(@NonNull CodeableConcept reason) {
       this.reason = Optional.of(reason);
       return this;

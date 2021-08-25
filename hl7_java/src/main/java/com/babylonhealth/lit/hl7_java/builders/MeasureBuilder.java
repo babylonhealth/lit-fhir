@@ -34,6 +34,7 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.core.ALL_TYPES;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -43,7 +44,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface MeasureBuilder extends DomainResourceBuilder {
+public interface MeasureBuilder extends MetadataResourceBuilder {
   public Measure build();
 
   public static Impl init(PUBLICATION_STATUS status) {
@@ -71,6 +72,7 @@ public interface MeasureBuilder extends DomainResourceBuilder {
     private Optional<FHIRDateTime> date = Optional.empty();
     private Collection<CodeableConcept> _type = Collections.emptyList();
     private Optional<String> title = Optional.empty();
+    private Optional<ALL_TYPES> basis = Optional.empty();
     private Optional<String> usage = Optional.empty();
     private Collection<CodeableConcept> topic = Collections.emptyList();
     private PUBLICATION_STATUS status;
@@ -97,6 +99,7 @@ public interface MeasureBuilder extends DomainResourceBuilder {
     private Optional<String> disclaimer = Optional.empty();
     private Collection<String> definition = Collections.emptyList();
     private Optional<String> description = Optional.empty();
+    private Optional<CodeableConcept> scoringUnit = Optional.empty();
     private Optional<Boolean> experimental = Optional.empty();
     private Collection<CodeableConcept> jurisdiction = Collections.emptyList();
     private Optional<FHIRDate> approvalDate = Optional.empty();
@@ -213,6 +216,19 @@ public interface MeasureBuilder extends DomainResourceBuilder {
     /** @param title - A short, descriptive, user-friendly title for the measure. */
     public MeasureBuilder.Impl withTitle(@NonNull String title) {
       this.title = Optional.of(title);
+      return this;
+    }
+    /**
+     * @param basis - The population basis specifies the type of elements in the population. For a
+     *     subject-based measure, this is boolean (because the subject and the population basis are
+     *     the same, and the population criteria define yes/no values for each individual in the
+     *     population). For measures that have a population basis that is different than the
+     *     subject, this element specifies the type of the population basis. For example, an
+     *     encounter-based measure has a subject of Patient and a population basis of Encounter, and
+     *     the population criteria all return lists of Encounters.
+     */
+    public MeasureBuilder.Impl withBasis(@NonNull ALL_TYPES basis) {
+      this.basis = Optional.of(basis);
       return this;
     }
     /**
@@ -427,8 +443,8 @@ public interface MeasureBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MeasureBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -436,8 +452,8 @@ public interface MeasureBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MeasureBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -580,6 +596,19 @@ public interface MeasureBuilder extends DomainResourceBuilder {
      */
     public MeasureBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);
+      return this;
+    }
+    /**
+     * @param scoringUnit - Defines the expected units of measure for the measure score. This
+     *     element SHOULD be specified as a UCUM unit.
+     */
+    public MeasureBuilder.Impl withScoringUnit(@NonNull CodeableConcept scoringUnit) {
+      this.scoringUnit = Optional.of(scoringUnit);
+      return this;
+    }
+
+    public MeasureBuilder.Impl withScoringUnit(@NonNull CodeableConceptBuilder scoringUnit) {
+      this.scoringUnit = Optional.of(scoringUnit.build());
       return this;
     }
     /**
@@ -829,6 +858,7 @@ public interface MeasureBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(date),
           _type.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(title),
+          OptionConverters.toScala(basis),
           OptionConverters.toScala(usage),
           topic.stream().collect(new LitSeqJCollector<>()),
           status,
@@ -855,6 +885,7 @@ public interface MeasureBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(disclaimer),
           definition.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(description),
+          OptionConverters.toScala(scoringUnit),
           OptionConverters.toScala(experimental.map(x -> (Object) x)),
           jurisdiction.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(approvalDate),

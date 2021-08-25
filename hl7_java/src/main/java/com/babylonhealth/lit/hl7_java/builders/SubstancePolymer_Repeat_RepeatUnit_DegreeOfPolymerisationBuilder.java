@@ -55,8 +55,10 @@ public interface SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilde
 
   public class Impl implements SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder {
     private Optional<String> id = Optional.empty();
-    private Optional<CodeableConcept> degree = Optional.empty();
-    private Optional<Choice> amount = Optional.empty();
+    private Optional<Integer> low = Optional.empty();
+    private Optional<CodeableConcept> _type = Optional.empty();
+    private Optional<Integer> high = Optional.empty();
+    private Optional<Integer> average = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -72,22 +74,34 @@ public interface SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilde
       this.id = Optional.of(id);
       return this;
     }
-    /** @param degree */
-    public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl withDegree(
-        @NonNull CodeableConcept degree) {
-      this.degree = Optional.of(degree);
+    /** @param low */
+    public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl withLow(
+        @NonNull Integer low) {
+      this.low = Optional.of(low);
+      return this;
+    }
+    /** @param _type */
+    public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl withType(
+        @NonNull CodeableConcept _type) {
+      this._type = Optional.of(_type);
       return this;
     }
 
-    public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl withDegree(
-        @NonNull CodeableConceptBuilder degree) {
-      this.degree = Optional.of(degree.build());
+    public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl withType(
+        @NonNull CodeableConceptBuilder _type) {
+      this._type = Optional.of(_type.build());
       return this;
     }
-    /** @param amount */
-    public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl withAmount(
-        @NonNull Choice amount) {
-      this.amount = Optional.of(amount);
+    /** @param high */
+    public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl withHigh(
+        @NonNull Integer high) {
+      this.high = Optional.of(high);
+      return this;
+    }
+    /** @param average */
+    public SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder.Impl withAverage(
+        @NonNull Integer average) {
+      this.average = Optional.of(average);
       return this;
     }
     /**
@@ -167,8 +181,10 @@ public interface SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilde
     public SubstancePolymer$Repeat$RepeatUnit$DegreeOfPolymerisation build() {
       return new SubstancePolymer$Repeat$RepeatUnit$DegreeOfPolymerisation(
           OptionConverters.toScala(id),
-          OptionConverters.toScala(degree),
-          (Option) OptionConverters.toScala(amount),
+          OptionConverters.toScala(low.map(x -> (Object) x)),
+          OptionConverters.toScala(_type),
+          OptionConverters.toScala(high.map(x -> (Object) x)),
+          OptionConverters.toScala(average.map(x -> (Object) x)),
           extension.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());

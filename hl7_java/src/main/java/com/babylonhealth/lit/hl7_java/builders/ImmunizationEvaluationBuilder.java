@@ -69,22 +69,6 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
         immunizationEvent.build());
   }
 
-  public static ChoicePositiveIntOrString doseNumber(Integer i) {
-    return new ChoicePositiveIntOrString(i);
-  }
-
-  public static ChoicePositiveIntOrString doseNumber(String s) {
-    return new ChoicePositiveIntOrString(s);
-  }
-
-  public static ChoicePositiveIntOrString seriesDoses(Integer i) {
-    return new ChoicePositiveIntOrString(i);
-  }
-
-  public static ChoicePositiveIntOrString seriesDoses(String s) {
-    return new ChoicePositiveIntOrString(s);
-  }
-
   public class Impl implements ImmunizationEvaluationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
@@ -99,11 +83,11 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
     private Optional<Reference> authority = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private CodeableConcept doseStatus;
+    private Optional<String> doseNumber = Optional.empty();
     private Optional<String> description = Optional.empty();
+    private Optional<String> seriesDoses = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private CodeableConcept targetDisease;
-    private Optional<ChoicePositiveIntOrString> doseNumber = Optional.empty();
-    private Optional<ChoicePositiveIntOrString> seriesDoses = Optional.empty();
     private Collection<CodeableConcept> doseStatusReason = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Reference immunizationEvent;
@@ -190,8 +174,8 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ImmunizationEvaluationBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -199,8 +183,8 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ImmunizationEvaluationBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
@@ -268,9 +252,25 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
       this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param doseNumber - Nominal position in a series as determined by the outcome of the
+     *     evaluation process.
+     */
+    public ImmunizationEvaluationBuilder.Impl withDoseNumber(@NonNull String doseNumber) {
+      this.doseNumber = Optional.of(doseNumber);
+      return this;
+    }
     /** @param description - Additional information about the evaluation. */
     public ImmunizationEvaluationBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);
+      return this;
+    }
+    /**
+     * @param seriesDoses - The recommended number of doses to achieve immunity as determined by the
+     *     outcome of the evaluation process.
+     */
+    public ImmunizationEvaluationBuilder.Impl withSeriesDoses(@NonNull String seriesDoses) {
+      this.seriesDoses = Optional.of(seriesDoses);
       return this;
     }
     /**
@@ -281,26 +281,6 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
      */
     public ImmunizationEvaluationBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
       this.implicitRules = Optional.of(implicitRules);
-      return this;
-    }
-    /**
-     * @param doseNumber - Nominal position in a series. Field is a 'choice' field. Type should be
-     *     one of Integer, String. To pass the value in, wrap with one of the
-     *     ImmunizationEvaluationBuilder.doseNumber static methods
-     */
-    public ImmunizationEvaluationBuilder.Impl withDoseNumber(
-        @NonNull ChoicePositiveIntOrString doseNumber) {
-      this.doseNumber = Optional.of(doseNumber);
-      return this;
-    }
-    /**
-     * @param seriesDoses - The recommended number of doses to achieve immunity. Field is a 'choice'
-     *     field. Type should be one of Integer, String. To pass the value in, wrap with one of the
-     *     ImmunizationEvaluationBuilder.seriesDoses static methods
-     */
-    public ImmunizationEvaluationBuilder.Impl withSeriesDoses(
-        @NonNull ChoicePositiveIntOrString seriesDoses) {
-      this.seriesDoses = Optional.of(seriesDoses);
       return this;
     }
     /**
@@ -391,11 +371,11 @@ public interface ImmunizationEvaluationBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(authority),
           identifier.stream().collect(new LitSeqJCollector<>()),
           doseStatus,
+          OptionConverters.toScala(doseNumber),
           OptionConverters.toScala(description),
+          OptionConverters.toScala(seriesDoses),
           OptionConverters.toScala(implicitRules),
           targetDisease,
-          (Option) OptionConverters.toScala(doseNumber),
-          (Option) OptionConverters.toScala(seriesDoses),
           doseStatusReason.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           immunizationEvent,

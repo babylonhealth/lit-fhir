@@ -750,6 +750,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       extension: LitSeq[Extension] = LitSeq.empty,
       publisher: Option[String] = None,
       copyright: Option[Markdown] = None,
+      identifier: LitSeq[Identifier] = LitSeq.empty,
       useContext: LitSeq[UsageContext] = LitSeq.empty,
       lockedDate: Option[Boolean] = None,
       codeSearch: Option[CODE_SEARCH_SUPPORT] = None,
@@ -784,6 +785,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
     extension,
     publisher,
     copyright,
+    identifier,
     useContext,
     lockedDate,
     codeSearch,
@@ -835,6 +837,8 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
     FHIRComponentFieldMeta("publisher", lTagOf[Option[String]], false, lTagOf[String])
   val copyright: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("copyright", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
+  val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
+    FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val lockedDate: FHIRComponentFieldMeta[Option[Boolean]] =
@@ -911,6 +915,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
     extension,
     publisher,
     copyright,
+    identifier,
     useContext,
     lockedDate,
     codeSearch,
@@ -934,7 +939,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
     FHIRComponentField[Option[String]](name, t.name),
-    FHIRComponentField[FHIRDateTime](date, t.date),
+    FHIRComponentField[FHIRDateTime](date, t.date.get),
     FHIRComponentField[CAPABILITY_STATEMENT_KIND](kind, t.kind),
     FHIRComponentField[Option[String]](title, t.title),
     FHIRComponentField[PUBLICATION_STATUS](status, t.status),
@@ -946,6 +951,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[String]](publisher, t.publisher),
     FHIRComponentField[Option[Markdown]](copyright, t.copyright),
+    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
     FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
     FHIRComponentField[Option[Boolean]](lockedDate, t.lockedDate),
     FHIRComponentField[Option[CODE_SEARCH_SUPPORT]](codeSearch, t.codeSearch),
@@ -967,7 +973,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
   def extractMeta(t: TerminologyCapabilities): Option[Meta]                                             = t.meta
   def extractText(t: TerminologyCapabilities): Option[Narrative]                                        = t.text
   def extractName(t: TerminologyCapabilities): Option[String]                                           = t.name
-  def extractDate(t: TerminologyCapabilities): FHIRDateTime                                             = t.date
+  def extractDate(t: TerminologyCapabilities): FHIRDateTime                                             = t.date.get
   def extractKind(t: TerminologyCapabilities): CAPABILITY_STATEMENT_KIND                                = t.kind
   def extractTitle(t: TerminologyCapabilities): Option[String]                                          = t.title
   def extractStatus(t: TerminologyCapabilities): PUBLICATION_STATUS                                     = t.status
@@ -979,6 +985,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
   def extractExtension(t: TerminologyCapabilities): LitSeq[Extension]                                   = t.extension
   def extractPublisher(t: TerminologyCapabilities): Option[String]                                      = t.publisher
   def extractCopyright(t: TerminologyCapabilities): Option[Markdown]                                    = t.copyright
+  def extractIdentifier(t: TerminologyCapabilities): LitSeq[Identifier]                                 = t.identifier
   def extractUseContext(t: TerminologyCapabilities): LitSeq[UsageContext]                               = t.useContext
   def extractLockedDate(t: TerminologyCapabilities): Option[Boolean]                                    = t.lockedDate
   def extractCodeSearch(t: TerminologyCapabilities): Option[CODE_SEARCH_SUPPORT]                        = t.codeSearch
@@ -999,11 +1006,12 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
     "jurisdiction"          -> (obj => obj.jurisdiction.toSeq),
     "name"                  -> (obj => obj.name.toSeq),
     "context-type-quantity" -> (obj => obj.useContext.toSeq),
-    "url"                   -> (obj => obj.url.toSeq),
     "description"           -> (obj => obj.description.toSeq),
     "context"               -> (obj => obj.useContext.map(_.value).flatMap(_.as[CodeableConcept]).toSeq),
     "date"                  -> (obj => Seq(obj.date)),
     "context-type"          -> (obj => obj.useContext.map(_.code).toSeq),
+    "identifier"            -> (obj => obj.identifier.toSeq),
+    "url"                   -> (obj => obj.url.toSeq),
     "context-type-value"    -> (obj => obj.useContext.toSeq),
     "version"               -> (obj => obj.version.toSeq),
     "status"                -> (obj => Seq(obj.status)),
@@ -1034,6 +1042,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("publisher", Some(None)),
           cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
+          cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Boolean]]("lockedDate", Some(None)),
           cursor.decodeAs[Option[CODE_SEARCH_SUPPORT]]("codeSearch", Some(None)),
@@ -1057,12 +1066,11 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
 /** A TerminologyCapabilities resource documents a set of capabilities (behaviors) of a FHIR Terminology Server that may be used
   * as a statement of actual server functionality or a statement of required or desired server implementation.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.CanonicalResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, kind, title, status, version, contact, purpose, publisher, copyright, useContext,
-  *   lockedDate, codeSearch, description, experimental, jurisdiction, closure, software, translation, validateCode,
-  *   implementation, expansion, codeSystem.
+  *   Introduces the fields kind, lockedDate, codeSearch, closure, software, translation, validateCode, implementation, expansion,
+  *   codeSystem. Requires the following fields which were optional in the parent: date.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -1105,7 +1113,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -1116,6 +1124,9 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
   * @param copyright
   *   - A copyright statement relating to the terminology capabilities and/or its contents. Copyright statements are generally
   *   legal restrictions on the use and publishing of the terminology capabilities.
+  * @param identifier
+  *   - A formal identifier that is used to identify this terminology capabilities when it is represented in other formats, or
+  *   referenced in a specification, model, design or an instance.
   * @param useContext
   *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be
   *   general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be
@@ -1166,28 +1177,29 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
 @POJOBoilerplate
 class TerminologyCapabilities(
     override val id: Option[String] = None,
-    val url: Option[UriStr] = None,
+    override val url: Option[UriStr] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: Option[String] = None,
-    val date: FHIRDateTime,
+    override val name: Option[String] = None,
+    date: FHIRDateTime,
     val kind: CAPABILITY_STATEMENT_KIND,
-    val title: Option[String] = None,
-    val status: PUBLICATION_STATUS,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    override val title: Option[String] = None,
+    override val status: PUBLICATION_STATUS,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val copyright: Option[Markdown] = None,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val publisher: Option[String] = None,
+    override val copyright: Option[Markdown] = None,
+    override val identifier: LitSeq[Identifier] = LitSeq.empty,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
     val lockedDate: Option[Boolean] = None,
     val codeSearch: Option[CODE_SEARCH_SUPPORT] = None,
-    val description: Option[Markdown] = None,
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val description: Option[Markdown] = None,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val closure: Option[TerminologyCapabilities.Closure] = None,
@@ -1198,13 +1210,28 @@ class TerminologyCapabilities(
     val expansion: Option[TerminologyCapabilities.Expansion] = None,
     val codeSystem: LitSeq[TerminologyCapabilities.CodeSystem] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends CanonicalResource(
       id = id,
+      url = url,
       meta = meta,
       text = text,
+      name = name,
+      date = Some(date),
+      title = title,
+      status = status,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
       contained = contained,
       extension = extension,
+      publisher = publisher,
+      copyright = copyright,
+      identifier = identifier,
+      useContext = useContext,
+      description = description,
+      experimental = experimental,
+      jurisdiction = jurisdiction,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {

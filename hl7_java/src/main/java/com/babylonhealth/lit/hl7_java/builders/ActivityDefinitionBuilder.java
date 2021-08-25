@@ -46,7 +46,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface ActivityDefinitionBuilder extends DomainResourceBuilder {
+public interface ActivityDefinitionBuilder extends MetadataResourceBuilder {
   public ActivityDefinition build();
 
   public static Impl init(PUBLICATION_STATUS status) {
@@ -57,36 +57,32 @@ public interface ActivityDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
-  public static Choice01405873694 timing(Age a) {
-    return new Choice01405873694(a);
+  public static Choice01540702691 timing(Age a) {
+    return new Choice01540702691(a);
   }
 
-  public static Choice01405873694 timing(Duration d) {
-    return new Choice01405873694(d);
+  public static Choice01540702691 timing(Duration d) {
+    return new Choice01540702691(d);
   }
 
-  public static Choice01405873694 timing(FHIRDateTime f) {
-    return new Choice01405873694(f);
+  public static Choice01540702691 timing(Range r) {
+    return new Choice01540702691(r);
   }
 
-  public static Choice01405873694 timing(Period p) {
-    return new Choice01405873694(p);
+  public static Choice01540702691 timing(Timing t) {
+    return new Choice01540702691(t);
   }
 
-  public static Choice01405873694 timing(Range r) {
-    return new Choice01405873694(r);
+  public static ChoiceCanonicalOrCodeableConceptOrReference subject(String s) {
+    return new ChoiceCanonicalOrCodeableConceptOrReference(s);
   }
 
-  public static Choice01405873694 timing(Timing t) {
-    return new Choice01405873694(t);
+  public static ChoiceCanonicalOrCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCanonicalOrCodeableConceptOrReference(c);
   }
 
-  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
-    return new ChoiceCodeableConceptOrReference(c);
-  }
-
-  public static ChoiceCodeableConceptOrReference subject(Reference r) {
-    return new ChoiceCodeableConceptOrReference(r);
+  public static ChoiceCanonicalOrCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCanonicalOrCodeableConceptOrReference(r);
   }
 
   public static ChoiceCodeableConceptOrReference product(CodeableConcept c) {
@@ -124,17 +120,17 @@ public interface ActivityDefinitionBuilder extends DomainResourceBuilder {
     private Collection<ContactDetail> reviewer = Collections.emptyList();
     private Collection<ContactDetail> endorser = Collections.emptyList();
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
-    private Optional<Reference> location = Optional.empty();
+    private Optional<CodeableReference> location = Optional.empty();
     private Optional<Quantity> quantity = Optional.empty();
     private Collection<CodeableConcept> bodySite = Collections.emptyList();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> publisher = Optional.empty();
     private Optional<String> copyright = Optional.empty();
-    private Optional<Choice01405873694> timing = Optional.empty();
+    private Optional<Choice01540702691> timing = Optional.empty();
     private Optional<String> transform = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
+    private Optional<ChoiceCanonicalOrCodeableConceptOrReference> subject = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<ChoiceCodeableConceptOrReference> product = Optional.empty();
     private Optional<String> description = Optional.empty();
@@ -496,12 +492,12 @@ public interface ActivityDefinitionBuilder extends DomainResourceBuilder {
      * @param location - Identifies the facility where the activity will occur; e.g. home, hospital,
      *     specific clinic, etc.
      */
-    public ActivityDefinitionBuilder.Impl withLocation(@NonNull Reference location) {
+    public ActivityDefinitionBuilder.Impl withLocation(@NonNull CodeableReference location) {
       this.location = Optional.of(location);
       return this;
     }
 
-    public ActivityDefinitionBuilder.Impl withLocation(@NonNull ReferenceBuilder location) {
+    public ActivityDefinitionBuilder.Impl withLocation(@NonNull CodeableReferenceBuilder location) {
       this.location = Optional.of(location.build());
       return this;
     }
@@ -543,8 +539,8 @@ public interface ActivityDefinitionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ActivityDefinitionBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -552,8 +548,8 @@ public interface ActivityDefinitionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ActivityDefinitionBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -609,12 +605,11 @@ public interface ActivityDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param timing - The period, timing or frequency upon which the described activity is to
-     *     occur. Field is a 'choice' field. Type should be one of Age, Duration, FHIRDateTime,
-     *     Period, Range, Timing. To pass the value in, wrap with one of the
-     *     ActivityDefinitionBuilder.timing static methods
+     * @param timing - The timing or frequency upon which the described activity is to occur. Field
+     *     is a 'choice' field. Type should be one of Age, Duration, Range, Timing. To pass the
+     *     value in, wrap with one of the ActivityDefinitionBuilder.timing static methods
      */
-    public ActivityDefinitionBuilder.Impl withTiming(@NonNull Choice01405873694 timing) {
+    public ActivityDefinitionBuilder.Impl withTiming(@NonNull Choice01540702691 timing) {
       this.timing = Optional.of(timing);
       return this;
     }
@@ -652,13 +647,17 @@ public interface ActivityDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param subject - A code or group definition that describes the intended subject of the
-     *     activity being defined. Field is a 'choice' field. Type should be one of CodeableConcept,
-     *     Reference. To pass the value in, wrap with one of the ActivityDefinitionBuilder.subject
-     *     static methods
+     * @param subject - A code, group definition, or canonical reference that describes or
+     *     identifies the intended subject of the activity being defined. Canonical references are
+     *     allowed to support the definition of protocols for drug and substance quality
+     *     specifications, and is allowed to reference a MedicinalProductDefinition,
+     *     SubstanceDefinition, AdministrableProductDefinition, ManufacturedItemDefinition, or
+     *     PackagedProductDefinition resource. Field is a 'choice' field. Type should be one of
+     *     String, CodeableConcept, Reference. To pass the value in, wrap with one of the
+     *     ActivityDefinitionBuilder.subject static methods
      */
     public ActivityDefinitionBuilder.Impl withSubject(
-        @NonNull ChoiceCodeableConceptOrReference subject) {
+        @NonNull ChoiceCanonicalOrCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }

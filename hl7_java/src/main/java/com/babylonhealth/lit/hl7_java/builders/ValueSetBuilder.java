@@ -43,7 +43,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface ValueSetBuilder extends DomainResourceBuilder {
+public interface ValueSetBuilder extends CanonicalResourceBuilder {
   public ValueSet build();
 
   public static Impl init(PUBLICATION_STATUS status) {
@@ -79,6 +79,7 @@ public interface ValueSetBuilder extends DomainResourceBuilder {
     private Collection<CodeableConcept> jurisdiction = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Optional<ValueSet.Scope> scope = Optional.empty();
     private Optional<ValueSet.Expansion> expansion = Optional.empty();
     private Optional<ValueSet.Compose> compose = Optional.empty();
 
@@ -104,10 +105,10 @@ public interface ValueSetBuilder extends DomainResourceBuilder {
     /**
      * @param url - An absolute URI that is used to identify this value set when it is referenced in
      *     a specification, model, design or an instance; also called its canonical identifier. This
-     *     SHOULD be globally unique and SHOULD be a literal address at which at which an
-     *     authoritative instance of this value set is (or will be) published. This URL can be the
-     *     target of a canonical reference. It SHALL remain the same when the value set is stored on
-     *     different servers.
+     *     SHOULD be globally unique and SHOULD be a literal address at which an authoritative
+     *     instance of this value set is (or will be) published. This URL can be the target of a
+     *     canonical reference. It SHALL remain the same when the value set is stored on different
+     *     servers.
      */
     public ValueSetBuilder.Impl withUrl(@NonNull String url) {
       this.url = Optional.of(url);
@@ -212,8 +213,8 @@ public interface ValueSetBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ValueSetBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -221,8 +222,8 @@ public interface ValueSetBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ValueSetBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -426,6 +427,19 @@ public interface ValueSetBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param scope - Description of the semantic space the Value Set Expansion is intended to
+     *     cover.
+     */
+    public ValueSetBuilder.Impl withScope(@NonNull ValueSet.Scope scope) {
+      this.scope = Optional.of(scope);
+      return this;
+    }
+
+    public ValueSetBuilder.Impl withScope(@NonNull ValueSet_ScopeBuilder scope) {
+      this.scope = Optional.of(scope.build());
+      return this;
+    }
+    /**
      * @param expansion - A value set can also be "expanded", where the value set is turned into a
      *     simple collection of enumerated codes. This element holds the expansion, if it has been
      *     performed.
@@ -485,6 +499,7 @@ public interface ValueSetBuilder extends DomainResourceBuilder {
           jurisdiction.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(scope),
           OptionConverters.toScala(expansion),
           OptionConverters.toScala(compose),
           LitUtils.emptyMetaElMap());

@@ -63,32 +63,39 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
     private Optional<Narrative> text = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();
     private Optional<ZonedDateTime> date = Optional.empty();
+    private Collection<CodeableConcept> event = Collections.emptyList();
     private DOCUMENT_REFERENCE_STATUS status;
+    private Optional<Period> period = Optional.empty();
     private Collection<Reference> author = Collections.emptyList();
+    private Collection<Reference> basedOn = Collections.emptyList();
     private Optional<Reference> subject = Optional.empty();
+    private Collection<Reference> related = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category = Collections.emptyList();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<COMPOSITION_STATUS> docStatus = Optional.empty();
+    private Collection<Reference> encounter = Collections.emptyList();
     private Optional<Reference> custodian = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> description = Optional.empty();
+    private Optional<CodeableConcept> facilityType = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<Reference> authenticator = Optional.empty();
     private Collection<CodeableConcept> securityLabel = Collections.emptyList();
-    private Optional<Identifier> masterIdentifier = Optional.empty();
+    private Optional<CodeableConcept> practiceSetting = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Optional<Reference> sourcePatientInfo = Optional.empty();
     private Collection<DocumentReference.Content> content;
-    private Optional<DocumentReference.Context> context = Optional.empty();
+    private Collection<DocumentReference.Attester> attester = Collections.emptyList();
     private Collection<DocumentReference.RelatesTo> relatesTo = Collections.emptyList();
 
     /**
      * Required fields for {@link DocumentReference}
      *
      * @param status - The status of this document reference.
-     * @param content - The document and format referenced. There may be multiple content element
-     *     repetitions, each with a different format.
+     * @param content - The document and format referenced. If there are multiple content element
+     *     repetitions, these must all represent the same document in different format, or
+     *     attachment metadata.
      */
     public Impl(DOCUMENT_REFERENCE_STATUS status, Collection<DocumentReference.Content> content) {
       this.status = status;
@@ -152,6 +159,44 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       this.date = Optional.of(date);
       return this;
     }
+    /**
+     * @param event - This list of codes represents the main clinical acts, such as a colonoscopy or
+     *     an appendectomy, being documented. In some cases, the event is inherent in the type Code,
+     *     such as a "History and Physical Report" in which the procedure being documented is
+     *     necessarily a "History and Physical" act.
+     */
+    public DocumentReferenceBuilder.Impl withEvent(@NonNull CodeableConcept... event) {
+      this.event = Arrays.asList(event);
+      return this;
+    }
+    /**
+     * @param event - This list of codes represents the main clinical acts, such as a colonoscopy or
+     *     an appendectomy, being documented. In some cases, the event is inherent in the type Code,
+     *     such as a "History and Physical Report" in which the procedure being documented is
+     *     necessarily a "History and Physical" act.
+     */
+    public DocumentReferenceBuilder.Impl withEvent(@NonNull Collection<CodeableConcept> event) {
+      this.event = Collections.unmodifiableCollection(event);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withEvent(@NonNull CodeableConceptBuilder... event) {
+      this.event = Arrays.stream(event).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param period - The time period over which the service that is described by the document was
+     *     provided.
+     */
+    public DocumentReferenceBuilder.Impl withPeriod(@NonNull Period period) {
+      this.period = Optional.of(period);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withPeriod(@NonNull PeriodBuilder period) {
+      this.period = Optional.of(period.build());
+      return this;
+    }
     /** @param author - Identifies who is responsible for adding the information to the document. */
     public DocumentReferenceBuilder.Impl withAuthor(@NonNull Reference... author) {
       this.author = Arrays.asList(author);
@@ -168,6 +213,27 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param basedOn - A procedure that is fulfilled in whole or in part by the creation of this
+     *     media.
+     */
+    public DocumentReferenceBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
+      this.basedOn = Arrays.asList(basedOn);
+      return this;
+    }
+    /**
+     * @param basedOn - A procedure that is fulfilled in whole or in part by the creation of this
+     *     media.
+     */
+    public DocumentReferenceBuilder.Impl withBasedOn(@NonNull Collection<Reference> basedOn) {
+      this.basedOn = Collections.unmodifiableCollection(basedOn);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
      * @param subject - Who or what the document is about. The document can be about a person,
      *     (patient or healthcare practitioner), a device (e.g. a machine) or even a group of
      *     subjects (such as a document about a herd of farm animals, or a set of patients that
@@ -180,6 +246,21 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
 
     public DocumentReferenceBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
       this.subject = Optional.of(subject.build());
+      return this;
+    }
+    /** @param related - Related identifiers or resources associated with the DocumentReference. */
+    public DocumentReferenceBuilder.Impl withRelated(@NonNull Reference... related) {
+      this.related = Arrays.asList(related);
+      return this;
+    }
+    /** @param related - Related identifiers or resources associated with the DocumentReference. */
+    public DocumentReferenceBuilder.Impl withRelated(@NonNull Collection<Reference> related) {
+      this.related = Collections.unmodifiableCollection(related);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withRelated(@NonNull ReferenceBuilder... related) {
+      this.related = Arrays.stream(related).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -213,8 +294,8 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public DocumentReferenceBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -222,8 +303,8 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public DocumentReferenceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -267,6 +348,27 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param encounter - Describes the clinical encounter or type of care that the document content
+     *     is associated with.
+     */
+    public DocumentReferenceBuilder.Impl withEncounter(@NonNull Reference... encounter) {
+      this.encounter = Arrays.asList(encounter);
+      return this;
+    }
+    /**
+     * @param encounter - Describes the clinical encounter or type of care that the document content
+     *     is associated with.
+     */
+    public DocumentReferenceBuilder.Impl withEncounter(@NonNull Collection<Reference> encounter) {
+      this.encounter = Collections.unmodifiableCollection(encounter);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withEncounter(@NonNull ReferenceBuilder... encounter) {
+      this.encounter = Arrays.stream(encounter).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
      * @param custodian - Identifies the organization or group who is responsible for ongoing
      *     maintenance of and access to the document.
      */
@@ -306,6 +408,17 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       this.description = Optional.of(description);
       return this;
     }
+    /** @param facilityType - The kind of facility where the patient was seen. */
+    public DocumentReferenceBuilder.Impl withFacilityType(@NonNull CodeableConcept facilityType) {
+      this.facilityType = Optional.of(facilityType);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withFacilityType(
+        @NonNull CodeableConceptBuilder facilityType) {
+      this.facilityType = Optional.of(facilityType.build());
+      return this;
+    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -314,20 +427,6 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
      */
     public DocumentReferenceBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
       this.implicitRules = Optional.of(implicitRules);
-      return this;
-    }
-    /**
-     * @param authenticator - Which person or organization authenticates that this document is
-     *     valid.
-     */
-    public DocumentReferenceBuilder.Impl withAuthenticator(@NonNull Reference authenticator) {
-      this.authenticator = Optional.of(authenticator);
-      return this;
-    }
-
-    public DocumentReferenceBuilder.Impl withAuthenticator(
-        @NonNull ReferenceBuilder authenticator) {
-      this.authenticator = Optional.of(authenticator.build());
       return this;
     }
     /**
@@ -359,19 +458,18 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param masterIdentifier - Document identifier as assigned by the source of the document. This
-     *     identifier is specific to this version of the document. This unique identifier may be
-     *     used elsewhere to identify this version of the document.
+     * @param practiceSetting - This property may convey specifics about the practice setting where
+     *     the content was created, often reflecting the clinical specialty.
      */
-    public DocumentReferenceBuilder.Impl withMasterIdentifier(
-        @NonNull Identifier masterIdentifier) {
-      this.masterIdentifier = Optional.of(masterIdentifier);
+    public DocumentReferenceBuilder.Impl withPracticeSetting(
+        @NonNull CodeableConcept practiceSetting) {
+      this.practiceSetting = Optional.of(practiceSetting);
       return this;
     }
 
-    public DocumentReferenceBuilder.Impl withMasterIdentifier(
-        @NonNull IdentifierBuilder masterIdentifier) {
-      this.masterIdentifier = Optional.of(masterIdentifier.build());
+    public DocumentReferenceBuilder.Impl withPracticeSetting(
+        @NonNull CodeableConceptBuilder practiceSetting) {
+      this.practiceSetting = Optional.of(practiceSetting.build());
       return this;
     }
     /**
@@ -417,15 +515,41 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param context - The clinical context in which the document was prepared. */
-    public DocumentReferenceBuilder.Impl withContext(@NonNull DocumentReference.Context context) {
-      this.context = Optional.of(context);
+    /**
+     * @param sourcePatientInfo - The Patient Information as known when the document was published.
+     *     May be a reference to a version specific, or contained.
+     */
+    public DocumentReferenceBuilder.Impl withSourcePatientInfo(
+        @NonNull Reference sourcePatientInfo) {
+      this.sourcePatientInfo = Optional.of(sourcePatientInfo);
       return this;
     }
 
-    public DocumentReferenceBuilder.Impl withContext(
-        @NonNull DocumentReference_ContextBuilder context) {
-      this.context = Optional.of(context.build());
+    public DocumentReferenceBuilder.Impl withSourcePatientInfo(
+        @NonNull ReferenceBuilder sourcePatientInfo) {
+      this.sourcePatientInfo = Optional.of(sourcePatientInfo.build());
+      return this;
+    }
+    /**
+     * @param attester - A participant who has attested to the accuracy of the composition/document.
+     */
+    public DocumentReferenceBuilder.Impl withAttester(
+        @NonNull DocumentReference.Attester... attester) {
+      this.attester = Arrays.asList(attester);
+      return this;
+    }
+    /**
+     * @param attester - A participant who has attested to the accuracy of the composition/document.
+     */
+    public DocumentReferenceBuilder.Impl withAttester(
+        @NonNull Collection<DocumentReference.Attester> attester) {
+      this.attester = Collections.unmodifiableCollection(attester);
+      return this;
+    }
+
+    public DocumentReferenceBuilder.Impl withAttester(
+        @NonNull DocumentReference_AttesterBuilder... attester) {
+      this.attester = Arrays.stream(attester).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -465,24 +589,30 @@ public interface DocumentReferenceBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(text),
           OptionConverters.toScala(_type),
           OptionConverters.toScala(date),
+          event.stream().collect(new LitSeqJCollector<>()),
           status,
+          OptionConverters.toScala(period),
           author.stream().collect(new LitSeqJCollector<>()),
+          basedOn.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(subject),
+          related.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
           category.stream().collect(new LitSeqJCollector<>()),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(docStatus),
+          encounter.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(custodian),
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(description),
+          OptionConverters.toScala(facilityType),
           OptionConverters.toScala(implicitRules),
-          OptionConverters.toScala(authenticator),
           securityLabel.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(masterIdentifier),
+          OptionConverters.toScala(practiceSetting),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(sourcePatientInfo),
           content.stream().collect(new NonEmptyLitSeqJCollector<>()),
-          OptionConverters.toScala(context),
+          attester.stream().collect(new LitSeqJCollector<>()),
           relatesTo.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

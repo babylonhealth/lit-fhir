@@ -195,8 +195,7 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type EffectiveChoice  = Choice[UnionDateTimeOrPeriod]
-  type MedicationChoice = Choice[UnionCodeableConceptOrReference]
+  type OccurenceChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -204,24 +203,26 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
       note: LitSeq[Annotation] = LitSeq.empty,
       partOf: LitSeq[Reference] = LitSeq.empty,
       status: MEDICATION_ADMIN_STATUS,
+      reason: LitSeq[CodeableReference] = LitSeq.empty,
       device: LitSeq[Reference] = LitSeq.empty,
+      basedOn: LitSeq[Reference] = LitSeq.empty,
       subject: Reference,
-      context: Option[Reference] = None,
       request: Option[Reference] = None,
       language: Option[LANGUAGES] = None,
-      category: Option[CodeableConcept] = None,
+      category: LitSeq[CodeableConcept] = LitSeq.empty,
+      recorded: Option[FHIRDateTime] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
+      encounter: Option[Reference] = None,
       identifier: LitSeq[Identifier] = LitSeq.empty,
-      reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
-      instantiates: LitSeq[UriStr] = LitSeq.empty,
+      medication: CodeableReference,
       statusReason: LitSeq[CodeableConcept] = LitSeq.empty,
-      effective: MedicationAdministration.EffectiveChoice,
+      occurence: MedicationAdministration.OccurenceChoice,
       eventHistory: LitSeq[Reference] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
-      medication: MedicationAdministration.MedicationChoice,
-      reasonReference: LitSeq[Reference] = LitSeq.empty,
+      instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
+      instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
       supportingInformation: LitSeq[Reference] = LitSeq.empty,
       dosage: Option[MedicationAdministration.Dosage] = None,
       performer: LitSeq[MedicationAdministration.Performer] = LitSeq.empty,
@@ -233,24 +234,26 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
     note,
     partOf,
     status,
+    reason,
     device,
+    basedOn,
     subject,
-    context,
     request,
     language,
     category,
+    recorded,
     contained,
     extension,
+    encounter,
     identifier,
-    reasonCode,
-    instantiates,
+    medication,
     statusReason,
-    effective,
+    occurence,
     eventHistory,
     implicitRules,
-    medication,
-    reasonReference,
+    instantiatesUri,
     modifierExtension,
+    instantiatesCanonical,
     supportingInformation,
     dosage,
     performer,
@@ -268,46 +271,46 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
     FHIRComponentFieldMeta("partOf", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val status: FHIRComponentFieldMeta[MEDICATION_ADMIN_STATUS] =
     FHIRComponentFieldMeta("status", lTagOf[MEDICATION_ADMIN_STATUS], false, lTagOf[MEDICATION_ADMIN_STATUS])
+  val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val device: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("device", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
+  val basedOn: FHIRComponentFieldMeta[LitSeq[Reference]] =
+    FHIRComponentFieldMeta("basedOn", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val subject: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("subject", lTagOf[Reference], false, lTagOf[Reference])
-  val context: FHIRComponentFieldMeta[Option[Reference]] =
-    FHIRComponentFieldMeta("context", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val request: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("request", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
-  val category: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-    FHIRComponentFieldMeta("category", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val category: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
+    FHIRComponentFieldMeta("category", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val recorded: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
+    FHIRComponentFieldMeta("recorded", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  val encounter: FHIRComponentFieldMeta[Option[Reference]] =
+    FHIRComponentFieldMeta("encounter", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
-  val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
-  val instantiates: FHIRComponentFieldMeta[LitSeq[UriStr]] =
-    FHIRComponentFieldMeta("instantiates", lTagOf[LitSeq[UriStr]], false, lTagOf[UriStr])
+  val medication: FHIRComponentFieldMeta[CodeableReference] =
+    FHIRComponentFieldMeta("medication", lTagOf[CodeableReference], false, lTagOf[CodeableReference])
   val statusReason: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
-  val effective: FHIRComponentFieldMeta[MedicationAdministration.EffectiveChoice] =
-    FHIRComponentFieldMeta("effective", lTagOf[MedicationAdministration.EffectiveChoice], true, lTagOf[UnionDateTimeOrPeriod])
+  val occurence: FHIRComponentFieldMeta[MedicationAdministration.OccurenceChoice] =
+    FHIRComponentFieldMeta("occurence", lTagOf[MedicationAdministration.OccurenceChoice], true, lTagOf[UnionDateTimeOrPeriod])
   val eventHistory: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("eventHistory", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
-  val medication: FHIRComponentFieldMeta[MedicationAdministration.MedicationChoice] =
-    FHIRComponentFieldMeta(
-      "medication",
-      lTagOf[MedicationAdministration.MedicationChoice],
-      true,
-      lTagOf[UnionCodeableConceptOrReference])
-  val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
+  val instantiatesUri: FHIRComponentFieldMeta[LitSeq[UriStr]] =
+    FHIRComponentFieldMeta("instantiatesUri", lTagOf[LitSeq[UriStr]], false, lTagOf[UriStr])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  val instantiatesCanonical: FHIRComponentFieldMeta[LitSeq[Canonical]] =
+    FHIRComponentFieldMeta("instantiatesCanonical", lTagOf[LitSeq[Canonical]], false, lTagOf[Canonical])
   val supportingInformation: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("supportingInformation", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val dosage: FHIRComponentFieldMeta[Option[MedicationAdministration.Dosage]] =
@@ -329,24 +332,26 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
     note,
     partOf,
     status,
+    reason,
     device,
+    basedOn,
     subject,
-    context,
     request,
     language,
     category,
+    recorded,
     contained,
     extension,
+    encounter,
     identifier,
-    reasonCode,
-    instantiates,
+    medication,
     statusReason,
-    effective,
+    occurence,
     eventHistory,
     implicitRules,
-    medication,
-    reasonReference,
+    instantiatesUri,
     modifierExtension,
+    instantiatesCanonical,
     supportingInformation,
     dosage,
     performer
@@ -359,24 +364,26 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
     FHIRComponentField[LitSeq[Annotation]](note, t.note),
     FHIRComponentField[LitSeq[Reference]](partOf, t.partOf),
     FHIRComponentField[MEDICATION_ADMIN_STATUS](status, t.status),
+    FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
     FHIRComponentField[LitSeq[Reference]](device, t.device),
+    FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
     FHIRComponentField[Reference](subject, t.subject),
-    FHIRComponentField[Option[Reference]](context, t.context),
     FHIRComponentField[Option[Reference]](request, t.request),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[CodeableConcept]](category, t.category),
+    FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
+    FHIRComponentField[Option[FHIRDateTime]](recorded, t.recorded),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+    FHIRComponentField[Option[Reference]](encounter, t.encounter),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
-    FHIRComponentField[LitSeq[UriStr]](instantiates, t.instantiates),
+    FHIRComponentField[CodeableReference](medication, t.medication),
     FHIRComponentField[LitSeq[CodeableConcept]](statusReason, t.statusReason),
-    FHIRComponentField[MedicationAdministration.EffectiveChoice](effective, t.effective),
+    FHIRComponentField[MedicationAdministration.OccurenceChoice](occurence, t.occurence),
     FHIRComponentField[LitSeq[Reference]](eventHistory, t.eventHistory),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[MedicationAdministration.MedicationChoice](medication, t.medication),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
+    FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+    FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
     FHIRComponentField[LitSeq[Reference]](supportingInformation, t.supportingInformation),
     FHIRComponentField[Option[MedicationAdministration.Dosage]](dosage, t.dosage),
     FHIRComponentField[LitSeq[MedicationAdministration.Performer]](performer, t.performer)
@@ -387,42 +394,45 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
   def extractNote(t: MedicationAdministration): LitSeq[Annotation]                              = t.note
   def extractPartOf(t: MedicationAdministration): LitSeq[Reference]                             = t.partOf
   def extractStatus(t: MedicationAdministration): MEDICATION_ADMIN_STATUS                       = t.status
+  def extractReason(t: MedicationAdministration): LitSeq[CodeableReference]                     = t.reason
   def extractDevice(t: MedicationAdministration): LitSeq[Reference]                             = t.device
+  def extractBasedOn(t: MedicationAdministration): LitSeq[Reference]                            = t.basedOn
   def extractSubject(t: MedicationAdministration): Reference                                    = t.subject
-  def extractContext(t: MedicationAdministration): Option[Reference]                            = t.context
   def extractRequest(t: MedicationAdministration): Option[Reference]                            = t.request
   def extractLanguage(t: MedicationAdministration): Option[LANGUAGES]                           = t.language
-  def extractCategory(t: MedicationAdministration): Option[CodeableConcept]                     = t.category
+  def extractCategory(t: MedicationAdministration): LitSeq[CodeableConcept]                     = t.category
+  def extractRecorded(t: MedicationAdministration): Option[FHIRDateTime]                        = t.recorded
   def extractContained(t: MedicationAdministration): LitSeq[Resource]                           = t.contained
   def extractExtension(t: MedicationAdministration): LitSeq[Extension]                          = t.extension
+  def extractEncounter(t: MedicationAdministration): Option[Reference]                          = t.encounter
   def extractIdentifier(t: MedicationAdministration): LitSeq[Identifier]                        = t.identifier
-  def extractReasonCode(t: MedicationAdministration): LitSeq[CodeableConcept]                   = t.reasonCode
-  def extractInstantiates(t: MedicationAdministration): LitSeq[UriStr]                          = t.instantiates
+  def extractMedication(t: MedicationAdministration): CodeableReference                         = t.medication
   def extractStatusReason(t: MedicationAdministration): LitSeq[CodeableConcept]                 = t.statusReason
-  def extractEffective(t: MedicationAdministration): MedicationAdministration.EffectiveChoice   = t.effective
+  def extractOccurence(t: MedicationAdministration): MedicationAdministration.OccurenceChoice   = t.occurence
   def extractEventHistory(t: MedicationAdministration): LitSeq[Reference]                       = t.eventHistory
   def extractImplicitRules(t: MedicationAdministration): Option[UriStr]                         = t.implicitRules
-  def extractMedication(t: MedicationAdministration): MedicationAdministration.MedicationChoice = t.medication
-  def extractReasonReference(t: MedicationAdministration): LitSeq[Reference]                    = t.reasonReference
+  def extractInstantiatesUri(t: MedicationAdministration): LitSeq[UriStr]                       = t.instantiatesUri
   def extractModifierExtension(t: MedicationAdministration): LitSeq[Extension]                  = t.modifierExtension
+  def extractInstantiatesCanonical(t: MedicationAdministration): LitSeq[Canonical]              = t.instantiatesCanonical
   def extractSupportingInformation(t: MedicationAdministration): LitSeq[Reference]              = t.supportingInformation
   def extractDosage(t: MedicationAdministration): Option[MedicationAdministration.Dosage]       = t.dosage
   def extractPerformer(t: MedicationAdministration): LitSeq[MedicationAdministration.Performer] = t.performer
   override val thisName: String                                                                 = "MedicationAdministration"
   override val searchParams: Map[String, MedicationAdministration => Seq[Any]] = Map(
-    "request"          -> (obj => obj.request.toSeq),
-    "identifier"       -> (obj => obj.identifier.toSeq),
-    "context"          -> (obj => obj.context.toSeq),
-    "reason-not-given" -> (obj => obj.statusReason.toSeq),
-    "status"           -> (obj => Seq(obj.status)),
-    "effective-time"   -> (obj => Seq(obj.effective)),
-    "patient"          -> (obj => obj.subject.seqIf(_.reference.exists(_.contains("Patient/"))).toSeq),
-    "subject"          -> (obj => Seq(obj.subject)),
-    "medication"       -> (obj => obj.medication.as[Reference].toSeq),
-    "reason-given"     -> (obj => obj.reasonCode.toSeq),
-    "code"             -> (obj => obj.medication.as[CodeableConcept].toSeq),
-    "device"           -> (obj => obj.device.toSeq),
-    "performer"        -> (obj => obj.performer.map(_.actor).toSeq)
+    "request"           -> (obj => obj.request.toSeq),
+    "identifier"        -> (obj => obj.identifier.toSeq),
+    "reason-not-given"  -> (obj => obj.statusReason.toSeq),
+    "date"              -> (obj => Seq(obj.occurence)),
+    "status"            -> (obj => Seq(obj.status)),
+    "reason-given-code" -> (obj => obj.reason.flatMap(_.concept).toSeq),
+    "encounter"         -> (obj => obj.encounter.toSeq),
+    "patient"           -> (obj => obj.subject.seqIf(_.reference.exists(_.contains("Patient/"))).toSeq),
+    "subject"           -> (obj => Seq(obj.subject)),
+    "medication"        -> (obj => obj.medication.reference.toSeq),
+    "reason-given"      -> (obj => obj.reason.flatMap(_.reference).toSeq),
+    "code"              -> (obj => obj.medication.concept.toSeq),
+    "device"            -> (obj => obj.device.toSeq),
+    "performer"         -> (obj => obj.performer.map(_.actor).toSeq)
   )
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[MedicationAdministration] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
@@ -434,24 +444,26 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
           cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("partOf", Some(LitSeq.empty)),
           cursor.decodeAs[MEDICATION_ADMIN_STATUS]("status", None),
+          cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("device", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Reference]]("basedOn", Some(LitSeq.empty)),
           cursor.decodeAs[Reference]("subject", None),
-          cursor.decodeAs[Option[Reference]]("context", Some(None)),
           cursor.decodeAs[Option[Reference]]("request", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
-          cursor.decodeAs[Option[CodeableConcept]]("category", Some(None)),
+          cursor.decodeAs[LitSeq[CodeableConcept]]("category", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[FHIRDateTime]]("recorded", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[UriStr]]("instantiates", Some(LitSeq.empty)),
+          cursor.decodeAs[CodeableReference]("medication", None),
           cursor.decodeAs[LitSeq[CodeableConcept]]("statusReason", Some(LitSeq.empty)),
-          cursor.decodeRef[UnionDateTimeOrPeriod]("effective"),
+          cursor.decodeRef[UnionDateTimeOrPeriod]("occurence"),
           cursor.decodeAs[LitSeq[Reference]]("eventHistory", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeRef[UnionCodeableConceptOrReference]("medication"),
-          cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[UriStr]]("instantiatesUri", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Canonical]]("instantiatesCanonical", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("supportingInformation", Some(LitSeq.empty)),
           cursor.decodeAs[Option[MedicationAdministration.Dosage]]("dosage", Some(None)),
           cursor.decodeAs[LitSeq[MedicationAdministration.Performer]]("performer", Some(LitSeq.empty)),
@@ -467,8 +479,9 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields note, partOf, status, device, subject, context, request, category, identifier, reasonCode,
-  *   instantiates, statusReason, effective, eventHistory, medication, reasonReference, supportingInformation, dosage, performer.
+  *   Introduces the fields note, partOf, status, reason, device, basedOn, subject, request, category, recorded, encounter,
+  *   identifier, medication, statusReason, occurence, eventHistory, instantiatesUri, instantiatesCanonical,
+  *   supportingInformation, dosage, performer.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -487,53 +500,57 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
   *   - Will generally be set to show that the administration has been completed. For some long running administrations such as
   *   infusions, it is possible for an administration to be started but not completed or it may be paused while some other process
   *   is under way.
+  * @param reason
+  *   - A code, Condition or observation that supports why the medication was administered.
   * @param device
   *   - The device used in administering the medication to the patient. For example, a particular infusion pump.
+  * @param basedOn
+  *   - A plan that is fulfilled in whole or in part by this MedicationAdministration.
   * @param subject
   *   - The person or animal or group receiving the medication.
-  * @param context
-  *   - The visit, admission, or other contact between patient and health care provider during which the medication administration
-  *   was performed.
   * @param request
   *   - The original request, instruction or authority to perform the administration.
   * @param language
   *   - The base language in which the resource is written.
   * @param category
-  *   - Indicates where the medication is expected to be consumed or administered.
+  *   - The type of medication administration (for example, drug classification like ATC, where meds would be administered, legal
+  *   category of the medication).
+  * @param recorded
+  *   - The date the occurrence of the MedicationAdministration was first captured in the record - potentially significantly after
+  *   the occurrence of the event.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
+  * @param encounter
+  *   - The visit, admission, or other contact between patient and health care provider during which the medication administration
+  *   was performed.
   * @param identifier
   *   - Identifiers associated with this Medication Administration that are defined by business processes and/or used to refer to
   *   it when a direct URL reference to the resource itself is not appropriate. They are business identifiers assigned to this
   *   resource by the performer or other systems and remain constant as the resource is updated and propagates from server to
   *   server.
-  * @param reasonCode
-  *   - A code indicating why the medication was given.
-  * @param instantiates
-  *   - A protocol, guideline, orderset, or other definition that was adhered to in whole or in part by this event.
+  * @param medication
+  *   - Identifies the medication that was administered. This is either a link to a resource representing the details of the
+  *   medication or a simple attribute carrying a code that identifies the medication from a known list of medications.
   * @param statusReason
   *   - A code indicating why the administration was not performed.
-  * @param effective
-  *   - A specific date/time or interval of time during which the administration took place (or did not take place, when the
-  *   'notGiven' attribute is true). For many administrations, such as swallowing a tablet the use of dateTime is more
-  *   appropriate.
+  * @param occurence
+  *   - A specific date/time or interval of time during which the administration took place (or did not take place). For many
+  *   administrations, such as swallowing a tablet the use of dateTime is more appropriate.
   * @param eventHistory
   *   - A summary of the events of interest that have occurred, such as when the administration was verified.
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
-  * @param medication
-  *   - Identifies the medication that was administered. This is either a link to a resource representing the details of the
-  *   medication or a simple attribute carrying a code that identifies the medication from a known list of medications.
-  * @param reasonReference
-  *   - Condition or observation that supports why the medication was administered.
+  * @param instantiatesUri
+  *   - The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole
+  *   or in part by this MedicationAdministration.
   * @param modifierExtension
   *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
   *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
@@ -542,8 +559,13 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
   *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
   *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param instantiatesCanonical
+  *   - A protocol, guideline, orderset, or other definition that was adhered to in whole or in part by this event.
   * @param supportingInformation
-  *   - Additional information (for example, patient height and weight) that supports the administration of the medication.
+  *   - Additional information (for example, patient height and weight) that supports the administration of the medication. This
+  *   attribute can be used to provide documentation of specific characteristics of the patient present at the time of
+  *   administration. For example, if the dose says "give "x" if the heartrate exceeds "y"", then the heart rate can be included
+  *   using this attribute.
   * @param dosage
   *   - Describes the medication dosage information details e.g. dose, rate, site, route, etc.
   * @param performer
@@ -557,24 +579,26 @@ class MedicationAdministration(
     val note: LitSeq[Annotation] = LitSeq.empty,
     val partOf: LitSeq[Reference] = LitSeq.empty,
     val status: MEDICATION_ADMIN_STATUS,
+    val reason: LitSeq[CodeableReference] = LitSeq.empty,
     val device: LitSeq[Reference] = LitSeq.empty,
+    val basedOn: LitSeq[Reference] = LitSeq.empty,
     val subject: Reference,
-    val context: Option[Reference] = None,
     val request: Option[Reference] = None,
     override val language: Option[LANGUAGES] = None,
-    val category: Option[CodeableConcept] = None,
+    val category: LitSeq[CodeableConcept] = LitSeq.empty,
+    val recorded: Option[FHIRDateTime] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
+    val encounter: Option[Reference] = None,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
-    val instantiates: LitSeq[UriStr] = LitSeq.empty,
+    val medication: CodeableReference,
     val statusReason: LitSeq[CodeableConcept] = LitSeq.empty,
-    val effective: MedicationAdministration.EffectiveChoice,
+    val occurence: MedicationAdministration.OccurenceChoice,
     val eventHistory: LitSeq[Reference] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
-    val medication: MedicationAdministration.MedicationChoice,
-    val reasonReference: LitSeq[Reference] = LitSeq.empty,
+    val instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
+    val instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
     val supportingInformation: LitSeq[Reference] = LitSeq.empty,
     val dosage: Option[MedicationAdministration.Dosage] = None,
     val performer: LitSeq[MedicationAdministration.Performer] = LitSeq.empty,

@@ -55,9 +55,9 @@ public interface SubstancePolymer_MonomerSet_StartingMaterialBuilder {
 
   public class Impl implements SubstancePolymer_MonomerSet_StartingMaterialBuilder {
     private Optional<String> id = Optional.empty();
-    private Optional<CodeableConcept> _type = Optional.empty();
-    private Optional<Choice> amount = Optional.empty();
-    private Optional<CodeableConcept> material = Optional.empty();
+    private Optional<CodeableConcept> code = Optional.empty();
+    private Optional<Quantity> amount = Optional.empty();
+    private Optional<CodeableConcept> category = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Boolean> isDefining = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -73,34 +73,40 @@ public interface SubstancePolymer_MonomerSet_StartingMaterialBuilder {
       this.id = Optional.of(id);
       return this;
     }
-    /** @param _type */
-    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withType(
-        @NonNull CodeableConcept _type) {
-      this._type = Optional.of(_type);
+    /** @param code */
+    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withCode(
+        @NonNull CodeableConcept code) {
+      this.code = Optional.of(code);
       return this;
     }
 
-    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withType(
-        @NonNull CodeableConceptBuilder _type) {
-      this._type = Optional.of(_type.build());
+    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withCode(
+        @NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /** @param amount */
     public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withAmount(
-        @NonNull Choice amount) {
+        @NonNull Quantity amount) {
       this.amount = Optional.of(amount);
       return this;
     }
-    /** @param material */
-    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withMaterial(
-        @NonNull CodeableConcept material) {
-      this.material = Optional.of(material);
+
+    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withAmount(
+        @NonNull QuantityBuilder amount) {
+      this.amount = Optional.of(amount.build());
+      return this;
+    }
+    /** @param category */
+    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withCategory(
+        @NonNull CodeableConcept category) {
+      this.category = Optional.of(category);
       return this;
     }
 
-    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withMaterial(
-        @NonNull CodeableConceptBuilder material) {
-      this.material = Optional.of(material.build());
+    public SubstancePolymer_MonomerSet_StartingMaterialBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder category) {
+      this.category = Optional.of(category.build());
       return this;
     }
     /**
@@ -186,9 +192,9 @@ public interface SubstancePolymer_MonomerSet_StartingMaterialBuilder {
     public SubstancePolymer$MonomerSet$StartingMaterial build() {
       return new SubstancePolymer$MonomerSet$StartingMaterial(
           OptionConverters.toScala(id),
-          OptionConverters.toScala(_type),
-          (Option) OptionConverters.toScala(amount),
-          OptionConverters.toScala(material),
+          OptionConverters.toScala(code),
+          OptionConverters.toScala(amount),
+          OptionConverters.toScala(category),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(isDefining.map(x -> (Object) x)),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),

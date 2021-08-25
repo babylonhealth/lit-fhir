@@ -87,7 +87,7 @@ public interface Substance_IngredientBuilder {
       this.id = Optional.of(id);
       return this;
     }
-    /** @param quantity */
+    /** @param quantity - The amount of the substance. */
     public Substance_IngredientBuilder.Impl withQuantity(@NonNull Ratio quantity) {
       this.quantity = Optional.of(quantity);
       return this;

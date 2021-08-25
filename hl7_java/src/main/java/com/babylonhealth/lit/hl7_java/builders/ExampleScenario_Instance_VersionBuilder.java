@@ -64,7 +64,8 @@ public interface ExampleScenario_Instance_VersionBuilder {
      * Required fields for {@link ExampleScenario$Instance$Version}
      *
      * @param versionId
-     * @param description
+     * @param description - A free text natural language description of the {{title}} from a
+     *     consumer's perspective.
      */
     public Impl(String versionId, String description) {
       this.versionId = versionId;

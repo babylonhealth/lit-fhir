@@ -45,12 +45,12 @@ import static java.util.stream.Collectors.toList;
 public interface ConditionBuilder extends DomainResourceBuilder {
   public Condition build();
 
-  public static Impl init(Reference subject) {
-    return new Impl(subject);
+  public static Impl init(Reference subject, CodeableConcept clinicalStatus) {
+    return new Impl(subject, clinicalStatus);
   }
 
-  public static Impl builder(ReferenceBuilder subject) {
-    return new Impl(subject.build());
+  public static Impl builder(ReferenceBuilder subject, CodeableConceptBuilder clinicalStatus) {
+    return new Impl(subject.build(), clinicalStatus.build());
   }
 
   public static Choice01474038381 onset(Age a) {
@@ -114,7 +114,7 @@ public interface ConditionBuilder extends DomainResourceBuilder {
     private Optional<Choice01474038381> abatement = Optional.empty();
     private Optional<FHIRDateTime> recordedDate = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<CodeableConcept> clinicalStatus = Optional.empty();
+    private CodeableConcept clinicalStatus;
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<CodeableConcept> verificationStatus = Optional.empty();
     private Collection<Condition.Stage> stage = Collections.emptyList();
@@ -124,9 +124,11 @@ public interface ConditionBuilder extends DomainResourceBuilder {
      * Required fields for {@link Condition}
      *
      * @param subject - Indicates the patient or group who the condition record is associated with.
+     * @param clinicalStatus - The clinical status of the condition.
      */
-    public Impl(Reference subject) {
+    public Impl(Reference subject, CodeableConcept clinicalStatus) {
       this.subject = subject;
+      this.clinicalStatus = clinicalStatus;
     }
 
     /**
@@ -269,7 +271,7 @@ public interface ConditionBuilder extends DomainResourceBuilder {
       this.recorder = Optional.of(recorder.build());
       return this;
     }
-    /** @param asserter - Individual who is making the condition statement. */
+    /** @param asserter - Individual or device that is making the condition statement. */
     public ConditionBuilder.Impl withAsserter(@NonNull Reference asserter) {
       this.asserter = Optional.of(asserter);
       return this;
@@ -281,8 +283,8 @@ public interface ConditionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ConditionBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -290,8 +292,8 @@ public interface ConditionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ConditionBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -368,10 +370,10 @@ public interface ConditionBuilder extends DomainResourceBuilder {
     /**
      * @param abatement - The date or estimated date that the condition resolved or went into
      *     remission. This is called "abatement" because of the many overloaded connotations
-     *     associated with "remission" or "resolution" - Conditions are never really resolved, but
-     *     they can abate. Field is a 'choice' field. Type should be one of Age, FHIRDateTime,
-     *     Period, Range, String. To pass the value in, wrap with one of the
-     *     ConditionBuilder.abatement static methods
+     *     associated with "remission" or "resolution" - Some conditions, such as chronic
+     *     conditions, are never really resolved, but they can abate. Field is a 'choice' field.
+     *     Type should be one of Age, FHIRDateTime, Period, Range, String. To pass the value in,
+     *     wrap with one of the ConditionBuilder.abatement static methods
      */
     public ConditionBuilder.Impl withAbatement(@NonNull Choice01474038381 abatement) {
       this.abatement = Optional.of(abatement);
@@ -393,17 +395,6 @@ public interface ConditionBuilder extends DomainResourceBuilder {
      */
     public ConditionBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
       this.implicitRules = Optional.of(implicitRules);
-      return this;
-    }
-    /** @param clinicalStatus - The clinical status of the condition. */
-    public ConditionBuilder.Impl withClinicalStatus(@NonNull CodeableConcept clinicalStatus) {
-      this.clinicalStatus = Optional.of(clinicalStatus);
-      return this;
-    }
-
-    public ConditionBuilder.Impl withClinicalStatus(
-        @NonNull CodeableConceptBuilder clinicalStatus) {
-      this.clinicalStatus = Optional.of(clinicalStatus.build());
       return this;
     }
     /**
@@ -450,7 +441,8 @@ public interface ConditionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param verificationStatus - The verification status to support the clinical status of the
-     *     condition.
+     *     condition. The verification status pertains to the condition, itself, not to any specific
+     *     condition attribute.
      */
     public ConditionBuilder.Impl withVerificationStatus(
         @NonNull CodeableConcept verificationStatus) {
@@ -464,16 +456,18 @@ public interface ConditionBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param stage - Clinical stage or grade of a condition. May include formal severity
-     *     assessments.
+     * @param stage - A simple summary of the stage such as "Stage 3" or "Early Onset". The
+     *     determination of the stage is disease-specific, such as cancer, retinopathy of
+     *     prematurity, kidney diseases, Alzheimer's, or Parkinson disease.
      */
     public ConditionBuilder.Impl withStage(@NonNull Condition.Stage... stage) {
       this.stage = Arrays.asList(stage);
       return this;
     }
     /**
-     * @param stage - Clinical stage or grade of a condition. May include formal severity
-     *     assessments.
+     * @param stage - A simple summary of the stage such as "Stage 3" or "Early Onset". The
+     *     determination of the stage is disease-specific, such as cancer, retinopathy of
+     *     prematurity, kidney diseases, Alzheimer's, or Parkinson disease.
      */
     public ConditionBuilder.Impl withStage(@NonNull Collection<Condition.Stage> stage) {
       this.stage = Collections.unmodifiableCollection(stage);
@@ -533,7 +527,7 @@ public interface ConditionBuilder extends DomainResourceBuilder {
           (Option) OptionConverters.toScala(abatement),
           OptionConverters.toScala(recordedDate),
           OptionConverters.toScala(implicitRules),
-          OptionConverters.toScala(clinicalStatus),
+          clinicalStatus,
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(verificationStatus),
           stage.stream().collect(new LitSeqJCollector<>()),

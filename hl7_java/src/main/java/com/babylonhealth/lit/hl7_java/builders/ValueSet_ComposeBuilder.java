@@ -57,6 +57,7 @@ public interface ValueSet_ComposeBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<ValueSet$Compose$Include> exclude = Collections.emptyList();
     private Optional<Boolean> inactive = Optional.empty();
+    private Collection<String> property = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<FHIRDate> lockedDate = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -99,6 +100,16 @@ public interface ValueSet_ComposeBuilder {
     /** @param inactive */
     public ValueSet_ComposeBuilder.Impl withInactive(@NonNull Boolean inactive) {
       this.inactive = Optional.of(inactive);
+      return this;
+    }
+    /** @param property */
+    public ValueSet_ComposeBuilder.Impl withProperty(@NonNull String... property) {
+      this.property = Arrays.asList(property);
+      return this;
+    }
+    /** @param property */
+    public ValueSet_ComposeBuilder.Impl withProperty(@NonNull Collection<String> property) {
+      this.property = Collections.unmodifiableCollection(property);
       return this;
     }
     /**
@@ -182,6 +193,7 @@ public interface ValueSet_ComposeBuilder {
           OptionConverters.toScala(id),
           exclude.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(inactive.map(x -> (Object) x)),
+          property.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(lockedDate),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),

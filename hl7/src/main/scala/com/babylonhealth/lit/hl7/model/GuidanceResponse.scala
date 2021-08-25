@@ -38,6 +38,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
       text: Option[Narrative] = None,
       note: LitSeq[Annotation] = LitSeq.empty,
       status: GUIDANCE_RESPONSE_STATUS,
+      reason: LitSeq[CodeableReference] = LitSeq.empty,
       result: Option[Reference] = None,
       subject: Option[Reference] = None,
       language: Option[LANGUAGES] = None,
@@ -47,9 +48,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
       encounter: Option[Reference] = None,
       performer: Option[Reference] = None,
       identifier: LitSeq[Identifier] = LitSeq.empty,
-      reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
-      reasonReference: LitSeq[Reference] = LitSeq.empty,
       dataRequirement: LitSeq[DataRequirement] = LitSeq.empty,
       outputParameters: Option[Reference] = None,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
@@ -63,6 +62,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
     text,
     note,
     status,
+    reason,
     result,
     subject,
     language,
@@ -72,9 +72,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
     encounter,
     performer,
     identifier,
-    reasonCode,
     implicitRules,
-    reasonReference,
     dataRequirement,
     outputParameters,
     modifierExtension,
@@ -93,6 +91,8 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
     FHIRComponentFieldMeta("note", lTagOf[LitSeq[Annotation]], false, lTagOf[Annotation])
   val status: FHIRComponentFieldMeta[GUIDANCE_RESPONSE_STATUS] =
     FHIRComponentFieldMeta("status", lTagOf[GUIDANCE_RESPONSE_STATUS], false, lTagOf[GUIDANCE_RESPONSE_STATUS])
+  val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val result: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("result", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val subject: FHIRComponentFieldMeta[Option[Reference]] =
@@ -111,12 +111,8 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
     FHIRComponentFieldMeta("performer", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
-  val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
-  val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val dataRequirement: FHIRComponentFieldMeta[LitSeq[DataRequirement]] =
     FHIRComponentFieldMeta("dataRequirement", lTagOf[LitSeq[DataRequirement]], false, lTagOf[DataRequirement])
   val outputParameters: FHIRComponentFieldMeta[Option[Reference]] =
@@ -135,6 +131,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
     text,
     note,
     status,
+    reason,
     result,
     subject,
     language,
@@ -144,9 +141,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
     encounter,
     performer,
     identifier,
-    reasonCode,
     implicitRules,
-    reasonReference,
     dataRequirement,
     outputParameters,
     modifierExtension,
@@ -161,6 +156,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
     FHIRComponentField[Option[Narrative]](text, t.text),
     FHIRComponentField[LitSeq[Annotation]](note, t.note),
     FHIRComponentField[GUIDANCE_RESPONSE_STATUS](status, t.status),
+    FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
     FHIRComponentField[Option[Reference]](result, t.result),
     FHIRComponentField[Option[Reference]](subject, t.subject),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
@@ -170,9 +166,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
     FHIRComponentField[Option[Reference]](encounter, t.encounter),
     FHIRComponentField[Option[Reference]](performer, t.performer),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
     FHIRComponentField[LitSeq[DataRequirement]](dataRequirement, t.dataRequirement),
     FHIRComponentField[Option[Reference]](outputParameters, t.outputParameters),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
@@ -185,6 +179,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
   def extractText(t: GuidanceResponse): Option[Narrative]                  = t.text
   def extractNote(t: GuidanceResponse): LitSeq[Annotation]                 = t.note
   def extractStatus(t: GuidanceResponse): GUIDANCE_RESPONSE_STATUS         = t.status
+  def extractReason(t: GuidanceResponse): LitSeq[CodeableReference]        = t.reason
   def extractResult(t: GuidanceResponse): Option[Reference]                = t.result
   def extractSubject(t: GuidanceResponse): Option[Reference]               = t.subject
   def extractLanguage(t: GuidanceResponse): Option[LANGUAGES]              = t.language
@@ -194,9 +189,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
   def extractEncounter(t: GuidanceResponse): Option[Reference]             = t.encounter
   def extractPerformer(t: GuidanceResponse): Option[Reference]             = t.performer
   def extractIdentifier(t: GuidanceResponse): LitSeq[Identifier]           = t.identifier
-  def extractReasonCode(t: GuidanceResponse): LitSeq[CodeableConcept]      = t.reasonCode
   def extractImplicitRules(t: GuidanceResponse): Option[UriStr]            = t.implicitRules
-  def extractReasonReference(t: GuidanceResponse): LitSeq[Reference]       = t.reasonReference
   def extractDataRequirement(t: GuidanceResponse): LitSeq[DataRequirement] = t.dataRequirement
   def extractOutputParameters(t: GuidanceResponse): Option[Reference]      = t.outputParameters
   def extractModifierExtension(t: GuidanceResponse): LitSeq[Extension]     = t.modifierExtension
@@ -205,11 +198,38 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
   def extractOccurrenceDateTime(t: GuidanceResponse): Option[FHIRDateTime] = t.occurrenceDateTime
   override val thisName: String                                            = "GuidanceResponse"
   override val searchParams: Map[String, GuidanceResponse => Seq[Any]] = Map(
-    "identifier" -> (obj => obj.identifier.toSeq),
-    "patient"    -> (obj => obj.subject.filter(_.reference.exists(_.contains("Patient/"))).toSeq),
     "request"    -> (obj => obj.requestIdentifier.toSeq),
-    "subject"    -> (obj => obj.subject.toSeq)
+    "subject"    -> (obj => obj.subject.toSeq),
+    "identifier" -> (obj => obj.identifier.toSeq),
+    "status"     -> (obj => Seq(obj.status)),
+    "patient"    -> (obj => obj.subject.filter(_.reference.exists(_.contains("Patient/"))).toSeq)
   )
+  def unapply(
+      o: GuidanceResponse): Option[(Option[String], Option[Meta], Option[Narrative], LitSeq[Annotation], GUIDANCE_RESPONSE_STATUS, LitSeq[CodeableReference], Option[Reference], Option[Reference], Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], GuidanceResponse.ModuleChoice, Option[Reference], Option[Reference], LitSeq[Identifier], Option[UriStr], LitSeq[DataRequirement], Option[Reference], LitSeq[Extension], Option[Identifier], LitSeq[Reference], Option[FHIRDateTime])] =
+    Some(
+      (
+        o.id,
+        o.meta,
+        o.text,
+        o.note,
+        o.status,
+        o.reason,
+        o.result,
+        o.subject,
+        o.language,
+        o.contained,
+        o.extension,
+        o.module,
+        o.encounter,
+        o.performer,
+        o.identifier,
+        o.implicitRules,
+        o.dataRequirement,
+        o.outputParameters,
+        o.modifierExtension,
+        o.requestIdentifier,
+        o.evaluationMessage,
+        o.occurrenceDateTime))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[GuidanceResponse] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -219,6 +239,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
           cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
           cursor.decodeAs[GUIDANCE_RESPONSE_STATUS]("status", None),
+          cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("result", Some(None)),
           cursor.decodeAs[Option[Reference]]("subject", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
@@ -228,9 +249,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[Option[Reference]]("performer", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[DataRequirement]]("dataRequirement", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("outputParameters", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -248,8 +267,8 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields note, status, result, subject, module, encounter, performer, identifier, reasonCode, reasonReference,
-  *   dataRequirement, outputParameters, requestIdentifier, evaluationMessage, occurrenceDateTime.
+  *   Introduces the fields note, status, reason, result, subject, module, encounter, performer, identifier, dataRequirement,
+  *   outputParameters, requestIdentifier, evaluationMessage, occurrenceDateTime.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -269,6 +288,10 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
   *   successfully, but the engine determines that a potentially more accurate response could be provided if more data was
   *   available, the status will be data-requested, and the response will contain a description of the additional requested
   *   information.
+  * @param reason
+  *   - Describes the reason for the guidance response in coded or textual form, or Indicates the reason the request was
+  *   initiated. This is typically provided as a parameter to the evaluation and echoed by the service, although for some use
+  *   cases, such as subscription- or event-based scenarios, it may provide an indication of the cause for the response.
   * @param result
   *   - The actions, if any, produced by the evaluation of the artifact.
   * @param subject
@@ -277,7 +300,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -291,16 +314,10 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
   *   - Provides a reference to the device that performed the guidance.
   * @param identifier
   *   - Allows a service to provide unique, business identifiers for the response.
-  * @param reasonCode
-  *   - Describes the reason for the guidance response in coded or textual form.
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
-  * @param reasonReference
-  *   - Indicates the reason the request was initiated. This is typically provided as a parameter to the evaluation and echoed by
-  *   the service, although for some use cases, such as subscription- or event-based scenarios, it may provide an indication of
-  *   the cause for the response.
   * @param dataRequirement
   *   - If the evaluation could not be completed due to lack of information, or additional information would potentially result in
   *   a more accurate response, this element will a description of the data required in order to proceed with the evaluation. A
@@ -333,6 +350,7 @@ class GuidanceResponse(
     override val text: Option[Narrative] = None,
     val note: LitSeq[Annotation] = LitSeq.empty,
     val status: GUIDANCE_RESPONSE_STATUS,
+    val reason: LitSeq[CodeableReference] = LitSeq.empty,
     val result: Option[Reference] = None,
     val subject: Option[Reference] = None,
     override val language: Option[LANGUAGES] = None,
@@ -342,9 +360,7 @@ class GuidanceResponse(
     val encounter: Option[Reference] = None,
     val performer: Option[Reference] = None,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
-    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     val dataRequirement: LitSeq[DataRequirement] = LitSeq.empty,
     val outputParameters: Option[Reference] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,

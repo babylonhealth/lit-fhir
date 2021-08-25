@@ -45,12 +45,12 @@ import static java.util.stream.Collectors.toList;
 public interface AllergyIntolerance_ReactionBuilder {
   public AllergyIntolerance.Reaction build();
 
-  public static Impl init(Collection<CodeableConcept> manifestation) {
+  public static Impl init(Collection<CodeableReference> manifestation) {
     return new Impl(manifestation);
   }
 
-  public static Impl builder(Collection<CodeableConceptBuilder> manifestation) {
-    return new Impl(new LitSeq<>(manifestation).map(CodeableConceptBuilder::build));
+  public static Impl builder(Collection<CodeableReferenceBuilder> manifestation) {
+    return new Impl(new LitSeq<>(manifestation).map(CodeableReferenceBuilder::build));
   }
 
   public class Impl implements AllergyIntolerance_ReactionBuilder {
@@ -61,7 +61,7 @@ public interface AllergyIntolerance_ReactionBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<CodeableConcept> substance = Optional.empty();
     private Optional<String> description = Optional.empty();
-    private Collection<CodeableConcept> manifestation;
+    private Collection<CodeableReference> manifestation;
     private Optional<CodeableConcept> exposureRoute = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -70,7 +70,7 @@ public interface AllergyIntolerance_ReactionBuilder {
      *
      * @param manifestation
      */
-    public Impl(Collection<CodeableConcept> manifestation) {
+    public Impl(Collection<CodeableReference> manifestation) {
       this.manifestation = manifestation;
     }
 

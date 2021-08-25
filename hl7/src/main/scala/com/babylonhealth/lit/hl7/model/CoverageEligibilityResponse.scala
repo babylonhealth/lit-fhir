@@ -18,7 +18,7 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
-import com.babylonhealth.lit.hl7.{ ELIGIBILITYRESPONSE_PURPOSE, REMITTANCE_OUTCOME, FM_STATUS }
+import com.babylonhealth.lit.hl7.{ ELIGIBILITYRESPONSE_PURPOSE, FM_STATUS }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -446,7 +446,7 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
       patient: Reference,
       created: FHIRDateTime,
       request: Reference,
-      outcome: REMITTANCE_OUTCOME,
+      outcome: Code,
       insurer: Reference,
       language: Option[LANGUAGES] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
@@ -509,8 +509,8 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
     FHIRComponentFieldMeta("created", lTagOf[FHIRDateTime], false, lTagOf[FHIRDateTime])
   val request: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("request", lTagOf[Reference], false, lTagOf[Reference])
-  val outcome: FHIRComponentFieldMeta[REMITTANCE_OUTCOME] =
-    FHIRComponentFieldMeta("outcome", lTagOf[REMITTANCE_OUTCOME], false, lTagOf[REMITTANCE_OUTCOME])
+  val outcome: FHIRComponentFieldMeta[Code] =
+    FHIRComponentFieldMeta("outcome", lTagOf[Code], false, lTagOf[Code])
   val insurer: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("insurer", lTagOf[Reference], false, lTagOf[Reference])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
@@ -585,7 +585,7 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
     FHIRComponentField[Reference](patient, t.patient),
     FHIRComponentField[FHIRDateTime](created, t.created),
     FHIRComponentField[Reference](request, t.request),
-    FHIRComponentField[REMITTANCE_OUTCOME](outcome, t.outcome),
+    FHIRComponentField[Code](outcome, t.outcome),
     FHIRComponentField[Reference](insurer, t.insurer),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -609,7 +609,7 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
   def extractPatient(t: CoverageEligibilityResponse): Reference                                           = t.patient
   def extractCreated(t: CoverageEligibilityResponse): FHIRDateTime                                        = t.created
   def extractRequest(t: CoverageEligibilityResponse): Reference                                           = t.request
-  def extractOutcome(t: CoverageEligibilityResponse): REMITTANCE_OUTCOME                                  = t.outcome
+  def extractOutcome(t: CoverageEligibilityResponse): Code                                                = t.outcome
   def extractInsurer(t: CoverageEligibilityResponse): Reference                                           = t.insurer
   def extractLanguage(t: CoverageEligibilityResponse): Option[LANGUAGES]                                  = t.language
   def extractContained(t: CoverageEligibilityResponse): LitSeq[Resource]                                  = t.contained
@@ -648,7 +648,7 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
           cursor.decodeAs[Reference]("patient", None),
           cursor.decodeAs[FHIRDateTime]("created", None),
           cursor.decodeAs[Reference]("request", None),
-          cursor.decodeAs[REMITTANCE_OUTCOME]("outcome", None),
+          cursor.decodeAs[Code]("outcome", None),
           cursor.decodeAs[Reference]("insurer", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
@@ -706,7 +706,7 @@ object CoverageEligibilityResponse extends CompanionFor[CoverageEligibilityRespo
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -751,7 +751,7 @@ class CoverageEligibilityResponse(
     val patient: Reference,
     val created: FHIRDateTime,
     val request: Reference,
-    val outcome: REMITTANCE_OUTCOME,
+    val outcome: Code,
     val insurer: Reference,
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,

@@ -37,81 +37,83 @@ object CarePlan extends CompanionFor[CarePlan] {
     override type ResourceType = Activity
     override type ParentType   = Activity
     override val parentType: CompanionFor[ResourceType] = Activity
-    object Detail extends CompanionFor[Detail] {
-      implicit def summonObjectAndCompanionDetail1169529944(o: Detail): ObjectAndCompanion[Detail, Detail.type] =
+    object PlannedActivityDetail extends CompanionFor[PlannedActivityDetail] {
+      implicit def summonObjectAndCompanionPlannedActivityDetail1169529944(
+          o: PlannedActivityDetail): ObjectAndCompanion[PlannedActivityDetail, PlannedActivityDetail.type] =
         ObjectAndCompanion(o, this)
-      override type ResourceType = Detail
-      override type ParentType   = Detail
-      override val parentType: CompanionFor[ResourceType] = Detail
+      override type ResourceType = PlannedActivityDetail
+      override type ParentType   = PlannedActivityDetail
+      override val parentType: CompanionFor[ResourceType] = PlannedActivityDetail
       type ProductChoice   = Choice[UnionCodeableConceptOrReference]
+      type ReportedChoice  = Choice[UnionBooleanOrReference]
       type ScheduledChoice = Choice[UnionPeriodOrStringOrTiming]
       def apply(
           id: Option[String] = None,
           kind: Option[CARE_PLAN_ACTIVITY_KIND] = None,
           code: Option[CodeableConcept] = None,
           goal: LitSeq[Reference] = LitSeq.empty,
+          reason: LitSeq[CodeableReference] = LitSeq.empty,
           status: CARE_PLAN_ACTIVITY_STATUS,
-          location: Option[Reference] = None,
+          location: Option[CodeableReference] = None,
           quantity: Option[Quantity] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
           performer: LitSeq[Reference] = LitSeq.empty,
-          reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
-          product: Option[Detail.ProductChoice] = None,
+          product: Option[PlannedActivityDetail.ProductChoice] = None,
+          reported: Option[PlannedActivityDetail.ReportedChoice] = None,
           dailyAmount: Option[Quantity] = None,
           description: Option[String] = None,
           statusReason: Option[CodeableConcept] = None,
           doNotPerform: Option[Boolean] = None,
-          scheduled: Option[Detail.ScheduledChoice] = None,
+          scheduled: Option[PlannedActivityDetail.ScheduledChoice] = None,
           instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
-          reasonReference: LitSeq[Reference] = LitSeq.empty,
           modifierExtension: LitSeq[Extension] = LitSeq.empty,
           instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
           primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-      ): Detail = new Detail(
+      ): PlannedActivityDetail = new PlannedActivityDetail(
         id,
         kind,
         code,
         goal,
+        reason,
         status,
         location,
         quantity,
         extension,
         performer,
-        reasonCode,
         product,
+        reported,
         dailyAmount,
         description,
         statusReason,
         doNotPerform,
         scheduled,
         instantiatesUri,
-        reasonReference,
         modifierExtension,
         instantiatesCanonical,
         primitiveAttributes = primitiveAttributes
       )
       def unapply(
-          o: Detail): Option[(Option[String], Option[CARE_PLAN_ACTIVITY_KIND], Option[CodeableConcept], LitSeq[Reference], CARE_PLAN_ACTIVITY_STATUS, Option[Reference], Option[Quantity], LitSeq[Extension], LitSeq[Reference], LitSeq[CodeableConcept], Option[Detail.ProductChoice], Option[Quantity], Option[String], Option[CodeableConcept], Option[Boolean], Option[Detail.ScheduledChoice], LitSeq[UriStr], LitSeq[Reference], LitSeq[Extension], LitSeq[Canonical])] =
+          o: PlannedActivityDetail): Option[(Option[String], Option[CARE_PLAN_ACTIVITY_KIND], Option[CodeableConcept], LitSeq[Reference], LitSeq[CodeableReference], CARE_PLAN_ACTIVITY_STATUS, Option[CodeableReference], Option[Quantity], LitSeq[Extension], LitSeq[Reference], Option[PlannedActivityDetail.ProductChoice], Option[PlannedActivityDetail.ReportedChoice], Option[Quantity], Option[String], Option[CodeableConcept], Option[Boolean], Option[PlannedActivityDetail.ScheduledChoice], LitSeq[UriStr], LitSeq[Extension], LitSeq[Canonical])] =
         Some(
           (
             o.id,
             o.kind,
             o.code,
             o.goal,
+            o.reason,
             o.status,
             o.location,
             o.quantity,
             o.extension,
             o.performer,
-            o.reasonCode,
             o.product,
+            o.reported,
             o.dailyAmount,
             o.description,
             o.statusReason,
             o.doNotPerform,
             o.scheduled,
             o.instantiatesUri,
-            o.reasonReference,
             o.modifierExtension,
             o.instantiatesCanonical))
       val id: FHIRComponentFieldMeta[Option[String]] =
@@ -122,20 +124,30 @@ object CarePlan extends CompanionFor[CarePlan] {
         FHIRComponentFieldMeta("code", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
       val goal: FHIRComponentFieldMeta[LitSeq[Reference]] =
         FHIRComponentFieldMeta("goal", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
+      val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+        FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
       val status: FHIRComponentFieldMeta[CARE_PLAN_ACTIVITY_STATUS] =
         FHIRComponentFieldMeta("status", lTagOf[CARE_PLAN_ACTIVITY_STATUS], false, lTagOf[CARE_PLAN_ACTIVITY_STATUS])
-      val location: FHIRComponentFieldMeta[Option[Reference]] =
-        FHIRComponentFieldMeta("location", lTagOf[Option[Reference]], false, lTagOf[Reference])
+      val location: FHIRComponentFieldMeta[Option[CodeableReference]] =
+        FHIRComponentFieldMeta("location", lTagOf[Option[CodeableReference]], false, lTagOf[CodeableReference])
       val quantity: FHIRComponentFieldMeta[Option[Quantity]] =
         FHIRComponentFieldMeta("quantity", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val performer: FHIRComponentFieldMeta[LitSeq[Reference]] =
         FHIRComponentFieldMeta("performer", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
-      val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-        FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
-      val product: FHIRComponentFieldMeta[Option[Detail.ProductChoice]] =
-        FHIRComponentFieldMeta("product", lTagOf[Option[Detail.ProductChoice]], true, lTagOf[UnionCodeableConceptOrReference])
+      val product: FHIRComponentFieldMeta[Option[PlannedActivityDetail.ProductChoice]] =
+        FHIRComponentFieldMeta(
+          "product",
+          lTagOf[Option[PlannedActivityDetail.ProductChoice]],
+          true,
+          lTagOf[UnionCodeableConceptOrReference])
+      val reported: FHIRComponentFieldMeta[Option[PlannedActivityDetail.ReportedChoice]] =
+        FHIRComponentFieldMeta(
+          "reported",
+          lTagOf[Option[PlannedActivityDetail.ReportedChoice]],
+          true,
+          lTagOf[UnionBooleanOrReference])
       val dailyAmount: FHIRComponentFieldMeta[Option[Quantity]] =
         FHIRComponentFieldMeta("dailyAmount", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
       val description: FHIRComponentFieldMeta[Option[String]] =
@@ -144,12 +156,14 @@ object CarePlan extends CompanionFor[CarePlan] {
         FHIRComponentFieldMeta("statusReason", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
       val doNotPerform: FHIRComponentFieldMeta[Option[Boolean]] =
         FHIRComponentFieldMeta("doNotPerform", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
-      val scheduled: FHIRComponentFieldMeta[Option[Detail.ScheduledChoice]] =
-        FHIRComponentFieldMeta("scheduled", lTagOf[Option[Detail.ScheduledChoice]], true, lTagOf[UnionPeriodOrStringOrTiming])
+      val scheduled: FHIRComponentFieldMeta[Option[PlannedActivityDetail.ScheduledChoice]] =
+        FHIRComponentFieldMeta(
+          "scheduled",
+          lTagOf[Option[PlannedActivityDetail.ScheduledChoice]],
+          true,
+          lTagOf[UnionPeriodOrStringOrTiming])
       val instantiatesUri: FHIRComponentFieldMeta[LitSeq[UriStr]] =
         FHIRComponentFieldMeta("instantiatesUri", lTagOf[LitSeq[UriStr]], false, lTagOf[UriStr])
-      val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-        FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val instantiatesCanonical: FHIRComponentFieldMeta[LitSeq[Canonical]] =
@@ -159,70 +173,70 @@ object CarePlan extends CompanionFor[CarePlan] {
         kind,
         code,
         goal,
+        reason,
         status,
         location,
         quantity,
         extension,
         performer,
-        reasonCode,
         product,
+        reported,
         dailyAmount,
         description,
         statusReason,
         doNotPerform,
         scheduled,
         instantiatesUri,
-        reasonReference,
         modifierExtension,
         instantiatesCanonical
       )
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-      override def fields(t: Detail): Seq[FHIRComponentField[_]] = Seq(
+      override def fields(t: PlannedActivityDetail): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[CARE_PLAN_ACTIVITY_KIND]](kind, t.kind),
         FHIRComponentField[Option[CodeableConcept]](code, t.code),
         FHIRComponentField[LitSeq[Reference]](goal, t.goal),
+        FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
         FHIRComponentField[CARE_PLAN_ACTIVITY_STATUS](status, t.status),
-        FHIRComponentField[Option[Reference]](location, t.location),
+        FHIRComponentField[Option[CodeableReference]](location, t.location),
         FHIRComponentField[Option[Quantity]](quantity, t.quantity),
         FHIRComponentField[LitSeq[Extension]](extension, t.extension),
         FHIRComponentField[LitSeq[Reference]](performer, t.performer),
-        FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
-        FHIRComponentField[Option[Detail.ProductChoice]](product, t.product),
+        FHIRComponentField[Option[PlannedActivityDetail.ProductChoice]](product, t.product),
+        FHIRComponentField[Option[PlannedActivityDetail.ReportedChoice]](reported, t.reported),
         FHIRComponentField[Option[Quantity]](dailyAmount, t.dailyAmount),
         FHIRComponentField[Option[String]](description, t.description),
         FHIRComponentField[Option[CodeableConcept]](statusReason, t.statusReason),
         FHIRComponentField[Option[Boolean]](doNotPerform, t.doNotPerform),
-        FHIRComponentField[Option[Detail.ScheduledChoice]](scheduled, t.scheduled),
+        FHIRComponentField[Option[PlannedActivityDetail.ScheduledChoice]](scheduled, t.scheduled),
         FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
-        FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
         FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
         FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical)
       )
-      val baseType: CompanionFor[Detail] = this
-      val thisName: String               = "Detail"
-      def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Detail] =
+      val baseType: CompanionFor[PlannedActivityDetail] = this
+      val thisName: String                              = "PlannedActivityDetail"
+      def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[PlannedActivityDetail] =
         checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
           Try(
-            new Detail(
+            new PlannedActivityDetail(
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[Option[CARE_PLAN_ACTIVITY_KIND]]("kind", Some(None)),
               cursor.decodeAs[Option[CodeableConcept]]("code", Some(None)),
               cursor.decodeAs[LitSeq[Reference]]("goal", Some(LitSeq.empty)),
+              cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
               cursor.decodeAs[CARE_PLAN_ACTIVITY_STATUS]("status", None),
-              cursor.decodeAs[Option[Reference]]("location", Some(None)),
+              cursor.decodeAs[Option[CodeableReference]]("location", Some(None)),
               cursor.decodeAs[Option[Quantity]]("quantity", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
-              cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
               cursor.decodeOptRef[UnionCodeableConceptOrReference]("product"),
+              cursor.decodeOptRef[UnionBooleanOrReference]("reported"),
               cursor.decodeAs[Option[Quantity]]("dailyAmount", Some(None)),
               cursor.decodeAs[Option[String]]("description", Some(None)),
               cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
               cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
               cursor.decodeOptRef[UnionPeriodOrStringOrTiming]("scheduled"),
               cursor.decodeAs[LitSeq[UriStr]]("instantiatesUri", Some(LitSeq.empty)),
-              cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Canonical]]("instantiatesCanonical", Some(LitSeq.empty)),
               decodeAttributes(cursor)
@@ -230,25 +244,25 @@ object CarePlan extends CompanionFor[CarePlan] {
           ))
     }
     @POJOBoilerplate
-    class Detail(
+    class PlannedActivityDetail(
         override val id: Option[String] = None,
         val kind: Option[CARE_PLAN_ACTIVITY_KIND] = None,
         val code: Option[CodeableConcept] = None,
         val goal: LitSeq[Reference] = LitSeq.empty,
+        val reason: LitSeq[CodeableReference] = LitSeq.empty,
         val status: CARE_PLAN_ACTIVITY_STATUS,
-        val location: Option[Reference] = None,
+        val location: Option[CodeableReference] = None,
         val quantity: Option[Quantity] = None,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val performer: LitSeq[Reference] = LitSeq.empty,
-        val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
-        val product: Option[Detail.ProductChoice] = None,
+        val product: Option[PlannedActivityDetail.ProductChoice] = None,
+        val reported: Option[PlannedActivityDetail.ReportedChoice] = None,
         val dailyAmount: Option[Quantity] = None,
         val description: Option[String] = None,
         val statusReason: Option[CodeableConcept] = None,
         val doNotPerform: Option[Boolean] = None,
-        val scheduled: Option[Detail.ScheduledChoice] = None,
+        val scheduled: Option[PlannedActivityDetail.ScheduledChoice] = None,
         val instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
-        val reasonReference: LitSeq[Reference] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         val instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
@@ -257,55 +271,61 @@ object CarePlan extends CompanionFor[CarePlan] {
         id: Option[String] = None,
         progress: LitSeq[Annotation] = LitSeq.empty,
         extension: LitSeq[Extension] = LitSeq.empty,
-        reference: Option[Reference] = None,
-        outcomeReference: LitSeq[Reference] = LitSeq.empty,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        outcomeCodeableConcept: LitSeq[CodeableConcept] = LitSeq.empty,
-        detail: Option[Activity.Detail] = None,
+        performedActivity: LitSeq[CodeableReference] = LitSeq.empty,
+        plannedActivityReference: Option[Reference] = None,
+        plannedActivityDetail: Option[Activity.PlannedActivityDetail] = None,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
     ): Activity = new Activity(
       id,
       progress,
       extension,
-      reference,
-      outcomeReference,
       modifierExtension,
-      outcomeCodeableConcept,
-      detail,
+      performedActivity,
+      plannedActivityReference,
+      plannedActivityDetail,
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Activity): Option[(Option[String], LitSeq[Annotation], LitSeq[Extension], Option[Reference], LitSeq[Reference], LitSeq[Extension], LitSeq[CodeableConcept], Option[Activity.Detail])] =
+        o: Activity): Option[(Option[String], LitSeq[Annotation], LitSeq[Extension], LitSeq[Extension], LitSeq[CodeableReference], Option[Reference], Option[Activity.PlannedActivityDetail])] =
       Some(
-        (o.id, o.progress, o.extension, o.reference, o.outcomeReference, o.modifierExtension, o.outcomeCodeableConcept, o.detail))
+        (
+          o.id,
+          o.progress,
+          o.extension,
+          o.modifierExtension,
+          o.performedActivity,
+          o.plannedActivityReference,
+          o.plannedActivityDetail))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val progress: FHIRComponentFieldMeta[LitSeq[Annotation]] =
       FHIRComponentFieldMeta("progress", lTagOf[LitSeq[Annotation]], false, lTagOf[Annotation])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val reference: FHIRComponentFieldMeta[Option[Reference]] =
-      FHIRComponentFieldMeta("reference", lTagOf[Option[Reference]], false, lTagOf[Reference])
-    val outcomeReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-      FHIRComponentFieldMeta("outcomeReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val outcomeCodeableConcept: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-      FHIRComponentFieldMeta("outcomeCodeableConcept", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
-    val detail: FHIRComponentFieldMeta[Option[Activity.Detail]] =
-      FHIRComponentFieldMeta("detail", lTagOf[Option[Activity.Detail]], false, lTagOf[Activity.Detail])
+    val performedActivity: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+      FHIRComponentFieldMeta("performedActivity", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
+    val plannedActivityReference: FHIRComponentFieldMeta[Option[Reference]] =
+      FHIRComponentFieldMeta("plannedActivityReference", lTagOf[Option[Reference]], false, lTagOf[Reference])
+    val plannedActivityDetail: FHIRComponentFieldMeta[Option[Activity.PlannedActivityDetail]] =
+      FHIRComponentFieldMeta(
+        "plannedActivityDetail",
+        lTagOf[Option[Activity.PlannedActivityDetail]],
+        false,
+        lTagOf[Activity.PlannedActivityDetail])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, progress, extension, reference, outcomeReference, modifierExtension, outcomeCodeableConcept, detail)
+      Seq(id, progress, extension, modifierExtension, performedActivity, plannedActivityReference, plannedActivityDetail)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Activity): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Annotation]](progress, t.progress),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-      FHIRComponentField[Option[Reference]](reference, t.reference),
-      FHIRComponentField[LitSeq[Reference]](outcomeReference, t.outcomeReference),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-      FHIRComponentField[LitSeq[CodeableConcept]](outcomeCodeableConcept, t.outcomeCodeableConcept),
-      FHIRComponentField[Option[Activity.Detail]](detail, t.detail)
+      FHIRComponentField[LitSeq[CodeableReference]](performedActivity, t.performedActivity),
+      FHIRComponentField[Option[Reference]](plannedActivityReference, t.plannedActivityReference),
+      FHIRComponentField[Option[Activity.PlannedActivityDetail]](plannedActivityDetail, t.plannedActivityDetail)
     )
     val baseType: CompanionFor[Activity] = this
     val thisName: String                 = "Activity"
@@ -316,11 +336,10 @@ object CarePlan extends CompanionFor[CarePlan] {
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Annotation]]("progress", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeAs[Option[Reference]]("reference", Some(None)),
-            cursor.decodeAs[LitSeq[Reference]]("outcomeReference", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-            cursor.decodeAs[LitSeq[CodeableConcept]]("outcomeCodeableConcept", Some(LitSeq.empty)),
-            cursor.decodeAs[Option[Activity.Detail]]("detail", Some(None)),
+            cursor.decodeAs[LitSeq[CodeableReference]]("performedActivity", Some(LitSeq.empty)),
+            cursor.decodeAs[Option[Reference]]("plannedActivityReference", Some(None)),
+            cursor.decodeAs[Option[Activity.PlannedActivityDetail]]("plannedActivityDetail", Some(None)),
             decodeAttributes(cursor)
           )
         ))
@@ -330,11 +349,10 @@ object CarePlan extends CompanionFor[CarePlan] {
       override val id: Option[String] = None,
       val progress: LitSeq[Annotation] = LitSeq.empty,
       override val extension: LitSeq[Extension] = LitSeq.empty,
-      val reference: Option[Reference] = None,
-      val outcomeReference: LitSeq[Reference] = LitSeq.empty,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-      val outcomeCodeableConcept: LitSeq[CodeableConcept] = LitSeq.empty,
-      val detail: Option[Activity.Detail] = None,
+      val performedActivity: LitSeq[CodeableReference] = LitSeq.empty,
+      val plannedActivityReference: Option[Reference] = None,
+      val plannedActivityDetail: Option[Activity.PlannedActivityDetail] = None,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   def apply(
@@ -359,7 +377,7 @@ object CarePlan extends CompanionFor[CarePlan] {
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
       encounter: Option[Reference] = None,
-      addresses: LitSeq[Reference] = LitSeq.empty,
+      addresses: LitSeq[CodeableReference] = LitSeq.empty,
       identifier: LitSeq[Identifier] = LitSeq.empty,
       description: Option[String] = None,
       contributor: LitSeq[Reference] = LitSeq.empty,
@@ -446,8 +464,8 @@ object CarePlan extends CompanionFor[CarePlan] {
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val encounter: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("encounter", lTagOf[Option[Reference]], false, lTagOf[Reference])
-  val addresses: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("addresses", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
+  val addresses: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("addresses", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val description: FHIRComponentFieldMeta[Option[String]] =
@@ -522,7 +540,7 @@ object CarePlan extends CompanionFor[CarePlan] {
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[Reference]](encounter, t.encounter),
-    FHIRComponentField[LitSeq[Reference]](addresses, t.addresses),
+    FHIRComponentField[LitSeq[CodeableReference]](addresses, t.addresses),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
     FHIRComponentField[Option[String]](description, t.description),
     FHIRComponentField[LitSeq[Reference]](contributor, t.contributor),
@@ -554,7 +572,7 @@ object CarePlan extends CompanionFor[CarePlan] {
   def extractContained(t: CarePlan): LitSeq[Resource]              = t.contained
   def extractExtension(t: CarePlan): LitSeq[Extension]             = t.extension
   def extractEncounter(t: CarePlan): Option[Reference]             = t.encounter
-  def extractAddresses(t: CarePlan): LitSeq[Reference]             = t.addresses
+  def extractAddresses(t: CarePlan): LitSeq[CodeableReference]     = t.addresses
   def extractIdentifier(t: CarePlan): LitSeq[Identifier]           = t.identifier
   def extractDescription(t: CarePlan): Option[String]              = t.description
   def extractContributor(t: CarePlan): LitSeq[Reference]           = t.contributor
@@ -566,24 +584,28 @@ object CarePlan extends CompanionFor[CarePlan] {
   def extractActivity(t: CarePlan): LitSeq[CarePlan.Activity]      = t.activity
   override val thisName: String                                    = "CarePlan"
   override val searchParams: Map[String, CarePlan => Seq[Any]] = Map(
-    "subject"                -> (obj => Seq(obj.subject)),
-    "care-team"              -> (obj => obj.careTeam.toSeq),
-    "condition"              -> (obj => obj.addresses.toSeq),
-    "status"                 -> (obj => Seq(obj.status)),
-    "category"               -> (obj => obj.category.toSeq),
-    "part-of"                -> (obj => obj.partOf.toSeq),
-    "based-on"               -> (obj => obj.basedOn.toSeq),
-    "encounter"              -> (obj => obj.encounter.toSeq),
-    "instantiates-uri"       -> (obj => obj.instantiatesUri.toSeq),
-    "identifier"             -> (obj => obj.identifier.toSeq),
-    "intent"                 -> (obj => Seq(obj.intent)),
-    "activity-reference"     -> (obj => obj.activity.flatMap(_.reference).toSeq),
+    "subject"   -> (obj => Seq(obj.subject)),
+    "care-team" -> (obj => obj.careTeam.toSeq),
+    "activity-scheduled-date" -> (obj =>
+      obj.activity.flatMap(_.plannedActivityDetail).flatMap(_.scheduled).flatMap(_.as[Timing]).toSeq ++
+        obj.activity.flatMap(_.plannedActivityDetail).flatMap(_.scheduled).flatMap(_.as[Period]).toSeq),
+    "condition"          -> (obj => obj.addresses.flatMap(_.reference).toSeq),
+    "date"               -> (obj => obj.period.toSeq),
+    "status"             -> (obj => Seq(obj.status)),
+    "category"           -> (obj => obj.category.toSeq),
+    "part-of"            -> (obj => obj.partOf.toSeq),
+    "based-on"           -> (obj => obj.basedOn.toSeq),
+    "encounter"          -> (obj => obj.encounter.toSeq),
+    "instantiates-uri"   -> (obj => obj.instantiatesUri.toSeq),
+    "identifier"         -> (obj => obj.identifier.toSeq),
+    "intent"             -> (obj => Seq(obj.intent)),
+    "activity-reference" -> (obj => obj.activity.flatMap(_.plannedActivityReference).toSeq),
+    "activity-scheduled-string" -> (obj =>
+      obj.activity.flatMap(_.plannedActivityDetail).flatMap(_.scheduled).flatMap(_.as[String]).toSeq),
     "goal"                   -> (obj => obj.goal.toSeq),
-    "activity-code"          -> (obj => obj.activity.flatMap(_.detail).flatMap(_.code).toSeq),
-    "date"                   -> (obj => obj.period.toSeq),
-    "activity-date"          -> (obj => obj.activity.flatMap(_.detail).flatMap(_.scheduled).toSeq),
+    "activity-code"          -> (obj => obj.activity.flatMap(_.plannedActivityDetail).flatMap(_.code).toSeq),
     "replaces"               -> (obj => obj.replaces.toSeq),
-    "performer"              -> (obj => obj.activity.flatMap(_.detail).flatMap(_.performer).toSeq),
+    "performer"              -> (obj => obj.activity.flatMap(_.plannedActivityDetail).flatMap(_.performer).toSeq),
     "instantiates-canonical" -> (obj => obj.instantiatesCanonical.toSeq),
     "patient"                -> (obj => obj.subject.seqIf(_.reference.exists(_.contains("Patient/"))).toSeq)
   )
@@ -612,7 +634,7 @@ object CarePlan extends CompanionFor[CarePlan] {
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
-          cursor.decodeAs[LitSeq[Reference]]("addresses", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[CodeableReference]]("addresses", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("description", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("contributor", Some(LitSeq.empty)),
@@ -680,7 +702,7 @@ object CarePlan extends CompanionFor[CarePlan] {
   *   - Identifies all people and organizations who are expected to be involved in the care envisioned by this plan.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -719,8 +741,8 @@ object CarePlan extends CompanionFor[CarePlan] {
   *   - The URL pointing to a FHIR-defined protocol, guideline, questionnaire or other definition that is adhered to in whole or
   *   in part by this CarePlan.
   * @param activity
-  *   - Identifies a planned action to occur as part of the plan. For example, a medication to be used, lab tests to perform,
-  *   self-monitoring, education, etc.
+  *   - Identifies an action that has occurred or is a planned action to occur as part of the plan. For example, a medication to
+  *   be used, lab tests to perform, self-monitoring that has occurred, education etc.
   */
 @POJOBoilerplate
 class CarePlan(
@@ -745,7 +767,7 @@ class CarePlan(
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val encounter: Option[Reference] = None,
-    val addresses: LitSeq[Reference] = LitSeq.empty,
+    val addresses: LitSeq[CodeableReference] = LitSeq.empty,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
     val description: Option[String] = None,
     val contributor: LitSeq[Reference] = LitSeq.empty,

@@ -62,17 +62,15 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
     private Collection<Annotation> note = Collections.emptyList();
     private Optional<CARE_TEAM_STATUS> status = Optional.empty();
     private Optional<Period> period = Optional.empty();
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Optional<Reference> subject = Optional.empty();
     private Collection<ContactPoint> telecom = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category = Collections.emptyList();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Reference> encounter = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Reference> managingOrganization = Collections.emptyList();
     private Collection<CareTeam.Participant> participant = Collections.emptyList();
@@ -156,6 +154,21 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
       this.period = Optional.of(period.build());
       return this;
     }
+    /** @param reason - Describes why the care team exists. */
+    public CareTeamBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /** @param reason - Describes why the care team exists. */
+    public CareTeamBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public CareTeamBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param subject - Identifies the patient or group whose intended care is handled by the team.
      */
@@ -217,8 +230,8 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CareTeamBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -226,8 +239,8 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CareTeamBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -266,19 +279,6 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param encounter - The Encounter during which this CareTeam was created or to which the
-     *     creation of this record is tightly associated.
-     */
-    public CareTeamBuilder.Impl withEncounter(@NonNull Reference encounter) {
-      this.encounter = Optional.of(encounter);
-      return this;
-    }
-
-    public CareTeamBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
-      this.encounter = Optional.of(encounter.build());
-      return this;
-    }
-    /**
      * @param identifier - Business identifiers assigned to this care team by the performer or other
      *     systems which remain constant as the resource is updated and propagates from server to
      *     server.
@@ -301,21 +301,6 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
       this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param reasonCode - Describes why the care team exists. */
-    public CareTeamBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /** @param reasonCode - Describes why the care team exists. */
-    public CareTeamBuilder.Impl withReasonCode(@NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public CareTeamBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -324,22 +309,6 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
      */
     public CareTeamBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
       this.implicitRules = Optional.of(implicitRules);
-      return this;
-    }
-    /** @param reasonReference - Condition(s) that this care team addresses. */
-    public CareTeamBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /** @param reasonReference - Condition(s) that this care team addresses. */
-    public CareTeamBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public CareTeamBuilder.Impl withReasonReference(@NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -441,17 +410,15 @@ public interface CareTeamBuilder extends DomainResourceBuilder {
           note.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(status),
           OptionConverters.toScala(period),
+          reason.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(subject),
           telecom.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
           category.stream().collect(new LitSeqJCollector<>()),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(encounter),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           managingOrganization.stream().collect(new LitSeqJCollector<>()),
           participant.stream().collect(new LitSeqJCollector<>()),

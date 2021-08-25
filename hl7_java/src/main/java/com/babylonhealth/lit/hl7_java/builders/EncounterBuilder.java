@@ -63,6 +63,7 @@ public interface EncounterBuilder extends DomainResourceBuilder {
     private ENCOUNTER_STATUS status;
     private Optional<Period> period = Optional.empty();
     private Optional<Duration> length = Optional.empty();
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Optional<Reference> partOf = Optional.empty();
     private Optional<Reference> subject = Optional.empty();
     private Collection<Reference> basedOn = Collections.emptyList();
@@ -72,12 +73,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<CodeableConcept> serviceType = Optional.empty();
     private Collection<Reference> appointment = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
+    private Optional<CodeableConcept> subjectStatus = Optional.empty();
     private Collection<Reference> episodeOfCare = Collections.emptyList();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Optional<Reference> serviceProvider = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Encounter.Location> location = Collections.emptyList();
@@ -92,7 +92,8 @@ public interface EncounterBuilder extends DomainResourceBuilder {
      *
      * @param _class - Concepts representing classification of patient encounter such as ambulatory
      *     (outpatient), inpatient, emergency, home health or others due to local variations.
-     * @param status - planned | arrived | triaged | in-progress | onleave | finished | cancelled +.
+     * @param status - planned | in-progress | onhold | completed | cancelled | entered-in-error |
+     *     unknown.
      */
     public Impl(Coding _class, ENCOUNTER_STATUS status) {
       this._class = _class;
@@ -182,6 +183,27 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param reason - Reason the encounter takes place, expressed as a code or a reference to
+     *     another resource. For admissions, this can be used for a coded admission diagnosis.
+     */
+    public EncounterBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /**
+     * @param reason - Reason the encounter takes place, expressed as a code or a reference to
+     *     another resource. For admissions, this can be used for a coded admission diagnosis.
+     */
+    public EncounterBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
      * @param partOf - Another Encounter of which this encounter is a part of (administratively or
      *     in time).
      */
@@ -257,8 +279,8 @@ public interface EncounterBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public EncounterBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -266,8 +288,8 @@ public interface EncounterBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public EncounterBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -321,27 +343,6 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param reasonCode - Reason the encounter takes place, expressed as a code. For admissions,
-     *     this can be used for a coded admission diagnosis.
-     */
-    public EncounterBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /**
-     * @param reasonCode - Reason the encounter takes place, expressed as a code. For admissions,
-     *     this can be used for a coded admission diagnosis.
-     */
-    public EncounterBuilder.Impl withReasonCode(@NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public EncounterBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
      * @param serviceType - Broad categorization of the service that is to be provided (e.g.
      *     cardiology).
      */
@@ -380,6 +381,20 @@ public interface EncounterBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param subjectStatus - The subjectStatus value can be used to track the patient's status
+     *     within the encounter. It details whether the patient has arrived or departed, has been
+     *     triaged or is currently in a waiting status.
+     */
+    public EncounterBuilder.Impl withSubjectStatus(@NonNull CodeableConcept subjectStatus) {
+      this.subjectStatus = Optional.of(subjectStatus);
+      return this;
+    }
+
+    public EncounterBuilder.Impl withSubjectStatus(@NonNull CodeableConceptBuilder subjectStatus) {
+      this.subjectStatus = Optional.of(subjectStatus.build());
+      return this;
+    }
+    /**
      * @param episodeOfCare - Where a specific encounter should be classified as a part of a
      *     specific episode(s) of care this field should be used. This association can facilitate
      *     grouping of related encounters together for a specific purpose, such as government
@@ -408,28 +423,6 @@ public interface EncounterBuilder extends DomainResourceBuilder {
 
     public EncounterBuilder.Impl withEpisodeOfCare(@NonNull ReferenceBuilder... episodeOfCare) {
       this.episodeOfCare = Arrays.stream(episodeOfCare).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
-     * @param reasonReference - Reason the encounter takes place, expressed as a code. For
-     *     admissions, this can be used for a coded admission diagnosis.
-     */
-    public EncounterBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /**
-     * @param reasonReference - Reason the encounter takes place, expressed as a code. For
-     *     admissions, this can be used for a coded admission diagnosis.
-     */
-    public EncounterBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public EncounterBuilder.Impl withReasonReference(@NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -622,6 +615,7 @@ public interface EncounterBuilder extends DomainResourceBuilder {
           status,
           OptionConverters.toScala(period),
           OptionConverters.toScala(length),
+          reason.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(partOf),
           OptionConverters.toScala(subject),
           basedOn.stream().collect(new LitSeqJCollector<>()),
@@ -631,12 +625,11 @@ public interface EncounterBuilder extends DomainResourceBuilder {
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(serviceType),
           appointment.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
+          OptionConverters.toScala(subjectStatus),
           episodeOfCare.stream().collect(new LitSeqJCollector<>()),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(serviceProvider),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           location.stream().collect(new LitSeqJCollector<>()),

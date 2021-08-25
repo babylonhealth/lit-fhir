@@ -45,7 +45,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface ImplementationGuideBuilder extends DomainResourceBuilder {
+public interface ImplementationGuideBuilder extends CanonicalResourceBuilder {
   public ImplementationGuide build();
 
   public static Impl init(
@@ -116,7 +116,7 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
      * @param fhirVersion - The version(s) of the FHIR specification that this ImplementationGuide
      *     targets - e.g. describes how to use. The value of this element is the formal version of
      *     the specification, without the revision number, e.g. [publication].[major].[minor], which
-     *     is 4.0.1. for this version.
+     *     is 4.6.0. for this version.
      */
     public Impl(
         String url,
@@ -232,8 +232,8 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ImplementationGuideBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -241,8 +241,8 @@ public interface ImplementationGuideBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ImplementationGuideBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);

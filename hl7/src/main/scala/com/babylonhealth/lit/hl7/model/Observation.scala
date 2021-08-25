@@ -133,7 +133,7 @@ object Observation extends CompanionFor[Observation] {
     override type ResourceType = Component
     override type ParentType   = Component
     override val parentType: CompanionFor[ResourceType] = Component
-    type ValueChoice = Choice[Union02118820890]
+    type ValueChoice = Choice[Union01718482969]
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,
@@ -163,7 +163,7 @@ object Observation extends CompanionFor[Observation] {
     val code: FHIRComponentFieldMeta[CodeableConcept] =
       FHIRComponentFieldMeta("code", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[Option[Component.ValueChoice]] =
-      FHIRComponentFieldMeta("value", lTagOf[Option[Component.ValueChoice]], true, lTagOf[Union02118820890])
+      FHIRComponentFieldMeta("value", lTagOf[Option[Component.ValueChoice]], true, lTagOf[Union01718482969])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val interpretation: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -199,7 +199,7 @@ object Observation extends CompanionFor[Observation] {
           new Component(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[CodeableConcept]("code", None),
-            cursor.decodeOptRef[Union02118820890]("value"),
+            cursor.decodeOptRef[Union01718482969]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[CodeableConcept]]("interpretation", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Observation.ReferenceRange]]("referenceRange", Some(LitSeq.empty)),
@@ -221,8 +221,9 @@ object Observation extends CompanionFor[Observation] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type ValueChoice     = Choice[Union02118820890]
-  type EffectiveChoice = Choice[Union00107722725]
+  type ValueChoice        = Choice[Union01718482969]
+  type EffectiveChoice    = Choice[Union00107722725]
+  type InstantiatesChoice = Choice[UnionCanonicalOrReference]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -252,6 +253,7 @@ object Observation extends CompanionFor[Observation] {
       effective: Option[Observation.EffectiveChoice] = None,
       implicitRules: Option[UriStr] = None,
       interpretation: LitSeq[CodeableConcept] = LitSeq.empty,
+      instantiates: Option[Observation.InstantiatesChoice] = None,
       dataAbsentReason: Option[CodeableConcept] = None,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       component: LitSeq[Observation.Component] = LitSeq.empty,
@@ -286,6 +288,7 @@ object Observation extends CompanionFor[Observation] {
     effective,
     implicitRules,
     interpretation,
+    instantiates,
     dataAbsentReason,
     modifierExtension,
     component,
@@ -323,7 +326,7 @@ object Observation extends CompanionFor[Observation] {
   val category: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("category", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val value: FHIRComponentFieldMeta[Option[Observation.ValueChoice]] =
-    FHIRComponentFieldMeta("value", lTagOf[Option[Observation.ValueChoice]], true, lTagOf[Union02118820890])
+    FHIRComponentFieldMeta("value", lTagOf[Option[Observation.ValueChoice]], true, lTagOf[Union01718482969])
   val bodySite: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("bodySite", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val specimen: FHIRComponentFieldMeta[Option[Reference]] =
@@ -348,6 +351,12 @@ object Observation extends CompanionFor[Observation] {
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val interpretation: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("interpretation", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val instantiates: FHIRComponentFieldMeta[Option[Observation.InstantiatesChoice]] =
+    FHIRComponentFieldMeta(
+      "instantiates",
+      lTagOf[Option[Observation.InstantiatesChoice]],
+      true,
+      lTagOf[UnionCanonicalOrReference])
   val dataAbsentReason: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("dataAbsentReason", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -389,6 +398,7 @@ object Observation extends CompanionFor[Observation] {
     effective,
     implicitRules,
     interpretation,
+    instantiates,
     dataAbsentReason,
     modifierExtension,
     component,
@@ -424,56 +434,55 @@ object Observation extends CompanionFor[Observation] {
     FHIRComponentField[Option[Observation.EffectiveChoice]](effective, t.effective),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[LitSeq[CodeableConcept]](interpretation, t.interpretation),
+    FHIRComponentField[Option[Observation.InstantiatesChoice]](instantiates, t.instantiates),
     FHIRComponentField[Option[CodeableConcept]](dataAbsentReason, t.dataAbsentReason),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[LitSeq[Observation.Component]](component, t.component),
     FHIRComponentField[LitSeq[Observation.ReferenceRange]](referenceRange, t.referenceRange)
   )
-  def extractId(t: Observation): Option[String]                                 = t.id
-  def extractMeta(t: Observation): Option[Meta]                                 = t.meta
-  def extractText(t: Observation): Option[Narrative]                            = t.text
-  def extractCode(t: Observation): CodeableConcept                              = t.code
-  def extractNote(t: Observation): LitSeq[Annotation]                           = t.note
-  def extractFocus(t: Observation): LitSeq[Reference]                           = t.focus
-  def extractPartOf(t: Observation): LitSeq[Reference]                          = t.partOf
-  def extractStatus(t: Observation): OBSERVATION_STATUS                         = t.status
-  def extractIssued(t: Observation): Option[ZonedDateTime]                      = t.issued
-  def extractMethod(t: Observation): Option[CodeableConcept]                    = t.method
-  def extractDevice(t: Observation): Option[Reference]                          = t.device
-  def extractBasedOn(t: Observation): LitSeq[Reference]                         = t.basedOn
-  def extractSubject(t: Observation): Option[Reference]                         = t.subject
-  def extractLanguage(t: Observation): Option[LANGUAGES]                        = t.language
-  def extractCategory(t: Observation): LitSeq[CodeableConcept]                  = t.category
-  def extractValue(t: Observation): Option[Observation.ValueChoice]             = t.value
-  def extractBodySite(t: Observation): Option[CodeableConcept]                  = t.bodySite
-  def extractSpecimen(t: Observation): Option[Reference]                        = t.specimen
-  def extractContained(t: Observation): LitSeq[Resource]                        = t.contained
-  def extractExtension(t: Observation): LitSeq[Extension]                       = t.extension
-  def extractEncounter(t: Observation): Option[Reference]                       = t.encounter
-  def extractPerformer(t: Observation): LitSeq[Reference]                       = t.performer
-  def extractHasMember(t: Observation): LitSeq[Reference]                       = t.hasMember
-  def extractIdentifier(t: Observation): LitSeq[Identifier]                     = t.identifier
-  def extractDerivedFrom(t: Observation): LitSeq[Reference]                     = t.derivedFrom
-  def extractEffective(t: Observation): Option[Observation.EffectiveChoice]     = t.effective
-  def extractImplicitRules(t: Observation): Option[UriStr]                      = t.implicitRules
-  def extractInterpretation(t: Observation): LitSeq[CodeableConcept]            = t.interpretation
-  def extractDataAbsentReason(t: Observation): Option[CodeableConcept]          = t.dataAbsentReason
-  def extractModifierExtension(t: Observation): LitSeq[Extension]               = t.modifierExtension
-  def extractComponent(t: Observation): LitSeq[Observation.Component]           = t.component
-  def extractReferenceRange(t: Observation): LitSeq[Observation.ReferenceRange] = t.referenceRange
-  override val thisName: String                                                 = "Observation"
+  def extractId(t: Observation): Option[String]                                   = t.id
+  def extractMeta(t: Observation): Option[Meta]                                   = t.meta
+  def extractText(t: Observation): Option[Narrative]                              = t.text
+  def extractCode(t: Observation): CodeableConcept                                = t.code
+  def extractNote(t: Observation): LitSeq[Annotation]                             = t.note
+  def extractFocus(t: Observation): LitSeq[Reference]                             = t.focus
+  def extractPartOf(t: Observation): LitSeq[Reference]                            = t.partOf
+  def extractStatus(t: Observation): OBSERVATION_STATUS                           = t.status
+  def extractIssued(t: Observation): Option[ZonedDateTime]                        = t.issued
+  def extractMethod(t: Observation): Option[CodeableConcept]                      = t.method
+  def extractDevice(t: Observation): Option[Reference]                            = t.device
+  def extractBasedOn(t: Observation): LitSeq[Reference]                           = t.basedOn
+  def extractSubject(t: Observation): Option[Reference]                           = t.subject
+  def extractLanguage(t: Observation): Option[LANGUAGES]                          = t.language
+  def extractCategory(t: Observation): LitSeq[CodeableConcept]                    = t.category
+  def extractValue(t: Observation): Option[Observation.ValueChoice]               = t.value
+  def extractBodySite(t: Observation): Option[CodeableConcept]                    = t.bodySite
+  def extractSpecimen(t: Observation): Option[Reference]                          = t.specimen
+  def extractContained(t: Observation): LitSeq[Resource]                          = t.contained
+  def extractExtension(t: Observation): LitSeq[Extension]                         = t.extension
+  def extractEncounter(t: Observation): Option[Reference]                         = t.encounter
+  def extractPerformer(t: Observation): LitSeq[Reference]                         = t.performer
+  def extractHasMember(t: Observation): LitSeq[Reference]                         = t.hasMember
+  def extractIdentifier(t: Observation): LitSeq[Identifier]                       = t.identifier
+  def extractDerivedFrom(t: Observation): LitSeq[Reference]                       = t.derivedFrom
+  def extractEffective(t: Observation): Option[Observation.EffectiveChoice]       = t.effective
+  def extractImplicitRules(t: Observation): Option[UriStr]                        = t.implicitRules
+  def extractInterpretation(t: Observation): LitSeq[CodeableConcept]              = t.interpretation
+  def extractInstantiates(t: Observation): Option[Observation.InstantiatesChoice] = t.instantiates
+  def extractDataAbsentReason(t: Observation): Option[CodeableConcept]            = t.dataAbsentReason
+  def extractModifierExtension(t: Observation): LitSeq[Extension]                 = t.modifierExtension
+  def extractComponent(t: Observation): LitSeq[Observation.Component]             = t.component
+  def extractReferenceRange(t: Observation): LitSeq[Observation.ReferenceRange]   = t.referenceRange
+  override val thisName: String                                                   = "Observation"
   override val searchParams: Map[String, Observation => Seq[Any]] = Map(
-    "method"  -> (obj => obj.method.toSeq),
-    "subject" -> (obj => obj.subject.toSeq),
-    "gene-dnavariant" -> (obj =>
-      obj.extension.filter(_.url == "http://hl7.org/fhir/StructureDefinition/observation-geneticsDnaVariant").toSeq),
+    "method"                       -> (obj => obj.method.toSeq),
+    "subject"                      -> (obj => obj.subject.toSeq),
     "component-code-value-concept" -> (obj => obj.component.toSeq),
     "code"                         -> (obj => Seq(obj.code)),
-    "amino-acid-change" -> (obj =>
-      obj.extension.filter(_.url == "http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChangeName").toSeq),
     "component-value-quantity" -> (obj =>
       obj.component.flatMap(_.value).flatMap(_.as[Quantity]).toSeq ++
         obj.component.flatMap(_.value).flatMap(_.as[SampledData]).toSeq),
+    "part-of"                      -> (obj => obj.partOf.toSeq),
     "encounter"                    -> (obj => obj.encounter.toSeq),
     "patient"                      -> (obj => obj.subject.filter(_.reference.exists(_.contains("Patient/"))).toSeq),
     "component-data-absent-reason" -> (obj => obj.component.flatMap(_.dataAbsentReason).toSeq),
@@ -499,20 +508,13 @@ object Observation extends CompanionFor[Observation] {
     "combo-value-concept" -> (obj =>
       obj.value.flatMap(_.as[CodeableConcept]).toSeq ++
         obj.component.flatMap(_.value).flatMap(_.as[CodeableConcept]).toSeq),
-    "component-code" -> (obj => obj.component.map(_.code).toSeq),
-    "gene-identifier" -> (obj =>
-      obj.extension.filter(_.url == "http://hl7.org/fhir/StructureDefinition/observation-geneticsGene").toSeq),
-    "status"                  -> (obj => Seq(obj.status)),
-    "has-member"              -> (obj => obj.hasMember.toSeq),
-    "data-absent-reason"      -> (obj => obj.dataAbsentReason.toSeq),
-    "component-value-concept" -> (obj => obj.component.flatMap(_.value).flatMap(_.as[CodeableConcept]).toSeq),
-    "value-concept"           -> (obj => obj.value.flatMap(_.as[CodeableConcept]).toSeq),
-    "category"                -> (obj => obj.category.toSeq),
-    "gene-amino-acid-change" -> (obj =>
-      obj.extension.filter(_.url == "http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChangeName").toSeq),
-    "dna-variant" -> (obj =>
-      obj.extension.filter(_.url == "http://hl7.org/fhir/StructureDefinition/observation-geneticsDnaVariant").toSeq),
-    "part-of"                  -> (obj => obj.partOf.toSeq),
+    "component-code"           -> (obj => obj.component.map(_.code).toSeq),
+    "status"                   -> (obj => Seq(obj.status)),
+    "has-member"               -> (obj => obj.hasMember.toSeq),
+    "data-absent-reason"       -> (obj => obj.dataAbsentReason.toSeq),
+    "component-value-concept"  -> (obj => obj.component.flatMap(_.value).flatMap(_.as[CodeableConcept]).toSeq),
+    "value-concept"            -> (obj => obj.value.flatMap(_.as[CodeableConcept]).toSeq),
+    "category"                 -> (obj => obj.category.toSeq),
     "specimen"                 -> (obj => obj.specimen.toSeq),
     "combo-code-value-concept" -> (obj => obj.component.toSeq),
     "based-on"                 -> (obj => obj.basedOn.toSeq),
@@ -545,7 +547,7 @@ object Observation extends CompanionFor[Observation] {
           cursor.decodeAs[Option[Reference]]("subject", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("category", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union02118820890]("value"),
+          cursor.decodeOptRef[Union01718482969]("value"),
           cursor.decodeAs[Option[CodeableConcept]]("bodySite", Some(None)),
           cursor.decodeAs[Option[Reference]]("specimen", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
@@ -558,6 +560,7 @@ object Observation extends CompanionFor[Observation] {
           cursor.decodeOptRef[Union00107722725]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("interpretation", Some(LitSeq.empty)),
+          cursor.decodeOptRef[UnionCanonicalOrReference]("instantiates"),
           cursor.decodeAs[Option[CodeableConcept]]("dataAbsentReason", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Observation.Component]]("component", Some(LitSeq.empty)),
@@ -573,8 +576,8 @@ object Observation extends CompanionFor[Observation] {
   *
   * @constructor
   *   Introduces the fields code, note, focus, partOf, status, issued, method, device, basedOn, subject, category, value,
-  *   bodySite, specimen, encounter, performer, hasMember, identifier, derivedFrom, effective, interpretation, dataAbsentReason,
-  *   component, referenceRange.
+  *   bodySite, specimen, encounter, performer, hasMember, identifier, derivedFrom, effective, interpretation, instantiates,
+  *   dataAbsentReason, component, referenceRange.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -612,9 +615,10 @@ object Observation extends CompanionFor[Observation] {
   *   - A plan, proposal or order that is fulfilled in whole or in part by this event. For example, a MedicationRequest may
   *   require a patient to have laboratory test performed before it is dispensed.
   * @param subject
-  *   - The patient, or group of patients, location, or device this observation is about and into whose record the observation is
-  *   placed. If the actual focus of the observation is different from the subject (or a sample of, part, or region of the
-  *   subject), the `focus` element or the `code` itself specifies the actual focus of the observation.
+  *   - The patient, or group of patients, location, device, organization, procedure or practitioner this observation is about and
+  *   into whose or what record the observation is placed. If the actual focus of the observation is different from the subject
+  *   (or a sample of, part, or region of the subject), the `focus` element or the `code` itself specifies the actual focus of the
+  *   observation.
   * @param language
   *   - The base language in which the resource is written.
   * @param category
@@ -627,7 +631,7 @@ object Observation extends CompanionFor[Observation] {
   *   - The specimen that was used when this observation was made.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -655,6 +659,9 @@ object Observation extends CompanionFor[Observation] {
   *   other profiles etc.
   * @param interpretation
   *   - A categorical assessment of an observation value. For example, high, low, normal.
+  * @param instantiates
+  *   - The reference to a FHIR ObservationDefinition resource that provides the definition that is adhered to in whole or in part
+  *   by this Observation instance.
   * @param dataAbsentReason
   *   - Provides a reason why the expected value in the element Observation.value[x] is missing.
   * @param modifierExtension
@@ -704,6 +711,7 @@ class Observation(
     val effective: Option[Observation.EffectiveChoice] = None,
     override val implicitRules: Option[UriStr] = None,
     val interpretation: LitSeq[CodeableConcept] = LitSeq.empty,
+    val instantiates: Option[Observation.InstantiatesChoice] = None,
     val dataAbsentReason: Option[CodeableConcept] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val component: LitSeq[Observation.Component] = LitSeq.empty,

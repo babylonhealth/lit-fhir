@@ -575,7 +575,7 @@ object OperationDefinition extends CompanionFor[OperationDefinition] {
     FHIRComponentField[Option[UriStr]](url, t.url),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name),
+    FHIRComponentField[String](name, t.name.get),
     FHIRComponentField[OPERATION_KIND](kind, t.kind),
     FHIRComponentField[Option[FHIRDateTime]](date, t.date),
     FHIRComponentField[Code](code, t.code),
@@ -610,7 +610,7 @@ object OperationDefinition extends CompanionFor[OperationDefinition] {
   def extractUrl(t: OperationDefinition): Option[UriStr]                              = t.url
   def extractMeta(t: OperationDefinition): Option[Meta]                               = t.meta
   def extractText(t: OperationDefinition): Option[Narrative]                          = t.text
-  def extractName(t: OperationDefinition): String                                     = t.name
+  def extractName(t: OperationDefinition): String                                     = t.name.get
   def extractKind(t: OperationDefinition): OPERATION_KIND                             = t.kind
   def extractDate(t: OperationDefinition): Option[FHIRDateTime]                       = t.date
   def extractCode(t: OperationDefinition): Code                                       = t.code
@@ -712,12 +712,11 @@ object OperationDefinition extends CompanionFor[OperationDefinition] {
 
 /** A formal computable definition of an operation (on the RESTful interface) or a named query (using the search interaction).
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.CanonicalResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, kind, date, code, base, `type`, title, status, system, version, contact, purpose, comment,
-  *   resource, instance, publisher, useContext, description, experimental, jurisdiction, affectsState, inputProfile,
-  *   outputProfile, overload, parameter.
+  *   Introduces the fields kind, code, base, `type`, system, comment, resource, instance, affectsState, inputProfile,
+  *   outputProfile, overload, parameter. Requires the following fields which were optional in the parent: name.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -775,7 +774,7 @@ object OperationDefinition extends CompanionFor[OperationDefinition] {
   *   - Indicates whether this operation can be invoked on a particular instance of one of the given types.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -823,32 +822,32 @@ object OperationDefinition extends CompanionFor[OperationDefinition] {
 @POJOBoilerplate
 class OperationDefinition(
     override val id: Option[String] = None,
-    val url: Option[UriStr] = None,
+    override val url: Option[UriStr] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: String,
+    name: String,
     val kind: OPERATION_KIND,
-    val date: Option[FHIRDateTime] = None,
+    override val date: Option[FHIRDateTime] = None,
     val code: Code,
     val base: Option[Canonical] = None,
     val `type`: Boolean,
-    val title: Option[String] = None,
-    val status: PUBLICATION_STATUS,
+    override val title: Option[String] = None,
+    override val status: PUBLICATION_STATUS,
     val system: Boolean,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     val comment: Option[Markdown] = None,
     override val language: Option[LANGUAGES] = None,
     val resource: LitSeq[RESOURCE_TYPES] = LitSeq.empty,
     val instance: Boolean,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
-    val description: Option[Markdown] = None,
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val publisher: Option[String] = None,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val description: Option[Markdown] = None,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
     val affectsState: Option[Boolean] = None,
     val inputProfile: Option[Canonical] = None,
     override val implicitRules: Option[UriStr] = None,
@@ -857,13 +856,26 @@ class OperationDefinition(
     val overload: LitSeq[OperationDefinition.Overload] = LitSeq.empty,
     val parameter: LitSeq[OperationDefinition.Parameter] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends CanonicalResource(
       id = id,
+      url = url,
       meta = meta,
       text = text,
+      name = Some(name),
+      date = date,
+      title = title,
+      status = status,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
       contained = contained,
       extension = extension,
+      publisher = publisher,
+      useContext = useContext,
+      description = description,
+      experimental = experimental,
+      jurisdiction = jurisdiction,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {

@@ -65,6 +65,7 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
     private REQUEST_STATUS status;
     private REQUEST_INTENT intent;
     private Optional<Reference> author = Optional.empty();
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Collection<Reference> basedOn = Collections.emptyList();
     private Optional<Reference> subject = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
@@ -75,11 +76,9 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
     private Optional<Reference> encounter = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<FHIRDateTime> authoredOn = Optional.empty();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<String> instantiatesUri = Collections.emptyList();
     private Optional<Identifier> groupIdentifier = Optional.empty();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<String> instantiatesCanonical = Collections.emptyList();
     private Collection<RequestGroup.Action> action = Collections.emptyList();
@@ -174,6 +173,21 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
       this.author = Optional.of(author.build());
       return this;
     }
+    /** @param reason - Describes the reason for the request group in coded or textual form. */
+    public RequestGroupBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /** @param reason - Describes the reason for the request group in coded or textual form. */
+    public RequestGroupBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public RequestGroupBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param basedOn - A plan, proposal or order that is fulfilled in whole or in part by this
      *     request.
@@ -241,8 +255,8 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public RequestGroupBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -250,8 +264,8 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public RequestGroupBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -325,22 +339,6 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
       this.authoredOn = Optional.of(authoredOn);
       return this;
     }
-    /** @param reasonCode - Describes the reason for the request group in coded or textual form. */
-    public RequestGroupBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /** @param reasonCode - Describes the reason for the request group in coded or textual form. */
-    public RequestGroupBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public RequestGroupBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
@@ -381,29 +379,6 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
     public RequestGroupBuilder.Impl withGroupIdentifier(
         @NonNull IdentifierBuilder groupIdentifier) {
       this.groupIdentifier = Optional.of(groupIdentifier.build());
-      return this;
-    }
-    /**
-     * @param reasonReference - Indicates another resource whose existence justifies this request
-     *     group.
-     */
-    public RequestGroupBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /**
-     * @param reasonReference - Indicates another resource whose existence justifies this request
-     *     group.
-     */
-    public RequestGroupBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public RequestGroupBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -499,6 +474,7 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
           status,
           intent,
           OptionConverters.toScala(author),
+          reason.stream().collect(new LitSeqJCollector<>()),
           basedOn.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(subject),
           OptionConverters.toScala(language),
@@ -509,11 +485,9 @@ public interface RequestGroupBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(encounter),
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(authoredOn),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
           instantiatesUri.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(groupIdentifier),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
           action.stream().collect(new LitSeqJCollector<>()),

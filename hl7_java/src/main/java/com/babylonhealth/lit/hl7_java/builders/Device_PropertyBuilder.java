@@ -53,18 +53,26 @@ public interface Device_PropertyBuilder {
     return new Impl(_type.build());
   }
 
+  public static ChoiceCodeableConceptOrQuantity value(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrQuantity(c);
+  }
+
+  public static ChoiceCodeableConceptOrQuantity value(Quantity q) {
+    return new ChoiceCodeableConceptOrQuantity(q);
+  }
+
   public class Impl implements Device_PropertyBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;
+    private Optional<ChoiceCodeableConceptOrQuantity> value = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Collection<CodeableConcept> valueCode = Collections.emptyList();
-    private Collection<Quantity> valueQuantity = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
      * Required fields for {@link Device.Property}
      *
-     * @param _type - The kind or type of device.
+     * @param _type - The kind or type of device. A device instance may have more than one type - in
+     *     which case those are the types that apply to the specific instance of the device.
      */
     public Impl(CodeableConcept _type) {
       this._type = _type;
@@ -76,6 +84,14 @@ public interface Device_PropertyBuilder {
      */
     public Device_PropertyBuilder.Impl withId(@NonNull String id) {
       this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param value Field is a 'choice' field. Type should be one of CodeableConcept, Quantity. To
+     *     pass the value in, wrap with one of the Device_PropertyBuilder.value static methods
+     */
+    public Device_PropertyBuilder.Impl withValue(@NonNull ChoiceCodeableConceptOrQuantity value) {
+      this.value = Optional.of(value);
       return this;
     }
     /**
@@ -103,39 +119,6 @@ public interface Device_PropertyBuilder {
 
     public Device_PropertyBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /** @param valueCode */
-    public Device_PropertyBuilder.Impl withValueCode(@NonNull CodeableConcept... valueCode) {
-      this.valueCode = Arrays.asList(valueCode);
-      return this;
-    }
-    /** @param valueCode */
-    public Device_PropertyBuilder.Impl withValueCode(
-        @NonNull Collection<CodeableConcept> valueCode) {
-      this.valueCode = Collections.unmodifiableCollection(valueCode);
-      return this;
-    }
-
-    public Device_PropertyBuilder.Impl withValueCode(@NonNull CodeableConceptBuilder... valueCode) {
-      this.valueCode = Arrays.stream(valueCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /** @param valueQuantity */
-    public Device_PropertyBuilder.Impl withValueQuantity(@NonNull Quantity... valueQuantity) {
-      this.valueQuantity = Arrays.asList(valueQuantity);
-      return this;
-    }
-    /** @param valueQuantity */
-    public Device_PropertyBuilder.Impl withValueQuantity(
-        @NonNull Collection<Quantity> valueQuantity) {
-      this.valueQuantity = Collections.unmodifiableCollection(valueQuantity);
-      return this;
-    }
-
-    public Device_PropertyBuilder.Impl withValueQuantity(
-        @NonNull QuantityBuilder... valueQuantity) {
-      this.valueQuantity = Arrays.stream(valueQuantity).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -186,9 +169,8 @@ public interface Device_PropertyBuilder {
       return new Device.Property(
           OptionConverters.toScala(id),
           _type,
+          (Option) OptionConverters.toScala(value),
           extension.stream().collect(new LitSeqJCollector<>()),
-          valueCode.stream().collect(new LitSeqJCollector<>()),
-          valueQuantity.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

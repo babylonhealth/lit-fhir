@@ -132,8 +132,7 @@ public interface ShareablecodesystemBuilder extends CodeSystemBuilder {
      *     This SHOULD be globally unique and SHOULD be a literal address at which at which an
      *     authoritative instance of this code system is (or will be) published. This URL can be the
      *     target of a canonical reference. It SHALL remain the same when the code system is stored
-     *     on different servers. This is used in
-     *     [Coding](http://hl7.org/fhir/datatypes.html#Coding).system.
+     *     on different servers. This is used in [Coding](datatypes.html#Coding).system.
      * @param name - A natural language name identifying the code system. This name should be usable
      *     as an identifier for the module by machine processing applications such as code
      *     generation.
@@ -144,7 +143,7 @@ public interface ShareablecodesystemBuilder extends CodeSystemBuilder {
      *     value managed by the code system author and is not expected to be globally unique. For
      *     example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available.
      *     There is also no expectation that versions can be placed in a lexicographical sequence.
-     *     This is used in [Coding](http://hl7.org/fhir/datatypes.html#Coding).version.
+     *     This is used in [Coding](datatypes.html#Coding).version.
      * @param content - The extent of the content of the code system (the concepts and codes it
      *     defines) are represented in this resource instance.
      * @param publisher - The name of the organization or individual that published the code system.
@@ -282,8 +281,8 @@ public interface ShareablecodesystemBuilder extends CodeSystemBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ShareablecodesystemBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -291,8 +290,8 @@ public interface ShareablecodesystemBuilder extends CodeSystemBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ShareablecodesystemBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);

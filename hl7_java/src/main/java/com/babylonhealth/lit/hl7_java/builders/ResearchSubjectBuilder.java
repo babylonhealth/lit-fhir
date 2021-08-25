@@ -34,7 +34,7 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
-import com.babylonhealth.lit.hl7.RESEARCH_SUBJECT_STATUS;
+import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -46,13 +46,13 @@ import static java.util.stream.Collectors.toList;
 public interface ResearchSubjectBuilder extends DomainResourceBuilder {
   public ResearchSubject build();
 
-  public static Impl init(Reference study, RESEARCH_SUBJECT_STATUS status, Reference individual) {
-    return new Impl(study, status, individual);
+  public static Impl init(Reference study, PUBLICATION_STATUS status, Reference subject) {
+    return new Impl(study, status, subject);
   }
 
   public static Impl builder(
-      ReferenceBuilder study, RESEARCH_SUBJECT_STATUS status, ReferenceBuilder individual) {
-    return new Impl(study.build(), status, individual.build());
+      ReferenceBuilder study, PUBLICATION_STATUS status, ReferenceBuilder subject) {
+    return new Impl(study.build(), status, subject.build());
   }
 
   public class Impl implements ResearchSubjectBuilder {
@@ -60,30 +60,31 @@ public interface ResearchSubjectBuilder extends DomainResourceBuilder {
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
     private Reference study;
-    private RESEARCH_SUBJECT_STATUS status;
+    private PUBLICATION_STATUS status;
     private Optional<Period> period = Optional.empty();
+    private Reference subject;
     private Optional<Reference> consent = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> actualArm = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Reference individual;
     private Optional<String> assignedArm = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Collection<ResearchSubject.Progress> progress = Collections.emptyList();
 
     /**
      * Required fields for {@link ResearchSubject}
      *
      * @param study - Reference to the study the subject is participating in.
-     * @param status - The current state of the subject.
-     * @param individual - The record of the person or animal who is involved in the study.
+     * @param status - The publication state of the resource (not of the subject).
+     * @param subject - The record of the person, animal or other entity involved in the study.
      */
-    public Impl(Reference study, RESEARCH_SUBJECT_STATUS status, Reference individual) {
+    public Impl(Reference study, PUBLICATION_STATUS status, Reference subject) {
       this.study = study;
       this.status = status;
-      this.individual = individual;
+      this.subject = subject;
     }
 
     /**
@@ -153,8 +154,8 @@ public interface ResearchSubjectBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ResearchSubjectBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -162,8 +163,8 @@ public interface ResearchSubjectBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ResearchSubjectBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -285,6 +286,29 @@ public interface ResearchSubjectBuilder extends DomainResourceBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param progress - The current state (status) of the subject and resons for status change
+     *     where appropriate.
+     */
+    public ResearchSubjectBuilder.Impl withProgress(@NonNull ResearchSubject.Progress... progress) {
+      this.progress = Arrays.asList(progress);
+      return this;
+    }
+    /**
+     * @param progress - The current state (status) of the subject and resons for status change
+     *     where appropriate.
+     */
+    public ResearchSubjectBuilder.Impl withProgress(
+        @NonNull Collection<ResearchSubject.Progress> progress) {
+      this.progress = Collections.unmodifiableCollection(progress);
+      return this;
+    }
+
+    public ResearchSubjectBuilder.Impl withProgress(
+        @NonNull ResearchSubject_ProgressBuilder... progress) {
+      this.progress = Arrays.stream(progress).map(e -> e.build()).collect(toList());
+      return this;
+    }
 
     public ResearchSubjectBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
@@ -299,16 +323,17 @@ public interface ResearchSubjectBuilder extends DomainResourceBuilder {
           study,
           status,
           OptionConverters.toScala(period),
+          subject,
           OptionConverters.toScala(consent),
           OptionConverters.toScala(language),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(actualArm),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          individual,
           OptionConverters.toScala(assignedArm),
           OptionConverters.toScala(implicitRules),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          progress.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }
   }

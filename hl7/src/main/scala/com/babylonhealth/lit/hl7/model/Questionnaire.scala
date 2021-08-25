@@ -249,7 +249,7 @@ object Questionnaire extends CompanionFor[Questionnaire] {
     def apply(
         id: Option[String] = None,
         code: LitSeq[Coding] = LitSeq.empty,
-        text: Option[String] = None,
+        text: Option[Markdown] = None,
         `type`: ITEM_TYPE,
         item: LitSeq[Questionnaire.Item] = LitSeq.empty,
         linkId: String,
@@ -262,6 +262,8 @@ object Questionnaire extends CompanionFor[Questionnaire] {
         definition: Option[UriStr] = None,
         enableBehavior: Option[QUESTIONNAIRE_ENABLE_BEHAVIOR] = None,
         answerValueSet: Option[Canonical] = None,
+        disabledDisplay: Option[Code] = None,
+        answerConstraint: Option[Code] = None,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         initial: LitSeq[Item.Initial] = LitSeq.empty,
         enableWhen: LitSeq[Item.EnableWhen] = LitSeq.empty,
@@ -283,6 +285,8 @@ object Questionnaire extends CompanionFor[Questionnaire] {
       definition,
       enableBehavior,
       answerValueSet,
+      disabledDisplay,
+      answerConstraint,
       modifierExtension,
       initial,
       enableWhen,
@@ -290,7 +294,7 @@ object Questionnaire extends CompanionFor[Questionnaire] {
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Item): Option[(Option[String], LitSeq[Coding], Option[String], ITEM_TYPE, LitSeq[Questionnaire.Item], String, Option[String], Option[Boolean], Option[Boolean], Option[Boolean], LitSeq[Extension], Option[Int], Option[UriStr], Option[QUESTIONNAIRE_ENABLE_BEHAVIOR], Option[Canonical], LitSeq[Extension], LitSeq[Item.Initial], LitSeq[Item.EnableWhen], LitSeq[Item.AnswerOption])] =
+        o: Item): Option[(Option[String], LitSeq[Coding], Option[Markdown], ITEM_TYPE, LitSeq[Questionnaire.Item], String, Option[String], Option[Boolean], Option[Boolean], Option[Boolean], LitSeq[Extension], Option[Int], Option[UriStr], Option[QUESTIONNAIRE_ENABLE_BEHAVIOR], Option[Canonical], Option[Code], Option[Code], LitSeq[Extension], LitSeq[Item.Initial], LitSeq[Item.EnableWhen], LitSeq[Item.AnswerOption])] =
       Some(
         (
           o.id,
@@ -308,6 +312,8 @@ object Questionnaire extends CompanionFor[Questionnaire] {
           o.definition,
           o.enableBehavior,
           o.answerValueSet,
+          o.disabledDisplay,
+          o.answerConstraint,
           o.modifierExtension,
           o.initial,
           o.enableWhen,
@@ -316,8 +322,8 @@ object Questionnaire extends CompanionFor[Questionnaire] {
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val code: FHIRComponentFieldMeta[LitSeq[Coding]] =
       FHIRComponentFieldMeta("code", lTagOf[LitSeq[Coding]], false, lTagOf[Coding])
-    val text: FHIRComponentFieldMeta[Option[String]] =
-      FHIRComponentFieldMeta("text", lTagOf[Option[String]], false, lTagOf[String])
+    val text: FHIRComponentFieldMeta[Option[Markdown]] =
+      FHIRComponentFieldMeta("text", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
     val `type`: FHIRComponentFieldMeta[ITEM_TYPE] =
       FHIRComponentFieldMeta("type", lTagOf[ITEM_TYPE], false, lTagOf[ITEM_TYPE])
     val item: FHIRComponentFieldMeta[LitSeq[Questionnaire.Item]] =
@@ -346,6 +352,10 @@ object Questionnaire extends CompanionFor[Questionnaire] {
         lTagOf[QUESTIONNAIRE_ENABLE_BEHAVIOR])
     val answerValueSet: FHIRComponentFieldMeta[Option[Canonical]] =
       FHIRComponentFieldMeta("answerValueSet", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
+    val disabledDisplay: FHIRComponentFieldMeta[Option[Code]] =
+      FHIRComponentFieldMeta("disabledDisplay", lTagOf[Option[Code]], false, lTagOf[Code])
+    val answerConstraint: FHIRComponentFieldMeta[Option[Code]] =
+      FHIRComponentFieldMeta("answerConstraint", lTagOf[Option[Code]], false, lTagOf[Code])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val initial: FHIRComponentFieldMeta[LitSeq[Item.Initial]] =
@@ -370,6 +380,8 @@ object Questionnaire extends CompanionFor[Questionnaire] {
       definition,
       enableBehavior,
       answerValueSet,
+      disabledDisplay,
+      answerConstraint,
       modifierExtension,
       initial,
       enableWhen,
@@ -379,7 +391,7 @@ object Questionnaire extends CompanionFor[Questionnaire] {
     override def fields(t: Item): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Coding]](code, t.code),
-      FHIRComponentField[Option[String]](text, t.text),
+      FHIRComponentField[Option[Markdown]](text, t.text),
       FHIRComponentField[ITEM_TYPE](`type`, t.`type`),
       FHIRComponentField[LitSeq[Questionnaire.Item]](item, t.item),
       FHIRComponentField[String](linkId, t.linkId),
@@ -392,6 +404,8 @@ object Questionnaire extends CompanionFor[Questionnaire] {
       FHIRComponentField[Option[UriStr]](definition, t.definition),
       FHIRComponentField[Option[QUESTIONNAIRE_ENABLE_BEHAVIOR]](enableBehavior, t.enableBehavior),
       FHIRComponentField[Option[Canonical]](answerValueSet, t.answerValueSet),
+      FHIRComponentField[Option[Code]](disabledDisplay, t.disabledDisplay),
+      FHIRComponentField[Option[Code]](answerConstraint, t.answerConstraint),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
       FHIRComponentField[LitSeq[Item.Initial]](initial, t.initial),
       FHIRComponentField[LitSeq[Item.EnableWhen]](enableWhen, t.enableWhen),
@@ -405,7 +419,7 @@ object Questionnaire extends CompanionFor[Questionnaire] {
           new Item(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Coding]]("code", Some(LitSeq.empty)),
-            cursor.decodeAs[Option[String]]("text", Some(None)),
+            cursor.decodeAs[Option[Markdown]]("text", Some(None)),
             cursor.decodeAs[ITEM_TYPE]("type", None),
             cursor.decodeAs[LitSeq[Questionnaire.Item]]("item", Some(LitSeq.empty)),
             cursor.decodeAs[String]("linkId", None),
@@ -418,6 +432,8 @@ object Questionnaire extends CompanionFor[Questionnaire] {
             cursor.decodeAs[Option[UriStr]]("definition", Some(None)),
             cursor.decodeAs[Option[QUESTIONNAIRE_ENABLE_BEHAVIOR]]("enableBehavior", Some(None)),
             cursor.decodeAs[Option[Canonical]]("answerValueSet", Some(None)),
+            cursor.decodeAs[Option[Code]]("disabledDisplay", Some(None)),
+            cursor.decodeAs[Option[Code]]("answerConstraint", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Item.Initial]]("initial", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Item.EnableWhen]]("enableWhen", Some(LitSeq.empty)),
@@ -430,7 +446,7 @@ object Questionnaire extends CompanionFor[Questionnaire] {
   class Item(
       override val id: Option[String] = None,
       val code: LitSeq[Coding] = LitSeq.empty,
-      val text: Option[String] = None,
+      val text: Option[Markdown] = None,
       val `type`: ITEM_TYPE,
       val item: LitSeq[Questionnaire.Item] = LitSeq.empty,
       val linkId: String,
@@ -443,6 +459,8 @@ object Questionnaire extends CompanionFor[Questionnaire] {
       val definition: Option[UriStr] = None,
       val enableBehavior: Option[QUESTIONNAIRE_ENABLE_BEHAVIOR] = None,
       val answerValueSet: Option[Canonical] = None,
+      val disabledDisplay: Option[Code] = None,
+      val answerConstraint: Option[Code] = None,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       val initial: LitSeq[Item.Initial] = LitSeq.empty,
       val enableWhen: LitSeq[Item.EnableWhen] = LitSeq.empty,
@@ -674,16 +692,16 @@ object Questionnaire extends CompanionFor[Questionnaire] {
     "jurisdiction"          -> (obj => obj.jurisdiction.toSeq),
     "name"                  -> (obj => obj.name.toSeq),
     "context-type-quantity" -> (obj => obj.useContext.toSeq),
+    "item-code"             -> (obj => obj.item.flatMap(_.code).toSeq),
     "description"           -> (obj => obj.description.toSeq),
-    "context"               -> (obj => obj.useContext.map(_.value).flatMap(_.as[CodeableConcept]).toSeq),
     "effective"             -> (obj => obj.effectivePeriod.toSeq),
-    "code"                  -> (obj => obj.item.flatMap(_.code).toSeq),
     "date"                  -> (obj => obj.date.toSeq),
     "definition"            -> (obj => obj.item.flatMap(_.definition).toSeq),
     "subject-type"          -> (obj => obj.subjectType.toSeq),
-    "context-type"          -> (obj => obj.useContext.map(_.code).toSeq),
     "identifier"            -> (obj => obj.identifier.toSeq),
     "url"                   -> (obj => obj.url.toSeq),
+    "context"               -> (obj => obj.useContext.map(_.value).flatMap(_.as[CodeableConcept]).toSeq),
+    "questionnaire-code"    -> (obj => obj.code.toSeq),
     "context-type-value"    -> (obj => obj.useContext.toSeq),
     "version"               -> (obj => obj.version.toSeq),
     "status"                -> (obj => Seq(obj.status)),
@@ -691,7 +709,11 @@ object Questionnaire extends CompanionFor[Questionnaire] {
     "title"                 -> (obj => obj.title.toSeq),
     "context-quantity" -> (obj =>
       obj.useContext.map(_.value).flatMap(_.as[Quantity]).toSeq ++
-        obj.useContext.map(_.value).flatMap(_.as[Range]).toSeq)
+        obj.useContext.map(_.value).flatMap(_.as[Range]).toSeq),
+    "combo-code" -> (obj =>
+      obj.code.toSeq ++
+        obj.item.flatMap(_.code).toSeq),
+    "context-type" -> (obj => obj.useContext.map(_.code).toSeq)
   )
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Questionnaire] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
@@ -735,19 +757,17 @@ object Questionnaire extends CompanionFor[Questionnaire] {
 /** A structured set of questions intended to guide the collection of answers from end-users. Questionnaires provide detailed
   * control over order, presentation, phraseology and grouping to allow coherent, consistent data collection.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.MetadataResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, code, title, status, version, contact, purpose, publisher, copyright, identifier,
-  *   useContext, derivedFrom, subjectType, description, experimental, jurisdiction, approvalDate, lastReviewDate,
-  *   effectivePeriod, item.
+  *   Introduces the fields code, derivedFrom, subjectType, item.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
   *   - An absolute URI that is used to identify this questionnaire when it is referenced in a specification, model, design or an
-  *   instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at
-  *   which an authoritative instance of this questionnaire is (or will be) published. This URL can be the target of a canonical
-  *   reference. It SHALL remain the same when the questionnaire is stored on different servers.
+  *   instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which an
+  *   authoritative instance of this questionnaire is (or will be) published. This URL can be the target of a canonical reference.
+  *   It SHALL remain the same when the questionnaire is stored on different servers.
   * @param meta
   *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
   *   not always be associated with version changes to the resource.
@@ -782,7 +802,7 @@ object Questionnaire extends CompanionFor[Questionnaire] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -837,44 +857,62 @@ object Questionnaire extends CompanionFor[Questionnaire] {
 @POJOBoilerplate
 class Questionnaire(
     override val id: Option[String] = None,
-    val url: Option[UriStr] = None,
+    override val url: Option[UriStr] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: Option[String] = None,
-    val date: Option[FHIRDateTime] = None,
+    override val name: Option[String] = None,
+    override val date: Option[FHIRDateTime] = None,
     val code: LitSeq[Coding] = LitSeq.empty,
-    val title: Option[String] = None,
-    val status: PUBLICATION_STATUS,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    override val title: Option[String] = None,
+    override val status: PUBLICATION_STATUS,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val copyright: Option[Markdown] = None,
-    val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val publisher: Option[String] = None,
+    override val copyright: Option[Markdown] = None,
+    override val identifier: LitSeq[Identifier] = LitSeq.empty,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
     val derivedFrom: LitSeq[Canonical] = LitSeq.empty,
     val subjectType: LitSeq[RESOURCE_TYPES] = LitSeq.empty,
-    val description: Option[Markdown] = None,
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
-    val approvalDate: Option[FHIRDate] = None,
+    override val description: Option[Markdown] = None,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val approvalDate: Option[FHIRDate] = None,
     override val implicitRules: Option[UriStr] = None,
-    val lastReviewDate: Option[FHIRDate] = None,
-    val effectivePeriod: Option[Period] = None,
+    override val lastReviewDate: Option[FHIRDate] = None,
+    override val effectivePeriod: Option[Period] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val item: LitSeq[Questionnaire.Item] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends MetadataResource(
       id = id,
+      url = url,
       meta = meta,
       text = text,
+      name = name,
+      date = date,
+      title = title,
+      status = status,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
+      copyright = copyright,
       contained = contained,
+      publisher = publisher,
       extension = extension,
+      identifier = identifier,
+      useContext = useContext,
+      description = description,
+      jurisdiction = jurisdiction,
+      experimental = experimental,
+      approvalDate = approvalDate,
       implicitRules = implicitRules,
+      lastReviewDate = lastReviewDate,
+      effectivePeriod = effectivePeriod,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Questionnaire"

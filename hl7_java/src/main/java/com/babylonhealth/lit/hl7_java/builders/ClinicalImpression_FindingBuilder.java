@@ -55,11 +55,10 @@ public interface ClinicalImpression_FindingBuilder {
 
   public class Impl implements ClinicalImpression_FindingBuilder {
     private Optional<String> id = Optional.empty();
+    private Optional<CodeableReference> item = Optional.empty();
     private Optional<String> basis = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Reference> itemReference = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Optional<CodeableConcept> itemCodeableConcept = Optional.empty();
 
     /** Required fields for {@link ClinicalImpression.Finding} */
     public Impl() {}
@@ -70,6 +69,16 @@ public interface ClinicalImpression_FindingBuilder {
      */
     public ClinicalImpression_FindingBuilder.Impl withId(@NonNull String id) {
       this.id = Optional.of(id);
+      return this;
+    }
+    /** @param item */
+    public ClinicalImpression_FindingBuilder.Impl withItem(@NonNull CodeableReference item) {
+      this.item = Optional.of(item);
+      return this;
+    }
+
+    public ClinicalImpression_FindingBuilder.Impl withItem(@NonNull CodeableReferenceBuilder item) {
+      this.item = Optional.of(item.build());
       return this;
     }
     /** @param basis */
@@ -104,18 +113,6 @@ public interface ClinicalImpression_FindingBuilder {
     public ClinicalImpression_FindingBuilder.Impl withExtension(
         @NonNull ExtensionBuilder... extension) {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /** @param itemReference */
-    public ClinicalImpression_FindingBuilder.Impl withItemReference(
-        @NonNull Reference itemReference) {
-      this.itemReference = Optional.of(itemReference);
-      return this;
-    }
-
-    public ClinicalImpression_FindingBuilder.Impl withItemReference(
-        @NonNull ReferenceBuilder itemReference) {
-      this.itemReference = Optional.of(itemReference.build());
       return this;
     }
     /**
@@ -161,27 +158,14 @@ public interface ClinicalImpression_FindingBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param itemCodeableConcept */
-    public ClinicalImpression_FindingBuilder.Impl withItemCodeableConcept(
-        @NonNull CodeableConcept itemCodeableConcept) {
-      this.itemCodeableConcept = Optional.of(itemCodeableConcept);
-      return this;
-    }
-
-    public ClinicalImpression_FindingBuilder.Impl withItemCodeableConcept(
-        @NonNull CodeableConceptBuilder itemCodeableConcept) {
-      this.itemCodeableConcept = Optional.of(itemCodeableConcept.build());
-      return this;
-    }
 
     public ClinicalImpression.Finding build() {
       return new ClinicalImpression.Finding(
           OptionConverters.toScala(id),
+          OptionConverters.toScala(item),
           OptionConverters.toScala(basis),
           extension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(itemReference),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(itemCodeableConcept),
           LitUtils.emptyMetaElMap());
     }
   }

@@ -55,10 +55,10 @@ public interface MedicationKnowledge_RegulatoryBuilder {
 
   public class Impl implements MedicationKnowledge_RegulatoryBuilder {
     private Optional<String> id = Optional.empty();
+    private Collection<CodeableConcept> schedule = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Reference regulatoryAuthority;
-    private Collection<MedicationKnowledge$Regulatory$Schedule> schedule = Collections.emptyList();
     private Optional<MedicationKnowledge$Regulatory$MaxDispense> maxDispense = Optional.empty();
     private Collection<MedicationKnowledge$Regulatory$Substitution> substitution =
         Collections.emptyList();
@@ -78,6 +78,24 @@ public interface MedicationKnowledge_RegulatoryBuilder {
      */
     public MedicationKnowledge_RegulatoryBuilder.Impl withId(@NonNull String id) {
       this.id = Optional.of(id);
+      return this;
+    }
+    /** @param schedule */
+    public MedicationKnowledge_RegulatoryBuilder.Impl withSchedule(
+        @NonNull CodeableConcept... schedule) {
+      this.schedule = Arrays.asList(schedule);
+      return this;
+    }
+    /** @param schedule */
+    public MedicationKnowledge_RegulatoryBuilder.Impl withSchedule(
+        @NonNull Collection<CodeableConcept> schedule) {
+      this.schedule = Collections.unmodifiableCollection(schedule);
+      return this;
+    }
+
+    public MedicationKnowledge_RegulatoryBuilder.Impl withSchedule(
+        @NonNull CodeableConceptBuilder... schedule) {
+      this.schedule = Arrays.stream(schedule).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -153,24 +171,6 @@ public interface MedicationKnowledge_RegulatoryBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param schedule */
-    public MedicationKnowledge_RegulatoryBuilder.Impl withSchedule(
-        @NonNull MedicationKnowledge$Regulatory$Schedule... schedule) {
-      this.schedule = Arrays.asList(schedule);
-      return this;
-    }
-    /** @param schedule */
-    public MedicationKnowledge_RegulatoryBuilder.Impl withSchedule(
-        @NonNull Collection<MedicationKnowledge$Regulatory$Schedule> schedule) {
-      this.schedule = Collections.unmodifiableCollection(schedule);
-      return this;
-    }
-
-    public MedicationKnowledge_RegulatoryBuilder.Impl withSchedule(
-        @NonNull MedicationKnowledge_Regulatory_ScheduleBuilder... schedule) {
-      this.schedule = Arrays.stream(schedule).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /** @param maxDispense */
     public MedicationKnowledge_RegulatoryBuilder.Impl withMaxDispense(
         @NonNull MedicationKnowledge$Regulatory$MaxDispense maxDispense) {
@@ -205,10 +205,10 @@ public interface MedicationKnowledge_RegulatoryBuilder {
     public MedicationKnowledge.Regulatory build() {
       return new MedicationKnowledge.Regulatory(
           OptionConverters.toScala(id),
+          schedule.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           regulatoryAuthority,
-          schedule.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(maxDispense),
           substitution.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());

@@ -46,38 +46,43 @@ import static java.util.stream.Collectors.toList;
 public interface SubstanceBuilder extends DomainResourceBuilder {
   public Substance build();
 
-  public static Impl init(CodeableConcept code) {
-    return new Impl(code);
+  public static Impl init(CodeableReference code, Boolean instance) {
+    return new Impl(code, instance);
   }
 
-  public static Impl builder(CodeableConceptBuilder code) {
-    return new Impl(code.build());
+  public static Impl builder(CodeableReferenceBuilder code, Boolean instance) {
+    return new Impl(code.build(), instance);
   }
 
   public class Impl implements SubstanceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
-    private CodeableConcept code;
+    private CodeableReference code;
     private Optional<SUBSTANCE_STATUS> status = Optional.empty();
+    private Optional<FHIRDateTime> expiry = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
+    private Boolean instance;
     private Collection<CodeableConcept> category = Collections.emptyList();
+    private Optional<Quantity> quantity = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Collection<Substance.Instance> instance = Collections.emptyList();
     private Collection<Substance.Ingredient> ingredient = Collections.emptyList();
 
     /**
      * Required fields for {@link Substance}
      *
      * @param code - A code (or set of codes) that identify this substance.
+     * @param instance - A boolean to indicate if this an instance of a substance or a kind of one
+     *     (a definition).
      */
-    public Impl(CodeableConcept code) {
+    public Impl(CodeableReference code, Boolean instance) {
       this.code = code;
+      this.instance = instance;
     }
 
     /**
@@ -123,6 +128,14 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
       this.status = Optional.of(status);
       return this;
     }
+    /**
+     * @param expiry - When the substance is no longer valid to use. For some substances, a single
+     *     arbitrary date is used for expiry.
+     */
+    public SubstanceBuilder.Impl withExpiry(@NonNull FHIRDateTime expiry) {
+      this.expiry = Optional.of(expiry);
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public SubstanceBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -149,10 +162,20 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
       this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param quantity - The amount of the substance. */
+    public SubstanceBuilder.Impl withQuantity(@NonNull Quantity quantity) {
+      this.quantity = Optional.of(quantity);
+      return this;
+    }
+
+    public SubstanceBuilder.Impl withQuantity(@NonNull QuantityBuilder quantity) {
+      this.quantity = Optional.of(quantity.build());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public SubstanceBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -160,8 +183,8 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public SubstanceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -199,12 +222,18 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param identifier - Unique identifier for the substance. */
+    /**
+     * @param identifier - Unique identifier for the substance. For an instance, an identifier
+     *     associated with the package/container (usually a label affixed directly).
+     */
     public SubstanceBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
       return this;
     }
-    /** @param identifier - Unique identifier for the substance. */
+    /**
+     * @param identifier - Unique identifier for the substance. For an instance, an identifier
+     *     associated with the package/container (usually a label affixed directly).
+     */
     public SubstanceBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
@@ -274,27 +303,6 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /**
-     * @param instance - Substance may be used to describe a kind of substance, or a specific
-     *     package/container of the substance: an instance.
-     */
-    public SubstanceBuilder.Impl withInstance(@NonNull Substance.Instance... instance) {
-      this.instance = Arrays.asList(instance);
-      return this;
-    }
-    /**
-     * @param instance - Substance may be used to describe a kind of substance, or a specific
-     *     package/container of the substance: an instance.
-     */
-    public SubstanceBuilder.Impl withInstance(@NonNull Collection<Substance.Instance> instance) {
-      this.instance = Collections.unmodifiableCollection(instance);
-      return this;
-    }
-
-    public SubstanceBuilder.Impl withInstance(@NonNull Substance_InstanceBuilder... instance) {
-      this.instance = Arrays.stream(instance).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /** @param ingredient - A substance can be composed of other substances. */
     public SubstanceBuilder.Impl withIngredient(@NonNull Substance.Ingredient... ingredient) {
       this.ingredient = Arrays.asList(ingredient);
@@ -325,15 +333,17 @@ public interface SubstanceBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(text),
           code,
           OptionConverters.toScala(status),
+          OptionConverters.toScala(expiry),
           OptionConverters.toScala(language),
+          instance,
           category.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(quantity),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(description),
           OptionConverters.toScala(implicitRules),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          instance.stream().collect(new LitSeqJCollector<>()),
           ingredient.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

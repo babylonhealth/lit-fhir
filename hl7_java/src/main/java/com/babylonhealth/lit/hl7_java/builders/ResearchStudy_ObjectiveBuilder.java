@@ -58,6 +58,7 @@ public interface ResearchStudy_ObjectiveBuilder {
     private Optional<String> name = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
+    private Optional<String> description = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /** Required fields for {@link ResearchStudy.Objective} */
@@ -71,7 +72,7 @@ public interface ResearchStudy_ObjectiveBuilder {
       this.id = Optional.of(id);
       return this;
     }
-    /** @param name */
+    /** @param name - Name for this study (computer friendly). */
     public ResearchStudy_ObjectiveBuilder.Impl withName(@NonNull String name) {
       this.name = Optional.of(name);
       return this;
@@ -113,6 +114,14 @@ public interface ResearchStudy_ObjectiveBuilder {
     public ResearchStudy_ObjectiveBuilder.Impl withExtension(
         @NonNull ExtensionBuilder... extension) {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param description - A full description of how the study is being conducted. For a
+     *     description of what the study objectives are see ResearchStudy.objective.description.
+     */
+    public ResearchStudy_ObjectiveBuilder.Impl withDescription(@NonNull String description) {
+      this.description = Optional.of(description);
       return this;
     }
     /**
@@ -165,6 +174,7 @@ public interface ResearchStudy_ObjectiveBuilder {
           OptionConverters.toScala(name),
           OptionConverters.toScala(_type),
           extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(description),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

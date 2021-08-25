@@ -45,29 +45,41 @@ import static java.util.stream.Collectors.toList;
 public interface MedicationKnowledge_CostBuilder {
   public MedicationKnowledge.Cost build();
 
-  public static Impl init(CodeableConcept _type, Money cost) {
+  public static Impl init(CodeableConcept _type, @NonNull ChoiceCodeableConceptOrMoney cost) {
     return new Impl(_type, cost);
   }
 
-  public static Impl builder(CodeableConceptBuilder _type, MoneyBuilder cost) {
-    return new Impl(_type.build(), cost.build());
+  public static Impl builder(
+      CodeableConceptBuilder _type, @NonNull ChoiceCodeableConceptOrMoney cost) {
+    return new Impl(_type.build(), cost);
+  }
+
+  public static ChoiceCodeableConceptOrMoney cost(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrMoney(c);
+  }
+
+  public static ChoiceCodeableConceptOrMoney cost(Money m) {
+    return new ChoiceCodeableConceptOrMoney(m);
   }
 
   public class Impl implements MedicationKnowledge_CostBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;
-    private Money cost;
     private Optional<String> source = Optional.empty();
+    private ChoiceCodeableConceptOrMoney cost;
     private Collection<Extension> extension = Collections.emptyList();
+    private Collection<Period> effectiveDate = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
      * Required fields for {@link MedicationKnowledge.Cost}
      *
      * @param _type
-     * @param cost - The price of the medication.
+     * @param cost - The price of the medication. Field is a 'choice' field. Type should be one of
+     *     CodeableConcept, Money. To pass the value in, wrap with one of the
+     *     MedicationKnowledge_CostBuilder.cost static methods
      */
-    public Impl(CodeableConcept _type, Money cost) {
+    public Impl(CodeableConcept _type, @NonNull ChoiceCodeableConceptOrMoney cost) {
       this._type = _type;
       this.cost = cost;
     }
@@ -112,6 +124,24 @@ public interface MedicationKnowledge_CostBuilder {
     public MedicationKnowledge_CostBuilder.Impl withExtension(
         @NonNull ExtensionBuilder... extension) {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param effectiveDate */
+    public MedicationKnowledge_CostBuilder.Impl withEffectiveDate(
+        @NonNull Period... effectiveDate) {
+      this.effectiveDate = Arrays.asList(effectiveDate);
+      return this;
+    }
+    /** @param effectiveDate */
+    public MedicationKnowledge_CostBuilder.Impl withEffectiveDate(
+        @NonNull Collection<Period> effectiveDate) {
+      this.effectiveDate = Collections.unmodifiableCollection(effectiveDate);
+      return this;
+    }
+
+    public MedicationKnowledge_CostBuilder.Impl withEffectiveDate(
+        @NonNull PeriodBuilder... effectiveDate) {
+      this.effectiveDate = Arrays.stream(effectiveDate).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -162,9 +192,10 @@ public interface MedicationKnowledge_CostBuilder {
       return new MedicationKnowledge.Cost(
           OptionConverters.toScala(id),
           _type,
-          cost,
           OptionConverters.toScala(source),
+          cost,
           extension.stream().collect(new LitSeqJCollector<>()),
+          effectiveDate.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

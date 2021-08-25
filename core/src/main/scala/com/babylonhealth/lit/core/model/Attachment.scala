@@ -32,7 +32,7 @@ object Attachment extends CompanionFor[Attachment] {
       id: Option[String] = None,
       url: Option[UrlStr] = None,
       data: Option[Base64Binary] = None,
-      size: Option[Integer64] = None,
+      size: Option[Long] = None,
       hash: Option[Base64Binary] = None,
       title: Option[String] = None,
       width: Option[PositiveInt] = None,
@@ -69,8 +69,8 @@ object Attachment extends CompanionFor[Attachment] {
     FHIRComponentFieldMeta("url", lTagOf[Option[UrlStr]], false, lTagOf[UrlStr])
   val data: FHIRComponentFieldMeta[Option[Base64Binary]] =
     FHIRComponentFieldMeta("data", lTagOf[Option[Base64Binary]], false, lTagOf[Base64Binary])
-  val size: FHIRComponentFieldMeta[Option[Integer64]] =
-    FHIRComponentFieldMeta("size", lTagOf[Option[Integer64]], false, lTagOf[Integer64])
+  val size: FHIRComponentFieldMeta[Option[Long]] =
+    FHIRComponentFieldMeta("size", lTagOf[Option[Long]], false, lTagOf[Long])
   val hash: FHIRComponentFieldMeta[Option[Base64Binary]] =
     FHIRComponentFieldMeta("hash", lTagOf[Option[Base64Binary]], false, lTagOf[Base64Binary])
   val title: FHIRComponentFieldMeta[Option[String]] =
@@ -100,7 +100,7 @@ object Attachment extends CompanionFor[Attachment] {
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[UrlStr]](url, t.url),
     FHIRComponentField[Option[Base64Binary]](data, t.data),
-    FHIRComponentField[Option[Integer64]](size, t.size),
+    FHIRComponentField[Option[Long]](size, t.size),
     FHIRComponentField[Option[Base64Binary]](hash, t.hash),
     FHIRComponentField[Option[String]](title, t.title),
     FHIRComponentField[Option[PositiveInt]](width, t.width),
@@ -116,7 +116,7 @@ object Attachment extends CompanionFor[Attachment] {
   def extractId(t: Attachment): Option[String]             = t.id
   def extractUrl(t: Attachment): Option[UrlStr]            = t.url
   def extractData(t: Attachment): Option[Base64Binary]     = t.data
-  def extractSize(t: Attachment): Option[Integer64]        = t.size
+  def extractSize(t: Attachment): Option[Long]             = t.size
   def extractHash(t: Attachment): Option[Base64Binary]     = t.hash
   def extractTitle(t: Attachment): Option[String]          = t.title
   def extractWidth(t: Attachment): Option[PositiveInt]     = t.width
@@ -130,7 +130,7 @@ object Attachment extends CompanionFor[Attachment] {
   def extractContentType(t: Attachment): Option[Code]      = t.contentType
   override val thisName: String                            = "Attachment"
   def unapply(
-      o: Attachment): Option[(Option[String], Option[UrlStr], Option[Base64Binary], Option[Integer64], Option[Base64Binary], Option[String], Option[PositiveInt], Option[PositiveInt], Option[PositiveInt], Option[PositiveInt], Option[LANGUAGES], Option[FHIRDateTime], Option[BigDecimal], LitSeq[Extension], Option[Code])] =
+      o: Attachment): Option[(Option[String], Option[UrlStr], Option[Base64Binary], Option[Long], Option[Base64Binary], Option[String], Option[PositiveInt], Option[PositiveInt], Option[PositiveInt], Option[PositiveInt], Option[LANGUAGES], Option[FHIRDateTime], Option[BigDecimal], LitSeq[Extension], Option[Code])] =
     Some(
       (
         o.id,
@@ -155,7 +155,7 @@ object Attachment extends CompanionFor[Attachment] {
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[UrlStr]]("url", Some(None)),
           cursor.decodeAs[Option[Base64Binary]]("data", Some(None)),
-          cursor.decodeAs[Option[Integer64]]("size", Some(None)),
+          cursor.decodeAs[Option[Long]]("size", Some(None)),
           cursor.decodeAs[Option[Base64Binary]]("hash", Some(None)),
           cursor.decodeAs[Option[String]]("title", Some(None)),
           cursor.decodeAs[Option[PositiveInt]]("width", Some(None)),
@@ -222,7 +222,7 @@ class Attachment(
     override val id: Option[String] = None,
     val url: Option[UrlStr] = None,
     val data: Option[Base64Binary] = None,
-    val size: Option[Integer64] = None,
+    val size: Option[Long] = None,
     val hash: Option[Base64Binary] = None,
     val title: Option[String] = None,
     val width: Option[PositiveInt] = None,

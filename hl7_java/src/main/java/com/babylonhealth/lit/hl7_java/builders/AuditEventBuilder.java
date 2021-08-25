@@ -35,7 +35,6 @@ import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.AUDIT_EVENT_ACTION;
-import com.babylonhealth.lit.hl7.AUDIT_EVENT_OUTCOME;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -75,12 +74,14 @@ public interface AuditEventBuilder extends DomainResourceBuilder {
     private Optional<AUDIT_EVENT_ACTION> action = Optional.empty();
     private Optional<Period> period = Optional.empty();
     private Collection<Coding> subtype = Collections.emptyList();
-    private Optional<AUDIT_EVENT_OUTCOME> outcome = Optional.empty();
+    private Optional<CodeableConcept> outcome = Optional.empty();
+    private Collection<Reference> basedOn = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
+    private Optional<String> severity = Optional.empty();
     private ZonedDateTime recorded;
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<String> outcomeDesc = Optional.empty();
+    private Optional<Reference> encounter = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<CodeableConcept> purposeOfEvent = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -179,9 +180,38 @@ public interface AuditEventBuilder extends DomainResourceBuilder {
       this.subtype = Arrays.stream(subtype).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param outcome - Indicates whether the event succeeded or failed. */
-    public AuditEventBuilder.Impl withOutcome(@NonNull AUDIT_EVENT_OUTCOME outcome) {
+    /**
+     * @param outcome - Indicates whether the event succeeded or failed. A free text descripiton can
+     *     be given in outcome.text.
+     */
+    public AuditEventBuilder.Impl withOutcome(@NonNull CodeableConcept outcome) {
       this.outcome = Optional.of(outcome);
+      return this;
+    }
+
+    public AuditEventBuilder.Impl withOutcome(@NonNull CodeableConceptBuilder outcome) {
+      this.outcome = Optional.of(outcome.build());
+      return this;
+    }
+    /**
+     * @param basedOn - Allows tracing of authorizatino for the events and tracking whether
+     *     proposals/recommendations were acted upon.
+     */
+    public AuditEventBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
+      this.basedOn = Arrays.asList(basedOn);
+      return this;
+    }
+    /**
+     * @param basedOn - Allows tracing of authorizatino for the events and tracking whether
+     *     proposals/recommendations were acted upon.
+     */
+    public AuditEventBuilder.Impl withBasedOn(@NonNull Collection<Reference> basedOn) {
+      this.basedOn = Collections.unmodifiableCollection(basedOn);
+      return this;
+    }
+
+    public AuditEventBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -190,9 +220,17 @@ public interface AuditEventBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param severity - Indicates and enables segmentation of various severity including debugging
+     *     from critical.
+     */
+    public AuditEventBuilder.Impl withSeverity(@NonNull String severity) {
+      this.severity = Optional.of(severity);
+      return this;
+    }
+    /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public AuditEventBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -200,8 +238,8 @@ public interface AuditEventBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public AuditEventBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -239,9 +277,18 @@ public interface AuditEventBuilder extends DomainResourceBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param outcomeDesc - A free text description of the outcome of the event. */
-    public AuditEventBuilder.Impl withOutcomeDesc(@NonNull String outcomeDesc) {
-      this.outcomeDesc = Optional.of(outcomeDesc);
+    /**
+     * @param encounter - This will typically be the encounter the event occurred, but some events
+     *     may be initiated prior to or after the official completion of an encounter but still be
+     *     tied to the context of the encounter (e.g. pre-admission lab tests).
+     */
+    public AuditEventBuilder.Impl withEncounter(@NonNull Reference encounter) {
+      this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public AuditEventBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -350,11 +397,13 @@ public interface AuditEventBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(period),
           subtype.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(outcome),
+          basedOn.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
+          OptionConverters.toScala(severity),
           recorded,
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(outcomeDesc),
+          OptionConverters.toScala(encounter),
           OptionConverters.toScala(implicitRules),
           purposeOfEvent.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),

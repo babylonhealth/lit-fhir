@@ -56,6 +56,7 @@ public interface SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuil
   public class Impl implements SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();
+    private Optional<CodeableConcept> format = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Attachment> attachment = Optional.empty();
     private Optional<String> representation = Optional.empty();
@@ -83,6 +84,18 @@ public interface SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuil
     public SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuilder.Impl withType(
         @NonNull CodeableConceptBuilder _type) {
       this._type = Optional.of(_type.build());
+      return this;
+    }
+    /** @param format */
+    public SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuilder.Impl withFormat(
+        @NonNull CodeableConcept format) {
+      this.format = Optional.of(format);
+      return this;
+    }
+
+    public SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuilder.Impl withFormat(
+        @NonNull CodeableConceptBuilder format) {
+      this.format = Optional.of(format.build());
       return this;
     }
     /**
@@ -181,6 +194,7 @@ public interface SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuil
       return new SubstancePolymer$Repeat$RepeatUnit$StructuralRepresentation(
           OptionConverters.toScala(id),
           OptionConverters.toScala(_type),
+          OptionConverters.toScala(format),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(attachment),
           OptionConverters.toScala(representation),

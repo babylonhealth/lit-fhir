@@ -104,19 +104,17 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type DoseNumberChoice  = Choice[UnionPositiveIntOrString]
-    type SeriesDosesChoice = Choice[UnionPositiveIntOrString]
     def apply(
         id: Option[String] = None,
         series: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
+        doseNumber: Option[String] = None,
         vaccineCode: LitSeq[CodeableConcept] = LitSeq.empty,
         description: Option[String] = None,
-        targetDisease: Option[CodeableConcept] = None,
-        doseNumber: Option[Recommendation.DoseNumberChoice] = None,
+        seriesDoses: Option[String] = None,
+        targetDisease: LitSeq[CodeableConcept] = LitSeq.empty,
         forecastStatus: CodeableConcept,
         forecastReason: LitSeq[CodeableConcept] = LitSeq.empty,
-        seriesDoses: Option[Recommendation.SeriesDosesChoice] = None,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         supportingImmunization: LitSeq[Reference] = LitSeq.empty,
         contraindicatedVaccineCode: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -127,13 +125,13 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
       id,
       series,
       extension,
+      doseNumber,
       vaccineCode,
       description,
+      seriesDoses,
       targetDisease,
-      doseNumber,
       forecastStatus,
       forecastReason,
-      seriesDoses,
       modifierExtension,
       supportingImmunization,
       contraindicatedVaccineCode,
@@ -142,19 +140,19 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Recommendation): Option[(Option[String], Option[String], LitSeq[Extension], LitSeq[CodeableConcept], Option[String], Option[CodeableConcept], Option[Recommendation.DoseNumberChoice], CodeableConcept, LitSeq[CodeableConcept], Option[Recommendation.SeriesDosesChoice], LitSeq[Extension], LitSeq[Reference], LitSeq[CodeableConcept], LitSeq[Reference], LitSeq[Recommendation.DateCriterion])] =
+        o: Recommendation): Option[(Option[String], Option[String], LitSeq[Extension], Option[String], LitSeq[CodeableConcept], Option[String], Option[String], LitSeq[CodeableConcept], CodeableConcept, LitSeq[CodeableConcept], LitSeq[Extension], LitSeq[Reference], LitSeq[CodeableConcept], LitSeq[Reference], LitSeq[Recommendation.DateCriterion])] =
       Some(
         (
           o.id,
           o.series,
           o.extension,
+          o.doseNumber,
           o.vaccineCode,
           o.description,
+          o.seriesDoses,
           o.targetDisease,
-          o.doseNumber,
           o.forecastStatus,
           o.forecastReason,
-          o.seriesDoses,
           o.modifierExtension,
           o.supportingImmunization,
           o.contraindicatedVaccineCode,
@@ -166,28 +164,20 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
       FHIRComponentFieldMeta("series", lTagOf[Option[String]], false, lTagOf[String])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+    val doseNumber: FHIRComponentFieldMeta[Option[String]] =
+      FHIRComponentFieldMeta("doseNumber", lTagOf[Option[String]], false, lTagOf[String])
     val vaccineCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
       FHIRComponentFieldMeta("vaccineCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
     val description: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
-    val targetDisease: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-      FHIRComponentFieldMeta("targetDisease", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
-    val doseNumber: FHIRComponentFieldMeta[Option[Recommendation.DoseNumberChoice]] =
-      FHIRComponentFieldMeta(
-        "doseNumber",
-        lTagOf[Option[Recommendation.DoseNumberChoice]],
-        true,
-        lTagOf[UnionPositiveIntOrString])
+    val seriesDoses: FHIRComponentFieldMeta[Option[String]] =
+      FHIRComponentFieldMeta("seriesDoses", lTagOf[Option[String]], false, lTagOf[String])
+    val targetDisease: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
+      FHIRComponentFieldMeta("targetDisease", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
     val forecastStatus: FHIRComponentFieldMeta[CodeableConcept] =
       FHIRComponentFieldMeta("forecastStatus", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
     val forecastReason: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
       FHIRComponentFieldMeta("forecastReason", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
-    val seriesDoses: FHIRComponentFieldMeta[Option[Recommendation.SeriesDosesChoice]] =
-      FHIRComponentFieldMeta(
-        "seriesDoses",
-        lTagOf[Option[Recommendation.SeriesDosesChoice]],
-        true,
-        lTagOf[UnionPositiveIntOrString])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val supportingImmunization: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -206,13 +196,13 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
       id,
       series,
       extension,
+      doseNumber,
       vaccineCode,
       description,
+      seriesDoses,
       targetDisease,
-      doseNumber,
       forecastStatus,
       forecastReason,
-      seriesDoses,
       modifierExtension,
       supportingImmunization,
       contraindicatedVaccineCode,
@@ -224,13 +214,13 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[String]](series, t.series),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[String]](doseNumber, t.doseNumber),
       FHIRComponentField[LitSeq[CodeableConcept]](vaccineCode, t.vaccineCode),
       FHIRComponentField[Option[String]](description, t.description),
-      FHIRComponentField[Option[CodeableConcept]](targetDisease, t.targetDisease),
-      FHIRComponentField[Option[Recommendation.DoseNumberChoice]](doseNumber, t.doseNumber),
+      FHIRComponentField[Option[String]](seriesDoses, t.seriesDoses),
+      FHIRComponentField[LitSeq[CodeableConcept]](targetDisease, t.targetDisease),
       FHIRComponentField[CodeableConcept](forecastStatus, t.forecastStatus),
       FHIRComponentField[LitSeq[CodeableConcept]](forecastReason, t.forecastReason),
-      FHIRComponentField[Option[Recommendation.SeriesDosesChoice]](seriesDoses, t.seriesDoses),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
       FHIRComponentField[LitSeq[Reference]](supportingImmunization, t.supportingImmunization),
       FHIRComponentField[LitSeq[CodeableConcept]](contraindicatedVaccineCode, t.contraindicatedVaccineCode),
@@ -246,13 +236,13 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Option[String]]("series", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+            cursor.decodeAs[Option[String]]("doseNumber", Some(None)),
             cursor.decodeAs[LitSeq[CodeableConcept]]("vaccineCode", Some(LitSeq.empty)),
             cursor.decodeAs[Option[String]]("description", Some(None)),
-            cursor.decodeAs[Option[CodeableConcept]]("targetDisease", Some(None)),
-            cursor.decodeOptRef[UnionPositiveIntOrString]("doseNumber"),
+            cursor.decodeAs[Option[String]]("seriesDoses", Some(None)),
+            cursor.decodeAs[LitSeq[CodeableConcept]]("targetDisease", Some(LitSeq.empty)),
             cursor.decodeAs[CodeableConcept]("forecastStatus", None),
             cursor.decodeAs[LitSeq[CodeableConcept]]("forecastReason", Some(LitSeq.empty)),
-            cursor.decodeOptRef[UnionPositiveIntOrString]("seriesDoses"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Reference]]("supportingImmunization", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[CodeableConcept]]("contraindicatedVaccineCode", Some(LitSeq.empty)),
@@ -267,13 +257,13 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
       override val id: Option[String] = None,
       val series: Option[String] = None,
       override val extension: LitSeq[Extension] = LitSeq.empty,
+      val doseNumber: Option[String] = None,
       val vaccineCode: LitSeq[CodeableConcept] = LitSeq.empty,
       val description: Option[String] = None,
-      val targetDisease: Option[CodeableConcept] = None,
-      val doseNumber: Option[Recommendation.DoseNumberChoice] = None,
+      val seriesDoses: Option[String] = None,
+      val targetDisease: LitSeq[CodeableConcept] = LitSeq.empty,
       val forecastStatus: CodeableConcept,
       val forecastReason: LitSeq[CodeableConcept] = LitSeq.empty,
-      val seriesDoses: Option[Recommendation.SeriesDosesChoice] = None,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       val supportingImmunization: LitSeq[Reference] = LitSeq.empty,
       val contraindicatedVaccineCode: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -293,7 +283,9 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
       authority: Option[Reference] = None,
       identifier: LitSeq[Identifier] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
+      instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
+      instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
       recommendation: NonEmptyLitSeq[ImmunizationRecommendation.Recommendation],
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): ImmunizationRecommendation = new ImmunizationRecommendation(
@@ -308,7 +300,9 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
     authority,
     identifier,
     implicitRules,
+    instantiatesUri,
     modifierExtension,
+    instantiatesCanonical,
     recommendation,
     primitiveAttributes = primitiveAttributes
   )
@@ -334,8 +328,12 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
+  val instantiatesUri: FHIRComponentFieldMeta[LitSeq[UriStr]] =
+    FHIRComponentFieldMeta("instantiatesUri", lTagOf[LitSeq[UriStr]], false, lTagOf[UriStr])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  val instantiatesCanonical: FHIRComponentFieldMeta[LitSeq[Canonical]] =
+    FHIRComponentFieldMeta("instantiatesCanonical", lTagOf[LitSeq[Canonical]], false, lTagOf[Canonical])
   val recommendation: FHIRComponentFieldMeta[NonEmptyLitSeq[ImmunizationRecommendation.Recommendation]] =
     FHIRComponentFieldMeta(
       "recommendation",
@@ -354,8 +352,11 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
     authority,
     identifier,
     implicitRules,
+    instantiatesUri,
     modifierExtension,
-    recommendation)
+    instantiatesCanonical,
+    recommendation
+  )
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ImmunizationRecommendation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
@@ -369,21 +370,25 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
     FHIRComponentField[Option[Reference]](authority, t.authority),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+    FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+    FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
     FHIRComponentField[NonEmptyLitSeq[ImmunizationRecommendation.Recommendation]](recommendation, t.recommendation)
   )
-  def extractId(t: ImmunizationRecommendation): Option[String]                   = t.id
-  def extractMeta(t: ImmunizationRecommendation): Option[Meta]                   = t.meta
-  def extractText(t: ImmunizationRecommendation): Option[Narrative]              = t.text
-  def extractDate(t: ImmunizationRecommendation): FHIRDateTime                   = t.date
-  def extractPatient(t: ImmunizationRecommendation): Reference                   = t.patient
-  def extractLanguage(t: ImmunizationRecommendation): Option[LANGUAGES]          = t.language
-  def extractContained(t: ImmunizationRecommendation): LitSeq[Resource]          = t.contained
-  def extractExtension(t: ImmunizationRecommendation): LitSeq[Extension]         = t.extension
-  def extractAuthority(t: ImmunizationRecommendation): Option[Reference]         = t.authority
-  def extractIdentifier(t: ImmunizationRecommendation): LitSeq[Identifier]       = t.identifier
-  def extractImplicitRules(t: ImmunizationRecommendation): Option[UriStr]        = t.implicitRules
-  def extractModifierExtension(t: ImmunizationRecommendation): LitSeq[Extension] = t.modifierExtension
+  def extractId(t: ImmunizationRecommendation): Option[String]                       = t.id
+  def extractMeta(t: ImmunizationRecommendation): Option[Meta]                       = t.meta
+  def extractText(t: ImmunizationRecommendation): Option[Narrative]                  = t.text
+  def extractDate(t: ImmunizationRecommendation): FHIRDateTime                       = t.date
+  def extractPatient(t: ImmunizationRecommendation): Reference                       = t.patient
+  def extractLanguage(t: ImmunizationRecommendation): Option[LANGUAGES]              = t.language
+  def extractContained(t: ImmunizationRecommendation): LitSeq[Resource]              = t.contained
+  def extractExtension(t: ImmunizationRecommendation): LitSeq[Extension]             = t.extension
+  def extractAuthority(t: ImmunizationRecommendation): Option[Reference]             = t.authority
+  def extractIdentifier(t: ImmunizationRecommendation): LitSeq[Identifier]           = t.identifier
+  def extractImplicitRules(t: ImmunizationRecommendation): Option[UriStr]            = t.implicitRules
+  def extractInstantiatesUri(t: ImmunizationRecommendation): LitSeq[UriStr]          = t.instantiatesUri
+  def extractModifierExtension(t: ImmunizationRecommendation): LitSeq[Extension]     = t.modifierExtension
+  def extractInstantiatesCanonical(t: ImmunizationRecommendation): LitSeq[Canonical] = t.instantiatesCanonical
   def extractRecommendation(t: ImmunizationRecommendation): NonEmptyLitSeq[ImmunizationRecommendation.Recommendation] =
     t.recommendation
   override val thisName: String = "ImmunizationRecommendation"
@@ -398,7 +403,7 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
     "target-disease" -> (obj => obj.recommendation.flatMap(_.targetDisease).toSeq)
   )
   def unapply(
-      o: ImmunizationRecommendation): Option[(Option[String], Option[Meta], Option[Narrative], FHIRDateTime, Reference, Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], Option[Reference], LitSeq[Identifier], Option[UriStr], LitSeq[Extension], NonEmptyLitSeq[ImmunizationRecommendation.Recommendation])] =
+      o: ImmunizationRecommendation): Option[(Option[String], Option[Meta], Option[Narrative], FHIRDateTime, Reference, Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], Option[Reference], LitSeq[Identifier], Option[UriStr], LitSeq[UriStr], LitSeq[Extension], LitSeq[Canonical], NonEmptyLitSeq[ImmunizationRecommendation.Recommendation])] =
     Some(
       (
         o.id,
@@ -412,7 +417,9 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
         o.authority,
         o.identifier,
         o.implicitRules,
+        o.instantiatesUri,
         o.modifierExtension,
+        o.instantiatesCanonical,
         o.recommendation))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[ImmunizationRecommendation] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
@@ -429,7 +436,9 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
           cursor.decodeAs[Option[Reference]]("authority", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
+          cursor.decodeAs[LitSeq[UriStr]]("instantiatesUri", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Canonical]]("instantiatesCanonical", Some(LitSeq.empty)),
           cursor.decodeAs[NonEmptyLitSeq[ImmunizationRecommendation.Recommendation]]("recommendation", None),
           decodeAttributes(cursor)
         )
@@ -442,7 +451,7 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields date, patient, authority, identifier, recommendation.
+  *   Introduces the fields date, patient, authority, identifier, instantiatesUri, instantiatesCanonical, recommendation.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -461,7 +470,7 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -475,6 +484,9 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
+  * @param instantiatesUri
+  *   - The URL pointing to an externally maintained protocol, guideline or other definition that is adhered to in whole or in
+  *   part by this ImmunizationRecommendation.
   * @param modifierExtension
   *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
   *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
@@ -483,6 +495,9 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
   *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
   *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param instantiatesCanonical
+  *   - The URL pointing to a FHIR-defined protocol, guideline or other definition that is adhered to in whole or in part by this
+  *   ImmunizationRecommendation.
   * @param recommendation
   *   - Vaccine administration recommendations.
   */
@@ -499,7 +514,9 @@ class ImmunizationRecommendation(
     val authority: Option[Reference] = None,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
+    val instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
+    val instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
     val recommendation: NonEmptyLitSeq[ImmunizationRecommendation.Recommendation],
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends DomainResource(

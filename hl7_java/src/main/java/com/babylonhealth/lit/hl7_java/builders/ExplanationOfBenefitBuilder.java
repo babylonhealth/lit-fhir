@@ -36,7 +36,6 @@ import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CLAIM_USE;
 import com.babylonhealth.lit.hl7.EXPLANATIONOFBENEFIT_STATUS;
-import com.babylonhealth.lit.hl7.REMITTANCE_OUTCOME;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -55,7 +54,7 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       Reference patient,
       FHIRDateTime created,
       Reference insurer,
-      REMITTANCE_OUTCOME outcome,
+      String outcome,
       Reference provider,
       Collection<ExplanationOfBenefit.Insurance> insurance) {
     return new Impl(use, _type, status, patient, created, insurer, outcome, provider, insurance);
@@ -68,7 +67,7 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
       ReferenceBuilder patient,
       FHIRDateTime created,
       ReferenceBuilder insurer,
-      REMITTANCE_OUTCOME outcome,
+      String outcome,
       ReferenceBuilder provider,
       Collection<ExplanationOfBenefit_InsuranceBuilder> insurance) {
     return new Impl(
@@ -97,7 +96,7 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     private FHIRDateTime created;
     private Optional<Reference> enterer = Optional.empty();
     private Reference insurer;
-    private REMITTANCE_OUTCOME outcome;
+    private String outcome;
     private Optional<LANGUAGES> language = Optional.empty();
     private Reference provider;
     private Optional<CodeableConcept> priority = Optional.empty();
@@ -167,7 +166,7 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
         Reference patient,
         FHIRDateTime created,
         Reference insurer,
-        REMITTANCE_OUTCOME outcome,
+        String outcome,
         Reference provider,
         Collection<ExplanationOfBenefit.Insurance> insurance) {
       this.use = use;
@@ -317,8 +316,8 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ExplanationOfBenefitBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -326,8 +325,8 @@ public interface ExplanationOfBenefitBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ExplanationOfBenefitBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);

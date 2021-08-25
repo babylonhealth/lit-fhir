@@ -90,11 +90,11 @@ public interface RequestGroup_ActionBuilder {
     private Optional<String> prefix = Optional.empty();
     private Collection<RequestGroup.Action> action = Collections.emptyList();
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
+    private Optional<CodeableReference> location = Optional.empty();
     private Optional<Reference> resource = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Choice01405873694> timing = Optional.empty();
     private Optional<String> description = Optional.empty();
-    private Collection<Reference> participant = Collections.emptyList();
     private Collection<RelatedArtifact> documentation = Collections.emptyList();
     private Optional<String> textEquivalent = Optional.empty();
     private Optional<ACTION_GROUPING_BEHAVIOR> groupingBehavior = Optional.empty();
@@ -104,6 +104,7 @@ public interface RequestGroup_ActionBuilder {
     private Optional<ACTION_SELECTION_BEHAVIOR> selectionBehavior = Optional.empty();
     private Optional<ACTION_CARDINALITY_BEHAVIOR> cardinalityBehavior = Optional.empty();
     private Collection<RequestGroup$Action$Condition> condition = Collections.emptyList();
+    private Collection<RequestGroup$Action$Participant> participant = Collections.emptyList();
     private Collection<RequestGroup$Action$RelatedAction> relatedAction = Collections.emptyList();
 
     /** Required fields for {@link RequestGroup.Action} */
@@ -177,6 +178,17 @@ public interface RequestGroup_ActionBuilder {
       this.priority = Optional.of(priority);
       return this;
     }
+    /** @param location */
+    public RequestGroup_ActionBuilder.Impl withLocation(@NonNull CodeableReference location) {
+      this.location = Optional.of(location);
+      return this;
+    }
+
+    public RequestGroup_ActionBuilder.Impl withLocation(
+        @NonNull CodeableReferenceBuilder location) {
+      this.location = Optional.of(location.build());
+      return this;
+    }
     /** @param resource */
     public RequestGroup_ActionBuilder.Impl withResource(@NonNull Reference resource) {
       this.resource = Optional.of(resource);
@@ -226,23 +238,6 @@ public interface RequestGroup_ActionBuilder {
     /** @param description */
     public RequestGroup_ActionBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);
-      return this;
-    }
-    /** @param participant */
-    public RequestGroup_ActionBuilder.Impl withParticipant(@NonNull Reference... participant) {
-      this.participant = Arrays.asList(participant);
-      return this;
-    }
-    /** @param participant */
-    public RequestGroup_ActionBuilder.Impl withParticipant(
-        @NonNull Collection<Reference> participant) {
-      this.participant = Collections.unmodifiableCollection(participant);
-      return this;
-    }
-
-    public RequestGroup_ActionBuilder.Impl withParticipant(
-        @NonNull ReferenceBuilder... participant) {
-      this.participant = Arrays.stream(participant).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param documentation */
@@ -359,6 +354,24 @@ public interface RequestGroup_ActionBuilder {
       this.condition = Arrays.stream(condition).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param participant */
+    public RequestGroup_ActionBuilder.Impl withParticipant(
+        @NonNull RequestGroup$Action$Participant... participant) {
+      this.participant = Arrays.asList(participant);
+      return this;
+    }
+    /** @param participant */
+    public RequestGroup_ActionBuilder.Impl withParticipant(
+        @NonNull Collection<RequestGroup$Action$Participant> participant) {
+      this.participant = Collections.unmodifiableCollection(participant);
+      return this;
+    }
+
+    public RequestGroup_ActionBuilder.Impl withParticipant(
+        @NonNull RequestGroup_Action_ParticipantBuilder... participant) {
+      this.participant = Arrays.stream(participant).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param relatedAction */
     public RequestGroup_ActionBuilder.Impl withRelatedAction(
         @NonNull RequestGroup$Action$RelatedAction... relatedAction) {
@@ -387,11 +400,11 @@ public interface RequestGroup_ActionBuilder {
           OptionConverters.toScala(prefix),
           action.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(priority),
+          OptionConverters.toScala(location),
           OptionConverters.toScala(resource),
           extension.stream().collect(new LitSeqJCollector<>()),
           (Option) OptionConverters.toScala(timing),
           OptionConverters.toScala(description),
-          participant.stream().collect(new LitSeqJCollector<>()),
           documentation.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(textEquivalent),
           OptionConverters.toScala(groupingBehavior),
@@ -401,6 +414,7 @@ public interface RequestGroup_ActionBuilder {
           OptionConverters.toScala(selectionBehavior),
           OptionConverters.toScala(cardinalityBehavior),
           condition.stream().collect(new LitSeqJCollector<>()),
+          participant.stream().collect(new LitSeqJCollector<>()),
           relatedAction.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

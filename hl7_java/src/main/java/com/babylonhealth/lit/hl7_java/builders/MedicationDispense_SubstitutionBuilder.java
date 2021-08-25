@@ -59,7 +59,7 @@ public interface MedicationDispense_SubstitutionBuilder {
     private Collection<CodeableConcept> reason = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Boolean wasSubstituted;
-    private Collection<Reference> responsibleParty = Collections.emptyList();
+    private Optional<Reference> responsibleParty = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -143,20 +143,14 @@ public interface MedicationDispense_SubstitutionBuilder {
     }
     /** @param responsibleParty */
     public MedicationDispense_SubstitutionBuilder.Impl withResponsibleParty(
-        @NonNull Reference... responsibleParty) {
-      this.responsibleParty = Arrays.asList(responsibleParty);
-      return this;
-    }
-    /** @param responsibleParty */
-    public MedicationDispense_SubstitutionBuilder.Impl withResponsibleParty(
-        @NonNull Collection<Reference> responsibleParty) {
-      this.responsibleParty = Collections.unmodifiableCollection(responsibleParty);
+        @NonNull Reference responsibleParty) {
+      this.responsibleParty = Optional.of(responsibleParty);
       return this;
     }
 
     public MedicationDispense_SubstitutionBuilder.Impl withResponsibleParty(
-        @NonNull ReferenceBuilder... responsibleParty) {
-      this.responsibleParty = Arrays.stream(responsibleParty).map(e -> e.build()).collect(toList());
+        @NonNull ReferenceBuilder responsibleParty) {
+      this.responsibleParty = Optional.of(responsibleParty.build());
       return this;
     }
     /**
@@ -210,7 +204,7 @@ public interface MedicationDispense_SubstitutionBuilder {
           reason.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           wasSubstituted,
-          responsibleParty.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(responsibleParty),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

@@ -18,7 +18,6 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
-import com.babylonhealth.lit.hl7.{ PUBLICATION_STATUS, RELATION_TYPE }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -39,38 +38,38 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
     override val parentType: CompanionFor[ResourceType] = RelatedEntry
     def apply(
         id: Option[String] = None,
-        item: Reference,
+        target: Reference,
         extension: LitSeq[Extension] = LitSeq.empty,
-        relationtype: RELATION_TYPE,
+        relationship: Code,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
     ): RelatedEntry = new RelatedEntry(
       id,
-      item,
+      target,
       extension,
-      relationtype,
+      relationship,
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(o: RelatedEntry): Option[(Option[String], Reference, LitSeq[Extension], RELATION_TYPE, LitSeq[Extension])] = Some(
-      (o.id, o.item, o.extension, o.relationtype, o.modifierExtension))
+    def unapply(o: RelatedEntry): Option[(Option[String], Reference, LitSeq[Extension], Code, LitSeq[Extension])] = Some(
+      (o.id, o.target, o.extension, o.relationship, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-    val item: FHIRComponentFieldMeta[Reference] =
-      FHIRComponentFieldMeta("item", lTagOf[Reference], false, lTagOf[Reference])
+    val target: FHIRComponentFieldMeta[Reference] =
+      FHIRComponentFieldMeta("target", lTagOf[Reference], false, lTagOf[Reference])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val relationtype: FHIRComponentFieldMeta[RELATION_TYPE] =
-      FHIRComponentFieldMeta("relationtype", lTagOf[RELATION_TYPE], false, lTagOf[RELATION_TYPE])
+    val relationship: FHIRComponentFieldMeta[Code] =
+      FHIRComponentFieldMeta("relationship", lTagOf[Code], false, lTagOf[Code])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, item, extension, relationtype, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, target, extension, relationship, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: RelatedEntry): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Reference](item, t.item),
+      FHIRComponentField[Reference](target, t.target),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-      FHIRComponentField[RELATION_TYPE](relationtype, t.relationtype),
+      FHIRComponentField[Code](relationship, t.relationship),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
     )
     val baseType: CompanionFor[RelatedEntry] = this
@@ -80,9 +79,9 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
         Try(
           new RelatedEntry(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeAs[Reference]("item", None),
+            cursor.decodeAs[Reference]("target", None),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeAs[RELATION_TYPE]("relationtype", None),
+            cursor.decodeAs[Code]("relationship", None),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -91,9 +90,9 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
   @POJOBoilerplate
   class RelatedEntry(
       override val id: Option[String] = None,
-      val item: Reference,
+      val target: Reference,
       override val extension: LitSeq[Extension] = LitSeq.empty,
-      val relationtype: RELATION_TYPE,
+      val relationship: Code,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
@@ -101,46 +100,52 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
       id: Option[String] = None,
       meta: Option[Meta] = None,
       text: Option[Narrative] = None,
-      `type`: Option[CodeableConcept] = None,
-      status: Option[PUBLICATION_STATUS] = None,
-      validTo: Option[FHIRDateTime] = None,
+      name: Option[String] = None,
+      `type`: Option[Code] = None,
+      note: LitSeq[Annotation] = LitSeq.empty,
+      status: Option[Code] = None,
       language: Option[LANGUAGES] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
       orderable: Boolean,
+      updatedBy: Option[Reference] = None,
       identifier: LitSeq[Identifier] = LitSeq.empty,
-      lastUpdated: Option[FHIRDateTime] = None,
+      billingCode: LitSeq[CodeableConcept] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
       referencedItem: Reference,
-      classification: LitSeq[CodeableConcept] = LitSeq.empty,
-      validityPeriod: Option[Period] = None,
+      billingSummary: Option[String] = None,
+      effectivePeriod: Option[Period] = None,
+      scheduleSummary: Option[String] = None,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
-      additionalIdentifier: LitSeq[Identifier] = LitSeq.empty,
-      additionalCharacteristic: LitSeq[CodeableConcept] = LitSeq.empty,
-      additionalClassification: LitSeq[CodeableConcept] = LitSeq.empty,
+      estimatedDuration: Option[Duration] = None,
+      limitationSummary: Option[String] = None,
+      regulatorySummary: Option[String] = None,
       relatedEntry: LitSeq[CatalogEntry.RelatedEntry] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): CatalogEntry = new CatalogEntry(
     id,
     meta,
     text,
+    name,
     `type`,
+    note,
     status,
-    validTo,
     language,
     contained,
     extension,
     orderable,
+    updatedBy,
     identifier,
-    lastUpdated,
+    billingCode,
     implicitRules,
     referencedItem,
-    classification,
-    validityPeriod,
+    billingSummary,
+    effectivePeriod,
+    scheduleSummary,
     modifierExtension,
-    additionalIdentifier,
-    additionalCharacteristic,
-    additionalClassification,
+    estimatedDuration,
+    limitationSummary,
+    regulatorySummary,
     relatedEntry,
     primitiveAttributes = primitiveAttributes
   )
@@ -150,12 +155,14 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
     FHIRComponentFieldMeta("meta", lTagOf[Option[Meta]], false, lTagOf[Meta])
   val text: FHIRComponentFieldMeta[Option[Narrative]] =
     FHIRComponentFieldMeta("text", lTagOf[Option[Narrative]], false, lTagOf[Narrative])
-  val `type`: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-    FHIRComponentFieldMeta("type", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
-  val status: FHIRComponentFieldMeta[Option[PUBLICATION_STATUS]] =
-    FHIRComponentFieldMeta("status", lTagOf[Option[PUBLICATION_STATUS]], false, lTagOf[PUBLICATION_STATUS])
-  val validTo: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
-    FHIRComponentFieldMeta("validTo", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
+  val name: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("name", lTagOf[Option[String]], false, lTagOf[String])
+  val `type`: FHIRComponentFieldMeta[Option[Code]] =
+    FHIRComponentFieldMeta("type", lTagOf[Option[Code]], false, lTagOf[Code])
+  val note: FHIRComponentFieldMeta[LitSeq[Annotation]] =
+    FHIRComponentFieldMeta("note", lTagOf[LitSeq[Annotation]], false, lTagOf[Annotation])
+  val status: FHIRComponentFieldMeta[Option[Code]] =
+    FHIRComponentFieldMeta("status", lTagOf[Option[Code]], false, lTagOf[Code])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
@@ -164,49 +171,56 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val orderable: FHIRComponentFieldMeta[Boolean] =
     FHIRComponentFieldMeta("orderable", lTagOf[Boolean], false, lTagOf[Boolean])
+  val updatedBy: FHIRComponentFieldMeta[Option[Reference]] =
+    FHIRComponentFieldMeta("updatedBy", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
-  val lastUpdated: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
-    FHIRComponentFieldMeta("lastUpdated", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
+  val billingCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
+    FHIRComponentFieldMeta("billingCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val referencedItem: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("referencedItem", lTagOf[Reference], false, lTagOf[Reference])
-  val classification: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("classification", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
-  val validityPeriod: FHIRComponentFieldMeta[Option[Period]] =
-    FHIRComponentFieldMeta("validityPeriod", lTagOf[Option[Period]], false, lTagOf[Period])
+  val billingSummary: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("billingSummary", lTagOf[Option[String]], false, lTagOf[String])
+  val effectivePeriod: FHIRComponentFieldMeta[Option[Period]] =
+    FHIRComponentFieldMeta("effectivePeriod", lTagOf[Option[Period]], false, lTagOf[Period])
+  val scheduleSummary: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("scheduleSummary", lTagOf[Option[String]], false, lTagOf[String])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val additionalIdentifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
-    FHIRComponentFieldMeta("additionalIdentifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
-  val additionalCharacteristic: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("additionalCharacteristic", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
-  val additionalClassification: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("additionalClassification", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val estimatedDuration: FHIRComponentFieldMeta[Option[Duration]] =
+    FHIRComponentFieldMeta("estimatedDuration", lTagOf[Option[Duration]], false, lTagOf[Duration])
+  val limitationSummary: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("limitationSummary", lTagOf[Option[String]], false, lTagOf[String])
+  val regulatorySummary: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("regulatorySummary", lTagOf[Option[String]], false, lTagOf[String])
   val relatedEntry: FHIRComponentFieldMeta[LitSeq[CatalogEntry.RelatedEntry]] =
     FHIRComponentFieldMeta("relatedEntry", lTagOf[LitSeq[CatalogEntry.RelatedEntry]], false, lTagOf[CatalogEntry.RelatedEntry])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
     id,
     meta,
     text,
+    name,
     `type`,
+    note,
     status,
-    validTo,
     language,
     contained,
     extension,
     orderable,
+    updatedBy,
     identifier,
-    lastUpdated,
+    billingCode,
     implicitRules,
     referencedItem,
-    classification,
-    validityPeriod,
+    billingSummary,
+    effectivePeriod,
+    scheduleSummary,
     modifierExtension,
-    additionalIdentifier,
-    additionalCharacteristic,
-    additionalClassification,
+    estimatedDuration,
+    limitationSummary,
+    regulatorySummary,
     relatedEntry
   )
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
@@ -214,72 +228,62 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
-    FHIRComponentField[Option[PUBLICATION_STATUS]](status, t.status),
-    FHIRComponentField[Option[FHIRDateTime]](validTo, t.validTo),
+    FHIRComponentField[Option[String]](name, t.name),
+    FHIRComponentField[Option[Code]](`type`, t.`type`),
+    FHIRComponentField[LitSeq[Annotation]](note, t.note),
+    FHIRComponentField[Option[Code]](status, t.status),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Boolean](orderable, t.orderable),
+    FHIRComponentField[Option[Reference]](updatedBy, t.updatedBy),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[FHIRDateTime]](lastUpdated, t.lastUpdated),
+    FHIRComponentField[LitSeq[CodeableConcept]](billingCode, t.billingCode),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[Reference](referencedItem, t.referencedItem),
-    FHIRComponentField[LitSeq[CodeableConcept]](classification, t.classification),
-    FHIRComponentField[Option[Period]](validityPeriod, t.validityPeriod),
+    FHIRComponentField[Option[String]](billingSummary, t.billingSummary),
+    FHIRComponentField[Option[Period]](effectivePeriod, t.effectivePeriod),
+    FHIRComponentField[Option[String]](scheduleSummary, t.scheduleSummary),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Identifier]](additionalIdentifier, t.additionalIdentifier),
-    FHIRComponentField[LitSeq[CodeableConcept]](additionalCharacteristic, t.additionalCharacteristic),
-    FHIRComponentField[LitSeq[CodeableConcept]](additionalClassification, t.additionalClassification),
+    FHIRComponentField[Option[Duration]](estimatedDuration, t.estimatedDuration),
+    FHIRComponentField[Option[String]](limitationSummary, t.limitationSummary),
+    FHIRComponentField[Option[String]](regulatorySummary, t.regulatorySummary),
     FHIRComponentField[LitSeq[CatalogEntry.RelatedEntry]](relatedEntry, t.relatedEntry)
   )
-  def extractId(t: CatalogEntry): Option[String]                                = t.id
-  def extractMeta(t: CatalogEntry): Option[Meta]                                = t.meta
-  def extractText(t: CatalogEntry): Option[Narrative]                           = t.text
-  def extractType(t: CatalogEntry): Option[CodeableConcept]                     = t.`type`
-  def extractStatus(t: CatalogEntry): Option[PUBLICATION_STATUS]                = t.status
-  def extractValidTo(t: CatalogEntry): Option[FHIRDateTime]                     = t.validTo
-  def extractLanguage(t: CatalogEntry): Option[LANGUAGES]                       = t.language
-  def extractContained(t: CatalogEntry): LitSeq[Resource]                       = t.contained
-  def extractExtension(t: CatalogEntry): LitSeq[Extension]                      = t.extension
-  def extractOrderable(t: CatalogEntry): Boolean                                = t.orderable
-  def extractIdentifier(t: CatalogEntry): LitSeq[Identifier]                    = t.identifier
-  def extractLastUpdated(t: CatalogEntry): Option[FHIRDateTime]                 = t.lastUpdated
-  def extractImplicitRules(t: CatalogEntry): Option[UriStr]                     = t.implicitRules
-  def extractReferencedItem(t: CatalogEntry): Reference                         = t.referencedItem
-  def extractClassification(t: CatalogEntry): LitSeq[CodeableConcept]           = t.classification
-  def extractValidityPeriod(t: CatalogEntry): Option[Period]                    = t.validityPeriod
-  def extractModifierExtension(t: CatalogEntry): LitSeq[Extension]              = t.modifierExtension
-  def extractAdditionalIdentifier(t: CatalogEntry): LitSeq[Identifier]          = t.additionalIdentifier
-  def extractAdditionalCharacteristic(t: CatalogEntry): LitSeq[CodeableConcept] = t.additionalCharacteristic
-  def extractAdditionalClassification(t: CatalogEntry): LitSeq[CodeableConcept] = t.additionalClassification
-  def extractRelatedEntry(t: CatalogEntry): LitSeq[CatalogEntry.RelatedEntry]   = t.relatedEntry
-  override val thisName: String                                                 = "CatalogEntry"
-  def unapply(
-      o: CatalogEntry): Option[(Option[String], Option[Meta], Option[Narrative], Option[CodeableConcept], Option[PUBLICATION_STATUS], Option[FHIRDateTime], Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], Boolean, LitSeq[Identifier], Option[FHIRDateTime], Option[UriStr], Reference, LitSeq[CodeableConcept], Option[Period], LitSeq[Extension], LitSeq[Identifier], LitSeq[CodeableConcept], LitSeq[CodeableConcept], LitSeq[CatalogEntry.RelatedEntry])] =
-    Some(
-      (
-        o.id,
-        o.meta,
-        o.text,
-        o.`type`,
-        o.status,
-        o.validTo,
-        o.language,
-        o.contained,
-        o.extension,
-        o.orderable,
-        o.identifier,
-        o.lastUpdated,
-        o.implicitRules,
-        o.referencedItem,
-        o.classification,
-        o.validityPeriod,
-        o.modifierExtension,
-        o.additionalIdentifier,
-        o.additionalCharacteristic,
-        o.additionalClassification,
-        o.relatedEntry))
+  def extractId(t: CatalogEntry): Option[String]                              = t.id
+  def extractMeta(t: CatalogEntry): Option[Meta]                              = t.meta
+  def extractText(t: CatalogEntry): Option[Narrative]                         = t.text
+  def extractName(t: CatalogEntry): Option[String]                            = t.name
+  def extractType(t: CatalogEntry): Option[Code]                              = t.`type`
+  def extractNote(t: CatalogEntry): LitSeq[Annotation]                        = t.note
+  def extractStatus(t: CatalogEntry): Option[Code]                            = t.status
+  def extractLanguage(t: CatalogEntry): Option[LANGUAGES]                     = t.language
+  def extractContained(t: CatalogEntry): LitSeq[Resource]                     = t.contained
+  def extractExtension(t: CatalogEntry): LitSeq[Extension]                    = t.extension
+  def extractOrderable(t: CatalogEntry): Boolean                              = t.orderable
+  def extractUpdatedBy(t: CatalogEntry): Option[Reference]                    = t.updatedBy
+  def extractIdentifier(t: CatalogEntry): LitSeq[Identifier]                  = t.identifier
+  def extractBillingCode(t: CatalogEntry): LitSeq[CodeableConcept]            = t.billingCode
+  def extractImplicitRules(t: CatalogEntry): Option[UriStr]                   = t.implicitRules
+  def extractReferencedItem(t: CatalogEntry): Reference                       = t.referencedItem
+  def extractBillingSummary(t: CatalogEntry): Option[String]                  = t.billingSummary
+  def extractEffectivePeriod(t: CatalogEntry): Option[Period]                 = t.effectivePeriod
+  def extractScheduleSummary(t: CatalogEntry): Option[String]                 = t.scheduleSummary
+  def extractModifierExtension(t: CatalogEntry): LitSeq[Extension]            = t.modifierExtension
+  def extractEstimatedDuration(t: CatalogEntry): Option[Duration]             = t.estimatedDuration
+  def extractLimitationSummary(t: CatalogEntry): Option[String]               = t.limitationSummary
+  def extractRegulatorySummary(t: CatalogEntry): Option[String]               = t.regulatorySummary
+  def extractRelatedEntry(t: CatalogEntry): LitSeq[CatalogEntry.RelatedEntry] = t.relatedEntry
+  override val thisName: String                                               = "CatalogEntry"
+  override val searchParams: Map[String, CatalogEntry => Seq[Any]] = Map(
+    "identifier"      -> (obj => obj.identifier.toSeq),
+    "orderable"       -> (obj => Seq(obj.orderable)),
+    "type"            -> (obj => obj.`type`.toSeq),
+    "name"            -> (obj => obj.name.toSeq),
+    "referenced-item" -> (obj => Seq(obj.referencedItem)),
+    "related-entry"   -> (obj => obj.relatedEntry.map(_.target).toSeq),
+    "status"          -> (obj => obj.status.toSeq)
+  )
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[CatalogEntry] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -287,23 +291,26 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[Meta]]("meta", Some(None)),
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
-          cursor.decodeAs[Option[CodeableConcept]]("type", Some(None)),
-          cursor.decodeAs[Option[PUBLICATION_STATUS]]("status", Some(None)),
-          cursor.decodeAs[Option[FHIRDateTime]]("validTo", Some(None)),
+          cursor.decodeAs[Option[String]]("name", Some(None)),
+          cursor.decodeAs[Option[Code]]("type", Some(None)),
+          cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Code]]("status", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Boolean]("orderable", None),
+          cursor.decodeAs[Option[Reference]]("updatedBy", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeAs[Option[FHIRDateTime]]("lastUpdated", Some(None)),
+          cursor.decodeAs[LitSeq[CodeableConcept]]("billingCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[Reference]("referencedItem", None),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("classification", Some(LitSeq.empty)),
-          cursor.decodeAs[Option[Period]]("validityPeriod", Some(None)),
+          cursor.decodeAs[Option[String]]("billingSummary", Some(None)),
+          cursor.decodeAs[Option[Period]]("effectivePeriod", Some(None)),
+          cursor.decodeAs[Option[String]]("scheduleSummary", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[Identifier]]("additionalIdentifier", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("additionalCharacteristic", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("additionalClassification", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Duration]]("estimatedDuration", Some(None)),
+          cursor.decodeAs[Option[String]]("limitationSummary", Some(None)),
+          cursor.decodeAs[Option[String]]("regulatorySummary", Some(None)),
           cursor.decodeAs[LitSeq[CatalogEntry.RelatedEntry]]("relatedEntry", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
@@ -315,8 +322,8 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields `type`, status, validTo, orderable, identifier, lastUpdated, referencedItem, classification,
-  *   validityPeriod, additionalIdentifier, additionalCharacteristic, additionalClassification, relatedEntry.
+  *   Introduces the fields name, `type`, note, status, orderable, updatedBy, identifier, billingCode, referencedItem,
+  *   billingSummary, effectivePeriod, scheduleSummary, estimatedDuration, limitationSummary, regulatorySummary, relatedEntry.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -327,39 +334,44 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
   *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
   *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
   *   represented in the narrative to ensure clinical safety.
+  * @param name
+  *   - The name of this catalog entry announces the item that is represented by the entry.
   * @param `type`
-  *   - The type of item - medication, device, service, protocol or other.
+  *   - The type of resource that is represented by this catalog entry.
+  * @param note
+  *   - Notes and comments about this catalog entry.
   * @param status
-  *   - Used to support catalog exchange even for unsupported products, e.g. getting list of medications even if not prescribable.
-  * @param validTo
-  *   - The date until which this catalog entry is expected to be active.
+  *   - Indicates whether this catalog entry is open to public usage (active) or not (draft or retired).
   * @param language
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
   * @param orderable
-  *   - Whether the entry represents an orderable item.
+  *   - Indicates whether or not the entry represents an item that is orderable.
+  * @param updatedBy
+  *   - Last actor who recorded (created or updated) this catalog entry.
   * @param identifier
-  *   - Used in supporting different identifiers for the same product, e.g. manufacturer code and retailer code.
-  * @param lastUpdated
-  *   - Typically date of issue is different from the beginning of the validity. This can be used to see when an item was last
-  *   updated.
+  *   - Business identifier uniquely assigned to the catalog entry.
+  * @param billingCode
+  *   - Billing code associated to the item in the context of this entry of the catalog.
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
   * @param referencedItem
-  *   - The item in a catalog or definition.
-  * @param classification
-  *   - Classes of devices, or ATC for medication.
-  * @param validityPeriod
-  *   - The time period in which this catalog entry is expected to be active.
+  *   - The item (resource) that this entry of the catalog represents.
+  * @param billingSummary
+  *   - Billing summary attached to the item in the context of this entry of the catalog.
+  * @param effectivePeriod
+  *   - Period of usability of the catalog entry.
+  * @param scheduleSummary
+  *   - Schedule summary for the item in the context of this entry of the catalog.
   * @param modifierExtension
   *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
   *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
@@ -368,12 +380,12 @@ object CatalogEntry extends CompanionFor[CatalogEntry] {
   *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
   *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
-  * @param additionalIdentifier
-  *   - Used in supporting related concepts, e.g. NDC to RxNorm.
-  * @param additionalCharacteristic
-  *   - Used for examplefor Out of Formulary, or any specifics.
-  * @param additionalClassification
-  *   - User for example for ATC classification, or.
+  * @param estimatedDuration
+  *   - Estimated duration of the orderable item of this entry of the catalog.
+  * @param limitationSummary
+  *   - Summary of limitations for the item in the context of this entry of the catalog.
+  * @param regulatorySummary
+  *   - Regulatory summary for the item in the context of this entry of the catalog.
   * @param relatedEntry
   *   - Used for example, to point to a substance, or to a device used to administer a medication.
   */
@@ -382,23 +394,26 @@ class CatalogEntry(
     override val id: Option[String] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val `type`: Option[CodeableConcept] = None,
-    val status: Option[PUBLICATION_STATUS] = None,
-    val validTo: Option[FHIRDateTime] = None,
+    val name: Option[String] = None,
+    val `type`: Option[Code] = None,
+    val note: LitSeq[Annotation] = LitSeq.empty,
+    val status: Option[Code] = None,
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val orderable: Boolean,
+    val updatedBy: Option[Reference] = None,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val lastUpdated: Option[FHIRDateTime] = None,
+    val billingCode: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     val referencedItem: Reference,
-    val classification: LitSeq[CodeableConcept] = LitSeq.empty,
-    val validityPeriod: Option[Period] = None,
+    val billingSummary: Option[String] = None,
+    val effectivePeriod: Option[Period] = None,
+    val scheduleSummary: Option[String] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-    val additionalIdentifier: LitSeq[Identifier] = LitSeq.empty,
-    val additionalCharacteristic: LitSeq[CodeableConcept] = LitSeq.empty,
-    val additionalClassification: LitSeq[CodeableConcept] = LitSeq.empty,
+    val estimatedDuration: Option[Duration] = None,
+    val limitationSummary: Option[String] = None,
+    val regulatorySummary: Option[String] = None,
     val relatedEntry: LitSeq[CatalogEntry.RelatedEntry] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends DomainResource(

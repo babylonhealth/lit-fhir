@@ -99,20 +99,21 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type CodeChoice       = Choice[UnionCodeableConceptOrReference]
   type OccurrenceChoice = Choice[UnionDateTimeOrPeriodOrTiming]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
       text: Option[Narrative] = None,
+      code: CodeableReference,
       note: LitSeq[Annotation] = LitSeq.empty,
       status: Option[REQUEST_STATUS] = None,
       intent: REQUEST_INTENT,
+      reason: LitSeq[CodeableReference] = LitSeq.empty,
       basedOn: LitSeq[Reference] = LitSeq.empty,
-      code: DeviceRequest.CodeChoice,
       subject: Reference,
       language: Option[LANGUAGES] = None,
       priority: Option[REQUEST_PRIORITY] = None,
+      quantity: Option[Int] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
       encounter: Option[Reference] = None,
@@ -121,15 +122,14 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
       insurance: LitSeq[Reference] = LitSeq.empty,
       identifier: LitSeq[Identifier] = LitSeq.empty,
       authoredOn: Option[FHIRDateTime] = None,
-      reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
       priorRequest: LitSeq[Reference] = LitSeq.empty,
+      doNotPerform: Option[Boolean] = None,
       implicitRules: Option[UriStr] = None,
       occurrence: Option[DeviceRequest.OccurrenceChoice] = None,
       performerType: Option[CodeableConcept] = None,
       supportingInfo: LitSeq[Reference] = LitSeq.empty,
       instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
       groupIdentifier: Option[Identifier] = None,
-      reasonReference: LitSeq[Reference] = LitSeq.empty,
       relevantHistory: LitSeq[Reference] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
@@ -139,14 +139,16 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     id,
     meta,
     text,
+    code,
     note,
     status,
     intent,
+    reason,
     basedOn,
-    code,
     subject,
     language,
     priority,
+    quantity,
     contained,
     extension,
     encounter,
@@ -155,15 +157,14 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     insurance,
     identifier,
     authoredOn,
-    reasonCode,
     priorRequest,
+    doNotPerform,
     implicitRules,
     occurrence,
     performerType,
     supportingInfo,
     instantiatesUri,
     groupIdentifier,
-    reasonReference,
     relevantHistory,
     modifierExtension,
     instantiatesCanonical,
@@ -176,22 +177,26 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     FHIRComponentFieldMeta("meta", lTagOf[Option[Meta]], false, lTagOf[Meta])
   val text: FHIRComponentFieldMeta[Option[Narrative]] =
     FHIRComponentFieldMeta("text", lTagOf[Option[Narrative]], false, lTagOf[Narrative])
+  val code: FHIRComponentFieldMeta[CodeableReference] =
+    FHIRComponentFieldMeta("code", lTagOf[CodeableReference], false, lTagOf[CodeableReference])
   val note: FHIRComponentFieldMeta[LitSeq[Annotation]] =
     FHIRComponentFieldMeta("note", lTagOf[LitSeq[Annotation]], false, lTagOf[Annotation])
   val status: FHIRComponentFieldMeta[Option[REQUEST_STATUS]] =
     FHIRComponentFieldMeta("status", lTagOf[Option[REQUEST_STATUS]], false, lTagOf[REQUEST_STATUS])
   val intent: FHIRComponentFieldMeta[REQUEST_INTENT] =
     FHIRComponentFieldMeta("intent", lTagOf[REQUEST_INTENT], false, lTagOf[REQUEST_INTENT])
+  val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val basedOn: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("basedOn", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
-  val code: FHIRComponentFieldMeta[DeviceRequest.CodeChoice] =
-    FHIRComponentFieldMeta("code", lTagOf[DeviceRequest.CodeChoice], true, lTagOf[UnionCodeableConceptOrReference])
   val subject: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("subject", lTagOf[Reference], false, lTagOf[Reference])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val priority: FHIRComponentFieldMeta[Option[REQUEST_PRIORITY]] =
     FHIRComponentFieldMeta("priority", lTagOf[Option[REQUEST_PRIORITY]], false, lTagOf[REQUEST_PRIORITY])
+  val quantity: FHIRComponentFieldMeta[Option[Int]] =
+    FHIRComponentFieldMeta("quantity", lTagOf[Option[Int]], false, lTagOf[Int])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -208,10 +213,10 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val authoredOn: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("authoredOn", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
-  val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val priorRequest: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("priorRequest", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
+  val doNotPerform: FHIRComponentFieldMeta[Option[Boolean]] =
+    FHIRComponentFieldMeta("doNotPerform", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Option[DeviceRequest.OccurrenceChoice]] =
@@ -228,8 +233,6 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     FHIRComponentFieldMeta("instantiatesUri", lTagOf[LitSeq[UriStr]], false, lTagOf[UriStr])
   val groupIdentifier: FHIRComponentFieldMeta[Option[Identifier]] =
     FHIRComponentFieldMeta("groupIdentifier", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
-  val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val relevantHistory: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("relevantHistory", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -242,14 +245,16 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     id,
     meta,
     text,
+    code,
     note,
     status,
     intent,
+    reason,
     basedOn,
-    code,
     subject,
     language,
     priority,
+    quantity,
     contained,
     extension,
     encounter,
@@ -258,15 +263,14 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     insurance,
     identifier,
     authoredOn,
-    reasonCode,
     priorRequest,
+    doNotPerform,
     implicitRules,
     occurrence,
     performerType,
     supportingInfo,
     instantiatesUri,
     groupIdentifier,
-    reasonReference,
     relevantHistory,
     modifierExtension,
     instantiatesCanonical,
@@ -277,14 +281,16 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
+    FHIRComponentField[CodeableReference](code, t.code),
     FHIRComponentField[LitSeq[Annotation]](note, t.note),
     FHIRComponentField[Option[REQUEST_STATUS]](status, t.status),
     FHIRComponentField[REQUEST_INTENT](intent, t.intent),
+    FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
     FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
-    FHIRComponentField[DeviceRequest.CodeChoice](code, t.code),
     FHIRComponentField[Reference](subject, t.subject),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[Option[REQUEST_PRIORITY]](priority, t.priority),
+    FHIRComponentField[Option[Int]](quantity, t.quantity),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[Reference]](encounter, t.encounter),
@@ -293,15 +299,14 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     FHIRComponentField[LitSeq[Reference]](insurance, t.insurance),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
     FHIRComponentField[Option[FHIRDateTime]](authoredOn, t.authoredOn),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
     FHIRComponentField[LitSeq[Reference]](priorRequest, t.priorRequest),
+    FHIRComponentField[Option[Boolean]](doNotPerform, t.doNotPerform),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[Option[DeviceRequest.OccurrenceChoice]](occurrence, t.occurrence),
     FHIRComponentField[Option[CodeableConcept]](performerType, t.performerType),
     FHIRComponentField[LitSeq[Reference]](supportingInfo, t.supportingInfo),
     FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
     FHIRComponentField[Option[Identifier]](groupIdentifier, t.groupIdentifier),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
     FHIRComponentField[LitSeq[Reference]](relevantHistory, t.relevantHistory),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
@@ -310,14 +315,16 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
   def extractId(t: DeviceRequest): Option[String]                                 = t.id
   def extractMeta(t: DeviceRequest): Option[Meta]                                 = t.meta
   def extractText(t: DeviceRequest): Option[Narrative]                            = t.text
+  def extractCode(t: DeviceRequest): CodeableReference                            = t.code
   def extractNote(t: DeviceRequest): LitSeq[Annotation]                           = t.note
   def extractStatus(t: DeviceRequest): Option[REQUEST_STATUS]                     = t.status
   def extractIntent(t: DeviceRequest): REQUEST_INTENT                             = t.intent
+  def extractReason(t: DeviceRequest): LitSeq[CodeableReference]                  = t.reason
   def extractBasedOn(t: DeviceRequest): LitSeq[Reference]                         = t.basedOn
-  def extractCode(t: DeviceRequest): DeviceRequest.CodeChoice                     = t.code
   def extractSubject(t: DeviceRequest): Reference                                 = t.subject
   def extractLanguage(t: DeviceRequest): Option[LANGUAGES]                        = t.language
   def extractPriority(t: DeviceRequest): Option[REQUEST_PRIORITY]                 = t.priority
+  def extractQuantity(t: DeviceRequest): Option[Int]                              = t.quantity
   def extractContained(t: DeviceRequest): LitSeq[Resource]                        = t.contained
   def extractExtension(t: DeviceRequest): LitSeq[Extension]                       = t.extension
   def extractEncounter(t: DeviceRequest): Option[Reference]                       = t.encounter
@@ -326,15 +333,14 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
   def extractInsurance(t: DeviceRequest): LitSeq[Reference]                       = t.insurance
   def extractIdentifier(t: DeviceRequest): LitSeq[Identifier]                     = t.identifier
   def extractAuthoredOn(t: DeviceRequest): Option[FHIRDateTime]                   = t.authoredOn
-  def extractReasonCode(t: DeviceRequest): LitSeq[CodeableConcept]                = t.reasonCode
   def extractPriorRequest(t: DeviceRequest): LitSeq[Reference]                    = t.priorRequest
+  def extractDoNotPerform(t: DeviceRequest): Option[Boolean]                      = t.doNotPerform
   def extractImplicitRules(t: DeviceRequest): Option[UriStr]                      = t.implicitRules
   def extractOccurrence(t: DeviceRequest): Option[DeviceRequest.OccurrenceChoice] = t.occurrence
   def extractPerformerType(t: DeviceRequest): Option[CodeableConcept]             = t.performerType
   def extractSupportingInfo(t: DeviceRequest): LitSeq[Reference]                  = t.supportingInfo
   def extractInstantiatesUri(t: DeviceRequest): LitSeq[UriStr]                    = t.instantiatesUri
   def extractGroupIdentifier(t: DeviceRequest): Option[Identifier]                = t.groupIdentifier
-  def extractReasonReference(t: DeviceRequest): LitSeq[Reference]                 = t.reasonReference
   def extractRelevantHistory(t: DeviceRequest): LitSeq[Reference]                 = t.relevantHistory
   def extractModifierExtension(t: DeviceRequest): LitSeq[Extension]               = t.modifierExtension
   def extractInstantiatesCanonical(t: DeviceRequest): LitSeq[Canonical]           = t.instantiatesCanonical
@@ -349,7 +355,7 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
         obj.occurrence.flatMap(_.as[Period]).toSeq),
     "requester"              -> (obj => obj.requester.toSeq),
     "prior-request"          -> (obj => obj.priorRequest.toSeq),
-    "code"                   -> (obj => obj.code.as[CodeableConcept].toSeq),
+    "code"                   -> (obj => obj.code.concept.toSeq),
     "status"                 -> (obj => obj.status.toSeq),
     "authored-on"            -> (obj => obj.authoredOn.toSeq),
     "based-on"               -> (obj => obj.basedOn.toSeq),
@@ -357,7 +363,7 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     "instantiates-uri"       -> (obj => obj.instantiatesUri.toSeq),
     "insurance"              -> (obj => obj.insurance.toSeq),
     "identifier"             -> (obj => obj.identifier.toSeq),
-    "device"                 -> (obj => obj.code.as[Reference].toSeq),
+    "device"                 -> (obj => obj.code.reference.toSeq),
     "performer"              -> (obj => obj.performer.toSeq),
     "instantiates-canonical" -> (obj => obj.instantiatesCanonical.toSeq),
     "patient"                -> (obj => obj.subject.seqIf(_.reference.exists(_.contains("Patient/"))).toSeq)
@@ -369,14 +375,16 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[Meta]]("meta", Some(None)),
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
+          cursor.decodeAs[CodeableReference]("code", None),
           cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
           cursor.decodeAs[Option[REQUEST_STATUS]]("status", Some(None)),
           cursor.decodeAs[REQUEST_INTENT]("intent", None),
+          cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("basedOn", Some(LitSeq.empty)),
-          cursor.decodeRef[UnionCodeableConceptOrReference]("code"),
           cursor.decodeAs[Reference]("subject", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[Option[REQUEST_PRIORITY]]("priority", Some(None)),
+          cursor.decodeAs[Option[Int]]("quantity", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
@@ -385,15 +393,14 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
           cursor.decodeAs[LitSeq[Reference]]("insurance", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[FHIRDateTime]]("authoredOn", Some(None)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("priorRequest", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeOptRef[UnionDateTimeOrPeriodOrTiming]("occurrence"),
           cursor.decodeAs[Option[CodeableConcept]]("performerType", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("supportingInfo", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[UriStr]]("instantiatesUri", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Identifier]]("groupIdentifier", Some(None)),
-          cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("relevantHistory", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Canonical]]("instantiatesCanonical", Some(LitSeq.empty)),
@@ -409,9 +416,9 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields note, status, intent, basedOn, code, subject, priority, encounter, requester, performer, insurance,
-  *   identifier, authoredOn, reasonCode, priorRequest, occurrence, performerType, supportingInfo, instantiatesUri,
-  *   groupIdentifier, reasonReference, relevantHistory, instantiatesCanonical, parameter.
+  *   Introduces the fields code, note, status, intent, reason, basedOn, subject, priority, quantity, encounter, requester,
+  *   performer, insurance, identifier, authoredOn, priorRequest, doNotPerform, occurrence, performerType, supportingInfo,
+  *   instantiatesUri, groupIdentifier, relevantHistory, instantiatesCanonical, parameter.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -422,6 +429,8 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
   *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
   *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
   *   represented in the narrative to ensure clinical safety.
+  * @param code
+  *   - The details of the device to be used.
   * @param note
   *   - Details about this request that were not represented at all or sufficiently in one of the attributes provided in a class.
   *   These may include for example a comment, an instruction, or a note associated with the statement.
@@ -429,19 +438,21 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
   *   - The status of the request.
   * @param intent
   *   - Whether the request is a proposal, plan, an original order or a reflex order.
+  * @param reason
+  *   - Reason or justification for the use of this device.
   * @param basedOn
   *   - Plan/proposal/order fulfilled by this request.
-  * @param code
-  *   - The details of the device to be used.
   * @param subject
   *   - The patient who will use the device.
   * @param language
   *   - The base language in which the resource is written.
   * @param priority
-  *   - Indicates how quickly the {{title}} should be addressed with respect to other requests.
+  *   - Indicates how quickly the request should be addressed with respect to other requests.
+  * @param quantity
+  *   - The number of devices to be provided.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -450,9 +461,9 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
   * @param encounter
   *   - An encounter that provides additional context in which this request is made.
   * @param requester
-  *   - The individual who initiated the request and has responsibility for its activation.
+  *   - The individual or entity who initiated the request and has responsibility for its activation.
   * @param performer
-  *   - The desired performer for doing the diagnostic testing.
+  *   - The desired individual or entity to provide the device to the subject of the request (e.g., patient, location).
   * @param insurance
   *   - Insurance plans, coverage extensions, pre-authorizations and/or pre-determinations that may be required for delivering the
   *   requested service.
@@ -460,10 +471,12 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
   *   - Identifiers assigned to this order by the orderer or by the receiver.
   * @param authoredOn
   *   - When the request transitioned to being actionable.
-  * @param reasonCode
-  *   - Reason or justification for the use of this device.
   * @param priorRequest
   *   - The request takes the place of the referenced completed or terminated request(s).
+  * @param doNotPerform
+  *   - If true, indicates that the provider is asking for the patient to either stop using or to not start using the specified
+  *   device or category of devices. For example, the patient has undergone surgery and the provider is indicating that the
+  *   patient should not wear contact lenses.
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
@@ -473,7 +486,7 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
   *   "Every 8 hours"; "Three times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:"; "15 Oct 2013, 17 Oct
   *   2013 and 1 Nov 2013".
   * @param performerType
-  *   - Desired type of performer for doing the diagnostic testing.
+  *   - The desired kind of individual or entity to provide the device to the subject of the request (e.g., patient, location).
   * @param supportingInfo
   *   - Additional clinical information about the patient that may influence the request fulfilment. For example, this may include
   *   where on the subject's body the device will be used (i.e. the target site).
@@ -482,8 +495,6 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
   *   or in part by this DeviceRequest.
   * @param groupIdentifier
   *   - Composite request this is part of.
-  * @param reasonReference
-  *   - Reason or justification for the use of this device.
   * @param relevantHistory
   *   - Key events in the history of the request.
   * @param modifierExtension
@@ -505,14 +516,16 @@ class DeviceRequest(
     override val id: Option[String] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
+    val code: CodeableReference,
     val note: LitSeq[Annotation] = LitSeq.empty,
     val status: Option[REQUEST_STATUS] = None,
     val intent: REQUEST_INTENT,
+    val reason: LitSeq[CodeableReference] = LitSeq.empty,
     val basedOn: LitSeq[Reference] = LitSeq.empty,
-    val code: DeviceRequest.CodeChoice,
     val subject: Reference,
     override val language: Option[LANGUAGES] = None,
     val priority: Option[REQUEST_PRIORITY] = None,
+    val quantity: Option[Int] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val encounter: Option[Reference] = None,
@@ -521,15 +534,14 @@ class DeviceRequest(
     val insurance: LitSeq[Reference] = LitSeq.empty,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
     val authoredOn: Option[FHIRDateTime] = None,
-    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     val priorRequest: LitSeq[Reference] = LitSeq.empty,
+    val doNotPerform: Option[Boolean] = None,
     override val implicitRules: Option[UriStr] = None,
     val occurrence: Option[DeviceRequest.OccurrenceChoice] = None,
     val performerType: Option[CodeableConcept] = None,
     val supportingInfo: LitSeq[Reference] = LitSeq.empty,
     val instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
     val groupIdentifier: Option[Identifier] = None,
-    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     val relevantHistory: LitSeq[Reference] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,

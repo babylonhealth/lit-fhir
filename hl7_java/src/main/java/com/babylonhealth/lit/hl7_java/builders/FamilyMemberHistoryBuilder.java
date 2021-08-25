@@ -109,23 +109,23 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     private Collection<Annotation> note = Collections.emptyList();
     private HISTORY_STATUS status;
     private Optional<ChoiceAgeOrRangeOrString> age = Optional.empty();
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Reference patient;
     private Optional<ChoiceDateOrPeriodOrString> born = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<Choice00659500323> deceased = Optional.empty();
     private CodeableConcept relationship;
     private Optional<Boolean> estimatedAge = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<String> instantiatesUri = Collections.emptyList();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<String> instantiatesCanonical = Collections.emptyList();
     private Collection<FamilyMemberHistory.Condition> condition = Collections.emptyList();
+    private Collection<FamilyMemberHistory.Procedure> procedure = Collections.emptyList();
 
     /**
      * Required fields for {@link FamilyMemberHistory}
@@ -239,6 +239,30 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param reason - Describes why the family member history occurred in coded or textual form, or
+     *     Indicates a Condition, Observation, AllergyIntolerance, or QuestionnaireResponse that
+     *     justifies this family member history event.
+     */
+    public FamilyMemberHistoryBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /**
+     * @param reason - Describes why the family member history occurred in coded or textual form, or
+     *     Indicates a Condition, Observation, AllergyIntolerance, or QuestionnaireResponse that
+     *     justifies this family member history event.
+     */
+    public FamilyMemberHistoryBuilder.Impl withReason(
+        @NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public FamilyMemberHistoryBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
      * @param born - The actual or approximate date of birth of the relative. Field is a 'choice'
      *     field. Type should be one of FHIRDate, Period, String. To pass the value in, wrap with
      *     one of the FamilyMemberHistoryBuilder.born static methods
@@ -254,8 +278,8 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public FamilyMemberHistoryBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -263,8 +287,8 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public FamilyMemberHistoryBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -328,29 +352,6 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param reasonCode - Describes why the family member history occurred in coded or textual
-     *     form.
-     */
-    public FamilyMemberHistoryBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /**
-     * @param reasonCode - Describes why the family member history occurred in coded or textual
-     *     form.
-     */
-    public FamilyMemberHistoryBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public FamilyMemberHistoryBuilder.Impl withReasonCode(
-        @NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
      * @param deceased - Deceased flag or the actual or approximate age of the relative at the time
      *     of death for the family member history record. Field is a 'choice' field. Type should be
      *     one of Age, Boolean, FHIRDate, Range, String. To pass the value in, wrap with one of the
@@ -394,30 +395,6 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     public FamilyMemberHistoryBuilder.Impl withInstantiatesUri(
         @NonNull Collection<String> instantiatesUri) {
       this.instantiatesUri = Collections.unmodifiableCollection(instantiatesUri);
-      return this;
-    }
-    /**
-     * @param reasonReference - Indicates a Condition, Observation, AllergyIntolerance, or
-     *     QuestionnaireResponse that justifies this family member history event.
-     */
-    public FamilyMemberHistoryBuilder.Impl withReasonReference(
-        @NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /**
-     * @param reasonReference - Indicates a Condition, Observation, AllergyIntolerance, or
-     *     QuestionnaireResponse that justifies this family member history event.
-     */
-    public FamilyMemberHistoryBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public FamilyMemberHistoryBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param dataAbsentReason - Describes why the family member's history is not available. */
@@ -521,6 +498,32 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
       this.condition = Arrays.stream(condition).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param procedure - The significant Procedures (or procedure) that the family member had. This
+     *     is a repeating section to allow a system to represent more than one procedure per
+     *     resource, though there is nothing stopping multiple resources - one per procedure.
+     */
+    public FamilyMemberHistoryBuilder.Impl withProcedure(
+        @NonNull FamilyMemberHistory.Procedure... procedure) {
+      this.procedure = Arrays.asList(procedure);
+      return this;
+    }
+    /**
+     * @param procedure - The significant Procedures (or procedure) that the family member had. This
+     *     is a repeating section to allow a system to represent more than one procedure per
+     *     resource, though there is nothing stopping multiple resources - one per procedure.
+     */
+    public FamilyMemberHistoryBuilder.Impl withProcedure(
+        @NonNull Collection<FamilyMemberHistory.Procedure> procedure) {
+      this.procedure = Collections.unmodifiableCollection(procedure);
+      return this;
+    }
+
+    public FamilyMemberHistoryBuilder.Impl withProcedure(
+        @NonNull FamilyMemberHistory_ProcedureBuilder... procedure) {
+      this.procedure = Arrays.stream(procedure).map(e -> e.build()).collect(toList());
+      return this;
+    }
 
     public FamilyMemberHistoryBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
@@ -538,23 +541,23 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
           note.stream().collect(new LitSeqJCollector<>()),
           status,
           (Option) OptionConverters.toScala(age),
+          reason.stream().collect(new LitSeqJCollector<>()),
           patient,
           (Option) OptionConverters.toScala(born),
           OptionConverters.toScala(language),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           (Option) OptionConverters.toScala(deceased),
           relationship,
           OptionConverters.toScala(estimatedAge.map(x -> (Object) x)),
           OptionConverters.toScala(implicitRules),
           instantiatesUri.stream().collect(new LitSeqJCollector<>()),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(dataAbsentReason),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
           condition.stream().collect(new LitSeqJCollector<>()),
+          procedure.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }
   }

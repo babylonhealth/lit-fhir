@@ -36,7 +36,6 @@ import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.FM_STATUS;
 import com.babylonhealth.lit.hl7.ELIGIBILITYRESPONSE_PURPOSE;
-import com.babylonhealth.lit.hl7.REMITTANCE_OUTCOME;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -54,7 +53,7 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
       Reference patient,
       FHIRDateTime created,
       Reference request,
-      REMITTANCE_OUTCOME outcome,
+      String outcome,
       Reference insurer) {
     return new Impl(status, purpose, patient, created, request, outcome, insurer);
   }
@@ -65,7 +64,7 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
       ReferenceBuilder patient,
       FHIRDateTime created,
       ReferenceBuilder request,
-      REMITTANCE_OUTCOME outcome,
+      String outcome,
       ReferenceBuilder insurer) {
     return new Impl(
         status, purpose, patient.build(), created, request.build(), outcome, insurer.build());
@@ -89,7 +88,7 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
     private Reference patient;
     private FHIRDateTime created;
     private Reference request;
-    private REMITTANCE_OUTCOME outcome;
+    private String outcome;
     private Reference insurer;
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
@@ -126,7 +125,7 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
         Reference patient,
         FHIRDateTime created,
         Reference request,
-        REMITTANCE_OUTCOME outcome,
+        String outcome,
         Reference insurer) {
       this.status = status;
       this.purpose = purpose;
@@ -192,8 +191,8 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CoverageEligibilityResponseBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -201,8 +200,8 @@ public interface CoverageEligibilityResponseBuilder extends DomainResourceBuilde
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CoverageEligibilityResponseBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {

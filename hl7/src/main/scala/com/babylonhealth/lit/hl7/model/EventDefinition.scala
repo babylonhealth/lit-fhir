@@ -372,12 +372,10 @@ object EventDefinition extends CompanionFor[EventDefinition] {
 
 /** The EventDefinition resource provides a reusable description of when a particular event can occur.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.MetadataResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, title, usage, topic, status, author, editor, version, contact, purpose, trigger,
-  *   subtitle, reviewer, endorser, publisher, copyright, identifier, subject, useContext, description, experimental,
-  *   jurisdiction, approvalDate, lastReviewDate, effectivePeriod, relatedArtifact.
+  *   Introduces the fields usage, trigger, subtitle, subject.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -435,7 +433,7 @@ object EventDefinition extends CompanionFor[EventDefinition] {
   *   - An individual or organization responsible for officially endorsing the content for use in some setting.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -488,50 +486,74 @@ object EventDefinition extends CompanionFor[EventDefinition] {
 @POJOBoilerplate
 class EventDefinition(
     override val id: Option[String] = None,
-    val url: Option[UriStr] = None,
+    override val url: Option[UriStr] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: Option[String] = None,
-    val date: Option[FHIRDateTime] = None,
-    val title: Option[String] = None,
+    override val name: Option[String] = None,
+    override val date: Option[FHIRDateTime] = None,
+    override val title: Option[String] = None,
     val usage: Option[String] = None,
-    val topic: LitSeq[CodeableConcept] = LitSeq.empty,
-    val status: PUBLICATION_STATUS,
-    val author: LitSeq[ContactDetail] = LitSeq.empty,
-    val editor: LitSeq[ContactDetail] = LitSeq.empty,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    override val topic: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val status: PUBLICATION_STATUS,
+    override val author: LitSeq[ContactDetail] = LitSeq.empty,
+    override val editor: LitSeq[ContactDetail] = LitSeq.empty,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     val trigger: NonEmptyLitSeq[TriggerDefinition],
     override val language: Option[LANGUAGES] = None,
     val subtitle: Option[String] = None,
-    val reviewer: LitSeq[ContactDetail] = LitSeq.empty,
-    val endorser: LitSeq[ContactDetail] = LitSeq.empty,
+    override val reviewer: LitSeq[ContactDetail] = LitSeq.empty,
+    override val endorser: LitSeq[ContactDetail] = LitSeq.empty,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val copyright: Option[Markdown] = None,
-    val identifier: LitSeq[Identifier] = LitSeq.empty,
+    override val publisher: Option[String] = None,
+    override val copyright: Option[Markdown] = None,
+    override val identifier: LitSeq[Identifier] = LitSeq.empty,
     val subject: Option[EventDefinition.SubjectChoice] = None,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
-    val description: Option[Markdown] = None,
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
-    val approvalDate: Option[FHIRDate] = None,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val description: Option[Markdown] = None,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val approvalDate: Option[FHIRDate] = None,
     override val implicitRules: Option[UriStr] = None,
-    val lastReviewDate: Option[FHIRDate] = None,
-    val effectivePeriod: Option[Period] = None,
-    val relatedArtifact: LitSeq[RelatedArtifact] = LitSeq.empty,
+    override val lastReviewDate: Option[FHIRDate] = None,
+    override val effectivePeriod: Option[Period] = None,
+    override val relatedArtifact: LitSeq[RelatedArtifact] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends MetadataResource(
       id = id,
+      url = url,
       meta = meta,
       text = text,
+      name = name,
+      date = date,
+      title = title,
+      topic = topic,
+      status = status,
+      author = author,
+      editor = editor,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
+      reviewer = reviewer,
+      endorser = endorser,
+      copyright = copyright,
       contained = contained,
+      publisher = publisher,
       extension = extension,
+      identifier = identifier,
+      useContext = useContext,
+      description = description,
+      jurisdiction = jurisdiction,
+      experimental = experimental,
+      approvalDate = approvalDate,
       implicitRules = implicitRules,
+      lastReviewDate = lastReviewDate,
+      effectivePeriod = effectivePeriod,
+      relatedArtifact = relatedArtifact,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "EventDefinition"

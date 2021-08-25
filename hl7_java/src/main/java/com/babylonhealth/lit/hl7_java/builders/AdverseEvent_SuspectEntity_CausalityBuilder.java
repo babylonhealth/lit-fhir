@@ -56,11 +56,10 @@ public interface AdverseEvent_SuspectEntity_CausalityBuilder {
   public class Impl implements AdverseEvent_SuspectEntity_CausalityBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Reference> author = Optional.empty();
-    private Optional<CodeableConcept> method = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<CodeableConcept> assessment = Optional.empty();
+    private Optional<CodeableConcept> assessmentMethod = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Optional<String> productRelatedness = Optional.empty();
+    private Optional<CodeableConcept> entityRelatedness = Optional.empty();
 
     /** Required fields for {@link AdverseEvent$SuspectEntity$Causality} */
     public Impl() {}
@@ -82,18 +81,6 @@ public interface AdverseEvent_SuspectEntity_CausalityBuilder {
     public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withAuthor(
         @NonNull ReferenceBuilder author) {
       this.author = Optional.of(author.build());
-      return this;
-    }
-    /** @param method */
-    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withMethod(
-        @NonNull CodeableConcept method) {
-      this.method = Optional.of(method);
-      return this;
-    }
-
-    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withMethod(
-        @NonNull CodeableConceptBuilder method) {
-      this.method = Optional.of(method.build());
       return this;
     }
     /**
@@ -126,16 +113,16 @@ public interface AdverseEvent_SuspectEntity_CausalityBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param assessment */
-    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withAssessment(
-        @NonNull CodeableConcept assessment) {
-      this.assessment = Optional.of(assessment);
+    /** @param assessmentMethod */
+    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withAssessmentMethod(
+        @NonNull CodeableConcept assessmentMethod) {
+      this.assessmentMethod = Optional.of(assessmentMethod);
       return this;
     }
 
-    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withAssessment(
-        @NonNull CodeableConceptBuilder assessment) {
-      this.assessment = Optional.of(assessment.build());
+    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withAssessmentMethod(
+        @NonNull CodeableConceptBuilder assessmentMethod) {
+      this.assessmentMethod = Optional.of(assessmentMethod.build());
       return this;
     }
     /**
@@ -181,10 +168,16 @@ public interface AdverseEvent_SuspectEntity_CausalityBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param productRelatedness */
-    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withProductRelatedness(
-        @NonNull String productRelatedness) {
-      this.productRelatedness = Optional.of(productRelatedness);
+    /** @param entityRelatedness */
+    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withEntityRelatedness(
+        @NonNull CodeableConcept entityRelatedness) {
+      this.entityRelatedness = Optional.of(entityRelatedness);
+      return this;
+    }
+
+    public AdverseEvent_SuspectEntity_CausalityBuilder.Impl withEntityRelatedness(
+        @NonNull CodeableConceptBuilder entityRelatedness) {
+      this.entityRelatedness = Optional.of(entityRelatedness.build());
       return this;
     }
 
@@ -192,11 +185,10 @@ public interface AdverseEvent_SuspectEntity_CausalityBuilder {
       return new AdverseEvent$SuspectEntity$Causality(
           OptionConverters.toScala(id),
           OptionConverters.toScala(author),
-          OptionConverters.toScala(method),
           extension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(assessment),
+          OptionConverters.toScala(assessmentMethod),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(productRelatedness),
+          OptionConverters.toScala(entityRelatedness),
           LitUtils.emptyMetaElMap());
     }
   }

@@ -477,12 +477,11 @@ object Contract extends CompanionFor[Contract] {
           intent: CodeableConcept,
           linkId: LitSeq[String] = LitSeq.empty,
           status: CodeableConcept,
-          reason: LitSeq[String] = LitSeq.empty,
+          reason: LitSeq[CodeableReference] = LitSeq.empty,
           context: Option[Reference] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
           requester: LitSeq[Reference] = LitSeq.empty,
           performer: Option[Reference] = None,
-          reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
           doNotPerform: Option[Boolean] = None,
           reasonLinkId: LitSeq[String] = LitSeq.empty,
           contextLinkId: LitSeq[String] = LitSeq.empty,
@@ -491,7 +490,6 @@ object Contract extends CompanionFor[Contract] {
           performerRole: Option[CodeableConcept] = None,
           requesterLinkId: LitSeq[String] = LitSeq.empty,
           performerLinkId: LitSeq[String] = LitSeq.empty,
-          reasonReference: LitSeq[Reference] = LitSeq.empty,
           modifierExtension: LitSeq[Extension] = LitSeq.empty,
           securityLabelNumber: LitSeq[UnsignedInt] = LitSeq.empty,
           subject: LitSeq[Action.Subject] = LitSeq.empty,
@@ -508,7 +506,6 @@ object Contract extends CompanionFor[Contract] {
         extension,
         requester,
         performer,
-        reasonCode,
         doNotPerform,
         reasonLinkId,
         contextLinkId,
@@ -517,12 +514,37 @@ object Contract extends CompanionFor[Contract] {
         performerRole,
         requesterLinkId,
         performerLinkId,
-        reasonReference,
         modifierExtension,
         securityLabelNumber,
         subject,
         primitiveAttributes = primitiveAttributes
       )
+      def unapply(
+          o: Action): Option[(Option[String], CodeableConcept, LitSeq[Annotation], CodeableConcept, LitSeq[String], CodeableConcept, LitSeq[CodeableReference], Option[Reference], LitSeq[Extension], LitSeq[Reference], Option[Reference], Option[Boolean], LitSeq[String], LitSeq[String], Option[Action.OccurrenceChoice], LitSeq[CodeableConcept], Option[CodeableConcept], LitSeq[String], LitSeq[String], LitSeq[Extension], LitSeq[UnsignedInt], LitSeq[Action.Subject])] =
+        Some(
+          (
+            o.id,
+            o.`type`,
+            o.note,
+            o.intent,
+            o.linkId,
+            o.status,
+            o.reason,
+            o.context,
+            o.extension,
+            o.requester,
+            o.performer,
+            o.doNotPerform,
+            o.reasonLinkId,
+            o.contextLinkId,
+            o.occurrence,
+            o.performerType,
+            o.performerRole,
+            o.requesterLinkId,
+            o.performerLinkId,
+            o.modifierExtension,
+            o.securityLabelNumber,
+            o.subject))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
       val `type`: FHIRComponentFieldMeta[CodeableConcept] =
@@ -535,8 +557,8 @@ object Contract extends CompanionFor[Contract] {
         FHIRComponentFieldMeta("linkId", lTagOf[LitSeq[String]], false, lTagOf[String])
       val status: FHIRComponentFieldMeta[CodeableConcept] =
         FHIRComponentFieldMeta("status", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
-      val reason: FHIRComponentFieldMeta[LitSeq[String]] =
-        FHIRComponentFieldMeta("reason", lTagOf[LitSeq[String]], false, lTagOf[String])
+      val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+        FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
       val context: FHIRComponentFieldMeta[Option[Reference]] =
         FHIRComponentFieldMeta("context", lTagOf[Option[Reference]], false, lTagOf[Reference])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -545,8 +567,6 @@ object Contract extends CompanionFor[Contract] {
         FHIRComponentFieldMeta("requester", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
       val performer: FHIRComponentFieldMeta[Option[Reference]] =
         FHIRComponentFieldMeta("performer", lTagOf[Option[Reference]], false, lTagOf[Reference])
-      val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-        FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
       val doNotPerform: FHIRComponentFieldMeta[Option[Boolean]] =
         FHIRComponentFieldMeta("doNotPerform", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
       val reasonLinkId: FHIRComponentFieldMeta[LitSeq[String]] =
@@ -563,8 +583,6 @@ object Contract extends CompanionFor[Contract] {
         FHIRComponentFieldMeta("requesterLinkId", lTagOf[LitSeq[String]], false, lTagOf[String])
       val performerLinkId: FHIRComponentFieldMeta[LitSeq[String]] =
         FHIRComponentFieldMeta("performerLinkId", lTagOf[LitSeq[String]], false, lTagOf[String])
-      val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-        FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val securityLabelNumber: FHIRComponentFieldMeta[LitSeq[UnsignedInt]] =
@@ -583,7 +601,6 @@ object Contract extends CompanionFor[Contract] {
         extension,
         requester,
         performer,
-        reasonCode,
         doNotPerform,
         reasonLinkId,
         contextLinkId,
@@ -592,7 +609,6 @@ object Contract extends CompanionFor[Contract] {
         performerRole,
         requesterLinkId,
         performerLinkId,
-        reasonReference,
         modifierExtension,
         securityLabelNumber,
         subject
@@ -605,12 +621,11 @@ object Contract extends CompanionFor[Contract] {
         FHIRComponentField[CodeableConcept](intent, t.intent),
         FHIRComponentField[LitSeq[String]](linkId, t.linkId),
         FHIRComponentField[CodeableConcept](status, t.status),
-        FHIRComponentField[LitSeq[String]](reason, t.reason),
+        FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
         FHIRComponentField[Option[Reference]](context, t.context),
         FHIRComponentField[LitSeq[Extension]](extension, t.extension),
         FHIRComponentField[LitSeq[Reference]](requester, t.requester),
         FHIRComponentField[Option[Reference]](performer, t.performer),
-        FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
         FHIRComponentField[Option[Boolean]](doNotPerform, t.doNotPerform),
         FHIRComponentField[LitSeq[String]](reasonLinkId, t.reasonLinkId),
         FHIRComponentField[LitSeq[String]](contextLinkId, t.contextLinkId),
@@ -619,7 +634,6 @@ object Contract extends CompanionFor[Contract] {
         FHIRComponentField[Option[CodeableConcept]](performerRole, t.performerRole),
         FHIRComponentField[LitSeq[String]](requesterLinkId, t.requesterLinkId),
         FHIRComponentField[LitSeq[String]](performerLinkId, t.performerLinkId),
-        FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
         FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
         FHIRComponentField[LitSeq[UnsignedInt]](securityLabelNumber, t.securityLabelNumber),
         FHIRComponentField[LitSeq[Action.Subject]](subject, t.subject)
@@ -636,12 +650,11 @@ object Contract extends CompanionFor[Contract] {
               cursor.decodeAs[CodeableConcept]("intent", None),
               cursor.decodeAs[LitSeq[String]]("linkId", Some(LitSeq.empty)),
               cursor.decodeAs[CodeableConcept]("status", None),
-              cursor.decodeAs[LitSeq[String]]("reason", Some(LitSeq.empty)),
+              cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
               cursor.decodeAs[Option[Reference]]("context", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Reference]]("requester", Some(LitSeq.empty)),
               cursor.decodeAs[Option[Reference]]("performer", Some(None)),
-              cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
               cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
               cursor.decodeAs[LitSeq[String]]("reasonLinkId", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[String]]("contextLinkId", Some(LitSeq.empty)),
@@ -650,7 +663,6 @@ object Contract extends CompanionFor[Contract] {
               cursor.decodeAs[Option[CodeableConcept]]("performerRole", Some(None)),
               cursor.decodeAs[LitSeq[String]]("requesterLinkId", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[String]]("performerLinkId", Some(LitSeq.empty)),
-              cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[UnsignedInt]]("securityLabelNumber", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Action.Subject]]("subject", Some(LitSeq.empty)),
@@ -666,12 +678,11 @@ object Contract extends CompanionFor[Contract] {
         val intent: CodeableConcept,
         val linkId: LitSeq[String] = LitSeq.empty,
         val status: CodeableConcept,
-        val reason: LitSeq[String] = LitSeq.empty,
+        val reason: LitSeq[CodeableReference] = LitSeq.empty,
         val context: Option[Reference] = None,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val requester: LitSeq[Reference] = LitSeq.empty,
         val performer: Option[Reference] = None,
-        val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
         val doNotPerform: Option[Boolean] = None,
         val reasonLinkId: LitSeq[String] = LitSeq.empty,
         val contextLinkId: LitSeq[String] = LitSeq.empty,
@@ -680,7 +691,6 @@ object Contract extends CompanionFor[Contract] {
         val performerRole: Option[CodeableConcept] = None,
         val requesterLinkId: LitSeq[String] = LitSeq.empty,
         val performerLinkId: LitSeq[String] = LitSeq.empty,
-        val reasonReference: LitSeq[Reference] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         val securityLabelNumber: LitSeq[UnsignedInt] = LitSeq.empty,
         val subject: LitSeq[Action.Subject] = LitSeq.empty,
@@ -2103,7 +2113,7 @@ object Contract extends CompanionFor[Contract] {
   *   - Narrows the range of legal concerns to focus on the achievement of specific contractual objectives.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.

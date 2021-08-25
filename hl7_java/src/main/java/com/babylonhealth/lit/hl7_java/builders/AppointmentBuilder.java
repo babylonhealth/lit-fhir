@@ -64,22 +64,21 @@ public interface AppointmentBuilder extends DomainResourceBuilder {
     private Collection<Reference> slot = Collections.emptyList();
     private Optional<ZonedDateTime> start = Optional.empty();
     private APPOINTMENTSTATUS status;
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Optional<FHIRDateTime> created = Optional.empty();
     private Optional<String> comment = Optional.empty();
     private Collection<Reference> basedOn = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
-    private Optional<Integer> priority = Optional.empty();
+    private Optional<CodeableConcept> priority = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<CodeableConcept> specialty = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Collection<CodeableConcept> serviceType = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<CodeableConcept> serviceCategory = Collections.emptyList();
     private Optional<CodeableConcept> appointmentType = Optional.empty();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Optional<Integer> minutesDuration = Optional.empty();
     private Collection<Period> requestedPeriod = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -171,6 +170,33 @@ public interface AppointmentBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param reason - The reason that this appointment is being scheduled. This is more clinical
+     *     than administrative. This can be coded, or as specified using information from another
+     *     resource. When the patient arrives and the encounter begins it may be used as the
+     *     admission diagnosis. The indication will typically be a Condition (with other resources
+     *     referenced in the evidence.detail), or a Procedure.
+     */
+    public AppointmentBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /**
+     * @param reason - The reason that this appointment is being scheduled. This is more clinical
+     *     than administrative. This can be coded, or as specified using information from another
+     *     resource. When the patient arrives and the encounter begins it may be used as the
+     *     admission diagnosis. The indication will typically be a Condition (with other resources
+     *     referenced in the evidence.detail), or a Procedure.
+     */
+    public AppointmentBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public AppointmentBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
      * @param created - The date that this appointment was initially created. This could be
      *     different to the meta.lastModified value on the initial entry, as this could have been
      *     before the resource was created on the FHIR server, and should remain unchanged over the
@@ -216,14 +242,19 @@ public interface AppointmentBuilder extends DomainResourceBuilder {
      *     needing to re-prioritize appointments. (The iCal Standard specifies 0 as undefined, 1 as
      *     highest, 9 as lowest priority).
      */
-    public AppointmentBuilder.Impl withPriority(@NonNull Integer priority) {
+    public AppointmentBuilder.Impl withPriority(@NonNull CodeableConcept priority) {
       this.priority = Optional.of(priority);
+      return this;
+    }
+
+    public AppointmentBuilder.Impl withPriority(@NonNull CodeableConceptBuilder priority) {
+      this.priority = Optional.of(priority.build());
       return this;
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public AppointmentBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -231,8 +262,8 @@ public interface AppointmentBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public AppointmentBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -317,27 +348,6 @@ public interface AppointmentBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param reasonCode - The coded reason that this appointment is being scheduled. This is more
-     *     clinical than administrative.
-     */
-    public AppointmentBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /**
-     * @param reasonCode - The coded reason that this appointment is being scheduled. This is more
-     *     clinical than administrative.
-     */
-    public AppointmentBuilder.Impl withReasonCode(@NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public AppointmentBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
      * @param serviceType - The specific service that is to be performed during this appointment.
      */
     public AppointmentBuilder.Impl withServiceType(@NonNull CodeableConcept... serviceType) {
@@ -412,33 +422,6 @@ public interface AppointmentBuilder extends DomainResourceBuilder {
     public AppointmentBuilder.Impl withAppointmentType(
         @NonNull CodeableConceptBuilder appointmentType) {
       this.appointmentType = Optional.of(appointmentType.build());
-      return this;
-    }
-    /**
-     * @param reasonReference - Reason the appointment has been scheduled to take place, as
-     *     specified using information from another resource. When the patient arrives and the
-     *     encounter begins it may be used as the admission diagnosis. The indication will typically
-     *     be a Condition (with other resources referenced in the evidence.detail), or a Procedure.
-     */
-    public AppointmentBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /**
-     * @param reasonReference - Reason the appointment has been scheduled to take place, as
-     *     specified using information from another resource. When the patient arrives and the
-     *     encounter begins it may be used as the admission diagnosis. The indication will typically
-     *     be a Condition (with other resources referenced in the evidence.detail), or a Procedure.
-     */
-    public AppointmentBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public AppointmentBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -588,22 +571,21 @@ public interface AppointmentBuilder extends DomainResourceBuilder {
           slot.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(start),
           status,
+          reason.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(created),
           OptionConverters.toScala(comment),
           basedOn.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
-          OptionConverters.toScala(priority.map(x -> (Object) x)),
+          OptionConverters.toScala(priority),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           specialty.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           serviceType.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(description),
           OptionConverters.toScala(implicitRules),
           serviceCategory.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(appointmentType),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(minutesDuration.map(x -> (Object) x)),
           requestedPeriod.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),

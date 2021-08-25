@@ -45,18 +45,38 @@ import static java.util.stream.Collectors.toList;
 public interface MeasureReport_Group_Stratifier_Stratum_ComponentBuilder {
   public MeasureReport$Group$Stratifier$Stratum$Component build();
 
-  public static Impl init(CodeableConcept code, CodeableConcept value) {
+  public static Impl init(CodeableConcept code, @NonNull Choice_1690912481 value) {
     return new Impl(code, value);
   }
 
-  public static Impl builder(CodeableConceptBuilder code, CodeableConceptBuilder value) {
-    return new Impl(code.build(), value.build());
+  public static Impl builder(CodeableConceptBuilder code, @NonNull Choice_1690912481 value) {
+    return new Impl(code.build(), value);
+  }
+
+  public static Choice_1690912481 value(Boolean b) {
+    return new Choice_1690912481(b);
+  }
+
+  public static Choice_1690912481 value(CodeableConcept c) {
+    return new Choice_1690912481(c);
+  }
+
+  public static Choice_1690912481 value(Quantity q) {
+    return new Choice_1690912481(q);
+  }
+
+  public static Choice_1690912481 value(Range r) {
+    return new Choice_1690912481(r);
+  }
+
+  public static Choice_1690912481 value(Reference r) {
+    return new Choice_1690912481(r);
   }
 
   public class Impl implements MeasureReport_Group_Stratifier_Stratum_ComponentBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept code;
-    private CodeableConcept value;
+    private Choice_1690912481 value;
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -64,9 +84,11 @@ public interface MeasureReport_Group_Stratifier_Stratum_ComponentBuilder {
      * Required fields for {@link MeasureReport$Group$Stratifier$Stratum$Component}
      *
      * @param code
-     * @param value
+     * @param value Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
+     *     Quantity, Range, Reference. To pass the value in, wrap with one of the
+     *     MeasureReport_Group_Stratifier_Stratum_ComponentBuilder.value static methods
      */
-    public Impl(CodeableConcept code, CodeableConcept value) {
+    public Impl(CodeableConcept code, @NonNull Choice_1690912481 value) {
       this.code = code;
       this.value = value;
     }
@@ -157,7 +179,7 @@ public interface MeasureReport_Group_Stratifier_Stratum_ComponentBuilder {
       return new MeasureReport$Group$Stratifier$Stratum$Component(
           OptionConverters.toScala(id),
           code,
-          value,
+          (Choice) value,
           extension.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());

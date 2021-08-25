@@ -18,7 +18,7 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
-import com.babylonhealth.lit.hl7.{ PRODUCT_CATEGORY, PRODUCT_STORAGE_SCALE, PRODUCT_STATUS }
+import com.babylonhealth.lit.hl7.{ PRODUCT_CATEGORY, PRODUCT_STORAGE_SCALE }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -343,7 +343,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
       id: Option[String] = None,
       meta: Option[Meta] = None,
       text: Option[Narrative] = None,
-      status: Option[PRODUCT_STATUS] = None,
+      status: Option[Code] = None,
       parent: LitSeq[Reference] = LitSeq.empty,
       request: LitSeq[Reference] = LitSeq.empty,
       language: Option[LANGUAGES] = None,
@@ -388,8 +388,8 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
     FHIRComponentFieldMeta("meta", lTagOf[Option[Meta]], false, lTagOf[Meta])
   val text: FHIRComponentFieldMeta[Option[Narrative]] =
     FHIRComponentFieldMeta("text", lTagOf[Option[Narrative]], false, lTagOf[Narrative])
-  val status: FHIRComponentFieldMeta[Option[PRODUCT_STATUS]] =
-    FHIRComponentFieldMeta("status", lTagOf[Option[PRODUCT_STATUS]], false, lTagOf[PRODUCT_STATUS])
+  val status: FHIRComponentFieldMeta[Option[Code]] =
+    FHIRComponentFieldMeta("status", lTagOf[Option[Code]], false, lTagOf[Code])
   val parent: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("parent", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val request: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -462,7 +462,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
     FHIRComponentField[Option[String]](id, t.id),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[Option[PRODUCT_STATUS]](status, t.status),
+    FHIRComponentField[Option[Code]](status, t.status),
     FHIRComponentField[LitSeq[Reference]](parent, t.parent),
     FHIRComponentField[LitSeq[Reference]](request, t.request),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
@@ -482,7 +482,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
   def extractId(t: BiologicallyDerivedProduct): Option[String]                                            = t.id
   def extractMeta(t: BiologicallyDerivedProduct): Option[Meta]                                            = t.meta
   def extractText(t: BiologicallyDerivedProduct): Option[Narrative]                                       = t.text
-  def extractStatus(t: BiologicallyDerivedProduct): Option[PRODUCT_STATUS]                                = t.status
+  def extractStatus(t: BiologicallyDerivedProduct): Option[Code]                                          = t.status
   def extractParent(t: BiologicallyDerivedProduct): LitSeq[Reference]                                     = t.parent
   def extractRequest(t: BiologicallyDerivedProduct): LitSeq[Reference]                                    = t.request
   def extractLanguage(t: BiologicallyDerivedProduct): Option[LANGUAGES]                                   = t.language
@@ -500,7 +500,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
   def extractManipulation(t: BiologicallyDerivedProduct): Option[BiologicallyDerivedProduct.Manipulation] = t.manipulation
   override val thisName: String = "BiologicallyDerivedProduct"
   def unapply(
-      o: BiologicallyDerivedProduct): Option[(Option[String], Option[Meta], Option[Narrative], Option[PRODUCT_STATUS], LitSeq[Reference], LitSeq[Reference], Option[LANGUAGES], Option[Int], LitSeq[Resource], LitSeq[Extension], LitSeq[Identifier], Option[CodeableConcept], Option[UriStr], Option[PRODUCT_CATEGORY], LitSeq[Extension], LitSeq[BiologicallyDerivedProduct.Storage], Option[BiologicallyDerivedProduct.Collection], LitSeq[BiologicallyDerivedProduct.Processing], Option[BiologicallyDerivedProduct.Manipulation])] =
+      o: BiologicallyDerivedProduct): Option[(Option[String], Option[Meta], Option[Narrative], Option[Code], LitSeq[Reference], LitSeq[Reference], Option[LANGUAGES], Option[Int], LitSeq[Resource], LitSeq[Extension], LitSeq[Identifier], Option[CodeableConcept], Option[UriStr], Option[PRODUCT_CATEGORY], LitSeq[Extension], LitSeq[BiologicallyDerivedProduct.Storage], Option[BiologicallyDerivedProduct.Collection], LitSeq[BiologicallyDerivedProduct.Processing], Option[BiologicallyDerivedProduct.Manipulation])] =
     Some(
       (
         o.id,
@@ -529,7 +529,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[Meta]]("meta", Some(None)),
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
-          cursor.decodeAs[Option[PRODUCT_STATUS]]("status", Some(None)),
+          cursor.decodeAs[Option[Code]]("status", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("parent", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("request", Some(LitSeq.empty)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
@@ -580,7 +580,7 @@ object BiologicallyDerivedProduct extends CompanionFor[BiologicallyDerivedProduc
   *   - Number of discrete units within this product.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -622,7 +622,7 @@ class BiologicallyDerivedProduct(
     override val id: Option[String] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val status: Option[PRODUCT_STATUS] = None,
+    val status: Option[Code] = None,
     val parent: LitSeq[Reference] = LitSeq.empty,
     val request: LitSeq[Reference] = LitSeq.empty,
     override val language: Option[LANGUAGES] = None,

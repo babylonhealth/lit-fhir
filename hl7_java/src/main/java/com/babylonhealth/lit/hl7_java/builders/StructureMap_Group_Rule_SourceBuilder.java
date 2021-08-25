@@ -145,6 +145,10 @@ public interface StructureMap_Group_Rule_SourceBuilder {
     return new ChoiceAll(l);
   }
 
+  public static ChoiceAll defaultValue(Long l) {
+    return new ChoiceAll(l);
+  }
+
   public static ChoiceAll defaultValue(Meta m) {
     return new ChoiceAll(m);
   }
@@ -367,7 +371,7 @@ public interface StructureMap_Group_Rule_SourceBuilder {
      *     Annotation, Attachment, byte[], BigDecimal, Boolean, String, CodeableConcept, Coding,
      *     ContactDetail, ContactPoint, Contributor, Count, DataRequirement, Distance, Dosage,
      *     Duration, Expression, FHIRDate, FHIRDateTime, HumanName, Identifier, Integer, LocalTime,
-     *     Meta, Money, ParameterDefinition, Period, Quantity, Range, Ratio, Reference,
+     *     Long, Meta, Money, ParameterDefinition, Period, Quantity, Range, Ratio, Reference,
      *     RelatedArtifact, SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext,
      *     ZonedDateTime. To pass the value in, wrap with one of the
      *     StructureMap_Group_Rule_SourceBuilder.defaultValue static methods

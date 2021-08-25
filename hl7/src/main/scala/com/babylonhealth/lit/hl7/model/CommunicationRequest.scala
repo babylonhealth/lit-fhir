@@ -18,7 +18,7 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
-import com.babylonhealth.lit.hl7.{ REQUEST_STATUS, REQUEST_PRIORITY }
+import com.babylonhealth.lit.hl7.{ REQUEST_INTENT, REQUEST_STATUS, REQUEST_PRIORITY }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -37,7 +37,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     override type ResourceType = Payload
     override type ParentType   = Payload
     override val parentType: CompanionFor[ResourceType] = Payload
-    type ContentChoice = Choice[UnionAttachmentOrReferenceOrString]
+    type ContentChoice = Choice[UnionAttachmentOrCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -58,7 +58,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val content: FHIRComponentFieldMeta[Payload.ContentChoice] =
-      FHIRComponentFieldMeta("content", lTagOf[Payload.ContentChoice], true, lTagOf[UnionAttachmentOrReferenceOrString])
+      FHIRComponentFieldMeta("content", lTagOf[Payload.ContentChoice], true, lTagOf[UnionAttachmentOrCodeableConceptOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
@@ -77,7 +77,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
           new Payload(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[UnionAttachmentOrReferenceOrString]("content"),
+            cursor.decodeRef[UnionAttachmentOrCodeableConceptOrReference]("content"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -99,8 +99,9 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
       note: LitSeq[Annotation] = LitSeq.empty,
       about: LitSeq[Reference] = LitSeq.empty,
       status: REQUEST_STATUS,
+      intent: REQUEST_INTENT,
       medium: LitSeq[CodeableConcept] = LitSeq.empty,
-      sender: Option[Reference] = None,
+      reason: LitSeq[CodeableReference] = LitSeq.empty,
       basedOn: LitSeq[Reference] = LitSeq.empty,
       subject: Option[Reference] = None,
       language: Option[LANGUAGES] = None,
@@ -114,14 +115,13 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
       recipient: LitSeq[Reference] = LitSeq.empty,
       identifier: LitSeq[Identifier] = LitSeq.empty,
       authoredOn: Option[FHIRDateTime] = None,
-      reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
       statusReason: Option[CodeableConcept] = None,
       doNotPerform: Option[Boolean] = None,
       implicitRules: Option[UriStr] = None,
       occurrence: Option[CommunicationRequest.OccurrenceChoice] = None,
       groupIdentifier: Option[Identifier] = None,
-      reasonReference: LitSeq[Reference] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
+      informationProvider: LitSeq[Reference] = LitSeq.empty,
       payload: LitSeq[CommunicationRequest.Payload] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): CommunicationRequest = new CommunicationRequest(
@@ -131,8 +131,9 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     note,
     about,
     status,
+    intent,
     medium,
-    sender,
+    reason,
     basedOn,
     subject,
     language,
@@ -146,14 +147,13 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     recipient,
     identifier,
     authoredOn,
-    reasonCode,
     statusReason,
     doNotPerform,
     implicitRules,
     occurrence,
     groupIdentifier,
-    reasonReference,
     modifierExtension,
+    informationProvider,
     payload,
     primitiveAttributes = primitiveAttributes
   )
@@ -169,10 +169,12 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     FHIRComponentFieldMeta("about", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val status: FHIRComponentFieldMeta[REQUEST_STATUS] =
     FHIRComponentFieldMeta("status", lTagOf[REQUEST_STATUS], false, lTagOf[REQUEST_STATUS])
+  val intent: FHIRComponentFieldMeta[REQUEST_INTENT] =
+    FHIRComponentFieldMeta("intent", lTagOf[REQUEST_INTENT], false, lTagOf[REQUEST_INTENT])
   val medium: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("medium", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
-  val sender: FHIRComponentFieldMeta[Option[Reference]] =
-    FHIRComponentFieldMeta("sender", lTagOf[Option[Reference]], false, lTagOf[Reference])
+  val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val basedOn: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("basedOn", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val subject: FHIRComponentFieldMeta[Option[Reference]] =
@@ -199,8 +201,6 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val authoredOn: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("authoredOn", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
-  val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val statusReason: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val doNotPerform: FHIRComponentFieldMeta[Option[Boolean]] =
@@ -215,10 +215,10 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
       lTagOf[UnionDateTimeOrPeriod])
   val groupIdentifier: FHIRComponentFieldMeta[Option[Identifier]] =
     FHIRComponentFieldMeta("groupIdentifier", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
-  val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  val informationProvider: FHIRComponentFieldMeta[LitSeq[Reference]] =
+    FHIRComponentFieldMeta("informationProvider", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val payload: FHIRComponentFieldMeta[LitSeq[CommunicationRequest.Payload]] =
     FHIRComponentFieldMeta("payload", lTagOf[LitSeq[CommunicationRequest.Payload]], false, lTagOf[CommunicationRequest.Payload])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
@@ -228,8 +228,9 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     note,
     about,
     status,
+    intent,
     medium,
-    sender,
+    reason,
     basedOn,
     subject,
     language,
@@ -243,14 +244,13 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     recipient,
     identifier,
     authoredOn,
-    reasonCode,
     statusReason,
     doNotPerform,
     implicitRules,
     occurrence,
     groupIdentifier,
-    reasonReference,
     modifierExtension,
+    informationProvider,
     payload
   )
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
@@ -261,8 +261,9 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     FHIRComponentField[LitSeq[Annotation]](note, t.note),
     FHIRComponentField[LitSeq[Reference]](about, t.about),
     FHIRComponentField[REQUEST_STATUS](status, t.status),
+    FHIRComponentField[REQUEST_INTENT](intent, t.intent),
     FHIRComponentField[LitSeq[CodeableConcept]](medium, t.medium),
-    FHIRComponentField[Option[Reference]](sender, t.sender),
+    FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
     FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
     FHIRComponentField[Option[Reference]](subject, t.subject),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
@@ -276,14 +277,13 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     FHIRComponentField[LitSeq[Reference]](recipient, t.recipient),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
     FHIRComponentField[Option[FHIRDateTime]](authoredOn, t.authoredOn),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
     FHIRComponentField[Option[CodeableConcept]](statusReason, t.statusReason),
     FHIRComponentField[Option[Boolean]](doNotPerform, t.doNotPerform),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[Option[CommunicationRequest.OccurrenceChoice]](occurrence, t.occurrence),
     FHIRComponentField[Option[Identifier]](groupIdentifier, t.groupIdentifier),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+    FHIRComponentField[LitSeq[Reference]](informationProvider, t.informationProvider),
     FHIRComponentField[LitSeq[CommunicationRequest.Payload]](payload, t.payload)
   )
   def extractId(t: CommunicationRequest): Option[String]                                        = t.id
@@ -292,8 +292,9 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
   def extractNote(t: CommunicationRequest): LitSeq[Annotation]                                  = t.note
   def extractAbout(t: CommunicationRequest): LitSeq[Reference]                                  = t.about
   def extractStatus(t: CommunicationRequest): REQUEST_STATUS                                    = t.status
+  def extractIntent(t: CommunicationRequest): REQUEST_INTENT                                    = t.intent
   def extractMedium(t: CommunicationRequest): LitSeq[CodeableConcept]                           = t.medium
-  def extractSender(t: CommunicationRequest): Option[Reference]                                 = t.sender
+  def extractReason(t: CommunicationRequest): LitSeq[CodeableReference]                         = t.reason
   def extractBasedOn(t: CommunicationRequest): LitSeq[Reference]                                = t.basedOn
   def extractSubject(t: CommunicationRequest): Option[Reference]                                = t.subject
   def extractLanguage(t: CommunicationRequest): Option[LANGUAGES]                               = t.language
@@ -307,14 +308,13 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
   def extractRecipient(t: CommunicationRequest): LitSeq[Reference]                              = t.recipient
   def extractIdentifier(t: CommunicationRequest): LitSeq[Identifier]                            = t.identifier
   def extractAuthoredOn(t: CommunicationRequest): Option[FHIRDateTime]                          = t.authoredOn
-  def extractReasonCode(t: CommunicationRequest): LitSeq[CodeableConcept]                       = t.reasonCode
   def extractStatusReason(t: CommunicationRequest): Option[CodeableConcept]                     = t.statusReason
   def extractDoNotPerform(t: CommunicationRequest): Option[Boolean]                             = t.doNotPerform
   def extractImplicitRules(t: CommunicationRequest): Option[UriStr]                             = t.implicitRules
   def extractOccurrence(t: CommunicationRequest): Option[CommunicationRequest.OccurrenceChoice] = t.occurrence
   def extractGroupIdentifier(t: CommunicationRequest): Option[Identifier]                       = t.groupIdentifier
-  def extractReasonReference(t: CommunicationRequest): LitSeq[Reference]                        = t.reasonReference
   def extractModifierExtension(t: CommunicationRequest): LitSeq[Extension]                      = t.modifierExtension
+  def extractInformationProvider(t: CommunicationRequest): LitSeq[Reference]                    = t.informationProvider
   def extractPayload(t: CommunicationRequest): LitSeq[CommunicationRequest.Payload]             = t.payload
   override val thisName: String                                                                 = "CommunicationRequest"
   override val searchParams: Map[String, CommunicationRequest => Seq[Any]] = Map(
@@ -324,16 +324,18 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
     "subject"          -> (obj => obj.subject.toSeq),
     "identifier"       -> (obj => obj.identifier.toSeq),
     "requester"        -> (obj => obj.requester.toSeq),
-    "medium"           -> (obj => obj.medium.toSeq),
-    "occurrence"       -> (obj => obj.occurrence.flatMap(_.as[FHIRDateTime]).toSeq),
-    "status"           -> (obj => Seq(obj.status)),
-    "category"         -> (obj => obj.category.toSeq),
-    "sender"           -> (obj => obj.sender.toSeq),
-    "authored"         -> (obj => obj.authoredOn.toSeq),
-    "based-on"         -> (obj => obj.basedOn.toSeq),
-    "encounter"        -> (obj => obj.encounter.toSeq),
-    "replaces"         -> (obj => obj.replaces.toSeq),
-    "patient"          -> (obj => obj.subject.filter(_.reference.exists(_.contains("Patient/"))).toSeq)
+    "occurrence" -> (obj =>
+      obj.occurrence.flatMap(_.as[FHIRDateTime]).toSeq ++
+        obj.occurrence.flatMap(_.as[Period]).toSeq),
+    "status"               -> (obj => Seq(obj.status)),
+    "category"             -> (obj => obj.category.toSeq),
+    "authored"             -> (obj => obj.authoredOn.toSeq),
+    "based-on"             -> (obj => obj.basedOn.toSeq),
+    "encounter"            -> (obj => obj.encounter.toSeq),
+    "replaces"             -> (obj => obj.replaces.toSeq),
+    "patient"              -> (obj => obj.subject.filter(_.reference.exists(_.contains("Patient/"))).toSeq),
+    "information-provider" -> (obj => obj.informationProvider.toSeq),
+    "medium"               -> (obj => obj.medium.toSeq)
   )
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[CommunicationRequest] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
@@ -345,8 +347,9 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
           cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("about", Some(LitSeq.empty)),
           cursor.decodeAs[REQUEST_STATUS]("status", None),
+          cursor.decodeAs[REQUEST_INTENT]("intent", None),
           cursor.decodeAs[LitSeq[CodeableConcept]]("medium", Some(LitSeq.empty)),
-          cursor.decodeAs[Option[Reference]]("sender", Some(None)),
+          cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("basedOn", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("subject", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
@@ -360,14 +363,13 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
           cursor.decodeAs[LitSeq[Reference]]("recipient", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[FHIRDateTime]]("authoredOn", Some(None)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
           cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeOptRef[UnionDateTimeOrPeriod]("occurrence"),
           cursor.decodeAs[Option[Identifier]]("groupIdentifier", Some(None)),
-          cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Reference]]("informationProvider", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CommunicationRequest.Payload]]("payload", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
@@ -380,9 +382,9 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields note, about, status, medium, sender, basedOn, subject, replaces, category, priority, encounter,
-  *   requester, recipient, identifier, authoredOn, reasonCode, statusReason, doNotPerform, occurrence, groupIdentifier,
-  *   reasonReference, payload.
+  *   Introduces the fields note, about, status, intent, medium, reason, basedOn, subject, replaces, category, priority,
+  *   encounter, requester, recipient, identifier, authoredOn, statusReason, doNotPerform, occurrence, groupIdentifier,
+  *   informationProvider, payload.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -399,11 +401,13 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
   *   - Other resources that pertain to this communication request and to which this communication request should be associated.
   * @param status
   *   - The status of the proposal or order.
+  * @param intent
+  *   - Indicates the level of authority/intentionality associated with the CommunicationRequest and where the request fits into
+  *   the workflow chain.
   * @param medium
   *   - A channel that was used for this communication (e.g. email, fax).
-  * @param sender
-  *   - The entity (e.g. person, organization, clinical information system, or device) which is to be the source of the
-  *   communication.
+  * @param reason
+  *   - Describes why the request is being made in coded or textual form.
   * @param basedOn
   *   - A plan or proposal that is fulfilled in whole or in part by this request.
   * @param subject
@@ -418,7 +422,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
   *   - Characterizes how quickly the proposed act must be initiated. Includes concepts such as stat, urgent, routine.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -428,7 +432,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
   *   - The Encounter during which this CommunicationRequest was created or to which the creation of this record is tightly
   *   associated.
   * @param requester
-  *   - The device, individual, or organization who initiated the request and has responsibility for its activation.
+  *   - The device, individual, or organization who asks for the information to be shared.
   * @param recipient
   *   - The entity (e.g. person, organization, clinical information system, device, group, or care team) which is the intended
   *   target of the communication.
@@ -438,8 +442,6 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
   * @param authoredOn
   *   - For draft requests, indicates the date of initial creation. For requests with other statuses, indicates the date of
   *   activation.
-  * @param reasonCode
-  *   - Describes why the request is being made in coded or textual form.
   * @param statusReason
   *   - Captures the reason for the current state of the CommunicationRequest.
   * @param doNotPerform
@@ -453,8 +455,6 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
   * @param groupIdentifier
   *   - A shared identifier common to all requests that were authorized more or less simultaneously by a single author,
   *   representing the identifier of the requisition, prescription or similar form.
-  * @param reasonReference
-  *   - Indicates another resource whose existence justifies this request.
   * @param modifierExtension
   *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
   *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
@@ -463,6 +463,9 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
   *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
   *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param informationProvider
+  *   - The entity (e.g. person, organization, clinical information system, or device) which is to be the source of the
+  *   communication.
   * @param payload
   *   - Text, attachment(s), or resource(s) to be communicated to the recipient.
   */
@@ -474,8 +477,9 @@ class CommunicationRequest(
     val note: LitSeq[Annotation] = LitSeq.empty,
     val about: LitSeq[Reference] = LitSeq.empty,
     val status: REQUEST_STATUS,
+    val intent: REQUEST_INTENT,
     val medium: LitSeq[CodeableConcept] = LitSeq.empty,
-    val sender: Option[Reference] = None,
+    val reason: LitSeq[CodeableReference] = LitSeq.empty,
     val basedOn: LitSeq[Reference] = LitSeq.empty,
     val subject: Option[Reference] = None,
     override val language: Option[LANGUAGES] = None,
@@ -489,14 +493,13 @@ class CommunicationRequest(
     val recipient: LitSeq[Reference] = LitSeq.empty,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
     val authoredOn: Option[FHIRDateTime] = None,
-    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     val statusReason: Option[CodeableConcept] = None,
     val doNotPerform: Option[Boolean] = None,
     override val implicitRules: Option[UriStr] = None,
     val occurrence: Option[CommunicationRequest.OccurrenceChoice] = None,
     val groupIdentifier: Option[Identifier] = None,
-    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
+    val informationProvider: LitSeq[Reference] = LitSeq.empty,
     val payload: LitSeq[CommunicationRequest.Payload] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends DomainResource(

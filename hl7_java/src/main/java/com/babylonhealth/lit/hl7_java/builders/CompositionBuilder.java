@@ -36,7 +36,7 @@ import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.COMPOSITION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
-import com.babylonhealth.lit.hl7.V3_CONFIDENTIALITYCLASSIFICATION;
+import com.babylonhealth.lit.hl7.V3_CONFIDENTIALITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
 
@@ -84,7 +84,7 @@ public interface CompositionBuilder extends DomainResourceBuilder {
     private Optional<Reference> custodian = Optional.empty();
     private Optional<Identifier> identifier = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<V3_CONFIDENTIALITYCLASSIFICATION> confidentiality = Optional.empty();
+    private Optional<V3_CONFIDENTIALITY> confidentiality = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Composition.Event> event = Collections.emptyList();
     private Collection<Composition.Section> section = Collections.emptyList();
@@ -201,8 +201,8 @@ public interface CompositionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CompositionBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -210,8 +210,8 @@ public interface CompositionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CompositionBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -302,7 +302,7 @@ public interface CompositionBuilder extends DomainResourceBuilder {
      * @param confidentiality - The code specifying the level of confidentiality of the Composition.
      */
     public CompositionBuilder.Impl withConfidentiality(
-        @NonNull V3_CONFIDENTIALITYCLASSIFICATION confidentiality) {
+        @NonNull V3_CONFIDENTIALITY confidentiality) {
       this.confidentiality = Optional.of(confidentiality);
       return this;
     }

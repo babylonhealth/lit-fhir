@@ -46,16 +46,17 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
       language: Option[LANGUAGES] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
-      publisher: String,
+      publisher: Option[String] = None,
       immutable: Option[Boolean] = None,
       copyright: Option[Markdown] = None,
       identifier: LitSeq[Identifier] = LitSeq.empty,
       useContext: LitSeq[UsageContext] = LitSeq.empty,
-      description: Markdown,
+      description: Option[Markdown] = None,
       experimental: Boolean,
       jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
+      scope: Option[ValueSet.Scope] = None,
       expansion: Option[ValueSet.Expansion] = None,
       compose: Option[ValueSet.Compose] = None,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
@@ -84,6 +85,7 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
     jurisdiction,
     implicitRules,
     modifierExtension,
+    scope,
     expansion,
     compose,
     primitiveAttributes = primitiveAttributes
@@ -116,8 +118,8 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val publisher: FHIRComponentFieldMeta[String] =
-    FHIRComponentFieldMeta("publisher", lTagOf[String], false, lTagOf[String])
+  val publisher: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("publisher", lTagOf[Option[String]], false, lTagOf[String])
   val immutable: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("immutable", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val copyright: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -126,8 +128,8 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
-  val description: FHIRComponentFieldMeta[Markdown] =
-    FHIRComponentFieldMeta("description", lTagOf[Markdown], false, lTagOf[Markdown])
+  val description: FHIRComponentFieldMeta[Option[Markdown]] =
+    FHIRComponentFieldMeta("description", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val experimental: FHIRComponentFieldMeta[Boolean] =
     FHIRComponentFieldMeta("experimental", lTagOf[Boolean], false, lTagOf[Boolean])
   val jurisdiction: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -136,6 +138,8 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  val scope: FHIRComponentFieldMeta[Option[ValueSet.Scope]] =
+    FHIRComponentFieldMeta("scope", lTagOf[Option[ValueSet.Scope]], false, lTagOf[ValueSet.Scope])
   val expansion: FHIRComponentFieldMeta[Option[ValueSet.Expansion]] =
     FHIRComponentFieldMeta("expansion", lTagOf[Option[ValueSet.Expansion]], false, lTagOf[ValueSet.Expansion])
   val compose: FHIRComponentFieldMeta[Option[ValueSet.Compose]] =
@@ -165,6 +169,7 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
     jurisdiction,
     implicitRules,
     modifierExtension,
+    scope,
     expansion,
     compose
   )
@@ -184,16 +189,17 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
       FHIRComponentField[Option[LANGUAGES]](language, t.language),
       FHIRComponentField[LitSeq[Resource]](contained, t.contained),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-      FHIRComponentField[String](publisher, t.publisher.get),
+      FHIRComponentField[Option[String]](publisher, t.publisher),
       FHIRComponentField[Option[Boolean]](immutable, t.immutable),
       FHIRComponentField[Option[Markdown]](copyright, t.copyright),
       FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
       FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
-      FHIRComponentField[Markdown](description, t.description.get),
+      FHIRComponentField[Option[Markdown]](description, t.description),
       FHIRComponentField[Boolean](experimental, t.experimental.get),
       FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
       FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Option[ValueSet.Scope]](scope, t.scope),
       FHIRComponentField[Option[ValueSet.Expansion]](expansion, t.expansion),
       FHIRComponentField[Option[ValueSet.Compose]](compose, t.compose)
     ))
@@ -212,16 +218,17 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
   def extractLanguage(t: Shareablevalueset): Option[LANGUAGES]           = t.language
   def extractContained(t: Shareablevalueset): LitSeq[Resource]           = t.contained
   def extractExtension(t: Shareablevalueset): LitSeq[Extension]          = t.extension
-  def extractPublisher(t: Shareablevalueset): String                     = t.publisher.get
+  def extractPublisher(t: Shareablevalueset): Option[String]             = t.publisher
   def extractImmutable(t: Shareablevalueset): Option[Boolean]            = t.immutable
   def extractCopyright(t: Shareablevalueset): Option[Markdown]           = t.copyright
   def extractIdentifier(t: Shareablevalueset): LitSeq[Identifier]        = t.identifier
   def extractUseContext(t: Shareablevalueset): LitSeq[UsageContext]      = t.useContext
-  def extractDescription(t: Shareablevalueset): Markdown                 = t.description.get
+  def extractDescription(t: Shareablevalueset): Option[Markdown]         = t.description
   def extractExperimental(t: Shareablevalueset): Boolean                 = t.experimental.get
   def extractJurisdiction(t: Shareablevalueset): LitSeq[CodeableConcept] = t.jurisdiction
   def extractImplicitRules(t: Shareablevalueset): Option[UriStr]         = t.implicitRules
   def extractModifierExtension(t: Shareablevalueset): LitSeq[Extension]  = t.modifierExtension
+  def extractScope(t: Shareablevalueset): Option[ValueSet.Scope]         = t.scope
   def extractExpansion(t: Shareablevalueset): Option[ValueSet.Expansion] = t.expansion
   def extractCompose(t: Shareablevalueset): Option[ValueSet.Compose]     = t.compose
   override val thisName: String                                          = "Shareablevalueset"
@@ -244,16 +251,17 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          cursor.decodeAs[String]("publisher", None),
+          cursor.decodeAs[Option[String]]("publisher", Some(None)),
           cursor.decodeAs[Option[Boolean]]("immutable", Some(None)),
           cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
-          cursor.decodeAs[Markdown]("description", None),
+          cursor.decodeAs[Option[Markdown]]("description", Some(None)),
           cursor.decodeAs[Boolean]("experimental", None),
           cursor.decodeAs[LitSeq[CodeableConcept]]("jurisdiction", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[ValueSet.Scope]]("scope", Some(None)),
           cursor.decodeAs[Option[ValueSet.Expansion]]("expansion", Some(None)),
           cursor.decodeAs[Option[ValueSet.Compose]]("compose", Some(None)),
           decodeAttributes(cursor)
@@ -270,14 +278,14 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
   *
   * @constructor
   *   Inherits all params from parent. Requires the following fields which were optional in the parent: url, name, version,
-  *   publisher, description, experimental.
+  *   experimental.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
   *   - An absolute URI that is used to identify this value set when it is referenced in a specification, model, design or an
-  *   instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at
-  *   which an authoritative instance of this value set is (or will be) published. This URL can be the target of a canonical
-  *   reference. It SHALL remain the same when the value set is stored on different servers.
+  *   instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which an
+  *   authoritative instance of this value set is (or will be) published. This URL can be the target of a canonical reference. It
+  *   SHALL remain the same when the value set is stored on different servers.
   * @param meta
   *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
   *   not always be associated with version changes to the resource.
@@ -309,7 +317,7 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -351,6 +359,8 @@ object Shareablevalueset extends CompanionFor[Shareablevalueset] {
   *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
   *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param scope
+  *   - Description of the semantic space the Value Set Expansion is intended to cover.
   * @param expansion
   *   - A value set can also be "expanded", where the value set is turned into a simple collection of enumerated codes. This
   *   element holds the expansion, if it has been performed.
@@ -375,16 +385,17 @@ class Shareablevalueset(
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    publisher: String,
+    override val publisher: Option[String] = None,
     override val immutable: Option[Boolean] = None,
     override val copyright: Option[Markdown] = None,
     override val identifier: LitSeq[Identifier] = LitSeq.empty,
     override val useContext: LitSeq[UsageContext] = LitSeq.empty,
-    description: Markdown,
+    override val description: Option[Markdown] = None,
     experimental: Boolean,
     override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
+    override val scope: Option[ValueSet.Scope] = None,
     override val expansion: Option[ValueSet.Expansion] = None,
     override val compose: Option[ValueSet.Compose] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
@@ -403,16 +414,17 @@ class Shareablevalueset(
       language = language,
       contained = contained,
       extension = extension,
-      publisher = Some(publisher),
+      publisher = publisher,
       immutable = immutable,
       copyright = copyright,
       identifier = identifier,
       useContext = useContext,
-      description = Some(description),
+      description = description,
       experimental = Some(experimental),
       jurisdiction = jurisdiction,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
+      scope = scope,
       expansion = expansion,
       compose = compose,
       primitiveAttributes = primitiveAttributes) {

@@ -60,6 +60,7 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
     private Optional<Narrative> text = Optional.empty();
     private Collection<Annotation> note = Collections.emptyList();
     private IMAGINGSTUDY_STATUS status;
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Reference subject;
     private Optional<FHIRDateTime> started = Optional.empty();
     private Collection<Reference> basedOn = Collections.emptyList();
@@ -72,22 +73,20 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> encounter = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Collection<Reference> interpreter = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Collection<CodeableConcept> procedureCode = Collections.emptyList();
     private Optional<Integer> numberOfSeries = Optional.empty();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<Integer> numberOfInstances = Optional.empty();
-    private Optional<Reference> procedureReference = Optional.empty();
+    private Collection<ImagingStudy.Procedure> procedure = Collections.emptyList();
     private Collection<ImagingStudy.Series> series = Collections.emptyList();
 
     /**
      * Required fields for {@link ImagingStudy}
      *
-     * @param status - The current state of the ImagingStudy.
+     * @param status - The current state of the ImagingStudy resource. This is not the status of any
+     *     ServiceRequest or Task resources associated with the ImagingStudy.
      * @param subject - The subject, typically a patient, of the imaging study.
      */
     public Impl(IMAGINGSTUDY_STATUS status, Reference subject) {
@@ -156,6 +155,27 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param reason - Description of clinical condition indicating why the ImagingStudy was
+     *     requested, and/or Indicates another resource whose existence justifies this Study.
+     */
+    public ImagingStudyBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /**
+     * @param reason - Description of clinical condition indicating why the ImagingStudy was
+     *     requested, and/or Indicates another resource whose existence justifies this Study.
+     */
+    public ImagingStudyBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public ImagingStudyBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param started - Date and time the study started. */
     public ImagingStudyBuilder.Impl withStarted(@NonNull FHIRDateTime started) {
       this.started = Optional.of(started);
@@ -188,18 +208,16 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param modality - A list of all the series.modality values that are actual acquisition
-     *     modalities, i.e. those in the DICOM Context Group 29 (value set OID
-     *     1.2.840.10008.6.1.19).
+     * @param modality - A list of all the distinct values of series.modality. This may include both
+     *     acquisition and non-acquisition modalities.
      */
     public ImagingStudyBuilder.Impl withModality(@NonNull Coding... modality) {
       this.modality = Arrays.asList(modality);
       return this;
     }
     /**
-     * @param modality - A list of all the series.modality values that are actual acquisition
-     *     modalities, i.e. those in the DICOM Context Group 29 (value set OID
-     *     1.2.840.10008.6.1.19).
+     * @param modality - A list of all the distinct values of series.modality. This may include both
+     *     acquisition and non-acquisition modalities.
      */
     public ImagingStudyBuilder.Impl withModality(@NonNull Collection<Coding> modality) {
       this.modality = Collections.unmodifiableCollection(modality);
@@ -257,8 +275,8 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ImagingStudyBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -266,8 +284,8 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ImagingStudyBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -318,18 +336,12 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       this.encounter = Optional.of(encounter.build());
       return this;
     }
-    /**
-     * @param identifier - Identifiers for the ImagingStudy such as DICOM Study Instance UID, and
-     *     Accession Number.
-     */
+    /** @param identifier - Identifiers for the ImagingStudy such as DICOM Study Instance UID. */
     public ImagingStudyBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
       return this;
     }
-    /**
-     * @param identifier - Identifiers for the ImagingStudy such as DICOM Study Instance UID, and
-     *     Accession Number.
-     */
+    /** @param identifier - Identifiers for the ImagingStudy such as DICOM Study Instance UID. */
     public ImagingStudyBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
@@ -337,28 +349,6 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
 
     public ImagingStudyBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
       this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
-     * @param reasonCode - Description of clinical condition indicating why the ImagingStudy was
-     *     requested.
-     */
-    public ImagingStudyBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /**
-     * @param reasonCode - Description of clinical condition indicating why the ImagingStudy was
-     *     requested.
-     */
-    public ImagingStudyBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public ImagingStudyBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param interpreter - Who read the study and interpreted the images or other content. */
@@ -394,23 +384,6 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       this.implicitRules = Optional.of(implicitRules);
       return this;
     }
-    /** @param procedureCode - The code for the performed procedure type. */
-    public ImagingStudyBuilder.Impl withProcedureCode(@NonNull CodeableConcept... procedureCode) {
-      this.procedureCode = Arrays.asList(procedureCode);
-      return this;
-    }
-    /** @param procedureCode - The code for the performed procedure type. */
-    public ImagingStudyBuilder.Impl withProcedureCode(
-        @NonNull Collection<CodeableConcept> procedureCode) {
-      this.procedureCode = Collections.unmodifiableCollection(procedureCode);
-      return this;
-    }
-
-    public ImagingStudyBuilder.Impl withProcedureCode(
-        @NonNull CodeableConceptBuilder... procedureCode) {
-      this.procedureCode = Arrays.stream(procedureCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /**
      * @param numberOfSeries - Number of Series in the Study. This value given may be larger than
      *     the number of series elements this Resource contains due to resource availability,
@@ -419,23 +392,6 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
      */
     public ImagingStudyBuilder.Impl withNumberOfSeries(@NonNull Integer numberOfSeries) {
       this.numberOfSeries = Optional.of(numberOfSeries);
-      return this;
-    }
-    /** @param reasonReference - Indicates another resource whose existence justifies this Study. */
-    public ImagingStudyBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /** @param reasonReference - Indicates another resource whose existence justifies this Study. */
-    public ImagingStudyBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public ImagingStudyBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -490,15 +446,21 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
       this.numberOfInstances = Optional.of(numberOfInstances);
       return this;
     }
-    /** @param procedureReference - The procedure which this ImagingStudy was part of. */
-    public ImagingStudyBuilder.Impl withProcedureReference(@NonNull Reference procedureReference) {
-      this.procedureReference = Optional.of(procedureReference);
+    /** @param procedure - The procedure or code from which this ImagingStudy was part of. */
+    public ImagingStudyBuilder.Impl withProcedure(@NonNull ImagingStudy.Procedure... procedure) {
+      this.procedure = Arrays.asList(procedure);
+      return this;
+    }
+    /** @param procedure - The procedure or code from which this ImagingStudy was part of. */
+    public ImagingStudyBuilder.Impl withProcedure(
+        @NonNull Collection<ImagingStudy.Procedure> procedure) {
+      this.procedure = Collections.unmodifiableCollection(procedure);
       return this;
     }
 
-    public ImagingStudyBuilder.Impl withProcedureReference(
-        @NonNull ReferenceBuilder procedureReference) {
-      this.procedureReference = Optional.of(procedureReference.build());
+    public ImagingStudyBuilder.Impl withProcedure(
+        @NonNull ImagingStudy_ProcedureBuilder... procedure) {
+      this.procedure = Arrays.stream(procedure).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param series - Each study has one or more series of images or other content. */
@@ -529,6 +491,7 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(text),
           note.stream().collect(new LitSeqJCollector<>()),
           status,
+          reason.stream().collect(new LitSeqJCollector<>()),
           subject,
           OptionConverters.toScala(started),
           basedOn.stream().collect(new LitSeqJCollector<>()),
@@ -541,16 +504,13 @@ public interface ImagingStudyBuilder extends DomainResourceBuilder {
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(encounter),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           interpreter.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(description),
           OptionConverters.toScala(implicitRules),
-          procedureCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(numberOfSeries.map(x -> (Object) x)),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(numberOfInstances.map(x -> (Object) x)),
-          OptionConverters.toScala(procedureReference),
+          procedure.stream().collect(new LitSeqJCollector<>()),
           series.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

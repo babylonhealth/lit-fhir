@@ -59,6 +59,7 @@ public interface ValueSet_Compose_IncludeBuilder {
     private Optional<String> version = Optional.empty();
     private Collection<String> valueSet = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
+    private Optional<String> copyright = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<ValueSet$Compose$Include$Filter> filter = Collections.emptyList();
     private Collection<ValueSet$Compose$Include$Concept> concept = Collections.emptyList();
@@ -127,6 +128,15 @@ public interface ValueSet_Compose_IncludeBuilder {
     public ValueSet_Compose_IncludeBuilder.Impl withExtension(
         @NonNull ExtensionBuilder... extension) {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param copyright - A copyright statement relating to the value set and/or its contents.
+     *     Copyright statements are generally legal restrictions on the use and publishing of the
+     *     value set.
+     */
+    public ValueSet_Compose_IncludeBuilder.Impl withCopyright(@NonNull String copyright) {
+      this.copyright = Optional.of(copyright);
       return this;
     }
     /**
@@ -216,6 +226,7 @@ public interface ValueSet_Compose_IncludeBuilder {
           OptionConverters.toScala(version),
           valueSet.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(copyright),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           filter.stream().collect(new LitSeqJCollector<>()),
           concept.stream().collect(new LitSeqJCollector<>()),

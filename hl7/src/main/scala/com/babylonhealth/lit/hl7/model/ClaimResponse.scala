@@ -18,7 +18,7 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
-import com.babylonhealth.lit.hl7.{ CLAIM_USE, NOTE_TYPE, REMITTANCE_OUTCOME, FM_STATUS }
+import com.babylonhealth.lit.hl7.{ CLAIM_USE, NOTE_TYPE, FM_STATUS }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -1300,7 +1300,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
       created: FHIRDateTime,
       insurer: Reference,
       request: Option[Reference] = None,
-      outcome: REMITTANCE_OUTCOME,
+      outcome: Code,
       language: Option[LANGUAGES] = None,
       formCode: Option[CodeableConcept] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
@@ -1386,8 +1386,8 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
     FHIRComponentFieldMeta("insurer", lTagOf[Reference], false, lTagOf[Reference])
   val request: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("request", lTagOf[Option[Reference]], false, lTagOf[Reference])
-  val outcome: FHIRComponentFieldMeta[REMITTANCE_OUTCOME] =
-    FHIRComponentFieldMeta("outcome", lTagOf[REMITTANCE_OUTCOME], false, lTagOf[REMITTANCE_OUTCOME])
+  val outcome: FHIRComponentFieldMeta[Code] =
+    FHIRComponentFieldMeta("outcome", lTagOf[Code], false, lTagOf[Code])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val formCode: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -1487,7 +1487,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
     FHIRComponentField[FHIRDateTime](created, t.created),
     FHIRComponentField[Reference](insurer, t.insurer),
     FHIRComponentField[Option[Reference]](request, t.request),
-    FHIRComponentField[REMITTANCE_OUTCOME](outcome, t.outcome),
+    FHIRComponentField[Code](outcome, t.outcome),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[Option[CodeableConcept]](formCode, t.formCode),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -1523,7 +1523,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
   def extractCreated(t: ClaimResponse): FHIRDateTime                                 = t.created
   def extractInsurer(t: ClaimResponse): Reference                                    = t.insurer
   def extractRequest(t: ClaimResponse): Option[Reference]                            = t.request
-  def extractOutcome(t: ClaimResponse): REMITTANCE_OUTCOME                           = t.outcome
+  def extractOutcome(t: ClaimResponse): Code                                         = t.outcome
   def extractLanguage(t: ClaimResponse): Option[LANGUAGES]                           = t.language
   def extractFormCode(t: ClaimResponse): Option[CodeableConcept]                     = t.formCode
   def extractContained(t: ClaimResponse): LitSeq[Resource]                           = t.contained
@@ -1576,7 +1576,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
           cursor.decodeAs[FHIRDateTime]("created", None),
           cursor.decodeAs[Reference]("insurer", None),
           cursor.decodeAs[Option[Reference]]("request", Some(None)),
-          cursor.decodeAs[REMITTANCE_OUTCOME]("outcome", None),
+          cursor.decodeAs[Code]("outcome", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("formCode", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
@@ -1653,7 +1653,7 @@ object ClaimResponse extends CompanionFor[ClaimResponse] {
   *   - A code for the form to be used for printing the content.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -1720,7 +1720,7 @@ class ClaimResponse(
     val created: FHIRDateTime,
     val insurer: Reference,
     val request: Option[Reference] = None,
-    val outcome: REMITTANCE_OUTCOME,
+    val outcome: Code,
     override val language: Option[LANGUAGES] = None,
     val formCode: Option[CodeableConcept] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,

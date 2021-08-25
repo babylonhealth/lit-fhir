@@ -45,12 +45,12 @@ import static java.util.stream.Collectors.toList;
 public interface RequestGroup_Action_RelatedActionBuilder {
   public RequestGroup$Action$RelatedAction build();
 
-  public static Impl init(String actionId, ACTION_RELATIONSHIP_TYPE relationship) {
-    return new Impl(actionId, relationship);
+  public static Impl init(String targetId, ACTION_RELATIONSHIP_TYPE relationship) {
+    return new Impl(targetId, relationship);
   }
 
-  public static Impl builder(String actionId, ACTION_RELATIONSHIP_TYPE relationship) {
-    return new Impl(actionId, relationship);
+  public static Impl builder(String targetId, ACTION_RELATIONSHIP_TYPE relationship) {
+    return new Impl(targetId, relationship);
   }
 
   public static ChoiceDurationOrRange offset(Duration d) {
@@ -63,7 +63,7 @@ public interface RequestGroup_Action_RelatedActionBuilder {
 
   public class Impl implements RequestGroup_Action_RelatedActionBuilder {
     private Optional<String> id = Optional.empty();
-    private String actionId;
+    private String targetId;
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<ChoiceDurationOrRange> offset = Optional.empty();
     private ACTION_RELATIONSHIP_TYPE relationship;
@@ -72,11 +72,11 @@ public interface RequestGroup_Action_RelatedActionBuilder {
     /**
      * Required fields for {@link RequestGroup$Action$RelatedAction}
      *
-     * @param actionId
+     * @param targetId
      * @param relationship
      */
-    public Impl(String actionId, ACTION_RELATIONSHIP_TYPE relationship) {
-      this.actionId = actionId;
+    public Impl(String targetId, ACTION_RELATIONSHIP_TYPE relationship) {
+      this.targetId = targetId;
       this.relationship = relationship;
     }
 
@@ -175,7 +175,7 @@ public interface RequestGroup_Action_RelatedActionBuilder {
     public RequestGroup$Action$RelatedAction build() {
       return new RequestGroup$Action$RelatedAction(
           OptionConverters.toScala(id),
-          actionId,
+          targetId,
           extension.stream().collect(new LitSeqJCollector<>()),
           (Option) OptionConverters.toScala(offset),
           relationship,

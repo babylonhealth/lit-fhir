@@ -45,18 +45,17 @@ import static java.util.stream.Collectors.toList;
 public interface StructureMap_Group_RuleBuilder {
   public StructureMap$Group$Rule build();
 
-  public static Impl init(String name, Collection<StructureMap$Group$Rule$Source> source) {
-    return new Impl(name, source);
+  public static Impl init(Collection<StructureMap$Group$Rule$Source> source) {
+    return new Impl(source);
   }
 
-  public static Impl builder(
-      String name, Collection<StructureMap_Group_Rule_SourceBuilder> source) {
-    return new Impl(name, new LitSeq<>(source).map(StructureMap_Group_Rule_SourceBuilder::build));
+  public static Impl builder(Collection<StructureMap_Group_Rule_SourceBuilder> source) {
+    return new Impl(new LitSeq<>(source).map(StructureMap_Group_Rule_SourceBuilder::build));
   }
 
   public class Impl implements StructureMap_Group_RuleBuilder {
     private Optional<String> id = Optional.empty();
-    private String name;
+    private Optional<String> name = Optional.empty();
     private Collection<StructureMap$Group$Rule> rule = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> documentation = Optional.empty();
@@ -68,13 +67,9 @@ public interface StructureMap_Group_RuleBuilder {
     /**
      * Required fields for {@link StructureMap$Group$Rule}
      *
-     * @param name - A natural language name identifying the structure map. This name should be
-     *     usable as an identifier for the module by machine processing applications such as code
-     *     generation.
      * @param source
      */
-    public Impl(String name, Collection<StructureMap$Group$Rule$Source> source) {
-      this.name = name;
+    public Impl(Collection<StructureMap$Group$Rule$Source> source) {
       this.source = source;
     }
 
@@ -84,6 +79,15 @@ public interface StructureMap_Group_RuleBuilder {
      */
     public StructureMap_Group_RuleBuilder.Impl withId(@NonNull String id) {
       this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param name - A natural language name identifying the structure map. This name should be
+     *     usable as an identifier for the module by machine processing applications such as code
+     *     generation.
+     */
+    public StructureMap_Group_RuleBuilder.Impl withName(@NonNull String name) {
+      this.name = Optional.of(name);
       return this;
     }
     /** @param rule */
@@ -220,7 +224,7 @@ public interface StructureMap_Group_RuleBuilder {
     public StructureMap$Group$Rule build() {
       return new StructureMap$Group$Rule(
           OptionConverters.toScala(id),
-          name,
+          OptionConverters.toScala(name),
           rule.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(documentation),

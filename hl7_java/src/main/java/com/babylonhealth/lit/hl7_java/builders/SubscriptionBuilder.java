@@ -34,7 +34,6 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
-import com.babylonhealth.lit.hl7.SUBSCRIPTION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -46,17 +45,12 @@ import static java.util.stream.Collectors.toList;
 public interface SubscriptionBuilder extends DomainResourceBuilder {
   public Subscription build();
 
-  public static Impl init(
-      SUBSCRIPTION_STATUS status, String reason, String criteria, Subscription.Channel channel) {
-    return new Impl(status, reason, criteria, channel);
+  public static Impl init(String topic, String status, Coding channelType) {
+    return new Impl(topic, status, channelType);
   }
 
-  public static Impl builder(
-      SUBSCRIPTION_STATUS status,
-      String reason,
-      String criteria,
-      Subscription_ChannelBuilder channel) {
-    return new Impl(status, reason, criteria, channel.build());
+  public static Impl builder(String topic, String status, CodingBuilder channelType) {
+    return new Impl(topic, status, channelType.build());
   }
 
   public class Impl implements SubscriptionBuilder {
@@ -64,35 +58,40 @@ public interface SubscriptionBuilder extends DomainResourceBuilder {
     private Optional<ZonedDateTime> end = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
-    private Optional<String> error = Optional.empty();
-    private SUBSCRIPTION_STATUS status;
-    private String reason;
+    private Optional<String> name = Optional.empty();
+    private String topic;
+    private String status;
+    private Optional<String> reason = Optional.empty();
+    private Collection<String> header = Collections.emptyList();
     private Collection<ContactPoint> contact = Collections.emptyList();
+    private Optional<Integer> timeout = Optional.empty();
+    private Optional<String> content = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
-    private String criteria;
+    private Optional<String> endpoint = Optional.empty();
+    private Optional<Integer> maxCount = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
+    private Collection<Identifier> identifier = Collections.emptyList();
+    private Coding channelType;
+    private Optional<String> contentType = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
+    private Optional<Integer> heartbeatPeriod = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Subscription.Channel channel;
+    private Optional<String> notificationUrlLocation = Optional.empty();
+    private Collection<Subscription.FilterBy> filterBy = Collections.emptyList();
 
     /**
      * Required fields for {@link Subscription}
      *
+     * @param topic - The reference to the subscription topic to be notified about.
      * @param status - The status of the subscription, which marks the server state for managing the
      *     subscription.
-     * @param reason - A description of why this subscription is defined.
-     * @param criteria - The rules that the server should use to determine when to generate
-     *     notifications for this subscription.
-     * @param channel - Details where to send notifications when resources are received that meet
-     *     the criteria.
+     * @param channelType - The type of channel to send notifications on.
      */
-    public Impl(
-        SUBSCRIPTION_STATUS status, String reason, String criteria, Subscription.Channel channel) {
+    public Impl(String topic, String status, Coding channelType) {
+      this.topic = topic;
       this.status = status;
-      this.reason = reason;
-      this.criteria = criteria;
-      this.channel = channel;
+      this.channelType = channelType;
     }
 
     /**
@@ -138,12 +137,24 @@ public interface SubscriptionBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text.build());
       return this;
     }
-    /**
-     * @param error - A record of the last error that occurred when the server processed a
-     *     notification.
-     */
-    public SubscriptionBuilder.Impl withError(@NonNull String error) {
-      this.error = Optional.of(error);
+    /** @param name - A natural language name identifying the subscription. */
+    public SubscriptionBuilder.Impl withName(@NonNull String name) {
+      this.name = Optional.of(name);
+      return this;
+    }
+    /** @param reason - A description of why this subscription is defined. */
+    public SubscriptionBuilder.Impl withReason(@NonNull String reason) {
+      this.reason = Optional.of(reason);
+      return this;
+    }
+    /** @param header - Additional headers / information to send as part of the notification. */
+    public SubscriptionBuilder.Impl withHeader(@NonNull String... header) {
+      this.header = Arrays.asList(header);
+      return this;
+    }
+    /** @param header - Additional headers / information to send as part of the notification. */
+    public SubscriptionBuilder.Impl withHeader(@NonNull Collection<String> header) {
+      this.header = Collections.unmodifiableCollection(header);
       return this;
     }
     /**
@@ -167,15 +178,46 @@ public interface SubscriptionBuilder extends DomainResourceBuilder {
       this.contact = Arrays.stream(contact).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param timeout - If present, the maximum amount of time a server will allow before failing a
+     *     notification attempt.
+     */
+    public SubscriptionBuilder.Impl withTimeout(@NonNull Integer timeout) {
+      this.timeout = Optional.of(timeout);
+      return this;
+    }
+    /**
+     * @param content - How much of the resource content to deliver in the notification payload. The
+     *     choices are an empty payload, only the resource id, or the full resource content.
+     */
+    public SubscriptionBuilder.Impl withContent(@NonNull String content) {
+      this.content = Optional.of(content);
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public SubscriptionBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
       return this;
     }
+    /** @param endpoint - The url that describes the actual end-point to send messages to. */
+    public SubscriptionBuilder.Impl withEndpoint(@NonNull String endpoint) {
+      this.endpoint = Optional.of(endpoint);
+      return this;
+    }
+    /**
+     * @param maxCount - If present, the maximum number of triggering resources that will be
+     *     included in a notification bundle (e.g., a server will not include more than this number
+     *     of trigger resources in a single notification). Note that this is not a strict limit on
+     *     the number of entries in a bundle, as dependent resources can be included.
+     */
+    public SubscriptionBuilder.Impl withMaxCount(@NonNull Integer maxCount) {
+      this.maxCount = Optional.of(maxCount);
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public SubscriptionBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -183,8 +225,8 @@ public interface SubscriptionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public SubscriptionBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -223,6 +265,38 @@ public interface SubscriptionBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param identifier - A formal identifier that is used to identify this code system when it is
+     *     represented in other formats, or referenced in a specification, model, design or an
+     *     instance.
+     */
+    public SubscriptionBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
+      this.identifier = Arrays.asList(identifier);
+      return this;
+    }
+    /**
+     * @param identifier - A formal identifier that is used to identify this code system when it is
+     *     represented in other formats, or referenced in a specification, model, design or an
+     *     instance.
+     */
+    public SubscriptionBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
+      this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public SubscriptionBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param contentType - The mime type to send the payload in - either application/fhir+xml, or
+     *     application/fhir+json. The MIME types "text/plain" and "text/html" may also be used for
+     *     Email subscriptions.
+     */
+    public SubscriptionBuilder.Impl withContentType(@NonNull String contentType) {
+      this.contentType = Optional.of(contentType);
+      return this;
+    }
+    /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
      *     reference to an implementation guide that defines the special rules along with other
@@ -230,6 +304,15 @@ public interface SubscriptionBuilder extends DomainResourceBuilder {
      */
     public SubscriptionBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
       this.implicitRules = Optional.of(implicitRules);
+      return this;
+    }
+    /**
+     * @param heartbeatPeriod - If present, a 'hearbeat" notification (keepalive) is sent via this
+     *     channel with an the interval period equal to this elements integer value in seconds. If
+     *     not present, a heartbeat notification is not sent.
+     */
+    public SubscriptionBuilder.Impl withHeartbeatPeriod(@NonNull Integer heartbeatPeriod) {
+      this.heartbeatPeriod = Optional.of(heartbeatPeriod);
       return this;
     }
     /**
@@ -274,6 +357,40 @@ public interface SubscriptionBuilder extends DomainResourceBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param notificationUrlLocation - If present, where to place URLs of resources in
+     *     notifications.
+     */
+    public SubscriptionBuilder.Impl withNotificationUrlLocation(
+        @NonNull String notificationUrlLocation) {
+      this.notificationUrlLocation = Optional.of(notificationUrlLocation);
+      return this;
+    }
+    /**
+     * @param filterBy - The filter properties to be applied to narrow the subscription topic
+     *     stream. When multiple filters are applied, evaluates to true if all the conditions are
+     *     met; otherwise it returns false. (i.e., logical AND).
+     */
+    public SubscriptionBuilder.Impl withFilterBy(@NonNull Subscription.FilterBy... filterBy) {
+      this.filterBy = Arrays.asList(filterBy);
+      return this;
+    }
+    /**
+     * @param filterBy - The filter properties to be applied to narrow the subscription topic
+     *     stream. When multiple filters are applied, evaluates to true if all the conditions are
+     *     met; otherwise it returns false. (i.e., logical AND).
+     */
+    public SubscriptionBuilder.Impl withFilterBy(
+        @NonNull Collection<Subscription.FilterBy> filterBy) {
+      this.filterBy = Collections.unmodifiableCollection(filterBy);
+      return this;
+    }
+
+    public SubscriptionBuilder.Impl withFilterBy(
+        @NonNull Subscription_FilterByBuilder... filterBy) {
+      this.filterBy = Arrays.stream(filterBy).map(e -> e.build()).collect(toList());
+      return this;
+    }
 
     public SubscriptionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
@@ -286,17 +403,27 @@ public interface SubscriptionBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(end),
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
-          OptionConverters.toScala(error),
+          OptionConverters.toScala(name),
+          topic,
           status,
-          reason,
+          OptionConverters.toScala(reason),
+          header.stream().collect(new LitSeqJCollector<>()),
           contact.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(timeout.map(x -> (Object) x)),
+          OptionConverters.toScala(content),
           OptionConverters.toScala(language),
-          criteria,
+          OptionConverters.toScala(endpoint),
+          OptionConverters.toScala(maxCount.map(x -> (Object) x)),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
+          identifier.stream().collect(new LitSeqJCollector<>()),
+          channelType,
+          OptionConverters.toScala(contentType),
           OptionConverters.toScala(implicitRules),
+          OptionConverters.toScala(heartbeatPeriod.map(x -> (Object) x)),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          channel,
+          OptionConverters.toScala(notificationUrlLocation),
+          filterBy.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }
   }

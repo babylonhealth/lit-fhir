@@ -272,14 +272,6 @@ enum AUDIT_EVENT_ACTION(val name: String, val display: Option[String], val syste
 }
 object AUDIT_EVENT_ACTION extends EType[AUDIT_EVENT_ACTION]("http://hl7.org/fhir/ValueSet/audit-event-action")
 
-enum AUDIT_EVENT_OUTCOME(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case MAJOR_FAILURE extends AUDIT_EVENT_OUTCOME("12", Some("Major failure"), Some("http://hl7.org/fhir/audit-event-outcome"))
-  case MINOR_FAILURE extends AUDIT_EVENT_OUTCOME("4", Some("Minor failure"), Some("http://hl7.org/fhir/audit-event-outcome"))
-  case SERIOUS_FAILURE extends AUDIT_EVENT_OUTCOME("8", Some("Serious failure"), Some("http://hl7.org/fhir/audit-event-outcome"))
-  case SUCCESS extends AUDIT_EVENT_OUTCOME("0", Some("Success"), Some("http://hl7.org/fhir/audit-event-outcome"))
-}
-object AUDIT_EVENT_OUTCOME extends EType[AUDIT_EVENT_OUTCOME]("http://hl7.org/fhir/ValueSet/audit-event-outcome")
-
 enum BINDING_STRENGTH(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case EXAMPLE extends BINDING_STRENGTH("example", Some("Example"), Some("http://hl7.org/fhir/binding-strength"))
   case EXTENSIBLE extends BINDING_STRENGTH("extensible", Some("Extensible"), Some("http://hl7.org/fhir/binding-strength"))
@@ -403,15 +395,6 @@ enum CLAIM_USE(val name: String, val display: Option[String], val system: Option
 }
 object CLAIM_USE extends EType[CLAIM_USE]("http://hl7.org/fhir/ValueSet/claim-use")
 
-enum CLINICALIMPRESSION_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case COMPLETED extends CLINICALIMPRESSION_STATUS("completed", Some("completed"), Some("http://hl7.org/fhir/event-status"))
-  case ENTERED_IN_ERROR
-      extends CLINICALIMPRESSION_STATUS("entered-in-error", Some("entered-in-error"), Some("http://hl7.org/fhir/event-status"))
-  case IN_PROGRESS extends CLINICALIMPRESSION_STATUS("in-progress", Some("in-progress"), Some("http://hl7.org/fhir/event-status"))
-}
-object CLINICALIMPRESSION_STATUS
-    extends EType[CLINICALIMPRESSION_STATUS]("http://hl7.org/fhir/ValueSet/clinicalimpression-status")
-
 enum CODESYSTEM_CONTENT_MODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case COMPLETE extends CODESYSTEM_CONTENT_MODE("complete", Some("Complete"), Some("http://hl7.org/fhir/codesystem-content-mode"))
   case EXAMPLE extends CODESYSTEM_CONTENT_MODE("example", Some("Example"), Some("http://hl7.org/fhir/codesystem-content-mode"))
@@ -492,24 +475,6 @@ enum CONCEPTMAP_UNMAPPED_MODE(val name: String, val display: Option[String], val
       extends CONCEPTMAP_UNMAPPED_MODE("provided", Some("Provided Code"), Some("http://hl7.org/fhir/conceptmap-unmapped-mode"))
 }
 object CONCEPTMAP_UNMAPPED_MODE extends EType[CONCEPTMAP_UNMAPPED_MODE]("http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode")
-
-enum CONCEPT_MAP_EQUIVALENCE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case DISJOINT extends CONCEPT_MAP_EQUIVALENCE("disjoint", Some("Disjoint"), Some("http://hl7.org/fhir/concept-map-equivalence"))
-  case EQUAL extends CONCEPT_MAP_EQUIVALENCE("equal", Some("Equal"), Some("http://hl7.org/fhir/concept-map-equivalence"))
-  case EQUIVALENT
-      extends CONCEPT_MAP_EQUIVALENCE("equivalent", Some("Equivalent"), Some("http://hl7.org/fhir/concept-map-equivalence"))
-  case INEXACT extends CONCEPT_MAP_EQUIVALENCE("inexact", Some("Inexact"), Some("http://hl7.org/fhir/concept-map-equivalence"))
-  case NARROWER extends CONCEPT_MAP_EQUIVALENCE("narrower", Some("Narrower"), Some("http://hl7.org/fhir/concept-map-equivalence"))
-  case RELATEDTO
-      extends CONCEPT_MAP_EQUIVALENCE("relatedto", Some("Related To"), Some("http://hl7.org/fhir/concept-map-equivalence"))
-  case SPECIALIZES
-      extends CONCEPT_MAP_EQUIVALENCE("specializes", Some("Specializes"), Some("http://hl7.org/fhir/concept-map-equivalence"))
-  case SUBSUMES extends CONCEPT_MAP_EQUIVALENCE("subsumes", Some("Subsumes"), Some("http://hl7.org/fhir/concept-map-equivalence"))
-  case UNMATCHED
-      extends CONCEPT_MAP_EQUIVALENCE("unmatched", Some("Unmatched"), Some("http://hl7.org/fhir/concept-map-equivalence"))
-  case WIDER extends CONCEPT_MAP_EQUIVALENCE("wider", Some("Wider"), Some("http://hl7.org/fhir/concept-map-equivalence"))
-}
-object CONCEPT_MAP_EQUIVALENCE extends EType[CONCEPT_MAP_EQUIVALENCE]("http://hl7.org/fhir/ValueSet/concept-map-equivalence")
 
 enum CONCEPT_PROPERTY_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case BOOLEAN extends CONCEPT_PROPERTY_TYPE("boolean", Some("boolean"), Some("http://hl7.org/fhir/concept-property-type"))
@@ -1021,21 +986,6 @@ enum DEVICE_NAMETYPE(val name: String, val display: Option[String], val system: 
 }
 object DEVICE_NAMETYPE extends EType[DEVICE_NAMETYPE]("http://hl7.org/fhir/ValueSet/device-nametype")
 
-enum DEVICE_STATEMENT_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACTIVE extends DEVICE_STATEMENT_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/device-statement-status"))
-  case COMPLETED
-      extends DEVICE_STATEMENT_STATUS("completed", Some("Completed"), Some("http://hl7.org/fhir/device-statement-status"))
-  case ENTERED_IN_ERROR
-      extends DEVICE_STATEMENT_STATUS(
-        "entered-in-error",
-        Some("Entered in Error"),
-        Some("http://hl7.org/fhir/device-statement-status"))
-  case INTENDED extends DEVICE_STATEMENT_STATUS("intended", Some("Intended"), Some("http://hl7.org/fhir/device-statement-status"))
-  case ON_HOLD extends DEVICE_STATEMENT_STATUS("on-hold", Some("On Hold"), Some("http://hl7.org/fhir/device-statement-status"))
-  case STOPPED extends DEVICE_STATEMENT_STATUS("stopped", Some("Stopped"), Some("http://hl7.org/fhir/device-statement-status"))
-}
-object DEVICE_STATEMENT_STATUS extends EType[DEVICE_STATEMENT_STATUS]("http://hl7.org/fhir/ValueSet/device-statement-status")
-
 enum DEVICE_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case ACTIVE extends DEVICE_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/device-status"))
   case ENTERED_IN_ERROR
@@ -1253,13 +1203,6 @@ enum EXPLANATIONOFBENEFIT_STATUS(val name: String, val display: Option[String], 
 object EXPLANATIONOFBENEFIT_STATUS
     extends EType[EXPLANATIONOFBENEFIT_STATUS]("http://hl7.org/fhir/ValueSet/explanationofbenefit-status")
 
-enum EXPOSURE_STATE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case EXPOSURE extends EXPOSURE_STATE("exposure", Some("Exposure"), Some("http://hl7.org/fhir/exposure-state"))
-  case EXPOSURE_ALTERNATIVE
-      extends EXPOSURE_STATE("exposure-alternative", Some("Exposure Alternative"), Some("http://hl7.org/fhir/exposure-state"))
-}
-object EXPOSURE_STATE extends EType[EXPOSURE_STATE]("http://hl7.org/fhir/ValueSet/exposure-state")
-
 enum EXTENSION_CONTEXT_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case ELEMENT extends EXTENSION_CONTEXT_TYPE("element", Some("Element ID"), Some("http://hl7.org/fhir/extension-context-type"))
   case EXTENSION
@@ -1412,37 +1355,6 @@ enum GUIDE_PAGE_GENERATION(val name: String, val display: Option[String], val sy
   case XML extends GUIDE_PAGE_GENERATION("xml", Some("XML"), Some("http://hl7.org/fhir/guide-page-generation"))
 }
 object GUIDE_PAGE_GENERATION extends EType[GUIDE_PAGE_GENERATION]("http://hl7.org/fhir/ValueSet/guide-page-generation")
-
-enum GUIDE_PARAMETER_CODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case APPLY extends GUIDE_PARAMETER_CODE("apply", Some("Apply Metadata Value"), Some("http://hl7.org/fhir/guide-parameter-code"))
-  case BROKEN_LINKS_RULE
-      extends GUIDE_PARAMETER_CODE(
-        "rule-broken-links",
-        Some("Broken Links Rule"),
-        Some("http://hl7.org/fhir/guide-parameter-code"))
-  case EXPANSION_PROFILE
-      extends GUIDE_PARAMETER_CODE(
-        "expansion-parameter",
-        Some("Expansion Profile"),
-        Some("http://hl7.org/fhir/guide-parameter-code"))
-  case GENERATE_JSON
-      extends GUIDE_PARAMETER_CODE("generate-json", Some("Generate JSON"), Some("http://hl7.org/fhir/guide-parameter-code"))
-  case GENERATE_TURTLE
-      extends GUIDE_PARAMETER_CODE("generate-turtle", Some("Generate Turtle"), Some("http://hl7.org/fhir/guide-parameter-code"))
-  case GENERATE_XML
-      extends GUIDE_PARAMETER_CODE("generate-xml", Some("Generate XML"), Some("http://hl7.org/fhir/guide-parameter-code"))
-  case HTML_TEMPLATE
-      extends GUIDE_PARAMETER_CODE("html-template", Some("HTML Template"), Some("http://hl7.org/fhir/guide-parameter-code"))
-  case PAGES_PATH extends GUIDE_PARAMETER_CODE("path-pages", Some("Pages Path"), Some("http://hl7.org/fhir/guide-parameter-code"))
-  case RESOURCE_PATH
-      extends GUIDE_PARAMETER_CODE("path-resource", Some("Resource Path"), Some("http://hl7.org/fhir/guide-parameter-code"))
-  case TERMINOLOGY_CACHE_PATH
-      extends GUIDE_PARAMETER_CODE(
-        "path-tx-cache",
-        Some("Terminology Cache Path"),
-        Some("http://hl7.org/fhir/guide-parameter-code"))
-}
-object GUIDE_PARAMETER_CODE extends EType[GUIDE_PARAMETER_CODE]("http://hl7.org/fhir/ValueSet/guide-parameter-code")
 
 enum HISTORY_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case COMPLETED extends HISTORY_STATUS("completed", Some("Completed"), Some("http://hl7.org/fhir/history-status"))
@@ -1651,12 +1563,6 @@ enum LOCATION_STATUS(val name: String, val display: Option[String], val system: 
   case SUSPENDED extends LOCATION_STATUS("suspended", Some("Suspended"), Some("http://hl7.org/fhir/location-status"))
 }
 object LOCATION_STATUS extends EType[LOCATION_STATUS]("http://hl7.org/fhir/ValueSet/location-status")
-
-enum MAP_CONTEXT_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case TYPE extends MAP_CONTEXT_TYPE("type", Some("Type"), Some("http://hl7.org/fhir/map-context-type"))
-  case VARIABLE extends MAP_CONTEXT_TYPE("variable", Some("Variable"), Some("http://hl7.org/fhir/map-context-type"))
-}
-object MAP_CONTEXT_TYPE extends EType[MAP_CONTEXT_TYPE]("http://hl7.org/fhir/ValueSet/map-context-type")
 
 enum MAP_GROUP_TYPE_MODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case NONE extends MAP_GROUP_TYPE_MODE("none", Some("Not a Default"), Some("http://hl7.org/fhir/map-group-type-mode"))
@@ -1925,51 +1831,6 @@ enum MEDICATION_ADMIN_STATUS(val name: String, val display: Option[String], val 
 }
 object MEDICATION_ADMIN_STATUS extends EType[MEDICATION_ADMIN_STATUS]("http://hl7.org/fhir/ValueSet/medication-admin-status")
 
-enum MEDICATION_STATEMENT_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACTIVE
-      extends MEDICATION_STATEMENT_STATUS(
-        "active",
-        Some("Active"),
-        Some("http://hl7.org/fhir/CodeSystem/medication-statement-status"))
-  case COMPLETED
-      extends MEDICATION_STATEMENT_STATUS(
-        "completed",
-        Some("Completed"),
-        Some("http://hl7.org/fhir/CodeSystem/medication-statement-status"))
-  case ENTERED_IN_ERROR
-      extends MEDICATION_STATEMENT_STATUS(
-        "entered-in-error",
-        Some("Entered in Error"),
-        Some("http://hl7.org/fhir/CodeSystem/medication-statement-status"))
-  case INTENDED
-      extends MEDICATION_STATEMENT_STATUS(
-        "intended",
-        Some("Intended"),
-        Some("http://hl7.org/fhir/CodeSystem/medication-statement-status"))
-  case NOT_TAKEN
-      extends MEDICATION_STATEMENT_STATUS(
-        "not-taken",
-        Some("Not Taken"),
-        Some("http://hl7.org/fhir/CodeSystem/medication-statement-status"))
-  case ON_HOLD
-      extends MEDICATION_STATEMENT_STATUS(
-        "on-hold",
-        Some("On Hold"),
-        Some("http://hl7.org/fhir/CodeSystem/medication-statement-status"))
-  case STOPPED
-      extends MEDICATION_STATEMENT_STATUS(
-        "stopped",
-        Some("Stopped"),
-        Some("http://hl7.org/fhir/CodeSystem/medication-statement-status"))
-  case UNKNOWN
-      extends MEDICATION_STATEMENT_STATUS(
-        "unknown",
-        Some("Unknown"),
-        Some("http://hl7.org/fhir/CodeSystem/medication-statement-status"))
-}
-object MEDICATION_STATEMENT_STATUS
-    extends EType[MEDICATION_STATEMENT_STATUS]("http://hl7.org/fhir/ValueSet/medication-statement-status")
-
 enum MEDICATION_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case ACTIVE extends MEDICATION_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/CodeSystem/medication-status"))
   case ENTERED_IN_ERROR
@@ -2220,12 +2081,6 @@ enum PRODUCT_CATEGORY(val name: String, val display: Option[String], val system:
 }
 object PRODUCT_CATEGORY extends EType[PRODUCT_CATEGORY]("http://hl7.org/fhir/ValueSet/product-category")
 
-enum PRODUCT_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case AVAILABLE extends PRODUCT_STATUS("available", Some("Available"), Some("http://hl7.org/fhir/product-status"))
-  case UNAVAILABLE extends PRODUCT_STATUS("unavailable", Some("Unavailable"), Some("http://hl7.org/fhir/product-status"))
-}
-object PRODUCT_STATUS extends EType[PRODUCT_STATUS]("http://hl7.org/fhir/ValueSet/product-status")
-
 enum PRODUCT_STORAGE_SCALE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case CELSIUS extends PRODUCT_STORAGE_SCALE("celsius", Some("Celsius"), Some("http://hl7.org/fhir/product-storage-scale"))
   case FARENHEIT extends PRODUCT_STORAGE_SCALE("farenheit", Some("Fahrenheit"), Some("http://hl7.org/fhir/product-storage-scale"))
@@ -2383,21 +2238,6 @@ enum REFERENCE_VERSION_RULES(val name: String, val display: Option[String], val 
 }
 object REFERENCE_VERSION_RULES extends EType[REFERENCE_VERSION_RULES]("http://hl7.org/fhir/ValueSet/reference-version-rules")
 
-enum RELATION_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case REPLACED_BY extends RELATION_TYPE("is-replaced-by", Some("Replaced By"), Some("http://hl7.org/fhir/relation-type"))
-  case TRIGGERS extends RELATION_TYPE("triggers", Some("Triggers"), Some("http://hl7.org/fhir/relation-type"))
-}
-object RELATION_TYPE extends EType[RELATION_TYPE]("http://hl7.org/fhir/ValueSet/relation-type")
-
-enum REMITTANCE_OUTCOME(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case COMPLETE
-      extends REMITTANCE_OUTCOME("complete", Some("Processing Complete"), Some("http://hl7.org/fhir/remittance-outcome"))
-  case ERROR extends REMITTANCE_OUTCOME("error", Some("Error"), Some("http://hl7.org/fhir/remittance-outcome"))
-  case PARTIAL extends REMITTANCE_OUTCOME("partial", Some("Partial Processing"), Some("http://hl7.org/fhir/remittance-outcome"))
-  case QUEUED extends REMITTANCE_OUTCOME("queued", Some("Queued"), Some("http://hl7.org/fhir/remittance-outcome"))
-}
-object REMITTANCE_OUTCOME extends EType[REMITTANCE_OUTCOME]("http://hl7.org/fhir/ValueSet/remittance-outcome")
-
 enum REPORT_ACTION_RESULT_CODES(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case ERROR extends REPORT_ACTION_RESULT_CODES("error", Some("Error"), Some("http://hl7.org/fhir/report-action-result-codes"))
   case FAIL extends REPORT_ACTION_RESULT_CODES("fail", Some("Fail"), Some("http://hl7.org/fhir/report-action-result-codes"))
@@ -2540,93 +2380,6 @@ enum REQUEST_STATUS(val name: String, val display: Option[String], val system: O
   case UNKNOWN extends REQUEST_STATUS("unknown", Some("Unknown"), Some("http://hl7.org/fhir/request-status"))
 }
 object REQUEST_STATUS extends EType[REQUEST_STATUS]("http://hl7.org/fhir/ValueSet/request-status")
-
-enum RESEARCH_ELEMENT_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case EXPOSURE extends RESEARCH_ELEMENT_TYPE("exposure", Some("Exposure"), Some("http://hl7.org/fhir/research-element-type"))
-  case OUTCOME extends RESEARCH_ELEMENT_TYPE("outcome", Some("Outcome"), Some("http://hl7.org/fhir/research-element-type"))
-  case POPULATION
-      extends RESEARCH_ELEMENT_TYPE("population", Some("Population"), Some("http://hl7.org/fhir/research-element-type"))
-}
-object RESEARCH_ELEMENT_TYPE extends EType[RESEARCH_ELEMENT_TYPE]("http://hl7.org/fhir/ValueSet/research-element-type")
-
-enum RESEARCH_STUDY_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACTIVE extends RESEARCH_STUDY_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/research-study-status"))
-  case ADMINISTRATIVELY_COMPLETED
-      extends RESEARCH_STUDY_STATUS(
-        "administratively-completed",
-        Some("Administratively Completed"),
-        Some("http://hl7.org/fhir/research-study-status"))
-  case APPROVED extends RESEARCH_STUDY_STATUS("approved", Some("Approved"), Some("http://hl7.org/fhir/research-study-status"))
-  case CLOSED_TO_ACCRUAL
-      extends RESEARCH_STUDY_STATUS(
-        "closed-to-accrual",
-        Some("Closed to Accrual"),
-        Some("http://hl7.org/fhir/research-study-status"))
-  case CLOSED_TO_ACCRUAL_AND_INTERVENTION
-      extends RESEARCH_STUDY_STATUS(
-        "closed-to-accrual-and-intervention",
-        Some("Closed to Accrual and Intervention"),
-        Some("http://hl7.org/fhir/research-study-status"))
-  case COMPLETED extends RESEARCH_STUDY_STATUS("completed", Some("Completed"), Some("http://hl7.org/fhir/research-study-status"))
-  case DISAPPROVED
-      extends RESEARCH_STUDY_STATUS("disapproved", Some("Disapproved"), Some("http://hl7.org/fhir/research-study-status"))
-  case IN_REVIEW extends RESEARCH_STUDY_STATUS("in-review", Some("In Review"), Some("http://hl7.org/fhir/research-study-status"))
-  case TEMPORARILY_CLOSED_TO_ACCRUAL
-      extends RESEARCH_STUDY_STATUS(
-        "temporarily-closed-to-accrual",
-        Some("Temporarily Closed to Accrual"),
-        Some("http://hl7.org/fhir/research-study-status"))
-  case TEMPORARILY_CLOSED_TO_ACCRUAL_AND_INTERVENTION
-      extends RESEARCH_STUDY_STATUS(
-        "temporarily-closed-to-accrual-and-intervention",
-        Some("Temporarily Closed to Accrual and Intervention"),
-        Some("http://hl7.org/fhir/research-study-status"))
-  case WITHDRAWN extends RESEARCH_STUDY_STATUS("withdrawn", Some("Withdrawn"), Some("http://hl7.org/fhir/research-study-status"))
-}
-object RESEARCH_STUDY_STATUS extends EType[RESEARCH_STUDY_STATUS]("http://hl7.org/fhir/ValueSet/research-study-status")
-
-enum RESEARCH_SUBJECT_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case CANDIDATE
-      extends RESEARCH_SUBJECT_STATUS("candidate", Some("Candidate"), Some("http://hl7.org/fhir/research-subject-status"))
-  case ELIGIBLE extends RESEARCH_SUBJECT_STATUS("eligible", Some("Eligible"), Some("http://hl7.org/fhir/research-subject-status"))
-  case FOLLOW_UP
-      extends RESEARCH_SUBJECT_STATUS("follow-up", Some("Follow-up"), Some("http://hl7.org/fhir/research-subject-status"))
-  case INELIGIBLE
-      extends RESEARCH_SUBJECT_STATUS("ineligible", Some("Ineligible"), Some("http://hl7.org/fhir/research-subject-status"))
-  case NOT_REGISTERED
-      extends RESEARCH_SUBJECT_STATUS(
-        "not-registered",
-        Some("Not Registered"),
-        Some("http://hl7.org/fhir/research-subject-status"))
-  case OFF_STUDY
-      extends RESEARCH_SUBJECT_STATUS("off-study", Some("Off-study"), Some("http://hl7.org/fhir/research-subject-status"))
-  case ON_STUDY extends RESEARCH_SUBJECT_STATUS("on-study", Some("On-study"), Some("http://hl7.org/fhir/research-subject-status"))
-  case ON_STUDY_INTERVENTION
-      extends RESEARCH_SUBJECT_STATUS(
-        "on-study-intervention",
-        Some("On-study-intervention"),
-        Some("http://hl7.org/fhir/research-subject-status"))
-  case ON_STUDY_OBSERVATION
-      extends RESEARCH_SUBJECT_STATUS(
-        "on-study-observation",
-        Some("On-study-observation"),
-        Some("http://hl7.org/fhir/research-subject-status"))
-  case PENDING_ON_STUDY
-      extends RESEARCH_SUBJECT_STATUS(
-        "pending-on-study",
-        Some("Pending on-study"),
-        Some("http://hl7.org/fhir/research-subject-status"))
-  case POTENTIAL_CANDIDATE
-      extends RESEARCH_SUBJECT_STATUS(
-        "potential-candidate",
-        Some("Potential Candidate"),
-        Some("http://hl7.org/fhir/research-subject-status"))
-  case SCREENING
-      extends RESEARCH_SUBJECT_STATUS("screening", Some("Screening"), Some("http://hl7.org/fhir/research-subject-status"))
-  case WITHDRAWN
-      extends RESEARCH_SUBJECT_STATUS("withdrawn", Some("Withdrawn"), Some("http://hl7.org/fhir/research-subject-status"))
-}
-object RESEARCH_SUBJECT_STATUS extends EType[RESEARCH_SUBJECT_STATUS]("http://hl7.org/fhir/ValueSet/research-subject-status")
 
 enum RESOURCE_AGGREGATION_MODE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case BUNDLED
@@ -3918,27 +3671,6 @@ enum STRUCTURE_DEFINITION_KIND(val name: String, val display: Option[String], va
 object STRUCTURE_DEFINITION_KIND
     extends EType[STRUCTURE_DEFINITION_KIND]("http://hl7.org/fhir/ValueSet/structure-definition-kind")
 
-enum SUBSCRIPTION_CHANNEL_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case EMAIL extends SUBSCRIPTION_CHANNEL_TYPE("email", Some("Email"), Some("http://hl7.org/fhir/subscription-channel-type"))
-  case MESSAGE
-      extends SUBSCRIPTION_CHANNEL_TYPE("message", Some("Message"), Some("http://hl7.org/fhir/subscription-channel-type"))
-  case REST_HOOK
-      extends SUBSCRIPTION_CHANNEL_TYPE("rest-hook", Some("Rest Hook"), Some("http://hl7.org/fhir/subscription-channel-type"))
-  case SMS extends SUBSCRIPTION_CHANNEL_TYPE("sms", Some("SMS"), Some("http://hl7.org/fhir/subscription-channel-type"))
-  case WEBSOCKET
-      extends SUBSCRIPTION_CHANNEL_TYPE("websocket", Some("Websocket"), Some("http://hl7.org/fhir/subscription-channel-type"))
-}
-object SUBSCRIPTION_CHANNEL_TYPE
-    extends EType[SUBSCRIPTION_CHANNEL_TYPE]("http://hl7.org/fhir/ValueSet/subscription-channel-type")
-
-enum SUBSCRIPTION_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case ACTIVE extends SUBSCRIPTION_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/subscription-status"))
-  case ERROR extends SUBSCRIPTION_STATUS("error", Some("Error"), Some("http://hl7.org/fhir/subscription-status"))
-  case OFF extends SUBSCRIPTION_STATUS("off", Some("Off"), Some("http://hl7.org/fhir/subscription-status"))
-  case REQUESTED extends SUBSCRIPTION_STATUS("requested", Some("Requested"), Some("http://hl7.org/fhir/subscription-status"))
-}
-object SUBSCRIPTION_STATUS extends EType[SUBSCRIPTION_STATUS]("http://hl7.org/fhir/ValueSet/subscription-status")
-
 enum SUBSTANCE_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case ACTIVE extends SUBSTANCE_STATUS("active", Some("Active"), Some("http://hl7.org/fhir/substance-status"))
   case ENTERED_IN_ERROR
@@ -4052,30 +3784,59 @@ enum UDI_ENTRY_TYPE(val name: String, val display: Option[String], val system: O
 }
 object UDI_ENTRY_TYPE extends EType[UDI_ENTRY_TYPE]("http://hl7.org/fhir/ValueSet/udi-entry-type")
 
-enum V3_CONFIDENTIALITYCLASSIFICATION(val name: String, val display: Option[String], val system: Option[String])
-    extends ToCodingAble {
-  case L
-      extends V3_CONFIDENTIALITYCLASSIFICATION("L", Some("L"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
-  case M
-      extends V3_CONFIDENTIALITYCLASSIFICATION("M", Some("M"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
-  case N
-      extends V3_CONFIDENTIALITYCLASSIFICATION("N", Some("N"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
-  case R
-      extends V3_CONFIDENTIALITYCLASSIFICATION("R", Some("R"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
-  case U
-      extends V3_CONFIDENTIALITYCLASSIFICATION("U", Some("U"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+enum V3_CONFIDENTIALITY(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
+  case B extends V3_CONFIDENTIALITY("B", Some("business"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case C extends V3_CONFIDENTIALITY("C", Some("celebrity"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case CONFIDENTIALITY
+      extends V3_CONFIDENTIALITY(
+        "_Confidentiality",
+        Some("Confidentiality"),
+        Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case CONFIDENTIALITYBYACCESSKIND
+      extends V3_CONFIDENTIALITY(
+        "_ConfidentialityByAccessKind",
+        Some("ConfidentialityByAccessKind"),
+        Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case CONFIDENTIALITYBYINFOTYPE
+      extends V3_CONFIDENTIALITY(
+        "_ConfidentialityByInfoType",
+        Some("ConfidentialityByInfoType"),
+        Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case CONFIDENTIALITYMODIFIERS
+      extends V3_CONFIDENTIALITY(
+        "_ConfidentialityModifiers",
+        Some("ConfidentialityModifiers"),
+        Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case D extends V3_CONFIDENTIALITY("D", Some("clinician"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case ETH
+      extends V3_CONFIDENTIALITY(
+        "ETH",
+        Some("substance abuse related"),
+        Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case HIV
+      extends V3_CONFIDENTIALITY("HIV", Some("HIV related"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case I extends V3_CONFIDENTIALITY("I", Some("individual"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case L extends V3_CONFIDENTIALITY("L", Some("low"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case M extends V3_CONFIDENTIALITY("M", Some("moderate"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case N extends V3_CONFIDENTIALITY("N", Some("normal"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case PSY
+      extends V3_CONFIDENTIALITY(
+        "PSY",
+        Some("psychiatry relate"),
+        Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case R extends V3_CONFIDENTIALITY("R", Some("restricted"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case S extends V3_CONFIDENTIALITY("S", Some("sensitive"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case SDV
+      extends V3_CONFIDENTIALITY(
+        "SDV",
+        Some("sexual and domestic violence related"),
+        Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case T extends V3_CONFIDENTIALITY("T", Some("taboo"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+  case U extends V3_CONFIDENTIALITY("U", Some("unrestricted"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
   case V
-      extends V3_CONFIDENTIALITYCLASSIFICATION("V", Some("V"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
+      extends V3_CONFIDENTIALITY("V", Some("very restricted"), Some("http://terminology.hl7.org/CodeSystem/v3-Confidentiality"))
 }
-object V3_CONFIDENTIALITYCLASSIFICATION
-    extends EType[V3_CONFIDENTIALITYCLASSIFICATION]("http://terminology.hl7.org/ValueSet/v3-ConfidentialityClassification")
-
-enum VARIABLE_TYPE(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
-  case CONTINUOUS extends VARIABLE_TYPE("continuous", Some("Continuous"), Some("http://hl7.org/fhir/variable-type"))
-  case DESCRIPTIVE extends VARIABLE_TYPE("descriptive", Some("Descriptive"), Some("http://hl7.org/fhir/variable-type"))
-  case DICHOTOMOUS extends VARIABLE_TYPE("dichotomous", Some("Dichotomous"), Some("http://hl7.org/fhir/variable-type"))
-}
-object VARIABLE_TYPE extends EType[VARIABLE_TYPE]("http://hl7.org/fhir/ValueSet/variable-type")
+object V3_CONFIDENTIALITY extends EType[V3_CONFIDENTIALITY]("http://terminology.hl7.org/ValueSet/v3-Confidentiality")
 
 enum VERIFICATIONRESULT_STATUS(val name: String, val display: Option[String], val system: Option[String]) extends ToCodingAble {
   case ATTESTED extends VERIFICATIONRESULT_STATUS("attested", Some("Attested"), Some("http://hl7.org/fhir/CodeSystem/status"))

@@ -63,7 +63,8 @@ public interface Encounter_StatusHistoryBuilder {
     /**
      * Required fields for {@link Encounter.StatusHistory}
      *
-     * @param status - planned | arrived | triaged | in-progress | onleave | finished | cancelled +.
+     * @param status - planned | in-progress | onhold | completed | cancelled | entered-in-error |
+     *     unknown.
      * @param period - The start and end time of the encounter.
      */
     public Impl(ENCOUNTER_STATUS status, Period period) {

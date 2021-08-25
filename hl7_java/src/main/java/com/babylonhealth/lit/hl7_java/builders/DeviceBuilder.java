@@ -59,7 +59,7 @@ public interface DeviceBuilder extends DomainResourceBuilder {
     private Optional<String> url = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
-    private Optional<CodeableConcept> _type = Optional.empty();
+    private Collection<CodeableConcept> _type = Collections.emptyList();
     private Collection<Annotation> note = Collections.emptyList();
     private Optional<Reference> owner = Optional.empty();
     private Optional<DEVICE_STATUS> status = Optional.empty();
@@ -75,6 +75,7 @@ public interface DeviceBuilder extends DomainResourceBuilder {
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<Reference> definition = Optional.empty();
     private Optional<String> partNumber = Optional.empty();
+    private Optional<String> displayName = Optional.empty();
     private Optional<String> modelNumber = Optional.empty();
     private Collection<CodeableConcept> statusReason = Collections.emptyList();
     private Optional<String> manufacturer = Optional.empty();
@@ -89,6 +90,8 @@ public interface DeviceBuilder extends DomainResourceBuilder {
     private Collection<Device.UdiCarrier> udiCarrier = Collections.emptyList();
     private Collection<Device.DeviceName> deviceName = Collections.emptyList();
     private Collection<Device.Specialization> specialization = Collections.emptyList();
+    private Optional<Device.OperationalStatus> operationalStatus = Optional.empty();
+    private Optional<Device.AssociationStatus> associationStatus = Optional.empty();
 
     /** Required fields for {@link Device} */
     public Impl() {}
@@ -136,14 +139,25 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text.build());
       return this;
     }
-    /** @param _type - The kind or type of device. */
-    public DeviceBuilder.Impl withType(@NonNull CodeableConcept _type) {
-      this._type = Optional.of(_type);
+    /**
+     * @param _type - The kind or type of device. A device instance may have more than one type - in
+     *     which case those are the types that apply to the specific instance of the device.
+     */
+    public DeviceBuilder.Impl withType(@NonNull CodeableConcept... _type) {
+      this._type = Arrays.asList(_type);
+      return this;
+    }
+    /**
+     * @param _type - The kind or type of device. A device instance may have more than one type - in
+     *     which case those are the types that apply to the specific instance of the device.
+     */
+    public DeviceBuilder.Impl withType(@NonNull Collection<CodeableConcept> _type) {
+      this._type = Collections.unmodifiableCollection(_type);
       return this;
     }
 
-    public DeviceBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
-      this._type = Optional.of(_type.build());
+    public DeviceBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -180,7 +194,10 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.owner = Optional.of(owner.build());
       return this;
     }
-    /** @param status - Status of the Device availability. */
+    /**
+     * @param status - Status of the Device record. This is not the status of the device like
+     *     availability.
+     */
     public DeviceBuilder.Impl withStatus(@NonNull DEVICE_STATUS status) {
       this.status = Optional.of(status);
       return this;
@@ -206,7 +223,7 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.safety = Arrays.stream(safety).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param parent - The parent device. */
+    /** @param parent - The device that this device is attached to or is part of. */
     public DeviceBuilder.Impl withParent(@NonNull Reference parent) {
       this.parent = Optional.of(parent);
       return this;
@@ -216,7 +233,11 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.parent = Optional.of(parent.build());
       return this;
     }
-    /** @param patient - Patient information, If the device is affixed to a person. */
+    /**
+     * @param patient - Patient information, if the device is affixed to, or associated to a patient
+     *     for their specific use, irrespective of the procedure, use, observation, or other
+     *     activity that the device is involved in.
+     */
     public DeviceBuilder.Impl withPatient(@NonNull Reference patient) {
       this.patient = Optional.of(patient);
       return this;
@@ -264,8 +285,8 @@ public interface DeviceBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public DeviceBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -273,8 +294,8 @@ public interface DeviceBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public DeviceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -348,22 +369,37 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.definition = Optional.of(definition.build());
       return this;
     }
-    /** @param partNumber - The part number of the device. */
+    /** @param partNumber - The part number or catalog number of the device. */
     public DeviceBuilder.Impl withPartNumber(@NonNull String partNumber) {
       this.partNumber = Optional.of(partNumber);
       return this;
     }
-    /** @param modelNumber - The model number for the device. */
+    /**
+     * @param displayName - The name used to display by default when the device is referenced. Based
+     *     on intent of use by the resource creator, this may reflect one of the names in
+     *     Device.deviceName, or may be another simple name.
+     */
+    public DeviceBuilder.Impl withDisplayName(@NonNull String displayName) {
+      this.displayName = Optional.of(displayName);
+      return this;
+    }
+    /** @param modelNumber - The manufacturer's model number for the device. */
     public DeviceBuilder.Impl withModelNumber(@NonNull String modelNumber) {
       this.modelNumber = Optional.of(modelNumber);
       return this;
     }
-    /** @param statusReason - Reason for the dtatus of the Device availability. */
+    /**
+     * @param statusReason - Reason for the status of the Device record. For example, why is the
+     *     record not active.
+     */
     public DeviceBuilder.Impl withStatusReason(@NonNull CodeableConcept... statusReason) {
       this.statusReason = Arrays.asList(statusReason);
       return this;
     }
-    /** @param statusReason - Reason for the dtatus of the Device availability. */
+    /**
+     * @param statusReason - Reason for the status of the Device record. For example, why is the
+     *     record not active.
+     */
     public DeviceBuilder.Impl withStatusReason(@NonNull Collection<CodeableConcept> statusReason) {
       this.statusReason = Collections.unmodifiableCollection(statusReason);
       return this;
@@ -373,7 +409,10 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       this.statusReason = Arrays.stream(statusReason).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param manufacturer - A name of the manufacturer. */
+    /**
+     * @param manufacturer - A name of the manufacturer or entity legally responsible for the
+     *     device.
+     */
     public DeviceBuilder.Impl withManufacturer(@NonNull String manufacturer) {
       this.manufacturer = Optional.of(manufacturer);
       return this;
@@ -550,16 +589,30 @@ public interface DeviceBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param specialization - The capabilities supported on a device, the standards to which the
-     *     device conforms for a particular purpose, and used for the communication.
+     * @param specialization - The device function, including in some cases whether or not the
+     *     functionality conforms to some standard. For example, a PHD blood pressure specialization
+     *     indicates that the device conforms to the IEEE 11073-10407 Blood Pressure Specialization.
+     *     This is NOT an alternate name or an additional descriptive name given by the
+     *     manufacturer. That would be found in the deviceName element. In the PHD case, there are
+     *     11073 10101 nomenclature codes that define the specialization standards and that will be
+     *     used, for example, in the PHD case for the specialization.systemType element. The
+     *     specialization.version would be the version of the standard if the systemType referred to
+     *     a standard.
      */
     public DeviceBuilder.Impl withSpecialization(@NonNull Device.Specialization... specialization) {
       this.specialization = Arrays.asList(specialization);
       return this;
     }
     /**
-     * @param specialization - The capabilities supported on a device, the standards to which the
-     *     device conforms for a particular purpose, and used for the communication.
+     * @param specialization - The device function, including in some cases whether or not the
+     *     functionality conforms to some standard. For example, a PHD blood pressure specialization
+     *     indicates that the device conforms to the IEEE 11073-10407 Blood Pressure Specialization.
+     *     This is NOT an alternate name or an additional descriptive name given by the
+     *     manufacturer. That would be found in the deviceName element. In the PHD case, there are
+     *     11073 10101 nomenclature codes that define the specialization standards and that will be
+     *     used, for example, in the PHD case for the specialization.systemType element. The
+     *     specialization.version would be the version of the standard if the systemType referred to
+     *     a standard.
      */
     public DeviceBuilder.Impl withSpecialization(
         @NonNull Collection<Device.Specialization> specialization) {
@@ -570,6 +623,36 @@ public interface DeviceBuilder extends DomainResourceBuilder {
     public DeviceBuilder.Impl withSpecialization(
         @NonNull Device_SpecializationBuilder... specialization) {
       this.specialization = Arrays.stream(specialization).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param operationalStatus - The status of the device itself - whether it is switched on, or
+     *     activated, etc.
+     */
+    public DeviceBuilder.Impl withOperationalStatus(
+        @NonNull Device.OperationalStatus operationalStatus) {
+      this.operationalStatus = Optional.of(operationalStatus);
+      return this;
+    }
+
+    public DeviceBuilder.Impl withOperationalStatus(
+        @NonNull Device_OperationalStatusBuilder operationalStatus) {
+      this.operationalStatus = Optional.of(operationalStatus.build());
+      return this;
+    }
+    /**
+     * @param associationStatus - The state of the usage or application of the device - whether the
+     *     device is implanted, or explanted, or attached to the patient.
+     */
+    public DeviceBuilder.Impl withAssociationStatus(
+        @NonNull Device.AssociationStatus associationStatus) {
+      this.associationStatus = Optional.of(associationStatus);
+      return this;
+    }
+
+    public DeviceBuilder.Impl withAssociationStatus(
+        @NonNull Device_AssociationStatusBuilder associationStatus) {
+      this.associationStatus = Optional.of(associationStatus.build());
       return this;
     }
 
@@ -584,7 +667,7 @@ public interface DeviceBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(url),
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
-          OptionConverters.toScala(_type),
+          _type.stream().collect(new LitSeqJCollector<>()),
           note.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(owner),
           OptionConverters.toScala(status),
@@ -600,6 +683,7 @@ public interface DeviceBuilder extends DomainResourceBuilder {
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(definition),
           OptionConverters.toScala(partNumber),
+          OptionConverters.toScala(displayName),
           OptionConverters.toScala(modelNumber),
           statusReason.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(manufacturer),
@@ -614,6 +698,8 @@ public interface DeviceBuilder extends DomainResourceBuilder {
           udiCarrier.stream().collect(new LitSeqJCollector<>()),
           deviceName.stream().collect(new LitSeqJCollector<>()),
           specialization.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(operationalStatus),
+          OptionConverters.toScala(associationStatus),
           LitUtils.emptyMetaElMap());
     }
   }

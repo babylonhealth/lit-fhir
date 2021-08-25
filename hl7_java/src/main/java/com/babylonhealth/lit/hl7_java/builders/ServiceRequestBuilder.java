@@ -97,12 +97,14 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     private Collection<Annotation> note = Collections.emptyList();
     private REQUEST_STATUS status;
     private REQUEST_INTENT intent;
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Collection<Reference> basedOn = Collections.emptyList();
     private Reference subject;
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<Reference> replaces = Collections.emptyList();
     private Collection<CodeableConcept> category = Collections.emptyList();
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
+    private Collection<CodeableReference> location = Collections.emptyList();
     private Collection<Reference> specimen = Collections.emptyList();
     private Collection<CodeableConcept> bodySite = Collections.emptyList();
     private Collection<Resource> contained = Collections.emptyList();
@@ -113,22 +115,18 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     private Collection<Reference> insurance = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<FHIRDateTime> authoredOn = Optional.empty();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<Identifier> requisition = Optional.empty();
     private Collection<CodeableConcept> orderDetail = Collections.emptyList();
     private Optional<ChoiceQuantityOrRangeOrRatio> quantity = Optional.empty();
     private Optional<ChoiceBooleanOrCodeableConcept> asNeeded = Optional.empty();
     private Optional<Boolean> doNotPerform = Optional.empty();
-    private Collection<CodeableConcept> locationCode = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Optional<CodeableConcept> performerType = Optional.empty();
     private Collection<Reference> supportingInfo = Collections.emptyList();
     private Collection<String> instantiatesUri = Collections.emptyList();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Reference> relevantHistory = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Collection<Reference> locationReference = Collections.emptyList();
     private Optional<String> patientInstruction = Optional.empty();
     private Collection<String> instantiatesCanonical = Collections.emptyList();
 
@@ -219,6 +217,29 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param reason - An explanation or justification for why this service is being requested in
+     *     coded or textual form. This is often for billing purposes. May relate to the resources
+     *     referred to in `supportingInfo`.
+     */
+    public ServiceRequestBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /**
+     * @param reason - An explanation or justification for why this service is being requested in
+     *     coded or textual form. This is often for billing purposes. May relate to the resources
+     *     referred to in `supportingInfo`.
+     */
+    public ServiceRequestBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param basedOn - Plan/proposal/order fulfilled by this request. */
     public ServiceRequestBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
       this.basedOn = Arrays.asList(basedOn);
@@ -289,6 +310,28 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.priority = Optional.of(priority);
       return this;
     }
+    /**
+     * @param location - The preferred location(s) where the procedure should actually happen in
+     *     coded or free text form. E.g. at home or nursing day care center.
+     */
+    public ServiceRequestBuilder.Impl withLocation(@NonNull CodeableReference... location) {
+      this.location = Arrays.asList(location);
+      return this;
+    }
+    /**
+     * @param location - The preferred location(s) where the procedure should actually happen in
+     *     coded or free text form. E.g. at home or nursing day care center.
+     */
+    public ServiceRequestBuilder.Impl withLocation(
+        @NonNull Collection<CodeableReference> location) {
+      this.location = Collections.unmodifiableCollection(location);
+      return this;
+    }
+
+    public ServiceRequestBuilder.Impl withLocation(@NonNull CodeableReferenceBuilder... location) {
+      this.location = Arrays.stream(location).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param specimen - One or more specimens that the laboratory procedure will use. */
     public ServiceRequestBuilder.Impl withSpecimen(@NonNull Reference... specimen) {
       this.specimen = Arrays.asList(specimen);
@@ -327,8 +370,8 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ServiceRequestBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -336,8 +379,8 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ServiceRequestBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -470,31 +513,6 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param reasonCode - An explanation or justification for why this service is being requested
-     *     in coded or textual form. This is often for billing purposes. May relate to the resources
-     *     referred to in `supportingInfo`.
-     */
-    public ServiceRequestBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /**
-     * @param reasonCode - An explanation or justification for why this service is being requested
-     *     in coded or textual form. This is often for billing purposes. May relate to the resources
-     *     referred to in `supportingInfo`.
-     */
-    public ServiceRequestBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public ServiceRequestBuilder.Impl withReasonCode(
-        @NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
      * @param requisition - A shared identifier common to all service requests that were authorized
      *     more or less simultaneously by a single author, representing the composite or group
      *     identifier.
@@ -563,29 +581,6 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
      */
     public ServiceRequestBuilder.Impl withDoNotPerform(@NonNull Boolean doNotPerform) {
       this.doNotPerform = Optional.of(doNotPerform);
-      return this;
-    }
-    /**
-     * @param locationCode - The preferred location(s) where the procedure should actually happen in
-     *     coded or free text form. E.g. at home or nursing day care center.
-     */
-    public ServiceRequestBuilder.Impl withLocationCode(@NonNull CodeableConcept... locationCode) {
-      this.locationCode = Arrays.asList(locationCode);
-      return this;
-    }
-    /**
-     * @param locationCode - The preferred location(s) where the procedure should actually happen in
-     *     coded or free text form. E.g. at home or nursing day care center.
-     */
-    public ServiceRequestBuilder.Impl withLocationCode(
-        @NonNull Collection<CodeableConcept> locationCode) {
-      this.locationCode = Collections.unmodifiableCollection(locationCode);
-      return this;
-    }
-
-    public ServiceRequestBuilder.Impl withLocationCode(
-        @NonNull CodeableConceptBuilder... locationCode) {
-      this.locationCode = Arrays.stream(locationCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -671,31 +666,6 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       this.instantiatesUri = Collections.unmodifiableCollection(instantiatesUri);
       return this;
     }
-    /**
-     * @param reasonReference - Indicates another resource that provides a justification for why
-     *     this service is being requested. May relate to the resources referred to in
-     *     `supportingInfo`.
-     */
-    public ServiceRequestBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /**
-     * @param reasonReference - Indicates another resource that provides a justification for why
-     *     this service is being requested. May relate to the resources referred to in
-     *     `supportingInfo`.
-     */
-    public ServiceRequestBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public ServiceRequestBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /** @param relevantHistory - Key events in the history of the request. */
     public ServiceRequestBuilder.Impl withRelevantHistory(@NonNull Reference... relevantHistory) {
       this.relevantHistory = Arrays.asList(relevantHistory);
@@ -757,31 +727,6 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param locationReference - A reference to the the preferred location(s) where the procedure
-     *     should actually happen. E.g. at home or nursing day care center.
-     */
-    public ServiceRequestBuilder.Impl withLocationReference(
-        @NonNull Reference... locationReference) {
-      this.locationReference = Arrays.asList(locationReference);
-      return this;
-    }
-    /**
-     * @param locationReference - A reference to the the preferred location(s) where the procedure
-     *     should actually happen. E.g. at home or nursing day care center.
-     */
-    public ServiceRequestBuilder.Impl withLocationReference(
-        @NonNull Collection<Reference> locationReference) {
-      this.locationReference = Collections.unmodifiableCollection(locationReference);
-      return this;
-    }
-
-    public ServiceRequestBuilder.Impl withLocationReference(
-        @NonNull ReferenceBuilder... locationReference) {
-      this.locationReference =
-          Arrays.stream(locationReference).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
      * @param patientInstruction - Instructions in terms that are understood by the patient or
      *     consumer.
      */
@@ -824,12 +769,14 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
           note.stream().collect(new LitSeqJCollector<>()),
           status,
           intent,
+          reason.stream().collect(new LitSeqJCollector<>()),
           basedOn.stream().collect(new LitSeqJCollector<>()),
           subject,
           OptionConverters.toScala(language),
           replaces.stream().collect(new LitSeqJCollector<>()),
           category.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(priority),
+          location.stream().collect(new LitSeqJCollector<>()),
           specimen.stream().collect(new LitSeqJCollector<>()),
           bodySite.stream().collect(new LitSeqJCollector<>()),
           contained.stream().collect(new LitSeqJCollector<>()),
@@ -840,22 +787,18 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
           insurance.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(authoredOn),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(requisition),
           orderDetail.stream().collect(new LitSeqJCollector<>()),
           (Option) OptionConverters.toScala(quantity),
           (Option) OptionConverters.toScala(asNeeded),
           OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
-          locationCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
           (Option) OptionConverters.toScala(occurrence),
           OptionConverters.toScala(performerType),
           supportingInfo.stream().collect(new LitSeqJCollector<>()),
           instantiatesUri.stream().collect(new LitSeqJCollector<>()),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           relevantHistory.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          locationReference.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(patientInstruction),
           instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());

@@ -58,6 +58,7 @@ public interface DocumentReference_ContentBuilder {
     private Optional<Coding> format = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Attachment attachment;
+    private Optional<Identifier> identifier = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -117,6 +118,20 @@ public interface DocumentReference_ContentBuilder {
       return this;
     }
     /**
+     * @param identifier - Other identifiers associated with the document, including version
+     *     independent identifiers.
+     */
+    public DocumentReference_ContentBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
+      this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public DocumentReference_ContentBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
+      return this;
+    }
+    /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
      *     element that contains it and/or the understanding of the containing element's
@@ -166,6 +181,7 @@ public interface DocumentReference_ContentBuilder {
           OptionConverters.toScala(format),
           extension.stream().collect(new LitSeqJCollector<>()),
           attachment,
+          OptionConverters.toScala(identifier),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

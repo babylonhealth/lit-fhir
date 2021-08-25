@@ -45,29 +45,25 @@ import static java.util.stream.Collectors.toList;
 public interface ActivityDefinition_ParticipantBuilder {
   public ActivityDefinition.Participant build();
 
-  public static Impl init(ACTION_PARTICIPANT_TYPE _type) {
-    return new Impl(_type);
+  public static Impl init() {
+    return new Impl();
   }
 
-  public static Impl builder(ACTION_PARTICIPANT_TYPE _type) {
-    return new Impl(_type);
+  public static Impl builder() {
+    return new Impl();
   }
 
   public class Impl implements ActivityDefinition_ParticipantBuilder {
     private Optional<String> id = Optional.empty();
-    private ACTION_PARTICIPANT_TYPE _type;
+    private Optional<ACTION_PARTICIPANT_TYPE> _type = Optional.empty();
     private Optional<CodeableConcept> role = Optional.empty();
+    private Optional<CodeableConcept> function = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
+    private Optional<Reference> typeReference = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
-    /**
-     * Required fields for {@link ActivityDefinition.Participant}
-     *
-     * @param _type
-     */
-    public Impl(ACTION_PARTICIPANT_TYPE _type) {
-      this._type = _type;
-    }
+    /** Required fields for {@link ActivityDefinition.Participant} */
+    public Impl() {}
 
     /**
      * @param id - The logical id of the resource, as used in the URL for the resource. Once
@@ -75,6 +71,12 @@ public interface ActivityDefinition_ParticipantBuilder {
      */
     public ActivityDefinition_ParticipantBuilder.Impl withId(@NonNull String id) {
       this.id = Optional.of(id);
+      return this;
+    }
+    /** @param _type */
+    public ActivityDefinition_ParticipantBuilder.Impl withType(
+        @NonNull ACTION_PARTICIPANT_TYPE _type) {
+      this._type = Optional.of(_type);
       return this;
     }
     /** @param role */
@@ -86,6 +88,18 @@ public interface ActivityDefinition_ParticipantBuilder {
     public ActivityDefinition_ParticipantBuilder.Impl withRole(
         @NonNull CodeableConceptBuilder role) {
       this.role = Optional.of(role.build());
+      return this;
+    }
+    /** @param function */
+    public ActivityDefinition_ParticipantBuilder.Impl withFunction(
+        @NonNull CodeableConcept function) {
+      this.function = Optional.of(function);
+      return this;
+    }
+
+    public ActivityDefinition_ParticipantBuilder.Impl withFunction(
+        @NonNull CodeableConceptBuilder function) {
+      this.function = Optional.of(function.build());
       return this;
     }
     /**
@@ -116,6 +130,18 @@ public interface ActivityDefinition_ParticipantBuilder {
     public ActivityDefinition_ParticipantBuilder.Impl withExtension(
         @NonNull ExtensionBuilder... extension) {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param typeReference */
+    public ActivityDefinition_ParticipantBuilder.Impl withTypeReference(
+        @NonNull Reference typeReference) {
+      this.typeReference = Optional.of(typeReference);
+      return this;
+    }
+
+    public ActivityDefinition_ParticipantBuilder.Impl withTypeReference(
+        @NonNull ReferenceBuilder typeReference) {
+      this.typeReference = Optional.of(typeReference.build());
       return this;
     }
     /**
@@ -165,9 +191,11 @@ public interface ActivityDefinition_ParticipantBuilder {
     public ActivityDefinition.Participant build() {
       return new ActivityDefinition.Participant(
           OptionConverters.toScala(id),
-          _type,
+          OptionConverters.toScala(_type),
           OptionConverters.toScala(role),
+          OptionConverters.toScala(function),
           extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(typeReference),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

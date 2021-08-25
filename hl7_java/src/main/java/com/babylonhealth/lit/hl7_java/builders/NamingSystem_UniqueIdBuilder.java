@@ -61,6 +61,7 @@ public interface NamingSystem_UniqueIdBuilder {
     private Optional<String> comment = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Boolean> preferred = Optional.empty();
+    private Optional<Boolean> authoritative = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -131,6 +132,11 @@ public interface NamingSystem_UniqueIdBuilder {
       this.preferred = Optional.of(preferred);
       return this;
     }
+    /** @param authoritative */
+    public NamingSystem_UniqueIdBuilder.Impl withAuthoritative(@NonNull Boolean authoritative) {
+      this.authoritative = Optional.of(authoritative);
+      return this;
+    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -184,6 +190,7 @@ public interface NamingSystem_UniqueIdBuilder {
           OptionConverters.toScala(comment),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(preferred.map(x -> (Object) x)),
+          OptionConverters.toScala(authoritative.map(x -> (Object) x)),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

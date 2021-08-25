@@ -266,7 +266,7 @@ object Coverage extends CompanionFor[Coverage] {
       beneficiary: Reference,
       subrogation: Option[Boolean] = None,
       policyHolder: Option[Reference] = None,
-      subscriberId: Option[String] = None,
+      subscriberId: Option[Identifier] = None,
       relationship: Option[CodeableConcept] = None,
       implicitRules: Option[UriStr] = None,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
@@ -339,8 +339,8 @@ object Coverage extends CompanionFor[Coverage] {
     FHIRComponentFieldMeta("subrogation", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val policyHolder: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("policyHolder", lTagOf[Option[Reference]], false, lTagOf[Reference])
-  val subscriberId: FHIRComponentFieldMeta[Option[String]] =
-    FHIRComponentFieldMeta("subscriberId", lTagOf[Option[String]], false, lTagOf[String])
+  val subscriberId: FHIRComponentFieldMeta[Option[Identifier]] =
+    FHIRComponentFieldMeta("subscriberId", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
   val relationship: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("relationship", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -403,7 +403,7 @@ object Coverage extends CompanionFor[Coverage] {
     FHIRComponentField[Reference](beneficiary, t.beneficiary),
     FHIRComponentField[Option[Boolean]](subrogation, t.subrogation),
     FHIRComponentField[Option[Reference]](policyHolder, t.policyHolder),
-    FHIRComponentField[Option[String]](subscriberId, t.subscriberId),
+    FHIRComponentField[Option[Identifier]](subscriberId, t.subscriberId),
     FHIRComponentField[Option[CodeableConcept]](relationship, t.relationship),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
@@ -429,7 +429,7 @@ object Coverage extends CompanionFor[Coverage] {
   def extractBeneficiary(t: Coverage): Reference                                = t.beneficiary
   def extractSubrogation(t: Coverage): Option[Boolean]                          = t.subrogation
   def extractPolicyHolder(t: Coverage): Option[Reference]                       = t.policyHolder
-  def extractSubscriberId(t: Coverage): Option[String]                          = t.subscriberId
+  def extractSubscriberId(t: Coverage): Option[Identifier]                      = t.subscriberId
   def extractRelationship(t: Coverage): Option[CodeableConcept]                 = t.relationship
   def extractImplicitRules(t: Coverage): Option[UriStr]                         = t.implicitRules
   def extractModifierExtension(t: Coverage): LitSeq[Extension]                  = t.modifierExtension
@@ -472,7 +472,7 @@ object Coverage extends CompanionFor[Coverage] {
           cursor.decodeAs[Reference]("beneficiary", None),
           cursor.decodeAs[Option[Boolean]]("subrogation", Some(None)),
           cursor.decodeAs[Option[Reference]]("policyHolder", Some(None)),
-          cursor.decodeAs[Option[String]]("subscriberId", Some(None)),
+          cursor.decodeAs[Option[Identifier]]("subscriberId", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("relationship", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -525,14 +525,14 @@ object Coverage extends CompanionFor[Coverage] {
   *   - The policy(s) which constitute this insurance coverage.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
   * @param dependent
-  *   - A unique identifier for a dependent under the coverage.
+  *   - A designator for a dependent under the coverage.
   * @param identifier
   *   - A unique identifier assigned to this coverage.
   * @param subscriber
@@ -588,7 +588,7 @@ class Coverage(
     val beneficiary: Reference,
     val subrogation: Option[Boolean] = None,
     val policyHolder: Option[Reference] = None,
-    val subscriberId: Option[String] = None,
+    val subscriberId: Option[Identifier] = None,
     val relationship: Option[CodeableConcept] = None,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,

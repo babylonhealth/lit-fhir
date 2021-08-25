@@ -42,7 +42,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface ElementDefinitionBuilder extends BackboneElementBuilder {
+public interface ElementDefinitionBuilder extends BackboneTypeBuilder {
   public ElementDefinition build();
 
   public static Impl init(String path) {
@@ -142,6 +142,10 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
   }
 
   public static ChoiceAll fixed(LocalTime l) {
+    return new ChoiceAll(l);
+  }
+
+  public static ChoiceAll fixed(Long l) {
     return new ChoiceAll(l);
   }
 
@@ -345,6 +349,10 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
     return new ChoiceAll(l);
   }
 
+  public static ChoiceAll pattern(Long l) {
+    return new ChoiceAll(l);
+  }
+
   public static ChoiceAll pattern(Meta m) {
     return new ChoiceAll(m);
   }
@@ -453,76 +461,84 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
     return ChoiceAll.ChoiceAllUrlStr(s);
   }
 
-  public static Choice01480857620 minValue(BigDecimal b) {
-    return new Choice01480857620(b);
+  public static Choice00492977252 minValue(BigDecimal b) {
+    return new Choice00492977252(b);
   }
 
-  public static Choice01480857620 minValue(FHIRDate f) {
-    return new Choice01480857620(f);
+  public static Choice00492977252 minValue(FHIRDate f) {
+    return new Choice00492977252(f);
   }
 
-  public static Choice01480857620 minValue(FHIRDateTime f) {
-    return new Choice01480857620(f);
+  public static Choice00492977252 minValue(FHIRDateTime f) {
+    return new Choice00492977252(f);
   }
 
-  public static Choice01480857620 minValue(LocalTime l) {
-    return new Choice01480857620(l);
+  public static Choice00492977252 minValue(LocalTime l) {
+    return new Choice00492977252(l);
   }
 
-  public static Choice01480857620 minValue(Quantity q) {
-    return new Choice01480857620(q);
+  public static Choice00492977252 minValue(Long l) {
+    return new Choice00492977252(l);
   }
 
-  public static Choice01480857620 minValue(ZonedDateTime z) {
-    return new Choice01480857620(z);
+  public static Choice00492977252 minValue(Quantity q) {
+    return new Choice00492977252(q);
   }
 
-  public static Choice01480857620 minValueInteger(Integer i) {
-    return Choice01480857620.Choice01480857620Int(i);
+  public static Choice00492977252 minValue(ZonedDateTime z) {
+    return new Choice00492977252(z);
   }
 
-  public static Choice01480857620 minValuePositiveInt(Integer i) {
-    return Choice01480857620.Choice01480857620PositiveInt(i);
+  public static Choice00492977252 minValueInteger(Integer i) {
+    return Choice00492977252.Choice00492977252Int(i);
   }
 
-  public static Choice01480857620 minValueUnsignedInt(Integer i) {
-    return Choice01480857620.Choice01480857620UnsignedInt(i);
+  public static Choice00492977252 minValuePositiveInt(Integer i) {
+    return Choice00492977252.Choice00492977252PositiveInt(i);
   }
 
-  public static Choice01480857620 maxValue(BigDecimal b) {
-    return new Choice01480857620(b);
+  public static Choice00492977252 minValueUnsignedInt(Integer i) {
+    return Choice00492977252.Choice00492977252UnsignedInt(i);
   }
 
-  public static Choice01480857620 maxValue(FHIRDate f) {
-    return new Choice01480857620(f);
+  public static Choice00492977252 maxValue(BigDecimal b) {
+    return new Choice00492977252(b);
   }
 
-  public static Choice01480857620 maxValue(FHIRDateTime f) {
-    return new Choice01480857620(f);
+  public static Choice00492977252 maxValue(FHIRDate f) {
+    return new Choice00492977252(f);
   }
 
-  public static Choice01480857620 maxValue(LocalTime l) {
-    return new Choice01480857620(l);
+  public static Choice00492977252 maxValue(FHIRDateTime f) {
+    return new Choice00492977252(f);
   }
 
-  public static Choice01480857620 maxValue(Quantity q) {
-    return new Choice01480857620(q);
+  public static Choice00492977252 maxValue(LocalTime l) {
+    return new Choice00492977252(l);
   }
 
-  public static Choice01480857620 maxValue(ZonedDateTime z) {
-    return new Choice01480857620(z);
+  public static Choice00492977252 maxValue(Long l) {
+    return new Choice00492977252(l);
   }
 
-  public static Choice01480857620 maxValueInteger(Integer i) {
-    return Choice01480857620.Choice01480857620Int(i);
+  public static Choice00492977252 maxValue(Quantity q) {
+    return new Choice00492977252(q);
   }
 
-  public static Choice01480857620 maxValuePositiveInt(Integer i) {
-    return Choice01480857620.Choice01480857620PositiveInt(i);
+  public static Choice00492977252 maxValue(ZonedDateTime z) {
+    return new Choice00492977252(z);
   }
 
-  public static Choice01480857620 maxValueUnsignedInt(Integer i) {
-    return Choice01480857620.Choice01480857620UnsignedInt(i);
+  public static Choice00492977252 maxValueInteger(Integer i) {
+    return Choice00492977252.Choice00492977252Int(i);
+  }
+
+  public static Choice00492977252 maxValuePositiveInt(Integer i) {
+    return Choice00492977252.Choice00492977252PositiveInt(i);
+  }
+
+  public static Choice00492977252 maxValueUnsignedInt(Integer i) {
+    return Choice00492977252.Choice00492977252UnsignedInt(i);
   }
 
   public static ChoiceAll defaultValue(Address a) {
@@ -614,6 +630,10 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
   }
 
   public static ChoiceAll defaultValue(LocalTime l) {
+    return new ChoiceAll(l);
+  }
+
+  public static ChoiceAll defaultValue(Long l) {
     return new ChoiceAll(l);
   }
 
@@ -744,8 +764,8 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
     private Optional<String> definition = Optional.empty();
     private Optional<ChoiceAll> pattern = Optional.empty();
     private Optional<Boolean> isModifier = Optional.empty();
-    private Optional<Choice01480857620> minValue = Optional.empty();
-    private Optional<Choice01480857620> maxValue = Optional.empty();
+    private Optional<Choice00492977252> minValue = Optional.empty();
+    private Optional<Choice00492977252> maxValue = Optional.empty();
     private Optional<Boolean> mustSupport = Optional.empty();
     private Optional<String> requirements = Optional.empty();
     private Optional<String> orderMeaning = Optional.empty();
@@ -856,7 +876,7 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      *     Annotation, Attachment, byte[], BigDecimal, Boolean, String, CodeableConcept, Coding,
      *     ContactDetail, ContactPoint, Contributor, Count, DataRequirement, Distance, Dosage,
      *     Duration, Expression, FHIRDate, FHIRDateTime, HumanName, Identifier, Integer, LocalTime,
-     *     Meta, Money, ParameterDefinition, Period, Quantity, Range, Ratio, Reference,
+     *     Long, Meta, Money, ParameterDefinition, Period, Quantity, Range, Ratio, Reference,
      *     RelatedArtifact, SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext,
      *     ZonedDateTime. To pass the value in, wrap with one of the ElementDefinitionBuilder.fixed
      *     static methods
@@ -964,7 +984,7 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      *     Annotation, Attachment, byte[], BigDecimal, Boolean, String, CodeableConcept, Coding,
      *     ContactDetail, ContactPoint, Contributor, Count, DataRequirement, Distance, Dosage,
      *     Duration, Expression, FHIRDate, FHIRDateTime, HumanName, Identifier, Integer, LocalTime,
-     *     Meta, Money, ParameterDefinition, Period, Quantity, Range, Ratio, Reference,
+     *     Long, Meta, Money, ParameterDefinition, Period, Quantity, Range, Ratio, Reference,
      *     RelatedArtifact, SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext,
      *     ZonedDateTime. To pass the value in, wrap with one of the
      *     ElementDefinitionBuilder.pattern static methods
@@ -989,10 +1009,10 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      * @param minValue - The minimum allowed value for the element. The value is inclusive. This is
      *     allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.
      *     Field is a 'choice' field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime,
-     *     Integer, LocalTime, Quantity, ZonedDateTime. To pass the value in, wrap with one of the
-     *     ElementDefinitionBuilder.minValue static methods
+     *     Integer, LocalTime, Long, Quantity, ZonedDateTime. To pass the value in, wrap with one of
+     *     the ElementDefinitionBuilder.minValue static methods
      */
-    public ElementDefinitionBuilder.Impl withMinValue(@NonNull Choice01480857620 minValue) {
+    public ElementDefinitionBuilder.Impl withMinValue(@NonNull Choice00492977252 minValue) {
       this.minValue = Optional.of(minValue);
       return this;
     }
@@ -1000,10 +1020,10 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      * @param maxValue - The maximum allowed value for the element. The value is inclusive. This is
      *     allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.
      *     Field is a 'choice' field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime,
-     *     Integer, LocalTime, Quantity, ZonedDateTime. To pass the value in, wrap with one of the
-     *     ElementDefinitionBuilder.maxValue static methods
+     *     Integer, LocalTime, Long, Quantity, ZonedDateTime. To pass the value in, wrap with one of
+     *     the ElementDefinitionBuilder.maxValue static methods
      */
-    public ElementDefinitionBuilder.Impl withMaxValue(@NonNull Choice01480857620 maxValue) {
+    public ElementDefinitionBuilder.Impl withMaxValue(@NonNull Choice00492977252 maxValue) {
       this.maxValue = Optional.of(maxValue);
       return this;
     }
@@ -1077,10 +1097,10 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      *     field. Type should be one of Address, Age, Annotation, Attachment, byte[], BigDecimal,
      *     Boolean, String, CodeableConcept, Coding, ContactDetail, ContactPoint, Contributor,
      *     Count, DataRequirement, Distance, Dosage, Duration, Expression, FHIRDate, FHIRDateTime,
-     *     HumanName, Identifier, Integer, LocalTime, Meta, Money, ParameterDefinition, Period,
-     *     Quantity, Range, Ratio, Reference, RelatedArtifact, SampledData, Signature, Timing,
-     *     TriggerDefinition, UUID, UsageContext, ZonedDateTime. To pass the value in, wrap with one
-     *     of the ElementDefinitionBuilder.defaultValue static methods
+     *     HumanName, Identifier, Integer, LocalTime, Long, Meta, Money, ParameterDefinition,
+     *     Period, Quantity, Range, Ratio, Reference, RelatedArtifact, SampledData, Signature,
+     *     Timing, TriggerDefinition, UUID, UsageContext, ZonedDateTime. To pass the value in, wrap
+     *     with one of the ElementDefinitionBuilder.defaultValue static methods
      */
     public ElementDefinitionBuilder.Impl withDefaultValue(@NonNull ChoiceAll defaultValue) {
       this.defaultValue = Optional.of(defaultValue);

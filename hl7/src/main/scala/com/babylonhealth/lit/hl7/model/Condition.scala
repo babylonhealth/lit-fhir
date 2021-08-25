@@ -194,7 +194,7 @@ object Condition extends CompanionFor[Condition] {
       abatement: Option[Condition.AbatementChoice] = None,
       recordedDate: Option[FHIRDateTime] = None,
       implicitRules: Option[UriStr] = None,
-      clinicalStatus: Option[CodeableConcept] = None,
+      clinicalStatus: CodeableConcept,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       verificationStatus: Option[CodeableConcept] = None,
       stage: LitSeq[Condition.Stage] = LitSeq.empty,
@@ -268,8 +268,8 @@ object Condition extends CompanionFor[Condition] {
     FHIRComponentFieldMeta("recordedDate", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
-  val clinicalStatus: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-    FHIRComponentFieldMeta("clinicalStatus", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val clinicalStatus: FHIRComponentFieldMeta[CodeableConcept] =
+    FHIRComponentFieldMeta("clinicalStatus", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val verificationStatus: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -327,7 +327,7 @@ object Condition extends CompanionFor[Condition] {
     FHIRComponentField[Option[Condition.AbatementChoice]](abatement, t.abatement),
     FHIRComponentField[Option[FHIRDateTime]](recordedDate, t.recordedDate),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[CodeableConcept]](clinicalStatus, t.clinicalStatus),
+    FHIRComponentField[CodeableConcept](clinicalStatus, t.clinicalStatus),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[Option[CodeableConcept]](verificationStatus, t.verificationStatus),
     FHIRComponentField[LitSeq[Condition.Stage]](stage, t.stage),
@@ -353,7 +353,7 @@ object Condition extends CompanionFor[Condition] {
   def extractAbatement(t: Condition): Option[Condition.AbatementChoice] = t.abatement
   def extractRecordedDate(t: Condition): Option[FHIRDateTime]           = t.recordedDate
   def extractImplicitRules(t: Condition): Option[UriStr]                = t.implicitRules
-  def extractClinicalStatus(t: Condition): Option[CodeableConcept]      = t.clinicalStatus
+  def extractClinicalStatus(t: Condition): CodeableConcept              = t.clinicalStatus
   def extractModifierExtension(t: Condition): LitSeq[Extension]         = t.modifierExtension
   def extractVerificationStatus(t: Condition): Option[CodeableConcept]  = t.verificationStatus
   def extractStage(t: Condition): LitSeq[Condition.Stage]               = t.stage
@@ -363,12 +363,11 @@ object Condition extends CompanionFor[Condition] {
     "onset-age" -> (obj =>
       obj.onset.flatMap(_.as[Age]).toSeq ++
         obj.onset.flatMap(_.as[Range]).toSeq),
-    "abatement-string"         -> (obj => obj.abatement.flatMap(_.as[String]).toSeq),
-    "stage"                    -> (obj => obj.stage.flatMap(_.summary).toSeq),
-    "Example Search Parameter" -> (obj => Seq(obj.subject)),
-    "subject"                  -> (obj => Seq(obj.subject)),
-    "clinical-status"          -> (obj => obj.clinicalStatus.toSeq),
-    "body-site"                -> (obj => obj.bodySite.toSeq),
+    "abatement-string" -> (obj => obj.abatement.flatMap(_.as[String]).toSeq),
+    "stage"            -> (obj => obj.stage.flatMap(_.summary).toSeq),
+    "subject"          -> (obj => Seq(obj.subject)),
+    "clinical-status"  -> (obj => Seq(obj.clinicalStatus)),
+    "body-site"        -> (obj => obj.bodySite.toSeq),
     "abatement-date" -> (obj =>
       obj.abatement.flatMap(_.as[FHIRDateTime]).toSeq ++
         obj.abatement.flatMap(_.as[Period]).toSeq),
@@ -415,7 +414,7 @@ object Condition extends CompanionFor[Condition] {
           cursor.decodeOptRef[Union01474038381]("abatement"),
           cursor.decodeAs[Option[FHIRDateTime]]("recordedDate", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeAs[Option[CodeableConcept]]("clinicalStatus", Some(None)),
+          cursor.decodeAs[CodeableConcept]("clinicalStatus", None),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("verificationStatus", Some(None)),
           cursor.decodeAs[LitSeq[Condition.Stage]]("stage", Some(LitSeq.empty)),
@@ -463,10 +462,10 @@ object Condition extends CompanionFor[Condition] {
   * @param recorder
   *   - Individual who recorded the record and takes responsibility for its content.
   * @param asserter
-  *   - Individual who is making the condition statement.
+  *   - Individual or device that is making the condition statement.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -479,8 +478,8 @@ object Condition extends CompanionFor[Condition] {
   *   updated and propagates from server to server.
   * @param abatement
   *   - The date or estimated date that the condition resolved or went into remission. This is called "abatement" because of the
-  *   many overloaded connotations associated with "remission" or "resolution" - Conditions are never really resolved, but they
-  *   can abate.
+  *   many overloaded connotations associated with "remission" or "resolution" - Some conditions, such as chronic conditions, are
+  *   never really resolved, but they can abate.
   * @param recordedDate
   *   - The recordedDate represents when this particular Condition record was created in the system, which is often a
   *   system-generated date.
@@ -499,9 +498,11 @@ object Condition extends CompanionFor[Condition] {
   *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param verificationStatus
-  *   - The verification status to support the clinical status of the condition.
+  *   - The verification status to support the clinical status of the condition. The verification status pertains to the
+  *   condition, itself, not to any specific condition attribute.
   * @param stage
-  *   - Clinical stage or grade of a condition. May include formal severity assessments.
+  *   - A simple summary of the stage such as "Stage 3" or "Early Onset". The determination of the stage is disease-specific, such
+  *   as cancer, retinopathy of prematurity, kidney diseases, Alzheimer's, or Parkinson disease.
   * @param evidence
   *   - Supporting evidence / manifestations that are the basis of the Condition's verification status, such as evidence that
   *   confirmed or refuted the condition.
@@ -528,7 +529,7 @@ class Condition(
     val abatement: Option[Condition.AbatementChoice] = None,
     val recordedDate: Option[FHIRDateTime] = None,
     override val implicitRules: Option[UriStr] = None,
-    val clinicalStatus: Option[CodeableConcept] = None,
+    val clinicalStatus: CodeableConcept,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val verificationStatus: Option[CodeableConcept] = None,
     val stage: LitSeq[Condition.Stage] = LitSeq.empty,

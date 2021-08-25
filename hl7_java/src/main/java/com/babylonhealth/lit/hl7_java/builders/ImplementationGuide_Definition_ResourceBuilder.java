@@ -148,7 +148,7 @@ public interface ImplementationGuide_Definition_ResourceBuilder {
      * @param fhirVersion - The version(s) of the FHIR specification that this ImplementationGuide
      *     targets - e.g. describes how to use. The value of this element is the formal version of
      *     the specification, without the revision number, e.g. [publication].[major].[minor], which
-     *     is 4.0.1. for this version.
+     *     is 4.6.0. for this version.
      */
     public ImplementationGuide_Definition_ResourceBuilder.Impl withFhirVersion(
         @NonNull FHIR_VERSION... fhirVersion) {
@@ -159,7 +159,7 @@ public interface ImplementationGuide_Definition_ResourceBuilder {
      * @param fhirVersion - The version(s) of the FHIR specification that this ImplementationGuide
      *     targets - e.g. describes how to use. The value of this element is the formal version of
      *     the specification, without the revision number, e.g. [publication].[major].[minor], which
-     *     is 4.0.1. for this version.
+     *     is 4.6.0. for this version.
      */
     public ImplementationGuide_Definition_ResourceBuilder.Impl withFhirVersion(
         @NonNull Collection<FHIR_VERSION> fhirVersion) {

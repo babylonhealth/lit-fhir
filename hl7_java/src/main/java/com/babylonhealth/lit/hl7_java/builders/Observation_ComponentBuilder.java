@@ -53,54 +53,58 @@ public interface Observation_ComponentBuilder {
     return new Impl(code.build());
   }
 
-  public static Choice02118820890 value(Boolean b) {
-    return new Choice02118820890(b);
+  public static Choice01718482969 value(Attachment a) {
+    return new Choice01718482969(a);
   }
 
-  public static Choice02118820890 value(CodeableConcept c) {
-    return new Choice02118820890(c);
+  public static Choice01718482969 value(Boolean b) {
+    return new Choice01718482969(b);
   }
 
-  public static Choice02118820890 value(FHIRDateTime f) {
-    return new Choice02118820890(f);
+  public static Choice01718482969 value(CodeableConcept c) {
+    return new Choice01718482969(c);
   }
 
-  public static Choice02118820890 value(Integer i) {
-    return new Choice02118820890(i);
+  public static Choice01718482969 value(FHIRDateTime f) {
+    return new Choice01718482969(f);
   }
 
-  public static Choice02118820890 value(LocalTime l) {
-    return new Choice02118820890(l);
+  public static Choice01718482969 value(Integer i) {
+    return new Choice01718482969(i);
   }
 
-  public static Choice02118820890 value(Period p) {
-    return new Choice02118820890(p);
+  public static Choice01718482969 value(LocalTime l) {
+    return new Choice01718482969(l);
   }
 
-  public static Choice02118820890 value(Quantity q) {
-    return new Choice02118820890(q);
+  public static Choice01718482969 value(Period p) {
+    return new Choice01718482969(p);
   }
 
-  public static Choice02118820890 value(Range r) {
-    return new Choice02118820890(r);
+  public static Choice01718482969 value(Quantity q) {
+    return new Choice01718482969(q);
   }
 
-  public static Choice02118820890 value(Ratio r) {
-    return new Choice02118820890(r);
+  public static Choice01718482969 value(Range r) {
+    return new Choice01718482969(r);
   }
 
-  public static Choice02118820890 value(SampledData s) {
-    return new Choice02118820890(s);
+  public static Choice01718482969 value(Ratio r) {
+    return new Choice01718482969(r);
   }
 
-  public static Choice02118820890 value(String s) {
-    return new Choice02118820890(s);
+  public static Choice01718482969 value(SampledData s) {
+    return new Choice01718482969(s);
+  }
+
+  public static Choice01718482969 value(String s) {
+    return new Choice01718482969(s);
   }
 
   public class Impl implements Observation_ComponentBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept code;
-    private Optional<Choice02118820890> value = Optional.empty();
+    private Optional<Choice01718482969> value = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<CodeableConcept> interpretation = Collections.emptyList();
     private Collection<Observation.ReferenceRange> referenceRange = Collections.emptyList();
@@ -126,12 +130,12 @@ public interface Observation_ComponentBuilder {
     }
     /**
      * @param value - The information determined as a result of making the observation, if the
-     *     information has a simple value. Field is a 'choice' field. Type should be one of Boolean,
-     *     CodeableConcept, FHIRDateTime, Integer, LocalTime, Period, Quantity, Range, Ratio,
-     *     SampledData, String. To pass the value in, wrap with one of the
+     *     information has a simple value. Field is a 'choice' field. Type should be one of
+     *     Attachment, Boolean, CodeableConcept, FHIRDateTime, Integer, LocalTime, Period, Quantity,
+     *     Range, Ratio, SampledData, String. To pass the value in, wrap with one of the
      *     Observation_ComponentBuilder.value static methods
      */
-    public Observation_ComponentBuilder.Impl withValue(@NonNull Choice02118820890 value) {
+    public Observation_ComponentBuilder.Impl withValue(@NonNull Choice01718482969 value) {
       this.value = Optional.of(value);
       return this;
     }

@@ -60,35 +60,40 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
     private Optional<Narrative> text = Optional.empty();
     private Optional<CodeableConcept> code = Optional.empty();
     private Optional<MEDICATIONKNOWLEDGE_STATUS> status = Optional.empty();
+    private Optional<Reference> author = Optional.empty();
     private Optional<Quantity> amount = Optional.empty();
+    private Collection<Reference> device = Collections.emptyList();
+    private Optional<Reference> sponsor = Optional.empty();
     private Collection<String> synonym = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
     private Optional<CodeableConcept> doseForm = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
+    private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<CodeableConcept> productType = Collections.emptyList();
-    private Optional<Reference> manufacturer = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<CodeableConcept> intendedRoute = Collections.emptyList();
-    private Collection<Reference> contraindication = Collections.emptyList();
+    private Collection<Reference> clinicalUseIssue = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Reference> associatedMedication = Collections.emptyList();
+    private Optional<Reference> associatedDefinition = Optional.empty();
     private Optional<String> preparationInstruction = Optional.empty();
     private Collection<MedicationKnowledge.Cost> cost = Collections.emptyList();
-    private Collection<MedicationKnowledge.Kinetics> kinetics = Collections.emptyList();
     private Collection<MedicationKnowledge.Monograph> monograph = Collections.emptyList();
-    private Optional<MedicationKnowledge.Packaging> packaging = Optional.empty();
+    private Collection<MedicationKnowledge.Packaging> packaging = Collections.emptyList();
     private Collection<MedicationKnowledge.Ingredient> ingredient = Collections.emptyList();
     private Collection<MedicationKnowledge.MonitoringProgram> monitoringProgram =
         Collections.emptyList();
     private Collection<MedicationKnowledge.DrugCharacteristic> drugCharacteristic =
+        Collections.emptyList();
+    private Collection<MedicationKnowledge.KineticCharacteristic> kineticCharacteristic =
         Collections.emptyList();
     private Collection<MedicationKnowledge.MedicineClassification> medicineClassification =
         Collections.emptyList();
     private Collection<MedicationKnowledge.Regulatory> regulatory = Collections.emptyList();
     private Collection<MedicationKnowledge.RelatedMedicationKnowledge> relatedMedicationKnowledge =
         Collections.emptyList();
-    private Collection<MedicationKnowledge.AdministrationGuidelines> administrationGuidelines =
+    private Collection<MedicationKnowledge.IndicationGuideline> indicationGuideline =
         Collections.emptyList();
 
     /** Required fields for {@link MedicationKnowledge} */
@@ -156,6 +161,18 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param author - The creator or owner of the knowledge or information about the medication.
+     */
+    public MedicationKnowledgeBuilder.Impl withAuthor(@NonNull Reference author) {
+      this.author = Optional.of(author);
+      return this;
+    }
+
+    public MedicationKnowledgeBuilder.Impl withAuthor(@NonNull ReferenceBuilder author) {
+      this.author = Optional.of(author.build());
+      return this;
+    }
+    /**
      * @param amount - Specific amount of the drug in the packaged product. For example, when
      *     specifying a product that has the same strength (For example, Insulin glargine 100 unit
      *     per mL solution for injection), this attribute provides additional clarification of the
@@ -168,6 +185,43 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
 
     public MedicationKnowledgeBuilder.Impl withAmount(@NonNull QuantityBuilder amount) {
       this.amount = Optional.of(amount.build());
+      return this;
+    }
+    /**
+     * @param device - A device associated with the medication (for example, a drug coated catheter
+     *     or a drug impregnated dressing).
+     */
+    public MedicationKnowledgeBuilder.Impl withDevice(@NonNull Reference... device) {
+      this.device = Arrays.asList(device);
+      return this;
+    }
+    /**
+     * @param device - A device associated with the medication (for example, a drug coated catheter
+     *     or a drug impregnated dressing).
+     */
+    public MedicationKnowledgeBuilder.Impl withDevice(@NonNull Collection<Reference> device) {
+      this.device = Collections.unmodifiableCollection(device);
+      return this;
+    }
+
+    public MedicationKnowledgeBuilder.Impl withDevice(@NonNull ReferenceBuilder... device) {
+      this.device = Arrays.stream(device).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param sponsor - Describes the details of the manufacturer of the medication product. This is
+     *     not intended to represent the distributor of a medication product.  Describes the
+     *     organization that is responsible for the manufacturing of the item and holds the
+     *     registration to market the product in a jurisdiction. This might not be the company that
+     *     physically manufactures the product.  May be known as Market Authorization Holder.
+     */
+    public MedicationKnowledgeBuilder.Impl withSponsor(@NonNull Reference sponsor) {
+      this.sponsor = Optional.of(sponsor);
+      return this;
+    }
+
+    public MedicationKnowledgeBuilder.Impl withSponsor(@NonNull ReferenceBuilder sponsor) {
+      this.sponsor = Optional.of(sponsor.build());
       return this;
     }
     /**
@@ -205,8 +259,8 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MedicationKnowledgeBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -214,8 +268,8 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MedicationKnowledgeBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -253,6 +307,23 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param identifier - Business identifier for this medication. */
+    public MedicationKnowledgeBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
+      this.identifier = Arrays.asList(identifier);
+      return this;
+    }
+    /** @param identifier - Business identifier for this medication. */
+    public MedicationKnowledgeBuilder.Impl withIdentifier(
+        @NonNull Collection<Identifier> identifier) {
+      this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public MedicationKnowledgeBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param productType - Category of the medication or product (e.g. branded product, therapeutic
      *     moeity, generic product, innovator product, etc.).
@@ -275,20 +346,6 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
     public MedicationKnowledgeBuilder.Impl withProductType(
         @NonNull CodeableConceptBuilder... productType) {
       this.productType = Arrays.stream(productType).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
-     * @param manufacturer - Describes the details of the manufacturer of the medication product.
-     *     This is not intended to represent the distributor of a medication product.
-     */
-    public MedicationKnowledgeBuilder.Impl withManufacturer(@NonNull Reference manufacturer) {
-      this.manufacturer = Optional.of(manufacturer);
-      return this;
-    }
-
-    public MedicationKnowledgeBuilder.Impl withManufacturer(
-        @NonNull ReferenceBuilder manufacturer) {
-      this.manufacturer = Optional.of(manufacturer.build());
       return this;
     }
     /**
@@ -320,29 +377,29 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param contraindication - Potential clinical issue with or between medication(s) (for
+     * @param clinicalUseIssue - Potential clinical issue with or between medication(s) (for
      *     example, drug-drug interaction, drug-disease contraindication, drug-allergy interaction,
      *     etc.).
      */
-    public MedicationKnowledgeBuilder.Impl withContraindication(
-        @NonNull Reference... contraindication) {
-      this.contraindication = Arrays.asList(contraindication);
+    public MedicationKnowledgeBuilder.Impl withClinicalUseIssue(
+        @NonNull Reference... clinicalUseIssue) {
+      this.clinicalUseIssue = Arrays.asList(clinicalUseIssue);
       return this;
     }
     /**
-     * @param contraindication - Potential clinical issue with or between medication(s) (for
+     * @param clinicalUseIssue - Potential clinical issue with or between medication(s) (for
      *     example, drug-drug interaction, drug-disease contraindication, drug-allergy interaction,
      *     etc.).
      */
-    public MedicationKnowledgeBuilder.Impl withContraindication(
-        @NonNull Collection<Reference> contraindication) {
-      this.contraindication = Collections.unmodifiableCollection(contraindication);
+    public MedicationKnowledgeBuilder.Impl withClinicalUseIssue(
+        @NonNull Collection<Reference> clinicalUseIssue) {
+      this.clinicalUseIssue = Collections.unmodifiableCollection(clinicalUseIssue);
       return this;
     }
 
-    public MedicationKnowledgeBuilder.Impl withContraindication(
-        @NonNull ReferenceBuilder... contraindication) {
-      this.contraindication = Arrays.stream(contraindication).map(e -> e.build()).collect(toList());
+    public MedicationKnowledgeBuilder.Impl withClinicalUseIssue(
+        @NonNull ReferenceBuilder... clinicalUseIssue) {
+      this.clinicalUseIssue = Arrays.stream(clinicalUseIssue).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -389,10 +446,8 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param associatedMedication - Associated or related medications. For example, if the
-     *     medication is a branded product (e.g. Crestor), this is the Therapeutic Moeity (e.g.
-     *     Rosuvastatin) or if this is a generic medication (e.g. Rosuvastatin), this would link to
-     *     a branded product (e.g. Crestor).
+     * @param associatedMedication - Links to associated medications that could be prescribed,
+     *     dispensed or administered.
      */
     public MedicationKnowledgeBuilder.Impl withAssociatedMedication(
         @NonNull Reference... associatedMedication) {
@@ -400,10 +455,8 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param associatedMedication - Associated or related medications. For example, if the
-     *     medication is a branded product (e.g. Crestor), this is the Therapeutic Moeity (e.g.
-     *     Rosuvastatin) or if this is a generic medication (e.g. Rosuvastatin), this would link to
-     *     a branded product (e.g. Crestor).
+     * @param associatedMedication - Links to associated medications that could be prescribed,
+     *     dispensed or administered.
      */
     public MedicationKnowledgeBuilder.Impl withAssociatedMedication(
         @NonNull Collection<Reference> associatedMedication) {
@@ -415,6 +468,18 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
         @NonNull ReferenceBuilder... associatedMedication) {
       this.associatedMedication =
           Arrays.stream(associatedMedication).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param associatedDefinition - Associated definitions for this medication. */
+    public MedicationKnowledgeBuilder.Impl withAssociatedDefinition(
+        @NonNull Reference associatedDefinition) {
+      this.associatedDefinition = Optional.of(associatedDefinition);
+      return this;
+    }
+
+    public MedicationKnowledgeBuilder.Impl withAssociatedDefinition(
+        @NonNull ReferenceBuilder associatedDefinition) {
+      this.associatedDefinition = Optional.of(associatedDefinition.build());
       return this;
     }
     /** @param preparationInstruction - The instructions for preparing the medication. */
@@ -440,30 +505,6 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
       this.cost = Arrays.stream(cost).map(e -> e.build()).collect(toList());
       return this;
     }
-    /**
-     * @param kinetics - The time course of drug absorption, distribution, metabolism and excretion
-     *     of a medication from the body.
-     */
-    public MedicationKnowledgeBuilder.Impl withKinetics(
-        @NonNull MedicationKnowledge.Kinetics... kinetics) {
-      this.kinetics = Arrays.asList(kinetics);
-      return this;
-    }
-    /**
-     * @param kinetics - The time course of drug absorption, distribution, metabolism and excretion
-     *     of a medication from the body.
-     */
-    public MedicationKnowledgeBuilder.Impl withKinetics(
-        @NonNull Collection<MedicationKnowledge.Kinetics> kinetics) {
-      this.kinetics = Collections.unmodifiableCollection(kinetics);
-      return this;
-    }
-
-    public MedicationKnowledgeBuilder.Impl withKinetics(
-        @NonNull MedicationKnowledge_KineticsBuilder... kinetics) {
-      this.kinetics = Arrays.stream(kinetics).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /** @param monograph - Associated documentation about the medication. */
     public MedicationKnowledgeBuilder.Impl withMonograph(
         @NonNull MedicationKnowledge.Monograph... monograph) {
@@ -484,14 +525,20 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
     }
     /** @param packaging - Information that only applies to packages (not products). */
     public MedicationKnowledgeBuilder.Impl withPackaging(
-        @NonNull MedicationKnowledge.Packaging packaging) {
-      this.packaging = Optional.of(packaging);
+        @NonNull MedicationKnowledge.Packaging... packaging) {
+      this.packaging = Arrays.asList(packaging);
+      return this;
+    }
+    /** @param packaging - Information that only applies to packages (not products). */
+    public MedicationKnowledgeBuilder.Impl withPackaging(
+        @NonNull Collection<MedicationKnowledge.Packaging> packaging) {
+      this.packaging = Collections.unmodifiableCollection(packaging);
       return this;
     }
 
     public MedicationKnowledgeBuilder.Impl withPackaging(
-        @NonNull MedicationKnowledge_PackagingBuilder packaging) {
-      this.packaging = Optional.of(packaging.build());
+        @NonNull MedicationKnowledge_PackagingBuilder... packaging) {
+      this.packaging = Arrays.stream(packaging).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param ingredient - Identifies a particular constituent of interest in the product. */
@@ -557,6 +604,31 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param kineticCharacteristic - The time course of drug absorption, distribution, metabolism
+     *     and excretion of a medication from the body.
+     */
+    public MedicationKnowledgeBuilder.Impl withKineticCharacteristic(
+        @NonNull MedicationKnowledge.KineticCharacteristic... kineticCharacteristic) {
+      this.kineticCharacteristic = Arrays.asList(kineticCharacteristic);
+      return this;
+    }
+    /**
+     * @param kineticCharacteristic - The time course of drug absorption, distribution, metabolism
+     *     and excretion of a medication from the body.
+     */
+    public MedicationKnowledgeBuilder.Impl withKineticCharacteristic(
+        @NonNull Collection<MedicationKnowledge.KineticCharacteristic> kineticCharacteristic) {
+      this.kineticCharacteristic = Collections.unmodifiableCollection(kineticCharacteristic);
+      return this;
+    }
+
+    public MedicationKnowledgeBuilder.Impl withKineticCharacteristic(
+        @NonNull MedicationKnowledge_KineticCharacteristicBuilder... kineticCharacteristic) {
+      this.kineticCharacteristic =
+          Arrays.stream(kineticCharacteristic).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
      * @param medicineClassification - Categorization of the medication within a formulary or
      *     classification system.
      */
@@ -599,13 +671,23 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
       this.regulatory = Arrays.stream(regulatory).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param relatedMedicationKnowledge - Associated or related knowledge about a medication. */
+    /**
+     * @param relatedMedicationKnowledge - Associated or related medications. For example, if the
+     *     medication is a branded product (e.g. Crestor), this is the Therapeutic Moeity (e.g.
+     *     Rosuvastatin) or if this is a generic medication (e.g. Rosuvastatin), this would link to
+     *     a branded product (e.g. Crestor.
+     */
     public MedicationKnowledgeBuilder.Impl withRelatedMedicationKnowledge(
         @NonNull MedicationKnowledge.RelatedMedicationKnowledge... relatedMedicationKnowledge) {
       this.relatedMedicationKnowledge = Arrays.asList(relatedMedicationKnowledge);
       return this;
     }
-    /** @param relatedMedicationKnowledge - Associated or related knowledge about a medication. */
+    /**
+     * @param relatedMedicationKnowledge - Associated or related medications. For example, if the
+     *     medication is a branded product (e.g. Crestor), this is the Therapeutic Moeity (e.g.
+     *     Rosuvastatin) or if this is a generic medication (e.g. Rosuvastatin), this would link to
+     *     a branded product (e.g. Crestor.
+     */
     public MedicationKnowledgeBuilder.Impl withRelatedMedicationKnowledge(
         @NonNull
             Collection<MedicationKnowledge.RelatedMedicationKnowledge> relatedMedicationKnowledge) {
@@ -621,24 +703,29 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
           Arrays.stream(relatedMedicationKnowledge).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param administrationGuidelines - Guidelines for the administration of the medication. */
-    public MedicationKnowledgeBuilder.Impl withAdministrationGuidelines(
-        @NonNull MedicationKnowledge.AdministrationGuidelines... administrationGuidelines) {
-      this.administrationGuidelines = Arrays.asList(administrationGuidelines);
+    /**
+     * @param indicationGuideline - Guidelines or protocols that are applicable for the
+     *     administration of the medication based on indication.
+     */
+    public MedicationKnowledgeBuilder.Impl withIndicationGuideline(
+        @NonNull MedicationKnowledge.IndicationGuideline... indicationGuideline) {
+      this.indicationGuideline = Arrays.asList(indicationGuideline);
       return this;
     }
-    /** @param administrationGuidelines - Guidelines for the administration of the medication. */
-    public MedicationKnowledgeBuilder.Impl withAdministrationGuidelines(
-        @NonNull
-            Collection<MedicationKnowledge.AdministrationGuidelines> administrationGuidelines) {
-      this.administrationGuidelines = Collections.unmodifiableCollection(administrationGuidelines);
+    /**
+     * @param indicationGuideline - Guidelines or protocols that are applicable for the
+     *     administration of the medication based on indication.
+     */
+    public MedicationKnowledgeBuilder.Impl withIndicationGuideline(
+        @NonNull Collection<MedicationKnowledge.IndicationGuideline> indicationGuideline) {
+      this.indicationGuideline = Collections.unmodifiableCollection(indicationGuideline);
       return this;
     }
 
-    public MedicationKnowledgeBuilder.Impl withAdministrationGuidelines(
-        @NonNull MedicationKnowledge_AdministrationGuidelinesBuilder... administrationGuidelines) {
-      this.administrationGuidelines =
-          Arrays.stream(administrationGuidelines).map(e -> e.build()).collect(toList());
+    public MedicationKnowledgeBuilder.Impl withIndicationGuideline(
+        @NonNull MedicationKnowledge_IndicationGuidelineBuilder... indicationGuideline) {
+      this.indicationGuideline =
+          Arrays.stream(indicationGuideline).map(e -> e.build()).collect(toList());
       return this;
     }
 
@@ -654,31 +741,35 @@ public interface MedicationKnowledgeBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(text),
           OptionConverters.toScala(code),
           OptionConverters.toScala(status),
+          OptionConverters.toScala(author),
           OptionConverters.toScala(amount),
+          device.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(sponsor),
           synonym.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
           OptionConverters.toScala(doseForm),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
+          identifier.stream().collect(new LitSeqJCollector<>()),
           productType.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(manufacturer),
           OptionConverters.toScala(implicitRules),
           intendedRoute.stream().collect(new LitSeqJCollector<>()),
-          contraindication.stream().collect(new LitSeqJCollector<>()),
+          clinicalUseIssue.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           associatedMedication.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(associatedDefinition),
           OptionConverters.toScala(preparationInstruction),
           cost.stream().collect(new LitSeqJCollector<>()),
-          kinetics.stream().collect(new LitSeqJCollector<>()),
           monograph.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(packaging),
+          packaging.stream().collect(new LitSeqJCollector<>()),
           ingredient.stream().collect(new LitSeqJCollector<>()),
           monitoringProgram.stream().collect(new LitSeqJCollector<>()),
           drugCharacteristic.stream().collect(new LitSeqJCollector<>()),
+          kineticCharacteristic.stream().collect(new LitSeqJCollector<>()),
           medicineClassification.stream().collect(new LitSeqJCollector<>()),
           regulatory.stream().collect(new LitSeqJCollector<>()),
           relatedMedicationKnowledge.stream().collect(new LitSeqJCollector<>()),
-          administrationGuidelines.stream().collect(new LitSeqJCollector<>()),
+          indicationGuideline.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }
   }

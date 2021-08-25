@@ -23,12 +23,11 @@ import com.babylonhealth.lit.hl7.{
   PUBLICATION_STATUS,
   MAP_SOURCE_LIST_MODE,
   MAP_GROUP_TYPE_MODE,
+  MAP_TRANSFORM,
   MAP_INPUT_MODE,
   GROUP_TYPE,
   MAP_TARGET_LIST_MODE,
-  LIST_MODE,
-  MAP_CONTEXT_TYPE,
-  MAP_TRANSFORM
+  LIST_MODE
 }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
@@ -436,7 +435,6 @@ object StructureMap extends CompanionFor[StructureMap] {
             extension: LitSeq[Extension] = LitSeq.empty,
             transform: Option[MAP_TRANSFORM] = None,
             listRuleId: Option[Id] = None,
-            contextType: Option[MAP_CONTEXT_TYPE] = None,
             modifierExtension: LitSeq[Extension] = LitSeq.empty,
             parameter: LitSeq[Target.Parameter] = LitSeq.empty,
             primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
@@ -449,13 +447,12 @@ object StructureMap extends CompanionFor[StructureMap] {
           extension,
           transform,
           listRuleId,
-          contextType,
           modifierExtension,
           parameter,
           primitiveAttributes = primitiveAttributes
         )
         def unapply(
-            o: Target): Option[(Option[String], Option[Id], Option[String], Option[Id], LitSeq[MAP_TARGET_LIST_MODE], LitSeq[Extension], Option[MAP_TRANSFORM], Option[Id], Option[MAP_CONTEXT_TYPE], LitSeq[Extension], LitSeq[Target.Parameter])] =
+            o: Target): Option[(Option[String], Option[Id], Option[String], Option[Id], LitSeq[MAP_TARGET_LIST_MODE], LitSeq[Extension], Option[MAP_TRANSFORM], Option[Id], LitSeq[Extension], LitSeq[Target.Parameter])] =
           Some(
             (
               o.id,
@@ -466,7 +463,6 @@ object StructureMap extends CompanionFor[StructureMap] {
               o.extension,
               o.transform,
               o.listRuleId,
-              o.contextType,
               o.modifierExtension,
               o.parameter))
         val id: FHIRComponentFieldMeta[Option[String]] =
@@ -485,24 +481,12 @@ object StructureMap extends CompanionFor[StructureMap] {
           FHIRComponentFieldMeta("transform", lTagOf[Option[MAP_TRANSFORM]], false, lTagOf[MAP_TRANSFORM])
         val listRuleId: FHIRComponentFieldMeta[Option[Id]] =
           FHIRComponentFieldMeta("listRuleId", lTagOf[Option[Id]], false, lTagOf[Id])
-        val contextType: FHIRComponentFieldMeta[Option[MAP_CONTEXT_TYPE]] =
-          FHIRComponentFieldMeta("contextType", lTagOf[Option[MAP_CONTEXT_TYPE]], false, lTagOf[MAP_CONTEXT_TYPE])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val parameter: FHIRComponentFieldMeta[LitSeq[Target.Parameter]] =
           FHIRComponentFieldMeta("parameter", lTagOf[LitSeq[Target.Parameter]], false, lTagOf[Target.Parameter])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
-          id,
-          context,
-          element,
-          variable,
-          listMode,
-          extension,
-          transform,
-          listRuleId,
-          contextType,
-          modifierExtension,
-          parameter)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+          Seq(id, context, element, variable, listMode, extension, transform, listRuleId, modifierExtension, parameter)
         override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Target): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
@@ -513,7 +497,6 @@ object StructureMap extends CompanionFor[StructureMap] {
           FHIRComponentField[LitSeq[Extension]](extension, t.extension),
           FHIRComponentField[Option[MAP_TRANSFORM]](transform, t.transform),
           FHIRComponentField[Option[Id]](listRuleId, t.listRuleId),
-          FHIRComponentField[Option[MAP_CONTEXT_TYPE]](contextType, t.contextType),
           FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
           FHIRComponentField[LitSeq[Target.Parameter]](parameter, t.parameter)
         )
@@ -531,7 +514,6 @@ object StructureMap extends CompanionFor[StructureMap] {
                 cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
                 cursor.decodeAs[Option[MAP_TRANSFORM]]("transform", Some(None)),
                 cursor.decodeAs[Option[Id]]("listRuleId", Some(None)),
-                cursor.decodeAs[Option[MAP_CONTEXT_TYPE]]("contextType", Some(None)),
                 cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
                 cursor.decodeAs[LitSeq[Target.Parameter]]("parameter", Some(LitSeq.empty)),
                 decodeAttributes(cursor)
@@ -548,14 +530,13 @@ object StructureMap extends CompanionFor[StructureMap] {
           override val extension: LitSeq[Extension] = LitSeq.empty,
           val transform: Option[MAP_TRANSFORM] = None,
           val listRuleId: Option[Id] = None,
-          val contextType: Option[MAP_CONTEXT_TYPE] = None,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           val parameter: LitSeq[Target.Parameter] = LitSeq.empty,
           override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
-          name: Id,
+          name: Option[Id] = None,
           rule: LitSeq[StructureMap.Group.Rule] = LitSeq.empty,
           extension: LitSeq[Extension] = LitSeq.empty,
           documentation: Option[String] = None,
@@ -577,12 +558,12 @@ object StructureMap extends CompanionFor[StructureMap] {
         primitiveAttributes = primitiveAttributes
       )
       def unapply(
-          o: Rule): Option[(Option[String], Id, LitSeq[StructureMap.Group.Rule], LitSeq[Extension], Option[String], LitSeq[Extension], NonEmptyLitSeq[Rule.Source], LitSeq[Rule.Dependent], LitSeq[Rule.Target])] =
+          o: Rule): Option[(Option[String], Option[Id], LitSeq[StructureMap.Group.Rule], LitSeq[Extension], Option[String], LitSeq[Extension], NonEmptyLitSeq[Rule.Source], LitSeq[Rule.Dependent], LitSeq[Rule.Target])] =
         Some((o.id, o.name, o.rule, o.extension, o.documentation, o.modifierExtension, o.source, o.dependent, o.target))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-      val name: FHIRComponentFieldMeta[Id] =
-        FHIRComponentFieldMeta("name", lTagOf[Id], false, lTagOf[Id])
+      val name: FHIRComponentFieldMeta[Option[Id]] =
+        FHIRComponentFieldMeta("name", lTagOf[Option[Id]], false, lTagOf[Id])
       val rule: FHIRComponentFieldMeta[LitSeq[StructureMap.Group.Rule]] =
         FHIRComponentFieldMeta("rule", lTagOf[LitSeq[StructureMap.Group.Rule]], false, lTagOf[StructureMap.Group.Rule])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -602,7 +583,7 @@ object StructureMap extends CompanionFor[StructureMap] {
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Rule): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
-        FHIRComponentField[Id](name, t.name),
+        FHIRComponentField[Option[Id]](name, t.name),
         FHIRComponentField[LitSeq[StructureMap.Group.Rule]](rule, t.rule),
         FHIRComponentField[LitSeq[Extension]](extension, t.extension),
         FHIRComponentField[Option[String]](documentation, t.documentation),
@@ -618,7 +599,7 @@ object StructureMap extends CompanionFor[StructureMap] {
           Try(
             new Rule(
               cursor.decodeAs[Option[String]]("id", Some(None)),
-              cursor.decodeAs[Id]("name", None),
+              cursor.decodeAs[Option[Id]]("name", Some(None)),
               cursor.decodeAs[LitSeq[StructureMap.Group.Rule]]("rule", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[Option[String]]("documentation", Some(None)),
@@ -633,7 +614,7 @@ object StructureMap extends CompanionFor[StructureMap] {
     @POJOBoilerplate
     class Rule(
         override val id: Option[String] = None,
-        val name: Id,
+        val name: Option[Id] = None,
         val rule: LitSeq[StructureMap.Group.Rule] = LitSeq.empty,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val documentation: Option[String] = None,
@@ -647,12 +628,12 @@ object StructureMap extends CompanionFor[StructureMap] {
         id: Option[String] = None,
         name: Id,
         `extends`: Option[Id] = None,
-        typeMode: MAP_GROUP_TYPE_MODE,
+        typeMode: Option[MAP_GROUP_TYPE_MODE] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
         documentation: Option[String] = None,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         input: NonEmptyLitSeq[Group.Input],
-        rule: NonEmptyLitSeq[Group.Rule],
+        rule: LitSeq[Group.Rule] = LitSeq.empty,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
     ): Group = new Group(
       id,
@@ -667,7 +648,7 @@ object StructureMap extends CompanionFor[StructureMap] {
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Group): Option[(Option[String], Id, Option[Id], MAP_GROUP_TYPE_MODE, LitSeq[Extension], Option[String], LitSeq[Extension], NonEmptyLitSeq[Group.Input], NonEmptyLitSeq[Group.Rule])] =
+        o: Group): Option[(Option[String], Id, Option[Id], Option[MAP_GROUP_TYPE_MODE], LitSeq[Extension], Option[String], LitSeq[Extension], NonEmptyLitSeq[Group.Input], LitSeq[Group.Rule])] =
       Some((o.id, o.name, o.`extends`, o.typeMode, o.extension, o.documentation, o.modifierExtension, o.input, o.rule))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -675,8 +656,8 @@ object StructureMap extends CompanionFor[StructureMap] {
       FHIRComponentFieldMeta("name", lTagOf[Id], false, lTagOf[Id])
     val `extends`: FHIRComponentFieldMeta[Option[Id]] =
       FHIRComponentFieldMeta("extends", lTagOf[Option[Id]], false, lTagOf[Id])
-    val typeMode: FHIRComponentFieldMeta[MAP_GROUP_TYPE_MODE] =
-      FHIRComponentFieldMeta("typeMode", lTagOf[MAP_GROUP_TYPE_MODE], false, lTagOf[MAP_GROUP_TYPE_MODE])
+    val typeMode: FHIRComponentFieldMeta[Option[MAP_GROUP_TYPE_MODE]] =
+      FHIRComponentFieldMeta("typeMode", lTagOf[Option[MAP_GROUP_TYPE_MODE]], false, lTagOf[MAP_GROUP_TYPE_MODE])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val documentation: FHIRComponentFieldMeta[Option[String]] =
@@ -685,8 +666,8 @@ object StructureMap extends CompanionFor[StructureMap] {
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val input: FHIRComponentFieldMeta[NonEmptyLitSeq[Group.Input]] =
       FHIRComponentFieldMeta("input", lTagOf[NonEmptyLitSeq[Group.Input]], false, lTagOf[Group.Input])
-    val rule: FHIRComponentFieldMeta[NonEmptyLitSeq[Group.Rule]] =
-      FHIRComponentFieldMeta("rule", lTagOf[NonEmptyLitSeq[Group.Rule]], false, lTagOf[Group.Rule])
+    val rule: FHIRComponentFieldMeta[LitSeq[Group.Rule]] =
+      FHIRComponentFieldMeta("rule", lTagOf[LitSeq[Group.Rule]], false, lTagOf[Group.Rule])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, name, `extends`, typeMode, extension, documentation, modifierExtension, input, rule)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
@@ -694,12 +675,12 @@ object StructureMap extends CompanionFor[StructureMap] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Id](name, t.name),
       FHIRComponentField[Option[Id]](`extends`, t.`extends`),
-      FHIRComponentField[MAP_GROUP_TYPE_MODE](typeMode, t.typeMode),
+      FHIRComponentField[Option[MAP_GROUP_TYPE_MODE]](typeMode, t.typeMode),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
       FHIRComponentField[Option[String]](documentation, t.documentation),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
       FHIRComponentField[NonEmptyLitSeq[Group.Input]](input, t.input),
-      FHIRComponentField[NonEmptyLitSeq[Group.Rule]](rule, t.rule)
+      FHIRComponentField[LitSeq[Group.Rule]](rule, t.rule)
     )
     val baseType: CompanionFor[Group] = this
     val thisName: String              = "Group"
@@ -710,12 +691,12 @@ object StructureMap extends CompanionFor[StructureMap] {
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Id]("name", None),
             cursor.decodeAs[Option[Id]]("extends", Some(None)),
-            cursor.decodeAs[MAP_GROUP_TYPE_MODE]("typeMode", None),
+            cursor.decodeAs[Option[MAP_GROUP_TYPE_MODE]]("typeMode", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[String]]("documentation", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             cursor.decodeAs[NonEmptyLitSeq[Group.Input]]("input", None),
-            cursor.decodeAs[NonEmptyLitSeq[Group.Rule]]("rule", None),
+            cursor.decodeAs[LitSeq[Group.Rule]]("rule", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
         ))
@@ -725,12 +706,12 @@ object StructureMap extends CompanionFor[StructureMap] {
       override val id: Option[String] = None,
       val name: Id,
       val `extends`: Option[Id] = None,
-      val typeMode: MAP_GROUP_TYPE_MODE,
+      val typeMode: Option[MAP_GROUP_TYPE_MODE] = None,
       override val extension: LitSeq[Extension] = LitSeq.empty,
       val documentation: Option[String] = None,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       val input: NonEmptyLitSeq[Group.Input],
-      val rule: NonEmptyLitSeq[Group.Rule],
+      val rule: LitSeq[Group.Rule] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Structure extends CompanionFor[Structure] {
@@ -954,10 +935,10 @@ object StructureMap extends CompanionFor[StructureMap] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: StructureMap): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[UriStr](url, t.url),
+    FHIRComponentField[UriStr](url, t.url.get),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name),
+    FHIRComponentField[String](name, t.name.get),
     FHIRComponentField[Option[FHIRDateTime]](date, t.date),
     FHIRComponentField[Option[String]](title, t.title),
     FHIRComponentField[PUBLICATION_STATUS](status, t.status),
@@ -981,10 +962,10 @@ object StructureMap extends CompanionFor[StructureMap] {
     FHIRComponentField[NonEmptyLitSeq[StructureMap.Group]](group, t.group)
   )
   def extractId(t: StructureMap): Option[String]                        = t.id
-  def extractUrl(t: StructureMap): UriStr                               = t.url
+  def extractUrl(t: StructureMap): UriStr                               = t.url.get
   def extractMeta(t: StructureMap): Option[Meta]                        = t.meta
   def extractText(t: StructureMap): Option[Narrative]                   = t.text
-  def extractName(t: StructureMap): String                              = t.name
+  def extractName(t: StructureMap): String                              = t.name.get
   def extractDate(t: StructureMap): Option[FHIRDateTime]                = t.date
   def extractTitle(t: StructureMap): Option[String]                     = t.title
   def extractStatus(t: StructureMap): PUBLICATION_STATUS                = t.status
@@ -1063,11 +1044,11 @@ object StructureMap extends CompanionFor[StructureMap] {
 
 /** A Map of relationships between 2 structures that can be used to transform data.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.CanonicalResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, title, status, `import`, version, contact, purpose, publisher, copyright, identifier,
-  *   useContext, description, experimental, jurisdiction, structure, group.
+  *   Introduces the fields `import`, structure, group. Requires the following fields which were optional in the parent: url,
+  *   name.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -1109,7 +1090,7 @@ object StructureMap extends CompanionFor[StructureMap] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -1155,39 +1136,54 @@ object StructureMap extends CompanionFor[StructureMap] {
 @POJOBoilerplate
 class StructureMap(
     override val id: Option[String] = None,
-    val url: UriStr,
+    url: UriStr,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: String,
-    val date: Option[FHIRDateTime] = None,
-    val title: Option[String] = None,
-    val status: PUBLICATION_STATUS,
+    name: String,
+    override val date: Option[FHIRDateTime] = None,
+    override val title: Option[String] = None,
+    override val status: PUBLICATION_STATUS,
     val `import`: LitSeq[Canonical] = LitSeq.empty,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val copyright: Option[Markdown] = None,
-    val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
-    val description: Option[Markdown] = None,
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val publisher: Option[String] = None,
+    override val copyright: Option[Markdown] = None,
+    override val identifier: LitSeq[Identifier] = LitSeq.empty,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val description: Option[Markdown] = None,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val structure: LitSeq[StructureMap.Structure] = LitSeq.empty,
     val group: NonEmptyLitSeq[StructureMap.Group],
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends CanonicalResource(
       id = id,
+      url = Some(url),
       meta = meta,
       text = text,
+      name = Some(name),
+      date = date,
+      title = title,
+      status = status,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
       contained = contained,
       extension = extension,
+      publisher = publisher,
+      copyright = copyright,
+      identifier = identifier,
+      useContext = useContext,
+      description = description,
+      experimental = experimental,
+      jurisdiction = jurisdiction,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {

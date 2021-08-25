@@ -82,8 +82,8 @@ object Narrative extends CompanionFor[Narrative] {
 /** Base StructureDefinition for Narrative Type: A human-readable summary of the resource conveying the essential clinical and
   * business information for the resource.
   *
-  * Subclass of [[core.model.Element]] (Base StructureDefinition for Element Type: Base definition for all elements in a
-  * resource.)
+  * Subclass of [[core.model.DataType]] (Base StructureDefinition for DataType Type: The base class for all re-useable types
+  * defined as part of the FHIR Specification.)
   *
   * @constructor
   *   Introduces the fields div, status.
@@ -108,6 +108,6 @@ class Narrative(
     val status: NARRATIVE_STATUS,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends Element(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
+) extends DataType(id = id, extension = extension, primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "Narrative"
 }

@@ -67,8 +67,6 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
     private Collection<SubstanceReferenceInformation.Target> target = Collections.emptyList();
     private Collection<SubstanceReferenceInformation.GeneElement> geneElement =
         Collections.emptyList();
-    private Collection<SubstanceReferenceInformation.Classification> classification =
-        Collections.emptyList();
 
     /** Required fields for {@link SubstanceReferenceInformation} */
     public Impl() {}
@@ -123,8 +121,8 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public SubstanceReferenceInformationBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -132,8 +130,8 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public SubstanceReferenceInformationBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
@@ -284,24 +282,6 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
       this.geneElement = Arrays.stream(geneElement).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param classification - Todo. */
-    public SubstanceReferenceInformationBuilder.Impl withClassification(
-        @NonNull SubstanceReferenceInformation.Classification... classification) {
-      this.classification = Arrays.asList(classification);
-      return this;
-    }
-    /** @param classification - Todo. */
-    public SubstanceReferenceInformationBuilder.Impl withClassification(
-        @NonNull Collection<SubstanceReferenceInformation.Classification> classification) {
-      this.classification = Collections.unmodifiableCollection(classification);
-      return this;
-    }
-
-    public SubstanceReferenceInformationBuilder.Impl withClassification(
-        @NonNull SubstanceReferenceInformation_ClassificationBuilder... classification) {
-      this.classification = Arrays.stream(classification).map(e -> e.build()).collect(toList());
-      return this;
-    }
 
     public SubstanceReferenceInformationBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
@@ -322,7 +302,6 @@ public interface SubstanceReferenceInformationBuilder extends DomainResourceBuil
           gene.stream().collect(new LitSeqJCollector<>()),
           target.stream().collect(new LitSeqJCollector<>()),
           geneElement.stream().collect(new LitSeqJCollector<>()),
-          classification.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }
   }

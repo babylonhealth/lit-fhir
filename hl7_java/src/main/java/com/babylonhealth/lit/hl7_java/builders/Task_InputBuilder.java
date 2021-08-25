@@ -145,6 +145,10 @@ public interface Task_InputBuilder {
     return new ChoiceAll(l);
   }
 
+  public static ChoiceAll value(Long l) {
+    return new ChoiceAll(l);
+  }
+
   public static ChoiceAll value(Meta m) {
     return new ChoiceAll(m);
   }
@@ -267,10 +271,11 @@ public interface Task_InputBuilder {
      * @param value Field is a 'choice' field. Type should be one of Address, Age, Annotation,
      *     Attachment, byte[], BigDecimal, Boolean, String, CodeableConcept, Coding, ContactDetail,
      *     ContactPoint, Contributor, Count, DataRequirement, Distance, Dosage, Duration,
-     *     Expression, FHIRDate, FHIRDateTime, HumanName, Identifier, Integer, LocalTime, Meta,
-     *     Money, ParameterDefinition, Period, Quantity, Range, Ratio, Reference, RelatedArtifact,
-     *     SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext, ZonedDateTime. To
-     *     pass the value in, wrap with one of the Task_InputBuilder.value static methods
+     *     Expression, FHIRDate, FHIRDateTime, HumanName, Identifier, Integer, LocalTime, Long,
+     *     Meta, Money, ParameterDefinition, Period, Quantity, Range, Ratio, Reference,
+     *     RelatedArtifact, SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext,
+     *     ZonedDateTime. To pass the value in, wrap with one of the Task_InputBuilder.value static
+     *     methods
      */
     public Impl(CodeableConcept _type, @NonNull ChoiceAll value) {
       this._type = _type;

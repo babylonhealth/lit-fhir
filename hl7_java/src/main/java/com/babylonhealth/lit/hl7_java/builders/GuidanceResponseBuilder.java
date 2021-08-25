@@ -74,6 +74,7 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
     private Optional<Narrative> text = Optional.empty();
     private Collection<Annotation> note = Collections.emptyList();
     private GUIDANCE_RESPONSE_STATUS status;
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Optional<Reference> result = Optional.empty();
     private Optional<Reference> subject = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
@@ -83,9 +84,7 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
     private Optional<Reference> encounter = Optional.empty();
     private Optional<Reference> performer = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<DataRequirement> dataRequirement = Collections.emptyList();
     private Optional<Reference> outputParameters = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -171,6 +170,33 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
       this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param reason - Describes the reason for the guidance response in coded or textual form, or
+     *     Indicates the reason the request was initiated. This is typically provided as a parameter
+     *     to the evaluation and echoed by the service, although for some use cases, such as
+     *     subscription- or event-based scenarios, it may provide an indication of the cause for the
+     *     response.
+     */
+    public GuidanceResponseBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /**
+     * @param reason - Describes the reason for the guidance response in coded or textual form, or
+     *     Indicates the reason the request was initiated. This is typically provided as a parameter
+     *     to the evaluation and echoed by the service, although for some use cases, such as
+     *     subscription- or event-based scenarios, it may provide an indication of the cause for the
+     *     response.
+     */
+    public GuidanceResponseBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public GuidanceResponseBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param result - The actions, if any, produced by the evaluation of the artifact. */
     public GuidanceResponseBuilder.Impl withResult(@NonNull Reference result) {
       this.result = Optional.of(result);
@@ -198,8 +224,8 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public GuidanceResponseBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -207,8 +233,8 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public GuidanceResponseBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -291,27 +317,6 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param reasonCode - Describes the reason for the guidance response in coded or textual form.
-     */
-    public GuidanceResponseBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /**
-     * @param reasonCode - Describes the reason for the guidance response in coded or textual form.
-     */
-    public GuidanceResponseBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public GuidanceResponseBuilder.Impl withReasonCode(
-        @NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
      * @param implicitRules - A reference to a set of rules that were followed when the resource was
      *     constructed, and which must be understood when processing the content. Often, this is a
      *     reference to an implementation guide that defines the special rules along with other
@@ -319,33 +324,6 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
      */
     public GuidanceResponseBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
       this.implicitRules = Optional.of(implicitRules);
-      return this;
-    }
-    /**
-     * @param reasonReference - Indicates the reason the request was initiated. This is typically
-     *     provided as a parameter to the evaluation and echoed by the service, although for some
-     *     use cases, such as subscription- or event-based scenarios, it may provide an indication
-     *     of the cause for the response.
-     */
-    public GuidanceResponseBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /**
-     * @param reasonReference - Indicates the reason the request was initiated. This is typically
-     *     provided as a parameter to the evaluation and echoed by the service, although for some
-     *     use cases, such as subscription- or event-based scenarios, it may provide an indication
-     *     of the cause for the response.
-     */
-    public GuidanceResponseBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public GuidanceResponseBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -498,6 +476,7 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(text),
           note.stream().collect(new LitSeqJCollector<>()),
           status,
+          reason.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(result),
           OptionConverters.toScala(subject),
           OptionConverters.toScala(language),
@@ -507,9 +486,7 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(encounter),
           OptionConverters.toScala(performer),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           dataRequirement.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(outputParameters),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),

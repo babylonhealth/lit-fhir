@@ -78,7 +78,10 @@ public interface Device_VersionBuilder {
       this.id = Optional.of(id);
       return this;
     }
-    /** @param _type - The kind or type of device. */
+    /**
+     * @param _type - The kind or type of device. A device instance may have more than one type - in
+     *     which case those are the types that apply to the specific instance of the device.
+     */
     public Device_VersionBuilder.Impl withType(@NonNull CodeableConcept _type) {
       this._type = Optional.of(_type);
       return this;

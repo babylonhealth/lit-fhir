@@ -56,6 +56,7 @@ public interface ConceptMap_Group_ElementBuilder {
   public class Impl implements ConceptMap_Group_ElementBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> code = Optional.empty();
+    private Optional<Boolean> noMap = Optional.empty();
     private Optional<String> display = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -75,6 +76,11 @@ public interface ConceptMap_Group_ElementBuilder {
     /** @param code */
     public ConceptMap_Group_ElementBuilder.Impl withCode(@NonNull String code) {
       this.code = Optional.of(code);
+      return this;
+    }
+    /** @param noMap */
+    public ConceptMap_Group_ElementBuilder.Impl withNoMap(@NonNull Boolean noMap) {
+      this.noMap = Optional.of(noMap);
       return this;
     }
     /** @param display */
@@ -185,6 +191,7 @@ public interface ConceptMap_Group_ElementBuilder {
       return new ConceptMap$Group$Element(
           OptionConverters.toScala(id),
           OptionConverters.toScala(code),
+          OptionConverters.toScala(noMap.map(x -> (Object) x)),
           OptionConverters.toScala(display),
           extension.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),

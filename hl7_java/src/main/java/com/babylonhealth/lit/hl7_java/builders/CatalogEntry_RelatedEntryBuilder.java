@@ -34,7 +34,7 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
-import com.babylonhealth.lit.hl7.RELATION_TYPE;
+
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
 
@@ -45,30 +45,30 @@ import static java.util.stream.Collectors.toList;
 public interface CatalogEntry_RelatedEntryBuilder {
   public CatalogEntry.RelatedEntry build();
 
-  public static Impl init(Reference item, RELATION_TYPE relationtype) {
-    return new Impl(item, relationtype);
+  public static Impl init(Reference target, String relationship) {
+    return new Impl(target, relationship);
   }
 
-  public static Impl builder(ReferenceBuilder item, RELATION_TYPE relationtype) {
-    return new Impl(item.build(), relationtype);
+  public static Impl builder(ReferenceBuilder target, String relationship) {
+    return new Impl(target.build(), relationship);
   }
 
   public class Impl implements CatalogEntry_RelatedEntryBuilder {
     private Optional<String> id = Optional.empty();
-    private Reference item;
+    private Reference target;
     private Collection<Extension> extension = Collections.emptyList();
-    private RELATION_TYPE relationtype;
+    private String relationship;
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
      * Required fields for {@link CatalogEntry.RelatedEntry}
      *
-     * @param item
-     * @param relationtype
+     * @param target
+     * @param relationship
      */
-    public Impl(Reference item, RELATION_TYPE relationtype) {
-      this.item = item;
-      this.relationtype = relationtype;
+    public Impl(Reference target, String relationship) {
+      this.target = target;
+      this.relationship = relationship;
     }
 
     /**
@@ -155,9 +155,9 @@ public interface CatalogEntry_RelatedEntryBuilder {
     public CatalogEntry.RelatedEntry build() {
       return new CatalogEntry.RelatedEntry(
           OptionConverters.toScala(id),
-          item,
+          target,
           extension.stream().collect(new LitSeqJCollector<>()),
-          relationtype,
+          relationship,
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

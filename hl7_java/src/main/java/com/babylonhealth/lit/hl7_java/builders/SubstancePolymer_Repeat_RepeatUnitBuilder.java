@@ -55,11 +55,11 @@ public interface SubstancePolymer_Repeat_RepeatUnitBuilder {
 
   public class Impl implements SubstancePolymer_Repeat_RepeatUnitBuilder {
     private Optional<String> id = Optional.empty();
-    private Optional<Choice> amount = Optional.empty();
+    private Optional<String> unit = Optional.empty();
+    private Optional<Integer> amount = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<String> repeatUnit = Optional.empty();
+    private Optional<CodeableConcept> orientation = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Optional<CodeableConcept> orientationOfPolymerisation = Optional.empty();
     private Collection<SubstancePolymer$Repeat$RepeatUnit$DegreeOfPolymerisation>
         degreeOfPolymerisation = Collections.emptyList();
     private Collection<SubstancePolymer$Repeat$RepeatUnit$StructuralRepresentation>
@@ -76,8 +76,13 @@ public interface SubstancePolymer_Repeat_RepeatUnitBuilder {
       this.id = Optional.of(id);
       return this;
     }
+    /** @param unit */
+    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withUnit(@NonNull String unit) {
+      this.unit = Optional.of(unit);
+      return this;
+    }
     /** @param amount */
-    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withAmount(@NonNull Choice amount) {
+    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withAmount(@NonNull Integer amount) {
       this.amount = Optional.of(amount);
       return this;
     }
@@ -111,10 +116,16 @@ public interface SubstancePolymer_Repeat_RepeatUnitBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param repeatUnit */
-    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withRepeatUnit(
-        @NonNull String repeatUnit) {
-      this.repeatUnit = Optional.of(repeatUnit);
+    /** @param orientation */
+    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withOrientation(
+        @NonNull CodeableConcept orientation) {
+      this.orientation = Optional.of(orientation);
+      return this;
+    }
+
+    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withOrientation(
+        @NonNull CodeableConceptBuilder orientation) {
+      this.orientation = Optional.of(orientation.build());
       return this;
     }
     /**
@@ -158,18 +169,6 @@ public interface SubstancePolymer_Repeat_RepeatUnitBuilder {
         @NonNull ExtensionBuilder... modifierExtension) {
       this.modifierExtension =
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /** @param orientationOfPolymerisation */
-    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withOrientationOfPolymerisation(
-        @NonNull CodeableConcept orientationOfPolymerisation) {
-      this.orientationOfPolymerisation = Optional.of(orientationOfPolymerisation);
-      return this;
-    }
-
-    public SubstancePolymer_Repeat_RepeatUnitBuilder.Impl withOrientationOfPolymerisation(
-        @NonNull CodeableConceptBuilder orientationOfPolymerisation) {
-      this.orientationOfPolymerisation = Optional.of(orientationOfPolymerisation.build());
       return this;
     }
     /** @param degreeOfPolymerisation */
@@ -225,11 +224,11 @@ public interface SubstancePolymer_Repeat_RepeatUnitBuilder {
     public SubstancePolymer$Repeat$RepeatUnit build() {
       return new SubstancePolymer$Repeat$RepeatUnit(
           OptionConverters.toScala(id),
-          (Option) OptionConverters.toScala(amount),
+          OptionConverters.toScala(unit),
+          OptionConverters.toScala(amount.map(x -> (Object) x)),
           extension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(repeatUnit),
+          OptionConverters.toScala(orientation),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(orientationOfPolymerisation),
           degreeOfPolymerisation.stream().collect(new LitSeqJCollector<>()),
           structuralRepresentation.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());

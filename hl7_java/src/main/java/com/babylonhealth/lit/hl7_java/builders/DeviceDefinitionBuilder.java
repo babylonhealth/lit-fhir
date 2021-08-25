@@ -63,17 +63,14 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
 
   public class Impl implements DeviceDefinitionBuilder {
     private Optional<String> id = Optional.empty();
-    private Optional<String> url = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
-    private Optional<CodeableConcept> _type = Optional.empty();
+    private Collection<CodeableConcept> _type = Collections.emptyList();
     private Collection<Annotation> note = Collections.emptyList();
     private Optional<Reference> owner = Optional.empty();
     private Collection<CodeableConcept> safety = Collections.emptyList();
-    private Collection<String> version = Collections.emptyList();
     private Collection<ContactPoint> contact = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
-    private Optional<Quantity> quantity = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
@@ -86,6 +83,8 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<String> onlineInformation = Optional.empty();
     private Optional<Choice> physicalCharacteristics = Optional.empty();
+    private Collection<DeviceDefinition.HasPart> hasPart = Collections.emptyList();
+    private Collection<DeviceDefinition.Version> version = Collections.emptyList();
     private Collection<DeviceDefinition.Property> property = Collections.emptyList();
     private Collection<DeviceDefinition.DeviceName> deviceName = Collections.emptyList();
     private Collection<DeviceDefinition.Capability> capability = Collections.emptyList();
@@ -93,6 +92,7 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
     private Collection<DeviceDefinition.Specialization> specialization = Collections.emptyList();
     private Collection<DeviceDefinition.UdiDeviceIdentifier> udiDeviceIdentifier =
         Collections.emptyList();
+    private Collection<DeviceDefinition.Packaging> packaging = Collections.emptyList();
 
     /** Required fields for {@link DeviceDefinition} */
     public Impl() {}
@@ -103,11 +103,6 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
      */
     public DeviceDefinitionBuilder.Impl withId(@NonNull String id) {
       this.id = Optional.of(id);
-      return this;
-    }
-    /** @param url - A network address on which the device may be contacted directly. */
-    public DeviceDefinitionBuilder.Impl withUrl(@NonNull String url) {
-      this.url = Optional.of(url);
       return this;
     }
     /**
@@ -141,13 +136,18 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
     /** @param _type - What kind of device or device system this is. */
-    public DeviceDefinitionBuilder.Impl withType(@NonNull CodeableConcept _type) {
-      this._type = Optional.of(_type);
+    public DeviceDefinitionBuilder.Impl withType(@NonNull CodeableConcept... _type) {
+      this._type = Arrays.asList(_type);
+      return this;
+    }
+    /** @param _type - What kind of device or device system this is. */
+    public DeviceDefinitionBuilder.Impl withType(@NonNull Collection<CodeableConcept> _type) {
+      this._type = Collections.unmodifiableCollection(_type);
       return this;
     }
 
-    public DeviceDefinitionBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
-      this._type = Optional.of(_type.build());
+    public DeviceDefinitionBuilder.Impl withType(@NonNull CodeableConceptBuilder... _type) {
+      this._type = Arrays.stream(_type).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -199,16 +199,6 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
       this.safety = Arrays.stream(safety).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param version - The available versions of the device, e.g., software versions. */
-    public DeviceDefinitionBuilder.Impl withVersion(@NonNull String... version) {
-      this.version = Arrays.asList(version);
-      return this;
-    }
-    /** @param version - The available versions of the device, e.g., software versions. */
-    public DeviceDefinitionBuilder.Impl withVersion(@NonNull Collection<String> version) {
-      this.version = Collections.unmodifiableCollection(version);
-      return this;
-    }
     /**
      * @param contact - Contact details for an organization or a particular human that is
      *     responsible for the device.
@@ -236,23 +226,9 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param quantity - The quantity of the device present in the packaging (e.g. the number of
-     *     devices present in a pack, or the number of devices in the same package of the medicinal
-     *     product).
-     */
-    public DeviceDefinitionBuilder.Impl withQuantity(@NonNull Quantity quantity) {
-      this.quantity = Optional.of(quantity);
-      return this;
-    }
-
-    public DeviceDefinitionBuilder.Impl withQuantity(@NonNull QuantityBuilder quantity) {
-      this.quantity = Optional.of(quantity.build());
-      return this;
-    }
-    /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public DeviceDefinitionBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -260,8 +236,8 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public DeviceDefinitionBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -320,7 +296,10 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
       this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param modelNumber - The model number for the device. */
+    /**
+     * @param modelNumber - The model number for the device for example as defined by the
+     *     manufacturer or labeler, or other agency.
+     */
     public DeviceDefinitionBuilder.Impl withModelNumber(@NonNull String modelNumber) {
       this.modelNumber = Optional.of(modelNumber);
       return this;
@@ -369,8 +348,10 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param manufacturer - A name of the manufacturer. Field is a 'choice' field. Type should be
-     *     one of Reference, String. To pass the value in, wrap with one of the
+     * @param manufacturer - A name of the manufacturer or legal representative e.g. labeler.
+     *     Whether this is the actual manufacturer or the labeler or responsible depends on
+     *     implementation and jurisdiction. Field is a 'choice' field. Type should be one of
+     *     Reference, String. To pass the value in, wrap with one of the
      *     DeviceDefinitionBuilder.manufacturer static methods
      */
     public DeviceDefinitionBuilder.Impl withManufacturer(
@@ -437,10 +418,48 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
       this.onlineInformation = Optional.of(onlineInformation);
       return this;
     }
-    /** @param physicalCharacteristics - Dimensions, color etc. */
+    /**
+     * @param physicalCharacteristics - Physical characteristics to define or specify the product -
+     *     for example dimensions, color etc. These can be defined by the manufacturer or labeler,
+     *     or can be used to specify characteristics when ordering.
+     */
     public DeviceDefinitionBuilder.Impl withPhysicalCharacteristics(
         @NonNull Choice physicalCharacteristics) {
       this.physicalCharacteristics = Optional.of(physicalCharacteristics);
+      return this;
+    }
+    /** @param hasPart - A device that is part (for example a component) of the present device. */
+    public DeviceDefinitionBuilder.Impl withHasPart(@NonNull DeviceDefinition.HasPart... hasPart) {
+      this.hasPart = Arrays.asList(hasPart);
+      return this;
+    }
+    /** @param hasPart - A device that is part (for example a component) of the present device. */
+    public DeviceDefinitionBuilder.Impl withHasPart(
+        @NonNull Collection<DeviceDefinition.HasPart> hasPart) {
+      this.hasPart = Collections.unmodifiableCollection(hasPart);
+      return this;
+    }
+
+    public DeviceDefinitionBuilder.Impl withHasPart(
+        @NonNull DeviceDefinition_HasPartBuilder... hasPart) {
+      this.hasPart = Arrays.stream(hasPart).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param version - The version of the device or software. */
+    public DeviceDefinitionBuilder.Impl withVersion(@NonNull DeviceDefinition.Version... version) {
+      this.version = Arrays.asList(version);
+      return this;
+    }
+    /** @param version - The version of the device or software. */
+    public DeviceDefinitionBuilder.Impl withVersion(
+        @NonNull Collection<DeviceDefinition.Version> version) {
+      this.version = Collections.unmodifiableCollection(version);
+      return this;
+    }
+
+    public DeviceDefinitionBuilder.Impl withVersion(
+        @NonNull DeviceDefinition_VersionBuilder... version) {
+      this.version = Arrays.stream(version).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -467,13 +486,13 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
       this.property = Arrays.stream(property).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param deviceName - A name given to the device to identify it. */
+    /** @param deviceName - The name or names of the device as given by the manufacturer. */
     public DeviceDefinitionBuilder.Impl withDeviceName(
         @NonNull DeviceDefinition.DeviceName... deviceName) {
       this.deviceName = Arrays.asList(deviceName);
       return this;
     }
-    /** @param deviceName - A name given to the device to identify it. */
+    /** @param deviceName - The name or names of the device as given by the manufacturer. */
     public DeviceDefinitionBuilder.Impl withDeviceName(
         @NonNull Collection<DeviceDefinition.DeviceName> deviceName) {
       this.deviceName = Collections.unmodifiableCollection(deviceName);
@@ -485,13 +504,19 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
       this.deviceName = Arrays.stream(deviceName).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param capability - Device capabilities. */
+    /**
+     * @param capability - Additional capabilities that the device is defined or required to have
+     *     e.g. "water resistant", "long life".
+     */
     public DeviceDefinitionBuilder.Impl withCapability(
         @NonNull DeviceDefinition.Capability... capability) {
       this.capability = Arrays.asList(capability);
       return this;
     }
-    /** @param capability - Device capabilities. */
+    /**
+     * @param capability - Additional capabilities that the device is defined or required to have
+     *     e.g. "water resistant", "long life".
+     */
     public DeviceDefinitionBuilder.Impl withCapability(
         @NonNull Collection<DeviceDefinition.Capability> capability) {
       this.capability = Collections.unmodifiableCollection(capability);
@@ -574,6 +599,30 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
           Arrays.stream(udiDeviceIdentifier).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param packaging - Information about the packaging of the device, i.e. how the device is
+     *     packaged.
+     */
+    public DeviceDefinitionBuilder.Impl withPackaging(
+        @NonNull DeviceDefinition.Packaging... packaging) {
+      this.packaging = Arrays.asList(packaging);
+      return this;
+    }
+    /**
+     * @param packaging - Information about the packaging of the device, i.e. how the device is
+     *     packaged.
+     */
+    public DeviceDefinitionBuilder.Impl withPackaging(
+        @NonNull Collection<DeviceDefinition.Packaging> packaging) {
+      this.packaging = Collections.unmodifiableCollection(packaging);
+      return this;
+    }
+
+    public DeviceDefinitionBuilder.Impl withPackaging(
+        @NonNull DeviceDefinition_PackagingBuilder... packaging) {
+      this.packaging = Arrays.stream(packaging).map(e -> e.build()).collect(toList());
+      return this;
+    }
 
     public DeviceDefinitionBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
@@ -583,17 +632,14 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
     public DeviceDefinition build() {
       return new DeviceDefinition(
           OptionConverters.toScala(id),
-          OptionConverters.toScala(url),
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
-          OptionConverters.toScala(_type),
+          _type.stream().collect(new LitSeqJCollector<>()),
           note.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(owner),
           safety.stream().collect(new LitSeqJCollector<>()),
-          version.stream().collect(new LitSeqJCollector<>()),
           contact.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
-          OptionConverters.toScala(quantity),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
@@ -606,12 +652,15 @@ public interface DeviceDefinitionBuilder extends DomainResourceBuilder {
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(onlineInformation),
           (Option) OptionConverters.toScala(physicalCharacteristics),
+          hasPart.stream().collect(new LitSeqJCollector<>()),
+          version.stream().collect(new LitSeqJCollector<>()),
           property.stream().collect(new LitSeqJCollector<>()),
           deviceName.stream().collect(new LitSeqJCollector<>()),
           capability.stream().collect(new LitSeqJCollector<>()),
           material.stream().collect(new LitSeqJCollector<>()),
           specialization.stream().collect(new LitSeqJCollector<>()),
           udiDeviceIdentifier.stream().collect(new LitSeqJCollector<>()),
+          packaging.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }
   }

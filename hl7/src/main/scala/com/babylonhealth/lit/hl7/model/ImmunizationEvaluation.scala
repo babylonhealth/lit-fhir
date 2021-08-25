@@ -32,8 +32,6 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
   override val baseType: CompanionFor[ResourceType] = ImmunizationEvaluation
   override val parentType: CompanionFor[ParentType] = ImmunizationEvaluation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImmunizationEvaluation")
-  type DoseNumberChoice  = Choice[UnionPositiveIntOrString]
-  type SeriesDosesChoice = Choice[UnionPositiveIntOrString]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -48,11 +46,11 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
       authority: Option[Reference] = None,
       identifier: LitSeq[Identifier] = LitSeq.empty,
       doseStatus: CodeableConcept,
+      doseNumber: Option[String] = None,
       description: Option[String] = None,
+      seriesDoses: Option[String] = None,
       implicitRules: Option[UriStr] = None,
       targetDisease: CodeableConcept,
-      doseNumber: Option[ImmunizationEvaluation.DoseNumberChoice] = None,
-      seriesDoses: Option[ImmunizationEvaluation.SeriesDosesChoice] = None,
       doseStatusReason: LitSeq[CodeableConcept] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       immunizationEvent: Reference,
@@ -71,11 +69,11 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
     authority,
     identifier,
     doseStatus,
+    doseNumber,
     description,
+    seriesDoses,
     implicitRules,
     targetDisease,
-    doseNumber,
-    seriesDoses,
     doseStatusReason,
     modifierExtension,
     immunizationEvent,
@@ -107,24 +105,16 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val doseStatus: FHIRComponentFieldMeta[CodeableConcept] =
     FHIRComponentFieldMeta("doseStatus", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
+  val doseNumber: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("doseNumber", lTagOf[Option[String]], false, lTagOf[String])
   val description: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
+  val seriesDoses: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("seriesDoses", lTagOf[Option[String]], false, lTagOf[String])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val targetDisease: FHIRComponentFieldMeta[CodeableConcept] =
     FHIRComponentFieldMeta("targetDisease", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
-  val doseNumber: FHIRComponentFieldMeta[Option[ImmunizationEvaluation.DoseNumberChoice]] =
-    FHIRComponentFieldMeta(
-      "doseNumber",
-      lTagOf[Option[ImmunizationEvaluation.DoseNumberChoice]],
-      true,
-      lTagOf[UnionPositiveIntOrString])
-  val seriesDoses: FHIRComponentFieldMeta[Option[ImmunizationEvaluation.SeriesDosesChoice]] =
-    FHIRComponentFieldMeta(
-      "seriesDoses",
-      lTagOf[Option[ImmunizationEvaluation.SeriesDosesChoice]],
-      true,
-      lTagOf[UnionPositiveIntOrString])
   val doseStatusReason: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("doseStatusReason", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -145,11 +135,11 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
     authority,
     identifier,
     doseStatus,
+    doseNumber,
     description,
+    seriesDoses,
     implicitRules,
     targetDisease,
-    doseNumber,
-    seriesDoses,
     doseStatusReason,
     modifierExtension,
     immunizationEvent
@@ -169,37 +159,37 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
     FHIRComponentField[Option[Reference]](authority, t.authority),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
     FHIRComponentField[CodeableConcept](doseStatus, t.doseStatus),
+    FHIRComponentField[Option[String]](doseNumber, t.doseNumber),
     FHIRComponentField[Option[String]](description, t.description),
+    FHIRComponentField[Option[String]](seriesDoses, t.seriesDoses),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[CodeableConcept](targetDisease, t.targetDisease),
-    FHIRComponentField[Option[ImmunizationEvaluation.DoseNumberChoice]](doseNumber, t.doseNumber),
-    FHIRComponentField[Option[ImmunizationEvaluation.SeriesDosesChoice]](seriesDoses, t.seriesDoses),
     FHIRComponentField[LitSeq[CodeableConcept]](doseStatusReason, t.doseStatusReason),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[Reference](immunizationEvent, t.immunizationEvent)
   )
-  def extractId(t: ImmunizationEvaluation): Option[String]                                            = t.id
-  def extractMeta(t: ImmunizationEvaluation): Option[Meta]                                            = t.meta
-  def extractText(t: ImmunizationEvaluation): Option[Narrative]                                       = t.text
-  def extractDate(t: ImmunizationEvaluation): Option[FHIRDateTime]                                    = t.date
-  def extractStatus(t: ImmunizationEvaluation): IMMUNIZATION_EVALUATION_STATUS                        = t.status
-  def extractSeries(t: ImmunizationEvaluation): Option[String]                                        = t.series
-  def extractPatient(t: ImmunizationEvaluation): Reference                                            = t.patient
-  def extractLanguage(t: ImmunizationEvaluation): Option[LANGUAGES]                                   = t.language
-  def extractContained(t: ImmunizationEvaluation): LitSeq[Resource]                                   = t.contained
-  def extractExtension(t: ImmunizationEvaluation): LitSeq[Extension]                                  = t.extension
-  def extractAuthority(t: ImmunizationEvaluation): Option[Reference]                                  = t.authority
-  def extractIdentifier(t: ImmunizationEvaluation): LitSeq[Identifier]                                = t.identifier
-  def extractDoseStatus(t: ImmunizationEvaluation): CodeableConcept                                   = t.doseStatus
-  def extractDescription(t: ImmunizationEvaluation): Option[String]                                   = t.description
-  def extractImplicitRules(t: ImmunizationEvaluation): Option[UriStr]                                 = t.implicitRules
-  def extractTargetDisease(t: ImmunizationEvaluation): CodeableConcept                                = t.targetDisease
-  def extractDoseNumber(t: ImmunizationEvaluation): Option[ImmunizationEvaluation.DoseNumberChoice]   = t.doseNumber
-  def extractSeriesDoses(t: ImmunizationEvaluation): Option[ImmunizationEvaluation.SeriesDosesChoice] = t.seriesDoses
-  def extractDoseStatusReason(t: ImmunizationEvaluation): LitSeq[CodeableConcept]                     = t.doseStatusReason
-  def extractModifierExtension(t: ImmunizationEvaluation): LitSeq[Extension]                          = t.modifierExtension
-  def extractImmunizationEvent(t: ImmunizationEvaluation): Reference                                  = t.immunizationEvent
-  override val thisName: String                                                                       = "ImmunizationEvaluation"
+  def extractId(t: ImmunizationEvaluation): Option[String]                        = t.id
+  def extractMeta(t: ImmunizationEvaluation): Option[Meta]                        = t.meta
+  def extractText(t: ImmunizationEvaluation): Option[Narrative]                   = t.text
+  def extractDate(t: ImmunizationEvaluation): Option[FHIRDateTime]                = t.date
+  def extractStatus(t: ImmunizationEvaluation): IMMUNIZATION_EVALUATION_STATUS    = t.status
+  def extractSeries(t: ImmunizationEvaluation): Option[String]                    = t.series
+  def extractPatient(t: ImmunizationEvaluation): Reference                        = t.patient
+  def extractLanguage(t: ImmunizationEvaluation): Option[LANGUAGES]               = t.language
+  def extractContained(t: ImmunizationEvaluation): LitSeq[Resource]               = t.contained
+  def extractExtension(t: ImmunizationEvaluation): LitSeq[Extension]              = t.extension
+  def extractAuthority(t: ImmunizationEvaluation): Option[Reference]              = t.authority
+  def extractIdentifier(t: ImmunizationEvaluation): LitSeq[Identifier]            = t.identifier
+  def extractDoseStatus(t: ImmunizationEvaluation): CodeableConcept               = t.doseStatus
+  def extractDoseNumber(t: ImmunizationEvaluation): Option[String]                = t.doseNumber
+  def extractDescription(t: ImmunizationEvaluation): Option[String]               = t.description
+  def extractSeriesDoses(t: ImmunizationEvaluation): Option[String]               = t.seriesDoses
+  def extractImplicitRules(t: ImmunizationEvaluation): Option[UriStr]             = t.implicitRules
+  def extractTargetDisease(t: ImmunizationEvaluation): CodeableConcept            = t.targetDisease
+  def extractDoseStatusReason(t: ImmunizationEvaluation): LitSeq[CodeableConcept] = t.doseStatusReason
+  def extractModifierExtension(t: ImmunizationEvaluation): LitSeq[Extension]      = t.modifierExtension
+  def extractImmunizationEvent(t: ImmunizationEvaluation): Reference              = t.immunizationEvent
+  override val thisName: String                                                   = "ImmunizationEvaluation"
   override val searchParams: Map[String, ImmunizationEvaluation => Seq[Any]] = Map(
     "identifier"         -> (obj => obj.identifier.toSeq),
     "immunization-event" -> (obj => Seq(obj.immunizationEvent)),
@@ -210,7 +200,7 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
     "target-disease"     -> (obj => Seq(obj.targetDisease))
   )
   def unapply(
-      o: ImmunizationEvaluation): Option[(Option[String], Option[Meta], Option[Narrative], Option[FHIRDateTime], IMMUNIZATION_EVALUATION_STATUS, Option[String], Reference, Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], Option[Reference], LitSeq[Identifier], CodeableConcept, Option[String], Option[UriStr], CodeableConcept, Option[ImmunizationEvaluation.DoseNumberChoice], Option[ImmunizationEvaluation.SeriesDosesChoice], LitSeq[CodeableConcept], LitSeq[Extension], Reference)] =
+      o: ImmunizationEvaluation): Option[(Option[String], Option[Meta], Option[Narrative], Option[FHIRDateTime], IMMUNIZATION_EVALUATION_STATUS, Option[String], Reference, Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], Option[Reference], LitSeq[Identifier], CodeableConcept, Option[String], Option[String], Option[String], Option[UriStr], CodeableConcept, LitSeq[CodeableConcept], LitSeq[Extension], Reference)] =
     Some(
       (
         o.id,
@@ -226,11 +216,11 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
         o.authority,
         o.identifier,
         o.doseStatus,
+        o.doseNumber,
         o.description,
+        o.seriesDoses,
         o.implicitRules,
         o.targetDisease,
-        o.doseNumber,
-        o.seriesDoses,
         o.doseStatusReason,
         o.modifierExtension,
         o.immunizationEvent))
@@ -251,11 +241,11 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
           cursor.decodeAs[Option[Reference]]("authority", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[CodeableConcept]("doseStatus", None),
+          cursor.decodeAs[Option[String]]("doseNumber", Some(None)),
           cursor.decodeAs[Option[String]]("description", Some(None)),
+          cursor.decodeAs[Option[String]]("seriesDoses", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[CodeableConcept]("targetDisease", None),
-          cursor.decodeOptRef[UnionPositiveIntOrString]("doseNumber"),
-          cursor.decodeOptRef[UnionPositiveIntOrString]("seriesDoses"),
           cursor.decodeAs[LitSeq[CodeableConcept]]("doseStatusReason", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Reference]("immunizationEvent", None),
@@ -270,8 +260,8 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields date, status, series, patient, authority, identifier, doseStatus, description, targetDisease,
-  *   doseNumber, seriesDoses, doseStatusReason, immunizationEvent.
+  *   Introduces the fields date, status, series, patient, authority, identifier, doseStatus, doseNumber, description,
+  *   seriesDoses, targetDisease, doseStatusReason, immunizationEvent.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -294,7 +284,7 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -306,18 +296,18 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
   *   - A unique identifier assigned to this immunization evaluation record.
   * @param doseStatus
   *   - Indicates if the dose is valid or not valid with respect to the published recommendations.
+  * @param doseNumber
+  *   - Nominal position in a series as determined by the outcome of the evaluation process.
   * @param description
   *   - Additional information about the evaluation.
+  * @param seriesDoses
+  *   - The recommended number of doses to achieve immunity as determined by the outcome of the evaluation process.
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
   * @param targetDisease
   *   - The vaccine preventable disease the dose is being evaluated against.
-  * @param doseNumber
-  *   - Nominal position in a series.
-  * @param seriesDoses
-  *   - The recommended number of doses to achieve immunity.
   * @param doseStatusReason
   *   - Provides an explanation as to why the vaccine administration event is valid or not relative to the published
   *   recommendations.
@@ -347,11 +337,11 @@ class ImmunizationEvaluation(
     val authority: Option[Reference] = None,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
     val doseStatus: CodeableConcept,
+    val doseNumber: Option[String] = None,
     val description: Option[String] = None,
+    val seriesDoses: Option[String] = None,
     override val implicitRules: Option[UriStr] = None,
     val targetDisease: CodeableConcept,
-    val doseNumber: Option[ImmunizationEvaluation.DoseNumberChoice] = None,
-    val seriesDoses: Option[ImmunizationEvaluation.SeriesDosesChoice] = None,
     val doseStatusReason: LitSeq[CodeableConcept] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val immunizationEvent: Reference,

@@ -35,6 +35,7 @@ import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_STATUS;
+import com.babylonhealth.lit.hl7.REQUEST_INTENT;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -47,12 +48,12 @@ import static java.util.stream.Collectors.toList;
 public interface CommunicationRequestBuilder extends DomainResourceBuilder {
   public CommunicationRequest build();
 
-  public static Impl init(REQUEST_STATUS status) {
-    return new Impl(status);
+  public static Impl init(REQUEST_STATUS status, REQUEST_INTENT intent) {
+    return new Impl(status, intent);
   }
 
-  public static Impl builder(REQUEST_STATUS status) {
-    return new Impl(status);
+  public static Impl builder(REQUEST_STATUS status, REQUEST_INTENT intent) {
+    return new Impl(status, intent);
   }
 
   public static ChoiceDateTimeOrPeriod occurrence(FHIRDateTime f) {
@@ -70,8 +71,9 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
     private Collection<Annotation> note = Collections.emptyList();
     private Collection<Reference> about = Collections.emptyList();
     private REQUEST_STATUS status;
+    private REQUEST_INTENT intent;
     private Collection<CodeableConcept> medium = Collections.emptyList();
-    private Optional<Reference> sender = Optional.empty();
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Collection<Reference> basedOn = Collections.emptyList();
     private Optional<Reference> subject = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
@@ -85,23 +87,25 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
     private Collection<Reference> recipient = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<FHIRDateTime> authoredOn = Optional.empty();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<CodeableConcept> statusReason = Optional.empty();
     private Optional<Boolean> doNotPerform = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Optional<ChoiceDateTimeOrPeriod> occurrence = Optional.empty();
     private Optional<Identifier> groupIdentifier = Optional.empty();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Collection<Reference> informationProvider = Collections.emptyList();
     private Collection<CommunicationRequest.Payload> payload = Collections.emptyList();
 
     /**
      * Required fields for {@link CommunicationRequest}
      *
      * @param status - The status of the proposal or order.
+     * @param intent - Indicates the level of authority/intentionality associated with the
+     *     CommunicationRequest and where the request fits into the workflow chain.
      */
-    public Impl(REQUEST_STATUS status) {
+    public Impl(REQUEST_STATUS status, REQUEST_INTENT intent) {
       this.status = status;
+      this.intent = intent;
     }
 
     /**
@@ -200,17 +204,21 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
       this.medium = Arrays.stream(medium).map(e -> e.build()).collect(toList());
       return this;
     }
-    /**
-     * @param sender - The entity (e.g. person, organization, clinical information system, or
-     *     device) which is to be the source of the communication.
-     */
-    public CommunicationRequestBuilder.Impl withSender(@NonNull Reference sender) {
-      this.sender = Optional.of(sender);
+    /** @param reason - Describes why the request is being made in coded or textual form. */
+    public CommunicationRequestBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /** @param reason - Describes why the request is being made in coded or textual form. */
+    public CommunicationRequestBuilder.Impl withReason(
+        @NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
       return this;
     }
 
-    public CommunicationRequestBuilder.Impl withSender(@NonNull ReferenceBuilder sender) {
-      this.sender = Optional.of(sender.build());
+    public CommunicationRequestBuilder.Impl withReason(
+        @NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -301,8 +309,8 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CommunicationRequestBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -310,8 +318,8 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CommunicationRequestBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -364,8 +372,8 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param requester - The device, individual, or organization who initiated the request and has
-     *     responsibility for its activation.
+     * @param requester - The device, individual, or organization who asks for the information to be
+     *     shared.
      */
     public CommunicationRequestBuilder.Impl withRequester(@NonNull Reference requester) {
       this.requester = Optional.of(requester);
@@ -431,23 +439,6 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
       this.authoredOn = Optional.of(authoredOn);
       return this;
     }
-    /** @param reasonCode - Describes why the request is being made in coded or textual form. */
-    public CommunicationRequestBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /** @param reasonCode - Describes why the request is being made in coded or textual form. */
-    public CommunicationRequestBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public CommunicationRequestBuilder.Impl withReasonCode(
-        @NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /**
      * @param statusReason - Captures the reason for the current state of the CommunicationRequest.
      */
@@ -507,28 +498,6 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param reasonReference - Indicates another resource whose existence justifies this request.
-     */
-    public CommunicationRequestBuilder.Impl withReasonReference(
-        @NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /**
-     * @param reasonReference - Indicates another resource whose existence justifies this request.
-     */
-    public CommunicationRequestBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public CommunicationRequestBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
      *     element that contains it and/or the understanding of the containing element's
@@ -571,6 +540,31 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param informationProvider - The entity (e.g. person, organization, clinical information
+     *     system, or device) which is to be the source of the communication.
+     */
+    public CommunicationRequestBuilder.Impl withInformationProvider(
+        @NonNull Reference... informationProvider) {
+      this.informationProvider = Arrays.asList(informationProvider);
+      return this;
+    }
+    /**
+     * @param informationProvider - The entity (e.g. person, organization, clinical information
+     *     system, or device) which is to be the source of the communication.
+     */
+    public CommunicationRequestBuilder.Impl withInformationProvider(
+        @NonNull Collection<Reference> informationProvider) {
+      this.informationProvider = Collections.unmodifiableCollection(informationProvider);
+      return this;
+    }
+
+    public CommunicationRequestBuilder.Impl withInformationProvider(
+        @NonNull ReferenceBuilder... informationProvider) {
+      this.informationProvider =
+          Arrays.stream(informationProvider).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param payload - Text, attachment(s), or resource(s) to be communicated to the recipient. */
     public CommunicationRequestBuilder.Impl withPayload(
         @NonNull CommunicationRequest.Payload... payload) {
@@ -603,8 +597,9 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
           note.stream().collect(new LitSeqJCollector<>()),
           about.stream().collect(new LitSeqJCollector<>()),
           status,
+          intent,
           medium.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(sender),
+          reason.stream().collect(new LitSeqJCollector<>()),
           basedOn.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(subject),
           OptionConverters.toScala(language),
@@ -618,14 +613,13 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
           recipient.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(authoredOn),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(statusReason),
           OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
           OptionConverters.toScala(implicitRules),
           (Option) OptionConverters.toScala(occurrence),
           OptionConverters.toScala(groupIdentifier),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          informationProvider.stream().collect(new LitSeqJCollector<>()),
           payload.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

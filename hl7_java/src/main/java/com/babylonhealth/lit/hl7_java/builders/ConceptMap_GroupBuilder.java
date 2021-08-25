@@ -58,8 +58,6 @@ public interface ConceptMap_GroupBuilder {
     private Optional<String> source = Optional.empty();
     private Optional<String> target = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<String> sourceVersion = Optional.empty();
-    private Optional<String> targetVersion = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<ConceptMap$Group$Unmapped> unmapped = Optional.empty();
     private Collection<ConceptMap$Group$Element> element;
@@ -125,16 +123,6 @@ public interface ConceptMap_GroupBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param sourceVersion */
-    public ConceptMap_GroupBuilder.Impl withSourceVersion(@NonNull String sourceVersion) {
-      this.sourceVersion = Optional.of(sourceVersion);
-      return this;
-    }
-    /** @param targetVersion */
-    public ConceptMap_GroupBuilder.Impl withTargetVersion(@NonNull String targetVersion) {
-      this.targetVersion = Optional.of(targetVersion);
-      return this;
-    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -196,8 +184,6 @@ public interface ConceptMap_GroupBuilder {
           OptionConverters.toScala(source),
           OptionConverters.toScala(target),
           extension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(sourceVersion),
-          OptionConverters.toScala(targetVersion),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(unmapped),
           element.stream().collect(new NonEmptyLitSeqJCollector<>()),

@@ -49,33 +49,25 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
   public static Impl init(
       MEDICATION_ADMIN_STATUS status,
       Reference subject,
-      @NonNull ChoiceDateTimeOrPeriod effective,
-      @NonNull ChoiceCodeableConceptOrReference medication) {
-    return new Impl(status, subject, effective, medication);
+      CodeableReference medication,
+      @NonNull ChoiceDateTimeOrPeriod occurence) {
+    return new Impl(status, subject, medication, occurence);
   }
 
   public static Impl builder(
       MEDICATION_ADMIN_STATUS status,
       ReferenceBuilder subject,
-      @NonNull ChoiceDateTimeOrPeriod effective,
-      @NonNull ChoiceCodeableConceptOrReference medication) {
-    return new Impl(status, subject.build(), effective, medication);
+      CodeableReferenceBuilder medication,
+      @NonNull ChoiceDateTimeOrPeriod occurence) {
+    return new Impl(status, subject.build(), medication.build(), occurence);
   }
 
-  public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
+  public static ChoiceDateTimeOrPeriod occurence(FHIRDateTime f) {
     return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static ChoiceDateTimeOrPeriod effective(Period p) {
+  public static ChoiceDateTimeOrPeriod occurence(Period p) {
     return new ChoiceDateTimeOrPeriod(p);
-  }
-
-  public static ChoiceCodeableConceptOrReference medication(CodeableConcept c) {
-    return new ChoiceCodeableConceptOrReference(c);
-  }
-
-  public static ChoiceCodeableConceptOrReference medication(Reference r) {
-    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements MedicationAdministrationBuilder {
@@ -85,24 +77,26 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     private Collection<Annotation> note = Collections.emptyList();
     private Collection<Reference> partOf = Collections.emptyList();
     private MEDICATION_ADMIN_STATUS status;
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Collection<Reference> device = Collections.emptyList();
+    private Collection<Reference> basedOn = Collections.emptyList();
     private Reference subject;
-    private Optional<Reference> context = Optional.empty();
     private Optional<Reference> request = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
-    private Optional<CodeableConcept> category = Optional.empty();
+    private Collection<CodeableConcept> category = Collections.emptyList();
+    private Optional<FHIRDateTime> recorded = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
+    private Optional<Reference> encounter = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
-    private Collection<String> instantiates = Collections.emptyList();
+    private CodeableReference medication;
     private Collection<CodeableConcept> statusReason = Collections.emptyList();
-    private ChoiceDateTimeOrPeriod effective;
+    private ChoiceDateTimeOrPeriod occurence;
     private Collection<Reference> eventHistory = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private ChoiceCodeableConceptOrReference medication;
-    private Collection<Reference> reasonReference = Collections.emptyList();
+    private Collection<String> instantiatesUri = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Collection<String> instantiatesCanonical = Collections.emptyList();
     private Collection<Reference> supportingInformation = Collections.emptyList();
     private Optional<MedicationAdministration.Dosage> dosage = Optional.empty();
     private Collection<MedicationAdministration.Performer> performer = Collections.emptyList();
@@ -115,26 +109,24 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
      *     to be started but not completed or it may be paused while some other process is under
      *     way.
      * @param subject - The person or animal or group receiving the medication.
-     * @param effective - A specific date/time or interval of time during which the administration
-     *     took place (or did not take place, when the 'notGiven' attribute is true). For many
-     *     administrations, such as swallowing a tablet the use of dateTime is more appropriate.
-     *     Field is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the value
-     *     in, wrap with one of the MedicationAdministrationBuilder.effective static methods
      * @param medication - Identifies the medication that was administered. This is either a link to
      *     a resource representing the details of the medication or a simple attribute carrying a
-     *     code that identifies the medication from a known list of medications. Field is a 'choice'
-     *     field. Type should be one of CodeableConcept, Reference. To pass the value in, wrap with
-     *     one of the MedicationAdministrationBuilder.medication static methods
+     *     code that identifies the medication from a known list of medications.
+     * @param occurence - A specific date/time or interval of time during which the administration
+     *     took place (or did not take place). For many administrations, such as swallowing a tablet
+     *     the use of dateTime is more appropriate. Field is a 'choice' field. Type should be one of
+     *     FHIRDateTime, Period. To pass the value in, wrap with one of the
+     *     MedicationAdministrationBuilder.occurence static methods
      */
     public Impl(
         MEDICATION_ADMIN_STATUS status,
         Reference subject,
-        @NonNull ChoiceDateTimeOrPeriod effective,
-        @NonNull ChoiceCodeableConceptOrReference medication) {
+        CodeableReference medication,
+        @NonNull ChoiceDateTimeOrPeriod occurence) {
       this.status = status;
       this.subject = subject;
-      this.effective = effective;
       this.medication = medication;
+      this.occurence = occurence;
     }
 
     /**
@@ -212,6 +204,29 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param reason - A code, Condition or observation that supports why the medication was
+     *     administered.
+     */
+    public MedicationAdministrationBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /**
+     * @param reason - A code, Condition or observation that supports why the medication was
+     *     administered.
+     */
+    public MedicationAdministrationBuilder.Impl withReason(
+        @NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public MedicationAdministrationBuilder.Impl withReason(
+        @NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
      * @param device - The device used in administering the medication to the patient. For example,
      *     a particular infusion pump.
      */
@@ -233,16 +248,25 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param context - The visit, admission, or other contact between patient and health care
-     *     provider during which the medication administration was performed.
+     * @param basedOn - A plan that is fulfilled in whole or in part by this
+     *     MedicationAdministration.
      */
-    public MedicationAdministrationBuilder.Impl withContext(@NonNull Reference context) {
-      this.context = Optional.of(context);
+    public MedicationAdministrationBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
+      this.basedOn = Arrays.asList(basedOn);
+      return this;
+    }
+    /**
+     * @param basedOn - A plan that is fulfilled in whole or in part by this
+     *     MedicationAdministration.
+     */
+    public MedicationAdministrationBuilder.Impl withBasedOn(
+        @NonNull Collection<Reference> basedOn) {
+      this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
 
-    public MedicationAdministrationBuilder.Impl withContext(@NonNull ReferenceBuilder context) {
-      this.context = Optional.of(context.build());
+    public MedicationAdministrationBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -264,22 +288,40 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param category - Indicates where the medication is expected to be consumed or administered.
+     * @param category - The type of medication administration (for example, drug classification
+     *     like ATC, where meds would be administered, legal category of the medication).
      */
-    public MedicationAdministrationBuilder.Impl withCategory(@NonNull CodeableConcept category) {
-      this.category = Optional.of(category);
+    public MedicationAdministrationBuilder.Impl withCategory(@NonNull CodeableConcept... category) {
+      this.category = Arrays.asList(category);
+      return this;
+    }
+    /**
+     * @param category - The type of medication administration (for example, drug classification
+     *     like ATC, where meds would be administered, legal category of the medication).
+     */
+    public MedicationAdministrationBuilder.Impl withCategory(
+        @NonNull Collection<CodeableConcept> category) {
+      this.category = Collections.unmodifiableCollection(category);
       return this;
     }
 
     public MedicationAdministrationBuilder.Impl withCategory(
-        @NonNull CodeableConceptBuilder category) {
-      this.category = Optional.of(category.build());
+        @NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param recorded - The date the occurrence of the MedicationAdministration was first captured
+     *     in the record - potentially significantly after the occurrence of the event.
+     */
+    public MedicationAdministrationBuilder.Impl withRecorded(@NonNull FHIRDateTime recorded) {
+      this.recorded = Optional.of(recorded);
       return this;
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MedicationAdministrationBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -287,8 +329,8 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MedicationAdministrationBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
@@ -331,6 +373,19 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param encounter - The visit, admission, or other contact between patient and health care
+     *     provider during which the medication administration was performed.
+     */
+    public MedicationAdministrationBuilder.Impl withEncounter(@NonNull Reference encounter) {
+      this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public MedicationAdministrationBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
+      return this;
+    }
+    /**
      * @param identifier - Identifiers associated with this Medication Administration that are
      *     defined by business processes and/or used to refer to it when a direct URL reference to
      *     the resource itself is not appropriate. They are business identifiers assigned to this
@@ -357,41 +412,6 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     public MedicationAdministrationBuilder.Impl withIdentifier(
         @NonNull IdentifierBuilder... identifier) {
       this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /** @param reasonCode - A code indicating why the medication was given. */
-    public MedicationAdministrationBuilder.Impl withReasonCode(
-        @NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /** @param reasonCode - A code indicating why the medication was given. */
-    public MedicationAdministrationBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public MedicationAdministrationBuilder.Impl withReasonCode(
-        @NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
-     * @param instantiates - A protocol, guideline, orderset, or other definition that was adhered
-     *     to in whole or in part by this event.
-     */
-    public MedicationAdministrationBuilder.Impl withInstantiates(@NonNull String... instantiates) {
-      this.instantiates = Arrays.asList(instantiates);
-      return this;
-    }
-    /**
-     * @param instantiates - A protocol, guideline, orderset, or other definition that was adhered
-     *     to in whole or in part by this event.
-     */
-    public MedicationAdministrationBuilder.Impl withInstantiates(
-        @NonNull Collection<String> instantiates) {
-      this.instantiates = Collections.unmodifiableCollection(instantiates);
       return this;
     }
     /** @param statusReason - A code indicating why the administration was not performed. */
@@ -447,27 +467,23 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param reasonReference - Condition or observation that supports why the medication was
-     *     administered.
+     * @param instantiatesUri - The URL pointing to an externally maintained protocol, guideline,
+     *     orderset or other definition that is adhered to in whole or in part by this
+     *     MedicationAdministration.
      */
-    public MedicationAdministrationBuilder.Impl withReasonReference(
-        @NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
+    public MedicationAdministrationBuilder.Impl withInstantiatesUri(
+        @NonNull String... instantiatesUri) {
+      this.instantiatesUri = Arrays.asList(instantiatesUri);
       return this;
     }
     /**
-     * @param reasonReference - Condition or observation that supports why the medication was
-     *     administered.
+     * @param instantiatesUri - The URL pointing to an externally maintained protocol, guideline,
+     *     orderset or other definition that is adhered to in whole or in part by this
+     *     MedicationAdministration.
      */
-    public MedicationAdministrationBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public MedicationAdministrationBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+    public MedicationAdministrationBuilder.Impl withInstantiatesUri(
+        @NonNull Collection<String> instantiatesUri) {
+      this.instantiatesUri = Collections.unmodifiableCollection(instantiatesUri);
       return this;
     }
     /**
@@ -514,8 +530,29 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param instantiatesCanonical - A protocol, guideline, orderset, or other definition that was
+     *     adhered to in whole or in part by this event.
+     */
+    public MedicationAdministrationBuilder.Impl withInstantiatesCanonical(
+        @NonNull String... instantiatesCanonical) {
+      this.instantiatesCanonical = Arrays.asList(instantiatesCanonical);
+      return this;
+    }
+    /**
+     * @param instantiatesCanonical - A protocol, guideline, orderset, or other definition that was
+     *     adhered to in whole or in part by this event.
+     */
+    public MedicationAdministrationBuilder.Impl withInstantiatesCanonical(
+        @NonNull Collection<String> instantiatesCanonical) {
+      this.instantiatesCanonical = Collections.unmodifiableCollection(instantiatesCanonical);
+      return this;
+    }
+    /**
      * @param supportingInformation - Additional information (for example, patient height and
-     *     weight) that supports the administration of the medication.
+     *     weight) that supports the administration of the medication. This attribute can be used to
+     *     provide documentation of specific characteristics of the patient present at the time of
+     *     administration. For example, if the dose says "give "x" if the heartrate exceeds "y"",
+     *     then the heart rate can be included using this attribute.
      */
     public MedicationAdministrationBuilder.Impl withSupportingInformation(
         @NonNull Reference... supportingInformation) {
@@ -524,7 +561,10 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param supportingInformation - Additional information (for example, patient height and
-     *     weight) that supports the administration of the medication.
+     *     weight) that supports the administration of the medication. This attribute can be used to
+     *     provide documentation of specific characteristics of the patient present at the time of
+     *     administration. For example, if the dose says "give "x" if the heartrate exceeds "y"",
+     *     then the heart rate can be included using this attribute.
      */
     public MedicationAdministrationBuilder.Impl withSupportingInformation(
         @NonNull Collection<Reference> supportingInformation) {
@@ -591,24 +631,26 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
           note.stream().collect(new LitSeqJCollector<>()),
           partOf.stream().collect(new LitSeqJCollector<>()),
           status,
+          reason.stream().collect(new LitSeqJCollector<>()),
           device.stream().collect(new LitSeqJCollector<>()),
+          basedOn.stream().collect(new LitSeqJCollector<>()),
           subject,
-          OptionConverters.toScala(context),
           OptionConverters.toScala(request),
           OptionConverters.toScala(language),
-          OptionConverters.toScala(category),
+          category.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(recorded),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(encounter),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
-          instantiates.stream().collect(new LitSeqJCollector<>()),
+          medication,
           statusReason.stream().collect(new LitSeqJCollector<>()),
-          effective,
+          occurence,
           eventHistory.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
-          medication,
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
+          instantiatesUri.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
           supportingInformation.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(dosage),
           performer.stream().collect(new LitSeqJCollector<>()),

@@ -62,7 +62,8 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
     private Optional<CodeableConcept> geometry = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Collection<String> modification = Collections.emptyList();
+    private Optional<Identifier> identifier = Optional.empty();
+    private Optional<String> modification = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<CodeableConcept> copolymerConnectivity = Collections.emptyList();
@@ -110,7 +111,7 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text.build());
       return this;
     }
-    /** @param _class - Todo. */
+    /** @param _class - Overall type of the polymer. */
     public SubstancePolymerBuilder.Impl withClass(@NonNull CodeableConcept _class) {
       this._class = Optional.of(_class);
       return this;
@@ -125,7 +126,10 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
       this.language = Optional.of(language);
       return this;
     }
-    /** @param geometry - Todo. */
+    /**
+     * @param geometry - Polymer geometry, e.g. linear, branched, cross-linked, network or
+     *     dendritic.
+     */
     public SubstancePolymerBuilder.Impl withGeometry(@NonNull CodeableConcept geometry) {
       this.geometry = Optional.of(geometry);
       return this;
@@ -137,8 +141,8 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public SubstancePolymerBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -146,8 +150,8 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public SubstancePolymerBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -185,14 +189,25 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param modification - Todo. */
-    public SubstancePolymerBuilder.Impl withModification(@NonNull String... modification) {
-      this.modification = Arrays.asList(modification);
+    /**
+     * @param identifier - A business idenfier for this polymer, but typically this is handled by a
+     *     SubstanceDefinition identifier.
+     */
+    public SubstancePolymerBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
+      this.identifier = Optional.of(identifier);
       return this;
     }
-    /** @param modification - Todo. */
-    public SubstancePolymerBuilder.Impl withModification(@NonNull Collection<String> modification) {
-      this.modification = Collections.unmodifiableCollection(modification);
+
+    public SubstancePolymerBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
+      return this;
+    }
+    /**
+     * @param modification - Todo - this is intended to connect to a repeating full modification
+     *     structure, also used by Protein and Nucleic Acid . String is just a placeholder.
+     */
+    public SubstancePolymerBuilder.Impl withModification(@NonNull String modification) {
+      this.modification = Optional.of(modification);
       return this;
     }
     /**
@@ -248,13 +263,17 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param copolymerConnectivity - Todo. */
+    /**
+     * @param copolymerConnectivity - Descrtibes the copolymer sequence type (polymer connectivity).
+     */
     public SubstancePolymerBuilder.Impl withCopolymerConnectivity(
         @NonNull CodeableConcept... copolymerConnectivity) {
       this.copolymerConnectivity = Arrays.asList(copolymerConnectivity);
       return this;
     }
-    /** @param copolymerConnectivity - Todo. */
+    /**
+     * @param copolymerConnectivity - Descrtibes the copolymer sequence type (polymer connectivity).
+     */
     public SubstancePolymerBuilder.Impl withCopolymerConnectivity(
         @NonNull Collection<CodeableConcept> copolymerConnectivity) {
       this.copolymerConnectivity = Collections.unmodifiableCollection(copolymerConnectivity);
@@ -285,12 +304,12 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
       this.monomerSet = Arrays.stream(monomerSet).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param repeat - Todo. */
+    /** @param repeat - Specifies and quantifies the repeated units and their configuration. */
     public SubstancePolymerBuilder.Impl withRepeat(@NonNull SubstancePolymer.Repeat... repeat) {
       this.repeat = Arrays.asList(repeat);
       return this;
     }
-    /** @param repeat - Todo. */
+    /** @param repeat - Specifies and quantifies the repeated units and their configuration. */
     public SubstancePolymerBuilder.Impl withRepeat(
         @NonNull Collection<SubstancePolymer.Repeat> repeat) {
       this.repeat = Collections.unmodifiableCollection(repeat);
@@ -318,7 +337,8 @@ public interface SubstancePolymerBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(geometry),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
-          modification.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(identifier),
+          OptionConverters.toScala(modification),
           OptionConverters.toScala(implicitRules),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           copolymerConnectivity.stream().collect(new LitSeqJCollector<>()),

@@ -81,6 +81,7 @@ public interface DiagnosticReportBuilder extends DomainResourceBuilder {
     private Collection<Reference> performer = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> conclusion = Optional.empty();
+    private Optional<Reference> composition = Optional.empty();
     private Optional<ChoiceDateTimeOrPeriod> effective = Optional.empty();
     private Collection<Reference> imagingStudy = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
@@ -237,8 +238,8 @@ public interface DiagnosticReportBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public DiagnosticReportBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -246,8 +247,8 @@ public interface DiagnosticReportBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public DiagnosticReportBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -338,6 +339,19 @@ public interface DiagnosticReportBuilder extends DomainResourceBuilder {
      */
     public DiagnosticReportBuilder.Impl withConclusion(@NonNull String conclusion) {
       this.conclusion = Optional.of(conclusion);
+      return this;
+    }
+    /**
+     * @param composition - Reference to a Composition resource instance that provides structure for
+     *     organizing the contents of the DiagnosticReport.
+     */
+    public DiagnosticReportBuilder.Impl withComposition(@NonNull Reference composition) {
+      this.composition = Optional.of(composition);
+      return this;
+    }
+
+    public DiagnosticReportBuilder.Impl withComposition(@NonNull ReferenceBuilder composition) {
+      this.composition = Optional.of(composition.build());
       return this;
     }
     /**
@@ -556,6 +570,7 @@ public interface DiagnosticReportBuilder extends DomainResourceBuilder {
           performer.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(conclusion),
+          OptionConverters.toScala(composition),
           (Option) OptionConverters.toScala(effective),
           imagingStudy.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),

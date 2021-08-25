@@ -18,7 +18,7 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
-import com.babylonhealth.lit.hl7.{ PUBLICATION_STATUS, CONCEPT_MAP_EQUIVALENCE, CONCEPTMAP_UNMAPPED_MODE }
+import com.babylonhealth.lit.hl7.{ PUBLICATION_STATUS, CONCEPTMAP_UNMAPPED_MODE }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -218,7 +218,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
             comment: Option[String] = None,
             product: LitSeq[ConceptMap.Group.Element.Target.DependsOn] = LitSeq.empty,
             extension: LitSeq[Extension] = LitSeq.empty,
-            equivalence: CONCEPT_MAP_EQUIVALENCE,
+            relationship: Code,
             modifierExtension: LitSeq[Extension] = LitSeq.empty,
             dependsOn: LitSeq[Target.DependsOn] = LitSeq.empty,
             primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
@@ -229,14 +229,14 @@ object ConceptMap extends CompanionFor[ConceptMap] {
           comment,
           product,
           extension,
-          equivalence,
+          relationship,
           modifierExtension,
           dependsOn,
           primitiveAttributes = primitiveAttributes
         )
         def unapply(
-            o: Target): Option[(Option[String], Option[Code], Option[String], Option[String], LitSeq[ConceptMap.Group.Element.Target.DependsOn], LitSeq[Extension], CONCEPT_MAP_EQUIVALENCE, LitSeq[Extension], LitSeq[Target.DependsOn])] =
-          Some((o.id, o.code, o.display, o.comment, o.product, o.extension, o.equivalence, o.modifierExtension, o.dependsOn))
+            o: Target): Option[(Option[String], Option[Code], Option[String], Option[String], LitSeq[ConceptMap.Group.Element.Target.DependsOn], LitSeq[Extension], Code, LitSeq[Extension], LitSeq[Target.DependsOn])] =
+          Some((o.id, o.code, o.display, o.comment, o.product, o.extension, o.relationship, o.modifierExtension, o.dependsOn))
         val id: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
         val code: FHIRComponentFieldMeta[Option[Code]] =
@@ -253,14 +253,14 @@ object ConceptMap extends CompanionFor[ConceptMap] {
             lTagOf[ConceptMap.Group.Element.Target.DependsOn])
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val equivalence: FHIRComponentFieldMeta[CONCEPT_MAP_EQUIVALENCE] =
-          FHIRComponentFieldMeta("equivalence", lTagOf[CONCEPT_MAP_EQUIVALENCE], false, lTagOf[CONCEPT_MAP_EQUIVALENCE])
+        val relationship: FHIRComponentFieldMeta[Code] =
+          FHIRComponentFieldMeta("relationship", lTagOf[Code], false, lTagOf[Code])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val dependsOn: FHIRComponentFieldMeta[LitSeq[Target.DependsOn]] =
           FHIRComponentFieldMeta("dependsOn", lTagOf[LitSeq[Target.DependsOn]], false, lTagOf[Target.DependsOn])
         val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-          Seq(id, code, display, comment, product, extension, equivalence, modifierExtension, dependsOn)
+          Seq(id, code, display, comment, product, extension, relationship, modifierExtension, dependsOn)
         override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Target): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
@@ -269,7 +269,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
           FHIRComponentField[Option[String]](comment, t.comment),
           FHIRComponentField[LitSeq[ConceptMap.Group.Element.Target.DependsOn]](product, t.product),
           FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-          FHIRComponentField[CONCEPT_MAP_EQUIVALENCE](equivalence, t.equivalence),
+          FHIRComponentField[Code](relationship, t.relationship),
           FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
           FHIRComponentField[LitSeq[Target.DependsOn]](dependsOn, t.dependsOn)
         )
@@ -285,7 +285,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
                 cursor.decodeAs[Option[String]]("comment", Some(None)),
                 cursor.decodeAs[LitSeq[ConceptMap.Group.Element.Target.DependsOn]]("product", Some(LitSeq.empty)),
                 cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-                cursor.decodeAs[CONCEPT_MAP_EQUIVALENCE]("equivalence", None),
+                cursor.decodeAs[Code]("relationship", None),
                 cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
                 cursor.decodeAs[LitSeq[Target.DependsOn]]("dependsOn", Some(LitSeq.empty)),
                 decodeAttributes(cursor)
@@ -300,7 +300,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
           val comment: Option[String] = None,
           val product: LitSeq[ConceptMap.Group.Element.Target.DependsOn] = LitSeq.empty,
           override val extension: LitSeq[Extension] = LitSeq.empty,
-          val equivalence: CONCEPT_MAP_EQUIVALENCE,
+          val relationship: Code,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           val dependsOn: LitSeq[Target.DependsOn] = LitSeq.empty,
           override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
@@ -308,6 +308,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
       def apply(
           id: Option[String] = None,
           code: Option[Code] = None,
+          noMap: Option[Boolean] = None,
           display: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
           modifierExtension: LitSeq[Extension] = LitSeq.empty,
@@ -316,6 +317,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
       ): Element = new Element(
         id,
         code,
+        noMap,
         display,
         extension,
         modifierExtension,
@@ -323,12 +325,14 @@ object ConceptMap extends CompanionFor[ConceptMap] {
         primitiveAttributes = primitiveAttributes
       )
       def unapply(
-          o: Element): Option[(Option[String], Option[Code], Option[String], LitSeq[Extension], LitSeq[Extension], LitSeq[Element.Target])] =
-        Some((o.id, o.code, o.display, o.extension, o.modifierExtension, o.target))
+          o: Element): Option[(Option[String], Option[Code], Option[Boolean], Option[String], LitSeq[Extension], LitSeq[Extension], LitSeq[Element.Target])] =
+        Some((o.id, o.code, o.noMap, o.display, o.extension, o.modifierExtension, o.target))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
       val code: FHIRComponentFieldMeta[Option[Code]] =
         FHIRComponentFieldMeta("code", lTagOf[Option[Code]], false, lTagOf[Code])
+      val noMap: FHIRComponentFieldMeta[Option[Boolean]] =
+        FHIRComponentFieldMeta("noMap", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
       val display: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("display", lTagOf[Option[String]], false, lTagOf[String])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -337,11 +341,12 @@ object ConceptMap extends CompanionFor[ConceptMap] {
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val target: FHIRComponentFieldMeta[LitSeq[Element.Target]] =
         FHIRComponentFieldMeta("target", lTagOf[LitSeq[Element.Target]], false, lTagOf[Element.Target])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, display, extension, modifierExtension, target)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, noMap, display, extension, modifierExtension, target)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Element): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[Option[Code]](code, t.code),
+        FHIRComponentField[Option[Boolean]](noMap, t.noMap),
         FHIRComponentField[Option[String]](display, t.display),
         FHIRComponentField[LitSeq[Extension]](extension, t.extension),
         FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
@@ -355,6 +360,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
             new Element(
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[Option[Code]]("code", Some(None)),
+              cursor.decodeAs[Option[Boolean]]("noMap", Some(None)),
               cursor.decodeAs[Option[String]]("display", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -367,6 +373,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
     class Element(
         override val id: Option[String] = None,
         val code: Option[Code] = None,
+        val noMap: Option[Boolean] = None,
         val display: Option[String] = None,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
@@ -375,11 +382,9 @@ object ConceptMap extends CompanionFor[ConceptMap] {
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     def apply(
         id: Option[String] = None,
-        source: Option[UriStr] = None,
-        target: Option[UriStr] = None,
+        source: Option[Canonical] = None,
+        target: Option[Canonical] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
-        sourceVersion: Option[String] = None,
-        targetVersion: Option[String] = None,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         unmapped: Option[Group.Unmapped] = None,
         element: NonEmptyLitSeq[Group.Element],
@@ -389,44 +394,35 @@ object ConceptMap extends CompanionFor[ConceptMap] {
       source,
       target,
       extension,
-      sourceVersion,
-      targetVersion,
       modifierExtension,
       unmapped,
       element,
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Group): Option[(Option[String], Option[UriStr], Option[UriStr], LitSeq[Extension], Option[String], Option[String], LitSeq[Extension], Option[Group.Unmapped], NonEmptyLitSeq[Group.Element])] =
-      Some((o.id, o.source, o.target, o.extension, o.sourceVersion, o.targetVersion, o.modifierExtension, o.unmapped, o.element))
+        o: Group): Option[(Option[String], Option[Canonical], Option[Canonical], LitSeq[Extension], LitSeq[Extension], Option[Group.Unmapped], NonEmptyLitSeq[Group.Element])] =
+      Some((o.id, o.source, o.target, o.extension, o.modifierExtension, o.unmapped, o.element))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-    val source: FHIRComponentFieldMeta[Option[UriStr]] =
-      FHIRComponentFieldMeta("source", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
-    val target: FHIRComponentFieldMeta[Option[UriStr]] =
-      FHIRComponentFieldMeta("target", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
+    val source: FHIRComponentFieldMeta[Option[Canonical]] =
+      FHIRComponentFieldMeta("source", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
+    val target: FHIRComponentFieldMeta[Option[Canonical]] =
+      FHIRComponentFieldMeta("target", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val sourceVersion: FHIRComponentFieldMeta[Option[String]] =
-      FHIRComponentFieldMeta("sourceVersion", lTagOf[Option[String]], false, lTagOf[String])
-    val targetVersion: FHIRComponentFieldMeta[Option[String]] =
-      FHIRComponentFieldMeta("targetVersion", lTagOf[Option[String]], false, lTagOf[String])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val unmapped: FHIRComponentFieldMeta[Option[Group.Unmapped]] =
       FHIRComponentFieldMeta("unmapped", lTagOf[Option[Group.Unmapped]], false, lTagOf[Group.Unmapped])
     val element: FHIRComponentFieldMeta[NonEmptyLitSeq[Group.Element]] =
       FHIRComponentFieldMeta("element", lTagOf[NonEmptyLitSeq[Group.Element]], false, lTagOf[Group.Element])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, source, target, extension, sourceVersion, targetVersion, modifierExtension, unmapped, element)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, source, target, extension, modifierExtension, unmapped, element)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Group): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Option[UriStr]](source, t.source),
-      FHIRComponentField[Option[UriStr]](target, t.target),
+      FHIRComponentField[Option[Canonical]](source, t.source),
+      FHIRComponentField[Option[Canonical]](target, t.target),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-      FHIRComponentField[Option[String]](sourceVersion, t.sourceVersion),
-      FHIRComponentField[Option[String]](targetVersion, t.targetVersion),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
       FHIRComponentField[Option[Group.Unmapped]](unmapped, t.unmapped),
       FHIRComponentField[NonEmptyLitSeq[Group.Element]](element, t.element)
@@ -438,11 +434,9 @@ object ConceptMap extends CompanionFor[ConceptMap] {
         Try(
           new Group(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeAs[Option[UriStr]]("source", Some(None)),
-            cursor.decodeAs[Option[UriStr]]("target", Some(None)),
+            cursor.decodeAs[Option[Canonical]]("source", Some(None)),
+            cursor.decodeAs[Option[Canonical]]("target", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeAs[Option[String]]("sourceVersion", Some(None)),
-            cursor.decodeAs[Option[String]]("targetVersion", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[Group.Unmapped]]("unmapped", Some(None)),
             cursor.decodeAs[NonEmptyLitSeq[Group.Element]]("element", None),
@@ -453,11 +447,9 @@ object ConceptMap extends CompanionFor[ConceptMap] {
   @POJOBoilerplate
   class Group(
       override val id: Option[String] = None,
-      val source: Option[UriStr] = None,
-      val target: Option[UriStr] = None,
+      val source: Option[Canonical] = None,
+      val target: Option[Canonical] = None,
       override val extension: LitSeq[Extension] = LitSeq.empty,
-      val sourceVersion: Option[String] = None,
-      val targetVersion: Option[String] = None,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       val unmapped: Option[Group.Unmapped] = None,
       val element: NonEmptyLitSeq[Group.Element],
@@ -484,7 +476,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
       copyright: Option[Markdown] = None,
       source: Option[ConceptMap.SourceChoice] = None,
       target: Option[ConceptMap.TargetChoice] = None,
-      identifier: Option[Identifier] = None,
+      identifier: LitSeq[Identifier] = LitSeq.empty,
       useContext: LitSeq[UsageContext] = LitSeq.empty,
       description: Option[Markdown] = None,
       experimental: Option[Boolean] = None,
@@ -558,8 +550,8 @@ object ConceptMap extends CompanionFor[ConceptMap] {
     FHIRComponentFieldMeta("source", lTagOf[Option[ConceptMap.SourceChoice]], true, lTagOf[UnionCanonicalOrUri])
   val target: FHIRComponentFieldMeta[Option[ConceptMap.TargetChoice]] =
     FHIRComponentFieldMeta("target", lTagOf[Option[ConceptMap.TargetChoice]], true, lTagOf[UnionCanonicalOrUri])
-  val identifier: FHIRComponentFieldMeta[Option[Identifier]] =
-    FHIRComponentFieldMeta("identifier", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
+  val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
+    FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val description: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -622,7 +614,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
     FHIRComponentField[Option[Markdown]](copyright, t.copyright),
     FHIRComponentField[Option[ConceptMap.SourceChoice]](source, t.source),
     FHIRComponentField[Option[ConceptMap.TargetChoice]](target, t.target),
-    FHIRComponentField[Option[Identifier]](identifier, t.identifier),
+    FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
     FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
     FHIRComponentField[Option[Markdown]](description, t.description),
     FHIRComponentField[Option[Boolean]](experimental, t.experimental),
@@ -649,7 +641,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
   def extractCopyright(t: ConceptMap): Option[Markdown]             = t.copyright
   def extractSource(t: ConceptMap): Option[ConceptMap.SourceChoice] = t.source
   def extractTarget(t: ConceptMap): Option[ConceptMap.TargetChoice] = t.target
-  def extractIdentifier(t: ConceptMap): Option[Identifier]          = t.identifier
+  def extractIdentifier(t: ConceptMap): LitSeq[Identifier]          = t.identifier
   def extractUseContext(t: ConceptMap): LitSeq[UsageContext]        = t.useContext
   def extractDescription(t: ConceptMap): Option[Markdown]           = t.description
   def extractExperimental(t: ConceptMap): Option[Boolean]           = t.experimental
@@ -710,7 +702,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
           cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
           cursor.decodeOptRef[UnionCanonicalOrUri]("source"),
           cursor.decodeOptRef[UnionCanonicalOrUri]("target"),
-          cursor.decodeAs[Option[Identifier]]("identifier", Some(None)),
+          cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Markdown]]("description", Some(None)),
           cursor.decodeAs[Option[Boolean]]("experimental", Some(None)),
@@ -726,11 +718,10 @@ object ConceptMap extends CompanionFor[ConceptMap] {
 /** A statement of relationships from one set of concepts to one or more other concepts - either concepts in code systems, or data
   * element/data element concepts, or classes in class models.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.CanonicalResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, title, status, version, contact, purpose, publisher, copyright, source, target,
-  *   identifier, useContext, description, experimental, jurisdiction, group.
+  *   Introduces the fields source, target, group.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -770,7 +761,7 @@ object ConceptMap extends CompanionFor[ConceptMap] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -819,39 +810,54 @@ object ConceptMap extends CompanionFor[ConceptMap] {
 @POJOBoilerplate
 class ConceptMap(
     override val id: Option[String] = None,
-    val url: Option[UriStr] = None,
+    override val url: Option[UriStr] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: Option[String] = None,
-    val date: Option[FHIRDateTime] = None,
-    val title: Option[String] = None,
-    val status: PUBLICATION_STATUS,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    override val name: Option[String] = None,
+    override val date: Option[FHIRDateTime] = None,
+    override val title: Option[String] = None,
+    override val status: PUBLICATION_STATUS,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val copyright: Option[Markdown] = None,
+    override val publisher: Option[String] = None,
+    override val copyright: Option[Markdown] = None,
     val source: Option[ConceptMap.SourceChoice] = None,
     val target: Option[ConceptMap.TargetChoice] = None,
-    val identifier: Option[Identifier] = None,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
-    val description: Option[Markdown] = None,
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val identifier: LitSeq[Identifier] = LitSeq.empty,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val description: Option[Markdown] = None,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val group: LitSeq[ConceptMap.Group] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends CanonicalResource(
       id = id,
+      url = url,
       meta = meta,
       text = text,
+      name = name,
+      date = date,
+      title = title,
+      status = status,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
       contained = contained,
       extension = extension,
+      publisher = publisher,
+      copyright = copyright,
+      identifier = identifier,
+      useContext = useContext,
+      description = description,
+      experimental = experimental,
+      jurisdiction = jurisdiction,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {

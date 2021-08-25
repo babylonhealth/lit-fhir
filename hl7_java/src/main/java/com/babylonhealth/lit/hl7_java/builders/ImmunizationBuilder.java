@@ -70,6 +70,14 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
     return new ChoiceDateTimeOrString(s);
   }
 
+  public static ChoiceCodeableConceptOrReference informationSource(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
+  }
+
+  public static ChoiceCodeableConceptOrReference informationSource(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
+  }
+
   public class Impl implements ImmunizationBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
@@ -78,20 +86,20 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
     private Collection<Annotation> note = Collections.emptyList();
     private Optional<CodeableConcept> route = Optional.empty();
     private IMMUNIZATION_STATUS status;
+    private Collection<CodeableReference> reason = Collections.emptyList();
+    private Collection<Reference> basedOn = Collections.emptyList();
     private Reference patient;
     private Optional<LANGUAGES> language = Optional.empty();
     private Optional<FHIRDateTime> recorded = Optional.empty();
     private Optional<Reference> location = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Reference> encounter = Optional.empty();
     private Optional<String> lotNumber = Optional.empty();
+    private Optional<Reference> encounter = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private CodeableConcept vaccineCode;
     private Optional<Boolean> isSubpotent = Optional.empty();
     private Optional<CodeableConcept> statusReason = Optional.empty();
-    private Optional<CodeableConcept> reportOrigin = Optional.empty();
     private Optional<Reference> manufacturer = Optional.empty();
     private Optional<Quantity> doseQuantity = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
@@ -99,10 +107,12 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
     private Optional<Boolean> primarySource = Optional.empty();
     private Optional<CodeableConcept> fundingSource = Optional.empty();
     private Optional<FHIRDate> expirationDate = Optional.empty();
-    private Collection<Reference> reasonReference = Collections.emptyList();
+    private Collection<String> instantiatesUri = Collections.emptyList();
     private Collection<CodeableConcept> subpotentReason = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<CodeableConcept> programEligibility = Collections.emptyList();
+    private Optional<ChoiceCodeableConceptOrReference> informationSource = Optional.empty();
+    private Collection<String> instantiatesCanonical = Collections.emptyList();
     private Collection<Immunization.Reaction> reaction = Collections.emptyList();
     private Collection<Immunization.Performer> performer = Collections.emptyList();
     private Collection<Immunization.Education> education = Collections.emptyList();
@@ -208,6 +218,50 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
       this.route = Optional.of(route.build());
       return this;
     }
+    /**
+     * @param reason - Describes why the immunization occurred in coded or textual form, or
+     *     Indicates another resource (Condition, Observation or DiagnosticReport) whose existence
+     *     justifies this immunization.
+     */
+    public ImmunizationBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /**
+     * @param reason - Describes why the immunization occurred in coded or textual form, or
+     *     Indicates another resource (Condition, Observation or DiagnosticReport) whose existence
+     *     justifies this immunization.
+     */
+    public ImmunizationBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public ImmunizationBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param basedOn - A plan, order or recommendation fulfilled in whole or in part by this
+     *     immunization.
+     */
+    public ImmunizationBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
+      this.basedOn = Arrays.asList(basedOn);
+      return this;
+    }
+    /**
+     * @param basedOn - A plan, order or recommendation fulfilled in whole or in part by this
+     *     immunization.
+     */
+    public ImmunizationBuilder.Impl withBasedOn(@NonNull Collection<Reference> basedOn) {
+      this.basedOn = Collections.unmodifiableCollection(basedOn);
+      return this;
+    }
+
+    public ImmunizationBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public ImmunizationBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -235,8 +289,8 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ImmunizationBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -244,8 +298,8 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ImmunizationBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -283,6 +337,11 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param lotNumber - Lot number of the vaccine product. */
+    public ImmunizationBuilder.Impl withLotNumber(@NonNull String lotNumber) {
+      this.lotNumber = Optional.of(lotNumber);
+      return this;
+    }
     /**
      * @param encounter - The visit or admission or other contact between patient and health care
      *     provider the immunization was performed as part of.
@@ -294,11 +353,6 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
 
     public ImmunizationBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
       this.encounter = Optional.of(encounter.build());
-      return this;
-    }
-    /** @param lotNumber - Lot number of the vaccine product. */
-    public ImmunizationBuilder.Impl withLotNumber(@NonNull String lotNumber) {
-      this.lotNumber = Optional.of(lotNumber);
       return this;
     }
     /** @param identifier - A unique identifier assigned to this immunization record. */
@@ -314,22 +368,6 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
 
     public ImmunizationBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
       this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /** @param reasonCode - Reasons why the vaccine was administered. */
-    public ImmunizationBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /** @param reasonCode - Reasons why the vaccine was administered. */
-    public ImmunizationBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public ImmunizationBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -348,19 +386,6 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
 
     public ImmunizationBuilder.Impl withStatusReason(@NonNull CodeableConceptBuilder statusReason) {
       this.statusReason = Optional.of(statusReason.build());
-      return this;
-    }
-    /**
-     * @param reportOrigin - The source of the data when the report of the immunization event is not
-     *     based on information from the person who administered the vaccine.
-     */
-    public ImmunizationBuilder.Impl withReportOrigin(@NonNull CodeableConcept reportOrigin) {
-      this.reportOrigin = Optional.of(reportOrigin);
-      return this;
-    }
-
-    public ImmunizationBuilder.Impl withReportOrigin(@NonNull CodeableConceptBuilder reportOrigin) {
-      this.reportOrigin = Optional.of(reportOrigin.build());
       return this;
     }
     /** @param manufacturer - Name of vaccine manufacturer. */
@@ -394,9 +419,8 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param primarySource - An indication that the content of the record is based on information
-     *     from the person who administered the vaccine. This reflects the context under which the
-     *     data was originally recorded.
+     * @param primarySource - Indicates if this record was captured as a secondary 'reported' record
+     *     rather than as an original primary source-of-truth record.
      */
     public ImmunizationBuilder.Impl withPrimarySource(@NonNull Boolean primarySource) {
       this.primarySource = Optional.of(primarySource);
@@ -424,26 +448,20 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param reasonReference - Condition, Observation or DiagnosticReport that supports why the
-     *     immunization was administered.
+     * @param instantiatesUri - The URL pointing to an externally maintained protocol, guideline,
+     *     orderset or other definition that is adhered to in whole or in part by this Immunization.
      */
-    public ImmunizationBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
+    public ImmunizationBuilder.Impl withInstantiatesUri(@NonNull String... instantiatesUri) {
+      this.instantiatesUri = Arrays.asList(instantiatesUri);
       return this;
     }
     /**
-     * @param reasonReference - Condition, Observation or DiagnosticReport that supports why the
-     *     immunization was administered.
+     * @param instantiatesUri - The URL pointing to an externally maintained protocol, guideline,
+     *     orderset or other definition that is adhered to in whole or in part by this Immunization.
      */
-    public ImmunizationBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public ImmunizationBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
+    public ImmunizationBuilder.Impl withInstantiatesUri(
+        @NonNull Collection<String> instantiatesUri) {
+      this.instantiatesUri = Collections.unmodifiableCollection(instantiatesUri);
       return this;
     }
     /** @param subpotentReason - Reason why a dose is considered to be subpotent. */
@@ -523,6 +541,36 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
         @NonNull CodeableConceptBuilder... programEligibility) {
       this.programEligibility =
           Arrays.stream(programEligibility).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param informationSource - Typically the source of the data when the report of the
+     *     immunization event is not based on information from the person who administered the
+     *     vaccine. Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+     *     pass the value in, wrap with one of the ImmunizationBuilder.informationSource static
+     *     methods
+     */
+    public ImmunizationBuilder.Impl withInformationSource(
+        @NonNull ChoiceCodeableConceptOrReference informationSource) {
+      this.informationSource = Optional.of(informationSource);
+      return this;
+    }
+    /**
+     * @param instantiatesCanonical - The URL pointing to a FHIR-defined protocol, guideline,
+     *     orderset or other definition that is adhered to in whole or in part by this Immunization.
+     */
+    public ImmunizationBuilder.Impl withInstantiatesCanonical(
+        @NonNull String... instantiatesCanonical) {
+      this.instantiatesCanonical = Arrays.asList(instantiatesCanonical);
+      return this;
+    }
+    /**
+     * @param instantiatesCanonical - The URL pointing to a FHIR-defined protocol, guideline,
+     *     orderset or other definition that is adhered to in whole or in part by this Immunization.
+     */
+    public ImmunizationBuilder.Impl withInstantiatesCanonical(
+        @NonNull Collection<String> instantiatesCanonical) {
+      this.instantiatesCanonical = Collections.unmodifiableCollection(instantiatesCanonical);
       return this;
     }
     /**
@@ -627,20 +675,20 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
           note.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(route),
           status,
+          reason.stream().collect(new LitSeqJCollector<>()),
+          basedOn.stream().collect(new LitSeqJCollector<>()),
           patient,
           OptionConverters.toScala(language),
           OptionConverters.toScala(recorded),
           OptionConverters.toScala(location),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(encounter),
           OptionConverters.toScala(lotNumber),
+          OptionConverters.toScala(encounter),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           vaccineCode,
           OptionConverters.toScala(isSubpotent.map(x -> (Object) x)),
           OptionConverters.toScala(statusReason),
-          OptionConverters.toScala(reportOrigin),
           OptionConverters.toScala(manufacturer),
           OptionConverters.toScala(doseQuantity),
           OptionConverters.toScala(implicitRules),
@@ -648,10 +696,12 @@ public interface ImmunizationBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(primarySource.map(x -> (Object) x)),
           OptionConverters.toScala(fundingSource),
           OptionConverters.toScala(expirationDate),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
+          instantiatesUri.stream().collect(new LitSeqJCollector<>()),
           subpotentReason.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           programEligibility.stream().collect(new LitSeqJCollector<>()),
+          (Option) OptionConverters.toScala(informationSource),
+          instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
           reaction.stream().collect(new LitSeqJCollector<>()),
           performer.stream().collect(new LitSeqJCollector<>()),
           education.stream().collect(new LitSeqJCollector<>()),

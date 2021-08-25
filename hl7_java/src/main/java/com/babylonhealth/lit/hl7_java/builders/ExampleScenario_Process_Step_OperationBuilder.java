@@ -165,7 +165,10 @@ public interface ExampleScenario_Process_Step_OperationBuilder {
       this.initiator = Optional.of(initiator);
       return this;
     }
-    /** @param description */
+    /**
+     * @param description - A free text natural language description of the {{title}} from a
+     *     consumer's perspective.
+     */
     public ExampleScenario_Process_Step_OperationBuilder.Impl withDescription(
         @NonNull String description) {
       this.description = Optional.of(description);

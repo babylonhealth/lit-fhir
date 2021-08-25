@@ -46,7 +46,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface StructureDefinitionBuilder extends DomainResourceBuilder {
+public interface StructureDefinitionBuilder extends CanonicalResourceBuilder {
   public StructureDefinition build();
 
   public static Impl init(
@@ -272,8 +272,8 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public StructureDefinitionBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -281,8 +281,8 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public StructureDefinitionBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -406,7 +406,7 @@ public interface StructureDefinitionBuilder extends DomainResourceBuilder {
     /**
      * @param fhirVersion - The version of the FHIR specification on which this StructureDefinition
      *     is based - this is the formal version of the specification, without the revision number,
-     *     e.g. [publication].[major].[minor], which is 4.0.1. for this version.
+     *     e.g. [publication].[major].[minor], which is 4.6.0. for this version.
      */
     public StructureDefinitionBuilder.Impl withFhirVersion(@NonNull FHIR_VERSION fhirVersion) {
       this.fhirVersion = Optional.of(fhirVersion);

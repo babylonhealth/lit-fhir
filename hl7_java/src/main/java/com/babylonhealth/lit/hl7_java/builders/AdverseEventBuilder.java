@@ -46,52 +46,70 @@ import static java.util.stream.Collectors.toList;
 public interface AdverseEventBuilder extends DomainResourceBuilder {
   public AdverseEvent build();
 
-  public static Impl init(Reference subject, ADVERSE_EVENT_ACTUALITY actuality) {
-    return new Impl(subject, actuality);
+  public static Impl init(String status, Reference subject, ADVERSE_EVENT_ACTUALITY actuality) {
+    return new Impl(status, subject, actuality);
   }
 
-  public static Impl builder(ReferenceBuilder subject, ADVERSE_EVENT_ACTUALITY actuality) {
-    return new Impl(subject.build(), actuality);
+  public static Impl builder(
+      String status, ReferenceBuilder subject, ADVERSE_EVENT_ACTUALITY actuality) {
+    return new Impl(status, subject.build(), actuality);
+  }
+
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriodOrTiming(f);
+  }
+
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Period p) {
+    return new ChoiceDateTimeOrPeriodOrTiming(p);
+  }
+
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Timing t) {
+    return new ChoiceDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements AdverseEventBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
-    private Optional<FHIRDateTime> date = Optional.empty();
-    private Optional<CodeableConcept> event = Optional.empty();
+    private Optional<CodeableConcept> code = Optional.empty();
     private Collection<Reference> study = Collections.emptyList();
+    private String status;
     private Reference subject;
-    private Optional<CodeableConcept> outcome = Optional.empty();
+    private Collection<CodeableConcept> outcome = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category = Collections.emptyList();
     private Optional<FHIRDateTime> detected = Optional.empty();
     private Optional<Reference> location = Optional.empty();
-    private Optional<CodeableConcept> severity = Optional.empty();
     private Optional<Reference> recorder = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private ADVERSE_EVENT_ACTUALITY actuality;
     private Optional<Reference> encounter = Optional.empty();
-    private Optional<Identifier> identifier = Optional.empty();
+    private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<CodeableConcept> seriousness = Optional.empty();
-    private Collection<Reference> contributor = Collections.emptyList();
     private Optional<FHIRDateTime> recordedDate = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Collection<Reference> referenceDocument = Collections.emptyList();
     private Collection<Reference> resultingCondition = Collections.emptyList();
-    private Collection<Reference> subjectMedicalHistory = Collections.emptyList();
+    private Collection<AdverseEvent.Participant> participant = Collections.emptyList();
+    private Collection<AdverseEvent.SupportingInfo> supportingInfo = Collections.emptyList();
+    private Collection<AdverseEvent.PreventiveAction> preventiveAction = Collections.emptyList();
+    private Collection<AdverseEvent.MitigatingAction> mitigatingAction = Collections.emptyList();
+    private Collection<AdverseEvent.ContributingFactor> contributingFactor =
+        Collections.emptyList();
     private Collection<AdverseEvent.SuspectEntity> suspectEntity = Collections.emptyList();
 
     /**
      * Required fields for {@link AdverseEvent}
      *
+     * @param status - The current state of the adverse event or potential adverse event.
      * @param subject - This subject or group impacted by the event.
      * @param actuality - Whether the event actually happened, or just had the potential to. Note
      *     that this is independent of whether anyone was affected or harmed or how severely.
      */
-    public Impl(Reference subject, ADVERSE_EVENT_ACTUALITY actuality) {
+    public Impl(String status, Reference subject, ADVERSE_EVENT_ACTUALITY actuality) {
+      this.status = status;
       this.subject = subject;
       this.actuality = actuality;
     }
@@ -134,30 +152,25 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text.build());
       return this;
     }
-    /** @param date - The date (and perhaps time) when the adverse event occurred. */
-    public AdverseEventBuilder.Impl withDate(@NonNull FHIRDateTime date) {
-      this.date = Optional.of(date);
-      return this;
-    }
     /**
-     * @param event - This element defines the specific type of event that occurred or that was
-     *     prevented from occurring.
+     * @param code - Specific event that occurred or that was averted, such as patient fall, wrong
+     *     organ removed, or wrong blood transfused.
      */
-    public AdverseEventBuilder.Impl withEvent(@NonNull CodeableConcept event) {
-      this.event = Optional.of(event);
+    public AdverseEventBuilder.Impl withCode(@NonNull CodeableConcept code) {
+      this.code = Optional.of(code);
       return this;
     }
 
-    public AdverseEventBuilder.Impl withEvent(@NonNull CodeableConceptBuilder event) {
-      this.event = Optional.of(event.build());
+    public AdverseEventBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
-    /** @param study - AdverseEvent.study. */
+    /** @param study - The research study that the subject is enrolled in. */
     public AdverseEventBuilder.Impl withStudy(@NonNull Reference... study) {
       this.study = Arrays.asList(study);
       return this;
     }
-    /** @param study - AdverseEvent.study. */
+    /** @param study - The research study that the subject is enrolled in. */
     public AdverseEventBuilder.Impl withStudy(@NonNull Collection<Reference> study) {
       this.study = Collections.unmodifiableCollection(study);
       return this;
@@ -167,14 +180,25 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.study = Arrays.stream(study).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param outcome - Describes the type of outcome from the adverse event. */
-    public AdverseEventBuilder.Impl withOutcome(@NonNull CodeableConcept outcome) {
-      this.outcome = Optional.of(outcome);
+    /**
+     * @param outcome - Describes the type of outcome from the adverse event, such as resolved,
+     *     recovering, ongoing, resolved-with-sequelae, or fatal.
+     */
+    public AdverseEventBuilder.Impl withOutcome(@NonNull CodeableConcept... outcome) {
+      this.outcome = Arrays.asList(outcome);
+      return this;
+    }
+    /**
+     * @param outcome - Describes the type of outcome from the adverse event, such as resolved,
+     *     recovering, ongoing, resolved-with-sequelae, or fatal.
+     */
+    public AdverseEventBuilder.Impl withOutcome(@NonNull Collection<CodeableConcept> outcome) {
+      this.outcome = Collections.unmodifiableCollection(outcome);
       return this;
     }
 
-    public AdverseEventBuilder.Impl withOutcome(@NonNull CodeableConceptBuilder outcome) {
-      this.outcome = Optional.of(outcome.build());
+    public AdverseEventBuilder.Impl withOutcome(@NonNull CodeableConceptBuilder... outcome) {
+      this.outcome = Arrays.stream(outcome).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -216,20 +240,6 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param severity - Describes the severity of the adverse event, in relation to the subject.
-     *     Contrast to AdverseEvent.seriousness - a severe rash might not be serious, but a mild
-     *     heart problem is.
-     */
-    public AdverseEventBuilder.Impl withSeverity(@NonNull CodeableConcept severity) {
-      this.severity = Optional.of(severity);
-      return this;
-    }
-
-    public AdverseEventBuilder.Impl withSeverity(@NonNull CodeableConceptBuilder severity) {
-      this.severity = Optional.of(severity.build());
-      return this;
-    }
-    /**
      * @param recorder - Information on who recorded the adverse event. May be the patient or a
      *     practitioner.
      */
@@ -244,8 +254,8 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public AdverseEventBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -253,8 +263,8 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public AdverseEventBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -292,10 +302,7 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /**
-     * @param encounter - The Encounter during which AdverseEvent was created or to which the
-     *     creation of this record is tightly associated.
-     */
+    /** @param encounter - The Encounter associated with the start of the AdverseEvent. */
     public AdverseEventBuilder.Impl withEncounter(@NonNull Reference encounter) {
       this.encounter = Optional.of(encounter);
       return this;
@@ -310,16 +317,28 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
      *     other systems which remain constant as the resource is updated and propagates from server
      *     to server.
      */
-    public AdverseEventBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
-      this.identifier = Optional.of(identifier);
+    public AdverseEventBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
+      this.identifier = Arrays.asList(identifier);
+      return this;
+    }
+    /**
+     * @param identifier - Business identifiers assigned to this adverse event by the performer or
+     *     other systems which remain constant as the resource is updated and propagates from server
+     *     to server.
+     */
+    public AdverseEventBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
+      this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
 
-    public AdverseEventBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
-      this.identifier = Optional.of(identifier.build());
+    public AdverseEventBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param seriousness - Assessment whether this event was of real importance. */
+    /**
+     * @param seriousness - Assessment whether this event, or averted event, was of clinical
+     *     importance.
+     */
     public AdverseEventBuilder.Impl withSeriousness(@NonNull CodeableConcept seriousness) {
       this.seriousness = Optional.of(seriousness);
       return this;
@@ -327,35 +346,6 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
 
     public AdverseEventBuilder.Impl withSeriousness(@NonNull CodeableConceptBuilder seriousness) {
       this.seriousness = Optional.of(seriousness.build());
-      return this;
-    }
-    /**
-     * @param contributor - Parties that may or should contribute or have contributed information to
-     *     the adverse event, which can consist of one or more activities. Such information includes
-     *     information leading to the decision to perform the activity and how to perform the
-     *     activity (e.g. consultant), information that the activity itself seeks to reveal (e.g.
-     *     informant of clinical history), or information about what activity was performed (e.g.
-     *     informant witness).
-     */
-    public AdverseEventBuilder.Impl withContributor(@NonNull Reference... contributor) {
-      this.contributor = Arrays.asList(contributor);
-      return this;
-    }
-    /**
-     * @param contributor - Parties that may or should contribute or have contributed information to
-     *     the adverse event, which can consist of one or more activities. Such information includes
-     *     information leading to the decision to perform the activity and how to perform the
-     *     activity (e.g. consultant), information that the activity itself seeks to reveal (e.g.
-     *     informant of clinical history), or information about what activity was performed (e.g.
-     *     informant witness).
-     */
-    public AdverseEventBuilder.Impl withContributor(@NonNull Collection<Reference> contributor) {
-      this.contributor = Collections.unmodifiableCollection(contributor);
-      return this;
-    }
-
-    public AdverseEventBuilder.Impl withContributor(@NonNull ReferenceBuilder... contributor) {
-      this.contributor = Arrays.stream(contributor).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -373,6 +363,16 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
      */
     public AdverseEventBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
       this.implicitRules = Optional.of(implicitRules);
+      return this;
+    }
+    /**
+     * @param occurrence - The date (and perhaps time) when the adverse event occurred. Field is a
+     *     'choice' field. Type should be one of FHIRDateTime, Period, Timing. To pass the value in,
+     *     wrap with one of the AdverseEventBuilder.occurrence static methods
+     */
+    public AdverseEventBuilder.Impl withOccurrence(
+        @NonNull ChoiceDateTimeOrPeriodOrTiming occurrence) {
+      this.occurrence = Optional.of(occurrence);
       return this;
     }
     /**
@@ -417,27 +417,10 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param referenceDocument - AdverseEvent.referenceDocument. */
-    public AdverseEventBuilder.Impl withReferenceDocument(@NonNull Reference... referenceDocument) {
-      this.referenceDocument = Arrays.asList(referenceDocument);
-      return this;
-    }
-    /** @param referenceDocument - AdverseEvent.referenceDocument. */
-    public AdverseEventBuilder.Impl withReferenceDocument(
-        @NonNull Collection<Reference> referenceDocument) {
-      this.referenceDocument = Collections.unmodifiableCollection(referenceDocument);
-      return this;
-    }
-
-    public AdverseEventBuilder.Impl withReferenceDocument(
-        @NonNull ReferenceBuilder... referenceDocument) {
-      this.referenceDocument =
-          Arrays.stream(referenceDocument).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /**
-     * @param resultingCondition - Includes information about the reaction that occurred as a result
-     *     of exposure to a substance (for example, a drug or a chemical).
+     * @param resultingCondition - Information about the condition that occurred as a result of the
+     *     adverse event, such as hives due to the exposure to a substance (for example, a drug or a
+     *     chemical) or a broken leg as a result of the fall.
      */
     public AdverseEventBuilder.Impl withResultingCondition(
         @NonNull Reference... resultingCondition) {
@@ -445,8 +428,9 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param resultingCondition - Includes information about the reaction that occurred as a result
-     *     of exposure to a substance (for example, a drug or a chemical).
+     * @param resultingCondition - Information about the condition that occurred as a result of the
+     *     adverse event, such as hives due to the exposure to a substance (for example, a drug or a
+     *     chemical) or a broken leg as a result of the fall.
      */
     public AdverseEventBuilder.Impl withResultingCondition(
         @NonNull Collection<Reference> resultingCondition) {
@@ -460,23 +444,117 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
           Arrays.stream(resultingCondition).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param subjectMedicalHistory - AdverseEvent.subjectMedicalHistory. */
-    public AdverseEventBuilder.Impl withSubjectMedicalHistory(
-        @NonNull Reference... subjectMedicalHistory) {
-      this.subjectMedicalHistory = Arrays.asList(subjectMedicalHistory);
+    /**
+     * @param participant - Indicates who or what participated in the adverse event and how they
+     *     were involved.
+     */
+    public AdverseEventBuilder.Impl withParticipant(
+        @NonNull AdverseEvent.Participant... participant) {
+      this.participant = Arrays.asList(participant);
       return this;
     }
-    /** @param subjectMedicalHistory - AdverseEvent.subjectMedicalHistory. */
-    public AdverseEventBuilder.Impl withSubjectMedicalHistory(
-        @NonNull Collection<Reference> subjectMedicalHistory) {
-      this.subjectMedicalHistory = Collections.unmodifiableCollection(subjectMedicalHistory);
+    /**
+     * @param participant - Indicates who or what participated in the adverse event and how they
+     *     were involved.
+     */
+    public AdverseEventBuilder.Impl withParticipant(
+        @NonNull Collection<AdverseEvent.Participant> participant) {
+      this.participant = Collections.unmodifiableCollection(participant);
       return this;
     }
 
-    public AdverseEventBuilder.Impl withSubjectMedicalHistory(
-        @NonNull ReferenceBuilder... subjectMedicalHistory) {
-      this.subjectMedicalHistory =
-          Arrays.stream(subjectMedicalHistory).map(e -> e.build()).collect(toList());
+    public AdverseEventBuilder.Impl withParticipant(
+        @NonNull AdverseEvent_ParticipantBuilder... participant) {
+      this.participant = Arrays.stream(participant).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param supportingInfo - Supporting information relevant to the event. */
+    public AdverseEventBuilder.Impl withSupportingInfo(
+        @NonNull AdverseEvent.SupportingInfo... supportingInfo) {
+      this.supportingInfo = Arrays.asList(supportingInfo);
+      return this;
+    }
+    /** @param supportingInfo - Supporting information relevant to the event. */
+    public AdverseEventBuilder.Impl withSupportingInfo(
+        @NonNull Collection<AdverseEvent.SupportingInfo> supportingInfo) {
+      this.supportingInfo = Collections.unmodifiableCollection(supportingInfo);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withSupportingInfo(
+        @NonNull AdverseEvent_SupportingInfoBuilder... supportingInfo) {
+      this.supportingInfo = Arrays.stream(supportingInfo).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param preventiveAction - Preventive actions that contributed to avoiding the adverse event.
+     */
+    public AdverseEventBuilder.Impl withPreventiveAction(
+        @NonNull AdverseEvent.PreventiveAction... preventiveAction) {
+      this.preventiveAction = Arrays.asList(preventiveAction);
+      return this;
+    }
+    /**
+     * @param preventiveAction - Preventive actions that contributed to avoiding the adverse event.
+     */
+    public AdverseEventBuilder.Impl withPreventiveAction(
+        @NonNull Collection<AdverseEvent.PreventiveAction> preventiveAction) {
+      this.preventiveAction = Collections.unmodifiableCollection(preventiveAction);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withPreventiveAction(
+        @NonNull AdverseEvent_PreventiveActionBuilder... preventiveAction) {
+      this.preventiveAction = Arrays.stream(preventiveAction).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param mitigatingAction - The ameliorating action taken after the adverse event occured in
+     *     order to reduce the extent of harm.
+     */
+    public AdverseEventBuilder.Impl withMitigatingAction(
+        @NonNull AdverseEvent.MitigatingAction... mitigatingAction) {
+      this.mitigatingAction = Arrays.asList(mitigatingAction);
+      return this;
+    }
+    /**
+     * @param mitigatingAction - The ameliorating action taken after the adverse event occured in
+     *     order to reduce the extent of harm.
+     */
+    public AdverseEventBuilder.Impl withMitigatingAction(
+        @NonNull Collection<AdverseEvent.MitigatingAction> mitigatingAction) {
+      this.mitigatingAction = Collections.unmodifiableCollection(mitigatingAction);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withMitigatingAction(
+        @NonNull AdverseEvent_MitigatingActionBuilder... mitigatingAction) {
+      this.mitigatingAction = Arrays.stream(mitigatingAction).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param contributingFactor - The contributing factors suspected to have increased the
+     *     probability or severity of the adverse event.
+     */
+    public AdverseEventBuilder.Impl withContributingFactor(
+        @NonNull AdverseEvent.ContributingFactor... contributingFactor) {
+      this.contributingFactor = Arrays.asList(contributingFactor);
+      return this;
+    }
+    /**
+     * @param contributingFactor - The contributing factors suspected to have increased the
+     *     probability or severity of the adverse event.
+     */
+    public AdverseEventBuilder.Impl withContributingFactor(
+        @NonNull Collection<AdverseEvent.ContributingFactor> contributingFactor) {
+      this.contributingFactor = Collections.unmodifiableCollection(contributingFactor);
+      return this;
+    }
+
+    public AdverseEventBuilder.Impl withContributingFactor(
+        @NonNull AdverseEvent_ContributingFactorBuilder... contributingFactor) {
+      this.contributingFactor =
+          Arrays.stream(contributingFactor).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -514,30 +592,32 @@ public interface AdverseEventBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(id),
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
-          OptionConverters.toScala(date),
-          OptionConverters.toScala(event),
+          OptionConverters.toScala(code),
           study.stream().collect(new LitSeqJCollector<>()),
+          status,
           subject,
-          OptionConverters.toScala(outcome),
+          outcome.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
           category.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(detected),
           OptionConverters.toScala(location),
-          OptionConverters.toScala(severity),
           OptionConverters.toScala(recorder),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           actuality,
           OptionConverters.toScala(encounter),
-          OptionConverters.toScala(identifier),
+          identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(seriousness),
-          contributor.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(recordedDate),
           OptionConverters.toScala(implicitRules),
+          (Option) OptionConverters.toScala(occurrence),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          referenceDocument.stream().collect(new LitSeqJCollector<>()),
           resultingCondition.stream().collect(new LitSeqJCollector<>()),
-          subjectMedicalHistory.stream().collect(new LitSeqJCollector<>()),
+          participant.stream().collect(new LitSeqJCollector<>()),
+          supportingInfo.stream().collect(new LitSeqJCollector<>()),
+          preventiveAction.stream().collect(new LitSeqJCollector<>()),
+          mitigatingAction.stream().collect(new LitSeqJCollector<>()),
+          contributingFactor.stream().collect(new LitSeqJCollector<>()),
           suspectEntity.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

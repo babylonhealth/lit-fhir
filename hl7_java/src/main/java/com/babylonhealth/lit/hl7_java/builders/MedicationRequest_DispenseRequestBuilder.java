@@ -57,10 +57,12 @@ public interface MedicationRequest_DispenseRequestBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Quantity> quantity = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Reference> performer = Optional.empty();
+    private Optional<Reference> dispenser = Optional.empty();
     private Optional<Period> validityPeriod = Optional.empty();
     private Optional<Duration> dispenseInterval = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Collection<Annotation> dispenserInstruction = Collections.emptyList();
+    private Optional<CodeableConcept> doseAdministrationAid = Optional.empty();
     private Optional<Integer> numberOfRepeatsAllowed = Optional.empty();
     private Optional<Duration> expectedSupplyDuration = Optional.empty();
     private Optional<MedicationRequest$DispenseRequest$InitialFill> initialFill = Optional.empty();
@@ -117,19 +119,16 @@ public interface MedicationRequest_DispenseRequestBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /**
-     * @param performer - The specified desired performer of the medication treatment (e.g. the
-     *     performer of the medication administration).
-     */
-    public MedicationRequest_DispenseRequestBuilder.Impl withPerformer(
-        @NonNull Reference performer) {
-      this.performer = Optional.of(performer);
+    /** @param dispenser */
+    public MedicationRequest_DispenseRequestBuilder.Impl withDispenser(
+        @NonNull Reference dispenser) {
+      this.dispenser = Optional.of(dispenser);
       return this;
     }
 
-    public MedicationRequest_DispenseRequestBuilder.Impl withPerformer(
-        @NonNull ReferenceBuilder performer) {
-      this.performer = Optional.of(performer.build());
+    public MedicationRequest_DispenseRequestBuilder.Impl withDispenser(
+        @NonNull ReferenceBuilder dispenser) {
+      this.dispenser = Optional.of(dispenser.build());
       return this;
     }
     /** @param validityPeriod */
@@ -199,6 +198,37 @@ public interface MedicationRequest_DispenseRequestBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param dispenserInstruction */
+    public MedicationRequest_DispenseRequestBuilder.Impl withDispenserInstruction(
+        @NonNull Annotation... dispenserInstruction) {
+      this.dispenserInstruction = Arrays.asList(dispenserInstruction);
+      return this;
+    }
+    /** @param dispenserInstruction */
+    public MedicationRequest_DispenseRequestBuilder.Impl withDispenserInstruction(
+        @NonNull Collection<Annotation> dispenserInstruction) {
+      this.dispenserInstruction = Collections.unmodifiableCollection(dispenserInstruction);
+      return this;
+    }
+
+    public MedicationRequest_DispenseRequestBuilder.Impl withDispenserInstruction(
+        @NonNull AnnotationBuilder... dispenserInstruction) {
+      this.dispenserInstruction =
+          Arrays.stream(dispenserInstruction).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param doseAdministrationAid */
+    public MedicationRequest_DispenseRequestBuilder.Impl withDoseAdministrationAid(
+        @NonNull CodeableConcept doseAdministrationAid) {
+      this.doseAdministrationAid = Optional.of(doseAdministrationAid);
+      return this;
+    }
+
+    public MedicationRequest_DispenseRequestBuilder.Impl withDoseAdministrationAid(
+        @NonNull CodeableConceptBuilder doseAdministrationAid) {
+      this.doseAdministrationAid = Optional.of(doseAdministrationAid.build());
+      return this;
+    }
     /** @param numberOfRepeatsAllowed */
     public MedicationRequest_DispenseRequestBuilder.Impl withNumberOfRepeatsAllowed(
         @NonNull Integer numberOfRepeatsAllowed) {
@@ -235,10 +265,12 @@ public interface MedicationRequest_DispenseRequestBuilder {
           OptionConverters.toScala(id),
           OptionConverters.toScala(quantity),
           extension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(performer),
+          OptionConverters.toScala(dispenser),
           OptionConverters.toScala(validityPeriod),
           OptionConverters.toScala(dispenseInterval),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          dispenserInstruction.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(doseAdministrationAid),
           OptionConverters.toScala(numberOfRepeatsAllowed.map(x -> (Object) x)),
           OptionConverters.toScala(expectedSupplyDuration),
           OptionConverters.toScala(initialFill),

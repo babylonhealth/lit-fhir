@@ -118,7 +118,10 @@ public interface ExampleScenario_ActorBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param description */
+    /**
+     * @param description - A free text natural language description of the {{title}} from a
+     *     consumer's perspective.
+     */
     public ExampleScenario_ActorBuilder.Impl withDescription(@NonNull String description) {
       this.description = Optional.of(description);
       return this;

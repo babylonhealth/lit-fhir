@@ -61,8 +61,9 @@ public interface ValueSet_ExpansionBuilder {
     private FHIRDateTime timestamp;
     private Optional<String> identifier = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Collection<ValueSet$Expansion$Contains> contains = Collections.emptyList();
+    private Collection<ValueSet$Expansion$Property> property = Collections.emptyList();
     private Collection<ValueSet$Expansion$Parameter> parameter = Collections.emptyList();
+    private Collection<ValueSet$Expansion$Contains> contains = Collections.emptyList();
 
     /**
      * Required fields for {@link ValueSet.Expansion}
@@ -170,22 +171,22 @@ public interface ValueSet_ExpansionBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param contains */
-    public ValueSet_ExpansionBuilder.Impl withContains(
-        @NonNull ValueSet$Expansion$Contains... contains) {
-      this.contains = Arrays.asList(contains);
+    /** @param property */
+    public ValueSet_ExpansionBuilder.Impl withProperty(
+        @NonNull ValueSet$Expansion$Property... property) {
+      this.property = Arrays.asList(property);
       return this;
     }
-    /** @param contains */
-    public ValueSet_ExpansionBuilder.Impl withContains(
-        @NonNull Collection<ValueSet$Expansion$Contains> contains) {
-      this.contains = Collections.unmodifiableCollection(contains);
+    /** @param property */
+    public ValueSet_ExpansionBuilder.Impl withProperty(
+        @NonNull Collection<ValueSet$Expansion$Property> property) {
+      this.property = Collections.unmodifiableCollection(property);
       return this;
     }
 
-    public ValueSet_ExpansionBuilder.Impl withContains(
-        @NonNull ValueSet_Expansion_ContainsBuilder... contains) {
-      this.contains = Arrays.stream(contains).map(e -> e.build()).collect(toList());
+    public ValueSet_ExpansionBuilder.Impl withProperty(
+        @NonNull ValueSet_Expansion_PropertyBuilder... property) {
+      this.property = Arrays.stream(property).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param parameter */
@@ -206,6 +207,24 @@ public interface ValueSet_ExpansionBuilder {
       this.parameter = Arrays.stream(parameter).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param contains */
+    public ValueSet_ExpansionBuilder.Impl withContains(
+        @NonNull ValueSet$Expansion$Contains... contains) {
+      this.contains = Arrays.asList(contains);
+      return this;
+    }
+    /** @param contains */
+    public ValueSet_ExpansionBuilder.Impl withContains(
+        @NonNull Collection<ValueSet$Expansion$Contains> contains) {
+      this.contains = Collections.unmodifiableCollection(contains);
+      return this;
+    }
+
+    public ValueSet_ExpansionBuilder.Impl withContains(
+        @NonNull ValueSet_Expansion_ContainsBuilder... contains) {
+      this.contains = Arrays.stream(contains).map(e -> e.build()).collect(toList());
+      return this;
+    }
 
     public ValueSet.Expansion build() {
       return new ValueSet.Expansion(
@@ -216,8 +235,9 @@ public interface ValueSet_ExpansionBuilder {
           timestamp,
           OptionConverters.toScala(identifier),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          contains.stream().collect(new LitSeqJCollector<>()),
+          property.stream().collect(new LitSeqJCollector<>()),
           parameter.stream().collect(new LitSeqJCollector<>()),
+          contains.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }
   }

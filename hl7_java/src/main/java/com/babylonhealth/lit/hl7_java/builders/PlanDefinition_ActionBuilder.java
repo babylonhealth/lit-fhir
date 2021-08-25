@@ -58,36 +58,32 @@ public interface PlanDefinition_ActionBuilder {
     return new Impl();
   }
 
-  public static Choice01405873694 timing(Age a) {
-    return new Choice01405873694(a);
+  public static Choice01540702691 timing(Age a) {
+    return new Choice01540702691(a);
   }
 
-  public static Choice01405873694 timing(Duration d) {
-    return new Choice01405873694(d);
+  public static Choice01540702691 timing(Duration d) {
+    return new Choice01540702691(d);
   }
 
-  public static Choice01405873694 timing(FHIRDateTime f) {
-    return new Choice01405873694(f);
+  public static Choice01540702691 timing(Range r) {
+    return new Choice01540702691(r);
   }
 
-  public static Choice01405873694 timing(Period p) {
-    return new Choice01405873694(p);
+  public static Choice01540702691 timing(Timing t) {
+    return new Choice01540702691(t);
   }
 
-  public static Choice01405873694 timing(Range r) {
-    return new Choice01405873694(r);
+  public static ChoiceCanonicalOrCodeableConceptOrReference subject(String s) {
+    return new ChoiceCanonicalOrCodeableConceptOrReference(s);
   }
 
-  public static Choice01405873694 timing(Timing t) {
-    return new Choice01405873694(t);
+  public static ChoiceCanonicalOrCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCanonicalOrCodeableConceptOrReference(c);
   }
 
-  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
-    return new ChoiceCodeableConceptOrReference(c);
-  }
-
-  public static ChoiceCodeableConceptOrReference subject(Reference r) {
-    return new ChoiceCodeableConceptOrReference(r);
+  public static ChoiceCanonicalOrCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCanonicalOrCodeableConceptOrReference(r);
   }
 
   public static ChoiceCanonicalOrUri definitionCanonical(String s) {
@@ -100,21 +96,20 @@ public interface PlanDefinition_ActionBuilder {
 
   public class Impl implements PlanDefinition_ActionBuilder {
     private Optional<String> id = Optional.empty();
-    private Collection<CodeableConcept> code = Collections.emptyList();
+    private Optional<CodeableConcept> code = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();
     private Optional<String> title = Optional.empty();
-    private Collection<DataRequirement> input = Collections.emptyList();
     private Optional<String> prefix = Optional.empty();
     private Collection<CodeableConcept> reason = Collections.emptyList();
     private Collection<String> goalId = Collections.emptyList();
-    private Collection<DataRequirement> output = Collections.emptyList();
     private Collection<PlanDefinition.Action> action = Collections.emptyList();
     private Collection<TriggerDefinition> trigger = Collections.emptyList();
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
+    private Optional<CodeableReference> location = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice01405873694> timing = Optional.empty();
+    private Optional<Choice01540702691> timing = Optional.empty();
     private Optional<String> transform = Optional.empty();
-    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
+    private Optional<ChoiceCanonicalOrCodeableConceptOrReference> subject = Optional.empty();
     private Optional<String> description = Optional.empty();
     private Collection<RelatedArtifact> documentation = Collections.emptyList();
     private Optional<ChoiceCanonicalOrUri> definition = Optional.empty();
@@ -125,6 +120,8 @@ public interface PlanDefinition_ActionBuilder {
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<ACTION_SELECTION_BEHAVIOR> selectionBehavior = Optional.empty();
     private Optional<ACTION_CARDINALITY_BEHAVIOR> cardinalityBehavior = Optional.empty();
+    private Collection<PlanDefinition$Action$Input> input = Collections.emptyList();
+    private Collection<PlanDefinition$Action$Output> output = Collections.emptyList();
     private Collection<PlanDefinition$Action$Condition> condition = Collections.emptyList();
     private Collection<PlanDefinition$Action$Participant> participant = Collections.emptyList();
     private Collection<PlanDefinition$Action$DynamicValue> dynamicValue = Collections.emptyList();
@@ -142,18 +139,13 @@ public interface PlanDefinition_ActionBuilder {
       return this;
     }
     /** @param code */
-    public PlanDefinition_ActionBuilder.Impl withCode(@NonNull CodeableConcept... code) {
-      this.code = Arrays.asList(code);
-      return this;
-    }
-    /** @param code */
-    public PlanDefinition_ActionBuilder.Impl withCode(@NonNull Collection<CodeableConcept> code) {
-      this.code = Collections.unmodifiableCollection(code);
+    public PlanDefinition_ActionBuilder.Impl withCode(@NonNull CodeableConcept code) {
+      this.code = Optional.of(code);
       return this;
     }
 
-    public PlanDefinition_ActionBuilder.Impl withCode(@NonNull CodeableConceptBuilder... code) {
-      this.code = Arrays.stream(code).map(e -> e.build()).collect(toList());
+    public PlanDefinition_ActionBuilder.Impl withCode(@NonNull CodeableConceptBuilder code) {
+      this.code = Optional.of(code.build());
       return this;
     }
     /**
@@ -172,21 +164,6 @@ public interface PlanDefinition_ActionBuilder {
     /** @param title - A short, descriptive, user-friendly title for the plan definition. */
     public PlanDefinition_ActionBuilder.Impl withTitle(@NonNull String title) {
       this.title = Optional.of(title);
-      return this;
-    }
-    /** @param input */
-    public PlanDefinition_ActionBuilder.Impl withInput(@NonNull DataRequirement... input) {
-      this.input = Arrays.asList(input);
-      return this;
-    }
-    /** @param input */
-    public PlanDefinition_ActionBuilder.Impl withInput(@NonNull Collection<DataRequirement> input) {
-      this.input = Collections.unmodifiableCollection(input);
-      return this;
-    }
-
-    public PlanDefinition_ActionBuilder.Impl withInput(@NonNull DataRequirementBuilder... input) {
-      this.input = Arrays.stream(input).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param prefix */
@@ -220,28 +197,24 @@ public interface PlanDefinition_ActionBuilder {
       this.goalId = Collections.unmodifiableCollection(goalId);
       return this;
     }
-    /** @param output */
-    public PlanDefinition_ActionBuilder.Impl withOutput(@NonNull DataRequirement... output) {
-      this.output = Arrays.asList(output);
-      return this;
-    }
-    /** @param output */
-    public PlanDefinition_ActionBuilder.Impl withOutput(
-        @NonNull Collection<DataRequirement> output) {
-      this.output = Collections.unmodifiableCollection(output);
-      return this;
-    }
-
-    public PlanDefinition_ActionBuilder.Impl withOutput(@NonNull DataRequirementBuilder... output) {
-      this.output = Arrays.stream(output).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /** @param action - An action or group of actions to be taken as part of the plan. */
+    /**
+     * @param action - An action or group of actions to be taken as part of the plan. For example,
+     *     in clinical care, an action would be to prescribe a particular indicated medication, or
+     *     perform a particular test as appropriate. In pharmaceutical quality, an action would be
+     *     the test that needs to be performed on a drug product as defined in the quality
+     *     specification.
+     */
     public PlanDefinition_ActionBuilder.Impl withAction(@NonNull PlanDefinition.Action... action) {
       this.action = Arrays.asList(action);
       return this;
     }
-    /** @param action - An action or group of actions to be taken as part of the plan. */
+    /**
+     * @param action - An action or group of actions to be taken as part of the plan. For example,
+     *     in clinical care, an action would be to prescribe a particular indicated medication, or
+     *     perform a particular test as appropriate. In pharmaceutical quality, an action would be
+     *     the test that needs to be performed on a drug product as defined in the quality
+     *     specification.
+     */
     public PlanDefinition_ActionBuilder.Impl withAction(
         @NonNull Collection<PlanDefinition.Action> action) {
       this.action = Collections.unmodifiableCollection(action);
@@ -275,6 +248,17 @@ public interface PlanDefinition_ActionBuilder {
       this.priority = Optional.of(priority);
       return this;
     }
+    /** @param location */
+    public PlanDefinition_ActionBuilder.Impl withLocation(@NonNull CodeableReference location) {
+      this.location = Optional.of(location);
+      return this;
+    }
+
+    public PlanDefinition_ActionBuilder.Impl withLocation(
+        @NonNull CodeableReferenceBuilder location) {
+      this.location = Optional.of(location.build());
+      return this;
+    }
     /**
      * @param extension - May be used to represent additional information that is not part of the
      *     basic definition of the resource. To make the use of extensions safe and manageable,
@@ -304,11 +288,11 @@ public interface PlanDefinition_ActionBuilder {
       return this;
     }
     /**
-     * @param timing Field is a 'choice' field. Type should be one of Age, Duration, FHIRDateTime,
-     *     Period, Range, Timing. To pass the value in, wrap with one of the
-     *     PlanDefinition_ActionBuilder.timing static methods
+     * @param timing Field is a 'choice' field. Type should be one of Age, Duration, Range, Timing.
+     *     To pass the value in, wrap with one of the PlanDefinition_ActionBuilder.timing static
+     *     methods
      */
-    public PlanDefinition_ActionBuilder.Impl withTiming(@NonNull Choice01405873694 timing) {
+    public PlanDefinition_ActionBuilder.Impl withTiming(@NonNull Choice01540702691 timing) {
       this.timing = Optional.of(timing);
       return this;
     }
@@ -318,13 +302,17 @@ public interface PlanDefinition_ActionBuilder {
       return this;
     }
     /**
-     * @param subject - A code or group definition that describes the intended subject of the plan
-     *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
-     *     To pass the value in, wrap with one of the PlanDefinition_ActionBuilder.subject static
-     *     methods
+     * @param subject - A code, group definition, or canonical reference that describes or
+     *     identifies the intended subject of the plan definition. Canonical references are allowed
+     *     to support the definition of protocols for drug and substance quality specifications, and
+     *     is allowed to reference a MedicinalProductDefinition, SubstanceDefinition,
+     *     AdministrableProductDefinition, ManufacturedItemDefinition, or PackagedProductDefinition
+     *     resource. Field is a 'choice' field. Type should be one of String, CodeableConcept,
+     *     Reference. To pass the value in, wrap with one of the
+     *     PlanDefinition_ActionBuilder.subject static methods
      */
     public PlanDefinition_ActionBuilder.Impl withSubject(
-        @NonNull ChoiceCodeableConceptOrReference subject) {
+        @NonNull ChoiceCanonicalOrCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }
@@ -441,6 +429,42 @@ public interface PlanDefinition_ActionBuilder {
       this.cardinalityBehavior = Optional.of(cardinalityBehavior);
       return this;
     }
+    /** @param input */
+    public PlanDefinition_ActionBuilder.Impl withInput(
+        @NonNull PlanDefinition$Action$Input... input) {
+      this.input = Arrays.asList(input);
+      return this;
+    }
+    /** @param input */
+    public PlanDefinition_ActionBuilder.Impl withInput(
+        @NonNull Collection<PlanDefinition$Action$Input> input) {
+      this.input = Collections.unmodifiableCollection(input);
+      return this;
+    }
+
+    public PlanDefinition_ActionBuilder.Impl withInput(
+        @NonNull PlanDefinition_Action_InputBuilder... input) {
+      this.input = Arrays.stream(input).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param output */
+    public PlanDefinition_ActionBuilder.Impl withOutput(
+        @NonNull PlanDefinition$Action$Output... output) {
+      this.output = Arrays.asList(output);
+      return this;
+    }
+    /** @param output */
+    public PlanDefinition_ActionBuilder.Impl withOutput(
+        @NonNull Collection<PlanDefinition$Action$Output> output) {
+      this.output = Collections.unmodifiableCollection(output);
+      return this;
+    }
+
+    public PlanDefinition_ActionBuilder.Impl withOutput(
+        @NonNull PlanDefinition_Action_OutputBuilder... output) {
+      this.output = Arrays.stream(output).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param condition */
     public PlanDefinition_ActionBuilder.Impl withCondition(
         @NonNull PlanDefinition$Action$Condition... condition) {
@@ -517,17 +541,16 @@ public interface PlanDefinition_ActionBuilder {
     public PlanDefinition.Action build() {
       return new PlanDefinition.Action(
           OptionConverters.toScala(id),
-          code.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(code),
           OptionConverters.toScala(_type),
           OptionConverters.toScala(title),
-          input.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(prefix),
           reason.stream().collect(new LitSeqJCollector<>()),
           goalId.stream().collect(new LitSeqJCollector<>()),
-          output.stream().collect(new LitSeqJCollector<>()),
           action.stream().collect(new LitSeqJCollector<>()),
           trigger.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(priority),
+          OptionConverters.toScala(location),
           extension.stream().collect(new LitSeqJCollector<>()),
           (Option) OptionConverters.toScala(timing),
           OptionConverters.toScala(transform),
@@ -542,6 +565,8 @@ public interface PlanDefinition_ActionBuilder {
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(selectionBehavior),
           OptionConverters.toScala(cardinalityBehavior),
+          input.stream().collect(new LitSeqJCollector<>()),
+          output.stream().collect(new LitSeqJCollector<>()),
           condition.stream().collect(new LitSeqJCollector<>()),
           participant.stream().collect(new LitSeqJCollector<>()),
           dynamicValue.stream().collect(new LitSeqJCollector<>()),

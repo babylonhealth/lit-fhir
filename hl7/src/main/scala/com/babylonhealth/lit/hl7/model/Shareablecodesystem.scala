@@ -345,7 +345,7 @@ object Shareablecodesystem extends CompanionFor[Shareablecodesystem] {
   *   instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at
   *   which an authoritative instance of this code system is (or will be) published. This URL can be the target of a canonical
   *   reference. It SHALL remain the same when the code system is stored on different servers. This is used in
-  *   [Coding](http://hl7.org/fhir/datatypes.html#Coding).system.
+  *   [Coding](datatypes.html#Coding).system.
   * @param meta
   *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
   *   not always be associated with version changes to the resource.
@@ -372,8 +372,7 @@ object Shareablecodesystem extends CompanionFor[Shareablecodesystem] {
   *   - The identifier that is used to identify this version of the code system when it is referenced in a specification, model,
   *   design or instance. This is an arbitrary value managed by the code system author and is not expected to be globally unique.
   *   For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation
-  *   that versions can be placed in a lexicographical sequence. This is used in
-  *   [Coding](http://hl7.org/fhir/datatypes.html#Coding).version.
+  *   that versions can be placed in a lexicographical sequence. This is used in [Coding](datatypes.html#Coding).version.
   * @param contact
   *   - Contact details to assist a user in finding and communicating with the publisher.
   * @param purpose
@@ -387,7 +386,7 @@ object Shareablecodesystem extends CompanionFor[Shareablecodesystem] {
   *   - Canonical reference to the value set that contains the entire code system.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.

@@ -49,12 +49,12 @@ import static java.util.stream.Collectors.toList;
 public interface TestScript_Setup_Action_AssertBuilder {
   public TestScript$Setup$Action$Assert build();
 
-  public static Impl init(Boolean warningOnly) {
-    return new Impl(warningOnly);
+  public static Impl init(Boolean warningOnly, Boolean stopTestOnFail) {
+    return new Impl(warningOnly, stopTestOnFail);
   }
 
-  public static Impl builder(Boolean warningOnly) {
-    return new Impl(warningOnly);
+  public static Impl builder(Boolean warningOnly, Boolean stopTestOnFail) {
+    return new Impl(warningOnly, stopTestOnFail);
   }
 
   public class Impl implements TestScript_Setup_Action_AssertBuilder {
@@ -77,6 +77,7 @@ public interface TestScript_Setup_Action_AssertBuilder {
     private Boolean warningOnly;
     private Optional<String> responseCode = Optional.empty();
     private Optional<HTTP_OPERATIONS> requestMethod = Optional.empty();
+    private Boolean stopTestOnFail;
     private Optional<Boolean> navigationLinks = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<String> compareToSourceId = Optional.empty();
@@ -88,9 +89,11 @@ public interface TestScript_Setup_Action_AssertBuilder {
      * Required fields for {@link TestScript$Setup$Action$Assert}
      *
      * @param warningOnly
+     * @param stopTestOnFail
      */
-    public Impl(Boolean warningOnly) {
+    public Impl(Boolean warningOnly, Boolean stopTestOnFail) {
       this.warningOnly = warningOnly;
+      this.stopTestOnFail = stopTestOnFail;
     }
 
     /**
@@ -315,6 +318,7 @@ public interface TestScript_Setup_Action_AssertBuilder {
           warningOnly,
           OptionConverters.toScala(responseCode),
           OptionConverters.toScala(requestMethod),
+          stopTestOnFail,
           OptionConverters.toScala(navigationLinks.map(x -> (Object) x)),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(compareToSourceId),

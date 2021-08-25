@@ -172,39 +172,40 @@ object Procedure extends CompanionFor[Procedure] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type PerformedChoice = Choice[Union01474038381]
+  type ReportedChoice   = Choice[UnionBooleanOrReference]
+  type OccurrenceChoice = Choice[Union00955719581]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
       text: Option[Narrative] = None,
       code: Option[CodeableConcept] = None,
       note: LitSeq[Annotation] = LitSeq.empty,
+      used: LitSeq[CodeableReference] = LitSeq.empty,
       partOf: LitSeq[Reference] = LitSeq.empty,
       status: EVENT_STATUS,
+      reason: LitSeq[CodeableReference] = LitSeq.empty,
       report: LitSeq[Reference] = LitSeq.empty,
       basedOn: LitSeq[Reference] = LitSeq.empty,
       subject: Reference,
       outcome: Option[CodeableConcept] = None,
       language: Option[LANGUAGES] = None,
-      category: Option[CodeableConcept] = None,
+      category: LitSeq[CodeableConcept] = LitSeq.empty,
+      recorded: Option[FHIRDateTime] = None,
       recorder: Option[Reference] = None,
-      asserter: Option[Reference] = None,
       location: Option[Reference] = None,
       bodySite: LitSeq[CodeableConcept] = LitSeq.empty,
       followUp: LitSeq[CodeableConcept] = LitSeq.empty,
-      usedCode: LitSeq[CodeableConcept] = LitSeq.empty,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
       encounter: Option[Reference] = None,
       identifier: LitSeq[Identifier] = LitSeq.empty,
-      reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
+      reported: Option[Procedure.ReportedChoice] = None,
       statusReason: Option[CodeableConcept] = None,
-      performed: Option[Procedure.PerformedChoice] = None,
       complication: LitSeq[CodeableConcept] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
-      usedReference: LitSeq[Reference] = LitSeq.empty,
+      occurrence: Option[Procedure.OccurrenceChoice] = None,
+      supportingInfo: LitSeq[Reference] = LitSeq.empty,
       instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
-      reasonReference: LitSeq[Reference] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       complicationDetail: LitSeq[Reference] = LitSeq.empty,
       instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
@@ -217,32 +218,32 @@ object Procedure extends CompanionFor[Procedure] {
     text,
     code,
     note,
+    used,
     partOf,
     status,
+    reason,
     report,
     basedOn,
     subject,
     outcome,
     language,
     category,
+    recorded,
     recorder,
-    asserter,
     location,
     bodySite,
     followUp,
-    usedCode,
     contained,
     extension,
     encounter,
     identifier,
-    reasonCode,
+    reported,
     statusReason,
-    performed,
     complication,
     implicitRules,
-    usedReference,
+    occurrence,
+    supportingInfo,
     instantiatesUri,
-    reasonReference,
     modifierExtension,
     complicationDetail,
     instantiatesCanonical,
@@ -260,10 +261,14 @@ object Procedure extends CompanionFor[Procedure] {
     FHIRComponentFieldMeta("code", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val note: FHIRComponentFieldMeta[LitSeq[Annotation]] =
     FHIRComponentFieldMeta("note", lTagOf[LitSeq[Annotation]], false, lTagOf[Annotation])
+  val used: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("used", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val partOf: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("partOf", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val status: FHIRComponentFieldMeta[EVENT_STATUS] =
     FHIRComponentFieldMeta("status", lTagOf[EVENT_STATUS], false, lTagOf[EVENT_STATUS])
+  val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val report: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("report", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val basedOn: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -274,20 +279,18 @@ object Procedure extends CompanionFor[Procedure] {
     FHIRComponentFieldMeta("outcome", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
-  val category: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-    FHIRComponentFieldMeta("category", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val category: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
+    FHIRComponentFieldMeta("category", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val recorded: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
+    FHIRComponentFieldMeta("recorded", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val recorder: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("recorder", lTagOf[Option[Reference]], false, lTagOf[Reference])
-  val asserter: FHIRComponentFieldMeta[Option[Reference]] =
-    FHIRComponentFieldMeta("asserter", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val location: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("location", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val bodySite: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("bodySite", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val followUp: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("followUp", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
-  val usedCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("usedCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -296,22 +299,20 @@ object Procedure extends CompanionFor[Procedure] {
     FHIRComponentFieldMeta("encounter", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
-  val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val reported: FHIRComponentFieldMeta[Option[Procedure.ReportedChoice]] =
+    FHIRComponentFieldMeta("reported", lTagOf[Option[Procedure.ReportedChoice]], true, lTagOf[UnionBooleanOrReference])
   val statusReason: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
-  val performed: FHIRComponentFieldMeta[Option[Procedure.PerformedChoice]] =
-    FHIRComponentFieldMeta("performed", lTagOf[Option[Procedure.PerformedChoice]], true, lTagOf[Union01474038381])
   val complication: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("complication", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
-  val usedReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("usedReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
+  val occurrence: FHIRComponentFieldMeta[Option[Procedure.OccurrenceChoice]] =
+    FHIRComponentFieldMeta("occurrence", lTagOf[Option[Procedure.OccurrenceChoice]], true, lTagOf[Union00955719581])
+  val supportingInfo: FHIRComponentFieldMeta[LitSeq[Reference]] =
+    FHIRComponentFieldMeta("supportingInfo", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val instantiatesUri: FHIRComponentFieldMeta[LitSeq[UriStr]] =
     FHIRComponentFieldMeta("instantiatesUri", lTagOf[LitSeq[UriStr]], false, lTagOf[UriStr])
-  val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val complicationDetail: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -328,32 +329,32 @@ object Procedure extends CompanionFor[Procedure] {
     text,
     code,
     note,
+    used,
     partOf,
     status,
+    reason,
     report,
     basedOn,
     subject,
     outcome,
     language,
     category,
+    recorded,
     recorder,
-    asserter,
     location,
     bodySite,
     followUp,
-    usedCode,
     contained,
     extension,
     encounter,
     identifier,
-    reasonCode,
+    reported,
     statusReason,
-    performed,
     complication,
     implicitRules,
-    usedReference,
+    occurrence,
+    supportingInfo,
     instantiatesUri,
-    reasonReference,
     modifierExtension,
     complicationDetail,
     instantiatesCanonical,
@@ -367,90 +368,91 @@ object Procedure extends CompanionFor[Procedure] {
     FHIRComponentField[Option[Narrative]](text, t.text),
     FHIRComponentField[Option[CodeableConcept]](code, t.code),
     FHIRComponentField[LitSeq[Annotation]](note, t.note),
+    FHIRComponentField[LitSeq[CodeableReference]](used, t.used),
     FHIRComponentField[LitSeq[Reference]](partOf, t.partOf),
     FHIRComponentField[EVENT_STATUS](status, t.status),
+    FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
     FHIRComponentField[LitSeq[Reference]](report, t.report),
     FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
     FHIRComponentField[Reference](subject, t.subject),
     FHIRComponentField[Option[CodeableConcept]](outcome, t.outcome),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[CodeableConcept]](category, t.category),
+    FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
+    FHIRComponentField[Option[FHIRDateTime]](recorded, t.recorded),
     FHIRComponentField[Option[Reference]](recorder, t.recorder),
-    FHIRComponentField[Option[Reference]](asserter, t.asserter),
     FHIRComponentField[Option[Reference]](location, t.location),
     FHIRComponentField[LitSeq[CodeableConcept]](bodySite, t.bodySite),
     FHIRComponentField[LitSeq[CodeableConcept]](followUp, t.followUp),
-    FHIRComponentField[LitSeq[CodeableConcept]](usedCode, t.usedCode),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[Reference]](encounter, t.encounter),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
+    FHIRComponentField[Option[Procedure.ReportedChoice]](reported, t.reported),
     FHIRComponentField[Option[CodeableConcept]](statusReason, t.statusReason),
-    FHIRComponentField[Option[Procedure.PerformedChoice]](performed, t.performed),
     FHIRComponentField[LitSeq[CodeableConcept]](complication, t.complication),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[LitSeq[Reference]](usedReference, t.usedReference),
+    FHIRComponentField[Option[Procedure.OccurrenceChoice]](occurrence, t.occurrence),
+    FHIRComponentField[LitSeq[Reference]](supportingInfo, t.supportingInfo),
     FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[LitSeq[Reference]](complicationDetail, t.complicationDetail),
     FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
     FHIRComponentField[LitSeq[Procedure.Performer]](performer, t.performer),
     FHIRComponentField[LitSeq[Procedure.FocalDevice]](focalDevice, t.focalDevice)
   )
-  def extractId(t: Procedure): Option[String]                           = t.id
-  def extractMeta(t: Procedure): Option[Meta]                           = t.meta
-  def extractText(t: Procedure): Option[Narrative]                      = t.text
-  def extractCode(t: Procedure): Option[CodeableConcept]                = t.code
-  def extractNote(t: Procedure): LitSeq[Annotation]                     = t.note
-  def extractPartOf(t: Procedure): LitSeq[Reference]                    = t.partOf
-  def extractStatus(t: Procedure): EVENT_STATUS                         = t.status
-  def extractReport(t: Procedure): LitSeq[Reference]                    = t.report
-  def extractBasedOn(t: Procedure): LitSeq[Reference]                   = t.basedOn
-  def extractSubject(t: Procedure): Reference                           = t.subject
-  def extractOutcome(t: Procedure): Option[CodeableConcept]             = t.outcome
-  def extractLanguage(t: Procedure): Option[LANGUAGES]                  = t.language
-  def extractCategory(t: Procedure): Option[CodeableConcept]            = t.category
-  def extractRecorder(t: Procedure): Option[Reference]                  = t.recorder
-  def extractAsserter(t: Procedure): Option[Reference]                  = t.asserter
-  def extractLocation(t: Procedure): Option[Reference]                  = t.location
-  def extractBodySite(t: Procedure): LitSeq[CodeableConcept]            = t.bodySite
-  def extractFollowUp(t: Procedure): LitSeq[CodeableConcept]            = t.followUp
-  def extractUsedCode(t: Procedure): LitSeq[CodeableConcept]            = t.usedCode
-  def extractContained(t: Procedure): LitSeq[Resource]                  = t.contained
-  def extractExtension(t: Procedure): LitSeq[Extension]                 = t.extension
-  def extractEncounter(t: Procedure): Option[Reference]                 = t.encounter
-  def extractIdentifier(t: Procedure): LitSeq[Identifier]               = t.identifier
-  def extractReasonCode(t: Procedure): LitSeq[CodeableConcept]          = t.reasonCode
-  def extractStatusReason(t: Procedure): Option[CodeableConcept]        = t.statusReason
-  def extractPerformed(t: Procedure): Option[Procedure.PerformedChoice] = t.performed
-  def extractComplication(t: Procedure): LitSeq[CodeableConcept]        = t.complication
-  def extractImplicitRules(t: Procedure): Option[UriStr]                = t.implicitRules
-  def extractUsedReference(t: Procedure): LitSeq[Reference]             = t.usedReference
-  def extractInstantiatesUri(t: Procedure): LitSeq[UriStr]              = t.instantiatesUri
-  def extractReasonReference(t: Procedure): LitSeq[Reference]           = t.reasonReference
-  def extractModifierExtension(t: Procedure): LitSeq[Extension]         = t.modifierExtension
-  def extractComplicationDetail(t: Procedure): LitSeq[Reference]        = t.complicationDetail
-  def extractInstantiatesCanonical(t: Procedure): LitSeq[Canonical]     = t.instantiatesCanonical
-  def extractPerformer(t: Procedure): LitSeq[Procedure.Performer]       = t.performer
-  def extractFocalDevice(t: Procedure): LitSeq[Procedure.FocalDevice]   = t.focalDevice
-  override val thisName: String                                         = "Procedure"
+  def extractId(t: Procedure): Option[String]                             = t.id
+  def extractMeta(t: Procedure): Option[Meta]                             = t.meta
+  def extractText(t: Procedure): Option[Narrative]                        = t.text
+  def extractCode(t: Procedure): Option[CodeableConcept]                  = t.code
+  def extractNote(t: Procedure): LitSeq[Annotation]                       = t.note
+  def extractUsed(t: Procedure): LitSeq[CodeableReference]                = t.used
+  def extractPartOf(t: Procedure): LitSeq[Reference]                      = t.partOf
+  def extractStatus(t: Procedure): EVENT_STATUS                           = t.status
+  def extractReason(t: Procedure): LitSeq[CodeableReference]              = t.reason
+  def extractReport(t: Procedure): LitSeq[Reference]                      = t.report
+  def extractBasedOn(t: Procedure): LitSeq[Reference]                     = t.basedOn
+  def extractSubject(t: Procedure): Reference                             = t.subject
+  def extractOutcome(t: Procedure): Option[CodeableConcept]               = t.outcome
+  def extractLanguage(t: Procedure): Option[LANGUAGES]                    = t.language
+  def extractCategory(t: Procedure): LitSeq[CodeableConcept]              = t.category
+  def extractRecorded(t: Procedure): Option[FHIRDateTime]                 = t.recorded
+  def extractRecorder(t: Procedure): Option[Reference]                    = t.recorder
+  def extractLocation(t: Procedure): Option[Reference]                    = t.location
+  def extractBodySite(t: Procedure): LitSeq[CodeableConcept]              = t.bodySite
+  def extractFollowUp(t: Procedure): LitSeq[CodeableConcept]              = t.followUp
+  def extractContained(t: Procedure): LitSeq[Resource]                    = t.contained
+  def extractExtension(t: Procedure): LitSeq[Extension]                   = t.extension
+  def extractEncounter(t: Procedure): Option[Reference]                   = t.encounter
+  def extractIdentifier(t: Procedure): LitSeq[Identifier]                 = t.identifier
+  def extractReported(t: Procedure): Option[Procedure.ReportedChoice]     = t.reported
+  def extractStatusReason(t: Procedure): Option[CodeableConcept]          = t.statusReason
+  def extractComplication(t: Procedure): LitSeq[CodeableConcept]          = t.complication
+  def extractImplicitRules(t: Procedure): Option[UriStr]                  = t.implicitRules
+  def extractOccurrence(t: Procedure): Option[Procedure.OccurrenceChoice] = t.occurrence
+  def extractSupportingInfo(t: Procedure): LitSeq[Reference]              = t.supportingInfo
+  def extractInstantiatesUri(t: Procedure): LitSeq[UriStr]                = t.instantiatesUri
+  def extractModifierExtension(t: Procedure): LitSeq[Extension]           = t.modifierExtension
+  def extractComplicationDetail(t: Procedure): LitSeq[Reference]          = t.complicationDetail
+  def extractInstantiatesCanonical(t: Procedure): LitSeq[Canonical]       = t.instantiatesCanonical
+  def extractPerformer(t: Procedure): LitSeq[Procedure.Performer]         = t.performer
+  def extractFocalDevice(t: Procedure): LitSeq[Procedure.FocalDevice]     = t.focalDevice
+  override val thisName: String                                           = "Procedure"
   override val searchParams: Map[String, Procedure => Seq[Any]] = Map(
     "location"               -> (obj => obj.location.toSeq),
     "subject"                -> (obj => Seq(obj.subject)),
-    "reason-code"            -> (obj => obj.reasonCode.toSeq),
+    "reason-code"            -> (obj => obj.reason.flatMap(_.concept).toSeq),
     "code"                   -> (obj => obj.code.toSeq),
-    "date"                   -> (obj => obj.performed.toSeq),
+    "date"                   -> (obj => obj.occurrence.toSeq),
     "status"                 -> (obj => Seq(obj.status)),
-    "category"               -> (obj => obj.category.toSeq),
     "part-of"                -> (obj => obj.partOf.toSeq),
     "based-on"               -> (obj => obj.basedOn.toSeq),
     "encounter"              -> (obj => obj.encounter.toSeq),
     "instantiates-uri"       -> (obj => obj.instantiatesUri.toSeq),
     "identifier"             -> (obj => obj.identifier.toSeq),
+    "category"               -> (obj => obj.category.toSeq),
+    "report"                 -> (obj => obj.report.toSeq),
     "performer"              -> (obj => obj.performer.map(_.actor).toSeq),
-    "reason-reference"       -> (obj => obj.reasonReference.toSeq),
+    "reason-reference"       -> (obj => obj.reason.flatMap(_.reference).toSeq),
     "instantiates-canonical" -> (obj => obj.instantiatesCanonical.toSeq),
     "patient"                -> (obj => obj.subject.seqIf(_.reference.exists(_.contains("Patient/"))).toSeq)
   )
@@ -463,32 +465,32 @@ object Procedure extends CompanionFor[Procedure] {
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("code", Some(None)),
           cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[CodeableReference]]("used", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("partOf", Some(LitSeq.empty)),
           cursor.decodeAs[EVENT_STATUS]("status", None),
+          cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("report", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("basedOn", Some(LitSeq.empty)),
           cursor.decodeAs[Reference]("subject", None),
           cursor.decodeAs[Option[CodeableConcept]]("outcome", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
-          cursor.decodeAs[Option[CodeableConcept]]("category", Some(None)),
+          cursor.decodeAs[LitSeq[CodeableConcept]]("category", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[FHIRDateTime]]("recorded", Some(None)),
           cursor.decodeAs[Option[Reference]]("recorder", Some(None)),
-          cursor.decodeAs[Option[Reference]]("asserter", Some(None)),
           cursor.decodeAs[Option[Reference]]("location", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("bodySite", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("followUp", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("usedCode", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
+          cursor.decodeOptRef[UnionBooleanOrReference]("reported"),
           cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
-          cursor.decodeOptRef[Union01474038381]("performed"),
           cursor.decodeAs[LitSeq[CodeableConcept]]("complication", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeAs[LitSeq[Reference]]("usedReference", Some(LitSeq.empty)),
+          cursor.decodeOptRef[Union00955719581]("occurrence"),
+          cursor.decodeAs[LitSeq[Reference]]("supportingInfo", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[UriStr]]("instantiatesUri", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("complicationDetail", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Canonical]]("instantiatesCanonical", Some(LitSeq.empty)),
@@ -499,15 +501,17 @@ object Procedure extends CompanionFor[Procedure] {
       ))
 }
 
-/** An action that is or was performed on or for a patient. This can be a physical intervention like an operation, or less
-  * invasive like long term services, counseling, or hypnotherapy.
+/** An action that is or was performed on or for a patient, practitioner, device, organization, or location. For example, this can
+  * be a physical intervention on a patient like an operation, or less invasive like long term services, counseling, or
+  * hypnotherapy. This can be a quality or safety inspection for a location, organization, or device. This can be an accreditation
+  * procedure on a practitioner for licensing.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields code, note, partOf, status, report, basedOn, subject, outcome, category, recorder, asserter, location,
-  *   bodySite, followUp, usedCode, encounter, identifier, reasonCode, statusReason, performed, complication, usedReference,
-  *   instantiatesUri, reasonReference, complicationDetail, instantiatesCanonical, performer, focalDevice.
+  *   Introduces the fields code, note, used, partOf, status, reason, report, basedOn, subject, outcome, category, recorded,
+  *   recorder, location, bodySite, followUp, encounter, identifier, reported, statusReason, complication, occurrence,
+  *   supportingInfo, instantiatesUri, complicationDetail, instantiatesCanonical, performer, focalDevice.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -523,26 +527,34 @@ object Procedure extends CompanionFor[Procedure] {
   *   "Laparoscopic Appendectomy").
   * @param note
   *   - Any other notes and comments about the procedure.
+  * @param used
+  *   - Identifies medications, devices and any other substance used as part of the procedure.
   * @param partOf
   *   - A larger event of which this particular procedure is a component or step.
   * @param status
   *   - A code specifying the state of the procedure. Generally, this will be the in-progress or completed state.
+  * @param reason
+  *   - The coded reason or reference why the procedure was performed. This may be a coded entity of some type, or may simply be
+  *   present as text, or may be a reference to one of several resources that justify the procedure.
   * @param report
   *   - This could be a histology result, pathology report, surgical report, etc.
   * @param basedOn
   *   - A reference to a resource that contains details of the request for this procedure.
   * @param subject
-  *   - The person, animal or group on which the procedure was performed.
+  *   - On whom or what the procedure was performed. This is usually an individual human, but can also be performed on animals,
+  *   groups of humans or animals, organizations or practitioners (for licensing), locations or devices (for safety inspections or
+  *   regulatory authorizations).
   * @param outcome
   *   - The outcome of the procedure - did it resolve the reasons for the procedure being performed?
   * @param language
   *   - The base language in which the resource is written.
   * @param category
   *   - A code that classifies the procedure for searching, sorting and display purposes (e.g. "Surgical Procedure").
+  * @param recorded
+  *   - The date the occurrence of the procedure was first captured in the record regardless of Procedure.status (potentially
+  *   after the occurrence of the event).
   * @param recorder
   *   - Individual who recorded the record and takes responsibility for its content.
-  * @param asserter
-  *   - Individual who is making the procedure statement.
   * @param location
   *   - The location where the procedure actually happened. E.g. a newborn at home, a tracheostomy at a restaurant.
   * @param bodySite
@@ -551,11 +563,9 @@ object Procedure extends CompanionFor[Procedure] {
   * @param followUp
   *   - If the procedure required specific follow up - e.g. removal of sutures. The follow up may be represented as a simple note
   *   or could potentially be more complex, in which case the CarePlan resource can be used.
-  * @param usedCode
-  *   - Identifies coded items that were used as part of the procedure.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -567,14 +577,11 @@ object Procedure extends CompanionFor[Procedure] {
   * @param identifier
   *   - Business identifiers assigned to this procedure by the performer or other systems which remain constant as the resource is
   *   updated and is propagated from server to server.
-  * @param reasonCode
-  *   - The coded reason why the procedure was performed. This may be a coded entity of some type, or may simply be present as
-  *   text.
+  * @param reported
+  *   - Indicates if this record was captured as a secondary 'reported' record rather than as an original primary source-of-truth
+  *   record. It may also indicate the source of the report.
   * @param statusReason
   *   - Captures the reason for the current state of the procedure.
-  * @param performed
-  *   - Estimated or actual date, date-time, period, or age when the procedure was performed. Allows a period to support complex
-  *   procedures that span more than one date, and also allows for the length of the procedure to be captured.
   * @param complication
   *   - Any complications that occurred during the procedure, or in the immediate post-performance period. These are generally
   *   tracked separately from the notes, which will typically describe the procedure itself rather than any 'post procedure'
@@ -583,13 +590,16 @@ object Procedure extends CompanionFor[Procedure] {
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
-  * @param usedReference
-  *   - Identifies medications, devices and any other substance used as part of the procedure.
+  * @param occurrence
+  *   - Estimated or actual date, date-time, period, or age when the procedure did occur or is occurring. Allows a period to
+  *   support complex procedures that span more than one date, and also allows for the length of the procedure to be captured.
+  * @param supportingInfo
+  *   - Other resources from the patient record that may be relevant to the procedure. The information from these resources was
+  *   either used to create the instance or is provided to help with its interpretation. This extension should not be used if more
+  *   specific inline elements or extensions are available.
   * @param instantiatesUri
   *   - The URL pointing to an externally maintained protocol, guideline, order set or other definition that is adhered to in
   *   whole or in part by this Procedure.
-  * @param reasonReference
-  *   - The justification of why the procedure was performed.
   * @param modifierExtension
   *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
   *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
@@ -616,32 +626,32 @@ class Procedure(
     override val text: Option[Narrative] = None,
     val code: Option[CodeableConcept] = None,
     val note: LitSeq[Annotation] = LitSeq.empty,
+    val used: LitSeq[CodeableReference] = LitSeq.empty,
     val partOf: LitSeq[Reference] = LitSeq.empty,
     val status: EVENT_STATUS,
+    val reason: LitSeq[CodeableReference] = LitSeq.empty,
     val report: LitSeq[Reference] = LitSeq.empty,
     val basedOn: LitSeq[Reference] = LitSeq.empty,
     val subject: Reference,
     val outcome: Option[CodeableConcept] = None,
     override val language: Option[LANGUAGES] = None,
-    val category: Option[CodeableConcept] = None,
+    val category: LitSeq[CodeableConcept] = LitSeq.empty,
+    val recorded: Option[FHIRDateTime] = None,
     val recorder: Option[Reference] = None,
-    val asserter: Option[Reference] = None,
     val location: Option[Reference] = None,
     val bodySite: LitSeq[CodeableConcept] = LitSeq.empty,
     val followUp: LitSeq[CodeableConcept] = LitSeq.empty,
-    val usedCode: LitSeq[CodeableConcept] = LitSeq.empty,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val encounter: Option[Reference] = None,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
+    val reported: Option[Procedure.ReportedChoice] = None,
     val statusReason: Option[CodeableConcept] = None,
-    val performed: Option[Procedure.PerformedChoice] = None,
     val complication: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
-    val usedReference: LitSeq[Reference] = LitSeq.empty,
+    val occurrence: Option[Procedure.OccurrenceChoice] = None,
+    val supportingInfo: LitSeq[Reference] = LitSeq.empty,
     val instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
-    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val complicationDetail: LitSeq[Reference] = LitSeq.empty,
     val instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,

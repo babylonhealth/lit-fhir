@@ -31,88 +31,6 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
   override val baseType: CompanionFor[ResourceType] = SubstanceReferenceInformation
   override val parentType: CompanionFor[ParentType] = SubstanceReferenceInformation
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/SubstanceReferenceInformation")
-  object Classification extends CompanionFor[Classification] {
-    implicit def summonObjectAndCompanionClassification318014626(
-        o: Classification): ObjectAndCompanion[Classification, Classification.type] = ObjectAndCompanion(o, this)
-    override type ResourceType = Classification
-    override type ParentType   = Classification
-    override val parentType: CompanionFor[ResourceType] = Classification
-    def apply(
-        id: Option[String] = None,
-        domain: Option[CodeableConcept] = None,
-        source: LitSeq[Reference] = LitSeq.empty,
-        subtype: LitSeq[CodeableConcept] = LitSeq.empty,
-        extension: LitSeq[Extension] = LitSeq.empty,
-        classification: Option[CodeableConcept] = None,
-        modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-    ): Classification = new Classification(
-      id,
-      domain,
-      source,
-      subtype,
-      extension,
-      classification,
-      modifierExtension,
-      primitiveAttributes = primitiveAttributes
-    )
-    def unapply(
-        o: Classification): Option[(Option[String], Option[CodeableConcept], LitSeq[Reference], LitSeq[CodeableConcept], LitSeq[Extension], Option[CodeableConcept], LitSeq[Extension])] =
-      Some((o.id, o.domain, o.source, o.subtype, o.extension, o.classification, o.modifierExtension))
-    val id: FHIRComponentFieldMeta[Option[String]] =
-      FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-    val domain: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-      FHIRComponentFieldMeta("domain", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
-    val source: FHIRComponentFieldMeta[LitSeq[Reference]] =
-      FHIRComponentFieldMeta("source", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
-    val subtype: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-      FHIRComponentFieldMeta("subtype", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
-    val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-      FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val classification: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-      FHIRComponentFieldMeta("classification", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
-    val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
-      FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, domain, source, subtype, extension, classification, modifierExtension)
-    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-    override def fields(t: Classification): Seq[FHIRComponentField[_]] = Seq(
-      FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Option[CodeableConcept]](domain, t.domain),
-      FHIRComponentField[LitSeq[Reference]](source, t.source),
-      FHIRComponentField[LitSeq[CodeableConcept]](subtype, t.subtype),
-      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-      FHIRComponentField[Option[CodeableConcept]](classification, t.classification),
-      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
-    )
-    val baseType: CompanionFor[Classification] = this
-    val thisName: String                       = "Classification"
-    def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Classification] =
-      checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
-        Try(
-          new Classification(
-            cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeAs[Option[CodeableConcept]]("domain", Some(None)),
-            cursor.decodeAs[LitSeq[Reference]]("source", Some(LitSeq.empty)),
-            cursor.decodeAs[LitSeq[CodeableConcept]]("subtype", Some(LitSeq.empty)),
-            cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeAs[Option[CodeableConcept]]("classification", Some(None)),
-            cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-            decodeAttributes(cursor)
-          )
-        ))
-  }
-  @POJOBoilerplate
-  class Classification(
-      override val id: Option[String] = None,
-      val domain: Option[CodeableConcept] = None,
-      val source: LitSeq[Reference] = LitSeq.empty,
-      val subtype: LitSeq[CodeableConcept] = LitSeq.empty,
-      override val extension: LitSeq[Extension] = LitSeq.empty,
-      val classification: Option[CodeableConcept] = None,
-      override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-      override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
-      extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object GeneElement extends CompanionFor[GeneElement] {
     implicit def summonObjectAndCompanionGeneElement318014626(o: GeneElement): ObjectAndCompanion[GeneElement, GeneElement.type] =
       ObjectAndCompanion(o, this)
@@ -396,7 +314,6 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
       gene: LitSeq[SubstanceReferenceInformation.Gene] = LitSeq.empty,
       target: LitSeq[SubstanceReferenceInformation.Target] = LitSeq.empty,
       geneElement: LitSeq[SubstanceReferenceInformation.GeneElement] = LitSeq.empty,
-      classification: LitSeq[SubstanceReferenceInformation.Classification] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): SubstanceReferenceInformation = new SubstanceReferenceInformation(
     id,
@@ -411,7 +328,6 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
     gene,
     target,
     geneElement,
-    classification,
     primitiveAttributes = primitiveAttributes
   )
   val id: FHIRComponentFieldMeta[Option[String]] =
@@ -450,26 +366,8 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
       lTagOf[LitSeq[SubstanceReferenceInformation.GeneElement]],
       false,
       lTagOf[SubstanceReferenceInformation.GeneElement])
-  val classification: FHIRComponentFieldMeta[LitSeq[SubstanceReferenceInformation.Classification]] =
-    FHIRComponentFieldMeta(
-      "classification",
-      lTagOf[LitSeq[SubstanceReferenceInformation.Classification]],
-      false,
-      lTagOf[SubstanceReferenceInformation.Classification])
-  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
-    id,
-    meta,
-    text,
-    comment,
-    language,
-    contained,
-    extension,
-    implicitRules,
-    modifierExtension,
-    gene,
-    target,
-    geneElement,
-    classification)
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+    Seq(id, meta, text, comment, language, contained, extension, implicitRules, modifierExtension, gene, target, geneElement)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: SubstanceReferenceInformation): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
@@ -483,8 +381,7 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[LitSeq[SubstanceReferenceInformation.Gene]](gene, t.gene),
     FHIRComponentField[LitSeq[SubstanceReferenceInformation.Target]](target, t.target),
-    FHIRComponentField[LitSeq[SubstanceReferenceInformation.GeneElement]](geneElement, t.geneElement),
-    FHIRComponentField[LitSeq[SubstanceReferenceInformation.Classification]](classification, t.classification)
+    FHIRComponentField[LitSeq[SubstanceReferenceInformation.GeneElement]](geneElement, t.geneElement)
   )
   def extractId(t: SubstanceReferenceInformation): Option[String]                                   = t.id
   def extractMeta(t: SubstanceReferenceInformation): Option[Meta]                                   = t.meta
@@ -498,11 +395,9 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
   def extractGene(t: SubstanceReferenceInformation): LitSeq[SubstanceReferenceInformation.Gene]     = t.gene
   def extractTarget(t: SubstanceReferenceInformation): LitSeq[SubstanceReferenceInformation.Target] = t.target
   def extractGeneElement(t: SubstanceReferenceInformation): LitSeq[SubstanceReferenceInformation.GeneElement] = t.geneElement
-  def extractClassification(t: SubstanceReferenceInformation): LitSeq[SubstanceReferenceInformation.Classification] =
-    t.classification
   override val thisName: String = "SubstanceReferenceInformation"
   def unapply(
-      o: SubstanceReferenceInformation): Option[(Option[String], Option[Meta], Option[Narrative], Option[String], Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], Option[UriStr], LitSeq[Extension], LitSeq[SubstanceReferenceInformation.Gene], LitSeq[SubstanceReferenceInformation.Target], LitSeq[SubstanceReferenceInformation.GeneElement], LitSeq[SubstanceReferenceInformation.Classification])] =
+      o: SubstanceReferenceInformation): Option[(Option[String], Option[Meta], Option[Narrative], Option[String], Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], Option[UriStr], LitSeq[Extension], LitSeq[SubstanceReferenceInformation.Gene], LitSeq[SubstanceReferenceInformation.Target], LitSeq[SubstanceReferenceInformation.GeneElement])] =
     Some(
       (
         o.id,
@@ -516,8 +411,7 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
         o.modifierExtension,
         o.gene,
         o.target,
-        o.geneElement,
-        o.classification))
+        o.geneElement))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[SubstanceReferenceInformation] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -534,7 +428,6 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
           cursor.decodeAs[LitSeq[SubstanceReferenceInformation.Gene]]("gene", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[SubstanceReferenceInformation.Target]]("target", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[SubstanceReferenceInformation.GeneElement]]("geneElement", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[SubstanceReferenceInformation.Classification]]("classification", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
       ))
@@ -545,7 +438,7 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields comment, gene, target, geneElement, classification.
+  *   Introduces the fields comment, gene, target, geneElement.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -562,7 +455,7 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -586,8 +479,6 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
   *   - Todo.
   * @param geneElement
   *   - Todo.
-  * @param classification
-  *   - Todo.
   */
 @POJOBoilerplate
 class SubstanceReferenceInformation(
@@ -603,7 +494,6 @@ class SubstanceReferenceInformation(
     val gene: LitSeq[SubstanceReferenceInformation.Gene] = LitSeq.empty,
     val target: LitSeq[SubstanceReferenceInformation.Target] = LitSeq.empty,
     val geneElement: LitSeq[SubstanceReferenceInformation.GeneElement] = LitSeq.empty,
-    val classification: LitSeq[SubstanceReferenceInformation.Classification] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
 ) extends DomainResource(
       id = id,

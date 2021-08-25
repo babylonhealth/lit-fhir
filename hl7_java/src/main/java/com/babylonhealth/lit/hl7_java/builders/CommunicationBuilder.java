@@ -67,6 +67,7 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
     private EVENT_STATUS status;
     private Collection<CodeableConcept> medium = Collections.emptyList();
     private Optional<Reference> sender = Optional.empty();
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Collection<Reference> basedOn = Collections.emptyList();
     private Optional<Reference> subject = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
@@ -78,12 +79,10 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
     private Optional<Reference> encounter = Optional.empty();
     private Collection<Reference> recipient = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Collection<Reference> inResponseTo = Collections.emptyList();
     private Optional<CodeableConcept> statusReason = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<String> instantiatesUri = Collections.emptyList();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<String> instantiatesCanonical = Collections.emptyList();
     private Collection<Communication.Payload> payload = Collections.emptyList();
@@ -192,12 +191,18 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
       this.about = Arrays.stream(about).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param partOf - Part of this action. */
+    /**
+     * @param partOf - A larger event (e.g. Communication, Procedure) of which this particular
+     *     communication is a component or step.
+     */
     public CommunicationBuilder.Impl withPartOf(@NonNull Reference... partOf) {
       this.partOf = Arrays.asList(partOf);
       return this;
     }
-    /** @param partOf - Part of this action. */
+    /**
+     * @param partOf - A larger event (e.g. Communication, Procedure) of which this particular
+     *     communication is a component or step.
+     */
     public CommunicationBuilder.Impl withPartOf(@NonNull Collection<Reference> partOf) {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
@@ -224,7 +229,7 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param sender - The entity (e.g. person, organization, clinical information system, or
-     *     device) which was the source of the communication.
+     *     device) which is the source of the communication.
      */
     public CommunicationBuilder.Impl withSender(@NonNull Reference sender) {
       this.sender = Optional.of(sender);
@@ -233,6 +238,21 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
 
     public CommunicationBuilder.Impl withSender(@NonNull ReferenceBuilder sender) {
       this.sender = Optional.of(sender.build());
+      return this;
+    }
+    /** @param reason - The reason or justification for the communication. */
+    public CommunicationBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /** @param reason - The reason or justification for the communication. */
+    public CommunicationBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public CommunicationBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -307,8 +327,8 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CommunicationBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -316,8 +336,8 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CommunicationBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -370,11 +390,7 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param recipient - The entity (e.g. person, organization, clinical information system, care
-     *     team or device) which was the target of the communication. If receipts need to be tracked
-     *     by an individual, a separate resource instance will need to be created for each
-     *     recipient. Multiple recipient communications are intended where either receipts are not
-     *     tracked (e.g. a mass mail-out) or a receipt is captured in aggregate (all emails
-     *     confirmed received by a particular time).
+     *     team or device) which is the target of the communication.
      */
     public CommunicationBuilder.Impl withRecipient(@NonNull Reference... recipient) {
       this.recipient = Arrays.asList(recipient);
@@ -382,11 +398,7 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param recipient - The entity (e.g. person, organization, clinical information system, care
-     *     team or device) which was the target of the communication. If receipts need to be tracked
-     *     by an individual, a separate resource instance will need to be created for each
-     *     recipient. Multiple recipient communications are intended where either receipts are not
-     *     tracked (e.g. a mass mail-out) or a receipt is captured in aggregate (all emails
-     *     confirmed received by a particular time).
+     *     team or device) which is the target of the communication.
      */
     public CommunicationBuilder.Impl withRecipient(@NonNull Collection<Reference> recipient) {
       this.recipient = Collections.unmodifiableCollection(recipient);
@@ -418,22 +430,6 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
 
     public CommunicationBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
       this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /** @param reasonCode - The reason or justification for the communication. */
-    public CommunicationBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /** @param reasonCode - The reason or justification for the communication. */
-    public CommunicationBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public CommunicationBuilder.Impl withReasonCode(@NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param inResponseTo - Prior communication that this communication is in response to. */
@@ -489,29 +485,6 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
     public CommunicationBuilder.Impl withInstantiatesUri(
         @NonNull Collection<String> instantiatesUri) {
       this.instantiatesUri = Collections.unmodifiableCollection(instantiatesUri);
-      return this;
-    }
-    /**
-     * @param reasonReference - Indicates another resource whose existence justifies this
-     *     communication.
-     */
-    public CommunicationBuilder.Impl withReasonReference(@NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /**
-     * @param reasonReference - Indicates another resource whose existence justifies this
-     *     communication.
-     */
-    public CommunicationBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public CommunicationBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -616,6 +589,7 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
           status,
           medium.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(sender),
+          reason.stream().collect(new LitSeqJCollector<>()),
           basedOn.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(subject),
           OptionConverters.toScala(language),
@@ -627,12 +601,10 @@ public interface CommunicationBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(encounter),
           recipient.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           inResponseTo.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(statusReason),
           OptionConverters.toScala(implicitRules),
           instantiatesUri.stream().collect(new LitSeqJCollector<>()),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
           payload.stream().collect(new LitSeqJCollector<>()),

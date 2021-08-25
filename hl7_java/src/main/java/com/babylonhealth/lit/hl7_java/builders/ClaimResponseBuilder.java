@@ -36,7 +36,6 @@ import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CLAIM_USE;
 import com.babylonhealth.lit.hl7.FM_STATUS;
-import com.babylonhealth.lit.hl7.REMITTANCE_OUTCOME;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -55,7 +54,7 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       Reference patient,
       FHIRDateTime created,
       Reference insurer,
-      REMITTANCE_OUTCOME outcome) {
+      String outcome) {
     return new Impl(use, _type, status, patient, created, insurer, outcome);
   }
 
@@ -66,7 +65,7 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
       ReferenceBuilder patient,
       FHIRDateTime created,
       ReferenceBuilder insurer,
-      REMITTANCE_OUTCOME outcome) {
+      String outcome) {
     return new Impl(use, _type.build(), status, patient.build(), created, insurer.build(), outcome);
   }
 
@@ -83,7 +82,7 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
     private FHIRDateTime created;
     private Reference insurer;
     private Optional<Reference> request = Optional.empty();
-    private REMITTANCE_OUTCOME outcome;
+    private String outcome;
     private Optional<LANGUAGES> language = Optional.empty();
     private Optional<CodeableConcept> formCode = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
@@ -130,7 +129,7 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
         Reference patient,
         FHIRDateTime created,
         Reference insurer,
-        REMITTANCE_OUTCOME outcome) {
+        String outcome) {
       this.use = use;
       this._type = _type;
       this.status = status;
@@ -230,8 +229,8 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ClaimResponseBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -239,8 +238,8 @@ public interface ClaimResponseBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ClaimResponseBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);

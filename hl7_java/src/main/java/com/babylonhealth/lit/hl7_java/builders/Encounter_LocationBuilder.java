@@ -80,7 +80,8 @@ public interface Encounter_LocationBuilder {
       return this;
     }
     /**
-     * @param status - planned | arrived | triaged | in-progress | onleave | finished | cancelled +.
+     * @param status - planned | in-progress | onhold | completed | cancelled | entered-in-error |
+     *     unknown.
      */
     public Encounter_LocationBuilder.Impl withStatus(@NonNull ENCOUNTER_LOCATION_STATUS status) {
       this.status = Optional.of(status);

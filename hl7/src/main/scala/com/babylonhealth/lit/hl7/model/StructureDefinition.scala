@@ -492,10 +492,10 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: StructureDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[UriStr](url, t.url),
+    FHIRComponentField[UriStr](url, t.url.get),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name),
+    FHIRComponentField[String](name, t.name.get),
     FHIRComponentField[Option[FHIRDateTime]](date, t.date),
     FHIRComponentField[STRUCTURE_DEFINITION_KIND](kind, t.kind),
     FHIRComponentField[UriStr](`type`, t.`type`),
@@ -528,10 +528,10 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
     FHIRComponentField[Option[StructureDefinition.Differential]](differential, t.differential)
   )
   def extractId(t: StructureDefinition): Option[String]                                     = t.id
-  def extractUrl(t: StructureDefinition): UriStr                                            = t.url
+  def extractUrl(t: StructureDefinition): UriStr                                            = t.url.get
   def extractMeta(t: StructureDefinition): Option[Meta]                                     = t.meta
   def extractText(t: StructureDefinition): Option[Narrative]                                = t.text
-  def extractName(t: StructureDefinition): String                                           = t.name
+  def extractName(t: StructureDefinition): String                                           = t.name.get
   def extractDate(t: StructureDefinition): Option[FHIRDateTime]                             = t.date
   def extractKind(t: StructureDefinition): STRUCTURE_DEFINITION_KIND                        = t.kind
   def extractType(t: StructureDefinition): UriStr                                           = t.`type`
@@ -585,7 +585,7 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
     "context-type"       -> (obj => obj.useContext.map(_.code).toSeq),
     "identifier"         -> (obj => obj.identifier.toSeq),
     "url"                -> (obj => Seq(obj.url)),
-    "ext-context"        -> (obj => obj.context.map(_.`type`).toSeq),
+    "ext-context"        -> (obj => obj.context.toSeq),
     "context-type-value" -> (obj => obj.useContext.toSeq),
     "version"            -> (obj => obj.version.toSeq),
     "status"             -> (obj => Seq(obj.status)),
@@ -644,12 +644,11 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
 /** A definition of a FHIR structure. This resource is used to describe the underlying resources, data types defined in FHIR, and
   * also for describing extensions and constraints on resources and data types.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.CanonicalResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, kind, `type`, title, status, version, contact, purpose, keyword, `abstract`,
-  *   publisher, copyright, identifier, useContext, derivation, description, fhirVersion, experimental, jurisdiction,
-  *   baseDefinition, contextInvariant, mapping, context, snapshot, differential.
+  *   Introduces the fields kind, `type`, keyword, `abstract`, derivation, fhirVersion, baseDefinition, contextInvariant, mapping,
+  *   context, snapshot, differential. Requires the following fields which were optional in the parent: url, name.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -703,7 +702,7 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
   *   instantiated. For Resources and Data types, abstract types will never be exchanged between systems.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -727,7 +726,7 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
   *   - A free text natural language description of the structure definition from a consumer's perspective.
   * @param fhirVersion
   *   - The version of the FHIR specification on which this StructureDefinition is based - this is the formal version of the
-  *   specification, without the revision number, e.g. [publication].[major].[minor], which is 4.0.1. for this version.
+  *   specification, without the revision number, e.g. [publication].[major].[minor], which is 4.6.0. for this version.
   * @param experimental
   *   - A Boolean value to indicate that this structure definition is authored for testing purposes (or
   *   education/evaluation/marketing) and is not intended to be used for genuine usage.
@@ -763,32 +762,32 @@ object StructureDefinition extends CompanionFor[StructureDefinition] {
 @POJOBoilerplate
 class StructureDefinition(
     override val id: Option[String] = None,
-    val url: UriStr,
+    url: UriStr,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: String,
-    val date: Option[FHIRDateTime] = None,
+    name: String,
+    override val date: Option[FHIRDateTime] = None,
     val kind: STRUCTURE_DEFINITION_KIND,
     val `type`: UriStr,
-    val title: Option[String] = None,
-    val status: PUBLICATION_STATUS,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    override val title: Option[String] = None,
+    override val status: PUBLICATION_STATUS,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     val keyword: LitSeq[Coding] = LitSeq.empty,
     override val language: Option[LANGUAGES] = None,
     val `abstract`: Boolean,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val copyright: Option[Markdown] = None,
-    val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val publisher: Option[String] = None,
+    override val copyright: Option[Markdown] = None,
+    override val identifier: LitSeq[Identifier] = LitSeq.empty,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
     val derivation: Option[TYPE_DERIVATION_RULE] = None,
-    val description: Option[Markdown] = None,
+    override val description: Option[Markdown] = None,
     val fhirVersion: Option[FHIR_VERSION] = None,
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     val baseDefinition: Option[Canonical] = None,
     val contextInvariant: LitSeq[String] = LitSeq.empty,
@@ -798,13 +797,28 @@ class StructureDefinition(
     val snapshot: Option[StructureDefinition.Snapshot] = None,
     val differential: Option[StructureDefinition.Differential] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends CanonicalResource(
       id = id,
+      url = Some(url),
       meta = meta,
       text = text,
+      name = Some(name),
+      date = date,
+      title = title,
+      status = status,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
       contained = contained,
       extension = extension,
+      publisher = publisher,
+      copyright = copyright,
+      identifier = identifier,
+      useContext = useContext,
+      description = description,
+      experimental = experimental,
+      jurisdiction = jurisdiction,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {

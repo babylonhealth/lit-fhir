@@ -56,7 +56,6 @@ public interface SubstancePolymer_RepeatBuilder {
   public class Impl implements SubstancePolymer_RepeatBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Integer> numberOfUnits = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<CodeableConcept> repeatUnitAmountType = Optional.empty();
     private Optional<String> averageMolecularFormula = Optional.empty();
@@ -100,11 +99,6 @@ public interface SubstancePolymer_RepeatBuilder {
     public SubstancePolymer_RepeatBuilder.Impl withExtension(
         @NonNull ExtensionBuilder... extension) {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /** @param numberOfUnits */
-    public SubstancePolymer_RepeatBuilder.Impl withNumberOfUnits(@NonNull Integer numberOfUnits) {
-      this.numberOfUnits = Optional.of(numberOfUnits);
       return this;
     }
     /**
@@ -191,7 +185,6 @@ public interface SubstancePolymer_RepeatBuilder {
       return new SubstancePolymer.Repeat(
           OptionConverters.toScala(id),
           extension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(numberOfUnits.map(x -> (Object) x)),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(repeatUnitAmountType),
           OptionConverters.toScala(averageMolecularFormula),

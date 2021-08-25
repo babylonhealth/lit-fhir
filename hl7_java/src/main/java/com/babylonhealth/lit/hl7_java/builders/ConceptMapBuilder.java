@@ -43,7 +43,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface ConceptMapBuilder extends DomainResourceBuilder {
+public interface ConceptMapBuilder extends CanonicalResourceBuilder {
   public ConceptMap build();
 
   public static Impl init(PUBLICATION_STATUS status) {
@@ -89,7 +89,7 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
     private Optional<String> copyright = Optional.empty();
     private Optional<ChoiceCanonicalOrUri> source = Optional.empty();
     private Optional<ChoiceCanonicalOrUri> target = Optional.empty();
-    private Optional<Identifier> identifier = Optional.empty();
+    private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<Boolean> experimental = Optional.empty();
@@ -229,8 +229,8 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ConceptMapBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -238,8 +238,8 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ConceptMapBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -319,13 +319,22 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
      *     represented in other formats, or referenced in a specification, model, design or an
      *     instance.
      */
-    public ConceptMapBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
-      this.identifier = Optional.of(identifier);
+    public ConceptMapBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
+      this.identifier = Arrays.asList(identifier);
+      return this;
+    }
+    /**
+     * @param identifier - A formal identifier that is used to identify this concept map when it is
+     *     represented in other formats, or referenced in a specification, model, design or an
+     *     instance.
+     */
+    public ConceptMapBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
+      this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
     }
 
-    public ConceptMapBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
-      this.identifier = Optional.of(identifier.build());
+    public ConceptMapBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -486,7 +495,7 @@ public interface ConceptMapBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(copyright),
           (Option) OptionConverters.toScala(source),
           (Option) OptionConverters.toScala(target),
-          OptionConverters.toScala(identifier),
+          identifier.stream().collect(new LitSeqJCollector<>()),
           useContext.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(description),
           OptionConverters.toScala(experimental.map(x -> (Object) x)),

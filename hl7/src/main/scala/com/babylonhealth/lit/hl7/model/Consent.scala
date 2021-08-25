@@ -332,43 +332,62 @@ object Consent extends CompanionFor[Consent] {
         id: Option[String] = None,
         verified: Boolean,
         extension: LitSeq[Extension] = LitSeq.empty,
+        verifiedBy: Option[Reference] = None,
         verifiedWith: Option[Reference] = None,
-        verificationDate: Option[FHIRDateTime] = None,
+        verificationType: Option[CodeableConcept] = None,
+        verificationDate: LitSeq[FHIRDateTime] = LitSeq.empty,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
     ): Verification = new Verification(
       id,
       verified,
       extension,
+      verifiedBy,
       verifiedWith,
+      verificationType,
       verificationDate,
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Verification): Option[(Option[String], Boolean, LitSeq[Extension], Option[Reference], Option[FHIRDateTime], LitSeq[Extension])] =
-      Some((o.id, o.verified, o.extension, o.verifiedWith, o.verificationDate, o.modifierExtension))
+        o: Verification): Option[(Option[String], Boolean, LitSeq[Extension], Option[Reference], Option[Reference], Option[CodeableConcept], LitSeq[FHIRDateTime], LitSeq[Extension])] =
+      Some(
+        (
+          o.id,
+          o.verified,
+          o.extension,
+          o.verifiedBy,
+          o.verifiedWith,
+          o.verificationType,
+          o.verificationDate,
+          o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val verified: FHIRComponentFieldMeta[Boolean] =
       FHIRComponentFieldMeta("verified", lTagOf[Boolean], false, lTagOf[Boolean])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+    val verifiedBy: FHIRComponentFieldMeta[Option[Reference]] =
+      FHIRComponentFieldMeta("verifiedBy", lTagOf[Option[Reference]], false, lTagOf[Reference])
     val verifiedWith: FHIRComponentFieldMeta[Option[Reference]] =
       FHIRComponentFieldMeta("verifiedWith", lTagOf[Option[Reference]], false, lTagOf[Reference])
-    val verificationDate: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
-      FHIRComponentFieldMeta("verificationDate", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
+    val verificationType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+      FHIRComponentFieldMeta("verificationType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+    val verificationDate: FHIRComponentFieldMeta[LitSeq[FHIRDateTime]] =
+      FHIRComponentFieldMeta("verificationDate", lTagOf[LitSeq[FHIRDateTime]], false, lTagOf[FHIRDateTime])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, verified, extension, verifiedWith, verificationDate, modifierExtension)
+      Seq(id, verified, extension, verifiedBy, verifiedWith, verificationType, verificationDate, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Verification): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Boolean](verified, t.verified),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](verifiedBy, t.verifiedBy),
       FHIRComponentField[Option[Reference]](verifiedWith, t.verifiedWith),
-      FHIRComponentField[Option[FHIRDateTime]](verificationDate, t.verificationDate),
+      FHIRComponentField[Option[CodeableConcept]](verificationType, t.verificationType),
+      FHIRComponentField[LitSeq[FHIRDateTime]](verificationDate, t.verificationDate),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
     )
     val baseType: CompanionFor[Verification] = this
@@ -380,8 +399,10 @@ object Consent extends CompanionFor[Consent] {
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Boolean]("verified", None),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+            cursor.decodeAs[Option[Reference]]("verifiedBy", Some(None)),
             cursor.decodeAs[Option[Reference]]("verifiedWith", Some(None)),
-            cursor.decodeAs[Option[FHIRDateTime]]("verificationDate", Some(None)),
+            cursor.decodeAs[Option[CodeableConcept]]("verificationType", Some(None)),
+            cursor.decodeAs[LitSeq[FHIRDateTime]]("verificationDate", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -392,8 +413,10 @@ object Consent extends CompanionFor[Consent] {
       override val id: Option[String] = None,
       val verified: Boolean,
       override val extension: LitSeq[Extension] = LitSeq.empty,
+      val verifiedBy: Option[Reference] = None,
       val verifiedWith: Option[Reference] = None,
-      val verificationDate: Option[FHIRDateTime] = None,
+      val verificationType: Option[CodeableConcept] = None,
+      val verificationDate: LitSeq[FHIRDateTime] = LitSeq.empty,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
@@ -463,25 +486,26 @@ object Consent extends CompanionFor[Consent] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type SourceChoice = Choice[UnionAttachmentOrReference]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
       text: Option[Narrative] = None,
       scope: CodeableConcept,
       status: CONSENT_STATE_CODES,
-      patient: Option[Reference] = None,
+      subject: Option[Reference] = None,
+      manager: LitSeq[Reference] = LitSeq.empty,
       language: Option[LANGUAGES] = None,
       category: NonEmptyLitSeq[CodeableConcept],
       dateTime: Option[FHIRDateTime] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
       performer: LitSeq[Reference] = LitSeq.empty,
-      source: Option[Consent.SourceChoice] = None,
       identifier: LitSeq[Identifier] = LitSeq.empty,
+      controller: LitSeq[Reference] = LitSeq.empty,
       policyRule: Option[CodeableConcept] = None,
-      organization: LitSeq[Reference] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
+      sourceReference: LitSeq[Reference] = LitSeq.empty,
+      sourceAttachment: LitSeq[Attachment] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       policy: LitSeq[Consent.Policy] = LitSeq.empty,
       verification: LitSeq[Consent.Verification] = LitSeq.empty,
@@ -493,18 +517,20 @@ object Consent extends CompanionFor[Consent] {
     text,
     scope,
     status,
-    patient,
+    subject,
+    manager,
     language,
     category,
     dateTime,
     contained,
     extension,
     performer,
-    source,
     identifier,
+    controller,
     policyRule,
-    organization,
     implicitRules,
+    sourceReference,
+    sourceAttachment,
     modifierExtension,
     policy,
     verification,
@@ -521,8 +547,10 @@ object Consent extends CompanionFor[Consent] {
     FHIRComponentFieldMeta("scope", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
   val status: FHIRComponentFieldMeta[CONSENT_STATE_CODES] =
     FHIRComponentFieldMeta("status", lTagOf[CONSENT_STATE_CODES], false, lTagOf[CONSENT_STATE_CODES])
-  val patient: FHIRComponentFieldMeta[Option[Reference]] =
-    FHIRComponentFieldMeta("patient", lTagOf[Option[Reference]], false, lTagOf[Reference])
+  val subject: FHIRComponentFieldMeta[Option[Reference]] =
+    FHIRComponentFieldMeta("subject", lTagOf[Option[Reference]], false, lTagOf[Reference])
+  val manager: FHIRComponentFieldMeta[LitSeq[Reference]] =
+    FHIRComponentFieldMeta("manager", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val category: FHIRComponentFieldMeta[NonEmptyLitSeq[CodeableConcept]] =
@@ -535,16 +563,18 @@ object Consent extends CompanionFor[Consent] {
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val performer: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("performer", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
-  val source: FHIRComponentFieldMeta[Option[Consent.SourceChoice]] =
-    FHIRComponentFieldMeta("source", lTagOf[Option[Consent.SourceChoice]], true, lTagOf[UnionAttachmentOrReference])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
+  val controller: FHIRComponentFieldMeta[LitSeq[Reference]] =
+    FHIRComponentFieldMeta("controller", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val policyRule: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("policyRule", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
-  val organization: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("organization", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
+  val sourceReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
+    FHIRComponentFieldMeta("sourceReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
+  val sourceAttachment: FHIRComponentFieldMeta[LitSeq[Attachment]] =
+    FHIRComponentFieldMeta("sourceAttachment", lTagOf[LitSeq[Attachment]], false, lTagOf[Attachment])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val policy: FHIRComponentFieldMeta[LitSeq[Consent.Policy]] =
@@ -559,18 +589,20 @@ object Consent extends CompanionFor[Consent] {
     text,
     scope,
     status,
-    patient,
+    subject,
+    manager,
     language,
     category,
     dateTime,
     contained,
     extension,
     performer,
-    source,
     identifier,
+    controller,
     policyRule,
-    organization,
     implicitRules,
+    sourceReference,
+    sourceAttachment,
     modifierExtension,
     policy,
     verification,
@@ -583,18 +615,20 @@ object Consent extends CompanionFor[Consent] {
     FHIRComponentField[Option[Narrative]](text, t.text),
     FHIRComponentField[CodeableConcept](scope, t.scope),
     FHIRComponentField[CONSENT_STATE_CODES](status, t.status),
-    FHIRComponentField[Option[Reference]](patient, t.patient),
+    FHIRComponentField[Option[Reference]](subject, t.subject),
+    FHIRComponentField[LitSeq[Reference]](manager, t.manager),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](category, t.category),
     FHIRComponentField[Option[FHIRDateTime]](dateTime, t.dateTime),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[LitSeq[Reference]](performer, t.performer),
-    FHIRComponentField[Option[Consent.SourceChoice]](source, t.source),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+    FHIRComponentField[LitSeq[Reference]](controller, t.controller),
     FHIRComponentField[Option[CodeableConcept]](policyRule, t.policyRule),
-    FHIRComponentField[LitSeq[Reference]](organization, t.organization),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+    FHIRComponentField[LitSeq[Reference]](sourceReference, t.sourceReference),
+    FHIRComponentField[LitSeq[Attachment]](sourceAttachment, t.sourceAttachment),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[LitSeq[Consent.Policy]](policy, t.policy),
     FHIRComponentField[LitSeq[Consent.Verification]](verification, t.verification),
@@ -605,65 +639,47 @@ object Consent extends CompanionFor[Consent] {
   def extractText(t: Consent): Option[Narrative]                    = t.text
   def extractScope(t: Consent): CodeableConcept                     = t.scope
   def extractStatus(t: Consent): CONSENT_STATE_CODES                = t.status
-  def extractPatient(t: Consent): Option[Reference]                 = t.patient
+  def extractSubject(t: Consent): Option[Reference]                 = t.subject
+  def extractManager(t: Consent): LitSeq[Reference]                 = t.manager
   def extractLanguage(t: Consent): Option[LANGUAGES]                = t.language
   def extractCategory(t: Consent): NonEmptyLitSeq[CodeableConcept]  = t.category
   def extractDateTime(t: Consent): Option[FHIRDateTime]             = t.dateTime
   def extractContained(t: Consent): LitSeq[Resource]                = t.contained
   def extractExtension(t: Consent): LitSeq[Extension]               = t.extension
   def extractPerformer(t: Consent): LitSeq[Reference]               = t.performer
-  def extractSource(t: Consent): Option[Consent.SourceChoice]       = t.source
   def extractIdentifier(t: Consent): LitSeq[Identifier]             = t.identifier
+  def extractController(t: Consent): LitSeq[Reference]              = t.controller
   def extractPolicyRule(t: Consent): Option[CodeableConcept]        = t.policyRule
-  def extractOrganization(t: Consent): LitSeq[Reference]            = t.organization
   def extractImplicitRules(t: Consent): Option[UriStr]              = t.implicitRules
+  def extractSourceReference(t: Consent): LitSeq[Reference]         = t.sourceReference
+  def extractSourceAttachment(t: Consent): LitSeq[Attachment]       = t.sourceAttachment
   def extractModifierExtension(t: Consent): LitSeq[Extension]       = t.modifierExtension
   def extractPolicy(t: Consent): LitSeq[Consent.Policy]             = t.policy
   def extractVerification(t: Consent): LitSeq[Consent.Verification] = t.verification
   def extractProvision(t: Consent): Option[Consent.Provision]       = t.provision
   override val thisName: String                                     = "Consent"
   override val searchParams: Map[String, Consent => Seq[Any]] = Map(
+    "actor"            -> (obj => obj.provision.toSeq.flatMap(_.actor).map(_.reference).toSeq),
+    "subject"          -> (obj => obj.subject.toSeq),
     "identifier"       -> (obj => obj.identifier.toSeq),
     "scope"            -> (obj => Seq(obj.scope)),
     "data"             -> (obj => obj.provision.toSeq.flatMap(_.data).map(_.reference).toSeq),
+    "policy-uri"       -> (obj => obj.policy.flatMap(_.uri).toSeq),
+    "verified-date"    -> (obj => obj.verification.flatMap(_.verificationDate).toSeq),
     "date"             -> (obj => obj.dateTime.toSeq),
-    "status"           -> (obj => Seq(obj.status)),
     "consentor"        -> (obj => obj.performer.toSeq),
-    "category"         -> (obj => obj.category.toSeq),
     "security-label"   -> (obj => obj.provision.toSeq.flatMap(_.securityLabel).toSeq),
-    "action"           -> (obj => obj.provision.toSeq.flatMap(_.action).toSeq),
     "period"           -> (obj => obj.provision.flatMap(_.period).toSeq),
-    "patient"          -> (obj => obj.patient.toSeq),
-    "actor"            -> (obj => obj.provision.toSeq.flatMap(_.actor).map(_.reference).toSeq),
-    "organization"     -> (obj => obj.organization.toSeq),
-    "source-reference" -> (obj => obj.source.toSeq),
-    "purpose"          -> (obj => obj.provision.toSeq.flatMap(_.purpose).toSeq)
+    "patient"          -> (obj => obj.subject.filter(_.reference.exists(_.contains("Patient/"))).toSeq),
+    "source-reference" -> (obj => obj.sourceReference.toSeq),
+    "purpose"          -> (obj => obj.provision.toSeq.flatMap(_.purpose).toSeq),
+    "manager"          -> (obj => obj.manager.toSeq),
+    "status"           -> (obj => Seq(obj.status)),
+    "category"         -> (obj => obj.category.toSeq),
+    "controller"       -> (obj => obj.controller.toSeq),
+    "verified"         -> (obj => obj.verification.map(_.verified).toSeq),
+    "action"           -> (obj => obj.provision.toSeq.flatMap(_.action).toSeq)
   )
-  def unapply(
-      o: Consent): Option[(Option[String], Option[Meta], Option[Narrative], CodeableConcept, CONSENT_STATE_CODES, Option[Reference], Option[LANGUAGES], NonEmptyLitSeq[CodeableConcept], Option[FHIRDateTime], LitSeq[Resource], LitSeq[Extension], LitSeq[Reference], Option[Consent.SourceChoice], LitSeq[Identifier], Option[CodeableConcept], LitSeq[Reference], Option[UriStr], LitSeq[Extension], LitSeq[Consent.Policy], LitSeq[Consent.Verification], Option[Consent.Provision])] =
-    Some(
-      (
-        o.id,
-        o.meta,
-        o.text,
-        o.scope,
-        o.status,
-        o.patient,
-        o.language,
-        o.category,
-        o.dateTime,
-        o.contained,
-        o.extension,
-        o.performer,
-        o.source,
-        o.identifier,
-        o.policyRule,
-        o.organization,
-        o.implicitRules,
-        o.modifierExtension,
-        o.policy,
-        o.verification,
-        o.provision))
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Consent] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
       Try(
@@ -673,18 +689,20 @@ object Consent extends CompanionFor[Consent] {
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
           cursor.decodeAs[CodeableConcept]("scope", None),
           cursor.decodeAs[CONSENT_STATE_CODES]("status", None),
-          cursor.decodeAs[Option[Reference]]("patient", Some(None)),
+          cursor.decodeAs[Option[Reference]]("subject", Some(None)),
+          cursor.decodeAs[LitSeq[Reference]]("manager", Some(LitSeq.empty)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[NonEmptyLitSeq[CodeableConcept]]("category", None),
           cursor.decodeAs[Option[FHIRDateTime]]("dateTime", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
-          cursor.decodeOptRef[UnionAttachmentOrReference]("source"),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Reference]]("controller", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("policyRule", Some(None)),
-          cursor.decodeAs[LitSeq[Reference]]("organization", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
+          cursor.decodeAs[LitSeq[Reference]]("sourceReference", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Attachment]]("sourceAttachment", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Consent.Policy]]("policy", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Consent.Verification]]("verification", Some(LitSeq.empty)),
@@ -694,14 +712,15 @@ object Consent extends CompanionFor[Consent] {
       ))
 }
 
-/** A record of a healthcare consumer’s choices, which permits or denies identified recipient(s) or recipient role(s) to perform
-  * one or more actions within a given policy context, for specific purposes and periods of time.
+/** A record of a healthcare consumer’s choices or choices made on their behalf by a third party, which permits or denies
+  * identified recipient(s) or recipient role(s) to perform one or more actions within a given policy context, for specific
+  * purposes and periods of time.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields scope, status, patient, category, dateTime, performer, source, identifier, policyRule, organization,
-  *   policy, verification, provision.
+  *   Introduces the fields scope, status, subject, manager, category, dateTime, performer, identifier, controller, policyRule,
+  *   sourceReference, sourceAttachment, policy, verification, provision.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -713,21 +732,23 @@ object Consent extends CompanionFor[Consent] {
   *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
   *   represented in the narrative to ensure clinical safety.
   * @param scope
-  *   - A selector of the type of consent being presented: ADR, Privacy, Treatment, Research. This list is now extensible.
+  *   - A selector of the type of consent being presented with the base being Privacy, Treatment, or Research.
   * @param status
-  *   - Indicates the current state of this consent.
-  * @param patient
-  *   - The patient/healthcare consumer to whom this consent applies.
+  *   - Indicates the current state of this Consent resource.
+  * @param subject
+  *   - The patient/healthcare practitioner to whom this consent applies.
+  * @param manager
+  *   - The actor that manages the consent through its lifecycle.
   * @param language
   *   - The base language in which the resource is written.
   * @param category
   *   - A classification of the type of consents found in the statement. This element supports indexing and retrieval of consent
   *   statements.
   * @param dateTime
-  *   - When this Consent was issued / created / indexed.
+  *   - Date and time the consent instance was agreed to.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -737,20 +758,21 @@ object Consent extends CompanionFor[Consent] {
   *   - Either the Grantor, which is the entity responsible for granting the rights listed in a Consent Directive or the Grantee,
   *   which is the entity responsible for complying with the Consent Directive, including any obligations or limitations on
   *   authorizations and enforcement of prohibitions.
-  * @param source
-  *   - The source on which this consent statement is based. The source might be a scanned original paper form, or a reference to
-  *   a consent that links back to such a source, a reference to a document repository (e.g. XDS) that stores the original consent
-  *   document.
   * @param identifier
   *   - Unique identifier for this copy of the Consent Statement.
+  * @param controller
+  *   - The actor that controls/enforces the access according to the consent.
   * @param policyRule
   *   - A reference to the specific base computable regulation or policy.
-  * @param organization
-  *   - The organization that manages the consent, and the framework within which it is executed.
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
+  * @param sourceReference
+  *   - A reference to a consent that links back to such a source, a reference to a document repository (e.g. XDS) that stores the
+  *   original consent document.
+  * @param sourceAttachment
+  *   - The source on which this consent statement is based. The source might be a scanned original paper form.
   * @param modifierExtension
   *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
   *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
@@ -775,18 +797,20 @@ class Consent(
     override val text: Option[Narrative] = None,
     val scope: CodeableConcept,
     val status: CONSENT_STATE_CODES,
-    val patient: Option[Reference] = None,
+    val subject: Option[Reference] = None,
+    val manager: LitSeq[Reference] = LitSeq.empty,
     override val language: Option[LANGUAGES] = None,
     val category: NonEmptyLitSeq[CodeableConcept],
     val dateTime: Option[FHIRDateTime] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val performer: LitSeq[Reference] = LitSeq.empty,
-    val source: Option[Consent.SourceChoice] = None,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
+    val controller: LitSeq[Reference] = LitSeq.empty,
     val policyRule: Option[CodeableConcept] = None,
-    val organization: LitSeq[Reference] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
+    val sourceReference: LitSeq[Reference] = LitSeq.empty,
+    val sourceAttachment: LitSeq[Attachment] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val policy: LitSeq[Consent.Policy] = LitSeq.empty,
     val verification: LitSeq[Consent.Verification] = LitSeq.empty,

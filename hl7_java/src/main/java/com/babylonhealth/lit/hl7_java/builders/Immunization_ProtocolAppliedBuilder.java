@@ -45,28 +45,12 @@ import static java.util.stream.Collectors.toList;
 public interface Immunization_ProtocolAppliedBuilder {
   public Immunization.ProtocolApplied build();
 
-  public static Impl init(@NonNull ChoicePositiveIntOrString doseNumber) {
+  public static Impl init(String doseNumber) {
     return new Impl(doseNumber);
   }
 
-  public static Impl builder(@NonNull ChoicePositiveIntOrString doseNumber) {
+  public static Impl builder(String doseNumber) {
     return new Impl(doseNumber);
-  }
-
-  public static ChoicePositiveIntOrString doseNumber(Integer i) {
-    return new ChoicePositiveIntOrString(i);
-  }
-
-  public static ChoicePositiveIntOrString doseNumber(String s) {
-    return new ChoicePositiveIntOrString(s);
-  }
-
-  public static ChoicePositiveIntOrString seriesDoses(Integer i) {
-    return new ChoicePositiveIntOrString(i);
-  }
-
-  public static ChoicePositiveIntOrString seriesDoses(String s) {
-    return new ChoicePositiveIntOrString(s);
   }
 
   public class Impl implements Immunization_ProtocolAppliedBuilder {
@@ -74,19 +58,17 @@ public interface Immunization_ProtocolAppliedBuilder {
     private Optional<String> series = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> authority = Optional.empty();
+    private String doseNumber;
+    private Optional<String> seriesDoses = Optional.empty();
     private Collection<CodeableConcept> targetDisease = Collections.emptyList();
-    private ChoicePositiveIntOrString doseNumber;
-    private Optional<ChoicePositiveIntOrString> seriesDoses = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
      * Required fields for {@link Immunization.ProtocolApplied}
      *
-     * @param doseNumber Field is a 'choice' field. Type should be one of Integer, String. To pass
-     *     the value in, wrap with one of the Immunization_ProtocolAppliedBuilder.doseNumber static
-     *     methods
+     * @param doseNumber
      */
-    public Impl(@NonNull ChoicePositiveIntOrString doseNumber) {
+    public Impl(String doseNumber) {
       this.doseNumber = doseNumber;
     }
 
@@ -143,6 +125,11 @@ public interface Immunization_ProtocolAppliedBuilder {
       this.authority = Optional.of(authority.build());
       return this;
     }
+    /** @param seriesDoses */
+    public Immunization_ProtocolAppliedBuilder.Impl withSeriesDoses(@NonNull String seriesDoses) {
+      this.seriesDoses = Optional.of(seriesDoses);
+      return this;
+    }
     /** @param targetDisease */
     public Immunization_ProtocolAppliedBuilder.Impl withTargetDisease(
         @NonNull CodeableConcept... targetDisease) {
@@ -159,16 +146,6 @@ public interface Immunization_ProtocolAppliedBuilder {
     public Immunization_ProtocolAppliedBuilder.Impl withTargetDisease(
         @NonNull CodeableConceptBuilder... targetDisease) {
       this.targetDisease = Arrays.stream(targetDisease).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
-     * @param seriesDoses Field is a 'choice' field. Type should be one of Integer, String. To pass
-     *     the value in, wrap with one of the Immunization_ProtocolAppliedBuilder.seriesDoses static
-     *     methods
-     */
-    public Immunization_ProtocolAppliedBuilder.Impl withSeriesDoses(
-        @NonNull ChoicePositiveIntOrString seriesDoses) {
-      this.seriesDoses = Optional.of(seriesDoses);
       return this;
     }
     /**
@@ -221,9 +198,9 @@ public interface Immunization_ProtocolAppliedBuilder {
           OptionConverters.toScala(series),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(authority),
+          doseNumber,
+          OptionConverters.toScala(seriesDoses),
           targetDisease.stream().collect(new LitSeqJCollector<>()),
-          (Choice) doseNumber,
-          (Option) OptionConverters.toScala(seriesDoses),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

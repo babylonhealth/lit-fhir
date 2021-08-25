@@ -18,14 +18,7 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
-import com.babylonhealth.lit.hl7.{
-  FHIR_VERSION,
-  RESOURCE_TYPES,
-  GUIDE_PARAMETER_CODE,
-  GUIDE_PAGE_GENERATION,
-  PUBLICATION_STATUS,
-  SPDX_LICENSE
-}
+import com.babylonhealth.lit.hl7.{ FHIR_VERSION, RESOURCE_TYPES, GUIDE_PAGE_GENERATION, PUBLICATION_STATUS, SPDX_LICENSE }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -374,7 +367,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       override val parentType: CompanionFor[ResourceType] = Parameter
       def apply(
           id: Option[String] = None,
-          code: GUIDE_PARAMETER_CODE,
+          code: String,
           value: String,
           extension: LitSeq[Extension] = LitSeq.empty,
           modifierExtension: LitSeq[Extension] = LitSeq.empty,
@@ -387,12 +380,12 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         modifierExtension,
         primitiveAttributes = primitiveAttributes
       )
-      def unapply(o: Parameter): Option[(Option[String], GUIDE_PARAMETER_CODE, String, LitSeq[Extension], LitSeq[Extension])] =
-        Some((o.id, o.code, o.value, o.extension, o.modifierExtension))
+      def unapply(o: Parameter): Option[(Option[String], String, String, LitSeq[Extension], LitSeq[Extension])] = Some(
+        (o.id, o.code, o.value, o.extension, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-      val code: FHIRComponentFieldMeta[GUIDE_PARAMETER_CODE] =
-        FHIRComponentFieldMeta("code", lTagOf[GUIDE_PARAMETER_CODE], false, lTagOf[GUIDE_PARAMETER_CODE])
+      val code: FHIRComponentFieldMeta[String] =
+        FHIRComponentFieldMeta("code", lTagOf[String], false, lTagOf[String])
       val value: FHIRComponentFieldMeta[String] =
         FHIRComponentFieldMeta("value", lTagOf[String], false, lTagOf[String])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -403,7 +396,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: Parameter): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
-        FHIRComponentField[GUIDE_PARAMETER_CODE](code, t.code),
+        FHIRComponentField[String](code, t.code),
         FHIRComponentField[String](value, t.value),
         FHIRComponentField[LitSeq[Extension]](extension, t.extension),
         FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
@@ -415,7 +408,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
           Try(
             new Parameter(
               cursor.decodeAs[Option[String]]("id", Some(None)),
-              cursor.decodeAs[GUIDE_PARAMETER_CODE]("code", None),
+              cursor.decodeAs[String]("code", None),
               cursor.decodeAs[String]("value", None),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -426,7 +419,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
     @POJOBoilerplate
     class Parameter(
         override val id: Option[String] = None,
-        val code: GUIDE_PARAMETER_CODE,
+        val code: String,
         val value: String,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
@@ -1051,10 +1044,10 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: ImplementationGuide): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[UriStr](url, t.url),
+    FHIRComponentField[UriStr](url, t.url.get),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name),
+    FHIRComponentField[String](name, t.name.get),
     FHIRComponentField[Option[FHIRDateTime]](date, t.date),
     FHIRComponentField[Option[String]](title, t.title),
     FHIRComponentField[PUBLICATION_STATUS](status, t.status),
@@ -1080,10 +1073,10 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
     FHIRComponentField[Option[ImplementationGuide.Definition]](definition, t.definition)
   )
   def extractId(t: ImplementationGuide): Option[String]                                 = t.id
-  def extractUrl(t: ImplementationGuide): UriStr                                        = t.url
+  def extractUrl(t: ImplementationGuide): UriStr                                        = t.url.get
   def extractMeta(t: ImplementationGuide): Option[Meta]                                 = t.meta
   def extractText(t: ImplementationGuide): Option[Narrative]                            = t.text
-  def extractName(t: ImplementationGuide): String                                       = t.name
+  def extractName(t: ImplementationGuide): String                                       = t.name.get
   def extractDate(t: ImplementationGuide): Option[FHIRDateTime]                         = t.date
   def extractTitle(t: ImplementationGuide): Option[String]                              = t.title
   def extractStatus(t: ImplementationGuide): PUBLICATION_STATUS                         = t.status
@@ -1171,11 +1164,11 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
   * resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a
   * computable definition of all the parts.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.CanonicalResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, title, status, version, contact, license, publisher, copyright, packageId,
-  *   useContext, description, fhirVersion, experimental, jurisdiction, global, dependsOn, manifest, definition.
+  *   Introduces the fields license, packageId, fhirVersion, global, dependsOn, manifest, definition. Requires the following
+  *   fields which were optional in the parent: url, name.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -1215,7 +1208,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -1238,7 +1231,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
   * @param fhirVersion
   *   - The version(s) of the FHIR specification that this ImplementationGuide targets - e.g. describes how to use. The value of
   *   this element is the formal version of the specification, without the revision number, e.g. [publication].[major].[minor],
-  *   which is 4.0.1. for this version.
+  *   which is 4.6.0. for this version.
   * @param experimental
   *   - A Boolean value to indicate that this implementation guide is authored for testing purposes (or
   *   education/evaluation/marketing) and is not intended to be used for genuine usage.
@@ -1269,27 +1262,27 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
 @POJOBoilerplate
 class ImplementationGuide(
     override val id: Option[String] = None,
-    val url: UriStr,
+    url: UriStr,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: String,
-    val date: Option[FHIRDateTime] = None,
-    val title: Option[String] = None,
-    val status: PUBLICATION_STATUS,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    name: String,
+    override val date: Option[FHIRDateTime] = None,
+    override val title: Option[String] = None,
+    override val status: PUBLICATION_STATUS,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
     val license: Option[SPDX_LICENSE] = None,
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val copyright: Option[Markdown] = None,
+    override val publisher: Option[String] = None,
+    override val copyright: Option[Markdown] = None,
     val packageId: Id,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
-    val description: Option[Markdown] = None,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val description: Option[Markdown] = None,
     val fhirVersion: NonEmptyLitSeq[FHIR_VERSION],
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val global: LitSeq[ImplementationGuide.Global] = LitSeq.empty,
@@ -1297,13 +1290,26 @@ class ImplementationGuide(
     val manifest: Option[ImplementationGuide.Manifest] = None,
     val definition: Option[ImplementationGuide.Definition] = None,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends CanonicalResource(
       id = id,
+      url = Some(url),
       meta = meta,
       text = text,
+      name = Some(name),
+      date = date,
+      title = title,
+      status = status,
+      version = version,
+      contact = contact,
       language = language,
       contained = contained,
       extension = extension,
+      publisher = publisher,
+      copyright = copyright,
+      useContext = useContext,
+      description = description,
+      experimental = experimental,
+      jurisdiction = jurisdiction,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {

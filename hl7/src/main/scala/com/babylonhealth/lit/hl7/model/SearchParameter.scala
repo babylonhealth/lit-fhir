@@ -284,10 +284,10 @@ object SearchParameter extends CompanionFor[SearchParameter] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: SearchParameter): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[UriStr](url, t.url),
+    FHIRComponentField[UriStr](url, t.url.get),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name),
+    FHIRComponentField[String](name, t.name.get),
     FHIRComponentField[Option[FHIRDateTime]](date, t.date),
     FHIRComponentField[Code](code, t.code),
     FHIRComponentField[NonEmptyLitSeq[RESOURCE_TYPES]](base, t.base),
@@ -310,7 +310,7 @@ object SearchParameter extends CompanionFor[SearchParameter] {
     FHIRComponentField[Option[Boolean]](multipleOr, t.multipleOr),
     FHIRComponentField[LitSeq[SEARCH_COMPARATOR]](comparator, t.comparator),
     FHIRComponentField[Option[Canonical]](derivedFrom, t.derivedFrom),
-    FHIRComponentField[Markdown](description, t.description),
+    FHIRComponentField[Markdown](description, t.description.get),
     FHIRComponentField[Option[Boolean]](multipleAnd, t.multipleAnd),
     FHIRComponentField[Option[Boolean]](experimental, t.experimental),
     FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
@@ -319,10 +319,10 @@ object SearchParameter extends CompanionFor[SearchParameter] {
     FHIRComponentField[LitSeq[SearchParameter.Component]](component, t.component)
   )
   def extractId(t: SearchParameter): Option[String]                           = t.id
-  def extractUrl(t: SearchParameter): UriStr                                  = t.url
+  def extractUrl(t: SearchParameter): UriStr                                  = t.url.get
   def extractMeta(t: SearchParameter): Option[Meta]                           = t.meta
   def extractText(t: SearchParameter): Option[Narrative]                      = t.text
-  def extractName(t: SearchParameter): String                                 = t.name
+  def extractName(t: SearchParameter): String                                 = t.name.get
   def extractDate(t: SearchParameter): Option[FHIRDateTime]                   = t.date
   def extractCode(t: SearchParameter): Code                                   = t.code
   def extractBase(t: SearchParameter): NonEmptyLitSeq[RESOURCE_TYPES]         = t.base
@@ -345,7 +345,7 @@ object SearchParameter extends CompanionFor[SearchParameter] {
   def extractMultipleOr(t: SearchParameter): Option[Boolean]                  = t.multipleOr
   def extractComparator(t: SearchParameter): LitSeq[SEARCH_COMPARATOR]        = t.comparator
   def extractDerivedFrom(t: SearchParameter): Option[Canonical]               = t.derivedFrom
-  def extractDescription(t: SearchParameter): Markdown                        = t.description
+  def extractDescription(t: SearchParameter): Markdown                        = t.description.get
   def extractMultipleAnd(t: SearchParameter): Option[Boolean]                 = t.multipleAnd
   def extractExperimental(t: SearchParameter): Option[Boolean]                = t.experimental
   def extractJurisdiction(t: SearchParameter): LitSeq[CodeableConcept]        = t.jurisdiction
@@ -421,12 +421,12 @@ object SearchParameter extends CompanionFor[SearchParameter] {
 
 /** A search parameter that defines a named search item that can be used to search/filter on a resource.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.CanonicalResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, code, base, `type`, xpath, chain, status, target, version, contact, purpose,
-  *   modifier, publisher, useContext, expression, xpathUsage, multipleOr, comparator, derivedFrom, description, multipleAnd,
-  *   experimental, jurisdiction, component.
+  *   Introduces the fields code, base, `type`, xpath, chain, target, modifier, expression, xpathUsage, multipleOr, comparator,
+  *   derivedFrom, multipleAnd, component. Requires the following fields which were optional in the parent: url, name,
+  *   description.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -481,7 +481,7 @@ object SearchParameter extends CompanionFor[SearchParameter] {
   *   - A modifier supported for the search parameter.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -534,47 +534,59 @@ object SearchParameter extends CompanionFor[SearchParameter] {
 @POJOBoilerplate
 class SearchParameter(
     override val id: Option[String] = None,
-    val url: UriStr,
+    url: UriStr,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: String,
-    val date: Option[FHIRDateTime] = None,
+    name: String,
+    override val date: Option[FHIRDateTime] = None,
     val code: Code,
     val base: NonEmptyLitSeq[RESOURCE_TYPES],
     val `type`: SEARCH_PARAM_TYPE,
     val xpath: Option[String] = None,
     val chain: LitSeq[String] = LitSeq.empty,
-    val status: PUBLICATION_STATUS,
+    override val status: PUBLICATION_STATUS,
     val target: LitSeq[RESOURCE_TYPES] = LitSeq.empty,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     override val language: Option[LANGUAGES] = None,
     val modifier: LitSeq[SEARCH_MODIFIER_CODE] = LitSeq.empty,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val publisher: Option[String] = None,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
     val expression: Option[String] = None,
     val xpathUsage: Option[SEARCH_XPATH_USAGE] = None,
     val multipleOr: Option[Boolean] = None,
     val comparator: LitSeq[SEARCH_COMPARATOR] = LitSeq.empty,
     val derivedFrom: Option[Canonical] = None,
-    val description: Markdown,
+    description: Markdown,
     val multipleAnd: Option[Boolean] = None,
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val component: LitSeq[SearchParameter.Component] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends CanonicalResource(
       id = id,
+      url = Some(url),
       meta = meta,
       text = text,
+      name = Some(name),
+      date = date,
+      status = status,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
       contained = contained,
       extension = extension,
+      publisher = publisher,
+      useContext = useContext,
+      description = Some(description),
+      experimental = experimental,
+      jurisdiction = jurisdiction,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {

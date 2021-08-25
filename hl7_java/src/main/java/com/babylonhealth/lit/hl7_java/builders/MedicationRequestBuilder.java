@@ -52,7 +52,7 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
       MEDICATIONREQUEST_STATUS status,
       MEDICATIONREQUEST_INTENT intent,
       Reference subject,
-      @NonNull ChoiceCodeableConceptOrReference medication) {
+      CodeableReference medication) {
     return new Impl(status, intent, subject, medication);
   }
 
@@ -60,24 +60,8 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
       MEDICATIONREQUEST_STATUS status,
       MEDICATIONREQUEST_INTENT intent,
       ReferenceBuilder subject,
-      @NonNull ChoiceCodeableConceptOrReference medication) {
-    return new Impl(status, intent, subject.build(), medication);
-  }
-
-  public static ChoiceBooleanOrReference reported(Boolean b) {
-    return new ChoiceBooleanOrReference(b);
-  }
-
-  public static ChoiceBooleanOrReference reported(Reference r) {
-    return new ChoiceBooleanOrReference(r);
-  }
-
-  public static ChoiceCodeableConceptOrReference medication(CodeableConcept c) {
-    return new ChoiceCodeableConceptOrReference(c);
-  }
-
-  public static ChoiceCodeableConceptOrReference medication(Reference r) {
-    return new ChoiceCodeableConceptOrReference(r);
+      CodeableReferenceBuilder medication) {
+    return new Impl(status, intent, subject.build(), medication.build());
   }
 
   public class Impl implements MedicationRequestBuilder {
@@ -87,11 +71,13 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
     private Collection<Annotation> note = Collections.emptyList();
     private MEDICATIONREQUEST_STATUS status;
     private MEDICATIONREQUEST_INTENT intent;
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Reference subject;
     private Collection<Reference> basedOn = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category = Collections.emptyList();
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
+    private Optional<Boolean> reported = Optional.empty();
     private Optional<Reference> recorder = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
@@ -100,25 +86,24 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
     private Optional<Reference> performer = Optional.empty();
     private Collection<Reference> insurance = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
+    private CodeableReference medication;
     private Optional<FHIRDateTime> authoredOn = Optional.empty();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
-    private Optional<ChoiceBooleanOrReference> reported = Optional.empty();
     private Optional<CodeableConcept> statusReason = Optional.empty();
     private Optional<Boolean> doNotPerform = Optional.empty();
     private Collection<Reference> eventHistory = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private ChoiceCodeableConceptOrReference medication;
     private Optional<CodeableConcept> performerType = Optional.empty();
     private Collection<Reference> detectedIssue = Collections.emptyList();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<String> instantiatesUri = Collections.emptyList();
     private Optional<Identifier> groupIdentifier = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Optional<Reference> informationSource = Optional.empty();
     private Collection<Dosage> dosageInstruction = Collections.emptyList();
     private Optional<Reference> priorPrescription = Optional.empty();
     private Optional<CodeableConcept> courseOfTherapyType = Optional.empty();
     private Collection<Reference> supportingInformation = Collections.emptyList();
     private Collection<String> instantiatesCanonical = Collections.emptyList();
+    private Optional<String> renderedDosageInstruction = Optional.empty();
     private Optional<MedicationRequest.Substitution> substitution = Optional.empty();
     private Optional<MedicationRequest.DispenseRequest> dispenseRequest = Optional.empty();
 
@@ -133,15 +118,13 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
      * @param medication - Identifies the medication being requested. This is a link to a resource
      *     that represents the medication which may be the details of the medication or simply an
      *     attribute carrying a code that identifies the medication from a known list of
-     *     medications. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
-     *     To pass the value in, wrap with one of the MedicationRequestBuilder.medication static
-     *     methods
+     *     medications.
      */
     public Impl(
         MEDICATIONREQUEST_STATUS status,
         MEDICATIONREQUEST_INTENT intent,
         Reference subject,
-        @NonNull ChoiceCodeableConceptOrReference medication) {
+        CodeableReference medication) {
       this.status = status;
       this.intent = intent;
       this.subject = subject;
@@ -207,6 +190,21 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
       this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param reason - The reason or the indication for ordering or not ordering the medication. */
+    public MedicationRequestBuilder.Impl withReason(@NonNull CodeableReference... reason) {
+      this.reason = Arrays.asList(reason);
+      return this;
+    }
+    /** @param reason - The reason or the indication for ordering or not ordering the medication. */
+    public MedicationRequestBuilder.Impl withReason(@NonNull Collection<CodeableReference> reason) {
+      this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public MedicationRequestBuilder.Impl withReason(@NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /**
      * @param basedOn - A plan or request that is fulfilled in whole or in part by this medication
      *     request.
@@ -234,16 +232,18 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param category - Indicates the type of medication request (for example, where the medication
-     *     is expected to be consumed or administered (i.e. inpatient or outpatient)).
+     * @param category - Indicates the grouping or category of medication request (for example, drug
+     *     classification like ATC, where meds would be administered, legal category of the
+     *     medication.).
      */
     public MedicationRequestBuilder.Impl withCategory(@NonNull CodeableConcept... category) {
       this.category = Arrays.asList(category);
       return this;
     }
     /**
-     * @param category - Indicates the type of medication request (for example, where the medication
-     *     is expected to be consumed or administered (i.e. inpatient or outpatient)).
+     * @param category - Indicates the grouping or category of medication request (for example, drug
+     *     classification like ATC, where meds would be administered, legal category of the
+     *     medication.).
      */
     public MedicationRequestBuilder.Impl withCategory(
         @NonNull Collection<CodeableConcept> category) {
@@ -264,6 +264,15 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param reported - Indicates if this record was captured as a secondary 'reported' record
+     *     rather than as an original primary source-of-truth record. It may also indicate the
+     *     source of the report.
+     */
+    public MedicationRequestBuilder.Impl withReported(@NonNull Boolean reported) {
+      this.reported = Optional.of(reported);
+      return this;
+    }
+    /**
      * @param recorder - The person who entered the order on behalf of another individual for
      *     example in the case of a verbal or a telephone order.
      */
@@ -278,8 +287,8 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MedicationRequestBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -287,8 +296,8 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MedicationRequestBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -422,38 +431,6 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
       this.authoredOn = Optional.of(authoredOn);
       return this;
     }
-    /**
-     * @param reasonCode - The reason or the indication for ordering or not ordering the medication.
-     */
-    public MedicationRequestBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /**
-     * @param reasonCode - The reason or the indication for ordering or not ordering the medication.
-     */
-    public MedicationRequestBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public MedicationRequestBuilder.Impl withReasonCode(
-        @NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
-     * @param reported - Indicates if this record was captured as a secondary 'reported' record
-     *     rather than as an original primary source-of-truth record. It may also indicate the
-     *     source of the report. Field is a 'choice' field. Type should be one of Boolean,
-     *     Reference. To pass the value in, wrap with one of the MedicationRequestBuilder.reported
-     *     static methods
-     */
-    public MedicationRequestBuilder.Impl withReported(@NonNull ChoiceBooleanOrReference reported) {
-      this.reported = Optional.of(reported);
-      return this;
-    }
     /** @param statusReason - Captures the reason for the current state of the MedicationRequest. */
     public MedicationRequestBuilder.Impl withStatusReason(@NonNull CodeableConcept statusReason) {
       this.statusReason = Optional.of(statusReason);
@@ -466,8 +443,11 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param doNotPerform - If true indicates that the provider is asking for the medication
-     *     request not to occur.
+     * @param doNotPerform - If true, indicates that the provider is asking for the patient to
+     *     either stop taking or to not start taking the specified medication. For example, the
+     *     patient is taking an existing medication and the provider is changing their medication.
+     *     They want to create two seperate requests: one to stop using the current medication and
+     *     another to start the new medication.
      */
     public MedicationRequestBuilder.Impl withDoNotPerform(@NonNull Boolean doNotPerform) {
       this.doNotPerform = Optional.of(doNotPerform);
@@ -548,30 +528,6 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param reasonReference - Condition or observation that supports why the medication was
-     *     ordered.
-     */
-    public MedicationRequestBuilder.Impl withReasonReference(
-        @NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /**
-     * @param reasonReference - Condition or observation that supports why the medication was
-     *     ordered.
-     */
-    public MedicationRequestBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public MedicationRequestBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
      * @param instantiatesUri - The URL pointing to an externally maintained protocol, guideline,
      *     orderset or other definition that is adhered to in whole or in part by this
      *     MedicationRequest.
@@ -648,6 +604,22 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param informationSource - The person or organization who provided the information about this
+     *     request, if the source is someone other than the requestor. This is often used when the
+     *     MedicationRequest is reported by another person.
+     */
+    public MedicationRequestBuilder.Impl withInformationSource(
+        @NonNull Reference informationSource) {
+      this.informationSource = Optional.of(informationSource);
+      return this;
+    }
+
+    public MedicationRequestBuilder.Impl withInformationSource(
+        @NonNull ReferenceBuilder informationSource) {
+      this.informationSource = Optional.of(informationSource.build());
+      return this;
+    }
     /** @param dosageInstruction - Indicates how the medication is to be used by the patient. */
     public MedicationRequestBuilder.Impl withDosageInstruction(
         @NonNull Dosage... dosageInstruction) {
@@ -683,7 +655,7 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param courseOfTherapyType - The description of the overall patte3rn of the administration of
+     * @param courseOfTherapyType - The description of the overall pattern of the administration of
      *     the medication to the patient.
      */
     public MedicationRequestBuilder.Impl withCourseOfTherapyType(
@@ -699,7 +671,8 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
     }
     /**
      * @param supportingInformation - Include additional information (for example, patient height
-     *     and weight) that supports the ordering of the medication.
+     *     and weight, a MedicationUsage for the patient) that supports the ordering of the
+     *     medication.
      */
     public MedicationRequestBuilder.Impl withSupportingInformation(
         @NonNull Reference... supportingInformation) {
@@ -708,7 +681,8 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
     }
     /**
      * @param supportingInformation - Include additional information (for example, patient height
-     *     and weight) that supports the ordering of the medication.
+     *     and weight, a MedicationUsage for the patient) that supports the ordering of the
+     *     medication.
      */
     public MedicationRequestBuilder.Impl withSupportingInformation(
         @NonNull Collection<Reference> supportingInformation) {
@@ -738,6 +712,16 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
     public MedicationRequestBuilder.Impl withInstantiatesCanonical(
         @NonNull Collection<String> instantiatesCanonical) {
       this.instantiatesCanonical = Collections.unmodifiableCollection(instantiatesCanonical);
+      return this;
+    }
+    /**
+     * @param renderedDosageInstruction - The full representation of the dose of the medication
+     *     included in all dosage instructions. To be used when multiple dosage instructions are
+     *     included to represent complex dosing such as increasing or tapering doses.
+     */
+    public MedicationRequestBuilder.Impl withRenderedDosageInstruction(
+        @NonNull String renderedDosageInstruction) {
+      this.renderedDosageInstruction = Optional.of(renderedDosageInstruction);
       return this;
     }
     /**
@@ -789,11 +773,13 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
           note.stream().collect(new LitSeqJCollector<>()),
           status,
           intent,
+          reason.stream().collect(new LitSeqJCollector<>()),
           subject,
           basedOn.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
           category.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(priority),
+          OptionConverters.toScala(reported.map(x -> (Object) x)),
           OptionConverters.toScala(recorder),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
@@ -802,25 +788,24 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(performer),
           insurance.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
+          medication,
           OptionConverters.toScala(authoredOn),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
-          (Option) OptionConverters.toScala(reported),
           OptionConverters.toScala(statusReason),
           OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
           eventHistory.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
-          medication,
           OptionConverters.toScala(performerType),
           detectedIssue.stream().collect(new LitSeqJCollector<>()),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           instantiatesUri.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(groupIdentifier),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(informationSource),
           dosageInstruction.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(priorPrescription),
           OptionConverters.toScala(courseOfTherapyType),
           supportingInformation.stream().collect(new LitSeqJCollector<>()),
           instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(renderedDosageInstruction),
           OptionConverters.toScala(substitution),
           OptionConverters.toScala(dispenseRequest),
           LitUtils.emptyMetaElMap());

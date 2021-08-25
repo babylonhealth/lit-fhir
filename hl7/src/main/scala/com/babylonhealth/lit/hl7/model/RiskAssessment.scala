@@ -150,6 +150,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
       parent: Option[Reference] = None,
       status: OBSERVATION_STATUS,
       method: Option[CodeableConcept] = None,
+      reason: LitSeq[CodeableReference] = LitSeq.empty,
       basedOn: Option[Reference] = None,
       subject: Reference,
       language: Option[LANGUAGES] = None,
@@ -159,11 +160,9 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
       condition: Option[Reference] = None,
       performer: Option[Reference] = None,
       identifier: LitSeq[Identifier] = LitSeq.empty,
-      reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
       mitigation: Option[String] = None,
       implicitRules: Option[UriStr] = None,
       occurrence: Option[RiskAssessment.OccurrenceChoice] = None,
-      reasonReference: LitSeq[Reference] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       prediction: LitSeq[RiskAssessment.Prediction] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
@@ -177,6 +176,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
     parent,
     status,
     method,
+    reason,
     basedOn,
     subject,
     language,
@@ -186,11 +186,9 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
     condition,
     performer,
     identifier,
-    reasonCode,
     mitigation,
     implicitRules,
     occurrence,
-    reasonReference,
     modifierExtension,
     prediction,
     primitiveAttributes = primitiveAttributes
@@ -213,6 +211,8 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
     FHIRComponentFieldMeta("status", lTagOf[OBSERVATION_STATUS], false, lTagOf[OBSERVATION_STATUS])
   val method: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("method", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val basedOn: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("basedOn", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val subject: FHIRComponentFieldMeta[Reference] =
@@ -231,16 +231,12 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
     FHIRComponentFieldMeta("performer", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
-  val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val mitigation: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("mitigation", lTagOf[Option[String]], false, lTagOf[String])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Option[RiskAssessment.OccurrenceChoice]] =
     FHIRComponentFieldMeta("occurrence", lTagOf[Option[RiskAssessment.OccurrenceChoice]], true, lTagOf[UnionDateTimeOrPeriod])
-  val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val prediction: FHIRComponentFieldMeta[LitSeq[RiskAssessment.Prediction]] =
@@ -255,6 +251,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
     parent,
     status,
     method,
+    reason,
     basedOn,
     subject,
     language,
@@ -264,11 +261,9 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
     condition,
     performer,
     identifier,
-    reasonCode,
     mitigation,
     implicitRules,
     occurrence,
-    reasonReference,
     modifierExtension,
     prediction
   )
@@ -283,6 +278,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
     FHIRComponentField[Option[Reference]](parent, t.parent),
     FHIRComponentField[OBSERVATION_STATUS](status, t.status),
     FHIRComponentField[Option[CodeableConcept]](method, t.method),
+    FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
     FHIRComponentField[Option[Reference]](basedOn, t.basedOn),
     FHIRComponentField[Reference](subject, t.subject),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
@@ -292,11 +288,9 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
     FHIRComponentField[Option[Reference]](condition, t.condition),
     FHIRComponentField[Option[Reference]](performer, t.performer),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
     FHIRComponentField[Option[String]](mitigation, t.mitigation),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[Option[RiskAssessment.OccurrenceChoice]](occurrence, t.occurrence),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[LitSeq[RiskAssessment.Prediction]](prediction, t.prediction)
   )
@@ -309,6 +303,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
   def extractParent(t: RiskAssessment): Option[Reference]                           = t.parent
   def extractStatus(t: RiskAssessment): OBSERVATION_STATUS                          = t.status
   def extractMethod(t: RiskAssessment): Option[CodeableConcept]                     = t.method
+  def extractReason(t: RiskAssessment): LitSeq[CodeableReference]                   = t.reason
   def extractBasedOn(t: RiskAssessment): Option[Reference]                          = t.basedOn
   def extractSubject(t: RiskAssessment): Reference                                  = t.subject
   def extractLanguage(t: RiskAssessment): Option[LANGUAGES]                         = t.language
@@ -318,11 +313,9 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
   def extractCondition(t: RiskAssessment): Option[Reference]                        = t.condition
   def extractPerformer(t: RiskAssessment): Option[Reference]                        = t.performer
   def extractIdentifier(t: RiskAssessment): LitSeq[Identifier]                      = t.identifier
-  def extractReasonCode(t: RiskAssessment): LitSeq[CodeableConcept]                 = t.reasonCode
   def extractMitigation(t: RiskAssessment): Option[String]                          = t.mitigation
   def extractImplicitRules(t: RiskAssessment): Option[UriStr]                       = t.implicitRules
   def extractOccurrence(t: RiskAssessment): Option[RiskAssessment.OccurrenceChoice] = t.occurrence
-  def extractReasonReference(t: RiskAssessment): LitSeq[Reference]                  = t.reasonReference
   def extractModifierExtension(t: RiskAssessment): LitSeq[Extension]                = t.modifierExtension
   def extractPrediction(t: RiskAssessment): LitSeq[RiskAssessment.Prediction]       = t.prediction
   override val thisName: String                                                     = "RiskAssessment"
@@ -351,6 +344,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
           cursor.decodeAs[Option[Reference]]("parent", Some(None)),
           cursor.decodeAs[OBSERVATION_STATUS]("status", None),
           cursor.decodeAs[Option[CodeableConcept]]("method", Some(None)),
+          cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("basedOn", Some(None)),
           cursor.decodeAs[Reference]("subject", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
@@ -360,11 +354,9 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
           cursor.decodeAs[Option[Reference]]("condition", Some(None)),
           cursor.decodeAs[Option[Reference]]("performer", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("mitigation", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeOptRef[UnionDateTimeOrPeriod]("occurrence"),
-          cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[RiskAssessment.Prediction]]("prediction", Some(LitSeq.empty)),
           decodeAttributes(cursor)
@@ -377,8 +369,8 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields code, note, basis, parent, status, method, basedOn, subject, encounter, condition, performer,
-  *   identifier, reasonCode, mitigation, occurrence, reasonReference, prediction.
+  *   Introduces the fields code, note, basis, parent, status, method, reason, basedOn, subject, encounter, condition, performer,
+  *   identifier, mitigation, occurrence, prediction.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -402,6 +394,8 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
   *   - The status of the RiskAssessment, using the same statuses as an Observation.
   * @param method
   *   - The algorithm, process or mechanism used to evaluate the risk.
+  * @param reason
+  *   - The reason the risk assessment was performed.
   * @param basedOn
   *   - A reference to the request that is fulfilled by this risk assessment.
   * @param subject
@@ -410,7 +404,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -424,8 +418,6 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
   *   - The provider or software application that performed the assessment.
   * @param identifier
   *   - Business identifier assigned to the risk assessment.
-  * @param reasonCode
-  *   - The reason the risk assessment was performed.
   * @param mitigation
   *   - A description of the steps that might be taken to reduce the identified risk(s).
   * @param implicitRules
@@ -434,8 +426,6 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
   *   other profiles etc.
   * @param occurrence
   *   - The date (and possibly time) the risk assessment was performed.
-  * @param reasonReference
-  *   - Resources supporting the reason the risk assessment was performed.
   * @param modifierExtension
   *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
   *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
@@ -458,6 +448,7 @@ class RiskAssessment(
     val parent: Option[Reference] = None,
     val status: OBSERVATION_STATUS,
     val method: Option[CodeableConcept] = None,
+    val reason: LitSeq[CodeableReference] = LitSeq.empty,
     val basedOn: Option[Reference] = None,
     val subject: Reference,
     override val language: Option[LANGUAGES] = None,
@@ -467,11 +458,9 @@ class RiskAssessment(
     val condition: Option[Reference] = None,
     val performer: Option[Reference] = None,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     val mitigation: Option[String] = None,
     override val implicitRules: Option[UriStr] = None,
     val occurrence: Option[RiskAssessment.OccurrenceChoice] = None,
-    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val prediction: LitSeq[RiskAssessment.Prediction] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts

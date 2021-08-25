@@ -45,37 +45,40 @@ import static java.util.stream.Collectors.toList;
 public interface Medication_IngredientBuilder {
   public Medication.Ingredient build();
 
-  public static Impl init(@NonNull ChoiceCodeableConceptOrReference item) {
+  public static Impl init(CodeableReference item) {
     return new Impl(item);
   }
 
-  public static Impl builder(@NonNull ChoiceCodeableConceptOrReference item) {
-    return new Impl(item);
+  public static Impl builder(CodeableReferenceBuilder item) {
+    return new Impl(item.build());
   }
 
-  public static ChoiceCodeableConceptOrReference item(CodeableConcept c) {
-    return new ChoiceCodeableConceptOrReference(c);
+  public static ChoiceCodeableConceptOrQuantityOrRatio strength(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrQuantityOrRatio(c);
   }
 
-  public static ChoiceCodeableConceptOrReference item(Reference r) {
-    return new ChoiceCodeableConceptOrReference(r);
+  public static ChoiceCodeableConceptOrQuantityOrRatio strength(Quantity q) {
+    return new ChoiceCodeableConceptOrQuantityOrRatio(q);
+  }
+
+  public static ChoiceCodeableConceptOrQuantityOrRatio strength(Ratio r) {
+    return new ChoiceCodeableConceptOrQuantityOrRatio(r);
   }
 
   public class Impl implements Medication_IngredientBuilder {
     private Optional<String> id = Optional.empty();
-    private ChoiceCodeableConceptOrReference item;
+    private CodeableReference item;
     private Optional<Boolean> isActive = Optional.empty();
-    private Optional<Ratio> strength = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
+    private Optional<ChoiceCodeableConceptOrQuantityOrRatio> strength = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
      * Required fields for {@link Medication.Ingredient}
      *
-     * @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
-     *     pass the value in, wrap with one of the Medication_IngredientBuilder.item static methods
+     * @param item
      */
-    public Impl(@NonNull ChoiceCodeableConceptOrReference item) {
+    public Impl(CodeableReference item) {
       this.item = item;
     }
 
@@ -90,16 +93,6 @@ public interface Medication_IngredientBuilder {
     /** @param isActive */
     public Medication_IngredientBuilder.Impl withIsActive(@NonNull Boolean isActive) {
       this.isActive = Optional.of(isActive);
-      return this;
-    }
-    /** @param strength */
-    public Medication_IngredientBuilder.Impl withStrength(@NonNull Ratio strength) {
-      this.strength = Optional.of(strength);
-      return this;
-    }
-
-    public Medication_IngredientBuilder.Impl withStrength(@NonNull RatioBuilder strength) {
-      this.strength = Optional.of(strength.build());
       return this;
     }
     /**
@@ -128,6 +121,16 @@ public interface Medication_IngredientBuilder {
 
     public Medication_IngredientBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param strength Field is a 'choice' field. Type should be one of CodeableConcept, Quantity,
+     *     Ratio. To pass the value in, wrap with one of the Medication_IngredientBuilder.strength
+     *     static methods
+     */
+    public Medication_IngredientBuilder.Impl withStrength(
+        @NonNull ChoiceCodeableConceptOrQuantityOrRatio strength) {
+      this.strength = Optional.of(strength);
       return this;
     }
     /**
@@ -179,8 +182,8 @@ public interface Medication_IngredientBuilder {
           OptionConverters.toScala(id),
           item,
           OptionConverters.toScala(isActive.map(x -> (Object) x)),
-          OptionConverters.toScala(strength),
           extension.stream().collect(new LitSeqJCollector<>()),
+          (Option) OptionConverters.toScala(strength),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

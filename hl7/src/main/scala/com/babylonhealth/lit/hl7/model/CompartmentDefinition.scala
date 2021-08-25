@@ -230,10 +230,10 @@ object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: CompartmentDefinition): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
-    FHIRComponentField[UriStr](url, t.url),
+    FHIRComponentField[UriStr](url, t.url.get),
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
-    FHIRComponentField[String](name, t.name),
+    FHIRComponentField[String](name, t.name.get),
     FHIRComponentField[Option[FHIRDateTime]](date, t.date),
     FHIRComponentField[COMPARTMENT_TYPE](code, t.code),
     FHIRComponentField[PUBLICATION_STATUS](status, t.status),
@@ -253,10 +253,10 @@ object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
     FHIRComponentField[LitSeq[CompartmentDefinition.Resource]](resource, t.resource)
   )
   def extractId(t: CompartmentDefinition): Option[String]                               = t.id
-  def extractUrl(t: CompartmentDefinition): UriStr                                      = t.url
+  def extractUrl(t: CompartmentDefinition): UriStr                                      = t.url.get
   def extractMeta(t: CompartmentDefinition): Option[Meta]                               = t.meta
   def extractText(t: CompartmentDefinition): Option[Narrative]                          = t.text
-  def extractName(t: CompartmentDefinition): String                                     = t.name
+  def extractName(t: CompartmentDefinition): String                                     = t.name.get
   def extractDate(t: CompartmentDefinition): Option[FHIRDateTime]                       = t.date
   def extractCode(t: CompartmentDefinition): COMPARTMENT_TYPE                           = t.code
   def extractStatus(t: CompartmentDefinition): PUBLICATION_STATUS                       = t.status
@@ -298,10 +298,10 @@ object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
     Some(
       (
         o.id,
-        o.url,
+        o.url.get,
         o.meta,
         o.text,
-        o.name,
+        o.name.get,
         o.date,
         o.code,
         o.status,
@@ -352,11 +352,10 @@ object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
 
 /** A compartment definition that defines how resources are accessed on a server.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.CanonicalResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, code, status, search, version, contact, purpose, publisher, useContext, description,
-  *   experimental, resource.
+  *   Introduces the fields code, search, resource. Requires the following fields which were optional in the parent: url, name.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -398,7 +397,7 @@ object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -433,35 +432,46 @@ object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
 @POJOBoilerplate
 class CompartmentDefinition(
     override val id: Option[String] = None,
-    val url: UriStr,
+    url: UriStr,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: String,
-    val date: Option[FHIRDateTime] = None,
+    name: String,
+    override val date: Option[FHIRDateTime] = None,
     val code: COMPARTMENT_TYPE,
-    val status: PUBLICATION_STATUS,
+    override val status: PUBLICATION_STATUS,
     val search: Boolean,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     override val language: Option[LANGUAGES] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
-    val description: Option[Markdown] = None,
-    val experimental: Option[Boolean] = None,
+    override val publisher: Option[String] = None,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val description: Option[Markdown] = None,
+    override val experimental: Option[Boolean] = None,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val resource: LitSeq[CompartmentDefinition.Resource] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends CanonicalResource(
       id = id,
+      url = Some(url),
       meta = meta,
       text = text,
+      name = Some(name),
+      date = date,
+      status = status,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
       contained = contained,
       extension = extension,
+      publisher = publisher,
+      useContext = useContext,
+      description = description,
+      experimental = experimental,
       implicitRules = implicitRules,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {

@@ -77,7 +77,7 @@ public interface DeviceDefinition_SpecializationBuilder {
       this.id = Optional.of(id);
       return this;
     }
-    /** @param version - The available versions of the device, e.g., software versions. */
+    /** @param version - The version of the device or software. */
     public DeviceDefinition_SpecializationBuilder.Impl withVersion(@NonNull String version) {
       this.version = Optional.of(version);
       return this;

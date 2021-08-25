@@ -51,38 +51,48 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
         override val parentType: CompanionFor[ResourceType] = DegreeOfPolymerisation
         def apply(
             id: Option[String] = None,
-            degree: Option[CodeableConcept] = None,
-            amount: Option[Choice["SubstanceAmount"]] = None,
+            low: Option[Int] = None,
+            `type`: Option[CodeableConcept] = None,
+            high: Option[Int] = None,
+            average: Option[Int] = None,
             extension: LitSeq[Extension] = LitSeq.empty,
             modifierExtension: LitSeq[Extension] = LitSeq.empty,
             primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
         ): DegreeOfPolymerisation = new DegreeOfPolymerisation(
           id,
-          degree,
-          amount,
+          low,
+          `type`,
+          high,
+          average,
           extension,
           modifierExtension,
           primitiveAttributes = primitiveAttributes
         )
         def unapply(
-            o: DegreeOfPolymerisation): Option[(Option[String], Option[CodeableConcept], Option[Choice["SubstanceAmount"]], LitSeq[Extension], LitSeq[Extension])] =
-          Some((o.id, o.degree, o.amount, o.extension, o.modifierExtension))
+            o: DegreeOfPolymerisation): Option[(Option[String], Option[Int], Option[CodeableConcept], Option[Int], Option[Int], LitSeq[Extension], LitSeq[Extension])] =
+          Some((o.id, o.low, o.`type`, o.high, o.average, o.extension, o.modifierExtension))
         val id: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-        val degree: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-          FHIRComponentFieldMeta("degree", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
-        val amount: FHIRComponentFieldMeta[Option[Choice["SubstanceAmount"]]] =
-          FHIRComponentFieldMeta("amount", lTagOf[Option[Choice["SubstanceAmount"]]], false, lTagOf[Choice["SubstanceAmount"]])
+        val low: FHIRComponentFieldMeta[Option[Int]] =
+          FHIRComponentFieldMeta("low", lTagOf[Option[Int]], false, lTagOf[Int])
+        val `type`: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+          FHIRComponentFieldMeta("type", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+        val high: FHIRComponentFieldMeta[Option[Int]] =
+          FHIRComponentFieldMeta("high", lTagOf[Option[Int]], false, lTagOf[Int])
+        val average: FHIRComponentFieldMeta[Option[Int]] =
+          FHIRComponentFieldMeta("average", lTagOf[Option[Int]], false, lTagOf[Int])
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, degree, amount, extension, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, low, `type`, high, average, extension, modifierExtension)
         override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: DegreeOfPolymerisation): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
-          FHIRComponentField[Option[CodeableConcept]](degree, t.degree),
-          FHIRComponentField[Option[Choice["SubstanceAmount"]]](amount, t.amount),
+          FHIRComponentField[Option[Int]](low, t.low),
+          FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
+          FHIRComponentField[Option[Int]](high, t.high),
+          FHIRComponentField[Option[Int]](average, t.average),
           FHIRComponentField[LitSeq[Extension]](extension, t.extension),
           FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
         )
@@ -93,8 +103,10 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
             Try(
               new DegreeOfPolymerisation(
                 cursor.decodeAs[Option[String]]("id", Some(None)),
-                cursor.decodeAs[Option[CodeableConcept]]("degree", Some(None)),
-                cursor.decodeAs[Option[Choice["SubstanceAmount"]]]("amount", Some(None)),
+                cursor.decodeAs[Option[Int]]("low", Some(None)),
+                cursor.decodeAs[Option[CodeableConcept]]("type", Some(None)),
+                cursor.decodeAs[Option[Int]]("high", Some(None)),
+                cursor.decodeAs[Option[Int]]("average", Some(None)),
                 cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
                 cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
                 decodeAttributes(cursor)
@@ -104,8 +116,10 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       @POJOBoilerplate
       class DegreeOfPolymerisation(
           override val id: Option[String] = None,
-          val degree: Option[CodeableConcept] = None,
-          val amount: Option[Choice["SubstanceAmount"]] = None,
+          val low: Option[Int] = None,
+          val `type`: Option[CodeableConcept] = None,
+          val high: Option[Int] = None,
+          val average: Option[Int] = None,
           override val extension: LitSeq[Extension] = LitSeq.empty,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
@@ -120,6 +134,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
         def apply(
             id: Option[String] = None,
             `type`: Option[CodeableConcept] = None,
+            format: Option[CodeableConcept] = None,
             extension: LitSeq[Extension] = LitSeq.empty,
             attachment: Option[Attachment] = None,
             representation: Option[String] = None,
@@ -128,6 +143,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
         ): StructuralRepresentation = new StructuralRepresentation(
           id,
           `type`,
+          format,
           extension,
           attachment,
           representation,
@@ -135,12 +151,14 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           primitiveAttributes = primitiveAttributes
         )
         def unapply(
-            o: StructuralRepresentation): Option[(Option[String], Option[CodeableConcept], LitSeq[Extension], Option[Attachment], Option[String], LitSeq[Extension])] =
-          Some((o.id, o.`type`, o.extension, o.attachment, o.representation, o.modifierExtension))
+            o: StructuralRepresentation): Option[(Option[String], Option[CodeableConcept], Option[CodeableConcept], LitSeq[Extension], Option[Attachment], Option[String], LitSeq[Extension])] =
+          Some((o.id, o.`type`, o.format, o.extension, o.attachment, o.representation, o.modifierExtension))
         val id: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
         val `type`: FHIRComponentFieldMeta[Option[CodeableConcept]] =
           FHIRComponentFieldMeta("type", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+        val format: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+          FHIRComponentFieldMeta("format", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val attachment: FHIRComponentFieldMeta[Option[Attachment]] =
@@ -149,11 +167,13 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           FHIRComponentFieldMeta("representation", lTagOf[Option[String]], false, lTagOf[String])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, extension, attachment, representation, modifierExtension)
+        val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+          Seq(id, `type`, format, extension, attachment, representation, modifierExtension)
         override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: StructuralRepresentation): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
           FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
+          FHIRComponentField[Option[CodeableConcept]](format, t.format),
           FHIRComponentField[LitSeq[Extension]](extension, t.extension),
           FHIRComponentField[Option[Attachment]](attachment, t.attachment),
           FHIRComponentField[Option[String]](representation, t.representation),
@@ -167,6 +187,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
               new StructuralRepresentation(
                 cursor.decodeAs[Option[String]]("id", Some(None)),
                 cursor.decodeAs[Option[CodeableConcept]]("type", Some(None)),
+                cursor.decodeAs[Option[CodeableConcept]]("format", Some(None)),
                 cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
                 cursor.decodeAs[Option[Attachment]]("attachment", Some(None)),
                 cursor.decodeAs[Option[String]]("representation", Some(None)),
@@ -179,6 +200,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       class StructuralRepresentation(
           override val id: Option[String] = None,
           val `type`: Option[CodeableConcept] = None,
+          val format: Option[CodeableConcept] = None,
           override val extension: LitSeq[Extension] = LitSeq.empty,
           val attachment: Option[Attachment] = None,
           val representation: Option[String] = None,
@@ -187,49 +209,49 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       def apply(
           id: Option[String] = None,
-          amount: Option[Choice["SubstanceAmount"]] = None,
+          unit: Option[String] = None,
+          amount: Option[Int] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
-          repeatUnit: Option[String] = None,
+          orientation: Option[CodeableConcept] = None,
           modifierExtension: LitSeq[Extension] = LitSeq.empty,
-          orientationOfPolymerisation: Option[CodeableConcept] = None,
           degreeOfPolymerisation: LitSeq[RepeatUnit.DegreeOfPolymerisation] = LitSeq.empty,
           structuralRepresentation: LitSeq[RepeatUnit.StructuralRepresentation] = LitSeq.empty,
           primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
       ): RepeatUnit = new RepeatUnit(
         id,
+        unit,
         amount,
         extension,
-        repeatUnit,
+        orientation,
         modifierExtension,
-        orientationOfPolymerisation,
         degreeOfPolymerisation,
         structuralRepresentation,
         primitiveAttributes = primitiveAttributes
       )
       def unapply(
-          o: RepeatUnit): Option[(Option[String], Option[Choice["SubstanceAmount"]], LitSeq[Extension], Option[String], LitSeq[Extension], Option[CodeableConcept], LitSeq[RepeatUnit.DegreeOfPolymerisation], LitSeq[RepeatUnit.StructuralRepresentation])] =
+          o: RepeatUnit): Option[(Option[String], Option[String], Option[Int], LitSeq[Extension], Option[CodeableConcept], LitSeq[Extension], LitSeq[RepeatUnit.DegreeOfPolymerisation], LitSeq[RepeatUnit.StructuralRepresentation])] =
         Some(
           (
             o.id,
+            o.unit,
             o.amount,
             o.extension,
-            o.repeatUnit,
+            o.orientation,
             o.modifierExtension,
-            o.orientationOfPolymerisation,
             o.degreeOfPolymerisation,
             o.structuralRepresentation))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-      val amount: FHIRComponentFieldMeta[Option[Choice["SubstanceAmount"]]] =
-        FHIRComponentFieldMeta("amount", lTagOf[Option[Choice["SubstanceAmount"]]], false, lTagOf[Choice["SubstanceAmount"]])
+      val unit: FHIRComponentFieldMeta[Option[String]] =
+        FHIRComponentFieldMeta("unit", lTagOf[Option[String]], false, lTagOf[String])
+      val amount: FHIRComponentFieldMeta[Option[Int]] =
+        FHIRComponentFieldMeta("amount", lTagOf[Option[Int]], false, lTagOf[Int])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val repeatUnit: FHIRComponentFieldMeta[Option[String]] =
-        FHIRComponentFieldMeta("repeatUnit", lTagOf[Option[String]], false, lTagOf[String])
+      val orientation: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+        FHIRComponentFieldMeta("orientation", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val orientationOfPolymerisation: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-        FHIRComponentFieldMeta("orientationOfPolymerisation", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
       val degreeOfPolymerisation: FHIRComponentFieldMeta[LitSeq[RepeatUnit.DegreeOfPolymerisation]] =
         FHIRComponentFieldMeta(
           "degreeOfPolymerisation",
@@ -242,23 +264,16 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           lTagOf[LitSeq[RepeatUnit.StructuralRepresentation]],
           false,
           lTagOf[RepeatUnit.StructuralRepresentation])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
-        id,
-        amount,
-        extension,
-        repeatUnit,
-        modifierExtension,
-        orientationOfPolymerisation,
-        degreeOfPolymerisation,
-        structuralRepresentation)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+        Seq(id, unit, amount, extension, orientation, modifierExtension, degreeOfPolymerisation, structuralRepresentation)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: RepeatUnit): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
-        FHIRComponentField[Option[Choice["SubstanceAmount"]]](amount, t.amount),
+        FHIRComponentField[Option[String]](unit, t.unit),
+        FHIRComponentField[Option[Int]](amount, t.amount),
         FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-        FHIRComponentField[Option[String]](repeatUnit, t.repeatUnit),
+        FHIRComponentField[Option[CodeableConcept]](orientation, t.orientation),
         FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-        FHIRComponentField[Option[CodeableConcept]](orientationOfPolymerisation, t.orientationOfPolymerisation),
         FHIRComponentField[LitSeq[RepeatUnit.DegreeOfPolymerisation]](degreeOfPolymerisation, t.degreeOfPolymerisation),
         FHIRComponentField[LitSeq[RepeatUnit.StructuralRepresentation]](structuralRepresentation, t.structuralRepresentation)
       )
@@ -269,11 +284,11 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           Try(
             new RepeatUnit(
               cursor.decodeAs[Option[String]]("id", Some(None)),
-              cursor.decodeAs[Option[Choice["SubstanceAmount"]]]("amount", Some(None)),
+              cursor.decodeAs[Option[String]]("unit", Some(None)),
+              cursor.decodeAs[Option[Int]]("amount", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-              cursor.decodeAs[Option[String]]("repeatUnit", Some(None)),
+              cursor.decodeAs[Option[CodeableConcept]]("orientation", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-              cursor.decodeAs[Option[CodeableConcept]]("orientationOfPolymerisation", Some(None)),
               cursor.decodeAs[LitSeq[RepeatUnit.DegreeOfPolymerisation]]("degreeOfPolymerisation", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[RepeatUnit.StructuralRepresentation]]("structuralRepresentation", Some(LitSeq.empty)),
               decodeAttributes(cursor)
@@ -283,11 +298,11 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
     @POJOBoilerplate
     class RepeatUnit(
         override val id: Option[String] = None,
-        val amount: Option[Choice["SubstanceAmount"]] = None,
+        val unit: Option[String] = None,
+        val amount: Option[Int] = None,
         override val extension: LitSeq[Extension] = LitSeq.empty,
-        val repeatUnit: Option[String] = None,
+        val orientation: Option[CodeableConcept] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        val orientationOfPolymerisation: Option[CodeableConcept] = None,
         val degreeOfPolymerisation: LitSeq[RepeatUnit.DegreeOfPolymerisation] = LitSeq.empty,
         val structuralRepresentation: LitSeq[RepeatUnit.StructuralRepresentation] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
@@ -295,7 +310,6 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
-        numberOfUnits: Option[Int] = None,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         repeatUnitAmountType: Option[CodeableConcept] = None,
         averageMolecularFormula: Option[String] = None,
@@ -304,7 +318,6 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
     ): Repeat = new Repeat(
       id,
       extension,
-      numberOfUnits,
       modifierExtension,
       repeatUnitAmountType,
       averageMolecularFormula,
@@ -312,22 +325,12 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Repeat): Option[(Option[String], LitSeq[Extension], Option[Int], LitSeq[Extension], Option[CodeableConcept], Option[String], LitSeq[Repeat.RepeatUnit])] =
-      Some(
-        (
-          o.id,
-          o.extension,
-          o.numberOfUnits,
-          o.modifierExtension,
-          o.repeatUnitAmountType,
-          o.averageMolecularFormula,
-          o.repeatUnit))
+        o: Repeat): Option[(Option[String], LitSeq[Extension], LitSeq[Extension], Option[CodeableConcept], Option[String], LitSeq[Repeat.RepeatUnit])] =
+      Some((o.id, o.extension, o.modifierExtension, o.repeatUnitAmountType, o.averageMolecularFormula, o.repeatUnit))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val numberOfUnits: FHIRComponentFieldMeta[Option[Int]] =
-      FHIRComponentFieldMeta("numberOfUnits", lTagOf[Option[Int]], false, lTagOf[Int])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val repeatUnitAmountType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -337,12 +340,11 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
     val repeatUnit: FHIRComponentFieldMeta[LitSeq[Repeat.RepeatUnit]] =
       FHIRComponentFieldMeta("repeatUnit", lTagOf[LitSeq[Repeat.RepeatUnit]], false, lTagOf[Repeat.RepeatUnit])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, extension, numberOfUnits, modifierExtension, repeatUnitAmountType, averageMolecularFormula, repeatUnit)
+      Seq(id, extension, modifierExtension, repeatUnitAmountType, averageMolecularFormula, repeatUnit)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Repeat): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-      FHIRComponentField[Option[Int]](numberOfUnits, t.numberOfUnits),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
       FHIRComponentField[Option[CodeableConcept]](repeatUnitAmountType, t.repeatUnitAmountType),
       FHIRComponentField[Option[String]](averageMolecularFormula, t.averageMolecularFormula),
@@ -356,7 +358,6 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           new Repeat(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeAs[Option[Int]]("numberOfUnits", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[CodeableConcept]]("repeatUnitAmountType", Some(None)),
             cursor.decodeAs[Option[String]]("averageMolecularFormula", Some(None)),
@@ -369,7 +370,6 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
   class Repeat(
       override val id: Option[String] = None,
       override val extension: LitSeq[Extension] = LitSeq.empty,
-      val numberOfUnits: Option[Int] = None,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       val repeatUnitAmountType: Option[CodeableConcept] = None,
       val averageMolecularFormula: Option[String] = None,
@@ -390,47 +390,47 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       override val parentType: CompanionFor[ResourceType] = StartingMaterial
       def apply(
           id: Option[String] = None,
-          `type`: Option[CodeableConcept] = None,
-          amount: Option[Choice["SubstanceAmount"]] = None,
-          material: Option[CodeableConcept] = None,
+          code: Option[CodeableConcept] = None,
+          amount: Option[Quantity] = None,
+          category: Option[CodeableConcept] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
           isDefining: Option[Boolean] = None,
           modifierExtension: LitSeq[Extension] = LitSeq.empty,
           primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
       ): StartingMaterial = new StartingMaterial(
         id,
-        `type`,
+        code,
         amount,
-        material,
+        category,
         extension,
         isDefining,
         modifierExtension,
         primitiveAttributes = primitiveAttributes
       )
       def unapply(
-          o: StartingMaterial): Option[(Option[String], Option[CodeableConcept], Option[Choice["SubstanceAmount"]], Option[CodeableConcept], LitSeq[Extension], Option[Boolean], LitSeq[Extension])] =
-        Some((o.id, o.`type`, o.amount, o.material, o.extension, o.isDefining, o.modifierExtension))
+          o: StartingMaterial): Option[(Option[String], Option[CodeableConcept], Option[Quantity], Option[CodeableConcept], LitSeq[Extension], Option[Boolean], LitSeq[Extension])] =
+        Some((o.id, o.code, o.amount, o.category, o.extension, o.isDefining, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-      val `type`: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-        FHIRComponentFieldMeta("type", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
-      val amount: FHIRComponentFieldMeta[Option[Choice["SubstanceAmount"]]] =
-        FHIRComponentFieldMeta("amount", lTagOf[Option[Choice["SubstanceAmount"]]], false, lTagOf[Choice["SubstanceAmount"]])
-      val material: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-        FHIRComponentFieldMeta("material", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+      val code: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+        FHIRComponentFieldMeta("code", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+      val amount: FHIRComponentFieldMeta[Option[Quantity]] =
+        FHIRComponentFieldMeta("amount", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
+      val category: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+        FHIRComponentFieldMeta("category", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val isDefining: FHIRComponentFieldMeta[Option[Boolean]] =
         FHIRComponentFieldMeta("isDefining", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, amount, material, extension, isDefining, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, code, amount, category, extension, isDefining, modifierExtension)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: StartingMaterial): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
-        FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
-        FHIRComponentField[Option[Choice["SubstanceAmount"]]](amount, t.amount),
-        FHIRComponentField[Option[CodeableConcept]](material, t.material),
+        FHIRComponentField[Option[CodeableConcept]](code, t.code),
+        FHIRComponentField[Option[Quantity]](amount, t.amount),
+        FHIRComponentField[Option[CodeableConcept]](category, t.category),
         FHIRComponentField[LitSeq[Extension]](extension, t.extension),
         FHIRComponentField[Option[Boolean]](isDefining, t.isDefining),
         FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
@@ -442,9 +442,9 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           Try(
             new StartingMaterial(
               cursor.decodeAs[Option[String]]("id", Some(None)),
-              cursor.decodeAs[Option[CodeableConcept]]("type", Some(None)),
-              cursor.decodeAs[Option[Choice["SubstanceAmount"]]]("amount", Some(None)),
-              cursor.decodeAs[Option[CodeableConcept]]("material", Some(None)),
+              cursor.decodeAs[Option[CodeableConcept]]("code", Some(None)),
+              cursor.decodeAs[Option[Quantity]]("amount", Some(None)),
+              cursor.decodeAs[Option[CodeableConcept]]("category", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[Option[Boolean]]("isDefining", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -455,9 +455,9 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
     @POJOBoilerplate
     class StartingMaterial(
         override val id: Option[String] = None,
-        val `type`: Option[CodeableConcept] = None,
-        val amount: Option[Choice["SubstanceAmount"]] = None,
-        val material: Option[CodeableConcept] = None,
+        val code: Option[CodeableConcept] = None,
+        val amount: Option[Quantity] = None,
+        val category: Option[CodeableConcept] = None,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val isDefining: Option[Boolean] = None,
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
@@ -537,7 +537,8 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       geometry: Option[CodeableConcept] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
-      modification: LitSeq[String] = LitSeq.empty,
+      identifier: Option[Identifier] = None,
+      modification: Option[String] = None,
       implicitRules: Option[UriStr] = None,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       copolymerConnectivity: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -553,6 +554,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
     geometry,
     contained,
     extension,
+    identifier,
     modification,
     implicitRules,
     modifierExtension,
@@ -577,8 +579,10 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val modification: FHIRComponentFieldMeta[LitSeq[String]] =
-    FHIRComponentFieldMeta("modification", lTagOf[LitSeq[String]], false, lTagOf[String])
+  val identifier: FHIRComponentFieldMeta[Option[Identifier]] =
+    FHIRComponentFieldMeta("identifier", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
+  val modification: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("modification", lTagOf[Option[String]], false, lTagOf[String])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -598,12 +602,14 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
     geometry,
     contained,
     extension,
+    identifier,
     modification,
     implicitRules,
     modifierExtension,
     copolymerConnectivity,
     monomerSet,
-    repeat)
+    repeat
+  )
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
   override def fields(t: SubstancePolymer): Seq[FHIRComponentField[_]] = Seq(
     FHIRComponentField[Option[String]](id, t.id),
@@ -614,7 +620,8 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
     FHIRComponentField[Option[CodeableConcept]](geometry, t.geometry),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[LitSeq[String]](modification, t.modification),
+    FHIRComponentField[Option[Identifier]](identifier, t.identifier),
+    FHIRComponentField[Option[String]](modification, t.modification),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[LitSeq[CodeableConcept]](copolymerConnectivity, t.copolymerConnectivity),
@@ -629,7 +636,8 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
   def extractGeometry(t: SubstancePolymer): Option[CodeableConcept]               = t.geometry
   def extractContained(t: SubstancePolymer): LitSeq[Resource]                     = t.contained
   def extractExtension(t: SubstancePolymer): LitSeq[Extension]                    = t.extension
-  def extractModification(t: SubstancePolymer): LitSeq[String]                    = t.modification
+  def extractIdentifier(t: SubstancePolymer): Option[Identifier]                  = t.identifier
+  def extractModification(t: SubstancePolymer): Option[String]                    = t.modification
   def extractImplicitRules(t: SubstancePolymer): Option[UriStr]                   = t.implicitRules
   def extractModifierExtension(t: SubstancePolymer): LitSeq[Extension]            = t.modifierExtension
   def extractCopolymerConnectivity(t: SubstancePolymer): LitSeq[CodeableConcept]  = t.copolymerConnectivity
@@ -637,7 +645,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
   def extractRepeat(t: SubstancePolymer): LitSeq[SubstancePolymer.Repeat]         = t.repeat
   override val thisName: String                                                   = "SubstancePolymer"
   def unapply(
-      o: SubstancePolymer): Option[(Option[String], Option[Meta], Option[Narrative], Option[CodeableConcept], Option[LANGUAGES], Option[CodeableConcept], LitSeq[Resource], LitSeq[Extension], LitSeq[String], Option[UriStr], LitSeq[Extension], LitSeq[CodeableConcept], LitSeq[SubstancePolymer.MonomerSet], LitSeq[SubstancePolymer.Repeat])] =
+      o: SubstancePolymer): Option[(Option[String], Option[Meta], Option[Narrative], Option[CodeableConcept], Option[LANGUAGES], Option[CodeableConcept], LitSeq[Resource], LitSeq[Extension], Option[Identifier], Option[String], Option[UriStr], LitSeq[Extension], LitSeq[CodeableConcept], LitSeq[SubstancePolymer.MonomerSet], LitSeq[SubstancePolymer.Repeat])] =
     Some(
       (
         o.id,
@@ -648,6 +656,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
         o.geometry,
         o.contained,
         o.extension,
+        o.identifier,
         o.modification,
         o.implicitRules,
         o.modifierExtension,
@@ -666,7 +675,8 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           cursor.decodeAs[Option[CodeableConcept]]("geometry", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[String]]("modification", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Identifier]]("identifier", Some(None)),
+          cursor.decodeAs[Option[String]]("modification", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("copolymerConnectivity", Some(LitSeq.empty)),
@@ -677,12 +687,12 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       ))
 }
 
-/** Todo.
+/** Properties of a substance specific to it being a polymer.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields `class`, geometry, modification, copolymerConnectivity, monomerSet, repeat.
+  *   Introduces the fields `class`, geometry, identifier, modification, copolymerConnectivity, monomerSet, repeat.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -694,21 +704,24 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
   *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
   *   represented in the narrative to ensure clinical safety.
   * @param `class`
-  *   - Todo.
+  *   - Overall type of the polymer.
   * @param language
   *   - The base language in which the resource is written.
   * @param geometry
-  *   - Todo.
+  *   - Polymer geometry, e.g. linear, branched, cross-linked, network or dendritic.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
+  * @param identifier
+  *   - A business idenfier for this polymer, but typically this is handled by a SubstanceDefinition identifier.
   * @param modification
-  *   - Todo.
+  *   - Todo - this is intended to connect to a repeating full modification structure, also used by Protein and Nucleic Acid .
+  *   String is just a placeholder.
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
@@ -722,11 +735,11 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
   *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param copolymerConnectivity
-  *   - Todo.
+  *   - Descrtibes the copolymer sequence type (polymer connectivity).
   * @param monomerSet
   *   - Todo.
   * @param repeat
-  *   - Todo.
+  *   - Specifies and quantifies the repeated units and their configuration.
   */
 @POJOBoilerplate
 class SubstancePolymer(
@@ -738,7 +751,8 @@ class SubstancePolymer(
     val geometry: Option[CodeableConcept] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val modification: LitSeq[String] = LitSeq.empty,
+    val identifier: Option[Identifier] = None,
+    val modification: Option[String] = None,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val copolymerConnectivity: LitSeq[CodeableConcept] = LitSeq.empty,

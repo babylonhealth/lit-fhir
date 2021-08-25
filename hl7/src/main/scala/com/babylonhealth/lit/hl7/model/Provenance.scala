@@ -194,12 +194,14 @@ object Provenance extends CompanionFor[Provenance] {
       target: NonEmptyLitSeq[Reference],
       policy: LitSeq[UriStr] = LitSeq.empty,
       reason: LitSeq[CodeableConcept] = LitSeq.empty,
+      basedOn: LitSeq[Reference] = LitSeq.empty,
       language: Option[LANGUAGES] = None,
       recorded: ZonedDateTime,
       location: Option[Reference] = None,
       activity: Option[CodeableConcept] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
+      encounter: Option[Reference] = None,
       signature: LitSeq[Signature] = LitSeq.empty,
       occurred: Option[Provenance.OccurredChoice] = None,
       implicitRules: Option[UriStr] = None,
@@ -214,12 +216,14 @@ object Provenance extends CompanionFor[Provenance] {
     target,
     policy,
     reason,
+    basedOn,
     language,
     recorded,
     location,
     activity,
     contained,
     extension,
+    encounter,
     signature,
     occurred,
     implicitRules,
@@ -240,6 +244,8 @@ object Provenance extends CompanionFor[Provenance] {
     FHIRComponentFieldMeta("policy", lTagOf[LitSeq[UriStr]], false, lTagOf[UriStr])
   val reason: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val basedOn: FHIRComponentFieldMeta[LitSeq[Reference]] =
+    FHIRComponentFieldMeta("basedOn", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val recorded: FHIRComponentFieldMeta[ZonedDateTime] =
@@ -252,6 +258,8 @@ object Provenance extends CompanionFor[Provenance] {
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  val encounter: FHIRComponentFieldMeta[Option[Reference]] =
+    FHIRComponentFieldMeta("encounter", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val signature: FHIRComponentFieldMeta[LitSeq[Signature]] =
     FHIRComponentFieldMeta("signature", lTagOf[LitSeq[Signature]], false, lTagOf[Signature])
   val occurred: FHIRComponentFieldMeta[Option[Provenance.OccurredChoice]] =
@@ -271,12 +279,14 @@ object Provenance extends CompanionFor[Provenance] {
     target,
     policy,
     reason,
+    basedOn,
     language,
     recorded,
     location,
     activity,
     contained,
     extension,
+    encounter,
     signature,
     occurred,
     implicitRules,
@@ -292,12 +302,14 @@ object Provenance extends CompanionFor[Provenance] {
     FHIRComponentField[NonEmptyLitSeq[Reference]](target, t.target),
     FHIRComponentField[LitSeq[UriStr]](policy, t.policy),
     FHIRComponentField[LitSeq[CodeableConcept]](reason, t.reason),
+    FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[ZonedDateTime](recorded, t.recorded),
     FHIRComponentField[Option[Reference]](location, t.location),
     FHIRComponentField[Option[CodeableConcept]](activity, t.activity),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+    FHIRComponentField[Option[Reference]](encounter, t.encounter),
     FHIRComponentField[LitSeq[Signature]](signature, t.signature),
     FHIRComponentField[Option[Provenance.OccurredChoice]](occurred, t.occurred),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
@@ -311,12 +323,14 @@ object Provenance extends CompanionFor[Provenance] {
   def extractTarget(t: Provenance): NonEmptyLitSeq[Reference]           = t.target
   def extractPolicy(t: Provenance): LitSeq[UriStr]                      = t.policy
   def extractReason(t: Provenance): LitSeq[CodeableConcept]             = t.reason
+  def extractBasedOn(t: Provenance): LitSeq[Reference]                  = t.basedOn
   def extractLanguage(t: Provenance): Option[LANGUAGES]                 = t.language
   def extractRecorded(t: Provenance): ZonedDateTime                     = t.recorded
   def extractLocation(t: Provenance): Option[Reference]                 = t.location
   def extractActivity(t: Provenance): Option[CodeableConcept]           = t.activity
   def extractContained(t: Provenance): LitSeq[Resource]                 = t.contained
   def extractExtension(t: Provenance): LitSeq[Extension]                = t.extension
+  def extractEncounter(t: Provenance): Option[Reference]                = t.encounter
   def extractSignature(t: Provenance): LitSeq[Signature]                = t.signature
   def extractOccurred(t: Provenance): Option[Provenance.OccurredChoice] = t.occurred
   def extractImplicitRules(t: Provenance): Option[UriStr]               = t.implicitRules
@@ -329,15 +343,18 @@ object Provenance extends CompanionFor[Provenance] {
     "agent-type"     -> (obj => obj.agent.flatMap(_.`type`).toSeq),
     "agent"          -> (obj => obj.agent.map(_.who).toSeq),
     "entity"         -> (obj => obj.entity.map(_.what).toSeq),
-    "when"           -> (obj => obj.occurred.flatMap(_.as[FHIRDateTime]).toSeq),
+    "activity"       -> (obj => obj.activity.toSeq),
+    "based-on"       -> (obj => obj.basedOn.toSeq),
     "patient"        -> (obj => obj.target.filter(_.reference.exists(_.contains("Patient/"))).toSeq),
     "signature-type" -> (obj => obj.signature.flatMap(_.`type`).toSeq),
     "recorded"       -> (obj => Seq(obj.recorded)),
     "agent-role"     -> (obj => obj.agent.flatMap(_.role).toSeq),
-    "target"         -> (obj => obj.target.toSeq)
+    "target"         -> (obj => obj.target.toSeq),
+    "encounter"      -> (obj => obj.encounter.toSeq),
+    "when"           -> (obj => obj.occurred.flatMap(_.as[FHIRDateTime]).toSeq)
   )
   def unapply(
-      o: Provenance): Option[(Option[String], Option[Meta], Option[Narrative], NonEmptyLitSeq[Reference], LitSeq[UriStr], LitSeq[CodeableConcept], Option[LANGUAGES], ZonedDateTime, Option[Reference], Option[CodeableConcept], LitSeq[Resource], LitSeq[Extension], LitSeq[Signature], Option[Provenance.OccurredChoice], Option[UriStr], LitSeq[Extension], NonEmptyLitSeq[Provenance.Agent], LitSeq[Provenance.Entity])] =
+      o: Provenance): Option[(Option[String], Option[Meta], Option[Narrative], NonEmptyLitSeq[Reference], LitSeq[UriStr], LitSeq[CodeableConcept], LitSeq[Reference], Option[LANGUAGES], ZonedDateTime, Option[Reference], Option[CodeableConcept], LitSeq[Resource], LitSeq[Extension], Option[Reference], LitSeq[Signature], Option[Provenance.OccurredChoice], Option[UriStr], LitSeq[Extension], NonEmptyLitSeq[Provenance.Agent], LitSeq[Provenance.Entity])] =
     Some(
       (
         o.id,
@@ -346,12 +363,14 @@ object Provenance extends CompanionFor[Provenance] {
         o.target,
         o.policy,
         o.reason,
+        o.basedOn,
         o.language,
         o.recorded,
         o.location,
         o.activity,
         o.contained,
         o.extension,
+        o.encounter,
         o.signature,
         o.occurred,
         o.implicitRules,
@@ -368,12 +387,14 @@ object Provenance extends CompanionFor[Provenance] {
           cursor.decodeAs[NonEmptyLitSeq[Reference]]("target", None),
           cursor.decodeAs[LitSeq[UriStr]]("policy", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("reason", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Reference]]("basedOn", Some(LitSeq.empty)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[ZonedDateTime]("recorded", None),
           cursor.decodeAs[Option[Reference]]("location", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("activity", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[LitSeq[Signature]]("signature", Some(LitSeq.empty)),
           cursor.decodeOptRef[UnionDateTimeOrPeriod]("occurred"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
@@ -395,7 +416,8 @@ object Provenance extends CompanionFor[Provenance] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields target, policy, reason, recorded, location, activity, signature, occurred, agent, entity.
+  *   Introduces the fields target, policy, reason, basedOn, recorded, location, activity, encounter, signature, occurred, agent,
+  *   entity.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -414,6 +436,8 @@ object Provenance extends CompanionFor[Provenance] {
   *   such as patient consent, guarantor funding, etc.
   * @param reason
   *   - The reason that the activity was taking place.
+  * @param basedOn
+  *   - Allows tracing of authorizatino for the events and tracking whether proposals/recommendations were acted upon.
   * @param language
   *   - The base language in which the resource is written.
   * @param recorded
@@ -425,12 +449,15 @@ object Provenance extends CompanionFor[Provenance] {
   *   processing, transforming, modifying, relocating, using, or generating entities.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
+  * @param encounter
+  *   - This will typically be the encounter the event occurred, but some events may be initiated prior to or after the official
+  *   completion of an encounter but still be tied to the context of the encounter (e.g. pre-admission lab tests).
   * @param signature
   *   - A digital signature on the target Reference(s). The signer should match a Provenance.agent. The purpose of the signature
   *   is indicated.
@@ -462,12 +489,14 @@ class Provenance(
     val target: NonEmptyLitSeq[Reference],
     val policy: LitSeq[UriStr] = LitSeq.empty,
     val reason: LitSeq[CodeableConcept] = LitSeq.empty,
+    val basedOn: LitSeq[Reference] = LitSeq.empty,
     override val language: Option[LANGUAGES] = None,
     val recorded: ZonedDateTime,
     val location: Option[Reference] = None,
     val activity: Option[CodeableConcept] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
+    val encounter: Option[Reference] = None,
     val signature: LitSeq[Signature] = LitSeq.empty,
     val occurred: Option[Provenance.OccurredChoice] = None,
     override val implicitRules: Option[UriStr] = None,

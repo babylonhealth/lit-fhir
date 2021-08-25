@@ -18,7 +18,7 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
-import com.babylonhealth.lit.hl7.{ VARIABLE_TYPE, PUBLICATION_STATUS, GROUP_MEASURE }
+import com.babylonhealth.lit.hl7.{ PUBLICATION_STATUS, GROUP_MEASURE }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -37,94 +37,165 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
     override type ResourceType = Characteristic
     override type ParentType   = Characteristic
     override val parentType: CompanionFor[ResourceType] = Characteristic
-    type DefinitionChoice           = Choice[Union00193937709]
-    type ParticipantEffectiveChoice = Choice[Union01763000476]
+    object TimeFromStart extends CompanionFor[TimeFromStart] {
+      implicit def summonObjectAndCompanionTimeFromStart1861447049(
+          o: TimeFromStart): ObjectAndCompanion[TimeFromStart, TimeFromStart.type] = ObjectAndCompanion(o, this)
+      override type ResourceType = TimeFromStart
+      override type ParentType   = TimeFromStart
+      override val parentType: CompanionFor[ResourceType] = TimeFromStart
+      def apply(
+          id: Option[String] = None,
+          note: LitSeq[Annotation] = LitSeq.empty,
+          range: Option[Range] = None,
+          quantity: Option[Quantity] = None,
+          extension: LitSeq[Extension] = LitSeq.empty,
+          description: Option[String] = None,
+          modifierExtension: LitSeq[Extension] = LitSeq.empty,
+          primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
+      ): TimeFromStart = new TimeFromStart(
+        id,
+        note,
+        range,
+        quantity,
+        extension,
+        description,
+        modifierExtension,
+        primitiveAttributes = primitiveAttributes
+      )
+      def unapply(
+          o: TimeFromStart): Option[(Option[String], LitSeq[Annotation], Option[Range], Option[Quantity], LitSeq[Extension], Option[String], LitSeq[Extension])] =
+        Some((o.id, o.note, o.range, o.quantity, o.extension, o.description, o.modifierExtension))
+      val id: FHIRComponentFieldMeta[Option[String]] =
+        FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
+      val note: FHIRComponentFieldMeta[LitSeq[Annotation]] =
+        FHIRComponentFieldMeta("note", lTagOf[LitSeq[Annotation]], false, lTagOf[Annotation])
+      val range: FHIRComponentFieldMeta[Option[Range]] =
+        FHIRComponentFieldMeta("range", lTagOf[Option[Range]], false, lTagOf[Range])
+      val quantity: FHIRComponentFieldMeta[Option[Quantity]] =
+        FHIRComponentFieldMeta("quantity", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
+      val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+        FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+      val description: FHIRComponentFieldMeta[Option[String]] =
+        FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
+      val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+        FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, note, range, quantity, extension, description, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
+      override def fields(t: TimeFromStart): Seq[FHIRComponentField[_]] = Seq(
+        FHIRComponentField[Option[String]](id, t.id),
+        FHIRComponentField[LitSeq[Annotation]](note, t.note),
+        FHIRComponentField[Option[Range]](range, t.range),
+        FHIRComponentField[Option[Quantity]](quantity, t.quantity),
+        FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+        FHIRComponentField[Option[String]](description, t.description),
+        FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
+      )
+      val baseType: CompanionFor[TimeFromStart] = this
+      val thisName: String                      = "TimeFromStart"
+      def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[TimeFromStart] =
+        checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
+          Try(
+            new TimeFromStart(
+              cursor.decodeAs[Option[String]]("id", Some(None)),
+              cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
+              cursor.decodeAs[Option[Range]]("range", Some(None)),
+              cursor.decodeAs[Option[Quantity]]("quantity", Some(None)),
+              cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+              cursor.decodeAs[Option[String]]("description", Some(None)),
+              cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+              decodeAttributes(cursor)
+            )
+          ))
+    }
+    @POJOBoilerplate
+    class TimeFromStart(
+        override val id: Option[String] = None,
+        val note: LitSeq[Annotation] = LitSeq.empty,
+        val range: Option[Range] = None,
+        val quantity: Option[Quantity] = None,
+        override val extension: LitSeq[Extension] = LitSeq.empty,
+        val description: Option[String] = None,
+        override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
+        extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
+    type DefinitionChoice = Choice[Union01198965985]
     def apply(
         id: Option[String] = None,
+        method: Option[CodeableConcept] = None,
+        device: Option[Reference] = None,
         exclude: Option[Boolean] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
         description: Option[String] = None,
-        usageContext: LitSeq[UsageContext] = LitSeq.empty,
         groupMeasure: Option[GROUP_MEASURE] = None,
         definition: Characteristic.DefinitionChoice,
-        timeFromStart: Option[Duration] = None,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
-        participantEffective: Option[Characteristic.ParticipantEffectiveChoice] = None,
+        timeFromStart: Option[Characteristic.TimeFromStart] = None,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
     ): Characteristic = new Characteristic(
       id,
+      method,
+      device,
       exclude,
       extension,
       description,
-      usageContext,
       groupMeasure,
       definition,
-      timeFromStart,
       modifierExtension,
-      participantEffective,
+      timeFromStart,
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Characteristic): Option[(Option[String], Option[Boolean], LitSeq[Extension], Option[String], LitSeq[UsageContext], Option[GROUP_MEASURE], Characteristic.DefinitionChoice, Option[Duration], LitSeq[Extension], Option[Characteristic.ParticipantEffectiveChoice])] =
+        o: Characteristic): Option[(Option[String], Option[CodeableConcept], Option[Reference], Option[Boolean], LitSeq[Extension], Option[String], Option[GROUP_MEASURE], Characteristic.DefinitionChoice, LitSeq[Extension], Option[Characteristic.TimeFromStart])] =
       Some(
         (
           o.id,
+          o.method,
+          o.device,
           o.exclude,
           o.extension,
           o.description,
-          o.usageContext,
           o.groupMeasure,
           o.definition,
-          o.timeFromStart,
           o.modifierExtension,
-          o.participantEffective))
+          o.timeFromStart))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
+    val method: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+      FHIRComponentFieldMeta("method", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+    val device: FHIRComponentFieldMeta[Option[Reference]] =
+      FHIRComponentFieldMeta("device", lTagOf[Option[Reference]], false, lTagOf[Reference])
     val exclude: FHIRComponentFieldMeta[Option[Boolean]] =
       FHIRComponentFieldMeta("exclude", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val description: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
-    val usageContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
-      FHIRComponentFieldMeta("usageContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
     val groupMeasure: FHIRComponentFieldMeta[Option[GROUP_MEASURE]] =
       FHIRComponentFieldMeta("groupMeasure", lTagOf[Option[GROUP_MEASURE]], false, lTagOf[GROUP_MEASURE])
     val definition: FHIRComponentFieldMeta[Characteristic.DefinitionChoice] =
-      FHIRComponentFieldMeta("definition", lTagOf[Characteristic.DefinitionChoice], true, lTagOf[Union00193937709])
-    val timeFromStart: FHIRComponentFieldMeta[Option[Duration]] =
-      FHIRComponentFieldMeta("timeFromStart", lTagOf[Option[Duration]], false, lTagOf[Duration])
+      FHIRComponentFieldMeta("definition", lTagOf[Characteristic.DefinitionChoice], true, lTagOf[Union01198965985])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val participantEffective: FHIRComponentFieldMeta[Option[Characteristic.ParticipantEffectiveChoice]] =
+    val timeFromStart: FHIRComponentFieldMeta[Option[Characteristic.TimeFromStart]] =
       FHIRComponentFieldMeta(
-        "participantEffective",
-        lTagOf[Option[Characteristic.ParticipantEffectiveChoice]],
-        true,
-        lTagOf[Union01763000476])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
-      id,
-      exclude,
-      extension,
-      description,
-      usageContext,
-      groupMeasure,
-      definition,
-      timeFromStart,
-      modifierExtension,
-      participantEffective)
+        "timeFromStart",
+        lTagOf[Option[Characteristic.TimeFromStart]],
+        false,
+        lTagOf[Characteristic.TimeFromStart])
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+      Seq(id, method, device, exclude, extension, description, groupMeasure, definition, modifierExtension, timeFromStart)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Characteristic): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[CodeableConcept]](method, t.method),
+      FHIRComponentField[Option[Reference]](device, t.device),
       FHIRComponentField[Option[Boolean]](exclude, t.exclude),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
       FHIRComponentField[Option[String]](description, t.description),
-      FHIRComponentField[LitSeq[UsageContext]](usageContext, t.usageContext),
       FHIRComponentField[Option[GROUP_MEASURE]](groupMeasure, t.groupMeasure),
       FHIRComponentField[Characteristic.DefinitionChoice](definition, t.definition),
-      FHIRComponentField[Option[Duration]](timeFromStart, t.timeFromStart),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-      FHIRComponentField[Option[Characteristic.ParticipantEffectiveChoice]](participantEffective, t.participantEffective)
+      FHIRComponentField[Option[Characteristic.TimeFromStart]](timeFromStart, t.timeFromStart)
     )
     val baseType: CompanionFor[Characteristic] = this
     val thisName: String                       = "Characteristic"
@@ -133,15 +204,15 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
         Try(
           new Characteristic(
             cursor.decodeAs[Option[String]]("id", Some(None)),
+            cursor.decodeAs[Option[CodeableConcept]]("method", Some(None)),
+            cursor.decodeAs[Option[Reference]]("device", Some(None)),
             cursor.decodeAs[Option[Boolean]]("exclude", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[String]]("description", Some(None)),
-            cursor.decodeAs[LitSeq[UsageContext]]("usageContext", Some(LitSeq.empty)),
             cursor.decodeAs[Option[GROUP_MEASURE]]("groupMeasure", Some(None)),
-            cursor.decodeRef[Union00193937709]("definition"),
-            cursor.decodeAs[Option[Duration]]("timeFromStart", Some(None)),
+            cursor.decodeRef[Union01198965985]("definition"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union01763000476]("participantEffective"),
+            cursor.decodeAs[Option[Characteristic.TimeFromStart]]("timeFromStart", Some(None)),
             decodeAttributes(cursor)
           )
         ))
@@ -149,15 +220,83 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
   @POJOBoilerplate
   class Characteristic(
       override val id: Option[String] = None,
+      val method: Option[CodeableConcept] = None,
+      val device: Option[Reference] = None,
       val exclude: Option[Boolean] = None,
       override val extension: LitSeq[Extension] = LitSeq.empty,
       val description: Option[String] = None,
-      val usageContext: LitSeq[UsageContext] = LitSeq.empty,
       val groupMeasure: Option[GROUP_MEASURE] = None,
       val definition: Characteristic.DefinitionChoice,
-      val timeFromStart: Option[Duration] = None,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-      val participantEffective: Option[Characteristic.ParticipantEffectiveChoice] = None,
+      val timeFromStart: Option[Characteristic.TimeFromStart] = None,
+      override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
+      extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
+  object Category extends CompanionFor[Category] {
+    implicit def summonObjectAndCompanionCategory1970644006(o: Category): ObjectAndCompanion[Category, Category.type] =
+      ObjectAndCompanion(o, this)
+    override type ResourceType = Category
+    override type ParentType   = Category
+    override val parentType: CompanionFor[ResourceType] = Category
+    type ValueChoice = Choice[UnionCodeableConceptOrQuantityOrRange]
+    def apply(
+        id: Option[String] = None,
+        name: Option[String] = None,
+        value: Option[Category.ValueChoice] = None,
+        extension: LitSeq[Extension] = LitSeq.empty,
+        modifierExtension: LitSeq[Extension] = LitSeq.empty,
+        primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
+    ): Category = new Category(
+      id,
+      name,
+      value,
+      extension,
+      modifierExtension,
+      primitiveAttributes = primitiveAttributes
+    )
+    def unapply(
+        o: Category): Option[(Option[String], Option[String], Option[Category.ValueChoice], LitSeq[Extension], LitSeq[Extension])] =
+      Some((o.id, o.name, o.value, o.extension, o.modifierExtension))
+    val id: FHIRComponentFieldMeta[Option[String]] =
+      FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
+    val name: FHIRComponentFieldMeta[Option[String]] =
+      FHIRComponentFieldMeta("name", lTagOf[Option[String]], false, lTagOf[String])
+    val value: FHIRComponentFieldMeta[Option[Category.ValueChoice]] =
+      FHIRComponentFieldMeta("value", lTagOf[Option[Category.ValueChoice]], true, lTagOf[UnionCodeableConceptOrQuantityOrRange])
+    val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+      FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+    val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+      FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, name, value, extension, modifierExtension)
+    override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
+    override def fields(t: Category): Seq[FHIRComponentField[_]] = Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[Option[String]](name, t.name),
+      FHIRComponentField[Option[Category.ValueChoice]](value, t.value),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
+    )
+    val baseType: CompanionFor[Category] = this
+    val thisName: String                 = "Category"
+    def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Category] =
+      checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
+        Try(
+          new Category(
+            cursor.decodeAs[Option[String]]("id", Some(None)),
+            cursor.decodeAs[Option[String]]("name", Some(None)),
+            cursor.decodeOptRef[UnionCodeableConceptOrQuantityOrRange]("value"),
+            cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+            cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+            decodeAttributes(cursor)
+          )
+        ))
+  }
+  @POJOBoilerplate
+  class Category(
+      override val id: Option[String] = None,
+      val name: Option[String] = None,
+      val value: Option[Category.ValueChoice] = None,
+      override val extension: LitSeq[Extension] = LitSeq.empty,
+      override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   def apply(
@@ -168,34 +307,31 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
       name: Option[String] = None,
       date: Option[FHIRDateTime] = None,
       note: LitSeq[Annotation] = LitSeq.empty,
-      `type`: Option[VARIABLE_TYPE] = None,
       title: Option[String] = None,
-      topic: LitSeq[CodeableConcept] = LitSeq.empty,
       status: PUBLICATION_STATUS,
       author: LitSeq[ContactDetail] = LitSeq.empty,
       editor: LitSeq[ContactDetail] = LitSeq.empty,
+      actual: Option[Boolean] = None,
       version: Option[String] = None,
       contact: LitSeq[ContactDetail] = LitSeq.empty,
       language: Option[LANGUAGES] = None,
       subtitle: Option[String] = None,
       reviewer: LitSeq[ContactDetail] = LitSeq.empty,
       endorser: LitSeq[ContactDetail] = LitSeq.empty,
+      handling: Option[Code] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
       publisher: Option[String] = None,
-      copyright: Option[Markdown] = None,
       identifier: LitSeq[Identifier] = LitSeq.empty,
       shortTitle: Option[String] = None,
       useContext: LitSeq[UsageContext] = LitSeq.empty,
       description: Option[Markdown] = None,
-      jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
-      approvalDate: Option[FHIRDate] = None,
       implicitRules: Option[UriStr] = None,
-      lastReviewDate: Option[FHIRDate] = None,
-      effectivePeriod: Option[Period] = None,
       relatedArtifact: LitSeq[RelatedArtifact] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
-      characteristic: NonEmptyLitSeq[EvidenceVariable.Characteristic],
+      characteristicCombination: Option[Code] = None,
+      category: LitSeq[EvidenceVariable.Category] = LitSeq.empty,
+      characteristic: LitSeq[EvidenceVariable.Characteristic] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
   ): EvidenceVariable = new EvidenceVariable(
     id,
@@ -205,33 +341,30 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
     name,
     date,
     note,
-    `type`,
     title,
-    topic,
     status,
     author,
     editor,
+    actual,
     version,
     contact,
     language,
     subtitle,
     reviewer,
     endorser,
+    handling,
     contained,
     extension,
     publisher,
-    copyright,
     identifier,
     shortTitle,
     useContext,
     description,
-    jurisdiction,
-    approvalDate,
     implicitRules,
-    lastReviewDate,
-    effectivePeriod,
     relatedArtifact,
     modifierExtension,
+    characteristicCombination,
+    category,
     characteristic,
     primitiveAttributes = primitiveAttributes
   )
@@ -249,18 +382,16 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
     FHIRComponentFieldMeta("date", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val note: FHIRComponentFieldMeta[LitSeq[Annotation]] =
     FHIRComponentFieldMeta("note", lTagOf[LitSeq[Annotation]], false, lTagOf[Annotation])
-  val `type`: FHIRComponentFieldMeta[Option[VARIABLE_TYPE]] =
-    FHIRComponentFieldMeta("type", lTagOf[Option[VARIABLE_TYPE]], false, lTagOf[VARIABLE_TYPE])
   val title: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("title", lTagOf[Option[String]], false, lTagOf[String])
-  val topic: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("topic", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val status: FHIRComponentFieldMeta[PUBLICATION_STATUS] =
     FHIRComponentFieldMeta("status", lTagOf[PUBLICATION_STATUS], false, lTagOf[PUBLICATION_STATUS])
   val author: FHIRComponentFieldMeta[LitSeq[ContactDetail]] =
     FHIRComponentFieldMeta("author", lTagOf[LitSeq[ContactDetail]], false, lTagOf[ContactDetail])
   val editor: FHIRComponentFieldMeta[LitSeq[ContactDetail]] =
     FHIRComponentFieldMeta("editor", lTagOf[LitSeq[ContactDetail]], false, lTagOf[ContactDetail])
+  val actual: FHIRComponentFieldMeta[Option[Boolean]] =
+    FHIRComponentFieldMeta("actual", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val version: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("version", lTagOf[Option[String]], false, lTagOf[String])
   val contact: FHIRComponentFieldMeta[LitSeq[ContactDetail]] =
@@ -273,14 +404,14 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
     FHIRComponentFieldMeta("reviewer", lTagOf[LitSeq[ContactDetail]], false, lTagOf[ContactDetail])
   val endorser: FHIRComponentFieldMeta[LitSeq[ContactDetail]] =
     FHIRComponentFieldMeta("endorser", lTagOf[LitSeq[ContactDetail]], false, lTagOf[ContactDetail])
+  val handling: FHIRComponentFieldMeta[Option[Code]] =
+    FHIRComponentFieldMeta("handling", lTagOf[Option[Code]], false, lTagOf[Code])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val publisher: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("publisher", lTagOf[Option[String]], false, lTagOf[String])
-  val copyright: FHIRComponentFieldMeta[Option[Markdown]] =
-    FHIRComponentFieldMeta("copyright", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val shortTitle: FHIRComponentFieldMeta[Option[String]] =
@@ -289,24 +420,20 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val description: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("description", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
-  val jurisdiction: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("jurisdiction", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
-  val approvalDate: FHIRComponentFieldMeta[Option[FHIRDate]] =
-    FHIRComponentFieldMeta("approvalDate", lTagOf[Option[FHIRDate]], false, lTagOf[FHIRDate])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
-  val lastReviewDate: FHIRComponentFieldMeta[Option[FHIRDate]] =
-    FHIRComponentFieldMeta("lastReviewDate", lTagOf[Option[FHIRDate]], false, lTagOf[FHIRDate])
-  val effectivePeriod: FHIRComponentFieldMeta[Option[Period]] =
-    FHIRComponentFieldMeta("effectivePeriod", lTagOf[Option[Period]], false, lTagOf[Period])
   val relatedArtifact: FHIRComponentFieldMeta[LitSeq[RelatedArtifact]] =
     FHIRComponentFieldMeta("relatedArtifact", lTagOf[LitSeq[RelatedArtifact]], false, lTagOf[RelatedArtifact])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val characteristic: FHIRComponentFieldMeta[NonEmptyLitSeq[EvidenceVariable.Characteristic]] =
+  val characteristicCombination: FHIRComponentFieldMeta[Option[Code]] =
+    FHIRComponentFieldMeta("characteristicCombination", lTagOf[Option[Code]], false, lTagOf[Code])
+  val category: FHIRComponentFieldMeta[LitSeq[EvidenceVariable.Category]] =
+    FHIRComponentFieldMeta("category", lTagOf[LitSeq[EvidenceVariable.Category]], false, lTagOf[EvidenceVariable.Category])
+  val characteristic: FHIRComponentFieldMeta[LitSeq[EvidenceVariable.Characteristic]] =
     FHIRComponentFieldMeta(
       "characteristic",
-      lTagOf[NonEmptyLitSeq[EvidenceVariable.Characteristic]],
+      lTagOf[LitSeq[EvidenceVariable.Characteristic]],
       false,
       lTagOf[EvidenceVariable.Characteristic])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
@@ -317,33 +444,30 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
     name,
     date,
     note,
-    `type`,
     title,
-    topic,
     status,
     author,
     editor,
+    actual,
     version,
     contact,
     language,
     subtitle,
     reviewer,
     endorser,
+    handling,
     contained,
     extension,
     publisher,
-    copyright,
     identifier,
     shortTitle,
     useContext,
     description,
-    jurisdiction,
-    approvalDate,
     implicitRules,
-    lastReviewDate,
-    effectivePeriod,
     relatedArtifact,
     modifierExtension,
+    characteristicCombination,
+    category,
     characteristic
   )
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
@@ -355,80 +479,71 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
     FHIRComponentField[Option[String]](name, t.name),
     FHIRComponentField[Option[FHIRDateTime]](date, t.date),
     FHIRComponentField[LitSeq[Annotation]](note, t.note),
-    FHIRComponentField[Option[VARIABLE_TYPE]](`type`, t.`type`),
     FHIRComponentField[Option[String]](title, t.title),
-    FHIRComponentField[LitSeq[CodeableConcept]](topic, t.topic),
     FHIRComponentField[PUBLICATION_STATUS](status, t.status),
     FHIRComponentField[LitSeq[ContactDetail]](author, t.author),
     FHIRComponentField[LitSeq[ContactDetail]](editor, t.editor),
+    FHIRComponentField[Option[Boolean]](actual, t.actual),
     FHIRComponentField[Option[String]](version, t.version),
     FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[Option[String]](subtitle, t.subtitle),
     FHIRComponentField[LitSeq[ContactDetail]](reviewer, t.reviewer),
     FHIRComponentField[LitSeq[ContactDetail]](endorser, t.endorser),
+    FHIRComponentField[Option[Code]](handling, t.handling),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[Option[String]](publisher, t.publisher),
-    FHIRComponentField[Option[Markdown]](copyright, t.copyright),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
     FHIRComponentField[Option[String]](shortTitle, t.shortTitle),
     FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
     FHIRComponentField[Option[Markdown]](description, t.description),
-    FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
-    FHIRComponentField[Option[FHIRDate]](approvalDate, t.approvalDate),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[FHIRDate]](lastReviewDate, t.lastReviewDate),
-    FHIRComponentField[Option[Period]](effectivePeriod, t.effectivePeriod),
     FHIRComponentField[LitSeq[RelatedArtifact]](relatedArtifact, t.relatedArtifact),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[NonEmptyLitSeq[EvidenceVariable.Characteristic]](characteristic, t.characteristic)
+    FHIRComponentField[Option[Code]](characteristicCombination, t.characteristicCombination),
+    FHIRComponentField[LitSeq[EvidenceVariable.Category]](category, t.category),
+    FHIRComponentField[LitSeq[EvidenceVariable.Characteristic]](characteristic, t.characteristic)
   )
-  def extractId(t: EvidenceVariable): Option[String]                                              = t.id
-  def extractUrl(t: EvidenceVariable): Option[UriStr]                                             = t.url
-  def extractMeta(t: EvidenceVariable): Option[Meta]                                              = t.meta
-  def extractText(t: EvidenceVariable): Option[Narrative]                                         = t.text
-  def extractName(t: EvidenceVariable): Option[String]                                            = t.name
-  def extractDate(t: EvidenceVariable): Option[FHIRDateTime]                                      = t.date
-  def extractNote(t: EvidenceVariable): LitSeq[Annotation]                                        = t.note
-  def extractType(t: EvidenceVariable): Option[VARIABLE_TYPE]                                     = t.`type`
-  def extractTitle(t: EvidenceVariable): Option[String]                                           = t.title
-  def extractTopic(t: EvidenceVariable): LitSeq[CodeableConcept]                                  = t.topic
-  def extractStatus(t: EvidenceVariable): PUBLICATION_STATUS                                      = t.status
-  def extractAuthor(t: EvidenceVariable): LitSeq[ContactDetail]                                   = t.author
-  def extractEditor(t: EvidenceVariable): LitSeq[ContactDetail]                                   = t.editor
-  def extractVersion(t: EvidenceVariable): Option[String]                                         = t.version
-  def extractContact(t: EvidenceVariable): LitSeq[ContactDetail]                                  = t.contact
-  def extractLanguage(t: EvidenceVariable): Option[LANGUAGES]                                     = t.language
-  def extractSubtitle(t: EvidenceVariable): Option[String]                                        = t.subtitle
-  def extractReviewer(t: EvidenceVariable): LitSeq[ContactDetail]                                 = t.reviewer
-  def extractEndorser(t: EvidenceVariable): LitSeq[ContactDetail]                                 = t.endorser
-  def extractContained(t: EvidenceVariable): LitSeq[Resource]                                     = t.contained
-  def extractExtension(t: EvidenceVariable): LitSeq[Extension]                                    = t.extension
-  def extractPublisher(t: EvidenceVariable): Option[String]                                       = t.publisher
-  def extractCopyright(t: EvidenceVariable): Option[Markdown]                                     = t.copyright
-  def extractIdentifier(t: EvidenceVariable): LitSeq[Identifier]                                  = t.identifier
-  def extractShortTitle(t: EvidenceVariable): Option[String]                                      = t.shortTitle
-  def extractUseContext(t: EvidenceVariable): LitSeq[UsageContext]                                = t.useContext
-  def extractDescription(t: EvidenceVariable): Option[Markdown]                                   = t.description
-  def extractJurisdiction(t: EvidenceVariable): LitSeq[CodeableConcept]                           = t.jurisdiction
-  def extractApprovalDate(t: EvidenceVariable): Option[FHIRDate]                                  = t.approvalDate
-  def extractImplicitRules(t: EvidenceVariable): Option[UriStr]                                   = t.implicitRules
-  def extractLastReviewDate(t: EvidenceVariable): Option[FHIRDate]                                = t.lastReviewDate
-  def extractEffectivePeriod(t: EvidenceVariable): Option[Period]                                 = t.effectivePeriod
-  def extractRelatedArtifact(t: EvidenceVariable): LitSeq[RelatedArtifact]                        = t.relatedArtifact
-  def extractModifierExtension(t: EvidenceVariable): LitSeq[Extension]                            = t.modifierExtension
-  def extractCharacteristic(t: EvidenceVariable): NonEmptyLitSeq[EvidenceVariable.Characteristic] = t.characteristic
-  override val thisName: String                                                                   = "EvidenceVariable"
+  def extractId(t: EvidenceVariable): Option[String]                                      = t.id
+  def extractUrl(t: EvidenceVariable): Option[UriStr]                                     = t.url
+  def extractMeta(t: EvidenceVariable): Option[Meta]                                      = t.meta
+  def extractText(t: EvidenceVariable): Option[Narrative]                                 = t.text
+  def extractName(t: EvidenceVariable): Option[String]                                    = t.name
+  def extractDate(t: EvidenceVariable): Option[FHIRDateTime]                              = t.date
+  def extractNote(t: EvidenceVariable): LitSeq[Annotation]                                = t.note
+  def extractTitle(t: EvidenceVariable): Option[String]                                   = t.title
+  def extractStatus(t: EvidenceVariable): PUBLICATION_STATUS                              = t.status
+  def extractAuthor(t: EvidenceVariable): LitSeq[ContactDetail]                           = t.author
+  def extractEditor(t: EvidenceVariable): LitSeq[ContactDetail]                           = t.editor
+  def extractActual(t: EvidenceVariable): Option[Boolean]                                 = t.actual
+  def extractVersion(t: EvidenceVariable): Option[String]                                 = t.version
+  def extractContact(t: EvidenceVariable): LitSeq[ContactDetail]                          = t.contact
+  def extractLanguage(t: EvidenceVariable): Option[LANGUAGES]                             = t.language
+  def extractSubtitle(t: EvidenceVariable): Option[String]                                = t.subtitle
+  def extractReviewer(t: EvidenceVariable): LitSeq[ContactDetail]                         = t.reviewer
+  def extractEndorser(t: EvidenceVariable): LitSeq[ContactDetail]                         = t.endorser
+  def extractHandling(t: EvidenceVariable): Option[Code]                                  = t.handling
+  def extractContained(t: EvidenceVariable): LitSeq[Resource]                             = t.contained
+  def extractExtension(t: EvidenceVariable): LitSeq[Extension]                            = t.extension
+  def extractPublisher(t: EvidenceVariable): Option[String]                               = t.publisher
+  def extractIdentifier(t: EvidenceVariable): LitSeq[Identifier]                          = t.identifier
+  def extractShortTitle(t: EvidenceVariable): Option[String]                              = t.shortTitle
+  def extractUseContext(t: EvidenceVariable): LitSeq[UsageContext]                        = t.useContext
+  def extractDescription(t: EvidenceVariable): Option[Markdown]                           = t.description
+  def extractImplicitRules(t: EvidenceVariable): Option[UriStr]                           = t.implicitRules
+  def extractRelatedArtifact(t: EvidenceVariable): LitSeq[RelatedArtifact]                = t.relatedArtifact
+  def extractModifierExtension(t: EvidenceVariable): LitSeq[Extension]                    = t.modifierExtension
+  def extractCharacteristicCombination(t: EvidenceVariable): Option[Code]                 = t.characteristicCombination
+  def extractCategory(t: EvidenceVariable): LitSeq[EvidenceVariable.Category]             = t.category
+  def extractCharacteristic(t: EvidenceVariable): LitSeq[EvidenceVariable.Characteristic] = t.characteristic
+  override val thisName: String                                                           = "EvidenceVariable"
   override val searchParams: Map[String, EvidenceVariable => Seq[Any]] = Map(
-    "jurisdiction"          -> (obj => obj.jurisdiction.toSeq),
     "name"                  -> (obj => obj.name.toSeq),
     "context-type-quantity" -> (obj => obj.useContext.toSeq),
     "context"               -> (obj => obj.useContext.map(_.value).flatMap(_.as[CodeableConcept]).toSeq),
-    "effective"             -> (obj => obj.effectivePeriod.toSeq),
     "depends-on"            -> (obj => obj.relatedArtifact.filter(_.`type`.name == "depends-on").flatMap(_.resource).toSeq),
     "date"                  -> (obj => obj.date.toSeq),
-    "topic"                 -> (obj => obj.topic.toSeq),
     "identifier"            -> (obj => obj.identifier.toSeq),
     "url"                   -> (obj => obj.url.toSeq),
     "description"           -> (obj => obj.description.toSeq),
@@ -457,47 +572,42 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
           cursor.decodeAs[Option[String]]("name", Some(None)),
           cursor.decodeAs[Option[FHIRDateTime]]("date", Some(None)),
           cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
-          cursor.decodeAs[Option[VARIABLE_TYPE]]("type", Some(None)),
           cursor.decodeAs[Option[String]]("title", Some(None)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("topic", Some(LitSeq.empty)),
           cursor.decodeAs[PUBLICATION_STATUS]("status", None),
           cursor.decodeAs[LitSeq[ContactDetail]]("author", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[ContactDetail]]("editor", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Boolean]]("actual", Some(None)),
           cursor.decodeAs[Option[String]]("version", Some(None)),
           cursor.decodeAs[LitSeq[ContactDetail]]("contact", Some(LitSeq.empty)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[Option[String]]("subtitle", Some(None)),
           cursor.decodeAs[LitSeq[ContactDetail]]("reviewer", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[ContactDetail]]("endorser", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Code]]("handling", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("publisher", Some(None)),
-          cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("shortTitle", Some(None)),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Markdown]]("description", Some(None)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("jurisdiction", Some(LitSeq.empty)),
-          cursor.decodeAs[Option[FHIRDate]]("approvalDate", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeAs[Option[FHIRDate]]("lastReviewDate", Some(None)),
-          cursor.decodeAs[Option[Period]]("effectivePeriod", Some(None)),
           cursor.decodeAs[LitSeq[RelatedArtifact]]("relatedArtifact", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-          cursor.decodeAs[NonEmptyLitSeq[EvidenceVariable.Characteristic]]("characteristic", None),
+          cursor.decodeAs[Option[Code]]("characteristicCombination", Some(None)),
+          cursor.decodeAs[LitSeq[EvidenceVariable.Category]]("category", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[EvidenceVariable.Characteristic]]("characteristic", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )
       ))
 }
 
-/** The EvidenceVariable resource describes a "PICO" element that knowledge (evidence, assertion, recommendation) is about.
+/** The EvidenceVariable resource describes an element that knowledge (Evidence) is about.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.MetadataResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, note, `type`, title, topic, status, author, editor, version, contact, subtitle,
-  *   reviewer, endorser, publisher, copyright, identifier, shortTitle, useContext, description, jurisdiction, approvalDate,
-  *   lastReviewDate, effectivePeriod, relatedArtifact, characteristic.
+  *   Introduces the fields note, actual, subtitle, handling, shortTitle, characteristicCombination, category, characteristic.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param url
@@ -522,19 +632,16 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
   *   evidence variable changes.
   * @param note
   *   - A human-readable string to clarify or explain concepts about the resource.
-  * @param `type`
-  *   - The type of evidence element, a population, an exposure, or an outcome.
   * @param title
   *   - A short, descriptive, user-friendly title for the evidence variable.
-  * @param topic
-  *   - Descriptive topics related to the content of the EvidenceVariable. Topics provide a high-level categorization grouping
-  *   types of EvidenceVariables that can be useful for filtering and searching.
   * @param status
   *   - The status of this evidence variable. Enables tracking the life-cycle of the content.
   * @param author
   *   - An individiual or organization primarily involved in the creation and maintenance of the content.
   * @param editor
   *   - An individual or organization primarily responsible for internal coherence of the content.
+  * @param actual
+  *   - True if the actual variable measured, false if a conceptual representation of the intended variable.
   * @param version
   *   - The identifier that is used to identify this version of the evidence variable when it is referenced in a specification,
   *   model, design or instance. This is an arbitrary value managed by the evidence variable author and is not expected to be
@@ -553,9 +660,11 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
   *   - An individual or organization primarily responsible for review of some aspect of the content.
   * @param endorser
   *   - An individual or organization responsible for officially endorsing the content for use in some setting.
+  * @param handling
+  *   - Used for an outcome to classify.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -563,9 +672,6 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
   *   of the extension.
   * @param publisher
   *   - The name of the organization or individual that published the evidence variable.
-  * @param copyright
-  *   - A copyright statement relating to the evidence variable and/or its contents. Copyright statements are generally legal
-  *   restrictions on the use and publishing of the evidence variable.
   * @param identifier
   *   - A formal identifier that is used to identify this evidence variable when it is represented in other formats, or referenced
   *   in a specification, model, design or an instance.
@@ -578,20 +684,10 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
   *   used to assist with indexing and searching for appropriate evidence variable instances.
   * @param description
   *   - A free text natural language description of the evidence variable from a consumer's perspective.
-  * @param jurisdiction
-  *   - A legal or geographic region in which the evidence variable is intended to be used.
-  * @param approvalDate
-  *   - The date on which the resource content was approved by the publisher. Approval happens once when the content is officially
-  *   approved for usage.
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
-  * @param lastReviewDate
-  *   - The date on which the resource content was last reviewed. Review happens periodically after approval but does not change
-  *   the original approval date.
-  * @param effectivePeriod
-  *   - The period during which the evidence variable content was or is planned to be in active use.
   * @param relatedArtifact
   *   - Related artifacts such as additional documentation, justification, or bibliographic references.
   * @param modifierExtension
@@ -602,6 +698,11 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
   *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
   *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param characteristicCombination
+  *   - Used to specify if two or more characteristics are combined with OR or AND.
+  * @param category
+  *   - A grouping (or set of values) described along with other groupings to specify the set of groupings allowed for the
+  *   variable.
   * @param characteristic
   *   - A characteristic that defines the members of the evidence element. Multiple characteristics are applied with "and"
   *   semantics.
@@ -609,49 +710,62 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
 @POJOBoilerplate
 class EvidenceVariable(
     override val id: Option[String] = None,
-    val url: Option[UriStr] = None,
+    override val url: Option[UriStr] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: Option[String] = None,
-    val date: Option[FHIRDateTime] = None,
+    override val name: Option[String] = None,
+    override val date: Option[FHIRDateTime] = None,
     val note: LitSeq[Annotation] = LitSeq.empty,
-    val `type`: Option[VARIABLE_TYPE] = None,
-    val title: Option[String] = None,
-    val topic: LitSeq[CodeableConcept] = LitSeq.empty,
-    val status: PUBLICATION_STATUS,
-    val author: LitSeq[ContactDetail] = LitSeq.empty,
-    val editor: LitSeq[ContactDetail] = LitSeq.empty,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val title: Option[String] = None,
+    override val status: PUBLICATION_STATUS,
+    override val author: LitSeq[ContactDetail] = LitSeq.empty,
+    override val editor: LitSeq[ContactDetail] = LitSeq.empty,
+    val actual: Option[Boolean] = None,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
     override val language: Option[LANGUAGES] = None,
     val subtitle: Option[String] = None,
-    val reviewer: LitSeq[ContactDetail] = LitSeq.empty,
-    val endorser: LitSeq[ContactDetail] = LitSeq.empty,
+    override val reviewer: LitSeq[ContactDetail] = LitSeq.empty,
+    override val endorser: LitSeq[ContactDetail] = LitSeq.empty,
+    val handling: Option[Code] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val copyright: Option[Markdown] = None,
-    val identifier: LitSeq[Identifier] = LitSeq.empty,
+    override val publisher: Option[String] = None,
+    override val identifier: LitSeq[Identifier] = LitSeq.empty,
     val shortTitle: Option[String] = None,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
-    val description: Option[Markdown] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
-    val approvalDate: Option[FHIRDate] = None,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val description: Option[Markdown] = None,
     override val implicitRules: Option[UriStr] = None,
-    val lastReviewDate: Option[FHIRDate] = None,
-    val effectivePeriod: Option[Period] = None,
-    val relatedArtifact: LitSeq[RelatedArtifact] = LitSeq.empty,
+    override val relatedArtifact: LitSeq[RelatedArtifact] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-    val characteristic: NonEmptyLitSeq[EvidenceVariable.Characteristic],
+    val characteristicCombination: Option[Code] = None,
+    val category: LitSeq[EvidenceVariable.Category] = LitSeq.empty,
+    val characteristic: LitSeq[EvidenceVariable.Characteristic] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends MetadataResource(
       id = id,
+      url = url,
       meta = meta,
       text = text,
+      name = name,
+      date = date,
+      title = title,
+      status = status,
+      author = author,
+      editor = editor,
+      version = version,
+      contact = contact,
       language = language,
+      reviewer = reviewer,
+      endorser = endorser,
       contained = contained,
+      publisher = publisher,
       extension = extension,
+      identifier = identifier,
+      useContext = useContext,
+      description = description,
       implicitRules = implicitRules,
+      relatedArtifact = relatedArtifact,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "EvidenceVariable"

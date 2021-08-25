@@ -35,7 +35,6 @@ import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.FM_STATUS;
-import com.babylonhealth.lit.hl7.REMITTANCE_OUTCOME;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -65,7 +64,7 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
     private Optional<Period> period = Optional.empty();
     private FHIRDateTime created;
     private Optional<Reference> request = Optional.empty();
-    private Optional<REMITTANCE_OUTCOME> outcome = Optional.empty();
+    private Optional<String> outcome = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
     private Optional<CodeableConcept> formCode = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
@@ -159,7 +158,7 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
       return this;
     }
     /** @param outcome - The outcome of a request for a reconciliation. */
-    public PaymentReconciliationBuilder.Impl withOutcome(@NonNull REMITTANCE_OUTCOME outcome) {
+    public PaymentReconciliationBuilder.Impl withOutcome(@NonNull String outcome) {
       this.outcome = Optional.of(outcome);
       return this;
     }
@@ -181,8 +180,8 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public PaymentReconciliationBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -190,8 +189,8 @@ public interface PaymentReconciliationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public PaymentReconciliationBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {

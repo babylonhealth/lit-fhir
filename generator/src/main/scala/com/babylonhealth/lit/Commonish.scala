@@ -17,8 +17,7 @@ trait Commonish {
   val experimentalModel = """Choice\["(.+)"\]""".r
   def typeLookup(s: String): String = s match {
     case fhirSystemType(x) => x
-    case "boolean" | "positiveInt" | "unsignedInt" | "base64Binary" | "canonical" | "code" | "id" | "markdown" | "string" |
-        "integer64" =>
+    case "boolean" | "positiveInt" | "unsignedInt" | "base64Binary" | "canonical" | "code" | "id" | "markdown" | "string" =>
       s.capitalize
     case "integer64" | "Integer64" => "Long" // 4.6.0 json capitalises this code :shrug:
     case "integer"                 => "Int"
@@ -38,8 +37,7 @@ trait Commonish {
     case x        => x
   }
   def inverseTypeLookup(s: String): String = s match {
-    case "Boolean" | "PositiveInt" | "UnsignedInt" | "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "String" |
-        "Integer64" =>
+    case "Boolean" | "PositiveInt" | "UnsignedInt" | "Base64Binary" | "Canonical" | "Code" | "Id" | "Markdown" | "String" =>
       s.head.toLower +: s.tail
     case "Long"                   => "Integer64"
     case "Int"                    => "integer"

@@ -50,25 +50,13 @@ public interface BaseBuilder {
     return new Impl();
   }
 
-  
-
   public class Impl implements BaseBuilder {
-    
 
-     /** Required fields for {@link Base}
-  *
-  * 
-  */
-    public Impl() {
-      
-    }
-
-    
-
-    
+    /** Required fields for {@link Base} */
+    public Impl() {}
 
     public Base build() {
-      return new Base(, LitUtils.emptyMetaElMap());
+      return new Base(LitUtils.emptyMetaElMap());
     }
   }
 }

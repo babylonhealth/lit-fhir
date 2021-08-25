@@ -37,47 +37,51 @@ object Medication extends CompanionFor[Medication] {
     override type ResourceType = Ingredient
     override type ParentType   = Ingredient
     override val parentType: CompanionFor[ResourceType] = Ingredient
-    type ItemChoice = Choice[UnionCodeableConceptOrReference]
+    type StrengthChoice = Choice[UnionCodeableConceptOrQuantityOrRatio]
     def apply(
         id: Option[String] = None,
-        item: Ingredient.ItemChoice,
+        item: CodeableReference,
         isActive: Option[Boolean] = None,
-        strength: Option[Ratio] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
+        strength: Option[Ingredient.StrengthChoice] = None,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
     ): Ingredient = new Ingredient(
       id,
       item,
       isActive,
-      strength,
       extension,
+      strength,
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Ingredient): Option[(Option[String], Ingredient.ItemChoice, Option[Boolean], Option[Ratio], LitSeq[Extension], LitSeq[Extension])] =
-      Some((o.id, o.item, o.isActive, o.strength, o.extension, o.modifierExtension))
+        o: Ingredient): Option[(Option[String], CodeableReference, Option[Boolean], LitSeq[Extension], Option[Ingredient.StrengthChoice], LitSeq[Extension])] =
+      Some((o.id, o.item, o.isActive, o.extension, o.strength, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-    val item: FHIRComponentFieldMeta[Ingredient.ItemChoice] =
-      FHIRComponentFieldMeta("item", lTagOf[Ingredient.ItemChoice], true, lTagOf[UnionCodeableConceptOrReference])
+    val item: FHIRComponentFieldMeta[CodeableReference] =
+      FHIRComponentFieldMeta("item", lTagOf[CodeableReference], false, lTagOf[CodeableReference])
     val isActive: FHIRComponentFieldMeta[Option[Boolean]] =
       FHIRComponentFieldMeta("isActive", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
-    val strength: FHIRComponentFieldMeta[Option[Ratio]] =
-      FHIRComponentFieldMeta("strength", lTagOf[Option[Ratio]], false, lTagOf[Ratio])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+    val strength: FHIRComponentFieldMeta[Option[Ingredient.StrengthChoice]] =
+      FHIRComponentFieldMeta(
+        "strength",
+        lTagOf[Option[Ingredient.StrengthChoice]],
+        true,
+        lTagOf[UnionCodeableConceptOrQuantityOrRatio])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, item, isActive, strength, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, item, isActive, extension, strength, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Ingredient): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[Ingredient.ItemChoice](item, t.item),
+      FHIRComponentField[CodeableReference](item, t.item),
       FHIRComponentField[Option[Boolean]](isActive, t.isActive),
-      FHIRComponentField[Option[Ratio]](strength, t.strength),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Ingredient.StrengthChoice]](strength, t.strength),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
     )
     val baseType: CompanionFor[Ingredient] = this
@@ -87,10 +91,10 @@ object Medication extends CompanionFor[Medication] {
         Try(
           new Ingredient(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeRef[UnionCodeableConceptOrReference]("item"),
+            cursor.decodeAs[CodeableReference]("item", None),
             cursor.decodeAs[Option[Boolean]]("isActive", Some(None)),
-            cursor.decodeAs[Option[Ratio]]("strength", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+            cursor.decodeOptRef[UnionCodeableConceptOrQuantityOrRatio]("strength"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -99,10 +103,10 @@ object Medication extends CompanionFor[Medication] {
   @POJOBoilerplate
   class Ingredient(
       override val id: Option[String] = None,
-      val item: Ingredient.ItemChoice,
+      val item: CodeableReference,
       val isActive: Option[Boolean] = None,
-      val strength: Option[Ratio] = None,
       override val extension: LitSeq[Extension] = LitSeq.empty,
+      val strength: Option[Ingredient.StrengthChoice] = None,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
@@ -177,14 +181,14 @@ object Medication extends CompanionFor[Medication] {
       meta: Option[Meta] = None,
       text: Option[Narrative] = None,
       code: Option[CodeableConcept] = None,
-      form: Option[CodeableConcept] = None,
       status: Option[MEDICATION_STATUS] = None,
       amount: Option[Ratio] = None,
+      sponsor: Option[Reference] = None,
       language: Option[LANGUAGES] = None,
+      doseForm: Option[CodeableConcept] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
       identifier: LitSeq[Identifier] = LitSeq.empty,
-      manufacturer: Option[Reference] = None,
       implicitRules: Option[UriStr] = None,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       batch: Option[Medication.Batch] = None,
@@ -195,14 +199,14 @@ object Medication extends CompanionFor[Medication] {
     meta,
     text,
     code,
-    form,
     status,
     amount,
+    sponsor,
     language,
+    doseForm,
     contained,
     extension,
     identifier,
-    manufacturer,
     implicitRules,
     modifierExtension,
     batch,
@@ -217,22 +221,22 @@ object Medication extends CompanionFor[Medication] {
     FHIRComponentFieldMeta("text", lTagOf[Option[Narrative]], false, lTagOf[Narrative])
   val code: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("code", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
-  val form: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-    FHIRComponentFieldMeta("form", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val status: FHIRComponentFieldMeta[Option[MEDICATION_STATUS]] =
     FHIRComponentFieldMeta("status", lTagOf[Option[MEDICATION_STATUS]], false, lTagOf[MEDICATION_STATUS])
   val amount: FHIRComponentFieldMeta[Option[Ratio]] =
     FHIRComponentFieldMeta("amount", lTagOf[Option[Ratio]], false, lTagOf[Ratio])
+  val sponsor: FHIRComponentFieldMeta[Option[Reference]] =
+    FHIRComponentFieldMeta("sponsor", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
+  val doseForm: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+    FHIRComponentFieldMeta("doseForm", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
-  val manufacturer: FHIRComponentFieldMeta[Option[Reference]] =
-    FHIRComponentFieldMeta("manufacturer", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -246,14 +250,14 @@ object Medication extends CompanionFor[Medication] {
     meta,
     text,
     code,
-    form,
     status,
     amount,
+    sponsor,
     language,
+    doseForm,
     contained,
     extension,
     identifier,
-    manufacturer,
     implicitRules,
     modifierExtension,
     batch,
@@ -264,14 +268,14 @@ object Medication extends CompanionFor[Medication] {
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
     FHIRComponentField[Option[CodeableConcept]](code, t.code),
-    FHIRComponentField[Option[CodeableConcept]](form, t.form),
     FHIRComponentField[Option[MEDICATION_STATUS]](status, t.status),
     FHIRComponentField[Option[Ratio]](amount, t.amount),
+    FHIRComponentField[Option[Reference]](sponsor, t.sponsor),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
+    FHIRComponentField[Option[CodeableConcept]](doseForm, t.doseForm),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[Option[Reference]](manufacturer, t.manufacturer),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[Option[Medication.Batch]](batch, t.batch),
@@ -281,46 +285,45 @@ object Medication extends CompanionFor[Medication] {
   def extractMeta(t: Medication): Option[Meta]                        = t.meta
   def extractText(t: Medication): Option[Narrative]                   = t.text
   def extractCode(t: Medication): Option[CodeableConcept]             = t.code
-  def extractForm(t: Medication): Option[CodeableConcept]             = t.form
   def extractStatus(t: Medication): Option[MEDICATION_STATUS]         = t.status
   def extractAmount(t: Medication): Option[Ratio]                     = t.amount
+  def extractSponsor(t: Medication): Option[Reference]                = t.sponsor
   def extractLanguage(t: Medication): Option[LANGUAGES]               = t.language
+  def extractDoseForm(t: Medication): Option[CodeableConcept]         = t.doseForm
   def extractContained(t: Medication): LitSeq[Resource]               = t.contained
   def extractExtension(t: Medication): LitSeq[Extension]              = t.extension
   def extractIdentifier(t: Medication): LitSeq[Identifier]            = t.identifier
-  def extractManufacturer(t: Medication): Option[Reference]           = t.manufacturer
   def extractImplicitRules(t: Medication): Option[UriStr]             = t.implicitRules
   def extractModifierExtension(t: Medication): LitSeq[Extension]      = t.modifierExtension
   def extractBatch(t: Medication): Option[Medication.Batch]           = t.batch
   def extractIngredient(t: Medication): LitSeq[Medication.Ingredient] = t.ingredient
   override val thisName: String                                       = "Medication"
   override val searchParams: Map[String, Medication => Seq[Any]] = Map(
-    "ingredient-code" -> (obj => obj.ingredient.map(_.item).flatMap(_.as[CodeableConcept]).toSeq),
+    "ingredient-code" -> (obj => obj.ingredient.map(_.item).flatMap(_.concept).toSeq),
     "identifier"      -> (obj => obj.identifier.toSeq),
-    "ingredient"      -> (obj => obj.ingredient.map(_.item).flatMap(_.as[Reference]).toSeq),
+    "sponsor"         -> (obj => obj.sponsor.toSeq),
+    "ingredient"      -> (obj => obj.ingredient.map(_.item).flatMap(_.reference).toSeq),
     "code"            -> (obj => obj.code.toSeq),
     "expiration-date" -> (obj => obj.batch.flatMap(_.expirationDate).toSeq),
     "status"          -> (obj => obj.status.toSeq),
-    "lot-number"      -> (obj => obj.batch.flatMap(_.lotNumber).toSeq),
-    "manufacturer"    -> (obj => obj.manufacturer.toSeq),
-    "form"            -> (obj => obj.form.toSeq)
+    "lot-number"      -> (obj => obj.batch.flatMap(_.lotNumber).toSeq)
   )
   def unapply(
-      o: Medication): Option[(Option[String], Option[Meta], Option[Narrative], Option[CodeableConcept], Option[CodeableConcept], Option[MEDICATION_STATUS], Option[Ratio], Option[LANGUAGES], LitSeq[Resource], LitSeq[Extension], LitSeq[Identifier], Option[Reference], Option[UriStr], LitSeq[Extension], Option[Medication.Batch], LitSeq[Medication.Ingredient])] =
+      o: Medication): Option[(Option[String], Option[Meta], Option[Narrative], Option[CodeableConcept], Option[MEDICATION_STATUS], Option[Ratio], Option[Reference], Option[LANGUAGES], Option[CodeableConcept], LitSeq[Resource], LitSeq[Extension], LitSeq[Identifier], Option[UriStr], LitSeq[Extension], Option[Medication.Batch], LitSeq[Medication.Ingredient])] =
     Some(
       (
         o.id,
         o.meta,
         o.text,
         o.code,
-        o.form,
         o.status,
         o.amount,
+        o.sponsor,
         o.language,
+        o.doseForm,
         o.contained,
         o.extension,
         o.identifier,
-        o.manufacturer,
         o.implicitRules,
         o.modifierExtension,
         o.batch,
@@ -333,14 +336,14 @@ object Medication extends CompanionFor[Medication] {
           cursor.decodeAs[Option[Meta]]("meta", Some(None)),
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("code", Some(None)),
-          cursor.decodeAs[Option[CodeableConcept]]("form", Some(None)),
           cursor.decodeAs[Option[MEDICATION_STATUS]]("status", Some(None)),
           cursor.decodeAs[Option[Ratio]]("amount", Some(None)),
+          cursor.decodeAs[Option[Reference]]("sponsor", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
+          cursor.decodeAs[Option[CodeableConcept]]("doseForm", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeAs[Option[Reference]]("manufacturer", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Medication.Batch]]("batch", Some(None)),
@@ -350,13 +353,13 @@ object Medication extends CompanionFor[Medication] {
       ))
 }
 
-/** This resource is primarily used for the identification and definition of a medication for the purposes of prescribing,
-  * dispensing, and administering a medication as well as for making statements about medication use.
+/** This resource is primarily used for the identification and definition of a medication, including ingredients, for the purposes
+  * of prescribing, dispensing, and administering a medication as well as for making statements about medication use.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields code, form, status, amount, identifier, manufacturer, batch, ingredient.
+  *   Introduces the fields code, status, amount, sponsor, doseForm, identifier, batch, ingredient.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -371,19 +374,24 @@ object Medication extends CompanionFor[Medication] {
   *   - A code (or set of codes) that specify this medication, or a textual description if no code is available. Usage note: This
   *   could be a standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or local
   *   formulary code, optionally with translations to other code systems.
-  * @param form
-  *   - Describes the form of the item. Powder; tablets; capsule.
   * @param status
   *   - A code to indicate if the medication is in active use.
   * @param amount
   *   - Specific amount of the drug in the packaged product. For example, when specifying a product that has the same strength
   *   (For example, Insulin glargine 100 unit per mL solution for injection), this attribute provides additional clarification of
   *   the package amount (For example, 3 mL, 10mL, etc.).
+  * @param sponsor
+  *   - Describes the details of the manufacturer of the medication product. This is not intended to represent the distributor of
+  *   a medication product.  Describes the organization that is responsible for the manufacturing of the item and holds the
+  *   registration to market the product in a jurisdiction.. This might not be the company that physically manufactures the
+  *   product.  May be known as Market Authorization Holder.
   * @param language
   *   - The base language in which the resource is written.
+  * @param doseForm
+  *   - Describes the form of the item. Powder; tablets; capsule.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -391,9 +399,6 @@ object Medication extends CompanionFor[Medication] {
   *   of the extension.
   * @param identifier
   *   - Business identifier for this medication.
-  * @param manufacturer
-  *   - Describes the details of the manufacturer of the medication product. This is not intended to represent the distributor of
-  *   a medication product.
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
@@ -417,14 +422,14 @@ class Medication(
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
     val code: Option[CodeableConcept] = None,
-    val form: Option[CodeableConcept] = None,
     val status: Option[MEDICATION_STATUS] = None,
     val amount: Option[Ratio] = None,
+    val sponsor: Option[Reference] = None,
     override val language: Option[LANGUAGES] = None,
+    val doseForm: Option[CodeableConcept] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val manufacturer: Option[Reference] = None,
     override val implicitRules: Option[UriStr] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val batch: Option[Medication.Batch] = None,

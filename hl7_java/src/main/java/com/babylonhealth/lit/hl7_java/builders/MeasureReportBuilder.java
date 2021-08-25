@@ -70,12 +70,15 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
     private Period period;
     private String measure;
     private Optional<Reference> subject = Optional.empty();
+    private Optional<CodeableConcept> scoring = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
     private Optional<Reference> reporter = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
+    private Optional<String> dataUpdateType = Optional.empty();
+    private Optional<Reference> reportingVendor = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Reference> evaluatedResource = Collections.emptyList();
     private Optional<CodeableConcept> improvementNotation = Optional.empty();
@@ -159,6 +162,21 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
       this.subject = Optional.of(subject.build());
       return this;
     }
+    /**
+     * @param scoring - Indicates how the calculation is performed for the measure, including
+     *     proportion, ratio, continuous-variable, and cohort. The value set is extensible, allowing
+     *     additional measure scoring types to be represented. It is expected to be the same as the
+     *     scoring element on the referenced Measure.
+     */
+    public MeasureReportBuilder.Impl withScoring(@NonNull CodeableConcept scoring) {
+      this.scoring = Optional.of(scoring);
+      return this;
+    }
+
+    public MeasureReportBuilder.Impl withScoring(@NonNull CodeableConceptBuilder scoring) {
+      this.scoring = Optional.of(scoring.build());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public MeasureReportBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -176,8 +194,8 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MeasureReportBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -185,8 +203,8 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MeasureReportBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -255,6 +273,33 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
      */
     public MeasureReportBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
       this.implicitRules = Optional.of(implicitRules);
+      return this;
+    }
+    /**
+     * @param dataUpdateType - Indicates whether the data submitted in an data-exchange report
+     *     represents a snapshot or incremental update. A snapshot update replaces all previously
+     *     submitted data for the receiver, whereas an incremental update represents only updated
+     *     and/or changed data and should be applied as a differential update to the existing
+     *     submitted data for the receiver.
+     */
+    public MeasureReportBuilder.Impl withDataUpdateType(@NonNull String dataUpdateType) {
+      this.dataUpdateType = Optional.of(dataUpdateType);
+      return this;
+    }
+    /**
+     * @param reportingVendor - A reference to the vendor who queried the data, calculated results
+     *     and/or generated the report. The ‘reporting vendor’ is intended to represent the
+     *     submitting entity when it is not the same as the reporting entity. This extension is used
+     *     when the Receiver is interested in getting vendor information in the report.
+     */
+    public MeasureReportBuilder.Impl withReportingVendor(@NonNull Reference reportingVendor) {
+      this.reportingVendor = Optional.of(reportingVendor);
+      return this;
+    }
+
+    public MeasureReportBuilder.Impl withReportingVendor(
+        @NonNull ReferenceBuilder reportingVendor) {
+      this.reportingVendor = Optional.of(reportingVendor.build());
       return this;
     }
     /**
@@ -376,12 +421,15 @@ public interface MeasureReportBuilder extends DomainResourceBuilder {
           period,
           measure,
           OptionConverters.toScala(subject),
+          OptionConverters.toScala(scoring),
           OptionConverters.toScala(language),
           OptionConverters.toScala(reporter),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
+          OptionConverters.toScala(dataUpdateType),
+          OptionConverters.toScala(reportingVendor),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           evaluatedResource.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(improvementNotation),

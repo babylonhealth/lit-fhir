@@ -112,39 +112,49 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
     override val parentType: CompanionFor[ResourceType] = Participant
     def apply(
         id: Option[String] = None,
-        `type`: ACTION_PARTICIPANT_TYPE,
+        `type`: Option[ACTION_PARTICIPANT_TYPE] = None,
         role: Option[CodeableConcept] = None,
+        function: Option[CodeableConcept] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
+        typeReference: Option[Reference] = None,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
     ): Participant = new Participant(
       id,
       `type`,
       role,
+      function,
       extension,
+      typeReference,
       modifierExtension,
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Participant): Option[(Option[String], ACTION_PARTICIPANT_TYPE, Option[CodeableConcept], LitSeq[Extension], LitSeq[Extension])] =
-      Some((o.id, o.`type`, o.role, o.extension, o.modifierExtension))
+        o: Participant): Option[(Option[String], Option[ACTION_PARTICIPANT_TYPE], Option[CodeableConcept], Option[CodeableConcept], LitSeq[Extension], Option[Reference], LitSeq[Extension])] =
+      Some((o.id, o.`type`, o.role, o.function, o.extension, o.typeReference, o.modifierExtension))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-    val `type`: FHIRComponentFieldMeta[ACTION_PARTICIPANT_TYPE] =
-      FHIRComponentFieldMeta("type", lTagOf[ACTION_PARTICIPANT_TYPE], false, lTagOf[ACTION_PARTICIPANT_TYPE])
+    val `type`: FHIRComponentFieldMeta[Option[ACTION_PARTICIPANT_TYPE]] =
+      FHIRComponentFieldMeta("type", lTagOf[Option[ACTION_PARTICIPANT_TYPE]], false, lTagOf[ACTION_PARTICIPANT_TYPE])
     val role: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("role", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+    val function: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+      FHIRComponentFieldMeta("function", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+    val typeReference: FHIRComponentFieldMeta[Option[Reference]] =
+      FHIRComponentFieldMeta("typeReference", lTagOf[Option[Reference]], false, lTagOf[Reference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, role, extension, modifierExtension)
+    val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, `type`, role, function, extension, typeReference, modifierExtension)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Participant): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
-      FHIRComponentField[ACTION_PARTICIPANT_TYPE](`type`, t.`type`),
+      FHIRComponentField[Option[ACTION_PARTICIPANT_TYPE]](`type`, t.`type`),
       FHIRComponentField[Option[CodeableConcept]](role, t.role),
+      FHIRComponentField[Option[CodeableConcept]](function, t.function),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[Option[Reference]](typeReference, t.typeReference),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
     )
     val baseType: CompanionFor[Participant] = this
@@ -154,9 +164,11 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
         Try(
           new Participant(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeAs[ACTION_PARTICIPANT_TYPE]("type", None),
+            cursor.decodeAs[Option[ACTION_PARTICIPANT_TYPE]]("type", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("role", Some(None)),
+            cursor.decodeAs[Option[CodeableConcept]]("function", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+            cursor.decodeAs[Option[Reference]]("typeReference", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -165,14 +177,16 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
   @POJOBoilerplate
   class Participant(
       override val id: Option[String] = None,
-      val `type`: ACTION_PARTICIPANT_TYPE,
+      val `type`: Option[ACTION_PARTICIPANT_TYPE] = None,
       val role: Option[CodeableConcept] = None,
+      val function: Option[CodeableConcept] = None,
       override val extension: LitSeq[Extension] = LitSeq.empty,
+      val typeReference: Option[Reference] = None,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type TimingChoice  = Choice[Union01405873694]
-  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
+  type TimingChoice  = Choice[Union01540702691]
+  type SubjectChoice = Choice[UnionCanonicalOrCodeableConceptOrReference]
   type ProductChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
@@ -201,7 +215,7 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
       reviewer: LitSeq[ContactDetail] = LitSeq.empty,
       endorser: LitSeq[ContactDetail] = LitSeq.empty,
       priority: Option[REQUEST_PRIORITY] = None,
-      location: Option[Reference] = None,
+      location: Option[CodeableReference] = None,
       quantity: Option[Quantity] = None,
       bodySite: LitSeq[CodeableConcept] = LitSeq.empty,
       contained: LitSeq[Resource] = LitSeq.empty,
@@ -339,8 +353,8 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
     FHIRComponentFieldMeta("endorser", lTagOf[LitSeq[ContactDetail]], false, lTagOf[ContactDetail])
   val priority: FHIRComponentFieldMeta[Option[REQUEST_PRIORITY]] =
     FHIRComponentFieldMeta("priority", lTagOf[Option[REQUEST_PRIORITY]], false, lTagOf[REQUEST_PRIORITY])
-  val location: FHIRComponentFieldMeta[Option[Reference]] =
-    FHIRComponentFieldMeta("location", lTagOf[Option[Reference]], false, lTagOf[Reference])
+  val location: FHIRComponentFieldMeta[Option[CodeableReference]] =
+    FHIRComponentFieldMeta("location", lTagOf[Option[CodeableReference]], false, lTagOf[CodeableReference])
   val quantity: FHIRComponentFieldMeta[Option[Quantity]] =
     FHIRComponentFieldMeta("quantity", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
   val bodySite: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -354,7 +368,7 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
   val copyright: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("copyright", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val timing: FHIRComponentFieldMeta[Option[ActivityDefinition.TimingChoice]] =
-    FHIRComponentFieldMeta("timing", lTagOf[Option[ActivityDefinition.TimingChoice]], true, lTagOf[Union01405873694])
+    FHIRComponentFieldMeta("timing", lTagOf[Option[ActivityDefinition.TimingChoice]], true, lTagOf[Union01540702691])
   val transform: FHIRComponentFieldMeta[Option[Canonical]] =
     FHIRComponentFieldMeta("transform", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
@@ -364,7 +378,7 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
       "subject",
       lTagOf[Option[ActivityDefinition.SubjectChoice]],
       true,
-      lTagOf[UnionCodeableConceptOrReference])
+      lTagOf[UnionCanonicalOrCodeableConceptOrReference])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val product: FHIRComponentFieldMeta[Option[ActivityDefinition.ProductChoice]] =
@@ -495,7 +509,7 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
     FHIRComponentField[LitSeq[ContactDetail]](reviewer, t.reviewer),
     FHIRComponentField[LitSeq[ContactDetail]](endorser, t.endorser),
     FHIRComponentField[Option[REQUEST_PRIORITY]](priority, t.priority),
-    FHIRComponentField[Option[Reference]](location, t.location),
+    FHIRComponentField[Option[CodeableReference]](location, t.location),
     FHIRComponentField[Option[Quantity]](quantity, t.quantity),
     FHIRComponentField[LitSeq[CodeableConcept]](bodySite, t.bodySite),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -550,7 +564,7 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
   def extractReviewer(t: ActivityDefinition): LitSeq[ContactDetail]                       = t.reviewer
   def extractEndorser(t: ActivityDefinition): LitSeq[ContactDetail]                       = t.endorser
   def extractPriority(t: ActivityDefinition): Option[REQUEST_PRIORITY]                    = t.priority
-  def extractLocation(t: ActivityDefinition): Option[Reference]                           = t.location
+  def extractLocation(t: ActivityDefinition): Option[CodeableReference]                   = t.location
   def extractQuantity(t: ActivityDefinition): Option[Quantity]                            = t.quantity
   def extractBodySite(t: ActivityDefinition): LitSeq[CodeableConcept]                     = t.bodySite
   def extractContained(t: ActivityDefinition): LitSeq[Resource]                           = t.contained
@@ -637,17 +651,17 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
         cursor.decodeAs[LitSeq[ContactDetail]]("reviewer", Some(LitSeq.empty)),
         cursor.decodeAs[LitSeq[ContactDetail]]("endorser", Some(LitSeq.empty)),
         cursor.decodeAs[Option[REQUEST_PRIORITY]]("priority", Some(None)),
-        cursor.decodeAs[Option[Reference]]("location", Some(None)),
+        cursor.decodeAs[Option[CodeableReference]]("location", Some(None)),
         cursor.decodeAs[Option[Quantity]]("quantity", Some(None)),
         cursor.decodeAs[LitSeq[CodeableConcept]]("bodySite", Some(LitSeq.empty)),
         cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
         cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
         cursor.decodeAs[Option[String]]("publisher", Some(None)),
         cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
-        cursor.decodeOptRef[Union01405873694]("timing"),
+        cursor.decodeOptRef[Union01540702691]("timing"),
         cursor.decodeAs[Option[Canonical]]("transform", Some(None)),
         cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-        cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
+        cursor.decodeOptRef[UnionCanonicalOrCodeableConceptOrReference]("subject"),
         cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
         cursor.decodeOptRef[UnionCodeableConceptOrReference]("product"),
         cursor.decodeAs[Option[Markdown]]("description", Some(None)),
@@ -674,13 +688,11 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
 /** This resource allows for the definition of some activity to be performed, independent of a particular patient, practitioner,
   * or other performance context.
   *
-  * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
+  * Subclass of [[hl7.model.MetadataResource]] (Common Ancestor declaration for conformance and knowledge artifact resources.)
   *
   * @constructor
-  *   Introduces the fields url, name, date, kind, code, title, usage, topic, status, author, editor, intent, dosage, version,
-  *   contact, purpose, library, profile, subtitle, reviewer, endorser, priority, location, quantity, bodySite, publisher,
-  *   copyright, timing, transform, identifier, subject, useContext, product, description, experimental, jurisdiction,
-  *   approvalDate, doNotPerform, lastReviewDate, effectivePeriod, relatedArtifact, specimenRequirement, observationRequirement,
+  *   Introduces the fields kind, code, usage, intent, dosage, library, profile, subtitle, priority, location, quantity, bodySite,
+  *   timing, transform, subject, product, doNotPerform, specimenRequirement, observationRequirement,
   *   observationResultRequirement, participant, dynamicValue.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
@@ -761,7 +773,7 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
   *   - Indicates the sites on the subject's body where the procedure should be performed (I.e. the target sites).
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -773,7 +785,7 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
   *   - A copyright statement relating to the activity definition and/or its contents. Copyright statements are generally legal
   *   restrictions on the use and publishing of the activity definition.
   * @param timing
-  *   - The period, timing or frequency upon which the described activity is to occur.
+  *   - The timing or frequency upon which the described activity is to occur.
   * @param transform
   *   - A reference to a StructureMap resource that defines a transform that can be executed to produce the intent resource using
   *   the ActivityDefinition instance as the input.
@@ -781,7 +793,10 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
   *   - A formal identifier that is used to identify this activity definition when it is represented in other formats, or
   *   referenced in a specification, model, design or an instance.
   * @param subject
-  *   - A code or group definition that describes the intended subject of the activity being defined.
+  *   - A code, group definition, or canonical reference that describes or identifies the intended subject of the activity being
+  *   defined. Canonical references are allowed to support the definition of protocols for drug and substance quality
+  *   specifications, and is allowed to reference a MedicinalProductDefinition, SubstanceDefinition,
+  *   AdministrableProductDefinition, ManufacturedItemDefinition, or PackagedProductDefinition resource.
   * @param useContext
   *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be
   *   general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be
@@ -837,53 +852,53 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
 @POJOBoilerplate
 class ActivityDefinition(
     override val id: Option[String] = None,
-    val url: Option[UriStr] = None,
+    override val url: Option[UriStr] = None,
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
-    val name: Option[String] = None,
-    val date: Option[FHIRDateTime] = None,
+    override val name: Option[String] = None,
+    override val date: Option[FHIRDateTime] = None,
     val kind: Option[REQUEST_RESOURCE_TYPES] = None,
     val code: Option[CodeableConcept] = None,
-    val title: Option[String] = None,
+    override val title: Option[String] = None,
     val usage: Option[String] = None,
-    val topic: LitSeq[CodeableConcept] = LitSeq.empty,
-    val status: PUBLICATION_STATUS,
-    val author: LitSeq[ContactDetail] = LitSeq.empty,
-    val editor: LitSeq[ContactDetail] = LitSeq.empty,
+    override val topic: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val status: PUBLICATION_STATUS,
+    override val author: LitSeq[ContactDetail] = LitSeq.empty,
+    override val editor: LitSeq[ContactDetail] = LitSeq.empty,
     val intent: Option[REQUEST_INTENT] = None,
     val dosage: LitSeq[Dosage] = LitSeq.empty,
-    val version: Option[String] = None,
-    val contact: LitSeq[ContactDetail] = LitSeq.empty,
-    val purpose: Option[Markdown] = None,
+    override val version: Option[String] = None,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
     val library: LitSeq[Canonical] = LitSeq.empty,
     val profile: Option[Canonical] = None,
     override val language: Option[LANGUAGES] = None,
     val subtitle: Option[String] = None,
-    val reviewer: LitSeq[ContactDetail] = LitSeq.empty,
-    val endorser: LitSeq[ContactDetail] = LitSeq.empty,
+    override val reviewer: LitSeq[ContactDetail] = LitSeq.empty,
+    override val endorser: LitSeq[ContactDetail] = LitSeq.empty,
     val priority: Option[REQUEST_PRIORITY] = None,
-    val location: Option[Reference] = None,
+    val location: Option[CodeableReference] = None,
     val quantity: Option[Quantity] = None,
     val bodySite: LitSeq[CodeableConcept] = LitSeq.empty,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val publisher: Option[String] = None,
-    val copyright: Option[Markdown] = None,
+    override val publisher: Option[String] = None,
+    override val copyright: Option[Markdown] = None,
     val timing: Option[ActivityDefinition.TimingChoice] = None,
     val transform: Option[Canonical] = None,
-    val identifier: LitSeq[Identifier] = LitSeq.empty,
+    override val identifier: LitSeq[Identifier] = LitSeq.empty,
     val subject: Option[ActivityDefinition.SubjectChoice] = None,
-    val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
     val product: Option[ActivityDefinition.ProductChoice] = None,
-    val description: Option[Markdown] = None,
-    val experimental: Option[Boolean] = None,
-    val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
-    val approvalDate: Option[FHIRDate] = None,
+    override val description: Option[Markdown] = None,
+    override val experimental: Option[Boolean] = None,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val approvalDate: Option[FHIRDate] = None,
     val doNotPerform: Option[Boolean] = None,
     override val implicitRules: Option[UriStr] = None,
-    val lastReviewDate: Option[FHIRDate] = None,
-    val effectivePeriod: Option[Period] = None,
-    val relatedArtifact: LitSeq[RelatedArtifact] = LitSeq.empty,
+    override val lastReviewDate: Option[FHIRDate] = None,
+    override val effectivePeriod: Option[Period] = None,
+    override val relatedArtifact: LitSeq[RelatedArtifact] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val specimenRequirement: LitSeq[Reference] = LitSeq.empty,
     val observationRequirement: LitSeq[Reference] = LitSeq.empty,
@@ -891,14 +906,38 @@ class ActivityDefinition(
     val participant: LitSeq[ActivityDefinition.Participant] = LitSeq.empty,
     val dynamicValue: LitSeq[ActivityDefinition.DynamicValue] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-) extends DomainResource(
+) extends MetadataResource(
       id = id,
+      url = url,
       meta = meta,
       text = text,
+      name = name,
+      date = date,
+      title = title,
+      topic = topic,
+      status = status,
+      author = author,
+      editor = editor,
+      version = version,
+      contact = contact,
+      purpose = purpose,
       language = language,
+      reviewer = reviewer,
+      endorser = endorser,
+      copyright = copyright,
       contained = contained,
+      publisher = publisher,
       extension = extension,
+      identifier = identifier,
+      useContext = useContext,
+      description = description,
+      jurisdiction = jurisdiction,
+      experimental = experimental,
+      approvalDate = approvalDate,
       implicitRules = implicitRules,
+      lastReviewDate = lastReviewDate,
+      effectivePeriod = effectivePeriod,
+      relatedArtifact = relatedArtifact,
       modifierExtension = modifierExtension,
       primitiveAttributes = primitiveAttributes) {
   override val thisTypeName: String = "ActivityDefinition"

@@ -183,15 +183,17 @@ object Statistic extends CompanionFor[Statistic] {
       val variable: LitSeq[ModelCharacteristic.Variable] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
-  object AttributeEstimate extends CompanionFor[AttributeEstimate] {
+  object AttributeEstimate extends CompanionFor[Statistic.AttributeEstimate] {
     implicit def summonObjectAndCompanionAttributeEstimate_154586528(
-        o: Statistic.AttributeEstimate): ObjectAndCompanion[Statistic.AttributeEstimate, Statistic.AttributeEstimate.type] = ObjectAndCompanion(o, this)
+        o: Statistic.AttributeEstimate): ObjectAndCompanion[Statistic.AttributeEstimate, Statistic.AttributeEstimate.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Statistic.AttributeEstimate
     override type ParentType   = Statistic.AttributeEstimate
     override val parentType: CompanionFor[ResourceType] = Statistic.AttributeEstimate
     object AttributeEstimate extends CompanionFor[Statistic.AttributeEstimate.AttributeEstimate] {
       implicit def summonObjectAndCompanionAttributeEstimate426035384(
-          o: Statistic.AttributeEstimate.AttributeEstimate): ObjectAndCompanion[Statistic.AttributeEstimate.AttributeEstimate, Statistic.AttributeEstimate.AttributeEstimate.type] = ObjectAndCompanion(o, this)
+          o: Statistic.AttributeEstimate.AttributeEstimate): ObjectAndCompanion[Statistic.AttributeEstimate.AttributeEstimate, Statistic.AttributeEstimate.AttributeEstimate.type] =
+        ObjectAndCompanion(o, this)
       override type ResourceType = Statistic.AttributeEstimate.AttributeEstimate
       override type ParentType   = Statistic.AttributeEstimate.AttributeEstimate
       override val parentType: CompanionFor[ResourceType] = Statistic.AttributeEstimate.AttributeEstimate
@@ -205,7 +207,7 @@ object Statistic extends CompanionFor[Statistic] {
           extension: LitSeq[Extension] = LitSeq.empty,
           description: Option[String] = None,
           primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
-      ): AttributeEstimate = new AttributeEstimate(
+      ): Statistic.AttributeEstimate.AttributeEstimate = new Statistic.AttributeEstimate.AttributeEstimate(
         id,
         note,
         `type`,
@@ -217,7 +219,7 @@ object Statistic extends CompanionFor[Statistic] {
         primitiveAttributes = primitiveAttributes
       )
       def unapply(
-          o: AttributeEstimate): Option[(Option[String], LitSeq[Annotation], Option[CodeableConcept], Option[BigDecimal], Option[Range], Option[Quantity], LitSeq[Extension], Option[String])] =
+          o: Statistic.AttributeEstimate.AttributeEstimate): Option[(Option[String], LitSeq[Annotation], Option[CodeableConcept], Option[BigDecimal], Option[Range], Option[Quantity], LitSeq[Extension], Option[String])] =
         Some((o.id, o.note, o.`type`, o.level, o.range, o.quantity, o.extension, o.description))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -237,7 +239,7 @@ object Statistic extends CompanionFor[Statistic] {
         FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
       val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, note, `type`, level, range, quantity, extension, description)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-      override def fields(t: AttributeEstimate): Seq[FHIRComponentField[_]] = Seq(
+      override def fields(t: Statistic.AttributeEstimate.AttributeEstimate): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
         FHIRComponentField[LitSeq[Annotation]](note, t.note),
         FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
@@ -247,12 +249,12 @@ object Statistic extends CompanionFor[Statistic] {
         FHIRComponentField[LitSeq[Extension]](extension, t.extension),
         FHIRComponentField[Option[String]](description, t.description)
       )
-      val baseType: CompanionFor[AttributeEstimate] = this
-      val thisName: String                          = "AttributeEstimate"
-      def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[AttributeEstimate] =
+      val baseType: CompanionFor[Statistic.AttributeEstimate.AttributeEstimate] = this
+      val thisName: String                                                      = "AttributeEstimate"
+      def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Statistic.AttributeEstimate.AttributeEstimate] =
         checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
           Try(
-            new AttributeEstimate(
+            new Statistic.AttributeEstimate.AttributeEstimate(
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
               cursor.decodeAs[Option[CodeableConcept]]("type", Some(None)),
@@ -286,7 +288,7 @@ object Statistic extends CompanionFor[Statistic] {
         quantity: Option[Quantity] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
         description: Option[String] = None,
-        attributeEstimate: LitSeq[AttributeEstimate.AttributeEstimate] = LitSeq.empty,
+        attributeEstimate: LitSeq[Statistic.AttributeEstimate.AttributeEstimate] = LitSeq.empty,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
     ): Statistic.AttributeEstimate = new Statistic.AttributeEstimate(
       id,
@@ -301,7 +303,7 @@ object Statistic extends CompanionFor[Statistic] {
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: AttributeEstimate): Option[(Option[String], LitSeq[Annotation], Option[CodeableConcept], Option[BigDecimal], Option[Range], Option[Quantity], LitSeq[Extension], Option[String], LitSeq[AttributeEstimate.AttributeEstimate])] =
+        o: Statistic.AttributeEstimate): Option[(Option[String], LitSeq[Annotation], Option[CodeableConcept], Option[BigDecimal], Option[Range], Option[Quantity], LitSeq[Extension], Option[String], LitSeq[Statistic.AttributeEstimate.AttributeEstimate])] =
       Some((o.id, o.note, o.`type`, o.level, o.range, o.quantity, o.extension, o.description, o.attributeEstimate))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -319,16 +321,16 @@ object Statistic extends CompanionFor[Statistic] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val description: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
-    val attributeEstimate: FHIRComponentFieldMeta[LitSeq[AttributeEstimate.AttributeEstimate]] =
+    val attributeEstimate: FHIRComponentFieldMeta[LitSeq[Statistic.AttributeEstimate.AttributeEstimate]] =
       FHIRComponentFieldMeta(
         "attributeEstimate",
-        lTagOf[LitSeq[AttributeEstimate.AttributeEstimate]],
+        lTagOf[LitSeq[Statistic.AttributeEstimate.AttributeEstimate]],
         false,
-        lTagOf[AttributeEstimate.AttributeEstimate])
+        lTagOf[Statistic.AttributeEstimate.AttributeEstimate])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
       Seq(id, note, `type`, level, range, quantity, extension, description, attributeEstimate)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
-    override def fields(t: AttributeEstimate): Seq[FHIRComponentField[_]] = Seq(
+    override def fields(t: Statistic.AttributeEstimate): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[LitSeq[Annotation]](note, t.note),
       FHIRComponentField[Option[CodeableConcept]](`type`, t.`type`),
@@ -337,11 +339,11 @@ object Statistic extends CompanionFor[Statistic] {
       FHIRComponentField[Option[Quantity]](quantity, t.quantity),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
       FHIRComponentField[Option[String]](description, t.description),
-      FHIRComponentField[LitSeq[AttributeEstimate.AttributeEstimate]](attributeEstimate, t.attributeEstimate)
+      FHIRComponentField[LitSeq[Statistic.AttributeEstimate.AttributeEstimate]](attributeEstimate, t.attributeEstimate)
     )
     val baseType: CompanionFor[Statistic.AttributeEstimate] = this
-    val thisName: String                          = "AttributeEstimate"
-    def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[AttributeEstimate] =
+    val thisName: String                                    = "AttributeEstimate"
+    def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Statistic.AttributeEstimate] =
       checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
         Try(
           new Statistic.AttributeEstimate(
@@ -353,7 +355,7 @@ object Statistic extends CompanionFor[Statistic] {
             cursor.decodeAs[Option[Quantity]]("quantity", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[String]]("description", Some(None)),
-            cursor.decodeAs[LitSeq[AttributeEstimate.AttributeEstimate]]("attributeEstimate", Some(LitSeq.empty)),
+            cursor.decodeAs[LitSeq[Statistic.AttributeEstimate.AttributeEstimate]]("attributeEstimate", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
         ))
@@ -368,7 +370,7 @@ object Statistic extends CompanionFor[Statistic] {
       val quantity: Option[Quantity] = None,
       override val extension: LitSeq[Extension] = LitSeq.empty,
       val description: Option[String] = None,
-      val attributeEstimate: LitSeq[AttributeEstimate.AttributeEstimate] = LitSeq.empty,
+      val attributeEstimate: LitSeq[Statistic.AttributeEstimate.AttributeEstimate] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object SampleSize extends CompanionFor[SampleSize] {
@@ -613,37 +615,37 @@ object Statistic extends CompanionFor[Statistic] {
   *   attributeEstimate, modelCharacteristic.
   * @param id
   *   - Unique id for the element within a resource (for internal references). This may be any string value that does not contain
-  *   spaces.
+  *     spaces.
   * @param note
   *   - Footnotes and/or explanatory notes.
   * @param category
   *   - When the measured variable is handled categorically, the category element is used to define which category the statistic
-  *   is reporting.
+  *     is reporting.
   * @param quantity
   *   - Statistic value.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the element. To make the use
-  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
-  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
-  *   of the extension.
+  *     of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *     Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *     of the extension.
   * @param description
   *   - A description of the content value of the statistic.
   * @param statisticType
   *   - Type of statistic, eg relative risk.
   * @param numberOfEvents
   *   - The number of events associated with the statistic, where the unit of analysis is different from numberAffected,
-  *   sampleSize.knownDataCount and sampleSize.numberOfParticipants.
+  *     sampleSize.knownDataCount and sampleSize.numberOfParticipants.
   * @param numberAffected
   *   - The number of participants affected where the unit of analysis is the same as sampleSize.knownDataCount and
-  *   sampleSize.numberOfParticipants.
+  *     sampleSize.numberOfParticipants.
   * @param modifierExtension
   *   - May be used to represent additional information that is not part of the basic definition of the element and that modifies
-  *   the understanding of the element in which it is contained and/or the understanding of the containing element's descendants.
-  *   Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a
-  *   strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension,
-  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
-  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
-  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  *     the understanding of the element in which it is contained and/or the understanding of the containing element's
+  *     descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and
+  *     manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer
+  *     can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.
+  *     Applications processing a resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the
+  *     meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param sampleSize
   *   - Number of samples in the statistic.
   * @param attributeEstimate

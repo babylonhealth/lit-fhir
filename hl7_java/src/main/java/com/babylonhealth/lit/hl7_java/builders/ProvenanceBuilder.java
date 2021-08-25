@@ -75,12 +75,14 @@ public interface ProvenanceBuilder extends DomainResourceBuilder {
     private Collection<Reference> target;
     private Collection<String> policy = Collections.emptyList();
     private Collection<CodeableConcept> reason = Collections.emptyList();
+    private Collection<Reference> basedOn = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
     private ZonedDateTime recorded;
     private Optional<Reference> location = Optional.empty();
     private Optional<CodeableConcept> activity = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
+    private Optional<Reference> encounter = Optional.empty();
     private Collection<Signature> signature = Collections.emptyList();
     private Optional<ChoiceDateTimeOrPeriod> occurred = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
@@ -176,6 +178,27 @@ public interface ProvenanceBuilder extends DomainResourceBuilder {
       this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
       return this;
     }
+    /**
+     * @param basedOn - Allows tracing of authorizatino for the events and tracking whether
+     *     proposals/recommendations were acted upon.
+     */
+    public ProvenanceBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
+      this.basedOn = Arrays.asList(basedOn);
+      return this;
+    }
+    /**
+     * @param basedOn - Allows tracing of authorizatino for the events and tracking whether
+     *     proposals/recommendations were acted upon.
+     */
+    public ProvenanceBuilder.Impl withBasedOn(@NonNull Collection<Reference> basedOn) {
+      this.basedOn = Collections.unmodifiableCollection(basedOn);
+      return this;
+    }
+
+    public ProvenanceBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public ProvenanceBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -207,8 +230,8 @@ public interface ProvenanceBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ProvenanceBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -216,8 +239,8 @@ public interface ProvenanceBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ProvenanceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -253,6 +276,20 @@ public interface ProvenanceBuilder extends DomainResourceBuilder {
 
     public ProvenanceBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param encounter - This will typically be the encounter the event occurred, but some events
+     *     may be initiated prior to or after the official completion of an encounter but still be
+     *     tied to the context of the encounter (e.g. pre-admission lab tests).
+     */
+    public ProvenanceBuilder.Impl withEncounter(@NonNull Reference encounter) {
+      this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public ProvenanceBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -366,12 +403,14 @@ public interface ProvenanceBuilder extends DomainResourceBuilder {
           target.stream().collect(new NonEmptyLitSeqJCollector<>()),
           policy.stream().collect(new LitSeqJCollector<>()),
           reason.stream().collect(new LitSeqJCollector<>()),
+          basedOn.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
           recorded,
           OptionConverters.toScala(location),
           OptionConverters.toScala(activity),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(encounter),
           signature.stream().collect(new LitSeqJCollector<>()),
           (Option) OptionConverters.toScala(occurred),
           OptionConverters.toScala(implicitRules),

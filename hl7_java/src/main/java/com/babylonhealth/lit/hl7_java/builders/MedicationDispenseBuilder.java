@@ -47,29 +47,15 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
   public MedicationDispense build();
 
   public static Impl init(
-      MEDICATIONDISPENSE_STATUS status, @NonNull ChoiceCodeableConceptOrReference medication) {
-    return new Impl(status, medication);
+      MEDICATIONDISPENSE_STATUS status, Reference subject, CodeableReference medication) {
+    return new Impl(status, subject, medication);
   }
 
   public static Impl builder(
-      MEDICATIONDISPENSE_STATUS status, @NonNull ChoiceCodeableConceptOrReference medication) {
-    return new Impl(status, medication);
-  }
-
-  public static ChoiceCodeableConceptOrReference medication(CodeableConcept c) {
-    return new ChoiceCodeableConceptOrReference(c);
-  }
-
-  public static ChoiceCodeableConceptOrReference medication(Reference r) {
-    return new ChoiceCodeableConceptOrReference(r);
-  }
-
-  public static ChoiceCodeableConceptOrReference statusReason(CodeableConcept c) {
-    return new ChoiceCodeableConceptOrReference(c);
-  }
-
-  public static ChoiceCodeableConceptOrReference statusReason(Reference r) {
-    return new ChoiceCodeableConceptOrReference(r);
+      MEDICATIONDISPENSE_STATUS status,
+      ReferenceBuilder subject,
+      CodeableReferenceBuilder medication) {
+    return new Impl(status, subject.build(), medication.build());
   }
 
   public class Impl implements MedicationDispenseBuilder {
@@ -80,29 +66,31 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
     private Collection<Annotation> note = Collections.emptyList();
     private Collection<Reference> partOf = Collections.emptyList();
     private MEDICATIONDISPENSE_STATUS status;
-    private Optional<Reference> subject = Optional.empty();
-    private Optional<Reference> context = Optional.empty();
+    private Collection<Reference> basedOn = Collections.emptyList();
+    private Reference subject;
     private Optional<LANGUAGES> language = Optional.empty();
-    private Optional<CodeableConcept> category = Optional.empty();
+    private Collection<CodeableConcept> category = Collections.emptyList();
     private Optional<Reference> location = Optional.empty();
     private Optional<Quantity> quantity = Optional.empty();
     private Collection<Reference> receiver = Collections.emptyList();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
+    private Optional<Reference> encounter = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
+    private CodeableReference medication;
     private Optional<Quantity> daysSupply = Optional.empty();
     private Optional<Reference> destination = Optional.empty();
+    private Optional<CodeableReference> statusReason = Optional.empty();
     private Optional<FHIRDateTime> whenPrepared = Optional.empty();
     private Collection<Reference> eventHistory = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private ChoiceCodeableConceptOrReference medication;
     private Collection<Reference> detectedIssue = Collections.emptyList();
     private Optional<FHIRDateTime> whenHandedOver = Optional.empty();
-    private Optional<ChoiceCodeableConceptOrReference> statusReason = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Dosage> dosageInstruction = Collections.emptyList();
     private Collection<Reference> supportingInformation = Collections.emptyList();
     private Collection<Reference> authorizingPrescription = Collections.emptyList();
+    private Optional<String> renderedDosageInstruction = Optional.empty();
     private Collection<MedicationDispense.Performer> performer = Collections.emptyList();
     private Optional<MedicationDispense.Substitution> substitution = Optional.empty();
 
@@ -110,15 +98,15 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
      * Required fields for {@link MedicationDispense}
      *
      * @param status - A code specifying the state of the set of dispense events.
+     * @param subject - A link to a resource representing the person or the group to whom the
+     *     medication will be given.
      * @param medication - Identifies the medication being administered. This is either a link to a
      *     resource representing the details of the medication or a simple attribute carrying a code
-     *     that identifies the medication from a known list of medications. Field is a 'choice'
-     *     field. Type should be one of CodeableConcept, Reference. To pass the value in, wrap with
-     *     one of the MedicationDispenseBuilder.medication static methods
+     *     that identifies the medication from a known list of medications.
      */
-    public Impl(
-        MEDICATIONDISPENSE_STATUS status, @NonNull ChoiceCodeableConceptOrReference medication) {
+    public Impl(MEDICATIONDISPENSE_STATUS status, Reference subject, CodeableReference medication) {
       this.status = status;
+      this.subject = subject;
       this.medication = medication;
     }
 
@@ -194,12 +182,12 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param partOf - The procedure that trigger the dispense. */
+    /** @param partOf - The procedure or medication administration that triggered the dispense. */
     public MedicationDispenseBuilder.Impl withPartOf(@NonNull Reference... partOf) {
       this.partOf = Arrays.asList(partOf);
       return this;
     }
-    /** @param partOf - The procedure that trigger the dispense. */
+    /** @param partOf - The procedure or medication administration that triggered the dispense. */
     public MedicationDispenseBuilder.Impl withPartOf(@NonNull Collection<Reference> partOf) {
       this.partOf = Collections.unmodifiableCollection(partOf);
       return this;
@@ -209,30 +197,19 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       this.partOf = Arrays.stream(partOf).map(e -> e.build()).collect(toList());
       return this;
     }
-    /**
-     * @param subject - A link to a resource representing the person or the group to whom the
-     *     medication will be given.
-     */
-    public MedicationDispenseBuilder.Impl withSubject(@NonNull Reference subject) {
-      this.subject = Optional.of(subject);
+    /** @param basedOn - A plan that is fulfilled in whole or in part by this MedicationDispense. */
+    public MedicationDispenseBuilder.Impl withBasedOn(@NonNull Reference... basedOn) {
+      this.basedOn = Arrays.asList(basedOn);
+      return this;
+    }
+    /** @param basedOn - A plan that is fulfilled in whole or in part by this MedicationDispense. */
+    public MedicationDispenseBuilder.Impl withBasedOn(@NonNull Collection<Reference> basedOn) {
+      this.basedOn = Collections.unmodifiableCollection(basedOn);
       return this;
     }
 
-    public MedicationDispenseBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
-      this.subject = Optional.of(subject.build());
-      return this;
-    }
-    /**
-     * @param context - The encounter or episode of care that establishes the context for this
-     *     event.
-     */
-    public MedicationDispenseBuilder.Impl withContext(@NonNull Reference context) {
-      this.context = Optional.of(context);
-      return this;
-    }
-
-    public MedicationDispenseBuilder.Impl withContext(@NonNull ReferenceBuilder context) {
-      this.context = Optional.of(context.build());
+    public MedicationDispenseBuilder.Impl withBasedOn(@NonNull ReferenceBuilder... basedOn) {
+      this.basedOn = Arrays.stream(basedOn).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -241,16 +218,26 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param category - Indicates the type of medication dispense (for example, where the
-     *     medication is expected to be consumed or administered (i.e. inpatient or outpatient)).
+     * @param category - Indicates the type of medication dispense (for example, drug classification
+     *     like ATC, where meds would be administered, legal category of the medication.).
      */
-    public MedicationDispenseBuilder.Impl withCategory(@NonNull CodeableConcept category) {
-      this.category = Optional.of(category);
+    public MedicationDispenseBuilder.Impl withCategory(@NonNull CodeableConcept... category) {
+      this.category = Arrays.asList(category);
+      return this;
+    }
+    /**
+     * @param category - Indicates the type of medication dispense (for example, drug classification
+     *     like ATC, where meds would be administered, legal category of the medication.).
+     */
+    public MedicationDispenseBuilder.Impl withCategory(
+        @NonNull Collection<CodeableConcept> category) {
+      this.category = Collections.unmodifiableCollection(category);
       return this;
     }
 
-    public MedicationDispenseBuilder.Impl withCategory(@NonNull CodeableConceptBuilder category) {
-      this.category = Optional.of(category.build());
+    public MedicationDispenseBuilder.Impl withCategory(
+        @NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param location - The principal physical location where the dispense was performed. */
@@ -276,18 +263,18 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param receiver - Identifies the person who picked up the medication. This will usually be a
-     *     patient or their caregiver, but some cases exist where it can be a healthcare
-     *     professional.
+     * @param receiver - Identifies the person who picked up the medication or the location of where
+     *     the medication was delivered. This will usually be a patient or their caregiver, but some
+     *     cases exist where it can be a healthcare professional or a location.
      */
     public MedicationDispenseBuilder.Impl withReceiver(@NonNull Reference... receiver) {
       this.receiver = Arrays.asList(receiver);
       return this;
     }
     /**
-     * @param receiver - Identifies the person who picked up the medication. This will usually be a
-     *     patient or their caregiver, but some cases exist where it can be a healthcare
-     *     professional.
+     * @param receiver - Identifies the person who picked up the medication or the location of where
+     *     the medication was delivered. This will usually be a patient or their caregiver, but some
+     *     cases exist where it can be a healthcare professional or a location.
      */
     public MedicationDispenseBuilder.Impl withReceiver(@NonNull Collection<Reference> receiver) {
       this.receiver = Collections.unmodifiableCollection(receiver);
@@ -300,8 +287,8 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MedicationDispenseBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -309,8 +296,8 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MedicationDispenseBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -346,6 +333,16 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
 
     public MedicationDispenseBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param encounter - The encounter that establishes the context for this event. */
+    public MedicationDispenseBuilder.Impl withEncounter(@NonNull Reference encounter) {
+      this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
       return this;
     }
     /**
@@ -397,6 +394,18 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
 
     public MedicationDispenseBuilder.Impl withDestination(@NonNull ReferenceBuilder destination) {
       this.destination = Optional.of(destination.build());
+      return this;
+    }
+    /** @param statusReason - Indicates the reason why a dispense was not performed. */
+    public MedicationDispenseBuilder.Impl withStatusReason(
+        @NonNull CodeableReference statusReason) {
+      this.statusReason = Optional.of(statusReason);
+      return this;
+    }
+
+    public MedicationDispenseBuilder.Impl withStatusReason(
+        @NonNull CodeableReferenceBuilder statusReason) {
+      this.statusReason = Optional.of(statusReason.build());
       return this;
     }
     /** @param whenPrepared - The time when the dispensed product was packaged and reviewed. */
@@ -471,16 +480,6 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param statusReason - Indicates the reason why a dispense was not performed. Field is a
-     *     'choice' field. Type should be one of CodeableConcept, Reference. To pass the value in,
-     *     wrap with one of the MedicationDispenseBuilder.statusReason static methods
-     */
-    public MedicationDispenseBuilder.Impl withStatusReason(
-        @NonNull ChoiceCodeableConceptOrReference statusReason) {
-      this.statusReason = Optional.of(statusReason);
-      return this;
-    }
-    /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
      *     element that contains it and/or the understanding of the containing element's
@@ -544,7 +543,9 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
     }
     /**
      * @param supportingInformation - Additional information that supports the medication being
-     *     dispensed.
+     *     dispensed. For example, there may be requirements that a specific lab test has been
+     *     completed prior to dispensing or the patient's weight at the time of dispensing is
+     *     documented.
      */
     public MedicationDispenseBuilder.Impl withSupportingInformation(
         @NonNull Reference... supportingInformation) {
@@ -553,7 +554,9 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
     }
     /**
      * @param supportingInformation - Additional information that supports the medication being
-     *     dispensed.
+     *     dispensed. For example, there may be requirements that a specific lab test has been
+     *     completed prior to dispensing or the patient's weight at the time of dispensing is
+     *     documented.
      */
     public MedicationDispenseBuilder.Impl withSupportingInformation(
         @NonNull Collection<Reference> supportingInformation) {
@@ -590,6 +593,16 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
         @NonNull ReferenceBuilder... authorizingPrescription) {
       this.authorizingPrescription =
           Arrays.stream(authorizingPrescription).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param renderedDosageInstruction - The full representation of the dose of the medication
+     *     included in all dosage instructions. To be used when multiple dosage instructions are
+     *     included to represent complex dosing such as increasing or tapering doses.
+     */
+    public MedicationDispenseBuilder.Impl withRenderedDosageInstruction(
+        @NonNull String renderedDosageInstruction) {
+      this.renderedDosageInstruction = Optional.of(renderedDosageInstruction);
       return this;
     }
     /** @param performer - Indicates who or what performed the event. */
@@ -642,29 +655,31 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
           note.stream().collect(new LitSeqJCollector<>()),
           partOf.stream().collect(new LitSeqJCollector<>()),
           status,
-          OptionConverters.toScala(subject),
-          OptionConverters.toScala(context),
+          basedOn.stream().collect(new LitSeqJCollector<>()),
+          subject,
           OptionConverters.toScala(language),
-          OptionConverters.toScala(category),
+          category.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(location),
           OptionConverters.toScala(quantity),
           receiver.stream().collect(new LitSeqJCollector<>()),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(encounter),
           identifier.stream().collect(new LitSeqJCollector<>()),
+          medication,
           OptionConverters.toScala(daysSupply),
           OptionConverters.toScala(destination),
+          OptionConverters.toScala(statusReason),
           OptionConverters.toScala(whenPrepared),
           eventHistory.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
-          medication,
           detectedIssue.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(whenHandedOver),
-          (Option) OptionConverters.toScala(statusReason),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           dosageInstruction.stream().collect(new LitSeqJCollector<>()),
           supportingInformation.stream().collect(new LitSeqJCollector<>()),
           authorizingPrescription.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(renderedDosageInstruction),
           performer.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(substitution),
           LitUtils.emptyMetaElMap());

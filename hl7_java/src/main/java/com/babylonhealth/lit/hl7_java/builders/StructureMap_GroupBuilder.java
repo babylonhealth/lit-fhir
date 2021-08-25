@@ -45,36 +45,24 @@ import static java.util.stream.Collectors.toList;
 public interface StructureMap_GroupBuilder {
   public StructureMap.Group build();
 
-  public static Impl init(
-      String name,
-      MAP_GROUP_TYPE_MODE typeMode,
-      Collection<StructureMap$Group$Input> input,
-      Collection<StructureMap$Group$Rule> rule) {
-    return new Impl(name, typeMode, input, rule);
+  public static Impl init(String name, Collection<StructureMap$Group$Input> input) {
+    return new Impl(name, input);
   }
 
-  public static Impl builder(
-      String name,
-      MAP_GROUP_TYPE_MODE typeMode,
-      Collection<StructureMap_Group_InputBuilder> input,
-      Collection<StructureMap_Group_RuleBuilder> rule) {
-    return new Impl(
-        name,
-        typeMode,
-        new LitSeq<>(input).map(StructureMap_Group_InputBuilder::build),
-        new LitSeq<>(rule).map(StructureMap_Group_RuleBuilder::build));
+  public static Impl builder(String name, Collection<StructureMap_Group_InputBuilder> input) {
+    return new Impl(name, new LitSeq<>(input).map(StructureMap_Group_InputBuilder::build));
   }
 
   public class Impl implements StructureMap_GroupBuilder {
     private Optional<String> id = Optional.empty();
     private String name;
     private Optional<String> _extends = Optional.empty();
-    private MAP_GROUP_TYPE_MODE typeMode;
+    private Optional<MAP_GROUP_TYPE_MODE> typeMode = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> documentation = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<StructureMap$Group$Input> input;
-    private Collection<StructureMap$Group$Rule> rule;
+    private Collection<StructureMap$Group$Rule> rule = Collections.emptyList();
 
     /**
      * Required fields for {@link StructureMap.Group}
@@ -82,19 +70,11 @@ public interface StructureMap_GroupBuilder {
      * @param name - A natural language name identifying the structure map. This name should be
      *     usable as an identifier for the module by machine processing applications such as code
      *     generation.
-     * @param typeMode
      * @param input
-     * @param rule
      */
-    public Impl(
-        String name,
-        MAP_GROUP_TYPE_MODE typeMode,
-        Collection<StructureMap$Group$Input> input,
-        Collection<StructureMap$Group$Rule> rule) {
+    public Impl(String name, Collection<StructureMap$Group$Input> input) {
       this.name = name;
-      this.typeMode = typeMode;
       this.input = input;
-      this.rule = rule;
     }
 
     /**
@@ -108,6 +88,11 @@ public interface StructureMap_GroupBuilder {
     /** @param _extends */
     public StructureMap_GroupBuilder.Impl withExtends(@NonNull String _extends) {
       this._extends = Optional.of(_extends);
+      return this;
+    }
+    /** @param typeMode */
+    public StructureMap_GroupBuilder.Impl withTypeMode(@NonNull MAP_GROUP_TYPE_MODE typeMode) {
+      this.typeMode = Optional.of(typeMode);
       return this;
     }
     /**
@@ -185,18 +170,35 @@ public interface StructureMap_GroupBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param rule */
+    public StructureMap_GroupBuilder.Impl withRule(@NonNull StructureMap$Group$Rule... rule) {
+      this.rule = Arrays.asList(rule);
+      return this;
+    }
+    /** @param rule */
+    public StructureMap_GroupBuilder.Impl withRule(
+        @NonNull Collection<StructureMap$Group$Rule> rule) {
+      this.rule = Collections.unmodifiableCollection(rule);
+      return this;
+    }
+
+    public StructureMap_GroupBuilder.Impl withRule(
+        @NonNull StructureMap_Group_RuleBuilder... rule) {
+      this.rule = Arrays.stream(rule).map(e -> e.build()).collect(toList());
+      return this;
+    }
 
     public StructureMap.Group build() {
       return new StructureMap.Group(
           OptionConverters.toScala(id),
           name,
           OptionConverters.toScala(_extends),
-          typeMode,
+          OptionConverters.toScala(typeMode),
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(documentation),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           input.stream().collect(new NonEmptyLitSeqJCollector<>()),
-          rule.stream().collect(new NonEmptyLitSeqJCollector<>()),
+          rule.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }
   }

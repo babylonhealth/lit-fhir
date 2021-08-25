@@ -43,7 +43,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface TestScriptBuilder extends DomainResourceBuilder {
+public interface TestScriptBuilder extends CanonicalResourceBuilder {
   public TestScript build();
 
   public static Impl init(String url, String name, PUBLICATION_STATUS status) {
@@ -79,6 +79,7 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
     private Collection<CodeableConcept> jurisdiction = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Collection<TestScript.Scope> scope = Collections.emptyList();
     private Collection<TestScript.Origin> origin = Collections.emptyList();
     private Collection<TestScript.Fixture> fixture = Collections.emptyList();
     private Collection<TestScript.Variable> variable = Collections.emptyList();
@@ -224,8 +225,8 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public TestScriptBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -233,8 +234,8 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public TestScriptBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -420,6 +421,29 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param scope - The scope indicates a conformance artifact that is tested by the test(s)
+     *     within this test case and the expectation of the test outcome(s) as well as the intended
+     *     test phase inclusion.
+     */
+    public TestScriptBuilder.Impl withScope(@NonNull TestScript.Scope... scope) {
+      this.scope = Arrays.asList(scope);
+      return this;
+    }
+    /**
+     * @param scope - The scope indicates a conformance artifact that is tested by the test(s)
+     *     within this test case and the expectation of the test outcome(s) as well as the intended
+     *     test phase inclusion.
+     */
+    public TestScriptBuilder.Impl withScope(@NonNull Collection<TestScript.Scope> scope) {
+      this.scope = Collections.unmodifiableCollection(scope);
+      return this;
+    }
+
+    public TestScriptBuilder.Impl withScope(@NonNull TestScript_ScopeBuilder... scope) {
+      this.scope = Arrays.stream(scope).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
      * @param origin - An abstract server used in operations within this test script in the origin
      *     element.
      */
@@ -588,6 +612,7 @@ public interface TestScriptBuilder extends DomainResourceBuilder {
           jurisdiction.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          scope.stream().collect(new LitSeqJCollector<>()),
           origin.stream().collect(new LitSeqJCollector<>()),
           fixture.stream().collect(new LitSeqJCollector<>()),
           variable.stream().collect(new LitSeqJCollector<>()),

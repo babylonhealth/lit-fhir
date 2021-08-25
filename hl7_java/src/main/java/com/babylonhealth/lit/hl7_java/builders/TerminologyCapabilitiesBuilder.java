@@ -45,7 +45,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
+public interface TerminologyCapabilitiesBuilder extends CanonicalResourceBuilder {
   public TerminologyCapabilities build();
 
   public static Impl init(
@@ -76,6 +76,7 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> publisher = Optional.empty();
     private Optional<String> copyright = Optional.empty();
+    private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<Boolean> lockedDate = Optional.empty();
     private Optional<CODE_SEARCH_SUPPORT> codeSearch = Optional.empty();
@@ -227,8 +228,8 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public TerminologyCapabilitiesBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -236,8 +237,8 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public TerminologyCapabilitiesBuilder.Impl withContained(
         @NonNull Collection<Resource> contained) {
@@ -294,6 +295,31 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
      */
     public TerminologyCapabilitiesBuilder.Impl withCopyright(@NonNull String copyright) {
       this.copyright = Optional.of(copyright);
+      return this;
+    }
+    /**
+     * @param identifier - A formal identifier that is used to identify this terminology
+     *     capabilities when it is represented in other formats, or referenced in a specification,
+     *     model, design or an instance.
+     */
+    public TerminologyCapabilitiesBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
+      this.identifier = Arrays.asList(identifier);
+      return this;
+    }
+    /**
+     * @param identifier - A formal identifier that is used to identify this terminology
+     *     capabilities when it is represented in other formats, or referenced in a specification,
+     *     model, design or an instance.
+     */
+    public TerminologyCapabilitiesBuilder.Impl withIdentifier(
+        @NonNull Collection<Identifier> identifier) {
+      this.identifier = Collections.unmodifiableCollection(identifier);
+      return this;
+    }
+
+    public TerminologyCapabilitiesBuilder.Impl withIdentifier(
+        @NonNull IdentifierBuilder... identifier) {
+      this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -573,6 +599,7 @@ public interface TerminologyCapabilitiesBuilder extends DomainResourceBuilder {
           extension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(publisher),
           OptionConverters.toScala(copyright),
+          identifier.stream().collect(new LitSeqJCollector<>()),
           useContext.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(lockedDate.map(x -> (Object) x)),
           OptionConverters.toScala(codeSearch),

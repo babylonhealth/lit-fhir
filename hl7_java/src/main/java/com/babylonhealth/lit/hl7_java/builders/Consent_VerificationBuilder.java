@@ -57,8 +57,10 @@ public interface Consent_VerificationBuilder {
     private Optional<String> id = Optional.empty();
     private Boolean verified;
     private Collection<Extension> extension = Collections.emptyList();
+    private Optional<Reference> verifiedBy = Optional.empty();
     private Optional<Reference> verifiedWith = Optional.empty();
-    private Optional<FHIRDateTime> verificationDate = Optional.empty();
+    private Optional<CodeableConcept> verificationType = Optional.empty();
+    private Collection<FHIRDateTime> verificationDate = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -106,6 +108,16 @@ public interface Consent_VerificationBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param verifiedBy */
+    public Consent_VerificationBuilder.Impl withVerifiedBy(@NonNull Reference verifiedBy) {
+      this.verifiedBy = Optional.of(verifiedBy);
+      return this;
+    }
+
+    public Consent_VerificationBuilder.Impl withVerifiedBy(@NonNull ReferenceBuilder verifiedBy) {
+      this.verifiedBy = Optional.of(verifiedBy.build());
+      return this;
+    }
     /** @param verifiedWith */
     public Consent_VerificationBuilder.Impl withVerifiedWith(@NonNull Reference verifiedWith) {
       this.verifiedWith = Optional.of(verifiedWith);
@@ -117,10 +129,28 @@ public interface Consent_VerificationBuilder {
       this.verifiedWith = Optional.of(verifiedWith.build());
       return this;
     }
+    /** @param verificationType */
+    public Consent_VerificationBuilder.Impl withVerificationType(
+        @NonNull CodeableConcept verificationType) {
+      this.verificationType = Optional.of(verificationType);
+      return this;
+    }
+
+    public Consent_VerificationBuilder.Impl withVerificationType(
+        @NonNull CodeableConceptBuilder verificationType) {
+      this.verificationType = Optional.of(verificationType.build());
+      return this;
+    }
     /** @param verificationDate */
     public Consent_VerificationBuilder.Impl withVerificationDate(
-        @NonNull FHIRDateTime verificationDate) {
-      this.verificationDate = Optional.of(verificationDate);
+        @NonNull FHIRDateTime... verificationDate) {
+      this.verificationDate = Arrays.asList(verificationDate);
+      return this;
+    }
+    /** @param verificationDate */
+    public Consent_VerificationBuilder.Impl withVerificationDate(
+        @NonNull Collection<FHIRDateTime> verificationDate) {
+      this.verificationDate = Collections.unmodifiableCollection(verificationDate);
       return this;
     }
     /**
@@ -172,8 +202,10 @@ public interface Consent_VerificationBuilder {
           OptionConverters.toScala(id),
           verified,
           extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(verifiedBy),
           OptionConverters.toScala(verifiedWith),
-          OptionConverters.toScala(verificationDate),
+          OptionConverters.toScala(verificationType),
+          verificationDate.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

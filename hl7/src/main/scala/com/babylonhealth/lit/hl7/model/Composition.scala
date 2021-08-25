@@ -19,8 +19,8 @@ import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
 import com.babylonhealth.lit.hl7.{
+  V3_CONFIDENTIALITY,
   COMPOSITION_STATUS,
-  V3_CONFIDENTIALITYCLASSIFICATION,
   COMPOSITION_ATTESTATION_MODE,
   DOCUMENT_RELATIONSHIP_TYPE,
   LIST_MODE
@@ -409,7 +409,7 @@ object Composition extends CompanionFor[Composition] {
       custodian: Option[Reference] = None,
       identifier: Option[Identifier] = None,
       implicitRules: Option[UriStr] = None,
-      confidentiality: Option[V3_CONFIDENTIALITYCLASSIFICATION] = None,
+      confidentiality: Option[V3_CONFIDENTIALITY] = None,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       event: LitSeq[Composition.Event] = LitSeq.empty,
       section: LitSeq[Composition.Section] = LitSeq.empty,
@@ -476,12 +476,8 @@ object Composition extends CompanionFor[Composition] {
     FHIRComponentFieldMeta("identifier", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
-  val confidentiality: FHIRComponentFieldMeta[Option[V3_CONFIDENTIALITYCLASSIFICATION]] =
-    FHIRComponentFieldMeta(
-      "confidentiality",
-      lTagOf[Option[V3_CONFIDENTIALITYCLASSIFICATION]],
-      false,
-      lTagOf[V3_CONFIDENTIALITYCLASSIFICATION])
+  val confidentiality: FHIRComponentFieldMeta[Option[V3_CONFIDENTIALITY]] =
+    FHIRComponentFieldMeta("confidentiality", lTagOf[Option[V3_CONFIDENTIALITY]], false, lTagOf[V3_CONFIDENTIALITY])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val event: FHIRComponentFieldMeta[LitSeq[Composition.Event]] =
@@ -536,37 +532,37 @@ object Composition extends CompanionFor[Composition] {
     FHIRComponentField[Option[Reference]](custodian, t.custodian),
     FHIRComponentField[Option[Identifier]](identifier, t.identifier),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
-    FHIRComponentField[Option[V3_CONFIDENTIALITYCLASSIFICATION]](confidentiality, t.confidentiality),
+    FHIRComponentField[Option[V3_CONFIDENTIALITY]](confidentiality, t.confidentiality),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[LitSeq[Composition.Event]](event, t.event),
     FHIRComponentField[LitSeq[Composition.Section]](section, t.section),
     FHIRComponentField[LitSeq[Composition.Attester]](attester, t.attester),
     FHIRComponentField[LitSeq[Composition.RelatesTo]](relatesTo, t.relatesTo)
   )
-  def extractId(t: Composition): Option[String]                                        = t.id
-  def extractMeta(t: Composition): Option[Meta]                                        = t.meta
-  def extractText(t: Composition): Option[Narrative]                                   = t.text
-  def extractType(t: Composition): CodeableConcept                                     = t.`type`
-  def extractDate(t: Composition): FHIRDateTime                                        = t.date
-  def extractTitle(t: Composition): String                                             = t.title
-  def extractStatus(t: Composition): COMPOSITION_STATUS                                = t.status
-  def extractAuthor(t: Composition): NonEmptyLitSeq[Reference]                         = t.author
-  def extractSubject(t: Composition): Option[Reference]                                = t.subject
-  def extractLanguage(t: Composition): Option[LANGUAGES]                               = t.language
-  def extractCategory(t: Composition): LitSeq[CodeableConcept]                         = t.category
-  def extractContained(t: Composition): LitSeq[Resource]                               = t.contained
-  def extractExtension(t: Composition): LitSeq[Extension]                              = t.extension
-  def extractEncounter(t: Composition): Option[Reference]                              = t.encounter
-  def extractCustodian(t: Composition): Option[Reference]                              = t.custodian
-  def extractIdentifier(t: Composition): Option[Identifier]                            = t.identifier
-  def extractImplicitRules(t: Composition): Option[UriStr]                             = t.implicitRules
-  def extractConfidentiality(t: Composition): Option[V3_CONFIDENTIALITYCLASSIFICATION] = t.confidentiality
-  def extractModifierExtension(t: Composition): LitSeq[Extension]                      = t.modifierExtension
-  def extractEvent(t: Composition): LitSeq[Composition.Event]                          = t.event
-  def extractSection(t: Composition): LitSeq[Composition.Section]                      = t.section
-  def extractAttester(t: Composition): LitSeq[Composition.Attester]                    = t.attester
-  def extractRelatesTo(t: Composition): LitSeq[Composition.RelatesTo]                  = t.relatesTo
-  override val thisName: String                                                        = "Composition"
+  def extractId(t: Composition): Option[String]                          = t.id
+  def extractMeta(t: Composition): Option[Meta]                          = t.meta
+  def extractText(t: Composition): Option[Narrative]                     = t.text
+  def extractType(t: Composition): CodeableConcept                       = t.`type`
+  def extractDate(t: Composition): FHIRDateTime                          = t.date
+  def extractTitle(t: Composition): String                               = t.title
+  def extractStatus(t: Composition): COMPOSITION_STATUS                  = t.status
+  def extractAuthor(t: Composition): NonEmptyLitSeq[Reference]           = t.author
+  def extractSubject(t: Composition): Option[Reference]                  = t.subject
+  def extractLanguage(t: Composition): Option[LANGUAGES]                 = t.language
+  def extractCategory(t: Composition): LitSeq[CodeableConcept]           = t.category
+  def extractContained(t: Composition): LitSeq[Resource]                 = t.contained
+  def extractExtension(t: Composition): LitSeq[Extension]                = t.extension
+  def extractEncounter(t: Composition): Option[Reference]                = t.encounter
+  def extractCustodian(t: Composition): Option[Reference]                = t.custodian
+  def extractIdentifier(t: Composition): Option[Identifier]              = t.identifier
+  def extractImplicitRules(t: Composition): Option[UriStr]               = t.implicitRules
+  def extractConfidentiality(t: Composition): Option[V3_CONFIDENTIALITY] = t.confidentiality
+  def extractModifierExtension(t: Composition): LitSeq[Extension]        = t.modifierExtension
+  def extractEvent(t: Composition): LitSeq[Composition.Event]            = t.event
+  def extractSection(t: Composition): LitSeq[Composition.Section]        = t.section
+  def extractAttester(t: Composition): LitSeq[Composition.Attester]      = t.attester
+  def extractRelatesTo(t: Composition): LitSeq[Composition.RelatesTo]    = t.relatesTo
+  override val thisName: String                                          = "Composition"
   override val searchParams: Map[String, Composition => Seq[Any]] = Map(
     "author"          -> (obj => obj.author.toSeq),
     "identifier"      -> (obj => obj.identifier.toSeq),
@@ -608,7 +604,7 @@ object Composition extends CompanionFor[Composition] {
           cursor.decodeAs[Option[Reference]]("custodian", Some(None)),
           cursor.decodeAs[Option[Identifier]]("identifier", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeAs[Option[V3_CONFIDENTIALITYCLASSIFICATION]]("confidentiality", Some(None)),
+          cursor.decodeAs[Option[V3_CONFIDENTIALITY]]("confidentiality", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Composition.Event]]("event", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Composition.Section]]("section", Some(LitSeq.empty)),
@@ -663,7 +659,7 @@ object Composition extends CompanionFor[Composition] {
   *   from the code specified in the Composition Type.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -719,7 +715,7 @@ class Composition(
     val custodian: Option[Reference] = None,
     val identifier: Option[Identifier] = None,
     override val implicitRules: Option[UriStr] = None,
-    val confidentiality: Option[V3_CONFIDENTIALITYCLASSIFICATION] = None,
+    val confidentiality: Option[V3_CONFIDENTIALITY] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val event: LitSeq[Composition.Event] = LitSeq.empty,
     val section: LitSeq[Composition.Section] = LitSeq.empty,

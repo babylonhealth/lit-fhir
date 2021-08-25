@@ -129,10 +129,11 @@ object MeasureReport extends CompanionFor[MeasureReport] {
           override type ResourceType = Component
           override type ParentType   = Component
           override val parentType: CompanionFor[ResourceType] = Component
+          type ValueChoice = Choice[Union_1690912481]
           def apply(
               id: Option[String] = None,
               code: CodeableConcept,
-              value: CodeableConcept,
+              value: Component.ValueChoice,
               extension: LitSeq[Extension] = LitSeq.empty,
               modifierExtension: LitSeq[Extension] = LitSeq.empty,
               primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
@@ -145,14 +146,14 @@ object MeasureReport extends CompanionFor[MeasureReport] {
             primitiveAttributes = primitiveAttributes
           )
           def unapply(
-              o: Component): Option[(Option[String], CodeableConcept, CodeableConcept, LitSeq[Extension], LitSeq[Extension])] =
+              o: Component): Option[(Option[String], CodeableConcept, Component.ValueChoice, LitSeq[Extension], LitSeq[Extension])] =
             Some((o.id, o.code, o.value, o.extension, o.modifierExtension))
           val id: FHIRComponentFieldMeta[Option[String]] =
             FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
           val code: FHIRComponentFieldMeta[CodeableConcept] =
             FHIRComponentFieldMeta("code", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
-          val value: FHIRComponentFieldMeta[CodeableConcept] =
-            FHIRComponentFieldMeta("value", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
+          val value: FHIRComponentFieldMeta[Component.ValueChoice] =
+            FHIRComponentFieldMeta("value", lTagOf[Component.ValueChoice], true, lTagOf[Union_1690912481])
           val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
             FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
           val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -162,7 +163,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
           override def fields(t: Component): Seq[FHIRComponentField[_]] = Seq(
             FHIRComponentField[Option[String]](id, t.id),
             FHIRComponentField[CodeableConcept](code, t.code),
-            FHIRComponentField[CodeableConcept](value, t.value),
+            FHIRComponentField[Component.ValueChoice](value, t.value),
             FHIRComponentField[LitSeq[Extension]](extension, t.extension),
             FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
           )
@@ -174,7 +175,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
                 new Component(
                   cursor.decodeAs[Option[String]]("id", Some(None)),
                   cursor.decodeAs[CodeableConcept]("code", None),
-                  cursor.decodeAs[CodeableConcept]("value", None),
+                  cursor.decodeRef[Union_1690912481]("value"),
                   cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
                   cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
                   decodeAttributes(cursor)
@@ -185,7 +186,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
         class Component(
             override val id: Option[String] = None,
             val code: CodeableConcept,
-            val value: CodeableConcept,
+            val value: Component.ValueChoice,
             override val extension: LitSeq[Extension] = LitSeq.empty,
             override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
             override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
@@ -264,11 +265,13 @@ object MeasureReport extends CompanionFor[MeasureReport] {
             override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
             override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
             extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
+        type ValueChoice        = Choice[Union_1690912481]
+        type MeasureScoreChoice = Choice[Union02123692961]
         def apply(
             id: Option[String] = None,
-            value: Option[CodeableConcept] = None,
+            value: Option[Stratum.ValueChoice] = None,
             extension: LitSeq[Extension] = LitSeq.empty,
-            measureScore: Option[Quantity] = None,
+            measureScore: Option[Stratum.MeasureScoreChoice] = None,
             modifierExtension: LitSeq[Extension] = LitSeq.empty,
             component: LitSeq[Stratum.Component] = LitSeq.empty,
             population: LitSeq[Stratum.Population] = LitSeq.empty,
@@ -284,16 +287,16 @@ object MeasureReport extends CompanionFor[MeasureReport] {
           primitiveAttributes = primitiveAttributes
         )
         def unapply(
-            o: Stratum): Option[(Option[String], Option[CodeableConcept], LitSeq[Extension], Option[Quantity], LitSeq[Extension], LitSeq[Stratum.Component], LitSeq[Stratum.Population])] =
+            o: Stratum): Option[(Option[String], Option[Stratum.ValueChoice], LitSeq[Extension], Option[Stratum.MeasureScoreChoice], LitSeq[Extension], LitSeq[Stratum.Component], LitSeq[Stratum.Population])] =
           Some((o.id, o.value, o.extension, o.measureScore, o.modifierExtension, o.component, o.population))
         val id: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-        val value: FHIRComponentFieldMeta[Option[CodeableConcept]] =
-          FHIRComponentFieldMeta("value", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+        val value: FHIRComponentFieldMeta[Option[Stratum.ValueChoice]] =
+          FHIRComponentFieldMeta("value", lTagOf[Option[Stratum.ValueChoice]], true, lTagOf[Union_1690912481])
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-        val measureScore: FHIRComponentFieldMeta[Option[Quantity]] =
-          FHIRComponentFieldMeta("measureScore", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
+        val measureScore: FHIRComponentFieldMeta[Option[Stratum.MeasureScoreChoice]] =
+          FHIRComponentFieldMeta("measureScore", lTagOf[Option[Stratum.MeasureScoreChoice]], true, lTagOf[Union02123692961])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val component: FHIRComponentFieldMeta[LitSeq[Stratum.Component]] =
@@ -305,9 +308,9 @@ object MeasureReport extends CompanionFor[MeasureReport] {
         override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
         override def fields(t: Stratum): Seq[FHIRComponentField[_]] = Seq(
           FHIRComponentField[Option[String]](id, t.id),
-          FHIRComponentField[Option[CodeableConcept]](value, t.value),
+          FHIRComponentField[Option[Stratum.ValueChoice]](value, t.value),
           FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-          FHIRComponentField[Option[Quantity]](measureScore, t.measureScore),
+          FHIRComponentField[Option[Stratum.MeasureScoreChoice]](measureScore, t.measureScore),
           FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
           FHIRComponentField[LitSeq[Stratum.Component]](component, t.component),
           FHIRComponentField[LitSeq[Stratum.Population]](population, t.population)
@@ -319,9 +322,9 @@ object MeasureReport extends CompanionFor[MeasureReport] {
             Try(
               new Stratum(
                 cursor.decodeAs[Option[String]]("id", Some(None)),
-                cursor.decodeAs[Option[CodeableConcept]]("value", Some(None)),
+                cursor.decodeOptRef[Union_1690912481]("value"),
                 cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-                cursor.decodeAs[Option[Quantity]]("measureScore", Some(None)),
+                cursor.decodeOptRef[Union02123692961]("measureScore"),
                 cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
                 cursor.decodeAs[LitSeq[Stratum.Component]]("component", Some(LitSeq.empty)),
                 cursor.decodeAs[LitSeq[Stratum.Population]]("population", Some(LitSeq.empty)),
@@ -332,9 +335,9 @@ object MeasureReport extends CompanionFor[MeasureReport] {
       @POJOBoilerplate
       class Stratum(
           override val id: Option[String] = None,
-          val value: Option[CodeableConcept] = None,
+          val value: Option[Stratum.ValueChoice] = None,
           override val extension: LitSeq[Extension] = LitSeq.empty,
-          val measureScore: Option[Quantity] = None,
+          val measureScore: Option[Stratum.MeasureScoreChoice] = None,
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           val component: LitSeq[Stratum.Component] = LitSeq.empty,
           val population: LitSeq[Stratum.Population] = LitSeq.empty,
@@ -401,11 +404,12 @@ object MeasureReport extends CompanionFor[MeasureReport] {
         val stratum: LitSeq[Stratifier.Stratum] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
+    type MeasureScoreChoice = Choice[Union02123692961]
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
-        measureScore: Option[Quantity] = None,
+        measureScore: Option[Group.MeasureScoreChoice] = None,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         population: LitSeq[Group.Population] = LitSeq.empty,
         stratifier: LitSeq[Group.Stratifier] = LitSeq.empty,
@@ -421,7 +425,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Group): Option[(Option[String], Option[CodeableConcept], LitSeq[Extension], Option[Quantity], LitSeq[Extension], LitSeq[Group.Population], LitSeq[Group.Stratifier])] =
+        o: Group): Option[(Option[String], Option[CodeableConcept], LitSeq[Extension], Option[Group.MeasureScoreChoice], LitSeq[Extension], LitSeq[Group.Population], LitSeq[Group.Stratifier])] =
       Some((o.id, o.code, o.extension, o.measureScore, o.modifierExtension, o.population, o.stratifier))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
@@ -429,8 +433,8 @@ object MeasureReport extends CompanionFor[MeasureReport] {
       FHIRComponentFieldMeta("code", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-    val measureScore: FHIRComponentFieldMeta[Option[Quantity]] =
-      FHIRComponentFieldMeta("measureScore", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
+    val measureScore: FHIRComponentFieldMeta[Option[Group.MeasureScoreChoice]] =
+      FHIRComponentFieldMeta("measureScore", lTagOf[Option[Group.MeasureScoreChoice]], true, lTagOf[Union02123692961])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val population: FHIRComponentFieldMeta[LitSeq[Group.Population]] =
@@ -444,7 +448,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
       FHIRComponentField[Option[String]](id, t.id),
       FHIRComponentField[Option[CodeableConcept]](code, t.code),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-      FHIRComponentField[Option[Quantity]](measureScore, t.measureScore),
+      FHIRComponentField[Option[Group.MeasureScoreChoice]](measureScore, t.measureScore),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
       FHIRComponentField[LitSeq[Group.Population]](population, t.population),
       FHIRComponentField[LitSeq[Group.Stratifier]](stratifier, t.stratifier)
@@ -458,7 +462,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("code", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeAs[Option[Quantity]]("measureScore", Some(None)),
+            cursor.decodeOptRef[Union02123692961]("measureScore"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Group.Population]]("population", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Group.Stratifier]]("stratifier", Some(LitSeq.empty)),
@@ -471,7 +475,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
       override val id: Option[String] = None,
       val code: Option[CodeableConcept] = None,
       override val extension: LitSeq[Extension] = LitSeq.empty,
-      val measureScore: Option[Quantity] = None,
+      val measureScore: Option[Group.MeasureScoreChoice] = None,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       val population: LitSeq[Group.Population] = LitSeq.empty,
       val stratifier: LitSeq[Group.Stratifier] = LitSeq.empty,
@@ -487,12 +491,15 @@ object MeasureReport extends CompanionFor[MeasureReport] {
       period: Period,
       measure: Canonical,
       subject: Option[Reference] = None,
+      scoring: Option[CodeableConcept] = None,
       language: Option[LANGUAGES] = None,
       reporter: Option[Reference] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
       identifier: LitSeq[Identifier] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
+      dataUpdateType: Option[Code] = None,
+      reportingVendor: Option[Reference] = None,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       evaluatedResource: LitSeq[Reference] = LitSeq.empty,
       improvementNotation: Option[CodeableConcept] = None,
@@ -508,12 +515,15 @@ object MeasureReport extends CompanionFor[MeasureReport] {
     period,
     measure,
     subject,
+    scoring,
     language,
     reporter,
     contained,
     extension,
     identifier,
     implicitRules,
+    dataUpdateType,
+    reportingVendor,
     modifierExtension,
     evaluatedResource,
     improvementNotation,
@@ -538,6 +548,8 @@ object MeasureReport extends CompanionFor[MeasureReport] {
     FHIRComponentFieldMeta("measure", lTagOf[Canonical], false, lTagOf[Canonical])
   val subject: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("subject", lTagOf[Option[Reference]], false, lTagOf[Reference])
+  val scoring: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+    FHIRComponentFieldMeta("scoring", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val reporter: FHIRComponentFieldMeta[Option[Reference]] =
@@ -550,6 +562,10 @@ object MeasureReport extends CompanionFor[MeasureReport] {
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
+  val dataUpdateType: FHIRComponentFieldMeta[Option[Code]] =
+    FHIRComponentFieldMeta("dataUpdateType", lTagOf[Option[Code]], false, lTagOf[Code])
+  val reportingVendor: FHIRComponentFieldMeta[Option[Reference]] =
+    FHIRComponentFieldMeta("reportingVendor", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val evaluatedResource: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -568,12 +584,15 @@ object MeasureReport extends CompanionFor[MeasureReport] {
     period,
     measure,
     subject,
+    scoring,
     language,
     reporter,
     contained,
     extension,
     identifier,
     implicitRules,
+    dataUpdateType,
+    reportingVendor,
     modifierExtension,
     evaluatedResource,
     improvementNotation,
@@ -590,12 +609,15 @@ object MeasureReport extends CompanionFor[MeasureReport] {
     FHIRComponentField[Period](period, t.period),
     FHIRComponentField[Canonical](measure, t.measure),
     FHIRComponentField[Option[Reference]](subject, t.subject),
+    FHIRComponentField[Option[CodeableConcept]](scoring, t.scoring),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[Option[Reference]](reporter, t.reporter),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+    FHIRComponentField[Option[Code]](dataUpdateType, t.dataUpdateType),
+    FHIRComponentField[Option[Reference]](reportingVendor, t.reportingVendor),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[LitSeq[Reference]](evaluatedResource, t.evaluatedResource),
     FHIRComponentField[Option[CodeableConcept]](improvementNotation, t.improvementNotation),
@@ -610,12 +632,15 @@ object MeasureReport extends CompanionFor[MeasureReport] {
   def extractPeriod(t: MeasureReport): Period                               = t.period
   def extractMeasure(t: MeasureReport): Canonical                           = t.measure
   def extractSubject(t: MeasureReport): Option[Reference]                   = t.subject
+  def extractScoring(t: MeasureReport): Option[CodeableConcept]             = t.scoring
   def extractLanguage(t: MeasureReport): Option[LANGUAGES]                  = t.language
   def extractReporter(t: MeasureReport): Option[Reference]                  = t.reporter
   def extractContained(t: MeasureReport): LitSeq[Resource]                  = t.contained
   def extractExtension(t: MeasureReport): LitSeq[Extension]                 = t.extension
   def extractIdentifier(t: MeasureReport): LitSeq[Identifier]               = t.identifier
   def extractImplicitRules(t: MeasureReport): Option[UriStr]                = t.implicitRules
+  def extractDataUpdateType(t: MeasureReport): Option[Code]                 = t.dataUpdateType
+  def extractReportingVendor(t: MeasureReport): Option[Reference]           = t.reportingVendor
   def extractModifierExtension(t: MeasureReport): LitSeq[Extension]         = t.modifierExtension
   def extractEvaluatedResource(t: MeasureReport): LitSeq[Reference]         = t.evaluatedResource
   def extractImprovementNotation(t: MeasureReport): Option[CodeableConcept] = t.improvementNotation
@@ -633,7 +658,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
     "patient"            -> (obj => obj.subject.filter(_.reference.exists(_.contains("Patient/"))).toSeq)
   )
   def unapply(
-      o: MeasureReport): Option[(Option[String], Option[Meta], Option[Narrative], MEASURE_REPORT_TYPE, Option[FHIRDateTime], MEASURE_REPORT_STATUS, Period, Canonical, Option[Reference], Option[LANGUAGES], Option[Reference], LitSeq[Resource], LitSeq[Extension], LitSeq[Identifier], Option[UriStr], LitSeq[Extension], LitSeq[Reference], Option[CodeableConcept], LitSeq[MeasureReport.Group])] =
+      o: MeasureReport): Option[(Option[String], Option[Meta], Option[Narrative], MEASURE_REPORT_TYPE, Option[FHIRDateTime], MEASURE_REPORT_STATUS, Period, Canonical, Option[Reference], Option[CodeableConcept], Option[LANGUAGES], Option[Reference], LitSeq[Resource], LitSeq[Extension], LitSeq[Identifier], Option[UriStr], Option[Code], Option[Reference], LitSeq[Extension], LitSeq[Reference], Option[CodeableConcept], LitSeq[MeasureReport.Group])] =
     Some(
       (
         o.id,
@@ -645,12 +670,15 @@ object MeasureReport extends CompanionFor[MeasureReport] {
         o.period,
         o.measure,
         o.subject,
+        o.scoring,
         o.language,
         o.reporter,
         o.contained,
         o.extension,
         o.identifier,
         o.implicitRules,
+        o.dataUpdateType,
+        o.reportingVendor,
         o.modifierExtension,
         o.evaluatedResource,
         o.improvementNotation,
@@ -668,12 +696,15 @@ object MeasureReport extends CompanionFor[MeasureReport] {
           cursor.decodeAs[Period]("period", None),
           cursor.decodeAs[Canonical]("measure", None),
           cursor.decodeAs[Option[Reference]]("subject", Some(None)),
+          cursor.decodeAs[Option[CodeableConcept]]("scoring", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[Option[Reference]]("reporter", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
+          cursor.decodeAs[Option[Code]]("dataUpdateType", Some(None)),
+          cursor.decodeAs[Option[Reference]]("reportingVendor", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("evaluatedResource", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("improvementNotation", Some(None)),
@@ -689,8 +720,8 @@ object MeasureReport extends CompanionFor[MeasureReport] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields `type`, date, status, period, measure, subject, reporter, identifier, evaluatedResource,
-  *   improvementNotation, group.
+  *   Introduces the fields `type`, date, status, period, measure, subject, scoring, reporter, identifier, dataUpdateType,
+  *   reportingVendor, evaluatedResource, improvementNotation, group.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -716,13 +747,17 @@ object MeasureReport extends CompanionFor[MeasureReport] {
   *   - A reference to the Measure that was calculated to produce this report.
   * @param subject
   *   - Optional subject identifying the individual or individuals the report is for.
+  * @param scoring
+  *   - Indicates how the calculation is performed for the measure, including proportion, ratio, continuous-variable, and cohort.
+  *   The value set is extensible, allowing additional measure scoring types to be represented. It is expected to be the same as
+  *   the scoring element on the referenced Measure.
   * @param language
   *   - The base language in which the resource is written.
   * @param reporter
   *   - The individual, location, or organization that is reporting the data.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -735,6 +770,14 @@ object MeasureReport extends CompanionFor[MeasureReport] {
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
   *   other profiles etc.
+  * @param dataUpdateType
+  *   - Indicates whether the data submitted in an data-exchange report represents a snapshot or incremental update. A snapshot
+  *   update replaces all previously submitted data for the receiver, whereas an incremental update represents only updated and/or
+  *   changed data and should be applied as a differential update to the existing submitted data for the receiver.
+  * @param reportingVendor
+  *   - A reference to the vendor who queried the data, calculated results and/or generated the report. The ‘reporting vendor’ is
+  *   intended to represent the submitting entity when it is not the same as the reporting entity. This extension is used when the
+  *   Receiver is interested in getting vendor information in the report.
   * @param modifierExtension
   *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
   *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
@@ -761,12 +804,15 @@ class MeasureReport(
     val period: Period,
     val measure: Canonical,
     val subject: Option[Reference] = None,
+    val scoring: Option[CodeableConcept] = None,
     override val language: Option[LANGUAGES] = None,
     val reporter: Option[Reference] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
+    val dataUpdateType: Option[Code] = None,
+    val reportingVendor: Option[Reference] = None,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val evaluatedResource: LitSeq[Reference] = LitSeq.empty,
     val improvementNotation: Option[CodeableConcept] = None,

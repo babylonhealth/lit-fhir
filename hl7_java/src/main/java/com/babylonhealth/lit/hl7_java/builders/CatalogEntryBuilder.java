@@ -34,7 +34,6 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
-import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -58,30 +57,33 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
-    private Optional<CodeableConcept> _type = Optional.empty();
-    private Optional<PUBLICATION_STATUS> status = Optional.empty();
-    private Optional<FHIRDateTime> validTo = Optional.empty();
+    private Optional<String> name = Optional.empty();
+    private Optional<String> _type = Optional.empty();
+    private Collection<Annotation> note = Collections.emptyList();
+    private Optional<String> status = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Boolean orderable;
+    private Optional<Reference> updatedBy = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<FHIRDateTime> lastUpdated = Optional.empty();
+    private Collection<CodeableConcept> billingCode = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Reference referencedItem;
-    private Collection<CodeableConcept> classification = Collections.emptyList();
-    private Optional<Period> validityPeriod = Optional.empty();
+    private Optional<String> billingSummary = Optional.empty();
+    private Optional<Period> effectivePeriod = Optional.empty();
+    private Optional<String> scheduleSummary = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Collection<Identifier> additionalIdentifier = Collections.emptyList();
-    private Collection<CodeableConcept> additionalCharacteristic = Collections.emptyList();
-    private Collection<CodeableConcept> additionalClassification = Collections.emptyList();
+    private Optional<Duration> estimatedDuration = Optional.empty();
+    private Optional<String> limitationSummary = Optional.empty();
+    private Optional<String> regulatorySummary = Optional.empty();
     private Collection<CatalogEntry.RelatedEntry> relatedEntry = Collections.emptyList();
 
     /**
      * Required fields for {@link CatalogEntry}
      *
-     * @param orderable - Whether the entry represents an orderable item.
-     * @param referencedItem - The item in a catalog or definition.
+     * @param orderable - Indicates whether or not the entry represents an item that is orderable.
+     * @param referencedItem - The item (resource) that this entry of the catalog represents.
      */
     public Impl(Boolean orderable, Reference referencedItem) {
       this.orderable = orderable;
@@ -126,27 +128,40 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
       this.text = Optional.of(text.build());
       return this;
     }
-    /** @param _type - The type of item - medication, device, service, protocol or other. */
-    public CatalogEntryBuilder.Impl withType(@NonNull CodeableConcept _type) {
+    /**
+     * @param name - The name of this catalog entry announces the item that is represented by the
+     *     entry.
+     */
+    public CatalogEntryBuilder.Impl withName(@NonNull String name) {
+      this.name = Optional.of(name);
+      return this;
+    }
+    /** @param _type - The type of resource that is represented by this catalog entry. */
+    public CatalogEntryBuilder.Impl withType(@NonNull String _type) {
       this._type = Optional.of(_type);
       return this;
     }
+    /** @param note - Notes and comments about this catalog entry. */
+    public CatalogEntryBuilder.Impl withNote(@NonNull Annotation... note) {
+      this.note = Arrays.asList(note);
+      return this;
+    }
+    /** @param note - Notes and comments about this catalog entry. */
+    public CatalogEntryBuilder.Impl withNote(@NonNull Collection<Annotation> note) {
+      this.note = Collections.unmodifiableCollection(note);
+      return this;
+    }
 
-    public CatalogEntryBuilder.Impl withType(@NonNull CodeableConceptBuilder _type) {
-      this._type = Optional.of(_type.build());
+    public CatalogEntryBuilder.Impl withNote(@NonNull AnnotationBuilder... note) {
+      this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
-     * @param status - Used to support catalog exchange even for unsupported products, e.g. getting
-     *     list of medications even if not prescribable.
+     * @param status - Indicates whether this catalog entry is open to public usage (active) or not
+     *     (draft or retired).
      */
-    public CatalogEntryBuilder.Impl withStatus(@NonNull PUBLICATION_STATUS status) {
+    public CatalogEntryBuilder.Impl withStatus(@NonNull String status) {
       this.status = Optional.of(status);
-      return this;
-    }
-    /** @param validTo - The date until which this catalog entry is expected to be active. */
-    public CatalogEntryBuilder.Impl withValidTo(@NonNull FHIRDateTime validTo) {
-      this.validTo = Optional.of(validTo);
       return this;
     }
     /** @param language - The base language in which the resource is written. */
@@ -156,8 +171,8 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CatalogEntryBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -165,8 +180,8 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public CatalogEntryBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -204,18 +219,22 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /**
-     * @param identifier - Used in supporting different identifiers for the same product, e.g.
-     *     manufacturer code and retailer code.
-     */
+    /** @param updatedBy - Last actor who recorded (created or updated) this catalog entry. */
+    public CatalogEntryBuilder.Impl withUpdatedBy(@NonNull Reference updatedBy) {
+      this.updatedBy = Optional.of(updatedBy);
+      return this;
+    }
+
+    public CatalogEntryBuilder.Impl withUpdatedBy(@NonNull ReferenceBuilder updatedBy) {
+      this.updatedBy = Optional.of(updatedBy.build());
+      return this;
+    }
+    /** @param identifier - Business identifier uniquely assigned to the catalog entry. */
     public CatalogEntryBuilder.Impl withIdentifier(@NonNull Identifier... identifier) {
       this.identifier = Arrays.asList(identifier);
       return this;
     }
-    /**
-     * @param identifier - Used in supporting different identifiers for the same product, e.g.
-     *     manufacturer code and retailer code.
-     */
+    /** @param identifier - Business identifier uniquely assigned to the catalog entry. */
     public CatalogEntryBuilder.Impl withIdentifier(@NonNull Collection<Identifier> identifier) {
       this.identifier = Collections.unmodifiableCollection(identifier);
       return this;
@@ -226,11 +245,26 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
-     * @param lastUpdated - Typically date of issue is different from the beginning of the validity.
-     *     This can be used to see when an item was last updated.
+     * @param billingCode - Billing code associated to the item in the context of this entry of the
+     *     catalog.
      */
-    public CatalogEntryBuilder.Impl withLastUpdated(@NonNull FHIRDateTime lastUpdated) {
-      this.lastUpdated = Optional.of(lastUpdated);
+    public CatalogEntryBuilder.Impl withBillingCode(@NonNull CodeableConcept... billingCode) {
+      this.billingCode = Arrays.asList(billingCode);
+      return this;
+    }
+    /**
+     * @param billingCode - Billing code associated to the item in the context of this entry of the
+     *     catalog.
+     */
+    public CatalogEntryBuilder.Impl withBillingCode(
+        @NonNull Collection<CodeableConcept> billingCode) {
+      this.billingCode = Collections.unmodifiableCollection(billingCode);
+      return this;
+    }
+
+    public CatalogEntryBuilder.Impl withBillingCode(
+        @NonNull CodeableConceptBuilder... billingCode) {
+      this.billingCode = Arrays.stream(billingCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -243,33 +277,30 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
       this.implicitRules = Optional.of(implicitRules);
       return this;
     }
-    /** @param classification - Classes of devices, or ATC for medication. */
-    public CatalogEntryBuilder.Impl withClassification(@NonNull CodeableConcept... classification) {
-      this.classification = Arrays.asList(classification);
+    /**
+     * @param billingSummary - Billing summary attached to the item in the context of this entry of
+     *     the catalog.
+     */
+    public CatalogEntryBuilder.Impl withBillingSummary(@NonNull String billingSummary) {
+      this.billingSummary = Optional.of(billingSummary);
       return this;
     }
-    /** @param classification - Classes of devices, or ATC for medication. */
-    public CatalogEntryBuilder.Impl withClassification(
-        @NonNull Collection<CodeableConcept> classification) {
-      this.classification = Collections.unmodifiableCollection(classification);
+    /** @param effectivePeriod - Period of usability of the catalog entry. */
+    public CatalogEntryBuilder.Impl withEffectivePeriod(@NonNull Period effectivePeriod) {
+      this.effectivePeriod = Optional.of(effectivePeriod);
       return this;
     }
 
-    public CatalogEntryBuilder.Impl withClassification(
-        @NonNull CodeableConceptBuilder... classification) {
-      this.classification = Arrays.stream(classification).map(e -> e.build()).collect(toList());
+    public CatalogEntryBuilder.Impl withEffectivePeriod(@NonNull PeriodBuilder effectivePeriod) {
+      this.effectivePeriod = Optional.of(effectivePeriod.build());
       return this;
     }
     /**
-     * @param validityPeriod - The time period in which this catalog entry is expected to be active.
+     * @param scheduleSummary - Schedule summary for the item in the context of this entry of the
+     *     catalog.
      */
-    public CatalogEntryBuilder.Impl withValidityPeriod(@NonNull Period validityPeriod) {
-      this.validityPeriod = Optional.of(validityPeriod);
-      return this;
-    }
-
-    public CatalogEntryBuilder.Impl withValidityPeriod(@NonNull PeriodBuilder validityPeriod) {
-      this.validityPeriod = Optional.of(validityPeriod.build());
+    public CatalogEntryBuilder.Impl withScheduleSummary(@NonNull String scheduleSummary) {
+      this.scheduleSummary = Optional.of(scheduleSummary);
       return this;
     }
     /**
@@ -314,61 +345,34 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
           Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param additionalIdentifier - Used in supporting related concepts, e.g. NDC to RxNorm. */
-    public CatalogEntryBuilder.Impl withAdditionalIdentifier(
-        @NonNull Identifier... additionalIdentifier) {
-      this.additionalIdentifier = Arrays.asList(additionalIdentifier);
-      return this;
-    }
-    /** @param additionalIdentifier - Used in supporting related concepts, e.g. NDC to RxNorm. */
-    public CatalogEntryBuilder.Impl withAdditionalIdentifier(
-        @NonNull Collection<Identifier> additionalIdentifier) {
-      this.additionalIdentifier = Collections.unmodifiableCollection(additionalIdentifier);
+    /**
+     * @param estimatedDuration - Estimated duration of the orderable item of this entry of the
+     *     catalog.
+     */
+    public CatalogEntryBuilder.Impl withEstimatedDuration(@NonNull Duration estimatedDuration) {
+      this.estimatedDuration = Optional.of(estimatedDuration);
       return this;
     }
 
-    public CatalogEntryBuilder.Impl withAdditionalIdentifier(
-        @NonNull IdentifierBuilder... additionalIdentifier) {
-      this.additionalIdentifier =
-          Arrays.stream(additionalIdentifier).map(e -> e.build()).collect(toList());
+    public CatalogEntryBuilder.Impl withEstimatedDuration(
+        @NonNull DurationBuilder estimatedDuration) {
+      this.estimatedDuration = Optional.of(estimatedDuration.build());
       return this;
     }
-    /** @param additionalCharacteristic - Used for examplefor Out of Formulary, or any specifics. */
-    public CatalogEntryBuilder.Impl withAdditionalCharacteristic(
-        @NonNull CodeableConcept... additionalCharacteristic) {
-      this.additionalCharacteristic = Arrays.asList(additionalCharacteristic);
+    /**
+     * @param limitationSummary - Summary of limitations for the item in the context of this entry
+     *     of the catalog.
+     */
+    public CatalogEntryBuilder.Impl withLimitationSummary(@NonNull String limitationSummary) {
+      this.limitationSummary = Optional.of(limitationSummary);
       return this;
     }
-    /** @param additionalCharacteristic - Used for examplefor Out of Formulary, or any specifics. */
-    public CatalogEntryBuilder.Impl withAdditionalCharacteristic(
-        @NonNull Collection<CodeableConcept> additionalCharacteristic) {
-      this.additionalCharacteristic = Collections.unmodifiableCollection(additionalCharacteristic);
-      return this;
-    }
-
-    public CatalogEntryBuilder.Impl withAdditionalCharacteristic(
-        @NonNull CodeableConceptBuilder... additionalCharacteristic) {
-      this.additionalCharacteristic =
-          Arrays.stream(additionalCharacteristic).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /** @param additionalClassification - User for example for ATC classification, or. */
-    public CatalogEntryBuilder.Impl withAdditionalClassification(
-        @NonNull CodeableConcept... additionalClassification) {
-      this.additionalClassification = Arrays.asList(additionalClassification);
-      return this;
-    }
-    /** @param additionalClassification - User for example for ATC classification, or. */
-    public CatalogEntryBuilder.Impl withAdditionalClassification(
-        @NonNull Collection<CodeableConcept> additionalClassification) {
-      this.additionalClassification = Collections.unmodifiableCollection(additionalClassification);
-      return this;
-    }
-
-    public CatalogEntryBuilder.Impl withAdditionalClassification(
-        @NonNull CodeableConceptBuilder... additionalClassification) {
-      this.additionalClassification =
-          Arrays.stream(additionalClassification).map(e -> e.build()).collect(toList());
+    /**
+     * @param regulatorySummary - Regulatory summary for the item in the context of this entry of
+     *     the catalog.
+     */
+    public CatalogEntryBuilder.Impl withRegulatorySummary(@NonNull String regulatorySummary) {
+      this.regulatorySummary = Optional.of(regulatorySummary);
       return this;
     }
     /**
@@ -406,23 +410,26 @@ public interface CatalogEntryBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(id),
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
+          OptionConverters.toScala(name),
           OptionConverters.toScala(_type),
+          note.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(status),
-          OptionConverters.toScala(validTo),
           OptionConverters.toScala(language),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           orderable,
+          OptionConverters.toScala(updatedBy),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(lastUpdated),
+          billingCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
           referencedItem,
-          classification.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(validityPeriod),
+          OptionConverters.toScala(billingSummary),
+          OptionConverters.toScala(effectivePeriod),
+          OptionConverters.toScala(scheduleSummary),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
-          additionalIdentifier.stream().collect(new LitSeqJCollector<>()),
-          additionalCharacteristic.stream().collect(new LitSeqJCollector<>()),
-          additionalClassification.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(estimatedDuration),
+          OptionConverters.toScala(limitationSummary),
+          OptionConverters.toScala(regulatorySummary),
           relatedEntry.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

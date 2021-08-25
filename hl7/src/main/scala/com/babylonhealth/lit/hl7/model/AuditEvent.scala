@@ -18,7 +18,7 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
-import com.babylonhealth.lit.hl7.{ AUDIT_EVENT_ACTION, AUDIT_EVENT_OUTCOME, NETWORK_TYPE }
+import com.babylonhealth.lit.hl7.{ AUDIT_EVENT_ACTION, NETWORK_TYPE }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -113,7 +113,6 @@ object AuditEvent extends CompanionFor[AuditEvent] {
         query: Option[Base64Binary] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
         lifecycle: Option[Coding] = None,
-        description: Option[String] = None,
         securityLabel: LitSeq[Coding] = LitSeq.empty,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         detail: LitSeq[Entity.Detail] = LitSeq.empty,
@@ -127,14 +126,13 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       query,
       extension,
       lifecycle,
-      description,
       securityLabel,
       modifierExtension,
       detail,
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Entity): Option[(Option[String], Option[Reference], Option[Coding], Option[Coding], Option[String], Option[Base64Binary], LitSeq[Extension], Option[Coding], Option[String], LitSeq[Coding], LitSeq[Extension], LitSeq[Entity.Detail])] =
+        o: Entity): Option[(Option[String], Option[Reference], Option[Coding], Option[Coding], Option[String], Option[Base64Binary], LitSeq[Extension], Option[Coding], LitSeq[Coding], LitSeq[Extension], LitSeq[Entity.Detail])] =
       Some(
         (
           o.id,
@@ -145,7 +143,6 @@ object AuditEvent extends CompanionFor[AuditEvent] {
           o.query,
           o.extension,
           o.lifecycle,
-          o.description,
           o.securityLabel,
           o.modifierExtension,
           o.detail))
@@ -165,8 +162,6 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val lifecycle: FHIRComponentFieldMeta[Option[Coding]] =
       FHIRComponentFieldMeta("lifecycle", lTagOf[Option[Coding]], false, lTagOf[Coding])
-    val description: FHIRComponentFieldMeta[Option[String]] =
-      FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
     val securityLabel: FHIRComponentFieldMeta[LitSeq[Coding]] =
       FHIRComponentFieldMeta("securityLabel", lTagOf[LitSeq[Coding]], false, lTagOf[Coding])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -174,7 +169,7 @@ object AuditEvent extends CompanionFor[AuditEvent] {
     val detail: FHIRComponentFieldMeta[LitSeq[Entity.Detail]] =
       FHIRComponentFieldMeta("detail", lTagOf[LitSeq[Entity.Detail]], false, lTagOf[Entity.Detail])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
-      Seq(id, what, `type`, role, name, query, extension, lifecycle, description, securityLabel, modifierExtension, detail)
+      Seq(id, what, `type`, role, name, query, extension, lifecycle, securityLabel, modifierExtension, detail)
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
     override def fields(t: Entity): Seq[FHIRComponentField[_]] = Seq(
       FHIRComponentField[Option[String]](id, t.id),
@@ -185,7 +180,6 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       FHIRComponentField[Option[Base64Binary]](query, t.query),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
       FHIRComponentField[Option[Coding]](lifecycle, t.lifecycle),
-      FHIRComponentField[Option[String]](description, t.description),
       FHIRComponentField[LitSeq[Coding]](securityLabel, t.securityLabel),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
       FHIRComponentField[LitSeq[Entity.Detail]](detail, t.detail)
@@ -204,7 +198,6 @@ object AuditEvent extends CompanionFor[AuditEvent] {
             cursor.decodeAs[Option[Base64Binary]]("query", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[Coding]]("lifecycle", Some(None)),
-            cursor.decodeAs[Option[String]]("description", Some(None)),
             cursor.decodeAs[LitSeq[Coding]]("securityLabel", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Entity.Detail]]("detail", Some(LitSeq.empty)),
@@ -222,7 +215,6 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       val query: Option[Base64Binary] = None,
       override val extension: LitSeq[Extension] = LitSeq.empty,
       val lifecycle: Option[Coding] = None,
-      val description: Option[String] = None,
       val securityLabel: LitSeq[Coding] = LitSeq.empty,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       val detail: LitSeq[Entity.Detail] = LitSeq.empty,
@@ -536,12 +528,14 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       action: Option[AUDIT_EVENT_ACTION] = None,
       period: Option[Period] = None,
       subtype: LitSeq[Coding] = LitSeq.empty,
-      outcome: Option[AUDIT_EVENT_OUTCOME] = None,
+      outcome: Option[CodeableConcept] = None,
+      basedOn: LitSeq[Reference] = LitSeq.empty,
       language: Option[LANGUAGES] = None,
+      severity: Option[Code] = None,
       recorded: ZonedDateTime,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
-      outcomeDesc: Option[String] = None,
+      encounter: Option[Reference] = None,
       implicitRules: Option[UriStr] = None,
       purposeOfEvent: LitSeq[CodeableConcept] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
@@ -558,11 +552,13 @@ object AuditEvent extends CompanionFor[AuditEvent] {
     period,
     subtype,
     outcome,
+    basedOn,
     language,
+    severity,
     recorded,
     contained,
     extension,
-    outcomeDesc,
+    encounter,
     implicitRules,
     purposeOfEvent,
     modifierExtension,
@@ -585,18 +581,22 @@ object AuditEvent extends CompanionFor[AuditEvent] {
     FHIRComponentFieldMeta("period", lTagOf[Option[Period]], false, lTagOf[Period])
   val subtype: FHIRComponentFieldMeta[LitSeq[Coding]] =
     FHIRComponentFieldMeta("subtype", lTagOf[LitSeq[Coding]], false, lTagOf[Coding])
-  val outcome: FHIRComponentFieldMeta[Option[AUDIT_EVENT_OUTCOME]] =
-    FHIRComponentFieldMeta("outcome", lTagOf[Option[AUDIT_EVENT_OUTCOME]], false, lTagOf[AUDIT_EVENT_OUTCOME])
+  val outcome: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+    FHIRComponentFieldMeta("outcome", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val basedOn: FHIRComponentFieldMeta[LitSeq[Reference]] =
+    FHIRComponentFieldMeta("basedOn", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
+  val severity: FHIRComponentFieldMeta[Option[Code]] =
+    FHIRComponentFieldMeta("severity", lTagOf[Option[Code]], false, lTagOf[Code])
   val recorded: FHIRComponentFieldMeta[ZonedDateTime] =
     FHIRComponentFieldMeta("recorded", lTagOf[ZonedDateTime], false, lTagOf[ZonedDateTime])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val outcomeDesc: FHIRComponentFieldMeta[Option[String]] =
-    FHIRComponentFieldMeta("outcomeDesc", lTagOf[Option[String]], false, lTagOf[String])
+  val encounter: FHIRComponentFieldMeta[Option[Reference]] =
+    FHIRComponentFieldMeta("encounter", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val purposeOfEvent: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -618,11 +618,13 @@ object AuditEvent extends CompanionFor[AuditEvent] {
     period,
     subtype,
     outcome,
+    basedOn,
     language,
+    severity,
     recorded,
     contained,
     extension,
-    outcomeDesc,
+    encounter,
     implicitRules,
     purposeOfEvent,
     modifierExtension,
@@ -639,12 +641,14 @@ object AuditEvent extends CompanionFor[AuditEvent] {
     FHIRComponentField[Option[AUDIT_EVENT_ACTION]](action, t.action),
     FHIRComponentField[Option[Period]](period, t.period),
     FHIRComponentField[LitSeq[Coding]](subtype, t.subtype),
-    FHIRComponentField[Option[AUDIT_EVENT_OUTCOME]](outcome, t.outcome),
+    FHIRComponentField[Option[CodeableConcept]](outcome, t.outcome),
+    FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
+    FHIRComponentField[Option[Code]](severity, t.severity),
     FHIRComponentField[ZonedDateTime](recorded, t.recorded),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
-    FHIRComponentField[Option[String]](outcomeDesc, t.outcomeDesc),
+    FHIRComponentField[Option[Reference]](encounter, t.encounter),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[LitSeq[CodeableConcept]](purposeOfEvent, t.purposeOfEvent),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
@@ -659,12 +663,14 @@ object AuditEvent extends CompanionFor[AuditEvent] {
   def extractAction(t: AuditEvent): Option[AUDIT_EVENT_ACTION]      = t.action
   def extractPeriod(t: AuditEvent): Option[Period]                  = t.period
   def extractSubtype(t: AuditEvent): LitSeq[Coding]                 = t.subtype
-  def extractOutcome(t: AuditEvent): Option[AUDIT_EVENT_OUTCOME]    = t.outcome
+  def extractOutcome(t: AuditEvent): Option[CodeableConcept]        = t.outcome
+  def extractBasedOn(t: AuditEvent): LitSeq[Reference]              = t.basedOn
   def extractLanguage(t: AuditEvent): Option[LANGUAGES]             = t.language
+  def extractSeverity(t: AuditEvent): Option[Code]                  = t.severity
   def extractRecorded(t: AuditEvent): ZonedDateTime                 = t.recorded
   def extractContained(t: AuditEvent): LitSeq[Resource]             = t.contained
   def extractExtension(t: AuditEvent): LitSeq[Extension]            = t.extension
-  def extractOutcomeDesc(t: AuditEvent): Option[String]             = t.outcomeDesc
+  def extractEncounter(t: AuditEvent): Option[Reference]            = t.encounter
   def extractImplicitRules(t: AuditEvent): Option[UriStr]           = t.implicitRules
   def extractPurposeOfEvent(t: AuditEvent): LitSeq[CodeableConcept] = t.purposeOfEvent
   def extractModifierExtension(t: AuditEvent): LitSeq[Extension]    = t.modifierExtension
@@ -679,23 +685,28 @@ object AuditEvent extends CompanionFor[AuditEvent] {
     "site"        -> (obj => obj.source.site.toSeq),
     "outcome"     -> (obj => obj.outcome.toSeq),
     "agent"       -> (obj => obj.agent.flatMap(_.who).toSeq),
-    "altid"       -> (obj => obj.agent.flatMap(_.altId).toSeq),
     "entity-type" -> (obj => obj.entity.flatMap(_.`type`).toSeq),
     "date"        -> (obj => Seq(obj.recorded)),
     "entity"      -> (obj => obj.entity.flatMap(_.what).toSeq),
     "agent-role"  -> (obj => obj.agent.flatMap(_.role).toSeq),
+    "based-on"    -> (obj => obj.basedOn.toSeq),
     "patient" -> (obj =>
       obj.agent.flatMap(_.who).filter(_.reference.exists(_.contains("Patient/"))).toSeq ++
         obj.entity.flatMap(_.what).filter(_.reference.exists(_.contains("Patient/"))).toSeq),
+    "purpose" -> (obj =>
+      obj.purposeOfEvent.toSeq ++
+        obj.agent.flatMap(_.purposeOfUse).toSeq),
+    "altid"       -> (obj => obj.agent.flatMap(_.altId).toSeq),
     "address"     -> (obj => obj.agent.flatMap(_.network).flatMap(_.address).toSeq),
     "agent-name"  -> (obj => obj.agent.flatMap(_.name).toSeq),
     "entity-name" -> (obj => obj.entity.flatMap(_.name).toSeq),
     "type"        -> (obj => Seq(obj.`type`)),
+    "encounter"   -> (obj => obj.encounter.toSeq),
     "policy"      -> (obj => obj.agent.flatMap(_.policy).toSeq),
     "action"      -> (obj => obj.action.toSeq)
   )
   def unapply(
-      o: AuditEvent): Option[(Option[String], Option[Meta], Option[Narrative], Coding, Option[AUDIT_EVENT_ACTION], Option[Period], LitSeq[Coding], Option[AUDIT_EVENT_OUTCOME], Option[LANGUAGES], ZonedDateTime, LitSeq[Resource], LitSeq[Extension], Option[String], Option[UriStr], LitSeq[CodeableConcept], LitSeq[Extension], AuditEvent.Source, NonEmptyLitSeq[AuditEvent.Agent], LitSeq[AuditEvent.Entity])] =
+      o: AuditEvent): Option[(Option[String], Option[Meta], Option[Narrative], Coding, Option[AUDIT_EVENT_ACTION], Option[Period], LitSeq[Coding], Option[CodeableConcept], LitSeq[Reference], Option[LANGUAGES], Option[Code], ZonedDateTime, LitSeq[Resource], LitSeq[Extension], Option[Reference], Option[UriStr], LitSeq[CodeableConcept], LitSeq[Extension], AuditEvent.Source, NonEmptyLitSeq[AuditEvent.Agent], LitSeq[AuditEvent.Entity])] =
     Some(
       (
         o.id,
@@ -706,11 +717,13 @@ object AuditEvent extends CompanionFor[AuditEvent] {
         o.period,
         o.subtype,
         o.outcome,
+        o.basedOn,
         o.language,
+        o.severity,
         o.recorded,
         o.contained,
         o.extension,
-        o.outcomeDesc,
+        o.encounter,
         o.implicitRules,
         o.purposeOfEvent,
         o.modifierExtension,
@@ -728,12 +741,14 @@ object AuditEvent extends CompanionFor[AuditEvent] {
           cursor.decodeAs[Option[AUDIT_EVENT_ACTION]]("action", Some(None)),
           cursor.decodeAs[Option[Period]]("period", Some(None)),
           cursor.decodeAs[LitSeq[Coding]]("subtype", Some(LitSeq.empty)),
-          cursor.decodeAs[Option[AUDIT_EVENT_OUTCOME]]("outcome", Some(None)),
+          cursor.decodeAs[Option[CodeableConcept]]("outcome", Some(None)),
+          cursor.decodeAs[LitSeq[Reference]]("basedOn", Some(LitSeq.empty)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
+          cursor.decodeAs[Option[Code]]("severity", Some(None)),
           cursor.decodeAs[ZonedDateTime]("recorded", None),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          cursor.decodeAs[Option[String]]("outcomeDesc", Some(None)),
+          cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("purposeOfEvent", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -745,14 +760,13 @@ object AuditEvent extends CompanionFor[AuditEvent] {
       ))
 }
 
-/** A record of an event made for purposes of maintaining a security log. Typical uses include detection of intrusion attempts and
-  * monitoring for inappropriate usage.
+/** A record of an event relevant for purposes such as operations, privacy, security, maintenance, and performance analysis.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields `type`, action, period, subtype, outcome, recorded, outcomeDesc, purposeOfEvent, source, agent,
-  *   entity.
+  *   Introduces the fields `type`, action, period, subtype, outcome, basedOn, severity, recorded, encounter, purposeOfEvent,
+  *   source, agent, entity.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -773,21 +787,26 @@ object AuditEvent extends CompanionFor[AuditEvent] {
   * @param subtype
   *   - Identifier for the category of event.
   * @param outcome
-  *   - Indicates whether the event succeeded or failed.
+  *   - Indicates whether the event succeeded or failed. A free text descripiton can be given in outcome.text.
+  * @param basedOn
+  *   - Allows tracing of authorizatino for the events and tracking whether proposals/recommendations were acted upon.
   * @param language
   *   - The base language in which the resource is written.
+  * @param severity
+  *   - Indicates and enables segmentation of various severity including debugging from critical.
   * @param recorded
   *   - The time when the event was recorded.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
   *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
   *   of the extension.
-  * @param outcomeDesc
-  *   - A free text description of the outcome of the event.
+  * @param encounter
+  *   - This will typically be the encounter the event occurred, but some events may be initiated prior to or after the official
+  *   completion of an encounter but still be tied to the context of the encounter (e.g. pre-admission lab tests).
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
@@ -818,12 +837,14 @@ class AuditEvent(
     val action: Option[AUDIT_EVENT_ACTION] = None,
     val period: Option[Period] = None,
     val subtype: LitSeq[Coding] = LitSeq.empty,
-    val outcome: Option[AUDIT_EVENT_OUTCOME] = None,
+    val outcome: Option[CodeableConcept] = None,
+    val basedOn: LitSeq[Reference] = LitSeq.empty,
     override val language: Option[LANGUAGES] = None,
+    val severity: Option[Code] = None,
     val recorded: ZonedDateTime,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
-    val outcomeDesc: Option[String] = None,
+    val encounter: Option[Reference] = None,
     override val implicitRules: Option[UriStr] = None,
     val purposeOfEvent: LitSeq[CodeableConcept] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,

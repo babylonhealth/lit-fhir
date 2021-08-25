@@ -327,6 +327,7 @@ object DetectedIssue extends CompanionFor[DetectedIssue] {
   override val searchParams: Map[String, DetectedIssue => Seq[Any]] = Map(
     "identifier" -> (obj => obj.identifier.toSeq),
     "code"       -> (obj => obj.code.toSeq),
+    "status"     -> (obj => Seq(obj.status)),
     "identified" -> (obj => obj.identified.toSeq),
     "patient"    -> (obj => obj.patient.toSeq),
     "implicated" -> (obj => obj.implicated.toSeq),
@@ -420,7 +421,7 @@ object DetectedIssue extends CompanionFor[DetectedIssue] {
   *   - Indicates the degree of importance associated with the identified issue based on the potential impact on the patient.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.

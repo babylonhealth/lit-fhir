@@ -14,6 +14,7 @@ object SuffixUtils {
     case "FHIRDateTime"  => "DateTime"
     case "FHIRDate"      => "Date"
     case "LocalTime"     => "Time"
+    case "Long"          => "Integer64"
     case x               => x
   }
 

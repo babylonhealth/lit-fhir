@@ -128,22 +128,21 @@ object Appointment extends CompanionFor[Appointment] {
       slot: LitSeq[Reference] = LitSeq.empty,
       start: Option[ZonedDateTime] = None,
       status: APPOINTMENTSTATUS,
+      reason: LitSeq[CodeableReference] = LitSeq.empty,
       created: Option[FHIRDateTime] = None,
       comment: Option[String] = None,
       basedOn: LitSeq[Reference] = LitSeq.empty,
       language: Option[LANGUAGES] = None,
-      priority: Option[UnsignedInt] = None,
+      priority: Option[CodeableConcept] = None,
       contained: LitSeq[Resource] = LitSeq.empty,
       extension: LitSeq[Extension] = LitSeq.empty,
       specialty: LitSeq[CodeableConcept] = LitSeq.empty,
       identifier: LitSeq[Identifier] = LitSeq.empty,
-      reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
       serviceType: LitSeq[CodeableConcept] = LitSeq.empty,
       description: Option[String] = None,
       implicitRules: Option[UriStr] = None,
       serviceCategory: LitSeq[CodeableConcept] = LitSeq.empty,
       appointmentType: Option[CodeableConcept] = None,
-      reasonReference: LitSeq[Reference] = LitSeq.empty,
       minutesDuration: Option[PositiveInt] = None,
       requestedPeriod: LitSeq[Period] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
@@ -160,6 +159,7 @@ object Appointment extends CompanionFor[Appointment] {
     slot,
     start,
     status,
+    reason,
     created,
     comment,
     basedOn,
@@ -169,13 +169,11 @@ object Appointment extends CompanionFor[Appointment] {
     extension,
     specialty,
     identifier,
-    reasonCode,
     serviceType,
     description,
     implicitRules,
     serviceCategory,
     appointmentType,
-    reasonReference,
     minutesDuration,
     requestedPeriod,
     modifierExtension,
@@ -199,6 +197,8 @@ object Appointment extends CompanionFor[Appointment] {
     FHIRComponentFieldMeta("start", lTagOf[Option[ZonedDateTime]], false, lTagOf[ZonedDateTime])
   val status: FHIRComponentFieldMeta[APPOINTMENTSTATUS] =
     FHIRComponentFieldMeta("status", lTagOf[APPOINTMENTSTATUS], false, lTagOf[APPOINTMENTSTATUS])
+  val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val created: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("created", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val comment: FHIRComponentFieldMeta[Option[String]] =
@@ -207,8 +207,8 @@ object Appointment extends CompanionFor[Appointment] {
     FHIRComponentFieldMeta("basedOn", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
-  val priority: FHIRComponentFieldMeta[Option[UnsignedInt]] =
-    FHIRComponentFieldMeta("priority", lTagOf[Option[UnsignedInt]], false, lTagOf[UnsignedInt])
+  val priority: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+    FHIRComponentFieldMeta("priority", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -217,8 +217,6 @@ object Appointment extends CompanionFor[Appointment] {
     FHIRComponentFieldMeta("specialty", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
-  val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val serviceType: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("serviceType", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val description: FHIRComponentFieldMeta[Option[String]] =
@@ -229,8 +227,6 @@ object Appointment extends CompanionFor[Appointment] {
     FHIRComponentFieldMeta("serviceCategory", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val appointmentType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("appointmentType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
-  val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val minutesDuration: FHIRComponentFieldMeta[Option[PositiveInt]] =
     FHIRComponentFieldMeta("minutesDuration", lTagOf[Option[PositiveInt]], false, lTagOf[PositiveInt])
   val requestedPeriod: FHIRComponentFieldMeta[LitSeq[Period]] =
@@ -253,6 +249,7 @@ object Appointment extends CompanionFor[Appointment] {
     slot,
     start,
     status,
+    reason,
     created,
     comment,
     basedOn,
@@ -262,13 +259,11 @@ object Appointment extends CompanionFor[Appointment] {
     extension,
     specialty,
     identifier,
-    reasonCode,
     serviceType,
     description,
     implicitRules,
     serviceCategory,
     appointmentType,
-    reasonReference,
     minutesDuration,
     requestedPeriod,
     modifierExtension,
@@ -286,22 +281,21 @@ object Appointment extends CompanionFor[Appointment] {
     FHIRComponentField[LitSeq[Reference]](slot, t.slot),
     FHIRComponentField[Option[ZonedDateTime]](start, t.start),
     FHIRComponentField[APPOINTMENTSTATUS](status, t.status),
+    FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
     FHIRComponentField[Option[FHIRDateTime]](created, t.created),
     FHIRComponentField[Option[String]](comment, t.comment),
     FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
-    FHIRComponentField[Option[UnsignedInt]](priority, t.priority),
+    FHIRComponentField[Option[CodeableConcept]](priority, t.priority),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[LitSeq[CodeableConcept]](specialty, t.specialty),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
     FHIRComponentField[LitSeq[CodeableConcept]](serviceType, t.serviceType),
     FHIRComponentField[Option[String]](description, t.description),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[LitSeq[CodeableConcept]](serviceCategory, t.serviceCategory),
     FHIRComponentField[Option[CodeableConcept]](appointmentType, t.appointmentType),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
     FHIRComponentField[Option[PositiveInt]](minutesDuration, t.minutesDuration),
     FHIRComponentField[LitSeq[Period]](requestedPeriod, t.requestedPeriod),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
@@ -317,22 +311,21 @@ object Appointment extends CompanionFor[Appointment] {
   def extractSlot(t: Appointment): LitSeq[Reference]                              = t.slot
   def extractStart(t: Appointment): Option[ZonedDateTime]                         = t.start
   def extractStatus(t: Appointment): APPOINTMENTSTATUS                            = t.status
+  def extractReason(t: Appointment): LitSeq[CodeableReference]                    = t.reason
   def extractCreated(t: Appointment): Option[FHIRDateTime]                        = t.created
   def extractComment(t: Appointment): Option[String]                              = t.comment
   def extractBasedOn(t: Appointment): LitSeq[Reference]                           = t.basedOn
   def extractLanguage(t: Appointment): Option[LANGUAGES]                          = t.language
-  def extractPriority(t: Appointment): Option[UnsignedInt]                        = t.priority
+  def extractPriority(t: Appointment): Option[CodeableConcept]                    = t.priority
   def extractContained(t: Appointment): LitSeq[Resource]                          = t.contained
   def extractExtension(t: Appointment): LitSeq[Extension]                         = t.extension
   def extractSpecialty(t: Appointment): LitSeq[CodeableConcept]                   = t.specialty
   def extractIdentifier(t: Appointment): LitSeq[Identifier]                       = t.identifier
-  def extractReasonCode(t: Appointment): LitSeq[CodeableConcept]                  = t.reasonCode
   def extractServiceType(t: Appointment): LitSeq[CodeableConcept]                 = t.serviceType
   def extractDescription(t: Appointment): Option[String]                          = t.description
   def extractImplicitRules(t: Appointment): Option[UriStr]                        = t.implicitRules
   def extractServiceCategory(t: Appointment): LitSeq[CodeableConcept]             = t.serviceCategory
   def extractAppointmentType(t: Appointment): Option[CodeableConcept]             = t.appointmentType
-  def extractReasonReference(t: Appointment): LitSeq[Reference]                   = t.reasonReference
   def extractMinutesDuration(t: Appointment): Option[PositiveInt]                 = t.minutesDuration
   def extractRequestedPeriod(t: Appointment): LitSeq[Period]                      = t.requestedPeriod
   def extractModifierExtension(t: Appointment): LitSeq[Extension]                 = t.modifierExtension
@@ -353,12 +346,12 @@ object Appointment extends CompanionFor[Appointment] {
     "supporting-info"  -> (obj => obj.supportingInformation.toSeq),
     "slot"             -> (obj => obj.slot.toSeq),
     "based-on"         -> (obj => obj.basedOn.toSeq),
-    "reason-reference" -> (obj => obj.reasonReference.toSeq),
+    "reason-reference" -> (obj => obj.reason.flatMap(_.reference).toSeq),
     "patient"          -> (obj => obj.participant.flatMap(_.actor).filter(_.reference.exists(_.contains("Patient/"))).toSeq),
     "practitioner"     -> (obj => obj.participant.flatMap(_.actor).filter(_.reference.exists(_.contains("Practitioner/"))).toSeq),
     "actor"            -> (obj => obj.participant.flatMap(_.actor).toSeq),
     "service-type"     -> (obj => obj.serviceType.toSeq),
-    "reason-code"      -> (obj => obj.reasonCode.toSeq)
+    "reason-code"      -> (obj => obj.reason.flatMap(_.concept).toSeq)
   )
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Appointment] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
@@ -371,22 +364,21 @@ object Appointment extends CompanionFor[Appointment] {
           cursor.decodeAs[LitSeq[Reference]]("slot", Some(LitSeq.empty)),
           cursor.decodeAs[Option[ZonedDateTime]]("start", Some(None)),
           cursor.decodeAs[APPOINTMENTSTATUS]("status", None),
+          cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
           cursor.decodeAs[Option[FHIRDateTime]]("created", Some(None)),
           cursor.decodeAs[Option[String]]("comment", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("basedOn", Some(LitSeq.empty)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
-          cursor.decodeAs[Option[UnsignedInt]]("priority", Some(None)),
+          cursor.decodeAs[Option[CodeableConcept]]("priority", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("specialty", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("serviceType", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("description", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("serviceCategory", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("appointmentType", Some(None)),
-          cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[Option[PositiveInt]]("minutesDuration", Some(None)),
           cursor.decodeAs[LitSeq[Period]]("requestedPeriod", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -405,9 +397,9 @@ object Appointment extends CompanionFor[Appointment] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields end, slot, start, status, created, comment, basedOn, priority, specialty, identifier, reasonCode,
-  *   serviceType, description, serviceCategory, appointmentType, reasonReference, minutesDuration, requestedPeriod,
-  *   cancelationReason, patientInstruction, supportingInformation, participant.
+  *   Introduces the fields end, slot, start, status, reason, created, comment, basedOn, priority, specialty, identifier,
+  *   serviceType, description, serviceCategory, appointmentType, minutesDuration, requestedPeriod, cancelationReason,
+  *   patientInstruction, supportingInformation, participant.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param end
@@ -427,6 +419,11 @@ object Appointment extends CompanionFor[Appointment] {
   * @param status
   *   - The overall status of the Appointment. Each of the participants has their own participation status which indicates their
   *   involvement in the process, however this status indicates the shared status.
+  * @param reason
+  *   - The reason that this appointment is being scheduled. This is more clinical than administrative. This can be coded, or as
+  *   specified using information from another resource. When the patient arrives and the encounter begins it may be used as the
+  *   admission diagnosis. The indication will typically be a Condition (with other resources referenced in the evidence.detail),
+  *   or a Procedure.
   * @param created
   *   - The date that this appointment was initially created. This could be different to the meta.lastModified value on the
   *   initial entry, as this could have been before the resource was created on the FHIR server, and should remain unchanged over
@@ -442,7 +439,7 @@ object Appointment extends CompanionFor[Appointment] {
   *   iCal Standard specifies 0 as undefined, 1 as highest, 9 as lowest priority).
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -454,8 +451,6 @@ object Appointment extends CompanionFor[Appointment] {
   *   - This records identifiers associated with this appointment concern that are defined by business processes and/or used to
   *   refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written /
   *   printed documentation).
-  * @param reasonCode
-  *   - The coded reason that this appointment is being scheduled. This is more clinical than administrative.
   * @param serviceType
   *   - The specific service that is to be performed during this appointment.
   * @param description
@@ -469,10 +464,6 @@ object Appointment extends CompanionFor[Appointment] {
   *   - A broad categorization of the service that is to be performed during this appointment.
   * @param appointmentType
   *   - The style of appointment or patient that has been booked in the slot (not service type).
-  * @param reasonReference
-  *   - Reason the appointment has been scheduled to take place, as specified using information from another resource. When the
-  *   patient arrives and the encounter begins it may be used as the admission diagnosis. The indication will typically be a
-  *   Condition (with other resources referenced in the evidence.detail), or a Procedure.
   * @param minutesDuration
   *   - Number of minutes that the appointment is to take. This can be less than the duration between the start and end times. For
   *   example, where the actual time of appointment is only an estimate or if a 30 minute appointment is being requested, but any
@@ -510,22 +501,21 @@ class Appointment(
     val slot: LitSeq[Reference] = LitSeq.empty,
     val start: Option[ZonedDateTime] = None,
     val status: APPOINTMENTSTATUS,
+    val reason: LitSeq[CodeableReference] = LitSeq.empty,
     val created: Option[FHIRDateTime] = None,
     val comment: Option[String] = None,
     val basedOn: LitSeq[Reference] = LitSeq.empty,
     override val language: Option[LANGUAGES] = None,
-    val priority: Option[UnsignedInt] = None,
+    val priority: Option[CodeableConcept] = None,
     override val contained: LitSeq[Resource] = LitSeq.empty,
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val specialty: LitSeq[CodeableConcept] = LitSeq.empty,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
-    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     val serviceType: LitSeq[CodeableConcept] = LitSeq.empty,
     val description: Option[String] = None,
     override val implicitRules: Option[UriStr] = None,
     val serviceCategory: LitSeq[CodeableConcept] = LitSeq.empty,
     val appointmentType: Option[CodeableConcept] = None,
-    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     val minutesDuration: Option[PositiveInt] = None,
     val requestedPeriod: LitSeq[Period] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,

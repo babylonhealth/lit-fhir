@@ -44,7 +44,7 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public interface NamingSystemBuilder extends DomainResourceBuilder {
+public interface NamingSystemBuilder extends CanonicalResourceBuilder {
   public NamingSystem build();
 
   public static Impl init(
@@ -68,14 +68,17 @@ public interface NamingSystemBuilder extends DomainResourceBuilder {
 
   public class Impl implements NamingSystemBuilder {
     private Optional<String> id = Optional.empty();
+    private Optional<String> url = Optional.empty();
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
     private String name;
     private NAMINGSYSTEM_TYPE kind;
     private FHIRDateTime date;
     private Optional<CodeableConcept> _type = Optional.empty();
+    private Optional<String> title = Optional.empty();
     private Optional<String> usage = Optional.empty();
     private PUBLICATION_STATUS status;
+    private Optional<String> version = Optional.empty();
     private Collection<ContactDetail> contact = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
@@ -128,6 +131,18 @@ public interface NamingSystemBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param url - An absolute URI that is used to identify this naming system when it is
+     *     referenced in a specification, model, design or an instance; also called its canonical
+     *     identifier. This SHOULD be globally unique and SHOULD be a literal address at which at
+     *     which an authoritative instance of this naming system is (or will be) published. This URL
+     *     can be the target of a canonical reference. It SHALL remain the same when the naming
+     *     system is stored on different servers.
+     */
+    public NamingSystemBuilder.Impl withUrl(@NonNull String url) {
+      this.url = Optional.of(url);
+      return this;
+    }
+    /**
      * @param meta - The metadata about the resource. This is content that is maintained by the
      *     infrastructure. Changes to the content might not always be associated with version
      *     changes to the resource.
@@ -170,12 +185,28 @@ public interface NamingSystemBuilder extends DomainResourceBuilder {
       this._type = Optional.of(_type.build());
       return this;
     }
+    /** @param title - A short, descriptive, user-friendly title for the naming system. */
+    public NamingSystemBuilder.Impl withTitle(@NonNull String title) {
+      this.title = Optional.of(title);
+      return this;
+    }
     /**
      * @param usage - Provides guidance on the use of the namespace, including the handling of
      *     formatting characters, use of upper vs. lower case, etc.
      */
     public NamingSystemBuilder.Impl withUsage(@NonNull String usage) {
       this.usage = Optional.of(usage);
+      return this;
+    }
+    /**
+     * @param version - The identifier that is used to identify this version of the naming system
+     *     when it is referenced in a specification, model, design or instance. This is an arbitrary
+     *     value managed by the naming system author and is not expected to be globally unique. For
+     *     example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available.
+     *     There is also no expectation that versions can be placed in a lexicographical sequence.
+     */
+    public NamingSystemBuilder.Impl withVersion(@NonNull String version) {
+      this.version = Optional.of(version);
       return this;
     }
     /**
@@ -206,8 +237,8 @@ public interface NamingSystemBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public NamingSystemBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -215,8 +246,8 @@ public interface NamingSystemBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public NamingSystemBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -388,14 +419,17 @@ public interface NamingSystemBuilder extends DomainResourceBuilder {
     public NamingSystem build() {
       return new NamingSystem(
           OptionConverters.toScala(id),
+          OptionConverters.toScala(url),
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
           name,
           kind,
           date,
           OptionConverters.toScala(_type),
+          OptionConverters.toScala(title),
           OptionConverters.toScala(usage),
           status,
+          OptionConverters.toScala(version),
           contact.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
           contained.stream().collect(new LitSeqJCollector<>()),

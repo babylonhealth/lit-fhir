@@ -53,11 +53,35 @@ public interface MeasureReport_GroupBuilder {
     return new Impl();
   }
 
+  public static Choice02123692961 measureScore(CodeableConcept c) {
+    return new Choice02123692961(c);
+  }
+
+  public static Choice02123692961 measureScore(Duration d) {
+    return new Choice02123692961(d);
+  }
+
+  public static Choice02123692961 measureScore(FHIRDateTime f) {
+    return new Choice02123692961(f);
+  }
+
+  public static Choice02123692961 measureScore(Period p) {
+    return new Choice02123692961(p);
+  }
+
+  public static Choice02123692961 measureScore(Quantity q) {
+    return new Choice02123692961(q);
+  }
+
+  public static Choice02123692961 measureScore(Range r) {
+    return new Choice02123692961(r);
+  }
+
   public class Impl implements MeasureReport_GroupBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> code = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Quantity> measureScore = Optional.empty();
+    private Optional<Choice02123692961> measureScore = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<MeasureReport$Group$Population> population = Collections.emptyList();
     private Collection<MeasureReport$Group$Stratifier> stratifier = Collections.emptyList();
@@ -110,14 +134,14 @@ public interface MeasureReport_GroupBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param measureScore */
-    public MeasureReport_GroupBuilder.Impl withMeasureScore(@NonNull Quantity measureScore) {
+    /**
+     * @param measureScore Field is a 'choice' field. Type should be one of CodeableConcept,
+     *     Duration, FHIRDateTime, Period, Quantity, Range. To pass the value in, wrap with one of
+     *     the MeasureReport_GroupBuilder.measureScore static methods
+     */
+    public MeasureReport_GroupBuilder.Impl withMeasureScore(
+        @NonNull Choice02123692961 measureScore) {
       this.measureScore = Optional.of(measureScore);
-      return this;
-    }
-
-    public MeasureReport_GroupBuilder.Impl withMeasureScore(@NonNull QuantityBuilder measureScore) {
-      this.measureScore = Optional.of(measureScore.build());
       return this;
     }
     /**
@@ -205,7 +229,7 @@ public interface MeasureReport_GroupBuilder {
           OptionConverters.toScala(id),
           OptionConverters.toScala(code),
           extension.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(measureScore),
+          (Option) OptionConverters.toScala(measureScore),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           population.stream().collect(new LitSeqJCollector<>()),
           stratifier.stream().collect(new LitSeqJCollector<>()),

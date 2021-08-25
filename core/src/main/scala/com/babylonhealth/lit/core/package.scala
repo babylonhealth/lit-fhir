@@ -6,7 +6,6 @@ package object core {
   // Todo: automatic type conversion and value check for these subtypes
   type UnsignedInt <: Int
   type PositiveInt <: Int
-  type Integer64 = Long
 
   /** A canonical reference to a profile or part of a profile, can contain version information * */
   type Canonical <: String

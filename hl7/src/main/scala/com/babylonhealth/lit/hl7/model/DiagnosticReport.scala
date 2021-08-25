@@ -117,6 +117,7 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
       performer: LitSeq[Reference] = LitSeq.empty,
       identifier: LitSeq[Identifier] = LitSeq.empty,
       conclusion: Option[String] = None,
+      composition: Option[Reference] = None,
       effective: Option[DiagnosticReport.EffectiveChoice] = None,
       imagingStudy: LitSeq[Reference] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
@@ -145,6 +146,7 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
     performer,
     identifier,
     conclusion,
+    composition,
     effective,
     imagingStudy,
     implicitRules,
@@ -191,6 +193,8 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val conclusion: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("conclusion", lTagOf[Option[String]], false, lTagOf[String])
+  val composition: FHIRComponentFieldMeta[Option[Reference]] =
+    FHIRComponentFieldMeta("composition", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val effective: FHIRComponentFieldMeta[Option[DiagnosticReport.EffectiveChoice]] =
     FHIRComponentFieldMeta("effective", lTagOf[Option[DiagnosticReport.EffectiveChoice]], true, lTagOf[UnionDateTimeOrPeriod])
   val imagingStudy: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -226,6 +230,7 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
     performer,
     identifier,
     conclusion,
+    composition,
     effective,
     imagingStudy,
     implicitRules,
@@ -255,6 +260,7 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
     FHIRComponentField[LitSeq[Reference]](performer, t.performer),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
     FHIRComponentField[Option[String]](conclusion, t.conclusion),
+    FHIRComponentField[Option[Reference]](composition, t.composition),
     FHIRComponentField[Option[DiagnosticReport.EffectiveChoice]](effective, t.effective),
     FHIRComponentField[LitSeq[Reference]](imagingStudy, t.imagingStudy),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
@@ -282,6 +288,7 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
   def extractPerformer(t: DiagnosticReport): LitSeq[Reference]                        = t.performer
   def extractIdentifier(t: DiagnosticReport): LitSeq[Identifier]                      = t.identifier
   def extractConclusion(t: DiagnosticReport): Option[String]                          = t.conclusion
+  def extractComposition(t: DiagnosticReport): Option[Reference]                      = t.composition
   def extractEffective(t: DiagnosticReport): Option[DiagnosticReport.EffectiveChoice] = t.effective
   def extractImagingStudy(t: DiagnosticReport): LitSeq[Reference]                     = t.imagingStudy
   def extractImplicitRules(t: DiagnosticReport): Option[UriStr]                       = t.implicitRules
@@ -292,8 +299,6 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
   def extractMedia(t: DiagnosticReport): LitSeq[DiagnosticReport.Media]               = t.media
   override val thisName: String                                                       = "DiagnosticReport"
   override val searchParams: Map[String, DiagnosticReport => Seq[Any]] = Map(
-    "assessed-condition" -> (obj =>
-      obj.extension.filter(_.url == "http://hl7.org/fhir/StructureDefinition/DiagnosticReport-geneticsAssessedCondition").toSeq),
     "subject"             -> (obj => obj.subject.toSeq),
     "identifier"          -> (obj => obj.identifier.toSeq),
     "result"              -> (obj => obj.result.toSeq),
@@ -333,6 +338,7 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
           cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("conclusion", Some(None)),
+          cursor.decodeAs[Option[Reference]]("composition", Some(None)),
           cursor.decodeOptRef[UnionDateTimeOrPeriod]("effective"),
           cursor.decodeAs[LitSeq[Reference]]("imagingStudy", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
@@ -346,15 +352,17 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
       ))
 }
 
-/** The findings and interpretation of diagnostic tests performed on patients, groups of patients, devices, and locations, and/or
-  * specimens derived from these. The report includes clinical context such as requesting and provider information, and some mix
-  * of atomic results, images, textual and coded interpretations, and formatted representation of diagnostic reports.
+/** The findings and interpretation of diagnostic tests performed on patients, groups of patients, products, substances, devices,
+  * and locations, and/or specimens derived from these. The report includes clinical context such as requesting provider
+  * information, and some mix of atomic results, images, textual and coded interpretations, and formatted representation of
+  * diagnostic reports. The report also includes non-clinical context such as batch analysis and stability reporting of products
+  * and substances.
   *
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
   *   Introduces the fields code, status, issued, result, basedOn, subject, category, specimen, encounter, performer, identifier,
-  *   conclusion, effective, imagingStudy, presentedForm, conclusionCode, resultsInterpreter, media.
+  *   conclusion, composition, effective, imagingStudy, presentedForm, conclusionCode, resultsInterpreter, media.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -388,7 +396,7 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
   *   - Details about the specimens on which this diagnostic report is based.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -402,6 +410,8 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
   *   - Identifiers assigned to this report by the performer or other systems.
   * @param conclusion
   *   - Concise and clinically contextualized summary conclusion (interpretation/impression) of the diagnostic report.
+  * @param composition
+  *   - Reference to a Composition resource instance that provides structure for organizing the contents of the DiagnosticReport.
   * @param effective
   *   - The time or time-period the observed values are related to. When the subject of the report is a patient, this is usually
   *   either the time of the procedure or of specimen collection(s), but very often the source of the date/time is not known, only
@@ -453,6 +463,7 @@ class DiagnosticReport(
     val performer: LitSeq[Reference] = LitSeq.empty,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
     val conclusion: Option[String] = None,
+    val composition: Option[Reference] = None,
     val effective: Option[DiagnosticReport.EffectiveChoice] = None,
     val imagingStudy: LitSeq[Reference] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,

@@ -54,7 +54,7 @@ public interface AttachmentBuilder extends DataTypeBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> url = Optional.empty();
     private Optional<byte[]> data = Optional.empty();
-    private Optional<Integer64> size = Optional.empty();
+    private Optional<Long> size = Optional.empty();
     private Optional<byte[]> hash = Optional.empty();
     private Optional<String> title = Optional.empty();
     private Optional<Integer> width = Optional.empty();
@@ -92,7 +92,7 @@ public interface AttachmentBuilder extends DataTypeBuilder {
      * @param size - The number of bytes of data that make up this attachment (before base64
      *     encoding, if that is done).
      */
-    public AttachmentBuilder.Impl withSize(@NonNull Integer64 size) {
+    public AttachmentBuilder.Impl withSize(@NonNull Long size) {
       this.size = Optional.of(size);
       return this;
     }

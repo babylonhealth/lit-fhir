@@ -69,7 +69,9 @@ public interface GoalBuilder extends DomainResourceBuilder {
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
     private Collection<Annotation> note = Collections.emptyList();
+    private Optional<Reference> source = Optional.empty();
     private Reference subject;
+    private Collection<CodeableReference> outcome = Collections.emptyList();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category = Collections.emptyList();
     private Optional<CodeableConcept> priority = Optional.empty();
@@ -78,14 +80,12 @@ public interface GoalBuilder extends DomainResourceBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Reference> addresses = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
+    private Optional<Boolean> continuous = Optional.empty();
     private Optional<FHIRDate> statusDate = Optional.empty();
     private CodeableConcept description;
-    private Optional<Reference> expressedBy = Optional.empty();
-    private Collection<CodeableConcept> outcomeCode = Collections.emptyList();
     private Optional<String> statusReason = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private GOAL_STATUS lifecycleStatus;
-    private Collection<Reference> outcomeReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<CodeableConcept> achievementStatus = Optional.empty();
     private Collection<Goal.Target> target = Collections.emptyList();
@@ -159,6 +159,37 @@ public interface GoalBuilder extends DomainResourceBuilder {
       this.note = Arrays.stream(note).map(e -> e.build()).collect(toList());
       return this;
     }
+    /** @param source - Indicates whose goal this is - patient goal, practitioner goal, etc. */
+    public GoalBuilder.Impl withSource(@NonNull Reference source) {
+      this.source = Optional.of(source);
+      return this;
+    }
+
+    public GoalBuilder.Impl withSource(@NonNull ReferenceBuilder source) {
+      this.source = Optional.of(source.build());
+      return this;
+    }
+    /**
+     * @param outcome - Identifies the change (or lack of change) at the point when the status of
+     *     the goal is assessed.
+     */
+    public GoalBuilder.Impl withOutcome(@NonNull CodeableReference... outcome) {
+      this.outcome = Arrays.asList(outcome);
+      return this;
+    }
+    /**
+     * @param outcome - Identifies the change (or lack of change) at the point when the status of
+     *     the goal is assessed.
+     */
+    public GoalBuilder.Impl withOutcome(@NonNull Collection<CodeableReference> outcome) {
+      this.outcome = Collections.unmodifiableCollection(outcome);
+      return this;
+    }
+
+    public GoalBuilder.Impl withOutcome(@NonNull CodeableReferenceBuilder... outcome) {
+      this.outcome = Arrays.stream(outcome).map(e -> e.build()).collect(toList());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public GoalBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
@@ -203,8 +234,8 @@ public interface GoalBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public GoalBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -212,8 +243,8 @@ public interface GoalBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public GoalBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -296,42 +327,19 @@ public interface GoalBuilder extends DomainResourceBuilder {
       return this;
     }
     /**
+     * @param continuous - After meeting the goal, ongoing activity is needed to sustain the goal
+     *     objective.
+     */
+    public GoalBuilder.Impl withContinuous(@NonNull Boolean continuous) {
+      this.continuous = Optional.of(continuous);
+      return this;
+    }
+    /**
      * @param statusDate - Identifies when the current status. I.e. When initially created, when
      *     achieved, when cancelled, etc.
      */
     public GoalBuilder.Impl withStatusDate(@NonNull FHIRDate statusDate) {
       this.statusDate = Optional.of(statusDate);
-      return this;
-    }
-    /** @param expressedBy - Indicates whose goal this is - patient goal, practitioner goal, etc. */
-    public GoalBuilder.Impl withExpressedBy(@NonNull Reference expressedBy) {
-      this.expressedBy = Optional.of(expressedBy);
-      return this;
-    }
-
-    public GoalBuilder.Impl withExpressedBy(@NonNull ReferenceBuilder expressedBy) {
-      this.expressedBy = Optional.of(expressedBy.build());
-      return this;
-    }
-    /**
-     * @param outcomeCode - Identifies the change (or lack of change) at the point when the status
-     *     of the goal is assessed.
-     */
-    public GoalBuilder.Impl withOutcomeCode(@NonNull CodeableConcept... outcomeCode) {
-      this.outcomeCode = Arrays.asList(outcomeCode);
-      return this;
-    }
-    /**
-     * @param outcomeCode - Identifies the change (or lack of change) at the point when the status
-     *     of the goal is assessed.
-     */
-    public GoalBuilder.Impl withOutcomeCode(@NonNull Collection<CodeableConcept> outcomeCode) {
-      this.outcomeCode = Collections.unmodifiableCollection(outcomeCode);
-      return this;
-    }
-
-    public GoalBuilder.Impl withOutcomeCode(@NonNull CodeableConceptBuilder... outcomeCode) {
-      this.outcomeCode = Arrays.stream(outcomeCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param statusReason - Captures the reason for the current status. */
@@ -347,21 +355,6 @@ public interface GoalBuilder extends DomainResourceBuilder {
      */
     public GoalBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
       this.implicitRules = Optional.of(implicitRules);
-      return this;
-    }
-    /** @param outcomeReference - Details of what's changed (or not changed). */
-    public GoalBuilder.Impl withOutcomeReference(@NonNull Reference... outcomeReference) {
-      this.outcomeReference = Arrays.asList(outcomeReference);
-      return this;
-    }
-    /** @param outcomeReference - Details of what's changed (or not changed). */
-    public GoalBuilder.Impl withOutcomeReference(@NonNull Collection<Reference> outcomeReference) {
-      this.outcomeReference = Collections.unmodifiableCollection(outcomeReference);
-      return this;
-    }
-
-    public GoalBuilder.Impl withOutcomeReference(@NonNull ReferenceBuilder... outcomeReference) {
-      this.outcomeReference = Arrays.stream(outcomeReference).map(e -> e.build()).collect(toList());
       return this;
     }
     /**
@@ -446,7 +439,9 @@ public interface GoalBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
           note.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(source),
           subject,
+          outcome.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(language),
           category.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(priority),
@@ -455,14 +450,12 @@ public interface GoalBuilder extends DomainResourceBuilder {
           extension.stream().collect(new LitSeqJCollector<>()),
           addresses.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(continuous.map(x -> (Object) x)),
           OptionConverters.toScala(statusDate),
           description,
-          OptionConverters.toScala(expressedBy),
-          outcomeCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(statusReason),
           OptionConverters.toScala(implicitRules),
           lifecycleStatus,
-          outcomeReference.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(achievementStatus),
           target.stream().collect(new LitSeqJCollector<>()),

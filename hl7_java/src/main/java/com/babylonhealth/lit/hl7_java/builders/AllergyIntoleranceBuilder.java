@@ -255,8 +255,8 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public AllergyIntoleranceBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -264,8 +264,8 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public AllergyIntoleranceBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -430,7 +430,8 @@ public interface AllergyIntoleranceBuilder extends DomainResourceBuilder {
     /**
      * @param verificationStatus - Assertion about certainty associated with the propensity, or
      *     potential risk, of a reaction to the identified substance (including pharmaceutical
-     *     product).
+     *     product). The verification status pertains to the allergy or intolerance, itself, not to
+     *     any specific AllergyIntolerance attribute.
      */
     public AllergyIntoleranceBuilder.Impl withVerificationStatus(
         @NonNull CodeableConcept verificationStatus) {

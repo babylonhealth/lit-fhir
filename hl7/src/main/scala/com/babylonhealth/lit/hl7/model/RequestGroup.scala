@@ -24,6 +24,7 @@ import com.babylonhealth.lit.hl7.{
   REQUEST_INTENT,
   ACTION_CONDITION_KIND,
   ACTION_REQUIRED_BEHAVIOR,
+  ACTION_PARTICIPANT_TYPE,
   ACTION_PRECHECK_BEHAVIOR,
   ACTION_GROUPING_BEHAVIOR,
   REQUEST_STATUS,
@@ -115,6 +116,95 @@ object RequestGroup extends CompanionFor[RequestGroup] {
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
+    object Participant extends CompanionFor[Participant] {
+      implicit def summonObjectAndCompanionParticipant1062174204(
+          o: Participant): ObjectAndCompanion[Participant, Participant.type] = ObjectAndCompanion(o, this)
+      override type ResourceType = Participant
+      override type ParentType   = Participant
+      override val parentType: CompanionFor[ResourceType] = Participant
+      def apply(
+          id: Option[String] = None,
+          `type`: Option[ACTION_PARTICIPANT_TYPE] = None,
+          role: Option[CodeableConcept] = None,
+          actor: Option[Reference] = None,
+          function: Option[CodeableConcept] = None,
+          extension: LitSeq[Extension] = LitSeq.empty,
+          typeReference: Option[Reference] = None,
+          modifierExtension: LitSeq[Extension] = LitSeq.empty,
+          primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
+      ): Participant = new Participant(
+        id,
+        `type`,
+        role,
+        actor,
+        function,
+        extension,
+        typeReference,
+        modifierExtension,
+        primitiveAttributes = primitiveAttributes
+      )
+      def unapply(
+          o: Participant): Option[(Option[String], Option[ACTION_PARTICIPANT_TYPE], Option[CodeableConcept], Option[Reference], Option[CodeableConcept], LitSeq[Extension], Option[Reference], LitSeq[Extension])] =
+        Some((o.id, o.`type`, o.role, o.actor, o.function, o.extension, o.typeReference, o.modifierExtension))
+      val id: FHIRComponentFieldMeta[Option[String]] =
+        FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
+      val `type`: FHIRComponentFieldMeta[Option[ACTION_PARTICIPANT_TYPE]] =
+        FHIRComponentFieldMeta("type", lTagOf[Option[ACTION_PARTICIPANT_TYPE]], false, lTagOf[ACTION_PARTICIPANT_TYPE])
+      val role: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+        FHIRComponentFieldMeta("role", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+      val actor: FHIRComponentFieldMeta[Option[Reference]] =
+        FHIRComponentFieldMeta("actor", lTagOf[Option[Reference]], false, lTagOf[Reference])
+      val function: FHIRComponentFieldMeta[Option[CodeableConcept]] =
+        FHIRComponentFieldMeta("function", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
+      val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+        FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+      val typeReference: FHIRComponentFieldMeta[Option[Reference]] =
+        FHIRComponentFieldMeta("typeReference", lTagOf[Option[Reference]], false, lTagOf[Reference])
+      val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+        FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
+        Seq(id, `type`, role, actor, function, extension, typeReference, modifierExtension)
+      override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
+      override def fields(t: Participant): Seq[FHIRComponentField[_]] = Seq(
+        FHIRComponentField[Option[String]](id, t.id),
+        FHIRComponentField[Option[ACTION_PARTICIPANT_TYPE]](`type`, t.`type`),
+        FHIRComponentField[Option[CodeableConcept]](role, t.role),
+        FHIRComponentField[Option[Reference]](actor, t.actor),
+        FHIRComponentField[Option[CodeableConcept]](function, t.function),
+        FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+        FHIRComponentField[Option[Reference]](typeReference, t.typeReference),
+        FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
+      )
+      val baseType: CompanionFor[Participant] = this
+      val thisName: String                    = "Participant"
+      def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Participant] =
+        checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
+          Try(
+            new Participant(
+              cursor.decodeAs[Option[String]]("id", Some(None)),
+              cursor.decodeAs[Option[ACTION_PARTICIPANT_TYPE]]("type", Some(None)),
+              cursor.decodeAs[Option[CodeableConcept]]("role", Some(None)),
+              cursor.decodeAs[Option[Reference]]("actor", Some(None)),
+              cursor.decodeAs[Option[CodeableConcept]]("function", Some(None)),
+              cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+              cursor.decodeAs[Option[Reference]]("typeReference", Some(None)),
+              cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+              decodeAttributes(cursor)
+            )
+          ))
+    }
+    @POJOBoilerplate
+    class Participant(
+        override val id: Option[String] = None,
+        val `type`: Option[ACTION_PARTICIPANT_TYPE] = None,
+        val role: Option[CodeableConcept] = None,
+        val actor: Option[Reference] = None,
+        val function: Option[CodeableConcept] = None,
+        override val extension: LitSeq[Extension] = LitSeq.empty,
+        val typeReference: Option[Reference] = None,
+        override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
+        override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
+        extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object RelatedAction extends CompanionFor[RelatedAction] {
       implicit def summonObjectAndCompanionRelatedAction1062174204(
           o: RelatedAction): ObjectAndCompanion[RelatedAction, RelatedAction.type] = ObjectAndCompanion(o, this)
@@ -124,7 +214,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       type OffsetChoice = Choice[UnionDurationOrRange]
       def apply(
           id: Option[String] = None,
-          actionId: Id,
+          targetId: Id,
           extension: LitSeq[Extension] = LitSeq.empty,
           offset: Option[RelatedAction.OffsetChoice] = None,
           relationship: ACTION_RELATIONSHIP_TYPE,
@@ -132,7 +222,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
           primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
       ): RelatedAction = new RelatedAction(
         id,
-        actionId,
+        targetId,
         extension,
         offset,
         relationship,
@@ -141,11 +231,11 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       )
       def unapply(
           o: RelatedAction): Option[(Option[String], Id, LitSeq[Extension], Option[RelatedAction.OffsetChoice], ACTION_RELATIONSHIP_TYPE, LitSeq[Extension])] =
-        Some((o.id, o.actionId, o.extension, o.offset, o.relationship, o.modifierExtension))
+        Some((o.id, o.targetId, o.extension, o.offset, o.relationship, o.modifierExtension))
       val id: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
-      val actionId: FHIRComponentFieldMeta[Id] =
-        FHIRComponentFieldMeta("actionId", lTagOf[Id], false, lTagOf[Id])
+      val targetId: FHIRComponentFieldMeta[Id] =
+        FHIRComponentFieldMeta("targetId", lTagOf[Id], false, lTagOf[Id])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val offset: FHIRComponentFieldMeta[Option[RelatedAction.OffsetChoice]] =
@@ -154,11 +244,11 @@ object RequestGroup extends CompanionFor[RequestGroup] {
         FHIRComponentFieldMeta("relationship", lTagOf[ACTION_RELATIONSHIP_TYPE], false, lTagOf[ACTION_RELATIONSHIP_TYPE])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, actionId, extension, offset, relationship, modifierExtension)
+      val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, targetId, extension, offset, relationship, modifierExtension)
       override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
       override def fields(t: RelatedAction): Seq[FHIRComponentField[_]] = Seq(
         FHIRComponentField[Option[String]](id, t.id),
-        FHIRComponentField[Id](actionId, t.actionId),
+        FHIRComponentField[Id](targetId, t.targetId),
         FHIRComponentField[LitSeq[Extension]](extension, t.extension),
         FHIRComponentField[Option[RelatedAction.OffsetChoice]](offset, t.offset),
         FHIRComponentField[ACTION_RELATIONSHIP_TYPE](relationship, t.relationship),
@@ -171,7 +261,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
           Try(
             new RelatedAction(
               cursor.decodeAs[Option[String]]("id", Some(None)),
-              cursor.decodeAs[Id]("actionId", None),
+              cursor.decodeAs[Id]("targetId", None),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeOptRef[UnionDurationOrRange]("offset"),
               cursor.decodeAs[ACTION_RELATIONSHIP_TYPE]("relationship", None),
@@ -183,7 +273,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
     @POJOBoilerplate
     class RelatedAction(
         override val id: Option[String] = None,
-        val actionId: Id,
+        val targetId: Id,
         override val extension: LitSeq[Extension] = LitSeq.empty,
         val offset: Option[RelatedAction.OffsetChoice] = None,
         val relationship: ACTION_RELATIONSHIP_TYPE,
@@ -199,11 +289,11 @@ object RequestGroup extends CompanionFor[RequestGroup] {
         prefix: Option[String] = None,
         action: LitSeq[RequestGroup.Action] = LitSeq.empty,
         priority: Option[REQUEST_PRIORITY] = None,
+        location: Option[CodeableReference] = None,
         resource: Option[Reference] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
         timing: Option[Action.TimingChoice] = None,
         description: Option[String] = None,
-        participant: LitSeq[Reference] = LitSeq.empty,
         documentation: LitSeq[RelatedArtifact] = LitSeq.empty,
         textEquivalent: Option[String] = None,
         groupingBehavior: Option[ACTION_GROUPING_BEHAVIOR] = None,
@@ -213,6 +303,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
         selectionBehavior: Option[ACTION_SELECTION_BEHAVIOR] = None,
         cardinalityBehavior: Option[ACTION_CARDINALITY_BEHAVIOR] = None,
         condition: LitSeq[Action.Condition] = LitSeq.empty,
+        participant: LitSeq[Action.Participant] = LitSeq.empty,
         relatedAction: LitSeq[Action.RelatedAction] = LitSeq.empty,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
     ): Action = new Action(
@@ -223,11 +314,11 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       prefix,
       action,
       priority,
+      location,
       resource,
       extension,
       timing,
       description,
-      participant,
       documentation,
       textEquivalent,
       groupingBehavior,
@@ -237,35 +328,10 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       selectionBehavior,
       cardinalityBehavior,
       condition,
+      participant,
       relatedAction,
       primitiveAttributes = primitiveAttributes
     )
-    def unapply(
-        o: Action): Option[(Option[String], LitSeq[CodeableConcept], Option[CodeableConcept], Option[String], Option[String], LitSeq[RequestGroup.Action], Option[REQUEST_PRIORITY], Option[Reference], LitSeq[Extension], Option[Action.TimingChoice], Option[String], LitSeq[Reference], LitSeq[RelatedArtifact], Option[String], Option[ACTION_GROUPING_BEHAVIOR], Option[ACTION_REQUIRED_BEHAVIOR], Option[ACTION_PRECHECK_BEHAVIOR], LitSeq[Extension], Option[ACTION_SELECTION_BEHAVIOR], Option[ACTION_CARDINALITY_BEHAVIOR], LitSeq[Action.Condition], LitSeq[Action.RelatedAction])] =
-      Some(
-        (
-          o.id,
-          o.code,
-          o.`type`,
-          o.title,
-          o.prefix,
-          o.action,
-          o.priority,
-          o.resource,
-          o.extension,
-          o.timing,
-          o.description,
-          o.participant,
-          o.documentation,
-          o.textEquivalent,
-          o.groupingBehavior,
-          o.requiredBehavior,
-          o.precheckBehavior,
-          o.modifierExtension,
-          o.selectionBehavior,
-          o.cardinalityBehavior,
-          o.condition,
-          o.relatedAction))
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val code: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -280,6 +346,8 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       FHIRComponentFieldMeta("action", lTagOf[LitSeq[RequestGroup.Action]], false, lTagOf[RequestGroup.Action])
     val priority: FHIRComponentFieldMeta[Option[REQUEST_PRIORITY]] =
       FHIRComponentFieldMeta("priority", lTagOf[Option[REQUEST_PRIORITY]], false, lTagOf[REQUEST_PRIORITY])
+    val location: FHIRComponentFieldMeta[Option[CodeableReference]] =
+      FHIRComponentFieldMeta("location", lTagOf[Option[CodeableReference]], false, lTagOf[CodeableReference])
     val resource: FHIRComponentFieldMeta[Option[Reference]] =
       FHIRComponentFieldMeta("resource", lTagOf[Option[Reference]], false, lTagOf[Reference])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -288,8 +356,6 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       FHIRComponentFieldMeta("timing", lTagOf[Option[Action.TimingChoice]], true, lTagOf[Union01405873694])
     val description: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
-    val participant: FHIRComponentFieldMeta[LitSeq[Reference]] =
-      FHIRComponentFieldMeta("participant", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
     val documentation: FHIRComponentFieldMeta[LitSeq[RelatedArtifact]] =
       FHIRComponentFieldMeta("documentation", lTagOf[LitSeq[RelatedArtifact]], false, lTagOf[RelatedArtifact])
     val textEquivalent: FHIRComponentFieldMeta[Option[String]] =
@@ -328,6 +394,8 @@ object RequestGroup extends CompanionFor[RequestGroup] {
         lTagOf[ACTION_CARDINALITY_BEHAVIOR])
     val condition: FHIRComponentFieldMeta[LitSeq[Action.Condition]] =
       FHIRComponentFieldMeta("condition", lTagOf[LitSeq[Action.Condition]], false, lTagOf[Action.Condition])
+    val participant: FHIRComponentFieldMeta[LitSeq[Action.Participant]] =
+      FHIRComponentFieldMeta("participant", lTagOf[LitSeq[Action.Participant]], false, lTagOf[Action.Participant])
     val relatedAction: FHIRComponentFieldMeta[LitSeq[Action.RelatedAction]] =
       FHIRComponentFieldMeta("relatedAction", lTagOf[LitSeq[Action.RelatedAction]], false, lTagOf[Action.RelatedAction])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
@@ -338,11 +406,11 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       prefix,
       action,
       priority,
+      location,
       resource,
       extension,
       timing,
       description,
-      participant,
       documentation,
       textEquivalent,
       groupingBehavior,
@@ -352,6 +420,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       selectionBehavior,
       cardinalityBehavior,
       condition,
+      participant,
       relatedAction
     )
     override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Success(fields(t))
@@ -363,11 +432,11 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       FHIRComponentField[Option[String]](prefix, t.prefix),
       FHIRComponentField[LitSeq[RequestGroup.Action]](action, t.action),
       FHIRComponentField[Option[REQUEST_PRIORITY]](priority, t.priority),
+      FHIRComponentField[Option[CodeableReference]](location, t.location),
       FHIRComponentField[Option[Reference]](resource, t.resource),
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
       FHIRComponentField[Option[Action.TimingChoice]](timing, t.timing),
       FHIRComponentField[Option[String]](description, t.description),
-      FHIRComponentField[LitSeq[Reference]](participant, t.participant),
       FHIRComponentField[LitSeq[RelatedArtifact]](documentation, t.documentation),
       FHIRComponentField[Option[String]](textEquivalent, t.textEquivalent),
       FHIRComponentField[Option[ACTION_GROUPING_BEHAVIOR]](groupingBehavior, t.groupingBehavior),
@@ -377,6 +446,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       FHIRComponentField[Option[ACTION_SELECTION_BEHAVIOR]](selectionBehavior, t.selectionBehavior),
       FHIRComponentField[Option[ACTION_CARDINALITY_BEHAVIOR]](cardinalityBehavior, t.cardinalityBehavior),
       FHIRComponentField[LitSeq[Action.Condition]](condition, t.condition),
+      FHIRComponentField[LitSeq[Action.Participant]](participant, t.participant),
       FHIRComponentField[LitSeq[Action.RelatedAction]](relatedAction, t.relatedAction)
     )
     val baseType: CompanionFor[Action] = this
@@ -392,11 +462,11 @@ object RequestGroup extends CompanionFor[RequestGroup] {
             cursor.decodeAs[Option[String]]("prefix", Some(None)),
             cursor.decodeAs[LitSeq[RequestGroup.Action]]("action", Some(LitSeq.empty)),
             cursor.decodeAs[Option[REQUEST_PRIORITY]]("priority", Some(None)),
+            cursor.decodeAs[Option[CodeableReference]]("location", Some(None)),
             cursor.decodeAs[Option[Reference]]("resource", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeOptRef[Union01405873694]("timing"),
             cursor.decodeAs[Option[String]]("description", Some(None)),
-            cursor.decodeAs[LitSeq[Reference]]("participant", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[RelatedArtifact]]("documentation", Some(LitSeq.empty)),
             cursor.decodeAs[Option[String]]("textEquivalent", Some(None)),
             cursor.decodeAs[Option[ACTION_GROUPING_BEHAVIOR]]("groupingBehavior", Some(None)),
@@ -406,6 +476,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
             cursor.decodeAs[Option[ACTION_SELECTION_BEHAVIOR]]("selectionBehavior", Some(None)),
             cursor.decodeAs[Option[ACTION_CARDINALITY_BEHAVIOR]]("cardinalityBehavior", Some(None)),
             cursor.decodeAs[LitSeq[Action.Condition]]("condition", Some(LitSeq.empty)),
+            cursor.decodeAs[LitSeq[Action.Participant]]("participant", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Action.RelatedAction]]("relatedAction", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -420,11 +491,11 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       val prefix: Option[String] = None,
       val action: LitSeq[RequestGroup.Action] = LitSeq.empty,
       val priority: Option[REQUEST_PRIORITY] = None,
+      val location: Option[CodeableReference] = None,
       val resource: Option[Reference] = None,
       override val extension: LitSeq[Extension] = LitSeq.empty,
       val timing: Option[Action.TimingChoice] = None,
       val description: Option[String] = None,
-      val participant: LitSeq[Reference] = LitSeq.empty,
       val documentation: LitSeq[RelatedArtifact] = LitSeq.empty,
       val textEquivalent: Option[String] = None,
       val groupingBehavior: Option[ACTION_GROUPING_BEHAVIOR] = None,
@@ -434,6 +505,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       val selectionBehavior: Option[ACTION_SELECTION_BEHAVIOR] = None,
       val cardinalityBehavior: Option[ACTION_CARDINALITY_BEHAVIOR] = None,
       val condition: LitSeq[Action.Condition] = LitSeq.empty,
+      val participant: LitSeq[Action.Participant] = LitSeq.empty,
       val relatedAction: LitSeq[Action.RelatedAction] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
@@ -446,6 +518,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       status: REQUEST_STATUS,
       intent: REQUEST_INTENT,
       author: Option[Reference] = None,
+      reason: LitSeq[CodeableReference] = LitSeq.empty,
       basedOn: LitSeq[Reference] = LitSeq.empty,
       subject: Option[Reference] = None,
       language: Option[LANGUAGES] = None,
@@ -456,11 +529,9 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       encounter: Option[Reference] = None,
       identifier: LitSeq[Identifier] = LitSeq.empty,
       authoredOn: Option[FHIRDateTime] = None,
-      reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
       instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
       groupIdentifier: Option[Identifier] = None,
-      reasonReference: LitSeq[Reference] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
       action: LitSeq[RequestGroup.Action] = LitSeq.empty,
@@ -474,6 +545,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
     status,
     intent,
     author,
+    reason,
     basedOn,
     subject,
     language,
@@ -484,11 +556,9 @@ object RequestGroup extends CompanionFor[RequestGroup] {
     encounter,
     identifier,
     authoredOn,
-    reasonCode,
     implicitRules,
     instantiatesUri,
     groupIdentifier,
-    reasonReference,
     modifierExtension,
     instantiatesCanonical,
     action,
@@ -510,6 +580,8 @@ object RequestGroup extends CompanionFor[RequestGroup] {
     FHIRComponentFieldMeta("intent", lTagOf[REQUEST_INTENT], false, lTagOf[REQUEST_INTENT])
   val author: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("author", lTagOf[Option[Reference]], false, lTagOf[Reference])
+  val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val basedOn: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("basedOn", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val subject: FHIRComponentFieldMeta[Option[Reference]] =
@@ -530,16 +602,12 @@ object RequestGroup extends CompanionFor[RequestGroup] {
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val authoredOn: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("authoredOn", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
-  val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val instantiatesUri: FHIRComponentFieldMeta[LitSeq[UriStr]] =
     FHIRComponentFieldMeta("instantiatesUri", lTagOf[LitSeq[UriStr]], false, lTagOf[UriStr])
   val groupIdentifier: FHIRComponentFieldMeta[Option[Identifier]] =
     FHIRComponentFieldMeta("groupIdentifier", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
-  val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val instantiatesCanonical: FHIRComponentFieldMeta[LitSeq[Canonical]] =
@@ -555,6 +623,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
     status,
     intent,
     author,
+    reason,
     basedOn,
     subject,
     language,
@@ -565,11 +634,9 @@ object RequestGroup extends CompanionFor[RequestGroup] {
     encounter,
     identifier,
     authoredOn,
-    reasonCode,
     implicitRules,
     instantiatesUri,
     groupIdentifier,
-    reasonReference,
     modifierExtension,
     instantiatesCanonical,
     action
@@ -584,6 +651,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
     FHIRComponentField[REQUEST_STATUS](status, t.status),
     FHIRComponentField[REQUEST_INTENT](intent, t.intent),
     FHIRComponentField[Option[Reference]](author, t.author),
+    FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
     FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
     FHIRComponentField[Option[Reference]](subject, t.subject),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
@@ -594,11 +662,9 @@ object RequestGroup extends CompanionFor[RequestGroup] {
     FHIRComponentField[Option[Reference]](encounter, t.encounter),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
     FHIRComponentField[Option[FHIRDateTime]](authoredOn, t.authoredOn),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
     FHIRComponentField[Option[Identifier]](groupIdentifier, t.groupIdentifier),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical),
     FHIRComponentField[LitSeq[RequestGroup.Action]](action, t.action)
@@ -611,6 +677,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
   def extractStatus(t: RequestGroup): REQUEST_STATUS                   = t.status
   def extractIntent(t: RequestGroup): REQUEST_INTENT                   = t.intent
   def extractAuthor(t: RequestGroup): Option[Reference]                = t.author
+  def extractReason(t: RequestGroup): LitSeq[CodeableReference]        = t.reason
   def extractBasedOn(t: RequestGroup): LitSeq[Reference]               = t.basedOn
   def extractSubject(t: RequestGroup): Option[Reference]               = t.subject
   def extractLanguage(t: RequestGroup): Option[LANGUAGES]              = t.language
@@ -621,17 +688,15 @@ object RequestGroup extends CompanionFor[RequestGroup] {
   def extractEncounter(t: RequestGroup): Option[Reference]             = t.encounter
   def extractIdentifier(t: RequestGroup): LitSeq[Identifier]           = t.identifier
   def extractAuthoredOn(t: RequestGroup): Option[FHIRDateTime]         = t.authoredOn
-  def extractReasonCode(t: RequestGroup): LitSeq[CodeableConcept]      = t.reasonCode
   def extractImplicitRules(t: RequestGroup): Option[UriStr]            = t.implicitRules
   def extractInstantiatesUri(t: RequestGroup): LitSeq[UriStr]          = t.instantiatesUri
   def extractGroupIdentifier(t: RequestGroup): Option[Identifier]      = t.groupIdentifier
-  def extractReasonReference(t: RequestGroup): LitSeq[Reference]       = t.reasonReference
   def extractModifierExtension(t: RequestGroup): LitSeq[Extension]     = t.modifierExtension
   def extractInstantiatesCanonical(t: RequestGroup): LitSeq[Canonical] = t.instantiatesCanonical
   def extractAction(t: RequestGroup): LitSeq[RequestGroup.Action]      = t.action
   override val thisName: String                                        = "RequestGroup"
   override val searchParams: Map[String, RequestGroup => Seq[Any]] = Map(
-    "participant"            -> (obj => obj.action.flatMap(_.participant).toSeq),
+    "participant"            -> (obj => obj.action.flatMap(_.participant).flatMap(_.actor).toSeq),
     "author"                 -> (obj => obj.author.toSeq),
     "priority"               -> (obj => obj.priority.toSeq),
     "group-identifier"       -> (obj => obj.groupIdentifier.toSeq),
@@ -658,6 +723,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
           cursor.decodeAs[REQUEST_STATUS]("status", None),
           cursor.decodeAs[REQUEST_INTENT]("intent", None),
           cursor.decodeAs[Option[Reference]]("author", Some(None)),
+          cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("basedOn", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("subject", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
@@ -668,11 +734,9 @@ object RequestGroup extends CompanionFor[RequestGroup] {
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[FHIRDateTime]]("authoredOn", Some(None)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[UriStr]]("instantiatesUri", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Identifier]]("groupIdentifier", Some(None)),
-          cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Canonical]]("instantiatesCanonical", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[RequestGroup.Action]]("action", Some(LitSeq.empty)),
@@ -687,8 +751,8 @@ object RequestGroup extends CompanionFor[RequestGroup] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields code, note, status, intent, author, basedOn, subject, replaces, priority, encounter, identifier,
-  *   authoredOn, reasonCode, instantiatesUri, groupIdentifier, reasonReference, instantiatesCanonical, action.
+  *   Introduces the fields code, note, status, intent, author, reason, basedOn, subject, replaces, priority, encounter,
+  *   identifier, authoredOn, instantiatesUri, groupIdentifier, instantiatesCanonical, action.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -710,6 +774,8 @@ object RequestGroup extends CompanionFor[RequestGroup] {
   *   chain.
   * @param author
   *   - Provides a reference to the author of the request group.
+  * @param reason
+  *   - Describes the reason for the request group in coded or textual form.
   * @param basedOn
   *   - A plan, proposal or order that is fulfilled in whole or in part by this request.
   * @param subject
@@ -722,7 +788,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
   *   - Indicates how quickly the request should be addressed with respect to other requests.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -734,8 +800,6 @@ object RequestGroup extends CompanionFor[RequestGroup] {
   *   - Allows a service to provide a unique, business identifier for the request.
   * @param authoredOn
   *   - Indicates when the request group was created.
-  * @param reasonCode
-  *   - Describes the reason for the request group in coded or textual form.
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
@@ -746,8 +810,6 @@ object RequestGroup extends CompanionFor[RequestGroup] {
   * @param groupIdentifier
   *   - A shared identifier common to all requests that were authorized more or less simultaneously by a single author,
   *   representing the identifier of the requisition, prescription or similar form.
-  * @param reasonReference
-  *   - Indicates another resource whose existence justifies this request group.
   * @param modifierExtension
   *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
   *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
@@ -772,6 +834,7 @@ class RequestGroup(
     val status: REQUEST_STATUS,
     val intent: REQUEST_INTENT,
     val author: Option[Reference] = None,
+    val reason: LitSeq[CodeableReference] = LitSeq.empty,
     val basedOn: LitSeq[Reference] = LitSeq.empty,
     val subject: Option[Reference] = None,
     override val language: Option[LANGUAGES] = None,
@@ -782,11 +845,9 @@ class RequestGroup(
     val encounter: Option[Reference] = None,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
     val authoredOn: Option[FHIRDateTime] = None,
-    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     val instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
     val groupIdentifier: Option[Identifier] = None,
-    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
     val action: LitSeq[RequestGroup.Action] = LitSeq.empty,

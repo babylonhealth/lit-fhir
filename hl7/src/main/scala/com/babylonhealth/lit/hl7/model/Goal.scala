@@ -112,7 +112,9 @@ object Goal extends CompanionFor[Goal] {
       meta: Option[Meta] = None,
       text: Option[Narrative] = None,
       note: LitSeq[Annotation] = LitSeq.empty,
+      source: Option[Reference] = None,
       subject: Reference,
+      outcome: LitSeq[CodeableReference] = LitSeq.empty,
       language: Option[LANGUAGES] = None,
       category: LitSeq[CodeableConcept] = LitSeq.empty,
       priority: Option[CodeableConcept] = None,
@@ -121,14 +123,12 @@ object Goal extends CompanionFor[Goal] {
       extension: LitSeq[Extension] = LitSeq.empty,
       addresses: LitSeq[Reference] = LitSeq.empty,
       identifier: LitSeq[Identifier] = LitSeq.empty,
+      continuous: Option[Boolean] = None,
       statusDate: Option[FHIRDate] = None,
       description: CodeableConcept,
-      expressedBy: Option[Reference] = None,
-      outcomeCode: LitSeq[CodeableConcept] = LitSeq.empty,
       statusReason: Option[String] = None,
       implicitRules: Option[UriStr] = None,
       lifecycleStatus: GOAL_STATUS,
-      outcomeReference: LitSeq[Reference] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
       achievementStatus: Option[CodeableConcept] = None,
       target: LitSeq[Goal.Target] = LitSeq.empty,
@@ -138,7 +138,9 @@ object Goal extends CompanionFor[Goal] {
     meta,
     text,
     note,
+    source,
     subject,
+    outcome,
     language,
     category,
     priority,
@@ -147,14 +149,12 @@ object Goal extends CompanionFor[Goal] {
     extension,
     addresses,
     identifier,
+    continuous,
     statusDate,
     description,
-    expressedBy,
-    outcomeCode,
     statusReason,
     implicitRules,
     lifecycleStatus,
-    outcomeReference,
     modifierExtension,
     achievementStatus,
     target,
@@ -168,8 +168,12 @@ object Goal extends CompanionFor[Goal] {
     FHIRComponentFieldMeta("text", lTagOf[Option[Narrative]], false, lTagOf[Narrative])
   val note: FHIRComponentFieldMeta[LitSeq[Annotation]] =
     FHIRComponentFieldMeta("note", lTagOf[LitSeq[Annotation]], false, lTagOf[Annotation])
+  val source: FHIRComponentFieldMeta[Option[Reference]] =
+    FHIRComponentFieldMeta("source", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val subject: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("subject", lTagOf[Reference], false, lTagOf[Reference])
+  val outcome: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("outcome", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val category: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -186,22 +190,18 @@ object Goal extends CompanionFor[Goal] {
     FHIRComponentFieldMeta("addresses", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
+  val continuous: FHIRComponentFieldMeta[Option[Boolean]] =
+    FHIRComponentFieldMeta("continuous", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val statusDate: FHIRComponentFieldMeta[Option[FHIRDate]] =
     FHIRComponentFieldMeta("statusDate", lTagOf[Option[FHIRDate]], false, lTagOf[FHIRDate])
   val description: FHIRComponentFieldMeta[CodeableConcept] =
     FHIRComponentFieldMeta("description", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
-  val expressedBy: FHIRComponentFieldMeta[Option[Reference]] =
-    FHIRComponentFieldMeta("expressedBy", lTagOf[Option[Reference]], false, lTagOf[Reference])
-  val outcomeCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("outcomeCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val statusReason: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[Option[String]], false, lTagOf[String])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val lifecycleStatus: FHIRComponentFieldMeta[GOAL_STATUS] =
     FHIRComponentFieldMeta("lifecycleStatus", lTagOf[GOAL_STATUS], false, lTagOf[GOAL_STATUS])
-  val outcomeReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("outcomeReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val achievementStatus: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -213,7 +213,9 @@ object Goal extends CompanionFor[Goal] {
     meta,
     text,
     note,
+    source,
     subject,
+    outcome,
     language,
     category,
     priority,
@@ -222,14 +224,12 @@ object Goal extends CompanionFor[Goal] {
     extension,
     addresses,
     identifier,
+    continuous,
     statusDate,
     description,
-    expressedBy,
-    outcomeCode,
     statusReason,
     implicitRules,
     lifecycleStatus,
-    outcomeReference,
     modifierExtension,
     achievementStatus,
     target
@@ -240,7 +240,9 @@ object Goal extends CompanionFor[Goal] {
     FHIRComponentField[Option[Meta]](meta, t.meta),
     FHIRComponentField[Option[Narrative]](text, t.text),
     FHIRComponentField[LitSeq[Annotation]](note, t.note),
+    FHIRComponentField[Option[Reference]](source, t.source),
     FHIRComponentField[Reference](subject, t.subject),
+    FHIRComponentField[LitSeq[CodeableReference]](outcome, t.outcome),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
     FHIRComponentField[Option[CodeableConcept]](priority, t.priority),
@@ -249,14 +251,12 @@ object Goal extends CompanionFor[Goal] {
     FHIRComponentField[LitSeq[Extension]](extension, t.extension),
     FHIRComponentField[LitSeq[Reference]](addresses, t.addresses),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+    FHIRComponentField[Option[Boolean]](continuous, t.continuous),
     FHIRComponentField[Option[FHIRDate]](statusDate, t.statusDate),
     FHIRComponentField[CodeableConcept](description, t.description),
-    FHIRComponentField[Option[Reference]](expressedBy, t.expressedBy),
-    FHIRComponentField[LitSeq[CodeableConcept]](outcomeCode, t.outcomeCode),
     FHIRComponentField[Option[String]](statusReason, t.statusReason),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[GOAL_STATUS](lifecycleStatus, t.lifecycleStatus),
-    FHIRComponentField[LitSeq[Reference]](outcomeReference, t.outcomeReference),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
     FHIRComponentField[Option[CodeableConcept]](achievementStatus, t.achievementStatus),
     FHIRComponentField[LitSeq[Goal.Target]](target, t.target)
@@ -265,7 +265,9 @@ object Goal extends CompanionFor[Goal] {
   def extractMeta(t: Goal): Option[Meta]                         = t.meta
   def extractText(t: Goal): Option[Narrative]                    = t.text
   def extractNote(t: Goal): LitSeq[Annotation]                   = t.note
+  def extractSource(t: Goal): Option[Reference]                  = t.source
   def extractSubject(t: Goal): Reference                         = t.subject
+  def extractOutcome(t: Goal): LitSeq[CodeableReference]         = t.outcome
   def extractLanguage(t: Goal): Option[LANGUAGES]                = t.language
   def extractCategory(t: Goal): LitSeq[CodeableConcept]          = t.category
   def extractPriority(t: Goal): Option[CodeableConcept]          = t.priority
@@ -274,14 +276,12 @@ object Goal extends CompanionFor[Goal] {
   def extractExtension(t: Goal): LitSeq[Extension]               = t.extension
   def extractAddresses(t: Goal): LitSeq[Reference]               = t.addresses
   def extractIdentifier(t: Goal): LitSeq[Identifier]             = t.identifier
+  def extractContinuous(t: Goal): Option[Boolean]                = t.continuous
   def extractStatusDate(t: Goal): Option[FHIRDate]               = t.statusDate
   def extractDescription(t: Goal): CodeableConcept               = t.description
-  def extractExpressedBy(t: Goal): Option[Reference]             = t.expressedBy
-  def extractOutcomeCode(t: Goal): LitSeq[CodeableConcept]       = t.outcomeCode
   def extractStatusReason(t: Goal): Option[String]               = t.statusReason
   def extractImplicitRules(t: Goal): Option[UriStr]              = t.implicitRules
   def extractLifecycleStatus(t: Goal): GOAL_STATUS               = t.lifecycleStatus
-  def extractOutcomeReference(t: Goal): LitSeq[Reference]        = t.outcomeReference
   def extractModifierExtension(t: Goal): LitSeq[Extension]       = t.modifierExtension
   def extractAchievementStatus(t: Goal): Option[CodeableConcept] = t.achievementStatus
   def extractTarget(t: Goal): LitSeq[Goal.Target]                = t.target
@@ -304,7 +304,9 @@ object Goal extends CompanionFor[Goal] {
           cursor.decodeAs[Option[Meta]]("meta", Some(None)),
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
           cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Reference]]("source", Some(None)),
           cursor.decodeAs[Reference]("subject", None),
+          cursor.decodeAs[LitSeq[CodeableReference]]("outcome", Some(LitSeq.empty)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("category", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("priority", Some(None)),
@@ -313,14 +315,12 @@ object Goal extends CompanionFor[Goal] {
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("addresses", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Boolean]]("continuous", Some(None)),
           cursor.decodeAs[Option[FHIRDate]]("statusDate", Some(None)),
           cursor.decodeAs[CodeableConcept]("description", None),
-          cursor.decodeAs[Option[Reference]]("expressedBy", Some(None)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("outcomeCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("statusReason", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[GOAL_STATUS]("lifecycleStatus", None),
-          cursor.decodeAs[LitSeq[Reference]]("outcomeReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("achievementStatus", Some(None)),
           cursor.decodeAs[LitSeq[Goal.Target]]("target", Some(LitSeq.empty)),
@@ -335,8 +335,8 @@ object Goal extends CompanionFor[Goal] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields note, subject, category, priority, start, addresses, identifier, statusDate, description, expressedBy,
-  *   outcomeCode, statusReason, lifecycleStatus, outcomeReference, achievementStatus, target.
+  *   Introduces the fields note, source, subject, outcome, category, priority, start, addresses, identifier, continuous,
+  *   statusDate, description, statusReason, lifecycleStatus, achievementStatus, target.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -349,8 +349,12 @@ object Goal extends CompanionFor[Goal] {
   *   represented in the narrative to ensure clinical safety.
   * @param note
   *   - Any comments related to the goal.
+  * @param source
+  *   - Indicates whose goal this is - patient goal, practitioner goal, etc.
   * @param subject
   *   - Identifies the patient, group or organization for whom the goal is being established.
+  * @param outcome
+  *   - Identifies the change (or lack of change) at the point when the status of the goal is assessed.
   * @param language
   *   - The base language in which the resource is written.
   * @param category
@@ -361,7 +365,7 @@ object Goal extends CompanionFor[Goal] {
   *   - The date or event after which the goal should begin being pursued.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -372,15 +376,13 @@ object Goal extends CompanionFor[Goal] {
   * @param identifier
   *   - Business identifiers assigned to this goal by the performer or other systems which remain constant as the resource is
   *   updated and propagates from server to server.
+  * @param continuous
+  *   - After meeting the goal, ongoing activity is needed to sustain the goal objective.
   * @param statusDate
   *   - Identifies when the current status. I.e. When initially created, when achieved, when cancelled, etc.
   * @param description
   *   - Human-readable and/or coded description of a specific desired objective of care, such as "control blood pressure" or
   *   "negotiate an obstacle course" or "dance with child at wedding".
-  * @param expressedBy
-  *   - Indicates whose goal this is - patient goal, practitioner goal, etc.
-  * @param outcomeCode
-  *   - Identifies the change (or lack of change) at the point when the status of the goal is assessed.
   * @param statusReason
   *   - Captures the reason for the current status.
   * @param implicitRules
@@ -389,8 +391,6 @@ object Goal extends CompanionFor[Goal] {
   *   other profiles etc.
   * @param lifecycleStatus
   *   - The state of the goal throughout its lifecycle.
-  * @param outcomeReference
-  *   - Details of what's changed (or not changed).
   * @param modifierExtension
   *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
   *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
@@ -410,7 +410,9 @@ class Goal(
     override val meta: Option[Meta] = None,
     override val text: Option[Narrative] = None,
     val note: LitSeq[Annotation] = LitSeq.empty,
+    val source: Option[Reference] = None,
     val subject: Reference,
+    val outcome: LitSeq[CodeableReference] = LitSeq.empty,
     override val language: Option[LANGUAGES] = None,
     val category: LitSeq[CodeableConcept] = LitSeq.empty,
     val priority: Option[CodeableConcept] = None,
@@ -419,14 +421,12 @@ class Goal(
     override val extension: LitSeq[Extension] = LitSeq.empty,
     val addresses: LitSeq[Reference] = LitSeq.empty,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
+    val continuous: Option[Boolean] = None,
     val statusDate: Option[FHIRDate] = None,
     val description: CodeableConcept,
-    val expressedBy: Option[Reference] = None,
-    val outcomeCode: LitSeq[CodeableConcept] = LitSeq.empty,
     val statusReason: Option[String] = None,
     override val implicitRules: Option[UriStr] = None,
     val lifecycleStatus: GOAL_STATUS,
-    val outcomeReference: LitSeq[Reference] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
     val achievementStatus: Option[CodeableConcept] = None,
     val target: LitSeq[Goal.Target] = LitSeq.empty,

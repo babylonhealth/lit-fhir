@@ -45,38 +45,40 @@ import static java.util.stream.Collectors.toList;
 public interface MedicationKnowledge_IngredientBuilder {
   public MedicationKnowledge.Ingredient build();
 
-  public static Impl init(@NonNull ChoiceCodeableConceptOrReference item) {
+  public static Impl init(CodeableReference item) {
     return new Impl(item);
   }
 
-  public static Impl builder(@NonNull ChoiceCodeableConceptOrReference item) {
-    return new Impl(item);
+  public static Impl builder(CodeableReferenceBuilder item) {
+    return new Impl(item.build());
   }
 
-  public static ChoiceCodeableConceptOrReference item(CodeableConcept c) {
-    return new ChoiceCodeableConceptOrReference(c);
+  public static ChoiceCodeableConceptOrQuantityOrRatio strength(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrQuantityOrRatio(c);
   }
 
-  public static ChoiceCodeableConceptOrReference item(Reference r) {
-    return new ChoiceCodeableConceptOrReference(r);
+  public static ChoiceCodeableConceptOrQuantityOrRatio strength(Quantity q) {
+    return new ChoiceCodeableConceptOrQuantityOrRatio(q);
+  }
+
+  public static ChoiceCodeableConceptOrQuantityOrRatio strength(Ratio r) {
+    return new ChoiceCodeableConceptOrQuantityOrRatio(r);
   }
 
   public class Impl implements MedicationKnowledge_IngredientBuilder {
     private Optional<String> id = Optional.empty();
-    private ChoiceCodeableConceptOrReference item;
-    private Optional<Boolean> isActive = Optional.empty();
-    private Optional<Ratio> strength = Optional.empty();
+    private CodeableReference item;
+    private Optional<CodeableConcept> isActive = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
+    private Optional<ChoiceCodeableConceptOrQuantityOrRatio> strength = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
      * Required fields for {@link MedicationKnowledge.Ingredient}
      *
-     * @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
-     *     pass the value in, wrap with one of the MedicationKnowledge_IngredientBuilder.item static
-     *     methods
+     * @param item
      */
-    public Impl(@NonNull ChoiceCodeableConceptOrReference item) {
+    public Impl(CodeableReference item) {
       this.item = item;
     }
 
@@ -89,18 +91,15 @@ public interface MedicationKnowledge_IngredientBuilder {
       return this;
     }
     /** @param isActive */
-    public MedicationKnowledge_IngredientBuilder.Impl withIsActive(@NonNull Boolean isActive) {
+    public MedicationKnowledge_IngredientBuilder.Impl withIsActive(
+        @NonNull CodeableConcept isActive) {
       this.isActive = Optional.of(isActive);
       return this;
     }
-    /** @param strength */
-    public MedicationKnowledge_IngredientBuilder.Impl withStrength(@NonNull Ratio strength) {
-      this.strength = Optional.of(strength);
-      return this;
-    }
 
-    public MedicationKnowledge_IngredientBuilder.Impl withStrength(@NonNull RatioBuilder strength) {
-      this.strength = Optional.of(strength.build());
+    public MedicationKnowledge_IngredientBuilder.Impl withIsActive(
+        @NonNull CodeableConceptBuilder isActive) {
+      this.isActive = Optional.of(isActive.build());
       return this;
     }
     /**
@@ -131,6 +130,16 @@ public interface MedicationKnowledge_IngredientBuilder {
     public MedicationKnowledge_IngredientBuilder.Impl withExtension(
         @NonNull ExtensionBuilder... extension) {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param strength Field is a 'choice' field. Type should be one of CodeableConcept, Quantity,
+     *     Ratio. To pass the value in, wrap with one of the
+     *     MedicationKnowledge_IngredientBuilder.strength static methods
+     */
+    public MedicationKnowledge_IngredientBuilder.Impl withStrength(
+        @NonNull ChoiceCodeableConceptOrQuantityOrRatio strength) {
+      this.strength = Optional.of(strength);
       return this;
     }
     /**
@@ -181,9 +190,9 @@ public interface MedicationKnowledge_IngredientBuilder {
       return new MedicationKnowledge.Ingredient(
           OptionConverters.toScala(id),
           item,
-          OptionConverters.toScala(isActive.map(x -> (Object) x)),
-          OptionConverters.toScala(strength),
+          OptionConverters.toScala(isActive),
           extension.stream().collect(new LitSeqJCollector<>()),
+          (Option) OptionConverters.toScala(strength),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());
     }

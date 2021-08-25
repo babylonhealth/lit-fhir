@@ -418,7 +418,7 @@ public interface CanonicalResourceBuilder extends DomainResourceBuilder {
       return this;
     }
 
-    public CanonicalResourceBuilder withoutMeta() {
+    public CanonicalResourceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

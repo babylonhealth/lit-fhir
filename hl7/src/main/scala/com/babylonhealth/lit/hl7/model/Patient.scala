@@ -460,10 +460,6 @@ object Patient extends CompanionFor[Patient] {
   def extractCommunication(t: Patient): LitSeq[Patient.Communication]       = t.communication
   override val thisName: String                                             = "Patient"
   override val searchParams: Map[String, Patient => Seq[Any]] = Map(
-    "mothersMaidenName" -> (obj =>
-      obj.extension
-        .filter(_.url == "http://hl7.org/fhir/StructureDefinition/patient-extensions-Patient-mothersMaidenName")
-        .toSeq),
     "address-state"        -> (obj => obj.address.flatMap(_.state).toSeq),
     "address-postalcode"   -> (obj => obj.address.flatMap(_.postalCode).toSeq),
     "address-use"          -> (obj => obj.address.flatMap(_.use).toSeq),
@@ -558,7 +554,7 @@ object Patient extends CompanionFor[Patient] {
   *   - The base language in which the resource is written.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.

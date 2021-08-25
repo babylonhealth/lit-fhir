@@ -583,7 +583,7 @@ public interface MetadataResourceBuilder extends CanonicalResourceBuilder {
       return this;
     }
 
-    public MetadataResourceBuilder withoutMeta() {
+    public MetadataResourceBuilder.Impl withoutMeta() {
       this.meta = Optional.empty();
       return this;
     }

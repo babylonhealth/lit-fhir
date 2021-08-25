@@ -59,14 +59,14 @@ public interface MedicationBuilder extends DomainResourceBuilder {
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
     private Optional<CodeableConcept> code = Optional.empty();
-    private Optional<CodeableConcept> form = Optional.empty();
     private Optional<MEDICATION_STATUS> status = Optional.empty();
     private Optional<Ratio> amount = Optional.empty();
+    private Optional<Reference> sponsor = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
+    private Optional<CodeableConcept> doseForm = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<Reference> manufacturer = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<Medication.Batch> batch = Optional.empty();
@@ -128,16 +128,6 @@ public interface MedicationBuilder extends DomainResourceBuilder {
       this.code = Optional.of(code.build());
       return this;
     }
-    /** @param form - Describes the form of the item. Powder; tablets; capsule. */
-    public MedicationBuilder.Impl withForm(@NonNull CodeableConcept form) {
-      this.form = Optional.of(form);
-      return this;
-    }
-
-    public MedicationBuilder.Impl withForm(@NonNull CodeableConceptBuilder form) {
-      this.form = Optional.of(form.build());
-      return this;
-    }
     /** @param status - A code to indicate if the medication is in active use. */
     public MedicationBuilder.Impl withStatus(@NonNull MEDICATION_STATUS status) {
       this.status = Optional.of(status);
@@ -158,15 +148,41 @@ public interface MedicationBuilder extends DomainResourceBuilder {
       this.amount = Optional.of(amount.build());
       return this;
     }
+    /**
+     * @param sponsor - Describes the details of the manufacturer of the medication product. This is
+     *     not intended to represent the distributor of a medication product.  Describes the
+     *     organization that is responsible for the manufacturing of the item and holds the
+     *     registration to market the product in a jurisdiction.. This might not be the company that
+     *     physically manufactures the product.  May be known as Market Authorization Holder.
+     */
+    public MedicationBuilder.Impl withSponsor(@NonNull Reference sponsor) {
+      this.sponsor = Optional.of(sponsor);
+      return this;
+    }
+
+    public MedicationBuilder.Impl withSponsor(@NonNull ReferenceBuilder sponsor) {
+      this.sponsor = Optional.of(sponsor.build());
+      return this;
+    }
     /** @param language - The base language in which the resource is written. */
     public MedicationBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
       this.language = Optional.of(language);
       return this;
     }
+    /** @param doseForm - Describes the form of the item. Powder; tablets; capsule. */
+    public MedicationBuilder.Impl withDoseForm(@NonNull CodeableConcept doseForm) {
+      this.doseForm = Optional.of(doseForm);
+      return this;
+    }
+
+    public MedicationBuilder.Impl withDoseForm(@NonNull CodeableConceptBuilder doseForm) {
+      this.doseForm = Optional.of(doseForm.build());
+      return this;
+    }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MedicationBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -174,8 +190,8 @@ public interface MedicationBuilder extends DomainResourceBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public MedicationBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -226,19 +242,6 @@ public interface MedicationBuilder extends DomainResourceBuilder {
 
     public MedicationBuilder.Impl withIdentifier(@NonNull IdentifierBuilder... identifier) {
       this.identifier = Arrays.stream(identifier).map(e -> e.build()).collect(toList());
-      return this;
-    }
-    /**
-     * @param manufacturer - Describes the details of the manufacturer of the medication product.
-     *     This is not intended to represent the distributor of a medication product.
-     */
-    public MedicationBuilder.Impl withManufacturer(@NonNull Reference manufacturer) {
-      this.manufacturer = Optional.of(manufacturer);
-      return this;
-    }
-
-    public MedicationBuilder.Impl withManufacturer(@NonNull ReferenceBuilder manufacturer) {
-      this.manufacturer = Optional.of(manufacturer.build());
       return this;
     }
     /**
@@ -332,14 +335,14 @@ public interface MedicationBuilder extends DomainResourceBuilder {
           OptionConverters.toScala(meta),
           OptionConverters.toScala(text),
           OptionConverters.toScala(code),
-          OptionConverters.toScala(form),
           OptionConverters.toScala(status),
           OptionConverters.toScala(amount),
+          OptionConverters.toScala(sponsor),
           OptionConverters.toScala(language),
+          OptionConverters.toScala(doseForm),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
           identifier.stream().collect(new LitSeqJCollector<>()),
-          OptionConverters.toScala(manufacturer),
           OptionConverters.toScala(implicitRules),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(batch),

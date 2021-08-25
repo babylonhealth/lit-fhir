@@ -50,7 +50,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
         extension: LitSeq[Extension] = LitSeq.empty,
         substance: Option[CodeableConcept] = None,
         description: Option[String] = None,
-        manifestation: NonEmptyLitSeq[CodeableConcept],
+        manifestation: NonEmptyLitSeq[CodeableReference],
         exposureRoute: Option[CodeableConcept] = None,
         modifierExtension: LitSeq[Extension] = LitSeq.empty,
         primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
@@ -68,7 +68,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
       primitiveAttributes = primitiveAttributes
     )
     def unapply(
-        o: Reaction): Option[(Option[String], LitSeq[Annotation], Option[FHIRDateTime], Option[REACTION_EVENT_SEVERITY], LitSeq[Extension], Option[CodeableConcept], Option[String], NonEmptyLitSeq[CodeableConcept], Option[CodeableConcept], LitSeq[Extension])] =
+        o: Reaction): Option[(Option[String], LitSeq[Annotation], Option[FHIRDateTime], Option[REACTION_EVENT_SEVERITY], LitSeq[Extension], Option[CodeableConcept], Option[String], NonEmptyLitSeq[CodeableReference], Option[CodeableConcept], LitSeq[Extension])] =
       Some(
         (
           o.id,
@@ -95,8 +95,8 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
       FHIRComponentFieldMeta("substance", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val description: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
-    val manifestation: FHIRComponentFieldMeta[NonEmptyLitSeq[CodeableConcept]] =
-      FHIRComponentFieldMeta("manifestation", lTagOf[NonEmptyLitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
+    val manifestation: FHIRComponentFieldMeta[NonEmptyLitSeq[CodeableReference]] =
+      FHIRComponentFieldMeta("manifestation", lTagOf[NonEmptyLitSeq[CodeableReference]], false, lTagOf[CodeableReference])
     val exposureRoute: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("exposureRoute", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -112,7 +112,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
       FHIRComponentField[LitSeq[Extension]](extension, t.extension),
       FHIRComponentField[Option[CodeableConcept]](substance, t.substance),
       FHIRComponentField[Option[String]](description, t.description),
-      FHIRComponentField[NonEmptyLitSeq[CodeableConcept]](manifestation, t.manifestation),
+      FHIRComponentField[NonEmptyLitSeq[CodeableReference]](manifestation, t.manifestation),
       FHIRComponentField[Option[CodeableConcept]](exposureRoute, t.exposureRoute),
       FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension)
     )
@@ -129,7 +129,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[CodeableConcept]]("substance", Some(None)),
             cursor.decodeAs[Option[String]]("description", Some(None)),
-            cursor.decodeAs[NonEmptyLitSeq[CodeableConcept]]("manifestation", None),
+            cursor.decodeAs[NonEmptyLitSeq[CodeableReference]]("manifestation", None),
             cursor.decodeAs[Option[CodeableConcept]]("exposureRoute", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
@@ -145,7 +145,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
       override val extension: LitSeq[Extension] = LitSeq.empty,
       val substance: Option[CodeableConcept] = None,
       val description: Option[String] = None,
-      val manifestation: NonEmptyLitSeq[CodeableConcept],
+      val manifestation: NonEmptyLitSeq[CodeableReference],
       val exposureRoute: Option[CodeableConcept] = None,
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
@@ -337,22 +337,22 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
   override val searchParams: Map[String, AllergyIntolerance => Seq[Any]] = Map(
     "identifier"      -> (obj => obj.identifier.toSeq),
     "clinical-status" -> (obj => obj.clinicalStatus.toSeq),
+    "date"            -> (obj => obj.recordedDate.toSeq),
     "category"        -> (obj => obj.category.toSeq),
+    "severity"        -> (obj => obj.reaction.flatMap(_.severity).toSeq),
     "type"            -> (obj => obj.`type`.toSeq),
     "criticality"     -> (obj => obj.criticality.toSeq),
     "asserter"        -> (obj => obj.asserter.toSeq),
     "code" -> (obj =>
       obj.code.toSeq ++
         obj.reaction.flatMap(_.substance).toSeq),
-    "verification-status" -> (obj => obj.verificationStatus.toSeq),
-    "date"                -> (obj => obj.recordedDate.toSeq),
-    "manifestation"       -> (obj => obj.reaction.flatMap(_.manifestation).toSeq),
-    "onset"               -> (obj => obj.reaction.flatMap(_.onset).toSeq),
-    "severity"            -> (obj => obj.reaction.flatMap(_.severity).toSeq),
-    "route"               -> (obj => obj.reaction.flatMap(_.exposureRoute).toSeq),
-    "last-date"           -> (obj => obj.lastOccurrence.toSeq),
-    "recorder"            -> (obj => obj.recorder.toSeq),
-    "patient"             -> (obj => Seq(obj.patient))
+    "verification-status"     -> (obj => obj.verificationStatus.toSeq),
+    "manifestation-code"      -> (obj => obj.reaction.flatMap(_.manifestation).flatMap(_.concept).toSeq),
+    "route"                   -> (obj => obj.reaction.flatMap(_.exposureRoute).toSeq),
+    "last-date"               -> (obj => obj.lastOccurrence.toSeq),
+    "recorder"                -> (obj => obj.recorder.toSeq),
+    "patient"                 -> (obj => Seq(obj.patient)),
+    "manifestation-reference" -> (obj => obj.reaction.flatMap(_.manifestation).flatMap(_.reference).toSeq)
   )
   def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[AllergyIntolerance] =
     checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
@@ -434,7 +434,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
   *   - The source of the information about the allergy that is recorded.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -468,7 +468,8 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
   * @param verificationStatus
   *   - Assertion about certainty associated with the propensity, or potential risk, of a reaction to the identified substance
-  *   (including pharmaceutical product).
+  *   (including pharmaceutical product). The verification status pertains to the allergy or intolerance, itself, not to any
+  *   specific AllergyIntolerance attribute.
   * @param reaction
   *   - Details about each adverse reaction event linked to exposure to the identified substance.
   */

@@ -34,7 +34,7 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.hl7_java.model.Unions.*;
-import com.babylonhealth.lit.hl7.CONCEPT_MAP_EQUIVALENCE;
+
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
 
@@ -45,12 +45,12 @@ import static java.util.stream.Collectors.toList;
 public interface ConceptMap_Group_Element_TargetBuilder {
   public ConceptMap$Group$Element$Target build();
 
-  public static Impl init(CONCEPT_MAP_EQUIVALENCE equivalence) {
-    return new Impl(equivalence);
+  public static Impl init(String relationship) {
+    return new Impl(relationship);
   }
 
-  public static Impl builder(CONCEPT_MAP_EQUIVALENCE equivalence) {
-    return new Impl(equivalence);
+  public static Impl builder(String relationship) {
+    return new Impl(relationship);
   }
 
   public class Impl implements ConceptMap_Group_Element_TargetBuilder {
@@ -60,7 +60,7 @@ public interface ConceptMap_Group_Element_TargetBuilder {
     private Optional<String> comment = Optional.empty();
     private Collection<ConceptMap$Group$Element$Target$DependsOn> product = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private CONCEPT_MAP_EQUIVALENCE equivalence;
+    private String relationship;
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<ConceptMap$Group$Element$Target$DependsOn> dependsOn =
         Collections.emptyList();
@@ -68,10 +68,10 @@ public interface ConceptMap_Group_Element_TargetBuilder {
     /**
      * Required fields for {@link ConceptMap$Group$Element$Target}
      *
-     * @param equivalence
+     * @param relationship
      */
-    public Impl(CONCEPT_MAP_EQUIVALENCE equivalence) {
-      this.equivalence = equivalence;
+    public Impl(String relationship) {
+      this.relationship = relationship;
     }
 
     /**
@@ -215,7 +215,7 @@ public interface ConceptMap_Group_Element_TargetBuilder {
           OptionConverters.toScala(comment),
           product.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
-          equivalence,
+          relationship,
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           dependsOn.stream().collect(new LitSeqJCollector<>()),
           LitUtils.emptyMetaElMap());

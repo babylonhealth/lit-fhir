@@ -42,12 +42,14 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
       note: LitSeq[Annotation] = LitSeq.empty,
       status: REQUEST_STATUS,
       intent: REQUEST_INTENT,
+      reason: LitSeq[CodeableReference] = LitSeq.empty,
       basedOn: LitSeq[Reference] = LitSeq.empty,
       subject: Reference,
       language: Option[LANGUAGES] = None,
       replaces: LitSeq[Reference] = LitSeq.empty,
       category: LitSeq[CodeableConcept] = LitSeq.empty,
       priority: Option[REQUEST_PRIORITY] = None,
+      location: LitSeq[CodeableReference] = LitSeq.empty,
       specimen: LitSeq[Reference] = LitSeq.empty,
       bodySite: LitSeq[CodeableConcept] = LitSeq.empty,
       contained: LitSeq[Resource] = LitSeq.empty,
@@ -58,22 +60,18 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
       insurance: LitSeq[Reference] = LitSeq.empty,
       identifier: LitSeq[Identifier] = LitSeq.empty,
       authoredOn: Option[FHIRDateTime] = None,
-      reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
       requisition: Option[Identifier] = None,
       orderDetail: LitSeq[CodeableConcept] = LitSeq.empty,
       quantity: Option[ServiceRequest.QuantityChoice] = None,
       asNeeded: Option[ServiceRequest.AsNeededChoice] = None,
       doNotPerform: Option[Boolean] = None,
-      locationCode: LitSeq[CodeableConcept] = LitSeq.empty,
       implicitRules: Option[UriStr] = None,
       occurrence: Option[ServiceRequest.OccurrenceChoice] = None,
       performerType: Option[CodeableConcept] = None,
       supportingInfo: LitSeq[Reference] = LitSeq.empty,
       instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
-      reasonReference: LitSeq[Reference] = LitSeq.empty,
       relevantHistory: LitSeq[Reference] = LitSeq.empty,
       modifierExtension: LitSeq[Extension] = LitSeq.empty,
-      locationReference: LitSeq[Reference] = LitSeq.empty,
       patientInstruction: Option[String] = None,
       instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
       primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
@@ -85,12 +83,14 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
     note,
     status,
     intent,
+    reason,
     basedOn,
     subject,
     language,
     replaces,
     category,
     priority,
+    location,
     specimen,
     bodySite,
     contained,
@@ -101,22 +101,18 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
     insurance,
     identifier,
     authoredOn,
-    reasonCode,
     requisition,
     orderDetail,
     quantity,
     asNeeded,
     doNotPerform,
-    locationCode,
     implicitRules,
     occurrence,
     performerType,
     supportingInfo,
     instantiatesUri,
-    reasonReference,
     relevantHistory,
     modifierExtension,
-    locationReference,
     patientInstruction,
     instantiatesCanonical,
     primitiveAttributes = primitiveAttributes
@@ -135,6 +131,8 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
     FHIRComponentFieldMeta("status", lTagOf[REQUEST_STATUS], false, lTagOf[REQUEST_STATUS])
   val intent: FHIRComponentFieldMeta[REQUEST_INTENT] =
     FHIRComponentFieldMeta("intent", lTagOf[REQUEST_INTENT], false, lTagOf[REQUEST_INTENT])
+  val reason: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("reason", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val basedOn: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("basedOn", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val subject: FHIRComponentFieldMeta[Reference] =
@@ -147,6 +145,8 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
     FHIRComponentFieldMeta("category", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val priority: FHIRComponentFieldMeta[Option[REQUEST_PRIORITY]] =
     FHIRComponentFieldMeta("priority", lTagOf[Option[REQUEST_PRIORITY]], false, lTagOf[REQUEST_PRIORITY])
+  val location: FHIRComponentFieldMeta[LitSeq[CodeableReference]] =
+    FHIRComponentFieldMeta("location", lTagOf[LitSeq[CodeableReference]], false, lTagOf[CodeableReference])
   val specimen: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("specimen", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val bodySite: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -167,8 +167,6 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val authoredOn: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("authoredOn", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
-  val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val requisition: FHIRComponentFieldMeta[Option[Identifier]] =
     FHIRComponentFieldMeta("requisition", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
   val orderDetail: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -179,8 +177,6 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
     FHIRComponentFieldMeta("asNeeded", lTagOf[Option[ServiceRequest.AsNeededChoice]], true, lTagOf[UnionBooleanOrCodeableConcept])
   val doNotPerform: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("doNotPerform", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
-  val locationCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
-    FHIRComponentFieldMeta("locationCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Option[ServiceRequest.OccurrenceChoice]] =
@@ -195,14 +191,10 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
     FHIRComponentFieldMeta("supportingInfo", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val instantiatesUri: FHIRComponentFieldMeta[LitSeq[UriStr]] =
     FHIRComponentFieldMeta("instantiatesUri", lTagOf[LitSeq[UriStr]], false, lTagOf[UriStr])
-  val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val relevantHistory: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("relevantHistory", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
-  val locationReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
-    FHIRComponentFieldMeta("locationReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val patientInstruction: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("patientInstruction", lTagOf[Option[String]], false, lTagOf[String])
   val instantiatesCanonical: FHIRComponentFieldMeta[LitSeq[Canonical]] =
@@ -215,12 +207,14 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
     note,
     status,
     intent,
+    reason,
     basedOn,
     subject,
     language,
     replaces,
     category,
     priority,
+    location,
     specimen,
     bodySite,
     contained,
@@ -231,22 +225,18 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
     insurance,
     identifier,
     authoredOn,
-    reasonCode,
     requisition,
     orderDetail,
     quantity,
     asNeeded,
     doNotPerform,
-    locationCode,
     implicitRules,
     occurrence,
     performerType,
     supportingInfo,
     instantiatesUri,
-    reasonReference,
     relevantHistory,
     modifierExtension,
-    locationReference,
     patientInstruction,
     instantiatesCanonical
   )
@@ -259,12 +249,14 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
     FHIRComponentField[LitSeq[Annotation]](note, t.note),
     FHIRComponentField[REQUEST_STATUS](status, t.status),
     FHIRComponentField[REQUEST_INTENT](intent, t.intent),
+    FHIRComponentField[LitSeq[CodeableReference]](reason, t.reason),
     FHIRComponentField[LitSeq[Reference]](basedOn, t.basedOn),
     FHIRComponentField[Reference](subject, t.subject),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[LitSeq[Reference]](replaces, t.replaces),
     FHIRComponentField[LitSeq[CodeableConcept]](category, t.category),
     FHIRComponentField[Option[REQUEST_PRIORITY]](priority, t.priority),
+    FHIRComponentField[LitSeq[CodeableReference]](location, t.location),
     FHIRComponentField[LitSeq[Reference]](specimen, t.specimen),
     FHIRComponentField[LitSeq[CodeableConcept]](bodySite, t.bodySite),
     FHIRComponentField[LitSeq[Resource]](contained, t.contained),
@@ -275,22 +267,18 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
     FHIRComponentField[LitSeq[Reference]](insurance, t.insurance),
     FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
     FHIRComponentField[Option[FHIRDateTime]](authoredOn, t.authoredOn),
-    FHIRComponentField[LitSeq[CodeableConcept]](reasonCode, t.reasonCode),
     FHIRComponentField[Option[Identifier]](requisition, t.requisition),
     FHIRComponentField[LitSeq[CodeableConcept]](orderDetail, t.orderDetail),
     FHIRComponentField[Option[ServiceRequest.QuantityChoice]](quantity, t.quantity),
     FHIRComponentField[Option[ServiceRequest.AsNeededChoice]](asNeeded, t.asNeeded),
     FHIRComponentField[Option[Boolean]](doNotPerform, t.doNotPerform),
-    FHIRComponentField[LitSeq[CodeableConcept]](locationCode, t.locationCode),
     FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
     FHIRComponentField[Option[ServiceRequest.OccurrenceChoice]](occurrence, t.occurrence),
     FHIRComponentField[Option[CodeableConcept]](performerType, t.performerType),
     FHIRComponentField[LitSeq[Reference]](supportingInfo, t.supportingInfo),
     FHIRComponentField[LitSeq[UriStr]](instantiatesUri, t.instantiatesUri),
-    FHIRComponentField[LitSeq[Reference]](reasonReference, t.reasonReference),
     FHIRComponentField[LitSeq[Reference]](relevantHistory, t.relevantHistory),
     FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
-    FHIRComponentField[LitSeq[Reference]](locationReference, t.locationReference),
     FHIRComponentField[Option[String]](patientInstruction, t.patientInstruction),
     FHIRComponentField[LitSeq[Canonical]](instantiatesCanonical, t.instantiatesCanonical)
   )
@@ -301,12 +289,14 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
   def extractNote(t: ServiceRequest): LitSeq[Annotation]                            = t.note
   def extractStatus(t: ServiceRequest): REQUEST_STATUS                              = t.status
   def extractIntent(t: ServiceRequest): REQUEST_INTENT                              = t.intent
+  def extractReason(t: ServiceRequest): LitSeq[CodeableReference]                   = t.reason
   def extractBasedOn(t: ServiceRequest): LitSeq[Reference]                          = t.basedOn
   def extractSubject(t: ServiceRequest): Reference                                  = t.subject
   def extractLanguage(t: ServiceRequest): Option[LANGUAGES]                         = t.language
   def extractReplaces(t: ServiceRequest): LitSeq[Reference]                         = t.replaces
   def extractCategory(t: ServiceRequest): LitSeq[CodeableConcept]                   = t.category
   def extractPriority(t: ServiceRequest): Option[REQUEST_PRIORITY]                  = t.priority
+  def extractLocation(t: ServiceRequest): LitSeq[CodeableReference]                 = t.location
   def extractSpecimen(t: ServiceRequest): LitSeq[Reference]                         = t.specimen
   def extractBodySite(t: ServiceRequest): LitSeq[CodeableConcept]                   = t.bodySite
   def extractContained(t: ServiceRequest): LitSeq[Resource]                         = t.contained
@@ -317,22 +307,18 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
   def extractInsurance(t: ServiceRequest): LitSeq[Reference]                        = t.insurance
   def extractIdentifier(t: ServiceRequest): LitSeq[Identifier]                      = t.identifier
   def extractAuthoredOn(t: ServiceRequest): Option[FHIRDateTime]                    = t.authoredOn
-  def extractReasonCode(t: ServiceRequest): LitSeq[CodeableConcept]                 = t.reasonCode
   def extractRequisition(t: ServiceRequest): Option[Identifier]                     = t.requisition
   def extractOrderDetail(t: ServiceRequest): LitSeq[CodeableConcept]                = t.orderDetail
   def extractQuantity(t: ServiceRequest): Option[ServiceRequest.QuantityChoice]     = t.quantity
   def extractAsNeeded(t: ServiceRequest): Option[ServiceRequest.AsNeededChoice]     = t.asNeeded
   def extractDoNotPerform(t: ServiceRequest): Option[Boolean]                       = t.doNotPerform
-  def extractLocationCode(t: ServiceRequest): LitSeq[CodeableConcept]               = t.locationCode
   def extractImplicitRules(t: ServiceRequest): Option[UriStr]                       = t.implicitRules
   def extractOccurrence(t: ServiceRequest): Option[ServiceRequest.OccurrenceChoice] = t.occurrence
   def extractPerformerType(t: ServiceRequest): Option[CodeableConcept]              = t.performerType
   def extractSupportingInfo(t: ServiceRequest): LitSeq[Reference]                   = t.supportingInfo
   def extractInstantiatesUri(t: ServiceRequest): LitSeq[UriStr]                     = t.instantiatesUri
-  def extractReasonReference(t: ServiceRequest): LitSeq[Reference]                  = t.reasonReference
   def extractRelevantHistory(t: ServiceRequest): LitSeq[Reference]                  = t.relevantHistory
   def extractModifierExtension(t: ServiceRequest): LitSeq[Extension]                = t.modifierExtension
-  def extractLocationReference(t: ServiceRequest): LitSeq[Reference]                = t.locationReference
   def extractPatientInstruction(t: ServiceRequest): Option[String]                  = t.patientInstruction
   def extractInstantiatesCanonical(t: ServiceRequest): LitSeq[Canonical]            = t.instantiatesCanonical
   override val thisName: String                                                     = "ServiceRequest"
@@ -370,12 +356,14 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
           cursor.decodeAs[LitSeq[Annotation]]("note", Some(LitSeq.empty)),
           cursor.decodeAs[REQUEST_STATUS]("status", None),
           cursor.decodeAs[REQUEST_INTENT]("intent", None),
+          cursor.decodeAs[LitSeq[CodeableReference]]("reason", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("basedOn", Some(LitSeq.empty)),
           cursor.decodeAs[Reference]("subject", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("replaces", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("category", Some(LitSeq.empty)),
           cursor.decodeAs[Option[REQUEST_PRIORITY]]("priority", Some(None)),
+          cursor.decodeAs[LitSeq[CodeableReference]]("location", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("specimen", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("bodySite", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
@@ -386,22 +374,18 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
           cursor.decodeAs[LitSeq[Reference]]("insurance", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[FHIRDateTime]]("authoredOn", Some(None)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Identifier]]("requisition", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("orderDetail", Some(LitSeq.empty)),
           cursor.decodeOptRef[UnionQuantityOrRangeOrRatio]("quantity"),
           cursor.decodeOptRef[UnionBooleanOrCodeableConcept]("asNeeded"),
           cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
-          cursor.decodeAs[LitSeq[CodeableConcept]]("locationCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeOptRef[UnionDateTimeOrPeriodOrTiming]("occurrence"),
           cursor.decodeAs[Option[CodeableConcept]]("performerType", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("supportingInfo", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[UriStr]]("instantiatesUri", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("relevantHistory", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-          cursor.decodeAs[LitSeq[Reference]]("locationReference", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("patientInstruction", Some(None)),
           cursor.decodeAs[LitSeq[Canonical]]("instantiatesCanonical", Some(LitSeq.empty)),
           decodeAttributes(cursor)
@@ -414,10 +398,10 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
   * Subclass of [[hl7.model.DomainResource]] (A resource that includes narrative, extensions, and contained resources.)
   *
   * @constructor
-  *   Introduces the fields code, note, status, intent, basedOn, subject, replaces, category, priority, specimen, bodySite,
-  *   encounter, requester, performer, insurance, identifier, authoredOn, reasonCode, requisition, orderDetail, quantity,
-  *   asNeeded, doNotPerform, locationCode, occurrence, performerType, supportingInfo, instantiatesUri, reasonReference,
-  *   relevantHistory, locationReference, patientInstruction, instantiatesCanonical.
+  *   Introduces the fields code, note, status, intent, reason, basedOn, subject, replaces, category, priority, location,
+  *   specimen, bodySite, encounter, requester, performer, insurance, identifier, authoredOn, requisition, orderDetail, quantity,
+  *   asNeeded, doNotPerform, occurrence, performerType, supportingInfo, instantiatesUri, relevantHistory, patientInstruction,
+  *   instantiatesCanonical.
   * @param id
   *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
   * @param meta
@@ -437,6 +421,9 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
   *   - The status of the order.
   * @param intent
   *   - Whether the request is a proposal, plan, an original order or a reflex order.
+  * @param reason
+  *   - An explanation or justification for why this service is being requested in coded or textual form. This is often for
+  *   billing purposes. May relate to the resources referred to in `supportingInfo`.
   * @param basedOn
   *   - Plan/proposal/order fulfilled by this request.
   * @param subject
@@ -450,13 +437,16 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
   *   - A code that classifies the service for searching, sorting and display purposes (e.g. "Surgical Procedure").
   * @param priority
   *   - Indicates how quickly the ServiceRequest should be addressed with respect to other requests.
+  * @param location
+  *   - The preferred location(s) where the procedure should actually happen in coded or free text form. E.g. at home or nursing
+  *   day care center.
   * @param specimen
   *   - One or more specimens that the laboratory procedure will use.
   * @param bodySite
   *   - Anatomic location where the procedure should be performed. This is the target site.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -475,9 +465,6 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
   *   - Identifiers assigned to this order instance by the orderer and/or the receiver and/or order fulfiller.
   * @param authoredOn
   *   - When the request transitioned to being actionable.
-  * @param reasonCode
-  *   - An explanation or justification for why this service is being requested in coded or textual form. This is often for
-  *   billing purposes. May relate to the resources referred to in `supportingInfo`.
   * @param requisition
   *   - A shared identifier common to all service requests that were authorized more or less simultaneously by a single author,
   *   representing the composite or group identifier.
@@ -493,9 +480,6 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
   *   flare-up", etc.
   * @param doNotPerform
   *   - Set this to true if the record is saying that the service/procedure should NOT be performed.
-  * @param locationCode
-  *   - The preferred location(s) where the procedure should actually happen in coded or free text form. E.g. at home or nursing
-  *   day care center.
   * @param implicitRules
   *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
   *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
@@ -513,9 +497,6 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
   * @param instantiatesUri
   *   - The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole
   *   or in part by this ServiceRequest.
-  * @param reasonReference
-  *   - Indicates another resource that provides a justification for why this service is being requested. May relate to the
-  *   resources referred to in `supportingInfo`.
   * @param relevantHistory
   *   - Key events in the history of the request.
   * @param modifierExtension
@@ -526,9 +507,6 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
   *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
   *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
   *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
-  * @param locationReference
-  *   - A reference to the the preferred location(s) where the procedure should actually happen. E.g. at home or nursing day care
-  *   center.
   * @param patientInstruction
   *   - Instructions in terms that are understood by the patient or consumer.
   * @param instantiatesCanonical
@@ -544,12 +522,14 @@ class ServiceRequest(
     val note: LitSeq[Annotation] = LitSeq.empty,
     val status: REQUEST_STATUS,
     val intent: REQUEST_INTENT,
+    val reason: LitSeq[CodeableReference] = LitSeq.empty,
     val basedOn: LitSeq[Reference] = LitSeq.empty,
     val subject: Reference,
     override val language: Option[LANGUAGES] = None,
     val replaces: LitSeq[Reference] = LitSeq.empty,
     val category: LitSeq[CodeableConcept] = LitSeq.empty,
     val priority: Option[REQUEST_PRIORITY] = None,
+    val location: LitSeq[CodeableReference] = LitSeq.empty,
     val specimen: LitSeq[Reference] = LitSeq.empty,
     val bodySite: LitSeq[CodeableConcept] = LitSeq.empty,
     override val contained: LitSeq[Resource] = LitSeq.empty,
@@ -560,22 +540,18 @@ class ServiceRequest(
     val insurance: LitSeq[Reference] = LitSeq.empty,
     val identifier: LitSeq[Identifier] = LitSeq.empty,
     val authoredOn: Option[FHIRDateTime] = None,
-    val reasonCode: LitSeq[CodeableConcept] = LitSeq.empty,
     val requisition: Option[Identifier] = None,
     val orderDetail: LitSeq[CodeableConcept] = LitSeq.empty,
     val quantity: Option[ServiceRequest.QuantityChoice] = None,
     val asNeeded: Option[ServiceRequest.AsNeededChoice] = None,
     val doNotPerform: Option[Boolean] = None,
-    val locationCode: LitSeq[CodeableConcept] = LitSeq.empty,
     override val implicitRules: Option[UriStr] = None,
     val occurrence: Option[ServiceRequest.OccurrenceChoice] = None,
     val performerType: Option[CodeableConcept] = None,
     val supportingInfo: LitSeq[Reference] = LitSeq.empty,
     val instantiatesUri: LitSeq[UriStr] = LitSeq.empty,
-    val reasonReference: LitSeq[Reference] = LitSeq.empty,
     val relevantHistory: LitSeq[Reference] = LitSeq.empty,
     override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
-    val locationReference: LitSeq[Reference] = LitSeq.empty,
     val patientInstruction: Option[String] = None,
     val instantiatesCanonical: LitSeq[Canonical] = LitSeq.empty,
     override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts

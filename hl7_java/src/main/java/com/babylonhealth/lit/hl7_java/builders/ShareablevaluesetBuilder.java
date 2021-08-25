@@ -47,25 +47,13 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
   public Shareablevalueset build();
 
   public static Impl init(
-      String url,
-      String name,
-      PUBLICATION_STATUS status,
-      String version,
-      String publisher,
-      String description,
-      Boolean experimental) {
-    return new Impl(url, name, status, version, publisher, description, experimental);
+      String url, String name, PUBLICATION_STATUS status, String version, Boolean experimental) {
+    return new Impl(url, name, status, version, experimental);
   }
 
   public static Impl builder(
-      String url,
-      String name,
-      PUBLICATION_STATUS status,
-      String version,
-      String publisher,
-      String description,
-      Boolean experimental) {
-    return new Impl(url, name, status, version, publisher, description, experimental);
+      String url, String name, PUBLICATION_STATUS status, String version, Boolean experimental) {
+    return new Impl(url, name, status, version, experimental);
   }
 
   public class Impl implements ShareablevaluesetBuilder {
@@ -87,16 +75,17 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private String publisher;
+    private Optional<String> publisher = Optional.empty();
     private Optional<Boolean> immutable = Optional.empty();
     private Optional<String> copyright = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<UsageContext> useContext = Collections.emptyList();
-    private String description;
+    private Optional<String> description = Optional.empty();
     private Boolean experimental;
     private Collection<CodeableConcept> jurisdiction = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Optional<ValueSet.Scope> scope = Optional.empty();
     private Optional<ValueSet.Expansion> expansion = Optional.empty();
     private Optional<ValueSet.Compose> compose = Optional.empty();
 
@@ -105,10 +94,10 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
      *
      * @param url - An absolute URI that is used to identify this value set when it is referenced in
      *     a specification, model, design or an instance; also called its canonical identifier. This
-     *     SHOULD be globally unique and SHOULD be a literal address at which at which an
-     *     authoritative instance of this value set is (or will be) published. This URL can be the
-     *     target of a canonical reference. It SHALL remain the same when the value set is stored on
-     *     different servers.
+     *     SHOULD be globally unique and SHOULD be a literal address at which an authoritative
+     *     instance of this value set is (or will be) published. This URL can be the target of a
+     *     canonical reference. It SHALL remain the same when the value set is stored on different
+     *     servers.
      * @param name - A natural language name identifying the value set. This name should be usable
      *     as an identifier for the module by machine processing applications such as code
      *     generation.
@@ -120,29 +109,16 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
      *     value managed by the value set author and is not expected to be globally unique. For
      *     example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available.
      *     There is also no expectation that versions can be placed in a lexicographical sequence.
-     * @param publisher - The name of the organization or individual that published the value set.
-     * @param description - A free text natural language description of the value set from a
-     *     consumer's perspective. The textual description specifies the span of meanings for
-     *     concepts to be included within the Value Set Expansion, and also may specify the intended
-     *     use and limitations of the Value Set.
      * @param experimental - A Boolean value to indicate that this value set is authored for testing
      *     purposes (or education/evaluation/marketing) and is not intended to be used for genuine
      *     usage.
      */
     public Impl(
-        String url,
-        String name,
-        PUBLICATION_STATUS status,
-        String version,
-        String publisher,
-        String description,
-        Boolean experimental) {
+        String url, String name, PUBLICATION_STATUS status, String version, Boolean experimental) {
       this.url = url;
       this.name = name;
       this.status = status;
       this.version = version;
-      this.publisher = publisher;
-      this.description = description;
       this.experimental = experimental;
     }
 
@@ -233,8 +209,8 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ShareablevaluesetBuilder.Impl withContained(@NonNull Resource... contained) {
       this.contained = Arrays.asList(contained);
@@ -242,8 +218,8 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
     }
     /**
      * @param contained - These resources do not have an independent existence apart from the
-     *     resource that contains them - they cannot be identified independently, and nor can they
-     *     have their own independent transaction scope.
+     *     resource that contains them - they cannot be identified independently, nor can they have
+     *     their own independent transaction scope.
      */
     public ShareablevaluesetBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
       this.contained = Collections.unmodifiableCollection(contained);
@@ -279,6 +255,13 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
 
     public ShareablevaluesetBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param publisher - The name of the organization or individual that published the value set.
+     */
+    public ShareablevaluesetBuilder.Impl withPublisher(@NonNull String publisher) {
+      this.publisher = Optional.of(publisher);
       return this;
     }
     /**
@@ -347,6 +330,16 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
     public ShareablevaluesetBuilder.Impl withUseContext(
         @NonNull UsageContextBuilder... useContext) {
       this.useContext = Arrays.stream(useContext).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param description - A free text natural language description of the value set from a
+     *     consumer's perspective. The textual description specifies the span of meanings for
+     *     concepts to be included within the Value Set Expansion, and also may specify the intended
+     *     use and limitations of the Value Set.
+     */
+    public ShareablevaluesetBuilder.Impl withDescription(@NonNull String description) {
+      this.description = Optional.of(description);
       return this;
     }
     /**
@@ -427,6 +420,19 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
       return this;
     }
     /**
+     * @param scope - Description of the semantic space the Value Set Expansion is intended to
+     *     cover.
+     */
+    public ShareablevaluesetBuilder.Impl withScope(@NonNull ValueSet.Scope scope) {
+      this.scope = Optional.of(scope);
+      return this;
+    }
+
+    public ShareablevaluesetBuilder.Impl withScope(@NonNull ValueSet_ScopeBuilder scope) {
+      this.scope = Optional.of(scope.build());
+      return this;
+    }
+    /**
      * @param expansion - A value set can also be "expanded", where the value set is turned into a
      *     simple collection of enumerated codes. This element holds the expansion, if it has been
      *     performed.
@@ -477,16 +483,17 @@ public interface ShareablevaluesetBuilder extends ValueSetBuilder {
           OptionConverters.toScala(language),
           contained.stream().collect(new LitSeqJCollector<>()),
           extension.stream().collect(new LitSeqJCollector<>()),
-          publisher,
+          OptionConverters.toScala(publisher),
           OptionConverters.toScala(immutable.map(x -> (Object) x)),
           OptionConverters.toScala(copyright),
           identifier.stream().collect(new LitSeqJCollector<>()),
           useContext.stream().collect(new LitSeqJCollector<>()),
-          description,
+          OptionConverters.toScala(description),
           experimental,
           jurisdiction.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(implicitRules),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(scope),
           OptionConverters.toScala(expansion),
           OptionConverters.toScala(compose),
           LitUtils.emptyMetaElMap());

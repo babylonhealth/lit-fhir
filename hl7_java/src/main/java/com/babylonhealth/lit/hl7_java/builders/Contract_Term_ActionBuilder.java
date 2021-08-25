@@ -73,12 +73,11 @@ public interface Contract_Term_ActionBuilder {
     private CodeableConcept intent;
     private Collection<String> linkId = Collections.emptyList();
     private CodeableConcept status;
-    private Collection<String> reason = Collections.emptyList();
+    private Collection<CodeableReference> reason = Collections.emptyList();
     private Optional<Reference> context = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Reference> requester = Collections.emptyList();
     private Optional<Reference> performer = Optional.empty();
-    private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<Boolean> doNotPerform = Optional.empty();
     private Collection<String> reasonLinkId = Collections.emptyList();
     private Collection<String> contextLinkId = Collections.emptyList();
@@ -87,7 +86,6 @@ public interface Contract_Term_ActionBuilder {
     private Optional<CodeableConcept> performerRole = Optional.empty();
     private Collection<String> requesterLinkId = Collections.emptyList();
     private Collection<String> performerLinkId = Collections.emptyList();
-    private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Integer> securityLabelNumber = Collections.emptyList();
     private Collection<Contract$Term$Action$Subject> subject = Collections.emptyList();
@@ -142,13 +140,20 @@ public interface Contract_Term_ActionBuilder {
       return this;
     }
     /** @param reason */
-    public Contract_Term_ActionBuilder.Impl withReason(@NonNull String... reason) {
+    public Contract_Term_ActionBuilder.Impl withReason(@NonNull CodeableReference... reason) {
       this.reason = Arrays.asList(reason);
       return this;
     }
     /** @param reason */
-    public Contract_Term_ActionBuilder.Impl withReason(@NonNull Collection<String> reason) {
+    public Contract_Term_ActionBuilder.Impl withReason(
+        @NonNull Collection<CodeableReference> reason) {
       this.reason = Collections.unmodifiableCollection(reason);
+      return this;
+    }
+
+    public Contract_Term_ActionBuilder.Impl withReason(
+        @NonNull CodeableReferenceBuilder... reason) {
+      this.reason = Arrays.stream(reason).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param context */
@@ -213,23 +218,6 @@ public interface Contract_Term_ActionBuilder {
 
     public Contract_Term_ActionBuilder.Impl withPerformer(@NonNull ReferenceBuilder performer) {
       this.performer = Optional.of(performer.build());
-      return this;
-    }
-    /** @param reasonCode */
-    public Contract_Term_ActionBuilder.Impl withReasonCode(@NonNull CodeableConcept... reasonCode) {
-      this.reasonCode = Arrays.asList(reasonCode);
-      return this;
-    }
-    /** @param reasonCode */
-    public Contract_Term_ActionBuilder.Impl withReasonCode(
-        @NonNull Collection<CodeableConcept> reasonCode) {
-      this.reasonCode = Collections.unmodifiableCollection(reasonCode);
-      return this;
-    }
-
-    public Contract_Term_ActionBuilder.Impl withReasonCode(
-        @NonNull CodeableConceptBuilder... reasonCode) {
-      this.reasonCode = Arrays.stream(reasonCode).map(e -> e.build()).collect(toList());
       return this;
     }
     /** @param doNotPerform */
@@ -323,24 +311,6 @@ public interface Contract_Term_ActionBuilder {
       this.performerLinkId = Collections.unmodifiableCollection(performerLinkId);
       return this;
     }
-    /** @param reasonReference */
-    public Contract_Term_ActionBuilder.Impl withReasonReference(
-        @NonNull Reference... reasonReference) {
-      this.reasonReference = Arrays.asList(reasonReference);
-      return this;
-    }
-    /** @param reasonReference */
-    public Contract_Term_ActionBuilder.Impl withReasonReference(
-        @NonNull Collection<Reference> reasonReference) {
-      this.reasonReference = Collections.unmodifiableCollection(reasonReference);
-      return this;
-    }
-
-    public Contract_Term_ActionBuilder.Impl withReasonReference(
-        @NonNull ReferenceBuilder... reasonReference) {
-      this.reasonReference = Arrays.stream(reasonReference).map(e -> e.build()).collect(toList());
-      return this;
-    }
     /**
      * @param modifierExtension - May be used to represent additional information that is not part
      *     of the basic definition of the resource and that modifies the understanding of the
@@ -432,7 +402,6 @@ public interface Contract_Term_ActionBuilder {
           extension.stream().collect(new LitSeqJCollector<>()),
           requester.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(performer),
-          reasonCode.stream().collect(new LitSeqJCollector<>()),
           OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
           reasonLinkId.stream().collect(new LitSeqJCollector<>()),
           contextLinkId.stream().collect(new LitSeqJCollector<>()),
@@ -441,7 +410,6 @@ public interface Contract_Term_ActionBuilder {
           OptionConverters.toScala(performerRole),
           requesterLinkId.stream().collect(new LitSeqJCollector<>()),
           performerLinkId.stream().collect(new LitSeqJCollector<>()),
-          reasonReference.stream().collect(new LitSeqJCollector<>()),
           modifierExtension.stream().collect(new LitSeqJCollector<>()),
           securityLabelNumber.stream()
               .map(x -> (Object) x)

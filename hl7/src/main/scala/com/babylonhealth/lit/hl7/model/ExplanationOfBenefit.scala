@@ -18,7 +18,7 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 import com.babylonhealth.lit.core.UnionAliases._
 import com.babylonhealth.lit.hl7.UnionAliases._
-import com.babylonhealth.lit.hl7.{ EXPLANATIONOFBENEFIT_STATUS, CLAIM_USE, NOTE_TYPE, REMITTANCE_OUTCOME }
+import com.babylonhealth.lit.hl7.{ EXPLANATIONOFBENEFIT_STATUS, CLAIM_USE, NOTE_TYPE }
 import com.babylonhealth.lit.core.LANGUAGES
 import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
@@ -2354,7 +2354,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       created: FHIRDateTime,
       enterer: Option[Reference] = None,
       insurer: Reference,
-      outcome: REMITTANCE_OUTCOME,
+      outcome: Code,
       language: Option[LANGUAGES] = None,
       provider: Reference,
       priority: Option[CodeableConcept] = None,
@@ -2473,8 +2473,8 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     FHIRComponentFieldMeta("enterer", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val insurer: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("insurer", lTagOf[Reference], false, lTagOf[Reference])
-  val outcome: FHIRComponentFieldMeta[REMITTANCE_OUTCOME] =
-    FHIRComponentFieldMeta("outcome", lTagOf[REMITTANCE_OUTCOME], false, lTagOf[REMITTANCE_OUTCOME])
+  val outcome: FHIRComponentFieldMeta[Code] =
+    FHIRComponentFieldMeta("outcome", lTagOf[Code], false, lTagOf[Code])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val provider: FHIRComponentFieldMeta[Reference] =
@@ -2653,7 +2653,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     FHIRComponentField[FHIRDateTime](created, t.created),
     FHIRComponentField[Option[Reference]](enterer, t.enterer),
     FHIRComponentField[Reference](insurer, t.insurer),
-    FHIRComponentField[REMITTANCE_OUTCOME](outcome, t.outcome),
+    FHIRComponentField[Code](outcome, t.outcome),
     FHIRComponentField[Option[LANGUAGES]](language, t.language),
     FHIRComponentField[Reference](provider, t.provider),
     FHIRComponentField[Option[CodeableConcept]](priority, t.priority),
@@ -2705,7 +2705,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
   def extractCreated(t: ExplanationOfBenefit): FHIRDateTime                                        = t.created
   def extractEnterer(t: ExplanationOfBenefit): Option[Reference]                                   = t.enterer
   def extractInsurer(t: ExplanationOfBenefit): Reference                                           = t.insurer
-  def extractOutcome(t: ExplanationOfBenefit): REMITTANCE_OUTCOME                                  = t.outcome
+  def extractOutcome(t: ExplanationOfBenefit): Code                                                = t.outcome
   def extractLanguage(t: ExplanationOfBenefit): Option[LANGUAGES]                                  = t.language
   def extractProvider(t: ExplanationOfBenefit): Reference                                          = t.provider
   def extractPriority(t: ExplanationOfBenefit): Option[CodeableConcept]                            = t.priority
@@ -2780,7 +2780,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
         cursor.decodeAs[FHIRDateTime]("created", None),
         cursor.decodeAs[Option[Reference]]("enterer", Some(None)),
         cursor.decodeAs[Reference]("insurer", None),
-        cursor.decodeAs[REMITTANCE_OUTCOME]("outcome", None),
+        cursor.decodeAs[Code]("outcome", None),
         cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
         cursor.decodeAs[Reference]("provider", None),
         cursor.decodeAs[Option[CodeableConcept]]("priority", Some(None)),
@@ -2885,7 +2885,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
   *   - A code for the form to be used for printing the content.
   * @param contained
   *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
-  *   identified independently, and nor can they have their own independent transaction scope.
+  *   identified independently, nor can they have their own independent transaction scope.
   * @param extension
   *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
   *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
@@ -2980,7 +2980,7 @@ class ExplanationOfBenefit(
     val created: FHIRDateTime,
     val enterer: Option[Reference] = None,
     val insurer: Reference,
-    val outcome: REMITTANCE_OUTCOME,
+    val outcome: Code,
     override val language: Option[LANGUAGES] = None,
     val provider: Reference,
     val priority: Option[CodeableConcept] = None,

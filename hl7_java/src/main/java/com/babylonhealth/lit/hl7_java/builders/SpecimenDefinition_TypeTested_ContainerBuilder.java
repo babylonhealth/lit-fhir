@@ -164,7 +164,10 @@ public interface SpecimenDefinition_TypeTested_ContainerBuilder {
       this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
       return this;
     }
-    /** @param description */
+    /**
+     * @param description - A free text natural language description of the SpecimenDefinition from
+     *     the consumer's perspective.
+     */
     public SpecimenDefinition_TypeTested_ContainerBuilder.Impl withDescription(
         @NonNull String description) {
       this.description = Optional.of(description);
