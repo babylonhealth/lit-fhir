@@ -64,7 +64,7 @@ public class JavaUsageOfLit {
         new Pediatric_bmi_for_ageBuilder(
                 new CodeableConceptBuilder().withText("Dummy code").build(),
                 ObservationStatus.UNKNOWN,
-                new ReferenceBuilder().withReference("Mah baby!").build(),
+                new ReferenceBuilder().withReference("Patient/reference-123").build(),
                 List.of(new CodeableConceptBuilder().withText("IDFK").build()),
                 new QuantityBuilder().withValue(BigDecimal.valueOf(12.3)).build(),
                 effective)
@@ -75,7 +75,7 @@ public class JavaUsageOfLit {
     System.out.println(paedBMI);
     assertEquals(
         String.format(
-            "Pediatric_bmi_for_age(meta = Some(Meta(profile = LitSeq(http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age))), code = CodeableConcept(text = Some(Dummy code)), status = UNKNOWN, issued = Some(%s), subject = Reference(reference = Some(Mah baby!)), language = Some(EN_GB), category = LitSeq(CodeableConcept(text = Some(IDFK))), value[x]: com.babylonhealth.lit.core.model.Quantity = Quantity(value = Some(12.3)), effective[x]: DateTime = %s)",
+            "Pediatric_bmi_for_age(meta = Some(Meta(profile = LitSeq(http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age))), code = CodeableConcept(text = Some(Dummy code)), status = UNKNOWN, issued = Some(%s), subject = Reference(reference = Some(Patient/reference-123)), language = Some(EN_GB), category = LitSeq(CodeableConcept(text = Some(IDFK))), value[x]: com.babylonhealth.lit.core.model.Quantity = Quantity(value = Some(12.3)), effective[x]: DateTime = %s)",
             issued.toString(), effective.toString()),
         paedBMI.toString());
   }
@@ -89,7 +89,7 @@ public class JavaUsageOfLit {
         new Pediatric_bmi_for_ageBuilder(
                 new CodeableConceptBuilder().withText("Dummy code").build(),
                 ObservationStatus.UNKNOWN,
-                new ReferenceBuilder().withReference("Mah baby!").build(),
+                new ReferenceBuilder().withReference("Patient/reference-123").build(),
                 List.of(new CodeableConceptBuilder().withText("IDFK").build()),
                 new QuantityBuilder().withValue(BigDecimal.valueOf(12.3)).build(),
                 effective)
@@ -105,7 +105,7 @@ public class JavaUsageOfLit {
         new Pediatric_bmi_for_ageBuilder(
                 new CodeableConceptBuilder().withText("Dummy code").build(),
                 ObservationStatus.UNKNOWN,
-                new ReferenceBuilder().withReference("Mah baby!").build(),
+                new ReferenceBuilder().withReference("Patient/reference-123").build(),
                 List.of(new CodeableConceptBuilder().withText("IDFK").build()),
                 new QuantityBuilder().withValue(BigDecimal.valueOf(12.3)).build(),
                 effective)
@@ -130,7 +130,7 @@ public class JavaUsageOfLit {
         new Pediatric_bmi_for_ageBuilder(
                 new CodeableConceptBuilder().withText("Dummy code").build(),
                 ObservationStatus.UNKNOWN,
-                new ReferenceBuilder().withReference("Mah baby!").build(),
+                new ReferenceBuilder().withReference("Patient/reference-123").build(),
                 List.of(new CodeableConceptBuilder().withText("A category concept").build()),
                 new QuantityBuilder().withValue(BigDecimal.valueOf(12.3)).build(),
                 effective)
@@ -322,7 +322,7 @@ public class JavaUsageOfLit {
     return new Pediatric_bmi_for_ageBuilder(
             new CodeableConceptBuilder().withText("Dummy code").build(),
             ObservationStatus.UNKNOWN,
-            new ReferenceBuilder().withReference("Mah baby!").build(),
+            new ReferenceBuilder().withReference("Patient/reference-123").build(),
             List.of(new CodeableConceptBuilder().withText("IDFK").build()),
             new QuantityBuilder().withValue(BigDecimal.valueOf(12.3)).build(),
             new FHIRDateTime(effective, LitUtils.DateTimeSpecificity.Time))

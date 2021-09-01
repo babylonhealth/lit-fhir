@@ -11,7 +11,7 @@
   "resourceType": "Observation",
   "status": "unknown",
   "subject": {
-    "reference": "Mah baby!"
+    "reference": "Patient/reference-123"
   },
   "issued": "%s",
   "valueQuantity": {
