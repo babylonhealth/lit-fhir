@@ -1,0 +1,26 @@
+{
+  "code": {
+    "text": "Dummy code"
+  },
+  "effectiveDateTime": "%s",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age"
+    ]
+  },
+  "resourceType": "Observation",
+  "status": "unknown",
+  "subject": {
+    "reference": "Mah baby!"
+  },
+  "issued": "%s",
+  "valueQuantity": {
+    "value": 12.3
+  },
+  "category": [
+    {
+      "text": "A category concept"
+    }
+  ],
+  "language": "en-GB"
+}

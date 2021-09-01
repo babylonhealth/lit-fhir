@@ -26,9 +26,9 @@ val V = new {
 }
 
 def commonSettingsWithCrossVersions(versions: Seq[String]) = Seq(
-  version := thisVersion,
-  organization := "com.babylonhealth.lit",
-  scalaVersion := scala2Version,
+  version            := thisVersion,
+  organization       := "com.babylonhealth.lit",
+  scalaVersion       := scala2Version,
   crossScalaVersions := versions,
   resolvers ++= Seq(
     Resolver.mavenLocal,
@@ -60,7 +60,7 @@ val publishSettings = Seq(
       Some("releases" at artifactory + "artifactory/babylon-maven-releases")
   },
   publishMavenStyle := true,
-  publishArtifact := true
+  publishArtifact   := true
 )
 
 lazy val common = project
@@ -198,9 +198,9 @@ lazy val bench = project
       "org.scalatest"     %% "scalatest"               % V.scalaTest         % Test
     ),
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework"),
-    logBuffered := false,
+    logBuffered               := false,
     parallelExecution in Test := false,
-    fork in Test := true
+    fork in Test              := true
   )
   .dependsOn(core, hl7, usbase, protoshim)
 
@@ -243,6 +243,11 @@ lazy val uscoreJava = project
   .settings(commonJSettings: _*)
   .settings(publishSettings: _*)
   .settings(javaSettings: _*)
+  .settings(libraryDependencies ++= Seq(
+    "net.aichler"       % "jupiter-interface" % JupiterKeys.jupiterVersion.value % Test,
+    "org.skyscreamer"   % "jsonassert"        % V.jsonassert                     % Test,
+    "org.junit.jupiter" % "junit-jupiter"     % "5.5.2"                          % Test
+  ))
   .dependsOn(core, hl7, usbase, uscore, coreJava, hl7Java, usbaseJava)
   .enablePlugins(JupiterPlugin)
 
@@ -260,7 +265,7 @@ lazy val gproto = project
       "org.scalatest"      %% "scalatest"          % V.scalaTest % Test
     ),
     javafmtOnCompile := false,
-    crossPaths := false
+    crossPaths       := false
   )
 
 lazy val protoshim = project
