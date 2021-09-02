@@ -25,8 +25,6 @@ public class SmokingstatusExampleTest {
   private ZonedDateTime time =
       ZonedDateTime.now(ZoneOffset.ofHours(5)).truncatedTo(ChronoUnit.MILLIS);
 
-  // TODO: Why is `Us_core_smokingstatusBuilder` failing?
-  //  Us_core_smokingstatus example = new Us_core_smokingstatusBuilder()...build();
   Us_core_smokingstatus example =
       new Us_core_smokingstatusBuilder(
               new CodeableConceptBuilder()
