@@ -2,10 +2,11 @@ package com.babylonhealth.lit.core
 
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
+import org.scalatest.prop.TableDrivenPropertyChecks
 
 import scala.jdk.javaapi.CollectionConverters.asJava
 
-class LitSeqTest extends AnyFreeSpec with Matchers with org.scalatest.prop.TableDrivenPropertyChecks {
+class LitSeqTest extends AnyFreeSpec with Matchers with TableDrivenPropertyChecks {
   type JList[T] = java.util.List[T]
 
   "LitSeq for scala" - {
