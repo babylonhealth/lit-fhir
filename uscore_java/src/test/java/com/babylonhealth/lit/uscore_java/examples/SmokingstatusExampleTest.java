@@ -10,6 +10,7 @@ import com.babylonhealth.lit.hl7_java.builders.ObservationBuilder;
 import com.babylonhealth.lit.hl7_java.codes.ObservationStatus;
 import com.babylonhealth.lit.uscore.model.Us_core_smokingstatus;
 import com.babylonhealth.lit.uscore.model.Us_core_smokingstatus$;
+import com.babylonhealth.lit.uscore_java.builders.Us_core_smokingstatusBuilder;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 
@@ -24,37 +25,26 @@ public class SmokingstatusExampleTest {
   private ZonedDateTime time =
       ZonedDateTime.now(ZoneOffset.ofHours(5)).truncatedTo(ChronoUnit.MILLIS);
 
-  // TODO: Why is `Us_core_smokingstatusBuilder` failing?
-  //  Us_core_smokingstatus example = new Us_core_smokingstatusBuilder()...build();
   Us_core_smokingstatus example =
-      Us_core_smokingstatus$.MODULE$
-          .cast(
-              new ObservationBuilder(
-                      new CodeableConceptBuilder()
-                          .withCoding(
-                              new CodingBuilder()
-                                  .withSystem("http://loinc.org")
-                                  .withCode("72166-2")
-                                  .build())
-                          .build(),
-                      ObservationStatus.FINAL)
-                  .withMeta(
-                      new MetaBuilder()
-                          .withProfile(
-                              "http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus")
+      new Us_core_smokingstatusBuilder(
+              new CodeableConceptBuilder()
+                  .withCoding(
+                      new CodingBuilder()
+                          .withSystem("http://loinc.org")
+                          .withCode("72166-2")
                           .build())
-                  .withIssued(time)
-                  .withSubject(new ReferenceBuilder().withReference("Patient/1234567890").build())
-                  .withValue(
-                      new CodeableConceptBuilder()
-                          .withCoding(
-                              new CodingBuilder()
-                                  .withSystem("http://snomed.info/sct")
-                                  .withCode("266927001")
-                                  .build())
+                  .build(),
+              ObservationStatus.FINAL,
+              time,
+              new ReferenceBuilder().withReference("Patient/1234567890").build(),
+              new CodeableConceptBuilder()
+                  .withCoding(
+                      new CodingBuilder()
+                          .withSystem("http://snomed.info/sct")
+                          .withCode("266927001")
                           .build())
                   .build())
-          .get();
+          .build();
 
   String jsonStr =
       "{\"resourceType\":\"Observation\","
