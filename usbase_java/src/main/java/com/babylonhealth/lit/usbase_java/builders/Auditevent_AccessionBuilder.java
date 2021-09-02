@@ -70,7 +70,6 @@ public class Auditevent_AccessionBuilder {
   }
 
   public Auditevent_Accession build() {
-    return new Auditevent_Accession(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Auditevent_Accession(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

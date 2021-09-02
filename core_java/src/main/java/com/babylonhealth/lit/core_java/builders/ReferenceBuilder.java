@@ -131,12 +131,12 @@ public class ReferenceBuilder {
 
   public Reference build() {
     return new Reference(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(display),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(display),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(reference),
-        (Option) OptionConverters.toScala(identifier),
+        OptionConverters.toScala(reference),
+        OptionConverters.toScala(identifier),
         LitUtils.emptyMetaElMap());
   }
 }

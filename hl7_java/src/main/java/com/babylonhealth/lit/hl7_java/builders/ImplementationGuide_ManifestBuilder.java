@@ -168,11 +168,11 @@ public class ImplementationGuide_ManifestBuilder {
 
   public ImplementationGuide.Manifest build() {
     return new ImplementationGuide.Manifest(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         image.stream().collect(new LitSeqJCollector<>()),
         other.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(rendering),
+        OptionConverters.toScala(rendering),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         page.stream().collect(new LitSeqJCollector<>()),
         resource.stream().collect(new NonEmptyLitSeqJCollector<>()),

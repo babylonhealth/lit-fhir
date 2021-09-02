@@ -143,12 +143,12 @@ public class InsurancePlan_Plan_GeneralCostBuilder {
 
   public InsurancePlan$Plan$GeneralCost build() {
     return new InsurancePlan$Plan$GeneralCost(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(cost),
-        (Option) OptionConverters.toScala(comment),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(cost),
+        OptionConverters.toScala(comment),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(groupSize.map(x -> (Object) x)),
+        OptionConverters.toScala(groupSize.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

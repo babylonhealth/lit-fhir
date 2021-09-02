@@ -71,6 +71,6 @@ public class Cqf_initiatingOrganizationBuilder {
 
   public Cqf_initiatingOrganization build() {
     return new Cqf_initiatingOrganization(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

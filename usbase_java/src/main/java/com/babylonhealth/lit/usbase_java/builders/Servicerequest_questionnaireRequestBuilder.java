@@ -71,6 +71,6 @@ public class Servicerequest_questionnaireRequestBuilder {
 
   public Servicerequest_questionnaireRequest build() {
     return new Servicerequest_questionnaireRequest(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

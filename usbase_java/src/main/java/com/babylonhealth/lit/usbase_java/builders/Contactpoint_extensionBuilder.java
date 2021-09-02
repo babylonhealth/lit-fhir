@@ -71,6 +71,6 @@ public class Contactpoint_extensionBuilder {
 
   public Contactpoint_extension build() {
     return new Contactpoint_extension(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

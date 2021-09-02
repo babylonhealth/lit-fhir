@@ -175,14 +175,14 @@ public class RiskEvidenceSynthesis_RiskEstimateBuilder {
 
   public RiskEvidenceSynthesis.RiskEstimate build() {
     return new RiskEvidenceSynthesis.RiskEstimate(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(value),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
-        (Option) OptionConverters.toScala(unitOfMeasure),
-        (Option) OptionConverters.toScala(numeratorCount.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(denominatorCount.map(x -> (Object) x)),
+        OptionConverters.toScala(description),
+        OptionConverters.toScala(unitOfMeasure),
+        OptionConverters.toScala(numeratorCount.map(x -> (Object) x)),
+        OptionConverters.toScala(denominatorCount.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         precisionEstimate.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

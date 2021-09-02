@@ -74,7 +74,7 @@ public class Observation_geneticsAncestryBuilder {
 
   public Observation_geneticsAncestry build() {
     return new Observation_geneticsAncestry(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

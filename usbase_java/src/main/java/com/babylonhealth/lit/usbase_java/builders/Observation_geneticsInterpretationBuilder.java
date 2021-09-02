@@ -71,6 +71,6 @@ public class Observation_geneticsInterpretationBuilder {
 
   public Observation_geneticsInterpretation build() {
     return new Observation_geneticsInterpretation(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

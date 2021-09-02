@@ -70,7 +70,6 @@ public class Questionnaire_hiddenBuilder {
   }
 
   public Questionnaire_hidden build() {
-    return new Questionnaire_hidden(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Questionnaire_hidden(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

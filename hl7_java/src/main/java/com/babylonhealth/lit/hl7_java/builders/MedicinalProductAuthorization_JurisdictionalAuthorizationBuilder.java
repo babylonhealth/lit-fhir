@@ -178,14 +178,14 @@ public class MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder {
 
   public MedicinalProductAuthorization.JurisdictionalAuthorization build() {
     return new MedicinalProductAuthorization.JurisdictionalAuthorization(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(country),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(country),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(validityPeriod),
+        OptionConverters.toScala(validityPeriod),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(legalStatusOfSupply),
+        OptionConverters.toScala(legalStatusOfSupply),
         LitUtils.emptyMetaElMap());
   }
 }

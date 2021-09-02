@@ -72,6 +72,6 @@ public class Elementdefinition_allowedUnitsBuilder {
 
   public Elementdefinition_allowedUnits build() {
     return new Elementdefinition_allowedUnits(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

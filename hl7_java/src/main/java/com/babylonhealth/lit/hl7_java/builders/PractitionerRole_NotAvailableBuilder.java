@@ -132,8 +132,8 @@ public class PractitionerRole_NotAvailableBuilder {
 
   public PractitionerRole.NotAvailable build() {
     return new PractitionerRole.NotAvailable(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(during),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(during),
         extension.stream().collect(new LitSeqJCollector<>()),
         description,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

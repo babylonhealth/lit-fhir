@@ -141,10 +141,10 @@ public class ImagingStudy_Series_InstanceBuilder {
 
   public ImagingStudy$Series$Instance build() {
     return new ImagingStudy$Series$Instance(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         uid,
-        (Option) OptionConverters.toScala(title),
-        (Option) OptionConverters.toScala(number.map(x -> (Object) x)),
+        OptionConverters.toScala(title),
+        OptionConverters.toScala(number.map(x -> (Object) x)),
         sopClass,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

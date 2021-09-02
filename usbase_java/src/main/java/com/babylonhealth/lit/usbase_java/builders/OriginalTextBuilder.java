@@ -70,7 +70,6 @@ public class OriginalTextBuilder {
   }
 
   public OriginalText build() {
-    return new OriginalText(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new OriginalText(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

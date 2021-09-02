@@ -72,6 +72,6 @@ public class Condition_occurredFollowingBuilder {
 
   public Condition_occurredFollowing build() {
     return new Condition_occurredFollowing(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -70,7 +70,6 @@ public class Valueset_expressionBuilder {
   }
 
   public Valueset_expression build() {
-    return new Valueset_expression(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_expression(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

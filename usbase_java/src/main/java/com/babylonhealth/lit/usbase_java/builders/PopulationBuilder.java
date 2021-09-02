@@ -150,13 +150,13 @@ public class PopulationBuilder {
 
   public Population build() {
     return new Population(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(race),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(race),
         (Option) OptionConverters.toScala(age),
-        (Option) OptionConverters.toScala(gender),
+        OptionConverters.toScala(gender),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(physiologicalCondition),
+        OptionConverters.toScala(physiologicalCondition),
         LitUtils.emptyMetaElMap());
   }
 }

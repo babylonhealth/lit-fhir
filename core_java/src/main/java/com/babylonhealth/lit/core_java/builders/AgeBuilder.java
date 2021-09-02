@@ -117,13 +117,13 @@ public class AgeBuilder {
 
   public Age build() {
     return new Age(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(unit),
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(value),
-        (Option) OptionConverters.toScala(system),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(unit),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(value),
+        OptionConverters.toScala(system),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(comparator),
+        OptionConverters.toScala(comparator),
         LitUtils.emptyMetaElMap());
   }
 }

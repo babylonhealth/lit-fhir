@@ -71,6 +71,6 @@ public class Structuredefinition_fmm_no_warningsBuilder {
 
   public Structuredefinition_fmm_no_warnings build() {
     return new Structuredefinition_fmm_no_warnings(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -141,10 +141,10 @@ public class NutritionOrder_EnteralFormula_AdministrationBuilder {
 
   public NutritionOrder$EnteralFormula$Administration build() {
     return new NutritionOrder$EnteralFormula$Administration(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         (Option) OptionConverters.toScala(rate),
-        (Option) OptionConverters.toScala(schedule),
-        (Option) OptionConverters.toScala(quantity),
+        OptionConverters.toScala(schedule),
+        OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -132,9 +132,9 @@ public class MolecularSequence_StructureVariant_OuterBuilder {
 
   public MolecularSequence$StructureVariant$Outer build() {
     return new MolecularSequence$StructureVariant$Outer(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(end.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(start.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(end.map(x -> (Object) x)),
+        OptionConverters.toScala(start.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

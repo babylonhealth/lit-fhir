@@ -70,7 +70,6 @@ public class Identifier_validDateBuilder {
   }
 
   public Identifier_validDate build() {
-    return new Identifier_validDate(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Identifier_validDate(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

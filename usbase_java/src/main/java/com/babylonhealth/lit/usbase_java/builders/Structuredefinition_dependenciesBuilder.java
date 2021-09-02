@@ -71,6 +71,6 @@ public class Structuredefinition_dependenciesBuilder {
 
   public Structuredefinition_dependencies build() {
     return new Structuredefinition_dependencies(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

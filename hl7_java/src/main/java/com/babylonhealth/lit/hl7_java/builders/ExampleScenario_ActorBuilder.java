@@ -144,12 +144,12 @@ public class ExampleScenario_ActorBuilder {
 
   public ExampleScenario.Actor build() {
     return new ExampleScenario.Actor(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(name),
         actorId,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

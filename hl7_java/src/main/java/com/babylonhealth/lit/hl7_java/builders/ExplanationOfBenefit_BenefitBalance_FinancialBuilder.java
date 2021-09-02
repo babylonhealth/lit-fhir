@@ -141,7 +141,7 @@ public class ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
 
   public ExplanationOfBenefit$BenefitBalance$Financial build() {
     return new ExplanationOfBenefit$BenefitBalance$Financial(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         (Option) OptionConverters.toScala(used),
         extension.stream().collect(new LitSeqJCollector<>()),

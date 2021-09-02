@@ -71,6 +71,6 @@ public class Patient_genderIdentityBuilder {
 
   public Patient_genderIdentity build() {
     return new Patient_genderIdentity(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

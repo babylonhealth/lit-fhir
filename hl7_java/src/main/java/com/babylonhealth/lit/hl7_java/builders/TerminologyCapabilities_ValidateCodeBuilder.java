@@ -127,7 +127,7 @@ public class TerminologyCapabilities_ValidateCodeBuilder {
 
   public TerminologyCapabilities.ValidateCode build() {
     return new TerminologyCapabilities.ValidateCode(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         translations,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

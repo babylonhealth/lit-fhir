@@ -71,6 +71,6 @@ public class Iso21090_ADXP_deliveryInstallationAreaBuilder {
 
   public Iso21090_ADXP_deliveryInstallationArea build() {
     return new Iso21090_ADXP_deliveryInstallationArea(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

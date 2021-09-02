@@ -70,7 +70,6 @@ public class Iso21090_preferredBuilder {
   }
 
   public Iso21090_preferred build() {
-    return new Iso21090_preferred(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Iso21090_preferred(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

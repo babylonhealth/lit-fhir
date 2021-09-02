@@ -71,6 +71,6 @@ public class Procedure_incisionDateTimeBuilder {
 
   public Procedure_incisionDateTime build() {
     return new Procedure_incisionDateTime(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

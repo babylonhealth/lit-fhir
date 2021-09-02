@@ -147,12 +147,12 @@ public class ObservationDefinition_QuantitativeDetailsBuilder {
 
   public ObservationDefinition.QuantitativeDetails build() {
     return new ObservationDefinition.QuantitativeDetails(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(unit),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(unit),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(customaryUnit),
-        (Option) OptionConverters.toScala(conversionFactor),
-        (Option) OptionConverters.toScala(decimalPrecision.map(x -> (Object) x)),
+        OptionConverters.toScala(customaryUnit),
+        OptionConverters.toScala(conversionFactor),
+        OptionConverters.toScala(decimalPrecision.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

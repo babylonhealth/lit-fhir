@@ -71,6 +71,6 @@ public class Encounter_reasonCancelledBuilder {
 
   public Encounter_reasonCancelled build() {
     return new Encounter_reasonCancelled(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

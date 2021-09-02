@@ -96,7 +96,7 @@ public class ElementDefinition_Slicing_DiscriminatorBuilder {
 
   public ElementDefinition$Slicing$Discriminator build() {
     return new ElementDefinition$Slicing$Discriminator(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         path,
         extension.stream().collect(new LitSeqJCollector<>()),

@@ -289,24 +289,24 @@ public class SlotBuilder {
 
   public Slot build() {
     return new Slot(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         end,
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         start,
         status,
-        (Option) OptionConverters.toScala(comment),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(comment),
+        OptionConverters.toScala(language),
         schedule,
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         specialty.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(overbooked.map(x -> (Object) x)),
+        OptionConverters.toScala(overbooked.map(x -> (Object) x)),
         serviceType.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         serviceCategory.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(appointmentType),
+        OptionConverters.toScala(appointmentType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

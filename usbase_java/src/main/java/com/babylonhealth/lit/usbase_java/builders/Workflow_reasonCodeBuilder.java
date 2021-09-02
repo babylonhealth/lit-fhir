@@ -70,7 +70,6 @@ public class Workflow_reasonCodeBuilder {
   }
 
   public Workflow_reasonCode build() {
-    return new Workflow_reasonCode(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Workflow_reasonCode(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

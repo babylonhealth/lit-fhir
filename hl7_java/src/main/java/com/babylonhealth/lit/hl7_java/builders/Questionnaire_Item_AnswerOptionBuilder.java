@@ -134,10 +134,10 @@ public class Questionnaire_Item_AnswerOptionBuilder {
 
   public Questionnaire$Item$AnswerOption build() {
     return new Questionnaire$Item$AnswerOption(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(initialSelected.map(x -> (Object) x)),
+        OptionConverters.toScala(initialSelected.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

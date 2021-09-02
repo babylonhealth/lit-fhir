@@ -174,12 +174,12 @@ public class QuestionnaireResponse_ItemBuilder {
 
   public QuestionnaireResponse.Item build() {
     return new QuestionnaireResponse.Item(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(text),
         item.stream().collect(new LitSeqJCollector<>()),
         linkId,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(definition),
+        OptionConverters.toScala(definition),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         answer.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

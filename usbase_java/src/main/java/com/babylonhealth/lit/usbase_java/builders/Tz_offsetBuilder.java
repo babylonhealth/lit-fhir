@@ -70,6 +70,6 @@ public class Tz_offsetBuilder {
   }
 
   public Tz_offset build() {
-    return new Tz_offset((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Tz_offset(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -152,14 +152,14 @@ public class MolecularSequence_StructureVariantBuilder {
 
   public MolecularSequence.StructureVariant build() {
     return new MolecularSequence.StructureVariant(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(exact.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(length.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(exact.map(x -> (Object) x)),
+        OptionConverters.toScala(length.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(variantType),
+        OptionConverters.toScala(variantType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(outer),
-        (Option) OptionConverters.toScala(inner),
+        OptionConverters.toScala(outer),
+        OptionConverters.toScala(inner),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Concept_bidirectionalBuilder {
 
   public Concept_bidirectional build() {
     return new Concept_bidirectional(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

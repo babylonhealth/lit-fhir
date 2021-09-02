@@ -133,8 +133,8 @@ public class TestScript_FixtureBuilder {
 
   public TestScript.Fixture build() {
     return new TestScript.Fixture(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(resource),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(resource),
         extension.stream().collect(new LitSeqJCollector<>()),
         autocreate,
         autodelete,

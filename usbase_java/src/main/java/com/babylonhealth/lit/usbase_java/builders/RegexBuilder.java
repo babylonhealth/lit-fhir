@@ -70,6 +70,6 @@ public class RegexBuilder {
   }
 
   public Regex build() {
-    return new Regex((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Regex(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -147,7 +147,7 @@ public class ExplanationOfBenefit_InsuranceBuilder {
 
   public ExplanationOfBenefit.Insurance build() {
     return new ExplanationOfBenefit.Insurance(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         focal,
         coverage,
         extension.stream().collect(new LitSeqJCollector<>()),

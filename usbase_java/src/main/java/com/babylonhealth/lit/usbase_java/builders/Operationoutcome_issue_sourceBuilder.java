@@ -71,6 +71,6 @@ public class Operationoutcome_issue_sourceBuilder {
 
   public Operationoutcome_issue_source build() {
     return new Operationoutcome_issue_source(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

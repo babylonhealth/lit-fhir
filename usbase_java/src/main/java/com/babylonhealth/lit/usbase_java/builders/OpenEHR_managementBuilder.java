@@ -70,7 +70,6 @@ public class OpenEHR_managementBuilder {
   }
 
   public OpenEHR_management build() {
-    return new OpenEHR_management(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new OpenEHR_management(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

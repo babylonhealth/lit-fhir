@@ -230,19 +230,19 @@ public class ImagingStudy_SeriesBuilder {
 
   public ImagingStudy.Series build() {
     return new ImagingStudy.Series(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         uid,
-        (Option) OptionConverters.toScala(number.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(started),
+        OptionConverters.toScala(number.map(x -> (Object) x)),
+        OptionConverters.toScala(started),
         modality,
         endpoint.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(bodySite),
+        OptionConverters.toScala(bodySite),
         specimen.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(laterality),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(laterality),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(numberOfInstances.map(x -> (Object) x)),
+        OptionConverters.toScala(numberOfInstances.map(x -> (Object) x)),
         instance.stream().collect(new LitSeqJCollector<>()),
         performer.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

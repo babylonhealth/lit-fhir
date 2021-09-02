@@ -186,15 +186,15 @@ public class MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder {
 
   public MedicinalProductIngredient$SpecifiedSubstance$Strength build() {
     return new MedicinalProductIngredient$SpecifiedSubstance$Strength(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         country.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         presentation,
-        (Option) OptionConverters.toScala(concentration),
-        (Option) OptionConverters.toScala(measurementPoint),
+        OptionConverters.toScala(concentration),
+        OptionConverters.toScala(measurementPoint),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(presentationLowLimit),
-        (Option) OptionConverters.toScala(concentrationLowLimit),
+        OptionConverters.toScala(presentationLowLimit),
+        OptionConverters.toScala(concentrationLowLimit),
         referenceStrength.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

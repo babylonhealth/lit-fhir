@@ -172,12 +172,12 @@ public class SubstancePolymer_Repeat_RepeatUnitBuilder {
 
   public SubstancePolymer$Repeat$RepeatUnit build() {
     return new SubstancePolymer$Repeat$RepeatUnit(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         (Option) OptionConverters.toScala(amount),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(repeatUnit),
+        OptionConverters.toScala(repeatUnit),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(orientationOfPolymerisation),
+        OptionConverters.toScala(orientationOfPolymerisation),
         degreeOfPolymerisation.stream().collect(new LitSeqJCollector<>()),
         structuralRepresentation.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

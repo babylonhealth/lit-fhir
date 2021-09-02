@@ -134,9 +134,9 @@ public class OperationDefinition_Parameter_ReferencedFromBuilder {
 
   public OperationDefinition$Parameter$ReferencedFrom build() {
     return new OperationDefinition$Parameter$ReferencedFrom(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         source,
-        (Option) OptionConverters.toScala(sourceId),
+        OptionConverters.toScala(sourceId),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

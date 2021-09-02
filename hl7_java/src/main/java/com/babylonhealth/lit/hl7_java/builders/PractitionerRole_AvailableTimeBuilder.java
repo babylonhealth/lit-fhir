@@ -151,13 +151,13 @@ public class PractitionerRole_AvailableTimeBuilder {
 
   public PractitionerRole.AvailableTime build() {
     return new PractitionerRole.AvailableTime(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(allDay.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(allDay.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         daysOfWeek.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(availableEndTime),
+        OptionConverters.toScala(availableEndTime),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(availableStartTime),
+        OptionConverters.toScala(availableStartTime),
         LitUtils.emptyMetaElMap());
   }
 }

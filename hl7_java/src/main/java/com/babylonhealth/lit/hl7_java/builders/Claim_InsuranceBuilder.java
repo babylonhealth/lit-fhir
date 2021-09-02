@@ -159,16 +159,16 @@ public class Claim_InsuranceBuilder {
 
   public Claim.Insurance build() {
     return new Claim.Insurance(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         focal,
         sequence,
         coverage,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(identifier),
+        OptionConverters.toScala(identifier),
         preAuthRef.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(claimResponse),
+        OptionConverters.toScala(claimResponse),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(businessArrangement),
+        OptionConverters.toScala(businessArrangement),
         LitUtils.emptyMetaElMap());
   }
 }

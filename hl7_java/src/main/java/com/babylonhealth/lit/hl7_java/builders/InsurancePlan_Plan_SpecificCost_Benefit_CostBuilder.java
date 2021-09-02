@@ -153,12 +153,12 @@ public class InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder {
 
   public InsurancePlan$Plan$SpecificCost$Benefit$Cost build() {
     return new InsurancePlan$Plan$SpecificCost$Benefit$Cost(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(value),
+        OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
         qualifiers.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(applicability),
+        OptionConverters.toScala(applicability),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -71,6 +71,6 @@ public class Questionnaireresponse_reasonBuilder {
 
   public Questionnaireresponse_reason build() {
     return new Questionnaireresponse_reason(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

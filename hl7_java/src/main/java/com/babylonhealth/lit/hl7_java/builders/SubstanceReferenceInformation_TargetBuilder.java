@@ -178,16 +178,16 @@ public class SubstanceReferenceInformation_TargetBuilder {
 
   public SubstanceReferenceInformation.Target build() {
     return new SubstanceReferenceInformation.Target(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(target),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(target),
         source.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(organism),
+        OptionConverters.toScala(organism),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(amount),
-        (Option) OptionConverters.toScala(amountType),
-        (Option) OptionConverters.toScala(interaction),
-        (Option) OptionConverters.toScala(organismType),
+        OptionConverters.toScala(amountType),
+        OptionConverters.toScala(interaction),
+        OptionConverters.toScala(organismType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

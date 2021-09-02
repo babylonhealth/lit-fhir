@@ -71,6 +71,6 @@ public class Structuredefinition_summaryBuilder {
 
   public Structuredefinition_summary build() {
     return new Structuredefinition_summary(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

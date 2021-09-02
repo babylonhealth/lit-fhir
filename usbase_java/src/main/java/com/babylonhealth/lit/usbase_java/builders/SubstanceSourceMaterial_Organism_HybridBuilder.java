@@ -158,14 +158,14 @@ public class SubstanceSourceMaterial_Organism_HybridBuilder {
 
   public SubstanceSourceMaterial$Organism$Hybrid build() {
     return new SubstanceSourceMaterial$Organism$Hybrid(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(hybridType),
+        OptionConverters.toScala(hybridType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(maternalOrganismId),
-        (Option) OptionConverters.toScala(paternalOrganismId),
-        (Option) OptionConverters.toScala(maternalOrganismName),
-        (Option) OptionConverters.toScala(paternalOrganismName),
+        OptionConverters.toScala(maternalOrganismId),
+        OptionConverters.toScala(paternalOrganismId),
+        OptionConverters.toScala(maternalOrganismName),
+        OptionConverters.toScala(paternalOrganismName),
         LitUtils.emptyMetaElMap());
   }
 }

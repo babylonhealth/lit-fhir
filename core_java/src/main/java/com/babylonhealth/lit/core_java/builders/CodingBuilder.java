@@ -127,13 +127,13 @@ public class CodingBuilder {
 
   public Coding build() {
     return new Coding(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(system),
-        (Option) OptionConverters.toScala(version),
-        (Option) OptionConverters.toScala(display),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(system),
+        OptionConverters.toScala(version),
+        OptionConverters.toScala(display),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(userSelected.map(x -> (Object) x)),
+        OptionConverters.toScala(userSelected.map(x -> (Object) x)),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -70,6 +70,6 @@ public class DesignNoteBuilder {
   }
 
   public DesignNote build() {
-    return new DesignNote((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new DesignNote(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -74,7 +74,7 @@ public class Patient_animalBuilder {
 
   public Patient_animal build() {
     return new Patient_animal(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

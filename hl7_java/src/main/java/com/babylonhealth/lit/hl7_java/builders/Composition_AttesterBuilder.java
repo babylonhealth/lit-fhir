@@ -137,10 +137,10 @@ public class Composition_AttesterBuilder {
 
   public Composition.Attester build() {
     return new Composition.Attester(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         mode,
-        (Option) OptionConverters.toScala(time),
-        (Option) OptionConverters.toScala(party),
+        OptionConverters.toScala(time),
+        OptionConverters.toScala(party),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

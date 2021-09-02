@@ -172,17 +172,17 @@ public class VerificationResult_AttestationBuilder {
 
   public VerificationResult.Attestation build() {
     return new VerificationResult.Attestation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(who),
-        (Option) OptionConverters.toScala(date),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(who),
+        OptionConverters.toScala(date),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(onBehalfOf),
-        (Option) OptionConverters.toScala(proxySignature),
-        (Option) OptionConverters.toScala(sourceSignature),
+        OptionConverters.toScala(onBehalfOf),
+        OptionConverters.toScala(proxySignature),
+        OptionConverters.toScala(sourceSignature),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(communicationMethod),
-        (Option) OptionConverters.toScala(proxyIdentityCertificate),
-        (Option) OptionConverters.toScala(sourceIdentityCertificate),
+        OptionConverters.toScala(communicationMethod),
+        OptionConverters.toScala(proxyIdentityCertificate),
+        OptionConverters.toScala(sourceIdentityCertificate),
         LitUtils.emptyMetaElMap());
   }
 }

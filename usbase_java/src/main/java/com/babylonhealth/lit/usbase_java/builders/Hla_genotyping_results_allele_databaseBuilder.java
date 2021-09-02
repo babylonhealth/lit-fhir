@@ -71,6 +71,6 @@ public class Hla_genotyping_results_allele_databaseBuilder {
 
   public Hla_genotyping_results_allele_database build() {
     return new Hla_genotyping_results_allele_database(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

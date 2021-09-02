@@ -180,13 +180,13 @@ public class DomainResourceBuilder {
 
   public DomainResource build() {
     return new DomainResource(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

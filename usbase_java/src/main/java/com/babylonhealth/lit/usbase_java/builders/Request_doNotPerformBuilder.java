@@ -70,7 +70,6 @@ public class Request_doNotPerformBuilder {
   }
 
   public Request_doNotPerform build() {
-    return new Request_doNotPerform(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Request_doNotPerform(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

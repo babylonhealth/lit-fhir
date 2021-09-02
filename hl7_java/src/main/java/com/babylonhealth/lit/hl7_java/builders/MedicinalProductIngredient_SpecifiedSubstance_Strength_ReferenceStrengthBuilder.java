@@ -164,13 +164,13 @@ public class MedicinalProductIngredient_SpecifiedSubstance_Strength_ReferenceStr
 
   public MedicinalProductIngredient$SpecifiedSubstance$Strength$ReferenceStrength build() {
     return new MedicinalProductIngredient$SpecifiedSubstance$Strength$ReferenceStrength(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         country.stream().collect(new LitSeqJCollector<>()),
         strength,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(substance),
-        (Option) OptionConverters.toScala(strengthLowLimit),
-        (Option) OptionConverters.toScala(measurementPoint),
+        OptionConverters.toScala(substance),
+        OptionConverters.toScala(strengthLowLimit),
+        OptionConverters.toScala(measurementPoint),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

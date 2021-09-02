@@ -70,6 +70,6 @@ public class MaxSizeBuilder {
   }
 
   public MaxSize build() {
-    return new MaxSize((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new MaxSize(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -70,7 +70,6 @@ public class Communication_mediaBuilder {
   }
 
   public Communication_media build() {
-    return new Communication_media(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Communication_media(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -70,7 +70,6 @@ public class Valueset_extensibleBuilder {
   }
 
   public Valueset_extensible build() {
-    return new Valueset_extensible(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_extensible(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

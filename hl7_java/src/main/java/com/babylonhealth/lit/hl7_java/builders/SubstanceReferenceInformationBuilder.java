@@ -243,14 +243,14 @@ public class SubstanceReferenceInformationBuilder {
 
   public SubstanceReferenceInformation build() {
     return new SubstanceReferenceInformation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(comment),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(comment),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         gene.stream().collect(new LitSeqJCollector<>()),
         target.stream().collect(new LitSeqJCollector<>()),

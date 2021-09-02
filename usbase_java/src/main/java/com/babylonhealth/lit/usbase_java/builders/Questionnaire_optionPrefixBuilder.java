@@ -71,6 +71,6 @@ public class Questionnaire_optionPrefixBuilder {
 
   public Questionnaire_optionPrefix build() {
     return new Questionnaire_optionPrefix(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

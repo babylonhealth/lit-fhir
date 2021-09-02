@@ -130,9 +130,9 @@ public class Claim_PayeeBuilder {
 
   public Claim.Payee build() {
     return new Claim.Payee(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(party),
+        OptionConverters.toScala(party),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

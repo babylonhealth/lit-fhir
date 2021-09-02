@@ -71,6 +71,6 @@ public class Elementdefinition_selectorBuilder {
 
   public Elementdefinition_selector build() {
     return new Elementdefinition_selector(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

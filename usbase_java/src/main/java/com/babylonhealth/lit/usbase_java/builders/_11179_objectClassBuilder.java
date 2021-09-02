@@ -70,7 +70,6 @@ public class _11179_objectClassBuilder {
   }
 
   public _11179_objectClass build() {
-    return new _11179_objectClass(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new _11179_objectClass(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

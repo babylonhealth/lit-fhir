@@ -178,14 +178,14 @@ public class EvidenceVariable_CharacteristicBuilder {
 
   public EvidenceVariable.Characteristic build() {
     return new EvidenceVariable.Characteristic(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(exclude.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(exclude.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         usageContext.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(groupMeasure),
+        OptionConverters.toScala(groupMeasure),
         definition,
-        (Option) OptionConverters.toScala(timeFromStart),
+        OptionConverters.toScala(timeFromStart),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(participantEffective),
         LitUtils.emptyMetaElMap());

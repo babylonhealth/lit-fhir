@@ -130,10 +130,10 @@ public class Person_LinkBuilder {
 
   public Person.Link build() {
     return new Person.Link(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         target,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(assurance),
+        OptionConverters.toScala(assurance),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

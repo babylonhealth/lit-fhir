@@ -153,13 +153,13 @@ public class NutritionOrder_SupplementBuilder {
 
   public NutritionOrder.Supplement build() {
     return new NutritionOrder.Supplement(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         schedule.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(quantity),
+        OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(productName),
-        (Option) OptionConverters.toScala(instruction),
+        OptionConverters.toScala(productName),
+        OptionConverters.toScala(instruction),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

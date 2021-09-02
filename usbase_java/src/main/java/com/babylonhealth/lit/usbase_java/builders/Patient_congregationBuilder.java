@@ -70,7 +70,6 @@ public class Patient_congregationBuilder {
   }
 
   public Patient_congregation build() {
-    return new Patient_congregation(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Patient_congregation(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

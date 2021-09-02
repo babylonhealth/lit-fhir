@@ -132,10 +132,10 @@ public class PlanDefinition_Action_ConditionBuilder {
 
   public PlanDefinition$Action$Condition build() {
     return new PlanDefinition$Action$Condition(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         kind,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(expression),
+        OptionConverters.toScala(expression),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

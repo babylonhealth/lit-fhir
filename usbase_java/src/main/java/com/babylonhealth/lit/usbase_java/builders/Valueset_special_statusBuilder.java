@@ -71,6 +71,6 @@ public class Valueset_special_statusBuilder {
 
   public Valueset_special_status build() {
     return new Valueset_special_status(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Questionnaire_referenceFilterBuilder {
 
   public Questionnaire_referenceFilter build() {
     return new Questionnaire_referenceFilter(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

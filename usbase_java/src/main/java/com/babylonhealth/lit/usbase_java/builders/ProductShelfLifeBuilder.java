@@ -165,11 +165,11 @@ public class ProductShelfLifeBuilder {
 
   public ProductShelfLife build() {
     return new ProductShelfLife(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         period,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(identifier),
+        OptionConverters.toScala(identifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         specialPrecautionsForStorage.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

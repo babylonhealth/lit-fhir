@@ -86,7 +86,7 @@ public class Cqf_measureInfoBuilder {
 
   public Cqf_measureInfo build() {
     return new Cqf_measureInfo(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

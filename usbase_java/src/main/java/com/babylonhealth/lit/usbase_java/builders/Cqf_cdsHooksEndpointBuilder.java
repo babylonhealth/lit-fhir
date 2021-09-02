@@ -70,7 +70,6 @@ public class Cqf_cdsHooksEndpointBuilder {
   }
 
   public Cqf_cdsHooksEndpoint build() {
-    return new Cqf_cdsHooksEndpoint(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Cqf_cdsHooksEndpoint(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

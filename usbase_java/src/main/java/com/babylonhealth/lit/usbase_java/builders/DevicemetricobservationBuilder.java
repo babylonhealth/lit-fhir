@@ -435,22 +435,22 @@ public class DevicemetricobservationBuilder {
 
   public Devicemetricobservation build() {
     return new Devicemetricobservation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         code,
         note.stream().collect(new LitSeqJCollector<>()),
         focus.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
-        (Option) OptionConverters.toScala(method),
+        OptionConverters.toScala(method),
         device,
         basedOn.stream().collect(new LitSeqJCollector<>()),
         subject,
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(value),
-        (Option) OptionConverters.toScala(bodySite),
+        OptionConverters.toScala(bodySite),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         performer.stream().collect(new LitSeqJCollector<>()),
@@ -458,11 +458,11 @@ public class DevicemetricobservationBuilder {
         identifier.stream().collect(new LitSeqJCollector<>()),
         derivedFrom.stream().collect(new LitSeqJCollector<>()),
         effective,
-        (Option) OptionConverters.toScala(implicitRules),
-        (Option) OptionConverters.toScala(interpretation),
+        OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(interpretation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         component.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(referenceRange),
+        OptionConverters.toScala(referenceRange),
         LitUtils.emptyMetaElMap());
   }
 }

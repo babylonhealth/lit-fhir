@@ -71,6 +71,6 @@ public class Cqf_recipientLanguageBuilder {
 
   public Cqf_recipientLanguage build() {
     return new Cqf_recipientLanguage(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

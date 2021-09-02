@@ -71,6 +71,6 @@ public class Codesystem_effectiveDateBuilder {
 
   public Codesystem_effectiveDate build() {
     return new Codesystem_effectiveDate(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

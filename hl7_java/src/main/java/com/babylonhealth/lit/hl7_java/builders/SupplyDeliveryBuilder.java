@@ -290,25 +290,25 @@ public class SupplyDeliveryBuilder {
 
   public SupplyDelivery build() {
     return new SupplyDelivery(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(_type),
         partOf.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(status),
+        OptionConverters.toScala(status),
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(patient),
-        (Option) OptionConverters.toScala(language),
-        (Option) OptionConverters.toScala(supplier),
+        OptionConverters.toScala(patient),
+        OptionConverters.toScala(language),
+        OptionConverters.toScala(supplier),
         receiver.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(destination),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(destination),
+        OptionConverters.toScala(implicitRules),
         (Option) OptionConverters.toScala(occurrence),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(suppliedItem),
+        OptionConverters.toScala(suppliedItem),
         LitUtils.emptyMetaElMap());
   }
 }

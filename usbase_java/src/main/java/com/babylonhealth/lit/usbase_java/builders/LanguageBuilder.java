@@ -70,6 +70,6 @@ public class LanguageBuilder {
   }
 
   public Language build() {
-    return new Language((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Language(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -124,11 +124,12 @@ trait JavaGenerator extends Commonish {
     val fieldAssignments                    = genFieldAssignments(nonOptionalFields, topLevelClass.scalaClassName)
     def convertToScala(f: BaseField) = {
       val isErasedRef =
-        (f.types.size > 1 && (f.types
-          .map(eraseSubtypes(_, f))
-          .exists(Set("Boolean", "Integer"))) ||
-          f.types.forall(_ startsWith "Choice[\"") || // second case is for the Choice["literallyTheClassName"] hack
-          f.cardinality == Cardinality.Optional)
+        (f.types.size > 1 && (
+          f.types.map(eraseSubtypes(_, f)).exists(Set("Boolean", "Integer")) ||
+            f.cardinality == Cardinality.Optional
+        )) ||
+          f.types.forall(_ startsWith "Choice[\"") // last case is for the Choice["literallyTheClassName"] hack
+
       val possiblyObjectCast = f.cardinality.applyJavaFunction(f.javaName) { value =>
         if (f.cardinality != Cardinality.One && f.types.size == 1 && Set("Integer", "Boolean").contains(
             eraseSubtypes(f.types.head, f)))
@@ -341,9 +342,9 @@ trait JavaGenerator extends Commonish {
       case x                                     => x
     }
     def genChoiceClass(choiceType: String, choiceOptions: Seq[String]): String = {
-      val choiceClassName                 = choiceType.replaceFirst("Union", "Choice")
-      val optionswithSubtypes             = choiceOptions.map(o => o -> eraseSubtypes(o))
-      val verboseTypeName: String         = optionswithSubtypes.map(_._2).reduceLeft { (a, b) => s"$$bslash$$div<$a, $b>" }
+      val choiceClassName         = choiceType.replaceFirst("Union", "Choice")
+      val optionswithSubtypes     = choiceOptions.map(o => o -> eraseSubtypes(o))
+      val verboseTypeName: String = optionswithSubtypes.map(_._2).reduceLeft { (a, b) => s"$$bslash$$div<$a, $b>" }
       val (overloadedConstructors, normalConstructors) = optionswithSubtypes.partition { case (_, s) =>
         optionswithSubtypes.count(_._2 == s) > 1
       }

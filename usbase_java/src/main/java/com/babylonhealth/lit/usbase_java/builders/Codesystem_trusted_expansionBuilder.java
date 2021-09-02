@@ -71,6 +71,6 @@ public class Codesystem_trusted_expansionBuilder {
 
   public Codesystem_trusted_expansion build() {
     return new Codesystem_trusted_expansion(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

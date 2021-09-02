@@ -161,7 +161,7 @@ public class MedicationKnowledge_AdministrationGuidelinesBuilder {
 
   public MedicationKnowledge.AdministrationGuidelines build() {
     return new MedicationKnowledge.AdministrationGuidelines(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(indication),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

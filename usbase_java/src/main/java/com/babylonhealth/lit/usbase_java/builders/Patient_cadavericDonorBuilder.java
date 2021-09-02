@@ -71,6 +71,6 @@ public class Patient_cadavericDonorBuilder {
 
   public Patient_cadavericDonor build() {
     return new Patient_cadavericDonor(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

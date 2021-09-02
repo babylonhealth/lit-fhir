@@ -70,7 +70,6 @@ public class Observation_deltaBuilder {
   }
 
   public Observation_delta build() {
-    return new Observation_delta(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Observation_delta(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

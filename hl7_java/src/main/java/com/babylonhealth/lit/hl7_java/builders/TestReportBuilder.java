@@ -279,26 +279,26 @@ public class TestReportBuilder {
 
   public TestReport build() {
     return new TestReport(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(name),
-        (Option) OptionConverters.toScala(score),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(name),
+        OptionConverters.toScala(score),
         status,
         result,
-        (Option) OptionConverters.toScala(tester),
-        (Option) OptionConverters.toScala(issued),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(tester),
+        OptionConverters.toScala(issued),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(identifier),
+        OptionConverters.toScala(identifier),
         testScript,
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         participant.stream().collect(new LitSeqJCollector<>()),
         test.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(teardown),
-        (Option) OptionConverters.toScala(setup),
+        OptionConverters.toScala(teardown),
+        OptionConverters.toScala(setup),
         LitUtils.emptyMetaElMap());
   }
 }

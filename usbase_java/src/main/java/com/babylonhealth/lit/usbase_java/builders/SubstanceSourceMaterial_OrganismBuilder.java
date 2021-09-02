@@ -182,17 +182,17 @@ public class SubstanceSourceMaterial_OrganismBuilder {
 
   public SubstanceSourceMaterial.Organism build() {
     return new SubstanceSourceMaterial.Organism(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(genus),
-        (Option) OptionConverters.toScala(family),
-        (Option) OptionConverters.toScala(species),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(genus),
+        OptionConverters.toScala(family),
+        OptionConverters.toScala(species),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(intraspecificType),
-        (Option) OptionConverters.toScala(intraspecificDescription),
+        OptionConverters.toScala(intraspecificType),
+        OptionConverters.toScala(intraspecificDescription),
         author.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(hybrid),
-        (Option) OptionConverters.toScala(organismGeneral),
+        OptionConverters.toScala(hybrid),
+        OptionConverters.toScala(organismGeneral),
         LitUtils.emptyMetaElMap());
   }
 }

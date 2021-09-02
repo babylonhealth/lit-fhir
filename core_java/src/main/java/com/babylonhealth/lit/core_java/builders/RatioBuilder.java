@@ -92,10 +92,10 @@ public class RatioBuilder {
 
   public Ratio build() {
     return new Ratio(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(numerator),
-        (Option) OptionConverters.toScala(denominator),
+        OptionConverters.toScala(numerator),
+        OptionConverters.toScala(denominator),
         LitUtils.emptyMetaElMap());
   }
 }

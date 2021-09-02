@@ -158,10 +158,10 @@ public class Immunization_ProtocolAppliedBuilder {
 
   public Immunization.ProtocolApplied build() {
     return new Immunization.ProtocolApplied(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(series),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(series),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(authority),
+        OptionConverters.toScala(authority),
         targetDisease.stream().collect(new LitSeqJCollector<>()),
         (Choice) doseNumber,
         (Option) OptionConverters.toScala(seriesDoses),

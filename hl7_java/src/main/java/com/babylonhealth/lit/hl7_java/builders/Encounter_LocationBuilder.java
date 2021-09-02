@@ -144,12 +144,12 @@ public class Encounter_LocationBuilder {
 
   public Encounter.Location build() {
     return new Encounter.Location(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(status),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(status),
+        OptionConverters.toScala(period),
         location,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(physicalType),
+        OptionConverters.toScala(physicalType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

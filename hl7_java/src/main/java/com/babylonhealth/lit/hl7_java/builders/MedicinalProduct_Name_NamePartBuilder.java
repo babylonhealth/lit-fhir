@@ -129,7 +129,7 @@ public class MedicinalProduct_Name_NamePartBuilder {
 
   public MedicinalProduct$Name$NamePart build() {
     return new MedicinalProduct$Name$NamePart(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         part,
         _type,
         extension.stream().collect(new LitSeqJCollector<>()),

@@ -148,11 +148,11 @@ public class RiskEvidenceSynthesis_RiskEstimate_PrecisionEstimateBuilder {
 
   public RiskEvidenceSynthesis$RiskEstimate$PrecisionEstimate build() {
     return new RiskEvidenceSynthesis$RiskEstimate$PrecisionEstimate(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(to),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(from),
-        (Option) OptionConverters.toScala(level),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(to),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(from),
+        OptionConverters.toScala(level),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

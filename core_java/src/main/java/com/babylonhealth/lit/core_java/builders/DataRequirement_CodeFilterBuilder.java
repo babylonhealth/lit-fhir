@@ -109,12 +109,12 @@ public class DataRequirement_CodeFilterBuilder {
 
   public DataRequirement.CodeFilter build() {
     return new DataRequirement.CodeFilter(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(path),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(path),
         code.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(valueSet),
+        OptionConverters.toScala(valueSet),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(searchParam),
+        OptionConverters.toScala(searchParam),
         LitUtils.emptyMetaElMap());
   }
 }

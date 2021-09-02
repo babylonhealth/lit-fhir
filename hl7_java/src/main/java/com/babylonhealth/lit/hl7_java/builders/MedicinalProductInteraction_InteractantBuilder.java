@@ -127,7 +127,7 @@ public class MedicinalProductInteraction_InteractantBuilder {
 
   public MedicinalProductInteraction.Interactant build() {
     return new MedicinalProductInteraction.Interactant(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         item,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

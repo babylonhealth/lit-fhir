@@ -141,9 +141,9 @@ public class TerminologyCapabilities_SoftwareBuilder {
 
   public TerminologyCapabilities.Software build() {
     return new TerminologyCapabilities.Software(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
-        (Option) OptionConverters.toScala(version),
+        OptionConverters.toScala(version),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

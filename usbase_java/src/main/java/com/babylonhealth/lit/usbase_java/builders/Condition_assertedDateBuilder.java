@@ -71,6 +71,6 @@ public class Condition_assertedDateBuilder {
 
   public Condition_assertedDate build() {
     return new Condition_assertedDate(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

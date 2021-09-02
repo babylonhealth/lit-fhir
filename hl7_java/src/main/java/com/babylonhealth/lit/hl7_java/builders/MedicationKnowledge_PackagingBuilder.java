@@ -131,9 +131,9 @@ public class MedicationKnowledge_PackagingBuilder {
 
   public MedicationKnowledge.Packaging build() {
     return new MedicationKnowledge.Packaging(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(quantity),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

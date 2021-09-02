@@ -251,21 +251,21 @@ public class MedicationBuilder {
 
   public Medication build() {
     return new Medication(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(form),
-        (Option) OptionConverters.toScala(status),
-        (Option) OptionConverters.toScala(amount),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(form),
+        OptionConverters.toScala(status),
+        OptionConverters.toScala(amount),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(manufacturer),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(manufacturer),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(batch),
+        OptionConverters.toScala(batch),
         ingredient.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

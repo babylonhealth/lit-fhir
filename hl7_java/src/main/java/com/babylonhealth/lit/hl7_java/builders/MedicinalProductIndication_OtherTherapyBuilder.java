@@ -131,7 +131,7 @@ public class MedicinalProductIndication_OtherTherapyBuilder {
 
   public MedicinalProductIndication.OtherTherapy build() {
     return new MedicinalProductIndication.OtherTherapy(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         medication,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

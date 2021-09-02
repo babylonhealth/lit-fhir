@@ -70,7 +70,6 @@ public class Auditevent_SOPClassBuilder {
   }
 
   public Auditevent_SOPClass build() {
-    return new Auditevent_SOPClass(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Auditevent_SOPClass(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

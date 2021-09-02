@@ -138,14 +138,14 @@ public class RelatedArtifactBuilder {
 
   public RelatedArtifact build() {
     return new RelatedArtifact(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(url),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(url),
         _type,
-        (Option) OptionConverters.toScala(label),
-        (Option) OptionConverters.toScala(display),
-        (Option) OptionConverters.toScala(citation),
-        (Option) OptionConverters.toScala(document),
-        (Option) OptionConverters.toScala(resource),
+        OptionConverters.toScala(label),
+        OptionConverters.toScala(display),
+        OptionConverters.toScala(citation),
+        OptionConverters.toScala(document),
+        OptionConverters.toScala(resource),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

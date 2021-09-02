@@ -147,11 +147,11 @@ public class CapabilityStatement_SoftwareBuilder {
 
   public CapabilityStatement.Software build() {
     return new CapabilityStatement.Software(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
-        (Option) OptionConverters.toScala(version),
+        OptionConverters.toScala(version),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(releaseDate),
+        OptionConverters.toScala(releaseDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

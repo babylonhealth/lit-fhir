@@ -71,6 +71,6 @@ public class Elementdefinition_profile_elementBuilder {
 
   public Elementdefinition_profile_element build() {
     return new Elementdefinition_profile_element(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

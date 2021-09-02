@@ -71,6 +71,6 @@ public class Observation_preconditionBuilder {
 
   public Observation_precondition build() {
     return new Observation_precondition(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

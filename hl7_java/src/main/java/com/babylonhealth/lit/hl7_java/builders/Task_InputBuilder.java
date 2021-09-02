@@ -138,7 +138,7 @@ public class Task_InputBuilder {
 
   public Task.Input build() {
     return new Task.Input(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),

@@ -71,6 +71,6 @@ public class Hla_genotyping_results_methodBuilder {
 
   public Hla_genotyping_results_method build() {
     return new Hla_genotyping_results_method(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

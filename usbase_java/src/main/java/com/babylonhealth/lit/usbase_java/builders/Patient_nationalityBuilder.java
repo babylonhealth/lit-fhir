@@ -86,7 +86,7 @@ public class Patient_nationalityBuilder {
 
   public Patient_nationality build() {
     return new Patient_nationality(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

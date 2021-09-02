@@ -130,7 +130,7 @@ public class CapabilityStatement_Messaging_EndpointBuilder {
 
   public CapabilityStatement$Messaging$Endpoint build() {
     return new CapabilityStatement$Messaging$Endpoint(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         address,
         protocol,
         extension.stream().collect(new LitSeqJCollector<>()),

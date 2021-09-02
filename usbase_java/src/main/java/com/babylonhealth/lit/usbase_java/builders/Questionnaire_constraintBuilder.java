@@ -74,7 +74,7 @@ public class Questionnaire_constraintBuilder {
 
   public Questionnaire_constraint build() {
     return new Questionnaire_constraint(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

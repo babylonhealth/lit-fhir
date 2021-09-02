@@ -141,11 +141,11 @@ public class MeasureReport_Group_Stratifier_Stratum_PopulationBuilder {
 
   public MeasureReport$Group$Stratifier$Stratum$Population build() {
     return new MeasureReport$Group$Stratifier$Stratum$Population(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(count.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(count.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(subjectResults),
+        OptionConverters.toScala(subjectResults),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

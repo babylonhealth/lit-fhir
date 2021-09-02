@@ -70,7 +70,6 @@ public class Iso21090_uncertaintyBuilder {
   }
 
   public Iso21090_uncertainty build() {
-    return new Iso21090_uncertainty(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Iso21090_uncertainty(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

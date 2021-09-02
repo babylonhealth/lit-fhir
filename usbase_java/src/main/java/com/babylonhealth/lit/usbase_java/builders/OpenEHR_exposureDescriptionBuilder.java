@@ -71,6 +71,6 @@ public class OpenEHR_exposureDescriptionBuilder {
 
   public OpenEHR_exposureDescription build() {
     return new OpenEHR_exposureDescription(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

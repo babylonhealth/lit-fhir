@@ -71,6 +71,6 @@ public class Workflow_episodeOfCareBuilder {
 
   public Workflow_episodeOfCare build() {
     return new Workflow_episodeOfCare(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Observation_secondaryFindingBuilder {
 
   public Observation_secondaryFinding build() {
     return new Observation_secondaryFinding(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

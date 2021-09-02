@@ -137,10 +137,10 @@ public class Medication_IngredientBuilder {
 
   public Medication.Ingredient build() {
     return new Medication.Ingredient(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         item,
-        (Option) OptionConverters.toScala(isActive.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(strength),
+        OptionConverters.toScala(isActive.map(x -> (Object) x)),
+        OptionConverters.toScala(strength),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

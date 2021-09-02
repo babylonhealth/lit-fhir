@@ -131,7 +131,7 @@ public class MedicationKnowledge_RelatedMedicationKnowledgeBuilder {
 
   public MedicationKnowledge.RelatedMedicationKnowledge build() {
     return new MedicationKnowledge.RelatedMedicationKnowledge(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         extension.stream().collect(new LitSeqJCollector<>()),
         reference.stream().collect(new NonEmptyLitSeqJCollector<>()),

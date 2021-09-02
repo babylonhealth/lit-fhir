@@ -150,11 +150,11 @@ public class ClaimResponse_ProcessNoteBuilder {
 
   public ClaimResponse.ProcessNote build() {
     return new ClaimResponse.ProcessNote(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         text,
-        (Option) OptionConverters.toScala(number.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(number.map(x -> (Object) x)),
+        OptionConverters.toScala(language),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

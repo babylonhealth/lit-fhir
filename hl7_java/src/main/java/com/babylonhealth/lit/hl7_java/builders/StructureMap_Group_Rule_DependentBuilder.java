@@ -130,7 +130,7 @@ public class StructureMap_Group_Rule_DependentBuilder {
 
   public StructureMap$Group$Rule$Dependent build() {
     return new StructureMap$Group$Rule$Dependent(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
         variable.stream().collect(new NonEmptyLitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),

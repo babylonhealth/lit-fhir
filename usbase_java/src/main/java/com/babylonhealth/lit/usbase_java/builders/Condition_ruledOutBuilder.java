@@ -70,7 +70,6 @@ public class Condition_ruledOutBuilder {
   }
 
   public Condition_ruledOut build() {
-    return new Condition_ruledOut(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Condition_ruledOut(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

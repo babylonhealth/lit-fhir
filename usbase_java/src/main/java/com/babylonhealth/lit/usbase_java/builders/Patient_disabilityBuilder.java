@@ -70,7 +70,6 @@ public class Patient_disabilityBuilder {
   }
 
   public Patient_disability build() {
-    return new Patient_disability(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Patient_disability(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

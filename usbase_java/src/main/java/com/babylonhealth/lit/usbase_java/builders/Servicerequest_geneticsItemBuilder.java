@@ -74,7 +74,7 @@ public class Servicerequest_geneticsItemBuilder {
 
   public Servicerequest_geneticsItem build() {
     return new Servicerequest_geneticsItem(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

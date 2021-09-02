@@ -70,7 +70,6 @@ public class Rendering_xhtmlBuilder {
   }
 
   public Rendering_xhtml build() {
-    return new Rendering_xhtml(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Rendering_xhtml(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

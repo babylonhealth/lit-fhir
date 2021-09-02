@@ -139,9 +139,9 @@ public class ExplanationOfBenefit_AccidentBuilder {
 
   public ExplanationOfBenefit.Accident build() {
     return new ExplanationOfBenefit.Accident(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(date),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(date),
+        OptionConverters.toScala(_type),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(location),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

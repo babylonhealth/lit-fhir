@@ -97,9 +97,9 @@ public class PeriodBuilder {
 
   public Period build() {
     return new Period(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(end),
-        (Option) OptionConverters.toScala(start),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(end),
+        OptionConverters.toScala(start),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

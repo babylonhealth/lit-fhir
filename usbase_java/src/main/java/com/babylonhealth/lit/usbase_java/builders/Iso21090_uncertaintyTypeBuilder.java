@@ -71,6 +71,6 @@ public class Iso21090_uncertaintyTypeBuilder {
 
   public Iso21090_uncertaintyType build() {
     return new Iso21090_uncertaintyType(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

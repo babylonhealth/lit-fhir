@@ -87,7 +87,7 @@ public class Observation_geneticsAminoAcidChangeBuilder {
 
   public Observation_geneticsAminoAcidChange build() {
     return new Observation_geneticsAminoAcidChange(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

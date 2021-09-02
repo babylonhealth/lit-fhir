@@ -158,10 +158,10 @@ public class TerminologyCapabilities_CodeSystemBuilder {
 
   public TerminologyCapabilities.CodeSystem build() {
     return new TerminologyCapabilities.CodeSystem(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(uri),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(uri),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(subsumption.map(x -> (Object) x)),
+        OptionConverters.toScala(subsumption.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         version.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

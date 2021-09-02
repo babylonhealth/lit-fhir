@@ -125,7 +125,7 @@ public class TestScript_Teardown_ActionBuilder {
 
   public TestScript$Teardown$Action build() {
     return new TestScript$Teardown$Action(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         operation,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

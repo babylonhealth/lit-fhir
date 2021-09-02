@@ -128,7 +128,7 @@ public class Consent_Provision_DataBuilder {
 
   public Consent$Provision$Data build() {
     return new Consent$Provision$Data(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         meaning,
         extension.stream().collect(new LitSeqJCollector<>()),
         reference,

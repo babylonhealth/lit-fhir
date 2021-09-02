@@ -133,8 +133,8 @@ public class SupplyRequest_ParameterBuilder {
 
   public SupplyRequest.Parameter build() {
     return new SupplyRequest.Parameter(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

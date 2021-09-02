@@ -143,12 +143,12 @@ public class TimingBuilder {
 
   public Timing build() {
     return new Timing(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
         event.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(repeat),
+        OptionConverters.toScala(repeat),
         LitUtils.emptyMetaElMap());
   }
 }

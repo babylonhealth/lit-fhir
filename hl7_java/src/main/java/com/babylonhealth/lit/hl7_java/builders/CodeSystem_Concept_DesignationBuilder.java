@@ -138,10 +138,10 @@ public class CodeSystem_Concept_DesignationBuilder {
 
   public CodeSystem$Concept$Designation build() {
     return new CodeSystem$Concept$Designation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(use),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(use),
         value,
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(language),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

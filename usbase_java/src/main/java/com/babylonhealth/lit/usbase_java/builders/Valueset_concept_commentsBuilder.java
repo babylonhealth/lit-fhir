@@ -71,6 +71,6 @@ public class Valueset_concept_commentsBuilder {
 
   public Valueset_concept_comments build() {
     return new Valueset_concept_comments(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

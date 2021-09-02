@@ -142,10 +142,10 @@ public class TestScript_TestBuilder {
 
   public TestScript.Test build() {
     return new TestScript.Test(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         action.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

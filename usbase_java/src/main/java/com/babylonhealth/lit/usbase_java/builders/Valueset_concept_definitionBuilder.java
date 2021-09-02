@@ -71,6 +71,6 @@ public class Valueset_concept_definitionBuilder {
 
   public Valueset_concept_definition build() {
     return new Valueset_concept_definition(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

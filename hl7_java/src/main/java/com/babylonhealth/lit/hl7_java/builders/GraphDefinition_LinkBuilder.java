@@ -163,13 +163,13 @@ public class GraphDefinition_LinkBuilder {
 
   public GraphDefinition.Link build() {
     return new GraphDefinition.Link(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(min.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(max),
-        (Option) OptionConverters.toScala(path),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(min.map(x -> (Object) x)),
+        OptionConverters.toScala(max),
+        OptionConverters.toScala(path),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(sliceName),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(sliceName),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         target.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

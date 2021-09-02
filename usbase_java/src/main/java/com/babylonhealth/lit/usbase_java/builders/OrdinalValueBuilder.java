@@ -70,7 +70,6 @@ public class OrdinalValueBuilder {
   }
 
   public OrdinalValue build() {
-    return new OrdinalValue(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new OrdinalValue(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

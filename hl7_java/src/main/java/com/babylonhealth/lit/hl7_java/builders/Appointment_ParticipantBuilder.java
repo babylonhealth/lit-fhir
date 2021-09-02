@@ -157,12 +157,12 @@ public class Appointment_ParticipantBuilder {
 
   public Appointment.Participant build() {
     return new Appointment.Participant(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(actor),
+        OptionConverters.toScala(actor),
         status,
-        (Option) OptionConverters.toScala(period),
-        (Option) OptionConverters.toScala(required),
+        OptionConverters.toScala(period),
+        OptionConverters.toScala(required),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

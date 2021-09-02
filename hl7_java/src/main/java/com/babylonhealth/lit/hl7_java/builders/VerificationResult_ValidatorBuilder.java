@@ -140,12 +140,12 @@ public class VerificationResult_ValidatorBuilder {
 
   public VerificationResult.Validator build() {
     return new VerificationResult.Validator(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         organization,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(identityCertificate),
-        (Option) OptionConverters.toScala(attestationSignature),
+        OptionConverters.toScala(identityCertificate),
+        OptionConverters.toScala(attestationSignature),
         LitUtils.emptyMetaElMap());
   }
 }

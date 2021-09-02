@@ -70,7 +70,6 @@ public class Event_statusReasonBuilder {
   }
 
   public Event_statusReason build() {
-    return new Event_statusReason(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Event_statusReason(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

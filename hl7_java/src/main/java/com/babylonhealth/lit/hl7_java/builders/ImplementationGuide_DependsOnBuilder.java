@@ -149,11 +149,11 @@ public class ImplementationGuide_DependsOnBuilder {
 
   public ImplementationGuide.DependsOn build() {
     return new ImplementationGuide.DependsOn(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         uri,
-        (Option) OptionConverters.toScala(version),
+        OptionConverters.toScala(version),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(packageId),
+        OptionConverters.toScala(packageId),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

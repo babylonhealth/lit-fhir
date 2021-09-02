@@ -136,7 +136,7 @@ public class StructureDefinition_ContextBuilder {
 
   public StructureDefinition.Context build() {
     return new StructureDefinition.Context(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         extension.stream().collect(new LitSeqJCollector<>()),
         expression,

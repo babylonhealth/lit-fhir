@@ -71,6 +71,6 @@ public class Familymemberhistory_typeBuilder {
 
   public Familymemberhistory_type build() {
     return new Familymemberhistory_type(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

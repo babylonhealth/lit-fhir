@@ -172,14 +172,14 @@ public class MedicinalProduct_SpecialDesignationBuilder {
 
   public MedicinalProduct.SpecialDesignation build() {
     return new MedicinalProduct.SpecialDesignation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(date),
-        (Option) OptionConverters.toScala(status),
-        (Option) OptionConverters.toScala(species),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(date),
+        OptionConverters.toScala(status),
+        OptionConverters.toScala(species),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(intendedUse),
+        OptionConverters.toScala(intendedUse),
         (Option) OptionConverters.toScala(indication),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

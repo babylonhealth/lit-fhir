@@ -71,6 +71,6 @@ public class Questionnaire_baseTypeBuilder {
 
   public Questionnaire_baseType build() {
     return new Questionnaire_baseType(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

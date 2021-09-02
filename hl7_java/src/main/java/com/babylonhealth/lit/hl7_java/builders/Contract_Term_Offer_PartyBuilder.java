@@ -128,7 +128,7 @@ public class Contract_Term_Offer_PartyBuilder {
 
   public Contract$Term$Offer$Party build() {
     return new Contract$Term$Offer$Party(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         role,
         extension.stream().collect(new LitSeqJCollector<>()),
         reference.stream().collect(new NonEmptyLitSeqJCollector<>()),

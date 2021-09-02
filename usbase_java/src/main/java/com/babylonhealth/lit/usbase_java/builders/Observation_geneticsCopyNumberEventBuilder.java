@@ -71,6 +71,6 @@ public class Observation_geneticsCopyNumberEventBuilder {
 
   public Observation_geneticsCopyNumberEvent build() {
     return new Observation_geneticsCopyNumberEvent(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

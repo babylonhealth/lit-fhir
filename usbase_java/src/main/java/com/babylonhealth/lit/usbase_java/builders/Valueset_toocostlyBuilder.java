@@ -70,7 +70,6 @@ public class Valueset_toocostlyBuilder {
   }
 
   public Valueset_toocostly build() {
-    return new Valueset_toocostly(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_toocostly(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

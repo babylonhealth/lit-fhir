@@ -70,7 +70,6 @@ public class Rendering_styleBuilder {
   }
 
   public Rendering_style build() {
-    return new Rendering_style(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Rendering_style(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

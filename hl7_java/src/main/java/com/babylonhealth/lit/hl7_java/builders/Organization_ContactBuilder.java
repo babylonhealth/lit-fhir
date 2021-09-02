@@ -147,11 +147,11 @@ public class Organization_ContactBuilder {
 
   public Organization.Contact build() {
     return new Organization.Contact(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
-        (Option) OptionConverters.toScala(purpose),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
+        OptionConverters.toScala(purpose),
         telecom.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(address),
+        OptionConverters.toScala(address),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

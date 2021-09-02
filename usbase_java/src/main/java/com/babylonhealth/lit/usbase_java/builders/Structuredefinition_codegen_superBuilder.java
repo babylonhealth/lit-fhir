@@ -71,6 +71,6 @@ public class Structuredefinition_codegen_superBuilder {
 
   public Structuredefinition_codegen_super build() {
     return new Structuredefinition_codegen_super(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

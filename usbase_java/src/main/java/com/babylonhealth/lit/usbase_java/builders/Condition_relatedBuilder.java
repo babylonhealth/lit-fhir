@@ -70,7 +70,6 @@ public class Condition_relatedBuilder {
   }
 
   public Condition_related build() {
-    return new Condition_related(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Condition_related(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

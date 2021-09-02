@@ -150,11 +150,11 @@ public class ConceptMap_Group_UnmappedBuilder {
 
   public ConceptMap$Group$Unmapped build() {
     return new ConceptMap$Group$Unmapped(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(url),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(url),
         mode,
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(display),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(display),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

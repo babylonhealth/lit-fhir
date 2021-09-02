@@ -106,7 +106,7 @@ public class ElementDefinition_ExampleBuilder {
 
   public ElementDefinition.Example build() {
     return new ElementDefinition.Example(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         label,
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),

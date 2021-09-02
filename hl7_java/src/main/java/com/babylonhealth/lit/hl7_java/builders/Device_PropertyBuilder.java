@@ -146,7 +146,7 @@ public class Device_PropertyBuilder {
 
   public Device.Property build() {
     return new Device.Property(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         extension.stream().collect(new LitSeqJCollector<>()),
         valueCode.stream().collect(new LitSeqJCollector<>()),

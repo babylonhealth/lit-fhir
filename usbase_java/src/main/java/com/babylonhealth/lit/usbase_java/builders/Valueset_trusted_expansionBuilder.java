@@ -71,6 +71,6 @@ public class Valueset_trusted_expansionBuilder {
 
   public Valueset_trusted_expansion build() {
     return new Valueset_trusted_expansion(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

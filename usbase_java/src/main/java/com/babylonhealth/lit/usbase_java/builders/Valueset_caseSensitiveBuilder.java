@@ -71,6 +71,6 @@ public class Valueset_caseSensitiveBuilder {
 
   public Valueset_caseSensitive build() {
     return new Valueset_caseSensitive(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

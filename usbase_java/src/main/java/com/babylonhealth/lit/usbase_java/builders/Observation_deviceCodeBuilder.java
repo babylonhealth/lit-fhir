@@ -71,6 +71,6 @@ public class Observation_deviceCodeBuilder {
 
   public Observation_deviceCode build() {
     return new Observation_deviceCode(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

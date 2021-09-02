@@ -71,6 +71,6 @@ public class Codesystem_workflowStatusBuilder {
 
   public Codesystem_workflowStatus build() {
     return new Codesystem_workflowStatus(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

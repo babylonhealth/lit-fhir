@@ -143,11 +143,11 @@ public class CompartmentDefinition_ResourceBuilder {
 
   public CompartmentDefinition.Resource build() {
     return new CompartmentDefinition.Resource(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         param.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -128,7 +128,7 @@ public class ImplementationGuide_GlobalBuilder {
 
   public ImplementationGuide.Global build() {
     return new ImplementationGuide.Global(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         profile,
         extension.stream().collect(new LitSeqJCollector<>()),

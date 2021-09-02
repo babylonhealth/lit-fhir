@@ -71,6 +71,6 @@ public class Elementdefinition_bestpractice_explanationBuilder {
 
   public Elementdefinition_bestpractice_explanation build() {
     return new Elementdefinition_bestpractice_explanation(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

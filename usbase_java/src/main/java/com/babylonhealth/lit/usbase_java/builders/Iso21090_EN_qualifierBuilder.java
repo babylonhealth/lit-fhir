@@ -71,6 +71,6 @@ public class Iso21090_EN_qualifierBuilder {
 
   public Iso21090_EN_qualifier build() {
     return new Iso21090_EN_qualifier(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

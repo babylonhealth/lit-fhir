@@ -71,6 +71,6 @@ public class Valueset_expand_rulesBuilder {
 
   public Valueset_expand_rules build() {
     return new Valueset_expand_rules(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

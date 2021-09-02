@@ -128,7 +128,7 @@ public class SpecimenDefinition_TypeTested_Container_AdditiveBuilder {
 
   public SpecimenDefinition$TypeTested$Container$Additive build() {
     return new SpecimenDefinition$TypeTested$Container$Additive(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         additive,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

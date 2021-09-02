@@ -70,7 +70,6 @@ public class Event_eventHistoryBuilder {
   }
 
   public Event_eventHistory build() {
-    return new Event_eventHistory(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Event_eventHistory(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

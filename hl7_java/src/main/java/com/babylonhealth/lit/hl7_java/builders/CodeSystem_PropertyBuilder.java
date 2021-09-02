@@ -142,12 +142,12 @@ public class CodeSystem_PropertyBuilder {
 
   public CodeSystem.Property build() {
     return new CodeSystem.Property(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(uri),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(uri),
         code,
         _type,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

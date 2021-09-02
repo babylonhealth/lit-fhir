@@ -131,9 +131,9 @@ public class Account_CoverageBuilder {
 
   public Account.Coverage build() {
     return new Account.Coverage(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         coverage,
-        (Option) OptionConverters.toScala(priority.map(x -> (Object) x)),
+        OptionConverters.toScala(priority.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

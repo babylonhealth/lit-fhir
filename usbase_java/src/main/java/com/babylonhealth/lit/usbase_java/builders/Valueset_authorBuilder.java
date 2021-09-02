@@ -70,7 +70,6 @@ public class Valueset_authorBuilder {
   }
 
   public Valueset_author build() {
-    return new Valueset_author(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_author(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

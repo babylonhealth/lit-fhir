@@ -71,6 +71,6 @@ public class Iso21090_ADXP_streetNameTypeBuilder {
 
   public Iso21090_ADXP_streetNameType build() {
     return new Iso21090_ADXP_streetNameType(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

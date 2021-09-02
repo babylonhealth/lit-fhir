@@ -136,10 +136,10 @@ public class SubstanceSourceMaterial_FractionDescriptionBuilder {
 
   public SubstanceSourceMaterial.FractionDescription build() {
     return new SubstanceSourceMaterial.FractionDescription(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(fraction),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(fraction),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(materialType),
+        OptionConverters.toScala(materialType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -71,6 +71,6 @@ public class Messageheader_response_requestBuilder {
 
   public Messageheader_response_request build() {
     return new Messageheader_response_request(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

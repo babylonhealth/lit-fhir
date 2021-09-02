@@ -70,6 +70,6 @@ public class Tz_codeBuilder {
   }
 
   public Tz_code build() {
-    return new Tz_code((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Tz_code(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

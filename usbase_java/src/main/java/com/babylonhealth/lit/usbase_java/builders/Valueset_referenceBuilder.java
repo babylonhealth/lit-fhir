@@ -70,7 +70,6 @@ public class Valueset_referenceBuilder {
   }
 
   public Valueset_reference build() {
-    return new Valueset_reference(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_reference(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

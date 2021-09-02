@@ -71,6 +71,6 @@ public class Observation_specimenCodeBuilder {
 
   public Observation_specimenCode build() {
     return new Observation_specimenCode(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -129,7 +129,7 @@ public class Composition_RelatesToBuilder {
 
   public Composition.RelatesTo build() {
     return new Composition.RelatesTo(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         extension.stream().collect(new LitSeqJCollector<>()),
         target,

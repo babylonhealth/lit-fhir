@@ -70,7 +70,6 @@ public class Timing_exactBuilder {
   }
 
   public Timing_exact build() {
-    return new Timing_exact(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Timing_exact(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

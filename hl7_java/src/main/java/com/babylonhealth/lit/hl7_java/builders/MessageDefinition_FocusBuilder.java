@@ -140,11 +140,11 @@ public class MessageDefinition_FocusBuilder {
 
   public MessageDefinition.Focus build() {
     return new MessageDefinition.Focus(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         min,
-        (Option) OptionConverters.toScala(max),
+        OptionConverters.toScala(max),
         code,
-        (Option) OptionConverters.toScala(profile),
+        OptionConverters.toScala(profile),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

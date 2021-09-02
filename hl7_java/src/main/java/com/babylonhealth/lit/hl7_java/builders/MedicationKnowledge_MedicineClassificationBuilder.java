@@ -140,7 +140,7 @@ public class MedicationKnowledge_MedicineClassificationBuilder {
 
   public MedicationKnowledge.MedicineClassification build() {
     return new MedicationKnowledge.MedicineClassification(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         extension.stream().collect(new LitSeqJCollector<>()),
         classification.stream().collect(new LitSeqJCollector<>()),

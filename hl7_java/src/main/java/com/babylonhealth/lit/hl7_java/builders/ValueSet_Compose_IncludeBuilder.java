@@ -173,9 +173,9 @@ public class ValueSet_Compose_IncludeBuilder {
 
   public ValueSet$Compose$Include build() {
     return new ValueSet$Compose$Include(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(system),
-        (Option) OptionConverters.toScala(version),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(system),
+        OptionConverters.toScala(version),
         valueSet.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

@@ -70,7 +70,6 @@ public class Consent_WitnessBuilder {
   }
 
   public Consent_Witness build() {
-    return new Consent_Witness(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Consent_Witness(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

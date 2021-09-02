@@ -132,9 +132,9 @@ public class InsurancePlan_Coverage_Benefit_LimitBuilder {
 
   public InsurancePlan$Coverage$Benefit$Limit build() {
     return new InsurancePlan$Coverage$Benefit$Limit(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(value),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

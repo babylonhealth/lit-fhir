@@ -142,11 +142,11 @@ public class SubstancePolymer_Repeat_RepeatUnit_StructuralRepresentationBuilder 
 
   public SubstancePolymer$Repeat$RepeatUnit$StructuralRepresentation build() {
     return new SubstancePolymer$Repeat$RepeatUnit$StructuralRepresentation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(attachment),
-        (Option) OptionConverters.toScala(representation),
+        OptionConverters.toScala(attachment),
+        OptionConverters.toScala(representation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

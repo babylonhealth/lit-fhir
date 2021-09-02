@@ -71,6 +71,6 @@ public class Codesystem_conceptOrderBuilder {
 
   public Codesystem_conceptOrder build() {
     return new Codesystem_conceptOrder(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

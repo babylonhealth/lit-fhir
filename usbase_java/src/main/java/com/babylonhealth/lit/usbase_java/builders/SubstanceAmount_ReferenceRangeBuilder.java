@@ -99,10 +99,10 @@ public class SubstanceAmount_ReferenceRangeBuilder {
 
   public SubstanceAmount.ReferenceRange build() {
     return new SubstanceAmount.ReferenceRange(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(lowLimit),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(lowLimit),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(highLimit),
+        OptionConverters.toScala(highLimit),
         LitUtils.emptyMetaElMap());
   }
 }

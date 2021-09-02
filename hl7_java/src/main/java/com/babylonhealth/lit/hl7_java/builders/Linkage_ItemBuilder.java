@@ -127,7 +127,7 @@ public class Linkage_ItemBuilder {
 
   public Linkage.Item build() {
     return new Linkage.Item(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         resource,
         extension.stream().collect(new LitSeqJCollector<>()),

@@ -154,13 +154,13 @@ public class SubstanceSpecification_CodeBuilder {
 
   public SubstanceSpecification.Code build() {
     return new SubstanceSpecification.Code(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(status),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(status),
         source.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(comment),
+        OptionConverters.toScala(comment),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(statusDate),
+        OptionConverters.toScala(statusDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

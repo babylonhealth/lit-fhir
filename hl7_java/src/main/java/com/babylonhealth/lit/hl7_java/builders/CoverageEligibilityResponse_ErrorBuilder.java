@@ -126,7 +126,7 @@ public class CoverageEligibilityResponse_ErrorBuilder {
 
   public CoverageEligibilityResponse.Error build() {
     return new CoverageEligibilityResponse.Error(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

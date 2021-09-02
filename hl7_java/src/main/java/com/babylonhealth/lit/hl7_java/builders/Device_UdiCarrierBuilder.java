@@ -153,14 +153,14 @@ public class Device_UdiCarrierBuilder {
 
   public Device.UdiCarrier build() {
     return new Device.UdiCarrier(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(issuer),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(issuer),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(entryType),
-        (Option) OptionConverters.toScala(carrierHRF),
-        (Option) OptionConverters.toScala(carrierAIDC),
-        (Option) OptionConverters.toScala(jurisdiction),
-        (Option) OptionConverters.toScala(deviceIdentifier),
+        OptionConverters.toScala(entryType),
+        OptionConverters.toScala(carrierHRF),
+        OptionConverters.toScala(carrierAIDC),
+        OptionConverters.toScala(jurisdiction),
+        OptionConverters.toScala(deviceIdentifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

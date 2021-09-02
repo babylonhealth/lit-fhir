@@ -144,12 +144,12 @@ public class SubstanceReferenceInformation_GeneBuilder {
 
   public SubstanceReferenceInformation.Gene build() {
     return new SubstanceReferenceInformation.Gene(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(gene),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(gene),
         source.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(geneSequenceOrigin),
+        OptionConverters.toScala(geneSequenceOrigin),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Composition_clinicaldocument_versionNumberBuilder {
 
   public Composition_clinicaldocument_versionNumber build() {
     return new Composition_clinicaldocument_versionNumber(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

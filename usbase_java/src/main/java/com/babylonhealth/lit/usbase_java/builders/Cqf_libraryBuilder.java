@@ -70,6 +70,6 @@ public class Cqf_libraryBuilder {
   }
 
   public Cqf_library build() {
-    return new Cqf_library((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Cqf_library(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

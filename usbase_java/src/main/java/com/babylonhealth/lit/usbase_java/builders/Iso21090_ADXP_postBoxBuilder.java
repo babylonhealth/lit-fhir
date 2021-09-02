@@ -71,6 +71,6 @@ public class Iso21090_ADXP_postBoxBuilder {
 
   public Iso21090_ADXP_postBox build() {
     return new Iso21090_ADXP_postBox(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

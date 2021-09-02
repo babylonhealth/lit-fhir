@@ -127,7 +127,7 @@ public class ClaimResponse_TotalBuilder {
 
   public ClaimResponse.Total build() {
     return new ClaimResponse.Total(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         amount,
         category,
         extension.stream().collect(new LitSeqJCollector<>()),

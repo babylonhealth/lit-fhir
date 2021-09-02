@@ -71,7 +71,6 @@ public class MinValueBuilder {
   }
 
   public MinValue build() {
-    return new MinValue(
-        (Option) OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+    return new MinValue(OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
   }
 }

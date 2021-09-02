@@ -125,7 +125,7 @@ public class Communication_PayloadBuilder {
 
   public Communication.Payload build() {
     return new Communication.Payload(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         content,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

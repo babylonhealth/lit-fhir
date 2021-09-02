@@ -131,8 +131,8 @@ public class Procedure_FocalDeviceBuilder {
 
   public Procedure.FocalDevice build() {
     return new Procedure.FocalDevice(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(action),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(action),
         extension.stream().collect(new LitSeqJCollector<>()),
         manipulated,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

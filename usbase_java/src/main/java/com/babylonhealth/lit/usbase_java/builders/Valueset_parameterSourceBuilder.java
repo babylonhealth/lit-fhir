@@ -71,6 +71,6 @@ public class Valueset_parameterSourceBuilder {
 
   public Valueset_parameterSource build() {
     return new Valueset_parameterSource(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

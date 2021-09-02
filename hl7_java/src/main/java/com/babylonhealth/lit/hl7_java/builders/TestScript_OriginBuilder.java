@@ -127,7 +127,7 @@ public class TestScript_OriginBuilder {
 
   public TestScript.Origin build() {
     return new TestScript.Origin(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         index,
         profile,
         extension.stream().collect(new LitSeqJCollector<>()),

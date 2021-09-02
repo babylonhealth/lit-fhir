@@ -71,6 +71,6 @@ public class DiagnosticReport_extendsBuilder {
 
   public DiagnosticReport_extends build() {
     return new DiagnosticReport_extends(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

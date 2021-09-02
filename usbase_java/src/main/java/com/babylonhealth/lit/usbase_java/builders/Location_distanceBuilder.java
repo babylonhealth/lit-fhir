@@ -70,7 +70,6 @@ public class Location_distanceBuilder {
   }
 
   public Location_distance build() {
-    return new Location_distance(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Location_distance(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

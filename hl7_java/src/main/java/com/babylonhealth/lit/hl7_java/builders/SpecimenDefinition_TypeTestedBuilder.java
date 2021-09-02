@@ -183,17 +183,17 @@ public class SpecimenDefinition_TypeTestedBuilder {
 
   public SpecimenDefinition.TypeTested build() {
     return new SpecimenDefinition.TypeTested(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(isDerived.map(x -> (Object) x)),
+        OptionConverters.toScala(isDerived.map(x -> (Object) x)),
         preference,
-        (Option) OptionConverters.toScala(requirement),
-        (Option) OptionConverters.toScala(retentionTime),
+        OptionConverters.toScala(requirement),
+        OptionConverters.toScala(retentionTime),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         rejectionCriterion.stream().collect(new LitSeqJCollector<>()),
         handling.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(container),
+        OptionConverters.toScala(container),
         LitUtils.emptyMetaElMap());
   }
 }

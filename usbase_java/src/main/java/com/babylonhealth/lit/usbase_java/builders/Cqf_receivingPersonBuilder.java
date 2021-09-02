@@ -70,7 +70,6 @@ public class Cqf_receivingPersonBuilder {
   }
 
   public Cqf_receivingPerson build() {
-    return new Cqf_receivingPerson(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Cqf_receivingPerson(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

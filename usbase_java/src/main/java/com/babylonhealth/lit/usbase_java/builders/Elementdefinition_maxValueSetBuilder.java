@@ -75,6 +75,6 @@ public class Elementdefinition_maxValueSetBuilder {
 
   public Elementdefinition_maxValueSet build() {
     return new Elementdefinition_maxValueSet(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

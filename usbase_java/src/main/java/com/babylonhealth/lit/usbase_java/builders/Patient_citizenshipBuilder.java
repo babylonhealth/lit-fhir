@@ -86,7 +86,7 @@ public class Patient_citizenshipBuilder {
 
   public Patient_citizenship build() {
     return new Patient_citizenship(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

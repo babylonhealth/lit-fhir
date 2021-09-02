@@ -74,7 +74,7 @@ public class Timing_daysOfCycleBuilder {
 
   public Timing_daysOfCycle build() {
     return new Timing_daysOfCycle(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

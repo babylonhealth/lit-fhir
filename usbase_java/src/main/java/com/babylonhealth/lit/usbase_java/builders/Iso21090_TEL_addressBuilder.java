@@ -70,7 +70,6 @@ public class Iso21090_TEL_addressBuilder {
   }
 
   public Iso21090_TEL_address build() {
-    return new Iso21090_TEL_address(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Iso21090_TEL_address(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

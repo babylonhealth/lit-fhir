@@ -77,7 +77,7 @@ public class Us_core_ethnicityBuilder {
 
   public Us_core_ethnicity build() {
     return new Us_core_ethnicity(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -194,8 +194,8 @@ public class InsurancePlan_PlanBuilder {
 
   public InsurancePlan.Plan build() {
     return new InsurancePlan.Plan(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         network.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),

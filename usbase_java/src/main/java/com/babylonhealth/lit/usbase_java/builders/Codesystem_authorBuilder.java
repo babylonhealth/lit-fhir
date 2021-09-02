@@ -70,7 +70,6 @@ public class Codesystem_authorBuilder {
   }
 
   public Codesystem_author build() {
-    return new Codesystem_author(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Codesystem_author(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

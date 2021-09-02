@@ -151,9 +151,9 @@ public class ConceptMap_Group_ElementBuilder {
 
   public ConceptMap$Group$Element build() {
     return new ConceptMap$Group$Element(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(display),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(display),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         target.stream().collect(new LitSeqJCollector<>()),

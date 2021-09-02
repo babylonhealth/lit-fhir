@@ -166,12 +166,12 @@ public class Observation_ReferenceRangeBuilder {
 
   public Observation.ReferenceRange build() {
     return new Observation.ReferenceRange(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(low),
-        (Option) OptionConverters.toScala(age),
-        (Option) OptionConverters.toScala(high),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(low),
+        OptionConverters.toScala(age),
+        OptionConverters.toScala(high),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(text),
         extension.stream().collect(new LitSeqJCollector<>()),
         appliesTo.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

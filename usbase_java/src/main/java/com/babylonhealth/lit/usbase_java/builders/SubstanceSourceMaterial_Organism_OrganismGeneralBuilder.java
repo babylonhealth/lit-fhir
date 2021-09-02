@@ -151,11 +151,11 @@ public class SubstanceSourceMaterial_Organism_OrganismGeneralBuilder {
 
   public SubstanceSourceMaterial$Organism$OrganismGeneral build() {
     return new SubstanceSourceMaterial$Organism$OrganismGeneral(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_class),
-        (Option) OptionConverters.toScala(order),
-        (Option) OptionConverters.toScala(phylum),
-        (Option) OptionConverters.toScala(kingdom),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_class),
+        OptionConverters.toScala(order),
+        OptionConverters.toScala(phylum),
+        OptionConverters.toScala(kingdom),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

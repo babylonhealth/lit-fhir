@@ -100,8 +100,8 @@ public class CodeableConceptBuilder {
 
   public CodeableConcept build() {
     return new CodeableConcept(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(text),
         coding.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

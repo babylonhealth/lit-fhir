@@ -71,6 +71,6 @@ public class Cqf_strengthOfRecommendationBuilder {
 
   public Cqf_strengthOfRecommendation build() {
     return new Cqf_strengthOfRecommendation(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

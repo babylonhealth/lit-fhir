@@ -153,8 +153,8 @@ public class EffectEvidenceSynthesis_Certainty_CertaintySubcomponentBuilder {
 
   public EffectEvidenceSynthesis$Certainty$CertaintySubcomponent build() {
     return new EffectEvidenceSynthesis$Certainty$CertaintySubcomponent(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         note.stream().collect(new LitSeqJCollector<>()),
         rating.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),

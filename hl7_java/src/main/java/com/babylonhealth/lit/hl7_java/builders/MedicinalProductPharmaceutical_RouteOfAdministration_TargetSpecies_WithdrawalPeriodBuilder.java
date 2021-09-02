@@ -142,12 +142,12 @@ class MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpecies_Withdra
   public MedicinalProductPharmaceutical$RouteOfAdministration$TargetSpecies$WithdrawalPeriod
       build() {
     return new MedicinalProductPharmaceutical$RouteOfAdministration$TargetSpecies$WithdrawalPeriod(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         value,
         tissue,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(supportingInformation),
+        OptionConverters.toScala(supportingInformation),
         LitUtils.emptyMetaElMap());
   }
 }

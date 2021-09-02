@@ -233,16 +233,16 @@ public class Contract_TermBuilder {
 
   public Contract.Term build() {
     return new Contract.Term(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(text),
         group.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(issued),
-        (Option) OptionConverters.toScala(applies),
-        (Option) OptionConverters.toScala(subType),
+        OptionConverters.toScala(issued),
+        OptionConverters.toScala(applies),
+        OptionConverters.toScala(subType),
         (Option) OptionConverters.toScala(topic),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(identifier),
+        OptionConverters.toScala(identifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         offer,
         securityLabel.stream().collect(new LitSeqJCollector<>()),

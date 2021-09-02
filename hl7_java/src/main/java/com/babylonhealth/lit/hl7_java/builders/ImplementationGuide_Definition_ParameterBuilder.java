@@ -130,7 +130,7 @@ public class ImplementationGuide_Definition_ParameterBuilder {
 
   public ImplementationGuide$Definition$Parameter build() {
     return new ImplementationGuide$Definition$Parameter(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         value,
         extension.stream().collect(new LitSeqJCollector<>()),

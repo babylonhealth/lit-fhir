@@ -238,19 +238,19 @@ public class MedicinalProductIngredientBuilder {
 
   public MedicinalProductIngredient build() {
     return new MedicinalProductIngredient(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         role,
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(identifier),
+        OptionConverters.toScala(identifier),
         manufacturer.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(allergenicIndicator.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(substance),
+        OptionConverters.toScala(allergenicIndicator.map(x -> (Object) x)),
+        OptionConverters.toScala(substance),
         specifiedSubstance.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

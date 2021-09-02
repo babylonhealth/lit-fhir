@@ -70,7 +70,6 @@ public class Patient_importanceBuilder {
   }
 
   public Patient_importance build() {
-    return new Patient_importance(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Patient_importance(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

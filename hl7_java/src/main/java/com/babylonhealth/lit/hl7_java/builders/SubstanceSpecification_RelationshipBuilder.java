@@ -178,16 +178,16 @@ public class SubstanceSpecification_RelationshipBuilder {
 
   public SubstanceSpecification.Relationship build() {
     return new SubstanceSpecification.Relationship(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         source.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(amount),
-        (Option) OptionConverters.toScala(isDefining.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(amountType),
+        OptionConverters.toScala(isDefining.map(x -> (Object) x)),
+        OptionConverters.toScala(amountType),
         (Option) OptionConverters.toScala(substance),
-        (Option) OptionConverters.toScala(relationship),
+        OptionConverters.toScala(relationship),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(amountRatioLowLimit),
+        OptionConverters.toScala(amountRatioLowLimit),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -148,11 +148,11 @@ public class CapabilityStatement_Rest_SecurityBuilder {
 
   public CapabilityStatement$Rest$Security build() {
     return new CapabilityStatement$Rest$Security(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(cors.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(cors.map(x -> (Object) x)),
         service.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

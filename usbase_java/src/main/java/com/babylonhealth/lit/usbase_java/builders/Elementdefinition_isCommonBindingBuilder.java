@@ -71,6 +71,6 @@ public class Elementdefinition_isCommonBindingBuilder {
 
   public Elementdefinition_isCommonBinding build() {
     return new Elementdefinition_isCommonBinding(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

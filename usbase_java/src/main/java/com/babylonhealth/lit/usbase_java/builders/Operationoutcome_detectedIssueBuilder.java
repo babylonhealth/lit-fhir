@@ -71,6 +71,6 @@ public class Operationoutcome_detectedIssueBuilder {
 
   public Operationoutcome_detectedIssue build() {
     return new Operationoutcome_detectedIssue(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

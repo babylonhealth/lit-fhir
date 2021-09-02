@@ -134,7 +134,7 @@ public class DeviceDefinition_UdiDeviceIdentifierBuilder {
 
   public DeviceDefinition.UdiDeviceIdentifier build() {
     return new DeviceDefinition.UdiDeviceIdentifier(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         issuer,
         extension.stream().collect(new LitSeqJCollector<>()),
         jurisdiction,

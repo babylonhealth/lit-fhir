@@ -71,6 +71,6 @@ public class Valueset_expirationDateBuilder {
 
   public Valueset_expirationDate build() {
     return new Valueset_expirationDate(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

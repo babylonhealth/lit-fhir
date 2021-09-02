@@ -131,9 +131,9 @@ public class NutritionOrder_OralDiet_TextureBuilder {
 
   public NutritionOrder$OralDiet$Texture build() {
     return new NutritionOrder$OralDiet$Texture(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(modifier),
-        (Option) OptionConverters.toScala(foodType),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(modifier),
+        OptionConverters.toScala(foodType),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

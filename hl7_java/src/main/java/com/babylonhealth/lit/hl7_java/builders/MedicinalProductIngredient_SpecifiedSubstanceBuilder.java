@@ -152,11 +152,11 @@ public class MedicinalProductIngredient_SpecifiedSubstanceBuilder {
 
   public MedicinalProductIngredient.SpecifiedSubstance build() {
     return new MedicinalProductIngredient.SpecifiedSubstance(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         group,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(confidentiality),
+        OptionConverters.toScala(confidentiality),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         strength.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

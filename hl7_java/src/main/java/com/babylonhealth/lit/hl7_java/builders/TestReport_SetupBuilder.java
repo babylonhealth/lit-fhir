@@ -124,7 +124,7 @@ public class TestReport_SetupBuilder {
 
   public TestReport.Setup build() {
     return new TestReport.Setup(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         action.stream().collect(new NonEmptyLitSeqJCollector<>()),

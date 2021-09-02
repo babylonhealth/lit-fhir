@@ -128,7 +128,7 @@ public class ExplanationOfBenefit_TotalBuilder {
 
   public ExplanationOfBenefit.Total build() {
     return new ExplanationOfBenefit.Total(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         amount,
         category,
         extension.stream().collect(new LitSeqJCollector<>()),

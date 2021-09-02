@@ -287,24 +287,24 @@ public class MeasureReportBuilder {
 
   public MeasureReport build() {
     return new MeasureReport(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         _type,
-        (Option) OptionConverters.toScala(date),
+        OptionConverters.toScala(date),
         status,
         period,
         measure,
-        (Option) OptionConverters.toScala(subject),
-        (Option) OptionConverters.toScala(language),
-        (Option) OptionConverters.toScala(reporter),
+        OptionConverters.toScala(subject),
+        OptionConverters.toScala(language),
+        OptionConverters.toScala(reporter),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         evaluatedResource.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(improvementNotation),
+        OptionConverters.toScala(improvementNotation),
         group.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

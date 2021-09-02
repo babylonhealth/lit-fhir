@@ -173,10 +173,10 @@ public class ImplementationGuide_DefinitionBuilder {
 
   public ImplementationGuide.Definition build() {
     return new ImplementationGuide.Definition(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(page),
+        OptionConverters.toScala(page),
         grouping.stream().collect(new LitSeqJCollector<>()),
         resource.stream().collect(new NonEmptyLitSeqJCollector<>()),
         template.stream().collect(new LitSeqJCollector<>()),

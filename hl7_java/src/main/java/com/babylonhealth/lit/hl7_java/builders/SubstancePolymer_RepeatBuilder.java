@@ -151,12 +151,12 @@ public class SubstancePolymer_RepeatBuilder {
 
   public SubstancePolymer.Repeat build() {
     return new SubstancePolymer.Repeat(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(numberOfUnits.map(x -> (Object) x)),
+        OptionConverters.toScala(numberOfUnits.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(repeatUnitAmountType),
-        (Option) OptionConverters.toScala(averageMolecularFormula),
+        OptionConverters.toScala(repeatUnitAmountType),
+        OptionConverters.toScala(averageMolecularFormula),
         repeatUnit.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

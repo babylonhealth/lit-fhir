@@ -134,9 +134,9 @@ public class MessageHeader_ResponseBuilder {
 
   public MessageHeader.Response build() {
     return new MessageHeader.Response(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
-        (Option) OptionConverters.toScala(details),
+        OptionConverters.toScala(details),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

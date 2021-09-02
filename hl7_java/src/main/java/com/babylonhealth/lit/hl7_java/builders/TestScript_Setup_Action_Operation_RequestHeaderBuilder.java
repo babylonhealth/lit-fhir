@@ -130,7 +130,7 @@ public class TestScript_Setup_Action_Operation_RequestHeaderBuilder {
 
   public TestScript$Setup$Action$Operation$RequestHeader build() {
     return new TestScript$Setup$Action$Operation$RequestHeader(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         field,
         value,
         extension.stream().collect(new LitSeqJCollector<>()),

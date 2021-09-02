@@ -74,7 +74,7 @@ public class Allergyintolerance_substanceExposureRiskBuilder {
 
   public Allergyintolerance_substanceExposureRisk build() {
     return new Allergyintolerance_substanceExposureRisk(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

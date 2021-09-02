@@ -158,7 +158,7 @@ public class EffectEvidenceSynthesis_CertaintyBuilder {
 
   public EffectEvidenceSynthesis.Certainty build() {
     return new EffectEvidenceSynthesis.Certainty(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         note.stream().collect(new LitSeqJCollector<>()),
         rating.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),

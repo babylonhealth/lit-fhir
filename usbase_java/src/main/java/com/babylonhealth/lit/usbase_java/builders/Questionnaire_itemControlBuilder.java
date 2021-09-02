@@ -71,6 +71,6 @@ public class Questionnaire_itemControlBuilder {
 
   public Questionnaire_itemControl build() {
     return new Questionnaire_itemControl(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

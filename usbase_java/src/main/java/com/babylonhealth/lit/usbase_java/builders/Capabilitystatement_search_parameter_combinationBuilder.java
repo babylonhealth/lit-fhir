@@ -74,7 +74,7 @@ public class Capabilitystatement_search_parameter_combinationBuilder {
 
   public Capabilitystatement_search_parameter_combination build() {
     return new Capabilitystatement_search_parameter_combination(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

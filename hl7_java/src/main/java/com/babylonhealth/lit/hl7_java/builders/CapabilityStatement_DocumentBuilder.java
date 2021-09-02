@@ -135,11 +135,11 @@ public class CapabilityStatement_DocumentBuilder {
 
   public CapabilityStatement.Document build() {
     return new CapabilityStatement.Document(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         mode,
         profile,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

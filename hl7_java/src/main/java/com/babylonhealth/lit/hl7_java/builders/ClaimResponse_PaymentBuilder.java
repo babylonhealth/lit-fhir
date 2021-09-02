@@ -154,14 +154,14 @@ public class ClaimResponse_PaymentBuilder {
 
   public ClaimResponse.Payment build() {
     return new ClaimResponse.Payment(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(date),
+        OptionConverters.toScala(date),
         amount,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(adjustment),
-        (Option) OptionConverters.toScala(identifier),
-        (Option) OptionConverters.toScala(adjustmentReason),
+        OptionConverters.toScala(adjustment),
+        OptionConverters.toScala(identifier),
+        OptionConverters.toScala(adjustmentReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

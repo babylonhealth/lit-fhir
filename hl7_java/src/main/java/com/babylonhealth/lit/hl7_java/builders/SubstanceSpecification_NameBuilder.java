@@ -231,16 +231,16 @@ public class SubstanceSpecification_NameBuilder {
 
   public SubstanceSpecification.Name build() {
     return new SubstanceSpecification.Name(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(status),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(status),
         domain.stream().collect(new LitSeqJCollector<>()),
         source.stream().collect(new LitSeqJCollector<>()),
         synonym.stream().collect(new LitSeqJCollector<>()),
         language.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(preferred.map(x -> (Object) x)),
+        OptionConverters.toScala(preferred.map(x -> (Object) x)),
         translation.stream().collect(new LitSeqJCollector<>()),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

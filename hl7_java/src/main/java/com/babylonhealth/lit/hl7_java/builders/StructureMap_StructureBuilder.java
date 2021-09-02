@@ -145,12 +145,12 @@ public class StructureMap_StructureBuilder {
 
   public StructureMap.Structure build() {
     return new StructureMap.Structure(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         url,
         mode,
-        (Option) OptionConverters.toScala(alias),
+        OptionConverters.toScala(alias),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

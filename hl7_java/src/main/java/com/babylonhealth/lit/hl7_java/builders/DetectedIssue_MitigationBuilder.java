@@ -140,10 +140,10 @@ public class DetectedIssue_MitigationBuilder {
 
   public DetectedIssue.Mitigation build() {
     return new DetectedIssue.Mitigation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(date),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(date),
         action,
-        (Option) OptionConverters.toScala(author),
+        OptionConverters.toScala(author),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

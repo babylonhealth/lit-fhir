@@ -132,9 +132,9 @@ public class MedicationAdministration_PerformerBuilder {
 
   public MedicationAdministration.Performer build() {
     return new MedicationAdministration.Performer(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         actor,
-        (Option) OptionConverters.toScala(function),
+        OptionConverters.toScala(function),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

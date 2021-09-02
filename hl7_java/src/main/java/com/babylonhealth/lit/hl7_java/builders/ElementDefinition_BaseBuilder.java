@@ -97,7 +97,7 @@ public class ElementDefinition_BaseBuilder {
 
   public ElementDefinition.Base build() {
     return new ElementDefinition.Base(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         min,
         max,
         path,

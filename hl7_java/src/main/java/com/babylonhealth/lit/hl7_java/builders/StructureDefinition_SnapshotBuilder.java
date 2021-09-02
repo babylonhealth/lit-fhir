@@ -126,7 +126,7 @@ public class StructureDefinition_SnapshotBuilder {
 
   public StructureDefinition.Snapshot build() {
     return new StructureDefinition.Snapshot(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         element.stream().collect(new NonEmptyLitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

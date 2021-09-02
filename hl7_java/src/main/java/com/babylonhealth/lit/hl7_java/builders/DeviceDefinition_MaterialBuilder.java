@@ -138,12 +138,12 @@ public class DeviceDefinition_MaterialBuilder {
 
   public DeviceDefinition.Material build() {
     return new DeviceDefinition.Material(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         substance,
-        (Option) OptionConverters.toScala(alternate.map(x -> (Object) x)),
+        OptionConverters.toScala(alternate.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(allergenicIndicator.map(x -> (Object) x)),
+        OptionConverters.toScala(allergenicIndicator.map(x -> (Object) x)),
         LitUtils.emptyMetaElMap());
   }
 }

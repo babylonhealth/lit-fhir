@@ -70,7 +70,6 @@ public class Event_locationBuilder {
   }
 
   public Event_location build() {
-    return new Event_location(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Event_location(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

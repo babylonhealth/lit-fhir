@@ -158,14 +158,14 @@ public class ExplanationOfBenefit_PaymentBuilder {
 
   public ExplanationOfBenefit.Payment build() {
     return new ExplanationOfBenefit.Payment(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(date),
-        (Option) OptionConverters.toScala(amount),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(date),
+        OptionConverters.toScala(amount),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(adjustment),
-        (Option) OptionConverters.toScala(identifier),
-        (Option) OptionConverters.toScala(adjustmentReason),
+        OptionConverters.toScala(adjustment),
+        OptionConverters.toScala(identifier),
+        OptionConverters.toScala(adjustmentReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

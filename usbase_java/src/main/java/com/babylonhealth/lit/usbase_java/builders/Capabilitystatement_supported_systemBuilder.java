@@ -71,6 +71,6 @@ public class Capabilitystatement_supported_systemBuilder {
 
   public Capabilitystatement_supported_system build() {
     return new Capabilitystatement_supported_system(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

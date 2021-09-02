@@ -70,7 +70,6 @@ public class Quantity_precisionBuilder {
   }
 
   public Quantity_precision build() {
-    return new Quantity_precision(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Quantity_precision(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

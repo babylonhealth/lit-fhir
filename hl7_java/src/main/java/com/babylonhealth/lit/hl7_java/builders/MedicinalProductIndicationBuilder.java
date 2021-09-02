@@ -289,22 +289,22 @@ public class MedicinalProductIndicationBuilder {
 
   public MedicinalProductIndication build() {
     return new MedicinalProductIndication(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         subject.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(language),
-        (Option) OptionConverters.toScala(duration),
+        OptionConverters.toScala(language),
+        OptionConverters.toScala(duration),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         (LitSeq) population.stream().collect(new LitSeqJCollector<>()),
         comorbidity.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
-        (Option) OptionConverters.toScala(diseaseStatus),
-        (Option) OptionConverters.toScala(intendedEffect),
+        OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(diseaseStatus),
+        OptionConverters.toScala(intendedEffect),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         undesirableEffect.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(diseaseSymptomProcedure),
+        OptionConverters.toScala(diseaseSymptomProcedure),
         otherTherapy.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

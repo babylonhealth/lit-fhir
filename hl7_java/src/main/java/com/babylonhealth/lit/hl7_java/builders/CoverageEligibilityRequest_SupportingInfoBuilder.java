@@ -137,11 +137,11 @@ public class CoverageEligibilityRequest_SupportingInfoBuilder {
 
   public CoverageEligibilityRequest.SupportingInfo build() {
     return new CoverageEligibilityRequest.SupportingInfo(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         sequence,
         extension.stream().collect(new LitSeqJCollector<>()),
         information,
-        (Option) OptionConverters.toScala(appliesToAll.map(x -> (Object) x)),
+        OptionConverters.toScala(appliesToAll.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

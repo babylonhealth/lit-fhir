@@ -70,7 +70,6 @@ public class Patient_birthTimeBuilder {
   }
 
   public Patient_birthTime build() {
-    return new Patient_birthTime(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Patient_birthTime(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

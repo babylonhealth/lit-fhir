@@ -70,7 +70,6 @@ public class Coding_sctdescidBuilder {
   }
 
   public Coding_sctdescid build() {
-    return new Coding_sctdescid(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Coding_sctdescid(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

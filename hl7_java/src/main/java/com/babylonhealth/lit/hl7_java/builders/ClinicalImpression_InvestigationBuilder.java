@@ -137,7 +137,7 @@ public class ClinicalImpression_InvestigationBuilder {
 
   public ClinicalImpression.Investigation build() {
     return new ClinicalImpression.Investigation(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         item.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),

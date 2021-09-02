@@ -155,12 +155,12 @@ public class Measure_SupplementalDataBuilder {
 
   public Measure.SupplementalData build() {
     return new Measure.SupplementalData(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
         usage.stream().collect(new LitSeqJCollector<>()),
         criteria,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

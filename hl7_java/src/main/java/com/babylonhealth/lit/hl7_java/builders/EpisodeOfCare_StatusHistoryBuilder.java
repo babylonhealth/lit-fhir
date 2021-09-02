@@ -130,7 +130,7 @@ public class EpisodeOfCare_StatusHistoryBuilder {
 
   public EpisodeOfCare.StatusHistory build() {
     return new EpisodeOfCare.StatusHistory(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         status,
         period,
         extension.stream().collect(new LitSeqJCollector<>()),

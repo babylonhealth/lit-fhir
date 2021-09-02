@@ -136,10 +136,10 @@ public class Account_GuarantorBuilder {
 
   public Account.Guarantor build() {
     return new Account.Guarantor(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         party,
-        (Option) OptionConverters.toScala(onHold.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(onHold.map(x -> (Object) x)),
+        OptionConverters.toScala(period),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

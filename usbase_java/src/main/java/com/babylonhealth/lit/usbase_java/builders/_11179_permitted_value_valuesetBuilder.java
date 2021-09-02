@@ -71,6 +71,6 @@ public class _11179_permitted_value_valuesetBuilder {
 
   public _11179_permitted_value_valueset build() {
     return new _11179_permitted_value_valueset(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -95,7 +95,7 @@ public class NarrativeBuilder {
 
   public Narrative build() {
     return new Narrative(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         div,
         status,
         extension.stream().collect(new LitSeqJCollector<>()),

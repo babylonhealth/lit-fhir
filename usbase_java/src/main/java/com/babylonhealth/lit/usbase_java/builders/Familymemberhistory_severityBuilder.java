@@ -71,6 +71,6 @@ public class Familymemberhistory_severityBuilder {
 
   public Familymemberhistory_severity build() {
     return new Familymemberhistory_severity(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -120,12 +120,12 @@ public class ContactPointBuilder {
 
   public ContactPoint build() {
     return new ContactPoint(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(use),
-        (Option) OptionConverters.toScala(rank.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(value),
-        (Option) OptionConverters.toScala(system),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(use),
+        OptionConverters.toScala(rank.map(x -> (Object) x)),
+        OptionConverters.toScala(value),
+        OptionConverters.toScala(system),
+        OptionConverters.toScala(period),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

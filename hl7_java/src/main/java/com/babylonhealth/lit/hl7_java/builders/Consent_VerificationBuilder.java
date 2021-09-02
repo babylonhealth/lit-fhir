@@ -137,11 +137,11 @@ public class Consent_VerificationBuilder {
 
   public Consent.Verification build() {
     return new Consent.Verification(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         verified,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(verifiedWith),
-        (Option) OptionConverters.toScala(verificationDate),
+        OptionConverters.toScala(verifiedWith),
+        OptionConverters.toScala(verificationDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

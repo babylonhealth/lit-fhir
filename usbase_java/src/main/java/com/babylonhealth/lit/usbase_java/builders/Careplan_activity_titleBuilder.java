@@ -71,6 +71,6 @@ public class Careplan_activity_titleBuilder {
 
   public Careplan_activity_title build() {
     return new Careplan_activity_title(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

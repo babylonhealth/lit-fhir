@@ -87,7 +87,7 @@ public class DiagnosticReport_geneticsReferencesBuilder {
 
   public DiagnosticReport_geneticsReferences build() {
     return new DiagnosticReport_geneticsReferences(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

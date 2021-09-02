@@ -136,7 +136,7 @@ public class PlanDefinition_Action_RelatedActionBuilder {
 
   public PlanDefinition$Action$RelatedAction build() {
     return new PlanDefinition$Action$RelatedAction(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         actionId,
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(offset),

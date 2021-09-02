@@ -131,10 +131,10 @@ public class TestReport_Test_ActionBuilder {
 
   public TestReport$Test$Action build() {
     return new TestReport$Test$Action(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_assert),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_assert),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(operation),
+        OptionConverters.toScala(operation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

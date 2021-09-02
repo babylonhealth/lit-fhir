@@ -147,13 +147,13 @@ public class NamingSystem_UniqueIdBuilder {
 
   public NamingSystem.UniqueId build() {
     return new NamingSystem.UniqueId(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         value,
-        (Option) OptionConverters.toScala(period),
-        (Option) OptionConverters.toScala(comment),
+        OptionConverters.toScala(period),
+        OptionConverters.toScala(comment),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(preferred.map(x -> (Object) x)),
+        OptionConverters.toScala(preferred.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

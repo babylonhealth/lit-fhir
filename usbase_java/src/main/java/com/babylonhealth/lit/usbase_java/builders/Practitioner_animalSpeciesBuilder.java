@@ -71,6 +71,6 @@ public class Practitioner_animalSpeciesBuilder {
 
   public Practitioner_animalSpecies build() {
     return new Practitioner_animalSpecies(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

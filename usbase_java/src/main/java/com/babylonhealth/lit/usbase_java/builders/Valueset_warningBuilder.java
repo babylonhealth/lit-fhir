@@ -70,7 +70,6 @@ public class Valueset_warningBuilder {
   }
 
   public Valueset_warning build() {
-    return new Valueset_warning(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_warning(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

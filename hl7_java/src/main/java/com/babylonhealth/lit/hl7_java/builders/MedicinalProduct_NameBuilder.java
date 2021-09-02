@@ -152,7 +152,7 @@ public class MedicinalProduct_NameBuilder {
 
   public MedicinalProduct.Name build() {
     return new MedicinalProduct.Name(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         productName,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

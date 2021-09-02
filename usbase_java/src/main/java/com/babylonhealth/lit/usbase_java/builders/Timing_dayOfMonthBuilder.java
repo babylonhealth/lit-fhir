@@ -70,7 +70,6 @@ public class Timing_dayOfMonthBuilder {
   }
 
   public Timing_dayOfMonth build() {
-    return new Timing_dayOfMonth(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Timing_dayOfMonth(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

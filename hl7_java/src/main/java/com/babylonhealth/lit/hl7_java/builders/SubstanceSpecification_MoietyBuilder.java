@@ -164,15 +164,15 @@ public class SubstanceSpecification_MoietyBuilder {
 
   public SubstanceSpecification.Moiety build() {
     return new SubstanceSpecification.Moiety(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(role),
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(role),
+        OptionConverters.toScala(name),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(amount),
-        (Option) OptionConverters.toScala(identifier),
-        (Option) OptionConverters.toScala(stereochemistry),
-        (Option) OptionConverters.toScala(opticalActivity),
-        (Option) OptionConverters.toScala(molecularFormula),
+        OptionConverters.toScala(identifier),
+        OptionConverters.toScala(stereochemistry),
+        OptionConverters.toScala(opticalActivity),
+        OptionConverters.toScala(molecularFormula),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

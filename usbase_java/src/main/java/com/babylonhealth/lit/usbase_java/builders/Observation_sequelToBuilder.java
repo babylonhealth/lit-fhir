@@ -70,7 +70,6 @@ public class Observation_sequelToBuilder {
   }
 
   public Observation_sequelTo build() {
-    return new Observation_sequelTo(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Observation_sequelTo(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

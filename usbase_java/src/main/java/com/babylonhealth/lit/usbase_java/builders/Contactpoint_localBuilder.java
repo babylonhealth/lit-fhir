@@ -70,7 +70,6 @@ public class Contactpoint_localBuilder {
   }
 
   public Contactpoint_local build() {
-    return new Contactpoint_local(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Contactpoint_local(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -129,7 +129,7 @@ public class Contract_Term_Offer_AnswerBuilder {
 
   public Contract$Term$Offer$Answer build() {
     return new Contract$Term$Offer$Answer(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

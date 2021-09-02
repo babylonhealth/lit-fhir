@@ -155,12 +155,12 @@ public class Claim_DiagnosisBuilder {
 
   public Claim.Diagnosis build() {
     return new Claim.Diagnosis(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type.stream().collect(new LitSeqJCollector<>()),
         sequence,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(onAdmission),
-        (Option) OptionConverters.toScala(packageCode),
+        OptionConverters.toScala(onAdmission),
+        OptionConverters.toScala(packageCode),
         diagnosis,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

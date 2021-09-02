@@ -217,21 +217,21 @@ public class ResearchElementDefinition_CharacteristicBuilder {
 
   public ResearchElementDefinition.Characteristic build() {
     return new ResearchElementDefinition.Characteristic(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(exclude.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(exclude.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         usageContext.stream().collect(new LitSeqJCollector<>()),
         definition,
-        (Option) OptionConverters.toScala(unitOfMeasure),
+        OptionConverters.toScala(unitOfMeasure),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(studyEffective),
         (Option) OptionConverters.toScala(participantEffective),
-        (Option) OptionConverters.toScala(studyEffectiveDescription),
-        (Option) OptionConverters.toScala(studyEffectiveGroupMeasure),
-        (Option) OptionConverters.toScala(studyEffectiveTimeFromStart),
-        (Option) OptionConverters.toScala(participantEffectiveDescription),
-        (Option) OptionConverters.toScala(participantEffectiveGroupMeasure),
-        (Option) OptionConverters.toScala(participantEffectiveTimeFromStart),
+        OptionConverters.toScala(studyEffectiveDescription),
+        OptionConverters.toScala(studyEffectiveGroupMeasure),
+        OptionConverters.toScala(studyEffectiveTimeFromStart),
+        OptionConverters.toScala(participantEffectiveDescription),
+        OptionConverters.toScala(participantEffectiveGroupMeasure),
+        OptionConverters.toScala(participantEffectiveTimeFromStart),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -128,9 +128,9 @@ public class TerminologyCapabilities_ClosureBuilder {
 
   public TerminologyCapabilities.Closure build() {
     return new TerminologyCapabilities.Closure(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(translation.map(x -> (Object) x)),
+        OptionConverters.toScala(translation.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

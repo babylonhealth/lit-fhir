@@ -131,10 +131,10 @@ public class PlanDefinition_Action_DynamicValueBuilder {
 
   public PlanDefinition$Action$DynamicValue build() {
     return new PlanDefinition$Action$DynamicValue(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(path),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(path),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(expression),
+        OptionConverters.toScala(expression),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

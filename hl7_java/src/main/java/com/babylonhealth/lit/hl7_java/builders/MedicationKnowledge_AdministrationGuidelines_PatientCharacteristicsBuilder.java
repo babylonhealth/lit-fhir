@@ -143,7 +143,7 @@ public class MedicationKnowledge_AdministrationGuidelines_PatientCharacteristics
 
   public MedicationKnowledge$AdministrationGuidelines$PatientCharacteristics build() {
     return new MedicationKnowledge$AdministrationGuidelines$PatientCharacteristics(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         value.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

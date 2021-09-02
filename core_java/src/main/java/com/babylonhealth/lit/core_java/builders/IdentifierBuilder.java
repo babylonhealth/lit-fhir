@@ -125,13 +125,13 @@ public class IdentifierBuilder {
 
   public Identifier build() {
     return new Identifier(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(use),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(value),
-        (Option) OptionConverters.toScala(system),
-        (Option) OptionConverters.toScala(period),
-        (Option) OptionConverters.toScala(assigner),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(use),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(value),
+        OptionConverters.toScala(system),
+        OptionConverters.toScala(period),
+        OptionConverters.toScala(assigner),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

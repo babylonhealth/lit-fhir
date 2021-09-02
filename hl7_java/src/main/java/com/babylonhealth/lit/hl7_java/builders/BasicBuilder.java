@@ -225,18 +225,18 @@ public class BasicBuilder {
 
   public Basic build() {
     return new Basic(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         code,
-        (Option) OptionConverters.toScala(author),
-        (Option) OptionConverters.toScala(subject),
-        (Option) OptionConverters.toScala(created),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(author),
+        OptionConverters.toScala(subject),
+        OptionConverters.toScala(created),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

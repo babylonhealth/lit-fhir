@@ -70,7 +70,6 @@ public class Iso21090_nullFlavorBuilder {
   }
 
   public Iso21090_nullFlavor build() {
-    return new Iso21090_nullFlavor(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Iso21090_nullFlavor(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -164,14 +164,14 @@ public class FamilyMemberHistory_ConditionBuilder {
 
   public FamilyMemberHistory.Condition build() {
     return new FamilyMemberHistory.Condition(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         note.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(outcome),
+        OptionConverters.toScala(outcome),
         (Option) OptionConverters.toScala(onset),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(contributedToDeath.map(x -> (Object) x)),
+        OptionConverters.toScala(contributedToDeath.map(x -> (Object) x)),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -141,11 +141,11 @@ public class ExplanationOfBenefit_RelatedBuilder {
 
   public ExplanationOfBenefit.Related build() {
     return new ExplanationOfBenefit.Related(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(claim),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(claim),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(reference),
-        (Option) OptionConverters.toScala(relationship),
+        OptionConverters.toScala(reference),
+        OptionConverters.toScala(relationship),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

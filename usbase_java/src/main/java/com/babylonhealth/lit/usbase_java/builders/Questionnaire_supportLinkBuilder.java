@@ -71,6 +71,6 @@ public class Questionnaire_supportLinkBuilder {
 
   public Questionnaire_supportLink build() {
     return new Questionnaire_supportLink(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

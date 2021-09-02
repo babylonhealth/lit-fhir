@@ -131,7 +131,7 @@ public class TerminologyCapabilities_CodeSystem_Version_FilterBuilder {
 
   public TerminologyCapabilities$CodeSystem$Version$Filter build() {
     return new TerminologyCapabilities$CodeSystem$Version$Filter(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         op.stream().collect(new NonEmptyLitSeqJCollector<>()),
         code,
         extension.stream().collect(new LitSeqJCollector<>()),

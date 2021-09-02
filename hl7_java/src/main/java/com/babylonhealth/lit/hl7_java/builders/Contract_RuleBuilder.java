@@ -124,7 +124,7 @@ public class Contract_RuleBuilder {
 
   public Contract.Rule build() {
     return new Contract.Rule(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         content,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

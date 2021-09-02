@@ -70,7 +70,6 @@ public class MaxDecimalPlacesBuilder {
   }
 
   public MaxDecimalPlaces build() {
-    return new MaxDecimalPlaces(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new MaxDecimalPlaces(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

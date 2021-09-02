@@ -70,7 +70,6 @@ public class Auditevent_MPPSBuilder {
   }
 
   public Auditevent_MPPS build() {
-    return new Auditevent_MPPS(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Auditevent_MPPS(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

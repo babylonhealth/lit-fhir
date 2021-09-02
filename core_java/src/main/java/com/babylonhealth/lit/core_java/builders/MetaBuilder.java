@@ -163,14 +163,14 @@ public class MetaBuilder {
 
   public Meta build() {
     return new Meta(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         tag.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(source),
+        OptionConverters.toScala(source),
         profile.stream().collect(new LitSeqJCollector<>()),
         security.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(versionId),
-        (Option) OptionConverters.toScala(lastUpdated),
+        OptionConverters.toScala(versionId),
+        OptionConverters.toScala(lastUpdated),
         LitUtils.emptyMetaElMap());
   }
 }

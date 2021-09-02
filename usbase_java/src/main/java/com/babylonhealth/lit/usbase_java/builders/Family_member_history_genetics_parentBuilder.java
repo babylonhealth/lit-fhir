@@ -74,7 +74,7 @@ public class Family_member_history_genetics_parentBuilder {
 
   public Family_member_history_genetics_parent build() {
     return new Family_member_history_genetics_parent(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

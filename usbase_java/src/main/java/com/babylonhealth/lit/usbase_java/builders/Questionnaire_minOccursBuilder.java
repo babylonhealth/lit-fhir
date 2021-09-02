@@ -71,6 +71,6 @@ public class Questionnaire_minOccursBuilder {
 
   public Questionnaire_minOccurs build() {
     return new Questionnaire_minOccurs(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

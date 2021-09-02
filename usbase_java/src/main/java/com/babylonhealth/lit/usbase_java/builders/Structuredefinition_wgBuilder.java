@@ -71,6 +71,6 @@ public class Structuredefinition_wgBuilder {
 
   public Structuredefinition_wg build() {
     return new Structuredefinition_wg(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

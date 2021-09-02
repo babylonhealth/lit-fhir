@@ -74,7 +74,7 @@ public class Goal_acceptanceBuilder {
 
   public Goal_acceptance build() {
     return new Goal_acceptance(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

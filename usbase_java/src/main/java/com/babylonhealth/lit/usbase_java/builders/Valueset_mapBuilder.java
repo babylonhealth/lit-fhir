@@ -70,7 +70,6 @@ public class Valueset_mapBuilder {
   }
 
   public Valueset_map build() {
-    return new Valueset_map(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_map(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -137,11 +137,11 @@ public class SubstanceSourceMaterial_Organism_AuthorBuilder {
 
   public SubstanceSourceMaterial$Organism$Author build() {
     return new SubstanceSourceMaterial$Organism$Author(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(authorType),
+        OptionConverters.toScala(authorType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(authorDescription),
+        OptionConverters.toScala(authorDescription),
         LitUtils.emptyMetaElMap());
   }
 }

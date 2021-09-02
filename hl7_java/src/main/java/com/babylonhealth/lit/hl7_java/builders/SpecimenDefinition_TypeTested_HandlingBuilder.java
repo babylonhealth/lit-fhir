@@ -148,13 +148,13 @@ public class SpecimenDefinition_TypeTested_HandlingBuilder {
 
   public SpecimenDefinition$TypeTested$Handling build() {
     return new SpecimenDefinition$TypeTested$Handling(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(maxDuration),
-        (Option) OptionConverters.toScala(instruction),
-        (Option) OptionConverters.toScala(temperatureRange),
+        OptionConverters.toScala(maxDuration),
+        OptionConverters.toScala(instruction),
+        OptionConverters.toScala(temperatureRange),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(temperatureQualifier),
+        OptionConverters.toScala(temperatureQualifier),
         LitUtils.emptyMetaElMap());
   }
 }

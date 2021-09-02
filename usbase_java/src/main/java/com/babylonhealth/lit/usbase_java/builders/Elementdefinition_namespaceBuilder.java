@@ -71,6 +71,6 @@ public class Elementdefinition_namespaceBuilder {
 
   public Elementdefinition_namespace build() {
     return new Elementdefinition_namespace(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

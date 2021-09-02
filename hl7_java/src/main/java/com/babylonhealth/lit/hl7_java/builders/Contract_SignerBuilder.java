@@ -133,7 +133,7 @@ public class Contract_SignerBuilder {
 
   public Contract.Signer build() {
     return new Contract.Signer(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         party,
         extension.stream().collect(new LitSeqJCollector<>()),

@@ -71,7 +71,6 @@ public class Procedure_directedByBuilder {
   }
 
   public Procedure_directedBy build() {
-    return new Procedure_directedBy(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Procedure_directedBy(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

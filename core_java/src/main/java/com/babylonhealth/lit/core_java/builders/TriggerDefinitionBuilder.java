@@ -132,13 +132,13 @@ public class TriggerDefinitionBuilder {
 
   public TriggerDefinition build() {
     return new TriggerDefinition(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(name),
         data.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(timing),
-        (Option) OptionConverters.toScala(condition),
+        OptionConverters.toScala(condition),
         LitUtils.emptyMetaElMap());
   }
 }

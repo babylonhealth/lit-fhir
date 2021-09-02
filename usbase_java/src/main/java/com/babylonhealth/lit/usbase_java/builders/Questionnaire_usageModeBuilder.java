@@ -71,6 +71,6 @@ public class Questionnaire_usageModeBuilder {
 
   public Questionnaire_usageMode build() {
     return new Questionnaire_usageMode(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

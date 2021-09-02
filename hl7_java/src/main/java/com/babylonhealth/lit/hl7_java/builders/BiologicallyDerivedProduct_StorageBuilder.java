@@ -144,12 +144,12 @@ public class BiologicallyDerivedProduct_StorageBuilder {
 
   public BiologicallyDerivedProduct.Storage build() {
     return new BiologicallyDerivedProduct.Storage(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(scale),
-        (Option) OptionConverters.toScala(duration),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(scale),
+        OptionConverters.toScala(duration),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
-        (Option) OptionConverters.toScala(temperature),
+        OptionConverters.toScala(description),
+        OptionConverters.toScala(temperature),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

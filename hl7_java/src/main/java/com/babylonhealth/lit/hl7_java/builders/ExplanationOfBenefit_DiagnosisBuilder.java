@@ -161,12 +161,12 @@ public class ExplanationOfBenefit_DiagnosisBuilder {
 
   public ExplanationOfBenefit.Diagnosis build() {
     return new ExplanationOfBenefit.Diagnosis(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type.stream().collect(new LitSeqJCollector<>()),
         sequence,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(onAdmission),
-        (Option) OptionConverters.toScala(packageCode),
+        OptionConverters.toScala(onAdmission),
+        OptionConverters.toScala(packageCode),
         diagnosis,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

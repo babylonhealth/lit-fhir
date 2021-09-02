@@ -70,7 +70,6 @@ public class Cqf_expressionBuilder {
   }
 
   public Cqf_expression build() {
-    return new Cqf_expression(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Cqf_expression(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

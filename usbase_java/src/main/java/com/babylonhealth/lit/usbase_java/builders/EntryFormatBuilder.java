@@ -70,6 +70,6 @@ public class EntryFormatBuilder {
   }
 
   public EntryFormat build() {
-    return new EntryFormat((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new EntryFormat(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

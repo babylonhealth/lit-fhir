@@ -71,6 +71,6 @@ public class Observation_geneticsDNARegionNameBuilder {
 
   public Observation_geneticsDNARegionName build() {
     return new Observation_geneticsDNARegionName(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

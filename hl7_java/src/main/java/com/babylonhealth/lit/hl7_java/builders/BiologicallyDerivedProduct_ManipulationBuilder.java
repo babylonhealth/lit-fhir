@@ -133,10 +133,10 @@ public class BiologicallyDerivedProduct_ManipulationBuilder {
 
   public BiologicallyDerivedProduct.Manipulation build() {
     return new BiologicallyDerivedProduct.Manipulation(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         (Option) OptionConverters.toScala(time),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

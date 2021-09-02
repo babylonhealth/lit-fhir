@@ -163,11 +163,11 @@ public class GraphDefinition_Link_TargetBuilder {
 
   public GraphDefinition$Link$Target build() {
     return new GraphDefinition$Link$Target(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         link.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(params),
-        (Option) OptionConverters.toScala(profile),
+        OptionConverters.toScala(params),
+        OptionConverters.toScala(profile),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         compartment.stream().collect(new LitSeqJCollector<>()),

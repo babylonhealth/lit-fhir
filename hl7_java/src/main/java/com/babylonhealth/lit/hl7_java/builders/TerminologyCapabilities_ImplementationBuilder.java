@@ -143,8 +143,8 @@ public class TerminologyCapabilities_ImplementationBuilder {
 
   public TerminologyCapabilities.Implementation build() {
     return new TerminologyCapabilities.Implementation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(url),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(url),
         extension.stream().collect(new LitSeqJCollector<>()),
         description,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

@@ -109,11 +109,11 @@ public class ElementDefinition_MappingBuilder {
 
   public ElementDefinition.Mapping build() {
     return new ElementDefinition.Mapping(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         map,
-        (Option) OptionConverters.toScala(comment),
+        OptionConverters.toScala(comment),
         identity,
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(language),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

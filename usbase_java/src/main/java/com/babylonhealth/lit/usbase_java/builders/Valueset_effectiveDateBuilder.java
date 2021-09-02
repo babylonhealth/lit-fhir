@@ -71,6 +71,6 @@ public class Valueset_effectiveDateBuilder {
 
   public Valueset_effectiveDate build() {
     return new Valueset_effectiveDate(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

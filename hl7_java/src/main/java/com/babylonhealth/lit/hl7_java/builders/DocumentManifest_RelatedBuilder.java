@@ -133,10 +133,10 @@ public class DocumentManifest_RelatedBuilder {
 
   public DocumentManifest.Related build() {
     return new DocumentManifest.Related(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(ref),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(ref),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(identifier),
+        OptionConverters.toScala(identifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

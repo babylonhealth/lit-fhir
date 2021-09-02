@@ -70,7 +70,6 @@ public class Cqf_encounterTypeBuilder {
   }
 
   public Cqf_encounterType build() {
-    return new Cqf_encounterType(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Cqf_encounterType(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

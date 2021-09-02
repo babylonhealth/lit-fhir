@@ -71,6 +71,6 @@ public class Structuredefinition_table_nameBuilder {
 
   public Structuredefinition_table_name build() {
     return new Structuredefinition_table_name(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

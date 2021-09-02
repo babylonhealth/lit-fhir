@@ -135,11 +135,11 @@ public class Substance_InstanceBuilder {
 
   public Substance.Instance build() {
     return new Substance.Instance(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(expiry),
-        (Option) OptionConverters.toScala(quantity),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(expiry),
+        OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(identifier),
+        OptionConverters.toScala(identifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

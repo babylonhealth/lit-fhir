@@ -179,7 +179,7 @@ public class TestScript_Metadata_CapabilityBuilder {
 
   public TestScript$Metadata$Capability build() {
     return new TestScript$Metadata$Capability(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         link.stream().collect(new LitSeqJCollector<>()),
         origin.stream()
             .map(x -> (Object) x)
@@ -189,8 +189,8 @@ public class TestScript_Metadata_CapabilityBuilder {
         required,
         extension.stream().collect(new LitSeqJCollector<>()),
         validated,
-        (Option) OptionConverters.toScala(description),
-        (Option) OptionConverters.toScala(destination.map(x -> (Object) x)),
+        OptionConverters.toScala(description),
+        OptionConverters.toScala(destination.map(x -> (Object) x)),
         capabilities,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

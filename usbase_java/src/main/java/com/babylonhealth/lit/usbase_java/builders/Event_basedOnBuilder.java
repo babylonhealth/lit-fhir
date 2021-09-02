@@ -70,7 +70,6 @@ public class Event_basedOnBuilder {
   }
 
   public Event_basedOn build() {
-    return new Event_basedOn(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Event_basedOn(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Observation_geneticsGenomicSourceClassBuilder {
 
   public Observation_geneticsGenomicSourceClass build() {
     return new Observation_geneticsGenomicSourceClass(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

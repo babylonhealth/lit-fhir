@@ -161,12 +161,12 @@ public class MedicationAdministration_DosageBuilder {
 
   public MedicationAdministration.Dosage build() {
     return new MedicationAdministration.Dosage(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(site),
-        (Option) OptionConverters.toScala(dose),
-        (Option) OptionConverters.toScala(route),
-        (Option) OptionConverters.toScala(method),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(site),
+        OptionConverters.toScala(dose),
+        OptionConverters.toScala(route),
+        OptionConverters.toScala(method),
         (Option) OptionConverters.toScala(rate),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

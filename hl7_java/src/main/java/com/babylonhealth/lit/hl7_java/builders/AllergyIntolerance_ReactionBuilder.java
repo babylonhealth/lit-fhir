@@ -178,15 +178,15 @@ public class AllergyIntolerance_ReactionBuilder {
 
   public AllergyIntolerance.Reaction build() {
     return new AllergyIntolerance.Reaction(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         note.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(onset),
-        (Option) OptionConverters.toScala(severity),
+        OptionConverters.toScala(onset),
+        OptionConverters.toScala(severity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(substance),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(substance),
+        OptionConverters.toScala(description),
         manifestation.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(exposureRoute),
+        OptionConverters.toScala(exposureRoute),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

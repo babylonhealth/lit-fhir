@@ -71,6 +71,6 @@ public class Resource_lastReviewDateBuilder {
 
   public Resource_lastReviewDate build() {
     return new Resource_lastReviewDate(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

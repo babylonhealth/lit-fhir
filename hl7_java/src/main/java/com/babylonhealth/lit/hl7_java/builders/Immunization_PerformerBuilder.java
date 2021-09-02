@@ -131,9 +131,9 @@ public class Immunization_PerformerBuilder {
 
   public Immunization.Performer build() {
     return new Immunization.Performer(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         actor,
-        (Option) OptionConverters.toScala(function),
+        OptionConverters.toScala(function),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -171,12 +171,12 @@ public class ValueSet_ExpansionBuilder {
 
   public ValueSet.Expansion build() {
     return new ValueSet.Expansion(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(total.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(offset.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(total.map(x -> (Object) x)),
+        OptionConverters.toScala(offset.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         timestamp,
-        (Option) OptionConverters.toScala(identifier),
+        OptionConverters.toScala(identifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         contains.stream().collect(new LitSeqJCollector<>()),
         parameter.stream().collect(new LitSeqJCollector<>()),

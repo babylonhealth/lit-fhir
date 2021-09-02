@@ -219,21 +219,21 @@ public class Contract_Term_Asset_ValuedItemBuilder {
 
   public Contract$Term$Asset$ValuedItem build() {
     return new Contract$Term$Asset$ValuedItem(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(net),
-        (Option) OptionConverters.toScala(factor),
-        (Option) OptionConverters.toScala(points),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(net),
+        OptionConverters.toScala(factor),
+        OptionConverters.toScala(points),
         linkId.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(payment),
-        (Option) OptionConverters.toScala(quantity),
+        OptionConverters.toScala(payment),
+        OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(entity),
-        (Option) OptionConverters.toScala(unitPrice),
-        (Option) OptionConverters.toScala(recipient),
-        (Option) OptionConverters.toScala(identifier),
-        (Option) OptionConverters.toScala(paymentDate),
-        (Option) OptionConverters.toScala(responsible),
-        (Option) OptionConverters.toScala(effectiveTime),
+        OptionConverters.toScala(unitPrice),
+        OptionConverters.toScala(recipient),
+        OptionConverters.toScala(identifier),
+        OptionConverters.toScala(paymentDate),
+        OptionConverters.toScala(responsible),
+        OptionConverters.toScala(effectiveTime),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         securityLabelNumber.stream()
             .map(x -> (Object) x)

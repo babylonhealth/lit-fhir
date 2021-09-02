@@ -87,7 +87,7 @@ public class Hla_genotyping_results_haploidBuilder {
 
   public Hla_genotyping_results_haploid build() {
     return new Hla_genotyping_results_haploid(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

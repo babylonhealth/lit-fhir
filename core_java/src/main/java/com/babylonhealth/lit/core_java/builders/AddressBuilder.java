@@ -164,18 +164,18 @@ public class AddressBuilder {
 
   public Address build() {
     return new Address(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(use),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(use),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(text),
         line.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(city),
-        (Option) OptionConverters.toScala(state),
-        (Option) OptionConverters.toScala(period),
-        (Option) OptionConverters.toScala(country),
-        (Option) OptionConverters.toScala(district),
+        OptionConverters.toScala(city),
+        OptionConverters.toScala(state),
+        OptionConverters.toScala(period),
+        OptionConverters.toScala(country),
+        OptionConverters.toScala(district),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(postalCode),
+        OptionConverters.toScala(postalCode),
         LitUtils.emptyMetaElMap());
   }
 }

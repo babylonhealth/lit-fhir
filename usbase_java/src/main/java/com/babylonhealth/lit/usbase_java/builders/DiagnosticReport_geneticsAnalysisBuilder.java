@@ -74,7 +74,7 @@ public class DiagnosticReport_geneticsAnalysisBuilder {
 
   public DiagnosticReport_geneticsAnalysis build() {
     return new DiagnosticReport_geneticsAnalysis(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

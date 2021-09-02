@@ -71,6 +71,6 @@ public class Structuredefinition_fmmBuilder {
 
   public Structuredefinition_fmm build() {
     return new Structuredefinition_fmm(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

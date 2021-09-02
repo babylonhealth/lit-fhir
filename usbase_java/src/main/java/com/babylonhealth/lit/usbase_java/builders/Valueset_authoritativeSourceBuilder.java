@@ -71,6 +71,6 @@ public class Valueset_authoritativeSourceBuilder {
 
   public Valueset_authoritativeSource build() {
     return new Valueset_authoritativeSource(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

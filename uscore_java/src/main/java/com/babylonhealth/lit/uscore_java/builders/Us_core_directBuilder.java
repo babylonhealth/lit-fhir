@@ -98,8 +98,8 @@ public class Us_core_directBuilder {
 
   public Us_core_direct build() {
     return new Us_core_direct(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(value.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(value.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

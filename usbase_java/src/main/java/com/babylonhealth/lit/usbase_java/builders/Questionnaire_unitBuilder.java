@@ -70,7 +70,6 @@ public class Questionnaire_unitBuilder {
   }
 
   public Questionnaire_unit build() {
-    return new Questionnaire_unit(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Questionnaire_unit(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

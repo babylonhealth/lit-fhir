@@ -140,7 +140,7 @@ public class InsurancePlan_CoverageBuilder {
 
   public InsurancePlan.Coverage build() {
     return new InsurancePlan.Coverage(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         network.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),

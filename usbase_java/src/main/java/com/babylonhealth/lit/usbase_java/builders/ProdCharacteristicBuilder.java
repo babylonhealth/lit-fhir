@@ -245,19 +245,19 @@ public class ProdCharacteristicBuilder {
 
   public ProdCharacteristic build() {
     return new ProdCharacteristic(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(width),
-        (Option) OptionConverters.toScala(depth),
-        (Option) OptionConverters.toScala(shape),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(width),
+        OptionConverters.toScala(depth),
+        OptionConverters.toScala(shape),
         color.stream().collect(new LitSeqJCollector<>()),
         image.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(height),
-        (Option) OptionConverters.toScala(weight),
+        OptionConverters.toScala(height),
+        OptionConverters.toScala(weight),
         imprint.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(scoring),
+        OptionConverters.toScala(scoring),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(nominalVolume),
-        (Option) OptionConverters.toScala(externalDiameter),
+        OptionConverters.toScala(nominalVolume),
+        OptionConverters.toScala(externalDiameter),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

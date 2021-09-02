@@ -71,6 +71,6 @@ public class Humanname_partner_prefixBuilder {
 
   public Humanname_partner_prefix build() {
     return new Humanname_partner_prefix(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

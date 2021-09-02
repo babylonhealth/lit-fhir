@@ -71,6 +71,6 @@ public class Questionnaire_maxOccursBuilder {
 
   public Questionnaire_maxOccurs build() {
     return new Questionnaire_maxOccurs(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -125,7 +125,7 @@ public class TestReport_Teardown_ActionBuilder {
 
   public TestReport$Teardown$Action build() {
     return new TestReport$Teardown$Action(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         operation,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

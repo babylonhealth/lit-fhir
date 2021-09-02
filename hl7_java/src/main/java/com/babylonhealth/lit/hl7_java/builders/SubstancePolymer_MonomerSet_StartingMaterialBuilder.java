@@ -147,12 +147,12 @@ public class SubstancePolymer_MonomerSet_StartingMaterialBuilder {
 
   public SubstancePolymer$MonomerSet$StartingMaterial build() {
     return new SubstancePolymer$MonomerSet$StartingMaterial(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         (Option) OptionConverters.toScala(amount),
-        (Option) OptionConverters.toScala(material),
+        OptionConverters.toScala(material),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(isDefining.map(x -> (Object) x)),
+        OptionConverters.toScala(isDefining.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

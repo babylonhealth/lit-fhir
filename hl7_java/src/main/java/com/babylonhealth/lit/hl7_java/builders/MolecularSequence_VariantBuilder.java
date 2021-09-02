@@ -154,14 +154,14 @@ public class MolecularSequence_VariantBuilder {
 
   public MolecularSequence.Variant build() {
     return new MolecularSequence.Variant(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(end.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(start.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(cigar),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(end.map(x -> (Object) x)),
+        OptionConverters.toScala(start.map(x -> (Object) x)),
+        OptionConverters.toScala(cigar),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(observedAllele),
-        (Option) OptionConverters.toScala(variantPointer),
-        (Option) OptionConverters.toScala(referenceAllele),
+        OptionConverters.toScala(observedAllele),
+        OptionConverters.toScala(variantPointer),
+        OptionConverters.toScala(referenceAllele),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

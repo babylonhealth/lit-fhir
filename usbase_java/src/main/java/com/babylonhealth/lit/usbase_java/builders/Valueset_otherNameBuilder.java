@@ -74,7 +74,7 @@ public class Valueset_otherNameBuilder {
 
   public Valueset_otherName build() {
     return new Valueset_otherName(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

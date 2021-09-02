@@ -71,6 +71,6 @@ public class Humanname_assembly_orderBuilder {
 
   public Humanname_assembly_order build() {
     return new Humanname_assembly_order(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -70,7 +70,6 @@ public class Event_partOfBuilder {
   }
 
   public Event_partOf build() {
-    return new Event_partOf(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Event_partOf(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

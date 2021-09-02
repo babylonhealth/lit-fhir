@@ -148,7 +148,7 @@ public class ImplementationGuide_Definition_PageBuilder {
 
   public ImplementationGuide$Definition$Page build() {
     return new ImplementationGuide$Definition$Page(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         page.stream().collect(new LitSeqJCollector<>()),
         title,
         name,

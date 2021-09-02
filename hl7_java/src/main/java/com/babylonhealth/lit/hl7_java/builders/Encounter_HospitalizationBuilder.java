@@ -195,18 +195,18 @@ public class Encounter_HospitalizationBuilder {
 
   public Encounter.Hospitalization build() {
     return new Encounter.Hospitalization(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(origin),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(origin),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(admitSource),
-        (Option) OptionConverters.toScala(reAdmission),
-        (Option) OptionConverters.toScala(destination),
+        OptionConverters.toScala(admitSource),
+        OptionConverters.toScala(reAdmission),
+        OptionConverters.toScala(destination),
         dietPreference.stream().collect(new LitSeqJCollector<>()),
         specialCourtesy.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         specialArrangement.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(dischargeDisposition),
-        (Option) OptionConverters.toScala(preAdmissionIdentifier),
+        OptionConverters.toScala(dischargeDisposition),
+        OptionConverters.toScala(preAdmissionIdentifier),
         LitUtils.emptyMetaElMap());
   }
 }

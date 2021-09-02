@@ -139,10 +139,10 @@ public class ImplementationGuide_Definition_GroupingBuilder {
 
   public ImplementationGuide$Definition$Grouping build() {
     return new ImplementationGuide$Definition$Grouping(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

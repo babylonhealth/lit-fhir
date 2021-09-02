@@ -180,14 +180,14 @@ public class SpecimenDefinition_TypeTested_ContainerBuilder {
 
   public SpecimenDefinition$TypeTested$Container build() {
     return new SpecimenDefinition$TypeTested$Container(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(cap),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(material),
-        (Option) OptionConverters.toScala(capacity),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(cap),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(material),
+        OptionConverters.toScala(capacity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
-        (Option) OptionConverters.toScala(preparation),
+        OptionConverters.toScala(description),
+        OptionConverters.toScala(preparation),
         (Option) OptionConverters.toScala(minimumVolume),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         additive.stream().collect(new LitSeqJCollector<>()),

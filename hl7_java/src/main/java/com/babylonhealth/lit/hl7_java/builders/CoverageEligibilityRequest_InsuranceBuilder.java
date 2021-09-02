@@ -140,12 +140,12 @@ public class CoverageEligibilityRequest_InsuranceBuilder {
 
   public CoverageEligibilityRequest.Insurance build() {
     return new CoverageEligibilityRequest.Insurance(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(focal.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(focal.map(x -> (Object) x)),
         coverage,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(businessArrangement),
+        OptionConverters.toScala(businessArrangement),
         LitUtils.emptyMetaElMap());
   }
 }

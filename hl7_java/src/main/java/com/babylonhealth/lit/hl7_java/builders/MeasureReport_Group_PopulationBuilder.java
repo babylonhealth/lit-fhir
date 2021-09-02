@@ -138,11 +138,11 @@ public class MeasureReport_Group_PopulationBuilder {
 
   public MeasureReport$Group$Population build() {
     return new MeasureReport$Group$Population(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(count.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(count.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(subjectResults),
+        OptionConverters.toScala(subjectResults),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

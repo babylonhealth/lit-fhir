@@ -70,6 +70,6 @@ public class VariableBuilder {
   }
 
   public Variable build() {
-    return new Variable((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Variable(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

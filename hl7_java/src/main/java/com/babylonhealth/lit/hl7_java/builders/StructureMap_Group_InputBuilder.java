@@ -141,12 +141,12 @@ public class StructureMap_Group_InputBuilder {
 
   public StructureMap$Group$Input build() {
     return new StructureMap$Group$Input(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(_type),
         mode,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -70,7 +70,6 @@ public class Cqf_systemUserTypeBuilder {
   }
 
   public Cqf_systemUserType build() {
-    return new Cqf_systemUserType(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Cqf_systemUserType(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

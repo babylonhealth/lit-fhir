@@ -199,7 +199,7 @@ public class MolecularSequence_Quality_RocBuilder {
 
   public MolecularSequence$Quality$Roc build() {
     return new MolecularSequence$Quality$Roc(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         score.stream()
             .map(x -> (Object) x)
             .collect(Collectors.toList())

@@ -156,11 +156,11 @@ public class MedicinalProductAuthorization_ProcedureBuilder {
 
   public MedicinalProductAuthorization.Procedure build() {
     return new MedicinalProductAuthorization.Procedure(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         (Option) OptionConverters.toScala(date),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(identifier),
+        OptionConverters.toScala(identifier),
         application.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

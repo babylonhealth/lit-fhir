@@ -74,7 +74,7 @@ public class Valueset_usageBuilder {
 
   public Valueset_usage build() {
     return new Valueset_usage(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

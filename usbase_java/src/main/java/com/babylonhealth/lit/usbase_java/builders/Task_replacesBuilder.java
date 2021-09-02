@@ -70,7 +70,6 @@ public class Task_replacesBuilder {
   }
 
   public Task_replaces build() {
-    return new Task_replaces(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Task_replaces(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

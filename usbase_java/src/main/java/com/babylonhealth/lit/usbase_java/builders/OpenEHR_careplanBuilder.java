@@ -70,7 +70,6 @@ public class OpenEHR_careplanBuilder {
   }
 
   public OpenEHR_careplan build() {
-    return new OpenEHR_careplan(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new OpenEHR_careplan(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

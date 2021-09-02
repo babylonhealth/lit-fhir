@@ -138,7 +138,7 @@ public class AdverseEvent_SuspectEntityBuilder {
 
   public AdverseEvent.SuspectEntity build() {
     return new AdverseEvent.SuspectEntity(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         instance,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

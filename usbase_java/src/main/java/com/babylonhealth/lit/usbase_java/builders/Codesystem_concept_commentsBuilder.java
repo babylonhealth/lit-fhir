@@ -71,6 +71,6 @@ public class Codesystem_concept_commentsBuilder {
 
   public Codesystem_concept_comments build() {
     return new Codesystem_concept_comments(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

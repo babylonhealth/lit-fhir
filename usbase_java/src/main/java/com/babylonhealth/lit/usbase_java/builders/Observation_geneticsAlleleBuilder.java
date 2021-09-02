@@ -86,7 +86,7 @@ public class Observation_geneticsAlleleBuilder {
 
   public Observation_geneticsAllele build() {
     return new Observation_geneticsAllele(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

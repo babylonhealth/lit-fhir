@@ -71,6 +71,6 @@ public class Structuredefinition_applicable_versionBuilder {
 
   public Structuredefinition_applicable_version build() {
     return new Structuredefinition_applicable_version(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

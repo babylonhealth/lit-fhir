@@ -70,7 +70,6 @@ public class Rendering_markdownBuilder {
   }
 
   public Rendering_markdown build() {
-    return new Rendering_markdown(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Rendering_markdown(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

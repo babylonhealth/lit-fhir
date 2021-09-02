@@ -139,10 +139,10 @@ public class BiologicallyDerivedProduct_CollectionBuilder {
 
   public BiologicallyDerivedProduct.Collection build() {
     return new BiologicallyDerivedProduct.Collection(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(source),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(source),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(collector),
+        OptionConverters.toScala(collector),
         (Option) OptionConverters.toScala(collected),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

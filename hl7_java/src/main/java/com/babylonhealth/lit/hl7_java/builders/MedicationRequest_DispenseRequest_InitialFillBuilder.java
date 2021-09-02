@@ -134,9 +134,9 @@ public class MedicationRequest_DispenseRequest_InitialFillBuilder {
 
   public MedicationRequest$DispenseRequest$InitialFill build() {
     return new MedicationRequest$DispenseRequest$InitialFill(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(quantity),
-        (Option) OptionConverters.toScala(duration),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(quantity),
+        OptionConverters.toScala(duration),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

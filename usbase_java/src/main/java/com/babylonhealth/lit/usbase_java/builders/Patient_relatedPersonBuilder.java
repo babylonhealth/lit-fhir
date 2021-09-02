@@ -71,6 +71,6 @@ public class Patient_relatedPersonBuilder {
 
   public Patient_relatedPerson build() {
     return new Patient_relatedPerson(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

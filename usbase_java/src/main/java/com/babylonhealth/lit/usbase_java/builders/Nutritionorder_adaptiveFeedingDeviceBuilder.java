@@ -71,6 +71,6 @@ public class Nutritionorder_adaptiveFeedingDeviceBuilder {
 
   public Nutritionorder_adaptiveFeedingDevice build() {
     return new Nutritionorder_adaptiveFeedingDevice(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

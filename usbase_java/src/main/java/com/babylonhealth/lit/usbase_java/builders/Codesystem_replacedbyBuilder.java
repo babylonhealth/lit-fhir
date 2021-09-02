@@ -71,6 +71,6 @@ public class Codesystem_replacedbyBuilder {
 
   public Codesystem_replacedby build() {
     return new Codesystem_replacedby(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

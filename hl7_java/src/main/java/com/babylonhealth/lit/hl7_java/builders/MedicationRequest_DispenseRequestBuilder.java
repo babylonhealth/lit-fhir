@@ -169,16 +169,16 @@ public class MedicationRequest_DispenseRequestBuilder {
 
   public MedicationRequest.DispenseRequest build() {
     return new MedicationRequest.DispenseRequest(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(quantity),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(performer),
-        (Option) OptionConverters.toScala(validityPeriod),
-        (Option) OptionConverters.toScala(dispenseInterval),
+        OptionConverters.toScala(performer),
+        OptionConverters.toScala(validityPeriod),
+        OptionConverters.toScala(dispenseInterval),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(numberOfRepeatsAllowed.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(expectedSupplyDuration),
-        (Option) OptionConverters.toScala(initialFill),
+        OptionConverters.toScala(numberOfRepeatsAllowed.map(x -> (Object) x)),
+        OptionConverters.toScala(expectedSupplyDuration),
+        OptionConverters.toScala(initialFill),
         LitUtils.emptyMetaElMap());
   }
 }

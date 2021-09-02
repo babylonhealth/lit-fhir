@@ -160,10 +160,10 @@ public class Claim_ProcedureBuilder {
 
   public Claim.Procedure build() {
     return new Claim.Procedure(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         udi.stream().collect(new LitSeqJCollector<>()),
         _type.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(date),
+        OptionConverters.toScala(date),
         sequence,
         extension.stream().collect(new LitSeqJCollector<>()),
         procedure,

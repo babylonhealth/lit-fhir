@@ -71,6 +71,6 @@ public class Questionnaire_optionExclusiveBuilder {
 
   public Questionnaire_optionExclusive build() {
     return new Questionnaire_optionExclusive(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

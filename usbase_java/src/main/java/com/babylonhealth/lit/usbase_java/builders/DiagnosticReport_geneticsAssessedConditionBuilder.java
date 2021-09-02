@@ -71,6 +71,6 @@ public class DiagnosticReport_geneticsAssessedConditionBuilder {
 
   public DiagnosticReport_geneticsAssessedCondition build() {
     return new DiagnosticReport_geneticsAssessedCondition(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

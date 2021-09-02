@@ -136,10 +136,10 @@ public class SubstanceSourceMaterial_PartDescriptionBuilder {
 
   public SubstanceSourceMaterial.PartDescription build() {
     return new SubstanceSourceMaterial.PartDescription(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(part),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(part),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(partLocation),
+        OptionConverters.toScala(partLocation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

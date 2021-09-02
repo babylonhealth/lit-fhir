@@ -161,14 +161,14 @@ public class ConceptMap_GroupBuilder {
 
   public ConceptMap.Group build() {
     return new ConceptMap.Group(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(source),
-        (Option) OptionConverters.toScala(target),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(source),
+        OptionConverters.toScala(target),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(sourceVersion),
-        (Option) OptionConverters.toScala(targetVersion),
+        OptionConverters.toScala(sourceVersion),
+        OptionConverters.toScala(targetVersion),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(unmapped),
+        OptionConverters.toScala(unmapped),
         element.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -128,7 +128,7 @@ public class Consent_Provision_ActorBuilder {
 
   public Consent$Provision$Actor build() {
     return new Consent$Provision$Actor(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         role,
         extension.stream().collect(new LitSeqJCollector<>()),
         reference,

@@ -71,6 +71,6 @@ public class Workflow_researchStudyBuilder {
 
   public Workflow_researchStudy build() {
     return new Workflow_researchStudy(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

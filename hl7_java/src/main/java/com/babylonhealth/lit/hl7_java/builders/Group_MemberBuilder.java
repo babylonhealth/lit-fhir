@@ -136,10 +136,10 @@ public class Group_MemberBuilder {
 
   public Group.Member build() {
     return new Group.Member(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         entity,
-        (Option) OptionConverters.toScala(period),
-        (Option) OptionConverters.toScala(inactive.map(x -> (Object) x)),
+        OptionConverters.toScala(period),
+        OptionConverters.toScala(inactive.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

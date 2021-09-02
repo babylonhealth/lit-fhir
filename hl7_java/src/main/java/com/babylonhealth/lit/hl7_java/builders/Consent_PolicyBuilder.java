@@ -129,10 +129,10 @@ public class Consent_PolicyBuilder {
 
   public Consent.Policy build() {
     return new Consent.Policy(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(uri),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(uri),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(authority),
+        OptionConverters.toScala(authority),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

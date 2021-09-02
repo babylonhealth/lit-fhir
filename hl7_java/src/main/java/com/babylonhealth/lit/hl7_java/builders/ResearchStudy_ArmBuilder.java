@@ -136,11 +136,11 @@ public class ResearchStudy_ArmBuilder {
 
   public ResearchStudy.Arm build() {
     return new ResearchStudy.Arm(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(_type),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -75,6 +75,6 @@ public class Elementdefinition_inheritedExtensibleValueSetBuilder {
 
   public Elementdefinition_inheritedExtensibleValueSet build() {
     return new Elementdefinition_inheritedExtensibleValueSet(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

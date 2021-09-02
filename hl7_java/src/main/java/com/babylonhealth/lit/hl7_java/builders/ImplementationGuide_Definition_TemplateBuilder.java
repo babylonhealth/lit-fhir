@@ -136,9 +136,9 @@ public class ImplementationGuide_Definition_TemplateBuilder {
 
   public ImplementationGuide$Definition$Template build() {
     return new ImplementationGuide$Definition$Template(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
-        (Option) OptionConverters.toScala(scope),
+        OptionConverters.toScala(scope),
         source,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

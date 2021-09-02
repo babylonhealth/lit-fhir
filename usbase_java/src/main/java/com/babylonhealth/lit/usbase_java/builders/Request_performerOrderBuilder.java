@@ -71,6 +71,6 @@ public class Request_performerOrderBuilder {
 
   public Request_performerOrder build() {
     return new Request_performerOrder(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

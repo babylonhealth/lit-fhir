@@ -157,7 +157,7 @@ public class ClaimResponse_Item_Detail_SubDetailBuilder {
 
   public ClaimResponse$Item$Detail$SubDetail build() {
     return new ClaimResponse$Item$Detail$SubDetail(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         noteNumber.stream()
             .map(x -> (Object) x)

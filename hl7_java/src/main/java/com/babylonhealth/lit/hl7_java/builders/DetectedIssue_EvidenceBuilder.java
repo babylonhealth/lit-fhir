@@ -140,7 +140,7 @@ public class DetectedIssue_EvidenceBuilder {
 
   public DetectedIssue.Evidence build() {
     return new DetectedIssue.Evidence(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code.stream().collect(new LitSeqJCollector<>()),
         detail.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),

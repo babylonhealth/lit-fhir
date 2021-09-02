@@ -136,7 +136,7 @@ public class ValueSet_Expansion_ParameterBuilder {
 
   public ValueSet$Expansion$Parameter build() {
     return new ValueSet$Expansion$Parameter(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),

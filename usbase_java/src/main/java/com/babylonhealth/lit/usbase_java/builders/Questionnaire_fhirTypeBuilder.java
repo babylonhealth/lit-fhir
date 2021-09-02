@@ -71,6 +71,6 @@ public class Questionnaire_fhirTypeBuilder {
 
   public Questionnaire_fhirType build() {
     return new Questionnaire_fhirType(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

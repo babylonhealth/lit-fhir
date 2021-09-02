@@ -70,7 +70,6 @@ public class Codesystem_warningBuilder {
   }
 
   public Codesystem_warning build() {
-    return new Codesystem_warning(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Codesystem_warning(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

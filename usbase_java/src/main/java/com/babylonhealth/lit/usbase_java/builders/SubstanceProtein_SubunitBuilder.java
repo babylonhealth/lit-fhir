@@ -182,17 +182,17 @@ public class SubstanceProtein_SubunitBuilder {
 
   public SubstanceProtein.Subunit build() {
     return new SubstanceProtein.Subunit(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(length.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(subunit.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(sequence),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(length.map(x -> (Object) x)),
+        OptionConverters.toScala(subunit.map(x -> (Object) x)),
+        OptionConverters.toScala(sequence),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(sequenceAttachment),
-        (Option) OptionConverters.toScala(nTerminalModification),
-        (Option) OptionConverters.toScala(cTerminalModification),
-        (Option) OptionConverters.toScala(nTerminalModificationId),
-        (Option) OptionConverters.toScala(cTerminalModificationId),
+        OptionConverters.toScala(sequenceAttachment),
+        OptionConverters.toScala(nTerminalModification),
+        OptionConverters.toScala(cTerminalModification),
+        OptionConverters.toScala(nTerminalModificationId),
+        OptionConverters.toScala(cTerminalModificationId),
         LitUtils.emptyMetaElMap());
   }
 }

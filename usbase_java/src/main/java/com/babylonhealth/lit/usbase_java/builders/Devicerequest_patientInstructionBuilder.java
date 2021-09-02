@@ -74,7 +74,7 @@ public class Devicerequest_patientInstructionBuilder {
 
   public Devicerequest_patientInstruction build() {
     return new Devicerequest_patientInstruction(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

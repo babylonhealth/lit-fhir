@@ -71,6 +71,6 @@ public class Allergyintolerance_assertedDateBuilder {
 
   public Allergyintolerance_assertedDate build() {
     return new Allergyintolerance_assertedDate(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

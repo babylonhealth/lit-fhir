@@ -129,7 +129,7 @@ public class Encounter_ClassHistoryBuilder {
 
   public Encounter.ClassHistory build() {
     return new Encounter.ClassHistory(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _class,
         period,
         extension.stream().collect(new LitSeqJCollector<>()),

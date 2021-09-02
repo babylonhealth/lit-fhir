@@ -71,6 +71,6 @@ public class Encounter_associatedEncounterBuilder {
 
   public Encounter_associatedEncounter build() {
     return new Encounter_associatedEncounter(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -160,12 +160,12 @@ public class MedicationKnowledge_RegulatoryBuilder {
 
   public MedicationKnowledge.Regulatory build() {
     return new MedicationKnowledge.Regulatory(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         regulatoryAuthority,
         schedule.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(maxDispense),
+        OptionConverters.toScala(maxDispense),
         substitution.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

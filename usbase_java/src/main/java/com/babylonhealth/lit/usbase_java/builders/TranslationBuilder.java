@@ -74,7 +74,7 @@ public class TranslationBuilder {
 
   public Translation build() {
     return new Translation(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

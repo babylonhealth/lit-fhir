@@ -140,11 +140,11 @@ public class SubstanceNucleicAcid_Subunit_SugarBuilder {
 
   public SubstanceNucleicAcid$Subunit$Sugar build() {
     return new SubstanceNucleicAcid$Subunit$Sugar(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(identifier),
-        (Option) OptionConverters.toScala(residueSite),
+        OptionConverters.toScala(identifier),
+        OptionConverters.toScala(residueSite),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

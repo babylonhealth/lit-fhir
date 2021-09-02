@@ -71,6 +71,6 @@ public class Consent_NotificationEndpointBuilder {
 
   public Consent_NotificationEndpoint build() {
     return new Consent_NotificationEndpoint(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

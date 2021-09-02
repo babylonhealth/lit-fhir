@@ -156,10 +156,10 @@ public class Measure_GroupBuilder {
 
   public Measure.Group build() {
     return new Measure.Group(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         population.stream().collect(new LitSeqJCollector<>()),
         stratifier.stream().collect(new LitSeqJCollector<>()),

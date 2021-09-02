@@ -131,8 +131,8 @@ public class Device_SpecializationBuilder {
 
   public Device.Specialization build() {
     return new Device.Specialization(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(version),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(version),
         extension.stream().collect(new LitSeqJCollector<>()),
         systemType,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

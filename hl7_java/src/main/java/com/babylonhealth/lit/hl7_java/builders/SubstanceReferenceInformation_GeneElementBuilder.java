@@ -144,10 +144,10 @@ public class SubstanceReferenceInformation_GeneElementBuilder {
 
   public SubstanceReferenceInformation.GeneElement build() {
     return new SubstanceReferenceInformation.GeneElement(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         source.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(element),
+        OptionConverters.toScala(element),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

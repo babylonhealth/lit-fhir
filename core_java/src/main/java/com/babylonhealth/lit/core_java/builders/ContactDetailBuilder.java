@@ -103,8 +103,8 @@ public class ContactDetailBuilder {
 
   public ContactDetail build() {
     return new ContactDetail(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
         telecom.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

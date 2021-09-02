@@ -71,6 +71,6 @@ public class Cqf_systemUserTaskContextBuilder {
 
   public Cqf_systemUserTaskContext build() {
     return new Cqf_systemUserTaskContext(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Allergyintolerance_durationBuilder {
 
   public Allergyintolerance_duration build() {
     return new Allergyintolerance_duration(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

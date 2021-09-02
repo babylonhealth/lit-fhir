@@ -147,12 +147,12 @@ public class CareTeam_ParticipantBuilder {
 
   public CareTeam.Participant build() {
     return new CareTeam.Participant(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         role.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(member),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(member),
+        OptionConverters.toScala(period),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(onBehalfOf),
+        OptionConverters.toScala(onBehalfOf),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

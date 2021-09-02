@@ -139,11 +139,11 @@ public class SubstanceSpecification_Name_OfficialBuilder {
 
   public SubstanceSpecification$Name$Official build() {
     return new SubstanceSpecification$Name$Official(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(date),
-        (Option) OptionConverters.toScala(status),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(date),
+        OptionConverters.toScala(status),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(authority),
+        OptionConverters.toScala(authority),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -124,7 +124,7 @@ public class TestScript_SetupBuilder {
 
   public TestScript.Setup build() {
     return new TestScript.Setup(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         action.stream().collect(new NonEmptyLitSeqJCollector<>()),

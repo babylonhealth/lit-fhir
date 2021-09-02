@@ -228,19 +228,19 @@ public class MedicinalProductUndesirableEffectBuilder {
 
   public MedicinalProductUndesirableEffect build() {
     return new MedicinalProductUndesirableEffect(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         subject.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         (LitSeq) population.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
-        (Option) OptionConverters.toScala(classification),
+        OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(classification),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(frequencyOfOccurrence),
-        (Option) OptionConverters.toScala(symptomConditionEffect),
+        OptionConverters.toScala(frequencyOfOccurrence),
+        OptionConverters.toScala(symptomConditionEffect),
         LitUtils.emptyMetaElMap());
   }
 }

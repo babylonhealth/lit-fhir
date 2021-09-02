@@ -170,10 +170,10 @@ public class ConceptMap_Group_Element_TargetBuilder {
 
   public ConceptMap$Group$Element$Target build() {
     return new ConceptMap$Group$Element$Target(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(display),
-        (Option) OptionConverters.toScala(comment),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(display),
+        OptionConverters.toScala(comment),
         product.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         equivalence,

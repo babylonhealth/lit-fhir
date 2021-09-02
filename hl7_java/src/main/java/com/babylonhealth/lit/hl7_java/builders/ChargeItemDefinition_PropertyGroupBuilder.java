@@ -150,7 +150,7 @@ public class ChargeItemDefinition_PropertyGroupBuilder {
 
   public ChargeItemDefinition.PropertyGroup build() {
     return new ChargeItemDefinition.PropertyGroup(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         applicability.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

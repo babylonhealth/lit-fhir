@@ -70,7 +70,6 @@ public class Humanname_own_prefixBuilder {
   }
 
   public Humanname_own_prefix build() {
-    return new Humanname_own_prefix(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Humanname_own_prefix(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -131,8 +131,8 @@ public class Substance_IngredientBuilder {
 
   public Substance.Ingredient build() {
     return new Substance.Ingredient(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(quantity),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
         substance,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

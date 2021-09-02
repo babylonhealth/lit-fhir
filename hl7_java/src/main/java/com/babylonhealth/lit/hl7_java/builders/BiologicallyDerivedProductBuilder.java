@@ -307,25 +307,25 @@ public class BiologicallyDerivedProductBuilder {
 
   public BiologicallyDerivedProduct build() {
     return new BiologicallyDerivedProduct(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(status),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(status),
         parent.stream().collect(new LitSeqJCollector<>()),
         request.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(language),
-        (Option) OptionConverters.toScala(quantity.map(x -> (Object) x)),
+        OptionConverters.toScala(language),
+        OptionConverters.toScala(quantity.map(x -> (Object) x)),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(productCode),
-        (Option) OptionConverters.toScala(implicitRules),
-        (Option) OptionConverters.toScala(productCategory),
+        OptionConverters.toScala(productCode),
+        OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(productCategory),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         storage.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(collection),
+        OptionConverters.toScala(collection),
         processing.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(manipulation),
+        OptionConverters.toScala(manipulation),
         LitUtils.emptyMetaElMap());
   }
 }

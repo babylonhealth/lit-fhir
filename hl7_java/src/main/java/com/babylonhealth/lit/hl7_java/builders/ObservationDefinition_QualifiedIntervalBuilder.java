@@ -180,16 +180,16 @@ public class ObservationDefinition_QualifiedIntervalBuilder {
 
   public ObservationDefinition.QualifiedInterval build() {
     return new ObservationDefinition.QualifiedInterval(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(age),
-        (Option) OptionConverters.toScala(range),
-        (Option) OptionConverters.toScala(gender),
-        (Option) OptionConverters.toScala(context),
-        (Option) OptionConverters.toScala(category),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(age),
+        OptionConverters.toScala(range),
+        OptionConverters.toScala(gender),
+        OptionConverters.toScala(context),
+        OptionConverters.toScala(category),
         extension.stream().collect(new LitSeqJCollector<>()),
         appliesTo.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(condition),
-        (Option) OptionConverters.toScala(gestationalAge),
+        OptionConverters.toScala(condition),
+        OptionConverters.toScala(gestationalAge),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

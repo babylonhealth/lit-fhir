@@ -178,18 +178,18 @@ public class MolecularSequence_ReferenceSeqBuilder {
 
   public MolecularSequence.ReferenceSeq build() {
     return new MolecularSequence.ReferenceSeq(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(strand),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(strand),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(windowEnd.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(chromosome),
-        (Option) OptionConverters.toScala(genomeBuild),
-        (Option) OptionConverters.toScala(orientation),
-        (Option) OptionConverters.toScala(windowStart.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(referenceSeqId),
+        OptionConverters.toScala(windowEnd.map(x -> (Object) x)),
+        OptionConverters.toScala(chromosome),
+        OptionConverters.toScala(genomeBuild),
+        OptionConverters.toScala(orientation),
+        OptionConverters.toScala(windowStart.map(x -> (Object) x)),
+        OptionConverters.toScala(referenceSeqId),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(referenceSeqString),
-        (Option) OptionConverters.toScala(referenceSeqPointer),
+        OptionConverters.toScala(referenceSeqString),
+        OptionConverters.toScala(referenceSeqPointer),
         LitUtils.emptyMetaElMap());
   }
 }

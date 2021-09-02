@@ -131,10 +131,10 @@ public class Patient_CommunicationBuilder {
 
   public Patient.Communication build() {
     return new Patient.Communication(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         language,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(preferred.map(x -> (Object) x)),
+        OptionConverters.toScala(preferred.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

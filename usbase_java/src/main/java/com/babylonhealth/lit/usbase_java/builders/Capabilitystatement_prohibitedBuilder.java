@@ -71,6 +71,6 @@ public class Capabilitystatement_prohibitedBuilder {
 
   public Capabilitystatement_prohibited build() {
     return new Capabilitystatement_prohibited(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

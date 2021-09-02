@@ -195,18 +195,18 @@ public class StructureMap_Group_Rule_SourceBuilder {
 
   public StructureMap$Group$Rule$Source build() {
     return new StructureMap$Group$Rule$Source(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(min.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(max),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(check),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(min.map(x -> (Object) x)),
+        OptionConverters.toScala(max),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(check),
         context,
-        (Option) OptionConverters.toScala(element),
-        (Option) OptionConverters.toScala(listMode),
-        (Option) OptionConverters.toScala(variable),
+        OptionConverters.toScala(element),
+        OptionConverters.toScala(listMode),
+        OptionConverters.toScala(variable),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(condition),
-        (Option) OptionConverters.toScala(logMessage),
+        OptionConverters.toScala(condition),
+        OptionConverters.toScala(logMessage),
         (Option) OptionConverters.toScala(defaultValue),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

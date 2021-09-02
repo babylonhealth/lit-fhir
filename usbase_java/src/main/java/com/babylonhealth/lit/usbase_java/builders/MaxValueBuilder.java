@@ -72,7 +72,6 @@ public class MaxValueBuilder {
   }
 
   public MaxValue build() {
-    return new MaxValue(
-        (Option) OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+    return new MaxValue(OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
   }
 }

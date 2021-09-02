@@ -149,10 +149,10 @@ public class Practitioner_QualificationBuilder {
 
   public Practitioner.Qualification build() {
     return new Practitioner.Qualification(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
-        (Option) OptionConverters.toScala(period),
-        (Option) OptionConverters.toScala(issuer),
+        OptionConverters.toScala(period),
+        OptionConverters.toScala(issuer),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

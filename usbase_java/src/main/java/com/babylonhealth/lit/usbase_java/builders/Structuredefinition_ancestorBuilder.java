@@ -71,6 +71,6 @@ public class Structuredefinition_ancestorBuilder {
 
   public Structuredefinition_ancestor build() {
     return new Structuredefinition_ancestor(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

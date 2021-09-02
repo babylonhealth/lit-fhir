@@ -71,6 +71,6 @@ public class Communicationrequest_initiatingLocationBuilder {
 
   public Communicationrequest_initiatingLocation build() {
     return new Communicationrequest_initiatingLocation(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

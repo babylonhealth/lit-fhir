@@ -71,6 +71,6 @@ public class Workflow_relatedArtifactBuilder {
 
   public Workflow_relatedArtifact build() {
     return new Workflow_relatedArtifact(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

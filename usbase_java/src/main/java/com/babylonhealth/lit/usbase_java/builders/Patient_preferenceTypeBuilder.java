@@ -71,6 +71,6 @@ public class Patient_preferenceTypeBuilder {
 
   public Patient_preferenceType build() {
     return new Patient_preferenceType(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

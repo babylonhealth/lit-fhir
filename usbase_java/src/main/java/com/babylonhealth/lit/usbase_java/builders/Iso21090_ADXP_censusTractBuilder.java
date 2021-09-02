@@ -71,6 +71,6 @@ public class Iso21090_ADXP_censusTractBuilder {
 
   public Iso21090_ADXP_censusTract build() {
     return new Iso21090_ADXP_censusTract(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

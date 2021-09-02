@@ -257,15 +257,15 @@ public class SubstanceProteinBuilder {
 
   public SubstanceProtein build() {
     return new SubstanceProtein(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(sequenceType),
-        (Option) OptionConverters.toScala(implicitRules),
-        (Option) OptionConverters.toScala(numberOfSubunits.map(x -> (Object) x)),
+        OptionConverters.toScala(sequenceType),
+        OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(numberOfSubunits.map(x -> (Object) x)),
         disulfideLinkage.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         subunit.stream().collect(new LitSeqJCollector<>()),

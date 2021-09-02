@@ -70,7 +70,6 @@ public class OpenEHR_testBuilder {
   }
 
   public OpenEHR_test build() {
-    return new OpenEHR_test(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new OpenEHR_test(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

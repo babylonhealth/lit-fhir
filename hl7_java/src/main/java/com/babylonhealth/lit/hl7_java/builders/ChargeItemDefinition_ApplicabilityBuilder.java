@@ -140,11 +140,11 @@ public class ChargeItemDefinition_ApplicabilityBuilder {
 
   public ChargeItemDefinition.Applicability build() {
     return new ChargeItemDefinition.Applicability(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(language),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(expression),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(expression),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

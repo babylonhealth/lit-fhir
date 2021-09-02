@@ -157,13 +157,13 @@ public class SubstanceAmountBuilder {
 
   public SubstanceAmount build() {
     return new SubstanceAmount(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(amount),
-        (Option) OptionConverters.toScala(amountType),
-        (Option) OptionConverters.toScala(amountText),
+        OptionConverters.toScala(amountType),
+        OptionConverters.toScala(amountText),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(referenceRange),
+        OptionConverters.toScala(referenceRange),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -142,10 +142,10 @@ public class SubstanceSpecification_Structure_Isotope_MolecularWeightBuilder {
 
   public SubstanceSpecification$Structure$Isotope$MolecularWeight build() {
     return new SubstanceSpecification$Structure$Isotope$MolecularWeight(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(method),
-        (Option) OptionConverters.toScala(amount),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(method),
+        OptionConverters.toScala(amount),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

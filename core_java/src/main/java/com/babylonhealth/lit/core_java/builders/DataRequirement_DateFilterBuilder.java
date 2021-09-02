@@ -100,11 +100,11 @@ public class DataRequirement_DateFilterBuilder {
 
   public DataRequirement.DateFilter build() {
     return new DataRequirement.DateFilter(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(path),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(path),
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(searchParam),
+        OptionConverters.toScala(searchParam),
         LitUtils.emptyMetaElMap());
   }
 }

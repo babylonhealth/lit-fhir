@@ -147,11 +147,11 @@ public class ExampleScenario_Process_Step_AlternativeBuilder {
 
   public ExampleScenario$Process$Step$Alternative build() {
     return new ExampleScenario$Process$Step$Alternative(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         step.stream().collect(new LitSeqJCollector<>()),
         title,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

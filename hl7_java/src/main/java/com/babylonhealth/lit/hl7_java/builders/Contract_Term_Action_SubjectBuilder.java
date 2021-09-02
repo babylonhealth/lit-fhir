@@ -132,8 +132,8 @@ public class Contract_Term_Action_SubjectBuilder {
 
   public Contract$Term$Action$Subject build() {
     return new Contract$Term$Action$Subject(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(role),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(role),
         extension.stream().collect(new LitSeqJCollector<>()),
         reference.stream().collect(new NonEmptyLitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

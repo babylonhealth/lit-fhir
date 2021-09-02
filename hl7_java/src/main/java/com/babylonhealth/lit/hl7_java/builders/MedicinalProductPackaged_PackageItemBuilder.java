@@ -259,7 +259,7 @@ public class MedicinalProductPackaged_PackageItemBuilder {
 
   public MedicinalProductPackaged.PackageItem build() {
     return new MedicinalProductPackaged.PackageItem(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         device.stream().collect(new LitSeqJCollector<>()),
         quantity,

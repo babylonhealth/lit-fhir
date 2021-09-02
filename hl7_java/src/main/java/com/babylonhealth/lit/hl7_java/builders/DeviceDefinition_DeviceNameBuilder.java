@@ -129,7 +129,7 @@ public class DeviceDefinition_DeviceNameBuilder {
 
   public DeviceDefinition.DeviceName build() {
     return new DeviceDefinition.DeviceName(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
         _type,
         extension.stream().collect(new LitSeqJCollector<>()),

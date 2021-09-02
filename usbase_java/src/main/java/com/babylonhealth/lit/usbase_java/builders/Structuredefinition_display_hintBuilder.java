@@ -71,6 +71,6 @@ public class Structuredefinition_display_hintBuilder {
 
   public Structuredefinition_display_hint build() {
     return new Structuredefinition_display_hint(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

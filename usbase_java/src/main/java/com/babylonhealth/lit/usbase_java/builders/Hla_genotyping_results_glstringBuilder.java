@@ -87,7 +87,7 @@ public class Hla_genotyping_results_glstringBuilder {
 
   public Hla_genotyping_results_glstring build() {
     return new Hla_genotyping_results_glstring(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

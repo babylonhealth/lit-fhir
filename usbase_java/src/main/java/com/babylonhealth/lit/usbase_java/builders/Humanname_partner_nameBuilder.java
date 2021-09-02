@@ -71,6 +71,6 @@ public class Humanname_partner_nameBuilder {
 
   public Humanname_partner_name build() {
     return new Humanname_partner_name(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

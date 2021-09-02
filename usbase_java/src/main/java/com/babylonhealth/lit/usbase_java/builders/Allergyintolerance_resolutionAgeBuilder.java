@@ -71,6 +71,6 @@ public class Allergyintolerance_resolutionAgeBuilder {
 
   public Allergyintolerance_resolutionAge build() {
     return new Allergyintolerance_resolutionAge(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

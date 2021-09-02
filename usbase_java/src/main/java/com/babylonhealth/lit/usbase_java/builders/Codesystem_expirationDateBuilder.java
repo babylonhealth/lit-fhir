@@ -71,6 +71,6 @@ public class Codesystem_expirationDateBuilder {
 
   public Codesystem_expirationDate build() {
     return new Codesystem_expirationDate(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

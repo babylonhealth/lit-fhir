@@ -70,7 +70,6 @@ public class Valueset_systemRefBuilder {
   }
 
   public Valueset_systemRef build() {
-    return new Valueset_systemRef(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_systemRef(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

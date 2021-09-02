@@ -92,9 +92,9 @@ public class RangeBuilder {
 
   public Range build() {
     return new Range(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(low),
-        (Option) OptionConverters.toScala(high),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(low),
+        OptionConverters.toScala(high),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

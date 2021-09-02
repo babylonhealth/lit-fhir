@@ -188,17 +188,17 @@ public class NutritionOrder_EnteralFormulaBuilder {
 
   public NutritionOrder.EnteralFormula build() {
     return new NutritionOrder.EnteralFormula(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(additiveType),
-        (Option) OptionConverters.toScala(caloricDensity),
-        (Option) OptionConverters.toScala(baseFormulaType),
+        OptionConverters.toScala(additiveType),
+        OptionConverters.toScala(caloricDensity),
+        OptionConverters.toScala(baseFormulaType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(maxVolumeToDeliver),
-        (Option) OptionConverters.toScala(additiveProductName),
-        (Option) OptionConverters.toScala(routeofAdministration),
-        (Option) OptionConverters.toScala(baseFormulaProductName),
-        (Option) OptionConverters.toScala(administrationInstruction),
+        OptionConverters.toScala(maxVolumeToDeliver),
+        OptionConverters.toScala(additiveProductName),
+        OptionConverters.toScala(routeofAdministration),
+        OptionConverters.toScala(baseFormulaProductName),
+        OptionConverters.toScala(administrationInstruction),
         administration.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -161,10 +161,10 @@ public class MeasureReport_Group_Stratifier_StratumBuilder {
 
   public MeasureReport$Group$Stratifier$Stratum build() {
     return new MeasureReport$Group$Stratifier$Stratum(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(value),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(measureScore),
+        OptionConverters.toScala(measureScore),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         component.stream().collect(new LitSeqJCollector<>()),
         population.stream().collect(new LitSeqJCollector<>()),

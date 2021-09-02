@@ -147,12 +147,12 @@ public class CapabilityStatement_Rest_Resource_SearchParamBuilder {
 
   public CapabilityStatement$Rest$Resource$SearchParam build() {
     return new CapabilityStatement$Rest$Resource$SearchParam(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
         _type,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(definition),
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(definition),
+        OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -136,10 +136,10 @@ public class Immunization_ReactionBuilder {
 
   public Immunization.Reaction build() {
     return new Immunization.Reaction(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(date),
-        (Option) OptionConverters.toScala(detail),
-        (Option) OptionConverters.toScala(reported.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(date),
+        OptionConverters.toScala(detail),
+        OptionConverters.toScala(reported.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

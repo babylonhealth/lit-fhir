@@ -147,7 +147,7 @@ public class QuestionnaireResponse_Item_AnswerBuilder {
 
   public QuestionnaireResponse$Item$Answer build() {
     return new QuestionnaireResponse$Item$Answer(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         item.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),

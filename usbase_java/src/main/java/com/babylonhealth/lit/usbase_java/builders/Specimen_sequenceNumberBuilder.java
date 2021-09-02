@@ -71,6 +71,6 @@ public class Specimen_sequenceNumberBuilder {
 
   public Specimen_sequenceNumber build() {
     return new Specimen_sequenceNumber(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

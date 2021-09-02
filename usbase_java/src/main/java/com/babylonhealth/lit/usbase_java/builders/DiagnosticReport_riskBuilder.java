@@ -71,6 +71,6 @@ public class DiagnosticReport_riskBuilder {
 
   public DiagnosticReport_risk build() {
     return new DiagnosticReport_risk(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

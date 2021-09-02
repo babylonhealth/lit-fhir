@@ -155,12 +155,12 @@ public class ExampleScenario_ProcessBuilder {
 
   public ExampleScenario.Process build() {
     return new ExampleScenario.Process(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         title,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
-        (Option) OptionConverters.toScala(preConditions),
-        (Option) OptionConverters.toScala(postConditions),
+        OptionConverters.toScala(description),
+        OptionConverters.toScala(preConditions),
+        OptionConverters.toScala(postConditions),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         step.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

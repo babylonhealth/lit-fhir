@@ -132,8 +132,8 @@ public class HealthcareService_NotAvailableBuilder {
 
   public HealthcareService.NotAvailable build() {
     return new HealthcareService.NotAvailable(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(during),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(during),
         extension.stream().collect(new LitSeqJCollector<>()),
         description,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

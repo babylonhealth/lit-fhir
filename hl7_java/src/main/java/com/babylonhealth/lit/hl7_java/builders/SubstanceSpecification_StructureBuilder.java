@@ -196,15 +196,15 @@ public class SubstanceSpecification_StructureBuilder {
 
   public SubstanceSpecification.Structure build() {
     return new SubstanceSpecification.Structure(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         source.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(stereochemistry),
-        (Option) OptionConverters.toScala(opticalActivity),
-        (Option) OptionConverters.toScala(molecularWeight),
-        (Option) OptionConverters.toScala(molecularFormula),
+        OptionConverters.toScala(stereochemistry),
+        OptionConverters.toScala(opticalActivity),
+        OptionConverters.toScala(molecularWeight),
+        OptionConverters.toScala(molecularFormula),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(molecularFormulaByMoiety),
+        OptionConverters.toScala(molecularFormulaByMoiety),
         representation.stream().collect(new LitSeqJCollector<>()),
         isotope.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

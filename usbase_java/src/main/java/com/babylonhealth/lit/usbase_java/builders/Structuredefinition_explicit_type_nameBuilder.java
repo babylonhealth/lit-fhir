@@ -71,6 +71,6 @@ public class Structuredefinition_explicit_type_nameBuilder {
 
   public Structuredefinition_explicit_type_name build() {
     return new Structuredefinition_explicit_type_name(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -141,7 +141,7 @@ public class MedicinalProductIngredient_SubstanceBuilder {
 
   public MedicinalProductIngredient.Substance build() {
     return new MedicinalProductIngredient.Substance(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         strength.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),

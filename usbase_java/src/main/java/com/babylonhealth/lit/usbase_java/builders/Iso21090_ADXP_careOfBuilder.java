@@ -70,7 +70,6 @@ public class Iso21090_ADXP_careOfBuilder {
   }
 
   public Iso21090_ADXP_careOf build() {
-    return new Iso21090_ADXP_careOf(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Iso21090_ADXP_careOf(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

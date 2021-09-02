@@ -186,13 +186,13 @@ public class Observation_ComponentBuilder {
 
   public Observation.Component build() {
     return new Observation.Component(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
         interpretation.stream().collect(new LitSeqJCollector<>()),
         referenceRange.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(dataAbsentReason),
+        OptionConverters.toScala(dataAbsentReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -71,6 +71,6 @@ public class Event_performerFunctionBuilder {
 
   public Event_performerFunction build() {
     return new Event_performerFunction(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

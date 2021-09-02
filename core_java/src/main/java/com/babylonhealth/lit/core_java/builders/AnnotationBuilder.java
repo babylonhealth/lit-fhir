@@ -102,8 +102,8 @@ public class AnnotationBuilder {
 
   public Annotation build() {
     return new Annotation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(time),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(time),
         text,
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(author),

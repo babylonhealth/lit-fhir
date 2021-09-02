@@ -141,11 +141,11 @@ public class ImplementationGuide_Manifest_ResourceBuilder {
 
   public ImplementationGuide$Manifest$Resource build() {
     return new ImplementationGuide$Manifest$Resource(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         reference,
         (Option) OptionConverters.toScala(example),
-        (Option) OptionConverters.toScala(relativePath),
+        OptionConverters.toScala(relativePath),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

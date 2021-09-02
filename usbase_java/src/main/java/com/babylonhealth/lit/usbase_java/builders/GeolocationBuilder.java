@@ -74,7 +74,7 @@ public class GeolocationBuilder {
 
   public Geolocation build() {
     return new Geolocation(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

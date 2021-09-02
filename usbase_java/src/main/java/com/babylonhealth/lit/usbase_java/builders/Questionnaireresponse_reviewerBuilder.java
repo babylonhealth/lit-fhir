@@ -71,6 +71,6 @@ public class Questionnaireresponse_reviewerBuilder {
 
   public Questionnaireresponse_reviewer build() {
     return new Questionnaireresponse_reviewer(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -90,7 +90,7 @@ public class DataRequirement_SortBuilder {
 
   public DataRequirement.Sort build() {
     return new DataRequirement.Sort(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         path,
         extension.stream().collect(new LitSeqJCollector<>()),
         direction,

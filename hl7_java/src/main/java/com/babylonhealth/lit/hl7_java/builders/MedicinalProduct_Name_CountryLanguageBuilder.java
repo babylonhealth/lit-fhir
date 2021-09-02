@@ -138,11 +138,11 @@ public class MedicinalProduct_Name_CountryLanguageBuilder {
 
   public MedicinalProduct$Name$CountryLanguage build() {
     return new MedicinalProduct$Name$CountryLanguage(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         country,
         language,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(jurisdiction),
+        OptionConverters.toScala(jurisdiction),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -162,13 +162,13 @@ public class MarketingStatusBuilder {
 
   public MarketingStatus build() {
     return new MarketingStatus(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         status,
         country,
         extension.stream().collect(new LitSeqJCollector<>()),
         dateRange,
-        (Option) OptionConverters.toScala(restoreDate),
-        (Option) OptionConverters.toScala(jurisdiction),
+        OptionConverters.toScala(restoreDate),
+        OptionConverters.toScala(jurisdiction),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

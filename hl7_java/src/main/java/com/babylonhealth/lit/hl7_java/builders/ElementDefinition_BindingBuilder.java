@@ -102,11 +102,11 @@ public class ElementDefinition_BindingBuilder {
 
   public ElementDefinition.Binding build() {
     return new ElementDefinition.Binding(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         strength,
-        (Option) OptionConverters.toScala(valueSet),
+        OptionConverters.toScala(valueSet),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         LitUtils.emptyMetaElMap());
   }
 }

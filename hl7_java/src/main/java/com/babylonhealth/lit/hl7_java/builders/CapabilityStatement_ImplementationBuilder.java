@@ -148,10 +148,10 @@ public class CapabilityStatement_ImplementationBuilder {
 
   public CapabilityStatement.Implementation build() {
     return new CapabilityStatement.Implementation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(url),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(url),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(custodian),
+        OptionConverters.toScala(custodian),
         description,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

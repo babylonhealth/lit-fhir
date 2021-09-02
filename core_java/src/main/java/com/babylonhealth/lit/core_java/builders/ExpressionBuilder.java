@@ -117,13 +117,13 @@ public class ExpressionBuilder {
 
   public Expression build() {
     return new Expression(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
         language,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(reference),
-        (Option) OptionConverters.toScala(expression),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(reference),
+        OptionConverters.toScala(expression),
+        OptionConverters.toScala(description),
         LitUtils.emptyMetaElMap());
   }
 }

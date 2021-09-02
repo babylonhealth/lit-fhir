@@ -148,11 +148,11 @@ public class ValueSet_ComposeBuilder {
 
   public ValueSet.Compose build() {
     return new ValueSet.Compose(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         exclude.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(inactive.map(x -> (Object) x)),
+        OptionConverters.toScala(inactive.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(lockedDate),
+        OptionConverters.toScala(lockedDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         include.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

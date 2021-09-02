@@ -208,13 +208,13 @@ public class ExplanationOfBenefit_AddItem_DetailBuilder {
 
   public ExplanationOfBenefit$AddItem$Detail build() {
     return new ExplanationOfBenefit$AddItem$Detail(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(net),
-        (Option) OptionConverters.toScala(factor),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(net),
+        OptionConverters.toScala(factor),
         modifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(quantity),
+        OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(unitPrice),
+        OptionConverters.toScala(unitPrice),
         noteNumber.stream()
             .map(x -> (Object) x)
             .collect(Collectors.toList())

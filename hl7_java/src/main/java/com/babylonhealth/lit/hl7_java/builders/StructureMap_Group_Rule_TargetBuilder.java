@@ -184,15 +184,15 @@ public class StructureMap_Group_Rule_TargetBuilder {
 
   public StructureMap$Group$Rule$Target build() {
     return new StructureMap$Group$Rule$Target(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(context),
-        (Option) OptionConverters.toScala(element),
-        (Option) OptionConverters.toScala(variable),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(context),
+        OptionConverters.toScala(element),
+        OptionConverters.toScala(variable),
         listMode.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(transform),
-        (Option) OptionConverters.toScala(listRuleId),
-        (Option) OptionConverters.toScala(contextType),
+        OptionConverters.toScala(transform),
+        OptionConverters.toScala(listRuleId),
+        OptionConverters.toScala(contextType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         parameter.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

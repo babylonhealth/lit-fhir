@@ -140,11 +140,11 @@ public class Task_RestrictionBuilder {
 
   public Task.Restriction build() {
     return new Task.Restriction(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(period),
         extension.stream().collect(new LitSeqJCollector<>()),
         recipient.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(repetitions.map(x -> (Object) x)),
+        OptionConverters.toScala(repetitions.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -135,8 +135,8 @@ public class SubstancePolymer_Repeat_RepeatUnit_DegreeOfPolymerisationBuilder {
 
   public SubstancePolymer$Repeat$RepeatUnit$DegreeOfPolymerisation build() {
     return new SubstancePolymer$Repeat$RepeatUnit$DegreeOfPolymerisation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(degree),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(degree),
         (Option) OptionConverters.toScala(amount),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

@@ -70,7 +70,6 @@ public class Flag_priorityBuilder {
   }
 
   public Flag_priority build() {
-    return new Flag_priority(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Flag_priority(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

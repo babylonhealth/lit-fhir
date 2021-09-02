@@ -71,6 +71,6 @@ public class Operationoutcome_authorityBuilder {
 
   public Operationoutcome_authority build() {
     return new Operationoutcome_authority(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

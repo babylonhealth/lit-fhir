@@ -70,6 +70,6 @@ public class ReplacesBuilder {
   }
 
   public Replaces build() {
-    return new Replaces((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Replaces(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

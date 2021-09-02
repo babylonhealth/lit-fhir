@@ -71,6 +71,6 @@ public class Workflow_instantiatesCanonicalBuilder {
 
   public Workflow_instantiatesCanonical build() {
     return new Workflow_instantiatesCanonical(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

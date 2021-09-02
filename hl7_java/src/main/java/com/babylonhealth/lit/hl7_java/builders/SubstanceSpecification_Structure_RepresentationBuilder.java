@@ -141,11 +141,11 @@ public class SubstanceSpecification_Structure_RepresentationBuilder {
 
   public SubstanceSpecification$Structure$Representation build() {
     return new SubstanceSpecification$Structure$Representation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(attachment),
-        (Option) OptionConverters.toScala(representation),
+        OptionConverters.toScala(attachment),
+        OptionConverters.toScala(representation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

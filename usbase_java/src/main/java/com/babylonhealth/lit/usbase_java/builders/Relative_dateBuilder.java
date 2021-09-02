@@ -74,7 +74,7 @@ public class Relative_dateBuilder {
 
   public Relative_date build() {
     return new Relative_date(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

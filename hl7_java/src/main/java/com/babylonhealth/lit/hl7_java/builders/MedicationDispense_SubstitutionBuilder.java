@@ -160,8 +160,8 @@ public class MedicationDispense_SubstitutionBuilder {
 
   public MedicationDispense.Substitution build() {
     return new MedicationDispense.Substitution(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         reason.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         wasSubstituted,

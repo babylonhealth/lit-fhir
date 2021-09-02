@@ -159,7 +159,7 @@ public class Contract_Term_SecurityLabelBuilder {
 
   public Contract$Term$SecurityLabel build() {
     return new Contract$Term$SecurityLabel(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         number.stream()
             .map(x -> (Object) x)
             .collect(Collectors.toList())

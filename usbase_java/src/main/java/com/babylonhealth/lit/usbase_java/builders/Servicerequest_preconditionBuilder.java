@@ -71,6 +71,6 @@ public class Servicerequest_preconditionBuilder {
 
   public Servicerequest_precondition build() {
     return new Servicerequest_precondition(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

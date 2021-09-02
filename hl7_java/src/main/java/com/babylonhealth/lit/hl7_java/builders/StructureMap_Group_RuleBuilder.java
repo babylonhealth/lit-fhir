@@ -174,11 +174,11 @@ public class StructureMap_Group_RuleBuilder {
 
   public StructureMap$Group$Rule build() {
     return new StructureMap$Group$Rule(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
         rule.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         source.stream().collect(new NonEmptyLitSeqJCollector<>()),
         dependent.stream().collect(new LitSeqJCollector<>()),

@@ -162,13 +162,13 @@ public class Specimen_CollectionBuilder {
 
   public Specimen.Collection build() {
     return new Specimen.Collection(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(method),
-        (Option) OptionConverters.toScala(duration),
-        (Option) OptionConverters.toScala(quantity),
-        (Option) OptionConverters.toScala(bodySite),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(method),
+        OptionConverters.toScala(duration),
+        OptionConverters.toScala(quantity),
+        OptionConverters.toScala(bodySite),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(collector),
+        OptionConverters.toScala(collector),
         (Option) OptionConverters.toScala(collected),
         (Option) OptionConverters.toScala(fastingStatus),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

@@ -132,9 +132,9 @@ public class ActivityDefinition_ParticipantBuilder {
 
   public ActivityDefinition.Participant build() {
     return new ActivityDefinition.Participant(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(role),
+        OptionConverters.toScala(role),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

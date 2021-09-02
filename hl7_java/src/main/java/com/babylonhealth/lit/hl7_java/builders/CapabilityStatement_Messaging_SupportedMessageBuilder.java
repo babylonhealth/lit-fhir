@@ -131,7 +131,7 @@ public class CapabilityStatement_Messaging_SupportedMessageBuilder {
 
   public CapabilityStatement$Messaging$SupportedMessage build() {
     return new CapabilityStatement$Messaging$SupportedMessage(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         mode,
         extension.stream().collect(new LitSeqJCollector<>()),
         definition,

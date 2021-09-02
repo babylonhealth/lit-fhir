@@ -183,11 +183,11 @@ public class ExampleScenario_InstanceBuilder {
 
   public ExampleScenario.Instance build() {
     return new ExampleScenario.Instance(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
         extension.stream().collect(new LitSeqJCollector<>()),
         resourceId,
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         resourceType,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         version.stream().collect(new LitSeqJCollector<>()),

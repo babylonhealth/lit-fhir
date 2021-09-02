@@ -126,7 +126,7 @@ public class StructureDefinition_DifferentialBuilder {
 
   public StructureDefinition.Differential build() {
     return new StructureDefinition.Differential(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         element.stream().collect(new NonEmptyLitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

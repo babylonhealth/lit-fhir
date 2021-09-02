@@ -115,13 +115,13 @@ public class Bundle_Entry_ResponseBuilder {
 
   public Bundle$Entry$Response build() {
     return new Bundle$Entry$Response(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(etag),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(etag),
         status,
-        (Option) OptionConverters.toScala(outcome),
-        (Option) OptionConverters.toScala(location),
+        OptionConverters.toScala(outcome),
+        OptionConverters.toScala(location),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(lastModified),
+        OptionConverters.toScala(lastModified),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

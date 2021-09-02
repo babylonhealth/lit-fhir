@@ -143,11 +143,11 @@ public class MessageHeader_DestinationBuilder {
 
   public MessageHeader.Destination build() {
     return new MessageHeader.Destination(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
-        (Option) OptionConverters.toScala(target),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
+        OptionConverters.toScala(target),
         endpoint,
-        (Option) OptionConverters.toScala(receiver),
+        OptionConverters.toScala(receiver),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

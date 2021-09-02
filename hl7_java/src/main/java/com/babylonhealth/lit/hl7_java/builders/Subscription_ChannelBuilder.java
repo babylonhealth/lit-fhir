@@ -148,11 +148,11 @@ public class Subscription_ChannelBuilder {
 
   public Subscription.Channel build() {
     return new Subscription.Channel(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         header.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(payload),
-        (Option) OptionConverters.toScala(endpoint),
+        OptionConverters.toScala(payload),
+        OptionConverters.toScala(endpoint),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -71,6 +71,6 @@ public class Questionnaireresponse_completionModeBuilder {
 
   public Questionnaireresponse_completionMode build() {
     return new Questionnaireresponse_completionMode(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

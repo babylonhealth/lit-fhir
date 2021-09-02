@@ -159,12 +159,12 @@ public class ExampleScenario_Process_StepBuilder {
 
   public ExampleScenario$Process$Step build() {
     return new ExampleScenario$Process$Step(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(pause.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(pause.map(x -> (Object) x)),
         process.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(operation),
+        OptionConverters.toScala(operation),
         alternative.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

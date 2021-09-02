@@ -157,12 +157,12 @@ public class TerminologyCapabilities_ExpansionBuilder {
 
   public TerminologyCapabilities.Expansion build() {
     return new TerminologyCapabilities.Expansion(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(paging.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(paging.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(incomplete.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(textFilter),
-        (Option) OptionConverters.toScala(hierarchical.map(x -> (Object) x)),
+        OptionConverters.toScala(incomplete.map(x -> (Object) x)),
+        OptionConverters.toScala(textFilter),
+        OptionConverters.toScala(hierarchical.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         parameter.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -128,7 +128,7 @@ public class TestScript_DestinationBuilder {
 
   public TestScript.Destination build() {
     return new TestScript.Destination(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         index,
         profile,
         extension.stream().collect(new LitSeqJCollector<>()),

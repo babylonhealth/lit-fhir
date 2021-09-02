@@ -129,7 +129,7 @@ public class ExampleScenario_Instance_VersionBuilder {
 
   public ExampleScenario$Instance$Version build() {
     return new ExampleScenario$Instance$Version(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         versionId,
         description,

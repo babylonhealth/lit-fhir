@@ -149,11 +149,11 @@ public class MessageHeader_SourceBuilder {
 
   public MessageHeader.Source build() {
     return new MessageHeader.Source(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
-        (Option) OptionConverters.toScala(version),
-        (Option) OptionConverters.toScala(contact),
-        (Option) OptionConverters.toScala(software),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
+        OptionConverters.toScala(version),
+        OptionConverters.toScala(contact),
+        OptionConverters.toScala(software),
         endpoint,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

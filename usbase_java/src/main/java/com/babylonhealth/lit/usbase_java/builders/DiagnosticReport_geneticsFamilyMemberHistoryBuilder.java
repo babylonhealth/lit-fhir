@@ -71,6 +71,6 @@ public class DiagnosticReport_geneticsFamilyMemberHistoryBuilder {
 
   public DiagnosticReport_geneticsFamilyMemberHistory build() {
     return new DiagnosticReport_geneticsFamilyMemberHistory(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

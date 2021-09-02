@@ -71,6 +71,6 @@ public class _11179_objectClassPropertyBuilder {
 
   public _11179_objectClassProperty build() {
     return new _11179_objectClassProperty(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

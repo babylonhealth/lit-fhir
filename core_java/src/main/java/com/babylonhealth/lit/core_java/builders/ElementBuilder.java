@@ -80,7 +80,7 @@ public class ElementBuilder {
 
   public Element build() {
     return new Element(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

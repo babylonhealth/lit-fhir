@@ -155,10 +155,10 @@ public class MeasureReport_GroupBuilder {
 
   public MeasureReport.Group build() {
     return new MeasureReport.Group(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(measureScore),
+        OptionConverters.toScala(measureScore),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         population.stream().collect(new LitSeqJCollector<>()),
         stratifier.stream().collect(new LitSeqJCollector<>()),

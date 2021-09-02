@@ -71,6 +71,6 @@ public class Iso21090_ADXP_houseNumberNumericBuilder {
 
   public Iso21090_ADXP_houseNumberNumeric build() {
     return new Iso21090_ADXP_houseNumberNumeric(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

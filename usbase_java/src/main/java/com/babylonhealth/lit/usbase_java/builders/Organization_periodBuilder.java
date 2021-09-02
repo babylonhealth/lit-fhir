@@ -70,7 +70,6 @@ public class Organization_periodBuilder {
   }
 
   public Organization_period build() {
-    return new Organization_period(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Organization_period(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

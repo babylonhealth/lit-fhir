@@ -70,7 +70,6 @@ public class Data_absent_reasonBuilder {
   }
 
   public Data_absent_reason build() {
-    return new Data_absent_reason(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Data_absent_reason(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

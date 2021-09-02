@@ -134,11 +134,11 @@ public class MedicinalProductPackaged_BatchIdentifierBuilder {
 
   public MedicinalProductPackaged.BatchIdentifier build() {
     return new MedicinalProductPackaged.BatchIdentifier(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         outerPackaging,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(immediatePackaging),
+        OptionConverters.toScala(immediatePackaging),
         LitUtils.emptyMetaElMap());
   }
 }

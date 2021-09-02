@@ -71,6 +71,6 @@ public class Family_member_history_genetics_observationBuilder {
 
   public Family_member_history_genetics_observation build() {
     return new Family_member_history_genetics_observation(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

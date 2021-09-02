@@ -189,15 +189,15 @@ public class SubstanceNucleicAcid_SubunitBuilder {
 
   public SubstanceNucleicAcid.Subunit build() {
     return new SubstanceNucleicAcid.Subunit(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(length.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(subunit.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(sequence),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(length.map(x -> (Object) x)),
+        OptionConverters.toScala(subunit.map(x -> (Object) x)),
+        OptionConverters.toScala(sequence),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(fivePrime),
-        (Option) OptionConverters.toScala(threePrime),
+        OptionConverters.toScala(fivePrime),
+        OptionConverters.toScala(threePrime),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(sequenceAttachment),
+        OptionConverters.toScala(sequenceAttachment),
         sugar.stream().collect(new LitSeqJCollector<>()),
         linkage.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

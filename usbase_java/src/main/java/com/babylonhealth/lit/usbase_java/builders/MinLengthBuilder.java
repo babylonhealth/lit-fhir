@@ -70,6 +70,6 @@ public class MinLengthBuilder {
   }
 
   public MinLength build() {
-    return new MinLength((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new MinLength(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

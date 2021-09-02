@@ -86,7 +86,7 @@ public class Codesystem_historyBuilder {
 
   public Codesystem_history build() {
     return new Codesystem_history(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

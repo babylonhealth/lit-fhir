@@ -70,7 +70,6 @@ public class Parameters_fullUrlBuilder {
   }
 
   public Parameters_fullUrl build() {
-    return new Parameters_fullUrl(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Parameters_fullUrl(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

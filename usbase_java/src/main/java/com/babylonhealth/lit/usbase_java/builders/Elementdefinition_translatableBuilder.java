@@ -71,6 +71,6 @@ public class Elementdefinition_translatableBuilder {
 
   public Elementdefinition_translatable build() {
     return new Elementdefinition_translatable(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

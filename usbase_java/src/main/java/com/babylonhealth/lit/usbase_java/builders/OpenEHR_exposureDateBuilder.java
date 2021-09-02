@@ -70,7 +70,6 @@ public class OpenEHR_exposureDateBuilder {
   }
 
   public OpenEHR_exposureDate build() {
-    return new OpenEHR_exposureDate(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new OpenEHR_exposureDate(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

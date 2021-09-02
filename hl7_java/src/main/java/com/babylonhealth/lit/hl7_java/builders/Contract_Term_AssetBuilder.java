@@ -289,19 +289,19 @@ public class Contract_Term_AssetBuilder {
 
   public Contract$Term$Asset build() {
     return new Contract$Term$Asset(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(scope),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(scope),
         period.stream().collect(new LitSeqJCollector<>()),
         linkId.stream().collect(new LitSeqJCollector<>()),
         answer.stream().collect(new LitSeqJCollector<>()),
         subtype.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(condition),
+        OptionConverters.toScala(condition),
         usePeriod.stream().collect(new LitSeqJCollector<>()),
         periodType.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(relationship),
+        OptionConverters.toScala(relationship),
         typeReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         securityLabelNumber.stream()

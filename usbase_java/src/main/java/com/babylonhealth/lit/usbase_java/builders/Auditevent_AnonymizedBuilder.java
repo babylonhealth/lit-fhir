@@ -71,6 +71,6 @@ public class Auditevent_AnonymizedBuilder {
 
   public Auditevent_Anonymized build() {
     return new Auditevent_Anonymized(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

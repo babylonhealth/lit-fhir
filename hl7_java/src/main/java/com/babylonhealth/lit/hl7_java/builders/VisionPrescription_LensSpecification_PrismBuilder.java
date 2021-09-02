@@ -131,7 +131,7 @@ public class VisionPrescription_LensSpecification_PrismBuilder {
 
   public VisionPrescription$LensSpecification$Prism build() {
     return new VisionPrescription$LensSpecification$Prism(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         base,
         amount,
         extension.stream().collect(new LitSeqJCollector<>()),

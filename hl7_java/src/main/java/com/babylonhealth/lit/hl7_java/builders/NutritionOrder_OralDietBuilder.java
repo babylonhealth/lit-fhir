@@ -185,11 +185,11 @@ public class NutritionOrder_OralDietBuilder {
 
   public NutritionOrder.OralDiet build() {
     return new NutritionOrder.OralDiet(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type.stream().collect(new LitSeqJCollector<>()),
         schedule.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(instruction),
+        OptionConverters.toScala(instruction),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         fluidConsistencyType.stream().collect(new LitSeqJCollector<>()),
         texture.stream().collect(new LitSeqJCollector<>()),

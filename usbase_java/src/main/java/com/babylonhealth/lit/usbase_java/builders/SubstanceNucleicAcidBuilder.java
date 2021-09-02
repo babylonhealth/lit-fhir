@@ -242,18 +242,18 @@ public class SubstanceNucleicAcidBuilder {
 
   public SubstanceNucleicAcid build() {
     return new SubstanceNucleicAcid(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(sequenceType),
-        (Option) OptionConverters.toScala(implicitRules),
-        (Option) OptionConverters.toScala(numberOfSubunits.map(x -> (Object) x)),
+        OptionConverters.toScala(sequenceType),
+        OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(numberOfSubunits.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(areaOfHybridisation),
-        (Option) OptionConverters.toScala(oligoNucleotideType),
+        OptionConverters.toScala(areaOfHybridisation),
+        OptionConverters.toScala(oligoNucleotideType),
         subunit.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

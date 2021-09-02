@@ -131,7 +131,7 @@ public class ImmunizationRecommendation_Recommendation_DateCriterionBuilder {
 
   public ImmunizationRecommendation$Recommendation$DateCriterion build() {
     return new ImmunizationRecommendation$Recommendation$DateCriterion(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         value,
         extension.stream().collect(new LitSeqJCollector<>()),

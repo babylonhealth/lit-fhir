@@ -71,6 +71,6 @@ public class Iso21090_ADXP_streetAddressLineBuilder {
 
   public Iso21090_ADXP_streetAddressLine build() {
     return new Iso21090_ADXP_streetAddressLine(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

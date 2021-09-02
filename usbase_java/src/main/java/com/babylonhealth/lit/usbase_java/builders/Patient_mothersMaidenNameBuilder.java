@@ -71,6 +71,6 @@ public class Patient_mothersMaidenNameBuilder {
 
   public Patient_mothersMaidenName build() {
     return new Patient_mothersMaidenName(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

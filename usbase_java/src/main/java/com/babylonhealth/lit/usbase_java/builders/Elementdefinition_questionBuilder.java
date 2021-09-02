@@ -71,6 +71,6 @@ public class Elementdefinition_questionBuilder {
 
   public Elementdefinition_question build() {
     return new Elementdefinition_question(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -129,7 +129,7 @@ public class Questionnaire_Item_InitialBuilder {
 
   public Questionnaire$Item$Initial build() {
     return new Questionnaire$Item$Initial(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

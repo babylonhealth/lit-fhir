@@ -71,6 +71,6 @@ public class Structuredefinition_template_statusBuilder {
 
   public Structuredefinition_template_status build() {
     return new Structuredefinition_template_status(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

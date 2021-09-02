@@ -98,8 +98,8 @@ public class Us_core_birthsexBuilder {
 
   public Us_core_birthsex build() {
     return new Us_core_birthsex(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(value),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -131,7 +131,7 @@ public class MedicationKnowledge_Regulatory_SubstitutionBuilder {
 
   public MedicationKnowledge$Regulatory$Substitution build() {
     return new MedicationKnowledge$Regulatory$Substitution(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         allowed,
         extension.stream().collect(new LitSeqJCollector<>()),

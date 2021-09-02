@@ -71,6 +71,6 @@ public class OpenEHR_administrationBuilder {
 
   public OpenEHR_administration build() {
     return new OpenEHR_administration(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

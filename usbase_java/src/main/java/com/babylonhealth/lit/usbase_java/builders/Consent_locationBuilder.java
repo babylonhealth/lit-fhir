@@ -70,7 +70,6 @@ public class Consent_locationBuilder {
   }
 
   public Consent_location build() {
-    return new Consent_location(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Consent_location(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

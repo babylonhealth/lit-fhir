@@ -71,6 +71,6 @@ public class Iso21090_ADXP_precinctBuilder {
 
   public Iso21090_ADXP_precinct build() {
     return new Iso21090_ADXP_precinct(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

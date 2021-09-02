@@ -129,7 +129,7 @@ public class AuditEvent_Entity_DetailBuilder {
 
   public AuditEvent$Entity$Detail build() {
     return new AuditEvent$Entity$Detail(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         value,
         extension.stream().collect(new LitSeqJCollector<>()),

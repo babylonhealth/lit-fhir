@@ -124,15 +124,15 @@ public class Bundle_EntryBuilder {
 
   public Bundle.Entry build() {
     return new Bundle.Entry(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         link.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(fullUrl),
-        (Option) OptionConverters.toScala(resource),
+        OptionConverters.toScala(fullUrl),
+        OptionConverters.toScala(resource),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(search),
-        (Option) OptionConverters.toScala(request),
-        (Option) OptionConverters.toScala(response),
+        OptionConverters.toScala(search),
+        OptionConverters.toScala(request),
+        OptionConverters.toScala(response),
         LitUtils.emptyMetaElMap());
   }
 }

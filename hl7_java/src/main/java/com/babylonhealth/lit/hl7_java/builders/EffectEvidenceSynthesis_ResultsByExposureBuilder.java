@@ -151,11 +151,11 @@ public class EffectEvidenceSynthesis_ResultsByExposureBuilder {
 
   public EffectEvidenceSynthesis.ResultsByExposure build() {
     return new EffectEvidenceSynthesis.ResultsByExposure(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
-        (Option) OptionConverters.toScala(variantState),
-        (Option) OptionConverters.toScala(exposureState),
+        OptionConverters.toScala(description),
+        OptionConverters.toScala(variantState),
+        OptionConverters.toScala(exposureState),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         riskEvidenceSynthesis,
         LitUtils.emptyMetaElMap());

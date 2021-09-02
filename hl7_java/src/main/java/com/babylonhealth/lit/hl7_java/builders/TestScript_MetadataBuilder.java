@@ -135,7 +135,7 @@ public class TestScript_MetadataBuilder {
 
   public TestScript.Metadata build() {
     return new TestScript.Metadata(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         link.stream().collect(new LitSeqJCollector<>()),

@@ -143,12 +143,12 @@ public class Immunization_EducationBuilder {
 
   public Immunization.Education build() {
     return new Immunization.Education(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(reference),
-        (Option) OptionConverters.toScala(documentType),
-        (Option) OptionConverters.toScala(publicationDate),
-        (Option) OptionConverters.toScala(presentationDate),
+        OptionConverters.toScala(reference),
+        OptionConverters.toScala(documentType),
+        OptionConverters.toScala(publicationDate),
+        OptionConverters.toScala(presentationDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

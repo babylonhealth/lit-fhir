@@ -146,9 +146,9 @@ public class ValueSet_Compose_Include_ConceptBuilder {
 
   public ValueSet$Compose$Include$Concept build() {
     return new ValueSet$Compose$Include$Concept(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
-        (Option) OptionConverters.toScala(display),
+        OptionConverters.toScala(display),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         designation.stream().collect(new LitSeqJCollector<>()),

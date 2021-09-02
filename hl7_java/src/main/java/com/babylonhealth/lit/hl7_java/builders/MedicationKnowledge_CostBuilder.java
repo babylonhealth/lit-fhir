@@ -134,10 +134,10 @@ public class MedicationKnowledge_CostBuilder {
 
   public MedicationKnowledge.Cost build() {
     return new MedicationKnowledge.Cost(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         cost,
-        (Option) OptionConverters.toScala(source),
+        OptionConverters.toScala(source),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

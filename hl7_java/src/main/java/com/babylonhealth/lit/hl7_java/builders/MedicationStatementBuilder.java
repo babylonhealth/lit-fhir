@@ -386,18 +386,18 @@ public class MedicationStatementBuilder {
 
   public MedicationStatement build() {
     return new MedicationStatement(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
         dosage.stream().collect(new LitSeqJCollector<>()),
         basedOn.stream().collect(new LitSeqJCollector<>()),
         subject,
-        (Option) OptionConverters.toScala(context),
-        (Option) OptionConverters.toScala(language),
-        (Option) OptionConverters.toScala(category),
+        OptionConverters.toScala(context),
+        OptionConverters.toScala(language),
+        OptionConverters.toScala(category),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
@@ -405,12 +405,12 @@ public class MedicationStatementBuilder {
         derivedFrom.stream().collect(new LitSeqJCollector<>()),
         statusReason.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(effective),
-        (Option) OptionConverters.toScala(dateAsserted),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(dateAsserted),
+        OptionConverters.toScala(implicitRules),
         medication,
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(informationSource),
+        OptionConverters.toScala(informationSource),
         LitUtils.emptyMetaElMap());
   }
 }

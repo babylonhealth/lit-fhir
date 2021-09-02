@@ -317,27 +317,27 @@ public class ConsentBuilder {
 
   public Consent build() {
     return new Consent(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         scope,
         status,
-        (Option) OptionConverters.toScala(patient),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(patient),
+        OptionConverters.toScala(language),
         category.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(dateTime),
+        OptionConverters.toScala(dateTime),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         performer.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(source),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(policyRule),
+        OptionConverters.toScala(policyRule),
         organization.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         policy.stream().collect(new LitSeqJCollector<>()),
         verification.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(provision),
+        OptionConverters.toScala(provision),
         LitUtils.emptyMetaElMap());
   }
 }

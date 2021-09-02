@@ -151,11 +151,11 @@ public class ExplanationOfBenefit_ProcessNoteBuilder {
 
   public ExplanationOfBenefit.ProcessNote build() {
     return new ExplanationOfBenefit.ProcessNote(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(number.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(number.map(x -> (Object) x)),
+        OptionConverters.toScala(language),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

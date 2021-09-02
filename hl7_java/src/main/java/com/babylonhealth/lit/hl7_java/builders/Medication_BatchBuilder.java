@@ -129,10 +129,10 @@ public class Medication_BatchBuilder {
 
   public Medication.Batch build() {
     return new Medication.Batch(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(lotNumber),
-        (Option) OptionConverters.toScala(expirationDate),
+        OptionConverters.toScala(lotNumber),
+        OptionConverters.toScala(expirationDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -288,25 +288,25 @@ public class EndpointBuilder {
 
   public Endpoint build() {
     return new Endpoint(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(name),
         status,
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(period),
         header.stream().collect(new LitSeqJCollector<>()),
         contact.stream().collect(new LitSeqJCollector<>()),
         address,
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         payloadType.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         connectionType,
         payloadMimeType.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(managingOrganization),
+        OptionConverters.toScala(managingOrganization),
         LitUtils.emptyMetaElMap());
   }
 }

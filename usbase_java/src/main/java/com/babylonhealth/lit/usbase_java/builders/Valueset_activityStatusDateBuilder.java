@@ -71,6 +71,6 @@ public class Valueset_activityStatusDateBuilder {
 
   public Valueset_activityStatusDate build() {
     return new Valueset_activityStatusDate(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

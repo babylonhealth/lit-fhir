@@ -71,6 +71,6 @@ public class Cqf_qualityOfEvidenceBuilder {
 
   public Cqf_qualityOfEvidence build() {
     return new Cqf_qualityOfEvidence(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -129,7 +129,7 @@ public class SearchParameter_ComponentBuilder {
 
   public SearchParameter.Component build() {
     return new SearchParameter.Component(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         definition,
         expression,

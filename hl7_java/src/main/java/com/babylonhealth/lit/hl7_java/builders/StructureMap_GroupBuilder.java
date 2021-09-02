@@ -150,12 +150,12 @@ public class StructureMap_GroupBuilder {
 
   public StructureMap.Group build() {
     return new StructureMap.Group(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
-        (Option) OptionConverters.toScala(_extends),
+        OptionConverters.toScala(_extends),
         typeMode,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         input.stream().collect(new NonEmptyLitSeqJCollector<>()),
         rule.stream().collect(new NonEmptyLitSeqJCollector<>()),

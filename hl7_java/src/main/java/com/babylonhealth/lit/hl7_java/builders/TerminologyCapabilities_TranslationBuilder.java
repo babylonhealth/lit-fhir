@@ -126,7 +126,7 @@ public class TerminologyCapabilities_TranslationBuilder {
 
   public TerminologyCapabilities.Translation build() {
     return new TerminologyCapabilities.Translation(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         needsMap,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

@@ -71,6 +71,6 @@ public class Specimen_collectionPriorityBuilder {
 
   public Specimen_collectionPriority build() {
     return new Specimen_collectionPriority(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

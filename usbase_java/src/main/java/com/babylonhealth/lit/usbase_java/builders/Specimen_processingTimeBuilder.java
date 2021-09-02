@@ -72,6 +72,6 @@ public class Specimen_processingTimeBuilder {
 
   public Specimen_processingTime build() {
     return new Specimen_processingTime(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

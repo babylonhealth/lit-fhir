@@ -188,23 +188,23 @@ public class Timing_RepeatBuilder {
 
   public Timing.Repeat build() {
     return new Timing.Repeat(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         when.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(count.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(period),
-        (Option) OptionConverters.toScala(offset.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(countMax.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(duration),
+        OptionConverters.toScala(count.map(x -> (Object) x)),
+        OptionConverters.toScala(period),
+        OptionConverters.toScala(offset.map(x -> (Object) x)),
+        OptionConverters.toScala(countMax.map(x -> (Object) x)),
+        OptionConverters.toScala(duration),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(bounds),
-        (Option) OptionConverters.toScala(frequency.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(periodMax),
+        OptionConverters.toScala(frequency.map(x -> (Object) x)),
+        OptionConverters.toScala(periodMax),
         dayOfWeek.stream().collect(new LitSeqJCollector<>()),
         timeOfDay.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(periodUnit),
-        (Option) OptionConverters.toScala(durationMax),
-        (Option) OptionConverters.toScala(durationUnit),
-        (Option) OptionConverters.toScala(frequencyMax.map(x -> (Object) x)),
+        OptionConverters.toScala(periodUnit),
+        OptionConverters.toScala(durationMax),
+        OptionConverters.toScala(durationUnit),
+        OptionConverters.toScala(frequencyMax.map(x -> (Object) x)),
         LitUtils.emptyMetaElMap());
   }
 }

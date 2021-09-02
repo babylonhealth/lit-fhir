@@ -149,13 +149,13 @@ public class ExplanationOfBenefit_CareTeamBuilder {
 
   public ExplanationOfBenefit.CareTeam build() {
     return new ExplanationOfBenefit.CareTeam(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(role),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(role),
         sequence,
         provider,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(responsible.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(qualification),
+        OptionConverters.toScala(responsible.map(x -> (Object) x)),
+        OptionConverters.toScala(qualification),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -71,6 +71,6 @@ public class Iso21090_ADXP_deliveryInstallationQualifierBuilder {
 
   public Iso21090_ADXP_deliveryInstallationQualifier build() {
     return new Iso21090_ADXP_deliveryInstallationQualifier(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

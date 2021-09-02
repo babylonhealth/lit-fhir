@@ -74,7 +74,7 @@ public class Oauth_urisBuilder {
 
   public Oauth_uris build() {
     return new Oauth_uris(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

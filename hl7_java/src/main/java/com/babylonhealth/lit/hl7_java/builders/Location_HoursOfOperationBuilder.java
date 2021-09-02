@@ -148,12 +148,12 @@ public class Location_HoursOfOperationBuilder {
 
   public Location.HoursOfOperation build() {
     return new Location.HoursOfOperation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(allDay.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(allDay.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         daysOfWeek.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(openingTime),
-        (Option) OptionConverters.toScala(closingTime),
+        OptionConverters.toScala(openingTime),
+        OptionConverters.toScala(closingTime),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

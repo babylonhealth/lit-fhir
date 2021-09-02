@@ -132,10 +132,10 @@ public class MessageDefinition_AllowedResponseBuilder {
 
   public MessageDefinition.AllowedResponse build() {
     return new MessageDefinition.AllowedResponse(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         message,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(situation),
+        OptionConverters.toScala(situation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

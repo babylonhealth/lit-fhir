@@ -128,7 +128,7 @@ public class Encounter_StatusHistoryBuilder {
 
   public Encounter.StatusHistory build() {
     return new Encounter.StatusHistory(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         status,
         period,
         extension.stream().collect(new LitSeqJCollector<>()),

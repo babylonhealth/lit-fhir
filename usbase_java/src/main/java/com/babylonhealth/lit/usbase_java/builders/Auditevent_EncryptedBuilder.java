@@ -70,7 +70,6 @@ public class Auditevent_EncryptedBuilder {
   }
 
   public Auditevent_Encrypted build() {
-    return new Auditevent_Encrypted(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Auditevent_Encrypted(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

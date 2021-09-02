@@ -70,7 +70,6 @@ public class Request_statusReasonBuilder {
   }
 
   public Request_statusReason build() {
-    return new Request_statusReason(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Request_statusReason(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

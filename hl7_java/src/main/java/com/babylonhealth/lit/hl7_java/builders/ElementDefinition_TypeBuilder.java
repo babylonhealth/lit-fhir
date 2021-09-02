@@ -133,11 +133,11 @@ public class ElementDefinition_TypeBuilder {
 
   public ElementDefinition.Type build() {
     return new ElementDefinition.Type(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         profile.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(versioning),
+        OptionConverters.toScala(versioning),
         aggregation.stream().collect(new LitSeqJCollector<>()),
         targetProfile.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

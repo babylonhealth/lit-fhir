@@ -132,7 +132,7 @@ public class ValueSet_Compose_Include_FilterBuilder {
 
   public ValueSet$Compose$Include$Filter build() {
     return new ValueSet$Compose$Include$Filter(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         op,
         value,
         property,

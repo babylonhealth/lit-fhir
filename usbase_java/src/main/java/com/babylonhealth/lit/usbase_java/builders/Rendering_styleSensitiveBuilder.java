@@ -71,6 +71,6 @@ public class Rendering_styleSensitiveBuilder {
 
   public Rendering_styleSensitive build() {
     return new Rendering_styleSensitive(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

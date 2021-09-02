@@ -70,6 +70,6 @@ public class DisplayBuilder {
   }
 
   public Display build() {
-    return new Display((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Display(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -70,7 +70,6 @@ public class Observation_replacesBuilder {
   }
 
   public Observation_replaces build() {
-    return new Observation_replaces(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Observation_replaces(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

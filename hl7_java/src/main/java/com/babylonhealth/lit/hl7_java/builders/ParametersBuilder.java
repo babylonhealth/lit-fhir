@@ -103,10 +103,10 @@ public class ParametersBuilder {
 
   public Parameters build() {
     return new Parameters(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(language),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(language),
+        OptionConverters.toScala(implicitRules),
         parameter.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

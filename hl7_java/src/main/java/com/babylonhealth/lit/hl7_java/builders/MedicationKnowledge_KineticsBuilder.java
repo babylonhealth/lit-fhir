@@ -150,11 +150,11 @@ public class MedicationKnowledge_KineticsBuilder {
 
   public MedicationKnowledge.Kinetics build() {
     return new MedicationKnowledge.Kinetics(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         lethalDose50.stream().collect(new LitSeqJCollector<>()),
         areaUnderCurve.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(halfLifePeriod),
+        OptionConverters.toScala(halfLifePeriod),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

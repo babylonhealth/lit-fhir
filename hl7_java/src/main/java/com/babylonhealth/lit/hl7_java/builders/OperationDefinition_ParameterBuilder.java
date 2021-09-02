@@ -209,19 +209,19 @@ public class OperationDefinition_ParameterBuilder {
 
   public OperationDefinition.Parameter build() {
     return new OperationDefinition.Parameter(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         use,
         min,
         max,
         name,
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(_type),
         part.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(searchType),
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(searchType),
+        OptionConverters.toScala(documentation),
         targetProfile.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(binding),
+        OptionConverters.toScala(binding),
         referencedFrom.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

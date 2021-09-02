@@ -415,22 +415,22 @@ public class NutritionOrderBuilder {
 
   public NutritionOrder build() {
     return new NutritionOrder(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
         status,
         intent,
         patient,
-        (Option) OptionConverters.toScala(orderer),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(orderer),
+        OptionConverters.toScala(language),
         dateTime,
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(encounter),
+        OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
         instantiates.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         allergyIntolerance.stream().collect(new LitSeqJCollector<>()),
@@ -438,8 +438,8 @@ public class NutritionOrderBuilder {
         instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
         foodPreferenceModifier.stream().collect(new LitSeqJCollector<>()),
         supplement.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(oralDiet),
-        (Option) OptionConverters.toScala(enteralFormula),
+        OptionConverters.toScala(oralDiet),
+        OptionConverters.toScala(enteralFormula),
         LitUtils.emptyMetaElMap());
   }
 }

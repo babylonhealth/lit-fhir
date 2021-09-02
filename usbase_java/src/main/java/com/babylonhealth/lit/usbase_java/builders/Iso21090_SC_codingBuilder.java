@@ -70,7 +70,6 @@ public class Iso21090_SC_codingBuilder {
   }
 
   public Iso21090_SC_coding build() {
-    return new Iso21090_SC_coding(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Iso21090_SC_coding(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

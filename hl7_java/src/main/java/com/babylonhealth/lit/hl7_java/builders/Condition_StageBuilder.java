@@ -140,9 +140,9 @@ public class Condition_StageBuilder {
 
   public Condition.Stage build() {
     return new Condition.Stage(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(summary),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(summary),
         extension.stream().collect(new LitSeqJCollector<>()),
         assessment.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

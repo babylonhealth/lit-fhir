@@ -71,6 +71,6 @@ public class Allergyintolerance_reasonRefutedBuilder {
 
   public Allergyintolerance_reasonRefuted build() {
     return new Allergyintolerance_reasonRefuted(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

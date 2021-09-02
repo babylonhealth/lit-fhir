@@ -149,12 +149,12 @@ public class SubstanceNucleicAcid_Subunit_LinkageBuilder {
 
   public SubstanceNucleicAcid$Subunit$Linkage build() {
     return new SubstanceNucleicAcid$Subunit$Linkage(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(identifier),
-        (Option) OptionConverters.toScala(residueSite),
-        (Option) OptionConverters.toScala(connectivity),
+        OptionConverters.toScala(identifier),
+        OptionConverters.toScala(residueSite),
+        OptionConverters.toScala(connectivity),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

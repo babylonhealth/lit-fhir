@@ -157,7 +157,7 @@ public class RiskEvidenceSynthesis_CertaintyBuilder {
 
   public RiskEvidenceSynthesis.Certainty build() {
     return new RiskEvidenceSynthesis.Certainty(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         note.stream().collect(new LitSeqJCollector<>()),
         rating.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),

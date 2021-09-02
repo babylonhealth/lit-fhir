@@ -203,20 +203,20 @@ public class AuditEvent_AgentBuilder {
 
   public AuditEvent.Agent build() {
     return new AuditEvent.Agent(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(who),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(who),
+        OptionConverters.toScala(_type),
         role.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(name),
-        (Option) OptionConverters.toScala(altId),
-        (Option) OptionConverters.toScala(media),
+        OptionConverters.toScala(name),
+        OptionConverters.toScala(altId),
+        OptionConverters.toScala(media),
         policy.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(location),
+        OptionConverters.toScala(location),
         extension.stream().collect(new LitSeqJCollector<>()),
         requestor,
         purposeOfUse.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(network),
+        OptionConverters.toScala(network),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Workflow_instantiatesUriBuilder {
 
   public Workflow_instantiatesUri build() {
     return new Workflow_instantiatesUri(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

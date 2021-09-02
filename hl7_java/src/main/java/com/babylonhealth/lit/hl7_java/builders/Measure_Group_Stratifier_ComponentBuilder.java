@@ -141,11 +141,11 @@ public class Measure_Group_Stratifier_ComponentBuilder {
 
   public Measure$Group$Stratifier$Component build() {
     return new Measure$Group$Stratifier$Component(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
         criteria,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -143,7 +143,7 @@ public class MeasureReport_Group_StratifierBuilder {
 
   public MeasureReport$Group$Stratifier build() {
     return new MeasureReport$Group$Stratifier(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

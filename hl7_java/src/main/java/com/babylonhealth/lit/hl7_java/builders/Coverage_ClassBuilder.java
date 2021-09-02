@@ -134,9 +134,9 @@ public class Coverage_ClassBuilder {
 
   public Coverage.Class build() {
     return new Coverage.Class(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(name),
         value,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

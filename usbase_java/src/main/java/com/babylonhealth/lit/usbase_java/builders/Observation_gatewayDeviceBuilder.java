@@ -71,6 +71,6 @@ public class Observation_gatewayDeviceBuilder {
 
   public Observation_gatewayDevice build() {
     return new Observation_gatewayDevice(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

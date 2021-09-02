@@ -71,6 +71,6 @@ public class Questionnaire_sliderStepValueBuilder {
 
   public Questionnaire_sliderStepValue build() {
     return new Questionnaire_sliderStepValue(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

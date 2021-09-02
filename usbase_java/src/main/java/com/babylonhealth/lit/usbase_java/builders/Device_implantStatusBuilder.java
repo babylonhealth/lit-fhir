@@ -70,7 +70,6 @@ public class Device_implantStatusBuilder {
   }
 
   public Device_implantStatus build() {
-    return new Device_implantStatus(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Device_implantStatus(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

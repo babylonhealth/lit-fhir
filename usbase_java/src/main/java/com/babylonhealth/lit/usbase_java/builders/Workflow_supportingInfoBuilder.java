@@ -71,6 +71,6 @@ public class Workflow_supportingInfoBuilder {
 
   public Workflow_supportingInfo build() {
     return new Workflow_supportingInfo(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Valueset_sourceReferenceBuilder {
 
   public Valueset_sourceReference build() {
     return new Valueset_sourceReference(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

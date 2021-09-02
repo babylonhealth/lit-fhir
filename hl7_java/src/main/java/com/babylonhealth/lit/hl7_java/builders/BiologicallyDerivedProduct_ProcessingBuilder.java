@@ -145,12 +145,12 @@ public class BiologicallyDerivedProduct_ProcessingBuilder {
 
   public BiologicallyDerivedProduct.Processing build() {
     return new BiologicallyDerivedProduct.Processing(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         (Option) OptionConverters.toScala(time),
-        (Option) OptionConverters.toScala(additive),
+        OptionConverters.toScala(additive),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(procedure),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(procedure),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

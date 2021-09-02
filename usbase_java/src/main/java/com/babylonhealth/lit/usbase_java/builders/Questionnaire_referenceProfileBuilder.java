@@ -71,6 +71,6 @@ public class Questionnaire_referenceProfileBuilder {
 
   public Questionnaire_referenceProfile build() {
     return new Questionnaire_referenceProfile(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

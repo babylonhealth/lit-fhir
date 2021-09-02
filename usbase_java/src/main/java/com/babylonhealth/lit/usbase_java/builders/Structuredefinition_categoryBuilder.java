@@ -71,6 +71,6 @@ public class Structuredefinition_categoryBuilder {
 
   public Structuredefinition_category build() {
     return new Structuredefinition_category(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

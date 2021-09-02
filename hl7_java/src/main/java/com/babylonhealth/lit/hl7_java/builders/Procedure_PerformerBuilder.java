@@ -136,11 +136,11 @@ public class Procedure_PerformerBuilder {
 
   public Procedure.Performer build() {
     return new Procedure.Performer(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         actor,
-        (Option) OptionConverters.toScala(function),
+        OptionConverters.toScala(function),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(onBehalfOf),
+        OptionConverters.toScala(onBehalfOf),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

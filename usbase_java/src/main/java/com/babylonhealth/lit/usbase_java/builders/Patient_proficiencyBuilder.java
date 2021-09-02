@@ -86,7 +86,7 @@ public class Patient_proficiencyBuilder {
 
   public Patient_proficiency build() {
     return new Patient_proficiency(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

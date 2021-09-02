@@ -130,9 +130,9 @@ public class ResearchStudy_ObjectiveBuilder {
 
   public ResearchStudy.Objective build() {
     return new ResearchStudy.Objective(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
+        OptionConverters.toScala(_type),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

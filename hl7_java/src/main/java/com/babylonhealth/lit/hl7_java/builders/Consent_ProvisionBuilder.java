@@ -229,16 +229,16 @@ public class Consent_ProvisionBuilder {
 
   public Consent.Provision build() {
     return new Consent.Provision(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         code.stream().collect(new LitSeqJCollector<>()),
         _class.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(period),
         action.stream().collect(new LitSeqJCollector<>()),
         purpose.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         provision.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(dataPeriod),
+        OptionConverters.toScala(dataPeriod),
         securityLabel.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         data.stream().collect(new LitSeqJCollector<>()),

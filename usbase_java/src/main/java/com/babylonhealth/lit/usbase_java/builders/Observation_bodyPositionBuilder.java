@@ -71,6 +71,6 @@ public class Observation_bodyPositionBuilder {
 
   public Observation_bodyPosition build() {
     return new Observation_bodyPosition(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -204,9 +204,9 @@ public class DataRequirementBuilder {
 
   public DataRequirement build() {
     return new DataRequirement(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(limit.map(x -> (Object) x)),
+        OptionConverters.toScala(limit.map(x -> (Object) x)),
         profile.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(subject),

@@ -70,7 +70,6 @@ public class Usagecontext_groupBuilder {
   }
 
   public Usagecontext_group build() {
-    return new Usagecontext_group(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Usagecontext_group(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

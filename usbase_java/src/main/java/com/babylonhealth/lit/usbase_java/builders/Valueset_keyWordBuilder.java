@@ -70,7 +70,6 @@ public class Valueset_keyWordBuilder {
   }
 
   public Valueset_keyWord build() {
-    return new Valueset_keyWord(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_keyWord(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

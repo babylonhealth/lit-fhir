@@ -70,7 +70,6 @@ public class Valueset_unclosedBuilder {
   }
 
   public Valueset_unclosed build() {
-    return new Valueset_unclosed(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_unclosed(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

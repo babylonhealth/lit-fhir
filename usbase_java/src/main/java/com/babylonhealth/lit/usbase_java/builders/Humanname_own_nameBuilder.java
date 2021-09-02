@@ -70,7 +70,6 @@ public class Humanname_own_nameBuilder {
   }
 
   public Humanname_own_name build() {
-    return new Humanname_own_name(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Humanname_own_name(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

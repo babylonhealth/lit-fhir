@@ -74,7 +74,7 @@ public class Valueset_expand_groupBuilder {
 
   public Valueset_expand_group build() {
     return new Valueset_expand_group(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -142,13 +142,13 @@ public class ClaimResponse_ErrorBuilder {
 
   public ClaimResponse.Error build() {
     return new ClaimResponse.Error(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(itemSequence.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(detailSequence.map(x -> (Object) x)),
+        OptionConverters.toScala(itemSequence.map(x -> (Object) x)),
+        OptionConverters.toScala(detailSequence.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(subDetailSequence.map(x -> (Object) x)),
+        OptionConverters.toScala(subDetailSequence.map(x -> (Object) x)),
         LitUtils.emptyMetaElMap());
   }
 }

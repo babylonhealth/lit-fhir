@@ -137,9 +137,9 @@ public class PaymentReconciliation_ProcessNoteBuilder {
 
   public PaymentReconciliation.ProcessNote build() {
     return new PaymentReconciliation.ProcessNote(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(text),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

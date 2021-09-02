@@ -70,7 +70,6 @@ public class Iso21090_EN_useBuilder {
   }
 
   public Iso21090_EN_use build() {
-    return new Iso21090_EN_use(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Iso21090_EN_use(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

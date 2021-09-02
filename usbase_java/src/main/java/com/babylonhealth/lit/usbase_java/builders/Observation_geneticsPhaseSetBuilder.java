@@ -74,7 +74,7 @@ public class Observation_geneticsPhaseSetBuilder {
 
   public Observation_geneticsPhaseSet build() {
     return new Observation_geneticsPhaseSet(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

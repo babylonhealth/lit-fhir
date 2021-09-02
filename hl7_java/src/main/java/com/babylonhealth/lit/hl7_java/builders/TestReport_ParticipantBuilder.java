@@ -134,10 +134,10 @@ public class TestReport_ParticipantBuilder {
 
   public TestReport.Participant build() {
     return new TestReport.Participant(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         uri,
         _type,
-        (Option) OptionConverters.toScala(display),
+        OptionConverters.toScala(display),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

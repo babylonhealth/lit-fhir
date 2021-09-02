@@ -236,21 +236,21 @@ public class ResearchSubjectBuilder {
 
   public ResearchSubject build() {
     return new ResearchSubject(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         study,
         status,
-        (Option) OptionConverters.toScala(period),
-        (Option) OptionConverters.toScala(consent),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(period),
+        OptionConverters.toScala(consent),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(actualArm),
+        OptionConverters.toScala(actualArm),
         identifier.stream().collect(new LitSeqJCollector<>()),
         individual,
-        (Option) OptionConverters.toScala(assignedArm),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(assignedArm),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

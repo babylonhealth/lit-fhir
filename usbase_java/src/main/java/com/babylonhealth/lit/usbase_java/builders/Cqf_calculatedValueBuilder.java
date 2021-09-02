@@ -70,7 +70,6 @@ public class Cqf_calculatedValueBuilder {
   }
 
   public Cqf_calculatedValue build() {
-    return new Cqf_calculatedValue(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Cqf_calculatedValue(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

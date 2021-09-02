@@ -178,10 +178,10 @@ public class PlanDefinition_GoalBuilder {
 
   public PlanDefinition.Goal build() {
     return new PlanDefinition.Goal(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(start),
-        (Option) OptionConverters.toScala(category),
-        (Option) OptionConverters.toScala(priority),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(start),
+        OptionConverters.toScala(category),
+        OptionConverters.toScala(priority),
         extension.stream().collect(new LitSeqJCollector<>()),
         addresses.stream().collect(new LitSeqJCollector<>()),
         description,

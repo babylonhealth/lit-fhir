@@ -138,9 +138,9 @@ public class Claim_AccidentBuilder {
 
   public Claim.Accident build() {
     return new Claim.Accident(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         date,
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(_type),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(location),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

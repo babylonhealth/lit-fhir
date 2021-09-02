@@ -71,6 +71,6 @@ public class Location_boundary_geojsonBuilder {
 
   public Location_boundary_geojson build() {
     return new Location_boundary_geojson(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

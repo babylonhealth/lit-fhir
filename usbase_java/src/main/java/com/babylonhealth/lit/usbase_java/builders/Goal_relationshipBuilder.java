@@ -74,7 +74,7 @@ public class Goal_relationshipBuilder {
 
   public Goal_relationship build() {
     return new Goal_relationship(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

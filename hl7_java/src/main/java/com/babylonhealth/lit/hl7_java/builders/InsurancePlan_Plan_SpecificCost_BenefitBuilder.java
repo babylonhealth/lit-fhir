@@ -140,7 +140,7 @@ public class InsurancePlan_Plan_SpecificCost_BenefitBuilder {
 
   public InsurancePlan$Plan$SpecificCost$Benefit build() {
     return new InsurancePlan$Plan$SpecificCost$Benefit(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

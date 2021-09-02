@@ -131,9 +131,9 @@ public class NutritionOrder_OralDiet_NutrientBuilder {
 
   public NutritionOrder$OralDiet$Nutrient build() {
     return new NutritionOrder$OralDiet$Nutrient(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(amount),
-        (Option) OptionConverters.toScala(modifier),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(amount),
+        OptionConverters.toScala(modifier),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

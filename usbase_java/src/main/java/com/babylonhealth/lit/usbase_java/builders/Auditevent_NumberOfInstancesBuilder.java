@@ -71,6 +71,6 @@ public class Auditevent_NumberOfInstancesBuilder {
 
   public Auditevent_NumberOfInstances build() {
     return new Auditevent_NumberOfInstances(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

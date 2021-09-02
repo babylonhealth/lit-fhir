@@ -131,9 +131,9 @@ public class SupplyDelivery_SuppliedItemBuilder {
 
   public SupplyDelivery.SuppliedItem build() {
     return new SupplyDelivery.SuppliedItem(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         (Option) OptionConverters.toScala(item),
-        (Option) OptionConverters.toScala(quantity),
+        OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

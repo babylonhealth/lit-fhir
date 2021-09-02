@@ -71,6 +71,6 @@ public class Organization_preferredContactBuilder {
 
   public Organization_preferredContact build() {
     return new Organization_preferredContact(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

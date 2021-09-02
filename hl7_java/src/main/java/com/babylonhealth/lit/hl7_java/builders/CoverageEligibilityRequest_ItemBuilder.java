@@ -205,16 +205,16 @@ public class CoverageEligibilityRequest_ItemBuilder {
 
   public CoverageEligibilityRequest.Item build() {
     return new CoverageEligibilityRequest.Item(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         detail.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(category),
+        OptionConverters.toScala(category),
         modifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(provider),
-        (Option) OptionConverters.toScala(quantity),
-        (Option) OptionConverters.toScala(facility),
+        OptionConverters.toScala(provider),
+        OptionConverters.toScala(quantity),
+        OptionConverters.toScala(facility),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(unitPrice),
-        (Option) OptionConverters.toScala(productOrService),
+        OptionConverters.toScala(unitPrice),
+        OptionConverters.toScala(productOrService),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         supportingInfoSequence.stream()
             .map(x -> (Object) x)

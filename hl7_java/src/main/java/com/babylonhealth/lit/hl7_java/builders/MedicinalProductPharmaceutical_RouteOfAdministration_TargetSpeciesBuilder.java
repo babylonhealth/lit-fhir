@@ -151,7 +151,7 @@ public class MedicinalProductPharmaceutical_RouteOfAdministration_TargetSpeciesB
 
   public MedicinalProductPharmaceutical$RouteOfAdministration$TargetSpecies build() {
     return new MedicinalProductPharmaceutical$RouteOfAdministration$TargetSpecies(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

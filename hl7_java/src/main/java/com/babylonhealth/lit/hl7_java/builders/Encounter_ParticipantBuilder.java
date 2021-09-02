@@ -147,11 +147,11 @@ public class Encounter_ParticipantBuilder {
 
   public Encounter.Participant build() {
     return new Encounter.Participant(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(period),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(individual),
+        OptionConverters.toScala(individual),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

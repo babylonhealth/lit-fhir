@@ -70,7 +70,6 @@ public class Patient_birthPlaceBuilder {
   }
 
   public Patient_birthPlace build() {
-    return new Patient_birthPlace(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Patient_birthPlace(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

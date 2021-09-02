@@ -148,11 +148,11 @@ public class Contract_Term_Asset_ContextBuilder {
 
   public Contract$Term$Asset$Context build() {
     return new Contract$Term$Asset$Context(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(text),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(reference),
+        OptionConverters.toScala(reference),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

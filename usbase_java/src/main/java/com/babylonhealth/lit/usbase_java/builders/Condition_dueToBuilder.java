@@ -71,7 +71,6 @@ public class Condition_dueToBuilder {
   }
 
   public Condition_dueTo build() {
-    return new Condition_dueTo(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Condition_dueTo(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

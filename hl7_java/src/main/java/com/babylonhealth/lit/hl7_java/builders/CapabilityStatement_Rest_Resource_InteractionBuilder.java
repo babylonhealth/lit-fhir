@@ -134,10 +134,10 @@ public class CapabilityStatement_Rest_Resource_InteractionBuilder {
 
   public CapabilityStatement$Rest$Resource$Interaction build() {
     return new CapabilityStatement$Rest$Resource$Interaction(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

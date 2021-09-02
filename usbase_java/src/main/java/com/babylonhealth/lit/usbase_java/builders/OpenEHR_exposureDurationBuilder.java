@@ -71,6 +71,6 @@ public class OpenEHR_exposureDurationBuilder {
 
   public OpenEHR_exposureDuration build() {
     return new OpenEHR_exposureDuration(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

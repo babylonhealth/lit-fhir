@@ -70,7 +70,6 @@ public class Observation_reagentBuilder {
   }
 
   public Observation_reagent build() {
-    return new Observation_reagent(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Observation_reagent(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

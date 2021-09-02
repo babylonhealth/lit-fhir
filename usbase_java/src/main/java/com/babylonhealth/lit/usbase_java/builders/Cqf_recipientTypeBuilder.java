@@ -70,7 +70,6 @@ public class Cqf_recipientTypeBuilder {
   }
 
   public Cqf_recipientType build() {
-    return new Cqf_recipientType(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Cqf_recipientType(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

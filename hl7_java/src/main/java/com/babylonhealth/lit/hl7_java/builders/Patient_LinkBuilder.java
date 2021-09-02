@@ -127,7 +127,7 @@ public class Patient_LinkBuilder {
 
   public Patient.Link build() {
     return new Patient.Link(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         other,
         extension.stream().collect(new LitSeqJCollector<>()),

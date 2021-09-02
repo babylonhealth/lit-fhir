@@ -141,7 +141,7 @@ public class CoverageEligibilityResponse_Insurance_Item_BenefitBuilder {
 
   public CoverageEligibilityResponse$Insurance$Item$Benefit build() {
     return new CoverageEligibilityResponse$Insurance$Item$Benefit(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         (Option) OptionConverters.toScala(used),
         extension.stream().collect(new LitSeqJCollector<>()),

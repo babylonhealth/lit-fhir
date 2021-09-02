@@ -74,7 +74,7 @@ public class Codesystem_otherNameBuilder {
 
   public Codesystem_otherName build() {
     return new Codesystem_otherName(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

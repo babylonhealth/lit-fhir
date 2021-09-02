@@ -165,14 +165,14 @@ public class CarePlan_ActivityBuilder {
 
   public CarePlan.Activity build() {
     return new CarePlan.Activity(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         progress.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(reference),
+        OptionConverters.toScala(reference),
         outcomeReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         outcomeCodeableConcept.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(detail),
+        OptionConverters.toScala(detail),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -70,7 +70,6 @@ public class Valueset_supplementBuilder {
   }
 
   public Valueset_supplement build() {
-    return new Valueset_supplement(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_supplement(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

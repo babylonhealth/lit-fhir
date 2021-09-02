@@ -180,18 +180,18 @@ public class PaymentReconciliation_DetailBuilder {
 
   public PaymentReconciliation.Detail build() {
     return new PaymentReconciliation.Detail(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(date),
-        (Option) OptionConverters.toScala(payee),
-        (Option) OptionConverters.toScala(amount),
-        (Option) OptionConverters.toScala(request),
-        (Option) OptionConverters.toScala(response),
+        OptionConverters.toScala(date),
+        OptionConverters.toScala(payee),
+        OptionConverters.toScala(amount),
+        OptionConverters.toScala(request),
+        OptionConverters.toScala(response),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(submitter),
-        (Option) OptionConverters.toScala(identifier),
-        (Option) OptionConverters.toScala(predecessor),
-        (Option) OptionConverters.toScala(responsible),
+        OptionConverters.toScala(submitter),
+        OptionConverters.toScala(identifier),
+        OptionConverters.toScala(predecessor),
+        OptionConverters.toScala(responsible),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

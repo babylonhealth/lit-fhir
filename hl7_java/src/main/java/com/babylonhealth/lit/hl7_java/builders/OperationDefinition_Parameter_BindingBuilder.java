@@ -130,7 +130,7 @@ public class OperationDefinition_Parameter_BindingBuilder {
 
   public OperationDefinition$Parameter$Binding build() {
     return new OperationDefinition$Parameter$Binding(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         strength,
         valueSet,
         extension.stream().collect(new LitSeqJCollector<>()),

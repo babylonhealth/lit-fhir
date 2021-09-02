@@ -71,6 +71,6 @@ public class Iso21090_ADXP_additionalLocatorBuilder {
 
   public Iso21090_ADXP_additionalLocator build() {
     return new Iso21090_ADXP_additionalLocator(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

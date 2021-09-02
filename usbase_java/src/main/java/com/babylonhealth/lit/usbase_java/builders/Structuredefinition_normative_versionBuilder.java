@@ -71,6 +71,6 @@ public class Structuredefinition_normative_versionBuilder {
 
   public Structuredefinition_normative_version build() {
     return new Structuredefinition_normative_version(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

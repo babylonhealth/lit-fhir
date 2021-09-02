@@ -70,7 +70,6 @@ public class Goal_reasonRejectedBuilder {
   }
 
   public Goal_reasonRejected build() {
-    return new Goal_reasonRejected(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Goal_reasonRejected(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -132,9 +132,9 @@ public class ExplanationOfBenefit_PayeeBuilder {
 
   public ExplanationOfBenefit.Payee build() {
     return new ExplanationOfBenefit.Payee(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(party),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(party),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -70,7 +70,6 @@ public class Codesystem_mapBuilder {
   }
 
   public Codesystem_map build() {
-    return new Codesystem_map(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Codesystem_map(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -142,10 +142,10 @@ public class ConceptMap_Group_Element_Target_DependsOnBuilder {
 
   public ConceptMap$Group$Element$Target$DependsOn build() {
     return new ConceptMap$Group$Element$Target$DependsOn(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         value,
-        (Option) OptionConverters.toScala(system),
-        (Option) OptionConverters.toScala(display),
+        OptionConverters.toScala(system),
+        OptionConverters.toScala(display),
         property,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

@@ -70,7 +70,6 @@ public class Auditevent_InstanceBuilder {
   }
 
   public Auditevent_Instance build() {
-    return new Auditevent_Instance(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Auditevent_Instance(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

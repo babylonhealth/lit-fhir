@@ -147,8 +147,8 @@ public class Coverage_CostToBeneficiaryBuilder {
 
   public Coverage.CostToBeneficiary build() {
     return new Coverage.CostToBeneficiary(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         value,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

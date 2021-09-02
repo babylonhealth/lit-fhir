@@ -71,6 +71,6 @@ public class Procedure_progressStatusBuilder {
 
   public Procedure_progressStatus build() {
     return new Procedure_progressStatus(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Valueset_expansionSourceBuilder {
 
   public Valueset_expansionSource build() {
     return new Valueset_expansionSource(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -70,7 +70,6 @@ public class Rendered_valueBuilder {
   }
 
   public Rendered_value build() {
-    return new Rendered_value(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Rendered_value(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

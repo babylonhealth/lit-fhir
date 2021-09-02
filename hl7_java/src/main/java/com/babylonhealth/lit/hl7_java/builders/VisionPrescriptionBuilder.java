@@ -230,20 +230,20 @@ public class VisionPrescriptionBuilder {
 
   public VisionPrescription build() {
     return new VisionPrescription(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         status,
         created,
         patient,
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(encounter),
+        OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
         prescriber,
         dateWritten,
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         lensSpecification.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

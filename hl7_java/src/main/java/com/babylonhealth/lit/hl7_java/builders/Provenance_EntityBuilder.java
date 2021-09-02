@@ -144,7 +144,7 @@ public class Provenance_EntityBuilder {
 
   public Provenance.Entity build() {
     return new Provenance.Entity(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         role,
         what,
         agent.stream().collect(new LitSeqJCollector<>()),

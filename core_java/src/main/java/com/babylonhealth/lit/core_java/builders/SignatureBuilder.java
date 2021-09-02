@@ -133,15 +133,15 @@ public class SignatureBuilder {
 
   public Signature build() {
     return new Signature(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         who,
         _type.stream().collect(new NonEmptyLitSeqJCollector<>()),
         when,
-        (Option) OptionConverters.toScala(data),
+        OptionConverters.toScala(data),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(sigFormat),
-        (Option) OptionConverters.toScala(onBehalfOf),
-        (Option) OptionConverters.toScala(targetFormat),
+        OptionConverters.toScala(sigFormat),
+        OptionConverters.toScala(onBehalfOf),
+        OptionConverters.toScala(targetFormat),
         LitUtils.emptyMetaElMap());
   }
 }

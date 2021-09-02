@@ -140,10 +140,10 @@ public class ValueSet_Compose_Include_Concept_DesignationBuilder {
 
   public ValueSet$Compose$Include$Concept$Designation build() {
     return new ValueSet$Compose$Include$Concept$Designation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(use),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(use),
         value,
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(language),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

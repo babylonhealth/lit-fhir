@@ -138,9 +138,9 @@ public class Coverage_CostToBeneficiary_ExceptionBuilder {
 
   public Coverage$CostToBeneficiary$Exception build() {
     return new Coverage$CostToBeneficiary$Exception(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(period),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

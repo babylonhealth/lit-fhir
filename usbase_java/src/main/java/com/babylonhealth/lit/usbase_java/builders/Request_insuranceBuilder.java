@@ -70,7 +70,6 @@ public class Request_insuranceBuilder {
   }
 
   public Request_insurance build() {
-    return new Request_insurance(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Request_insurance(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

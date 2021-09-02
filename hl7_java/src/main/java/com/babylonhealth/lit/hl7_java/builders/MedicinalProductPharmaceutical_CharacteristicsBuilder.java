@@ -134,9 +134,9 @@ public class MedicinalProductPharmaceutical_CharacteristicsBuilder {
 
   public MedicinalProductPharmaceutical.Characteristics build() {
     return new MedicinalProductPharmaceutical.Characteristics(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
-        (Option) OptionConverters.toScala(status),
+        OptionConverters.toScala(status),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

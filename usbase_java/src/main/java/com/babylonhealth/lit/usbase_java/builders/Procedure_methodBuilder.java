@@ -70,7 +70,6 @@ public class Procedure_methodBuilder {
   }
 
   public Procedure_method build() {
-    return new Procedure_method(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Procedure_method(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

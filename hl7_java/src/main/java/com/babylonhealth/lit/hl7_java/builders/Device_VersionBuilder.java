@@ -136,11 +136,11 @@ public class Device_VersionBuilder {
 
   public Device.Version build() {
     return new Device.Version(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         value,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(component),
+        OptionConverters.toScala(component),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

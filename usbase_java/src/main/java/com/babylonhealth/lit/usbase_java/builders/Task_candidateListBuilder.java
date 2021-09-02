@@ -70,7 +70,6 @@ public class Task_candidateListBuilder {
   }
 
   public Task_candidateList build() {
-    return new Task_candidateList(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Task_candidateList(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

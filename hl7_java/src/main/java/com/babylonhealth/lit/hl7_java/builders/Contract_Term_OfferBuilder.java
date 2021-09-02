@@ -232,12 +232,12 @@ public class Contract_Term_OfferBuilder {
 
   public Contract$Term$Offer build() {
     return new Contract$Term$Offer(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(topic),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(topic),
         linkId.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(decision),
+        OptionConverters.toScala(decision),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         decisionMode.stream().collect(new LitSeqJCollector<>()),

@@ -70,7 +70,6 @@ public class Condition_outcomeBuilder {
   }
 
   public Condition_outcome build() {
-    return new Condition_outcome(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Condition_outcome(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

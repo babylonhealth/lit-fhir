@@ -116,11 +116,11 @@ public class ElementDefinition_SlicingBuilder {
 
   public ElementDefinition.Slicing build() {
     return new ElementDefinition.Slicing(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         rules,
-        (Option) OptionConverters.toScala(ordered.map(x -> (Object) x)),
+        OptionConverters.toScala(ordered.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         discriminator.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

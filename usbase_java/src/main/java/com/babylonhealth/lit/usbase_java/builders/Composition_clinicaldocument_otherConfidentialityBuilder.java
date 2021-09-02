@@ -71,6 +71,6 @@ public class Composition_clinicaldocument_otherConfidentialityBuilder {
 
   public Composition_clinicaldocument_otherConfidentiality build() {
     return new Composition_clinicaldocument_otherConfidentiality(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

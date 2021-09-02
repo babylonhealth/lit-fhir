@@ -71,6 +71,6 @@ public class Codesystem_sourceReferenceBuilder {
 
   public Codesystem_sourceReference build() {
     return new Codesystem_sourceReference(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

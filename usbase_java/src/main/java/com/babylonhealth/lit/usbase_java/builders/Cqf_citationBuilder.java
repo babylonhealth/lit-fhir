@@ -70,7 +70,6 @@ public class Cqf_citationBuilder {
   }
 
   public Cqf_citation build() {
-    return new Cqf_citation(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Cqf_citation(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

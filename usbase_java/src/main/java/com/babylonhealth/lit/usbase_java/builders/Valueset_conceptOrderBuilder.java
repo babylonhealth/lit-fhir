@@ -71,6 +71,6 @@ public class Valueset_conceptOrderBuilder {
 
   public Valueset_conceptOrder build() {
     return new Valueset_conceptOrder(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

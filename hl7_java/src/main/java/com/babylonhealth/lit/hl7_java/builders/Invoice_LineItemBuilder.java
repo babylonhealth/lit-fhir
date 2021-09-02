@@ -143,8 +143,8 @@ public class Invoice_LineItemBuilder {
 
   public Invoice.LineItem build() {
     return new Invoice.LineItem(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(sequence.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(sequence.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         chargeItem,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

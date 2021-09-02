@@ -184,15 +184,15 @@ public class AuditEvent_EntityBuilder {
 
   public AuditEvent.Entity build() {
     return new AuditEvent.Entity(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(what),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(role),
-        (Option) OptionConverters.toScala(name),
-        (Option) OptionConverters.toScala(query),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(what),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(role),
+        OptionConverters.toScala(name),
+        OptionConverters.toScala(query),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(lifecycle),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(lifecycle),
+        OptionConverters.toScala(description),
         securityLabel.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         detail.stream().collect(new LitSeqJCollector<>()),

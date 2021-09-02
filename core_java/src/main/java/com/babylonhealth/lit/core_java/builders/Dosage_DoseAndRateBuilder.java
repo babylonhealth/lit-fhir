@@ -98,8 +98,8 @@ public class Dosage_DoseAndRateBuilder {
 
   public Dosage.DoseAndRate build() {
     return new Dosage.DoseAndRate(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
         (Option) OptionConverters.toScala(dose),
         (Option) OptionConverters.toScala(rate),
         extension.stream().collect(new LitSeqJCollector<>()),

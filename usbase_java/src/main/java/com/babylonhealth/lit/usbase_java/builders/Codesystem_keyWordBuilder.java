@@ -70,7 +70,6 @@ public class Codesystem_keyWordBuilder {
   }
 
   public Codesystem_keyWord build() {
-    return new Codesystem_keyWord(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Codesystem_keyWord(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

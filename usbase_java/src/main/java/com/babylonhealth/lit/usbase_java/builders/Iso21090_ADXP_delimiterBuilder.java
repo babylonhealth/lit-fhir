@@ -71,6 +71,6 @@ public class Iso21090_ADXP_delimiterBuilder {
 
   public Iso21090_ADXP_delimiter build() {
     return new Iso21090_ADXP_delimiter(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

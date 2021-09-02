@@ -138,9 +138,9 @@ public class Goal_TargetBuilder {
 
   public Goal.Target build() {
     return new Goal.Target(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         (Option) OptionConverters.toScala(due),
-        (Option) OptionConverters.toScala(measure),
+        OptionConverters.toScala(measure),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(detail),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

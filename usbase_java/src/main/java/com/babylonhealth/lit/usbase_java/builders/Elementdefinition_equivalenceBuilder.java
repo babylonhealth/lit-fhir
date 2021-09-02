@@ -71,6 +71,6 @@ public class Elementdefinition_equivalenceBuilder {
 
   public Elementdefinition_equivalence build() {
     return new Elementdefinition_equivalence(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -70,7 +70,6 @@ public class Valueset_rules_textBuilder {
   }
 
   public Valueset_rules_text build() {
-    return new Valueset_rules_text(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_rules_text(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Humanname_fathers_familyBuilder {
 
   public Humanname_fathers_family build() {
     return new Humanname_fathers_family(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

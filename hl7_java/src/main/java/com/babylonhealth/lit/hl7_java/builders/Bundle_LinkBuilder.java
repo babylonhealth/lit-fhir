@@ -93,7 +93,7 @@ public class Bundle_LinkBuilder {
 
   public Bundle.Link build() {
     return new Bundle.Link(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         url,
         relation,
         extension.stream().collect(new LitSeqJCollector<>()),

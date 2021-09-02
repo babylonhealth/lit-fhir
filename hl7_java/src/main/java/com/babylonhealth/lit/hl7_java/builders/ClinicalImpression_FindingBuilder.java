@@ -137,12 +137,12 @@ public class ClinicalImpression_FindingBuilder {
 
   public ClinicalImpression.Finding build() {
     return new ClinicalImpression.Finding(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(basis),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(basis),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(itemReference),
+        OptionConverters.toScala(itemReference),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(itemCodeableConcept),
+        OptionConverters.toScala(itemCodeableConcept),
         LitUtils.emptyMetaElMap());
   }
 }

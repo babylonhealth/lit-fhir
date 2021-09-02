@@ -131,9 +131,9 @@ public class MedicationKnowledge_MonographBuilder {
 
   public MedicationKnowledge.Monograph build() {
     return new MedicationKnowledge.Monograph(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(source),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(source),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

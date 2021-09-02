@@ -327,26 +327,26 @@ public class OrganizationAffiliationBuilder {
 
   public OrganizationAffiliation build() {
     return new OrganizationAffiliation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         code.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(active.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(active.map(x -> (Object) x)),
+        OptionConverters.toScala(period),
         network.stream().collect(new LitSeqJCollector<>()),
         telecom.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(language),
         location.stream().collect(new LitSeqJCollector<>()),
         endpoint.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         specialty.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(organization),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(organization),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         healthcareService.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(participatingOrganization),
+        OptionConverters.toScala(participatingOrganization),
         LitUtils.emptyMetaElMap());
   }
 }

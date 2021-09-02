@@ -75,6 +75,6 @@ public class Elementdefinition_minValueSetBuilder {
 
   public Elementdefinition_minValueSet build() {
     return new Elementdefinition_minValueSet(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

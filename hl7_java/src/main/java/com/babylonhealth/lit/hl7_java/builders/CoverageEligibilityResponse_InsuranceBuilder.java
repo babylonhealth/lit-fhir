@@ -153,11 +153,11 @@ public class CoverageEligibilityResponse_InsuranceBuilder {
 
   public CoverageEligibilityResponse.Insurance build() {
     return new CoverageEligibilityResponse.Insurance(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(inforce.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(inforce.map(x -> (Object) x)),
         coverage,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(benefitPeriod),
+        OptionConverters.toScala(benefitPeriod),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         item.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

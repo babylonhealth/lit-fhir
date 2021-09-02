@@ -133,9 +133,9 @@ public class AuditEvent_Agent_NetworkBuilder {
 
   public AuditEvent$Agent$Network build() {
     return new AuditEvent$Agent$Network(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(address),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(address),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

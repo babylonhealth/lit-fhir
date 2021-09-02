@@ -71,6 +71,6 @@ public class Organizationaffiliation_primaryIndBuilder {
 
   public Organizationaffiliation_primaryInd build() {
     return new Organizationaffiliation_primaryInd(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

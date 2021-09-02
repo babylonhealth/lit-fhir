@@ -152,13 +152,13 @@ public class GraphDefinition_Link_Target_CompartmentBuilder {
 
   public GraphDefinition$Link$Target$Compartment build() {
     return new GraphDefinition$Link$Target$Compartment(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         use,
         code,
         rule,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(expression),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(expression),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

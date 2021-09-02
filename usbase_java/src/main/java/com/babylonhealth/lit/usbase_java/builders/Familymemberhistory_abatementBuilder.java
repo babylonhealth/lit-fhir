@@ -72,6 +72,6 @@ public class Familymemberhistory_abatementBuilder {
 
   public Familymemberhistory_abatement build() {
     return new Familymemberhistory_abatement(
-        (Option) OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
   }
 }

@@ -148,10 +148,10 @@ public class StructureDefinition_MappingBuilder {
 
   public StructureDefinition.Mapping build() {
     return new StructureDefinition.Mapping(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(uri),
-        (Option) OptionConverters.toScala(name),
-        (Option) OptionConverters.toScala(comment),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(uri),
+        OptionConverters.toScala(name),
+        OptionConverters.toScala(comment),
         identity,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

@@ -71,6 +71,6 @@ public class Composition_section_subjectBuilder {
 
   public Composition_section_subject build() {
     return new Composition_section_subject(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

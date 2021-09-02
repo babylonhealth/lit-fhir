@@ -71,6 +71,6 @@ public class Questionnaire_choiceOrientationBuilder {
 
   public Questionnaire_choiceOrientation build() {
     return new Questionnaire_choiceOrientation(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Iso21090_ADXP_unitTypeBuilder {
 
   public Iso21090_ADXP_unitType build() {
     return new Iso21090_ADXP_unitType(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

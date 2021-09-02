@@ -71,6 +71,6 @@ public class Request_relevantHistoryBuilder {
 
   public Request_relevantHistory build() {
     return new Request_relevantHistory(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

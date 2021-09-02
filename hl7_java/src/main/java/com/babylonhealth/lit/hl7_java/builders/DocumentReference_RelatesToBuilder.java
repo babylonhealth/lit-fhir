@@ -129,7 +129,7 @@ public class DocumentReference_RelatesToBuilder {
 
   public DocumentReference.RelatesTo build() {
     return new DocumentReference.RelatesTo(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         target,
         extension.stream().collect(new LitSeqJCollector<>()),

@@ -152,13 +152,13 @@ public class HealthcareService_AvailableTimeBuilder {
 
   public HealthcareService.AvailableTime build() {
     return new HealthcareService.AvailableTime(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(allDay.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(allDay.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         daysOfWeek.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(availableEndTime),
+        OptionConverters.toScala(availableEndTime),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(availableStartTime),
+        OptionConverters.toScala(availableStartTime),
         LitUtils.emptyMetaElMap());
   }
 }

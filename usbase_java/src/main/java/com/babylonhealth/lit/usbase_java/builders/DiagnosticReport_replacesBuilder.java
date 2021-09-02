@@ -71,6 +71,6 @@ public class DiagnosticReport_replacesBuilder {
 
   public DiagnosticReport_replaces build() {
     return new DiagnosticReport_replaces(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -92,9 +92,9 @@ public class MoneyBuilder {
 
   public Money build() {
     return new Money(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(value),
-        (Option) OptionConverters.toScala(currency),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(value),
+        OptionConverters.toScala(currency),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

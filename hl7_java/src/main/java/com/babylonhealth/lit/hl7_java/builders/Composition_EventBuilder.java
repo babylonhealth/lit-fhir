@@ -145,9 +145,9 @@ public class Composition_EventBuilder {
 
   public Composition.Event build() {
     return new Composition.Event(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(period),
         detail.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

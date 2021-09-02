@@ -71,6 +71,6 @@ public class Capabilitystatement_expectationBuilder {
 
   public Capabilitystatement_expectation build() {
     return new Capabilitystatement_expectation(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

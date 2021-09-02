@@ -71,6 +71,6 @@ public class Structuredefinition_xml_no_orderBuilder {
 
   public Structuredefinition_xml_no_order build() {
     return new Structuredefinition_xml_no_order(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

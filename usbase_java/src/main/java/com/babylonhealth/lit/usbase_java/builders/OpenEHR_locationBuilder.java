@@ -70,7 +70,6 @@ public class OpenEHR_locationBuilder {
   }
 
   public OpenEHR_location build() {
-    return new OpenEHR_location(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new OpenEHR_location(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

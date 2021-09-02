@@ -102,7 +102,7 @@ public class ExtensionBuilder {
 
   public Extension build() {
     return new Extension(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         url,
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),

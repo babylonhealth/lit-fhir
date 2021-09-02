@@ -70,7 +70,6 @@ public class Codesystem_labelBuilder {
   }
 
   public Codesystem_label build() {
-    return new Codesystem_label(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Codesystem_label(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

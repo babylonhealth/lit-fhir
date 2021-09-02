@@ -242,12 +242,12 @@ public class ImmunizationRecommendation_RecommendationBuilder {
 
   public ImmunizationRecommendation.Recommendation build() {
     return new ImmunizationRecommendation.Recommendation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(series),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(series),
         extension.stream().collect(new LitSeqJCollector<>()),
         vaccineCode.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
-        (Option) OptionConverters.toScala(targetDisease),
+        OptionConverters.toScala(description),
+        OptionConverters.toScala(targetDisease),
         (Option) OptionConverters.toScala(doseNumber),
         forecastStatus,
         forecastReason.stream().collect(new LitSeqJCollector<>()),

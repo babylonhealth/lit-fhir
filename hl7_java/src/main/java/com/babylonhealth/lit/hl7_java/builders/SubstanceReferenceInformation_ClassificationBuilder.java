@@ -160,12 +160,12 @@ public class SubstanceReferenceInformation_ClassificationBuilder {
 
   public SubstanceReferenceInformation.Classification build() {
     return new SubstanceReferenceInformation.Classification(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(domain),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(domain),
         source.stream().collect(new LitSeqJCollector<>()),
         subtype.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(classification),
+        OptionConverters.toScala(classification),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -179,15 +179,15 @@ public class Patient_ContactBuilder {
 
   public Patient.Contact build() {
     return new Patient.Contact(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
-        (Option) OptionConverters.toScala(gender),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
+        OptionConverters.toScala(gender),
+        OptionConverters.toScala(period),
         telecom.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(address),
+        OptionConverters.toScala(address),
         extension.stream().collect(new LitSeqJCollector<>()),
         relationship.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(organization),
+        OptionConverters.toScala(organization),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -71,6 +71,6 @@ public class Allergyintolerance_certaintyBuilder {
 
   public Allergyintolerance_certainty build() {
     return new Allergyintolerance_certainty(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

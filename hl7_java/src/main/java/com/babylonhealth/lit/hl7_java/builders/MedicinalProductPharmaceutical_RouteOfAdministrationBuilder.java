@@ -179,15 +179,15 @@ public class MedicinalProductPharmaceutical_RouteOfAdministrationBuilder {
 
   public MedicinalProductPharmaceutical.RouteOfAdministration build() {
     return new MedicinalProductPharmaceutical.RouteOfAdministration(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(firstDose),
-        (Option) OptionConverters.toScala(maxSingleDose),
-        (Option) OptionConverters.toScala(maxDosePerDay),
+        OptionConverters.toScala(firstDose),
+        OptionConverters.toScala(maxSingleDose),
+        OptionConverters.toScala(maxDosePerDay),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(maxTreatmentPeriod),
-        (Option) OptionConverters.toScala(maxDosePerTreatmentPeriod),
+        OptionConverters.toScala(maxTreatmentPeriod),
+        OptionConverters.toScala(maxDosePerTreatmentPeriod),
         targetSpecies.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

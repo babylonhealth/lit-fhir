@@ -360,13 +360,13 @@ public class Us_core_practitionerroleBuilder {
 
   public Us_core_practitionerrole build() {
     return new Us_core_practitionerrole(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         code.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(active.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(period),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(active.map(x -> (Object) x)),
+        OptionConverters.toScala(period),
+        OptionConverters.toScala(language),
         location.stream().collect(new LitSeqJCollector<>()),
         endpoint.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
@@ -375,11 +375,11 @@ public class Us_core_practitionerroleBuilder {
         identifier.stream().collect(new LitSeqJCollector<>()),
         practitioner,
         organization,
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         healthcareService.stream().collect(new LitSeqJCollector<>()),
         telecom.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(availabilityExceptions),
+        OptionConverters.toScala(availabilityExceptions),
         notAvailable.stream().collect(new LitSeqJCollector<>()),
         availableTime.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -171,13 +171,13 @@ public class EffectEvidenceSynthesis_EffectEstimateBuilder {
 
   public EffectEvidenceSynthesis.EffectEstimate build() {
     return new EffectEvidenceSynthesis.EffectEstimate(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(value),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
-        (Option) OptionConverters.toScala(variantState),
-        (Option) OptionConverters.toScala(unitOfMeasure),
+        OptionConverters.toScala(description),
+        OptionConverters.toScala(variantState),
+        OptionConverters.toScala(unitOfMeasure),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         precisionEstimate.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

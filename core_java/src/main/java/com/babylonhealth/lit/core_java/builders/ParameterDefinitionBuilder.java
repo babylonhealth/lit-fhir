@@ -136,15 +136,15 @@ public class ParameterDefinitionBuilder {
 
   public ParameterDefinition build() {
     return new ParameterDefinition(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         use,
-        (Option) OptionConverters.toScala(min.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(max),
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(min.map(x -> (Object) x)),
+        OptionConverters.toScala(max),
+        OptionConverters.toScala(name),
         _type,
-        (Option) OptionConverters.toScala(profile),
+        OptionConverters.toScala(profile),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(documentation),
         LitUtils.emptyMetaElMap());
   }
 }

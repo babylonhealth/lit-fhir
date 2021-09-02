@@ -114,7 +114,7 @@ public class BackboneElementBuilder {
 
   public BackboneElement build() {
     return new BackboneElement(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

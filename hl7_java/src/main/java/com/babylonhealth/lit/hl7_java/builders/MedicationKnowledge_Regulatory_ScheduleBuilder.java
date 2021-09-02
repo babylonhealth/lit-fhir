@@ -127,7 +127,7 @@ public class MedicationKnowledge_Regulatory_ScheduleBuilder {
 
   public MedicationKnowledge$Regulatory$Schedule build() {
     return new MedicationKnowledge$Regulatory$Schedule(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         schedule,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

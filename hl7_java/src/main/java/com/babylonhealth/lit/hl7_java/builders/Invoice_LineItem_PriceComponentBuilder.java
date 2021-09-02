@@ -145,11 +145,11 @@ public class Invoice_LineItem_PriceComponentBuilder {
 
   public Invoice$LineItem$PriceComponent build() {
     return new Invoice$LineItem$PriceComponent(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(factor),
-        (Option) OptionConverters.toScala(amount),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(factor),
+        OptionConverters.toScala(amount),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -71,6 +71,6 @@ public class Specimen_specialHandlingBuilder {
 
   public Specimen_specialHandling build() {
     return new Specimen_specialHandling(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

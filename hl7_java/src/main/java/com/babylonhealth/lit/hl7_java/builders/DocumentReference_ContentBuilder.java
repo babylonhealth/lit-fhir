@@ -131,8 +131,8 @@ public class DocumentReference_ContentBuilder {
 
   public DocumentReference.Content build() {
     return new DocumentReference.Content(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(format),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(format),
         extension.stream().collect(new LitSeqJCollector<>()),
         attachment,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

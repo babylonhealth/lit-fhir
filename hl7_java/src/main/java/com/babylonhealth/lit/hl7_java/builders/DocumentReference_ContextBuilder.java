@@ -177,16 +177,16 @@ public class DocumentReference_ContextBuilder {
 
   public DocumentReference.Context build() {
     return new DocumentReference.Context(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         event.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(period),
         related.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         encounter.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(facilityType),
-        (Option) OptionConverters.toScala(practiceSetting),
+        OptionConverters.toScala(facilityType),
+        OptionConverters.toScala(practiceSetting),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(sourcePatientInfo),
+        OptionConverters.toScala(sourcePatientInfo),
         LitUtils.emptyMetaElMap());
   }
 }

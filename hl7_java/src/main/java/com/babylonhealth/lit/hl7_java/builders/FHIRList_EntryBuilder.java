@@ -142,11 +142,11 @@ public class FHIRList_EntryBuilder {
 
   public FHIRList.Entry build() {
     return new FHIRList.Entry(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(flag),
-        (Option) OptionConverters.toScala(date),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(flag),
+        OptionConverters.toScala(date),
         item,
-        (Option) OptionConverters.toScala(deleted.map(x -> (Object) x)),
+        OptionConverters.toScala(deleted.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

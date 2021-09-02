@@ -133,8 +133,8 @@ public class MedicationKnowledge_Regulatory_MaxDispenseBuilder {
 
   public MedicationKnowledge$Regulatory$MaxDispense build() {
     return new MedicationKnowledge$Regulatory$MaxDispense(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(period),
         quantity,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

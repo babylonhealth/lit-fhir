@@ -152,7 +152,7 @@ public class ClaimResponse_ItemBuilder {
 
   public ClaimResponse.Item build() {
     return new ClaimResponse.Item(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         noteNumber.stream()
             .map(x -> (Object) x)

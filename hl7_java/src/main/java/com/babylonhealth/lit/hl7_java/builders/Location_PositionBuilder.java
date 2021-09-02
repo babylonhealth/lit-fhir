@@ -133,9 +133,9 @@ public class Location_PositionBuilder {
 
   public Location.Position build() {
     return new Location.Position(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         latitude,
-        (Option) OptionConverters.toScala(altitude),
+        OptionConverters.toScala(altitude),
         extension.stream().collect(new LitSeqJCollector<>()),
         longitude,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

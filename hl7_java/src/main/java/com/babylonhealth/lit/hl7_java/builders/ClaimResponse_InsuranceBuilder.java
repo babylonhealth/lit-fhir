@@ -144,14 +144,14 @@ public class ClaimResponse_InsuranceBuilder {
 
   public ClaimResponse.Insurance build() {
     return new ClaimResponse.Insurance(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         focal,
         sequence,
         coverage,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(claimResponse),
+        OptionConverters.toScala(claimResponse),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(businessArrangement),
+        OptionConverters.toScala(businessArrangement),
         LitUtils.emptyMetaElMap());
   }
 }

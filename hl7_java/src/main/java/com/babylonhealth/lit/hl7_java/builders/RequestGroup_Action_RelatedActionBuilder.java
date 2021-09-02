@@ -136,7 +136,7 @@ public class RequestGroup_Action_RelatedActionBuilder {
 
   public RequestGroup$Action$RelatedAction build() {
     return new RequestGroup$Action$RelatedAction(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         actionId,
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(offset),

@@ -190,18 +190,18 @@ public class ExampleScenario_Process_Step_OperationBuilder {
 
   public ExampleScenario$Process$Step$Operation build() {
     return new ExampleScenario$Process$Step$Operation(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(name),
         number,
-        (Option) OptionConverters.toScala(request),
-        (Option) OptionConverters.toScala(receiver),
-        (Option) OptionConverters.toScala(response),
+        OptionConverters.toScala(request),
+        OptionConverters.toScala(receiver),
+        OptionConverters.toScala(response),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(initiator),
-        (Option) OptionConverters.toScala(description),
-        (Option) OptionConverters.toScala(receiverActive.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(initiatorActive.map(x -> (Object) x)),
+        OptionConverters.toScala(initiator),
+        OptionConverters.toScala(description),
+        OptionConverters.toScala(receiverActive.map(x -> (Object) x)),
+        OptionConverters.toScala(initiatorActive.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

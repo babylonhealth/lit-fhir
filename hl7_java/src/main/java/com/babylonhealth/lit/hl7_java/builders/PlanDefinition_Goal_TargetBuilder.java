@@ -139,9 +139,9 @@ public class PlanDefinition_Goal_TargetBuilder {
 
   public PlanDefinition$Goal$Target build() {
     return new PlanDefinition$Goal$Target(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(due),
-        (Option) OptionConverters.toScala(measure),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(due),
+        OptionConverters.toScala(measure),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(detail),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

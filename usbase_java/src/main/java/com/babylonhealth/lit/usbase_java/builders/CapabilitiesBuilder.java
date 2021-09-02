@@ -70,7 +70,6 @@ public class CapabilitiesBuilder {
   }
 
   public Capabilities build() {
-    return new Capabilities(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Capabilities(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Questionnaire_signatureRequiredBuilder {
 
   public Questionnaire_signatureRequired build() {
     return new Questionnaire_signatureRequired(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

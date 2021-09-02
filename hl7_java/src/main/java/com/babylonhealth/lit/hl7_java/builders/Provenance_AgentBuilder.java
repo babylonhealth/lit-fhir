@@ -147,12 +147,12 @@ public class Provenance_AgentBuilder {
 
   public Provenance.Agent build() {
     return new Provenance.Agent(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         who,
-        (Option) OptionConverters.toScala(_type),
+        OptionConverters.toScala(_type),
         role.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(onBehalfOf),
+        OptionConverters.toScala(onBehalfOf),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

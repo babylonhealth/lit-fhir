@@ -71,6 +71,6 @@ public class Valueset_workflowStatusBuilder {
 
   public Valueset_workflowStatus build() {
     return new Valueset_workflowStatus(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

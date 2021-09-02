@@ -71,6 +71,6 @@ public class Iso21090_ADXP_buildingNumberSuffixBuilder {
 
   public Iso21090_ADXP_buildingNumberSuffix build() {
     return new Iso21090_ADXP_buildingNumberSuffix(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

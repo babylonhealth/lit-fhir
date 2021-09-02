@@ -70,7 +70,6 @@ public class Procedure_causedByBuilder {
   }
 
   public Procedure_causedBy build() {
-    return new Procedure_causedBy(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Procedure_causedBy(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

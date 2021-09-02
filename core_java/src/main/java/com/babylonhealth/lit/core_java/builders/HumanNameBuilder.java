@@ -155,14 +155,14 @@ public class HumanNameBuilder {
 
   public HumanName build() {
     return new HumanName(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(use),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(use),
+        OptionConverters.toScala(text),
         given.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(family),
+        OptionConverters.toScala(family),
         prefix.stream().collect(new LitSeqJCollector<>()),
         suffix.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(period),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

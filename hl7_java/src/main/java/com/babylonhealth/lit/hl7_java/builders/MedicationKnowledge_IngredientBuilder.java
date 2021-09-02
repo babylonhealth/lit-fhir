@@ -138,10 +138,10 @@ public class MedicationKnowledge_IngredientBuilder {
 
   public MedicationKnowledge.Ingredient build() {
     return new MedicationKnowledge.Ingredient(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         item,
-        (Option) OptionConverters.toScala(isActive.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(strength),
+        OptionConverters.toScala(isActive.map(x -> (Object) x)),
+        OptionConverters.toScala(strength),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

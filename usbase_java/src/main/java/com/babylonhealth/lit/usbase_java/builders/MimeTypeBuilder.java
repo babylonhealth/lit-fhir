@@ -70,6 +70,6 @@ public class MimeTypeBuilder {
   }
 
   public MimeType build() {
-    return new MimeType((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new MimeType(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

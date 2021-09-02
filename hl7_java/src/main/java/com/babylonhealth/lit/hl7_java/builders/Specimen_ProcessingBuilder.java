@@ -146,12 +146,12 @@ public class Specimen_ProcessingBuilder {
 
   public Specimen.Processing build() {
     return new Specimen.Processing(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         (Option) OptionConverters.toScala(time),
         additive.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(procedure),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(procedure),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

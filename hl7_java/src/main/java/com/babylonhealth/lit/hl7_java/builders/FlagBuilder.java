@@ -253,21 +253,21 @@ public class FlagBuilder {
 
   public Flag build() {
     return new Flag(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         code,
         status,
-        (Option) OptionConverters.toScala(period),
-        (Option) OptionConverters.toScala(author),
+        OptionConverters.toScala(period),
+        OptionConverters.toScala(author),
         subject,
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(encounter),
+        OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

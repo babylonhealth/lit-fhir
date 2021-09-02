@@ -71,6 +71,6 @@ public class Encounter_modeOfArrivalBuilder {
 
   public Encounter_modeOfArrival build() {
     return new Encounter_modeOfArrival(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

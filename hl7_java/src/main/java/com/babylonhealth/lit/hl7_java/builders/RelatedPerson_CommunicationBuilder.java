@@ -132,10 +132,10 @@ public class RelatedPerson_CommunicationBuilder {
 
   public RelatedPerson.Communication build() {
     return new RelatedPerson.Communication(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         language,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(preferred.map(x -> (Object) x)),
+        OptionConverters.toScala(preferred.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

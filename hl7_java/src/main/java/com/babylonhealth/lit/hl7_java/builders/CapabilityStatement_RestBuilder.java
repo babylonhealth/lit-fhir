@@ -203,15 +203,15 @@ public class CapabilityStatement_RestBuilder {
 
   public CapabilityStatement.Rest build() {
     return new CapabilityStatement.Rest(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         mode,
         extension.stream().collect(new LitSeqJCollector<>()),
         operation.stream().collect(new LitSeqJCollector<>()),
         searchParam.stream().collect(new LitSeqJCollector<>()),
         compartment.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(security),
+        OptionConverters.toScala(security),
         interaction.stream().collect(new LitSeqJCollector<>()),
         resource.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

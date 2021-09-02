@@ -137,8 +137,8 @@ public class OperationDefinition_OverloadBuilder {
 
   public OperationDefinition.Overload build() {
     return new OperationDefinition.Overload(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(comment),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(comment),
         extension.stream().collect(new LitSeqJCollector<>()),
         parameterName.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

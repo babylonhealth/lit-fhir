@@ -70,7 +70,6 @@ public class Iso21090_ADXP_unitIDBuilder {
   }
 
   public Iso21090_ADXP_unitID build() {
-    return new Iso21090_ADXP_unitID(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Iso21090_ADXP_unitID(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

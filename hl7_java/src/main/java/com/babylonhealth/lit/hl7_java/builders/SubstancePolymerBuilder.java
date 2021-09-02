@@ -240,16 +240,16 @@ public class SubstancePolymerBuilder {
 
   public SubstancePolymer build() {
     return new SubstancePolymer(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(_class),
-        (Option) OptionConverters.toScala(language),
-        (Option) OptionConverters.toScala(geometry),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(_class),
+        OptionConverters.toScala(language),
+        OptionConverters.toScala(geometry),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modification.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         copolymerConnectivity.stream().collect(new LitSeqJCollector<>()),
         monomerSet.stream().collect(new LitSeqJCollector<>()),

@@ -74,7 +74,7 @@ public class Codesystem_usageBuilder {
 
   public Codesystem_usage build() {
     return new Codesystem_usage(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

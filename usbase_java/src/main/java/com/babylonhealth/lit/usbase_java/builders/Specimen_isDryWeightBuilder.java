@@ -70,7 +70,6 @@ public class Specimen_isDryWeightBuilder {
   }
 
   public Specimen_isDryWeight build() {
-    return new Specimen_isDryWeight(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Specimen_isDryWeight(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

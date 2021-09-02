@@ -70,7 +70,6 @@ public class Contactpoint_countryBuilder {
   }
 
   public Contactpoint_country build() {
-    return new Contactpoint_country(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Contactpoint_country(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

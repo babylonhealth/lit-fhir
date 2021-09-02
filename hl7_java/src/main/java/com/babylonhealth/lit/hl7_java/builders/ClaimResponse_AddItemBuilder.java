@@ -278,16 +278,16 @@ public class ClaimResponse_AddItemBuilder {
 
   public ClaimResponse.AddItem build() {
     return new ClaimResponse.AddItem(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(net),
-        (Option) OptionConverters.toScala(factor),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(net),
+        OptionConverters.toScala(factor),
         subSite.stream().collect(new LitSeqJCollector<>()),
         provider.stream().collect(new LitSeqJCollector<>()),
         modifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(quantity),
-        (Option) OptionConverters.toScala(bodySite),
+        OptionConverters.toScala(quantity),
+        OptionConverters.toScala(bodySite),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(unitPrice),
+        OptionConverters.toScala(unitPrice),
         noteNumber.stream()
             .map(x -> (Object) x)
             .collect(Collectors.toList())

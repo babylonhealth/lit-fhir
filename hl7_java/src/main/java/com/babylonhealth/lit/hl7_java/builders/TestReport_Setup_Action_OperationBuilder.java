@@ -138,10 +138,10 @@ public class TestReport_Setup_Action_OperationBuilder {
 
   public TestReport$Setup$Action$Operation build() {
     return new TestReport$Setup$Action$Operation(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         result,
-        (Option) OptionConverters.toScala(detail),
-        (Option) OptionConverters.toScala(message),
+        OptionConverters.toScala(detail),
+        OptionConverters.toScala(message),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -70,7 +70,6 @@ public class Patient_religionBuilder {
   }
 
   public Patient_religion build() {
-    return new Patient_religion(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Patient_religion(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Procedure_approachBodyStructureBuilder {
 
   public Procedure_approachBodyStructure build() {
     return new Procedure_approachBodyStructure(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -184,13 +184,13 @@ public class VerificationResult_PrimarySourceBuilder {
 
   public VerificationResult.PrimarySource build() {
     return new VerificationResult.PrimarySource(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(who),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(who),
         _type.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(validationDate),
-        (Option) OptionConverters.toScala(canPushUpdates),
-        (Option) OptionConverters.toScala(validationStatus),
+        OptionConverters.toScala(validationDate),
+        OptionConverters.toScala(canPushUpdates),
+        OptionConverters.toScala(validationStatus),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         pushTypeAvailable.stream().collect(new LitSeqJCollector<>()),
         communicationMethod.stream().collect(new LitSeqJCollector<>()),

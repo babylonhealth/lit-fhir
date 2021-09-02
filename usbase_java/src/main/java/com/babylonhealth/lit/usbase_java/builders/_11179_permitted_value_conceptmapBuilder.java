@@ -71,6 +71,6 @@ public class _11179_permitted_value_conceptmapBuilder {
 
   public _11179_permitted_value_conceptmap build() {
     return new _11179_permitted_value_conceptmap(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

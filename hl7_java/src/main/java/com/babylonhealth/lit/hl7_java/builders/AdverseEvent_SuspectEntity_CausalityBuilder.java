@@ -146,13 +146,13 @@ public class AdverseEvent_SuspectEntity_CausalityBuilder {
 
   public AdverseEvent$SuspectEntity$Causality build() {
     return new AdverseEvent$SuspectEntity$Causality(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(author),
-        (Option) OptionConverters.toScala(method),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(author),
+        OptionConverters.toScala(method),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(assessment),
+        OptionConverters.toScala(assessment),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(productRelatedness),
+        OptionConverters.toScala(productRelatedness),
         LitUtils.emptyMetaElMap());
   }
 }

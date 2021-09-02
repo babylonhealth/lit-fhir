@@ -132,9 +132,9 @@ public class MedicationKnowledge_MonitoringProgramBuilder {
 
   public MedicationKnowledge.MonitoringProgram build() {
     return new MedicationKnowledge.MonitoringProgram(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(name),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

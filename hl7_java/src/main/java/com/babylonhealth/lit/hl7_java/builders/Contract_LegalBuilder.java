@@ -124,7 +124,7 @@ public class Contract_LegalBuilder {
 
   public Contract.Legal build() {
     return new Contract.Legal(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         content,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

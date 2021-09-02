@@ -157,14 +157,14 @@ public class SubstanceSpecification_Structure_IsotopeBuilder {
 
   public SubstanceSpecification$Structure$Isotope build() {
     return new SubstanceSpecification$Structure$Isotope(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
-        (Option) OptionConverters.toScala(halfLife),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
+        OptionConverters.toScala(halfLife),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(identifier),
-        (Option) OptionConverters.toScala(substitution),
+        OptionConverters.toScala(identifier),
+        OptionConverters.toScala(substitution),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(molecularWeight),
+        OptionConverters.toScala(molecularWeight),
         LitUtils.emptyMetaElMap());
   }
 }

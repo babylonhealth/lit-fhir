@@ -248,17 +248,17 @@ public class ExplanationOfBenefit_Item_DetailBuilder {
 
   public ExplanationOfBenefit$Item$Detail build() {
     return new ExplanationOfBenefit$Item$Detail(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(net),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(net),
         udi.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(factor),
-        (Option) OptionConverters.toScala(revenue),
+        OptionConverters.toScala(factor),
+        OptionConverters.toScala(revenue),
         sequence,
-        (Option) OptionConverters.toScala(category),
+        OptionConverters.toScala(category),
         modifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(quantity),
+        OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(unitPrice),
+        OptionConverters.toScala(unitPrice),
         noteNumber.stream()
             .map(x -> (Object) x)
             .collect(Collectors.toList())

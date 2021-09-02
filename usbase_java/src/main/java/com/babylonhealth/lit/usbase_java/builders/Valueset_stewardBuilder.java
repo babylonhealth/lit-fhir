@@ -70,7 +70,6 @@ public class Valueset_stewardBuilder {
   }
 
   public Valueset_steward build() {
-    return new Valueset_steward(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_steward(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

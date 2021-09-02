@@ -121,13 +121,13 @@ public class BinaryBuilder {
 
   public Binary build() {
     return new Binary(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(data),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(data),
+        OptionConverters.toScala(language),
         contentType,
-        (Option) OptionConverters.toScala(implicitRules),
-        (Option) OptionConverters.toScala(securityContext),
+        OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(securityContext),
         LitUtils.emptyMetaElMap());
   }
 }

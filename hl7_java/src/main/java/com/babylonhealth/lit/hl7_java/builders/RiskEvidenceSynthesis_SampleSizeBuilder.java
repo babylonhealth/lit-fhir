@@ -142,12 +142,12 @@ public class RiskEvidenceSynthesis_SampleSizeBuilder {
 
   public RiskEvidenceSynthesis.SampleSize build() {
     return new RiskEvidenceSynthesis.SampleSize(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
-        (Option) OptionConverters.toScala(numberOfStudies.map(x -> (Object) x)),
+        OptionConverters.toScala(description),
+        OptionConverters.toScala(numberOfStudies.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(numberOfParticipants.map(x -> (Object) x)),
+        OptionConverters.toScala(numberOfParticipants.map(x -> (Object) x)),
         LitUtils.emptyMetaElMap());
   }
 }

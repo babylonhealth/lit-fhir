@@ -262,21 +262,21 @@ public class Us_core_medicationBuilder {
 
   public Us_core_medication build() {
     return new Us_core_medication(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
         code,
-        (Option) OptionConverters.toScala(form),
-        (Option) OptionConverters.toScala(status),
-        (Option) OptionConverters.toScala(amount),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(form),
+        OptionConverters.toScala(status),
+        OptionConverters.toScala(amount),
+        OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(manufacturer),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(manufacturer),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(batch),
+        OptionConverters.toScala(batch),
         ingredient.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -70,7 +70,6 @@ public class NarrativeLinkBuilder {
   }
 
   public NarrativeLink build() {
-    return new NarrativeLink(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new NarrativeLink(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

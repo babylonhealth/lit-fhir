@@ -124,7 +124,7 @@ public class Contract_FriendlyBuilder {
 
   public Contract.Friendly build() {
     return new Contract.Friendly(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         content,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

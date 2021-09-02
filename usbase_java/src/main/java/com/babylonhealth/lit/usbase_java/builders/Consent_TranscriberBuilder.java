@@ -70,7 +70,6 @@ public class Consent_TranscriberBuilder {
   }
 
   public Consent_Transcriber build() {
-    return new Consent_Transcriber(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Consent_Transcriber(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

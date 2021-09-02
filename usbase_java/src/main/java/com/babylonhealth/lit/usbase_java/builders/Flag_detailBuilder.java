@@ -70,6 +70,6 @@ public class Flag_detailBuilder {
   }
 
   public Flag_detail build() {
-    return new Flag_detail((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Flag_detail(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

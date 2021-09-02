@@ -131,7 +131,7 @@ public class MeasureReport_Group_Stratifier_Stratum_ComponentBuilder {
 
   public MeasureReport$Group$Stratifier$Stratum$Component build() {
     return new MeasureReport$Group$Stratifier$Stratum$Component(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         value,
         extension.stream().collect(new LitSeqJCollector<>()),

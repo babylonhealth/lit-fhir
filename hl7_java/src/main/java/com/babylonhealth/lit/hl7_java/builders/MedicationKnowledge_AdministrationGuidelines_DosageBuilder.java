@@ -131,7 +131,7 @@ public class MedicationKnowledge_AdministrationGuidelines_DosageBuilder {
 
   public MedicationKnowledge$AdministrationGuidelines$Dosage build() {
     return new MedicationKnowledge$AdministrationGuidelines$Dosage(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         dosage.stream().collect(new NonEmptyLitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),

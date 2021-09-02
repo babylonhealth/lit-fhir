@@ -139,7 +139,7 @@ public class Condition_EvidenceBuilder {
 
   public Condition.Evidence build() {
     return new Condition.Evidence(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code.stream().collect(new LitSeqJCollector<>()),
         detail.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),

@@ -70,7 +70,6 @@ public class Http_response_headerBuilder {
   }
 
   public Http_response_header build() {
-    return new Http_response_header(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Http_response_header(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

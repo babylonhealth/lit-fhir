@@ -71,6 +71,6 @@ public class Observation_timeOffsetBuilder {
 
   public Observation_timeOffset build() {
     return new Observation_timeOffset(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

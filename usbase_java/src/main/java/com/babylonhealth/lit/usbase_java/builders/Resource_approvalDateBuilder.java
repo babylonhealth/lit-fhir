@@ -71,6 +71,6 @@ public class Resource_approvalDateBuilder {
 
   public Resource_approvalDate build() {
     return new Resource_approvalDate(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

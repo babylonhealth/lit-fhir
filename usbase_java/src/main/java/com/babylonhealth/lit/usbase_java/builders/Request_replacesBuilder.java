@@ -70,7 +70,6 @@ public class Request_replacesBuilder {
   }
 
   public Request_replaces build() {
-    return new Request_replaces(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Request_replaces(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

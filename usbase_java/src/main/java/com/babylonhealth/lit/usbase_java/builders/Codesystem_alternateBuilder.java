@@ -74,7 +74,7 @@ public class Codesystem_alternateBuilder {
 
   public Codesystem_alternate build() {
     return new Codesystem_alternate(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

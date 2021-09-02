@@ -155,14 +155,14 @@ public class RiskAssessment_PredictionBuilder {
 
   public RiskAssessment.Prediction build() {
     return new RiskAssessment.Prediction(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(outcome),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(outcome),
         (Option) OptionConverters.toScala(when),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(rationale),
-        (Option) OptionConverters.toScala(relativeRisk),
+        OptionConverters.toScala(rationale),
+        OptionConverters.toScala(relativeRisk),
         (Option) OptionConverters.toScala(probability),
-        (Option) OptionConverters.toScala(qualitativeRisk),
+        OptionConverters.toScala(qualitativeRisk),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

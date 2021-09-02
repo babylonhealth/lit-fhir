@@ -71,6 +71,6 @@ public class Resource_pertainsToGoalBuilder {
 
   public Resource_pertainsToGoal build() {
     return new Resource_pertainsToGoal(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

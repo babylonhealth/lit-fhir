@@ -134,7 +134,7 @@ public class Questionnaire_Item_EnableWhenBuilder {
 
   public Questionnaire$Item$EnableWhen build() {
     return new Questionnaire$Item$EnableWhen(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         question,
         operator,
         extension.stream().collect(new LitSeqJCollector<>()),

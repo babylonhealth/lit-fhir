@@ -71,6 +71,6 @@ public class Iso21090_ADXP_deliveryAddressLineBuilder {
 
   public Iso21090_ADXP_deliveryAddressLine build() {
     return new Iso21090_ADXP_deliveryAddressLine(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

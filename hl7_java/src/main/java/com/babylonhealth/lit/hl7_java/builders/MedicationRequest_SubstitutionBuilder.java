@@ -132,8 +132,8 @@ public class MedicationRequest_SubstitutionBuilder {
 
   public MedicationRequest.Substitution build() {
     return new MedicationRequest.Substitution(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(reason),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(reason),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Choice) allowed,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

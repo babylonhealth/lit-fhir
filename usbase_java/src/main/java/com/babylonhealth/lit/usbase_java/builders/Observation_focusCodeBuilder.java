@@ -71,6 +71,6 @@ public class Observation_focusCodeBuilder {
 
   public Observation_focusCode build() {
     return new Observation_focusCode(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

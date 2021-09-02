@@ -160,14 +160,14 @@ public class Specimen_ContainerBuilder {
 
   public Specimen.Container build() {
     return new Specimen.Container(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(_type),
-        (Option) OptionConverters.toScala(capacity),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(_type),
+        OptionConverters.toScala(capacity),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         (Option) OptionConverters.toScala(additive),
-        (Option) OptionConverters.toScala(specimenQuantity),
+        OptionConverters.toScala(specimenQuantity),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

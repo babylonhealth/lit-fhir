@@ -71,6 +71,6 @@ public class Structuredefinition_fhir_typeBuilder {
 
   public Structuredefinition_fhir_type build() {
     return new Structuredefinition_fhir_type(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

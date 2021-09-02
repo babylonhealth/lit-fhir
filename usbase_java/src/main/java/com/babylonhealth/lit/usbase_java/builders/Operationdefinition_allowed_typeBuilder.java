@@ -71,6 +71,6 @@ public class Operationdefinition_allowed_typeBuilder {
 
   public Operationdefinition_allowed_type build() {
     return new Operationdefinition_allowed_type(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

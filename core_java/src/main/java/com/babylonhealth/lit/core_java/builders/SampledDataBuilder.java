@@ -133,14 +133,14 @@ public class SampledDataBuilder {
 
   public SampledData build() {
     return new SampledData(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(data),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(data),
         origin,
         period,
-        (Option) OptionConverters.toScala(factor),
+        OptionConverters.toScala(factor),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(lowerLimit),
-        (Option) OptionConverters.toScala(upperLimit),
+        OptionConverters.toScala(lowerLimit),
+        OptionConverters.toScala(upperLimit),
         dimensions,
         LitUtils.emptyMetaElMap());
   }

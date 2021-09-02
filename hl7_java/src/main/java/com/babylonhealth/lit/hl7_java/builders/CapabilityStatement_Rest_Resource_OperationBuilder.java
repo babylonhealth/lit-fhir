@@ -139,11 +139,11 @@ public class CapabilityStatement_Rest_Resource_OperationBuilder {
 
   public CapabilityStatement$Rest$Resource$Operation build() {
     return new CapabilityStatement$Rest$Resource$Operation(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
         extension.stream().collect(new LitSeqJCollector<>()),
         definition,
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

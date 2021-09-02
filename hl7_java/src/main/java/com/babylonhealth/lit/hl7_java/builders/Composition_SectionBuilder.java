@@ -204,18 +204,18 @@ public class Composition_SectionBuilder {
 
   public Composition.Section build() {
     return new Composition.Section(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(mode),
-        (Option) OptionConverters.toScala(title),
-        (Option) OptionConverters.toScala(focus),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(mode),
+        OptionConverters.toScala(title),
+        OptionConverters.toScala(focus),
         entry.stream().collect(new LitSeqJCollector<>()),
         author.stream().collect(new LitSeqJCollector<>()),
         section.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(orderedBy),
-        (Option) OptionConverters.toScala(emptyReason),
+        OptionConverters.toScala(orderedBy),
+        OptionConverters.toScala(emptyReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

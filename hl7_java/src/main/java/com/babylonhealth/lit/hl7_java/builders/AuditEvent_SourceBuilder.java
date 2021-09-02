@@ -147,8 +147,8 @@ public class AuditEvent_SourceBuilder {
 
   public AuditEvent.Source build() {
     return new AuditEvent.Source(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(site),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(site),
         _type.stream().collect(new LitSeqJCollector<>()),
         observer,
         extension.stream().collect(new LitSeqJCollector<>()),

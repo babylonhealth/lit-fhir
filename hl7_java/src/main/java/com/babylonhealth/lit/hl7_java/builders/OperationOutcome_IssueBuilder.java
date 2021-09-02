@@ -163,14 +163,14 @@ public class OperationOutcome_IssueBuilder {
 
   public OperationOutcome.Issue build() {
     return new OperationOutcome.Issue(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
-        (Option) OptionConverters.toScala(details),
+        OptionConverters.toScala(details),
         severity,
         location.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         expression.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(diagnostics),
+        OptionConverters.toScala(diagnostics),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

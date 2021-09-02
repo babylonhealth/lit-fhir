@@ -139,9 +139,9 @@ public class SubstancePolymer_MonomerSetBuilder {
 
   public SubstancePolymer.MonomerSet build() {
     return new SubstancePolymer.MonomerSet(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(ratioType),
+        OptionConverters.toScala(ratioType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         startingMaterial.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

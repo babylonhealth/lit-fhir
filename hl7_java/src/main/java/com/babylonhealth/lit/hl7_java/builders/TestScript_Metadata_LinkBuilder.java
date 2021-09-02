@@ -139,10 +139,10 @@ public class TestScript_Metadata_LinkBuilder {
 
   public TestScript$Metadata$Link build() {
     return new TestScript$Metadata$Link(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         url,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

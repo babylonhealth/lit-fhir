@@ -71,6 +71,6 @@ public class Structuredefinition_security_categoryBuilder {
 
   public Structuredefinition_security_category build() {
     return new Structuredefinition_security_category(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

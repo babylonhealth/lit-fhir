@@ -145,9 +145,9 @@ public class ImplementationGuide_Manifest_PageBuilder {
 
   public ImplementationGuide$Manifest$Page build() {
     return new ImplementationGuide$Manifest$Page(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
-        (Option) OptionConverters.toScala(title),
+        OptionConverters.toScala(title),
         anchor.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

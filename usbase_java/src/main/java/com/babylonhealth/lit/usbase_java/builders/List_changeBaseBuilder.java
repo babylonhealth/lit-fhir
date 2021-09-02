@@ -70,7 +70,6 @@ public class List_changeBaseBuilder {
   }
 
   public List_changeBase build() {
-    return new List_changeBase(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new List_changeBase(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

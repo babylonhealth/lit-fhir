@@ -156,14 +156,14 @@ public class MolecularSequence_RepositoryBuilder {
 
   public MolecularSequence.Repository build() {
     return new MolecularSequence.Repository(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(url),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(url),
         _type,
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(name),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(datasetId),
-        (Option) OptionConverters.toScala(readsetId),
-        (Option) OptionConverters.toScala(variantsetId),
+        OptionConverters.toScala(datasetId),
+        OptionConverters.toScala(readsetId),
+        OptionConverters.toScala(variantsetId),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

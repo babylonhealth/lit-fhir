@@ -126,15 +126,15 @@ public class ElementDefinition_ConstraintBuilder {
 
   public ElementDefinition.Constraint build() {
     return new ElementDefinition.Constraint(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         key,
         human,
-        (Option) OptionConverters.toScala(xpath),
-        (Option) OptionConverters.toScala(source),
+        OptionConverters.toScala(xpath),
+        OptionConverters.toScala(source),
         severity,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(expression),
-        (Option) OptionConverters.toScala(requirements),
+        OptionConverters.toScala(expression),
+        OptionConverters.toScala(requirements),
         LitUtils.emptyMetaElMap());
   }
 }

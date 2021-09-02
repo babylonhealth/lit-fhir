@@ -71,6 +71,6 @@ public class Resource_effectivePeriodBuilder {
 
   public Resource_effectivePeriod build() {
     return new Resource_effectivePeriod(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

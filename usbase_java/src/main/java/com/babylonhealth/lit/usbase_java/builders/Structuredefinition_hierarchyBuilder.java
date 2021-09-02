@@ -71,6 +71,6 @@ public class Structuredefinition_hierarchyBuilder {
 
   public Structuredefinition_hierarchy build() {
     return new Structuredefinition_hierarchy(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

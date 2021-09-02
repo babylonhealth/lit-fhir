@@ -70,6 +70,6 @@ public class BodySiteBuilder {
   }
 
   public BodySite build() {
-    return new BodySite((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new BodySite(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Elementdefinition_bindingNameBuilder {
 
   public Elementdefinition_bindingName build() {
     return new Elementdefinition_bindingName(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

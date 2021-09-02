@@ -87,7 +87,7 @@ public class Observation_geneticsVariantBuilder {
 
   public Observation_geneticsVariant build() {
     return new Observation_geneticsVariant(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

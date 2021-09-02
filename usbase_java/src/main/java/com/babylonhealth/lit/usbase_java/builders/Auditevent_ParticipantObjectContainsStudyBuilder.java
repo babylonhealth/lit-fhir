@@ -71,6 +71,6 @@ public class Auditevent_ParticipantObjectContainsStudyBuilder {
 
   public Auditevent_ParticipantObjectContainsStudy build() {
     return new Auditevent_ParticipantObjectContainsStudy(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

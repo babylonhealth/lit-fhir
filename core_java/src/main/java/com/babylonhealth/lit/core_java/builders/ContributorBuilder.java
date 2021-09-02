@@ -107,7 +107,7 @@ public class ContributorBuilder {
 
   public Contributor build() {
     return new Contributor(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         name,
         contact.stream().collect(new LitSeqJCollector<>()),

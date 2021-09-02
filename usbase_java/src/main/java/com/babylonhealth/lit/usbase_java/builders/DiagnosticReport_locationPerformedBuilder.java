@@ -71,6 +71,6 @@ public class DiagnosticReport_locationPerformedBuilder {
 
   public DiagnosticReport_locationPerformed build() {
     return new DiagnosticReport_locationPerformed(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

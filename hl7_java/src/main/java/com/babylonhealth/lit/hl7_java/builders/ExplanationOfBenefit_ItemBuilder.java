@@ -338,19 +338,19 @@ public class ExplanationOfBenefit_ItemBuilder {
 
   public ExplanationOfBenefit.Item build() {
     return new ExplanationOfBenefit.Item(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(net),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(net),
         udi.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(factor),
-        (Option) OptionConverters.toScala(revenue),
+        OptionConverters.toScala(factor),
+        OptionConverters.toScala(revenue),
         subSite.stream().collect(new LitSeqJCollector<>()),
         sequence,
-        (Option) OptionConverters.toScala(category),
+        OptionConverters.toScala(category),
         modifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(quantity),
-        (Option) OptionConverters.toScala(bodySite),
+        OptionConverters.toScala(quantity),
+        OptionConverters.toScala(bodySite),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(unitPrice),
+        OptionConverters.toScala(unitPrice),
         encounter.stream().collect(new LitSeqJCollector<>()),
         noteNumber.stream()
             .map(x -> (Object) x)

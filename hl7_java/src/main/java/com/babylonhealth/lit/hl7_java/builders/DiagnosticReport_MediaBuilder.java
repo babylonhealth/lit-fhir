@@ -131,9 +131,9 @@ public class DiagnosticReport_MediaBuilder {
 
   public DiagnosticReport.Media build() {
     return new DiagnosticReport.Media(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         link,
-        (Option) OptionConverters.toScala(comment),
+        OptionConverters.toScala(comment),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -70,6 +70,6 @@ public class Match_gradeBuilder {
   }
 
   public Match_grade build() {
-    return new Match_grade((Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Match_grade(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

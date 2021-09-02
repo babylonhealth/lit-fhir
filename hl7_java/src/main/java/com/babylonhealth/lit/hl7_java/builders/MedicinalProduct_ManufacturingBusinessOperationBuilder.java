@@ -168,15 +168,15 @@ public class MedicinalProduct_ManufacturingBusinessOperationBuilder {
 
   public MedicinalProduct.ManufacturingBusinessOperation build() {
     return new MedicinalProduct.ManufacturingBusinessOperation(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(regulator),
+        OptionConverters.toScala(regulator),
         manufacturer.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(operationType),
-        (Option) OptionConverters.toScala(effectiveDate),
+        OptionConverters.toScala(operationType),
+        OptionConverters.toScala(effectiveDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(confidentialityIndicator),
-        (Option) OptionConverters.toScala(authorisationReferenceNumber),
+        OptionConverters.toScala(confidentialityIndicator),
+        OptionConverters.toScala(authorisationReferenceNumber),
         LitUtils.emptyMetaElMap());
   }
 }

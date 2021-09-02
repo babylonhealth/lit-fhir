@@ -118,14 +118,14 @@ public class Bundle_Entry_RequestBuilder {
 
   public Bundle$Entry$Request build() {
     return new Bundle$Entry$Request(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         url,
         method,
-        (Option) OptionConverters.toScala(ifMatch),
+        OptionConverters.toScala(ifMatch),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(ifNoneMatch),
-        (Option) OptionConverters.toScala(ifNoneExist),
-        (Option) OptionConverters.toScala(ifModifiedSince),
+        OptionConverters.toScala(ifNoneMatch),
+        OptionConverters.toScala(ifNoneExist),
+        OptionConverters.toScala(ifModifiedSince),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

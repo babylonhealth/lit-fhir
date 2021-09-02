@@ -74,7 +74,7 @@ public class Cqf_relativeDateTimeBuilder {
 
   public Cqf_relativeDateTime build() {
     return new Cqf_relativeDateTime(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

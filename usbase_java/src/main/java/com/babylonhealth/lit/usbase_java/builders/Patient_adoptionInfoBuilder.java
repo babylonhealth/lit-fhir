@@ -70,7 +70,6 @@ public class Patient_adoptionInfoBuilder {
   }
 
   public Patient_adoptionInfo build() {
-    return new Patient_adoptionInfo(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Patient_adoptionInfo(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

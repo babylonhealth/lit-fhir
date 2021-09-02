@@ -183,14 +183,14 @@ public class ImplementationGuide_Definition_ResourceBuilder {
 
   public ImplementationGuide$Definition$Resource build() {
     return new ImplementationGuide$Definition$Resource(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(name),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(name),
         extension.stream().collect(new LitSeqJCollector<>()),
         reference,
         (Option) OptionConverters.toScala(example),
-        (Option) OptionConverters.toScala(groupingId),
+        OptionConverters.toScala(groupingId),
         fhirVersion.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

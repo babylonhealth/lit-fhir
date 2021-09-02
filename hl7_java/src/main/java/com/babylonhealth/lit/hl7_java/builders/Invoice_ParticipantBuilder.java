@@ -130,8 +130,8 @@ public class Invoice_ParticipantBuilder {
 
   public Invoice.Participant build() {
     return new Invoice.Participant(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(role),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(role),
         actor,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

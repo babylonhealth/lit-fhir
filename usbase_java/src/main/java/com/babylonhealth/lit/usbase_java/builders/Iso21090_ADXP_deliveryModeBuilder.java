@@ -71,6 +71,6 @@ public class Iso21090_ADXP_deliveryModeBuilder {
 
   public Iso21090_ADXP_deliveryMode build() {
     return new Iso21090_ADXP_deliveryMode(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

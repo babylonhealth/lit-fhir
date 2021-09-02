@@ -129,7 +129,7 @@ public class ActivityDefinition_DynamicValueBuilder {
 
   public ActivityDefinition.DynamicValue build() {
     return new ActivityDefinition.DynamicValue(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         path,
         extension.stream().collect(new LitSeqJCollector<>()),
         expression,

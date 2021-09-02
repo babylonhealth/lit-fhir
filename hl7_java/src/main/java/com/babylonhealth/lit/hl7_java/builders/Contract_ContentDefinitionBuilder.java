@@ -160,13 +160,13 @@ public class Contract_ContentDefinitionBuilder {
 
   public Contract.ContentDefinition build() {
     return new Contract.ContentDefinition(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(subType),
+        OptionConverters.toScala(subType),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(publisher),
-        (Option) OptionConverters.toScala(copyright),
-        (Option) OptionConverters.toScala(publicationDate),
+        OptionConverters.toScala(publisher),
+        OptionConverters.toScala(copyright),
+        OptionConverters.toScala(publicationDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         publicationStatus,
         LitUtils.emptyMetaElMap());

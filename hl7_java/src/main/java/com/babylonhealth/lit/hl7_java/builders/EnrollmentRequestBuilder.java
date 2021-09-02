@@ -230,20 +230,20 @@ public class EnrollmentRequestBuilder {
 
   public EnrollmentRequest build() {
     return new EnrollmentRequest(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(status),
-        (Option) OptionConverters.toScala(created),
-        (Option) OptionConverters.toScala(insurer),
-        (Option) OptionConverters.toScala(language),
-        (Option) OptionConverters.toScala(provider),
-        (Option) OptionConverters.toScala(coverage),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(status),
+        OptionConverters.toScala(created),
+        OptionConverters.toScala(insurer),
+        OptionConverters.toScala(language),
+        OptionConverters.toScala(provider),
+        OptionConverters.toScala(coverage),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(candidate),
+        OptionConverters.toScala(candidate),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

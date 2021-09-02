@@ -70,7 +70,6 @@ public class Valueset_deprecatedBuilder {
   }
 
   public Valueset_deprecated build() {
-    return new Valueset_deprecated(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_deprecated(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -92,7 +92,7 @@ public class UsageContextBuilder {
 
   public UsageContext build() {
     return new UsageContext(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         value,
         extension.stream().collect(new LitSeqJCollector<>()),

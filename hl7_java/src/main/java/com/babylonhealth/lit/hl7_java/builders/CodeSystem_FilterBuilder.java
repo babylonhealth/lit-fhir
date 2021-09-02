@@ -139,12 +139,12 @@ public class CodeSystem_FilterBuilder {
 
   public CodeSystem.Filter build() {
     return new CodeSystem.Filter(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         value,
         operator.stream().collect(new NonEmptyLitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(description),
+        OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

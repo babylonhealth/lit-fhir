@@ -71,6 +71,6 @@ public class Questionnaireresponse_authorBuilder {
 
   public Questionnaireresponse_author build() {
     return new Questionnaireresponse_author(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

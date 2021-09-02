@@ -128,7 +128,7 @@ public class CatalogEntry_RelatedEntryBuilder {
 
   public CatalogEntry.RelatedEntry build() {
     return new CatalogEntry.RelatedEntry(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         item,
         extension.stream().collect(new LitSeqJCollector<>()),
         relationtype,

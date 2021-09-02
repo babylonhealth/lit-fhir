@@ -138,16 +138,16 @@ public class AttachmentBuilder {
 
   public Attachment build() {
     return new Attachment(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(url),
-        (Option) OptionConverters.toScala(data),
-        (Option) OptionConverters.toScala(size.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(hash),
-        (Option) OptionConverters.toScala(title),
-        (Option) OptionConverters.toScala(language),
-        (Option) OptionConverters.toScala(creation),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(url),
+        OptionConverters.toScala(data),
+        OptionConverters.toScala(size.map(x -> (Object) x)),
+        OptionConverters.toScala(hash),
+        OptionConverters.toScala(title),
+        OptionConverters.toScala(language),
+        OptionConverters.toScala(creation),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(contentType),
+        OptionConverters.toScala(contentType),
         LitUtils.emptyMetaElMap());
   }
 }

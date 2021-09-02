@@ -121,11 +121,11 @@ public class Parameters_ParameterBuilder {
 
   public Parameters.Parameter build() {
     return new Parameters.Parameter(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
         part.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(value),
-        (Option) OptionConverters.toScala(resource),
+        OptionConverters.toScala(resource),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

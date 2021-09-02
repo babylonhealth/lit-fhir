@@ -139,7 +139,7 @@ public class Task_OutputBuilder {
 
   public Task.Output build() {
     return new Task.Output(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),

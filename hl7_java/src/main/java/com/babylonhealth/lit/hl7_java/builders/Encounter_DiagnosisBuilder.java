@@ -136,9 +136,9 @@ public class Encounter_DiagnosisBuilder {
 
   public Encounter.Diagnosis build() {
     return new Encounter.Diagnosis(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(use),
-        (Option) OptionConverters.toScala(rank.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(use),
+        OptionConverters.toScala(rank.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         condition,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

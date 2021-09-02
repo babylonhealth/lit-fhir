@@ -153,12 +153,12 @@ public class SubstanceSpecification_PropertyBuilder {
 
   public SubstanceSpecification.Property build() {
     return new SubstanceSpecification.Property(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(category),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(category),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(amount),
-        (Option) OptionConverters.toScala(parameters),
+        OptionConverters.toScala(parameters),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(definingSubstance),
         LitUtils.emptyMetaElMap());

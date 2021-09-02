@@ -139,7 +139,7 @@ public class DeviceDefinition_CapabilityBuilder {
 
   public DeviceDefinition.Capability build() {
     return new DeviceDefinition.Capability(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
         extension.stream().collect(new LitSeqJCollector<>()),
         description.stream().collect(new LitSeqJCollector<>()),

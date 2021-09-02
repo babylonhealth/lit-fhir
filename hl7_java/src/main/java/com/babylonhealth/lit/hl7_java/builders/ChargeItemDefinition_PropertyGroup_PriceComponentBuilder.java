@@ -151,11 +151,11 @@ public class ChargeItemDefinition_PropertyGroup_PriceComponentBuilder {
 
   public ChargeItemDefinition$PropertyGroup$PriceComponent build() {
     return new ChargeItemDefinition$PropertyGroup$PriceComponent(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         _type,
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(factor),
-        (Option) OptionConverters.toScala(amount),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(factor),
+        OptionConverters.toScala(amount),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

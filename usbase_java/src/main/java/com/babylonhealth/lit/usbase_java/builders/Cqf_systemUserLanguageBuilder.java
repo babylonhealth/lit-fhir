@@ -71,6 +71,6 @@ public class Cqf_systemUserLanguageBuilder {
 
   public Cqf_systemUserLanguage build() {
     return new Cqf_systemUserLanguage(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

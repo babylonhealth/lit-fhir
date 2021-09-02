@@ -71,6 +71,6 @@ public class Operationdefinition_profileBuilder {
 
   public Operationdefinition_profile build() {
     return new Operationdefinition_profile(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

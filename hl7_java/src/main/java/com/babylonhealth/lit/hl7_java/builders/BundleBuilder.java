@@ -162,15 +162,15 @@ public class BundleBuilder {
 
   public Bundle build() {
     return new Bundle(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(meta),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(meta),
         _type,
-        (Option) OptionConverters.toScala(total.map(x -> (Object) x)),
-        (Option) OptionConverters.toScala(language),
-        (Option) OptionConverters.toScala(timestamp),
-        (Option) OptionConverters.toScala(signature),
-        (Option) OptionConverters.toScala(identifier),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(total.map(x -> (Object) x)),
+        OptionConverters.toScala(language),
+        OptionConverters.toScala(timestamp),
+        OptionConverters.toScala(signature),
+        OptionConverters.toScala(identifier),
+        OptionConverters.toScala(implicitRules),
         link.stream().collect(new LitSeqJCollector<>()),
         entry.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

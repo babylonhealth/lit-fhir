@@ -132,7 +132,7 @@ public class CodeSystem_Concept_PropertyBuilder {
 
   public CodeSystem$Concept$Property build() {
     return new CodeSystem$Concept$Property(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),

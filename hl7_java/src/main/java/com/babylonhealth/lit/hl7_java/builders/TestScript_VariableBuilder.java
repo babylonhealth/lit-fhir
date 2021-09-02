@@ -170,16 +170,16 @@ public class TestScript_VariableBuilder {
 
   public TestScript.Variable build() {
     return new TestScript.Variable(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
-        (Option) OptionConverters.toScala(hint),
-        (Option) OptionConverters.toScala(path),
-        (Option) OptionConverters.toScala(sourceId),
+        OptionConverters.toScala(hint),
+        OptionConverters.toScala(path),
+        OptionConverters.toScala(sourceId),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(expression),
-        (Option) OptionConverters.toScala(description),
-        (Option) OptionConverters.toScala(headerField),
-        (Option) OptionConverters.toScala(defaultValue),
+        OptionConverters.toScala(expression),
+        OptionConverters.toScala(description),
+        OptionConverters.toScala(headerField),
+        OptionConverters.toScala(defaultValue),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

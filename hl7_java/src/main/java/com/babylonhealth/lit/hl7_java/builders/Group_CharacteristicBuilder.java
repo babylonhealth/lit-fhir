@@ -140,9 +140,9 @@ public class Group_CharacteristicBuilder {
 
   public Group.Characteristic build() {
     return new Group.Characteristic(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
-        (Option) OptionConverters.toScala(period),
+        OptionConverters.toScala(period),
         exclude,
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),

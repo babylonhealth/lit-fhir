@@ -71,6 +71,6 @@ public class Workflow_reasonReferenceBuilder {
 
   public Workflow_reasonReference build() {
     return new Workflow_reasonReference(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

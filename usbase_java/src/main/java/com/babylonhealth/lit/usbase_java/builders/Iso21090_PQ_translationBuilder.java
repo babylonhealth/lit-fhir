@@ -71,6 +71,6 @@ public class Iso21090_PQ_translationBuilder {
 
   public Iso21090_PQ_translation build() {
     return new Iso21090_PQ_translation(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

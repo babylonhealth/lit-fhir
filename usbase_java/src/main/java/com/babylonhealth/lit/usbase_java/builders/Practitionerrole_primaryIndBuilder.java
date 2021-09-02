@@ -71,6 +71,6 @@ public class Practitionerrole_primaryIndBuilder {
 
   public Practitionerrole_primaryInd build() {
     return new Practitionerrole_primaryInd(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

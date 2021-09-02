@@ -130,7 +130,7 @@ public class StructureMap_Group_Rule_Target_ParameterBuilder {
 
   public StructureMap$Group$Rule$Target$Parameter build() {
     return new StructureMap$Group$Rule$Target$Parameter(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

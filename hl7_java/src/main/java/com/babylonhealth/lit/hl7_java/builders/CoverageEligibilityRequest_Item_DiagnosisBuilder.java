@@ -129,7 +129,7 @@ public class CoverageEligibilityRequest_Item_DiagnosisBuilder {
 
   public CoverageEligibilityRequest$Item$Diagnosis build() {
     return new CoverageEligibilityRequest$Item$Diagnosis(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(diagnosis),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

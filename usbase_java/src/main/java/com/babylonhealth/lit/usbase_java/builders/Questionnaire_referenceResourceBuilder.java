@@ -71,6 +71,6 @@ public class Questionnaire_referenceResourceBuilder {
 
   public Questionnaire_referenceResource build() {
     return new Questionnaire_referenceResource(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

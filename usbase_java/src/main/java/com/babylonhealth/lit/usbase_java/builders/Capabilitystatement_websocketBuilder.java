@@ -71,6 +71,6 @@ public class Capabilitystatement_websocketBuilder {
 
   public Capabilitystatement_websocket build() {
     return new Capabilitystatement_websocket(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

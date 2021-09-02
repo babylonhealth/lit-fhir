@@ -136,10 +136,10 @@ public class TerminologyCapabilities_Expansion_ParameterBuilder {
 
   public TerminologyCapabilities$Expansion$Parameter build() {
     return new TerminologyCapabilities$Expansion$Parameter(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         name,
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(documentation),
+        OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

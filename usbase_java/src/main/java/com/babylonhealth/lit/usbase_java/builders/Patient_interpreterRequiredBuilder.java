@@ -71,6 +71,6 @@ public class Patient_interpreterRequiredBuilder {
 
   public Patient_interpreterRequired build() {
     return new Patient_interpreterRequired(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

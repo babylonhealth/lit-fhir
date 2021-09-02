@@ -70,7 +70,6 @@ public class Cqm_ValidityPeriodBuilder {
   }
 
   public Cqm_ValidityPeriod build() {
-    return new Cqm_ValidityPeriod(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Cqm_ValidityPeriod(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -186,12 +186,12 @@ public class CodeSystem_ConceptBuilder {
 
   public CodeSystem.Concept build() {
     return new CodeSystem.Concept(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         code,
-        (Option) OptionConverters.toScala(display),
+        OptionConverters.toScala(display),
         concept.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(definition),
+        OptionConverters.toScala(definition),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         property.stream().collect(new LitSeqJCollector<>()),
         designation.stream().collect(new LitSeqJCollector<>()),

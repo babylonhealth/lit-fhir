@@ -233,19 +233,19 @@ public class SubscriptionBuilder {
 
   public Subscription build() {
     return new Subscription(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(end),
-        (Option) OptionConverters.toScala(meta),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(error),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(end),
+        OptionConverters.toScala(meta),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(error),
         status,
         reason,
         contact.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(language),
+        OptionConverters.toScala(language),
         criteria,
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(implicitRules),
+        OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         channel,
         LitUtils.emptyMetaElMap());

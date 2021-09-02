@@ -224,22 +224,22 @@ public class DosageBuilder {
 
   public Dosage build() {
     return new Dosage(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(text),
-        (Option) OptionConverters.toScala(site),
-        (Option) OptionConverters.toScala(route),
-        (Option) OptionConverters.toScala(timing),
-        (Option) OptionConverters.toScala(method),
-        (Option) OptionConverters.toScala(sequence.map(x -> (Object) x)),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(text),
+        OptionConverters.toScala(site),
+        OptionConverters.toScala(route),
+        OptionConverters.toScala(timing),
+        OptionConverters.toScala(method),
+        OptionConverters.toScala(sequence.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(asNeeded),
-        (Option) OptionConverters.toScala(maxDosePerPeriod),
+        OptionConverters.toScala(maxDosePerPeriod),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(patientInstruction),
-        (Option) OptionConverters.toScala(maxDosePerLifetime),
+        OptionConverters.toScala(patientInstruction),
+        OptionConverters.toScala(maxDosePerLifetime),
         additionalInstruction.stream().collect(new LitSeqJCollector<>()),
         doseAndRate.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(maxDosePerAdministration),
+        OptionConverters.toScala(maxDosePerAdministration),
         LitUtils.emptyMetaElMap());
   }
 }

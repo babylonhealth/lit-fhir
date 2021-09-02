@@ -77,7 +77,7 @@ public class Us_core_raceBuilder {
 
   public Us_core_race build() {
     return new Us_core_race(
-        (Option) OptionConverters.toScala(id),
+        OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -155,9 +155,9 @@ public class Claim_SupportingInfoBuilder {
 
   public Claim.SupportingInfo build() {
     return new Claim.SupportingInfo(
-        (Option) OptionConverters.toScala(id),
-        (Option) OptionConverters.toScala(code),
-        (Option) OptionConverters.toScala(reason),
+        OptionConverters.toScala(id),
+        OptionConverters.toScala(code),
+        OptionConverters.toScala(reason),
         sequence,
         category,
         (Option) OptionConverters.toScala(value),

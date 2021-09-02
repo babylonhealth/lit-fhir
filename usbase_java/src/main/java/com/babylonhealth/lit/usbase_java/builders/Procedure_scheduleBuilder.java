@@ -70,7 +70,6 @@ public class Procedure_scheduleBuilder {
   }
 
   public Procedure_schedule build() {
-    return new Procedure_schedule(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Procedure_schedule(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

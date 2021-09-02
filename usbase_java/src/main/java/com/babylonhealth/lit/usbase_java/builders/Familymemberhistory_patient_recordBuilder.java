@@ -71,6 +71,6 @@ public class Familymemberhistory_patient_recordBuilder {
 
   public Familymemberhistory_patient_record build() {
     return new Familymemberhistory_patient_record(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -71,6 +71,6 @@ public class Questionnaire_displayCategoryBuilder {
 
   public Questionnaire_displayCategory build() {
     return new Questionnaire_displayCategory(
-        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }
