@@ -247,7 +247,7 @@ class LitSeq[+T] protected (protected val _contents: Array[Object])
         case _             => false
       }
     )
-  override def hashCode: Int = foldLeft(1)(31 * _ + _.hashCode) // Required by JList interface
+  override def hashCode(): Int = foldLeft(1)(31 * _ + _.hashCode) // Required by JList interface
 
   // specialised
   def asNonEmpty: NonEmptyLitSeq[T] = new NonEmptyLitSeq[T](toSeq)
