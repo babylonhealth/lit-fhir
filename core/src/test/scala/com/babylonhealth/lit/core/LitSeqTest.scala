@@ -77,5 +77,12 @@ class LitSeqTest extends AnyFreeSpec with Matchers with org.scalatest.prop.Table
         (litSeq == otherSeq) shouldEqual (otherSeq == litSeq)
       }
     }
+
+    "matches hashcode" in {
+      forAll(table) { (litSeq, otherSeq) =>
+        // Technically this can cause a false negative, but...
+        (litSeq == otherSeq) shouldEqual (litSeq.hashCode == otherSeq.hashCode)
+      }
+    }
   }
 }

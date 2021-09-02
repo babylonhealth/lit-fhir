@@ -8,7 +8,6 @@ import java.util.{ function, Collection => JCollection, List => JList, ListItera
 import scala.annotation.unchecked.uncheckedVariance
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.{ Iterable, IterableFactory, IterableOnce, Iterator, Seq, View, mutable }
-import scala.util.hashing.MurmurHash3
 
 object MutUtils {
   def !!! : Nothing = throw new NotImplementedError("Will not implement - mutator method used on immutable collection")
@@ -248,7 +247,7 @@ class LitSeq[+T] protected (protected val _contents: Array[Object])
         case _             => false
       }
     )
-  override def hashCode(): Int = MurmurHash3.arrayHash(_contents)
+  override def hashCode: Int = foldLeft(1)(31 * _ + _.hashCode) // Required by JList interface
 
   // specialised
   def asNonEmpty: NonEmptyLitSeq[T] = new NonEmptyLitSeq[T](toSeq)
