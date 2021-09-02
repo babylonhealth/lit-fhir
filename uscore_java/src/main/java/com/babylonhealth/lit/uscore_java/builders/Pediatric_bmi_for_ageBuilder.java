@@ -11,6 +11,7 @@ import java.util.UUID;
 import java.util.stream.Stream;
 import java.util.stream.Collectors;
 
+import com.babylonhealth.lit.hl7_java.model.Unions.Choice_0934386166;
 import scala.math.BigDecimal;
 import scala.Option;
 import scala.collection.immutable.Seq;
@@ -76,7 +77,7 @@ public class Pediatric_bmi_for_ageBuilder {
   private Collection<Reference> hasMember = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<Reference> derivedFrom = Collections.emptyList();
-  private Choice<$bslash$div<FHIRDateTime, Period>> effective;
+  private Choice_0934386166 effective;
   private Optional<String> implicitRules = Optional.empty();
   private Collection<CodeableConcept> interpretation = Collections.emptyList();
   private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
@@ -105,20 +106,13 @@ public class Pediatric_bmi_for_ageBuilder {
       Reference subject,
       Collection<CodeableConcept> category,
       Quantity value,
-      @NonNull Object effective) {
+      @NonNull Choice_0934386166 effective) {
     this.code = code;
     this.status = status;
     this.subject = subject;
     this.category = category;
     this.value = value;
-    this.effective =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    effective.getClass().getSimpleName(),
-                    Pediatric_bmi_for_age$.MODULE$.effective()),
-                effective,
-                Pediatric_bmi_for_age$.MODULE$.effective());
+    this.effective = effective;
   }
 
   /**
