@@ -3,7 +3,11 @@ package com.babylonhealth.lit.core
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
 
-class LitSeqTest extends AnyFreeSpec with Matchers {
+import scala.jdk.javaapi.CollectionConverters.asJava
+
+class LitSeqTest extends AnyFreeSpec with Matchers with org.scalatest.prop.TableDrivenPropertyChecks {
+  type JList[T] = java.util.List[T]
+
   "LitSeq for scala" - {
     "can build " in {
       val x: LitSeq[Int] = LitSeq(1, 2, 3)
@@ -49,5 +53,29 @@ class LitSeqTest extends AnyFreeSpec with Matchers {
     val seq6: NonEmptyLitSeq[Int]        = seq1 map (_ * 2)
     val maybeEmpty: LitSeq[Int]          = seq1
     assertTypeError("""val seqN1: NonEmptyLitSeq[Int] = seq ++ maybeEmpty""")
+  }
+
+  "LitSeq equality" - {
+    val seqs: Seq[Seq[Int]] = Seq(
+      Seq(),
+      Seq(1),
+      Seq(1, 2, 3),
+      Seq(3, 2, 1)
+    )
+
+    val litSeqs: Seq[LitSeq[Int]] = seqs.map(LitSeq.from(_))
+    val jlists: Seq[JList[Int]] = seqs.map(asJava(_))
+
+    // Only test equality against JList. Seq is maybe impossible because LitSeq is not a scala Seq or List.
+    val table = Table(
+      ("litSeq", "otherSeq"),
+      (for {litSeq <- litSeqs; otherSeq <- litSeqs ++ jlists} yield (litSeq, otherSeq)): _*
+    )
+
+    "is symmetric" in {
+      forAll(table) { (litSeq, otherSeq) =>
+        (litSeq == otherSeq) shouldEqual (otherSeq == litSeq)
+      }
+    }
   }
 }
