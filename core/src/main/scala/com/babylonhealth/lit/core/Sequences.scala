@@ -242,7 +242,6 @@ class LitSeq[+T] protected (protected val _contents: Array[Object])
     this.eq(o.asInstanceOf[AnyRef]) || (
       o match {
         case it: LitSeq[T] => (it eq this) || (it.length == length && iterator().sameElements(it))
-        case it: Seq[T]    => it.canEqual(this) && it.sameElements(this)
         case it: JList[T]  => it.equals(this)
         case _             => false
       }

@@ -66,10 +66,9 @@ class LitSeqTest extends AnyFreeSpec with Matchers with org.scalatest.prop.Table
     val litSeqs: Seq[LitSeq[Int]] = seqs.map(LitSeq.from(_))
     val jlists: Seq[JList[Int]] = seqs.map(asJava(_))
 
-    // Only test equality against JList. Seq is maybe impossible because LitSeq is not a scala Seq or List.
     val table = Table(
       ("litSeq", "otherSeq"),
-      (for {litSeq <- litSeqs; otherSeq <- litSeqs ++ jlists} yield (litSeq, otherSeq)): _*
+      (for {litSeq <- litSeqs; otherSeq <- seqs ++ litSeqs ++ jlists} yield (litSeq, otherSeq)): _*
     )
 
     "is symmetric" in {
