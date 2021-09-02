@@ -44,11 +44,6 @@ public class SmokingstatusExampleTest {
                           .withCode("266927001")
                           .build())
                   .build())
-          .withMeta(
-              new MetaBuilder()
-                  .withProfile(
-                      "http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus")
-                  .build())
           .build();
 
   String jsonStr =
