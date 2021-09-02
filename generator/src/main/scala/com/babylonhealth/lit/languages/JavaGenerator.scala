@@ -37,7 +37,8 @@ trait JavaGenerator extends Commonish {
             if (bf.javaName == "meta" && bf.types.head == "Meta" && topLevelClass.isProfile)
               Some(s"""Optional.of(new MetaBuilder().withProfile("${topLevelClass.url}").build())""")
             else bf.cardinality.defaultValue
-          bf.copy(default = default)
+          val nearestValueSet = bf.nearestValueSet
+          bf.copy(default = default, valueEnumeration = nearestValueSet)
         }
     def toCallableScalaName(f: BaseField): String = CodegenUtils.fieldScalaNameFromJavaName(f.javaName)
     def eraseSubtypes(t: String, f: BaseField): String = t match {
@@ -277,7 +278,7 @@ trait JavaGenerator extends Commonish {
            |  * $paramStrs
            |  */""".stripMargin
       val fileContents =
-        s"""${imports(isTop = false, f.childFields.flatMap(_.valueEnumeration.map(_.valueSet)))}
+        s"""${imports(isTop = false, f.childFields.flatMap(_.nearestValueSet.map(_.valueSet)))}
            |
            |public class $builderName {
            |  $privateFields
@@ -325,7 +326,7 @@ trait JavaGenerator extends Commonish {
          |  * $paramStrs
          |  */""".stripMargin
     val file =
-      s"""${imports(isTop = true, topLevelClass.fields.flatMap(_.valueEnumeration.map(_.valueSet)))}
+      s"""${imports(isTop = true, topLevelClass.fields.flatMap(_.nearestValueSet.map(_.valueSet)))}
          |
          |public class $builderName {
          |  $privateFields
