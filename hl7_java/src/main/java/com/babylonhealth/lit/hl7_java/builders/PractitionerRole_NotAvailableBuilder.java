@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -130,8 +132,8 @@ public class PractitionerRole_NotAvailableBuilder {
 
   public PractitionerRole.NotAvailable build() {
     return new PractitionerRole.NotAvailable(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(during),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(during),
         extension.stream().collect(new LitSeqJCollector<>()),
         description,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

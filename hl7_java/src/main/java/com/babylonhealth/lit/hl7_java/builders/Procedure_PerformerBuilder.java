@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -134,11 +136,11 @@ public class Procedure_PerformerBuilder {
 
   public Procedure.Performer build() {
     return new Procedure.Performer(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         actor,
-        OptionConverters.toScala(function),
+        (Option) OptionConverters.toScala(function),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(onBehalfOf),
+        (Option) OptionConverters.toScala(onBehalfOf),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

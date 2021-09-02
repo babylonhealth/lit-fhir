@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -159,14 +161,14 @@ public class ConceptMap_GroupBuilder {
 
   public ConceptMap.Group build() {
     return new ConceptMap.Group(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(source),
-        OptionConverters.toScala(target),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(source),
+        (Option) OptionConverters.toScala(target),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(sourceVersion),
-        OptionConverters.toScala(targetVersion),
+        (Option) OptionConverters.toScala(sourceVersion),
+        (Option) OptionConverters.toScala(targetVersion),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(unmapped),
+        (Option) OptionConverters.toScala(unmapped),
         element.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

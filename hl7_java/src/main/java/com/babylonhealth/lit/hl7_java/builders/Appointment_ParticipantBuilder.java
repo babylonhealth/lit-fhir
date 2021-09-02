@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PARTICIPATIONSTATUS;
 import com.babylonhealth.lit.hl7.PARTICIPANTREQUIRED;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -155,12 +157,12 @@ public class Appointment_ParticipantBuilder {
 
   public Appointment.Participant build() {
     return new Appointment.Participant(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(actor),
+        (Option) OptionConverters.toScala(actor),
         status,
-        OptionConverters.toScala(period),
-        OptionConverters.toScala(required),
+        (Option) OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(required),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

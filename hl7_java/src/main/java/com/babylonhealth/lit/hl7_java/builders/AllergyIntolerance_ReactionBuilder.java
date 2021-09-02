@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REACTION_EVENT_SEVERITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -176,15 +178,15 @@ public class AllergyIntolerance_ReactionBuilder {
 
   public AllergyIntolerance.Reaction build() {
     return new AllergyIntolerance.Reaction(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(onset),
-        OptionConverters.toScala(severity),
+        (Option) OptionConverters.toScala(onset),
+        (Option) OptionConverters.toScala(severity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(substance),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(substance),
+        (Option) OptionConverters.toScala(description),
         manifestation.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        OptionConverters.toScala(exposureRoute),
+        (Option) OptionConverters.toScala(exposureRoute),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

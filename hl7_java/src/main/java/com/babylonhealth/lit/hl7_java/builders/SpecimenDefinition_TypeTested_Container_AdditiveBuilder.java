@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class SpecimenDefinition_TypeTested_Container_AdditiveBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<CodeableConcept, Reference>> additive;
+  private Choice01025009075 additive;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -52,15 +54,9 @@ public class SpecimenDefinition_TypeTested_Container_AdditiveBuilder {
    *
    * @param additive Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
    */
-  public SpecimenDefinition_TypeTested_Container_AdditiveBuilder(@NonNull Object additive) {
-    this.additive =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    additive.getClass().getSimpleName(),
-                    SpecimenDefinition$TypeTested$Container$Additive$.MODULE$.additive()),
-                additive,
-                SpecimenDefinition$TypeTested$Container$Additive$.MODULE$.additive());
+  public SpecimenDefinition_TypeTested_Container_AdditiveBuilder(
+      @NonNull Choice01025009075 additive) {
+    this.additive = additive;
   }
 
   /**
@@ -132,7 +128,7 @@ public class SpecimenDefinition_TypeTested_Container_AdditiveBuilder {
 
   public SpecimenDefinition$TypeTested$Container$Additive build() {
     return new SpecimenDefinition$TypeTested$Container$Additive(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         additive,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

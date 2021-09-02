@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MAP_TARGET_LIST_MODE;
 import com.babylonhealth.lit.hl7.MAP_TRANSFORM;
 import com.babylonhealth.lit.hl7.MAP_CONTEXT_TYPE;
@@ -182,15 +184,15 @@ public class StructureMap_Group_Rule_TargetBuilder {
 
   public StructureMap$Group$Rule$Target build() {
     return new StructureMap$Group$Rule$Target(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(context),
-        OptionConverters.toScala(element),
-        OptionConverters.toScala(variable),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(context),
+        (Option) OptionConverters.toScala(element),
+        (Option) OptionConverters.toScala(variable),
         listMode.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(transform),
-        OptionConverters.toScala(listRuleId),
-        OptionConverters.toScala(contextType),
+        (Option) OptionConverters.toScala(transform),
+        (Option) OptionConverters.toScala(listRuleId),
+        (Option) OptionConverters.toScala(contextType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         parameter.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.RESOURCE_TYPES;
 import com.babylonhealth.lit.hl7.SEARCH_PARAM_TYPE;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
@@ -455,38 +457,38 @@ public class SearchParameterBuilder {
 
   public SearchParameter build() {
     return new SearchParameter(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         url,
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         name,
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(date),
         code,
         base.stream().collect(new NonEmptyLitSeqJCollector<>()),
         _type,
-        OptionConverters.toScala(xpath),
+        (Option) OptionConverters.toScala(xpath),
         chain.stream().collect(new LitSeqJCollector<>()),
         status,
         target.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(version),
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(purpose),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(purpose),
+        (Option) OptionConverters.toScala(language),
         modifier.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(publisher),
+        (Option) OptionConverters.toScala(publisher),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(expression),
-        OptionConverters.toScala(xpathUsage),
-        OptionConverters.toScala(multipleOr.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(expression),
+        (Option) OptionConverters.toScala(xpathUsage),
+        (Option) OptionConverters.toScala(multipleOr.map(x -> (Object) x)),
         comparator.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(derivedFrom),
+        (Option) OptionConverters.toScala(derivedFrom),
         description,
-        OptionConverters.toScala(multipleAnd.map(x -> (Object) x)),
-        OptionConverters.toScala(experimental.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(multipleAnd.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(experimental.map(x -> (Object) x)),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         component.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

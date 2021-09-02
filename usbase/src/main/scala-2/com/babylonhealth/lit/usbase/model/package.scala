@@ -3,6 +3,8 @@ package com.babylonhealth.lit.usbase
 import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
+import izumi.reflect.macrortti.LTag
+
 import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.usbase.model._
@@ -16,6 +18,14 @@ object UnionAliases {
   type Union_1915626029 =
     CodeableConcept \/ FHIRDateTime \/ LocalTime \/ Period \/ Quantity \/ Range \/ Ratio \/ SampledData \/ String
   type Union_1946587936 = CodeableConcept \/ Range
+
+  val Union00284192631Tag: LTag[Union00284192631] = LTag[Union00284192631]
+  val Union00315627715Tag: LTag[Union00315627715] = LTag[Union00315627715]
+  val Union00813350082Tag: LTag[Union00813350082] = LTag[Union00813350082]
+  val Union01054268719Tag: LTag[Union01054268719] = LTag[Union01054268719]
+  val Union01613806391Tag: LTag[Union01613806391] = LTag[Union01613806391]
+  val Union_1915626029Tag: LTag[Union_1915626029] = LTag[Union_1915626029]
+  val Union_1946587936Tag: LTag[Union_1946587936] = LTag[Union_1946587936]
 }
 
 object Module

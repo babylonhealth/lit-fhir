@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -79,7 +80,7 @@ public class ElementBuilder {
 
   public Element build() {
     return new Element(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

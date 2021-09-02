@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.RESOURCE_TYPES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -161,11 +163,11 @@ public class GraphDefinition_Link_TargetBuilder {
 
   public GraphDefinition$Link$Target build() {
     return new GraphDefinition$Link$Target(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
         link.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(params),
-        OptionConverters.toScala(profile),
+        (Option) OptionConverters.toScala(params),
+        (Option) OptionConverters.toScala(profile),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         compartment.stream().collect(new LitSeqJCollector<>()),

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.SPECIMEN_CONTAINED_PREFERENCE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -181,17 +183,17 @@ public class SpecimenDefinition_TypeTestedBuilder {
 
   public SpecimenDefinition.TypeTested build() {
     return new SpecimenDefinition.TypeTested(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(isDerived.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(isDerived.map(x -> (Object) x)),
         preference,
-        OptionConverters.toScala(requirement),
-        OptionConverters.toScala(retentionTime),
+        (Option) OptionConverters.toScala(requirement),
+        (Option) OptionConverters.toScala(retentionTime),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         rejectionCriterion.stream().collect(new LitSeqJCollector<>()),
         handling.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(container),
+        (Option) OptionConverters.toScala(container),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -129,9 +131,9 @@ public class Account_CoverageBuilder {
 
   public Account.Coverage build() {
     return new Account.Coverage(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         coverage,
-        OptionConverters.toScala(priority.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(priority.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

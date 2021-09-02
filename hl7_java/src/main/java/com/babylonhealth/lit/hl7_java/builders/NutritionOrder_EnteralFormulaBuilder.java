@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -186,17 +188,17 @@ public class NutritionOrder_EnteralFormulaBuilder {
 
   public NutritionOrder.EnteralFormula build() {
     return new NutritionOrder.EnteralFormula(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(additiveType),
-        OptionConverters.toScala(caloricDensity),
-        OptionConverters.toScala(baseFormulaType),
+        (Option) OptionConverters.toScala(additiveType),
+        (Option) OptionConverters.toScala(caloricDensity),
+        (Option) OptionConverters.toScala(baseFormulaType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(maxVolumeToDeliver),
-        OptionConverters.toScala(additiveProductName),
-        OptionConverters.toScala(routeofAdministration),
-        OptionConverters.toScala(baseFormulaProductName),
-        OptionConverters.toScala(administrationInstruction),
+        (Option) OptionConverters.toScala(maxVolumeToDeliver),
+        (Option) OptionConverters.toScala(additiveProductName),
+        (Option) OptionConverters.toScala(routeofAdministration),
+        (Option) OptionConverters.toScala(baseFormulaProductName),
+        (Option) OptionConverters.toScala(administrationInstruction),
         administration.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

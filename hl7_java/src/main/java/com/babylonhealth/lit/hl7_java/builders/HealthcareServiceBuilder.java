@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -488,17 +490,17 @@ public class HealthcareServiceBuilder {
 
   public HealthcareService build() {
     return new HealthcareService(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         _type.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(photo),
-        OptionConverters.toScala(active.map(x -> (Object) x)),
-        OptionConverters.toScala(comment),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(photo),
+        (Option) OptionConverters.toScala(active.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(comment),
         telecom.stream().collect(new LitSeqJCollector<>()),
         program.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
         location.stream().collect(new LitSeqJCollector<>()),
         endpoint.stream().collect(new LitSeqJCollector<>()),
@@ -506,17 +508,17 @@ public class HealthcareServiceBuilder {
         extension.stream().collect(new LitSeqJCollector<>()),
         specialty.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(providedBy),
-        OptionConverters.toScala(extraDetails),
+        (Option) OptionConverters.toScala(providedBy),
+        (Option) OptionConverters.toScala(extraDetails),
         coverageArea.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         communication.stream().collect(new LitSeqJCollector<>()),
         characteristic.stream().collect(new LitSeqJCollector<>()),
         referralMethod.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(appointmentRequired.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(appointmentRequired.map(x -> (Object) x)),
         serviceProvisionCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(availabilityExceptions),
+        (Option) OptionConverters.toScala(availabilityExceptions),
         eligibility.stream().collect(new LitSeqJCollector<>()),
         notAvailable.stream().collect(new LitSeqJCollector<>()),
         availableTime.stream().collect(new LitSeqJCollector<>()),

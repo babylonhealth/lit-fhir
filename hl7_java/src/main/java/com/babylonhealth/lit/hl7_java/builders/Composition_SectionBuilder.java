@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.LIST_MODE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -202,18 +204,18 @@ public class Composition_SectionBuilder {
 
   public Composition.Section build() {
     return new Composition.Section(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(mode),
-        OptionConverters.toScala(title),
-        OptionConverters.toScala(focus),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(mode),
+        (Option) OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(focus),
         entry.stream().collect(new LitSeqJCollector<>()),
         author.stream().collect(new LitSeqJCollector<>()),
         section.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(orderedBy),
-        OptionConverters.toScala(emptyReason),
+        (Option) OptionConverters.toScala(orderedBy),
+        (Option) OptionConverters.toScala(emptyReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

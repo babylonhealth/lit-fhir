@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -136,10 +138,10 @@ public class CodeSystem_Concept_DesignationBuilder {
 
   public CodeSystem$Concept$Designation build() {
     return new CodeSystem$Concept$Designation(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(use),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(use),
         value,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,9 +46,9 @@ import static java.util.stream.Collectors.toList;
 public class CoverageEligibilityResponse_Insurance_Item_BenefitBuilder {
   private Optional<String> id = Optional.empty();
   private CodeableConcept _type;
-  private Optional<Choice> used = Optional.empty();
+  private Optional<Choice_0040864668> used = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice> allowed = Optional.empty();
+  private Optional<Choice_0040864668> allowed = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -67,35 +69,9 @@ public class CoverageEligibilityResponse_Insurance_Item_BenefitBuilder {
     return this;
   }
   /** @param used Field is a 'choice' field. Type should be one of Money, String, Integer. */
-  public <T> CoverageEligibilityResponse_Insurance_Item_BenefitBuilder withUsed(@NonNull T used) {
-    var guessedSuffix =
-        autoSuffix(
-            used.getClass().getSimpleName(),
-            CoverageEligibilityResponse$Insurance$Item$Benefit$.MODULE$.used());
-    return withUsed(guessedSuffix, used);
-  }
-
-  /**
-   * Alternative to the 'main' withUsed method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param used - The value to be passed to the builder
-   */
-  public <T> CoverageEligibilityResponse_Insurance_Item_BenefitBuilder withUsed(
-      String suffix, @NonNull T used) {
-    guard(
-        used.getClass().getSimpleName(),
-        suffix,
-        CoverageEligibilityResponse$Insurance$Item$Benefit$.MODULE$.used());
-    this.used =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix,
-                    used,
-                    CoverageEligibilityResponse$Insurance$Item$Benefit$.MODULE$.used()));
+  public CoverageEligibilityResponse_Insurance_Item_BenefitBuilder withUsed(
+      @NonNull Choice_0040864668 used) {
+    this.used = Optional.of(used);
     return this;
   }
   /**
@@ -123,36 +99,9 @@ public class CoverageEligibilityResponse_Insurance_Item_BenefitBuilder {
     return this;
   }
   /** @param allowed Field is a 'choice' field. Type should be one of Money, String, Integer. */
-  public <T> CoverageEligibilityResponse_Insurance_Item_BenefitBuilder withAllowed(
-      @NonNull T allowed) {
-    var guessedSuffix =
-        autoSuffix(
-            allowed.getClass().getSimpleName(),
-            CoverageEligibilityResponse$Insurance$Item$Benefit$.MODULE$.allowed());
-    return withAllowed(guessedSuffix, allowed);
-  }
-
-  /**
-   * Alternative to the 'main' withAllowed method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param allowed - The value to be passed to the builder
-   */
-  public <T> CoverageEligibilityResponse_Insurance_Item_BenefitBuilder withAllowed(
-      String suffix, @NonNull T allowed) {
-    guard(
-        allowed.getClass().getSimpleName(),
-        suffix,
-        CoverageEligibilityResponse$Insurance$Item$Benefit$.MODULE$.allowed());
-    this.allowed =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix,
-                    allowed,
-                    CoverageEligibilityResponse$Insurance$Item$Benefit$.MODULE$.allowed()));
+  public CoverageEligibilityResponse_Insurance_Item_BenefitBuilder withAllowed(
+      @NonNull Choice_0040864668 allowed) {
+    this.allowed = Optional.of(allowed);
     return this;
   }
   /**
@@ -192,7 +141,7 @@ public class CoverageEligibilityResponse_Insurance_Item_BenefitBuilder {
 
   public CoverageEligibilityResponse$Insurance$Item$Benefit build() {
     return new CoverageEligibilityResponse$Insurance$Item$Benefit(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
         (Option) OptionConverters.toScala(used),
         extension.stream().collect(new LitSeqJCollector<>()),

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -174,15 +176,15 @@ public class ExplanationOfBenefit_BenefitBalanceBuilder {
 
   public ExplanationOfBenefit.BenefitBalance build() {
     return new ExplanationOfBenefit.BenefitBalance(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(unit),
-        OptionConverters.toScala(term),
-        OptionConverters.toScala(network),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(unit),
+        (Option) OptionConverters.toScala(term),
+        (Option) OptionConverters.toScala(network),
         category,
-        OptionConverters.toScala(excluded.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(excluded.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         financial.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

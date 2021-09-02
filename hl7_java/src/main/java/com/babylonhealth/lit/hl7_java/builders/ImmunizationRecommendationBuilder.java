@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -213,17 +215,17 @@ public class ImmunizationRecommendationBuilder {
 
   public ImmunizationRecommendation build() {
     return new ImmunizationRecommendation(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         date,
         patient,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(authority),
+        (Option) OptionConverters.toScala(authority),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         recommendation.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

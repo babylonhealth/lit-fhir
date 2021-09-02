@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -138,11 +140,11 @@ public class ChargeItemDefinition_ApplicabilityBuilder {
 
   public ChargeItemDefinition.Applicability build() {
     return new ChargeItemDefinition.Applicability(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(language),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(expression),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(expression),
+        (Option) OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

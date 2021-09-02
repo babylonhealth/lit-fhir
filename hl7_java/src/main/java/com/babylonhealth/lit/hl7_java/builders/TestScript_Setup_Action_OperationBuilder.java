@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.HTTP_OPERATIONS;
 import com.babylonhealth.lit.hl7.DEFINED_TYPES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -245,23 +247,23 @@ public class TestScript_Setup_Action_OperationBuilder {
 
   public TestScript$Setup$Action$Operation build() {
     return new TestScript$Setup$Action$Operation(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(label),
-        OptionConverters.toScala(accept),
-        OptionConverters.toScala(method),
-        OptionConverters.toScala(origin.map(x -> (Object) x)),
-        OptionConverters.toScala(params),
-        OptionConverters.toScala(resource),
-        OptionConverters.toScala(sourceId),
-        OptionConverters.toScala(targetId),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(label),
+        (Option) OptionConverters.toScala(accept),
+        (Option) OptionConverters.toScala(method),
+        (Option) OptionConverters.toScala(origin.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(params),
+        (Option) OptionConverters.toScala(resource),
+        (Option) OptionConverters.toScala(sourceId),
+        (Option) OptionConverters.toScala(targetId),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(requestId),
-        OptionConverters.toScala(responseId),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(contentType),
-        OptionConverters.toScala(destination.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(requestId),
+        (Option) OptionConverters.toScala(responseId),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(contentType),
+        (Option) OptionConverters.toScala(destination.map(x -> (Object) x)),
         encodeRequestUrl,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         requestHeader.stream().collect(new LitSeqJCollector<>()),

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -141,12 +143,12 @@ public class InsurancePlan_Plan_GeneralCostBuilder {
 
   public InsurancePlan$Plan$GeneralCost build() {
     return new InsurancePlan$Plan$GeneralCost(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(cost),
-        OptionConverters.toScala(comment),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(cost),
+        (Option) OptionConverters.toScala(comment),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(groupSize.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(groupSize.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -150,11 +152,11 @@ public class Measure_Group_StratifierBuilder {
 
   public Measure$Group$Stratifier build() {
     return new Measure$Group$Stratifier(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(criteria),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(criteria),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         component.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

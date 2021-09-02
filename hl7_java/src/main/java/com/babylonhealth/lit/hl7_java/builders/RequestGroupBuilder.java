@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_STATUS;
 import com.babylonhealth.lit.hl7.REQUEST_INTENT;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -380,28 +382,28 @@ public class RequestGroupBuilder {
 
   public RequestGroup build() {
     return new RequestGroup(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(code),
         note.stream().collect(new LitSeqJCollector<>()),
         status,
         intent,
-        OptionConverters.toScala(author),
+        (Option) OptionConverters.toScala(author),
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(language),
         replaces.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(priority),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(authoredOn),
+        (Option) OptionConverters.toScala(authoredOn),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(groupIdentifier),
+        (Option) OptionConverters.toScala(groupIdentifier),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -152,13 +154,13 @@ public class SubstanceSpecification_CodeBuilder {
 
   public SubstanceSpecification.Code build() {
     return new SubstanceSpecification.Code(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(status),
         source.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(comment),
+        (Option) OptionConverters.toScala(comment),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(statusDate),
+        (Option) OptionConverters.toScala(statusDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

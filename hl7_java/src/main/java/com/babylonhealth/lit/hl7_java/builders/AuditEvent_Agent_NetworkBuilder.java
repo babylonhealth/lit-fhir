@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.NETWORK_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -131,9 +133,9 @@ public class AuditEvent_Agent_NetworkBuilder {
 
   public AuditEvent$Agent$Network build() {
     return new AuditEvent$Agent$Network(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(address),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(address),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

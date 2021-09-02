@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.LINKAGE_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -125,7 +127,7 @@ public class Linkage_ItemBuilder {
 
   public Linkage.Item build() {
     return new Linkage.Item(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
         resource,
         extension.stream().collect(new LitSeqJCollector<>()),

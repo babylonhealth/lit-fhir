@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -43,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 
 public class MedicationKnowledge_IngredientBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> item;
+  private Choice01025009075 item;
   private Optional<Boolean> isActive = Optional.empty();
   private Optional<Ratio> strength = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
@@ -54,15 +56,8 @@ public class MedicationKnowledge_IngredientBuilder {
    *
    * @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
    */
-  public MedicationKnowledge_IngredientBuilder(@NonNull Object item) {
-    this.item =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    item.getClass().getSimpleName(),
-                    MedicationKnowledge.Ingredient$.MODULE$.item()),
-                item,
-                MedicationKnowledge.Ingredient$.MODULE$.item());
+  public MedicationKnowledge_IngredientBuilder(@NonNull Choice01025009075 item) {
+    this.item = item;
   }
 
   /**
@@ -143,10 +138,10 @@ public class MedicationKnowledge_IngredientBuilder {
 
   public MedicationKnowledge.Ingredient build() {
     return new MedicationKnowledge.Ingredient(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         item,
-        OptionConverters.toScala(isActive.map(x -> (Object) x)),
-        OptionConverters.toScala(strength),
+        (Option) OptionConverters.toScala(isActive.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(strength),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

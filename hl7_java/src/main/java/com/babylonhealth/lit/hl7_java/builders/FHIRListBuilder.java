@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.LIST_MODE;
 import com.babylonhealth.lit.hl7.LIST_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -285,25 +287,25 @@ public class FHIRListBuilder {
 
   public FHIRList build() {
     return new FHIRList(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         mode,
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(date),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(title),
         status,
-        OptionConverters.toScala(source),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(source),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(orderedBy),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(orderedBy),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(emptyReason),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(emptyReason),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         entry.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

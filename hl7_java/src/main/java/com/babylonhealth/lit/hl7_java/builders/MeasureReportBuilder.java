@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MEASURE_REPORT_TYPE;
 import com.babylonhealth.lit.hl7.MEASURE_REPORT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -285,24 +287,24 @@ public class MeasureReportBuilder {
 
   public MeasureReport build() {
     return new MeasureReport(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         _type,
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(date),
         status,
         period,
         measure,
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(reporter),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(reporter),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         evaluatedResource.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(improvementNotation),
+        (Option) OptionConverters.toScala(improvementNotation),
         group.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

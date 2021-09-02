@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -142,14 +144,14 @@ public class ClaimResponse_InsuranceBuilder {
 
   public ClaimResponse.Insurance build() {
     return new ClaimResponse.Insurance(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         focal,
         sequence,
         coverage,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(claimResponse),
+        (Option) OptionConverters.toScala(claimResponse),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(businessArrangement),
+        (Option) OptionConverters.toScala(businessArrangement),
         LitUtils.emptyMetaElMap());
   }
 }

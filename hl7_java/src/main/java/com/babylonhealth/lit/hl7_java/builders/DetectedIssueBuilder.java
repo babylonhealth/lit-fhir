@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.DETECTEDISSUE_SEVERITY;
@@ -60,7 +62,7 @@ public class DetectedIssueBuilder {
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<Reference> implicated = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> identified = Optional.empty();
+  private Optional<Choice_0934386166> identified = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<DetectedIssue.Evidence> evidence = Collections.emptyList();
   private Collection<DetectedIssue.Mitigation> mitigation = Collections.emptyList();
@@ -226,27 +228,8 @@ public class DetectedIssueBuilder {
    * @param identified - The date or period when the detected issue was initially identified. Field
    *     is a 'choice' field. Type should be one of FHIRDateTime, Period.
    */
-  public <T> DetectedIssueBuilder withIdentified(@NonNull T identified) {
-    var guessedSuffix =
-        autoSuffix(identified.getClass().getSimpleName(), DetectedIssue$.MODULE$.identified());
-    return withIdentified(guessedSuffix, identified);
-  }
-
-  /**
-   * Alternative to the 'main' withIdentified method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param identified - The value to be passed to the builder
-   */
-  public <T> DetectedIssueBuilder withIdentified(String suffix, @NonNull T identified) {
-    guard(identified.getClass().getSimpleName(), suffix, DetectedIssue$.MODULE$.identified());
-    this.identified =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, identified, DetectedIssue$.MODULE$.identified()));
+  public DetectedIssueBuilder withIdentified(@NonNull Choice_0934386166 identified) {
+    this.identified = Optional.of(identified);
     return this;
   }
   /**
@@ -327,23 +310,23 @@ public class DetectedIssueBuilder {
 
   public DetectedIssue build() {
     return new DetectedIssue(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(code),
         status,
-        OptionConverters.toScala(author),
-        OptionConverters.toScala(detail),
-        OptionConverters.toScala(patient),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(severity),
+        (Option) OptionConverters.toScala(author),
+        (Option) OptionConverters.toScala(detail),
+        (Option) OptionConverters.toScala(patient),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(severity),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(reference),
+        (Option) OptionConverters.toScala(reference),
         identifier.stream().collect(new LitSeqJCollector<>()),
         implicated.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(identified),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(identified),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         evidence.stream().collect(new LitSeqJCollector<>()),
         mitigation.stream().collect(new LitSeqJCollector<>()),

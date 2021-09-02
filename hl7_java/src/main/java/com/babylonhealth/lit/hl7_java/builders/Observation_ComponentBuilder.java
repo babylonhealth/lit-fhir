@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class Observation_ComponentBuilder {
   private Optional<String> id = Optional.empty();
   private CodeableConcept code;
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_0802685816> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<CodeableConcept> interpretation = Collections.emptyList();
   private Collection<Observation.ReferenceRange> referenceRange = Collections.emptyList();
@@ -74,26 +76,8 @@ public class Observation_ComponentBuilder {
    *     CodeableConcept, FHIRDateTime, Integer, LocalTime, Period, Quantity, Range, Ratio,
    *     SampledData, String.
    */
-  public <T> Observation_ComponentBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), Observation.Component$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> Observation_ComponentBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, Observation.Component$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, value, Observation.Component$.MODULE$.value()));
+  public Observation_ComponentBuilder withValue(@NonNull Choice_0802685816 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -202,13 +186,13 @@ public class Observation_ComponentBuilder {
 
   public Observation.Component build() {
     return new Observation.Component(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
         interpretation.stream().collect(new LitSeqJCollector<>()),
         referenceRange.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(dataAbsentReason),
+        (Option) OptionConverters.toScala(dataAbsentReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

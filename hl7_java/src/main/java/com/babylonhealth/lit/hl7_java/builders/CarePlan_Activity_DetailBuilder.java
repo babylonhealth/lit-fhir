@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CARE_PLAN_ACTIVITY_KIND;
 import com.babylonhealth.lit.hl7.CARE_PLAN_ACTIVITY_STATUS;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -53,13 +55,12 @@ public class CarePlan_Activity_DetailBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Reference> performer = Collections.emptyList();
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> product = Optional.empty();
+  private Optional<Choice01025009075> product = Optional.empty();
   private Optional<Quantity> dailyAmount = Optional.empty();
   private Optional<String> description = Optional.empty();
   private Optional<CodeableConcept> statusReason = Optional.empty();
   private Optional<Boolean> doNotPerform = Optional.empty();
-  private Optional<Choice<$bslash$div<$bslash$div<Period, String>, Timing>>> scheduled =
-      Optional.empty();
+  private Optional<Choice01726112534> scheduled = Optional.empty();
   private Collection<String> instantiatesUri = Collections.emptyList();
   private Collection<Reference> reasonReference = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -157,27 +158,8 @@ public class CarePlan_Activity_DetailBuilder {
     return this;
   }
   /** @param product Field is a 'choice' field. Type should be one of CodeableConcept, Reference. */
-  public <T> CarePlan_Activity_DetailBuilder withProduct(@NonNull T product) {
-    var guessedSuffix =
-        autoSuffix(product.getClass().getSimpleName(), CarePlan$Activity$Detail$.MODULE$.product());
-    return withProduct(guessedSuffix, product);
-  }
-
-  /**
-   * Alternative to the 'main' withProduct method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param product - The value to be passed to the builder
-   */
-  public <T> CarePlan_Activity_DetailBuilder withProduct(String suffix, @NonNull T product) {
-    guard(product.getClass().getSimpleName(), suffix, CarePlan$Activity$Detail$.MODULE$.product());
-    this.product =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, product, CarePlan$Activity$Detail$.MODULE$.product()));
+  public CarePlan_Activity_DetailBuilder withProduct(@NonNull Choice01025009075 product) {
+    this.product = Optional.of(product);
     return this;
   }
   /** @param dailyAmount */
@@ -201,31 +183,8 @@ public class CarePlan_Activity_DetailBuilder {
     return this;
   }
   /** @param scheduled Field is a 'choice' field. Type should be one of Period, String, Timing. */
-  public <T> CarePlan_Activity_DetailBuilder withScheduled(@NonNull T scheduled) {
-    var guessedSuffix =
-        autoSuffix(
-            scheduled.getClass().getSimpleName(), CarePlan$Activity$Detail$.MODULE$.scheduled());
-    return withScheduled(guessedSuffix, scheduled);
-  }
-
-  /**
-   * Alternative to the 'main' withScheduled method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param scheduled - The value to be passed to the builder
-   */
-  public <T> CarePlan_Activity_DetailBuilder withScheduled(String suffix, @NonNull T scheduled) {
-    guard(
-        scheduled.getClass().getSimpleName(),
-        suffix,
-        CarePlan$Activity$Detail$.MODULE$.scheduled());
-    this.scheduled =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, scheduled, CarePlan$Activity$Detail$.MODULE$.scheduled()));
+  public CarePlan_Activity_DetailBuilder withScheduled(@NonNull Choice01726112534 scheduled) {
+    this.scheduled = Optional.of(scheduled);
     return this;
   }
   /**
@@ -312,22 +271,22 @@ public class CarePlan_Activity_DetailBuilder {
 
   public CarePlan$Activity$Detail build() {
     return new CarePlan$Activity$Detail(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(kind),
-        OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(kind),
+        (Option) OptionConverters.toScala(code),
         goal.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(location),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
         performer.stream().collect(new LitSeqJCollector<>()),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(product),
-        OptionConverters.toScala(dailyAmount),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(statusReason),
-        OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
-        OptionConverters.toScala(scheduled),
+        (Option) OptionConverters.toScala(product),
+        (Option) OptionConverters.toScala(dailyAmount),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(statusReason),
+        (Option) OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(scheduled),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

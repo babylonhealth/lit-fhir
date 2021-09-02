@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class MedicinalProductIndication_OtherTherapyBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<CodeableConcept, Reference>> medication;
+  private Choice01025009075 medication;
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private CodeableConcept therapyRelationshipType;
 
@@ -55,15 +57,8 @@ public class MedicinalProductIndication_OtherTherapyBuilder {
    * @param therapyRelationshipType
    */
   public MedicinalProductIndication_OtherTherapyBuilder(
-      @NonNull Object medication, CodeableConcept therapyRelationshipType) {
-    this.medication =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    medication.getClass().getSimpleName(),
-                    MedicinalProductIndication.OtherTherapy$.MODULE$.medication()),
-                medication,
-                MedicinalProductIndication.OtherTherapy$.MODULE$.medication());
+      @NonNull Choice01025009075 medication, CodeableConcept therapyRelationshipType) {
+    this.medication = medication;
     this.therapyRelationshipType = therapyRelationshipType;
   }
 
@@ -136,7 +131,7 @@ public class MedicinalProductIndication_OtherTherapyBuilder {
 
   public MedicinalProductIndication.OtherTherapy build() {
     return new MedicinalProductIndication.OtherTherapy(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         medication,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

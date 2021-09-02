@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MAP_SOURCE_LIST_MODE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -54,7 +56,7 @@ public class StructureMap_Group_Rule_SourceBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<String> condition = Optional.empty();
   private Optional<String> logMessage = Optional.empty();
-  private Optional<Choice> defaultValue = Optional.empty();
+  private Optional<Choice_1349125893> defaultValue = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -151,37 +153,9 @@ public class StructureMap_Group_Rule_SourceBuilder {
    *     ParameterDefinition, Period, Quantity, Range, Ratio, Reference, RelatedArtifact,
    *     SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext, ZonedDateTime.
    */
-  public <T> StructureMap_Group_Rule_SourceBuilder withDefaultValue(@NonNull T defaultValue) {
-    var guessedSuffix =
-        autoSuffix(
-            defaultValue.getClass().getSimpleName(),
-            StructureMap$Group$Rule$Source$.MODULE$.defaultValue());
-    return withDefaultValue(guessedSuffix, defaultValue);
-  }
-
-  /**
-   * Alternative to the 'main' withDefaultValue method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type. When the
-   * parameter is one of Integer or String then there are multiple candidate 'types' for the FHIR
-   * object, and we are unable to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type Integer, the valid values are Integer,
-   *     PositiveInt, UnsignedInt. For values of type String, the valid values are Canonical, Code,
-   *     Id, Markdown, Oid, String, Uri, Url.
-   * @param defaultValue - The value to be passed to the builder
-   */
-  public <T> StructureMap_Group_Rule_SourceBuilder withDefaultValue(
-      String suffix, @NonNull T defaultValue) {
-    guard(
-        defaultValue.getClass().getSimpleName(),
-        suffix,
-        StructureMap$Group$Rule$Source$.MODULE$.defaultValue());
-    this.defaultValue =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, defaultValue, StructureMap$Group$Rule$Source$.MODULE$.defaultValue()));
+  public StructureMap_Group_Rule_SourceBuilder withDefaultValue(
+      @NonNull Choice_1349125893 defaultValue) {
+    this.defaultValue = Optional.of(defaultValue);
     return this;
   }
   /**
@@ -221,18 +195,18 @@ public class StructureMap_Group_Rule_SourceBuilder {
 
   public StructureMap$Group$Rule$Source build() {
     return new StructureMap$Group$Rule$Source(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(min.map(x -> (Object) x)),
-        OptionConverters.toScala(max),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(check),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(min.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(max),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(check),
         context,
-        OptionConverters.toScala(element),
-        OptionConverters.toScala(listMode),
-        OptionConverters.toScala(variable),
+        (Option) OptionConverters.toScala(element),
+        (Option) OptionConverters.toScala(listMode),
+        (Option) OptionConverters.toScala(variable),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(condition),
-        OptionConverters.toScala(logMessage),
+        (Option) OptionConverters.toScala(condition),
+        (Option) OptionConverters.toScala(logMessage),
         (Option) OptionConverters.toScala(defaultValue),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

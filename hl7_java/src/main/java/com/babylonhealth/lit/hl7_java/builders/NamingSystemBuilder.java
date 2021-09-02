@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.NAMINGSYSTEM_TYPE;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -311,25 +313,25 @@ public class NamingSystemBuilder {
 
   public NamingSystem build() {
     return new NamingSystem(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         name,
         kind,
         date,
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(usage),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(usage),
         status,
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(publisher),
+        (Option) OptionConverters.toScala(publisher),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(responsible),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(responsible),
+        (Option) OptionConverters.toScala(description),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         uniqueId.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

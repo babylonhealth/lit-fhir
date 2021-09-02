@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class Contract_FriendlyBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<Attachment, Reference>> content;
+  private Choice_0340660840 content;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -52,14 +54,8 @@ public class Contract_FriendlyBuilder {
    *
    * @param content Field is a 'choice' field. Type should be one of Attachment, Reference.
    */
-  public Contract_FriendlyBuilder(@NonNull Object content) {
-    this.content =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    content.getClass().getSimpleName(), Contract.Friendly$.MODULE$.content()),
-                content,
-                Contract.Friendly$.MODULE$.content());
+  public Contract_FriendlyBuilder(@NonNull Choice_0340660840 content) {
+    this.content = content;
   }
 
   /**
@@ -128,7 +124,7 @@ public class Contract_FriendlyBuilder {
 
   public Contract.Friendly build() {
     return new Contract.Friendly(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         content,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

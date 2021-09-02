@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -84,7 +87,7 @@ public class Hla_genotyping_results_haploidBuilder {
 
   public Hla_genotyping_results_haploid build() {
     return new Hla_genotyping_results_haploid(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

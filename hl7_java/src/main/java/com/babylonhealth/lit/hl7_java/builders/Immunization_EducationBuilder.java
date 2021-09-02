@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -141,12 +143,12 @@ public class Immunization_EducationBuilder {
 
   public Immunization.Education build() {
     return new Immunization.Education(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(reference),
-        OptionConverters.toScala(documentType),
-        OptionConverters.toScala(publicationDate),
-        OptionConverters.toScala(presentationDate),
+        (Option) OptionConverters.toScala(reference),
+        (Option) OptionConverters.toScala(documentType),
+        (Option) OptionConverters.toScala(publicationDate),
+        (Option) OptionConverters.toScala(presentationDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

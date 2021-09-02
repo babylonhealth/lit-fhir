@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -71,7 +74,7 @@ public class Goal_relationshipBuilder {
 
   public Goal_relationship build() {
     return new Goal_relationship(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

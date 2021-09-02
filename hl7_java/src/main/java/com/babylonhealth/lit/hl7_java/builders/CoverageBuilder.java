@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.FM_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -328,28 +330,28 @@ public class CoverageBuilder {
 
   public Coverage build() {
     return new Coverage(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
         payor.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        OptionConverters.toScala(order.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(order.map(x -> (Object) x)),
         status,
-        OptionConverters.toScala(period),
-        OptionConverters.toScala(network),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(network),
+        (Option) OptionConverters.toScala(language),
         contract.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(dependent),
+        (Option) OptionConverters.toScala(dependent),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subscriber),
+        (Option) OptionConverters.toScala(subscriber),
         beneficiary,
-        OptionConverters.toScala(subrogation.map(x -> (Object) x)),
-        OptionConverters.toScala(policyHolder),
-        OptionConverters.toScala(subscriberId),
-        OptionConverters.toScala(relationship),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(subrogation.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(policyHolder),
+        (Option) OptionConverters.toScala(subscriberId),
+        (Option) OptionConverters.toScala(relationship),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         _class.stream().collect(new LitSeqJCollector<>()),
         costToBeneficiary.stream().collect(new LitSeqJCollector<>()),

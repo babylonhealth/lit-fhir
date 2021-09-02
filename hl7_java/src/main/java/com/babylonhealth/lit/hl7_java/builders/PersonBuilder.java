@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ADMINISTRATIVE_GENDER;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -270,23 +272,23 @@ public class PersonBuilder {
 
   public Person build() {
     return new Person(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         name.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(photo),
-        OptionConverters.toScala(gender),
-        OptionConverters.toScala(active.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(photo),
+        (Option) OptionConverters.toScala(gender),
+        (Option) OptionConverters.toScala(active.map(x -> (Object) x)),
         telecom.stream().collect(new LitSeqJCollector<>()),
         address.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(birthDate),
+        (Option) OptionConverters.toScala(birthDate),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(managingOrganization),
+        (Option) OptionConverters.toScala(managingOrganization),
         link.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

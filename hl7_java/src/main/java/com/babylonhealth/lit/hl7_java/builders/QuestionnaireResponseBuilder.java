@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.QUESTIONNAIRE_ANSWERS_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -299,23 +301,23 @@ public class QuestionnaireResponseBuilder {
 
   public QuestionnaireResponse build() {
     return new QuestionnaireResponse(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(author),
-        OptionConverters.toScala(source),
+        (Option) OptionConverters.toScala(author),
+        (Option) OptionConverters.toScala(source),
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(authored),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(authored),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(identifier),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(questionnaire),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(questionnaire),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         item.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

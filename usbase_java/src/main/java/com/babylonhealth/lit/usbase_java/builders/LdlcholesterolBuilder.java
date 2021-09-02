@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -72,10 +75,7 @@ public class LdlcholesterolBuilder {
   private Optional<Reference> encounter = Optional.empty();
   private Collection<Reference> performer = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>, ZonedDateTime>>>
-      effective = Optional.empty();
+  private Optional<Choice01473702374> effective = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Optional<CodeableConcept> interpretation = Optional.empty();
   private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
@@ -338,26 +338,8 @@ public class LdlcholesterolBuilder {
    *     but very often the source of the date/time is not known, only the date/time itself. Field
    *     is a 'choice' field. Type should be one of FHIRDateTime, Period, Timing, ZonedDateTime.
    */
-  public <T> LdlcholesterolBuilder withEffective(@NonNull T effective) {
-    var guessedSuffix =
-        autoSuffix(effective.getClass().getSimpleName(), Ldlcholesterol$.MODULE$.effective());
-    return withEffective(guessedSuffix, effective);
-  }
-
-  /**
-   * Alternative to the 'main' withEffective method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param effective - The value to be passed to the builder
-   */
-  public <T> LdlcholesterolBuilder withEffective(String suffix, @NonNull T effective) {
-    guard(effective.getClass().getSimpleName(), suffix, Ldlcholesterol$.MODULE$.effective());
-    this.effective =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, effective, Ldlcholesterol$.MODULE$.effective()));
+  public LdlcholesterolBuilder withEffective(@NonNull Choice01473702374 effective) {
+    this.effective = Optional.of(effective);
     return this;
   }
   /**
@@ -444,33 +426,33 @@ public class LdlcholesterolBuilder {
 
   public Ldlcholesterol build() {
     return new Ldlcholesterol(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         code,
         note.stream().collect(new LitSeqJCollector<>()),
         focus.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(issued),
-        OptionConverters.toScala(method),
-        OptionConverters.toScala(device),
+        (Option) OptionConverters.toScala(issued),
+        (Option) OptionConverters.toScala(method),
+        (Option) OptionConverters.toScala(device),
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(value),
-        OptionConverters.toScala(bodySite),
-        OptionConverters.toScala(specimen),
+        (Option) OptionConverters.toScala(value),
+        (Option) OptionConverters.toScala(bodySite),
+        (Option) OptionConverters.toScala(specimen),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         performer.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(effective),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(interpretation),
-        OptionConverters.toScala(dataAbsentReason),
+        (Option) OptionConverters.toScala(effective),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(interpretation),
+        (Option) OptionConverters.toScala(dataAbsentReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         component.stream().collect(new LitSeqJCollector<>()),
         referenceRange,

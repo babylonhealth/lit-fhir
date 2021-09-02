@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -137,16 +138,16 @@ public class AttachmentBuilder {
 
   public Attachment build() {
     return new Attachment(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        OptionConverters.toScala(data),
-        OptionConverters.toScala(size.map(x -> (Object) x)),
-        OptionConverters.toScala(hash),
-        OptionConverters.toScala(title),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(creation),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(data),
+        (Option) OptionConverters.toScala(size.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(hash),
+        (Option) OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(creation),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(contentType),
+        (Option) OptionConverters.toScala(contentType),
         LitUtils.emptyMetaElMap());
   }
 }

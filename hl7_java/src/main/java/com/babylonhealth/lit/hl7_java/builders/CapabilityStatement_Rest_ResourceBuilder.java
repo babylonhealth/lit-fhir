@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.RESOURCE_TYPES;
 import com.babylonhealth.lit.hl7.VERSIONING_POLICY;
 import com.babylonhealth.lit.hl7.CONDITIONAL_READ_STATUS;
@@ -281,23 +283,23 @@ public class CapabilityStatement_Rest_ResourceBuilder {
 
   public CapabilityStatement$Rest$Resource build() {
     return new CapabilityStatement$Rest$Resource(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
-        OptionConverters.toScala(profile),
+        (Option) OptionConverters.toScala(profile),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(versioning),
-        OptionConverters.toScala(readHistory.map(x -> (Object) x)),
-        OptionConverters.toScala(updateCreate.map(x -> (Object) x)),
-        OptionConverters.toScala(documentation),
+        (Option) OptionConverters.toScala(versioning),
+        (Option) OptionConverters.toScala(readHistory.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(updateCreate.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(documentation),
         searchInclude.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(conditionalRead),
+        (Option) OptionConverters.toScala(conditionalRead),
         referencePolicy.stream().collect(new LitSeqJCollector<>()),
         supportedProfile.stream().collect(new LitSeqJCollector<>()),
         searchRevInclude.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(conditionalCreate.map(x -> (Object) x)),
-        OptionConverters.toScala(conditionalUpdate.map(x -> (Object) x)),
-        OptionConverters.toScala(conditionalDelete),
+        (Option) OptionConverters.toScala(conditionalCreate.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(conditionalUpdate.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(conditionalDelete),
         operation.stream().collect(new LitSeqJCollector<>()),
         interaction.stream().collect(new LitSeqJCollector<>()),
         searchParam.stream().collect(new LitSeqJCollector<>()),

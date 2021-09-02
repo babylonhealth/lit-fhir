@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -139,11 +141,11 @@ public class MeasureReport_Group_Stratifier_Stratum_PopulationBuilder {
 
   public MeasureReport$Group$Stratifier$Stratum$Population build() {
     return new MeasureReport$Group$Stratifier$Stratum$Population(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(count.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(count.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subjectResults),
+        (Option) OptionConverters.toScala(subjectResults),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -152,14 +154,14 @@ public class ClaimResponse_PaymentBuilder {
 
   public ClaimResponse.Payment build() {
     return new ClaimResponse.Payment(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(date),
         amount,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(adjustment),
-        OptionConverters.toScala(identifier),
-        OptionConverters.toScala(adjustmentReason),
+        (Option) OptionConverters.toScala(adjustment),
+        (Option) OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(adjustmentReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

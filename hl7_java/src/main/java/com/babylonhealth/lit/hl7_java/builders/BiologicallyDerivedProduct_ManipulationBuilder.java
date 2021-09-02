@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -43,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 
 public class BiologicallyDerivedProduct_ManipulationBuilder {
   private Optional<String> id = Optional.empty();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> time = Optional.empty();
+  private Optional<Choice_0934386166> time = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<String> description = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -60,33 +62,8 @@ public class BiologicallyDerivedProduct_ManipulationBuilder {
     return this;
   }
   /** @param time Field is a 'choice' field. Type should be one of FHIRDateTime, Period. */
-  public <T> BiologicallyDerivedProduct_ManipulationBuilder withTime(@NonNull T time) {
-    var guessedSuffix =
-        autoSuffix(
-            time.getClass().getSimpleName(),
-            BiologicallyDerivedProduct.Manipulation$.MODULE$.time());
-    return withTime(guessedSuffix, time);
-  }
-
-  /**
-   * Alternative to the 'main' withTime method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param time - The value to be passed to the builder
-   */
-  public <T> BiologicallyDerivedProduct_ManipulationBuilder withTime(
-      String suffix, @NonNull T time) {
-    guard(
-        time.getClass().getSimpleName(),
-        suffix,
-        BiologicallyDerivedProduct.Manipulation$.MODULE$.time());
-    this.time =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, time, BiologicallyDerivedProduct.Manipulation$.MODULE$.time()));
+  public BiologicallyDerivedProduct_ManipulationBuilder withTime(@NonNull Choice_0934386166 time) {
+    this.time = Optional.of(time);
     return this;
   }
   /**
@@ -156,10 +133,10 @@ public class BiologicallyDerivedProduct_ManipulationBuilder {
 
   public BiologicallyDerivedProduct.Manipulation build() {
     return new BiologicallyDerivedProduct.Manipulation(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(time),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(time),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -67,6 +70,7 @@ public class Valueset_deprecatedBuilder {
   }
 
   public Valueset_deprecated build() {
-    return new Valueset_deprecated(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Valueset_deprecated(
+        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.STRAND_TYPE;
 import com.babylonhealth.lit.hl7.ORIENTATION_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -176,18 +178,18 @@ public class MolecularSequence_ReferenceSeqBuilder {
 
   public MolecularSequence.ReferenceSeq build() {
     return new MolecularSequence.ReferenceSeq(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(strand),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(strand),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(windowEnd.map(x -> (Object) x)),
-        OptionConverters.toScala(chromosome),
-        OptionConverters.toScala(genomeBuild),
-        OptionConverters.toScala(orientation),
-        OptionConverters.toScala(windowStart.map(x -> (Object) x)),
-        OptionConverters.toScala(referenceSeqId),
+        (Option) OptionConverters.toScala(windowEnd.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(chromosome),
+        (Option) OptionConverters.toScala(genomeBuild),
+        (Option) OptionConverters.toScala(orientation),
+        (Option) OptionConverters.toScala(windowStart.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(referenceSeqId),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(referenceSeqString),
-        OptionConverters.toScala(referenceSeqPointer),
+        (Option) OptionConverters.toScala(referenceSeqString),
+        (Option) OptionConverters.toScala(referenceSeqPointer),
         LitUtils.emptyMetaElMap());
   }
 }

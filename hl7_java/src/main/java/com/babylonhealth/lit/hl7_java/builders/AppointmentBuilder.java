@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.APPOINTMENTSTATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -463,34 +465,34 @@ public class AppointmentBuilder {
 
   public Appointment build() {
     return new Appointment(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(end),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(end),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         slot.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(start),
+        (Option) OptionConverters.toScala(start),
         status,
-        OptionConverters.toScala(created),
-        OptionConverters.toScala(comment),
+        (Option) OptionConverters.toScala(created),
+        (Option) OptionConverters.toScala(comment),
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(priority.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(priority.map(x -> (Object) x)),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         specialty.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         serviceType.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(implicitRules),
         serviceCategory.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(appointmentType),
+        (Option) OptionConverters.toScala(appointmentType),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(minutesDuration.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(minutesDuration.map(x -> (Object) x)),
         requestedPeriod.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(cancelationReason),
-        OptionConverters.toScala(patientInstruction),
+        (Option) OptionConverters.toScala(cancelationReason),
+        (Option) OptionConverters.toScala(patientInstruction),
         supportingInformation.stream().collect(new LitSeqJCollector<>()),
         participant.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

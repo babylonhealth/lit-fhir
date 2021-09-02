@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ADMINISTRATIVE_GENDER;
 import com.babylonhealth.lit.hl7.OBSERVATION_RANGE_CATEGORY;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -178,16 +180,16 @@ public class ObservationDefinition_QualifiedIntervalBuilder {
 
   public ObservationDefinition.QualifiedInterval build() {
     return new ObservationDefinition.QualifiedInterval(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(age),
-        OptionConverters.toScala(range),
-        OptionConverters.toScala(gender),
-        OptionConverters.toScala(context),
-        OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(age),
+        (Option) OptionConverters.toScala(range),
+        (Option) OptionConverters.toScala(gender),
+        (Option) OptionConverters.toScala(context),
+        (Option) OptionConverters.toScala(category),
         extension.stream().collect(new LitSeqJCollector<>()),
         appliesTo.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(condition),
-        OptionConverters.toScala(gestationalAge),
+        (Option) OptionConverters.toScala(condition),
+        (Option) OptionConverters.toScala(gestationalAge),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

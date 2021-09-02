@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.PARTICIPATIONSTATUS;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -256,19 +258,19 @@ public class AppointmentResponseBuilder {
 
   public AppointmentResponse build() {
     return new AppointmentResponse(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(end),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(start),
-        OptionConverters.toScala(actor),
-        OptionConverters.toScala(comment),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(end),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(start),
+        (Option) OptionConverters.toScala(actor),
+        (Option) OptionConverters.toScala(comment),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         appointment,
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         participantType.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         participantStatus,

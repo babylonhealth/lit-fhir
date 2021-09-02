@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -138,12 +140,12 @@ public class CoverageEligibilityRequest_InsuranceBuilder {
 
   public CoverageEligibilityRequest.Insurance build() {
     return new CoverageEligibilityRequest.Insurance(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(focal.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(focal.map(x -> (Object) x)),
         coverage,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(businessArrangement),
+        (Option) OptionConverters.toScala(businessArrangement),
         LitUtils.emptyMetaElMap());
   }
 }

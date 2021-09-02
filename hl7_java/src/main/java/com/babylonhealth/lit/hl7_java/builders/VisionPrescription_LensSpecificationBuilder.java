@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.VISION_EYE_CODES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -214,21 +216,21 @@ public class VisionPrescription_LensSpecificationBuilder {
 
   public VisionPrescription.LensSpecification build() {
     return new VisionPrescription.LensSpecification(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         eye,
-        OptionConverters.toScala(add),
-        OptionConverters.toScala(axis.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(add),
+        (Option) OptionConverters.toScala(axis.map(x -> (Object) x)),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(power),
-        OptionConverters.toScala(color),
-        OptionConverters.toScala(brand),
-        OptionConverters.toScala(sphere),
+        (Option) OptionConverters.toScala(power),
+        (Option) OptionConverters.toScala(color),
+        (Option) OptionConverters.toScala(brand),
+        (Option) OptionConverters.toScala(sphere),
         product,
-        OptionConverters.toScala(cylinder),
-        OptionConverters.toScala(diameter),
-        OptionConverters.toScala(duration),
+        (Option) OptionConverters.toScala(cylinder),
+        (Option) OptionConverters.toScala(diameter),
+        (Option) OptionConverters.toScala(duration),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(backCurve),
+        (Option) OptionConverters.toScala(backCurve),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         prism.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

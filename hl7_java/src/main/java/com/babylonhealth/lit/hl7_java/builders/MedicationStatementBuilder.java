@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MEDICATION_STATEMENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -61,10 +63,10 @@ public class MedicationStatementBuilder {
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Collection<Reference> derivedFrom = Collections.emptyList();
   private Collection<CodeableConcept> statusReason = Collections.emptyList();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> effective = Optional.empty();
+  private Optional<Choice_0934386166> effective = Optional.empty();
   private Optional<FHIRDateTime> dateAsserted = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> medication;
+  private Choice01025009075 medication;
   private Collection<Reference> reasonReference = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Optional<Reference> informationSource = Optional.empty();
@@ -82,17 +84,12 @@ public class MedicationStatementBuilder {
    *     Type should be one of CodeableConcept, Reference.
    */
   public MedicationStatementBuilder(
-      MEDICATION_STATEMENT_STATUS status, Reference subject, @NonNull Object medication) {
+      MEDICATION_STATEMENT_STATUS status,
+      Reference subject,
+      @NonNull Choice01025009075 medication) {
     this.status = status;
     this.subject = subject;
-    this.medication =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    medication.getClass().getSimpleName(),
-                    MedicationStatement$.MODULE$.medication()),
-                medication,
-                MedicationStatement$.MODULE$.medication());
+    this.medication = medication;
   }
 
   /**
@@ -300,27 +297,8 @@ public class MedicationStatementBuilder {
    *     is/was/will be taking the medication (or was not taking, when the MedicationStatement.taken
    *     element is No). Field is a 'choice' field. Type should be one of FHIRDateTime, Period.
    */
-  public <T> MedicationStatementBuilder withEffective(@NonNull T effective) {
-    var guessedSuffix =
-        autoSuffix(effective.getClass().getSimpleName(), MedicationStatement$.MODULE$.effective());
-    return withEffective(guessedSuffix, effective);
-  }
-
-  /**
-   * Alternative to the 'main' withEffective method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param effective - The value to be passed to the builder
-   */
-  public <T> MedicationStatementBuilder withEffective(String suffix, @NonNull T effective) {
-    guard(effective.getClass().getSimpleName(), suffix, MedicationStatement$.MODULE$.effective());
-    this.effective =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, effective, MedicationStatement$.MODULE$.effective()));
+  public MedicationStatementBuilder withEffective(@NonNull Choice_0934386166 effective) {
+    this.effective = Optional.of(effective);
     return this;
   }
   /**
@@ -408,31 +386,31 @@ public class MedicationStatementBuilder {
 
   public MedicationStatement build() {
     return new MedicationStatement(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
         dosage.stream().collect(new LitSeqJCollector<>()),
         basedOn.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(context),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(context),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(category),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         derivedFrom.stream().collect(new LitSeqJCollector<>()),
         statusReason.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(effective),
-        OptionConverters.toScala(dateAsserted),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(effective),
+        (Option) OptionConverters.toScala(dateAsserted),
+        (Option) OptionConverters.toScala(implicitRules),
         medication,
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(informationSource),
+        (Option) OptionConverters.toScala(informationSource),
         LitUtils.emptyMetaElMap());
   }
 }

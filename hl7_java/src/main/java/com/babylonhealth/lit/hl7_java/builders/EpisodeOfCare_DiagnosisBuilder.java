@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -135,9 +137,9 @@ public class EpisodeOfCare_DiagnosisBuilder {
 
   public EpisodeOfCare.Diagnosis build() {
     return new EpisodeOfCare.Diagnosis(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(role),
-        OptionConverters.toScala(rank.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(role),
+        (Option) OptionConverters.toScala(rank.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         condition,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

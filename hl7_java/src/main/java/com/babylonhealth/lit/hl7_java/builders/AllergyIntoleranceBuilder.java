@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ALLERGY_INTOLERANCE_TYPE;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.ALLERGY_INTOLERANCE_CATEGORY;
@@ -54,11 +56,7 @@ public class AllergyIntoleranceBuilder {
   private Reference patient;
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<ALLERGY_INTOLERANCE_CATEGORY> category = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<$bslash$div<$bslash$div<Age, FHIRDateTime>, Period>, Range>, String>>>
-      onset = Optional.empty();
+  private Optional<Choice01352864625> onset = Optional.empty();
   private Optional<Reference> recorder = Optional.empty();
   private Optional<Reference> asserter = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
@@ -174,26 +172,8 @@ public class AllergyIntoleranceBuilder {
    *     identified. Field is a 'choice' field. Type should be one of Age, FHIRDateTime, Period,
    *     Range, String.
    */
-  public <T> AllergyIntoleranceBuilder withOnset(@NonNull T onset) {
-    var guessedSuffix =
-        autoSuffix(onset.getClass().getSimpleName(), AllergyIntolerance$.MODULE$.onset());
-    return withOnset(guessedSuffix, onset);
-  }
-
-  /**
-   * Alternative to the 'main' withOnset method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param onset - The value to be passed to the builder
-   */
-  public <T> AllergyIntoleranceBuilder withOnset(String suffix, @NonNull T onset) {
-    guard(onset.getClass().getSimpleName(), suffix, AllergyIntolerance$.MODULE$.onset());
-    this.onset =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, onset, AllergyIntolerance$.MODULE$.onset()));
+  public AllergyIntoleranceBuilder withOnset(@NonNull Choice01352864625 onset) {
+    this.onset = Optional.of(onset);
     return this;
   }
   /**
@@ -379,29 +359,29 @@ public class AllergyIntoleranceBuilder {
 
   public AllergyIntolerance build() {
     return new AllergyIntolerance(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(code),
         note.stream().collect(new LitSeqJCollector<>()),
         patient,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(onset),
-        OptionConverters.toScala(recorder),
-        OptionConverters.toScala(asserter),
+        (Option) OptionConverters.toScala(onset),
+        (Option) OptionConverters.toScala(recorder),
+        (Option) OptionConverters.toScala(asserter),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(criticality),
-        OptionConverters.toScala(recordedDate),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(clinicalStatus),
-        OptionConverters.toScala(lastOccurrence),
+        (Option) OptionConverters.toScala(criticality),
+        (Option) OptionConverters.toScala(recordedDate),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(clinicalStatus),
+        (Option) OptionConverters.toScala(lastOccurrence),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(verificationStatus),
+        (Option) OptionConverters.toScala(verificationStatus),
         reaction.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

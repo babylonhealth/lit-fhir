@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -180,13 +182,13 @@ public class ClaimResponse_AddItem_Detail_SubDetailBuilder {
 
   public ClaimResponse$AddItem$Detail$SubDetail build() {
     return new ClaimResponse$AddItem$Detail$SubDetail(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(net),
-        OptionConverters.toScala(factor),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(net),
+        (Option) OptionConverters.toScala(factor),
         modifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(unitPrice),
+        (Option) OptionConverters.toScala(unitPrice),
         noteNumber.stream()
             .map(x -> (Object) x)
             .collect(Collectors.toList())

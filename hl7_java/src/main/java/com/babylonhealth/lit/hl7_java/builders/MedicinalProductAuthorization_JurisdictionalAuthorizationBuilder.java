@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -176,14 +178,14 @@ public class MedicinalProductAuthorization_JurisdictionalAuthorizationBuilder {
 
   public MedicinalProductAuthorization.JurisdictionalAuthorization build() {
     return new MedicinalProductAuthorization.JurisdictionalAuthorization(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(country),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(country),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(validityPeriod),
+        (Option) OptionConverters.toScala(validityPeriod),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(legalStatusOfSupply),
+        (Option) OptionConverters.toScala(legalStatusOfSupply),
         LitUtils.emptyMetaElMap());
   }
 }

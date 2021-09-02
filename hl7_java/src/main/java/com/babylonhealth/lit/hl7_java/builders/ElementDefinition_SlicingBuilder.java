@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.RESOURCE_SLICING_RULES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -114,11 +116,11 @@ public class ElementDefinition_SlicingBuilder {
 
   public ElementDefinition.Slicing build() {
     return new ElementDefinition.Slicing(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         rules,
-        OptionConverters.toScala(ordered.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(ordered.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(description),
         discriminator.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

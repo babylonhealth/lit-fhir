@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class ValueSet_Expansion_ParameterBuilder {
   private Optional<String> id = Optional.empty();
   private String name;
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_1427970408> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -70,30 +72,8 @@ public class ValueSet_Expansion_ParameterBuilder {
    * @param value Field is a 'choice' field. Type should be one of BigDecimal, Boolean, String,
    *     FHIRDateTime, Integer.
    */
-  public <T> ValueSet_Expansion_ParameterBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), ValueSet$Expansion$Parameter$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of String then there are multiple candidate 'types' for the FHIR object, and we are unable
-   * to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type String, the valid values are Code, String,
-   *     Uri.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> ValueSet_Expansion_ParameterBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, ValueSet$Expansion$Parameter$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, value, ValueSet$Expansion$Parameter$.MODULE$.value()));
+  public ValueSet_Expansion_ParameterBuilder withValue(@NonNull Choice_1427970408 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -156,7 +136,7 @@ public class ValueSet_Expansion_ParameterBuilder {
 
   public ValueSet$Expansion$Parameter build() {
     return new ValueSet$Expansion$Parameter(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         name,
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),

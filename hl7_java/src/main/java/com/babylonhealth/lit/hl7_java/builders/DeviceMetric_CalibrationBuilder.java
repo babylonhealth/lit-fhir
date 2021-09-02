@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.METRIC_CALIBRATION_TYPE;
 import com.babylonhealth.lit.hl7.METRIC_CALIBRATION_STATE;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -137,10 +139,10 @@ public class DeviceMetric_CalibrationBuilder {
 
   public DeviceMetric.Calibration build() {
     return new DeviceMetric.Calibration(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(time),
-        OptionConverters.toScala(state),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(time),
+        (Option) OptionConverters.toScala(state),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

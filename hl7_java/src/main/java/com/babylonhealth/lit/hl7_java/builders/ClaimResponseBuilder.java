@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CLAIM_USE;
 import com.babylonhealth.lit.hl7.FM_STATUS;
 import com.babylonhealth.lit.hl7.REMITTANCE_OUTCOME;
@@ -430,37 +432,37 @@ public class ClaimResponseBuilder {
 
   public ClaimResponse build() {
     return new ClaimResponse(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         use,
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         _type,
-        OptionConverters.toScala(form),
+        (Option) OptionConverters.toScala(form),
         status,
-        OptionConverters.toScala(subType),
+        (Option) OptionConverters.toScala(subType),
         patient,
         created,
         insurer,
-        OptionConverters.toScala(request),
+        (Option) OptionConverters.toScala(request),
         outcome,
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(formCode),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(formCode),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(requestor),
-        OptionConverters.toScala(payeeType),
+        (Option) OptionConverters.toScala(requestor),
+        (Option) OptionConverters.toScala(payeeType),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(preAuthRef),
-        OptionConverters.toScala(disposition),
+        (Option) OptionConverters.toScala(preAuthRef),
+        (Option) OptionConverters.toScala(disposition),
         adjudication.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(fundsReserve),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(preAuthPeriod),
+        (Option) OptionConverters.toScala(fundsReserve),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(preAuthPeriod),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         communicationRequest.stream().collect(new LitSeqJCollector<>()),
         total.stream().collect(new LitSeqJCollector<>()),
         error.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(payment),
+        (Option) OptionConverters.toScala(payment),
         processNote.stream().collect(new LitSeqJCollector<>()),
         insurance.stream().collect(new LitSeqJCollector<>()),
         item.stream().collect(new LitSeqJCollector<>()),

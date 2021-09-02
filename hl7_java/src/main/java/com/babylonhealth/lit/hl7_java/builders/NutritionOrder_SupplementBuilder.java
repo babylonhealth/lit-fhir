@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -151,13 +153,13 @@ public class NutritionOrder_SupplementBuilder {
 
   public NutritionOrder.Supplement build() {
     return new NutritionOrder.Supplement(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
         schedule.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(productName),
-        OptionConverters.toScala(instruction),
+        (Option) OptionConverters.toScala(productName),
+        (Option) OptionConverters.toScala(instruction),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

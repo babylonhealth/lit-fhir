@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.SORT_DIRECTION;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -89,7 +90,7 @@ public class DataRequirement_SortBuilder {
 
   public DataRequirement.Sort build() {
     return new DataRequirement.Sort(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         path,
         extension.stream().collect(new LitSeqJCollector<>()),
         direction,

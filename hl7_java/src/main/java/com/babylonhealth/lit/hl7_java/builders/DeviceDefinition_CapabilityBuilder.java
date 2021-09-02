@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -137,7 +139,7 @@ public class DeviceDefinition_CapabilityBuilder {
 
   public DeviceDefinition.Capability build() {
     return new DeviceDefinition.Capability(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
         extension.stream().collect(new LitSeqJCollector<>()),
         description.stream().collect(new LitSeqJCollector<>()),

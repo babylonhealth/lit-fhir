@@ -18,7 +18,8 @@ import com.babylonhealth.lit.hl7.model.Observation;
 import com.babylonhealth.lit.hl7.model.Patient;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.hl7_java.codes.AdministrativeGender;
-import com.babylonhealth.lit.hl7_java.model.Unions.Choice_0934386166;
+import com.babylonhealth.lit.hl7_java.model.Unions;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.usbase_java.builders.BmiBuilder;
 import com.babylonhealth.lit.uscore_java.builders.Pediatric_bmi_for_ageBuilder;
 import com.babylonhealth.lit.uscore_java.builders.Us_core_organizationBuilder;
@@ -157,34 +158,31 @@ public class JavaUsageOfLit {
 
   @Test
   public void testRefs3() throws Exception {
-    Patient p = new PatientBuilder().withMultipleBirth("Boolean", true).build();
+    Patient p = new PatientBuilder().withMultipleBirth(new Choice02065782851(true)).build();
     System.out.println(p);
   }
 
   @Test
   public void testRefs3_2() throws Exception {
-    Patient p = new PatientBuilder().withMultipleBirth(true).build();
+    Patient p = new PatientBuilder().withMultipleBirth(new Choice02065782851(true)).build();
     System.out.println(p);
   }
 
-  @Test
-  public void testRefs4() throws Exception {
-    assertThrows(
-        RuntimeException.class,
-        () -> new PatientBuilder().withMultipleBirth("String", true).build());
-  }
+  // No longer really makes sense
+  //  @Test
+  //  public void testRefs4() throws Exception {
+  //    assertThrows(
+  //        RuntimeException.class,
+  //        () -> new PatientBuilder().withMultipleBirth("String", true).build());
+  //  }
 
-  @Test
-  public void testRefs5() throws Exception {
-    assertThrows(
-        RuntimeException.class,
-        () -> new PatientBuilder().withMultipleBirth("String", "X").build());
-  }
-
-  @Test
-  public void testRefs6() throws Exception {
-    assertThrows(RuntimeException.class, () -> new PatientBuilder().withMultipleBirth("X").build());
-  }
+  // TODO: Test 'doesn't compile'
+  //  @Test
+  //  public void testRefs5() throws Exception {
+  //    assertThrows(
+  //        RuntimeException.class,
+  //        () -> new PatientBuilder().withMultipleBirth(new Choice02065782851("X")).build());
+  //  }
 
   @Test
   public void bundleWithDifferentResourceTypes() throws Exception {
@@ -261,7 +259,7 @@ public class JavaUsageOfLit {
                             .withSystem("http://unitsofmeasure.org")
                             .withCode("${unit}")
                             .build(),
-                        effective,
+                        new Choice_0934386166(effective),
                         new CodeableConceptBuilder()
                             .withCoding(
                                 new CodingBuilder()

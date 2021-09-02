@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class CommunicationRequest_PayloadBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<$bslash$div<Attachment, Reference>, String>> content;
+  private Choice_1750183386 content;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -52,15 +54,8 @@ public class CommunicationRequest_PayloadBuilder {
    *
    * @param content Field is a 'choice' field. Type should be one of Attachment, Reference, String.
    */
-  public CommunicationRequest_PayloadBuilder(@NonNull Object content) {
-    this.content =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    content.getClass().getSimpleName(),
-                    CommunicationRequest.Payload$.MODULE$.content()),
-                content,
-                CommunicationRequest.Payload$.MODULE$.content());
+  public CommunicationRequest_PayloadBuilder(@NonNull Choice_1750183386 content) {
+    this.content = content;
   }
 
   /**
@@ -131,7 +126,7 @@ public class CommunicationRequest_PayloadBuilder {
 
   public CommunicationRequest.Payload build() {
     return new CommunicationRequest.Payload(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         content,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

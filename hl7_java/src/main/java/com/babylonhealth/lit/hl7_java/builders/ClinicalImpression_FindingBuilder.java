@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -135,12 +137,12 @@ public class ClinicalImpression_FindingBuilder {
 
   public ClinicalImpression.Finding build() {
     return new ClinicalImpression.Finding(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(basis),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(basis),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(itemReference),
+        (Option) OptionConverters.toScala(itemReference),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(itemCodeableConcept),
+        (Option) OptionConverters.toScala(itemCodeableConcept),
         LitUtils.emptyMetaElMap());
   }
 }

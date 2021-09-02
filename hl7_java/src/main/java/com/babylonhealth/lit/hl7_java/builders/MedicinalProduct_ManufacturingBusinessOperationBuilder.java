@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -166,15 +168,15 @@ public class MedicinalProduct_ManufacturingBusinessOperationBuilder {
 
   public MedicinalProduct.ManufacturingBusinessOperation build() {
     return new MedicinalProduct.ManufacturingBusinessOperation(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(regulator),
+        (Option) OptionConverters.toScala(regulator),
         manufacturer.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(operationType),
-        OptionConverters.toScala(effectiveDate),
+        (Option) OptionConverters.toScala(operationType),
+        (Option) OptionConverters.toScala(effectiveDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(confidentialityIndicator),
-        OptionConverters.toScala(authorisationReferenceNumber),
+        (Option) OptionConverters.toScala(confidentialityIndicator),
+        (Option) OptionConverters.toScala(authorisationReferenceNumber),
         LitUtils.emptyMetaElMap());
   }
 }

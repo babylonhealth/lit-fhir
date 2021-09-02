@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.NAMINGSYSTEM_IDENTIFIER_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -145,13 +147,13 @@ public class NamingSystem_UniqueIdBuilder {
 
   public NamingSystem.UniqueId build() {
     return new NamingSystem.UniqueId(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
         value,
-        OptionConverters.toScala(period),
-        OptionConverters.toScala(comment),
+        (Option) OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(comment),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(preferred.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(preferred.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

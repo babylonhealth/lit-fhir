@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.RESEARCH_STUDY_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -491,21 +493,21 @@ public class ResearchStudyBuilder {
 
   public ResearchStudy build() {
     return new ResearchStudy(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         site.stream().collect(new LitSeqJCollector<>()),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(title),
-        OptionConverters.toScala(phase),
+        (Option) OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(phase),
         focus.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(period),
         contact.stream().collect(new LitSeqJCollector<>()),
         keyword.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(sponsor),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(sponsor),
+        (Option) OptionConverters.toScala(language),
         protocol.stream().collect(new LitSeqJCollector<>()),
         category.stream().collect(new LitSeqJCollector<>()),
         location.stream().collect(new LitSeqJCollector<>()),
@@ -514,13 +516,13 @@ public class ResearchStudyBuilder {
         condition.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         enrollment.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(reasonStopped),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(reasonStopped),
         relatedArtifact.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(primaryPurposeType),
-        OptionConverters.toScala(principalInvestigator),
+        (Option) OptionConverters.toScala(primaryPurposeType),
+        (Option) OptionConverters.toScala(principalInvestigator),
         arm.stream().collect(new LitSeqJCollector<>()),
         objective.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

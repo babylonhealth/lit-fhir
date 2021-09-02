@@ -198,7 +198,7 @@ object ScalaTarget extends Enumeration {
 
 case class ClassGenInfo(fileContents: String, fileName: String, pkg: String, target: Option[ScalaTarget.ScalaTarget] = None)
 
-case class JavaClassGenInfo(builders: Seq[ClassGenInfo], codes: Seq[ClassGenInfo])
+case class JavaClassGenInfo(builders: Seq[ClassGenInfo], codes: Seq[ClassGenInfo], model: Seq[ClassGenInfo])
 
 case class AllGeneratedFiles(
     scalaClassGenInfo: Seq[ClassGenInfo],

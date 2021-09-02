@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class ElementDefinition_ExampleBuilder {
   private Optional<String> id = Optional.empty();
   private String label;
-  private Choice value;
+  private Choice_1349125893 value;
   private Collection<Extension> extension = Collections.emptyList();
 
   /**
@@ -66,12 +68,9 @@ public class ElementDefinition_ExampleBuilder {
    *     ParamDistinguisher.choose("foo". $value), where foo is one of: Canonical, Code, Id,
    *     Markdown, Oid, String, Uri, Url
    */
-  public ElementDefinition_ExampleBuilder(String label, @NonNull ParamDistinguisher value) {
+  public ElementDefinition_ExampleBuilder(String label, @NonNull Choice_1349125893 value) {
     this.label = label;
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                value.suffix, value.wrappedChoice, ElementDefinition.Example$.MODULE$.value());
+    this.value = value;
   }
 
   /**
@@ -107,7 +106,7 @@ public class ElementDefinition_ExampleBuilder {
 
   public ElementDefinition.Example build() {
     return new ElementDefinition.Example(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         label,
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),

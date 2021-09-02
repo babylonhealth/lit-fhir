@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MEDICATIONDISPENSE_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -65,10 +67,10 @@ public class MedicationDispenseBuilder {
   private Optional<FHIRDateTime> whenPrepared = Optional.empty();
   private Collection<Reference> eventHistory = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> medication;
+  private Choice01025009075 medication;
   private Collection<Reference> detectedIssue = Collections.emptyList();
   private Optional<FHIRDateTime> whenHandedOver = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> statusReason = Optional.empty();
+  private Optional<Choice01025009075> statusReason = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<Dosage> dosageInstruction = Collections.emptyList();
   private Collection<Reference> supportingInformation = Collections.emptyList();
@@ -85,16 +87,10 @@ public class MedicationDispenseBuilder {
    *     that identifies the medication from a known list of medications. Field is a 'choice' field.
    *     Type should be one of CodeableConcept, Reference.
    */
-  public MedicationDispenseBuilder(MEDICATIONDISPENSE_STATUS status, @NonNull Object medication) {
+  public MedicationDispenseBuilder(
+      MEDICATIONDISPENSE_STATUS status, @NonNull Choice01025009075 medication) {
     this.status = status;
-    this.medication =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    medication.getClass().getSimpleName(),
-                    MedicationDispense$.MODULE$.medication()),
-                medication,
-                MedicationDispense$.MODULE$.medication());
+    this.medication = medication;
   }
 
   /**
@@ -351,31 +347,8 @@ public class MedicationDispenseBuilder {
    * @param statusReason - Indicates the reason why a dispense was not performed. Field is a
    *     'choice' field. Type should be one of CodeableConcept, Reference.
    */
-  public <T> MedicationDispenseBuilder withStatusReason(@NonNull T statusReason) {
-    var guessedSuffix =
-        autoSuffix(
-            statusReason.getClass().getSimpleName(), MedicationDispense$.MODULE$.statusReason());
-    return withStatusReason(guessedSuffix, statusReason);
-  }
-
-  /**
-   * Alternative to the 'main' withStatusReason method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param statusReason - The value to be passed to the builder
-   */
-  public <T> MedicationDispenseBuilder withStatusReason(String suffix, @NonNull T statusReason) {
-    guard(
-        statusReason.getClass().getSimpleName(),
-        suffix,
-        MedicationDispense$.MODULE$.statusReason());
-    this.statusReason =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, statusReason, MedicationDispense$.MODULE$.statusReason()));
+  public MedicationDispenseBuilder withStatusReason(@NonNull Choice01025009075 statusReason) {
+    this.statusReason = Optional.of(statusReason);
     return this;
   }
   /**
@@ -489,38 +462,38 @@ public class MedicationDispenseBuilder {
 
   public MedicationDispense build() {
     return new MedicationDispense(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
         note.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(context),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(category),
-        OptionConverters.toScala(location),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(context),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(quantity),
         receiver.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(daysSupply),
-        OptionConverters.toScala(destination),
-        OptionConverters.toScala(whenPrepared),
+        (Option) OptionConverters.toScala(daysSupply),
+        (Option) OptionConverters.toScala(destination),
+        (Option) OptionConverters.toScala(whenPrepared),
         eventHistory.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         medication,
         detectedIssue.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(whenHandedOver),
-        OptionConverters.toScala(statusReason),
+        (Option) OptionConverters.toScala(whenHandedOver),
+        (Option) OptionConverters.toScala(statusReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         dosageInstruction.stream().collect(new LitSeqJCollector<>()),
         supportingInformation.stream().collect(new LitSeqJCollector<>()),
         authorizingPrescription.stream().collect(new LitSeqJCollector<>()),
         performer.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(substitution),
+        (Option) OptionConverters.toScala(substitution),
         LitUtils.emptyMetaElMap());
   }
 }

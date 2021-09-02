@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.STRUCTURE_DEFINITION_KIND;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -490,41 +492,41 @@ public class StructureDefinitionBuilder {
 
   public StructureDefinition build() {
     return new StructureDefinition(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         url,
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         name,
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(date),
         kind,
         _type,
-        OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(title),
         status,
-        OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(version),
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(purpose),
+        (Option) OptionConverters.toScala(purpose),
         keyword.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         _abstract,
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(publisher),
-        OptionConverters.toScala(copyright),
+        (Option) OptionConverters.toScala(publisher),
+        (Option) OptionConverters.toScala(copyright),
         identifier.stream().collect(new LitSeqJCollector<>()),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(derivation),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(fhirVersion),
-        OptionConverters.toScala(experimental.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(derivation),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(fhirVersion),
+        (Option) OptionConverters.toScala(experimental.map(x -> (Object) x)),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(baseDefinition),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(baseDefinition),
         contextInvariant.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         mapping.stream().collect(new LitSeqJCollector<>()),
         context.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(snapshot),
-        OptionConverters.toScala(differential),
+        (Option) OptionConverters.toScala(snapshot),
+        (Option) OptionConverters.toScala(differential),
         LitUtils.emptyMetaElMap());
   }
 }

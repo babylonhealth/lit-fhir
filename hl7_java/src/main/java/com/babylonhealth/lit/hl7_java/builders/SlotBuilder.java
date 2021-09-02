@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.SLOTSTATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -287,24 +289,24 @@ public class SlotBuilder {
 
   public Slot build() {
     return new Slot(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         end,
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         start,
         status,
-        OptionConverters.toScala(comment),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(comment),
+        (Option) OptionConverters.toScala(language),
         schedule,
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         specialty.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(overbooked.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(overbooked.map(x -> (Object) x)),
         serviceType.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         serviceCategory.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(appointmentType),
+        (Option) OptionConverters.toScala(appointmentType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -42,8 +43,7 @@ import static java.util.stream.Collectors.toList;
 public class UsageContextBuilder {
   private Optional<String> id = Optional.empty();
   private Coding code;
-  private Choice<$bslash$div<$bslash$div<$bslash$div<CodeableConcept, Quantity>, Range>, Reference>>
-      value;
+  private Choice_0119127717 value;
   private Collection<Extension> extension = Collections.emptyList();
 
   /**
@@ -54,14 +54,9 @@ public class UsageContextBuilder {
    *     interpretation of the value is defined by the code. Field is a 'choice' field. Type should
    *     be one of CodeableConcept, Quantity, Range, Reference.
    */
-  public UsageContextBuilder(Coding code, @NonNull Object value) {
+  public UsageContextBuilder(Coding code, @NonNull Choice_0119127717 value) {
     this.code = code;
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(value.getClass().getSimpleName(), UsageContext$.MODULE$.value()),
-                value,
-                UsageContext$.MODULE$.value());
+    this.value = value;
   }
 
   /**
@@ -97,7 +92,7 @@ public class UsageContextBuilder {
 
   public UsageContext build() {
     return new UsageContext(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
         value,
         extension.stream().collect(new LitSeqJCollector<>()),

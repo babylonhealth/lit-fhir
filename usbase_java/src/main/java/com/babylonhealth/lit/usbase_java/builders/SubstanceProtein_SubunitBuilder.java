@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -179,17 +182,17 @@ public class SubstanceProtein_SubunitBuilder {
 
   public SubstanceProtein.Subunit build() {
     return new SubstanceProtein.Subunit(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(length.map(x -> (Object) x)),
-        OptionConverters.toScala(subunit.map(x -> (Object) x)),
-        OptionConverters.toScala(sequence),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(length.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(subunit.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(sequence),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(sequenceAttachment),
-        OptionConverters.toScala(nTerminalModification),
-        OptionConverters.toScala(cTerminalModification),
-        OptionConverters.toScala(nTerminalModificationId),
-        OptionConverters.toScala(cTerminalModificationId),
+        (Option) OptionConverters.toScala(sequenceAttachment),
+        (Option) OptionConverters.toScala(nTerminalModification),
+        (Option) OptionConverters.toScala(cTerminalModification),
+        (Option) OptionConverters.toScala(nTerminalModificationId),
+        (Option) OptionConverters.toScala(cTerminalModificationId),
         LitUtils.emptyMetaElMap());
   }
 }

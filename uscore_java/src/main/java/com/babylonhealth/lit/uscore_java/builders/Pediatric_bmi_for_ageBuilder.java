@@ -11,7 +11,6 @@ import java.util.UUID;
 import java.util.stream.Stream;
 import java.util.stream.Collectors;
 
-import com.babylonhealth.lit.hl7_java.model.Unions.Choice_0934386166;
 import scala.math.BigDecimal;
 import scala.Option;
 import scala.collection.immutable.Seq;
@@ -37,6 +36,10 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -457,35 +460,35 @@ public class Pediatric_bmi_for_ageBuilder {
 
   public Pediatric_bmi_for_age build() {
     return new Pediatric_bmi_for_age(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         code,
         note.stream().collect(new LitSeqJCollector<>()),
         focus.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(issued),
-        OptionConverters.toScala(method),
-        OptionConverters.toScala(device),
+        (Option) OptionConverters.toScala(issued),
+        (Option) OptionConverters.toScala(method),
+        (Option) OptionConverters.toScala(device),
         basedOn.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new NonEmptyLitSeqJCollector<>()),
         value,
-        OptionConverters.toScala(bodySite),
-        OptionConverters.toScala(specimen),
+        (Option) OptionConverters.toScala(bodySite),
+        (Option) OptionConverters.toScala(specimen),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         performer.stream().collect(new LitSeqJCollector<>()),
         hasMember.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         derivedFrom.stream().collect(new LitSeqJCollector<>()),
         effective,
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         interpretation.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(dataAbsentReason),
+        (Option) OptionConverters.toScala(dataAbsentReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         component.stream().collect(new LitSeqJCollector<>()),
         referenceRange.stream().collect(new LitSeqJCollector<>()),

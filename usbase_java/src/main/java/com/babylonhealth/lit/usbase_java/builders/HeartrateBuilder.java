@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -73,7 +76,7 @@ public class HeartrateBuilder {
   private Collection<Reference> hasMember = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<Reference> derivedFrom = Collections.emptyList();
-  private Choice<$bslash$div<FHIRDateTime, Period>> effective;
+  private Choice_0934386166 effective;
   private Optional<String> implicitRules = Optional.empty();
   private CodeableConcept code;
   private Collection<CodeableConcept> interpretation = Collections.emptyList();
@@ -99,17 +102,12 @@ public class HeartrateBuilder {
       OBSERVATION_STATUS status,
       Reference subject,
       Collection<CodeableConcept> category,
-      @NonNull Object effective,
+      @NonNull Choice_0934386166 effective,
       CodeableConcept code) {
     this.status = status;
     this.subject = subject;
     this.category = category;
-    this.effective =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(effective.getClass().getSimpleName(), Heartrate$.MODULE$.effective()),
-                effective,
-                Heartrate$.MODULE$.effective());
+    this.effective = effective;
     this.code = code;
   }
 
@@ -457,35 +455,35 @@ public class HeartrateBuilder {
 
   public Heartrate build() {
     return new Heartrate(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
         focus.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(issued),
-        OptionConverters.toScala(method),
-        OptionConverters.toScala(device),
+        (Option) OptionConverters.toScala(issued),
+        (Option) OptionConverters.toScala(method),
+        (Option) OptionConverters.toScala(device),
         basedOn.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        OptionConverters.toScala(value),
-        OptionConverters.toScala(bodySite),
-        OptionConverters.toScala(specimen),
+        (Option) OptionConverters.toScala(value),
+        (Option) OptionConverters.toScala(bodySite),
+        (Option) OptionConverters.toScala(specimen),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         performer.stream().collect(new LitSeqJCollector<>()),
         hasMember.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         derivedFrom.stream().collect(new LitSeqJCollector<>()),
         effective,
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         code,
         interpretation.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(dataAbsentReason),
+        (Option) OptionConverters.toScala(dataAbsentReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         component.stream().collect(new LitSeqJCollector<>()),
         referenceRange.stream().collect(new LitSeqJCollector<>()),

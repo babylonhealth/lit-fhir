@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.OPERATION_PARAMETER_USE;
 import com.babylonhealth.lit.core.ALL_TYPES;
 import com.babylonhealth.lit.hl7.SEARCH_PARAM_TYPE;
@@ -207,19 +209,19 @@ public class OperationDefinition_ParameterBuilder {
 
   public OperationDefinition.Parameter build() {
     return new OperationDefinition.Parameter(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         use,
         min,
         max,
         name,
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(_type),
         part.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(searchType),
-        OptionConverters.toScala(documentation),
+        (Option) OptionConverters.toScala(searchType),
+        (Option) OptionConverters.toScala(documentation),
         targetProfile.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(binding),
+        (Option) OptionConverters.toScala(binding),
         referencedFrom.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

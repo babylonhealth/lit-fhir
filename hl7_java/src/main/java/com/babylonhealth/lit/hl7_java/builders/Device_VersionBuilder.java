@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -134,11 +136,11 @@ public class Device_VersionBuilder {
 
   public Device.Version build() {
     return new Device.Version(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
         value,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(component),
+        (Option) OptionConverters.toScala(component),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

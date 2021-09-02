@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -47,8 +49,8 @@ public class Immunization_ProtocolAppliedBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<Reference> authority = Optional.empty();
   private Collection<CodeableConcept> targetDisease = Collections.emptyList();
-  private Choice doseNumber;
-  private Optional<Choice> seriesDoses = Optional.empty();
+  private Choice_0839638734 doseNumber;
+  private Optional<Choice_0839638734> seriesDoses = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -56,15 +58,8 @@ public class Immunization_ProtocolAppliedBuilder {
    *
    * @param doseNumber Field is a 'choice' field. Type should be one of Integer, String.
    */
-  public Immunization_ProtocolAppliedBuilder(@NonNull Object doseNumber) {
-    this.doseNumber =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    doseNumber.getClass().getSimpleName(),
-                    Immunization.ProtocolApplied$.MODULE$.doseNumber()),
-                doseNumber,
-                Immunization.ProtocolApplied$.MODULE$.doseNumber());
+  public Immunization_ProtocolAppliedBuilder(@NonNull Choice_0839638734 doseNumber) {
+    this.doseNumber = doseNumber;
   }
 
   /**
@@ -121,33 +116,9 @@ public class Immunization_ProtocolAppliedBuilder {
     return this;
   }
   /** @param seriesDoses Field is a 'choice' field. Type should be one of Integer, String. */
-  public <T> Immunization_ProtocolAppliedBuilder withSeriesDoses(@NonNull T seriesDoses) {
-    var guessedSuffix =
-        autoSuffix(
-            seriesDoses.getClass().getSimpleName(),
-            Immunization.ProtocolApplied$.MODULE$.seriesDoses());
-    return withSeriesDoses(guessedSuffix, seriesDoses);
-  }
-
-  /**
-   * Alternative to the 'main' withSeriesDoses method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param seriesDoses - The value to be passed to the builder
-   */
-  public <T> Immunization_ProtocolAppliedBuilder withSeriesDoses(
-      String suffix, @NonNull T seriesDoses) {
-    guard(
-        seriesDoses.getClass().getSimpleName(),
-        suffix,
-        Immunization.ProtocolApplied$.MODULE$.seriesDoses());
-    this.seriesDoses =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, seriesDoses, Immunization.ProtocolApplied$.MODULE$.seriesDoses()));
+  public Immunization_ProtocolAppliedBuilder withSeriesDoses(
+      @NonNull Choice_0839638734 seriesDoses) {
+    this.seriesDoses = Optional.of(seriesDoses);
     return this;
   }
   /**
@@ -187,10 +158,10 @@ public class Immunization_ProtocolAppliedBuilder {
 
   public Immunization.ProtocolApplied build() {
     return new Immunization.ProtocolApplied(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(series),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(series),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(authority),
+        (Option) OptionConverters.toScala(authority),
         targetDisease.stream().collect(new LitSeqJCollector<>()),
         (Choice) doseNumber,
         (Option) OptionConverters.toScala(seriesDoses),

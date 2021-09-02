@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.COMPOSITION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.V3_CONFIDENTIALITYCLASSIFICATION;
@@ -330,24 +333,24 @@ public class ClinicaldocumentBuilder {
 
   public Clinicaldocument build() {
     return new Clinicaldocument(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         _type,
         date,
         title,
         status,
         author.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(custodian),
-        OptionConverters.toScala(identifier),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(confidentiality),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(custodian),
+        (Option) OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(confidentiality),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         event.stream().collect(new LitSeqJCollector<>()),
         section.stream().collect(new LitSeqJCollector<>()),

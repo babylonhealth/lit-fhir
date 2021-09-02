@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -176,10 +178,10 @@ public class PlanDefinition_GoalBuilder {
 
   public PlanDefinition.Goal build() {
     return new PlanDefinition.Goal(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(start),
-        OptionConverters.toScala(category),
-        OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(start),
+        (Option) OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(priority),
         extension.stream().collect(new LitSeqJCollector<>()),
         addresses.stream().collect(new LitSeqJCollector<>()),
         description,

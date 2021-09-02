@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CONTRACT_PUBLICATIONSTATUS;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -158,13 +160,13 @@ public class Contract_ContentDefinitionBuilder {
 
   public Contract.ContentDefinition build() {
     return new Contract.ContentDefinition(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
-        OptionConverters.toScala(subType),
+        (Option) OptionConverters.toScala(subType),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(publisher),
-        OptionConverters.toScala(copyright),
-        OptionConverters.toScala(publicationDate),
+        (Option) OptionConverters.toScala(publisher),
+        (Option) OptionConverters.toScala(copyright),
+        (Option) OptionConverters.toScala(publicationDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         publicationStatus,
         LitUtils.emptyMetaElMap());

@@ -36,6 +36,10 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MEDICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -258,21 +262,21 @@ public class Us_core_medicationBuilder {
 
   public Us_core_medication build() {
     return new Us_core_medication(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         code,
-        OptionConverters.toScala(form),
-        OptionConverters.toScala(status),
-        OptionConverters.toScala(amount),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(form),
+        (Option) OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(amount),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(manufacturer),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(manufacturer),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(batch),
+        (Option) OptionConverters.toScala(batch),
         ingredient.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

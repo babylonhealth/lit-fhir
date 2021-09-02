@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -91,9 +92,9 @@ public class MoneyBuilder {
 
   public Money build() {
     return new Money(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(value),
-        OptionConverters.toScala(currency),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(value),
+        (Option) OptionConverters.toScala(currency),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +47,7 @@ public class Parameters_ParameterBuilder {
   private Optional<String> id = Optional.empty();
   private String name;
   private Collection<Parameters.Parameter> part = Collections.emptyList();
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_1349125893> value = Optional.empty();
   private Optional<Resource> resource = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -85,30 +87,8 @@ public class Parameters_ParameterBuilder {
    *     ParameterDefinition, Period, Quantity, Range, Ratio, Reference, RelatedArtifact,
    *     SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext, ZonedDateTime.
    */
-  public <T> Parameters_ParameterBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), Parameters.Parameter$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of Integer or String then there are multiple candidate 'types' for the FHIR object, and we
-   * are unable to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type Integer, the valid values are Integer,
-   *     PositiveInt, UnsignedInt. For values of type String, the valid values are Canonical, Code,
-   *     Id, Markdown, Oid, String, Uri, Url.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> Parameters_ParameterBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, Parameters.Parameter$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, value, Parameters.Parameter$.MODULE$.value()));
+  public Parameters_ParameterBuilder withValue(@NonNull Choice_1349125893 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /** @param resource */
@@ -141,11 +121,11 @@ public class Parameters_ParameterBuilder {
 
   public Parameters.Parameter build() {
     return new Parameters.Parameter(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         name,
         part.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(value),
-        OptionConverters.toScala(resource),
+        (Option) OptionConverters.toScala(resource),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

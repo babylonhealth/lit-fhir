@@ -36,6 +36,10 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -94,8 +98,8 @@ public class Us_core_directBuilder {
 
   public Us_core_direct build() {
     return new Us_core_direct(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(value.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(value.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -371,27 +374,27 @@ public class SubstanceSourceMaterialBuilder {
 
   public SubstanceSourceMaterial build() {
     return new SubstanceSourceMaterial(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(organismId),
-        OptionConverters.toScala(organismName),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(organismId),
+        (Option) OptionConverters.toScala(organismName),
+        (Option) OptionConverters.toScala(implicitRules),
         countryOfOrigin.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(developmentStage),
+        (Option) OptionConverters.toScala(developmentStage),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         parentSubstanceId.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(sourceMaterialType),
-        OptionConverters.toScala(sourceMaterialClass),
-        OptionConverters.toScala(sourceMaterialState),
+        (Option) OptionConverters.toScala(sourceMaterialType),
+        (Option) OptionConverters.toScala(sourceMaterialClass),
+        (Option) OptionConverters.toScala(sourceMaterialState),
         parentSubstanceName.stream().collect(new LitSeqJCollector<>()),
         geographicalLocation.stream().collect(new LitSeqJCollector<>()),
         partDescription.stream().collect(new LitSeqJCollector<>()),
         fractionDescription.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(organism),
+        (Option) OptionConverters.toScala(organism),
         LitUtils.emptyMetaElMap());
   }
 }

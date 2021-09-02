@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,9 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class MedicationKnowledge_DrugCharacteristicBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<CodeableConcept> _type = Optional.empty();
-  private Optional<
-          Choice<$bslash$div<$bslash$div<$bslash$div<byte[], CodeableConcept>, Quantity>, String>>>
-      value = Optional.empty();
+  private Optional<Choice_1309404550> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -70,33 +70,8 @@ public class MedicationKnowledge_DrugCharacteristicBuilder {
    * @param value Field is a 'choice' field. Type should be one of byte[], CodeableConcept,
    *     Quantity, String.
    */
-  public <T> MedicationKnowledge_DrugCharacteristicBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(
-            value.getClass().getSimpleName(),
-            MedicationKnowledge.DrugCharacteristic$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> MedicationKnowledge_DrugCharacteristicBuilder withValue(
-      String suffix, @NonNull T value) {
-    guard(
-        value.getClass().getSimpleName(),
-        suffix,
-        MedicationKnowledge.DrugCharacteristic$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, value, MedicationKnowledge.DrugCharacteristic$.MODULE$.value()));
+  public MedicationKnowledge_DrugCharacteristicBuilder withValue(@NonNull Choice_1309404550 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -160,9 +135,9 @@ public class MedicationKnowledge_DrugCharacteristicBuilder {
 
   public MedicationKnowledge.DrugCharacteristic build() {
     return new MedicationKnowledge.DrugCharacteristic(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(value),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

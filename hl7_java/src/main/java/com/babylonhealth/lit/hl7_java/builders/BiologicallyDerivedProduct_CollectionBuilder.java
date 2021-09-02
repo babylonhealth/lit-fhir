@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -46,7 +48,7 @@ public class BiologicallyDerivedProduct_CollectionBuilder {
   private Optional<Reference> source = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<Reference> collector = Optional.empty();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> collected = Optional.empty();
+  private Optional<Choice_0934386166> collected = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /** Required fields for {@link BiologicallyDerivedProduct.Collection} */
@@ -95,33 +97,9 @@ public class BiologicallyDerivedProduct_CollectionBuilder {
     return this;
   }
   /** @param collected Field is a 'choice' field. Type should be one of FHIRDateTime, Period. */
-  public <T> BiologicallyDerivedProduct_CollectionBuilder withCollected(@NonNull T collected) {
-    var guessedSuffix =
-        autoSuffix(
-            collected.getClass().getSimpleName(),
-            BiologicallyDerivedProduct.Collection$.MODULE$.collected());
-    return withCollected(guessedSuffix, collected);
-  }
-
-  /**
-   * Alternative to the 'main' withCollected method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param collected - The value to be passed to the builder
-   */
-  public <T> BiologicallyDerivedProduct_CollectionBuilder withCollected(
-      String suffix, @NonNull T collected) {
-    guard(
-        collected.getClass().getSimpleName(),
-        suffix,
-        BiologicallyDerivedProduct.Collection$.MODULE$.collected());
-    this.collected =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, collected, BiologicallyDerivedProduct.Collection$.MODULE$.collected()));
+  public BiologicallyDerivedProduct_CollectionBuilder withCollected(
+      @NonNull Choice_0934386166 collected) {
+    this.collected = Optional.of(collected);
     return this;
   }
   /**
@@ -161,11 +139,11 @@ public class BiologicallyDerivedProduct_CollectionBuilder {
 
   public BiologicallyDerivedProduct.Collection build() {
     return new BiologicallyDerivedProduct.Collection(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(source),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(source),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(collector),
-        OptionConverters.toScala(collected),
+        (Option) OptionConverters.toScala(collector),
+        (Option) OptionConverters.toScala(collected),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

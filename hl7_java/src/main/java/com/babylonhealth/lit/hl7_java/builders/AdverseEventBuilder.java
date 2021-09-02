@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.ADVERSE_EVENT_ACTUALITY;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -385,29 +387,29 @@ public class AdverseEventBuilder {
 
   public AdverseEvent build() {
     return new AdverseEvent(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(date),
-        OptionConverters.toScala(event),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(event),
         study.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(outcome),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(outcome),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(detected),
-        OptionConverters.toScala(location),
-        OptionConverters.toScala(severity),
-        OptionConverters.toScala(recorder),
+        (Option) OptionConverters.toScala(detected),
+        (Option) OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(severity),
+        (Option) OptionConverters.toScala(recorder),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         actuality,
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(identifier),
-        OptionConverters.toScala(seriousness),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(seriousness),
         contributor.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(recordedDate),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(recordedDate),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         referenceDocument.stream().collect(new LitSeqJCollector<>()),
         resultingCondition.stream().collect(new LitSeqJCollector<>()),

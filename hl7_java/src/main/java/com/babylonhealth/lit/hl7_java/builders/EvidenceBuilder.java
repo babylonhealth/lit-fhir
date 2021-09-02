@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -536,38 +538,38 @@ public class EvidenceBuilder {
 
   public Evidence build() {
     return new Evidence(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(date),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(title),
         topic.stream().collect(new LitSeqJCollector<>()),
         status,
         author.stream().collect(new LitSeqJCollector<>()),
         editor.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(version),
         contact.stream().collect(new LitSeqJCollector<>()),
         outcome.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(subtitle),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(subtitle),
         reviewer.stream().collect(new LitSeqJCollector<>()),
         endorser.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(publisher),
-        OptionConverters.toScala(copyright),
+        (Option) OptionConverters.toScala(publisher),
+        (Option) OptionConverters.toScala(copyright),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(shortTitle),
+        (Option) OptionConverters.toScala(shortTitle),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(description),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(approvalDate),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(lastReviewDate),
-        OptionConverters.toScala(effectivePeriod),
+        (Option) OptionConverters.toScala(approvalDate),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(lastReviewDate),
+        (Option) OptionConverters.toScala(effectivePeriod),
         relatedArtifact.stream().collect(new LitSeqJCollector<>()),
         exposureVariant.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

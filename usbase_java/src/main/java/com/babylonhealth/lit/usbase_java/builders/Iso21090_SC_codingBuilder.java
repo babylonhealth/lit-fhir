@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -67,6 +70,7 @@ public class Iso21090_SC_codingBuilder {
   }
 
   public Iso21090_SC_coding build() {
-    return new Iso21090_SC_coding(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Iso21090_SC_coding(
+        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

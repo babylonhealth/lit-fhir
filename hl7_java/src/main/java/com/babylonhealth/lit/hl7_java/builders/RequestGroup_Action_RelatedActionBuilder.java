@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ACTION_RELATIONSHIP_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +47,7 @@ public class RequestGroup_Action_RelatedActionBuilder {
   private Optional<String> id = Optional.empty();
   private String actionId;
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<Duration, Range>>> offset = Optional.empty();
+  private Optional<Choice00801828838> offset = Optional.empty();
   private ACTION_RELATIONSHIP_TYPE relationship;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -93,31 +95,8 @@ public class RequestGroup_Action_RelatedActionBuilder {
     return this;
   }
   /** @param offset Field is a 'choice' field. Type should be one of Duration, Range. */
-  public <T> RequestGroup_Action_RelatedActionBuilder withOffset(@NonNull T offset) {
-    var guessedSuffix =
-        autoSuffix(
-            offset.getClass().getSimpleName(), RequestGroup$Action$RelatedAction$.MODULE$.offset());
-    return withOffset(guessedSuffix, offset);
-  }
-
-  /**
-   * Alternative to the 'main' withOffset method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param offset - The value to be passed to the builder
-   */
-  public <T> RequestGroup_Action_RelatedActionBuilder withOffset(String suffix, @NonNull T offset) {
-    guard(
-        offset.getClass().getSimpleName(),
-        suffix,
-        RequestGroup$Action$RelatedAction$.MODULE$.offset());
-    this.offset =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, offset, RequestGroup$Action$RelatedAction$.MODULE$.offset()));
+  public RequestGroup_Action_RelatedActionBuilder withOffset(@NonNull Choice00801828838 offset) {
+    this.offset = Optional.of(offset);
     return this;
   }
   /**
@@ -157,10 +136,10 @@ public class RequestGroup_Action_RelatedActionBuilder {
 
   public RequestGroup$Action$RelatedAction build() {
     return new RequestGroup$Action$RelatedAction(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         actionId,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(offset),
+        (Option) OptionConverters.toScala(offset),
         relationship,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

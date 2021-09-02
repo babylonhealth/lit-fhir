@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.FM_STATUS;
 import com.babylonhealth.lit.hl7.REMITTANCE_OUTCOME;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -236,21 +238,21 @@ public class EnrollmentResponseBuilder {
 
   public EnrollmentResponse build() {
     return new EnrollmentResponse(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(status),
-        OptionConverters.toScala(request),
-        OptionConverters.toScala(outcome),
-        OptionConverters.toScala(created),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(request),
+        (Option) OptionConverters.toScala(outcome),
+        (Option) OptionConverters.toScala(created),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(disposition),
-        OptionConverters.toScala(organization),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(requestProvider),
+        (Option) OptionConverters.toScala(disposition),
+        (Option) OptionConverters.toScala(organization),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(requestProvider),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

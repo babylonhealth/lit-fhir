@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -312,22 +314,22 @@ public class CatalogEntryBuilder {
 
   public CatalogEntry build() {
     return new CatalogEntry(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(status),
-        OptionConverters.toScala(validTo),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(validTo),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         orderable,
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(lastUpdated),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(lastUpdated),
+        (Option) OptionConverters.toScala(implicitRules),
         referencedItem,
         classification.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(validityPeriod),
+        (Option) OptionConverters.toScala(validityPeriod),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         additionalIdentifier.stream().collect(new LitSeqJCollector<>()),
         additionalCharacteristic.stream().collect(new LitSeqJCollector<>()),

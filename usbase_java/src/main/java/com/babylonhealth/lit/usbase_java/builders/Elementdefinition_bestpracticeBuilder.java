@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +48,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Elementdefinition_bestpracticeBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice value;
+  private Choice_1768247138 value;
 
   /**
    * Required fields for {@link Elementdefinition_bestpractice}
@@ -54,15 +57,8 @@ public class Elementdefinition_bestpracticeBuilder {
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
    *     field. Type should be one of Boolean, CodeableConcept.
    */
-  public Elementdefinition_bestpracticeBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    value.getClass().getSimpleName(),
-                    Elementdefinition_bestpractice$.MODULE$.value()),
-                value,
-                Elementdefinition_bestpractice$.MODULE$.value());
+  public Elementdefinition_bestpracticeBuilder(@NonNull Choice_1768247138 value) {
+    this.value = value;
   }
 
   /**
@@ -76,6 +72,6 @@ public class Elementdefinition_bestpracticeBuilder {
 
   public Elementdefinition_bestpractice build() {
     return new Elementdefinition_bestpractice(
-        OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+        (Option) OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
   }
 }

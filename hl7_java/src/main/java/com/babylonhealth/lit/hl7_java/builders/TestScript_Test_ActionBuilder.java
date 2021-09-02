@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -129,10 +131,10 @@ public class TestScript_Test_ActionBuilder {
 
   public TestScript$Test$Action build() {
     return new TestScript$Test$Action(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_assert),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_assert),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(operation),
+        (Option) OptionConverters.toScala(operation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

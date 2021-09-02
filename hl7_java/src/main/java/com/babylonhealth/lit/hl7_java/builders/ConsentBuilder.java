@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CONSENT_STATE_CODES;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -55,7 +57,7 @@ public class ConsentBuilder {
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Reference> performer = Collections.emptyList();
-  private Optional<Choice<$bslash$div<Attachment, Reference>>> source = Optional.empty();
+  private Optional<Choice_0340660840> source = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<CodeableConcept> policyRule = Optional.empty();
   private Collection<Reference> organization = Collections.emptyList();
@@ -190,23 +192,8 @@ public class ConsentBuilder {
    *     a reference to a document repository (e.g. XDS) that stores the original consent document.
    *     Field is a 'choice' field. Type should be one of Attachment, Reference.
    */
-  public <T> ConsentBuilder withSource(@NonNull T source) {
-    var guessedSuffix = autoSuffix(source.getClass().getSimpleName(), Consent$.MODULE$.source());
-    return withSource(guessedSuffix, source);
-  }
-
-  /**
-   * Alternative to the 'main' withSource method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param source - The value to be passed to the builder
-   */
-  public <T> ConsentBuilder withSource(String suffix, @NonNull T source) {
-    guard(source.getClass().getSimpleName(), suffix, Consent$.MODULE$.source());
-    this.source =
-        Optional.of((Choice) Choice$.MODULE$.fromSuffix(suffix, source, Consent$.MODULE$.source()));
+  public ConsentBuilder withSource(@NonNull Choice_0340660840 source) {
+    this.source = Optional.of(source);
     return this;
   }
   /** @param identifier - Unique identifier for this copy of the Consent Statement. */
@@ -330,27 +317,27 @@ public class ConsentBuilder {
 
   public Consent build() {
     return new Consent(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         scope,
         status,
-        OptionConverters.toScala(patient),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(patient),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        OptionConverters.toScala(dateTime),
+        (Option) OptionConverters.toScala(dateTime),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         performer.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(source),
+        (Option) OptionConverters.toScala(source),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(policyRule),
+        (Option) OptionConverters.toScala(policyRule),
         organization.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         policy.stream().collect(new LitSeqJCollector<>()),
         verification.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(provision),
+        (Option) OptionConverters.toScala(provision),
         LitUtils.emptyMetaElMap());
   }
 }

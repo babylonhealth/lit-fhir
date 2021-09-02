@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -46,8 +49,7 @@ import static java.util.stream.Collectors.toList;
 public class SubstanceAmountBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<$bslash$div<Quantity, Range>, String>>> amount =
-      Optional.empty();
+  private Optional<Choice_1527751898> amount = Optional.empty();
   private Optional<CodeableConcept> amountType = Optional.empty();
   private Optional<String> amountText = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -92,25 +94,8 @@ public class SubstanceAmountBuilder {
    *     given element is given, it would be captured in this field. Field is a 'choice' field. Type
    *     should be one of Quantity, Range, String.
    */
-  public <T> SubstanceAmountBuilder withAmount(@NonNull T amount) {
-    var guessedSuffix =
-        autoSuffix(amount.getClass().getSimpleName(), SubstanceAmount$.MODULE$.amount());
-    return withAmount(guessedSuffix, amount);
-  }
-
-  /**
-   * Alternative to the 'main' withAmount method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param amount - The value to be passed to the builder
-   */
-  public <T> SubstanceAmountBuilder withAmount(String suffix, @NonNull T amount) {
-    guard(amount.getClass().getSimpleName(), suffix, SubstanceAmount$.MODULE$.amount());
-    this.amount =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, amount, SubstanceAmount$.MODULE$.amount()));
+  public SubstanceAmountBuilder withAmount(@NonNull Choice_1527751898 amount) {
+    this.amount = Optional.of(amount);
     return this;
   }
   /**
@@ -172,13 +157,13 @@ public class SubstanceAmountBuilder {
 
   public SubstanceAmount build() {
     return new SubstanceAmount(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(amount),
-        OptionConverters.toScala(amountType),
-        OptionConverters.toScala(amountText),
+        (Option) OptionConverters.toScala(amount),
+        (Option) OptionConverters.toScala(amountType),
+        (Option) OptionConverters.toScala(amountText),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(referenceRange),
+        (Option) OptionConverters.toScala(referenceRange),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.SUBSCRIPTION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -231,19 +233,19 @@ public class SubscriptionBuilder {
 
   public Subscription build() {
     return new Subscription(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(end),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(error),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(end),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(error),
         status,
         reason,
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         criteria,
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         channel,
         LitUtils.emptyMetaElMap());

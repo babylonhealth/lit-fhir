@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class CodeSystem_Concept_PropertyBuilder {
   private Optional<String> id = Optional.empty();
   private String code;
-  private Choice value;
+  private Choice_1489367071 value;
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -57,12 +59,9 @@ public class CodeSystem_Concept_PropertyBuilder {
    *     values of type String -- to distinguish between the specific subtype, pass $value wrapped
    *     in ParamDistinguisher.choose("foo". $value), where foo is one of: Code, String
    */
-  public CodeSystem_Concept_PropertyBuilder(String code, @NonNull ParamDistinguisher value) {
+  public CodeSystem_Concept_PropertyBuilder(String code, @NonNull Choice_1489367071 value) {
     this.code = code;
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                value.suffix, value.wrappedChoice, CodeSystem$Concept$Property$.MODULE$.value());
+    this.value = value;
   }
 
   /**
@@ -133,7 +132,7 @@ public class CodeSystem_Concept_PropertyBuilder {
 
   public CodeSystem$Concept$Property build() {
     return new CodeSystem$Concept$Property(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),

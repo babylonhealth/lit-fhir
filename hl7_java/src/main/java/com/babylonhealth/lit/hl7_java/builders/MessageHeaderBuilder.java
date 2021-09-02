@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -51,7 +53,7 @@ public class MessageHeaderBuilder {
   private Optional<CodeableConcept> reason = Optional.empty();
   private Optional<Reference> enterer = Optional.empty();
   private Optional<LANGUAGES> language = Optional.empty();
-  private Choice<$bslash$div<Coding, String>> event;
+  private Choice01583485927 event;
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<String> definition = Optional.empty();
@@ -71,13 +73,8 @@ public class MessageHeaderBuilder {
    *     EventDefinition. Field is a 'choice' field. Type should be one of Coding, String.
    * @param source - The source application from which this message originated.
    */
-  public MessageHeaderBuilder(@NonNull Object event, MessageHeader.Source source) {
-    this.event =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(event.getClass().getSimpleName(), MessageHeader$.MODULE$.event()),
-                event,
-                MessageHeader$.MODULE$.event());
+  public MessageHeaderBuilder(@NonNull Choice01583485927 event, MessageHeader.Source source) {
+    this.event = event;
     this.source = source;
   }
 
@@ -285,24 +282,24 @@ public class MessageHeaderBuilder {
 
   public MessageHeader build() {
     return new MessageHeader(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         focus.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(sender),
-        OptionConverters.toScala(author),
-        OptionConverters.toScala(reason),
-        OptionConverters.toScala(enterer),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(sender),
+        (Option) OptionConverters.toScala(author),
+        (Option) OptionConverters.toScala(reason),
+        (Option) OptionConverters.toScala(enterer),
+        (Option) OptionConverters.toScala(language),
         event,
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(definition),
-        OptionConverters.toScala(responsible),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(definition),
+        (Option) OptionConverters.toScala(responsible),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         source,
-        OptionConverters.toScala(response),
+        (Option) OptionConverters.toScala(response),
         destination.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -52,22 +54,14 @@ public class ConditionBuilder {
   private Collection<CodeableConcept> category = Collections.emptyList();
   private Optional<CodeableConcept> severity = Optional.empty();
   private Collection<CodeableConcept> bodySite = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<$bslash$div<$bslash$div<Age, FHIRDateTime>, Period>, Range>, String>>>
-      onset = Optional.empty();
+  private Optional<Choice01352864625> onset = Optional.empty();
   private Optional<Reference> recorder = Optional.empty();
   private Optional<Reference> asserter = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<Reference> encounter = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<$bslash$div<$bslash$div<Age, FHIRDateTime>, Period>, Range>, String>>>
-      abatement = Optional.empty();
+  private Optional<Choice01352864625> abatement = Optional.empty();
   private Optional<FHIRDateTime> recordedDate = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Optional<CodeableConcept> clinicalStatus = Optional.empty();
@@ -172,23 +166,8 @@ public class ConditionBuilder {
    *     clinician. Field is a 'choice' field. Type should be one of Age, FHIRDateTime, Period,
    *     Range, String.
    */
-  public <T> ConditionBuilder withOnset(@NonNull T onset) {
-    var guessedSuffix = autoSuffix(onset.getClass().getSimpleName(), Condition$.MODULE$.onset());
-    return withOnset(guessedSuffix, onset);
-  }
-
-  /**
-   * Alternative to the 'main' withOnset method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param onset - The value to be passed to the builder
-   */
-  public <T> ConditionBuilder withOnset(String suffix, @NonNull T onset) {
-    guard(onset.getClass().getSimpleName(), suffix, Condition$.MODULE$.onset());
-    this.onset =
-        Optional.of((Choice) Choice$.MODULE$.fromSuffix(suffix, onset, Condition$.MODULE$.onset()));
+  public ConditionBuilder withOnset(@NonNull Choice01352864625 onset) {
+    this.onset = Optional.of(onset);
     return this;
   }
   /**
@@ -276,25 +255,8 @@ public class ConditionBuilder {
    *     they can abate. Field is a 'choice' field. Type should be one of Age, FHIRDateTime, Period,
    *     Range, String.
    */
-  public <T> ConditionBuilder withAbatement(@NonNull T abatement) {
-    var guessedSuffix =
-        autoSuffix(abatement.getClass().getSimpleName(), Condition$.MODULE$.abatement());
-    return withAbatement(guessedSuffix, abatement);
-  }
-
-  /**
-   * Alternative to the 'main' withAbatement method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param abatement - The value to be passed to the builder
-   */
-  public <T> ConditionBuilder withAbatement(String suffix, @NonNull T abatement) {
-    guard(abatement.getClass().getSimpleName(), suffix, Condition$.MODULE$.abatement());
-    this.abatement =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, abatement, Condition$.MODULE$.abatement()));
+  public ConditionBuilder withAbatement(@NonNull Choice01352864625 abatement) {
+    this.abatement = Optional.of(abatement);
     return this;
   }
   /**
@@ -398,29 +360,29 @@ public class ConditionBuilder {
 
   public Condition build() {
     return new Condition(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(code),
         note.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(severity),
+        (Option) OptionConverters.toScala(severity),
         bodySite.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(onset),
-        OptionConverters.toScala(recorder),
-        OptionConverters.toScala(asserter),
+        (Option) OptionConverters.toScala(onset),
+        (Option) OptionConverters.toScala(recorder),
+        (Option) OptionConverters.toScala(asserter),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(abatement),
-        OptionConverters.toScala(recordedDate),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(clinicalStatus),
+        (Option) OptionConverters.toScala(abatement),
+        (Option) OptionConverters.toScala(recordedDate),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(clinicalStatus),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(verificationStatus),
+        (Option) OptionConverters.toScala(verificationStatus),
         stage.stream().collect(new LitSeqJCollector<>()),
         evidence.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

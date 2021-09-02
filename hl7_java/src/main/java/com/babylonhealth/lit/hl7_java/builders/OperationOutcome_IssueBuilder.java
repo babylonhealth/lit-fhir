@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ISSUE_TYPE;
 import com.babylonhealth.lit.hl7.ISSUE_SEVERITY;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -161,14 +163,14 @@ public class OperationOutcome_IssueBuilder {
 
   public OperationOutcome.Issue build() {
     return new OperationOutcome.Issue(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
-        OptionConverters.toScala(details),
+        (Option) OptionConverters.toScala(details),
         severity,
         location.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         expression.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(diagnostics),
+        (Option) OptionConverters.toScala(diagnostics),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -430,31 +432,31 @@ public class MedicinalProductBuilder {
 
   public MedicinalProduct build() {
     return new MedicinalProduct(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(domain),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(domain),
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         masterFile.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         clinicalTrial.stream().collect(new LitSeqJCollector<>()),
         crossReference.stream().collect(new LitSeqJCollector<>()),
         specialMeasures.stream().collect(new LitSeqJCollector<>()),
         (LitSeq) marketingStatus.stream().collect(new LitSeqJCollector<>()),
         attachedDocument.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(legalStatusOfSupply),
+        (Option) OptionConverters.toScala(legalStatusOfSupply),
         productClassification.stream().collect(new LitSeqJCollector<>()),
         pharmaceuticalProduct.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(paediatricUseIndicator),
+        (Option) OptionConverters.toScala(paediatricUseIndicator),
         packagedMedicinalProduct.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(additionalMonitoringIndicator),
-        OptionConverters.toScala(combinedPharmaceuticalDoseForm),
+        (Option) OptionConverters.toScala(additionalMonitoringIndicator),
+        (Option) OptionConverters.toScala(combinedPharmaceuticalDoseForm),
         specialDesignation.stream().collect(new LitSeqJCollector<>()),
         name.stream().collect(new NonEmptyLitSeqJCollector<>()),
         manufacturingBusinessOperation.stream().collect(new LitSeqJCollector<>()),

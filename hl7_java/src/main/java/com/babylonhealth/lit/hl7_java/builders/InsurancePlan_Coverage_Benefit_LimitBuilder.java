@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -130,9 +132,9 @@ public class InsurancePlan_Coverage_Benefit_LimitBuilder {
 
   public InsurancePlan$Coverage$Benefit$Limit build() {
     return new InsurancePlan$Coverage$Benefit$Limit(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(value),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

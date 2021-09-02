@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -169,12 +171,12 @@ public class ValueSet_ExpansionBuilder {
 
   public ValueSet.Expansion build() {
     return new ValueSet.Expansion(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(total.map(x -> (Object) x)),
-        OptionConverters.toScala(offset.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(total.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(offset.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         timestamp,
-        OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(identifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         contains.stream().collect(new LitSeqJCollector<>()),
         parameter.stream().collect(new LitSeqJCollector<>()),

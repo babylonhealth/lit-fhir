@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -49,7 +51,7 @@ public class Contract_TermBuilder {
   private Optional<FHIRDateTime> issued = Optional.empty();
   private Optional<Period> applies = Optional.empty();
   private Optional<CodeableConcept> subType = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> topic = Optional.empty();
+  private Optional<Choice01025009075> topic = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<Identifier> identifier = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -129,25 +131,8 @@ public class Contract_TermBuilder {
    *     contractual objectives. Field is a 'choice' field. Type should be one of CodeableConcept,
    *     Reference.
    */
-  public <T> Contract_TermBuilder withTopic(@NonNull T topic) {
-    var guessedSuffix =
-        autoSuffix(topic.getClass().getSimpleName(), Contract.Term$.MODULE$.topic());
-    return withTopic(guessedSuffix, topic);
-  }
-
-  /**
-   * Alternative to the 'main' withTopic method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param topic - The value to be passed to the builder
-   */
-  public <T> Contract_TermBuilder withTopic(String suffix, @NonNull T topic) {
-    guard(topic.getClass().getSimpleName(), suffix, Contract.Term$.MODULE$.topic());
-    this.topic =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, topic, Contract.Term$.MODULE$.topic()));
+  public Contract_TermBuilder withTopic(@NonNull Choice01025009075 topic) {
+    this.topic = Optional.of(topic);
     return this;
   }
   /**
@@ -248,16 +233,16 @@ public class Contract_TermBuilder {
 
   public Contract.Term build() {
     return new Contract.Term(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(text),
         group.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(issued),
-        OptionConverters.toScala(applies),
-        OptionConverters.toScala(subType),
-        OptionConverters.toScala(topic),
+        (Option) OptionConverters.toScala(issued),
+        (Option) OptionConverters.toScala(applies),
+        (Option) OptionConverters.toScala(subType),
+        (Option) OptionConverters.toScala(topic),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(identifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         offer,
         securityLabel.stream().collect(new LitSeqJCollector<>()),

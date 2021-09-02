@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +47,7 @@ public class Substance_IngredientBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<Ratio> quantity = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<CodeableConcept, Reference>> substance;
+  private Choice01025009075 substance;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -53,15 +55,8 @@ public class Substance_IngredientBuilder {
    *
    * @param substance Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
    */
-  public Substance_IngredientBuilder(@NonNull Object substance) {
-    this.substance =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    substance.getClass().getSimpleName(),
-                    Substance.Ingredient$.MODULE$.substance()),
-                substance,
-                Substance.Ingredient$.MODULE$.substance());
+  public Substance_IngredientBuilder(@NonNull Choice01025009075 substance) {
+    this.substance = substance;
   }
 
   /**
@@ -136,8 +131,8 @@ public class Substance_IngredientBuilder {
 
   public Substance.Ingredient build() {
     return new Substance.Ingredient(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
         substance,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

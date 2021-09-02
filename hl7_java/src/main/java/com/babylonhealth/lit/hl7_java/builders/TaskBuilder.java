@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.TASK_STATUS;
 import com.babylonhealth.lit.hl7.TASK_INTENT;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -466,45 +468,45 @@ public class TaskBuilder {
 
   public Task build() {
     return new Task(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_for),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_for),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(code),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(focus),
-        OptionConverters.toScala(owner),
+        (Option) OptionConverters.toScala(focus),
+        (Option) OptionConverters.toScala(owner),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
         intent,
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(priority),
-        OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(location),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(requester),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(requester),
         insurance.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(authoredOn),
-        OptionConverters.toScala(reasonCode),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(statusReason),
-        OptionConverters.toScala(lastModified),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(authoredOn),
+        (Option) OptionConverters.toScala(reasonCode),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(statusReason),
+        (Option) OptionConverters.toScala(lastModified),
+        (Option) OptionConverters.toScala(implicitRules),
         performerType.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(businessStatus),
-        OptionConverters.toScala(instantiatesUri),
-        OptionConverters.toScala(groupIdentifier),
-        OptionConverters.toScala(executionPeriod),
-        OptionConverters.toScala(reasonReference),
+        (Option) OptionConverters.toScala(businessStatus),
+        (Option) OptionConverters.toScala(instantiatesUri),
+        (Option) OptionConverters.toScala(groupIdentifier),
+        (Option) OptionConverters.toScala(executionPeriod),
+        (Option) OptionConverters.toScala(reasonReference),
         relevantHistory.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(instantiatesCanonical),
+        (Option) OptionConverters.toScala(instantiatesCanonical),
         input.stream().collect(new LitSeqJCollector<>()),
         output.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(restriction),
+        (Option) OptionConverters.toScala(restriction),
         LitUtils.emptyMetaElMap());
   }
 }

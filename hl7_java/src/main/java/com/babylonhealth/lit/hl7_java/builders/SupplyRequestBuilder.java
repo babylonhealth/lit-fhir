@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.SUPPLYREQUEST_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
@@ -48,7 +50,7 @@ public class SupplyRequestBuilder {
   private Optional<Meta> meta = Optional.empty();
   private Optional<Narrative> text = Optional.empty();
   private Optional<SUPPLYREQUEST_STATUS> status = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> item;
+  private Choice01025009075 item;
   private Optional<LANGUAGES> language = Optional.empty();
   private Optional<CodeableConcept> category = Optional.empty();
   private Optional<REQUEST_PRIORITY> priority = Optional.empty();
@@ -63,8 +65,7 @@ public class SupplyRequestBuilder {
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Optional<Reference> deliverFrom = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>>> occurrence =
-      Optional.empty();
+  private Optional<Choice00609373412> occurrence = Optional.empty();
   private Collection<Reference> reasonReference = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<SupplyRequest.Parameter> parameter = Collections.emptyList();
@@ -77,13 +78,8 @@ public class SupplyRequestBuilder {
    *     Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
    * @param quantity - The amount that is being ordered of the indicated item.
    */
-  public SupplyRequestBuilder(@NonNull Object item, Quantity quantity) {
-    this.item =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(item.getClass().getSimpleName(), SupplyRequest$.MODULE$.item()),
-                item,
-                SupplyRequest$.MODULE$.item());
+  public SupplyRequestBuilder(@NonNull Choice01025009075 item, Quantity quantity) {
+    this.item = item;
     this.quantity = quantity;
   }
 
@@ -253,27 +249,8 @@ public class SupplyRequestBuilder {
    * @param occurrence - When the request should be fulfilled. Field is a 'choice' field. Type
    *     should be one of FHIRDateTime, Period, Timing.
    */
-  public <T> SupplyRequestBuilder withOccurrence(@NonNull T occurrence) {
-    var guessedSuffix =
-        autoSuffix(occurrence.getClass().getSimpleName(), SupplyRequest$.MODULE$.occurrence());
-    return withOccurrence(guessedSuffix, occurrence);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurrence method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurrence - The value to be passed to the builder
-   */
-  public <T> SupplyRequestBuilder withOccurrence(String suffix, @NonNull T occurrence) {
-    guard(occurrence.getClass().getSimpleName(), suffix, SupplyRequest$.MODULE$.occurrence());
-    this.occurrence =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, occurrence, SupplyRequest$.MODULE$.occurrence()));
+  public SupplyRequestBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
+    this.occurrence = Optional.of(occurrence);
     return this;
   }
   /** @param reasonReference - The reason why the supply item was requested. */
@@ -344,26 +321,26 @@ public class SupplyRequestBuilder {
 
   public SupplyRequest build() {
     return new SupplyRequest(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(status),
         item,
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(category),
-        OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(priority),
         quantity,
         supplier.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(requester),
-        OptionConverters.toScala(deliverTo),
+        (Option) OptionConverters.toScala(requester),
+        (Option) OptionConverters.toScala(deliverTo),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(authoredOn),
+        (Option) OptionConverters.toScala(authoredOn),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(deliverFrom),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(occurrence),
+        (Option) OptionConverters.toScala(deliverFrom),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(occurrence),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         parameter.stream().collect(new LitSeqJCollector<>()),

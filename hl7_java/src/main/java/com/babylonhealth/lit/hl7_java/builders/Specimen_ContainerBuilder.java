@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -48,7 +50,7 @@ public class Specimen_ContainerBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<String> description = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> additive = Optional.empty();
+  private Optional<Choice01025009075> additive = Optional.empty();
   private Optional<Quantity> specimenQuantity = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -113,27 +115,8 @@ public class Specimen_ContainerBuilder {
   /**
    * @param additive Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
    */
-  public <T> Specimen_ContainerBuilder withAdditive(@NonNull T additive) {
-    var guessedSuffix =
-        autoSuffix(additive.getClass().getSimpleName(), Specimen.Container$.MODULE$.additive());
-    return withAdditive(guessedSuffix, additive);
-  }
-
-  /**
-   * Alternative to the 'main' withAdditive method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param additive - The value to be passed to the builder
-   */
-  public <T> Specimen_ContainerBuilder withAdditive(String suffix, @NonNull T additive) {
-    guard(additive.getClass().getSimpleName(), suffix, Specimen.Container$.MODULE$.additive());
-    this.additive =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, additive, Specimen.Container$.MODULE$.additive()));
+  public Specimen_ContainerBuilder withAdditive(@NonNull Choice01025009075 additive) {
+    this.additive = Optional.of(additive);
     return this;
   }
   /** @param specimenQuantity */
@@ -177,14 +160,14 @@ public class Specimen_ContainerBuilder {
 
   public Specimen.Container build() {
     return new Specimen.Container(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(capacity),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(capacity),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(additive),
-        OptionConverters.toScala(specimenQuantity),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(additive),
+        (Option) OptionConverters.toScala(specimenQuantity),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

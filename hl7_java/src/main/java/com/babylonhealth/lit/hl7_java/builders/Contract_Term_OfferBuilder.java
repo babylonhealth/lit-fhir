@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -230,12 +232,12 @@ public class Contract_Term_OfferBuilder {
 
   public Contract$Term$Offer build() {
     return new Contract$Term$Offer(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(topic),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(topic),
         linkId.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(decision),
+        (Option) OptionConverters.toScala(decision),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         decisionMode.stream().collect(new LitSeqJCollector<>()),

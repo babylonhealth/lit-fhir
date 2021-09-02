@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -134,11 +137,11 @@ public class SubstanceSourceMaterial_Organism_AuthorBuilder {
 
   public SubstanceSourceMaterial$Organism$Author build() {
     return new SubstanceSourceMaterial$Organism$Author(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(authorType),
+        (Option) OptionConverters.toScala(authorType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(authorDescription),
+        (Option) OptionConverters.toScala(authorDescription),
         LitUtils.emptyMetaElMap());
   }
 }

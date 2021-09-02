@@ -36,6 +36,10 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ADMINISTRATIVE_GENDER;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -302,19 +306,19 @@ public class Us_core_practitionerBuilder {
 
   public Us_core_practitioner build() {
     return new Us_core_practitioner(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         photo.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(active.map(x -> (Object) x)),
-        OptionConverters.toScala(gender),
+        (Option) OptionConverters.toScala(active.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(gender),
         telecom.stream().collect(new LitSeqJCollector<>()),
         address.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(birthDate),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(birthDate),
+        (Option) OptionConverters.toScala(implicitRules),
         communication.stream().collect(new LitSeqJCollector<>()),
         name.stream().collect(new NonEmptyLitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

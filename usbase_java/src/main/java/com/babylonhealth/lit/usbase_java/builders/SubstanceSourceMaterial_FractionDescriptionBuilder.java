@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -133,10 +136,10 @@ public class SubstanceSourceMaterial_FractionDescriptionBuilder {
 
   public SubstanceSourceMaterial.FractionDescription build() {
     return new SubstanceSourceMaterial.FractionDescription(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(fraction),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(fraction),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(materialType),
+        (Option) OptionConverters.toScala(materialType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

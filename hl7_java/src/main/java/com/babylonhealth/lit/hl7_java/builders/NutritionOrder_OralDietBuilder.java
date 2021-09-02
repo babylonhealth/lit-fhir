@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -183,11 +185,11 @@ public class NutritionOrder_OralDietBuilder {
 
   public NutritionOrder.OralDiet build() {
     return new NutritionOrder.OralDiet(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type.stream().collect(new LitSeqJCollector<>()),
         schedule.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(instruction),
+        (Option) OptionConverters.toScala(instruction),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         fluidConsistencyType.stream().collect(new LitSeqJCollector<>()),
         texture.stream().collect(new LitSeqJCollector<>()),

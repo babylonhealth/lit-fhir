@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -138,10 +140,10 @@ public class DetectedIssue_MitigationBuilder {
 
   public DetectedIssue.Mitigation build() {
     return new DetectedIssue.Mitigation(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(date),
         action,
-        OptionConverters.toScala(author),
+        (Option) OptionConverters.toScala(author),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -142,12 +144,12 @@ public class SubstanceReferenceInformation_GeneBuilder {
 
   public SubstanceReferenceInformation.Gene build() {
     return new SubstanceReferenceInformation.Gene(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(gene),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(gene),
         source.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(geneSequenceOrigin),
+        (Option) OptionConverters.toScala(geneSequenceOrigin),
         LitUtils.emptyMetaElMap());
   }
 }

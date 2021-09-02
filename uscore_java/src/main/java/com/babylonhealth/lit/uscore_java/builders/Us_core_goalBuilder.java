@@ -36,6 +36,10 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.GOAL_STATUS;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -59,7 +63,7 @@ public class Us_core_goalBuilder {
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<CodeableConcept> category = Collections.emptyList();
   private Optional<CodeableConcept> priority = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, FHIRDate>>> start = Optional.empty();
+  private Optional<Choice00078348305> start = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Reference> addresses = Collections.emptyList();
@@ -155,24 +159,8 @@ public class Us_core_goalBuilder {
    * @param start - The date or event after which the goal should begin being pursued. Field is a
    *     'choice' field. Type should be one of CodeableConcept, FHIRDate.
    */
-  public <T> Us_core_goalBuilder withStart(@NonNull T start) {
-    var guessedSuffix = autoSuffix(start.getClass().getSimpleName(), Us_core_goal$.MODULE$.start());
-    return withStart(guessedSuffix, start);
-  }
-
-  /**
-   * Alternative to the 'main' withStart method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param start - The value to be passed to the builder
-   */
-  public <T> Us_core_goalBuilder withStart(String suffix, @NonNull T start) {
-    guard(start.getClass().getSimpleName(), suffix, Us_core_goal$.MODULE$.start());
-    this.start =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, start, Us_core_goal$.MODULE$.start()));
+  public Us_core_goalBuilder withStart(@NonNull Choice00078348305 start) {
+    this.start = Optional.of(start);
     return this;
   }
   /**
@@ -362,29 +350,29 @@ public class Us_core_goalBuilder {
 
   public Us_core_goal build() {
     return new Us_core_goal(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(priority),
-        OptionConverters.toScala(start),
+        (Option) OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(start),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         addresses.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(statusDate),
+        (Option) OptionConverters.toScala(statusDate),
         description,
-        OptionConverters.toScala(expressedBy),
+        (Option) OptionConverters.toScala(expressedBy),
         outcomeCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(statusReason),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(statusReason),
+        (Option) OptionConverters.toScala(implicitRules),
         lifecycleStatus,
         outcomeReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(achievementStatus),
+        (Option) OptionConverters.toScala(achievementStatus),
         target.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

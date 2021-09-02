@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class Task_OutputBuilder {
   private Optional<String> id = Optional.empty();
   private CodeableConcept _type;
-  private Choice value;
+  private Choice_1349125893 value;
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -66,12 +68,9 @@ public class Task_OutputBuilder {
    *     ParamDistinguisher.choose("foo". $value), where foo is one of: Canonical, Code, Id,
    *     Markdown, Oid, String, Uri, Url
    */
-  public Task_OutputBuilder(CodeableConcept _type, @NonNull ParamDistinguisher value) {
+  public Task_OutputBuilder(CodeableConcept _type, @NonNull Choice_1349125893 value) {
     this._type = _type;
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                value.suffix, value.wrappedChoice, Task.Output$.MODULE$.value());
+    this.value = value;
   }
 
   /**
@@ -140,7 +139,7 @@ public class Task_OutputBuilder {
 
   public Task.Output build() {
     return new Task.Output(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),

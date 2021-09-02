@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -147,11 +149,11 @@ public class MessageHeader_SourceBuilder {
 
   public MessageHeader.Source build() {
     return new MessageHeader.Source(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(version),
-        OptionConverters.toScala(contact),
-        OptionConverters.toScala(software),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(contact),
+        (Option) OptionConverters.toScala(software),
         endpoint,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

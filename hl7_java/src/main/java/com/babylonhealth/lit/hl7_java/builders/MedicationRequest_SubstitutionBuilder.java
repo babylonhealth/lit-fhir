@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +47,7 @@ public class MedicationRequest_SubstitutionBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<CodeableConcept> reason = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice allowed;
+  private Choice_1768247138 allowed;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -53,15 +55,8 @@ public class MedicationRequest_SubstitutionBuilder {
    *
    * @param allowed Field is a 'choice' field. Type should be one of Boolean, CodeableConcept.
    */
-  public MedicationRequest_SubstitutionBuilder(@NonNull Object allowed) {
-    this.allowed =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    allowed.getClass().getSimpleName(),
-                    MedicationRequest.Substitution$.MODULE$.allowed()),
-                allowed,
-                MedicationRequest.Substitution$.MODULE$.allowed());
+  public MedicationRequest_SubstitutionBuilder(@NonNull Choice_1768247138 allowed) {
+    this.allowed = allowed;
   }
 
   /**
@@ -137,8 +132,8 @@ public class MedicationRequest_SubstitutionBuilder {
 
   public MedicationRequest.Substitution build() {
     return new MedicationRequest.Substitution(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(reason),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(reason),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Choice) allowed,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -231,21 +233,21 @@ public class CoverageEligibilityResponse_Insurance_ItemBuilder {
 
   public CoverageEligibilityResponse$Insurance$Item build() {
     return new CoverageEligibilityResponse$Insurance$Item(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(unit),
-        OptionConverters.toScala(term),
-        OptionConverters.toScala(network),
-        OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(unit),
+        (Option) OptionConverters.toScala(term),
+        (Option) OptionConverters.toScala(network),
+        (Option) OptionConverters.toScala(category),
         modifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(provider),
-        OptionConverters.toScala(excluded.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(provider),
+        (Option) OptionConverters.toScala(excluded.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(productOrService),
-        OptionConverters.toScala(authorizationUrl),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(productOrService),
+        (Option) OptionConverters.toScala(authorizationUrl),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(authorizationRequired.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(authorizationRequired.map(x -> (Object) x)),
         authorizationSupporting.stream().collect(new LitSeqJCollector<>()),
         benefit.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -229,16 +231,16 @@ public class SubstanceSpecification_NameBuilder {
 
   public SubstanceSpecification.Name build() {
     return new SubstanceSpecification.Name(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         name,
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(status),
         domain.stream().collect(new LitSeqJCollector<>()),
         source.stream().collect(new LitSeqJCollector<>()),
         synonym.stream().collect(new LitSeqJCollector<>()),
         language.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(preferred.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(preferred.map(x -> (Object) x)),
         translation.stream().collect(new LitSeqJCollector<>()),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.UDI_ENTRY_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -151,14 +153,14 @@ public class Device_UdiCarrierBuilder {
 
   public Device.UdiCarrier build() {
     return new Device.UdiCarrier(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(issuer),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(issuer),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(entryType),
-        OptionConverters.toScala(carrierHRF),
-        OptionConverters.toScala(carrierAIDC),
-        OptionConverters.toScala(jurisdiction),
-        OptionConverters.toScala(deviceIdentifier),
+        (Option) OptionConverters.toScala(entryType),
+        (Option) OptionConverters.toScala(carrierHRF),
+        (Option) OptionConverters.toScala(carrierAIDC),
+        (Option) OptionConverters.toScala(jurisdiction),
+        (Option) OptionConverters.toScala(deviceIdentifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

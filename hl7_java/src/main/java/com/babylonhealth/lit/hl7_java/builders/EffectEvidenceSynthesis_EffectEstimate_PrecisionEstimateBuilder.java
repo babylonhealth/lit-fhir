@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -147,11 +149,11 @@ public class EffectEvidenceSynthesis_EffectEstimate_PrecisionEstimateBuilder {
 
   public EffectEvidenceSynthesis$EffectEstimate$PrecisionEstimate build() {
     return new EffectEvidenceSynthesis$EffectEstimate$PrecisionEstimate(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(to),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(from),
-        OptionConverters.toScala(level),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(to),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(from),
+        (Option) OptionConverters.toScala(level),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -43,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Questionnaire_Item_AnswerOptionBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice value;
+  private Choice_1132894602 value;
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<Boolean> initialSelected = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -54,15 +56,8 @@ public class Questionnaire_Item_AnswerOptionBuilder {
    * @param value Field is a 'choice' field. Type should be one of Coding, FHIRDate, Integer,
    *     LocalTime, Reference, String.
    */
-  public Questionnaire_Item_AnswerOptionBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    value.getClass().getSimpleName(),
-                    Questionnaire$Item$AnswerOption$.MODULE$.value()),
-                value,
-                Questionnaire$Item$AnswerOption$.MODULE$.value());
+  public Questionnaire_Item_AnswerOptionBuilder(@NonNull Choice_1132894602 value) {
+    this.value = value;
   }
 
   /**
@@ -139,10 +134,10 @@ public class Questionnaire_Item_AnswerOptionBuilder {
 
   public Questionnaire$Item$AnswerOption build() {
     return new Questionnaire$Item$AnswerOption(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(initialSelected.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(initialSelected.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

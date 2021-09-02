@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -43,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 
 public class NutritionOrder_EnteralFormula_AdministrationBuilder {
   private Optional<String> id = Optional.empty();
-  private Optional<Choice<$bslash$div<Quantity, Ratio>>> rate = Optional.empty();
+  private Optional<Choice_0964108894> rate = Optional.empty();
   private Optional<Timing> schedule = Optional.empty();
   private Optional<Quantity> quantity = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
@@ -61,33 +63,9 @@ public class NutritionOrder_EnteralFormula_AdministrationBuilder {
     return this;
   }
   /** @param rate Field is a 'choice' field. Type should be one of Quantity, Ratio. */
-  public <T> NutritionOrder_EnteralFormula_AdministrationBuilder withRate(@NonNull T rate) {
-    var guessedSuffix =
-        autoSuffix(
-            rate.getClass().getSimpleName(),
-            NutritionOrder$EnteralFormula$Administration$.MODULE$.rate());
-    return withRate(guessedSuffix, rate);
-  }
-
-  /**
-   * Alternative to the 'main' withRate method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param rate - The value to be passed to the builder
-   */
-  public <T> NutritionOrder_EnteralFormula_AdministrationBuilder withRate(
-      String suffix, @NonNull T rate) {
-    guard(
-        rate.getClass().getSimpleName(),
-        suffix,
-        NutritionOrder$EnteralFormula$Administration$.MODULE$.rate());
-    this.rate =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, rate, NutritionOrder$EnteralFormula$Administration$.MODULE$.rate()));
+  public NutritionOrder_EnteralFormula_AdministrationBuilder withRate(
+      @NonNull Choice_0964108894 rate) {
+    this.rate = Optional.of(rate);
     return this;
   }
   /** @param schedule */
@@ -163,10 +141,10 @@ public class NutritionOrder_EnteralFormula_AdministrationBuilder {
 
   public NutritionOrder$EnteralFormula$Administration build() {
     return new NutritionOrder$EnteralFormula$Administration(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(rate),
-        OptionConverters.toScala(schedule),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(rate),
+        (Option) OptionConverters.toScala(schedule),
+        (Option) OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.usbase.NAME_PART_QUALIFIER;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -68,6 +71,6 @@ public class Iso21090_EN_qualifierBuilder {
 
   public Iso21090_EN_qualifier build() {
     return new Iso21090_EN_qualifier(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

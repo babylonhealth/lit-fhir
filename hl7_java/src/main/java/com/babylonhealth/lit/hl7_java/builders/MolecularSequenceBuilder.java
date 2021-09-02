@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.SEQUENCE_TYPE;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -357,29 +359,29 @@ public class MolecularSequenceBuilder {
 
   public MolecularSequence build() {
     return new MolecularSequence(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(device),
-        OptionConverters.toScala(patient),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(device),
+        (Option) OptionConverters.toScala(patient),
         pointer.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(specimen),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(specimen),
+        (Option) OptionConverters.toScala(quantity),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(performer),
+        (Option) OptionConverters.toScala(performer),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(observedSeq),
-        OptionConverters.toScala(readCoverage.map(x -> (Object) x)),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(observedSeq),
+        (Option) OptionConverters.toScala(readCoverage.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(implicitRules),
         coordinateSystem,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         variant.stream().collect(new LitSeqJCollector<>()),
         repository.stream().collect(new LitSeqJCollector<>()),
         quality.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(referenceSeq),
+        (Option) OptionConverters.toScala(referenceSeq),
         structureVariant.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

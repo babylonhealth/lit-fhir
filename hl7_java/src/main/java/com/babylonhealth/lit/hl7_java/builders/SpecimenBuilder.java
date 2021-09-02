@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.SPECIMEN_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -320,26 +322,26 @@ public class SpecimenBuilder {
 
   public Specimen build() {
     return new Specimen(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(status),
         parent.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(subject),
         request.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         condition.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(receivedTime),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(receivedTime),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(accessionIdentifier),
+        (Option) OptionConverters.toScala(accessionIdentifier),
         container.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(collection),
+        (Option) OptionConverters.toScala(collection),
         processing.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

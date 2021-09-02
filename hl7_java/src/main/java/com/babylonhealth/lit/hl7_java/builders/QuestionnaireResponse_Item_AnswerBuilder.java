@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class QuestionnaireResponse_Item_AnswerBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<QuestionnaireResponse.Item> item = Collections.emptyList();
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_2101127777> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -81,33 +83,8 @@ public class QuestionnaireResponse_Item_AnswerBuilder {
    * @param value Field is a 'choice' field. Type should be one of Attachment, BigDecimal, Boolean,
    *     Coding, FHIRDate, FHIRDateTime, Integer, LocalTime, Quantity, Reference, String.
    */
-  public <T> QuestionnaireResponse_Item_AnswerBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(
-            value.getClass().getSimpleName(), QuestionnaireResponse$Item$Answer$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of String then there are multiple candidate 'types' for the FHIR object, and we are unable
-   * to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type String, the valid values are String, Uri.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> QuestionnaireResponse_Item_AnswerBuilder withValue(String suffix, @NonNull T value) {
-    guard(
-        value.getClass().getSimpleName(),
-        suffix,
-        QuestionnaireResponse$Item$Answer$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, value, QuestionnaireResponse$Item$Answer$.MODULE$.value()));
+  public QuestionnaireResponse_Item_AnswerBuilder withValue(@NonNull Choice_2101127777 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -170,7 +147,7 @@ public class QuestionnaireResponse_Item_AnswerBuilder {
 
   public QuestionnaireResponse$Item$Answer build() {
     return new QuestionnaireResponse$Item$Answer(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         item.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),

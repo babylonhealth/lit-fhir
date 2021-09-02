@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.usbase.STANDARDS_STATUS;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -68,6 +71,6 @@ public class Structuredefinition_standards_statusBuilder {
 
   public Structuredefinition_standards_status build() {
     return new Structuredefinition_standards_status(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

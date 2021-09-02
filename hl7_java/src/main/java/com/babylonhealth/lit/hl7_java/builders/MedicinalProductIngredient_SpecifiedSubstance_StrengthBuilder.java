@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -184,15 +186,15 @@ public class MedicinalProductIngredient_SpecifiedSubstance_StrengthBuilder {
 
   public MedicinalProductIngredient$SpecifiedSubstance$Strength build() {
     return new MedicinalProductIngredient$SpecifiedSubstance$Strength(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         country.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         presentation,
-        OptionConverters.toScala(concentration),
-        OptionConverters.toScala(measurementPoint),
+        (Option) OptionConverters.toScala(concentration),
+        (Option) OptionConverters.toScala(measurementPoint),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(presentationLowLimit),
-        OptionConverters.toScala(concentrationLowLimit),
+        (Option) OptionConverters.toScala(presentationLowLimit),
+        (Option) OptionConverters.toScala(concentrationLowLimit),
         referenceStrength.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

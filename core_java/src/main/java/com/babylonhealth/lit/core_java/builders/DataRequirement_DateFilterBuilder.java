@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -42,8 +43,7 @@ import static java.util.stream.Collectors.toList;
 public class DataRequirement_DateFilterBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<String> path = Optional.empty();
-  private Optional<Choice<$bslash$div<$bslash$div<Duration, FHIRDateTime>, Period>>> value =
-      Optional.empty();
+  private Optional<Choice_1947777294> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<String> searchParam = Optional.empty();
 
@@ -66,27 +66,8 @@ public class DataRequirement_DateFilterBuilder {
   /**
    * @param value Field is a 'choice' field. Type should be one of Duration, FHIRDateTime, Period.
    */
-  public <T> DataRequirement_DateFilterBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), DataRequirement.DateFilter$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> DataRequirement_DateFilterBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, DataRequirement.DateFilter$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, value, DataRequirement.DateFilter$.MODULE$.value()));
+  public DataRequirement_DateFilterBuilder withValue(@NonNull Choice_1947777294 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -119,11 +100,11 @@ public class DataRequirement_DateFilterBuilder {
 
   public DataRequirement.DateFilter build() {
     return new DataRequirement.DateFilter(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(path),
-        OptionConverters.toScala(value),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(path),
+        (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(searchParam),
+        (Option) OptionConverters.toScala(searchParam),
         LitUtils.emptyMetaElMap());
   }
 }

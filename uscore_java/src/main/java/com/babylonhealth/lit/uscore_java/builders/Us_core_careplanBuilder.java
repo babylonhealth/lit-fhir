@@ -36,6 +36,10 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_STATUS;
 import com.babylonhealth.lit.hl7.CARE_PLAN_INTENT;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -458,31 +462,31 @@ public class Us_core_careplanBuilder {
 
   public Us_core_careplan build() {
     return new Us_core_careplan(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
         goal.stream().collect(new LitSeqJCollector<>()),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(title),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
         intent,
-        OptionConverters.toScala(period),
-        OptionConverters.toScala(author),
+        (Option) OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(author),
         basedOn.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(created),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(created),
+        (Option) OptionConverters.toScala(language),
         replaces.stream().collect(new LitSeqJCollector<>()),
         category.stream().collect(new NonEmptyLitSeqJCollector<>()),
         careTeam.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         addresses.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(description),
         contributor.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         text,
         supportingInfo.stream().collect(new LitSeqJCollector<>()),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),

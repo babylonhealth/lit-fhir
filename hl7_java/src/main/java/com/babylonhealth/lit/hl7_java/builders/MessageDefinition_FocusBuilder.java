@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.RESOURCE_TYPES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -138,11 +140,11 @@ public class MessageDefinition_FocusBuilder {
 
   public MessageDefinition.Focus build() {
     return new MessageDefinition.Focus(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         min,
-        OptionConverters.toScala(max),
+        (Option) OptionConverters.toScala(max),
         code,
-        OptionConverters.toScala(profile),
+        (Option) OptionConverters.toScala(profile),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

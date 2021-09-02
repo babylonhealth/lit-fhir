@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.INVOICE_PRICECOMPONENTTYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -149,11 +151,11 @@ public class ChargeItemDefinition_PropertyGroup_PriceComponentBuilder {
 
   public ChargeItemDefinition$PropertyGroup$PriceComponent build() {
     return new ChargeItemDefinition$PropertyGroup$PriceComponent(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(factor),
-        OptionConverters.toScala(amount),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(factor),
+        (Option) OptionConverters.toScala(amount),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

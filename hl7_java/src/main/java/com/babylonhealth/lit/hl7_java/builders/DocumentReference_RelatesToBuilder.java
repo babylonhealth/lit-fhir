@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DOCUMENT_RELATIONSHIP_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -127,7 +129,7 @@ public class DocumentReference_RelatesToBuilder {
 
   public DocumentReference.RelatesTo build() {
     return new DocumentReference.RelatesTo(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
         target,
         extension.stream().collect(new LitSeqJCollector<>()),

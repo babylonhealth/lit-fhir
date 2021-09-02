@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -140,11 +142,11 @@ public class FHIRList_EntryBuilder {
 
   public FHIRList.Entry build() {
     return new FHIRList.Entry(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(flag),
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(flag),
+        (Option) OptionConverters.toScala(date),
         item,
-        OptionConverters.toScala(deleted.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(deleted.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

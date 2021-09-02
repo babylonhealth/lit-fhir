@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.BUNDLE_TYPE;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -160,15 +162,15 @@ public class BundleBuilder {
 
   public Bundle build() {
     return new Bundle(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
         _type,
-        OptionConverters.toScala(total.map(x -> (Object) x)),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(timestamp),
-        OptionConverters.toScala(signature),
-        OptionConverters.toScala(identifier),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(total.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(timestamp),
+        (Option) OptionConverters.toScala(signature),
+        (Option) OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(implicitRules),
         link.stream().collect(new LitSeqJCollector<>()),
         entry.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

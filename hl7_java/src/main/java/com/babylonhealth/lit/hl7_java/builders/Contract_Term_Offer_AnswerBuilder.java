@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -43,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Contract_Term_Offer_AnswerBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice value;
+  private Choice_2101127777 value;
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -56,11 +58,8 @@ public class Contract_Term_Offer_AnswerBuilder {
    *     between the specific subtype, pass $value wrapped in ParamDistinguisher.choose("foo".
    *     $value), where foo is one of: String, Uri
    */
-  public Contract_Term_Offer_AnswerBuilder(@NonNull ParamDistinguisher value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                value.suffix, value.wrappedChoice, Contract$Term$Offer$Answer$.MODULE$.value());
+  public Contract_Term_Offer_AnswerBuilder(@NonNull Choice_2101127777 value) {
+    this.value = value;
   }
 
   /**
@@ -130,7 +129,7 @@ public class Contract_Term_Offer_AnswerBuilder {
 
   public Contract$Term$Offer$Answer build() {
     return new Contract$Term$Offer$Answer(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

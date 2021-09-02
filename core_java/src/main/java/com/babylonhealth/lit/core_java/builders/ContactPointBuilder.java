@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.CONTACT_POINT_USE;
 import com.babylonhealth.lit.core.CONTACT_POINT_SYSTEM;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -119,12 +120,12 @@ public class ContactPointBuilder {
 
   public ContactPoint build() {
     return new ContactPoint(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(use),
-        OptionConverters.toScala(rank.map(x -> (Object) x)),
-        OptionConverters.toScala(value),
-        OptionConverters.toScala(system),
-        OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(use),
+        (Option) OptionConverters.toScala(rank.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(value),
+        (Option) OptionConverters.toScala(system),
+        (Option) OptionConverters.toScala(period),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

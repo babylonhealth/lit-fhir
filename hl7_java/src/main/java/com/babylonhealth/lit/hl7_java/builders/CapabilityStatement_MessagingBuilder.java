@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -156,10 +158,10 @@ public class CapabilityStatement_MessagingBuilder {
 
   public CapabilityStatement.Messaging build() {
     return new CapabilityStatement.Messaging(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(reliableCache.map(x -> (Object) x)),
-        OptionConverters.toScala(documentation),
+        (Option) OptionConverters.toScala(reliableCache.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         endpoint.stream().collect(new LitSeqJCollector<>()),
         supportedMessage.stream().collect(new LitSeqJCollector<>()),

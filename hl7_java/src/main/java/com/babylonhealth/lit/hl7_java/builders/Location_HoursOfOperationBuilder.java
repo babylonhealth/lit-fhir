@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.DAYS_OF_WEEK;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -146,12 +148,12 @@ public class Location_HoursOfOperationBuilder {
 
   public Location.HoursOfOperation build() {
     return new Location.HoursOfOperation(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(allDay.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(allDay.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         daysOfWeek.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(openingTime),
-        OptionConverters.toScala(closingTime),
+        (Option) OptionConverters.toScala(openingTime),
+        (Option) OptionConverters.toScala(closingTime),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

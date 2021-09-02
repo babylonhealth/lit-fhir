@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.QUANTITY_COMPARATOR;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -108,11 +110,11 @@ public class SimpleQuantityBuilder {
 
   public SimpleQuantity build() {
     return new SimpleQuantity(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(unit),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(value),
-        OptionConverters.toScala(system),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(unit),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(value),
+        (Option) OptionConverters.toScala(system),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

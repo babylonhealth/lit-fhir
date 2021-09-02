@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -54,9 +56,8 @@ public class ClaimResponse_AddItemBuilder {
   private Optional<Money> unitPrice = Optional.empty();
   private Collection<Integer> noteNumber = Collections.emptyList();
   private Collection<CodeableConcept> programCode = Collections.emptyList();
-  private Optional<Choice<$bslash$div<FHIRDate, Period>>> serviced = Optional.empty();
-  private Optional<Choice<$bslash$div<$bslash$div<Address, CodeableConcept>, Reference>>> location =
-      Optional.empty();
+  private Optional<Choice_0503196159> serviced = Optional.empty();
+  private Optional<Choice_0316522316> location = Optional.empty();
   private Collection<Integer> itemSequence = Collections.emptyList();
   private Collection<ClaimResponse$Item$Adjudication> adjudication;
   private Collection<Integer> detailSequence = Collections.emptyList();
@@ -185,54 +186,16 @@ public class ClaimResponse_AddItemBuilder {
     return this;
   }
   /** @param serviced Field is a 'choice' field. Type should be one of FHIRDate, Period. */
-  public <T> ClaimResponse_AddItemBuilder withServiced(@NonNull T serviced) {
-    var guessedSuffix =
-        autoSuffix(serviced.getClass().getSimpleName(), ClaimResponse.AddItem$.MODULE$.serviced());
-    return withServiced(guessedSuffix, serviced);
-  }
-
-  /**
-   * Alternative to the 'main' withServiced method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param serviced - The value to be passed to the builder
-   */
-  public <T> ClaimResponse_AddItemBuilder withServiced(String suffix, @NonNull T serviced) {
-    guard(serviced.getClass().getSimpleName(), suffix, ClaimResponse.AddItem$.MODULE$.serviced());
-    this.serviced =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, serviced, ClaimResponse.AddItem$.MODULE$.serviced()));
+  public ClaimResponse_AddItemBuilder withServiced(@NonNull Choice_0503196159 serviced) {
+    this.serviced = Optional.of(serviced);
     return this;
   }
   /**
    * @param location Field is a 'choice' field. Type should be one of Address, CodeableConcept,
    *     Reference.
    */
-  public <T> ClaimResponse_AddItemBuilder withLocation(@NonNull T location) {
-    var guessedSuffix =
-        autoSuffix(location.getClass().getSimpleName(), ClaimResponse.AddItem$.MODULE$.location());
-    return withLocation(guessedSuffix, location);
-  }
-
-  /**
-   * Alternative to the 'main' withLocation method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param location - The value to be passed to the builder
-   */
-  public <T> ClaimResponse_AddItemBuilder withLocation(String suffix, @NonNull T location) {
-    guard(location.getClass().getSimpleName(), suffix, ClaimResponse.AddItem$.MODULE$.location());
-    this.location =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, location, ClaimResponse.AddItem$.MODULE$.location()));
+  public ClaimResponse_AddItemBuilder withLocation(@NonNull Choice_0316522316 location) {
+    this.location = Optional.of(location);
     return this;
   }
   /** @param itemSequence */
@@ -315,24 +278,24 @@ public class ClaimResponse_AddItemBuilder {
 
   public ClaimResponse.AddItem build() {
     return new ClaimResponse.AddItem(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(net),
-        OptionConverters.toScala(factor),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(net),
+        (Option) OptionConverters.toScala(factor),
         subSite.stream().collect(new LitSeqJCollector<>()),
         provider.stream().collect(new LitSeqJCollector<>()),
         modifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(quantity),
-        OptionConverters.toScala(bodySite),
+        (Option) OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(bodySite),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(unitPrice),
+        (Option) OptionConverters.toScala(unitPrice),
         noteNumber.stream()
             .map(x -> (Object) x)
             .collect(Collectors.toList())
             .stream()
             .collect(new LitSeqJCollector<>()),
         programCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(serviced),
-        OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(serviced),
+        (Option) OptionConverters.toScala(location),
         itemSequence.stream()
             .map(x -> (Object) x)
             .collect(Collectors.toList())

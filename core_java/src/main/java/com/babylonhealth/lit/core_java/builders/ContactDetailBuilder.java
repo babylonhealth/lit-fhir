@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -102,8 +103,8 @@ public class ContactDetailBuilder {
 
   public ContactDetail build() {
     return new ContactDetail(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(name),
         telecom.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

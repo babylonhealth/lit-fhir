@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -46,7 +48,7 @@ public class SubstanceSpecification_MoietyBuilder {
   private Optional<CodeableConcept> role = Optional.empty();
   private Optional<String> name = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<Quantity, String>>> amount = Optional.empty();
+  private Optional<Choice_2072987899> amount = Optional.empty();
   private Optional<Identifier> identifier = Optional.empty();
   private Optional<CodeableConcept> stereochemistry = Optional.empty();
   private Optional<CodeableConcept> opticalActivity = Optional.empty();
@@ -98,29 +100,8 @@ public class SubstanceSpecification_MoietyBuilder {
     return this;
   }
   /** @param amount Field is a 'choice' field. Type should be one of Quantity, String. */
-  public <T> SubstanceSpecification_MoietyBuilder withAmount(@NonNull T amount) {
-    var guessedSuffix =
-        autoSuffix(
-            amount.getClass().getSimpleName(), SubstanceSpecification.Moiety$.MODULE$.amount());
-    return withAmount(guessedSuffix, amount);
-  }
-
-  /**
-   * Alternative to the 'main' withAmount method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param amount - The value to be passed to the builder
-   */
-  public <T> SubstanceSpecification_MoietyBuilder withAmount(String suffix, @NonNull T amount) {
-    guard(
-        amount.getClass().getSimpleName(), suffix, SubstanceSpecification.Moiety$.MODULE$.amount());
-    this.amount =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, amount, SubstanceSpecification.Moiety$.MODULE$.amount()));
+  public SubstanceSpecification_MoietyBuilder withAmount(@NonNull Choice_2072987899 amount) {
+    this.amount = Optional.of(amount);
     return this;
   }
   /** @param identifier - Identifier by which this substance is known. */
@@ -183,15 +164,15 @@ public class SubstanceSpecification_MoietyBuilder {
 
   public SubstanceSpecification.Moiety build() {
     return new SubstanceSpecification.Moiety(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(role),
-        OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(role),
+        (Option) OptionConverters.toScala(name),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(amount),
-        OptionConverters.toScala(identifier),
-        OptionConverters.toScala(stereochemistry),
-        OptionConverters.toScala(opticalActivity),
-        OptionConverters.toScala(molecularFormula),
+        (Option) OptionConverters.toScala(amount),
+        (Option) OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(stereochemistry),
+        (Option) OptionConverters.toScala(opticalActivity),
+        (Option) OptionConverters.toScala(molecularFormula),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

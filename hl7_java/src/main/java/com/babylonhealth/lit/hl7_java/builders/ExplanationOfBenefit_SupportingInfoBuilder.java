@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -47,9 +49,9 @@ public class ExplanationOfBenefit_SupportingInfoBuilder {
   private Optional<Coding> reason = Optional.empty();
   private Integer sequence;
   private CodeableConcept category;
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_0543144563> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<FHIRDate, Period>>> timing = Optional.empty();
+  private Optional<Choice_0503196159> timing = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -85,31 +87,8 @@ public class ExplanationOfBenefit_SupportingInfoBuilder {
    * @param value Field is a 'choice' field. Type should be one of Attachment, Boolean, Quantity,
    *     Reference, String.
    */
-  public <T> ExplanationOfBenefit_SupportingInfoBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(
-            value.getClass().getSimpleName(), ExplanationOfBenefit.SupportingInfo$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> ExplanationOfBenefit_SupportingInfoBuilder withValue(String suffix, @NonNull T value) {
-    guard(
-        value.getClass().getSimpleName(),
-        suffix,
-        ExplanationOfBenefit.SupportingInfo$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, value, ExplanationOfBenefit.SupportingInfo$.MODULE$.value()));
+  public ExplanationOfBenefit_SupportingInfoBuilder withValue(@NonNull Choice_0543144563 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -136,33 +115,8 @@ public class ExplanationOfBenefit_SupportingInfoBuilder {
     return this;
   }
   /** @param timing Field is a 'choice' field. Type should be one of FHIRDate, Period. */
-  public <T> ExplanationOfBenefit_SupportingInfoBuilder withTiming(@NonNull T timing) {
-    var guessedSuffix =
-        autoSuffix(
-            timing.getClass().getSimpleName(),
-            ExplanationOfBenefit.SupportingInfo$.MODULE$.timing());
-    return withTiming(guessedSuffix, timing);
-  }
-
-  /**
-   * Alternative to the 'main' withTiming method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param timing - The value to be passed to the builder
-   */
-  public <T> ExplanationOfBenefit_SupportingInfoBuilder withTiming(
-      String suffix, @NonNull T timing) {
-    guard(
-        timing.getClass().getSimpleName(),
-        suffix,
-        ExplanationOfBenefit.SupportingInfo$.MODULE$.timing());
-    this.timing =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, timing, ExplanationOfBenefit.SupportingInfo$.MODULE$.timing()));
+  public ExplanationOfBenefit_SupportingInfoBuilder withTiming(@NonNull Choice_0503196159 timing) {
+    this.timing = Optional.of(timing);
     return this;
   }
   /**
@@ -202,14 +156,14 @@ public class ExplanationOfBenefit_SupportingInfoBuilder {
 
   public ExplanationOfBenefit.SupportingInfo build() {
     return new ExplanationOfBenefit.SupportingInfo(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(reason),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(reason),
         sequence,
         category,
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(timing),
+        (Option) OptionConverters.toScala(timing),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

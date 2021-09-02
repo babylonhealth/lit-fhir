@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.INVOICE_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -346,26 +348,26 @@ public class InvoiceBuilder {
 
   public Invoice build() {
     return new Invoice(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(date),
         note.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(issuer),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(account),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(totalNet),
+        (Option) OptionConverters.toScala(issuer),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(account),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(totalNet),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(recipient),
+        (Option) OptionConverters.toScala(recipient),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(totalGross),
-        OptionConverters.toScala(paymentTerms),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(cancelledReason),
+        (Option) OptionConverters.toScala(totalGross),
+        (Option) OptionConverters.toScala(paymentTerms),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(cancelledReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         totalPriceComponent.stream().collect(new LitSeqJCollector<>()),
         participant.stream().collect(new LitSeqJCollector<>()),

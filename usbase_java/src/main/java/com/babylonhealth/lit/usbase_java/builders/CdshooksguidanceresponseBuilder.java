@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.GUIDANCE_RESPONSE_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -340,29 +343,29 @@ public class CdshooksguidanceresponseBuilder {
 
   public Cdshooksguidanceresponse build() {
     return new Cdshooksguidanceresponse(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(result),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(result),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
         module,
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(performer),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(performer),
         identifier,
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         dataRequirement.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(outputParameters),
+        (Option) OptionConverters.toScala(outputParameters),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         requestIdentifier,
         evaluationMessage.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(occurrenceDateTime),
+        (Option) OptionConverters.toScala(occurrenceDateTime),
         LitUtils.emptyMetaElMap());
   }
 }

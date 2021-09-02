@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.SUPPLYDELIVERY_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -59,8 +61,7 @@ public class SupplyDeliveryBuilder {
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<Reference> destination = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>>> occurrence =
-      Optional.empty();
+  private Optional<Choice00609373412> occurrence = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Optional<SupplyDelivery.SuppliedItem> suppliedItem = Optional.empty();
 
@@ -239,27 +240,8 @@ public class SupplyDeliveryBuilder {
    * @param occurrence - The date or time(s) the activity occurred. Field is a 'choice' field. Type
    *     should be one of FHIRDateTime, Period, Timing.
    */
-  public <T> SupplyDeliveryBuilder withOccurrence(@NonNull T occurrence) {
-    var guessedSuffix =
-        autoSuffix(occurrence.getClass().getSimpleName(), SupplyDelivery$.MODULE$.occurrence());
-    return withOccurrence(guessedSuffix, occurrence);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurrence method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurrence - The value to be passed to the builder
-   */
-  public <T> SupplyDeliveryBuilder withOccurrence(String suffix, @NonNull T occurrence) {
-    guard(occurrence.getClass().getSimpleName(), suffix, SupplyDelivery$.MODULE$.occurrence());
-    this.occurrence =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, occurrence, SupplyDelivery$.MODULE$.occurrence()));
+  public SupplyDeliveryBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
+    this.occurrence = Optional.of(occurrence);
     return this;
   }
   /**
@@ -308,25 +290,25 @@ public class SupplyDeliveryBuilder {
 
   public SupplyDelivery build() {
     return new SupplyDelivery(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
         partOf.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(status),
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(patient),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(supplier),
+        (Option) OptionConverters.toScala(patient),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(supplier),
         receiver.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(destination),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(occurrence),
+        (Option) OptionConverters.toScala(destination),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(occurrence),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(suppliedItem),
+        (Option) OptionConverters.toScala(suppliedItem),
         LitUtils.emptyMetaElMap());
   }
 }

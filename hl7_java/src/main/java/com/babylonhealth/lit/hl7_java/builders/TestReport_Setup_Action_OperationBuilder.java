@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REPORT_ACTION_RESULT_CODES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -136,10 +138,10 @@ public class TestReport_Setup_Action_OperationBuilder {
 
   public TestReport$Setup$Action$Operation build() {
     return new TestReport$Setup$Action$Operation(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         result,
-        OptionConverters.toScala(detail),
-        OptionConverters.toScala(message),
+        (Option) OptionConverters.toScala(detail),
+        (Option) OptionConverters.toScala(message),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

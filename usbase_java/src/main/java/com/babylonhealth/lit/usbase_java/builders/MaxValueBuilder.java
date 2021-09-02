@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +48,7 @@ import static java.util.stream.Collectors.toList;
 
 public class MaxValueBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice value;
+  private Choice00315627715 value;
 
   /**
    * Required fields for {@link MaxValue}
@@ -55,13 +58,8 @@ public class MaxValueBuilder {
    *     field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer, LocalTime,
    *     ZonedDateTime.
    */
-  public MaxValueBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(value.getClass().getSimpleName(), MaxValue$.MODULE$.value()),
-                value,
-                MaxValue$.MODULE$.value());
+  public MaxValueBuilder(@NonNull Choice00315627715 value) {
+    this.value = value;
   }
 
   /**
@@ -74,6 +72,7 @@ public class MaxValueBuilder {
   }
 
   public MaxValue build() {
-    return new MaxValue(OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+    return new MaxValue(
+        (Option) OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
   }
 }

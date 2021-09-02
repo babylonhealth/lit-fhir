@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -179,17 +182,17 @@ public class SubstanceSourceMaterial_OrganismBuilder {
 
   public SubstanceSourceMaterial.Organism build() {
     return new SubstanceSourceMaterial.Organism(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(genus),
-        OptionConverters.toScala(family),
-        OptionConverters.toScala(species),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(genus),
+        (Option) OptionConverters.toScala(family),
+        (Option) OptionConverters.toScala(species),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(intraspecificType),
-        OptionConverters.toScala(intraspecificDescription),
+        (Option) OptionConverters.toScala(intraspecificType),
+        (Option) OptionConverters.toScala(intraspecificDescription),
         author.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(hybrid),
-        OptionConverters.toScala(organismGeneral),
+        (Option) OptionConverters.toScala(hybrid),
+        (Option) OptionConverters.toScala(organismGeneral),
         LitUtils.emptyMetaElMap());
   }
 }

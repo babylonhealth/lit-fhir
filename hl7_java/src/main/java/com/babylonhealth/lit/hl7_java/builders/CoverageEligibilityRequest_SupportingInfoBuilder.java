@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -135,11 +137,11 @@ public class CoverageEligibilityRequest_SupportingInfoBuilder {
 
   public CoverageEligibilityRequest.SupportingInfo build() {
     return new CoverageEligibilityRequest.SupportingInfo(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         sequence,
         extension.stream().collect(new LitSeqJCollector<>()),
         information,
-        OptionConverters.toScala(appliesToAll.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(appliesToAll.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

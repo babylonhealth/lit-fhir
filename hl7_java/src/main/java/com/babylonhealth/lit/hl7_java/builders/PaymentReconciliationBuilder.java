@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.FM_STATUS;
 import com.babylonhealth.lit.hl7.REMITTANCE_OUTCOME;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -295,27 +297,27 @@ public class PaymentReconciliationBuilder {
 
   public PaymentReconciliation build() {
     return new PaymentReconciliation(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         status,
-        OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(period),
         created,
-        OptionConverters.toScala(request),
-        OptionConverters.toScala(outcome),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(formCode),
+        (Option) OptionConverters.toScala(request),
+        (Option) OptionConverters.toScala(outcome),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(formCode),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(requestor),
+        (Option) OptionConverters.toScala(requestor),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(disposition),
+        (Option) OptionConverters.toScala(disposition),
         paymentDate,
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(paymentIssuer),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(paymentIssuer),
         paymentAmount,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(paymentIdentifier),
+        (Option) OptionConverters.toScala(paymentIdentifier),
         detail.stream().collect(new LitSeqJCollector<>()),
         processNote.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

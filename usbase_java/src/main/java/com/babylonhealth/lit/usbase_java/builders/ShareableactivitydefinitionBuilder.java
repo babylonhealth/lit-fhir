@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_RESOURCE_TYPES;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.hl7.REQUEST_INTENT;
@@ -85,19 +88,12 @@ public class ShareableactivitydefinitionBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private String publisher;
   private Optional<String> copyright = Optional.empty();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<
-                      $bslash$div<$bslash$div<$bslash$div<Age, Duration>, FHIRDateTime>, Period>,
-                      Range>,
-                  Timing>>>
-      timing = Optional.empty();
+  private Optional<Choice_0181779868> timing = Optional.empty();
   private Optional<String> transform = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> subject = Optional.empty();
+  private Optional<Choice01025009075> subject = Optional.empty();
   private Collection<UsageContext> useContext = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> product = Optional.empty();
+  private Optional<Choice01025009075> product = Optional.empty();
   private String description;
   private Boolean experimental;
   private Collection<CodeableConcept> jurisdiction = Collections.emptyList();
@@ -494,28 +490,8 @@ public class ShareableactivitydefinitionBuilder {
    *     Field is a 'choice' field. Type should be one of Age, Duration, FHIRDateTime, Period,
    *     Range, Timing.
    */
-  public <T> ShareableactivitydefinitionBuilder withTiming(@NonNull T timing) {
-    var guessedSuffix =
-        autoSuffix(
-            timing.getClass().getSimpleName(), Shareableactivitydefinition$.MODULE$.timing());
-    return withTiming(guessedSuffix, timing);
-  }
-
-  /**
-   * Alternative to the 'main' withTiming method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param timing - The value to be passed to the builder
-   */
-  public <T> ShareableactivitydefinitionBuilder withTiming(String suffix, @NonNull T timing) {
-    guard(timing.getClass().getSimpleName(), suffix, Shareableactivitydefinition$.MODULE$.timing());
-    this.timing =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, timing, Shareableactivitydefinition$.MODULE$.timing()));
+  public ShareableactivitydefinitionBuilder withTiming(@NonNull Choice_0181779868 timing) {
+    this.timing = Optional.of(timing);
     return this;
   }
   /**
@@ -549,29 +525,8 @@ public class ShareableactivitydefinitionBuilder {
    * @param subject - A code or group definition that describes the intended subject of the activity
    *     being defined. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
    */
-  public <T> ShareableactivitydefinitionBuilder withSubject(@NonNull T subject) {
-    var guessedSuffix =
-        autoSuffix(
-            subject.getClass().getSimpleName(), Shareableactivitydefinition$.MODULE$.subject());
-    return withSubject(guessedSuffix, subject);
-  }
-
-  /**
-   * Alternative to the 'main' withSubject method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param subject - The value to be passed to the builder
-   */
-  public <T> ShareableactivitydefinitionBuilder withSubject(String suffix, @NonNull T subject) {
-    guard(
-        subject.getClass().getSimpleName(), suffix, Shareableactivitydefinition$.MODULE$.subject());
-    this.subject =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, subject, Shareableactivitydefinition$.MODULE$.subject()));
+  public ShareableactivitydefinitionBuilder withSubject(@NonNull Choice01025009075 subject) {
+    this.subject = Optional.of(subject);
     return this;
   }
   /**
@@ -599,29 +554,8 @@ public class ShareableactivitydefinitionBuilder {
    * @param product - Identifies the food, drug or other product being consumed or supplied in the
    *     activity. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
    */
-  public <T> ShareableactivitydefinitionBuilder withProduct(@NonNull T product) {
-    var guessedSuffix =
-        autoSuffix(
-            product.getClass().getSimpleName(), Shareableactivitydefinition$.MODULE$.product());
-    return withProduct(guessedSuffix, product);
-  }
-
-  /**
-   * Alternative to the 'main' withProduct method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param product - The value to be passed to the builder
-   */
-  public <T> ShareableactivitydefinitionBuilder withProduct(String suffix, @NonNull T product) {
-    guard(
-        product.getClass().getSimpleName(), suffix, Shareableactivitydefinition$.MODULE$.product());
-    this.product =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, product, Shareableactivitydefinition$.MODULE$.product()));
+  public ShareableactivitydefinitionBuilder withProduct(@NonNull Choice01025009075 product) {
+    this.product = Optional.of(product);
     return this;
   }
   /**
@@ -835,53 +769,53 @@ public class ShareableactivitydefinitionBuilder {
 
   public Shareableactivitydefinition build() {
     return new Shareableactivitydefinition(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         url,
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         name,
-        OptionConverters.toScala(date),
-        OptionConverters.toScala(kind),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(title),
-        OptionConverters.toScala(usage),
+        (Option) OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(kind),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(usage),
         topic.stream().collect(new LitSeqJCollector<>()),
         status,
         author.stream().collect(new LitSeqJCollector<>()),
         editor.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(intent),
+        (Option) OptionConverters.toScala(intent),
         dosage.stream().collect(new LitSeqJCollector<>()),
         version,
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(purpose),
+        (Option) OptionConverters.toScala(purpose),
         library.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(profile),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(subtitle),
+        (Option) OptionConverters.toScala(profile),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(subtitle),
         reviewer.stream().collect(new LitSeqJCollector<>()),
         endorser.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(priority),
-        OptionConverters.toScala(location),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(quantity),
         bodySite.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         publisher,
-        OptionConverters.toScala(copyright),
-        OptionConverters.toScala(timing),
-        OptionConverters.toScala(transform),
+        (Option) OptionConverters.toScala(copyright),
+        (Option) OptionConverters.toScala(timing),
+        (Option) OptionConverters.toScala(transform),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(subject),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(product),
+        (Option) OptionConverters.toScala(product),
         description,
         experimental,
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(approvalDate),
-        OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(lastReviewDate),
-        OptionConverters.toScala(effectivePeriod),
+        (Option) OptionConverters.toScala(approvalDate),
+        (Option) OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(lastReviewDate),
+        (Option) OptionConverters.toScala(effectivePeriod),
         relatedArtifact.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         specimenRequirement.stream().collect(new LitSeqJCollector<>()),

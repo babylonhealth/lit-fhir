@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PROPERTY_REPRESENTATION;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -57,13 +60,13 @@ public class Elementdefinition_deBuilder {
   private Optional<Integer> maxLength = Optional.empty();
   private Collection<String> condition = Collections.emptyList();
   private Optional<String> definition = Optional.empty();
-  private Optional<Choice> minValue = Optional.empty();
-  private Optional<Choice> maxValue = Optional.empty();
+  private Optional<Choice_0637176084> minValue = Optional.empty();
+  private Optional<Choice_0637176084> maxValue = Optional.empty();
   private Optional<Boolean> mustSupport = Optional.empty();
   private Optional<String> requirements = Optional.empty();
   private Optional<String> orderMeaning = Optional.empty();
   private Optional<ElementDefinition.Base> base = Optional.empty();
-  private Optional<Choice> defaultValue = Optional.empty();
+  private Optional<Choice_1349125893> defaultValue = Optional.empty();
   private Optional<String> isModifierReason = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<ElementDefinition.Example> example = Collections.emptyList();
@@ -215,30 +218,8 @@ public class Elementdefinition_deBuilder {
    *     is a 'choice' field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer,
    *     LocalTime, Quantity, ZonedDateTime.
    */
-  public <T> Elementdefinition_deBuilder withMinValue(@NonNull T minValue) {
-    var guessedSuffix =
-        autoSuffix(minValue.getClass().getSimpleName(), Elementdefinition_de$.MODULE$.minValue());
-    return withMinValue(guessedSuffix, minValue);
-  }
-
-  /**
-   * Alternative to the 'main' withMinValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of Integer then there are multiple candidate 'types' for the FHIR object, and we are unable
-   * to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type Integer, the valid values are Integer,
-   *     PositiveInt, UnsignedInt.
-   * @param minValue - The value to be passed to the builder
-   */
-  public <T> Elementdefinition_deBuilder withMinValue(String suffix, @NonNull T minValue) {
-    guard(minValue.getClass().getSimpleName(), suffix, Elementdefinition_de$.MODULE$.minValue());
-    this.minValue =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, minValue, Elementdefinition_de$.MODULE$.minValue()));
+  public Elementdefinition_deBuilder withMinValue(@NonNull Choice_0637176084 minValue) {
+    this.minValue = Optional.of(minValue);
     return this;
   }
   /**
@@ -247,30 +228,8 @@ public class Elementdefinition_deBuilder {
    *     is a 'choice' field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer,
    *     LocalTime, Quantity, ZonedDateTime.
    */
-  public <T> Elementdefinition_deBuilder withMaxValue(@NonNull T maxValue) {
-    var guessedSuffix =
-        autoSuffix(maxValue.getClass().getSimpleName(), Elementdefinition_de$.MODULE$.maxValue());
-    return withMaxValue(guessedSuffix, maxValue);
-  }
-
-  /**
-   * Alternative to the 'main' withMaxValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of Integer then there are multiple candidate 'types' for the FHIR object, and we are unable
-   * to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type Integer, the valid values are Integer,
-   *     PositiveInt, UnsignedInt.
-   * @param maxValue - The value to be passed to the builder
-   */
-  public <T> Elementdefinition_deBuilder withMaxValue(String suffix, @NonNull T maxValue) {
-    guard(maxValue.getClass().getSimpleName(), suffix, Elementdefinition_de$.MODULE$.maxValue());
-    this.maxValue =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, maxValue, Elementdefinition_de$.MODULE$.maxValue()));
+  public Elementdefinition_deBuilder withMaxValue(@NonNull Choice_0637176084 maxValue) {
+    this.maxValue = Optional.of(maxValue);
     return this;
   }
   /**
@@ -323,35 +282,8 @@ public class Elementdefinition_deBuilder {
    *     Reference, RelatedArtifact, SampledData, Signature, Timing, TriggerDefinition, UUID,
    *     UsageContext, ZonedDateTime.
    */
-  public <T> Elementdefinition_deBuilder withDefaultValue(@NonNull T defaultValue) {
-    var guessedSuffix =
-        autoSuffix(
-            defaultValue.getClass().getSimpleName(), Elementdefinition_de$.MODULE$.defaultValue());
-    return withDefaultValue(guessedSuffix, defaultValue);
-  }
-
-  /**
-   * Alternative to the 'main' withDefaultValue method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type. When the
-   * parameter is one of Integer or String then there are multiple candidate 'types' for the FHIR
-   * object, and we are unable to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type Integer, the valid values are Integer,
-   *     PositiveInt, UnsignedInt. For values of type String, the valid values are Canonical, Code,
-   *     Id, Markdown, Oid, String, Uri, Url.
-   * @param defaultValue - The value to be passed to the builder
-   */
-  public <T> Elementdefinition_deBuilder withDefaultValue(String suffix, @NonNull T defaultValue) {
-    guard(
-        defaultValue.getClass().getSimpleName(),
-        suffix,
-        Elementdefinition_de$.MODULE$.defaultValue());
-    this.defaultValue =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, defaultValue, Elementdefinition_de$.MODULE$.defaultValue()));
+  public Elementdefinition_deBuilder withDefaultValue(@NonNull Choice_1349125893 defaultValue) {
+    this.defaultValue = Optional.of(defaultValue);
     return this;
   }
   /**
@@ -487,34 +419,34 @@ public class Elementdefinition_deBuilder {
 
   public Elementdefinition_de build() {
     return new Elementdefinition_de(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(min.map(x -> (Object) x)),
-        OptionConverters.toScala(max),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(min.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(max),
         path,
         code.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(label),
+        (Option) OptionConverters.toScala(label),
         alias.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(comment),
+        (Option) OptionConverters.toScala(comment),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(sliceName),
-        OptionConverters.toScala(maxLength.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(sliceName),
+        (Option) OptionConverters.toScala(maxLength.map(x -> (Object) x)),
         condition.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(definition),
+        (Option) OptionConverters.toScala(definition),
         (Option) OptionConverters.toScala(minValue),
         (Option) OptionConverters.toScala(maxValue),
-        OptionConverters.toScala(mustSupport.map(x -> (Object) x)),
-        OptionConverters.toScala(requirements),
-        OptionConverters.toScala(orderMeaning),
-        OptionConverters.toScala(base),
+        (Option) OptionConverters.toScala(mustSupport.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(requirements),
+        (Option) OptionConverters.toScala(orderMeaning),
+        (Option) OptionConverters.toScala(base),
         (Option) OptionConverters.toScala(defaultValue),
-        OptionConverters.toScala(isModifierReason),
+        (Option) OptionConverters.toScala(isModifierReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         example.stream().collect(new LitSeqJCollector<>()),
         mapping.stream().collect(new LitSeqJCollector<>()),
         _type.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(meaningWhenMissing),
-        OptionConverters.toScala(sliceIsConstraining.map(x -> (Object) x)),
-        OptionConverters.toScala(binding),
+        (Option) OptionConverters.toScala(meaningWhenMissing),
+        (Option) OptionConverters.toScala(sliceIsConstraining.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(binding),
         constraint.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

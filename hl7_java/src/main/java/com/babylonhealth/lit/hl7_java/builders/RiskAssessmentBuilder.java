@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -64,7 +66,7 @@ public class RiskAssessmentBuilder {
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Optional<String> mitigation = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> occurrence = Optional.empty();
+  private Optional<Choice_0934386166> occurrence = Optional.empty();
   private Collection<Reference> reasonReference = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<RiskAssessment.Prediction> prediction = Collections.emptyList();
@@ -262,27 +264,8 @@ public class RiskAssessmentBuilder {
    * @param occurrence - The date (and possibly time) the risk assessment was performed. Field is a
    *     'choice' field. Type should be one of FHIRDateTime, Period.
    */
-  public <T> RiskAssessmentBuilder withOccurrence(@NonNull T occurrence) {
-    var guessedSuffix =
-        autoSuffix(occurrence.getClass().getSimpleName(), RiskAssessment$.MODULE$.occurrence());
-    return withOccurrence(guessedSuffix, occurrence);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurrence method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurrence - The value to be passed to the builder
-   */
-  public <T> RiskAssessmentBuilder withOccurrence(String suffix, @NonNull T occurrence) {
-    guard(occurrence.getClass().getSimpleName(), suffix, RiskAssessment$.MODULE$.occurrence());
-    this.occurrence =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, occurrence, RiskAssessment$.MODULE$.occurrence()));
+  public RiskAssessmentBuilder withOccurrence(@NonNull Choice_0934386166 occurrence) {
+    this.occurrence = Optional.of(occurrence);
     return this;
   }
   /** @param reasonReference - Resources supporting the reason the risk assessment was performed. */
@@ -347,28 +330,28 @@ public class RiskAssessmentBuilder {
 
   public RiskAssessment build() {
     return new RiskAssessment(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(code),
         note.stream().collect(new LitSeqJCollector<>()),
         basis.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(parent),
+        (Option) OptionConverters.toScala(parent),
         status,
-        OptionConverters.toScala(method),
-        OptionConverters.toScala(basedOn),
+        (Option) OptionConverters.toScala(method),
+        (Option) OptionConverters.toScala(basedOn),
         subject,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(condition),
-        OptionConverters.toScala(performer),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(condition),
+        (Option) OptionConverters.toScala(performer),
         identifier.stream().collect(new LitSeqJCollector<>()),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(mitigation),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(occurrence),
+        (Option) OptionConverters.toScala(mitigation),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(occurrence),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         prediction.stream().collect(new LitSeqJCollector<>()),

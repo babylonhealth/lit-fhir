@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -46,7 +48,7 @@ public class MedicationKnowledge_AdministrationGuidelines_PatientCharacteristics
   private Collection<String> value = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
-  private Choice<$bslash$div<CodeableConcept, Quantity>> characteristic;
+  private Choice_0970951552 characteristic;
 
   /**
    * Required fields for {@link MedicationKnowledge$AdministrationGuidelines$PatientCharacteristics}
@@ -55,17 +57,8 @@ public class MedicationKnowledge_AdministrationGuidelines_PatientCharacteristics
    *     Quantity.
    */
   public MedicationKnowledge_AdministrationGuidelines_PatientCharacteristicsBuilder(
-      @NonNull Object characteristic) {
-    this.characteristic =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    characteristic.getClass().getSimpleName(),
-                    MedicationKnowledge$AdministrationGuidelines$PatientCharacteristics$.MODULE$
-                        .characteristic()),
-                characteristic,
-                MedicationKnowledge$AdministrationGuidelines$PatientCharacteristics$.MODULE$
-                    .characteristic());
+      @NonNull Choice_0970951552 characteristic) {
+    this.characteristic = characteristic;
   }
 
   /**
@@ -150,7 +143,7 @@ public class MedicationKnowledge_AdministrationGuidelines_PatientCharacteristics
 
   public MedicationKnowledge$AdministrationGuidelines$PatientCharacteristics build() {
     return new MedicationKnowledge$AdministrationGuidelines$PatientCharacteristics(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         value.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

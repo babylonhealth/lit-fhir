@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DIAGNOSTIC_REPORT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -61,7 +63,7 @@ public class DiagnosticReportBuilder {
   private Collection<Reference> performer = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<String> conclusion = Optional.empty();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> effective = Optional.empty();
+  private Optional<Choice_0934386166> effective = Optional.empty();
   private Collection<Reference> imagingStudy = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<Attachment> presentedForm = Collections.emptyList();
@@ -261,27 +263,8 @@ public class DiagnosticReportBuilder {
    *     collection(s), but very often the source of the date/time is not known, only the date/time
    *     itself. Field is a 'choice' field. Type should be one of FHIRDateTime, Period.
    */
-  public <T> DiagnosticReportBuilder withEffective(@NonNull T effective) {
-    var guessedSuffix =
-        autoSuffix(effective.getClass().getSimpleName(), DiagnosticReport$.MODULE$.effective());
-    return withEffective(guessedSuffix, effective);
-  }
-
-  /**
-   * Alternative to the 'main' withEffective method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param effective - The value to be passed to the builder
-   */
-  public <T> DiagnosticReportBuilder withEffective(String suffix, @NonNull T effective) {
-    guard(effective.getClass().getSimpleName(), suffix, DiagnosticReport$.MODULE$.effective());
-    this.effective =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, effective, DiagnosticReport$.MODULE$.effective()));
+  public DiagnosticReportBuilder withEffective(@NonNull Choice_0934386166 effective) {
+    this.effective = Optional.of(effective);
     return this;
   }
   /**
@@ -423,27 +406,27 @@ public class DiagnosticReportBuilder {
 
   public DiagnosticReport build() {
     return new DiagnosticReport(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         code,
         status,
-        OptionConverters.toScala(issued),
+        (Option) OptionConverters.toScala(issued),
         result.stream().collect(new LitSeqJCollector<>()),
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
         specimen.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         performer.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(conclusion),
-        OptionConverters.toScala(effective),
+        (Option) OptionConverters.toScala(conclusion),
+        (Option) OptionConverters.toScala(effective),
         imagingStudy.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         presentedForm.stream().collect(new LitSeqJCollector<>()),
         conclusionCode.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

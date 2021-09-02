@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CAPABILITY_STATEMENT_KIND;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -499,38 +501,38 @@ public class CapabilityStatementBuilder {
 
   public CapabilityStatement build() {
     return new CapabilityStatement(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(name),
         date,
         kind,
-        OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(title),
         status,
         format.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(version),
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(purpose),
+        (Option) OptionConverters.toScala(purpose),
         imports.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(publisher),
-        OptionConverters.toScala(copyright),
+        (Option) OptionConverters.toScala(publisher),
+        (Option) OptionConverters.toScala(copyright),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(description),
         fhirVersion,
         patchFormat.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(experimental.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(experimental.map(x -> (Object) x)),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
         instantiates.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         implementationGuide.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(software),
+        (Option) OptionConverters.toScala(software),
         document.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implementation),
+        (Option) OptionConverters.toScala(implementation),
         rest.stream().collect(new LitSeqJCollector<>()),
         messaging.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

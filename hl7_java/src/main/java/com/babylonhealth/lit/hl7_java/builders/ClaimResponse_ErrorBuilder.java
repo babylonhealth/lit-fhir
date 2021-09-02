@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -140,13 +142,13 @@ public class ClaimResponse_ErrorBuilder {
 
   public ClaimResponse.Error build() {
     return new ClaimResponse.Error(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(itemSequence.map(x -> (Object) x)),
-        OptionConverters.toScala(detailSequence.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(itemSequence.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(detailSequence.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subDetailSequence.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(subDetailSequence.map(x -> (Object) x)),
         LitUtils.emptyMetaElMap());
   }
 }

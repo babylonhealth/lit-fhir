@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CONTRACT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -63,7 +65,7 @@ public class ContractBuilder {
   private Collection<CodeableConcept> subType = Collections.emptyList();
   private Optional<LANGUAGES> language = Optional.empty();
   private Optional<String> subtitle = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> topic = Optional.empty();
+  private Optional<Choice01025009075> topic = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Reference> authority = Collections.emptyList();
@@ -76,7 +78,7 @@ public class ContractBuilder {
   private Collection<Reference> relevantHistory = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Optional<CodeableConcept> contentDerivative = Optional.empty();
-  private Optional<Choice<$bslash$div<Attachment, Reference>>> legallyBinding = Optional.empty();
+  private Optional<Choice_0340660840> legallyBinding = Optional.empty();
   private Optional<Reference> instantiatesCanonical = Optional.empty();
   private Collection<Contract.Rule> rule = Collections.emptyList();
   private Collection<Contract.Legal> legal = Collections.emptyList();
@@ -282,23 +284,8 @@ public class ContractBuilder {
    *     contractual objectives. Field is a 'choice' field. Type should be one of CodeableConcept,
    *     Reference.
    */
-  public <T> ContractBuilder withTopic(@NonNull T topic) {
-    var guessedSuffix = autoSuffix(topic.getClass().getSimpleName(), Contract$.MODULE$.topic());
-    return withTopic(guessedSuffix, topic);
-  }
-
-  /**
-   * Alternative to the 'main' withTopic method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param topic - The value to be passed to the builder
-   */
-  public <T> ContractBuilder withTopic(String suffix, @NonNull T topic) {
-    guard(topic.getClass().getSimpleName(), suffix, Contract$.MODULE$.topic());
-    this.topic =
-        Optional.of((Choice) Choice$.MODULE$.fromSuffix(suffix, topic, Contract$.MODULE$.topic()));
+  public ContractBuilder withTopic(@NonNull Choice01025009075 topic) {
+    this.topic = Optional.of(topic);
     return this;
   }
   /**
@@ -495,27 +482,8 @@ public class ContractBuilder {
    *     be the basis for legal action related to enforcement of this Contract. Field is a 'choice'
    *     field. Type should be one of Attachment, Reference.
    */
-  public <T> ContractBuilder withLegallyBinding(@NonNull T legallyBinding) {
-    var guessedSuffix =
-        autoSuffix(legallyBinding.getClass().getSimpleName(), Contract$.MODULE$.legallyBinding());
-    return withLegallyBinding(guessedSuffix, legallyBinding);
-  }
-
-  /**
-   * Alternative to the 'main' withLegallyBinding method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param legallyBinding - The value to be passed to the builder
-   */
-  public <T> ContractBuilder withLegallyBinding(String suffix, @NonNull T legallyBinding) {
-    guard(legallyBinding.getClass().getSimpleName(), suffix, Contract$.MODULE$.legallyBinding());
-    this.legallyBinding =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, legallyBinding, Contract$.MODULE$.legallyBinding()));
+  public ContractBuilder withLegallyBinding(@NonNull Choice_0340660840 legallyBinding) {
+    this.legallyBinding = Optional.of(legallyBinding);
     return this;
   }
   /**
@@ -624,46 +592,46 @@ public class ContractBuilder {
 
   public Contract build() {
     return new Contract(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         site.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(title),
         alias.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(scope),
-        OptionConverters.toScala(status),
-        OptionConverters.toScala(issued),
+        (Option) OptionConverters.toScala(scope),
+        (Option) OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(issued),
         domain.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(author),
-        OptionConverters.toScala(version),
-        OptionConverters.toScala(applies),
+        (Option) OptionConverters.toScala(author),
+        (Option) OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(applies),
         subject.stream().collect(new LitSeqJCollector<>()),
         subType.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(subtitle),
-        OptionConverters.toScala(topic),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(subtitle),
+        (Option) OptionConverters.toScala(topic),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         authority.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(legalState),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(expirationType),
+        (Option) OptionConverters.toScala(legalState),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(expirationType),
         supportingInfo.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(instantiatesUri),
+        (Option) OptionConverters.toScala(instantiatesUri),
         relevantHistory.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(contentDerivative),
-        OptionConverters.toScala(legallyBinding),
-        OptionConverters.toScala(instantiatesCanonical),
+        (Option) OptionConverters.toScala(contentDerivative),
+        (Option) OptionConverters.toScala(legallyBinding),
+        (Option) OptionConverters.toScala(instantiatesCanonical),
         rule.stream().collect(new LitSeqJCollector<>()),
         legal.stream().collect(new LitSeqJCollector<>()),
         signer.stream().collect(new LitSeqJCollector<>()),
         friendly.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(contentDefinition),
+        (Option) OptionConverters.toScala(contentDefinition),
         term.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

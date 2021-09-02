@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -67,6 +70,7 @@ public class Cqf_cdsHooksEndpointBuilder {
   }
 
   public Cqf_cdsHooksEndpoint build() {
-    return new Cqf_cdsHooksEndpoint(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Cqf_cdsHooksEndpoint(
+        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -126,7 +128,7 @@ public class Contract_Term_Offer_PartyBuilder {
 
   public Contract$Term$Offer$Party build() {
     return new Contract$Term$Offer$Party(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         role,
         extension.stream().collect(new LitSeqJCollector<>()),
         reference.stream().collect(new NonEmptyLitSeqJCollector<>()),

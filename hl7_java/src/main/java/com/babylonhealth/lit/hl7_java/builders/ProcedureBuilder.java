@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.EVENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -68,11 +70,7 @@ public class ProcedureBuilder {
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Optional<CodeableConcept> statusReason = Optional.empty();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<$bslash$div<$bslash$div<Age, FHIRDateTime>, Period>, Range>, String>>>
-      performed = Optional.empty();
+  private Optional<Choice01352864625> performed = Optional.empty();
   private Collection<CodeableConcept> complication = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<Reference> usedReference = Collections.emptyList();
@@ -356,25 +354,8 @@ public class ProcedureBuilder {
    *     also allows for the length of the procedure to be captured. Field is a 'choice' field. Type
    *     should be one of Age, FHIRDateTime, Period, Range, String.
    */
-  public <T> ProcedureBuilder withPerformed(@NonNull T performed) {
-    var guessedSuffix =
-        autoSuffix(performed.getClass().getSimpleName(), Procedure$.MODULE$.performed());
-    return withPerformed(guessedSuffix, performed);
-  }
-
-  /**
-   * Alternative to the 'main' withPerformed method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param performed - The value to be passed to the builder
-   */
-  public <T> ProcedureBuilder withPerformed(String suffix, @NonNull T performed) {
-    guard(performed.getClass().getSimpleName(), suffix, Procedure$.MODULE$.performed());
-    this.performed =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, performed, Procedure$.MODULE$.performed()));
+  public ProcedureBuilder withPerformed(@NonNull Choice01352864625 performed) {
+    this.performed = Optional.of(performed);
     return this;
   }
   /**
@@ -549,34 +530,34 @@ public class ProcedureBuilder {
 
   public Procedure build() {
     return new Procedure(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(code),
         note.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
         report.stream().collect(new LitSeqJCollector<>()),
         basedOn.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(outcome),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(category),
-        OptionConverters.toScala(recorder),
-        OptionConverters.toScala(asserter),
-        OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(outcome),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(recorder),
+        (Option) OptionConverters.toScala(asserter),
+        (Option) OptionConverters.toScala(location),
         bodySite.stream().collect(new LitSeqJCollector<>()),
         followUp.stream().collect(new LitSeqJCollector<>()),
         usedCode.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(statusReason),
-        OptionConverters.toScala(performed),
+        (Option) OptionConverters.toScala(statusReason),
+        (Option) OptionConverters.toScala(performed),
         complication.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         usedReference.stream().collect(new LitSeqJCollector<>()),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),
         reasonReference.stream().collect(new LitSeqJCollector<>()),

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REPOSITORY_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -154,14 +156,14 @@ public class MolecularSequence_RepositoryBuilder {
 
   public MolecularSequence.Repository build() {
     return new MolecularSequence.Repository(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
         _type,
-        OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(name),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(datasetId),
-        OptionConverters.toScala(readsetId),
-        OptionConverters.toScala(variantsetId),
+        (Option) OptionConverters.toScala(datasetId),
+        (Option) OptionConverters.toScala(readsetId),
+        (Option) OptionConverters.toScala(variantsetId),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

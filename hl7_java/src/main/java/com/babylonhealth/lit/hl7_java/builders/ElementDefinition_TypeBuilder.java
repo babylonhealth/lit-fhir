@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REFERENCE_VERSION_RULES;
 import com.babylonhealth.lit.hl7.RESOURCE_AGGREGATION_MODE;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -131,11 +133,11 @@ public class ElementDefinition_TypeBuilder {
 
   public ElementDefinition.Type build() {
     return new ElementDefinition.Type(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
         profile.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(versioning),
+        (Option) OptionConverters.toScala(versioning),
         aggregation.stream().collect(new LitSeqJCollector<>()),
         targetProfile.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

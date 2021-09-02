@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.IMAGINGSTUDY_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -404,33 +406,33 @@ public class ImagingStudyBuilder {
 
   public ImagingStudy build() {
     return new ImagingStudy(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
         status,
         subject,
-        OptionConverters.toScala(started),
+        (Option) OptionConverters.toScala(started),
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         modality.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(referrer),
+        (Option) OptionConverters.toScala(referrer),
         endpoint.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(location),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         interpreter.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(implicitRules),
         procedureCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(numberOfSeries.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(numberOfSeries.map(x -> (Object) x)),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(numberOfInstances.map(x -> (Object) x)),
-        OptionConverters.toScala(procedureReference),
+        (Option) OptionConverters.toScala(numberOfInstances.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(procedureReference),
         series.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

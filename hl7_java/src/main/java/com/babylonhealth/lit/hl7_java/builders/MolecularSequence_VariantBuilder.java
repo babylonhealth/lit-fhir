@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -152,14 +154,14 @@ public class MolecularSequence_VariantBuilder {
 
   public MolecularSequence.Variant build() {
     return new MolecularSequence.Variant(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(end.map(x -> (Object) x)),
-        OptionConverters.toScala(start.map(x -> (Object) x)),
-        OptionConverters.toScala(cigar),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(end.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(start.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(cigar),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(observedAllele),
-        OptionConverters.toScala(variantPointer),
-        OptionConverters.toScala(referenceAllele),
+        (Option) OptionConverters.toScala(observedAllele),
+        (Option) OptionConverters.toScala(variantPointer),
+        (Option) OptionConverters.toScala(referenceAllele),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

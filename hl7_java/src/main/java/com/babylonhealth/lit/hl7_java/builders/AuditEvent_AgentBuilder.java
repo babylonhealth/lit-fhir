@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -201,20 +203,20 @@ public class AuditEvent_AgentBuilder {
 
   public AuditEvent.Agent build() {
     return new AuditEvent.Agent(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(who),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(who),
+        (Option) OptionConverters.toScala(_type),
         role.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(altId),
-        OptionConverters.toScala(media),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(altId),
+        (Option) OptionConverters.toScala(media),
         policy.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(location),
         extension.stream().collect(new LitSeqJCollector<>()),
         requestor,
         purposeOfUse.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(network),
+        (Option) OptionConverters.toScala(network),
         LitUtils.emptyMetaElMap());
   }
 }

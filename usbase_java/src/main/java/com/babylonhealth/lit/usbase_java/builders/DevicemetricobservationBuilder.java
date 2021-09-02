@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -63,23 +66,7 @@ public class DevicemetricobservationBuilder {
   private Reference subject;
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<CodeableConcept> category = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<
-                      $bslash$div<
-                          $bslash$div<
-                              $bslash$div<
-                                  $bslash$div<
-                                      $bslash$div<
-                                          $bslash$div<CodeableConcept, FHIRDateTime>, LocalTime>,
-                                      Period>,
-                                  Quantity>,
-                              Range>,
-                          Ratio>,
-                      SampledData>,
-                  String>>>
-      value = Optional.empty();
+  private Optional<Choice_1915626029> value = Optional.empty();
   private Optional<CodeableConcept> bodySite = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
@@ -249,27 +236,8 @@ public class DevicemetricobservationBuilder {
    *     CodeableConcept, FHIRDateTime, LocalTime, Period, Quantity, Range, Ratio, SampledData,
    *     String.
    */
-  public <T> DevicemetricobservationBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), Devicemetricobservation$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> DevicemetricobservationBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, Devicemetricobservation$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, value, Devicemetricobservation$.MODULE$.value()));
+  public DevicemetricobservationBuilder withValue(@NonNull Choice_1915626029 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -467,22 +435,22 @@ public class DevicemetricobservationBuilder {
 
   public Devicemetricobservation build() {
     return new Devicemetricobservation(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         code,
         note.stream().collect(new LitSeqJCollector<>()),
         focus.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(method),
+        (Option) OptionConverters.toScala(method),
         device,
         basedOn.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(value),
-        OptionConverters.toScala(bodySite),
+        (Option) OptionConverters.toScala(value),
+        (Option) OptionConverters.toScala(bodySite),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         performer.stream().collect(new LitSeqJCollector<>()),
@@ -490,11 +458,11 @@ public class DevicemetricobservationBuilder {
         identifier.stream().collect(new LitSeqJCollector<>()),
         derivedFrom.stream().collect(new LitSeqJCollector<>()),
         effective,
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(interpretation),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(interpretation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         component.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(referenceRange),
+        (Option) OptionConverters.toScala(referenceRange),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ACCOUNT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -297,22 +299,22 @@ public class AccountBuilder {
 
   public Account build() {
     return new Account(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(owner),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(owner),
         status,
-        OptionConverters.toScala(partOf),
+        (Option) OptionConverters.toScala(partOf),
         subject.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(servicePeriod),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(servicePeriod),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         coverage.stream().collect(new LitSeqJCollector<>()),
         guarantor.stream().collect(new LitSeqJCollector<>()),

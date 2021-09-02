@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -199,17 +201,17 @@ public class Claim_Item_Detail_SubDetailBuilder {
 
   public Claim$Item$Detail$SubDetail build() {
     return new Claim$Item$Detail$SubDetail(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(net),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(net),
         udi.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(factor),
-        OptionConverters.toScala(revenue),
+        (Option) OptionConverters.toScala(factor),
+        (Option) OptionConverters.toScala(revenue),
         sequence,
-        OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(category),
         modifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(unitPrice),
+        (Option) OptionConverters.toScala(unitPrice),
         programCode.stream().collect(new LitSeqJCollector<>()),
         productOrService,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

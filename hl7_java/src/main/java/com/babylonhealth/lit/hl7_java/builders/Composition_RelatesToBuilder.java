@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DOCUMENT_RELATIONSHIP_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +47,7 @@ public class Composition_RelatesToBuilder {
   private Optional<String> id = Optional.empty();
   private DOCUMENT_RELATIONSHIP_TYPE code;
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<Identifier, Reference>> target;
+  private Choice_0983418289 target;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -54,15 +56,10 @@ public class Composition_RelatesToBuilder {
    * @param code
    * @param target Field is a 'choice' field. Type should be one of Identifier, Reference.
    */
-  public Composition_RelatesToBuilder(DOCUMENT_RELATIONSHIP_TYPE code, @NonNull Object target) {
+  public Composition_RelatesToBuilder(
+      DOCUMENT_RELATIONSHIP_TYPE code, @NonNull Choice_0983418289 target) {
     this.code = code;
-    this.target =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    target.getClass().getSimpleName(), Composition.RelatesTo$.MODULE$.target()),
-                target,
-                Composition.RelatesTo$.MODULE$.target());
+    this.target = target;
   }
 
   /**
@@ -132,7 +129,7 @@ public class Composition_RelatesToBuilder {
 
   public Composition.RelatesTo build() {
     return new Composition.RelatesTo(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
         extension.stream().collect(new LitSeqJCollector<>()),
         target,

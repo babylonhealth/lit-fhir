@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -139,10 +141,10 @@ public class ImagingStudy_Series_InstanceBuilder {
 
   public ImagingStudy$Series$Instance build() {
     return new ImagingStudy$Series$Instance(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         uid,
-        OptionConverters.toScala(title),
-        OptionConverters.toScala(number.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(number.map(x -> (Object) x)),
         sopClass,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

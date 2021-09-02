@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.RESEARCH_SUBJECT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -234,21 +236,21 @@ public class ResearchSubjectBuilder {
 
   public ResearchSubject build() {
     return new ResearchSubject(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         study,
         status,
-        OptionConverters.toScala(period),
-        OptionConverters.toScala(consent),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(consent),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(actualArm),
+        (Option) OptionConverters.toScala(actualArm),
         identifier.stream().collect(new LitSeqJCollector<>()),
         individual,
-        OptionConverters.toScala(assignedArm),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(assignedArm),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

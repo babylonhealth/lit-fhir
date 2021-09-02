@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -177,7 +179,7 @@ public class TestScript_Metadata_CapabilityBuilder {
 
   public TestScript$Metadata$Capability build() {
     return new TestScript$Metadata$Capability(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         link.stream().collect(new LitSeqJCollector<>()),
         origin.stream()
             .map(x -> (Object) x)
@@ -187,8 +189,8 @@ public class TestScript_Metadata_CapabilityBuilder {
         required,
         extension.stream().collect(new LitSeqJCollector<>()),
         validated,
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(destination.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(destination.map(x -> (Object) x)),
         capabilities,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

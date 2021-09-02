@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.hl7.ACTION_GROUPING_BEHAVIOR;
 import com.babylonhealth.lit.hl7.ACTION_REQUIRED_BEHAVIOR;
@@ -56,14 +58,7 @@ public class RequestGroup_ActionBuilder {
   private Optional<REQUEST_PRIORITY> priority = Optional.empty();
   private Optional<Reference> resource = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<
-                      $bslash$div<$bslash$div<$bslash$div<Age, Duration>, FHIRDateTime>, Period>,
-                      Range>,
-                  Timing>>>
-      timing = Optional.empty();
+  private Optional<Choice_0181779868> timing = Optional.empty();
   private Optional<String> description = Optional.empty();
   private Collection<Reference> participant = Collections.emptyList();
   private Collection<RelatedArtifact> documentation = Collections.emptyList();
@@ -162,26 +157,8 @@ public class RequestGroup_ActionBuilder {
    * @param timing Field is a 'choice' field. Type should be one of Age, Duration, FHIRDateTime,
    *     Period, Range, Timing.
    */
-  public <T> RequestGroup_ActionBuilder withTiming(@NonNull T timing) {
-    var guessedSuffix =
-        autoSuffix(timing.getClass().getSimpleName(), RequestGroup.Action$.MODULE$.timing());
-    return withTiming(guessedSuffix, timing);
-  }
-
-  /**
-   * Alternative to the 'main' withTiming method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param timing - The value to be passed to the builder
-   */
-  public <T> RequestGroup_ActionBuilder withTiming(String suffix, @NonNull T timing) {
-    guard(timing.getClass().getSimpleName(), suffix, RequestGroup.Action$.MODULE$.timing());
-    this.timing =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, timing, RequestGroup.Action$.MODULE$.timing()));
+  public RequestGroup_ActionBuilder withTiming(@NonNull Choice_0181779868 timing) {
+    this.timing = Optional.of(timing);
     return this;
   }
   /** @param description */
@@ -305,26 +282,26 @@ public class RequestGroup_ActionBuilder {
 
   public RequestGroup.Action build() {
     return new RequestGroup.Action(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(title),
-        OptionConverters.toScala(prefix),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(prefix),
         action.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(priority),
-        OptionConverters.toScala(resource),
+        (Option) OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(resource),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(timing),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(timing),
+        (Option) OptionConverters.toScala(description),
         participant.stream().collect(new LitSeqJCollector<>()),
         documentation.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(textEquivalent),
-        OptionConverters.toScala(groupingBehavior),
-        OptionConverters.toScala(requiredBehavior),
-        OptionConverters.toScala(precheckBehavior),
+        (Option) OptionConverters.toScala(textEquivalent),
+        (Option) OptionConverters.toScala(groupingBehavior),
+        (Option) OptionConverters.toScala(requiredBehavior),
+        (Option) OptionConverters.toScala(precheckBehavior),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(selectionBehavior),
-        OptionConverters.toScala(cardinalityBehavior),
+        (Option) OptionConverters.toScala(selectionBehavior),
+        (Option) OptionConverters.toScala(cardinalityBehavior),
         condition.stream().collect(new LitSeqJCollector<>()),
         relatedAction.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

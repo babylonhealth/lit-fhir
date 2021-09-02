@@ -36,6 +36,10 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DIAGNOSTIC_REPORT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -70,7 +74,7 @@ public class Us_core_diagnosticreport_labBuilder {
   private Collection<Reference> performer = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<String> conclusion = Optional.empty();
-  private Choice<$bslash$div<FHIRDateTime, Period>> effective;
+  private Choice_0934386166 effective;
   private Collection<Reference> imagingStudy = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<Attachment> presentedForm = Collections.emptyList();
@@ -102,20 +106,13 @@ public class Us_core_diagnosticreport_labBuilder {
       ZonedDateTime issued,
       Reference subject,
       Collection<CodeableConcept> category,
-      @NonNull Object effective) {
+      @NonNull Choice_0934386166 effective) {
     this.code = code;
     this.status = status;
     this.issued = issued;
     this.subject = subject;
     this.category = category;
-    this.effective =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    effective.getClass().getSimpleName(),
-                    Us_core_diagnosticreport_lab$.MODULE$.effective()),
-                effective,
-                Us_core_diagnosticreport_lab$.MODULE$.effective());
+    this.effective = effective;
   }
 
   /**
@@ -413,27 +410,27 @@ public class Us_core_diagnosticreport_labBuilder {
 
   public Us_core_diagnosticreport_lab build() {
     return new Us_core_diagnosticreport_lab(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         code,
         status,
         issued,
         result.stream().collect(new LitSeqJCollector<>()),
         basedOn.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new NonEmptyLitSeqJCollector<>()),
         specimen.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         performer.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(conclusion),
+        (Option) OptionConverters.toScala(conclusion),
         effective,
         imagingStudy.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         presentedForm.stream().collect(new LitSeqJCollector<>()),
         conclusionCode.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

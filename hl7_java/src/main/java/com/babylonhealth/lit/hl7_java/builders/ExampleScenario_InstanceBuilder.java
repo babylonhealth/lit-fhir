@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.RESOURCE_TYPES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -181,11 +183,11 @@ public class ExampleScenario_InstanceBuilder {
 
   public ExampleScenario.Instance build() {
     return new ExampleScenario.Instance(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(name),
         extension.stream().collect(new LitSeqJCollector<>()),
         resourceId,
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(description),
         resourceType,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         version.stream().collect(new LitSeqJCollector<>()),

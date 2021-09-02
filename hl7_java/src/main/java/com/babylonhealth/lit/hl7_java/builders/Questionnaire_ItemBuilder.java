@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ITEM_TYPE;
 import com.babylonhealth.lit.hl7.QUESTIONNAIRE_ENABLE_BEHAVIOR;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -259,21 +261,21 @@ public class Questionnaire_ItemBuilder {
 
   public Questionnaire.Item build() {
     return new Questionnaire.Item(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(text),
         _type,
         item.stream().collect(new LitSeqJCollector<>()),
         linkId,
-        OptionConverters.toScala(prefix),
-        OptionConverters.toScala(repeats.map(x -> (Object) x)),
-        OptionConverters.toScala(required.map(x -> (Object) x)),
-        OptionConverters.toScala(readOnly.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(prefix),
+        (Option) OptionConverters.toScala(repeats.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(required.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(readOnly.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(maxLength.map(x -> (Object) x)),
-        OptionConverters.toScala(definition),
-        OptionConverters.toScala(enableBehavior),
-        OptionConverters.toScala(answerValueSet),
+        (Option) OptionConverters.toScala(maxLength.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(definition),
+        (Option) OptionConverters.toScala(enableBehavior),
+        (Option) OptionConverters.toScala(answerValueSet),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         initial.stream().collect(new LitSeqJCollector<>()),
         enableWhen.stream().collect(new LitSeqJCollector<>()),

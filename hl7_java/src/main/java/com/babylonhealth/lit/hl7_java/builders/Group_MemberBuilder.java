@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -134,10 +136,10 @@ public class Group_MemberBuilder {
 
   public Group.Member build() {
     return new Group.Member(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         entity,
-        OptionConverters.toScala(period),
-        OptionConverters.toScala(inactive.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(inactive.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +48,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Condition_occurredFollowingBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> value;
+  private Choice01025009075 value;
 
   /**
    * Required fields for {@link Condition_occurredFollowing}
@@ -54,14 +57,8 @@ public class Condition_occurredFollowingBuilder {
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
    *     field. Type should be one of CodeableConcept, Reference.
    */
-  public Condition_occurredFollowingBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    value.getClass().getSimpleName(), Condition_occurredFollowing$.MODULE$.value()),
-                value,
-                Condition_occurredFollowing$.MODULE$.value());
+  public Condition_occurredFollowingBuilder(@NonNull Choice01025009075 value) {
+    this.value = value;
   }
 
   /**
@@ -75,6 +72,6 @@ public class Condition_occurredFollowingBuilder {
 
   public Condition_occurredFollowing build() {
     return new Condition_occurredFollowing(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

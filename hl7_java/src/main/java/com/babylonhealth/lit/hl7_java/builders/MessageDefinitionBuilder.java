@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.MESSAGE_SIGNIFICANCE_CATEGORY;
@@ -61,7 +63,7 @@ public class MessageDefinitionBuilder {
   private Optional<String> purpose = Optional.empty();
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<String> replaces = Collections.emptyList();
-  private Choice<$bslash$div<Coding, String>> event;
+  private Choice01583485927 event;
   private Optional<MESSAGE_SIGNIFICANCE_CATEGORY> category = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
@@ -91,15 +93,10 @@ public class MessageDefinitionBuilder {
    *     should be one of Coding, String.
    */
   public MessageDefinitionBuilder(
-      FHIRDateTime date, PUBLICATION_STATUS status, @NonNull Object event) {
+      FHIRDateTime date, PUBLICATION_STATUS status, @NonNull Choice01583485927 event) {
     this.date = date;
     this.status = status;
-    this.event =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(event.getClass().getSimpleName(), MessageDefinition$.MODULE$.event()),
-                event,
-                MessageDefinition$.MODULE$.event());
+    this.event = event;
   }
 
   /**
@@ -471,35 +468,35 @@ public class MessageDefinitionBuilder {
 
   public MessageDefinition build() {
     return new MessageDefinition(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(name),
         date,
-        OptionConverters.toScala(base),
-        OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(base),
+        (Option) OptionConverters.toScala(title),
         graph.stream().collect(new LitSeqJCollector<>()),
         status,
         parent.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(version),
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(purpose),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(purpose),
+        (Option) OptionConverters.toScala(language),
         replaces.stream().collect(new LitSeqJCollector<>()),
         event,
-        OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(category),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(publisher),
-        OptionConverters.toScala(copyright),
+        (Option) OptionConverters.toScala(publisher),
+        (Option) OptionConverters.toScala(copyright),
         identifier.stream().collect(new LitSeqJCollector<>()),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(experimental.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(experimental.map(x -> (Object) x)),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(responseRequired),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(responseRequired),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         focus.stream().collect(new LitSeqJCollector<>()),
         allowedResponse.stream().collect(new LitSeqJCollector<>()),

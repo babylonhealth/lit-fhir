@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -46,8 +48,7 @@ public class FamilyMemberHistory_ConditionBuilder {
   private CodeableConcept code;
   private Collection<Annotation> note = Collections.emptyList();
   private Optional<CodeableConcept> outcome = Optional.empty();
-  private Optional<Choice<$bslash$div<$bslash$div<$bslash$div<Age, Period>, Range>, String>>>
-      onset = Optional.empty();
+  private Optional<Choice01727798874> onset = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Optional<Boolean> contributedToDeath = Optional.empty();
@@ -93,28 +94,8 @@ public class FamilyMemberHistory_ConditionBuilder {
     return this;
   }
   /** @param onset Field is a 'choice' field. Type should be one of Age, Period, Range, String. */
-  public <T> FamilyMemberHistory_ConditionBuilder withOnset(@NonNull T onset) {
-    var guessedSuffix =
-        autoSuffix(
-            onset.getClass().getSimpleName(), FamilyMemberHistory.Condition$.MODULE$.onset());
-    return withOnset(guessedSuffix, onset);
-  }
-
-  /**
-   * Alternative to the 'main' withOnset method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param onset - The value to be passed to the builder
-   */
-  public <T> FamilyMemberHistory_ConditionBuilder withOnset(String suffix, @NonNull T onset) {
-    guard(onset.getClass().getSimpleName(), suffix, FamilyMemberHistory.Condition$.MODULE$.onset());
-    this.onset =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, onset, FamilyMemberHistory.Condition$.MODULE$.onset()));
+  public FamilyMemberHistory_ConditionBuilder withOnset(@NonNull Choice01727798874 onset) {
+    this.onset = Optional.of(onset);
     return this;
   }
   /**
@@ -183,14 +164,14 @@ public class FamilyMemberHistory_ConditionBuilder {
 
   public FamilyMemberHistory.Condition build() {
     return new FamilyMemberHistory.Condition(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(outcome),
-        OptionConverters.toScala(onset),
+        (Option) OptionConverters.toScala(outcome),
+        (Option) OptionConverters.toScala(onset),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(contributedToDeath.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(contributedToDeath.map(x -> (Object) x)),
         LitUtils.emptyMetaElMap());
   }
 }

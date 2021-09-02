@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -147,13 +149,13 @@ public class ExplanationOfBenefit_CareTeamBuilder {
 
   public ExplanationOfBenefit.CareTeam build() {
     return new ExplanationOfBenefit.CareTeam(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(role),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(role),
         sequence,
         provider,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(responsible.map(x -> (Object) x)),
-        OptionConverters.toScala(qualification),
+        (Option) OptionConverters.toScala(responsible.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(qualification),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

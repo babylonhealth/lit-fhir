@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MEDICATIONREQUEST_STATUS;
 import com.babylonhealth.lit.hl7.MEDICATIONREQUEST_INTENT;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -66,12 +68,12 @@ public class MedicationRequestBuilder {
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<FHIRDateTime> authoredOn = Optional.empty();
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
-  private Optional<Choice> reported = Optional.empty();
+  private Optional<Choice_1524702593> reported = Optional.empty();
   private Optional<CodeableConcept> statusReason = Optional.empty();
   private Optional<Boolean> doNotPerform = Optional.empty();
   private Collection<Reference> eventHistory = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> medication;
+  private Choice01025009075 medication;
   private Optional<CodeableConcept> performerType = Optional.empty();
   private Collection<Reference> detectedIssue = Collections.emptyList();
   private Collection<Reference> reasonReference = Collections.emptyList();
@@ -103,17 +105,11 @@ public class MedicationRequestBuilder {
       MEDICATIONREQUEST_STATUS status,
       MEDICATIONREQUEST_INTENT intent,
       Reference subject,
-      @NonNull Object medication) {
+      @NonNull Choice01025009075 medication) {
     this.status = status;
     this.intent = intent;
     this.subject = subject;
-    this.medication =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    medication.getClass().getSimpleName(), MedicationRequest$.MODULE$.medication()),
-                medication,
-                MedicationRequest$.MODULE$.medication());
+    this.medication = medication;
   }
 
   /**
@@ -342,27 +338,8 @@ public class MedicationRequestBuilder {
    *     than as an original primary source-of-truth record. It may also indicate the source of the
    *     report. Field is a 'choice' field. Type should be one of Boolean, Reference.
    */
-  public <T> MedicationRequestBuilder withReported(@NonNull T reported) {
-    var guessedSuffix =
-        autoSuffix(reported.getClass().getSimpleName(), MedicationRequest$.MODULE$.reported());
-    return withReported(guessedSuffix, reported);
-  }
-
-  /**
-   * Alternative to the 'main' withReported method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param reported - The value to be passed to the builder
-   */
-  public <T> MedicationRequestBuilder withReported(String suffix, @NonNull T reported) {
-    guard(reported.getClass().getSimpleName(), suffix, MedicationRequest$.MODULE$.reported());
-    this.reported =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, reported, MedicationRequest$.MODULE$.reported()));
+  public MedicationRequestBuilder withReported(@NonNull Choice_1524702593 reported) {
+    this.reported = Optional.of(reported);
     return this;
   }
   /** @param statusReason - Captures the reason for the current state of the MedicationRequest. */
@@ -601,46 +578,46 @@ public class MedicationRequestBuilder {
 
   public MedicationRequest build() {
     return new MedicationRequest(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
         status,
         intent,
         subject,
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(priority),
-        OptionConverters.toScala(recorder),
+        (Option) OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(recorder),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(requester),
-        OptionConverters.toScala(performer),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(requester),
+        (Option) OptionConverters.toScala(performer),
         insurance.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(authoredOn),
+        (Option) OptionConverters.toScala(authoredOn),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(reported),
-        OptionConverters.toScala(statusReason),
-        OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(statusReason),
+        (Option) OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
         eventHistory.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         medication,
-        OptionConverters.toScala(performerType),
+        (Option) OptionConverters.toScala(performerType),
         detectedIssue.stream().collect(new LitSeqJCollector<>()),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(groupIdentifier),
+        (Option) OptionConverters.toScala(groupIdentifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         dosageInstruction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(priorPrescription),
-        OptionConverters.toScala(courseOfTherapyType),
+        (Option) OptionConverters.toScala(priorPrescription),
+        (Option) OptionConverters.toScala(courseOfTherapyType),
         supportingInformation.stream().collect(new LitSeqJCollector<>()),
         instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(substitution),
-        OptionConverters.toScala(dispenseRequest),
+        (Option) OptionConverters.toScala(substitution),
+        (Option) OptionConverters.toScala(dispenseRequest),
         LitUtils.emptyMetaElMap());
   }
 }

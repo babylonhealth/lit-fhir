@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.HTTP_VERB;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -116,14 +118,14 @@ public class Bundle_Entry_RequestBuilder {
 
   public Bundle$Entry$Request build() {
     return new Bundle$Entry$Request(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         url,
         method,
-        OptionConverters.toScala(ifMatch),
+        (Option) OptionConverters.toScala(ifMatch),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(ifNoneMatch),
-        OptionConverters.toScala(ifNoneExist),
-        OptionConverters.toScala(ifModifiedSince),
+        (Option) OptionConverters.toScala(ifNoneMatch),
+        (Option) OptionConverters.toScala(ifNoneExist),
+        (Option) OptionConverters.toScala(ifModifiedSince),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

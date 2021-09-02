@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -151,12 +153,12 @@ public class InsurancePlan_Plan_SpecificCost_Benefit_CostBuilder {
 
   public InsurancePlan$Plan$SpecificCost$Benefit$Cost build() {
     return new InsurancePlan$Plan$SpecificCost$Benefit$Cost(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
-        OptionConverters.toScala(value),
+        (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
         qualifiers.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(applicability),
+        (Option) OptionConverters.toScala(applicability),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

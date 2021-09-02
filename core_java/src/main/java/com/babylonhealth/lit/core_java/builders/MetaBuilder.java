@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -162,14 +163,14 @@ public class MetaBuilder {
 
   public Meta build() {
     return new Meta(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         tag.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(source),
+        (Option) OptionConverters.toScala(source),
         profile.stream().collect(new LitSeqJCollector<>()),
         security.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(versionId),
-        OptionConverters.toScala(lastUpdated),
+        (Option) OptionConverters.toScala(versionId),
+        (Option) OptionConverters.toScala(lastUpdated),
         LitUtils.emptyMetaElMap());
   }
 }

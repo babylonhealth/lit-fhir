@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +48,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Familymemberhistory_abatementBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice value;
+  private Choice00813350082 value;
 
   /**
    * Required fields for {@link Familymemberhistory_abatement}
@@ -54,15 +57,8 @@ public class Familymemberhistory_abatementBuilder {
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
    *     field. Type should be one of Age, Boolean, FHIRDate.
    */
-  public Familymemberhistory_abatementBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    value.getClass().getSimpleName(),
-                    Familymemberhistory_abatement$.MODULE$.value()),
-                value,
-                Familymemberhistory_abatement$.MODULE$.value());
+  public Familymemberhistory_abatementBuilder(@NonNull Choice00813350082 value) {
+    this.value = value;
   }
 
   /**
@@ -76,6 +72,6 @@ public class Familymemberhistory_abatementBuilder {
 
   public Familymemberhistory_abatement build() {
     return new Familymemberhistory_abatement(
-        OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+        (Option) OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
   }
 }

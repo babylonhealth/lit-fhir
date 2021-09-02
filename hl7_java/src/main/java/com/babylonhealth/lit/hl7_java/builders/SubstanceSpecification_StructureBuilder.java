@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -194,15 +196,15 @@ public class SubstanceSpecification_StructureBuilder {
 
   public SubstanceSpecification.Structure build() {
     return new SubstanceSpecification.Structure(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         source.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(stereochemistry),
-        OptionConverters.toScala(opticalActivity),
-        OptionConverters.toScala(molecularWeight),
-        OptionConverters.toScala(molecularFormula),
+        (Option) OptionConverters.toScala(stereochemistry),
+        (Option) OptionConverters.toScala(opticalActivity),
+        (Option) OptionConverters.toScala(molecularWeight),
+        (Option) OptionConverters.toScala(molecularFormula),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(molecularFormulaByMoiety),
+        (Option) OptionConverters.toScala(molecularFormulaByMoiety),
         representation.stream().collect(new LitSeqJCollector<>()),
         isotope.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

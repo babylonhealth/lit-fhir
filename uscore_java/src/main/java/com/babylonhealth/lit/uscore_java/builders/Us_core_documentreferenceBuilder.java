@@ -36,6 +36,10 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DOCUMENT_REFERENCE_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.COMPOSITION_STATUS;
@@ -345,28 +349,28 @@ public class Us_core_documentreferenceBuilder {
 
   public Us_core_documentreference build() {
     return new Us_core_documentreference(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         _type,
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(date),
         status,
         author.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new NonEmptyLitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(docStatus),
-        OptionConverters.toScala(custodian),
+        (Option) OptionConverters.toScala(docStatus),
+        (Option) OptionConverters.toScala(custodian),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(authenticator),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(authenticator),
         securityLabel.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(masterIdentifier),
+        (Option) OptionConverters.toScala(masterIdentifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(context),
+        (Option) OptionConverters.toScala(context),
         relatesTo.stream().collect(new LitSeqJCollector<>()),
         content,
         LitUtils.emptyMetaElMap());

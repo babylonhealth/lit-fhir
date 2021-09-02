@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.EVENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -68,7 +70,7 @@ public class MediaBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<Reference> encounter = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> created = Optional.empty();
+  private Optional<Choice_0934386166> created = Optional.empty();
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Optional<String> deviceName = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
@@ -304,23 +306,8 @@ public class MediaBuilder {
    * @param created - The date and time(s) at which the media was collected. Field is a 'choice'
    *     field. Type should be one of FHIRDateTime, Period.
    */
-  public <T> MediaBuilder withCreated(@NonNull T created) {
-    var guessedSuffix = autoSuffix(created.getClass().getSimpleName(), Media$.MODULE$.created());
-    return withCreated(guessedSuffix, created);
-  }
-
-  /**
-   * Alternative to the 'main' withCreated method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param created - The value to be passed to the builder
-   */
-  public <T> MediaBuilder withCreated(String suffix, @NonNull T created) {
-    guard(created.getClass().getSimpleName(), suffix, Media$.MODULE$.created());
-    this.created =
-        Optional.of((Choice) Choice$.MODULE$.fromSuffix(suffix, created, Media$.MODULE$.created()));
+  public MediaBuilder withCreated(@NonNull Choice_0934386166 created) {
+    this.created = Optional.of(created);
     return this;
   }
   /** @param reasonCode - Describes why the event occurred in coded or textual form. */
@@ -391,35 +378,35 @@ public class MediaBuilder {
 
   public Media build() {
     return new Media(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(view),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(view),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(width.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(width.map(x -> (Object) x)),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(issued),
-        OptionConverters.toScala(device),
-        OptionConverters.toScala(height.map(x -> (Object) x)),
-        OptionConverters.toScala(frames.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(issued),
+        (Option) OptionConverters.toScala(device),
+        (Option) OptionConverters.toScala(height.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(frames.map(x -> (Object) x)),
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(subject),
         content,
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(modality),
-        OptionConverters.toScala(operator),
-        OptionConverters.toScala(bodySite),
-        OptionConverters.toScala(duration),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(modality),
+        (Option) OptionConverters.toScala(operator),
+        (Option) OptionConverters.toScala(bodySite),
+        (Option) OptionConverters.toScala(duration),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(created),
+        (Option) OptionConverters.toScala(created),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(deviceName),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(deviceName),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

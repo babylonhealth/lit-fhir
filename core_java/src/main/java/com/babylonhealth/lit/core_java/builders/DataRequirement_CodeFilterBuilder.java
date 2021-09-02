@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -108,12 +109,12 @@ public class DataRequirement_CodeFilterBuilder {
 
   public DataRequirement.CodeFilter build() {
     return new DataRequirement.CodeFilter(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(path),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(path),
         code.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(valueSet),
+        (Option) OptionConverters.toScala(valueSet),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(searchParam),
+        (Option) OptionConverters.toScala(searchParam),
         LitUtils.emptyMetaElMap());
   }
 }

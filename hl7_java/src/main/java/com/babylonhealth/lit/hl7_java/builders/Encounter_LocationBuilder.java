@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ENCOUNTER_LOCATION_STATUS;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -142,12 +144,12 @@ public class Encounter_LocationBuilder {
 
   public Encounter.Location build() {
     return new Encounter.Location(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(status),
-        OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(period),
         location,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(physicalType),
+        (Option) OptionConverters.toScala(physicalType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

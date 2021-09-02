@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.IDENTITY_ASSURANCELEVEL;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -128,10 +130,10 @@ public class Person_LinkBuilder {
 
   public Person.Link build() {
     return new Person.Link(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         target,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(assurance),
+        (Option) OptionConverters.toScala(assurance),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

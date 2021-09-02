@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MEDICATIONKNOWLEDGE_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -482,29 +484,29 @@ public class MedicationKnowledgeBuilder {
 
   public MedicationKnowledge build() {
     return new MedicationKnowledge(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(status),
-        OptionConverters.toScala(amount),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(amount),
         synonym.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(doseForm),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(doseForm),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         productType.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(manufacturer),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(manufacturer),
+        (Option) OptionConverters.toScala(implicitRules),
         intendedRoute.stream().collect(new LitSeqJCollector<>()),
         contraindication.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         associatedMedication.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(preparationInstruction),
+        (Option) OptionConverters.toScala(preparationInstruction),
         cost.stream().collect(new LitSeqJCollector<>()),
         kinetics.stream().collect(new LitSeqJCollector<>()),
         monograph.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(packaging),
+        (Option) OptionConverters.toScala(packaging),
         ingredient.stream().collect(new LitSeqJCollector<>()),
         monitoringProgram.stream().collect(new LitSeqJCollector<>()),
         drugCharacteristic.stream().collect(new LitSeqJCollector<>()),

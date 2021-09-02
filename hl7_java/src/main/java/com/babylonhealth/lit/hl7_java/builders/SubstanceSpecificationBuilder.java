@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -360,33 +362,33 @@ public class SubstanceSpecificationBuilder {
 
   public SubstanceSpecification build() {
     return new SubstanceSpecification(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(status),
-        OptionConverters.toScala(domain),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(domain),
         source.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(comment),
-        OptionConverters.toScala(polymer),
-        OptionConverters.toScala(protein),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(comment),
+        (Option) OptionConverters.toScala(polymer),
+        (Option) OptionConverters.toScala(protein),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(identifier),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(nucleicAcid),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(sourceMaterial),
+        (Option) OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(nucleicAcid),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(sourceMaterial),
         molecularWeight.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(referenceInformation),
+        (Option) OptionConverters.toScala(referenceInformation),
         code.stream().collect(new LitSeqJCollector<>()),
         moiety.stream().collect(new LitSeqJCollector<>()),
         property.stream().collect(new LitSeqJCollector<>()),
         name.stream().collect(new LitSeqJCollector<>()),
         relationship.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(structure),
+        (Option) OptionConverters.toScala(structure),
         LitUtils.emptyMetaElMap());
   }
 }

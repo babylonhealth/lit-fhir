@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ENCOUNTER_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -459,37 +461,37 @@ public class EncounterBuilder {
 
   public Encounter build() {
     return new Encounter(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         _type.stream().collect(new LitSeqJCollector<>()),
         _class,
         status,
-        OptionConverters.toScala(period),
-        OptionConverters.toScala(length),
-        OptionConverters.toScala(partOf),
-        OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(length),
+        (Option) OptionConverters.toScala(partOf),
+        (Option) OptionConverters.toScala(subject),
         basedOn.stream().collect(new LitSeqJCollector<>()),
         account.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(priority),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(serviceType),
+        (Option) OptionConverters.toScala(serviceType),
         appointment.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         episodeOfCare.stream().collect(new LitSeqJCollector<>()),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(serviceProvider),
+        (Option) OptionConverters.toScala(serviceProvider),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         location.stream().collect(new LitSeqJCollector<>()),
         diagnosis.stream().collect(new LitSeqJCollector<>()),
         participant.stream().collect(new LitSeqJCollector<>()),
         classHistory.stream().collect(new LitSeqJCollector<>()),
         statusHistory.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(hospitalization),
+        (Option) OptionConverters.toScala(hospitalization),
         LitUtils.emptyMetaElMap());
   }
 }

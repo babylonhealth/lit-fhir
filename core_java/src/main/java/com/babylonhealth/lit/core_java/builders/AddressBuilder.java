@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.ADDRESS_USE;
 import com.babylonhealth.lit.core.ADDRESS_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -163,18 +164,18 @@ public class AddressBuilder {
 
   public Address build() {
     return new Address(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(use),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(use),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(text),
         line.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(city),
-        OptionConverters.toScala(state),
-        OptionConverters.toScala(period),
-        OptionConverters.toScala(country),
-        OptionConverters.toScala(district),
+        (Option) OptionConverters.toScala(city),
+        (Option) OptionConverters.toScala(state),
+        (Option) OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(country),
+        (Option) OptionConverters.toScala(district),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(postalCode),
+        (Option) OptionConverters.toScala(postalCode),
         LitUtils.emptyMetaElMap());
   }
 }

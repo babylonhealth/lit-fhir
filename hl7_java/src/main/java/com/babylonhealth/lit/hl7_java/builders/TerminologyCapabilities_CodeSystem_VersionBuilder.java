@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -178,13 +180,13 @@ public class TerminologyCapabilities_CodeSystem_VersionBuilder {
 
   public TerminologyCapabilities$CodeSystem$Version build() {
     return new TerminologyCapabilities$CodeSystem$Version(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(code),
         language.stream().collect(new LitSeqJCollector<>()),
         property.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(isDefault.map(x -> (Object) x)),
-        OptionConverters.toScala(compositional.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(isDefault.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(compositional.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         filter.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

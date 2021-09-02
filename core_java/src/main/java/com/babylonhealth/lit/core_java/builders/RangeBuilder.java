@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -91,9 +92,9 @@ public class RangeBuilder {
 
   public Range build() {
     return new Range(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(low),
-        OptionConverters.toScala(high),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(low),
+        (Option) OptionConverters.toScala(high),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

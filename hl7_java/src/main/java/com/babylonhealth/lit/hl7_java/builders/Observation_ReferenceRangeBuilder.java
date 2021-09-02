@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -164,12 +166,12 @@ public class Observation_ReferenceRangeBuilder {
 
   public Observation.ReferenceRange build() {
     return new Observation.ReferenceRange(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(low),
-        OptionConverters.toScala(age),
-        OptionConverters.toScala(high),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(low),
+        (Option) OptionConverters.toScala(age),
+        (Option) OptionConverters.toScala(high),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(text),
         extension.stream().collect(new LitSeqJCollector<>()),
         appliesTo.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

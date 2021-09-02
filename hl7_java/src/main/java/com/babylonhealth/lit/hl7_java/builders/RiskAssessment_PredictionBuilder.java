@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,11 +46,11 @@ import static java.util.stream.Collectors.toList;
 public class RiskAssessment_PredictionBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<CodeableConcept> outcome = Optional.empty();
-  private Optional<Choice<$bslash$div<Period, Range>>> when = Optional.empty();
+  private Optional<Choice01200936722> when = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<String> rationale = Optional.empty();
   private Optional<BigDecimal> relativeRisk = Optional.empty();
-  private Optional<Choice<$bslash$div<BigDecimal, Range>>> probability = Optional.empty();
+  private Optional<Choice_0831630297> probability = Optional.empty();
   private Optional<CodeableConcept> qualitativeRisk = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -69,27 +71,8 @@ public class RiskAssessment_PredictionBuilder {
     return this;
   }
   /** @param when Field is a 'choice' field. Type should be one of Period, Range. */
-  public <T> RiskAssessment_PredictionBuilder withWhen(@NonNull T when) {
-    var guessedSuffix =
-        autoSuffix(when.getClass().getSimpleName(), RiskAssessment.Prediction$.MODULE$.when());
-    return withWhen(guessedSuffix, when);
-  }
-
-  /**
-   * Alternative to the 'main' withWhen method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param when - The value to be passed to the builder
-   */
-  public <T> RiskAssessment_PredictionBuilder withWhen(String suffix, @NonNull T when) {
-    guard(when.getClass().getSimpleName(), suffix, RiskAssessment.Prediction$.MODULE$.when());
-    this.when =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, when, RiskAssessment.Prediction$.MODULE$.when()));
+  public RiskAssessment_PredictionBuilder withWhen(@NonNull Choice01200936722 when) {
+    this.when = Optional.of(when);
     return this;
   }
   /**
@@ -125,33 +108,8 @@ public class RiskAssessment_PredictionBuilder {
     return this;
   }
   /** @param probability Field is a 'choice' field. Type should be one of BigDecimal, Range. */
-  public <T> RiskAssessment_PredictionBuilder withProbability(@NonNull T probability) {
-    var guessedSuffix =
-        autoSuffix(
-            probability.getClass().getSimpleName(),
-            RiskAssessment.Prediction$.MODULE$.probability());
-    return withProbability(guessedSuffix, probability);
-  }
-
-  /**
-   * Alternative to the 'main' withProbability method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param probability - The value to be passed to the builder
-   */
-  public <T> RiskAssessment_PredictionBuilder withProbability(
-      String suffix, @NonNull T probability) {
-    guard(
-        probability.getClass().getSimpleName(),
-        suffix,
-        RiskAssessment.Prediction$.MODULE$.probability());
-    this.probability =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, probability, RiskAssessment.Prediction$.MODULE$.probability()));
+  public RiskAssessment_PredictionBuilder withProbability(@NonNull Choice_0831630297 probability) {
+    this.probability = Optional.of(probability);
     return this;
   }
   /** @param qualitativeRisk */
@@ -197,14 +155,14 @@ public class RiskAssessment_PredictionBuilder {
 
   public RiskAssessment.Prediction build() {
     return new RiskAssessment.Prediction(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(outcome),
-        OptionConverters.toScala(when),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(outcome),
+        (Option) OptionConverters.toScala(when),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(rationale),
-        OptionConverters.toScala(relativeRisk),
-        OptionConverters.toScala(probability),
-        OptionConverters.toScala(qualitativeRisk),
+        (Option) OptionConverters.toScala(rationale),
+        (Option) OptionConverters.toScala(relativeRisk),
+        (Option) OptionConverters.toScala(probability),
+        (Option) OptionConverters.toScala(qualitativeRisk),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -184,12 +186,12 @@ public class CodeSystem_ConceptBuilder {
 
   public CodeSystem.Concept build() {
     return new CodeSystem.Concept(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
-        OptionConverters.toScala(display),
+        (Option) OptionConverters.toScala(display),
         concept.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(definition),
+        (Option) OptionConverters.toScala(definition),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         property.stream().collect(new LitSeqJCollector<>()),
         designation.stream().collect(new LitSeqJCollector<>()),

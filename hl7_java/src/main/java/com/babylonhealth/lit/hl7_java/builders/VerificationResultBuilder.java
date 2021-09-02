@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.VERIFICATIONRESULT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -311,28 +313,28 @@ public class VerificationResultBuilder {
 
   public VerificationResult build() {
     return new VerificationResult(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(need),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(need),
         target.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(frequency),
-        OptionConverters.toScala(statusDate),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(lastPerformed),
-        OptionConverters.toScala(nextScheduled),
-        OptionConverters.toScala(failureAction),
+        (Option) OptionConverters.toScala(frequency),
+        (Option) OptionConverters.toScala(statusDate),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(lastPerformed),
+        (Option) OptionConverters.toScala(nextScheduled),
+        (Option) OptionConverters.toScala(failureAction),
         targetLocation.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(validationType),
+        (Option) OptionConverters.toScala(validationType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         validationProcess.stream().collect(new LitSeqJCollector<>()),
         validator.stream().collect(new LitSeqJCollector<>()),
         primarySource.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(attestation),
+        (Option) OptionConverters.toScala(attestation),
         LitUtils.emptyMetaElMap());
   }
 }

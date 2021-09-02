@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -48,8 +50,7 @@ public class SubstanceReferenceInformation_TargetBuilder {
   private Collection<Reference> source = Collections.emptyList();
   private Optional<CodeableConcept> organism = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<$bslash$div<Quantity, Range>, String>>> amount =
-      Optional.empty();
+  private Optional<Choice_1527751898> amount = Optional.empty();
   private Optional<CodeableConcept> amountType = Optional.empty();
   private Optional<CodeableConcept> interaction = Optional.empty();
   private Optional<CodeableConcept> organismType = Optional.empty();
@@ -118,33 +119,8 @@ public class SubstanceReferenceInformation_TargetBuilder {
     return this;
   }
   /** @param amount Field is a 'choice' field. Type should be one of Quantity, Range, String. */
-  public <T> SubstanceReferenceInformation_TargetBuilder withAmount(@NonNull T amount) {
-    var guessedSuffix =
-        autoSuffix(
-            amount.getClass().getSimpleName(),
-            SubstanceReferenceInformation.Target$.MODULE$.amount());
-    return withAmount(guessedSuffix, amount);
-  }
-
-  /**
-   * Alternative to the 'main' withAmount method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param amount - The value to be passed to the builder
-   */
-  public <T> SubstanceReferenceInformation_TargetBuilder withAmount(
-      String suffix, @NonNull T amount) {
-    guard(
-        amount.getClass().getSimpleName(),
-        suffix,
-        SubstanceReferenceInformation.Target$.MODULE$.amount());
-    this.amount =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, amount, SubstanceReferenceInformation.Target$.MODULE$.amount()));
+  public SubstanceReferenceInformation_TargetBuilder withAmount(@NonNull Choice_1527751898 amount) {
+    this.amount = Optional.of(amount);
     return this;
   }
   /** @param amountType */
@@ -202,16 +178,16 @@ public class SubstanceReferenceInformation_TargetBuilder {
 
   public SubstanceReferenceInformation.Target build() {
     return new SubstanceReferenceInformation.Target(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(target),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(target),
         source.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(organism),
+        (Option) OptionConverters.toScala(organism),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(amount),
-        OptionConverters.toScala(amountType),
-        OptionConverters.toScala(interaction),
-        OptionConverters.toScala(organismType),
+        (Option) OptionConverters.toScala(amount),
+        (Option) OptionConverters.toScala(amountType),
+        (Option) OptionConverters.toScala(interaction),
+        (Option) OptionConverters.toScala(organismType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -166,11 +168,11 @@ public class ImplementationGuide_ManifestBuilder {
 
   public ImplementationGuide.Manifest build() {
     return new ImplementationGuide.Manifest(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         image.stream().collect(new LitSeqJCollector<>()),
         other.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(rendering),
+        (Option) OptionConverters.toScala(rendering),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         page.stream().collect(new LitSeqJCollector<>()),
         resource.stream().collect(new NonEmptyLitSeqJCollector<>()),

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -168,16 +170,16 @@ public class TestScript_VariableBuilder {
 
   public TestScript.Variable build() {
     return new TestScript.Variable(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         name,
-        OptionConverters.toScala(hint),
-        OptionConverters.toScala(path),
-        OptionConverters.toScala(sourceId),
+        (Option) OptionConverters.toScala(hint),
+        (Option) OptionConverters.toScala(path),
+        (Option) OptionConverters.toScala(sourceId),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(expression),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(headerField),
-        OptionConverters.toScala(defaultValue),
+        (Option) OptionConverters.toScala(expression),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(headerField),
+        (Option) OptionConverters.toScala(defaultValue),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.GUIDE_PAGE_GENERATION;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +47,7 @@ public class ImplementationGuide_Definition_PageBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<ImplementationGuide$Definition$Page> page = Collections.emptyList();
   private String title;
-  private Choice<$bslash$div<Reference, String>> name;
+  private Choice01831019594 name;
   private Collection<Extension> extension = Collections.emptyList();
   private GUIDE_PAGE_GENERATION generation;
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -60,16 +62,9 @@ public class ImplementationGuide_Definition_PageBuilder {
    * @param generation
    */
   public ImplementationGuide_Definition_PageBuilder(
-      String title, @NonNull Object name, GUIDE_PAGE_GENERATION generation) {
+      String title, @NonNull Choice01831019594 name, GUIDE_PAGE_GENERATION generation) {
     this.title = title;
-    this.name =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    name.getClass().getSimpleName(),
-                    ImplementationGuide$Definition$Page$.MODULE$.name()),
-                name,
-                ImplementationGuide$Definition$Page$.MODULE$.name());
+    this.name = name;
     this.generation = generation;
   }
 
@@ -153,7 +148,7 @@ public class ImplementationGuide_Definition_PageBuilder {
 
   public ImplementationGuide$Definition$Page build() {
     return new ImplementationGuide$Definition$Page(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         page.stream().collect(new LitSeqJCollector<>()),
         title,
         name,

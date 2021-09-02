@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +45,7 @@ public class AnnotationBuilder {
   private Optional<FHIRDateTime> time = Optional.empty();
   private String text;
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<Reference, String>>> author = Optional.empty();
+  private Optional<Choice_1128709984> author = Optional.empty();
 
   /**
    * Required fields for {@link Annotation}
@@ -94,34 +95,18 @@ public class AnnotationBuilder {
    * @param author - The individual responsible for making the annotation. Field is a 'choice'
    *     field. Type should be one of Reference, String.
    */
-  public <T> AnnotationBuilder withAuthor(@NonNull T author) {
-    var guessedSuffix = autoSuffix(author.getClass().getSimpleName(), Annotation$.MODULE$.author());
-    return withAuthor(guessedSuffix, author);
-  }
-
-  /**
-   * Alternative to the 'main' withAuthor method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param author - The value to be passed to the builder
-   */
-  public <T> AnnotationBuilder withAuthor(String suffix, @NonNull T author) {
-    guard(author.getClass().getSimpleName(), suffix, Annotation$.MODULE$.author());
-    this.author =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, author, Annotation$.MODULE$.author()));
+  public AnnotationBuilder withAuthor(@NonNull Choice_1128709984 author) {
+    this.author = Optional.of(author);
     return this;
   }
 
   public Annotation build() {
     return new Annotation(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(time),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(time),
         text,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(author),
+        (Option) OptionConverters.toScala(author),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -96,9 +97,9 @@ public class PeriodBuilder {
 
   public Period build() {
     return new Period(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(end),
-        OptionConverters.toScala(start),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(end),
+        (Option) OptionConverters.toScala(start),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

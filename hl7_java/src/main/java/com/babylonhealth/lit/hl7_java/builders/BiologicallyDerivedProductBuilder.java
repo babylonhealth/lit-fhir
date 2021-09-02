@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PRODUCT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.PRODUCT_CATEGORY;
@@ -305,25 +307,25 @@ public class BiologicallyDerivedProductBuilder {
 
   public BiologicallyDerivedProduct build() {
     return new BiologicallyDerivedProduct(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(status),
         parent.stream().collect(new LitSeqJCollector<>()),
         request.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(quantity.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(quantity.map(x -> (Object) x)),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(productCode),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(productCategory),
+        (Option) OptionConverters.toScala(productCode),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(productCategory),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         storage.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(collection),
+        (Option) OptionConverters.toScala(collection),
         processing.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(manipulation),
+        (Option) OptionConverters.toScala(manipulation),
         LitUtils.emptyMetaElMap());
   }
 }

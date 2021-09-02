@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DOCUMENT_REFERENCE_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -310,24 +312,24 @@ public class DocumentManifestBuilder {
 
   public DocumentManifest build() {
     return new DocumentManifest(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
         status,
         author.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(source),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(created),
+        (Option) OptionConverters.toScala(source),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(created),
         content.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         recipient.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(masterIdentifier),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(masterIdentifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         related.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -42,7 +43,7 @@ import static java.util.stream.Collectors.toList;
 public class ExtensionBuilder {
   private Optional<String> id = Optional.empty();
   private String url;
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_1349125893> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
 
   /**
@@ -72,27 +73,8 @@ public class ExtensionBuilder {
    *     Reference, RelatedArtifact, SampledData, Signature, Timing, TriggerDefinition, UUID,
    *     UsageContext, ZonedDateTime.
    */
-  public <T> ExtensionBuilder withValue(@NonNull T value) {
-    var guessedSuffix = autoSuffix(value.getClass().getSimpleName(), Extension$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of Integer or String then there are multiple candidate 'types' for the FHIR object, and we
-   * are unable to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type Integer, the valid values are Integer,
-   *     PositiveInt, UnsignedInt. For values of type String, the valid values are Canonical, Code,
-   *     Id, Markdown, Oid, String, Uri, Url.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> ExtensionBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, Extension$.MODULE$.value());
-    this.value =
-        Optional.of((Choice) Choice$.MODULE$.fromSuffix(suffix, value, Extension$.MODULE$.value()));
+  public ExtensionBuilder withValue(@NonNull Choice_1349125893 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -120,7 +102,7 @@ public class ExtensionBuilder {
 
   public Extension build() {
     return new Extension(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         url,
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),

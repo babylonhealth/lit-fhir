@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.EVENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
@@ -467,32 +469,32 @@ public class CommunicationBuilder {
 
   public Communication build() {
     return new Communication(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(sent),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(sent),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(topic),
+        (Option) OptionConverters.toScala(topic),
         about.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
         medium.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(sender),
+        (Option) OptionConverters.toScala(sender),
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(priority),
-        OptionConverters.toScala(received),
+        (Option) OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(received),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         recipient.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         inResponseTo.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(statusReason),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(statusReason),
+        (Option) OptionConverters.toScala(implicitRules),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

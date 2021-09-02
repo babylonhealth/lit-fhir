@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -177,15 +179,15 @@ public class MedicinalProductPharmaceutical_RouteOfAdministrationBuilder {
 
   public MedicinalProductPharmaceutical.RouteOfAdministration build() {
     return new MedicinalProductPharmaceutical.RouteOfAdministration(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(firstDose),
-        OptionConverters.toScala(maxSingleDose),
-        OptionConverters.toScala(maxDosePerDay),
+        (Option) OptionConverters.toScala(firstDose),
+        (Option) OptionConverters.toScala(maxSingleDose),
+        (Option) OptionConverters.toScala(maxDosePerDay),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(maxTreatmentPeriod),
-        OptionConverters.toScala(maxDosePerTreatmentPeriod),
+        (Option) OptionConverters.toScala(maxTreatmentPeriod),
+        (Option) OptionConverters.toScala(maxDosePerTreatmentPeriod),
         targetSpecies.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

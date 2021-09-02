@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -159,13 +162,13 @@ public class MarketingStatusBuilder {
 
   public MarketingStatus build() {
     return new MarketingStatus(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         status,
         country,
         extension.stream().collect(new LitSeqJCollector<>()),
         dateRange,
-        OptionConverters.toScala(restoreDate),
-        OptionConverters.toScala(jurisdiction),
+        (Option) OptionConverters.toScala(restoreDate),
+        (Option) OptionConverters.toScala(jurisdiction),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

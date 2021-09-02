@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -134,10 +136,10 @@ public class Account_GuarantorBuilder {
 
   public Account.Guarantor build() {
     return new Account.Guarantor(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         party,
-        OptionConverters.toScala(onHold.map(x -> (Object) x)),
-        OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(onHold.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(period),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

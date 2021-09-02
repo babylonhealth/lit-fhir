@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -119,13 +121,13 @@ public class BinaryBuilder {
 
   public Binary build() {
     return new Binary(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(data),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(data),
+        (Option) OptionConverters.toScala(language),
         contentType,
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(securityContext),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(securityContext),
         LitUtils.emptyMetaElMap());
   }
 }

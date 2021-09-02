@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -188,18 +190,18 @@ public class ExampleScenario_Process_Step_OperationBuilder {
 
   public ExampleScenario$Process$Step$Operation build() {
     return new ExampleScenario$Process$Step$Operation(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(name),
         number,
-        OptionConverters.toScala(request),
-        OptionConverters.toScala(receiver),
-        OptionConverters.toScala(response),
+        (Option) OptionConverters.toScala(request),
+        (Option) OptionConverters.toScala(receiver),
+        (Option) OptionConverters.toScala(response),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(initiator),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(receiverActive.map(x -> (Object) x)),
-        OptionConverters.toScala(initiatorActive.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(initiator),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(receiverActive.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(initiatorActive.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

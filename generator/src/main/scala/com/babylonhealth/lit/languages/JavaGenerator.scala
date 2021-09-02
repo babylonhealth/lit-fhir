@@ -11,6 +11,7 @@ import com.babylonhealth.lit.{
   CodeEnum,
   CodeValueSet,
   Commonish,
+  ElementTreee,
   EnumerationUtils,
   ModuleDependencies,
   TopLevelClass,
@@ -18,6 +19,7 @@ import com.babylonhealth.lit.{
 }
 
 trait JavaGenerator extends Commonish {
+  def choiceClassName(f: BaseField): String = "Choice" + ElementTreee.hashForUnion(f.types)
 
   def genTheJavaForClass(
       topLevelClass: TopLevelClass,
@@ -60,12 +62,7 @@ trait JavaGenerator extends Commonish {
     def eraseUninferrableChoices(f: BaseField) = {
       f.types match {
         case x if x.size == 1 => eraseSubtypes(x.head, f)
-        case x =>
-          val choiceTypes = x.map(eraseSubtypes(_, f))
-          if (choiceTypes.exists(Set("Boolean", "Integer")) || choiceTypes.forall(_ startsWith "Choice[\""))
-            "Choice"
-          else
-            "Choice<" + choiceTypes.tail.foldLeft(choiceTypes.head)((acc, next) => s"$$bslash$$div<$acc, $next>") + ">"
+        case x                => choiceClassName(f)
       }
     }
     def toJavaType(f: BaseField, wrapInOptional: Boolean = true): String = {
@@ -84,27 +81,12 @@ trait JavaGenerator extends Commonish {
 
     def genBuilderParam(f: BaseField): String = {
       if (f.types.size == 1) s"${toJavaType(f)} ${f.javaName}"
-      else {
-        val erasedTypes = f.types.map(eraseSubtypes(_, f))
-        if (erasedTypes.distinct.size == erasedTypes.size)
-          s"@NonNull Object ${f.javaName}"
-        else s"@NonNull ParamDistinguisher ${f.javaName}"
-      }
+      else s"@NonNull ${choiceClassName(f)} ${f.javaName}"
     }
     def genBuilderParams(fs: Seq[BaseField]): String = fs.map(genBuilderParam).mkString(", ")
 
     def genFieldAssignment(f: BaseField, targetClassName: String): String =
-      if (f.types.size == 1) s"this.${f.javaName} = ${f.javaName};"
-      else {
-        val erasedTypes = f.types.map(eraseSubtypes(_, f))
-        val metaField   = s"$targetClassName$$.MODULE$$.${toCallableScalaName(f)}"
-        if (erasedTypes.distinct.size == erasedTypes.size)
-          s"""this.${f.javaName} = (Choice) Choice$$.MODULE$$.fromSuffix(
-             |  autoSuffix(${f.javaName}.getClass().getSimpleName(), $metaField),
-             |  ${f.javaName}, $metaField);""".stripMargin
-        else
-          s"""this.${f.javaName} = (Choice) Choice$$.MODULE$$.fromSuffix(${f.javaName}.suffix, ${f.javaName}.wrappedChoice, $metaField);""".stripMargin
-      }
+      s"this.${f.javaName} = ${f.javaName};"
     def genFieldAssignments(fs: Seq[BaseField], targetClassName: String): String =
       fs.map(genFieldAssignment(_, targetClassName)).mkString("\n")
 
@@ -142,10 +124,11 @@ trait JavaGenerator extends Commonish {
     val fieldAssignments                    = genFieldAssignments(nonOptionalFields, topLevelClass.scalaClassName)
     def convertToScala(f: BaseField) = {
       val isErasedRef =
-        (f.types.size > 1 && f.types
+        (f.types.size > 1 && (f.types
           .map(eraseSubtypes(_, f))
           .exists(Set("Boolean", "Integer"))) ||
-          f.types.forall(_ startsWith "Choice[\"") // second case is for the Choice["literallyTheClassName"] hack
+          f.types.forall(_ startsWith "Choice[\"") || // second case is for the Choice["literallyTheClassName"] hack
+          f.cardinality == Cardinality.Optional)
       val possiblyObjectCast = f.cardinality.applyJavaFunction(f.javaName) { value =>
         if (f.cardinality != Cardinality.One && f.types.size == 1 && Set("Integer", "Boolean").contains(
             eraseSubtypes(f.types.head, f)))
@@ -164,7 +147,6 @@ trait JavaGenerator extends Commonish {
                |  * ${paramStr(f, isRequired = false)}
                |  */
                |""".stripMargin
-          if (f.types.size == 1) {
             s"""${javaDoc}public $builderName with${f.capitalName}(@NonNull ${toBuilderMutatorType(f, wrapInOptional = false)} ${f.javaName}) {
                |  this.${f.javaName} = ${f.cardinality.wrapJavaValue(f.javaName)};
                |  return this;
@@ -181,36 +163,6 @@ trait JavaGenerator extends Commonish {
              } else {
                ""
              })
-          } else {
-            val value = f.types.map(t => t -> eraseSubtypes(t, f))
-            val foo   = value.groupBy(_._2).filter(_._2.size > 1).map { case (erased, ts) => (erased, ts.map(_._1)) }
-            val disambiguationComment: String =
-              if (foo.nonEmpty)
-                s" When the parameter is one of ${foo.map(_._1).mkString(" or ")} then there are multiple candidate 'types' for the FHIR object, and we are unable to automagically disambiguate"
-              else ""
-            val alternativeJavaDoc =
-              s"""  /**
-                 |  * Alternative to the 'main' with${f.capitalName} method. This will be marginally faster than the other method, but requires that you know the correct suffix for your data type.$disambiguationComment
-                 |  * @param suffix - The suffix of the produced FHIR json -- can be considered a string to disambiguate between types. ${foo
-                .map { case (e, v) =>
-                  s"For values of type $e, the valid values are ${v.map(typeLookdown).mkString(", ")}."
-                }
-                .mkString(" ")}
-                 |  * @param ${f.javaName} - The value to be passed to the builder
-                 |  */""".stripMargin
-            val metaField = s"$targetClassName$$.MODULE$$.${toCallableScalaName(f)}"
-            s"""   ${javaDoc}public <T> $builderName with${f.capitalName}(@NonNull T ${f.javaName}) {
-               |    var guessedSuffix = autoSuffix(${f.javaName}.getClass().getSimpleName(), $metaField);
-               |    return with${f.capitalName}(guessedSuffix, ${f.javaName});
-               |  }
-               |
-               |  $alternativeJavaDoc
-               |  public <T> $builderName with${f.capitalName}(String suffix, @NonNull T ${f.javaName}) {
-               |    guard(${f.javaName}.getClass().getSimpleName(), suffix, $metaField);
-               |    this.${f.javaName} = Optional.of((Choice) Choice$$.MODULE$$.fromSuffix(suffix, ${f.javaName}, $metaField));
-               |    return this;
-               |  }""".stripMargin
-          }
         }
         .mkString("\n")
 
@@ -247,6 +199,7 @@ trait JavaGenerator extends Commonish {
          |import com.babylonhealth.lit.core.Choice$$;
          |${modules.map(m => s"import com.babylonhealth.lit.$m.model.*;").mkString("\n")}
          |${modules.map(m => s"import com.babylonhealth.lit.$m$javaSuffix.builders.*;").mkString("\n")}
+         |${modules.map(m => s"import com.babylonhealth.lit.$m$javaSuffix.model.Unions.*;").mkString("\n")}
          |${valueSets
         .map(EnumerationUtils.valueSetToEnumName)
         .map(e => e -> lookupPkg(e))
@@ -375,5 +328,83 @@ trait JavaGenerator extends Commonish {
   }
   def generateCodeAliases(pkg: String, javaSuffix: String, valueSets: Map[String, CodeValueSet]): Seq[ClassGenInfo] = {
     valueSets.map { case (k, v) => genereteCodeAlias(pkg, javaSuffix, k, v.codes) }.toSeq
+  }
+
+  def generateModelFile(pkg: String, javaSuffix: String, unionTypes: Map[String, Seq[String]]): ClassGenInfo = {
+
+    def eraseSubtypes(t: String): String = t match {
+      case "Canonical" | "Code" | "Id" | "Markdown" | "OID" | "UriStr" | "UrlStr" | "XHTML" =>
+        "String"
+      case "Base64Binary"                        => "byte[]"
+      case "PositiveInt" | "UnsignedInt" | "Int" => "Integer"
+      case x if x.count(_ == '.') > 1            => x.split("\\.").mkString("$")
+      case x                                     => x
+    }
+    def genChoiceClass(choiceType: String, choiceOptions: Seq[String]): String = {
+      val choiceClassName                 = choiceType.replaceFirst("Union", "Choice")
+      val optionswithSubtypes             = choiceOptions.map(o => o -> eraseSubtypes(o))
+      val verboseTypeName: String         = optionswithSubtypes.map(_._2).reduceLeft { (a, b) => s"$$bslash$$div<$a, $b>" }
+      val (overloadedConstructors, normalConstructors) = optionswithSubtypes.partition { case (_, s) =>
+        optionswithSubtypes.count(_._2 == s) > 1
+      }
+      val c0 = normalConstructors
+        .map { case (o, s) =>
+          val variableName = "arg"
+          s"""    public $choiceClassName($s $variableName) {
+             |      super("${typeLookdown(o)}", $variableName, (LTag) UnionAliases.${choiceType}Tag());
+             |    }""".stripMargin
+        }
+        .mkString("\n")
+
+      val c1 = overloadedConstructors
+        .map(_._2)
+        .distinct
+        .map { erased =>
+          val variableName = "arg"
+          s"""    private $choiceClassName(String subtype, $erased $variableName) {
+             |      super(subtype, $variableName, (LTag) UnionAliases.${choiceType}Tag());
+             |    }""".stripMargin
+        }
+        .mkString("\n")
+
+      val c2 = overloadedConstructors
+        .map { case (o, s) =>
+          val variableName = "arg"
+          s"""    public static $choiceClassName $choiceClassName$o($s $variableName) {
+             |      return new $choiceClassName("${typeLookdown(o)}", $variableName);
+             |    }""".stripMargin
+        }
+        .mkString("\n")
+      s"""  public static class $choiceClassName extends Choice<$verboseTypeName> {
+         |    $c0
+         |
+         |    $c1
+         |
+         |    $c2
+         |  }""".stripMargin
+    }
+    val body = s"""package com.babylonhealth.lit.$pkg$javaSuffix.model;
+                  |
+                  |import java.time.LocalDate;
+                  |import java.time.LocalTime;
+                  |import java.time.ZonedDateTime;
+                  |import java.util.UUID;
+                  |
+                  |import scala.math.BigDecimal;
+                  |
+                  |import izumi.reflect.macrortti.LTag;
+                  |
+                  |import com.babylonhealth.lit.core.$$bslash$$div;
+                  |import com.babylonhealth.lit.core.Choice;
+                  |import com.babylonhealth.lit.core.*;
+                  |import com.babylonhealth.lit.core.model.*;
+                  |${if (unionTypes.nonEmpty) s"import com.babylonhealth.lit.$pkg.UnionAliases;" else ""}
+                  |import com.babylonhealth.lit.${pkg}${javaSuffix}.model.Unions.*;
+                  |
+                  |public class Unions {
+                  |  ${unionTypes.map { case (k, vs) => genChoiceClass(k, vs) }.mkString("\n\n")}
+                  |}
+                  |""".stripMargin
+    ClassGenInfo(body, "Unions", pkg)
   }
 }

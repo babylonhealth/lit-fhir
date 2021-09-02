@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.GROUP_TYPE;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -257,21 +260,21 @@ public class ActualgroupBuilder {
 
   public Actualgroup build() {
     return new Actualgroup(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         _type,
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(active.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(active.map(x -> (Object) x)),
         actual,
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(quantity.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(quantity.map(x -> (Object) x)),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(managingEntity),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(managingEntity),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         member.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

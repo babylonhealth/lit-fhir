@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.GUIDANCE_RESPONSE_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -53,7 +55,7 @@ public class GuidanceResponseBuilder {
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<$bslash$div<String, CodeableConcept>, String>> module;
+  private Choice_0687680458 module;
   private Optional<Reference> encounter = Optional.empty();
   private Optional<Reference> performer = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
@@ -84,12 +86,9 @@ public class GuidanceResponseBuilder {
    *     ParamDistinguisher.choose("foo". $value), where foo is one of: Canonical, Uri
    */
   public GuidanceResponseBuilder(
-      GUIDANCE_RESPONSE_STATUS status, @NonNull ParamDistinguisher module) {
+      GUIDANCE_RESPONSE_STATUS status, @NonNull Choice_0687680458 module) {
     this.status = status;
-    this.module =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                module.suffix, module.wrappedChoice, GuidanceResponse$.MODULE$.module());
+    this.module = module;
   }
 
   /**
@@ -367,29 +366,29 @@ public class GuidanceResponseBuilder {
 
   public GuidanceResponse build() {
     return new GuidanceResponse(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(result),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(result),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         module,
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(performer),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(performer),
         identifier.stream().collect(new LitSeqJCollector<>()),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         dataRequirement.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(outputParameters),
+        (Option) OptionConverters.toScala(outputParameters),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(requestIdentifier),
+        (Option) OptionConverters.toScala(requestIdentifier),
         evaluationMessage.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(occurrenceDateTime),
+        (Option) OptionConverters.toScala(occurrenceDateTime),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +47,7 @@ public class ImplementationGuide_Manifest_ResourceBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Reference reference;
-  private Optional<Choice> example = Optional.empty();
+  private Optional<Choice00683246261> example = Optional.empty();
   private Optional<String> relativePath = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -91,33 +93,9 @@ public class ImplementationGuide_Manifest_ResourceBuilder {
     return this;
   }
   /** @param example Field is a 'choice' field. Type should be one of Boolean, String. */
-  public <T> ImplementationGuide_Manifest_ResourceBuilder withExample(@NonNull T example) {
-    var guessedSuffix =
-        autoSuffix(
-            example.getClass().getSimpleName(),
-            ImplementationGuide$Manifest$Resource$.MODULE$.example());
-    return withExample(guessedSuffix, example);
-  }
-
-  /**
-   * Alternative to the 'main' withExample method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param example - The value to be passed to the builder
-   */
-  public <T> ImplementationGuide_Manifest_ResourceBuilder withExample(
-      String suffix, @NonNull T example) {
-    guard(
-        example.getClass().getSimpleName(),
-        suffix,
-        ImplementationGuide$Manifest$Resource$.MODULE$.example());
-    this.example =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, example, ImplementationGuide$Manifest$Resource$.MODULE$.example()));
+  public ImplementationGuide_Manifest_ResourceBuilder withExample(
+      @NonNull Choice00683246261 example) {
+    this.example = Optional.of(example);
     return this;
   }
   /** @param relativePath */
@@ -163,11 +141,11 @@ public class ImplementationGuide_Manifest_ResourceBuilder {
 
   public ImplementationGuide$Manifest$Resource build() {
     return new ImplementationGuide$Manifest$Resource(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
         reference,
         (Option) OptionConverters.toScala(example),
-        OptionConverters.toScala(relativePath),
+        (Option) OptionConverters.toScala(relativePath),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

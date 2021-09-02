@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.QUALITY_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -208,24 +210,24 @@ public class MolecularSequence_QualityBuilder {
 
   public MolecularSequence.Quality build() {
     return new MolecularSequence.Quality(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(end.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(end.map(x -> (Object) x)),
         _type,
-        OptionConverters.toScala(gtFP),
-        OptionConverters.toScala(start.map(x -> (Object) x)),
-        OptionConverters.toScala(score),
-        OptionConverters.toScala(method),
-        OptionConverters.toScala(recall),
-        OptionConverters.toScala(fScore),
-        OptionConverters.toScala(truthTP),
-        OptionConverters.toScala(queryTP),
-        OptionConverters.toScala(truthFN),
-        OptionConverters.toScala(queryFP),
+        (Option) OptionConverters.toScala(gtFP),
+        (Option) OptionConverters.toScala(start.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(score),
+        (Option) OptionConverters.toScala(method),
+        (Option) OptionConverters.toScala(recall),
+        (Option) OptionConverters.toScala(fScore),
+        (Option) OptionConverters.toScala(truthTP),
+        (Option) OptionConverters.toScala(queryTP),
+        (Option) OptionConverters.toScala(truthFN),
+        (Option) OptionConverters.toScala(queryFP),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(precision),
-        OptionConverters.toScala(standardSequence),
+        (Option) OptionConverters.toScala(precision),
+        (Option) OptionConverters.toScala(standardSequence),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(roc),
+        (Option) OptionConverters.toScala(roc),
         LitUtils.emptyMetaElMap());
   }
 }

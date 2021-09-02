@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.HISTORY_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -51,16 +53,15 @@ public class FamilyMemberHistoryBuilder {
   private Optional<String> name = Optional.empty();
   private Collection<Annotation> note = Collections.emptyList();
   private HISTORY_STATUS status;
-  private Optional<Choice<$bslash$div<$bslash$div<Age, Range>, String>>> age = Optional.empty();
+  private Optional<Choice_1507098327> age = Optional.empty();
   private Reference patient;
-  private Optional<Choice<$bslash$div<$bslash$div<FHIRDate, Period>, String>>> born =
-      Optional.empty();
+  private Optional<Choice01486281057> born = Optional.empty();
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
-  private Optional<Choice> deceased = Optional.empty();
+  private Optional<Choice_0966801288> deceased = Optional.empty();
   private CodeableConcept relationship;
   private Optional<Boolean> estimatedAge = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
@@ -158,50 +159,16 @@ public class FamilyMemberHistoryBuilder {
    * @param age - The age of the relative at the time the family member history is recorded. Field
    *     is a 'choice' field. Type should be one of Age, Range, String.
    */
-  public <T> FamilyMemberHistoryBuilder withAge(@NonNull T age) {
-    var guessedSuffix =
-        autoSuffix(age.getClass().getSimpleName(), FamilyMemberHistory$.MODULE$.age());
-    return withAge(guessedSuffix, age);
-  }
-
-  /**
-   * Alternative to the 'main' withAge method. This will be marginally faster than the other method,
-   * but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param age - The value to be passed to the builder
-   */
-  public <T> FamilyMemberHistoryBuilder withAge(String suffix, @NonNull T age) {
-    guard(age.getClass().getSimpleName(), suffix, FamilyMemberHistory$.MODULE$.age());
-    this.age =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, age, FamilyMemberHistory$.MODULE$.age()));
+  public FamilyMemberHistoryBuilder withAge(@NonNull Choice_1507098327 age) {
+    this.age = Optional.of(age);
     return this;
   }
   /**
    * @param born - The actual or approximate date of birth of the relative. Field is a 'choice'
    *     field. Type should be one of FHIRDate, Period, String.
    */
-  public <T> FamilyMemberHistoryBuilder withBorn(@NonNull T born) {
-    var guessedSuffix =
-        autoSuffix(born.getClass().getSimpleName(), FamilyMemberHistory$.MODULE$.born());
-    return withBorn(guessedSuffix, born);
-  }
-
-  /**
-   * Alternative to the 'main' withBorn method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param born - The value to be passed to the builder
-   */
-  public <T> FamilyMemberHistoryBuilder withBorn(String suffix, @NonNull T born) {
-    guard(born.getClass().getSimpleName(), suffix, FamilyMemberHistory$.MODULE$.born());
-    this.born =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, born, FamilyMemberHistory$.MODULE$.born()));
+  public FamilyMemberHistoryBuilder withBorn(@NonNull Choice01486281057 born) {
+    this.born = Optional.of(born);
     return this;
   }
   /** @param language - The base language in which the resource is written. */
@@ -287,27 +254,8 @@ public class FamilyMemberHistoryBuilder {
    *     death for the family member history record. Field is a 'choice' field. Type should be one
    *     of Age, Boolean, FHIRDate, Range, String.
    */
-  public <T> FamilyMemberHistoryBuilder withDeceased(@NonNull T deceased) {
-    var guessedSuffix =
-        autoSuffix(deceased.getClass().getSimpleName(), FamilyMemberHistory$.MODULE$.deceased());
-    return withDeceased(guessedSuffix, deceased);
-  }
-
-  /**
-   * Alternative to the 'main' withDeceased method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param deceased - The value to be passed to the builder
-   */
-  public <T> FamilyMemberHistoryBuilder withDeceased(String suffix, @NonNull T deceased) {
-    guard(deceased.getClass().getSimpleName(), suffix, FamilyMemberHistory$.MODULE$.deceased());
-    this.deceased =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, deceased, FamilyMemberHistory$.MODULE$.deceased()));
+  public FamilyMemberHistoryBuilder withDeceased(@NonNull Choice_0966801288 deceased) {
+    this.deceased = Optional.of(deceased);
     return this;
   }
   /**
@@ -448,29 +396,29 @@ public class FamilyMemberHistoryBuilder {
 
   public FamilyMemberHistory build() {
     return new FamilyMemberHistory(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(sex),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(date),
-        OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(sex),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(name),
         note.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(age),
+        (Option) OptionConverters.toScala(age),
         patient,
-        OptionConverters.toScala(born),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(born),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(deceased),
         relationship,
-        OptionConverters.toScala(estimatedAge.map(x -> (Object) x)),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(estimatedAge.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(implicitRules),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(dataAbsentReason),
+        (Option) OptionConverters.toScala(dataAbsentReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
         condition.stream().collect(new LitSeqJCollector<>()),

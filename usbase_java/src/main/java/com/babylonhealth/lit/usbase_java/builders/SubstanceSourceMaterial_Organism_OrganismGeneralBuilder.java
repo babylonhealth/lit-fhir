@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -148,11 +151,11 @@ public class SubstanceSourceMaterial_Organism_OrganismGeneralBuilder {
 
   public SubstanceSourceMaterial$Organism$OrganismGeneral build() {
     return new SubstanceSourceMaterial$Organism$OrganismGeneral(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_class),
-        OptionConverters.toScala(order),
-        OptionConverters.toScala(phylum),
-        OptionConverters.toScala(kingdom),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_class),
+        (Option) OptionConverters.toScala(order),
+        (Option) OptionConverters.toScala(phylum),
+        (Option) OptionConverters.toScala(kingdom),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

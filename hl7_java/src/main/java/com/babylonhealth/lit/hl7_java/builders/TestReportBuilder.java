@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REPORT_STATUS_CODES;
 import com.babylonhealth.lit.hl7.REPORT_RESULT_CODES;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -277,26 +279,26 @@ public class TestReportBuilder {
 
   public TestReport build() {
     return new TestReport(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(score),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(score),
         status,
         result,
-        OptionConverters.toScala(tester),
-        OptionConverters.toScala(issued),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(tester),
+        (Option) OptionConverters.toScala(issued),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(identifier),
         testScript,
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         participant.stream().collect(new LitSeqJCollector<>()),
         test.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(teardown),
-        OptionConverters.toScala(setup),
+        (Option) OptionConverters.toScala(teardown),
+        (Option) OptionConverters.toScala(setup),
         LitUtils.emptyMetaElMap());
   }
 }

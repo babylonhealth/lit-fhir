@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -146,11 +148,11 @@ public class ValueSet_ComposeBuilder {
 
   public ValueSet.Compose build() {
     return new ValueSet.Compose(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         exclude.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(inactive.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(inactive.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(lockedDate),
+        (Option) OptionConverters.toScala(lockedDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         include.stream().collect(new NonEmptyLitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

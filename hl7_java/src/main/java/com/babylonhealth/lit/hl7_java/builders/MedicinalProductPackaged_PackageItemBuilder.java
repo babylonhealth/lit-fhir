@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -257,7 +259,7 @@ public class MedicinalProductPackaged_PackageItemBuilder {
 
   public MedicinalProductPackaged.PackageItem build() {
     return new MedicinalProductPackaged.PackageItem(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
         device.stream().collect(new LitSeqJCollector<>()),
         quantity,

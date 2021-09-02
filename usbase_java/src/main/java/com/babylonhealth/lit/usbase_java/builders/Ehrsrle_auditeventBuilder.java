@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.AUDIT_EVENT_ACTION;
 import com.babylonhealth.lit.hl7.AUDIT_EVENT_OUTCOME;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -274,20 +277,20 @@ public class Ehrsrle_auditeventBuilder {
 
   public Ehrsrle_auditevent build() {
     return new Ehrsrle_auditevent(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         _type,
-        OptionConverters.toScala(action),
-        OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(action),
+        (Option) OptionConverters.toScala(period),
         subtype.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(outcome),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(outcome),
+        (Option) OptionConverters.toScala(language),
         recorded,
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(outcomeDesc),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(outcomeDesc),
+        (Option) OptionConverters.toScala(implicitRules),
         purposeOfEvent.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         source,

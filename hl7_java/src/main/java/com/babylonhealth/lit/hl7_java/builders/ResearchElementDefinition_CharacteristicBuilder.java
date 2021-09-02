@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.GROUP_MEASURE;
 import com.babylonhealth.lit.hl7.GROUP_MEASURE;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -47,18 +49,11 @@ public class ResearchElementDefinition_CharacteristicBuilder {
   private Optional<Boolean> exclude = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<UsageContext> usageContext = Collections.emptyList();
-  private Choice<
-          $bslash$div<
-              $bslash$div<$bslash$div<String, CodeableConcept>, DataRequirement>, Expression>>
-      definition;
+  private Choice_1750128470 definition;
   private Optional<CodeableConcept> unitOfMeasure = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
-  private Optional<
-          Choice<$bslash$div<$bslash$div<$bslash$div<Duration, FHIRDateTime>, Period>, Timing>>>
-      studyEffective = Optional.empty();
-  private Optional<
-          Choice<$bslash$div<$bslash$div<$bslash$div<Duration, FHIRDateTime>, Period>, Timing>>>
-      participantEffective = Optional.empty();
+  private Optional<Choice00607514014> studyEffective = Optional.empty();
+  private Optional<Choice00607514014> participantEffective = Optional.empty();
   private Optional<String> studyEffectiveDescription = Optional.empty();
   private Optional<GROUP_MEASURE> studyEffectiveGroupMeasure = Optional.empty();
   private Optional<Duration> studyEffectiveTimeFromStart = Optional.empty();
@@ -72,15 +67,8 @@ public class ResearchElementDefinition_CharacteristicBuilder {
    * @param definition Field is a 'choice' field. Type should be one of String, CodeableConcept,
    *     DataRequirement, Expression.
    */
-  public ResearchElementDefinition_CharacteristicBuilder(@NonNull Object definition) {
-    this.definition =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    definition.getClass().getSimpleName(),
-                    ResearchElementDefinition.Characteristic$.MODULE$.definition()),
-                definition,
-                ResearchElementDefinition.Characteristic$.MODULE$.definition());
+  public ResearchElementDefinition_CharacteristicBuilder(@NonNull Choice_1750128470 definition) {
+    this.definition = definition;
   }
 
   /**
@@ -176,72 +164,18 @@ public class ResearchElementDefinition_CharacteristicBuilder {
    * @param studyEffective Field is a 'choice' field. Type should be one of Duration, FHIRDateTime,
    *     Period, Timing.
    */
-  public <T> ResearchElementDefinition_CharacteristicBuilder withStudyEffective(
-      @NonNull T studyEffective) {
-    var guessedSuffix =
-        autoSuffix(
-            studyEffective.getClass().getSimpleName(),
-            ResearchElementDefinition.Characteristic$.MODULE$.studyEffective());
-    return withStudyEffective(guessedSuffix, studyEffective);
-  }
-
-  /**
-   * Alternative to the 'main' withStudyEffective method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param studyEffective - The value to be passed to the builder
-   */
-  public <T> ResearchElementDefinition_CharacteristicBuilder withStudyEffective(
-      String suffix, @NonNull T studyEffective) {
-    guard(
-        studyEffective.getClass().getSimpleName(),
-        suffix,
-        ResearchElementDefinition.Characteristic$.MODULE$.studyEffective());
-    this.studyEffective =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix,
-                    studyEffective,
-                    ResearchElementDefinition.Characteristic$.MODULE$.studyEffective()));
+  public ResearchElementDefinition_CharacteristicBuilder withStudyEffective(
+      @NonNull Choice00607514014 studyEffective) {
+    this.studyEffective = Optional.of(studyEffective);
     return this;
   }
   /**
    * @param participantEffective Field is a 'choice' field. Type should be one of Duration,
    *     FHIRDateTime, Period, Timing.
    */
-  public <T> ResearchElementDefinition_CharacteristicBuilder withParticipantEffective(
-      @NonNull T participantEffective) {
-    var guessedSuffix =
-        autoSuffix(
-            participantEffective.getClass().getSimpleName(),
-            ResearchElementDefinition.Characteristic$.MODULE$.participantEffective());
-    return withParticipantEffective(guessedSuffix, participantEffective);
-  }
-
-  /**
-   * Alternative to the 'main' withParticipantEffective method. This will be marginally faster than
-   * the other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param participantEffective - The value to be passed to the builder
-   */
-  public <T> ResearchElementDefinition_CharacteristicBuilder withParticipantEffective(
-      String suffix, @NonNull T participantEffective) {
-    guard(
-        participantEffective.getClass().getSimpleName(),
-        suffix,
-        ResearchElementDefinition.Characteristic$.MODULE$.participantEffective());
-    this.participantEffective =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix,
-                    participantEffective,
-                    ResearchElementDefinition.Characteristic$.MODULE$.participantEffective()));
+  public ResearchElementDefinition_CharacteristicBuilder withParticipantEffective(
+      @NonNull Choice00607514014 participantEffective) {
+    this.participantEffective = Optional.of(participantEffective);
     return this;
   }
   /** @param studyEffectiveDescription */
@@ -283,21 +217,21 @@ public class ResearchElementDefinition_CharacteristicBuilder {
 
   public ResearchElementDefinition.Characteristic build() {
     return new ResearchElementDefinition.Characteristic(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(exclude.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(exclude.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
         usageContext.stream().collect(new LitSeqJCollector<>()),
         definition,
-        OptionConverters.toScala(unitOfMeasure),
+        (Option) OptionConverters.toScala(unitOfMeasure),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(studyEffective),
-        OptionConverters.toScala(participantEffective),
-        OptionConverters.toScala(studyEffectiveDescription),
-        OptionConverters.toScala(studyEffectiveGroupMeasure),
-        OptionConverters.toScala(studyEffectiveTimeFromStart),
-        OptionConverters.toScala(participantEffectiveDescription),
-        OptionConverters.toScala(participantEffectiveGroupMeasure),
-        OptionConverters.toScala(participantEffectiveTimeFromStart),
+        (Option) OptionConverters.toScala(studyEffective),
+        (Option) OptionConverters.toScala(participantEffective),
+        (Option) OptionConverters.toScala(studyEffectiveDescription),
+        (Option) OptionConverters.toScala(studyEffectiveGroupMeasure),
+        (Option) OptionConverters.toScala(studyEffectiveTimeFromStart),
+        (Option) OptionConverters.toScala(participantEffectiveDescription),
+        (Option) OptionConverters.toScala(participantEffectiveGroupMeasure),
+        (Option) OptionConverters.toScala(participantEffectiveTimeFromStart),
         LitUtils.emptyMetaElMap());
   }
 }

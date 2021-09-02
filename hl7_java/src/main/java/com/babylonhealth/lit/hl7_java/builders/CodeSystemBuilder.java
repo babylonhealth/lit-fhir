@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.hl7.CODESYSTEM_CONTENT_MODE;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -477,36 +479,36 @@ public class CodeSystemBuilder {
 
   public CodeSystem build() {
     return new CodeSystem(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(date),
-        OptionConverters.toScala(title),
-        OptionConverters.toScala(count.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(count.map(x -> (Object) x)),
         status,
-        OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(version),
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(purpose),
+        (Option) OptionConverters.toScala(purpose),
         content,
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(valueSet),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(valueSet),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(publisher),
-        OptionConverters.toScala(copyright),
+        (Option) OptionConverters.toScala(publisher),
+        (Option) OptionConverters.toScala(copyright),
         identifier.stream().collect(new LitSeqJCollector<>()),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(supplements),
-        OptionConverters.toScala(experimental.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(supplements),
+        (Option) OptionConverters.toScala(experimental.map(x -> (Object) x)),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(caseSensitive.map(x -> (Object) x)),
-        OptionConverters.toScala(compositional.map(x -> (Object) x)),
-        OptionConverters.toScala(versionNeeded.map(x -> (Object) x)),
-        OptionConverters.toScala(hierarchyMeaning),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(caseSensitive.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(compositional.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(versionNeeded.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(hierarchyMeaning),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         filter.stream().collect(new LitSeqJCollector<>()),
         property.stream().collect(new LitSeqJCollector<>()),

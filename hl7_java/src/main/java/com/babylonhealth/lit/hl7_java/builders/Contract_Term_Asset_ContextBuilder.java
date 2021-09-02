@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -146,11 +148,11 @@ public class Contract_Term_Asset_ContextBuilder {
 
   public Contract$Term$Asset$Context build() {
     return new Contract$Term$Asset$Context(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(text),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(reference),
+        (Option) OptionConverters.toScala(reference),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

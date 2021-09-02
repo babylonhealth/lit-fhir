@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -239,18 +242,18 @@ public class SubstanceNucleicAcidBuilder {
 
   public SubstanceNucleicAcid build() {
     return new SubstanceNucleicAcid(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(sequenceType),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(numberOfSubunits.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(sequenceType),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(numberOfSubunits.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(areaOfHybridisation),
-        OptionConverters.toScala(oligoNucleotideType),
+        (Option) OptionConverters.toScala(areaOfHybridisation),
+        (Option) OptionConverters.toScala(oligoNucleotideType),
         subunit.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -170,17 +172,17 @@ public class VerificationResult_AttestationBuilder {
 
   public VerificationResult.Attestation build() {
     return new VerificationResult.Attestation(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(who),
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(who),
+        (Option) OptionConverters.toScala(date),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(onBehalfOf),
-        OptionConverters.toScala(proxySignature),
-        OptionConverters.toScala(sourceSignature),
+        (Option) OptionConverters.toScala(onBehalfOf),
+        (Option) OptionConverters.toScala(proxySignature),
+        (Option) OptionConverters.toScala(sourceSignature),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(communicationMethod),
-        OptionConverters.toScala(proxyIdentityCertificate),
-        OptionConverters.toScala(sourceIdentityCertificate),
+        (Option) OptionConverters.toScala(communicationMethod),
+        (Option) OptionConverters.toScala(proxyIdentityCertificate),
+        (Option) OptionConverters.toScala(sourceIdentityCertificate),
         LitUtils.emptyMetaElMap());
   }
 }

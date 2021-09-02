@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.CONTRIBUTOR_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -106,7 +107,7 @@ public class ContributorBuilder {
 
   public Contributor build() {
     return new Contributor(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
         name,
         contact.stream().collect(new LitSeqJCollector<>()),

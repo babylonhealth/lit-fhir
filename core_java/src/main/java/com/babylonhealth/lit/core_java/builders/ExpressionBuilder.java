@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.EXPRESSION_LANGUAGE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -116,13 +117,13 @@ public class ExpressionBuilder {
 
   public Expression build() {
     return new Expression(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(name),
         language,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(reference),
-        OptionConverters.toScala(expression),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(reference),
+        (Option) OptionConverters.toScala(expression),
+        (Option) OptionConverters.toScala(description),
         LitUtils.emptyMetaElMap());
   }
 }

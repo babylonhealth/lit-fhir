@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -43,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 
 public class MedicinalProductInteraction_InteractantBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> item;
+  private Choice01025009075 item;
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -52,15 +54,8 @@ public class MedicinalProductInteraction_InteractantBuilder {
    *
    * @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
    */
-  public MedicinalProductInteraction_InteractantBuilder(@NonNull Object item) {
-    this.item =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    item.getClass().getSimpleName(),
-                    MedicinalProductInteraction.Interactant$.MODULE$.item()),
-                item,
-                MedicinalProductInteraction.Interactant$.MODULE$.item());
+  public MedicinalProductInteraction_InteractantBuilder(@NonNull Choice01025009075 item) {
+    this.item = item;
   }
 
   /**
@@ -132,7 +127,7 @@ public class MedicinalProductInteraction_InteractantBuilder {
 
   public MedicinalProductInteraction.Interactant build() {
     return new MedicinalProductInteraction.Interactant(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         item,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

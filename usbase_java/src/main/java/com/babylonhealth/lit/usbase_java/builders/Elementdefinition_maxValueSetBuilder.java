@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +48,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Elementdefinition_maxValueSetBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice<$bslash$div<String, String>> value;
+  private Choice00545979821 value;
 
   /**
    * Required fields for {@link Elementdefinition_maxValueSet}
@@ -57,11 +60,8 @@ public class Elementdefinition_maxValueSetBuilder {
    *     $value wrapped in ParamDistinguisher.choose("foo". $value), where foo is one of: Canonical,
    *     Uri
    */
-  public Elementdefinition_maxValueSetBuilder(@NonNull ParamDistinguisher value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                value.suffix, value.wrappedChoice, Elementdefinition_maxValueSet$.MODULE$.value());
+  public Elementdefinition_maxValueSetBuilder(@NonNull Choice00545979821 value) {
+    this.value = value;
   }
 
   /**
@@ -75,6 +75,6 @@ public class Elementdefinition_maxValueSetBuilder {
 
   public Elementdefinition_maxValueSet build() {
     return new Elementdefinition_maxValueSet(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

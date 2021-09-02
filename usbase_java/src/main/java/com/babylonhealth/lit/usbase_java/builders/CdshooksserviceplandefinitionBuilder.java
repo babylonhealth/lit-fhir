@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -75,7 +78,7 @@ public class CdshooksserviceplandefinitionBuilder {
   private Optional<String> publisher = Optional.empty();
   private Optional<String> copyright = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> subject = Optional.empty();
+  private Optional<Choice01025009075> subject = Optional.empty();
   private Collection<UsageContext> useContext = Collections.emptyList();
   private Optional<String> description = Optional.empty();
   private Optional<Boolean> experimental = Optional.empty();
@@ -397,31 +400,8 @@ public class CdshooksserviceplandefinitionBuilder {
    * @param subject - A code or group definition that describes the intended subject of the plan
    *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
    */
-  public <T> CdshooksserviceplandefinitionBuilder withSubject(@NonNull T subject) {
-    var guessedSuffix =
-        autoSuffix(
-            subject.getClass().getSimpleName(), Cdshooksserviceplandefinition$.MODULE$.subject());
-    return withSubject(guessedSuffix, subject);
-  }
-
-  /**
-   * Alternative to the 'main' withSubject method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param subject - The value to be passed to the builder
-   */
-  public <T> CdshooksserviceplandefinitionBuilder withSubject(String suffix, @NonNull T subject) {
-    guard(
-        subject.getClass().getSimpleName(),
-        suffix,
-        Cdshooksserviceplandefinition$.MODULE$.subject());
-    this.subject =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, subject, Cdshooksserviceplandefinition$.MODULE$.subject()));
+  public CdshooksserviceplandefinitionBuilder withSubject(@NonNull Choice01025009075 subject) {
+    this.subject = Optional.of(subject);
     return this;
   }
   /**
@@ -604,41 +584,41 @@ public class CdshooksserviceplandefinitionBuilder {
 
   public Cdshooksserviceplandefinition build() {
     return new Cdshooksserviceplandefinition(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(date),
-        OptionConverters.toScala(title),
-        OptionConverters.toScala(usage),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(usage),
         topic.stream().collect(new LitSeqJCollector<>()),
         status,
         author.stream().collect(new LitSeqJCollector<>()),
         editor.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(version),
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(purpose),
+        (Option) OptionConverters.toScala(purpose),
         library.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(subtitle),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(subtitle),
         reviewer.stream().collect(new LitSeqJCollector<>()),
         endorser.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        OptionConverters.toScala(publisher),
-        OptionConverters.toScala(copyright),
+        (Option) OptionConverters.toScala(publisher),
+        (Option) OptionConverters.toScala(copyright),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(subject),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(experimental.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(experimental.map(x -> (Object) x)),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(approvalDate),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(lastReviewDate),
-        OptionConverters.toScala(effectivePeriod),
+        (Option) OptionConverters.toScala(approvalDate),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(lastReviewDate),
+        (Option) OptionConverters.toScala(effectivePeriod),
         relatedArtifact.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         goal.stream().collect(new LitSeqJCollector<>()),

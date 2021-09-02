@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -135,11 +137,11 @@ public class Consent_VerificationBuilder {
 
   public Consent.Verification build() {
     return new Consent.Verification(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         verified,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(verifiedWith),
-        OptionConverters.toScala(verificationDate),
+        (Option) OptionConverters.toScala(verifiedWith),
+        (Option) OptionConverters.toScala(verificationDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

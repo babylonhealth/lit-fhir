@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.EPISODE_OF_CARE_STATUS;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -128,7 +130,7 @@ public class EpisodeOfCare_StatusHistoryBuilder {
 
   public EpisodeOfCare.StatusHistory build() {
     return new EpisodeOfCare.StatusHistory(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         status,
         period,
         extension.stream().collect(new LitSeqJCollector<>()),

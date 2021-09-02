@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.COMPOSITION_ATTESTATION_MODE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -135,10 +137,10 @@ public class Composition_AttesterBuilder {
 
   public Composition.Attester build() {
     return new Composition.Attester(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         mode,
-        OptionConverters.toScala(time),
-        OptionConverters.toScala(party),
+        (Option) OptionConverters.toScala(time),
+        (Option) OptionConverters.toScala(party),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

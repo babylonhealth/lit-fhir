@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -46,7 +48,7 @@ public class Claim_AccidentBuilder {
   private FHIRDate date;
   private Optional<CodeableConcept> _type = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<Address, Reference>>> location = Optional.empty();
+  private Optional<Choice00434638053> location = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -96,26 +98,8 @@ public class Claim_AccidentBuilder {
     return this;
   }
   /** @param location Field is a 'choice' field. Type should be one of Address, Reference. */
-  public <T> Claim_AccidentBuilder withLocation(@NonNull T location) {
-    var guessedSuffix =
-        autoSuffix(location.getClass().getSimpleName(), Claim.Accident$.MODULE$.location());
-    return withLocation(guessedSuffix, location);
-  }
-
-  /**
-   * Alternative to the 'main' withLocation method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param location - The value to be passed to the builder
-   */
-  public <T> Claim_AccidentBuilder withLocation(String suffix, @NonNull T location) {
-    guard(location.getClass().getSimpleName(), suffix, Claim.Accident$.MODULE$.location());
-    this.location =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, location, Claim.Accident$.MODULE$.location()));
+  public Claim_AccidentBuilder withLocation(@NonNull Choice00434638053 location) {
+    this.location = Optional.of(location);
     return this;
   }
   /**
@@ -154,11 +138,11 @@ public class Claim_AccidentBuilder {
 
   public Claim.Accident build() {
     return new Claim.Accident(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         date,
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(_type),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(location),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

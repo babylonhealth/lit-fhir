@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -64,7 +67,7 @@ public class VitalsignsBuilder {
   private Reference subject;
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<CodeableConcept> category;
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_0802685816> value = Optional.empty();
   private Optional<CodeableConcept> bodySite = Optional.empty();
   private Optional<Reference> specimen = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
@@ -74,7 +77,7 @@ public class VitalsignsBuilder {
   private Collection<Reference> hasMember = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<Reference> derivedFrom = Collections.emptyList();
-  private Choice<$bslash$div<FHIRDateTime, Period>> effective;
+  private Choice_0934386166 effective;
   private Optional<String> implicitRules = Optional.empty();
   private Collection<CodeableConcept> interpretation = Collections.emptyList();
   private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
@@ -100,17 +103,12 @@ public class VitalsignsBuilder {
       OBSERVATION_STATUS status,
       Reference subject,
       Collection<CodeableConcept> category,
-      @NonNull Object effective) {
+      @NonNull Choice_0934386166 effective) {
     this.code = code;
     this.status = status;
     this.subject = subject;
     this.category = category;
-    this.effective =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(effective.getClass().getSimpleName(), Vitalsigns$.MODULE$.effective()),
-                effective,
-                Vitalsigns$.MODULE$.effective());
+    this.effective = effective;
   }
 
   /**
@@ -242,24 +240,8 @@ public class VitalsignsBuilder {
    *     a 'choice' field. Type should be one of Boolean, CodeableConcept, FHIRDateTime, Integer,
    *     LocalTime, Period, Quantity, Range, Ratio, SampledData, String.
    */
-  public <T> VitalsignsBuilder withValue(@NonNull T value) {
-    var guessedSuffix = autoSuffix(value.getClass().getSimpleName(), Vitalsigns$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> VitalsignsBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, Vitalsigns$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, value, Vitalsigns$.MODULE$.value()));
+  public VitalsignsBuilder withValue(@NonNull Choice_0802685816 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -475,35 +457,35 @@ public class VitalsignsBuilder {
 
   public Vitalsigns build() {
     return new Vitalsigns(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         code,
         note.stream().collect(new LitSeqJCollector<>()),
         focus.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(issued),
-        OptionConverters.toScala(method),
-        OptionConverters.toScala(device),
+        (Option) OptionConverters.toScala(issued),
+        (Option) OptionConverters.toScala(method),
+        (Option) OptionConverters.toScala(device),
         basedOn.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new NonEmptyLitSeqJCollector<>()),
         (Option) OptionConverters.toScala(value),
-        OptionConverters.toScala(bodySite),
-        OptionConverters.toScala(specimen),
+        (Option) OptionConverters.toScala(bodySite),
+        (Option) OptionConverters.toScala(specimen),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         performer.stream().collect(new LitSeqJCollector<>()),
         hasMember.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         derivedFrom.stream().collect(new LitSeqJCollector<>()),
         effective,
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         interpretation.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(dataAbsentReason),
+        (Option) OptionConverters.toScala(dataAbsentReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         component.stream().collect(new LitSeqJCollector<>()),
         referenceRange.stream().collect(new LitSeqJCollector<>()),

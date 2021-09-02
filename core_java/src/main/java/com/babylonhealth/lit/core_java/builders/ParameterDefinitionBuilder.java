@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.OPERATION_PARAMETER_USE;
 import com.babylonhealth.lit.core.ALL_TYPES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -135,15 +136,15 @@ public class ParameterDefinitionBuilder {
 
   public ParameterDefinition build() {
     return new ParameterDefinition(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         use,
-        OptionConverters.toScala(min.map(x -> (Object) x)),
-        OptionConverters.toScala(max),
-        OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(min.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(max),
+        (Option) OptionConverters.toScala(name),
         _type,
-        OptionConverters.toScala(profile),
+        (Option) OptionConverters.toScala(profile),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(documentation),
+        (Option) OptionConverters.toScala(documentation),
         LitUtils.emptyMetaElMap());
   }
 }

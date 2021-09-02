@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -43,10 +45,10 @@ import static java.util.stream.Collectors.toList;
 
 public class Goal_TargetBuilder {
   private Optional<String> id = Optional.empty();
-  private Optional<Choice<$bslash$div<Duration, FHIRDate>>> due = Optional.empty();
+  private Optional<Choice01219602913> due = Optional.empty();
   private Optional<CodeableConcept> measure = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice> detail = Optional.empty();
+  private Optional<Choice01056080496> detail = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /** Required fields for {@link Goal.Target} */
@@ -61,23 +63,8 @@ public class Goal_TargetBuilder {
     return this;
   }
   /** @param due Field is a 'choice' field. Type should be one of Duration, FHIRDate. */
-  public <T> Goal_TargetBuilder withDue(@NonNull T due) {
-    var guessedSuffix = autoSuffix(due.getClass().getSimpleName(), Goal.Target$.MODULE$.due());
-    return withDue(guessedSuffix, due);
-  }
-
-  /**
-   * Alternative to the 'main' withDue method. This will be marginally faster than the other method,
-   * but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param due - The value to be passed to the builder
-   */
-  public <T> Goal_TargetBuilder withDue(String suffix, @NonNull T due) {
-    guard(due.getClass().getSimpleName(), suffix, Goal.Target$.MODULE$.due());
-    this.due =
-        Optional.of((Choice) Choice$.MODULE$.fromSuffix(suffix, due, Goal.Target$.MODULE$.due()));
+  public Goal_TargetBuilder withDue(@NonNull Choice01219602913 due) {
+    this.due = Optional.of(due);
     return this;
   }
   /** @param measure */
@@ -111,25 +98,8 @@ public class Goal_TargetBuilder {
    * @param detail Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
    *     Integer, Quantity, Range, Ratio, String.
    */
-  public <T> Goal_TargetBuilder withDetail(@NonNull T detail) {
-    var guessedSuffix =
-        autoSuffix(detail.getClass().getSimpleName(), Goal.Target$.MODULE$.detail());
-    return withDetail(guessedSuffix, detail);
-  }
-
-  /**
-   * Alternative to the 'main' withDetail method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param detail - The value to be passed to the builder
-   */
-  public <T> Goal_TargetBuilder withDetail(String suffix, @NonNull T detail) {
-    guard(detail.getClass().getSimpleName(), suffix, Goal.Target$.MODULE$.detail());
-    this.detail =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, detail, Goal.Target$.MODULE$.detail()));
+  public Goal_TargetBuilder withDetail(@NonNull Choice01056080496 detail) {
+    this.detail = Optional.of(detail);
     return this;
   }
   /**
@@ -168,9 +138,9 @@ public class Goal_TargetBuilder {
 
   public Goal.Target build() {
     return new Goal.Target(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(due),
-        OptionConverters.toScala(measure),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(due),
+        (Option) OptionConverters.toScala(measure),
         extension.stream().collect(new LitSeqJCollector<>()),
         (Option) OptionConverters.toScala(detail),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -145,11 +147,11 @@ public class Organization_ContactBuilder {
 
   public Organization.Contact build() {
     return new Organization.Contact(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(purpose),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(purpose),
         telecom.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(address),
+        (Option) OptionConverters.toScala(address),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

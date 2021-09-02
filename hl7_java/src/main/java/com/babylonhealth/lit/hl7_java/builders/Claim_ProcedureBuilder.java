@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -48,7 +50,7 @@ public class Claim_ProcedureBuilder {
   private Optional<FHIRDateTime> date = Optional.empty();
   private Integer sequence;
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<CodeableConcept, Reference>> procedure;
+  private Choice01025009075 procedure;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -58,15 +60,9 @@ public class Claim_ProcedureBuilder {
    * @param procedure - Procedures performed on the patient relevant to the billing items with the
    *     claim. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
    */
-  public Claim_ProcedureBuilder(Integer sequence, @NonNull Object procedure) {
+  public Claim_ProcedureBuilder(Integer sequence, @NonNull Choice01025009075 procedure) {
     this.sequence = sequence;
-    this.procedure =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    procedure.getClass().getSimpleName(), Claim.Procedure$.MODULE$.procedure()),
-                procedure,
-                Claim.Procedure$.MODULE$.procedure());
+    this.procedure = procedure;
   }
 
   /**
@@ -164,10 +160,10 @@ public class Claim_ProcedureBuilder {
 
   public Claim.Procedure build() {
     return new Claim.Procedure(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         udi.stream().collect(new LitSeqJCollector<>()),
         _type.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(date),
         sequence,
         extension.stream().collect(new LitSeqJCollector<>()),
         procedure,

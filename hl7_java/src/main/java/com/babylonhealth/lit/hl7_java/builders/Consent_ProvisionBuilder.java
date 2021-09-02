@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CONSENT_PROVISION_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -227,16 +229,16 @@ public class Consent_ProvisionBuilder {
 
   public Consent.Provision build() {
     return new Consent.Provision(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
         code.stream().collect(new LitSeqJCollector<>()),
         _class.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(period),
         action.stream().collect(new LitSeqJCollector<>()),
         purpose.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         provision.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(dataPeriod),
+        (Option) OptionConverters.toScala(dataPeriod),
         securityLabel.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         data.stream().collect(new LitSeqJCollector<>()),

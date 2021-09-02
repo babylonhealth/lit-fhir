@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DOCUMENT_MODE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -133,11 +135,11 @@ public class CapabilityStatement_DocumentBuilder {
 
   public CapabilityStatement.Document build() {
     return new CapabilityStatement.Document(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         mode,
         profile,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(documentation),
+        (Option) OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

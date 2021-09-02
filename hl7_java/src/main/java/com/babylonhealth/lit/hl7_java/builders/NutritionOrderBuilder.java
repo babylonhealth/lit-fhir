@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_STATUS;
 import com.babylonhealth.lit.hl7.REQUEST_INTENT;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -413,22 +415,22 @@ public class NutritionOrderBuilder {
 
   public NutritionOrder build() {
     return new NutritionOrder(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
         status,
         intent,
         patient,
-        OptionConverters.toScala(orderer),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(orderer),
+        (Option) OptionConverters.toScala(language),
         dateTime,
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
         instantiates.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         allergyIntolerance.stream().collect(new LitSeqJCollector<>()),
@@ -436,8 +438,8 @@ public class NutritionOrderBuilder {
         instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
         foodPreferenceModifier.stream().collect(new LitSeqJCollector<>()),
         supplement.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(oralDiet),
-        OptionConverters.toScala(enteralFormula),
+        (Option) OptionConverters.toScala(oralDiet),
+        (Option) OptionConverters.toScala(enteralFormula),
         LitUtils.emptyMetaElMap());
   }
 }

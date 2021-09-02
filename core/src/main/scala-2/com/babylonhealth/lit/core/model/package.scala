@@ -164,6 +164,7 @@ object UnionAliases {
     Address \/ Age \/ Annotation \/ Attachment \/ Base64Binary \/ BigDecimal \/ Boolean \/ Canonical \/ Code \/ CodeableConcept \/ Coding \/ ContactDetail \/ ContactPoint \/ Contributor \/ Count \/ DataRequirement \/ Distance \/ Dosage \/ Duration \/ Expression \/ FHIRDate \/ FHIRDateTime \/ HumanName \/ Id \/ Identifier \/ Int \/ LocalTime \/ Markdown \/ Meta \/ Money \/ OID \/ ParameterDefinition \/ Period \/ PositiveInt \/ Quantity \/ Range \/ Ratio \/ Reference \/ RelatedArtifact \/ SampledData \/ Signature \/ String \/ Timing \/ TriggerDefinition \/ UUID \/ UnsignedInt \/ UriStr \/ UrlStr \/ UsageContext \/ ZonedDateTime
   type Union_1768247138 = Boolean \/ CodeableConcept
   type Union_1947777294 = Duration \/ FHIRDateTime \/ Period
+
   val Union01025009075Tag: LTag[Union01025009075] = LTag[Union01025009075]
   val Union01639511888Tag: LTag[Union01639511888] = LTag[Union01639511888]
   val Union_0119127717Tag: LTag[Union_0119127717] = LTag[Union_0119127717]

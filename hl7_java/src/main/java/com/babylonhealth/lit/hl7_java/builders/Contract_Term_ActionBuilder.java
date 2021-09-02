@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -57,8 +59,7 @@ public class Contract_Term_ActionBuilder {
   private Optional<Boolean> doNotPerform = Optional.empty();
   private Collection<String> reasonLinkId = Collections.emptyList();
   private Collection<String> contextLinkId = Collections.emptyList();
-  private Optional<Choice<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>>> occurrence =
-      Optional.empty();
+  private Optional<Choice00609373412> occurrence = Optional.empty();
   private Collection<CodeableConcept> performerType = Collections.emptyList();
   private Optional<CodeableConcept> performerRole = Optional.empty();
   private Collection<String> requesterLinkId = Collections.emptyList();
@@ -205,29 +206,8 @@ public class Contract_Term_ActionBuilder {
    * @param occurrence Field is a 'choice' field. Type should be one of FHIRDateTime, Period,
    *     Timing.
    */
-  public <T> Contract_Term_ActionBuilder withOccurrence(@NonNull T occurrence) {
-    var guessedSuffix =
-        autoSuffix(
-            occurrence.getClass().getSimpleName(), Contract$Term$Action$.MODULE$.occurrence());
-    return withOccurrence(guessedSuffix, occurrence);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurrence method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurrence - The value to be passed to the builder
-   */
-  public <T> Contract_Term_ActionBuilder withOccurrence(String suffix, @NonNull T occurrence) {
-    guard(
-        occurrence.getClass().getSimpleName(), suffix, Contract$Term$Action$.MODULE$.occurrence());
-    this.occurrence =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, occurrence, Contract$Term$Action$.MODULE$.occurrence()));
+  public Contract_Term_ActionBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
+    this.occurrence = Optional.of(occurrence);
     return this;
   }
   /** @param performerType */
@@ -339,24 +319,24 @@ public class Contract_Term_ActionBuilder {
 
   public Contract$Term$Action build() {
     return new Contract$Term$Action(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
         note.stream().collect(new LitSeqJCollector<>()),
         intent,
         linkId.stream().collect(new LitSeqJCollector<>()),
         status,
         reason.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(context),
+        (Option) OptionConverters.toScala(context),
         extension.stream().collect(new LitSeqJCollector<>()),
         requester.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(performer),
+        (Option) OptionConverters.toScala(performer),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
         reasonLinkId.stream().collect(new LitSeqJCollector<>()),
         contextLinkId.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(occurrence),
+        (Option) OptionConverters.toScala(occurrence),
         performerType.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(performerRole),
+        (Option) OptionConverters.toScala(performerRole),
         requesterLinkId.stream().collect(new LitSeqJCollector<>()),
         performerLinkId.stream().collect(new LitSeqJCollector<>()),
         reasonReference.stream().collect(new LitSeqJCollector<>()),

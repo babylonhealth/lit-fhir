@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -145,12 +147,12 @@ public class SubstancePolymer_MonomerSet_StartingMaterialBuilder {
 
   public SubstancePolymer$MonomerSet$StartingMaterial build() {
     return new SubstancePolymer$MonomerSet$StartingMaterial(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
         (Option) OptionConverters.toScala(amount),
-        OptionConverters.toScala(material),
+        (Option) OptionConverters.toScala(material),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(isDefining.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(isDefining.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

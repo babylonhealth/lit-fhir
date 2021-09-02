@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -46,7 +48,7 @@ public class Group_CharacteristicBuilder {
   private CodeableConcept code;
   private Optional<Period> period = Optional.empty();
   private Boolean exclude;
-  private Choice value;
+  private Choice01646729908 value;
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -59,15 +61,11 @@ public class Group_CharacteristicBuilder {
    * @param value Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
    *     Quantity, Range, Reference.
    */
-  public Group_CharacteristicBuilder(CodeableConcept code, Boolean exclude, @NonNull Object value) {
+  public Group_CharacteristicBuilder(
+      CodeableConcept code, Boolean exclude, @NonNull Choice01646729908 value) {
     this.code = code;
     this.exclude = exclude;
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(value.getClass().getSimpleName(), Group.Characteristic$.MODULE$.value()),
-                value,
-                Group.Characteristic$.MODULE$.value());
+    this.value = value;
   }
 
   /**
@@ -142,9 +140,9 @@ public class Group_CharacteristicBuilder {
 
   public Group.Characteristic build() {
     return new Group.Characteristic(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
-        OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(period),
         exclude,
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),

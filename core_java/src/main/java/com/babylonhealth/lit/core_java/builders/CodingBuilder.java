@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -126,13 +127,13 @@ public class CodingBuilder {
 
   public Coding build() {
     return new Coding(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(system),
-        OptionConverters.toScala(version),
-        OptionConverters.toScala(display),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(system),
+        (Option) OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(display),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(userSelected.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(userSelected.map(x -> (Object) x)),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -237,17 +239,17 @@ public class SpecimenDefinitionBuilder {
 
   public SpecimenDefinition build() {
     return new SpecimenDefinition(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(identifier),
-        OptionConverters.toScala(timeAspect),
+        (Option) OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(timeAspect),
         collection.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(typeCollected),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(typeCollected),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         patientPreparation.stream().collect(new LitSeqJCollector<>()),
         typeTested.stream().collect(new LitSeqJCollector<>()),

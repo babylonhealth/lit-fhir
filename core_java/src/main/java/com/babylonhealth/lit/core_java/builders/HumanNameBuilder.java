@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.NAME_USE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -154,14 +155,14 @@ public class HumanNameBuilder {
 
   public HumanName build() {
     return new HumanName(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(use),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(use),
+        (Option) OptionConverters.toScala(text),
         given.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(family),
+        (Option) OptionConverters.toScala(family),
         prefix.stream().collect(new LitSeqJCollector<>()),
         suffix.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(period),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

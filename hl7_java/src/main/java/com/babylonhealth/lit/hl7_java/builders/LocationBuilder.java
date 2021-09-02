@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.LOCATION_MODE;
 import com.babylonhealth.lit.hl7.LOCATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -354,30 +356,30 @@ public class LocationBuilder {
 
   public Location build() {
     return new Location(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(mode),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(mode),
         _type.stream().collect(new LitSeqJCollector<>()),
         alias.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(status),
-        OptionConverters.toScala(partOf),
+        (Option) OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(partOf),
         telecom.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(address),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(address),
+        (Option) OptionConverters.toScala(language),
         endpoint.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(physicalType),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(physicalType),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(operationalStatus),
-        OptionConverters.toScala(managingOrganization),
-        OptionConverters.toScala(availabilityExceptions),
-        OptionConverters.toScala(position),
+        (Option) OptionConverters.toScala(operationalStatus),
+        (Option) OptionConverters.toScala(managingOrganization),
+        (Option) OptionConverters.toScala(availabilityExceptions),
+        (Option) OptionConverters.toScala(position),
         hoursOfOperation.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

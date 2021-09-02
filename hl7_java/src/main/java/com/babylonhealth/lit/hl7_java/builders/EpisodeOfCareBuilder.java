@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.EPISODE_OF_CARE_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -328,24 +330,24 @@ public class EpisodeOfCareBuilder {
 
   public EpisodeOfCare build() {
     return new EpisodeOfCare(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         _type.stream().collect(new LitSeqJCollector<>()),
         team.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(period),
         patient,
         account.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(careManager),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(careManager),
+        (Option) OptionConverters.toScala(implicitRules),
         referralRequest.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(managingOrganization),
+        (Option) OptionConverters.toScala(managingOrganization),
         diagnosis.stream().collect(new LitSeqJCollector<>()),
         statusHistory.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

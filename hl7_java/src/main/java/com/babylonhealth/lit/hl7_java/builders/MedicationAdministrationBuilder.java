@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MEDICATION_ADMIN_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -61,10 +63,10 @@ public class MedicationAdministrationBuilder {
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Collection<String> instantiates = Collections.emptyList();
   private Collection<CodeableConcept> statusReason = Collections.emptyList();
-  private Choice<$bslash$div<FHIRDateTime, Period>> effective;
+  private Choice_0934386166 effective;
   private Collection<Reference> eventHistory = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> medication;
+  private Choice01025009075 medication;
   private Collection<Reference> reasonReference = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<Reference> supportingInformation = Collections.emptyList();
@@ -90,26 +92,12 @@ public class MedicationAdministrationBuilder {
   public MedicationAdministrationBuilder(
       MEDICATION_ADMIN_STATUS status,
       Reference subject,
-      @NonNull Object effective,
-      @NonNull Object medication) {
+      @NonNull Choice_0934386166 effective,
+      @NonNull Choice01025009075 medication) {
     this.status = status;
     this.subject = subject;
-    this.effective =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    effective.getClass().getSimpleName(),
-                    MedicationAdministration$.MODULE$.effective()),
-                effective,
-                MedicationAdministration$.MODULE$.effective());
-    this.medication =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    medication.getClass().getSimpleName(),
-                    MedicationAdministration$.MODULE$.medication()),
-                medication,
-                MedicationAdministration$.MODULE$.medication());
+    this.effective = effective;
+    this.medication = medication;
   }
 
   /**
@@ -444,18 +432,18 @@ public class MedicationAdministrationBuilder {
 
   public MedicationAdministration build() {
     return new MedicationAdministration(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
         device.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(context),
-        OptionConverters.toScala(request),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(context),
+        (Option) OptionConverters.toScala(request),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(category),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
@@ -464,12 +452,12 @@ public class MedicationAdministrationBuilder {
         statusReason.stream().collect(new LitSeqJCollector<>()),
         effective,
         eventHistory.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         medication,
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         supportingInformation.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(dosage),
+        (Option) OptionConverters.toScala(dosage),
         performer.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -131,10 +133,10 @@ public class DocumentManifest_RelatedBuilder {
 
   public DocumentManifest.Related build() {
     return new DocumentManifest.Related(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(ref),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(ref),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(identifier),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

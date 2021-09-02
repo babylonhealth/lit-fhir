@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -145,12 +147,12 @@ public class ObservationDefinition_QuantitativeDetailsBuilder {
 
   public ObservationDefinition.QuantitativeDetails build() {
     return new ObservationDefinition.QuantitativeDetails(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(unit),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(unit),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(customaryUnit),
-        OptionConverters.toScala(conversionFactor),
-        OptionConverters.toScala(decimalPrecision.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(customaryUnit),
+        (Option) OptionConverters.toScala(conversionFactor),
+        (Option) OptionConverters.toScala(decimalPrecision.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

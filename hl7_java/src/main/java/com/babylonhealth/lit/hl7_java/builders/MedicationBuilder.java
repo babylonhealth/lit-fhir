@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MEDICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -249,21 +251,21 @@ public class MedicationBuilder {
 
   public Medication build() {
     return new Medication(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(form),
-        OptionConverters.toScala(status),
-        OptionConverters.toScala(amount),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(form),
+        (Option) OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(amount),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(manufacturer),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(manufacturer),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(batch),
+        (Option) OptionConverters.toScala(batch),
         ingredient.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -36,6 +36,10 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -356,13 +360,13 @@ public class Us_core_practitionerroleBuilder {
 
   public Us_core_practitionerrole build() {
     return new Us_core_practitionerrole(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         code.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(active.map(x -> (Object) x)),
-        OptionConverters.toScala(period),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(active.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(language),
         location.stream().collect(new LitSeqJCollector<>()),
         endpoint.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
@@ -371,11 +375,11 @@ public class Us_core_practitionerroleBuilder {
         identifier.stream().collect(new LitSeqJCollector<>()),
         practitioner,
         organization,
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         healthcareService.stream().collect(new LitSeqJCollector<>()),
         telecom.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(availabilityExceptions),
+        (Option) OptionConverters.toScala(availabilityExceptions),
         notAvailable.stream().collect(new LitSeqJCollector<>()),
         availableTime.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -145,12 +147,12 @@ public class Provenance_AgentBuilder {
 
   public Provenance.Agent build() {
     return new Provenance.Agent(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         who,
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(_type),
         role.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(onBehalfOf),
+        (Option) OptionConverters.toScala(onBehalfOf),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

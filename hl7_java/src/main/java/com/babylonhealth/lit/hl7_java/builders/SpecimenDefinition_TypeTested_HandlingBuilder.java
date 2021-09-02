@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -146,13 +148,13 @@ public class SpecimenDefinition_TypeTested_HandlingBuilder {
 
   public SpecimenDefinition$TypeTested$Handling build() {
     return new SpecimenDefinition$TypeTested$Handling(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(maxDuration),
-        OptionConverters.toScala(instruction),
-        OptionConverters.toScala(temperatureRange),
+        (Option) OptionConverters.toScala(maxDuration),
+        (Option) OptionConverters.toScala(instruction),
+        (Option) OptionConverters.toScala(temperatureRange),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(temperatureQualifier),
+        (Option) OptionConverters.toScala(temperatureQualifier),
         LitUtils.emptyMetaElMap());
   }
 }

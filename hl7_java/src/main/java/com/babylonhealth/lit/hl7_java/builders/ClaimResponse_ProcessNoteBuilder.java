@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.NOTE_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -148,11 +150,11 @@ public class ClaimResponse_ProcessNoteBuilder {
 
   public ClaimResponse.ProcessNote build() {
     return new ClaimResponse.ProcessNote(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
         text,
-        OptionConverters.toScala(number.map(x -> (Object) x)),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(number.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(language),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

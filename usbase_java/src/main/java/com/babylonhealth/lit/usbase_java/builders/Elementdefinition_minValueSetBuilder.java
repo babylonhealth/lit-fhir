@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +48,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Elementdefinition_minValueSetBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice<$bslash$div<String, String>> value;
+  private Choice00545979821 value;
 
   /**
    * Required fields for {@link Elementdefinition_minValueSet}
@@ -57,11 +60,8 @@ public class Elementdefinition_minValueSetBuilder {
    *     $value wrapped in ParamDistinguisher.choose("foo". $value), where foo is one of: Canonical,
    *     Uri
    */
-  public Elementdefinition_minValueSetBuilder(@NonNull ParamDistinguisher value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                value.suffix, value.wrappedChoice, Elementdefinition_minValueSet$.MODULE$.value());
+  public Elementdefinition_minValueSetBuilder(@NonNull Choice00545979821 value) {
+    this.value = value;
   }
 
   /**
@@ -75,6 +75,6 @@ public class Elementdefinition_minValueSetBuilder {
 
   public Elementdefinition_minValueSet build() {
     return new Elementdefinition_minValueSet(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

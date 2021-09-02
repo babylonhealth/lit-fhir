@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -337,29 +339,29 @@ public class MedicinalProductAuthorizationBuilder {
 
   public MedicinalProductAuthorization build() {
     return new MedicinalProductAuthorization(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(status),
-        OptionConverters.toScala(holder),
-        OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(holder),
+        (Option) OptionConverters.toScala(subject),
         country.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(regulator),
+        (Option) OptionConverters.toScala(regulator),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(statusDate),
-        OptionConverters.toScala(legalBasis),
-        OptionConverters.toScala(restoreDate),
+        (Option) OptionConverters.toScala(statusDate),
+        (Option) OptionConverters.toScala(legalBasis),
+        (Option) OptionConverters.toScala(restoreDate),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(validityPeriod),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(validityPeriod),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(dataExclusivityPeriod),
-        OptionConverters.toScala(internationalBirthDate),
-        OptionConverters.toScala(dateOfFirstAuthorization),
-        OptionConverters.toScala(procedure),
+        (Option) OptionConverters.toScala(dataExclusivityPeriod),
+        (Option) OptionConverters.toScala(internationalBirthDate),
+        (Option) OptionConverters.toScala(dateOfFirstAuthorization),
+        (Option) OptionConverters.toScala(procedure),
         jurisdictionalAuthorization.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

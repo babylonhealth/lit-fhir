@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class AuditEvent_Entity_DetailBuilder {
   private Optional<String> id = Optional.empty();
   private String _type;
-  private Choice<$bslash$div<byte[], String>> value;
+  private Choice00483057553 value;
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -55,15 +57,9 @@ public class AuditEvent_Entity_DetailBuilder {
    *     policy, function code, application name or URL. It identifies the performed function.
    * @param value Field is a 'choice' field. Type should be one of byte[], String.
    */
-  public AuditEvent_Entity_DetailBuilder(String _type, @NonNull Object value) {
+  public AuditEvent_Entity_DetailBuilder(String _type, @NonNull Choice00483057553 value) {
     this._type = _type;
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    value.getClass().getSimpleName(), AuditEvent$Entity$Detail$.MODULE$.value()),
-                value,
-                AuditEvent$Entity$Detail$.MODULE$.value());
+    this.value = value;
   }
 
   /**
@@ -133,7 +129,7 @@ public class AuditEvent_Entity_DetailBuilder {
 
   public AuditEvent$Entity$Detail build() {
     return new AuditEvent$Entity$Detail(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
         value,
         extension.stream().collect(new LitSeqJCollector<>()),

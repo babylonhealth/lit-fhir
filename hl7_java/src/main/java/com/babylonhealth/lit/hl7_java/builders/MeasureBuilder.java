@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -72,7 +74,7 @@ public class MeasureBuilder {
   private Optional<String> copyright = Optional.empty();
   private Optional<String> rationale = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> subject = Optional.empty();
+  private Optional<Choice01025009075> subject = Optional.empty();
   private Collection<UsageContext> useContext = Collections.emptyList();
   private Optional<String> disclaimer = Optional.empty();
   private Collection<String> definition = Collections.emptyList();
@@ -438,24 +440,8 @@ public class MeasureBuilder {
    *     Patient subject is assumed, but the subject of the measure can be anything. Field is a
    *     'choice' field. Type should be one of CodeableConcept, Reference.
    */
-  public <T> MeasureBuilder withSubject(@NonNull T subject) {
-    var guessedSuffix = autoSuffix(subject.getClass().getSimpleName(), Measure$.MODULE$.subject());
-    return withSubject(guessedSuffix, subject);
-  }
-
-  /**
-   * Alternative to the 'main' withSubject method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param subject - The value to be passed to the builder
-   */
-  public <T> MeasureBuilder withSubject(String suffix, @NonNull T subject) {
-    guard(subject.getClass().getSimpleName(), suffix, Measure$.MODULE$.subject());
-    this.subject =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, subject, Measure$.MODULE$.subject()));
+  public MeasureBuilder withSubject(@NonNull Choice01025009075 subject) {
+    this.subject = Optional.of(subject);
     return this;
   }
   /**
@@ -690,53 +676,53 @@ public class MeasureBuilder {
 
   public Measure build() {
     return new Measure(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(date),
         _type.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(title),
-        OptionConverters.toScala(usage),
+        (Option) OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(usage),
         topic.stream().collect(new LitSeqJCollector<>()),
         status,
         author.stream().collect(new LitSeqJCollector<>()),
         editor.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(version),
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(purpose),
+        (Option) OptionConverters.toScala(purpose),
         library.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(scoring),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(subtitle),
+        (Option) OptionConverters.toScala(scoring),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(subtitle),
         reviewer.stream().collect(new LitSeqJCollector<>()),
         endorser.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(guidance),
+        (Option) OptionConverters.toScala(guidance),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(publisher),
-        OptionConverters.toScala(copyright),
-        OptionConverters.toScala(rationale),
+        (Option) OptionConverters.toScala(publisher),
+        (Option) OptionConverters.toScala(copyright),
+        (Option) OptionConverters.toScala(rationale),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(subject),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(disclaimer),
+        (Option) OptionConverters.toScala(disclaimer),
         definition.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(experimental.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(experimental.map(x -> (Object) x)),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(approvalDate),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(lastReviewDate),
-        OptionConverters.toScala(riskAdjustment),
-        OptionConverters.toScala(effectivePeriod),
+        (Option) OptionConverters.toScala(approvalDate),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(lastReviewDate),
+        (Option) OptionConverters.toScala(riskAdjustment),
+        (Option) OptionConverters.toScala(effectivePeriod),
         relatedArtifact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(rateAggregation),
-        OptionConverters.toScala(compositeScoring),
+        (Option) OptionConverters.toScala(rateAggregation),
+        (Option) OptionConverters.toScala(compositeScoring),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(improvementNotation),
-        OptionConverters.toScala(clinicalRecommendationStatement),
+        (Option) OptionConverters.toScala(improvementNotation),
+        (Option) OptionConverters.toScala(clinicalRecommendationStatement),
         supplementalData.stream().collect(new LitSeqJCollector<>()),
         group.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

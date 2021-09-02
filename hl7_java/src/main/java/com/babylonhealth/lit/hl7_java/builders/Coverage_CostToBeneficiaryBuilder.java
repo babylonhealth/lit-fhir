@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class Coverage_CostToBeneficiaryBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<CodeableConcept> _type = Optional.empty();
-  private Choice<$bslash$div<Money, Quantity>> value;
+  private Choice_0221283134 value;
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<Coverage$CostToBeneficiary$Exception> exception = Collections.emptyList();
@@ -54,14 +56,8 @@ public class Coverage_CostToBeneficiaryBuilder {
    *
    * @param value Field is a 'choice' field. Type should be one of Money, Quantity.
    */
-  public Coverage_CostToBeneficiaryBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    value.getClass().getSimpleName(), Coverage.CostToBeneficiary$.MODULE$.value()),
-                value,
-                Coverage.CostToBeneficiary$.MODULE$.value());
+  public Coverage_CostToBeneficiaryBuilder(@NonNull Choice_0221283134 value) {
+    this.value = value;
   }
 
   /**
@@ -151,8 +147,8 @@ public class Coverage_CostToBeneficiaryBuilder {
 
   public Coverage.CostToBeneficiary build() {
     return new Coverage.CostToBeneficiary(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
         value,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -479,34 +481,34 @@ public class ChargeItemDefinitionBuilder {
 
   public ChargeItemDefinition build() {
     return new ChargeItemDefinition(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         url,
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(date),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(title),
         partOf.stream().collect(new LitSeqJCollector<>()),
         status,
-        OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(version),
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         replaces.stream().collect(new LitSeqJCollector<>()),
         instance.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(publisher),
-        OptionConverters.toScala(copyright),
+        (Option) OptionConverters.toScala(publisher),
+        (Option) OptionConverters.toScala(copyright),
         identifier.stream().collect(new LitSeqJCollector<>()),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(experimental.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(experimental.map(x -> (Object) x)),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(approvalDate),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(approvalDate),
+        (Option) OptionConverters.toScala(implicitRules),
         derivedFromUri.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(lastReviewDate),
-        OptionConverters.toScala(effectivePeriod),
+        (Option) OptionConverters.toScala(lastReviewDate),
+        (Option) OptionConverters.toScala(effectivePeriod),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         applicability.stream().collect(new LitSeqJCollector<>()),
         propertyGroup.stream().collect(new LitSeqJCollector<>()),

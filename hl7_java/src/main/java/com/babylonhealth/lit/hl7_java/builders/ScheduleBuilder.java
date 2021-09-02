@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -270,21 +272,21 @@ public class ScheduleBuilder {
 
   public Schedule build() {
     return new Schedule(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         actor.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        OptionConverters.toScala(active.map(x -> (Object) x)),
-        OptionConverters.toScala(comment),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(active.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(comment),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         specialty.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         serviceType.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         serviceCategory.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(planningHorizon),
+        (Option) OptionConverters.toScala(planningHorizon),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

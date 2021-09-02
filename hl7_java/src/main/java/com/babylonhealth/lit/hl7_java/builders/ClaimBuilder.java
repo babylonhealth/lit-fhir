@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CLAIM_USE;
 import com.babylonhealth.lit.hl7.FM_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -413,36 +415,36 @@ public class ClaimBuilder {
 
   public Claim build() {
     return new Claim(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         use,
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         _type,
-        OptionConverters.toScala(total),
+        (Option) OptionConverters.toScala(total),
         status,
-        OptionConverters.toScala(subType),
+        (Option) OptionConverters.toScala(subType),
         patient,
         created,
-        OptionConverters.toScala(enterer),
-        OptionConverters.toScala(insurer),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(enterer),
+        (Option) OptionConverters.toScala(insurer),
+        (Option) OptionConverters.toScala(language),
         provider,
         priority,
-        OptionConverters.toScala(referral),
-        OptionConverters.toScala(facility),
+        (Option) OptionConverters.toScala(referral),
+        (Option) OptionConverters.toScala(facility),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(fundsReserve),
-        OptionConverters.toScala(prescription),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(billablePeriod),
+        (Option) OptionConverters.toScala(fundsReserve),
+        (Option) OptionConverters.toScala(prescription),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(billablePeriod),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(originalPrescription),
-        OptionConverters.toScala(payee),
+        (Option) OptionConverters.toScala(originalPrescription),
+        (Option) OptionConverters.toScala(payee),
         related.stream().collect(new LitSeqJCollector<>()),
         careTeam.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(accident),
+        (Option) OptionConverters.toScala(accident),
         diagnosis.stream().collect(new LitSeqJCollector<>()),
         procedure.stream().collect(new LitSeqJCollector<>()),
         insurance.stream().collect(new NonEmptyLitSeqJCollector<>()),

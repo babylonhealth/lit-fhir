@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -172,12 +174,12 @@ public class QuestionnaireResponse_ItemBuilder {
 
   public QuestionnaireResponse.Item build() {
     return new QuestionnaireResponse.Item(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(text),
         item.stream().collect(new LitSeqJCollector<>()),
         linkId,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(definition),
+        (Option) OptionConverters.toScala(definition),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         answer.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

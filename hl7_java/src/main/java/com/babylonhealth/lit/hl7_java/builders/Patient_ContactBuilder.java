@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ADMINISTRATIVE_GENDER;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -177,15 +179,15 @@ public class Patient_ContactBuilder {
 
   public Patient.Contact build() {
     return new Patient.Contact(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(gender),
-        OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(gender),
+        (Option) OptionConverters.toScala(period),
         telecom.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(address),
+        (Option) OptionConverters.toScala(address),
         extension.stream().collect(new LitSeqJCollector<>()),
         relationship.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(organization),
+        (Option) OptionConverters.toScala(organization),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

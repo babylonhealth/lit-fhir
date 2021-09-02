@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -287,19 +289,19 @@ public class Contract_Term_AssetBuilder {
 
   public Contract$Term$Asset build() {
     return new Contract$Term$Asset(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(scope),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(scope),
         period.stream().collect(new LitSeqJCollector<>()),
         linkId.stream().collect(new LitSeqJCollector<>()),
         answer.stream().collect(new LitSeqJCollector<>()),
         subtype.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(condition),
+        (Option) OptionConverters.toScala(condition),
         usePeriod.stream().collect(new LitSeqJCollector<>()),
         periodType.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(relationship),
+        (Option) OptionConverters.toScala(relationship),
         typeReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         securityLabelNumber.stream()

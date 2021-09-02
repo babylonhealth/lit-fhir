@@ -30,6 +30,7 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -132,15 +133,15 @@ public class SignatureBuilder {
 
   public Signature build() {
     return new Signature(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         who,
         _type.stream().collect(new NonEmptyLitSeqJCollector<>()),
         when,
-        OptionConverters.toScala(data),
+        (Option) OptionConverters.toScala(data),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(sigFormat),
-        OptionConverters.toScala(onBehalfOf),
-        OptionConverters.toScala(targetFormat),
+        (Option) OptionConverters.toScala(sigFormat),
+        (Option) OptionConverters.toScala(onBehalfOf),
+        (Option) OptionConverters.toScala(targetFormat),
         LitUtils.emptyMetaElMap());
   }
 }

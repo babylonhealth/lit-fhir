@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -48,7 +50,7 @@ public class MedicationAdministration_DosageBuilder {
   private Optional<Quantity> dose = Optional.empty();
   private Optional<CodeableConcept> route = Optional.empty();
   private Optional<CodeableConcept> method = Optional.empty();
-  private Optional<Choice<$bslash$div<Quantity, Ratio>>> rate = Optional.empty();
+  private Optional<Choice_0964108894> rate = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -95,28 +97,8 @@ public class MedicationAdministration_DosageBuilder {
     return this;
   }
   /** @param rate Field is a 'choice' field. Type should be one of Quantity, Ratio. */
-  public <T> MedicationAdministration_DosageBuilder withRate(@NonNull T rate) {
-    var guessedSuffix =
-        autoSuffix(
-            rate.getClass().getSimpleName(), MedicationAdministration.Dosage$.MODULE$.rate());
-    return withRate(guessedSuffix, rate);
-  }
-
-  /**
-   * Alternative to the 'main' withRate method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param rate - The value to be passed to the builder
-   */
-  public <T> MedicationAdministration_DosageBuilder withRate(String suffix, @NonNull T rate) {
-    guard(rate.getClass().getSimpleName(), suffix, MedicationAdministration.Dosage$.MODULE$.rate());
-    this.rate =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, rate, MedicationAdministration.Dosage$.MODULE$.rate()));
+  public MedicationAdministration_DosageBuilder withRate(@NonNull Choice_0964108894 rate) {
+    this.rate = Optional.of(rate);
     return this;
   }
   /**
@@ -179,13 +161,13 @@ public class MedicationAdministration_DosageBuilder {
 
   public MedicationAdministration.Dosage build() {
     return new MedicationAdministration.Dosage(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(site),
-        OptionConverters.toScala(dose),
-        OptionConverters.toScala(route),
-        OptionConverters.toScala(method),
-        OptionConverters.toScala(rate),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(site),
+        (Option) OptionConverters.toScala(dose),
+        (Option) OptionConverters.toScala(route),
+        (Option) OptionConverters.toScala(method),
+        (Option) OptionConverters.toScala(rate),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

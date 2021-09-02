@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +48,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Procedure_directedByBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> value;
+  private Choice01025009075 value;
 
   /**
    * Required fields for {@link Procedure_directedBy}
@@ -54,13 +57,8 @@ public class Procedure_directedByBuilder {
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
    *     field. Type should be one of CodeableConcept, Reference.
    */
-  public Procedure_directedByBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(value.getClass().getSimpleName(), Procedure_directedBy$.MODULE$.value()),
-                value,
-                Procedure_directedBy$.MODULE$.value());
+  public Procedure_directedByBuilder(@NonNull Choice01025009075 value) {
+    this.value = value;
   }
 
   /**
@@ -73,6 +71,7 @@ public class Procedure_directedByBuilder {
   }
 
   public Procedure_directedBy build() {
-    return new Procedure_directedBy(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Procedure_directedBy(
+        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

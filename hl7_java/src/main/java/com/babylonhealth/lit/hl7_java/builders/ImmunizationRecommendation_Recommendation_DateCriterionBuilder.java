@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -129,7 +131,7 @@ public class ImmunizationRecommendation_Recommendation_DateCriterionBuilder {
 
   public ImmunizationRecommendation$Recommendation$DateCriterion build() {
     return new ImmunizationRecommendation$Recommendation$DateCriterion(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
         value,
         extension.stream().collect(new LitSeqJCollector<>()),

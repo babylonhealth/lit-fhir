@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -43,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 
 public class SupplyDelivery_SuppliedItemBuilder {
   private Optional<String> id = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> item = Optional.empty();
+  private Optional<Choice01025009075> item = Optional.empty();
   private Optional<Quantity> quantity = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -60,27 +62,8 @@ public class SupplyDelivery_SuppliedItemBuilder {
     return this;
   }
   /** @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference. */
-  public <T> SupplyDelivery_SuppliedItemBuilder withItem(@NonNull T item) {
-    var guessedSuffix =
-        autoSuffix(item.getClass().getSimpleName(), SupplyDelivery.SuppliedItem$.MODULE$.item());
-    return withItem(guessedSuffix, item);
-  }
-
-  /**
-   * Alternative to the 'main' withItem method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param item - The value to be passed to the builder
-   */
-  public <T> SupplyDelivery_SuppliedItemBuilder withItem(String suffix, @NonNull T item) {
-    guard(item.getClass().getSimpleName(), suffix, SupplyDelivery.SuppliedItem$.MODULE$.item());
-    this.item =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, item, SupplyDelivery.SuppliedItem$.MODULE$.item()));
+  public SupplyDelivery_SuppliedItemBuilder withItem(@NonNull Choice01025009075 item) {
+    this.item = Optional.of(item);
     return this;
   }
   /** @param quantity */
@@ -148,9 +131,9 @@ public class SupplyDelivery_SuppliedItemBuilder {
 
   public SupplyDelivery.SuppliedItem build() {
     return new SupplyDelivery.SuppliedItem(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(item),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(item),
+        (Option) OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

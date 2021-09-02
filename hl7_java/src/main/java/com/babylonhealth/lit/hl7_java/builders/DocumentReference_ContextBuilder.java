@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -175,16 +177,16 @@ public class DocumentReference_ContextBuilder {
 
   public DocumentReference.Context build() {
     return new DocumentReference.Context(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         event.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(period),
         related.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         encounter.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(facilityType),
-        OptionConverters.toScala(practiceSetting),
+        (Option) OptionConverters.toScala(facilityType),
+        (Option) OptionConverters.toScala(practiceSetting),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(sourcePatientInfo),
+        (Option) OptionConverters.toScala(sourcePatientInfo),
         LitUtils.emptyMetaElMap());
   }
 }

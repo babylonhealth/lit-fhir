@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -44,7 +46,7 @@ import static java.util.stream.Collectors.toList;
 public class SupplyRequest_ParameterBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<CodeableConcept> code = Optional.empty();
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_1516277229> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -68,27 +70,8 @@ public class SupplyRequest_ParameterBuilder {
    * @param value Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
    *     Quantity, Range.
    */
-  public <T> SupplyRequest_ParameterBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), SupplyRequest.Parameter$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> SupplyRequest_ParameterBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, SupplyRequest.Parameter$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, value, SupplyRequest.Parameter$.MODULE$.value()));
+  public SupplyRequest_ParameterBuilder withValue(@NonNull Choice_1516277229 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -150,8 +133,8 @@ public class SupplyRequest_ParameterBuilder {
 
   public SupplyRequest.Parameter build() {
     return new SupplyRequest.Parameter(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(code),
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

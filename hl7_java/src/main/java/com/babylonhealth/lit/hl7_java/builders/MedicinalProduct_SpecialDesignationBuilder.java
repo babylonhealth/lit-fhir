@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -50,7 +52,7 @@ public class MedicinalProduct_SpecialDesignationBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<CodeableConcept> intendedUse = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> indication = Optional.empty();
+  private Optional<Choice01025009075> indication = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /** Required fields for {@link MedicinalProduct.SpecialDesignation} */
@@ -128,33 +130,9 @@ public class MedicinalProduct_SpecialDesignationBuilder {
   /**
    * @param indication Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
    */
-  public <T> MedicinalProduct_SpecialDesignationBuilder withIndication(@NonNull T indication) {
-    var guessedSuffix =
-        autoSuffix(
-            indication.getClass().getSimpleName(),
-            MedicinalProduct.SpecialDesignation$.MODULE$.indication());
-    return withIndication(guessedSuffix, indication);
-  }
-
-  /**
-   * Alternative to the 'main' withIndication method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param indication - The value to be passed to the builder
-   */
-  public <T> MedicinalProduct_SpecialDesignationBuilder withIndication(
-      String suffix, @NonNull T indication) {
-    guard(
-        indication.getClass().getSimpleName(),
-        suffix,
-        MedicinalProduct.SpecialDesignation$.MODULE$.indication());
-    this.indication =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, indication, MedicinalProduct.SpecialDesignation$.MODULE$.indication()));
+  public MedicinalProduct_SpecialDesignationBuilder withIndication(
+      @NonNull Choice01025009075 indication) {
+    this.indication = Optional.of(indication);
     return this;
   }
   /**
@@ -194,15 +172,15 @@ public class MedicinalProduct_SpecialDesignationBuilder {
 
   public MedicinalProduct.SpecialDesignation build() {
     return new MedicinalProduct.SpecialDesignation(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(_type),
-        OptionConverters.toScala(date),
-        OptionConverters.toScala(status),
-        OptionConverters.toScala(species),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(species),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(intendedUse),
-        OptionConverters.toScala(indication),
+        (Option) OptionConverters.toScala(intendedUse),
+        (Option) OptionConverters.toScala(indication),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

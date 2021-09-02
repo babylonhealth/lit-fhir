@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -182,13 +184,13 @@ public class VerificationResult_PrimarySourceBuilder {
 
   public VerificationResult.PrimarySource build() {
     return new VerificationResult.PrimarySource(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(who),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(who),
         _type.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(validationDate),
-        OptionConverters.toScala(canPushUpdates),
-        OptionConverters.toScala(validationStatus),
+        (Option) OptionConverters.toScala(validationDate),
+        (Option) OptionConverters.toScala(canPushUpdates),
+        (Option) OptionConverters.toScala(validationStatus),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         pushTypeAvailable.stream().collect(new LitSeqJCollector<>()),
         communicationMethod.stream().collect(new LitSeqJCollector<>()),

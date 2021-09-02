@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -136,11 +138,11 @@ public class MedicinalProduct_Name_CountryLanguageBuilder {
 
   public MedicinalProduct$Name$CountryLanguage build() {
     return new MedicinalProduct$Name$CountryLanguage(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         country,
         language,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(jurisdiction),
+        (Option) OptionConverters.toScala(jurisdiction),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

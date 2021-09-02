@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -67,6 +70,7 @@ public class Iso21090_ADXP_unitIDBuilder {
   }
 
   public Iso21090_ADXP_unitID build() {
-    return new Iso21090_ADXP_unitID(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    return new Iso21090_ADXP_unitID(
+        (Option) OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
   }
 }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -153,10 +155,10 @@ public class MeasureReport_GroupBuilder {
 
   public MeasureReport.Group build() {
     return new MeasureReport.Group(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(code),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(measureScore),
+        (Option) OptionConverters.toScala(measureScore),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         population.stream().collect(new LitSeqJCollector<>()),
         stratifier.stream().collect(new LitSeqJCollector<>()),

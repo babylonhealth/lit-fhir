@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -59,8 +61,8 @@ public class ConceptMapBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<String> publisher = Optional.empty();
   private Optional<String> copyright = Optional.empty();
-  private Optional<Choice<$bslash$div<String, String>>> source = Optional.empty();
-  private Optional<Choice<$bslash$div<String, String>>> target = Optional.empty();
+  private Optional<Choice00545979821> source = Optional.empty();
+  private Optional<Choice00545979821> target = Optional.empty();
   private Optional<Identifier> identifier = Optional.empty();
   private Collection<UsageContext> useContext = Collections.emptyList();
   private Optional<String> description = Optional.empty();
@@ -242,26 +244,8 @@ public class ConceptMapBuilder {
    *     mapped and provides context for the mappings. Field is a 'choice' field. Type should be one
    *     of String.
    */
-  public <T> ConceptMapBuilder withSource(@NonNull T source) {
-    var guessedSuffix = autoSuffix(source.getClass().getSimpleName(), ConceptMap$.MODULE$.source());
-    return withSource(guessedSuffix, source);
-  }
-
-  /**
-   * Alternative to the 'main' withSource method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of String then there are multiple candidate 'types' for the FHIR object, and we are unable
-   * to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type String, the valid values are Canonical, Uri.
-   * @param source - The value to be passed to the builder
-   */
-  public <T> ConceptMapBuilder withSource(String suffix, @NonNull T source) {
-    guard(source.getClass().getSimpleName(), suffix, ConceptMap$.MODULE$.source());
-    this.source =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, source, ConceptMap$.MODULE$.source()));
+  public ConceptMapBuilder withSource(@NonNull Choice00545979821 source) {
+    this.source = Optional.of(source);
     return this;
   }
   /**
@@ -270,26 +254,8 @@ public class ConceptMapBuilder {
    *     context about how the concept mapping choices are made. Field is a 'choice' field. Type
    *     should be one of String.
    */
-  public <T> ConceptMapBuilder withTarget(@NonNull T target) {
-    var guessedSuffix = autoSuffix(target.getClass().getSimpleName(), ConceptMap$.MODULE$.target());
-    return withTarget(guessedSuffix, target);
-  }
-
-  /**
-   * Alternative to the 'main' withTarget method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of String then there are multiple candidate 'types' for the FHIR object, and we are unable
-   * to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type String, the valid values are Canonical, Uri.
-   * @param target - The value to be passed to the builder
-   */
-  public <T> ConceptMapBuilder withTarget(String suffix, @NonNull T target) {
-    guard(target.getClass().getSimpleName(), suffix, ConceptMap$.MODULE$.target());
-    this.target =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, target, ConceptMap$.MODULE$.target()));
+  public ConceptMapBuilder withTarget(@NonNull Choice00545979821 target) {
+    this.target = Optional.of(target);
     return this;
   }
   /**
@@ -414,30 +380,30 @@ public class ConceptMapBuilder {
 
   public ConceptMap build() {
     return new ConceptMap(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(name),
-        OptionConverters.toScala(date),
-        OptionConverters.toScala(title),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(title),
         status,
-        OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(version),
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(purpose),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(purpose),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(publisher),
-        OptionConverters.toScala(copyright),
-        OptionConverters.toScala(source),
-        OptionConverters.toScala(target),
-        OptionConverters.toScala(identifier),
+        (Option) OptionConverters.toScala(publisher),
+        (Option) OptionConverters.toScala(copyright),
+        (Option) OptionConverters.toScala(source),
+        (Option) OptionConverters.toScala(target),
+        (Option) OptionConverters.toScala(identifier),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(experimental.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(experimental.map(x -> (Object) x)),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         group.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

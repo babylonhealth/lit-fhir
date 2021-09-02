@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ASSERT_OPERATOR_CODES;
 import com.babylonhealth.lit.hl7.DEFINED_TYPES;
 import com.babylonhealth.lit.hl7.ASSERT_RESPONSE_CODE_TYPES;
@@ -266,31 +268,31 @@ public class TestScript_Setup_Action_AssertBuilder {
 
   public TestScript$Setup$Action$Assert build() {
     return new TestScript$Setup$Action$Assert(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(path),
-        OptionConverters.toScala(label),
-        OptionConverters.toScala(value),
-        OptionConverters.toScala(operator),
-        OptionConverters.toScala(resource),
-        OptionConverters.toScala(response),
-        OptionConverters.toScala(sourceId),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(path),
+        (Option) OptionConverters.toScala(label),
+        (Option) OptionConverters.toScala(value),
+        (Option) OptionConverters.toScala(operator),
+        (Option) OptionConverters.toScala(resource),
+        (Option) OptionConverters.toScala(response),
+        (Option) OptionConverters.toScala(sourceId),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(direction),
-        OptionConverters.toScala(minimumId),
-        OptionConverters.toScala(expression),
-        OptionConverters.toScala(requestURL),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(contentType),
-        OptionConverters.toScala(headerField),
+        (Option) OptionConverters.toScala(direction),
+        (Option) OptionConverters.toScala(minimumId),
+        (Option) OptionConverters.toScala(expression),
+        (Option) OptionConverters.toScala(requestURL),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(contentType),
+        (Option) OptionConverters.toScala(headerField),
         warningOnly,
-        OptionConverters.toScala(responseCode),
-        OptionConverters.toScala(requestMethod),
-        OptionConverters.toScala(navigationLinks.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(responseCode),
+        (Option) OptionConverters.toScala(requestMethod),
+        (Option) OptionConverters.toScala(navigationLinks.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(compareToSourceId),
-        OptionConverters.toScala(validateProfileId),
-        OptionConverters.toScala(compareToSourcePath),
-        OptionConverters.toScala(compareToSourceExpression),
+        (Option) OptionConverters.toScala(compareToSourceId),
+        (Option) OptionConverters.toScala(validateProfileId),
+        (Option) OptionConverters.toScala(compareToSourcePath),
+        (Option) OptionConverters.toScala(compareToSourceExpression),
         LitUtils.emptyMetaElMap());
   }
 }

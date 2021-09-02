@@ -36,6 +36,10 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DEVICE_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -463,38 +467,38 @@ public class Us_core_implantable_deviceBuilder {
 
   public Us_core_implantable_device build() {
     return new Us_core_implantable_device(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         _type,
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(owner),
-        OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(owner),
+        (Option) OptionConverters.toScala(status),
         safety.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(parent),
+        (Option) OptionConverters.toScala(parent),
         patient,
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(location),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(lotNumber),
+        (Option) OptionConverters.toScala(lotNumber),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(definition),
-        OptionConverters.toScala(partNumber),
-        OptionConverters.toScala(modelNumber),
+        (Option) OptionConverters.toScala(definition),
+        (Option) OptionConverters.toScala(partNumber),
+        (Option) OptionConverters.toScala(modelNumber),
         statusReason.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(manufacturer),
-        OptionConverters.toScala(serialNumber),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(expirationDate),
-        OptionConverters.toScala(manufactureDate),
+        (Option) OptionConverters.toScala(manufacturer),
+        (Option) OptionConverters.toScala(serialNumber),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(expirationDate),
+        (Option) OptionConverters.toScala(manufactureDate),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(distinctIdentifier),
+        (Option) OptionConverters.toScala(distinctIdentifier),
         version.stream().collect(new LitSeqJCollector<>()),
         property.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(udiCarrier),
+        (Option) OptionConverters.toScala(udiCarrier),
         deviceName.stream().collect(new LitSeqJCollector<>()),
         specialization.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

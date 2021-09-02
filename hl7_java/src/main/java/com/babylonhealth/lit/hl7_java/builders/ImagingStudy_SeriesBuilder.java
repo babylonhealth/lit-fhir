@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -228,19 +230,19 @@ public class ImagingStudy_SeriesBuilder {
 
   public ImagingStudy.Series build() {
     return new ImagingStudy.Series(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         uid,
-        OptionConverters.toScala(number.map(x -> (Object) x)),
-        OptionConverters.toScala(started),
+        (Option) OptionConverters.toScala(number.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(started),
         modality,
         endpoint.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(bodySite),
+        (Option) OptionConverters.toScala(bodySite),
         specimen.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(laterality),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(laterality),
+        (Option) OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(numberOfInstances.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(numberOfInstances.map(x -> (Object) x)),
         instance.stream().collect(new LitSeqJCollector<>()),
         performer.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

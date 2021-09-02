@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -203,16 +205,16 @@ public class CoverageEligibilityRequest_ItemBuilder {
 
   public CoverageEligibilityRequest.Item build() {
     return new CoverageEligibilityRequest.Item(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         detail.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(category),
         modifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(provider),
-        OptionConverters.toScala(quantity),
-        OptionConverters.toScala(facility),
+        (Option) OptionConverters.toScala(provider),
+        (Option) OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(facility),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(unitPrice),
-        OptionConverters.toScala(productOrService),
+        (Option) OptionConverters.toScala(unitPrice),
+        (Option) OptionConverters.toScala(productOrService),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         supportingInfoSequence.stream()
             .map(x -> (Object) x)

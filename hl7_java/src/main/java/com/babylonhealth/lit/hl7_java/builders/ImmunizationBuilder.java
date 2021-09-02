@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.IMMUNIZATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -67,7 +69,7 @@ public class ImmunizationBuilder {
   private Optional<Reference> manufacturer = Optional.empty();
   private Optional<Quantity> doseQuantity = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Choice<$bslash$div<FHIRDateTime, String>> occurrence;
+  private Choice_1715923163 occurrence;
   private Optional<Boolean> primarySource = Optional.empty();
   private Optional<CodeableConcept> fundingSource = Optional.empty();
   private Optional<FHIRDate> expirationDate = Optional.empty();
@@ -93,17 +95,11 @@ public class ImmunizationBuilder {
       IMMUNIZATION_STATUS status,
       Reference patient,
       CodeableConcept vaccineCode,
-      @NonNull Object occurrence) {
+      @NonNull Choice_1715923163 occurrence) {
     this.status = status;
     this.patient = patient;
     this.vaccineCode = vaccineCode;
-    this.occurrence =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    occurrence.getClass().getSimpleName(), Immunization$.MODULE$.occurrence()),
-                occurrence,
-                Immunization$.MODULE$.occurrence());
+    this.occurrence = occurrence;
   }
 
   /**
@@ -456,34 +452,34 @@ public class ImmunizationBuilder {
 
   public Immunization build() {
     return new Immunization(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(site),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(site),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(route),
+        (Option) OptionConverters.toScala(route),
         status,
         patient,
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(recorded),
-        OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(recorded),
+        (Option) OptionConverters.toScala(location),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(lotNumber),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(lotNumber),
         identifier.stream().collect(new LitSeqJCollector<>()),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         vaccineCode,
-        OptionConverters.toScala(isSubpotent.map(x -> (Object) x)),
-        OptionConverters.toScala(statusReason),
-        OptionConverters.toScala(reportOrigin),
-        OptionConverters.toScala(manufacturer),
-        OptionConverters.toScala(doseQuantity),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(isSubpotent.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(statusReason),
+        (Option) OptionConverters.toScala(reportOrigin),
+        (Option) OptionConverters.toScala(manufacturer),
+        (Option) OptionConverters.toScala(doseQuantity),
+        (Option) OptionConverters.toScala(implicitRules),
         occurrence,
-        OptionConverters.toScala(primarySource.map(x -> (Object) x)),
-        OptionConverters.toScala(fundingSource),
-        OptionConverters.toScala(expirationDate),
+        (Option) OptionConverters.toScala(primarySource.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(fundingSource),
+        (Option) OptionConverters.toScala(expirationDate),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         subpotentReason.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

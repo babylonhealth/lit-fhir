@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.SYSTEM_RESTFUL_INTERACTION;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -132,10 +134,10 @@ public class CapabilityStatement_Rest_InteractionBuilder {
 
   public CapabilityStatement$Rest$Interaction build() {
     return new CapabilityStatement$Rest$Interaction(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         code,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(documentation),
+        (Option) OptionConverters.toScala(documentation),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

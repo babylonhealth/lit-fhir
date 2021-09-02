@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_STATUS;
 import com.babylonhealth.lit.hl7.REQUEST_INTENT;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -77,14 +80,12 @@ public class Servicerequest_geneticsBuilder {
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Optional<Identifier> requisition = Optional.empty();
   private Collection<CodeableConcept> orderDetail = Collections.emptyList();
-  private Optional<Choice<$bslash$div<$bslash$div<Quantity, Range>, Ratio>>> quantity =
-      Optional.empty();
-  private Optional<Choice> asNeeded = Optional.empty();
+  private Optional<Choice_0575082635> quantity = Optional.empty();
+  private Optional<Choice_1768247138> asNeeded = Optional.empty();
   private Optional<Boolean> doNotPerform = Optional.empty();
   private Collection<CodeableConcept> locationCode = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>>> occurrence =
-      Optional.empty();
+  private Optional<Choice00609373412> occurrence = Optional.empty();
   private Optional<CodeableConcept> performerType = Optional.empty();
   private Collection<Reference> supportingInfo = Collections.emptyList();
   private Collection<String> instantiatesUri = Collections.emptyList();
@@ -398,28 +399,8 @@ public class Servicerequest_geneticsBuilder {
    *     (2.0 to 1.8 Gy per fraction). Field is a 'choice' field. Type should be one of Quantity,
    *     Range, Ratio.
    */
-  public <T> Servicerequest_geneticsBuilder withQuantity(@NonNull T quantity) {
-    var guessedSuffix =
-        autoSuffix(
-            quantity.getClass().getSimpleName(), Servicerequest_genetics$.MODULE$.quantity());
-    return withQuantity(guessedSuffix, quantity);
-  }
-
-  /**
-   * Alternative to the 'main' withQuantity method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param quantity - The value to be passed to the builder
-   */
-  public <T> Servicerequest_geneticsBuilder withQuantity(String suffix, @NonNull T quantity) {
-    guard(quantity.getClass().getSimpleName(), suffix, Servicerequest_genetics$.MODULE$.quantity());
-    this.quantity =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, quantity, Servicerequest_genetics$.MODULE$.quantity()));
+  public Servicerequest_geneticsBuilder withQuantity(@NonNull Choice_0575082635 quantity) {
+    this.quantity = Optional.of(quantity);
     return this;
   }
   /**
@@ -427,28 +408,8 @@ public class Servicerequest_geneticsBuilder {
    *     performing the service. For example "pain", "on flare-up", etc. Field is a 'choice' field.
    *     Type should be one of Boolean, CodeableConcept.
    */
-  public <T> Servicerequest_geneticsBuilder withAsNeeded(@NonNull T asNeeded) {
-    var guessedSuffix =
-        autoSuffix(
-            asNeeded.getClass().getSimpleName(), Servicerequest_genetics$.MODULE$.asNeeded());
-    return withAsNeeded(guessedSuffix, asNeeded);
-  }
-
-  /**
-   * Alternative to the 'main' withAsNeeded method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param asNeeded - The value to be passed to the builder
-   */
-  public <T> Servicerequest_geneticsBuilder withAsNeeded(String suffix, @NonNull T asNeeded) {
-    guard(asNeeded.getClass().getSimpleName(), suffix, Servicerequest_genetics$.MODULE$.asNeeded());
-    this.asNeeded =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, asNeeded, Servicerequest_genetics$.MODULE$.asNeeded()));
+  public Servicerequest_geneticsBuilder withAsNeeded(@NonNull Choice_1768247138 asNeeded) {
+    this.asNeeded = Optional.of(asNeeded);
     return this;
   }
   /**
@@ -490,31 +451,8 @@ public class Servicerequest_geneticsBuilder {
    * @param occurrence - The date/time at which the requested service should occur. Field is a
    *     'choice' field. Type should be one of FHIRDateTime, Period, Timing.
    */
-  public <T> Servicerequest_geneticsBuilder withOccurrence(@NonNull T occurrence) {
-    var guessedSuffix =
-        autoSuffix(
-            occurrence.getClass().getSimpleName(), Servicerequest_genetics$.MODULE$.occurrence());
-    return withOccurrence(guessedSuffix, occurrence);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurrence method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurrence - The value to be passed to the builder
-   */
-  public <T> Servicerequest_geneticsBuilder withOccurrence(String suffix, @NonNull T occurrence) {
-    guard(
-        occurrence.getClass().getSimpleName(),
-        suffix,
-        Servicerequest_genetics$.MODULE$.occurrence());
-    this.occurrence =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, occurrence, Servicerequest_genetics$.MODULE$.occurrence()));
+  public Servicerequest_geneticsBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
+    this.occurrence = Optional.of(occurrence);
     return this;
   }
   /** @param performerType - Desired type of performer for doing the requested service. */
@@ -680,46 +618,46 @@ public class Servicerequest_geneticsBuilder {
 
   public Servicerequest_genetics build() {
     return new Servicerequest_genetics(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(code),
         note.stream().collect(new LitSeqJCollector<>()),
         status,
         intent,
         basedOn.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         replaces.stream().collect(new LitSeqJCollector<>()),
         category.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(priority),
         specimen.stream().collect(new LitSeqJCollector<>()),
         bodySite.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(requester),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(requester),
         performer.stream().collect(new LitSeqJCollector<>()),
         insurance.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(authoredOn),
+        (Option) OptionConverters.toScala(authoredOn),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(requisition),
+        (Option) OptionConverters.toScala(requisition),
         orderDetail.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(quantity),
         (Option) OptionConverters.toScala(asNeeded),
-        OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
         locationCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(occurrence),
-        OptionConverters.toScala(performerType),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(occurrence),
+        (Option) OptionConverters.toScala(performerType),
         supportingInfo.stream().collect(new LitSeqJCollector<>()),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         relevantHistory.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         locationReference.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(patientInstruction),
+        (Option) OptionConverters.toScala(patientInstruction),
         instantiatesCanonical.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

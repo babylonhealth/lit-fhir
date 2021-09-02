@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.PERMITTED_DATA_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -321,27 +323,27 @@ public class ObservationDefinitionBuilder {
 
   public ObservationDefinition build() {
     return new ObservationDefinition(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         code,
-        OptionConverters.toScala(method),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(method),
+        (Option) OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         permittedDataType.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(validCodedValueSet),
-        OptionConverters.toScala(preferredReportName),
-        OptionConverters.toScala(normalCodedValueSet),
-        OptionConverters.toScala(abnormalCodedValueSet),
-        OptionConverters.toScala(criticalCodedValueSet),
-        OptionConverters.toScala(multipleResultsAllowed.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(validCodedValueSet),
+        (Option) OptionConverters.toScala(preferredReportName),
+        (Option) OptionConverters.toScala(normalCodedValueSet),
+        (Option) OptionConverters.toScala(abnormalCodedValueSet),
+        (Option) OptionConverters.toScala(criticalCodedValueSet),
+        (Option) OptionConverters.toScala(multipleResultsAllowed.map(x -> (Object) x)),
         qualifiedInterval.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(quantitativeDetails),
+        (Option) OptionConverters.toScala(quantitativeDetails),
         LitUtils.emptyMetaElMap());
   }
 }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CHARGEITEM_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -63,12 +65,11 @@ public class ChargeItemBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<Reference> costCenter = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> product = Optional.empty();
+  private Optional<Choice01025009075> product = Optional.empty();
   private Optional<FHIRDateTime> enteredDate = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<String> definitionUri = Collections.emptyList();
-  private Optional<Choice<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>>> occurrence =
-      Optional.empty();
+  private Optional<Choice00609373412> occurrence = Optional.empty();
   private Optional<Money> priceOverride = Optional.empty();
   private Optional<BigDecimal> factorOverride = Optional.empty();
   private Optional<String> overrideReason = Optional.empty();
@@ -266,25 +267,8 @@ public class ChargeItemBuilder {
    *     type code or reference to an instance. Field is a 'choice' field. Type should be one of
    *     CodeableConcept, Reference.
    */
-  public <T> ChargeItemBuilder withProduct(@NonNull T product) {
-    var guessedSuffix =
-        autoSuffix(product.getClass().getSimpleName(), ChargeItem$.MODULE$.product());
-    return withProduct(guessedSuffix, product);
-  }
-
-  /**
-   * Alternative to the 'main' withProduct method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param product - The value to be passed to the builder
-   */
-  public <T> ChargeItemBuilder withProduct(String suffix, @NonNull T product) {
-    guard(product.getClass().getSimpleName(), suffix, ChargeItem$.MODULE$.product());
-    this.product =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, product, ChargeItem$.MODULE$.product()));
+  public ChargeItemBuilder withProduct(@NonNull Choice01025009075 product) {
+    this.product = Optional.of(product);
     return this;
   }
   /** @param enteredDate - Date the charge item was entered. */
@@ -322,26 +306,8 @@ public class ChargeItemBuilder {
    * @param occurrence - Date/time(s) or duration when the charged service was applied. Field is a
    *     'choice' field. Type should be one of FHIRDateTime, Period, Timing.
    */
-  public <T> ChargeItemBuilder withOccurrence(@NonNull T occurrence) {
-    var guessedSuffix =
-        autoSuffix(occurrence.getClass().getSimpleName(), ChargeItem$.MODULE$.occurrence());
-    return withOccurrence(guessedSuffix, occurrence);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurrence method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurrence - The value to be passed to the builder
-   */
-  public <T> ChargeItemBuilder withOccurrence(String suffix, @NonNull T occurrence) {
-    guard(occurrence.getClass().getSimpleName(), suffix, ChargeItem$.MODULE$.occurrence());
-    this.occurrence =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, occurrence, ChargeItem$.MODULE$.occurrence()));
+  public ChargeItemBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
+    this.occurrence = Optional.of(occurrence);
     return this;
   }
   /**
@@ -456,39 +422,39 @@ public class ChargeItemBuilder {
 
   public ChargeItem build() {
     return new ChargeItem(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         code,
         note.stream().collect(new LitSeqJCollector<>()),
         status,
         partOf.stream().collect(new LitSeqJCollector<>()),
         reason.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(context),
-        OptionConverters.toScala(enterer),
+        (Option) OptionConverters.toScala(context),
+        (Option) OptionConverters.toScala(enterer),
         service.stream().collect(new LitSeqJCollector<>()),
         account.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(quantity),
         bodysite.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(costCenter),
-        OptionConverters.toScala(product),
-        OptionConverters.toScala(enteredDate),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(costCenter),
+        (Option) OptionConverters.toScala(product),
+        (Option) OptionConverters.toScala(enteredDate),
+        (Option) OptionConverters.toScala(implicitRules),
         definitionUri.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(occurrence),
-        OptionConverters.toScala(priceOverride),
-        OptionConverters.toScala(factorOverride),
-        OptionConverters.toScala(overrideReason),
+        (Option) OptionConverters.toScala(occurrence),
+        (Option) OptionConverters.toScala(priceOverride),
+        (Option) OptionConverters.toScala(factorOverride),
+        (Option) OptionConverters.toScala(overrideReason),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         definitionCanonical.stream().collect(new LitSeqJCollector<>()),
         supportingInformation.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(performingOrganization),
-        OptionConverters.toScala(requestingOrganization),
+        (Option) OptionConverters.toScala(performingOrganization),
+        (Option) OptionConverters.toScala(requestingOrganization),
         performer.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -193,18 +195,18 @@ public class Encounter_HospitalizationBuilder {
 
   public Encounter.Hospitalization build() {
     return new Encounter.Hospitalization(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(origin),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(origin),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(admitSource),
-        OptionConverters.toScala(reAdmission),
-        OptionConverters.toScala(destination),
+        (Option) OptionConverters.toScala(admitSource),
+        (Option) OptionConverters.toScala(reAdmission),
+        (Option) OptionConverters.toScala(destination),
         dietPreference.stream().collect(new LitSeqJCollector<>()),
         specialCourtesy.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         specialArrangement.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(dischargeDisposition),
-        OptionConverters.toScala(preAdmissionIdentifier),
+        (Option) OptionConverters.toScala(dischargeDisposition),
+        (Option) OptionConverters.toScala(preAdmissionIdentifier),
         LitUtils.emptyMetaElMap());
   }
 }

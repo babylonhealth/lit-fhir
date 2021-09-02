@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -153,12 +155,12 @@ public class ExampleScenario_ProcessBuilder {
 
   public ExampleScenario.Process build() {
     return new ExampleScenario.Process(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         title,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(preConditions),
-        OptionConverters.toScala(postConditions),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(preConditions),
+        (Option) OptionConverters.toScala(postConditions),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         step.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

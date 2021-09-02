@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.BINDING_STRENGTH;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -100,11 +102,11 @@ public class ElementDefinition_BindingBuilder {
 
   public ElementDefinition.Binding build() {
     return new ElementDefinition.Binding(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         strength,
-        OptionConverters.toScala(valueSet),
+        (Option) OptionConverters.toScala(valueSet),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(description),
         LitUtils.emptyMetaElMap());
   }
 }

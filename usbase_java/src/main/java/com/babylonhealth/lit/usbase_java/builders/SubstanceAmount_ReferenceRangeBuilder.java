@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -96,10 +99,10 @@ public class SubstanceAmount_ReferenceRangeBuilder {
 
   public SubstanceAmount.ReferenceRange build() {
     return new SubstanceAmount.ReferenceRange(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(lowLimit),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(lowLimit),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(highLimit),
+        (Option) OptionConverters.toScala(highLimit),
         LitUtils.emptyMetaElMap());
   }
 }

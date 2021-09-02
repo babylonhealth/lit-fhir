@@ -205,23 +205,37 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
     }
 
     val javaClassGenInfo: Option[JavaClassGenInfo] = args.javaPackageSuffix.map { j =>
-      val bar: Seq[ClassGenInfo] = valueSetEarliestDeclarations.byPackage.flatMap { case (pkg, ps) =>
+      val codes: Seq[ClassGenInfo] = valueSetEarliestDeclarations.byPackage.flatMap { case (pkg, ps) =>
         generateCodeAliases(pkg, j, ps.toMap)
       }.toSeq
-      JavaClassGenInfo(
-        topLevelClasses.classes.toSeq.flatMap { case (o, m) =>
-          m.flatMap { case (p, k) =>
-            val javaPackageStr = (s"com.babylonhealth.lit.$p$j")
-            try genTheJavaForClass(k, javaPackageStr, p, valueSetEarliestDeclarations, args.moduleDependencies, j)
-            catch {
-              case NonFatal(ex) =>
-                log.error(s"Unable to gen Java file for $p.$o", ex)
-                Nil
-            }
+      val builders = topLevelClasses.classes.toSeq.flatMap { case (o, m) =>
+        m.flatMap { case (p, k) =>
+          val javaPackageStr = (s"com.babylonhealth.lit.$p$j")
+          try genTheJavaForClass(k, javaPackageStr, p, valueSetEarliestDeclarations, args.moduleDependencies, j)
+          catch {
+            case NonFatal(ex) =>
+              log.error(s"Unable to gen Java file for $p.$o", ex)
+              Nil
           }
-        },
-        bar
-      )
+        }
+      }
+
+      val modelsWithDefinitions =
+        ElementTreee.getUnionTypes
+          .map { case (unionName, (pkgs, unionTypes)) =>
+            (args.moduleDependencies.leastCommon(pkgs.toSet), unionName, unionTypes)
+          }
+          .groupBy(_._1)
+          .map { case (pkg, unions) => generateModelFile(pkg, j, unions.map { case (_, b, c) => b -> c }.toMap) }
+          .toSeq
+      val allPackages = topLevelClasses.classes.values.flatMap(_.keys).toSeq
+      // gen a stubby file for modules with no new union types, just to simplify imports elsewhere
+      val model = allPackages.map(pkg =>
+        modelsWithDefinitions
+          .find(_.pkg == pkg)
+          .getOrElse(generateModelFile(pkg, j, Map.empty)))
+
+      JavaClassGenInfo(builders, codes, model)
     }
 
     val typescriptClassGenInfo: Option[Seq[ClassGenInfo]] = args.typescriptDir.map { o =>
@@ -249,7 +263,7 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
     def javaOutputLocation(pkg: String): Option[String] =
       args.javaPackageSuffix.map(j => s"./$pkg$j/src/main/java/com/babylonhealth/lit/$pkg$j")
     def javaOutputLocations(pkg: String): Seq[String] =
-      javaOutputLocation(pkg).toSeq.flatMap(dir => Seq(s"$dir/builders", s"$dir/codes"))
+      javaOutputLocation(pkg).toSeq.flatMap(dir => Seq(s"$dir/builders", s"$dir/codes", s"$dir/model"))
     println("Successfully generated files")
     if (!args.dryRun) { // create the directories fresh
       scalaClassGenInfo
@@ -272,6 +286,9 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       }
       javaClassGenInfo.toSeq.flatMap(_.codes) foreach { case ClassGenInfo(fc, fileName, pkg, _) =>
         write(s"${javaOutputLocation(pkg).get}/codes/$fileName.java", fc)
+      }
+      javaClassGenInfo.toSeq.flatMap(_.model) foreach { case ClassGenInfo(fc, fileName, pkg, _) =>
+        write(s"${javaOutputLocation(pkg).get}/model/$fileName.java", fc)
       }
       if (typescriptClassGenInfo.nonEmpty) new File(args.typescriptDir.get).mkdirs()
       typescriptClassGenInfo.foreach(c =>

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -150,14 +152,14 @@ public class MolecularSequence_StructureVariantBuilder {
 
   public MolecularSequence.StructureVariant build() {
     return new MolecularSequence.StructureVariant(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(exact.map(x -> (Object) x)),
-        OptionConverters.toScala(length.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(exact.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(length.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(variantType),
+        (Option) OptionConverters.toScala(variantType),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(outer),
-        OptionConverters.toScala(inner),
+        (Option) OptionConverters.toScala(outer),
+        (Option) OptionConverters.toScala(inner),
         LitUtils.emptyMetaElMap());
   }
 }

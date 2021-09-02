@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -167,16 +169,16 @@ public class MedicationRequest_DispenseRequestBuilder {
 
   public MedicationRequest.DispenseRequest build() {
     return new MedicationRequest.DispenseRequest(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(performer),
-        OptionConverters.toScala(validityPeriod),
-        OptionConverters.toScala(dispenseInterval),
+        (Option) OptionConverters.toScala(performer),
+        (Option) OptionConverters.toScala(validityPeriod),
+        (Option) OptionConverters.toScala(dispenseInterval),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(numberOfRepeatsAllowed.map(x -> (Object) x)),
-        OptionConverters.toScala(expectedSupplyDuration),
-        OptionConverters.toScala(initialFill),
+        (Option) OptionConverters.toScala(numberOfRepeatsAllowed.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(expectedSupplyDuration),
+        (Option) OptionConverters.toScala(initialFill),
         LitUtils.emptyMetaElMap());
   }
 }

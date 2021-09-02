@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -186,13 +188,13 @@ public class ValueSet_Expansion_ContainsBuilder {
 
   public ValueSet$Expansion$Contains build() {
     return new ValueSet$Expansion$Contains(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(code),
-        OptionConverters.toScala(system),
-        OptionConverters.toScala(version),
-        OptionConverters.toScala(display),
-        OptionConverters.toScala(_abstract.map(x -> (Object) x)),
-        OptionConverters.toScala(inactive.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(code),
+        (Option) OptionConverters.toScala(system),
+        (Option) OptionConverters.toScala(version),
+        (Option) OptionConverters.toScala(display),
+        (Option) OptionConverters.toScala(_abstract.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(inactive.map(x -> (Object) x)),
         contains.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         designation.stream().collect(new LitSeqJCollector<>()),

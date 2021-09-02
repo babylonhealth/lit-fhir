@@ -36,6 +36,10 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.EVENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -76,7 +80,7 @@ public class Us_core_procedureBuilder {
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Optional<CodeableConcept> statusReason = Optional.empty();
-  private Choice<$bslash$div<FHIRDateTime, Period>> performed;
+  private Choice_0934386166 performed;
   private Collection<CodeableConcept> complication = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<Reference> usedReference = Collections.emptyList();
@@ -102,17 +106,14 @@ public class Us_core_procedureBuilder {
    *     should be one of FHIRDateTime, Period.
    */
   public Us_core_procedureBuilder(
-      CodeableConcept code, EVENT_STATUS status, Reference subject, @NonNull Object performed) {
+      CodeableConcept code,
+      EVENT_STATUS status,
+      Reference subject,
+      @NonNull Choice_0934386166 performed) {
     this.code = code;
     this.status = status;
     this.subject = subject;
-    this.performed =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    performed.getClass().getSimpleName(), Us_core_procedure$.MODULE$.performed()),
-                performed,
-                Us_core_procedure$.MODULE$.performed());
+    this.performed = performed;
   }
 
   /**
@@ -539,9 +540,9 @@ public class Us_core_procedureBuilder {
 
   public Us_core_procedure build() {
     return new Us_core_procedure(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         code,
         note.stream().collect(new LitSeqJCollector<>()),
         partOf.stream().collect(new LitSeqJCollector<>()),
@@ -549,24 +550,24 @@ public class Us_core_procedureBuilder {
         report.stream().collect(new LitSeqJCollector<>()),
         basedOn.stream().collect(new LitSeqJCollector<>()),
         subject,
-        OptionConverters.toScala(outcome),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(category),
-        OptionConverters.toScala(recorder),
-        OptionConverters.toScala(asserter),
-        OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(outcome),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(recorder),
+        (Option) OptionConverters.toScala(asserter),
+        (Option) OptionConverters.toScala(location),
         bodySite.stream().collect(new LitSeqJCollector<>()),
         followUp.stream().collect(new LitSeqJCollector<>()),
         usedCode.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(statusReason),
+        (Option) OptionConverters.toScala(statusReason),
         performed,
         complication.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(implicitRules),
         usedReference.stream().collect(new LitSeqJCollector<>()),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),
         reasonReference.stream().collect(new LitSeqJCollector<>()),

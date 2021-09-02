@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.EXPOSURE_STATE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -149,11 +151,11 @@ public class EffectEvidenceSynthesis_ResultsByExposureBuilder {
 
   public EffectEvidenceSynthesis.ResultsByExposure build() {
     return new EffectEvidenceSynthesis.ResultsByExposure(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(description),
-        OptionConverters.toScala(variantState),
-        OptionConverters.toScala(exposureState),
+        (Option) OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(variantState),
+        (Option) OptionConverters.toScala(exposureState),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         riskEvidenceSynthesis,
         LitUtils.emptyMetaElMap());

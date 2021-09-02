@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -45,7 +48,7 @@ import static java.util.stream.Collectors.toList;
 
 public class MinValueBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice value;
+  private Choice01613806391 value;
 
   /**
    * Required fields for {@link MinValue}
@@ -54,13 +57,8 @@ public class MinValueBuilder {
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
    *     field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer, LocalTime.
    */
-  public MinValueBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(value.getClass().getSimpleName(), MinValue$.MODULE$.value()),
-                value,
-                MinValue$.MODULE$.value());
+  public MinValueBuilder(@NonNull Choice01613806391 value) {
+    this.value = value;
   }
 
   /**
@@ -73,6 +71,7 @@ public class MinValueBuilder {
   }
 
   public MinValue build() {
-    return new MinValue(OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
+    return new MinValue(
+        (Option) OptionConverters.toScala(id), (Choice) value, LitUtils.emptyMetaElMap());
   }
 }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -43,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 
 public class StructureMap_Group_Rule_Target_ParameterBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice value;
+  private Choice00600764285 value;
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -55,13 +57,8 @@ public class StructureMap_Group_Rule_Target_ParameterBuilder {
    *     -- to distinguish between the specific subtype, pass $value wrapped in
    *     ParamDistinguisher.choose("foo". $value), where foo is one of: Id, String
    */
-  public StructureMap_Group_Rule_Target_ParameterBuilder(@NonNull ParamDistinguisher value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                value.suffix,
-                value.wrappedChoice,
-                StructureMap$Group$Rule$Target$Parameter$.MODULE$.value());
+  public StructureMap_Group_Rule_Target_ParameterBuilder(@NonNull Choice00600764285 value) {
+    this.value = value;
   }
 
   /**
@@ -133,7 +130,7 @@ public class StructureMap_Group_Rule_Target_ParameterBuilder {
 
   public StructureMap$Group$Rule$Target$Parameter build() {
     return new StructureMap$Group$Rule$Target$Parameter(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         (Choice) value,
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

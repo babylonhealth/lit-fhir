@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -155,12 +157,12 @@ public class TerminologyCapabilities_ExpansionBuilder {
 
   public TerminologyCapabilities.Expansion build() {
     return new TerminologyCapabilities.Expansion(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(paging.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(paging.map(x -> (Object) x)),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(incomplete.map(x -> (Object) x)),
-        OptionConverters.toScala(textFilter),
-        OptionConverters.toScala(hierarchical.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(incomplete.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(textFilter),
+        (Option) OptionConverters.toScala(hierarchical.map(x -> (Object) x)),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         parameter.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

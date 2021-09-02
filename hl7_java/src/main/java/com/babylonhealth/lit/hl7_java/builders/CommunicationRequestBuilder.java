@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
@@ -69,7 +71,7 @@ public class CommunicationRequestBuilder {
   private Optional<CodeableConcept> statusReason = Optional.empty();
   private Optional<Boolean> doNotPerform = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> occurrence = Optional.empty();
+  private Optional<Choice_0934386166> occurrence = Optional.empty();
   private Optional<Identifier> groupIdentifier = Optional.empty();
   private Collection<Reference> reasonReference = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -360,29 +362,8 @@ public class CommunicationRequestBuilder {
    * @param occurrence - The time when this communication is to occur. Field is a 'choice' field.
    *     Type should be one of FHIRDateTime, Period.
    */
-  public <T> CommunicationRequestBuilder withOccurrence(@NonNull T occurrence) {
-    var guessedSuffix =
-        autoSuffix(
-            occurrence.getClass().getSimpleName(), CommunicationRequest$.MODULE$.occurrence());
-    return withOccurrence(guessedSuffix, occurrence);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurrence method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurrence - The value to be passed to the builder
-   */
-  public <T> CommunicationRequestBuilder withOccurrence(String suffix, @NonNull T occurrence) {
-    guard(
-        occurrence.getClass().getSimpleName(), suffix, CommunicationRequest$.MODULE$.occurrence());
-    this.occurrence =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, occurrence, CommunicationRequest$.MODULE$.occurrence()));
+  public CommunicationRequestBuilder withOccurrence(@NonNull Choice_0934386166 occurrence) {
+    this.occurrence = Optional.of(occurrence);
     return this;
   }
   /**
@@ -458,33 +439,33 @@ public class CommunicationRequestBuilder {
 
   public CommunicationRequest build() {
     return new CommunicationRequest(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
         about.stream().collect(new LitSeqJCollector<>()),
         status,
         medium.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(sender),
+        (Option) OptionConverters.toScala(sender),
         basedOn.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(language),
         replaces.stream().collect(new LitSeqJCollector<>()),
         category.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(priority),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(requester),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(requester),
         recipient.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(authoredOn),
+        (Option) OptionConverters.toScala(authoredOn),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(statusReason),
-        OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(occurrence),
-        OptionConverters.toScala(groupIdentifier),
+        (Option) OptionConverters.toScala(statusReason),
+        (Option) OptionConverters.toScala(doNotPerform.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(occurrence),
+        (Option) OptionConverters.toScala(groupIdentifier),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         payload.stream().collect(new LitSeqJCollector<>()),

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -61,7 +63,7 @@ public class DeviceDefinitionBuilder {
   private Collection<CodeableConcept> languageCode = Collections.emptyList();
   private Optional<Reference> parentDevice = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<Reference, String>>> manufacturer = Optional.empty();
+  private Optional<Choice_1128709984> manufacturer = Optional.empty();
   private Collection<Choice> shelfLifeStorage = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Optional<String> onlineInformation = Optional.empty();
@@ -286,29 +288,8 @@ public class DeviceDefinitionBuilder {
    * @param manufacturer - A name of the manufacturer. Field is a 'choice' field. Type should be one
    *     of Reference, String.
    */
-  public <T> DeviceDefinitionBuilder withManufacturer(@NonNull T manufacturer) {
-    var guessedSuffix =
-        autoSuffix(
-            manufacturer.getClass().getSimpleName(), DeviceDefinition$.MODULE$.manufacturer());
-    return withManufacturer(guessedSuffix, manufacturer);
-  }
-
-  /**
-   * Alternative to the 'main' withManufacturer method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param manufacturer - The value to be passed to the builder
-   */
-  public <T> DeviceDefinitionBuilder withManufacturer(String suffix, @NonNull T manufacturer) {
-    guard(
-        manufacturer.getClass().getSimpleName(), suffix, DeviceDefinition$.MODULE$.manufacturer());
-    this.manufacturer =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, manufacturer, DeviceDefinition$.MODULE$.manufacturer()));
+  public DeviceDefinitionBuilder withManufacturer(@NonNull Choice_1128709984 manufacturer) {
+    this.manufacturer = Optional.of(manufacturer);
     return this;
   }
   /** @param shelfLifeStorage - Shelf Life and storage information. */
@@ -466,29 +447,29 @@ public class DeviceDefinitionBuilder {
 
   public DeviceDefinition build() {
     return new DeviceDefinition(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(url),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        OptionConverters.toScala(_type),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(url),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(_type),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(owner),
+        (Option) OptionConverters.toScala(owner),
         safety.stream().collect(new LitSeqJCollector<>()),
         version.stream().collect(new LitSeqJCollector<>()),
         contact.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(quantity),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(modelNumber),
+        (Option) OptionConverters.toScala(modelNumber),
         languageCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(parentDevice),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(manufacturer),
+        (Option) OptionConverters.toScala(parentDevice),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(manufacturer),
         (LitSeq) shelfLifeStorage.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(onlineInformation),
+        (Option) OptionConverters.toScala(onlineInformation),
         (Option) OptionConverters.toScala(physicalCharacteristics),
         property.stream().collect(new LitSeqJCollector<>()),
         deviceName.stream().collect(new LitSeqJCollector<>()),

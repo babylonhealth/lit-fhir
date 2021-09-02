@@ -36,6 +36,10 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ADMINISTRATIVE_GENDER;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -61,11 +65,11 @@ public class Us_core_patientBuilder {
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<FHIRDate> birthDate = Optional.empty();
-  private Optional<Choice> deceased = Optional.empty();
+  private Optional<Choice_2131715935> deceased = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Optional<CodeableConcept> maritalStatus = Optional.empty();
   private Collection<HumanName> name;
-  private Optional<Choice> multipleBirth = Optional.empty();
+  private Optional<Choice02065782851> multipleBirth = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<ContactPoint> telecom = Collections.emptyList();
   private Collection<Address> address = Collections.emptyList();
@@ -183,26 +187,8 @@ public class Us_core_patientBuilder {
    * @param deceased - Indicates if the individual is deceased or not. Field is a 'choice' field.
    *     Type should be one of Boolean, FHIRDateTime.
    */
-  public <T> Us_core_patientBuilder withDeceased(@NonNull T deceased) {
-    var guessedSuffix =
-        autoSuffix(deceased.getClass().getSimpleName(), Us_core_patient$.MODULE$.deceased());
-    return withDeceased(guessedSuffix, deceased);
-  }
-
-  /**
-   * Alternative to the 'main' withDeceased method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param deceased - The value to be passed to the builder
-   */
-  public <T> Us_core_patientBuilder withDeceased(String suffix, @NonNull T deceased) {
-    guard(deceased.getClass().getSimpleName(), suffix, Us_core_patient$.MODULE$.deceased());
-    this.deceased =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, deceased, Us_core_patient$.MODULE$.deceased()));
+  public Us_core_patientBuilder withDeceased(@NonNull Choice_2131715935 deceased) {
+    this.deceased = Optional.of(deceased);
     return this;
   }
   /**
@@ -225,29 +211,8 @@ public class Us_core_patientBuilder {
    *     indicates the actual birth order (integer). Field is a 'choice' field. Type should be one
    *     of Boolean, Integer.
    */
-  public <T> Us_core_patientBuilder withMultipleBirth(@NonNull T multipleBirth) {
-    var guessedSuffix =
-        autoSuffix(
-            multipleBirth.getClass().getSimpleName(), Us_core_patient$.MODULE$.multipleBirth());
-    return withMultipleBirth(guessedSuffix, multipleBirth);
-  }
-
-  /**
-   * Alternative to the 'main' withMultipleBirth method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param multipleBirth - The value to be passed to the builder
-   */
-  public <T> Us_core_patientBuilder withMultipleBirth(String suffix, @NonNull T multipleBirth) {
-    guard(
-        multipleBirth.getClass().getSimpleName(), suffix, Us_core_patient$.MODULE$.multipleBirth());
-    this.multipleBirth =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, multipleBirth, Us_core_patient$.MODULE$.multipleBirth()));
+  public Us_core_patientBuilder withMultipleBirth(@NonNull Choice02065782851 multipleBirth) {
+    this.multipleBirth = Optional.of(multipleBirth);
     return this;
   }
   /**
@@ -370,19 +335,19 @@ public class Us_core_patientBuilder {
 
   public Us_core_patient build() {
     return new Us_core_patient(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         photo.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(active.map(x -> (Object) x)),
+        (Option) OptionConverters.toScala(active.map(x -> (Object) x)),
         gender,
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(birthDate),
+        (Option) OptionConverters.toScala(birthDate),
         (Option) OptionConverters.toScala(deceased),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(maritalStatus),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(maritalStatus),
         name.stream().collect(new NonEmptyLitSeqJCollector<>()),
         (Option) OptionConverters.toScala(multipleBirth),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
@@ -390,7 +355,7 @@ public class Us_core_patientBuilder {
         address.stream().collect(new LitSeqJCollector<>()),
         generalPractitioner.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        OptionConverters.toScala(managingOrganization),
+        (Option) OptionConverters.toScala(managingOrganization),
         link.stream().collect(new LitSeqJCollector<>()),
         contact.stream().collect(new LitSeqJCollector<>()),
         communication.stream().collect(new LitSeqJCollector<>()),

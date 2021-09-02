@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -58,9 +60,8 @@ public class ExplanationOfBenefit_ItemBuilder {
   private Collection<Reference> encounter = Collections.emptyList();
   private Collection<Integer> noteNumber = Collections.emptyList();
   private Collection<CodeableConcept> programCode = Collections.emptyList();
-  private Optional<Choice<$bslash$div<FHIRDate, Period>>> serviced = Optional.empty();
-  private Optional<Choice<$bslash$div<$bslash$div<Address, CodeableConcept>, Reference>>> location =
-      Optional.empty();
+  private Optional<Choice_0503196159> serviced = Optional.empty();
+  private Optional<Choice_0316522316> location = Optional.empty();
   private Collection<Integer> careTeamSequence = Collections.emptyList();
   private CodeableConcept productOrService;
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -210,58 +211,16 @@ public class ExplanationOfBenefit_ItemBuilder {
     return this;
   }
   /** @param serviced Field is a 'choice' field. Type should be one of FHIRDate, Period. */
-  public <T> ExplanationOfBenefit_ItemBuilder withServiced(@NonNull T serviced) {
-    var guessedSuffix =
-        autoSuffix(
-            serviced.getClass().getSimpleName(), ExplanationOfBenefit.Item$.MODULE$.serviced());
-    return withServiced(guessedSuffix, serviced);
-  }
-
-  /**
-   * Alternative to the 'main' withServiced method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param serviced - The value to be passed to the builder
-   */
-  public <T> ExplanationOfBenefit_ItemBuilder withServiced(String suffix, @NonNull T serviced) {
-    guard(
-        serviced.getClass().getSimpleName(), suffix, ExplanationOfBenefit.Item$.MODULE$.serviced());
-    this.serviced =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, serviced, ExplanationOfBenefit.Item$.MODULE$.serviced()));
+  public ExplanationOfBenefit_ItemBuilder withServiced(@NonNull Choice_0503196159 serviced) {
+    this.serviced = Optional.of(serviced);
     return this;
   }
   /**
    * @param location Field is a 'choice' field. Type should be one of Address, CodeableConcept,
    *     Reference.
    */
-  public <T> ExplanationOfBenefit_ItemBuilder withLocation(@NonNull T location) {
-    var guessedSuffix =
-        autoSuffix(
-            location.getClass().getSimpleName(), ExplanationOfBenefit.Item$.MODULE$.location());
-    return withLocation(guessedSuffix, location);
-  }
-
-  /**
-   * Alternative to the 'main' withLocation method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param location - The value to be passed to the builder
-   */
-  public <T> ExplanationOfBenefit_ItemBuilder withLocation(String suffix, @NonNull T location) {
-    guard(
-        location.getClass().getSimpleName(), suffix, ExplanationOfBenefit.Item$.MODULE$.location());
-    this.location =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, location, ExplanationOfBenefit.Item$.MODULE$.location()));
+  public ExplanationOfBenefit_ItemBuilder withLocation(@NonNull Choice_0316522316 location) {
+    this.location = Optional.of(location);
     return this;
   }
   /** @param careTeamSequence */
@@ -379,19 +338,19 @@ public class ExplanationOfBenefit_ItemBuilder {
 
   public ExplanationOfBenefit.Item build() {
     return new ExplanationOfBenefit.Item(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(net),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(net),
         udi.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(factor),
-        OptionConverters.toScala(revenue),
+        (Option) OptionConverters.toScala(factor),
+        (Option) OptionConverters.toScala(revenue),
         subSite.stream().collect(new LitSeqJCollector<>()),
         sequence,
-        OptionConverters.toScala(category),
+        (Option) OptionConverters.toScala(category),
         modifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(quantity),
-        OptionConverters.toScala(bodySite),
+        (Option) OptionConverters.toScala(quantity),
+        (Option) OptionConverters.toScala(bodySite),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(unitPrice),
+        (Option) OptionConverters.toScala(unitPrice),
         encounter.stream().collect(new LitSeqJCollector<>()),
         noteNumber.stream()
             .map(x -> (Object) x)
@@ -399,8 +358,8 @@ public class ExplanationOfBenefit_ItemBuilder {
             .stream()
             .collect(new LitSeqJCollector<>()),
         programCode.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(serviced),
-        OptionConverters.toScala(location),
+        (Option) OptionConverters.toScala(serviced),
+        (Option) OptionConverters.toScala(location),
         careTeamSequence.stream()
             .map(x -> (Object) x)
             .collect(Collectors.toList())

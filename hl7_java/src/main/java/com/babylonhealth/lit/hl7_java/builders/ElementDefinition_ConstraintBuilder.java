@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CONSTRAINT_SEVERITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -124,15 +126,15 @@ public class ElementDefinition_ConstraintBuilder {
 
   public ElementDefinition.Constraint build() {
     return new ElementDefinition.Constraint(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         key,
         human,
-        OptionConverters.toScala(xpath),
-        OptionConverters.toScala(source),
+        (Option) OptionConverters.toScala(xpath),
+        (Option) OptionConverters.toScala(source),
         severity,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(expression),
-        OptionConverters.toScala(requirements),
+        (Option) OptionConverters.toScala(expression),
+        (Option) OptionConverters.toScala(requirements),
         LitUtils.emptyMetaElMap());
   }
 }

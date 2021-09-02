@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DISCRIMINATOR_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -94,7 +96,7 @@ public class ElementDefinition_Slicing_DiscriminatorBuilder {
 
   public ElementDefinition$Slicing$Discriminator build() {
     return new ElementDefinition$Slicing$Discriminator(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         _type,
         path,
         extension.stream().collect(new LitSeqJCollector<>()),

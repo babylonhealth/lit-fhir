@@ -34,6 +34,9 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
@@ -242,19 +245,19 @@ public class ProdCharacteristicBuilder {
 
   public ProdCharacteristic build() {
     return new ProdCharacteristic(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(width),
-        OptionConverters.toScala(depth),
-        OptionConverters.toScala(shape),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(width),
+        (Option) OptionConverters.toScala(depth),
+        (Option) OptionConverters.toScala(shape),
         color.stream().collect(new LitSeqJCollector<>()),
         image.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(height),
-        OptionConverters.toScala(weight),
+        (Option) OptionConverters.toScala(height),
+        (Option) OptionConverters.toScala(weight),
         imprint.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(scoring),
+        (Option) OptionConverters.toScala(scoring),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(nominalVolume),
-        OptionConverters.toScala(externalDiameter),
+        (Option) OptionConverters.toScala(nominalVolume),
+        (Option) OptionConverters.toScala(externalDiameter),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_STATUS;
 import com.babylonhealth.lit.hl7.REQUEST_INTENT;
 import com.babylonhealth.lit.core.LANGUAGES;
@@ -52,7 +54,7 @@ public class DeviceRequestBuilder {
   private Optional<REQUEST_STATUS> status = Optional.empty();
   private REQUEST_INTENT intent;
   private Collection<Reference> basedOn = Collections.emptyList();
-  private Choice<$bslash$div<CodeableConcept, Reference>> code;
+  private Choice01025009075 code;
   private Reference subject;
   private Optional<LANGUAGES> language = Optional.empty();
   private Optional<REQUEST_PRIORITY> priority = Optional.empty();
@@ -67,8 +69,7 @@ public class DeviceRequestBuilder {
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Collection<Reference> priorRequest = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>>> occurrence =
-      Optional.empty();
+  private Optional<Choice00609373412> occurrence = Optional.empty();
   private Optional<CodeableConcept> performerType = Optional.empty();
   private Collection<Reference> supportingInfo = Collections.emptyList();
   private Collection<String> instantiatesUri = Collections.emptyList();
@@ -87,14 +88,10 @@ public class DeviceRequestBuilder {
    *     one of CodeableConcept, Reference.
    * @param subject - The patient who will use the device.
    */
-  public DeviceRequestBuilder(REQUEST_INTENT intent, @NonNull Object code, Reference subject) {
+  public DeviceRequestBuilder(
+      REQUEST_INTENT intent, @NonNull Choice01025009075 code, Reference subject) {
     this.intent = intent;
-    this.code =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(code.getClass().getSimpleName(), DeviceRequest$.MODULE$.code()),
-                code,
-                DeviceRequest$.MODULE$.code());
+    this.code = code;
     this.subject = subject;
   }
 
@@ -305,27 +302,8 @@ public class DeviceRequestBuilder {
    *     an hour before breakfast for 10 days from 23-Dec 2011:"; "15 Oct 2013, 17 Oct 2013 and 1
    *     Nov 2013". Field is a 'choice' field. Type should be one of FHIRDateTime, Period, Timing.
    */
-  public <T> DeviceRequestBuilder withOccurrence(@NonNull T occurrence) {
-    var guessedSuffix =
-        autoSuffix(occurrence.getClass().getSimpleName(), DeviceRequest$.MODULE$.occurrence());
-    return withOccurrence(guessedSuffix, occurrence);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurrence method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurrence - The value to be passed to the builder
-   */
-  public <T> DeviceRequestBuilder withOccurrence(String suffix, @NonNull T occurrence) {
-    guard(occurrence.getClass().getSimpleName(), suffix, DeviceRequest$.MODULE$.occurrence());
-    this.occurrence =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, occurrence, DeviceRequest$.MODULE$.occurrence()));
+  public DeviceRequestBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
+    this.occurrence = Optional.of(occurrence);
     return this;
   }
   /** @param performerType - Desired type of performer for doing the diagnostic testing. */
@@ -467,33 +445,33 @@ public class DeviceRequestBuilder {
 
   public DeviceRequest build() {
     return new DeviceRequest(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         note.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(status),
         intent,
         basedOn.stream().collect(new LitSeqJCollector<>()),
         code,
         subject,
-        OptionConverters.toScala(language),
-        OptionConverters.toScala(priority),
+        (Option) OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(priority),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(requester),
-        OptionConverters.toScala(performer),
+        (Option) OptionConverters.toScala(encounter),
+        (Option) OptionConverters.toScala(requester),
+        (Option) OptionConverters.toScala(performer),
         insurance.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(authoredOn),
+        (Option) OptionConverters.toScala(authoredOn),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         priorRequest.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(occurrence),
-        OptionConverters.toScala(performerType),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(occurrence),
+        (Option) OptionConverters.toScala(performerType),
         supportingInfo.stream().collect(new LitSeqJCollector<>()),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(groupIdentifier),
+        (Option) OptionConverters.toScala(groupIdentifier),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         relevantHistory.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

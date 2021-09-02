@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.GRAPH_COMPARTMENT_USE;
 import com.babylonhealth.lit.hl7.COMPARTMENT_TYPE;
 import com.babylonhealth.lit.hl7.GRAPH_COMPARTMENT_RULE;
@@ -150,13 +152,13 @@ public class GraphDefinition_Link_Target_CompartmentBuilder {
 
   public GraphDefinition$Link$Target$Compartment build() {
     return new GraphDefinition$Link$Target$Compartment(
-        OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(id),
         use,
         code,
         rule,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(expression),
-        OptionConverters.toScala(description),
+        (Option) OptionConverters.toScala(expression),
+        (Option) OptionConverters.toScala(description),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

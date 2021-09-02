@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
@@ -339,24 +341,24 @@ public class InsurancePlanBuilder {
 
   public InsurancePlan build() {
     return new InsurancePlan(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
+        (Option) OptionConverters.toScala(id),
+        (Option) OptionConverters.toScala(meta),
+        (Option) OptionConverters.toScala(text),
         _type.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(name),
+        (Option) OptionConverters.toScala(name),
         alias.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(status),
-        OptionConverters.toScala(period),
-        OptionConverters.toScala(ownedBy),
+        (Option) OptionConverters.toScala(status),
+        (Option) OptionConverters.toScala(period),
+        (Option) OptionConverters.toScala(ownedBy),
         network.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(language),
+        (Option) OptionConverters.toScala(language),
         endpoint.stream().collect(new LitSeqJCollector<>()),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         coverageArea.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(administeredBy),
+        (Option) OptionConverters.toScala(implicitRules),
+        (Option) OptionConverters.toScala(administeredBy),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         contact.stream().collect(new LitSeqJCollector<>()),
         coverage.stream().collect(new LitSeqJCollector<>()),
