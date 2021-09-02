@@ -142,7 +142,7 @@ trait JavaGenerator extends Commonish {
     def genOptionalFieldAppenders(optionalFields: Seq[BaseField], builderName: String, targetClassName: String): String =
       optionalFields
         .map { f =>
-          val javaDoc =
+          val javaDoc: String =
             s"""  /**
                |  * ${paramStr(f, isRequired = false)}
                |  */
