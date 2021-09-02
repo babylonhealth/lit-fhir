@@ -147,22 +147,22 @@ trait JavaGenerator extends Commonish {
                |  * ${paramStr(f, isRequired = false)}
                |  */
                |""".stripMargin
-            s"""${javaDoc}public $builderName with${f.capitalName}(@NonNull ${toBuilderMutatorType(f, wrapInOptional = false)} ${f.javaName}) {
-               |  this.${f.javaName} = ${f.cardinality.wrapJavaValue(f.javaName)};
-               |  return this;
-               |}""".stripMargin +
-            // For list types, include a second with method which takes a Collection
-            (if (f.cardinality.max > 1) {
-               s"""\n${javaDoc}public $builderName with${f.capitalName}(@NonNull ${toBuilderMutatorType(
-                 f,
-                 wrapInOptional = false,
-                 asCollection = true)} ${f.javaName}) {
-                  |  this.${f.javaName} = Collections.unmodifiableCollection(${f.javaName});
-                  |  return this;
-                  |}""".stripMargin
-             } else {
-               ""
-             })
+          s"""${javaDoc}public $builderName with${f.capitalName}(@NonNull ${toBuilderMutatorType(f, wrapInOptional = false)} ${f.javaName}) {
+             |  this.${f.javaName} = ${f.cardinality.wrapJavaValue(f.javaName)};
+             |  return this;
+             |}""".stripMargin +
+          // For list types, include a second with method which takes a Collection
+          (if (f.cardinality.max > 1) {
+             s"""\n${javaDoc}public $builderName with${f.capitalName}(@NonNull ${toBuilderMutatorType(
+               f,
+               wrapInOptional = false,
+               asCollection = true)} ${f.javaName}) {
+                |  this.${f.javaName} = Collections.unmodifiableCollection(${f.javaName});
+                |  return this;
+                |}""".stripMargin
+           } else {
+             ""
+           })
         }
         .mkString("\n")
 
