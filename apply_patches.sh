@@ -13,6 +13,5 @@ patch core/src/main/scala/com/babylonhealth/lit/core/model/Resource.scala resour
 patch core/src/main/scala/com/babylonhealth/lit/core/model/Extension.scala Extension.scala.patch
 rm -f hl7/src/main/scala/com/babylonhealth/lit/hl7/model/Bundle.scala.orig \
 core/src/main/scala/com/babylonhealth/lit/core/model/Resource.scala.orig \
-core/src/main/scala/com/babylonhealth/lit/core/model/Extension.scala.orig \
-uscore_java/src/main/java/com/babylonhealth/lit/uscore_java/builders/Us_core_smokingstatusBuilder.java
+core/src/main/scala/com/babylonhealth/lit/core/model/Extension.scala.orig
 find . -name '*.scala' | xargs grep -l '\r' | xargs perl -pi.to_del -e 's/\r/ /g' && find . -name '*.to_del' -exec rm -rf {} \;
