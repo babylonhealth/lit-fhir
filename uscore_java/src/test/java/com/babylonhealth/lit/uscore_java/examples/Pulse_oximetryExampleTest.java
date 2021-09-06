@@ -44,7 +44,7 @@ public class Pulse_oximetryExampleTest {
                               .withCode("vital-signs")
                               .build())
                       .build()),
-              new Unions.Choice_0934386166(time),
+              Us_core_pulse_oximetryBuilder.effective(time),
               new CodeableConceptBuilder()
                   .withCoding(
                       new CodingBuilder().withSystem("http://loinc.org").withCode("2708-6").build(),
