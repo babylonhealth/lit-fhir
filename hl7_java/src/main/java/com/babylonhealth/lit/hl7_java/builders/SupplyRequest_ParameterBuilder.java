@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -52,6 +51,22 @@ public class SupplyRequest_ParameterBuilder {
 
   /** Required fields for {@link SupplyRequest.Parameter} */
   public SupplyRequest_ParameterBuilder() {}
+
+  public static Choice_1516277229 value(Boolean b) {
+    return new Choice_1516277229(b);
+  }
+
+  public static Choice_1516277229 value(CodeableConcept c) {
+    return new Choice_1516277229(c);
+  }
+
+  public static Choice_1516277229 value(Quantity q) {
+    return new Choice_1516277229(q);
+  }
+
+  public static Choice_1516277229 value(Range r) {
+    return new Choice_1516277229(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -68,7 +83,8 @@ public class SupplyRequest_ParameterBuilder {
   }
   /**
    * @param value Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
-   *     Quantity, Range.
+   *     Quantity, Range. To pass the value in, wrap with one of the
+   *     SupplyRequest_ParameterBuilder.value static methods
    */
   public SupplyRequest_ParameterBuilder withValue(@NonNull Choice_1516277229 value) {
     this.value = Optional.of(value);

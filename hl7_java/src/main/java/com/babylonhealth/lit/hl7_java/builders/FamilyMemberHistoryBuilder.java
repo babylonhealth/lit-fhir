@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.HISTORY_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -86,6 +85,50 @@ public class FamilyMemberHistoryBuilder {
     this.status = status;
     this.patient = patient;
     this.relationship = relationship;
+  }
+
+  public static Choice_1507098327 age(Age a) {
+    return new Choice_1507098327(a);
+  }
+
+  public static Choice_1507098327 age(Range r) {
+    return new Choice_1507098327(r);
+  }
+
+  public static Choice_1507098327 age(String s) {
+    return new Choice_1507098327(s);
+  }
+
+  public static Choice01486281057 born(FHIRDate f) {
+    return new Choice01486281057(f);
+  }
+
+  public static Choice01486281057 born(Period p) {
+    return new Choice01486281057(p);
+  }
+
+  public static Choice01486281057 born(String s) {
+    return new Choice01486281057(s);
+  }
+
+  public static Choice_0966801288 deceased(Age a) {
+    return new Choice_0966801288(a);
+  }
+
+  public static Choice_0966801288 deceased(Boolean b) {
+    return new Choice_0966801288(b);
+  }
+
+  public static Choice_0966801288 deceased(FHIRDate f) {
+    return new Choice_0966801288(f);
+  }
+
+  public static Choice_0966801288 deceased(Range r) {
+    return new Choice_0966801288(r);
+  }
+
+  public static Choice_0966801288 deceased(String s) {
+    return new Choice_0966801288(s);
   }
 
   /**
@@ -157,7 +200,8 @@ public class FamilyMemberHistoryBuilder {
   }
   /**
    * @param age - The age of the relative at the time the family member history is recorded. Field
-   *     is a 'choice' field. Type should be one of Age, Range, String.
+   *     is a 'choice' field. Type should be one of Age, Range, String. To pass the value in, wrap
+   *     with one of the FamilyMemberHistoryBuilder.age static methods
    */
   public FamilyMemberHistoryBuilder withAge(@NonNull Choice_1507098327 age) {
     this.age = Optional.of(age);
@@ -165,7 +209,8 @@ public class FamilyMemberHistoryBuilder {
   }
   /**
    * @param born - The actual or approximate date of birth of the relative. Field is a 'choice'
-   *     field. Type should be one of FHIRDate, Period, String.
+   *     field. Type should be one of FHIRDate, Period, String. To pass the value in, wrap with one
+   *     of the FamilyMemberHistoryBuilder.born static methods
    */
   public FamilyMemberHistoryBuilder withBorn(@NonNull Choice01486281057 born) {
     this.born = Optional.of(born);
@@ -252,7 +297,8 @@ public class FamilyMemberHistoryBuilder {
   /**
    * @param deceased - Deceased flag or the actual or approximate age of the relative at the time of
    *     death for the family member history record. Field is a 'choice' field. Type should be one
-   *     of Age, Boolean, FHIRDate, Range, String.
+   *     of Age, Boolean, FHIRDate, Range, String. To pass the value in, wrap with one of the
+   *     FamilyMemberHistoryBuilder.deceased static methods
    */
   public FamilyMemberHistoryBuilder withDeceased(@NonNull Choice_0966801288 deceased) {
     this.deceased = Optional.of(deceased);

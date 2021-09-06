@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -51,6 +50,14 @@ public class CoverageEligibilityRequest_Item_DiagnosisBuilder {
 
   /** Required fields for {@link CoverageEligibilityRequest$Item$Diagnosis} */
   public CoverageEligibilityRequest_Item_DiagnosisBuilder() {}
+
+  public static Choice01025009075 diagnosis(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 diagnosis(Reference r) {
+    return new Choice01025009075(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -86,6 +93,8 @@ public class CoverageEligibilityRequest_Item_DiagnosisBuilder {
   }
   /**
    * @param diagnosis Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     To pass the value in, wrap with one of the
+   *     CoverageEligibilityRequest_Item_DiagnosisBuilder.diagnosis static methods
    */
   public CoverageEligibilityRequest_Item_DiagnosisBuilder withDiagnosis(
       @NonNull Choice01025009075 diagnosis) {

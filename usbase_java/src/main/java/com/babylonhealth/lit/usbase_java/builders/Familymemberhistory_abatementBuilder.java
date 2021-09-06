@@ -40,7 +40,6 @@ import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -55,10 +54,23 @@ public class Familymemberhistory_abatementBuilder {
    *
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of Age, Boolean, FHIRDate.
+   *     field. Type should be one of Age, Boolean, FHIRDate. To pass the value in, wrap with one of
+   *     the Familymemberhistory_abatementBuilder.value static methods
    */
   public Familymemberhistory_abatementBuilder(@NonNull Choice00813350082 value) {
     this.value = value;
+  }
+
+  public static Choice00813350082 value(Age a) {
+    return new Choice00813350082(a);
+  }
+
+  public static Choice00813350082 value(Boolean b) {
+    return new Choice00813350082(b);
+  }
+
+  public static Choice00813350082 value(FHIRDate f) {
+    return new Choice00813350082(f);
   }
 
   /**

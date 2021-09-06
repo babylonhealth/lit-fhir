@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -53,6 +52,18 @@ public class PlanDefinition_Goal_TargetBuilder {
 
   /** Required fields for {@link PlanDefinition$Goal$Target} */
   public PlanDefinition_Goal_TargetBuilder() {}
+
+  public static Choice01560785079 detail(CodeableConcept c) {
+    return new Choice01560785079(c);
+  }
+
+  public static Choice01560785079 detail(Quantity q) {
+    return new Choice01560785079(q);
+  }
+
+  public static Choice01560785079 detail(Range r) {
+    return new Choice01560785079(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -96,7 +107,8 @@ public class PlanDefinition_Goal_TargetBuilder {
   }
   /**
    * @param detail Field is a 'choice' field. Type should be one of CodeableConcept, Quantity,
-   *     Range.
+   *     Range. To pass the value in, wrap with one of the PlanDefinition_Goal_TargetBuilder.detail
+   *     static methods
    */
   public PlanDefinition_Goal_TargetBuilder withDetail(@NonNull Choice01560785079 detail) {
     this.detail = Optional.of(detail);

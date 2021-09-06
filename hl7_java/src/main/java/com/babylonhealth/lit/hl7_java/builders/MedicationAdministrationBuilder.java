@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.MEDICATION_ADMIN_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -83,11 +82,13 @@ public class MedicationAdministrationBuilder {
    * @param effective - A specific date/time or interval of time during which the administration
    *     took place (or did not take place, when the 'notGiven' attribute is true). For many
    *     administrations, such as swallowing a tablet the use of dateTime is more appropriate. Field
-   *     is a 'choice' field. Type should be one of FHIRDateTime, Period.
+   *     is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap
+   *     with one of the MedicationAdministrationBuilder.effective static methods
    * @param medication - Identifies the medication that was administered. This is either a link to a
    *     resource representing the details of the medication or a simple attribute carrying a code
    *     that identifies the medication from a known list of medications. Field is a 'choice' field.
-   *     Type should be one of CodeableConcept, Reference.
+   *     Type should be one of CodeableConcept, Reference. To pass the value in, wrap with one of
+   *     the MedicationAdministrationBuilder.medication static methods
    */
   public MedicationAdministrationBuilder(
       MEDICATION_ADMIN_STATUS status,
@@ -98,6 +99,22 @@ public class MedicationAdministrationBuilder {
     this.subject = subject;
     this.effective = effective;
     this.medication = medication;
+  }
+
+  public static Choice_0934386166 effective(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 effective(Period p) {
+    return new Choice_0934386166(p);
+  }
+
+  public static Choice01025009075 medication(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 medication(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**

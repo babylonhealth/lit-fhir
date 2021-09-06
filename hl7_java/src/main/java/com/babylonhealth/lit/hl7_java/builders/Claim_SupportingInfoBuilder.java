@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -65,6 +64,34 @@ public class Claim_SupportingInfoBuilder {
     this.category = category;
   }
 
+  public static Choice_0543144563 value(Attachment a) {
+    return new Choice_0543144563(a);
+  }
+
+  public static Choice_0543144563 value(Boolean b) {
+    return new Choice_0543144563(b);
+  }
+
+  public static Choice_0543144563 value(Quantity q) {
+    return new Choice_0543144563(q);
+  }
+
+  public static Choice_0543144563 value(Reference r) {
+    return new Choice_0543144563(r);
+  }
+
+  public static Choice_0543144563 value(String s) {
+    return new Choice_0543144563(s);
+  }
+
+  public static Choice_0503196159 timing(FHIRDate f) {
+    return new Choice_0503196159(f);
+  }
+
+  public static Choice_0503196159 timing(Period p) {
+    return new Choice_0503196159(p);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -85,7 +112,8 @@ public class Claim_SupportingInfoBuilder {
   }
   /**
    * @param value Field is a 'choice' field. Type should be one of Attachment, Boolean, Quantity,
-   *     Reference, String.
+   *     Reference, String. To pass the value in, wrap with one of the
+   *     Claim_SupportingInfoBuilder.value static methods
    */
   public Claim_SupportingInfoBuilder withValue(@NonNull Choice_0543144563 value) {
     this.value = Optional.of(value);
@@ -113,7 +141,10 @@ public class Claim_SupportingInfoBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param timing Field is a 'choice' field. Type should be one of FHIRDate, Period. */
+  /**
+   * @param timing Field is a 'choice' field. Type should be one of FHIRDate, Period. To pass the
+   *     value in, wrap with one of the Claim_SupportingInfoBuilder.timing static methods
+   */
   public Claim_SupportingInfoBuilder withTiming(@NonNull Choice_0503196159 timing) {
     this.timing = Optional.of(timing);
     return this;

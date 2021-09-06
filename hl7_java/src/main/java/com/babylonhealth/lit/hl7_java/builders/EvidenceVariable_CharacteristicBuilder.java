@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.GROUP_MEASURE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -59,10 +58,51 @@ public class EvidenceVariable_CharacteristicBuilder {
    * Required fields for {@link EvidenceVariable.Characteristic}
    *
    * @param definition Field is a 'choice' field. Type should be one of String, CodeableConcept,
-   *     DataRequirement, Expression, Reference, TriggerDefinition.
+   *     DataRequirement, Expression, Reference, TriggerDefinition. To pass the value in, wrap with
+   *     one of the EvidenceVariable_CharacteristicBuilder.definition static methods
    */
   public EvidenceVariable_CharacteristicBuilder(@NonNull Choice_0358050020 definition) {
     this.definition = definition;
+  }
+
+  public static Choice_0358050020 definition(String s) {
+    return new Choice_0358050020(s);
+  }
+
+  public static Choice_0358050020 definition(CodeableConcept c) {
+    return new Choice_0358050020(c);
+  }
+
+  public static Choice_0358050020 definition(DataRequirement d) {
+    return new Choice_0358050020(d);
+  }
+
+  public static Choice_0358050020 definition(Expression e) {
+    return new Choice_0358050020(e);
+  }
+
+  public static Choice_0358050020 definition(Reference r) {
+    return new Choice_0358050020(r);
+  }
+
+  public static Choice_0358050020 definition(TriggerDefinition t) {
+    return new Choice_0358050020(t);
+  }
+
+  public static Choice00607514014 participantEffective(Duration d) {
+    return new Choice00607514014(d);
+  }
+
+  public static Choice00607514014 participantEffective(FHIRDateTime f) {
+    return new Choice00607514014(f);
+  }
+
+  public static Choice00607514014 participantEffective(Period p) {
+    return new Choice00607514014(p);
+  }
+
+  public static Choice00607514014 participantEffective(Timing t) {
+    return new Choice00607514014(t);
   }
 
   /**
@@ -168,7 +208,8 @@ public class EvidenceVariable_CharacteristicBuilder {
   }
   /**
    * @param participantEffective Field is a 'choice' field. Type should be one of Duration,
-   *     FHIRDateTime, Period, Timing.
+   *     FHIRDateTime, Period, Timing. To pass the value in, wrap with one of the
+   *     EvidenceVariable_CharacteristicBuilder.participantEffective static methods
    */
   public EvidenceVariable_CharacteristicBuilder withParticipantEffective(
       @NonNull Choice00607514014 participantEffective) {

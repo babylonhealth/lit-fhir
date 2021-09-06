@@ -44,7 +44,6 @@ import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -156,6 +155,46 @@ public class ShareableactivitydefinitionBuilder {
     this.publisher = publisher;
     this.description = description;
     this.experimental = experimental;
+  }
+
+  public static Choice_0181779868 timing(Age a) {
+    return new Choice_0181779868(a);
+  }
+
+  public static Choice_0181779868 timing(Duration d) {
+    return new Choice_0181779868(d);
+  }
+
+  public static Choice_0181779868 timing(FHIRDateTime f) {
+    return new Choice_0181779868(f);
+  }
+
+  public static Choice_0181779868 timing(Period p) {
+    return new Choice_0181779868(p);
+  }
+
+  public static Choice_0181779868 timing(Range r) {
+    return new Choice_0181779868(r);
+  }
+
+  public static Choice_0181779868 timing(Timing t) {
+    return new Choice_0181779868(t);
+  }
+
+  public static Choice01025009075 subject(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 subject(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice01025009075 product(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 product(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -488,7 +527,8 @@ public class ShareableactivitydefinitionBuilder {
   /**
    * @param timing - The period, timing or frequency upon which the described activity is to occur.
    *     Field is a 'choice' field. Type should be one of Age, Duration, FHIRDateTime, Period,
-   *     Range, Timing.
+   *     Range, Timing. To pass the value in, wrap with one of the
+   *     ShareableactivitydefinitionBuilder.timing static methods
    */
   public ShareableactivitydefinitionBuilder withTiming(@NonNull Choice_0181779868 timing) {
     this.timing = Optional.of(timing);
@@ -524,6 +564,8 @@ public class ShareableactivitydefinitionBuilder {
   /**
    * @param subject - A code or group definition that describes the intended subject of the activity
    *     being defined. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     To pass the value in, wrap with one of the ShareableactivitydefinitionBuilder.subject
+   *     static methods
    */
   public ShareableactivitydefinitionBuilder withSubject(@NonNull Choice01025009075 subject) {
     this.subject = Optional.of(subject);
@@ -552,7 +594,9 @@ public class ShareableactivitydefinitionBuilder {
   }
   /**
    * @param product - Identifies the food, drug or other product being consumed or supplied in the
-   *     activity. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     activity. Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the ShareableactivitydefinitionBuilder.product static
+   *     methods
    */
   public ShareableactivitydefinitionBuilder withProduct(@NonNull Choice01025009075 product) {
     this.product = Optional.of(product);

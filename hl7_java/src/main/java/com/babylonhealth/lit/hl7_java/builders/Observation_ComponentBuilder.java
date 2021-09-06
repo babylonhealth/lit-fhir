@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -62,6 +61,50 @@ public class Observation_ComponentBuilder {
     this.code = code;
   }
 
+  public static Choice_0802685816 value(Boolean b) {
+    return new Choice_0802685816(b);
+  }
+
+  public static Choice_0802685816 value(CodeableConcept c) {
+    return new Choice_0802685816(c);
+  }
+
+  public static Choice_0802685816 value(FHIRDateTime f) {
+    return new Choice_0802685816(f);
+  }
+
+  public static Choice_0802685816 value(Integer i) {
+    return new Choice_0802685816(i);
+  }
+
+  public static Choice_0802685816 value(LocalTime l) {
+    return new Choice_0802685816(l);
+  }
+
+  public static Choice_0802685816 value(Period p) {
+    return new Choice_0802685816(p);
+  }
+
+  public static Choice_0802685816 value(Quantity q) {
+    return new Choice_0802685816(q);
+  }
+
+  public static Choice_0802685816 value(Range r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(Ratio r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(SampledData s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice_0802685816 value(String s) {
+    return new Choice_0802685816(s);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -74,7 +117,8 @@ public class Observation_ComponentBuilder {
    * @param value - The information determined as a result of making the observation, if the
    *     information has a simple value. Field is a 'choice' field. Type should be one of Boolean,
    *     CodeableConcept, FHIRDateTime, Integer, LocalTime, Period, Quantity, Range, Ratio,
-   *     SampledData, String.
+   *     SampledData, String. To pass the value in, wrap with one of the
+   *     Observation_ComponentBuilder.value static methods
    */
   public Observation_ComponentBuilder withValue(@NonNull Choice_0802685816 value) {
     this.value = Optional.of(value);

@@ -37,7 +37,6 @@ import com.babylonhealth.lit.core.UNITS_OF_TIME;
 import com.babylonhealth.lit.core.UNITS_OF_TIME;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -64,6 +63,18 @@ public class Timing_RepeatBuilder {
 
   /** Required fields for {@link Timing.Repeat} */
   public Timing_RepeatBuilder() {}
+
+  public static Choice_0731860109 bounds(Duration d) {
+    return new Choice_0731860109(d);
+  }
+
+  public static Choice_0731860109 bounds(Period p) {
+    return new Choice_0731860109(p);
+  }
+
+  public static Choice_0731860109 bounds(Range r) {
+    return new Choice_0731860109(r);
+  }
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -130,7 +141,10 @@ public class Timing_RepeatBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param bounds Field is a 'choice' field. Type should be one of Duration, Period, Range. */
+  /**
+   * @param bounds Field is a 'choice' field. Type should be one of Duration, Period, Range. To pass
+   *     the value in, wrap with one of the Timing_RepeatBuilder.bounds static methods
+   */
   public Timing_RepeatBuilder withBounds(@NonNull Choice_0731860109 bounds) {
     this.bounds = Optional.of(bounds);
     return this;

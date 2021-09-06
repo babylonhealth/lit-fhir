@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -57,6 +56,22 @@ public class Specimen_CollectionBuilder {
 
   /** Required fields for {@link Specimen.Collection} */
   public Specimen_CollectionBuilder() {}
+
+  public static Choice_0934386166 collected(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 collected(Period p) {
+    return new Choice_0934386166(p);
+  }
+
+  public static Choice01243416269 fastingStatus(CodeableConcept c) {
+    return new Choice01243416269(c);
+  }
+
+  public static Choice01243416269 fastingStatus(Duration d) {
+    return new Choice01243416269(d);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -113,14 +128,18 @@ public class Specimen_CollectionBuilder {
     this.collector = Optional.of(collector);
     return this;
   }
-  /** @param collected Field is a 'choice' field. Type should be one of FHIRDateTime, Period. */
+  /**
+   * @param collected Field is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass
+   *     the value in, wrap with one of the Specimen_CollectionBuilder.collected static methods
+   */
   public Specimen_CollectionBuilder withCollected(@NonNull Choice_0934386166 collected) {
     this.collected = Optional.of(collected);
     return this;
   }
   /**
    * @param fastingStatus Field is a 'choice' field. Type should be one of CodeableConcept,
-   *     Duration.
+   *     Duration. To pass the value in, wrap with one of the
+   *     Specimen_CollectionBuilder.fastingStatus static methods
    */
   public Specimen_CollectionBuilder withFastingStatus(@NonNull Choice01243416269 fastingStatus) {
     this.fastingStatus = Optional.of(fastingStatus);

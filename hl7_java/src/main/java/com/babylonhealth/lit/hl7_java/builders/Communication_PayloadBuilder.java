@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -53,9 +52,23 @@ public class Communication_PayloadBuilder {
    * Required fields for {@link Communication.Payload}
    *
    * @param content Field is a 'choice' field. Type should be one of Attachment, Reference, String.
+   *     To pass the value in, wrap with one of the Communication_PayloadBuilder.content static
+   *     methods
    */
   public Communication_PayloadBuilder(@NonNull Choice_1750183386 content) {
     this.content = content;
+  }
+
+  public static Choice_1750183386 content(Attachment a) {
+    return new Choice_1750183386(a);
+  }
+
+  public static Choice_1750183386 content(Reference r) {
+    return new Choice_1750183386(r);
+  }
+
+  public static Choice_1750183386 content(String s) {
+    return new Choice_1750183386(s);
   }
 
   /**

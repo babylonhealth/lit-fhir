@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -60,6 +59,26 @@ public class ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
     this._type = _type;
   }
 
+  public static Choice_1289000811 used(Money m) {
+    return new Choice_1289000811(m);
+  }
+
+  public static Choice_1289000811 used(Integer i) {
+    return new Choice_1289000811(i);
+  }
+
+  public static Choice_0040864668 allowed(Money m) {
+    return new Choice_0040864668(m);
+  }
+
+  public static Choice_0040864668 allowed(String s) {
+    return new Choice_0040864668(s);
+  }
+
+  public static Choice_0040864668 allowed(Integer i) {
+    return new Choice_0040864668(i);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -68,7 +87,11 @@ public class ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
     this.id = Optional.of(id);
     return this;
   }
-  /** @param used Field is a 'choice' field. Type should be one of Money, Integer. */
+  /**
+   * @param used Field is a 'choice' field. Type should be one of Money, Integer. To pass the value
+   *     in, wrap with one of the ExplanationOfBenefit_BenefitBalance_FinancialBuilder.used static
+   *     methods
+   */
   public ExplanationOfBenefit_BenefitBalance_FinancialBuilder withUsed(
       @NonNull Choice_1289000811 used) {
     this.used = Optional.of(used);
@@ -98,7 +121,11 @@ public class ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param allowed Field is a 'choice' field. Type should be one of Money, String, Integer. */
+  /**
+   * @param allowed Field is a 'choice' field. Type should be one of Money, String, Integer. To pass
+   *     the value in, wrap with one of the
+   *     ExplanationOfBenefit_BenefitBalance_FinancialBuilder.allowed static methods
+   */
   public ExplanationOfBenefit_BenefitBalance_FinancialBuilder withAllowed(
       @NonNull Choice_0040864668 allowed) {
     this.allowed = Optional.of(allowed);

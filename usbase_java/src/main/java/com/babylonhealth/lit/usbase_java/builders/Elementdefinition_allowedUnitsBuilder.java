@@ -40,7 +40,6 @@ import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -55,10 +54,19 @@ public class Elementdefinition_allowedUnitsBuilder {
    *
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of String, CodeableConcept.
+   *     field. Type should be one of String, CodeableConcept. To pass the value in, wrap with one
+   *     of the Elementdefinition_allowedUnitsBuilder.value static methods
    */
   public Elementdefinition_allowedUnitsBuilder(@NonNull Choice01054268719 value) {
     this.value = value;
+  }
+
+  public static Choice01054268719 value(String s) {
+    return new Choice01054268719(s);
+  }
+
+  public static Choice01054268719 value(CodeableConcept c) {
+    return new Choice01054268719(c);
   }
 
   /**

@@ -44,7 +44,6 @@ import com.babylonhealth.lit.hl7.ADMINISTRATIVE_GENDER;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -93,6 +92,22 @@ public class Us_core_patientBuilder {
     this.gender = gender;
     this.name = name;
     this.identifier = identifier;
+  }
+
+  public static Choice_2131715935 deceased(Boolean b) {
+    return new Choice_2131715935(b);
+  }
+
+  public static Choice_2131715935 deceased(FHIRDateTime f) {
+    return new Choice_2131715935(f);
+  }
+
+  public static Choice02065782851 multipleBirth(Boolean b) {
+    return new Choice02065782851(b);
+  }
+
+  public static Choice02065782851 multipleBirth(Integer i) {
+    return new Choice02065782851(i);
   }
 
   /**
@@ -185,7 +200,8 @@ public class Us_core_patientBuilder {
   }
   /**
    * @param deceased - Indicates if the individual is deceased or not. Field is a 'choice' field.
-   *     Type should be one of Boolean, FHIRDateTime.
+   *     Type should be one of Boolean, FHIRDateTime. To pass the value in, wrap with one of the
+   *     Us_core_patientBuilder.deceased static methods
    */
   public Us_core_patientBuilder withDeceased(@NonNull Choice_2131715935 deceased) {
     this.deceased = Optional.of(deceased);
@@ -209,7 +225,8 @@ public class Us_core_patientBuilder {
   /**
    * @param multipleBirth - Indicates whether the patient is part of a multiple (boolean) or
    *     indicates the actual birth order (integer). Field is a 'choice' field. Type should be one
-   *     of Boolean, Integer.
+   *     of Boolean, Integer. To pass the value in, wrap with one of the
+   *     Us_core_patientBuilder.multipleBirth static methods
    */
   public Us_core_patientBuilder withMultipleBirth(@NonNull Choice02065782851 multipleBirth) {
     this.multipleBirth = Optional.of(multipleBirth);

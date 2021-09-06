@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -78,6 +77,26 @@ public class Claim_ItemBuilder {
   public Claim_ItemBuilder(Integer sequence, CodeableConcept productOrService) {
     this.sequence = sequence;
     this.productOrService = productOrService;
+  }
+
+  public static Choice_0503196159 serviced(FHIRDate f) {
+    return new Choice_0503196159(f);
+  }
+
+  public static Choice_0503196159 serviced(Period p) {
+    return new Choice_0503196159(p);
+  }
+
+  public static Choice_0316522316 location(Address a) {
+    return new Choice_0316522316(a);
+  }
+
+  public static Choice_0316522316 location(CodeableConcept c) {
+    return new Choice_0316522316(c);
+  }
+
+  public static Choice_0316522316 location(Reference r) {
+    return new Choice_0316522316(r);
   }
 
   /**
@@ -195,14 +214,18 @@ public class Claim_ItemBuilder {
     this.programCode = Collections.unmodifiableCollection(programCode);
     return this;
   }
-  /** @param serviced Field is a 'choice' field. Type should be one of FHIRDate, Period. */
+  /**
+   * @param serviced Field is a 'choice' field. Type should be one of FHIRDate, Period. To pass the
+   *     value in, wrap with one of the Claim_ItemBuilder.serviced static methods
+   */
   public Claim_ItemBuilder withServiced(@NonNull Choice_0503196159 serviced) {
     this.serviced = Optional.of(serviced);
     return this;
   }
   /**
    * @param location Field is a 'choice' field. Type should be one of Address, CodeableConcept,
-   *     Reference.
+   *     Reference. To pass the value in, wrap with one of the Claim_ItemBuilder.location static
+   *     methods
    */
   public Claim_ItemBuilder withLocation(@NonNull Choice_0316522316 location) {
     this.location = Optional.of(location);

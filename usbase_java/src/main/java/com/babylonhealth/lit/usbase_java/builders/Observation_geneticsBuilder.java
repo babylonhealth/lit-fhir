@@ -41,7 +41,6 @@ import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -94,6 +93,66 @@ public class Observation_geneticsBuilder {
   public Observation_geneticsBuilder(CodeableConcept code, OBSERVATION_STATUS status) {
     this.code = code;
     this.status = status;
+  }
+
+  public static Choice_0802685816 value(Boolean b) {
+    return new Choice_0802685816(b);
+  }
+
+  public static Choice_0802685816 value(CodeableConcept c) {
+    return new Choice_0802685816(c);
+  }
+
+  public static Choice_0802685816 value(FHIRDateTime f) {
+    return new Choice_0802685816(f);
+  }
+
+  public static Choice_0802685816 value(Integer i) {
+    return new Choice_0802685816(i);
+  }
+
+  public static Choice_0802685816 value(LocalTime l) {
+    return new Choice_0802685816(l);
+  }
+
+  public static Choice_0802685816 value(Period p) {
+    return new Choice_0802685816(p);
+  }
+
+  public static Choice_0802685816 value(Quantity q) {
+    return new Choice_0802685816(q);
+  }
+
+  public static Choice_0802685816 value(Range r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(Ratio r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(SampledData s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice_0802685816 value(String s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice01473702374 effective(FHIRDateTime f) {
+    return new Choice01473702374(f);
+  }
+
+  public static Choice01473702374 effective(Period p) {
+    return new Choice01473702374(p);
+  }
+
+  public static Choice01473702374 effective(Timing t) {
+    return new Choice01473702374(t);
+  }
+
+  public static Choice01473702374 effective(ZonedDateTime z) {
+    return new Choice01473702374(z);
   }
 
   /**
@@ -243,7 +302,8 @@ public class Observation_geneticsBuilder {
    * @param value - The information determined as a result of making the observation, if the
    *     information has a simple value. Field is a 'choice' field. Type should be one of Boolean,
    *     CodeableConcept, FHIRDateTime, Integer, LocalTime, Period, Quantity, Range, Ratio,
-   *     SampledData, String.
+   *     SampledData, String. To pass the value in, wrap with one of the
+   *     Observation_geneticsBuilder.value static methods
    */
   public Observation_geneticsBuilder withValue(@NonNull Choice_0802685816 value) {
     this.value = Optional.of(value);
@@ -357,7 +417,9 @@ public class Observation_geneticsBuilder {
    *     biological subjects - e.g. human patients - this is usually called the "physiologically
    *     relevant time". This is usually either the time of the procedure or of specimen collection,
    *     but very often the source of the date/time is not known, only the date/time itself. Field
-   *     is a 'choice' field. Type should be one of FHIRDateTime, Period, Timing, ZonedDateTime.
+   *     is a 'choice' field. Type should be one of FHIRDateTime, Period, Timing, ZonedDateTime. To
+   *     pass the value in, wrap with one of the Observation_geneticsBuilder.effective static
+   *     methods
    */
   public Observation_geneticsBuilder withEffective(@NonNull Choice01473702374 effective) {
     this.effective = Optional.of(effective);

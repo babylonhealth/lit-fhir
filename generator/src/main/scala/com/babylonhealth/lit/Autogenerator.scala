@@ -2,6 +2,7 @@ package com.babylonhealth.lit
 
 import java.io.File
 
+import scala.collection.immutable
 import scala.util.control.NonFatal
 
 import cats.implicits._
@@ -205,13 +206,26 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
     }
 
     val javaClassGenInfo: Option[JavaClassGenInfo] = args.javaPackageSuffix.map { j =>
+      val pkgUnionsLookup: Map[String, immutable.Iterable[(String, Seq[String])]] = ElementTreee.getUnionTypes
+        .map { case (unionName, (pkgs, unionTypes)) =>
+          (args.moduleDependencies.leastCommon(pkgs.toSet), unionName, unionTypes)
+        }
+        .groupMap(_._1) { case (_, b, c) => b -> c }
       val codes: Seq[ClassGenInfo] = valueSetEarliestDeclarations.byPackage.flatMap { case (pkg, ps) =>
         generateCodeAliases(pkg, j, ps.toMap)
       }.toSeq
       val builders = topLevelClasses.classes.toSeq.flatMap { case (o, m) =>
         m.flatMap { case (p, k) =>
           val javaPackageStr = (s"com.babylonhealth.lit.$p$j")
-          try genTheJavaForClass(k, javaPackageStr, p, valueSetEarliestDeclarations, args.moduleDependencies, j)
+          try
+            genTheJavaForClass(
+              k,
+              javaPackageStr,
+              p,
+              valueSetEarliestDeclarations,
+              args.moduleDependencies,
+              j,
+              pkgUnionsLookup.values.flatten.map { case (k, v) => v -> k.replaceFirst("Union", "Choice") }.toMap)
           catch {
             case NonFatal(ex) =>
               log.error(s"Unable to gen Java file for $p.$o", ex)
@@ -221,13 +235,7 @@ object Autogenerator extends Commonish with Logging with FileUtils with JavaGene
       }
 
       val modelsWithDefinitions =
-        ElementTreee.getUnionTypes
-          .map { case (unionName, (pkgs, unionTypes)) =>
-            (args.moduleDependencies.leastCommon(pkgs.toSet), unionName, unionTypes)
-          }
-          .groupBy(_._1)
-          .map { case (pkg, unions) => generateModelFile(pkg, j, unions.map { case (_, b, c) => b -> c }.toMap) }
-          .toSeq
+        pkgUnionsLookup.map { case (pkg, unions) => generateModelFile(pkg, j, unions.toMap) }.toSeq
       val allPackages = topLevelClasses.classes.values.flatMap(_.keys).toSeq
       // gen a stubby file for modules with no new union types, just to simplify imports elsewhere
       val model = allPackages.map(pkg =>

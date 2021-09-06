@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.MEDICATIONDISPENSE_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -85,12 +84,29 @@ public class MedicationDispenseBuilder {
    * @param medication - Identifies the medication being administered. This is either a link to a
    *     resource representing the details of the medication or a simple attribute carrying a code
    *     that identifies the medication from a known list of medications. Field is a 'choice' field.
-   *     Type should be one of CodeableConcept, Reference.
+   *     Type should be one of CodeableConcept, Reference. To pass the value in, wrap with one of
+   *     the MedicationDispenseBuilder.medication static methods
    */
   public MedicationDispenseBuilder(
       MEDICATIONDISPENSE_STATUS status, @NonNull Choice01025009075 medication) {
     this.status = status;
     this.medication = medication;
+  }
+
+  public static Choice01025009075 medication(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 medication(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice01025009075 statusReason(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 statusReason(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -345,7 +361,8 @@ public class MedicationDispenseBuilder {
   }
   /**
    * @param statusReason - Indicates the reason why a dispense was not performed. Field is a
-   *     'choice' field. Type should be one of CodeableConcept, Reference.
+   *     'choice' field. Type should be one of CodeableConcept, Reference. To pass the value in,
+   *     wrap with one of the MedicationDispenseBuilder.statusReason static methods
    */
   public MedicationDispenseBuilder withStatusReason(@NonNull Choice01025009075 statusReason) {
     this.statusReason = Optional.of(statusReason);

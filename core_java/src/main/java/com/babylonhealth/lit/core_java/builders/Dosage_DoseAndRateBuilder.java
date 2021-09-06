@@ -34,7 +34,6 @@ import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -50,6 +49,26 @@ public class Dosage_DoseAndRateBuilder {
   /** Required fields for {@link Dosage.DoseAndRate} */
   public Dosage_DoseAndRateBuilder() {}
 
+  public static Choice01639511888 dose(Quantity q) {
+    return new Choice01639511888(q);
+  }
+
+  public static Choice01639511888 dose(Range r) {
+    return new Choice01639511888(r);
+  }
+
+  public static Choice_0575082635 rate(Quantity q) {
+    return new Choice_0575082635(q);
+  }
+
+  public static Choice_0575082635 rate(Range r) {
+    return new Choice_0575082635(r);
+  }
+
+  public static Choice_0575082635 rate(Ratio r) {
+    return new Choice_0575082635(r);
+  }
+
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
    *     any string value that does not contain spaces.
@@ -63,12 +82,18 @@ public class Dosage_DoseAndRateBuilder {
     this._type = Optional.of(_type);
     return this;
   }
-  /** @param dose Field is a 'choice' field. Type should be one of Quantity, Range. */
+  /**
+   * @param dose Field is a 'choice' field. Type should be one of Quantity, Range. To pass the value
+   *     in, wrap with one of the Dosage_DoseAndRateBuilder.dose static methods
+   */
   public Dosage_DoseAndRateBuilder withDose(@NonNull Choice01639511888 dose) {
     this.dose = Optional.of(dose);
     return this;
   }
-  /** @param rate Field is a 'choice' field. Type should be one of Quantity, Range, Ratio. */
+  /**
+   * @param rate Field is a 'choice' field. Type should be one of Quantity, Range, Ratio. To pass
+   *     the value in, wrap with one of the Dosage_DoseAndRateBuilder.rate static methods
+   */
   public Dosage_DoseAndRateBuilder withRate(@NonNull Choice_0575082635 rate) {
     this.rate = Optional.of(rate);
     return this;

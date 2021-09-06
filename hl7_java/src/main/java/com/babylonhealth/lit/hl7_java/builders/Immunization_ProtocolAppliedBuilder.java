@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -56,10 +55,28 @@ public class Immunization_ProtocolAppliedBuilder {
   /**
    * Required fields for {@link Immunization.ProtocolApplied}
    *
-   * @param doseNumber Field is a 'choice' field. Type should be one of Integer, String.
+   * @param doseNumber Field is a 'choice' field. Type should be one of Integer, String. To pass the
+   *     value in, wrap with one of the Immunization_ProtocolAppliedBuilder.doseNumber static
+   *     methods
    */
   public Immunization_ProtocolAppliedBuilder(@NonNull Choice_0839638734 doseNumber) {
     this.doseNumber = doseNumber;
+  }
+
+  public static Choice_0839638734 doseNumber(Integer i) {
+    return new Choice_0839638734(i);
+  }
+
+  public static Choice_0839638734 doseNumber(String s) {
+    return new Choice_0839638734(s);
+  }
+
+  public static Choice_0839638734 seriesDoses(Integer i) {
+    return new Choice_0839638734(i);
+  }
+
+  public static Choice_0839638734 seriesDoses(String s) {
+    return new Choice_0839638734(s);
   }
 
   /**
@@ -115,7 +132,11 @@ public class Immunization_ProtocolAppliedBuilder {
     this.targetDisease = Collections.unmodifiableCollection(targetDisease);
     return this;
   }
-  /** @param seriesDoses Field is a 'choice' field. Type should be one of Integer, String. */
+  /**
+   * @param seriesDoses Field is a 'choice' field. Type should be one of Integer, String. To pass
+   *     the value in, wrap with one of the Immunization_ProtocolAppliedBuilder.seriesDoses static
+   *     methods
+   */
   public Immunization_ProtocolAppliedBuilder withSeriesDoses(
       @NonNull Choice_0839638734 seriesDoses) {
     this.seriesDoses = Optional.of(seriesDoses);

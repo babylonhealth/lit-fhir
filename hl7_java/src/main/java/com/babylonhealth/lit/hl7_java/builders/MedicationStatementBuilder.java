@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.MEDICATION_STATEMENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -81,7 +80,8 @@ public class MedicationStatementBuilder {
    * @param medication - Identifies the medication being administered. This is either a link to a
    *     resource representing the details of the medication or a simple attribute carrying a code
    *     that identifies the medication from a known list of medications. Field is a 'choice' field.
-   *     Type should be one of CodeableConcept, Reference.
+   *     Type should be one of CodeableConcept, Reference. To pass the value in, wrap with one of
+   *     the MedicationStatementBuilder.medication static methods
    */
   public MedicationStatementBuilder(
       MEDICATION_STATEMENT_STATUS status,
@@ -90,6 +90,22 @@ public class MedicationStatementBuilder {
     this.status = status;
     this.subject = subject;
     this.medication = medication;
+  }
+
+  public static Choice_0934386166 effective(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 effective(Period p) {
+    return new Choice_0934386166(p);
+  }
+
+  public static Choice01025009075 medication(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 medication(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -295,7 +311,8 @@ public class MedicationStatementBuilder {
   /**
    * @param effective - The interval of time during which it is being asserted that the patient
    *     is/was/will be taking the medication (or was not taking, when the MedicationStatement.taken
-   *     element is No). Field is a 'choice' field. Type should be one of FHIRDateTime, Period.
+   *     element is No). Field is a 'choice' field. Type should be one of FHIRDateTime, Period. To
+   *     pass the value in, wrap with one of the MedicationStatementBuilder.effective static methods
    */
   public MedicationStatementBuilder withEffective(@NonNull Choice_0934386166 effective) {
     this.effective = Optional.of(effective);

@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -56,6 +55,14 @@ public class MedicationAdministration_DosageBuilder {
 
   /** Required fields for {@link MedicationAdministration.Dosage} */
   public MedicationAdministration_DosageBuilder() {}
+
+  public static Choice_0964108894 rate(Quantity q) {
+    return new Choice_0964108894(q);
+  }
+
+  public static Choice_0964108894 rate(Ratio r) {
+    return new Choice_0964108894(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -96,7 +103,10 @@ public class MedicationAdministration_DosageBuilder {
     this.method = Optional.of(method);
     return this;
   }
-  /** @param rate Field is a 'choice' field. Type should be one of Quantity, Ratio. */
+  /**
+   * @param rate Field is a 'choice' field. Type should be one of Quantity, Ratio. To pass the value
+   *     in, wrap with one of the MedicationAdministration_DosageBuilder.rate static methods
+   */
   public MedicationAdministration_DosageBuilder withRate(@NonNull Choice_0964108894 rate) {
     this.rate = Optional.of(rate);
     return this;

@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -52,6 +51,22 @@ public class MedicationKnowledge_DrugCharacteristicBuilder {
 
   /** Required fields for {@link MedicationKnowledge.DrugCharacteristic} */
   public MedicationKnowledge_DrugCharacteristicBuilder() {}
+
+  public static Choice_1309404550 value(byte[] b) {
+    return new Choice_1309404550(b);
+  }
+
+  public static Choice_1309404550 value(CodeableConcept c) {
+    return new Choice_1309404550(c);
+  }
+
+  public static Choice_1309404550 value(Quantity q) {
+    return new Choice_1309404550(q);
+  }
+
+  public static Choice_1309404550 value(String s) {
+    return new Choice_1309404550(s);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -68,7 +83,8 @@ public class MedicationKnowledge_DrugCharacteristicBuilder {
   }
   /**
    * @param value Field is a 'choice' field. Type should be one of byte[], CodeableConcept,
-   *     Quantity, String.
+   *     Quantity, String. To pass the value in, wrap with one of the
+   *     MedicationKnowledge_DrugCharacteristicBuilder.value static methods
    */
   public MedicationKnowledge_DrugCharacteristicBuilder withValue(@NonNull Choice_1309404550 value) {
     this.value = Optional.of(value);

@@ -44,7 +44,6 @@ import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -102,7 +101,8 @@ public class Pediatric_weight_for_heightBuilder {
    * @param value - Vital Signs value are recorded using the Quantity data type. For supporting
    *     observations such as Cuff size could use other datatypes such as CodeableConcept.
    * @param effective - Often just a dateTime for Vital Signs. Field is a 'choice' field. Type
-   *     should be one of FHIRDateTime, Period.
+   *     should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
+   *     Pediatric_weight_for_heightBuilder.effective static methods
    */
   public Pediatric_weight_for_heightBuilder(
       CodeableConcept code,
@@ -117,6 +117,14 @@ public class Pediatric_weight_for_heightBuilder {
     this.category = category;
     this.value = value;
     this.effective = effective;
+  }
+
+  public static Choice_0934386166 effective(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 effective(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**

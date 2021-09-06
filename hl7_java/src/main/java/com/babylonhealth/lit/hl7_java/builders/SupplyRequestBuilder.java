@@ -39,7 +39,6 @@ import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -75,12 +74,33 @@ public class SupplyRequestBuilder {
    *
    * @param item - The item that is requested to be supplied. This is either a link to a resource
    *     representing the details of the item or a code that identifies the item from a known list.
-   *     Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To pass the
+   *     value in, wrap with one of the SupplyRequestBuilder.item static methods
    * @param quantity - The amount that is being ordered of the indicated item.
    */
   public SupplyRequestBuilder(@NonNull Choice01025009075 item, Quantity quantity) {
     this.item = item;
     this.quantity = quantity;
+  }
+
+  public static Choice01025009075 item(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 item(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice00609373412 occurrence(FHIRDateTime f) {
+    return new Choice00609373412(f);
+  }
+
+  public static Choice00609373412 occurrence(Period p) {
+    return new Choice00609373412(p);
+  }
+
+  public static Choice00609373412 occurrence(Timing t) {
+    return new Choice00609373412(t);
   }
 
   /**
@@ -247,7 +267,8 @@ public class SupplyRequestBuilder {
   }
   /**
    * @param occurrence - When the request should be fulfilled. Field is a 'choice' field. Type
-   *     should be one of FHIRDateTime, Period, Timing.
+   *     should be one of FHIRDateTime, Period, Timing. To pass the value in, wrap with one of the
+   *     SupplyRequestBuilder.occurrence static methods
    */
   public SupplyRequestBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
     this.occurrence = Optional.of(occurrence);

@@ -40,7 +40,6 @@ import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -58,6 +57,14 @@ public class PopulationBuilder {
   /** Required fields for {@link Population} */
   public PopulationBuilder() {}
 
+  public static Choice_1946587936 age(CodeableConcept c) {
+    return new Choice_1946587936(c);
+  }
+
+  public static Choice_1946587936 age(Range r) {
+    return new Choice_1946587936(r);
+  }
+
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
    *     any string value that does not contain spaces.
@@ -73,7 +80,8 @@ public class PopulationBuilder {
   }
   /**
    * @param age - The age of the specific population. Field is a 'choice' field. Type should be one
-   *     of CodeableConcept, Range.
+   *     of CodeableConcept, Range. To pass the value in, wrap with one of the PopulationBuilder.age
+   *     static methods
    */
   public PopulationBuilder withAge(@NonNull Choice_1946587936 age) {
     this.age = Optional.of(age);

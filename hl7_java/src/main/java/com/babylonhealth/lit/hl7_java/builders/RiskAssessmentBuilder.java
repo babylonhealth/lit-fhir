@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -80,6 +79,14 @@ public class RiskAssessmentBuilder {
   public RiskAssessmentBuilder(OBSERVATION_STATUS status, Reference subject) {
     this.status = status;
     this.subject = subject;
+  }
+
+  public static Choice_0934386166 occurrence(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 occurrence(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -262,7 +269,8 @@ public class RiskAssessmentBuilder {
   }
   /**
    * @param occurrence - The date (and possibly time) the risk assessment was performed. Field is a
-   *     'choice' field. Type should be one of FHIRDateTime, Period.
+   *     'choice' field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap with
+   *     one of the RiskAssessmentBuilder.occurrence static methods
    */
   public RiskAssessmentBuilder withOccurrence(@NonNull Choice_0934386166 occurrence) {
     this.occurrence = Optional.of(occurrence);

@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.EVENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -86,6 +85,14 @@ public class MediaBuilder {
   public MediaBuilder(EVENT_STATUS status, Attachment content) {
     this.status = status;
     this.content = content;
+  }
+
+  public static Choice_0934386166 created(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 created(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -304,7 +311,8 @@ public class MediaBuilder {
   }
   /**
    * @param created - The date and time(s) at which the media was collected. Field is a 'choice'
-   *     field. Type should be one of FHIRDateTime, Period.
+   *     field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap with one of
+   *     the MediaBuilder.created static methods
    */
   public MediaBuilder withCreated(@NonNull Choice_0934386166 created) {
     this.created = Optional.of(created);

@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -60,6 +59,22 @@ public class FamilyMemberHistory_ConditionBuilder {
    */
   public FamilyMemberHistory_ConditionBuilder(CodeableConcept code) {
     this.code = code;
+  }
+
+  public static Choice01727798874 onset(Age a) {
+    return new Choice01727798874(a);
+  }
+
+  public static Choice01727798874 onset(Period p) {
+    return new Choice01727798874(p);
+  }
+
+  public static Choice01727798874 onset(Range r) {
+    return new Choice01727798874(r);
+  }
+
+  public static Choice01727798874 onset(String s) {
+    return new Choice01727798874(s);
   }
 
   /**
@@ -93,7 +108,11 @@ public class FamilyMemberHistory_ConditionBuilder {
     this.outcome = Optional.of(outcome);
     return this;
   }
-  /** @param onset Field is a 'choice' field. Type should be one of Age, Period, Range, String. */
+  /**
+   * @param onset Field is a 'choice' field. Type should be one of Age, Period, Range, String. To
+   *     pass the value in, wrap with one of the FamilyMemberHistory_ConditionBuilder.onset static
+   *     methods
+   */
   public FamilyMemberHistory_ConditionBuilder withOnset(@NonNull Choice01727798874 onset) {
     this.onset = Optional.of(onset);
     return this;

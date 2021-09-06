@@ -69,7 +69,7 @@ public class JavaUsageOfLit {
                 new ReferenceBuilder().withReference("Patient/reference-123").build(),
                 List.of(new CodeableConceptBuilder().withText("Some dummy concept text").build()),
                 new QuantityBuilder().withValue(BigDecimal.valueOf(12.3)).build(),
-                new Choice_0934386166(effective))
+                Pediatric_bmi_for_ageBuilder.effective(effective))
             .withIssued(issued)
             .withLanguage(Languages.EN_GB)
             .build();
@@ -94,7 +94,7 @@ public class JavaUsageOfLit {
                 new ReferenceBuilder().withReference("Patient/reference-123").build(),
                 List.of(new CodeableConceptBuilder().withText("Some dummy concept text").build()),
                 new QuantityBuilder().withValue(BigDecimal.valueOf(12.3)).build(),
-                new Choice_0934386166(effective))
+                Pediatric_bmi_for_ageBuilder.effective(effective))
             .withIssued(issued)
             .withLanguage(Languages.EN_GB)
             .withIdentifier(
@@ -110,7 +110,7 @@ public class JavaUsageOfLit {
                 new ReferenceBuilder().withReference("Patient/reference-123").build(),
                 List.of(new CodeableConceptBuilder().withText("Some dummy concept text").build()),
                 new QuantityBuilder().withValue(BigDecimal.valueOf(12.3)).build(),
-                new Choice_0934386166(effective))
+                Pediatric_bmi_for_ageBuilder.effective(effective))
             .withIssued(issued)
             .withLanguage(Languages.EN_GB)
             .withIdentifier(
@@ -135,7 +135,7 @@ public class JavaUsageOfLit {
                 new ReferenceBuilder().withReference("Patient/reference-123").build(),
                 List.of(new CodeableConceptBuilder().withText("A category concept").build()),
                 new QuantityBuilder().withValue(BigDecimal.valueOf(12.3)).build(),
-                new Choice_0934386166(effective))
+                Pediatric_bmi_for_ageBuilder.effective(effective))
             .withIssued(issued)
             .withLanguage(Languages.EN_GB)
             .build();
@@ -164,7 +164,7 @@ public class JavaUsageOfLit {
 
   @Test
   public void testRefs3_2() throws Exception {
-    Patient p = new PatientBuilder().withMultipleBirth(new Choice02065782851(true)).build();
+    Patient p = new PatientBuilder().withMultipleBirth(PatientBuilder.multipleBirth(true)).build();
     System.out.println(p);
   }
 
@@ -259,7 +259,7 @@ public class JavaUsageOfLit {
                             .withSystem("http://unitsofmeasure.org")
                             .withCode("${unit}")
                             .build(),
-                        new Choice_0934386166(effective),
+                        BmiBuilder.effective(effective),
                         new CodeableConceptBuilder()
                             .withCoding(
                                 new CodingBuilder()
@@ -324,7 +324,8 @@ public class JavaUsageOfLit {
             new ReferenceBuilder().withReference("Patient/reference-123").build(),
             List.of(new CodeableConceptBuilder().withText("Some dummy concept text").build()),
             new QuantityBuilder().withValue(BigDecimal.valueOf(12.3)).build(),
-            new Choice_0934386166(new FHIRDateTime(effective, LitUtils.DateTimeSpecificity.Time)))
+            Pediatric_bmi_for_ageBuilder.effective(
+                new FHIRDateTime(effective, LitUtils.DateTimeSpecificity.Time)))
         .withIssued(issued)
         .build();
   }

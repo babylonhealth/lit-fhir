@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -58,12 +57,21 @@ public class ExplanationOfBenefit_DiagnosisBuilder {
    *
    * @param sequence
    * @param diagnosis - Information about diagnoses relevant to the claim items. Field is a 'choice'
-   *     field. Type should be one of CodeableConcept, Reference.
+   *     field. Type should be one of CodeableConcept, Reference. To pass the value in, wrap with
+   *     one of the ExplanationOfBenefit_DiagnosisBuilder.diagnosis static methods
    */
   public ExplanationOfBenefit_DiagnosisBuilder(
       Integer sequence, @NonNull Choice01025009075 diagnosis) {
     this.sequence = sequence;
     this.diagnosis = diagnosis;
+  }
+
+  public static Choice01025009075 diagnosis(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 diagnosis(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**

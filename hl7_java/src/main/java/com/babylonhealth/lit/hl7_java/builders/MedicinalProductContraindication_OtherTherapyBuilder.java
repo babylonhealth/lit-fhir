@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -54,12 +53,22 @@ public class MedicinalProductContraindication_OtherTherapyBuilder {
    * Required fields for {@link MedicinalProductContraindication.OtherTherapy}
    *
    * @param medication Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     To pass the value in, wrap with one of the
+   *     MedicinalProductContraindication_OtherTherapyBuilder.medication static methods
    * @param therapyRelationshipType
    */
   public MedicinalProductContraindication_OtherTherapyBuilder(
       @NonNull Choice01025009075 medication, CodeableConcept therapyRelationshipType) {
     this.medication = medication;
     this.therapyRelationshipType = therapyRelationshipType;
+  }
+
+  public static Choice01025009075 medication(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 medication(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**

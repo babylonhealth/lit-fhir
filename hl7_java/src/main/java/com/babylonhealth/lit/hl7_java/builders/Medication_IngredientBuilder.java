@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -54,10 +53,19 @@ public class Medication_IngredientBuilder {
   /**
    * Required fields for {@link Medication.Ingredient}
    *
-   * @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   * @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the Medication_IngredientBuilder.item static methods
    */
   public Medication_IngredientBuilder(@NonNull Choice01025009075 item) {
     this.item = item;
+  }
+
+  public static Choice01025009075 item(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 item(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**

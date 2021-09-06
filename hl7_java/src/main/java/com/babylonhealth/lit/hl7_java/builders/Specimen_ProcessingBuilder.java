@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -55,6 +54,14 @@ public class Specimen_ProcessingBuilder {
   /** Required fields for {@link Specimen.Processing} */
   public Specimen_ProcessingBuilder() {}
 
+  public static Choice_0934386166 time(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 time(Period p) {
+    return new Choice_0934386166(p);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -63,7 +70,10 @@ public class Specimen_ProcessingBuilder {
     this.id = Optional.of(id);
     return this;
   }
-  /** @param time Field is a 'choice' field. Type should be one of FHIRDateTime, Period. */
+  /**
+   * @param time Field is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the
+   *     value in, wrap with one of the Specimen_ProcessingBuilder.time static methods
+   */
   public Specimen_ProcessingBuilder withTime(@NonNull Choice_0934386166 time) {
     this.time = Optional.of(time);
     return this;

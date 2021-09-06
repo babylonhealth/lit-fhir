@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -55,11 +54,20 @@ public class AuditEvent_Entity_DetailBuilder {
    *
    * @param _type - Identifier for a family of the event. For example, a menu item, program, rule,
    *     policy, function code, application name or URL. It identifies the performed function.
-   * @param value Field is a 'choice' field. Type should be one of byte[], String.
+   * @param value Field is a 'choice' field. Type should be one of byte[], String. To pass the value
+   *     in, wrap with one of the AuditEvent_Entity_DetailBuilder.value static methods
    */
   public AuditEvent_Entity_DetailBuilder(String _type, @NonNull Choice00483057553 value) {
     this._type = _type;
     this.value = value;
+  }
+
+  public static Choice00483057553 value(byte[] b) {
+    return new Choice00483057553(b);
+  }
+
+  public static Choice00483057553 value(String s) {
+    return new Choice00483057553(s);
   }
 
   /**

@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.DEVICE_STATEMENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -80,6 +79,18 @@ public class DeviceUseStatementBuilder {
     this.status = status;
     this.device = device;
     this.subject = subject;
+  }
+
+  public static Choice00609373412 timing(FHIRDateTime f) {
+    return new Choice00609373412(f);
+  }
+
+  public static Choice00609373412 timing(Period p) {
+    return new Choice00609373412(p);
+  }
+
+  public static Choice00609373412 timing(Timing t) {
+    return new Choice00609373412(t);
   }
 
   /**
@@ -204,7 +215,8 @@ public class DeviceUseStatementBuilder {
   }
   /**
    * @param timing - How often the device was used. Field is a 'choice' field. Type should be one of
-   *     FHIRDateTime, Period, Timing.
+   *     FHIRDateTime, Period, Timing. To pass the value in, wrap with one of the
+   *     DeviceUseStatementBuilder.timing static methods
    */
   public DeviceUseStatementBuilder withTiming(@NonNull Choice00609373412 timing) {
     this.timing = Optional.of(timing);

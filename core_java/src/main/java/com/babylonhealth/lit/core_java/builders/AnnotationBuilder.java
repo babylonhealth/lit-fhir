@@ -34,7 +34,6 @@ import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -54,6 +53,14 @@ public class AnnotationBuilder {
    */
   public AnnotationBuilder(String text) {
     this.text = text;
+  }
+
+  public static Choice_1128709984 author(Reference r) {
+    return new Choice_1128709984(r);
+  }
+
+  public static Choice_1128709984 author(String s) {
+    return new Choice_1128709984(s);
   }
 
   /**
@@ -93,7 +100,8 @@ public class AnnotationBuilder {
   }
   /**
    * @param author - The individual responsible for making the annotation. Field is a 'choice'
-   *     field. Type should be one of Reference, String.
+   *     field. Type should be one of Reference, String. To pass the value in, wrap with one of the
+   *     AnnotationBuilder.author static methods
    */
   public AnnotationBuilder withAuthor(@NonNull Choice_1128709984 author) {
     this.author = Optional.of(author);

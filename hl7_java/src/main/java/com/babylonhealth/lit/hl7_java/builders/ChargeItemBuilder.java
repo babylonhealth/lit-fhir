@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.CHARGEITEM_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -91,6 +90,26 @@ public class ChargeItemBuilder {
     this.code = code;
     this.status = status;
     this.subject = subject;
+  }
+
+  public static Choice01025009075 product(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 product(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice00609373412 occurrence(FHIRDateTime f) {
+    return new Choice00609373412(f);
+  }
+
+  public static Choice00609373412 occurrence(Period p) {
+    return new Choice00609373412(p);
+  }
+
+  public static Choice00609373412 occurrence(Timing t) {
+    return new Choice00609373412(t);
   }
 
   /**
@@ -265,7 +284,8 @@ public class ChargeItemBuilder {
   /**
    * @param product - Identifies the device, food, drug or other product being charged either by
    *     type code or reference to an instance. Field is a 'choice' field. Type should be one of
-   *     CodeableConcept, Reference.
+   *     CodeableConcept, Reference. To pass the value in, wrap with one of the
+   *     ChargeItemBuilder.product static methods
    */
   public ChargeItemBuilder withProduct(@NonNull Choice01025009075 product) {
     this.product = Optional.of(product);
@@ -304,7 +324,8 @@ public class ChargeItemBuilder {
   }
   /**
    * @param occurrence - Date/time(s) or duration when the charged service was applied. Field is a
-   *     'choice' field. Type should be one of FHIRDateTime, Period, Timing.
+   *     'choice' field. Type should be one of FHIRDateTime, Period, Timing. To pass the value in,
+   *     wrap with one of the ChargeItemBuilder.occurrence static methods
    */
   public ChargeItemBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
     this.occurrence = Optional.of(occurrence);

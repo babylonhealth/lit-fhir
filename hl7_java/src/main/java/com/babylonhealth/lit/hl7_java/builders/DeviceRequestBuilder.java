@@ -40,7 +40,6 @@ import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -85,7 +84,8 @@ public class DeviceRequestBuilder {
    *
    * @param intent - Whether the request is a proposal, plan, an original order or a reflex order.
    * @param code - The details of the device to be used. Field is a 'choice' field. Type should be
-   *     one of CodeableConcept, Reference.
+   *     one of CodeableConcept, Reference. To pass the value in, wrap with one of the
+   *     DeviceRequestBuilder.code static methods
    * @param subject - The patient who will use the device.
    */
   public DeviceRequestBuilder(
@@ -93,6 +93,26 @@ public class DeviceRequestBuilder {
     this.intent = intent;
     this.code = code;
     this.subject = subject;
+  }
+
+  public static Choice01025009075 code(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 code(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice00609373412 occurrence(FHIRDateTime f) {
+    return new Choice00609373412(f);
+  }
+
+  public static Choice00609373412 occurrence(Period p) {
+    return new Choice00609373412(p);
+  }
+
+  public static Choice00609373412 occurrence(Timing t) {
+    return new Choice00609373412(t);
   }
 
   /**
@@ -301,6 +321,7 @@ public class DeviceRequestBuilder {
    *     allows many different expressions, for example. "Every 8 hours"; "Three times a day"; "1/2
    *     an hour before breakfast for 10 days from 23-Dec 2011:"; "15 Oct 2013, 17 Oct 2013 and 1
    *     Nov 2013". Field is a 'choice' field. Type should be one of FHIRDateTime, Period, Timing.
+   *     To pass the value in, wrap with one of the DeviceRequestBuilder.occurrence static methods
    */
   public DeviceRequestBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
     this.occurrence = Optional.of(occurrence);

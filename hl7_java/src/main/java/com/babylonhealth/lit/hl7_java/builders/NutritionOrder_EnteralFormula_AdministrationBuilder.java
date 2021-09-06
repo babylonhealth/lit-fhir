@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -54,6 +53,14 @@ public class NutritionOrder_EnteralFormula_AdministrationBuilder {
   /** Required fields for {@link NutritionOrder$EnteralFormula$Administration} */
   public NutritionOrder_EnteralFormula_AdministrationBuilder() {}
 
+  public static Choice_0964108894 rate(Quantity q) {
+    return new Choice_0964108894(q);
+  }
+
+  public static Choice_0964108894 rate(Ratio r) {
+    return new Choice_0964108894(r);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -62,7 +69,11 @@ public class NutritionOrder_EnteralFormula_AdministrationBuilder {
     this.id = Optional.of(id);
     return this;
   }
-  /** @param rate Field is a 'choice' field. Type should be one of Quantity, Ratio. */
+  /**
+   * @param rate Field is a 'choice' field. Type should be one of Quantity, Ratio. To pass the value
+   *     in, wrap with one of the NutritionOrder_EnteralFormula_AdministrationBuilder.rate static
+   *     methods
+   */
   public NutritionOrder_EnteralFormula_AdministrationBuilder withRate(
       @NonNull Choice_0964108894 rate) {
     this.rate = Optional.of(rate);

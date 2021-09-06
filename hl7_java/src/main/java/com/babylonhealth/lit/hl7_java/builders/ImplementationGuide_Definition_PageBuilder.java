@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.GUIDE_PAGE_GENERATION;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -58,7 +57,9 @@ public class ImplementationGuide_Definition_PageBuilder {
    * @param title - A short, descriptive, user-friendly title for the implementation guide.
    * @param name - A natural language name identifying the implementation guide. This name should be
    *     usable as an identifier for the module by machine processing applications such as code
-   *     generation. Field is a 'choice' field. Type should be one of Reference, String.
+   *     generation. Field is a 'choice' field. Type should be one of Reference, String. To pass the
+   *     value in, wrap with one of the ImplementationGuide_Definition_PageBuilder.name static
+   *     methods
    * @param generation
    */
   public ImplementationGuide_Definition_PageBuilder(
@@ -66,6 +67,14 @@ public class ImplementationGuide_Definition_PageBuilder {
     this.title = title;
     this.name = name;
     this.generation = generation;
+  }
+
+  public static Choice01831019594 name(Reference r) {
+    return new Choice01831019594(r);
+  }
+
+  public static Choice01831019594 name(String s) {
+    return new Choice01831019594(s);
   }
 
   /**

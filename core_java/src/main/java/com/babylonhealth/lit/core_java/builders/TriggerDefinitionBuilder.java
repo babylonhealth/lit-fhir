@@ -34,7 +34,6 @@ import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.TRIGGER_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -56,6 +55,22 @@ public class TriggerDefinitionBuilder {
    */
   public TriggerDefinitionBuilder(TRIGGER_TYPE _type) {
     this._type = _type;
+  }
+
+  public static Choice_1051729086 timing(FHIRDate f) {
+    return new Choice_1051729086(f);
+  }
+
+  public static Choice_1051729086 timing(FHIRDateTime f) {
+    return new Choice_1051729086(f);
+  }
+
+  public static Choice_1051729086 timing(Reference r) {
+    return new Choice_1051729086(r);
+  }
+
+  public static Choice_1051729086 timing(Timing t) {
+    return new Choice_1051729086(t);
   }
 
   /**
@@ -115,7 +130,8 @@ public class TriggerDefinitionBuilder {
   }
   /**
    * @param timing - The timing of the event (if this is a periodic trigger). Field is a 'choice'
-   *     field. Type should be one of FHIRDate, FHIRDateTime, Reference, Timing.
+   *     field. Type should be one of FHIRDate, FHIRDateTime, Reference, Timing. To pass the value
+   *     in, wrap with one of the TriggerDefinitionBuilder.timing static methods
    */
   public TriggerDefinitionBuilder withTiming(@NonNull Choice_1051729086 timing) {
     this.timing = Optional.of(timing);

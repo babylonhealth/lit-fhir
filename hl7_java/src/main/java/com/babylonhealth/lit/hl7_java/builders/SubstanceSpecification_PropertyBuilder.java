@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -55,6 +54,22 @@ public class SubstanceSpecification_PropertyBuilder {
 
   /** Required fields for {@link SubstanceSpecification.Property} */
   public SubstanceSpecification_PropertyBuilder() {}
+
+  public static Choice_2072987899 amount(Quantity q) {
+    return new Choice_2072987899(q);
+  }
+
+  public static Choice_2072987899 amount(String s) {
+    return new Choice_2072987899(s);
+  }
+
+  public static Choice01025009075 definingSubstance(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 definingSubstance(Reference r) {
+    return new Choice01025009075(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -97,7 +112,10 @@ public class SubstanceSpecification_PropertyBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param amount Field is a 'choice' field. Type should be one of Quantity, String. */
+  /**
+   * @param amount Field is a 'choice' field. Type should be one of Quantity, String. To pass the
+   *     value in, wrap with one of the SubstanceSpecification_PropertyBuilder.amount static methods
+   */
   public SubstanceSpecification_PropertyBuilder withAmount(@NonNull Choice_2072987899 amount) {
     this.amount = Optional.of(amount);
     return this;
@@ -143,7 +161,8 @@ public class SubstanceSpecification_PropertyBuilder {
   }
   /**
    * @param definingSubstance Field is a 'choice' field. Type should be one of CodeableConcept,
-   *     Reference.
+   *     Reference. To pass the value in, wrap with one of the
+   *     SubstanceSpecification_PropertyBuilder.definingSubstance static methods
    */
   public SubstanceSpecification_PropertyBuilder withDefiningSubstance(
       @NonNull Choice01025009075 definingSubstance) {

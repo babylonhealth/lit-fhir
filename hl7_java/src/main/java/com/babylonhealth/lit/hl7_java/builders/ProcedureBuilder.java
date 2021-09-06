@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.EVENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -92,6 +91,26 @@ public class ProcedureBuilder {
   public ProcedureBuilder(EVENT_STATUS status, Reference subject) {
     this.status = status;
     this.subject = subject;
+  }
+
+  public static Choice01352864625 performed(Age a) {
+    return new Choice01352864625(a);
+  }
+
+  public static Choice01352864625 performed(FHIRDateTime f) {
+    return new Choice01352864625(f);
+  }
+
+  public static Choice01352864625 performed(Period p) {
+    return new Choice01352864625(p);
+  }
+
+  public static Choice01352864625 performed(Range r) {
+    return new Choice01352864625(r);
+  }
+
+  public static Choice01352864625 performed(String s) {
+    return new Choice01352864625(s);
   }
 
   /**
@@ -352,7 +371,8 @@ public class ProcedureBuilder {
    * @param performed - Estimated or actual date, date-time, period, or age when the procedure was
    *     performed. Allows a period to support complex procedures that span more than one date, and
    *     also allows for the length of the procedure to be captured. Field is a 'choice' field. Type
-   *     should be one of Age, FHIRDateTime, Period, Range, String.
+   *     should be one of Age, FHIRDateTime, Period, Range, String. To pass the value in, wrap with
+   *     one of the ProcedureBuilder.performed static methods
    */
   public ProcedureBuilder withPerformed(@NonNull Choice01352864625 performed) {
     this.performed = Optional.of(performed);

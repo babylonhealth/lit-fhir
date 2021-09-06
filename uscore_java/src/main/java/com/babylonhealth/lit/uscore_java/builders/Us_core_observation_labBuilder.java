@@ -44,7 +44,6 @@ import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -110,6 +109,58 @@ public class Us_core_observation_labBuilder {
     this.status = status;
     this.subject = subject;
     this.category = category;
+  }
+
+  public static Choice_0802685816 value(Boolean b) {
+    return new Choice_0802685816(b);
+  }
+
+  public static Choice_0802685816 value(CodeableConcept c) {
+    return new Choice_0802685816(c);
+  }
+
+  public static Choice_0802685816 value(FHIRDateTime f) {
+    return new Choice_0802685816(f);
+  }
+
+  public static Choice_0802685816 value(Integer i) {
+    return new Choice_0802685816(i);
+  }
+
+  public static Choice_0802685816 value(LocalTime l) {
+    return new Choice_0802685816(l);
+  }
+
+  public static Choice_0802685816 value(Period p) {
+    return new Choice_0802685816(p);
+  }
+
+  public static Choice_0802685816 value(Quantity q) {
+    return new Choice_0802685816(q);
+  }
+
+  public static Choice_0802685816 value(Range r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(Ratio r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(SampledData s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice_0802685816 value(String s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice_0934386166 effective(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 effective(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -243,7 +294,8 @@ public class Us_core_observation_labBuilder {
    *     [UCUM Codes value set](http://hl7.org/fhir/STU3/valueset-ucum-units.html) that defines all
    *     UCUM codes is in the FHIR specification. Field is a 'choice' field. Type should be one of
    *     Boolean, CodeableConcept, FHIRDateTime, Integer, LocalTime, Period, Quantity, Range, Ratio,
-   *     SampledData, String.
+   *     SampledData, String. To pass the value in, wrap with one of the
+   *     Us_core_observation_labBuilder.value static methods
    */
   public Us_core_observation_labBuilder withValue(@NonNull Choice_0802685816 value) {
     this.value = Optional.of(value);
@@ -368,7 +420,8 @@ public class Us_core_observation_labBuilder {
   /**
    * @param effective - For lab tests this is the specimen collection date. For Ask at Order Entry
    *     Questions (AOE)'s this is the date the question was asked. Field is a 'choice' field. Type
-   *     should be one of FHIRDateTime, Period.
+   *     should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
+   *     Us_core_observation_labBuilder.effective static methods
    */
   public Us_core_observation_labBuilder withEffective(@NonNull Choice_0934386166 effective) {
     this.effective = Optional.of(effective);

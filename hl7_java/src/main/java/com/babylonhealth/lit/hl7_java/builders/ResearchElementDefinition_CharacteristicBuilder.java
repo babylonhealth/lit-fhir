@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.GROUP_MEASURE;
 import com.babylonhealth.lit.hl7.GROUP_MEASURE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -65,10 +64,59 @@ public class ResearchElementDefinition_CharacteristicBuilder {
    * Required fields for {@link ResearchElementDefinition.Characteristic}
    *
    * @param definition Field is a 'choice' field. Type should be one of String, CodeableConcept,
-   *     DataRequirement, Expression.
+   *     DataRequirement, Expression. To pass the value in, wrap with one of the
+   *     ResearchElementDefinition_CharacteristicBuilder.definition static methods
    */
   public ResearchElementDefinition_CharacteristicBuilder(@NonNull Choice_1750128470 definition) {
     this.definition = definition;
+  }
+
+  public static Choice_1750128470 definition(String s) {
+    return new Choice_1750128470(s);
+  }
+
+  public static Choice_1750128470 definition(CodeableConcept c) {
+    return new Choice_1750128470(c);
+  }
+
+  public static Choice_1750128470 definition(DataRequirement d) {
+    return new Choice_1750128470(d);
+  }
+
+  public static Choice_1750128470 definition(Expression e) {
+    return new Choice_1750128470(e);
+  }
+
+  public static Choice00607514014 studyEffective(Duration d) {
+    return new Choice00607514014(d);
+  }
+
+  public static Choice00607514014 studyEffective(FHIRDateTime f) {
+    return new Choice00607514014(f);
+  }
+
+  public static Choice00607514014 studyEffective(Period p) {
+    return new Choice00607514014(p);
+  }
+
+  public static Choice00607514014 studyEffective(Timing t) {
+    return new Choice00607514014(t);
+  }
+
+  public static Choice00607514014 participantEffective(Duration d) {
+    return new Choice00607514014(d);
+  }
+
+  public static Choice00607514014 participantEffective(FHIRDateTime f) {
+    return new Choice00607514014(f);
+  }
+
+  public static Choice00607514014 participantEffective(Period p) {
+    return new Choice00607514014(p);
+  }
+
+  public static Choice00607514014 participantEffective(Timing t) {
+    return new Choice00607514014(t);
   }
 
   /**
@@ -162,7 +210,8 @@ public class ResearchElementDefinition_CharacteristicBuilder {
   }
   /**
    * @param studyEffective Field is a 'choice' field. Type should be one of Duration, FHIRDateTime,
-   *     Period, Timing.
+   *     Period, Timing. To pass the value in, wrap with one of the
+   *     ResearchElementDefinition_CharacteristicBuilder.studyEffective static methods
    */
   public ResearchElementDefinition_CharacteristicBuilder withStudyEffective(
       @NonNull Choice00607514014 studyEffective) {
@@ -171,7 +220,8 @@ public class ResearchElementDefinition_CharacteristicBuilder {
   }
   /**
    * @param participantEffective Field is a 'choice' field. Type should be one of Duration,
-   *     FHIRDateTime, Period, Timing.
+   *     FHIRDateTime, Period, Timing. To pass the value in, wrap with one of the
+   *     ResearchElementDefinition_CharacteristicBuilder.participantEffective static methods
    */
   public ResearchElementDefinition_CharacteristicBuilder withParticipantEffective(
       @NonNull Choice00607514014 participantEffective) {

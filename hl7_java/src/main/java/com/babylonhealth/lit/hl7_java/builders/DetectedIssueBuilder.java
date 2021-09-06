@@ -39,7 +39,6 @@ import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.DETECTEDISSUE_SEVERITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -74,6 +73,14 @@ public class DetectedIssueBuilder {
    */
   public DetectedIssueBuilder(OBSERVATION_STATUS status) {
     this.status = status;
+  }
+
+  public static Choice_0934386166 identified(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 identified(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -226,7 +233,8 @@ public class DetectedIssueBuilder {
   }
   /**
    * @param identified - The date or period when the detected issue was initially identified. Field
-   *     is a 'choice' field. Type should be one of FHIRDateTime, Period.
+   *     is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap
+   *     with one of the DetectedIssueBuilder.identified static methods
    */
   public DetectedIssueBuilder withIdentified(@NonNull Choice_0934386166 identified) {
     this.identified = Optional.of(identified);

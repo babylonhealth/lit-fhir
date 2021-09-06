@@ -34,7 +34,6 @@ import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -49,6 +48,18 @@ public class DataRequirement_DateFilterBuilder {
 
   /** Required fields for {@link DataRequirement.DateFilter} */
   public DataRequirement_DateFilterBuilder() {}
+
+  public static Choice_1947777294 value(Duration d) {
+    return new Choice_1947777294(d);
+  }
+
+  public static Choice_1947777294 value(FHIRDateTime f) {
+    return new Choice_1947777294(f);
+  }
+
+  public static Choice_1947777294 value(Period p) {
+    return new Choice_1947777294(p);
+  }
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -65,6 +76,8 @@ public class DataRequirement_DateFilterBuilder {
   }
   /**
    * @param value Field is a 'choice' field. Type should be one of Duration, FHIRDateTime, Period.
+   *     To pass the value in, wrap with one of the DataRequirement_DateFilterBuilder.value static
+   *     methods
    */
   public DataRequirement_DateFilterBuilder withValue(@NonNull Choice_1947777294 value) {
     this.value = Optional.of(value);

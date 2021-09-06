@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -54,6 +53,42 @@ public class Goal_TargetBuilder {
   /** Required fields for {@link Goal.Target} */
   public Goal_TargetBuilder() {}
 
+  public static Choice01219602913 due(Duration d) {
+    return new Choice01219602913(d);
+  }
+
+  public static Choice01219602913 due(FHIRDate f) {
+    return new Choice01219602913(f);
+  }
+
+  public static Choice01056080496 detail(Boolean b) {
+    return new Choice01056080496(b);
+  }
+
+  public static Choice01056080496 detail(CodeableConcept c) {
+    return new Choice01056080496(c);
+  }
+
+  public static Choice01056080496 detail(Integer i) {
+    return new Choice01056080496(i);
+  }
+
+  public static Choice01056080496 detail(Quantity q) {
+    return new Choice01056080496(q);
+  }
+
+  public static Choice01056080496 detail(Range r) {
+    return new Choice01056080496(r);
+  }
+
+  public static Choice01056080496 detail(Ratio r) {
+    return new Choice01056080496(r);
+  }
+
+  public static Choice01056080496 detail(String s) {
+    return new Choice01056080496(s);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -62,7 +97,10 @@ public class Goal_TargetBuilder {
     this.id = Optional.of(id);
     return this;
   }
-  /** @param due Field is a 'choice' field. Type should be one of Duration, FHIRDate. */
+  /**
+   * @param due Field is a 'choice' field. Type should be one of Duration, FHIRDate. To pass the
+   *     value in, wrap with one of the Goal_TargetBuilder.due static methods
+   */
   public Goal_TargetBuilder withDue(@NonNull Choice01219602913 due) {
     this.due = Optional.of(due);
     return this;
@@ -96,7 +134,8 @@ public class Goal_TargetBuilder {
   }
   /**
    * @param detail Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
-   *     Integer, Quantity, Range, Ratio, String.
+   *     Integer, Quantity, Range, Ratio, String. To pass the value in, wrap with one of the
+   *     Goal_TargetBuilder.detail static methods
    */
   public Goal_TargetBuilder withDetail(@NonNull Choice01056080496 detail) {
     this.detail = Optional.of(detail);

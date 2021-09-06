@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -53,13 +52,59 @@ public class Questionnaire_Item_InitialBuilder {
    * Required fields for {@link Questionnaire$Item$Initial}
    *
    * @param value Field is a 'choice' field. Type should be one of Attachment, BigDecimal, Boolean,
-   *     Coding, FHIRDate, FHIRDateTime, Integer, LocalTime, Quantity, Reference, String. There are
-   *     multiple valid json suffixes which correspond to values of type String -- to distinguish
-   *     between the specific subtype, pass $value wrapped in ParamDistinguisher.choose("foo".
-   *     $value), where foo is one of: String, Uri
+   *     Coding, FHIRDate, FHIRDateTime, Integer, LocalTime, Quantity, Reference, String. To pass
+   *     the value in, wrap with one of the Questionnaire_Item_InitialBuilder.value static methods
    */
   public Questionnaire_Item_InitialBuilder(@NonNull Choice_2101127777 value) {
     this.value = value;
+  }
+
+  public static Choice_2101127777 value(Attachment a) {
+    return new Choice_2101127777(a);
+  }
+
+  public static Choice_2101127777 value(BigDecimal b) {
+    return new Choice_2101127777(b);
+  }
+
+  public static Choice_2101127777 value(Boolean b) {
+    return new Choice_2101127777(b);
+  }
+
+  public static Choice_2101127777 value(Coding c) {
+    return new Choice_2101127777(c);
+  }
+
+  public static Choice_2101127777 value(FHIRDate f) {
+    return new Choice_2101127777(f);
+  }
+
+  public static Choice_2101127777 value(FHIRDateTime f) {
+    return new Choice_2101127777(f);
+  }
+
+  public static Choice_2101127777 value(Integer i) {
+    return new Choice_2101127777(i);
+  }
+
+  public static Choice_2101127777 value(LocalTime l) {
+    return new Choice_2101127777(l);
+  }
+
+  public static Choice_2101127777 value(Quantity q) {
+    return new Choice_2101127777(q);
+  }
+
+  public static Choice_2101127777 value(Reference r) {
+    return new Choice_2101127777(r);
+  }
+
+  public static Choice_2101127777 valueString(String s) {
+    return Choice_2101127777.Choice_2101127777String(s);
+  }
+
+  public static Choice_2101127777 valueUri(String s) {
+    return Choice_2101127777.Choice_2101127777UriStr(s);
   }
 
   /**

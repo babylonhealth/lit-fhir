@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -57,6 +56,30 @@ public class SubstanceSpecification_RelationshipBuilder {
 
   /** Required fields for {@link SubstanceSpecification.Relationship} */
   public SubstanceSpecification_RelationshipBuilder() {}
+
+  public static Choice00910671146 amount(Quantity q) {
+    return new Choice00910671146(q);
+  }
+
+  public static Choice00910671146 amount(Range r) {
+    return new Choice00910671146(r);
+  }
+
+  public static Choice00910671146 amount(Ratio r) {
+    return new Choice00910671146(r);
+  }
+
+  public static Choice00910671146 amount(String s) {
+    return new Choice00910671146(s);
+  }
+
+  public static Choice01025009075 substance(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 substance(Reference r) {
+    return new Choice01025009075(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -102,6 +125,8 @@ public class SubstanceSpecification_RelationshipBuilder {
   }
   /**
    * @param amount Field is a 'choice' field. Type should be one of Quantity, Range, Ratio, String.
+   *     To pass the value in, wrap with one of the
+   *     SubstanceSpecification_RelationshipBuilder.amount static methods
    */
   public SubstanceSpecification_RelationshipBuilder withAmount(@NonNull Choice00910671146 amount) {
     this.amount = Optional.of(amount);
@@ -120,6 +145,8 @@ public class SubstanceSpecification_RelationshipBuilder {
   }
   /**
    * @param substance Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     To pass the value in, wrap with one of the
+   *     SubstanceSpecification_RelationshipBuilder.substance static methods
    */
   public SubstanceSpecification_RelationshipBuilder withSubstance(
       @NonNull Choice01025009075 substance) {

@@ -41,7 +41,6 @@ import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -107,6 +106,42 @@ public class DevicemetricobservationBuilder {
     this.device = device;
     this.subject = subject;
     this.effective = effective;
+  }
+
+  public static Choice_1915626029 value(CodeableConcept c) {
+    return new Choice_1915626029(c);
+  }
+
+  public static Choice_1915626029 value(FHIRDateTime f) {
+    return new Choice_1915626029(f);
+  }
+
+  public static Choice_1915626029 value(LocalTime l) {
+    return new Choice_1915626029(l);
+  }
+
+  public static Choice_1915626029 value(Period p) {
+    return new Choice_1915626029(p);
+  }
+
+  public static Choice_1915626029 value(Quantity q) {
+    return new Choice_1915626029(q);
+  }
+
+  public static Choice_1915626029 value(Range r) {
+    return new Choice_1915626029(r);
+  }
+
+  public static Choice_1915626029 value(Ratio r) {
+    return new Choice_1915626029(r);
+  }
+
+  public static Choice_1915626029 value(SampledData s) {
+    return new Choice_1915626029(s);
+  }
+
+  public static Choice_1915626029 value(String s) {
+    return new Choice_1915626029(s);
   }
 
   /**
@@ -234,7 +269,8 @@ public class DevicemetricobservationBuilder {
    * @param value - The information determined as a result of making the observation, if the
    *     information has a simple value. Field is a 'choice' field. Type should be one of
    *     CodeableConcept, FHIRDateTime, LocalTime, Period, Quantity, Range, Ratio, SampledData,
-   *     String.
+   *     String. To pass the value in, wrap with one of the DevicemetricobservationBuilder.value
+   *     static methods
    */
   public DevicemetricobservationBuilder withValue(@NonNull Choice_1915626029 value) {
     this.value = Optional.of(value);

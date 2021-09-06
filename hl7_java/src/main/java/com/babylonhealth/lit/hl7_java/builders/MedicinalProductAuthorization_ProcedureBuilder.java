@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -61,6 +60,14 @@ public class MedicinalProductAuthorization_ProcedureBuilder {
     this._type = _type;
   }
 
+  public static Choice_0934386166 date(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 date(Period p) {
+    return new Choice_0934386166(p);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -69,7 +76,11 @@ public class MedicinalProductAuthorization_ProcedureBuilder {
     this.id = Optional.of(id);
     return this;
   }
-  /** @param date Field is a 'choice' field. Type should be one of FHIRDateTime, Period. */
+  /**
+   * @param date Field is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the
+   *     value in, wrap with one of the MedicinalProductAuthorization_ProcedureBuilder.date static
+   *     methods
+   */
   public MedicinalProductAuthorization_ProcedureBuilder withDate(@NonNull Choice_0934386166 date) {
     this.date = Optional.of(date);
     return this;

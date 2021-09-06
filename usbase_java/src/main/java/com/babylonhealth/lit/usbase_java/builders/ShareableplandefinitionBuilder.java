@@ -41,7 +41,6 @@ import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -138,6 +137,14 @@ public class ShareableplandefinitionBuilder {
     this.publisher = publisher;
     this.description = description;
     this.experimental = experimental;
+  }
+
+  public static Choice01025009075 subject(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 subject(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -403,7 +410,9 @@ public class ShareableplandefinitionBuilder {
   }
   /**
    * @param subject - A code or group definition that describes the intended subject of the plan
-   *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the ShareableplandefinitionBuilder.subject static
+   *     methods
    */
   public ShareableplandefinitionBuilder withSubject(@NonNull Choice01025009075 subject) {
     this.subject = Optional.of(subject);

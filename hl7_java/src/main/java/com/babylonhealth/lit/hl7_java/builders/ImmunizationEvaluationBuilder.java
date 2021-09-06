@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.IMMUNIZATION_EVALUATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -89,6 +88,22 @@ public class ImmunizationEvaluationBuilder {
     this.doseStatus = doseStatus;
     this.targetDisease = targetDisease;
     this.immunizationEvent = immunizationEvent;
+  }
+
+  public static Choice_0839638734 doseNumber(Integer i) {
+    return new Choice_0839638734(i);
+  }
+
+  public static Choice_0839638734 doseNumber(String s) {
+    return new Choice_0839638734(s);
+  }
+
+  public static Choice_0839638734 seriesDoses(Integer i) {
+    return new Choice_0839638734(i);
+  }
+
+  public static Choice_0839638734 seriesDoses(String s) {
+    return new Choice_0839638734(s);
   }
 
   /**
@@ -209,7 +224,8 @@ public class ImmunizationEvaluationBuilder {
   }
   /**
    * @param doseNumber - Nominal position in a series. Field is a 'choice' field. Type should be one
-   *     of Integer, String.
+   *     of Integer, String. To pass the value in, wrap with one of the
+   *     ImmunizationEvaluationBuilder.doseNumber static methods
    */
   public ImmunizationEvaluationBuilder withDoseNumber(@NonNull Choice_0839638734 doseNumber) {
     this.doseNumber = Optional.of(doseNumber);
@@ -217,7 +233,8 @@ public class ImmunizationEvaluationBuilder {
   }
   /**
    * @param seriesDoses - The recommended number of doses to achieve immunity. Field is a 'choice'
-   *     field. Type should be one of Integer, String.
+   *     field. Type should be one of Integer, String. To pass the value in, wrap with one of the
+   *     ImmunizationEvaluationBuilder.seriesDoses static methods
    */
   public ImmunizationEvaluationBuilder withSeriesDoses(@NonNull Choice_0839638734 seriesDoses) {
     this.seriesDoses = Optional.of(seriesDoses);

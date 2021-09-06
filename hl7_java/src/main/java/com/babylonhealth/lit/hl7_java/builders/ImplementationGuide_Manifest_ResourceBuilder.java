@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -58,6 +57,14 @@ public class ImplementationGuide_Manifest_ResourceBuilder {
    */
   public ImplementationGuide_Manifest_ResourceBuilder(Reference reference) {
     this.reference = reference;
+  }
+
+  public static Choice00683246261 example(Boolean b) {
+    return new Choice00683246261(b);
+  }
+
+  public static Choice00683246261 example(String s) {
+    return new Choice00683246261(s);
   }
 
   /**
@@ -92,7 +99,11 @@ public class ImplementationGuide_Manifest_ResourceBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param example Field is a 'choice' field. Type should be one of Boolean, String. */
+  /**
+   * @param example Field is a 'choice' field. Type should be one of Boolean, String. To pass the
+   *     value in, wrap with one of the ImplementationGuide_Manifest_ResourceBuilder.example static
+   *     methods
+   */
   public ImplementationGuide_Manifest_ResourceBuilder withExample(
       @NonNull Choice00683246261 example) {
     this.example = Optional.of(example);

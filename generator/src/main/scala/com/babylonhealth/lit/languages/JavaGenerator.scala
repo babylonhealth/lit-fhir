@@ -27,7 +27,8 @@ trait JavaGenerator extends Commonish {
       pkg: String,
       valueSets: ValueSetDecls,
       moduleDependencies: ModuleDependencies,
-      javaSuffix: String): Seq[ClassGenInfo] = {
+      javaSuffix: String,
+      unionTypes: Map[Seq[String], String]): Seq[ClassGenInfo] = {
     val modules: Seq[String] = (moduleDependencies.getParents(pkg) + pkg).toSeq
     val lookupPkg            = valueSets.byEnum.map(s => s._1 -> moduleDependencies.leastCommon(s._2.map(_._1).toSet))
     val fields =
@@ -103,19 +104,34 @@ trait JavaGenerator extends Commonish {
     def getNearestDescription(f: BaseField, t: TopLevelClass): Option[String] =
       descFromTLC(f, t).orElse(t.parentClass.flatMap(p => getNearestDescription(f, p)))
 
-    def paramStr(f: BaseField, isRequired: Boolean): String =
+    def choiceConstructorMethods(f: BaseField): String = if (f.types.size == 1) ""
+    else {
+      val choiceName                     = unionTypes(f.types)
+      val typesWithErasure               = f.types.map(t => t -> eraseSubtypes(t, f))
+      val (overloadedTypes, uniqueTypes) = typesWithErasure.partition { case (_, e) => typesWithErasure.count(_._2 == e) > 1 }
+      val utStr: String = uniqueTypes
+        .map { case (_, e) =>
+          val variable: String = e.head.toLower +: ""
+          s"""  public static $choiceName ${f.javaName}($e $variable) {
+             |    return new $choiceName($variable);
+             |  }""".stripMargin
+        }
+        .mkString("\n")
+      val otStr: String = overloadedTypes
+        .map { case (t, e) =>
+          val variable: String = e.head.toLower +: ""
+          s"""  public static $choiceName ${f.javaName}${typeLookdown(t)}($e $variable) {
+             |    return $choiceName.$choiceName$t($variable);
+             |  }""".stripMargin
+        }
+        .mkString("\n")
+      utStr ++ otStr
+    }
+    def paramStr(f: BaseField, isRequired: Boolean, builderName: String): String =
       s"@param ${f.javaName}${getNearestDescription(f, topLevelClass) getOrElse ""}${if (f.types.size > 1) {
         val value = f.types.map(t => t -> eraseSubtypes(t, f))
-        val refNotes: String = if (value.size != value.map(_._2).distinct.size && isRequired)
-          value
-            .groupBy(_._2)
-            .filter(_._2.size > 1)
-            .map { case (erased, ts) =>
-              s"""  * There are multiple valid json suffixes which correspond to values of type ${erased} -- to distinguish between the specific subtype, pass $$value wrapped in ParamDistinguisher.choose("foo". $$value), where foo is one of: ${ts.map(_._1).map(typeLookdown).mkString(", ")}"""
-            }
-            .mkString("\n", "\n", "")
-        else ""
-        s"\n  * Field is a 'choice' field. Type should be one of ${value.map(_._2).distinct.mkString(", ")}.$refNotes"
+        s"\n  * Field is a 'choice' field. Type should be one of ${value.map(_._2).distinct.mkString(", ")}. To pass the" +
+          s" value in, wrap with one of the $builderName.${f.javaName} static methods"
       } else ""}"
     val builderName                         = s"${topLevelClass.scalaClassName}Builder"
     val privateFields                       = genPrivateFields(fields)
@@ -145,7 +161,7 @@ trait JavaGenerator extends Commonish {
         .map { f =>
           val javaDoc: String =
             s"""  /**
-               |  * ${paramStr(f, isRequired = false)}
+               |  * ${paramStr(f, isRequired = false, builderName)}
                |  */
                |""".stripMargin
           s"""${javaDoc}public $builderName with${f.capitalName}(@NonNull ${toBuilderMutatorType(f, wrapInOptional = false)} ${f.javaName}) {
@@ -208,7 +224,6 @@ trait JavaGenerator extends Commonish {
         .mkString("\n")}
          |import com.babylonhealth.lit.core.$$bslash$$div;
          |import com.babylonhealth.lit.core_java.LitUtils;
-         |import com.babylonhealth.lit.core_java.ParamDistinguisher;
          |
          |import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
          |import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -225,7 +240,8 @@ trait JavaGenerator extends Commonish {
       val builderParams                       = genBuilderParams(nonOptionalFields)
       val fieldAssignments                    = genFieldAssignments(nonOptionalFields, targetClassName)
       val optionalFieldAppenders              = genOptionalFieldAppenders(optionalFields, builderName, targetClassName)
-      val paramStrs                           = nonOptionalFields.map(paramStr(_, isRequired = true)).mkString("\n  * ")
+      val choiceConstructorAliases            = f.childFields.map(choiceConstructorMethods).mkString("\n")
+      val paramStrs                           = nonOptionalFields.map(paramStr(_, isRequired = true, builderName)).mkString("\n  * ")
       val javaDoc =
         s""" /** Required fields for {@link $targetClassName}
            |  *
@@ -241,6 +257,8 @@ trait JavaGenerator extends Commonish {
            |  public $builderName($builderParams) {
            |    $fieldAssignments
            |  }
+           |
+           |  $choiceConstructorAliases
            |
            |  $optionalFieldAppenders
            |
@@ -265,6 +283,8 @@ trait JavaGenerator extends Commonish {
           genBuilder(f, p)
         }
 
+    val choiceConstructorAliases = topLevelClass.fields.map(choiceConstructorMethods).mkString("\n")
+
     val optionalFieldAppenders = genOptionalFieldAppenders(optionalFields, builderName, topLevelClass.scalaClassName)
     val withoutMeta =
       if (fields.exists(_.javaName == "meta"))
@@ -273,7 +293,7 @@ trait JavaGenerator extends Commonish {
            |  return this;
            |}""".stripMargin
       else ""
-    val paramStrs = nonOptionalFields.map(paramStr(_, isRequired = true)).mkString("\n  * ")
+    val paramStrs = nonOptionalFields.map(paramStr(_, isRequired = true, builderName)).mkString("\n  * ")
     val javaDoc =
       s""" /** Required fields for {@link ${topLevelClass.scalaClassName}}
          |  *
@@ -289,6 +309,8 @@ trait JavaGenerator extends Commonish {
          |  public $builderName($builderParams) {
          |    $fieldAssignments
          |  }
+         |
+         |  $choiceConstructorAliases
          |
          |  $optionalFieldAppenders
          |

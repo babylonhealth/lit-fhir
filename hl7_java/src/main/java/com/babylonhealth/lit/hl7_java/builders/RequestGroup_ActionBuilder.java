@@ -42,7 +42,6 @@ import com.babylonhealth.lit.hl7.ACTION_SELECTION_BEHAVIOR;
 import com.babylonhealth.lit.hl7.ACTION_CARDINALITY_BEHAVIOR;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -74,6 +73,30 @@ public class RequestGroup_ActionBuilder {
 
   /** Required fields for {@link RequestGroup.Action} */
   public RequestGroup_ActionBuilder() {}
+
+  public static Choice_0181779868 timing(Age a) {
+    return new Choice_0181779868(a);
+  }
+
+  public static Choice_0181779868 timing(Duration d) {
+    return new Choice_0181779868(d);
+  }
+
+  public static Choice_0181779868 timing(FHIRDateTime f) {
+    return new Choice_0181779868(f);
+  }
+
+  public static Choice_0181779868 timing(Period p) {
+    return new Choice_0181779868(p);
+  }
+
+  public static Choice_0181779868 timing(Range r) {
+    return new Choice_0181779868(r);
+  }
+
+  public static Choice_0181779868 timing(Timing t) {
+    return new Choice_0181779868(t);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -155,7 +178,8 @@ public class RequestGroup_ActionBuilder {
   }
   /**
    * @param timing Field is a 'choice' field. Type should be one of Age, Duration, FHIRDateTime,
-   *     Period, Range, Timing.
+   *     Period, Range, Timing. To pass the value in, wrap with one of the
+   *     RequestGroup_ActionBuilder.timing static methods
    */
   public RequestGroup_ActionBuilder withTiming(@NonNull Choice_0181779868 timing) {
     this.timing = Optional.of(timing);

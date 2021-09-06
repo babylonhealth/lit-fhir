@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -53,6 +52,14 @@ public class BiologicallyDerivedProduct_CollectionBuilder {
 
   /** Required fields for {@link BiologicallyDerivedProduct.Collection} */
   public BiologicallyDerivedProduct_CollectionBuilder() {}
+
+  public static Choice_0934386166 collected(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 collected(Period p) {
+    return new Choice_0934386166(p);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -96,7 +103,11 @@ public class BiologicallyDerivedProduct_CollectionBuilder {
     this.collector = Optional.of(collector);
     return this;
   }
-  /** @param collected Field is a 'choice' field. Type should be one of FHIRDateTime, Period. */
+  /**
+   * @param collected Field is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass
+   *     the value in, wrap with one of the BiologicallyDerivedProduct_CollectionBuilder.collected
+   *     static methods
+   */
   public BiologicallyDerivedProduct_CollectionBuilder withCollected(
       @NonNull Choice_0934386166 collected) {
     this.collected = Optional.of(collected);

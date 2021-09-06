@@ -44,7 +44,6 @@ import com.babylonhealth.lit.hl7.EVENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -103,7 +102,8 @@ public class Us_core_procedureBuilder {
    * @param performed - Estimated or actual date, date-time, period, or age when the procedure was
    *     performed. Allows a period to support complex procedures that span more than one date, and
    *     also allows for the length of the procedure to be captured. Field is a 'choice' field. Type
-   *     should be one of FHIRDateTime, Period.
+   *     should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
+   *     Us_core_procedureBuilder.performed static methods
    */
   public Us_core_procedureBuilder(
       CodeableConcept code,
@@ -114,6 +114,14 @@ public class Us_core_procedureBuilder {
     this.status = status;
     this.subject = subject;
     this.performed = performed;
+  }
+
+  public static Choice_0934386166 performed(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 performed(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**

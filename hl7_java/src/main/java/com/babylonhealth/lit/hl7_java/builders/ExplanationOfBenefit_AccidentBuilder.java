@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -53,6 +52,14 @@ public class ExplanationOfBenefit_AccidentBuilder {
 
   /** Required fields for {@link ExplanationOfBenefit.Accident} */
   public ExplanationOfBenefit_AccidentBuilder() {}
+
+  public static Choice00434638053 location(Address a) {
+    return new Choice00434638053(a);
+  }
+
+  public static Choice00434638053 location(Reference r) {
+    return new Choice00434638053(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -97,7 +104,11 @@ public class ExplanationOfBenefit_AccidentBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param location Field is a 'choice' field. Type should be one of Address, Reference. */
+  /**
+   * @param location Field is a 'choice' field. Type should be one of Address, Reference. To pass
+   *     the value in, wrap with one of the ExplanationOfBenefit_AccidentBuilder.location static
+   *     methods
+   */
   public ExplanationOfBenefit_AccidentBuilder withLocation(@NonNull Choice00434638053 location) {
     this.location = Optional.of(location);
     return this;

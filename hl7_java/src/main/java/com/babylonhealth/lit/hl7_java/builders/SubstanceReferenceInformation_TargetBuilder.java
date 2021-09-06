@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -58,6 +57,18 @@ public class SubstanceReferenceInformation_TargetBuilder {
 
   /** Required fields for {@link SubstanceReferenceInformation.Target} */
   public SubstanceReferenceInformation_TargetBuilder() {}
+
+  public static Choice_1527751898 amount(Quantity q) {
+    return new Choice_1527751898(q);
+  }
+
+  public static Choice_1527751898 amount(Range r) {
+    return new Choice_1527751898(r);
+  }
+
+  public static Choice_1527751898 amount(String s) {
+    return new Choice_1527751898(s);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -118,7 +129,11 @@ public class SubstanceReferenceInformation_TargetBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param amount Field is a 'choice' field. Type should be one of Quantity, Range, String. */
+  /**
+   * @param amount Field is a 'choice' field. Type should be one of Quantity, Range, String. To pass
+   *     the value in, wrap with one of the SubstanceReferenceInformation_TargetBuilder.amount
+   *     static methods
+   */
   public SubstanceReferenceInformation_TargetBuilder withAmount(@NonNull Choice_1527751898 amount) {
     this.amount = Optional.of(amount);
     return this;

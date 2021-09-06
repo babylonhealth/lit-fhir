@@ -39,7 +39,6 @@ import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -84,6 +83,14 @@ public class CommunicationRequestBuilder {
    */
   public CommunicationRequestBuilder(REQUEST_STATUS status) {
     this.status = status;
+  }
+
+  public static Choice_0934386166 occurrence(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 occurrence(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -360,7 +367,8 @@ public class CommunicationRequestBuilder {
   }
   /**
    * @param occurrence - The time when this communication is to occur. Field is a 'choice' field.
-   *     Type should be one of FHIRDateTime, Period.
+   *     Type should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
+   *     CommunicationRequestBuilder.occurrence static methods
    */
   public CommunicationRequestBuilder withOccurrence(@NonNull Choice_0934386166 occurrence) {
     this.occurrence = Optional.of(occurrence);

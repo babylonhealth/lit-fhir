@@ -44,7 +44,6 @@ import com.babylonhealth.lit.hl7.DIAGNOSTIC_REPORT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -95,7 +94,8 @@ public class Us_core_diagnosticreport_noteBuilder {
    *     service that created the report (e.g. cardiology, biochemistry, hematology, MRI). This is
    *     used for searching, sorting and display purposes.
    * @param effective - This is the Datetime or Period when the report or note was written. Field is
-   *     a 'choice' field. Type should be one of FHIRDateTime, Period.
+   *     a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap
+   *     with one of the Us_core_diagnosticreport_noteBuilder.effective static methods
    */
   public Us_core_diagnosticreport_noteBuilder(
       CodeableConcept code,
@@ -108,6 +108,14 @@ public class Us_core_diagnosticreport_noteBuilder {
     this.subject = subject;
     this.category = category;
     this.effective = effective;
+  }
+
+  public static Choice_0934386166 effective(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 effective(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**

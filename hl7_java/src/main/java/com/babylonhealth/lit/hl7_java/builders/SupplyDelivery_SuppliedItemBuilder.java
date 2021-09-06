@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -53,6 +52,14 @@ public class SupplyDelivery_SuppliedItemBuilder {
   /** Required fields for {@link SupplyDelivery.SuppliedItem} */
   public SupplyDelivery_SuppliedItemBuilder() {}
 
+  public static Choice01025009075 item(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 item(Reference r) {
+    return new Choice01025009075(r);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -61,7 +68,11 @@ public class SupplyDelivery_SuppliedItemBuilder {
     this.id = Optional.of(id);
     return this;
   }
-  /** @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference. */
+  /**
+   * @param item Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the SupplyDelivery_SuppliedItemBuilder.item static
+   *     methods
+   */
   public SupplyDelivery_SuppliedItemBuilder withItem(@NonNull Choice01025009075 item) {
     this.item = Optional.of(item);
     return this;

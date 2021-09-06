@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -78,6 +77,14 @@ public class DeviceDefinitionBuilder {
 
   /** Required fields for {@link DeviceDefinition} */
   public DeviceDefinitionBuilder() {}
+
+  public static Choice_1128709984 manufacturer(Reference r) {
+    return new Choice_1128709984(r);
+  }
+
+  public static Choice_1128709984 manufacturer(String s) {
+    return new Choice_1128709984(s);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -286,7 +293,8 @@ public class DeviceDefinitionBuilder {
   }
   /**
    * @param manufacturer - A name of the manufacturer. Field is a 'choice' field. Type should be one
-   *     of Reference, String.
+   *     of Reference, String. To pass the value in, wrap with one of the
+   *     DeviceDefinitionBuilder.manufacturer static methods
    */
   public DeviceDefinitionBuilder withManufacturer(@NonNull Choice_1128709984 manufacturer) {
     this.manufacturer = Optional.of(manufacturer);

@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DOCUMENT_RELATIONSHIP_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -54,12 +53,21 @@ public class Composition_RelatesToBuilder {
    * Required fields for {@link Composition.RelatesTo}
    *
    * @param code
-   * @param target Field is a 'choice' field. Type should be one of Identifier, Reference.
+   * @param target Field is a 'choice' field. Type should be one of Identifier, Reference. To pass
+   *     the value in, wrap with one of the Composition_RelatesToBuilder.target static methods
    */
   public Composition_RelatesToBuilder(
       DOCUMENT_RELATIONSHIP_TYPE code, @NonNull Choice_0983418289 target) {
     this.code = code;
     this.target = target;
+  }
+
+  public static Choice_0983418289 target(Identifier i) {
+    return new Choice_0983418289(i);
+  }
+
+  public static Choice_0983418289 target(Reference r) {
+    return new Choice_0983418289(r);
   }
 
   /**

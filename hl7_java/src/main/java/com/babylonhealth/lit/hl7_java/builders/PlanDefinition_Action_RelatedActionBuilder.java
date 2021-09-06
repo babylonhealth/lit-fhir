@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ACTION_RELATIONSHIP_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -61,6 +60,14 @@ public class PlanDefinition_Action_RelatedActionBuilder {
       String actionId, ACTION_RELATIONSHIP_TYPE relationship) {
     this.actionId = actionId;
     this.relationship = relationship;
+  }
+
+  public static Choice00801828838 offset(Duration d) {
+    return new Choice00801828838(d);
+  }
+
+  public static Choice00801828838 offset(Range r) {
+    return new Choice00801828838(r);
   }
 
   /**
@@ -94,7 +101,11 @@ public class PlanDefinition_Action_RelatedActionBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param offset Field is a 'choice' field. Type should be one of Duration, Range. */
+  /**
+   * @param offset Field is a 'choice' field. Type should be one of Duration, Range. To pass the
+   *     value in, wrap with one of the PlanDefinition_Action_RelatedActionBuilder.offset static
+   *     methods
+   */
   public PlanDefinition_Action_RelatedActionBuilder withOffset(@NonNull Choice00801828838 offset) {
     this.offset = Optional.of(offset);
     return this;

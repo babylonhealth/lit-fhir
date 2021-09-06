@@ -40,7 +40,6 @@ import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -57,6 +56,18 @@ public class SubstanceAmountBuilder {
 
   /** Required fields for {@link SubstanceAmount} */
   public SubstanceAmountBuilder() {}
+
+  public static Choice_1527751898 amount(Quantity q) {
+    return new Choice_1527751898(q);
+  }
+
+  public static Choice_1527751898 amount(Range r) {
+    return new Choice_1527751898(r);
+  }
+
+  public static Choice_1527751898 amount(String s) {
+    return new Choice_1527751898(s);
+  }
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -92,7 +103,8 @@ public class SubstanceAmountBuilder {
    * @param amount - Used to capture quantitative values for a variety of elements. If only limits
    *     are given, the arithmetic mean would be the average. If only a single definite value for a
    *     given element is given, it would be captured in this field. Field is a 'choice' field. Type
-   *     should be one of Quantity, Range, String.
+   *     should be one of Quantity, Range, String. To pass the value in, wrap with one of the
+   *     SubstanceAmountBuilder.amount static methods
    */
   public SubstanceAmountBuilder withAmount(@NonNull Choice_1527751898 amount) {
     this.amount = Optional.of(amount);

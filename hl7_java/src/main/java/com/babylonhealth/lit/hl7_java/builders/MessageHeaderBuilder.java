@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -70,12 +69,21 @@ public class MessageHeaderBuilder {
    * @param event - Code that identifies the event this message represents and connects it with its
    *     definition. Events defined as part of the FHIR specification have the system value
    *     "http://terminology.hl7.org/CodeSystem/message-events". Alternatively uri to the
-   *     EventDefinition. Field is a 'choice' field. Type should be one of Coding, String.
+   *     EventDefinition. Field is a 'choice' field. Type should be one of Coding, String. To pass
+   *     the value in, wrap with one of the MessageHeaderBuilder.event static methods
    * @param source - The source application from which this message originated.
    */
   public MessageHeaderBuilder(@NonNull Choice01583485927 event, MessageHeader.Source source) {
     this.event = event;
     this.source = source;
+  }
+
+  public static Choice01583485927 event(Coding c) {
+    return new Choice01583485927(c);
+  }
+
+  public static Choice01583485927 event(String s) {
+    return new Choice01583485927(s);
   }
 
   /**

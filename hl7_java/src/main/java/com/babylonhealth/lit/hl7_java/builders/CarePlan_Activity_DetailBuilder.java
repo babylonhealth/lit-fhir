@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.CARE_PLAN_ACTIVITY_KIND;
 import com.babylonhealth.lit.hl7.CARE_PLAN_ACTIVITY_STATUS;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -74,6 +73,26 @@ public class CarePlan_Activity_DetailBuilder {
    */
   public CarePlan_Activity_DetailBuilder(CARE_PLAN_ACTIVITY_STATUS status) {
     this.status = status;
+  }
+
+  public static Choice01025009075 product(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 product(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice01726112534 scheduled(Period p) {
+    return new Choice01726112534(p);
+  }
+
+  public static Choice01726112534 scheduled(String s) {
+    return new Choice01726112534(s);
+  }
+
+  public static Choice01726112534 scheduled(Timing t) {
+    return new Choice01726112534(t);
   }
 
   /**
@@ -157,7 +176,11 @@ public class CarePlan_Activity_DetailBuilder {
     this.reasonCode = Collections.unmodifiableCollection(reasonCode);
     return this;
   }
-  /** @param product Field is a 'choice' field. Type should be one of CodeableConcept, Reference. */
+  /**
+   * @param product Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the CarePlan_Activity_DetailBuilder.product static
+   *     methods
+   */
   public CarePlan_Activity_DetailBuilder withProduct(@NonNull Choice01025009075 product) {
     this.product = Optional.of(product);
     return this;
@@ -182,7 +205,11 @@ public class CarePlan_Activity_DetailBuilder {
     this.doNotPerform = Optional.of(doNotPerform);
     return this;
   }
-  /** @param scheduled Field is a 'choice' field. Type should be one of Period, String, Timing. */
+  /**
+   * @param scheduled Field is a 'choice' field. Type should be one of Period, String, Timing. To
+   *     pass the value in, wrap with one of the CarePlan_Activity_DetailBuilder.scheduled static
+   *     methods
+   */
   public CarePlan_Activity_DetailBuilder withScheduled(@NonNull Choice01726112534 scheduled) {
     this.scheduled = Optional.of(scheduled);
     return this;

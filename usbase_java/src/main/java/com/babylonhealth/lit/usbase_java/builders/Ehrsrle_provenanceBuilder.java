@@ -40,7 +40,6 @@ import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -85,6 +84,14 @@ public class Ehrsrle_provenanceBuilder {
     this.target = target;
     this.recorded = recorded;
     this.agent = agent;
+  }
+
+  public static Choice_0934386166 occurred(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 occurred(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -218,7 +225,8 @@ public class Ehrsrle_provenanceBuilder {
   }
   /**
    * @param occurred - The period during which the activity occurred. Field is a 'choice' field.
-   *     Type should be one of FHIRDateTime, Period.
+   *     Type should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
+   *     Ehrsrle_provenanceBuilder.occurred static methods
    */
   public Ehrsrle_provenanceBuilder withOccurred(@NonNull Choice_0934386166 occurred) {
     this.occurred = Optional.of(occurred);

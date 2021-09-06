@@ -40,7 +40,6 @@ import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.VARIABLE_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -105,6 +104,14 @@ public class ResearchElementDefinitionBuilder {
     this._type = _type;
     this.status = status;
     this.characteristic = characteristic;
+  }
+
+  public static Choice01025009075 subject(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 subject(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -431,7 +438,8 @@ public class ResearchElementDefinitionBuilder {
    * @param subject - The intended subjects for the ResearchElementDefinition. If this element is
    *     not provided, a Patient subject is assumed, but the subject of the
    *     ResearchElementDefinition can be anything. Field is a 'choice' field. Type should be one of
-   *     CodeableConcept, Reference.
+   *     CodeableConcept, Reference. To pass the value in, wrap with one of the
+   *     ResearchElementDefinitionBuilder.subject static methods
    */
   public ResearchElementDefinitionBuilder withSubject(@NonNull Choice01025009075 subject) {
     this.subject = Optional.of(subject);

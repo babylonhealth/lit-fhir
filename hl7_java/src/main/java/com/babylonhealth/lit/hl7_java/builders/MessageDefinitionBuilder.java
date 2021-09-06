@@ -40,7 +40,6 @@ import com.babylonhealth.lit.hl7.MESSAGE_SIGNIFICANCE_CATEGORY;
 import com.babylonhealth.lit.hl7.MESSAGEHEADER_RESPONSE_REQUEST;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -90,13 +89,22 @@ public class MessageDefinitionBuilder {
    * @param status - The status of this message definition. Enables tracking the life-cycle of the
    *     content.
    * @param event - Event code or link to the EventDefinition. Field is a 'choice' field. Type
-   *     should be one of Coding, String.
+   *     should be one of Coding, String. To pass the value in, wrap with one of the
+   *     MessageDefinitionBuilder.event static methods
    */
   public MessageDefinitionBuilder(
       FHIRDateTime date, PUBLICATION_STATUS status, @NonNull Choice01583485927 event) {
     this.date = date;
     this.status = status;
     this.event = event;
+  }
+
+  public static Choice01583485927 event(Coding c) {
+    return new Choice01583485927(c);
+  }
+
+  public static Choice01583485927 event(String s) {
+    return new Choice01583485927(s);
   }
 
   /**

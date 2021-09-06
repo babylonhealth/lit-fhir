@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.CONTRACT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -89,6 +88,22 @@ public class ContractBuilder {
 
   /** Required fields for {@link Contract} */
   public ContractBuilder() {}
+
+  public static Choice01025009075 topic(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 topic(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice_0340660840 legallyBinding(Attachment a) {
+    return new Choice_0340660840(a);
+  }
+
+  public static Choice_0340660840 legallyBinding(Reference r) {
+    return new Choice_0340660840(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -282,7 +297,7 @@ public class ContractBuilder {
   /**
    * @param topic - Narrows the range of legal concerns to focus on the achievement of specific
    *     contractual objectives. Field is a 'choice' field. Type should be one of CodeableConcept,
-   *     Reference.
+   *     Reference. To pass the value in, wrap with one of the ContractBuilder.topic static methods
    */
   public ContractBuilder withTopic(@NonNull Choice01025009075 topic) {
     this.topic = Optional.of(topic);
@@ -480,7 +495,8 @@ public class ContractBuilder {
    * @param legallyBinding - Legally binding Contract: This is the signed and legally recognized
    *     representation of the Contract, which is considered the "source of truth" and which would
    *     be the basis for legal action related to enforcement of this Contract. Field is a 'choice'
-   *     field. Type should be one of Attachment, Reference.
+   *     field. Type should be one of Attachment, Reference. To pass the value in, wrap with one of
+   *     the ContractBuilder.legallyBinding static methods
    */
   public ContractBuilder withLegallyBinding(@NonNull Choice_0340660840 legallyBinding) {
     this.legallyBinding = Optional.of(legallyBinding);

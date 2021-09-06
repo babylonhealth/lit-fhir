@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.CONSENT_STATE_CODES;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -81,6 +80,14 @@ public class ConsentBuilder {
     this.scope = scope;
     this.status = status;
     this.category = category;
+  }
+
+  public static Choice_0340660840 source(Attachment a) {
+    return new Choice_0340660840(a);
+  }
+
+  public static Choice_0340660840 source(Reference r) {
+    return new Choice_0340660840(r);
   }
 
   /**
@@ -190,7 +197,8 @@ public class ConsentBuilder {
    * @param source - The source on which this consent statement is based. The source might be a
    *     scanned original paper form, or a reference to a consent that links back to such a source,
    *     a reference to a document repository (e.g. XDS) that stores the original consent document.
-   *     Field is a 'choice' field. Type should be one of Attachment, Reference.
+   *     Field is a 'choice' field. Type should be one of Attachment, Reference. To pass the value
+   *     in, wrap with one of the ConsentBuilder.source static methods
    */
   public ConsentBuilder withSource(@NonNull Choice_0340660840 source) {
     this.source = Optional.of(source);

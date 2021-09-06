@@ -38,7 +38,6 @@ import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -79,6 +78,22 @@ public class ConceptMapBuilder {
    */
   public ConceptMapBuilder(PUBLICATION_STATUS status) {
     this.status = status;
+  }
+
+  public static Choice00545979821 sourceCanonical(String s) {
+    return Choice00545979821.Choice00545979821Canonical(s);
+  }
+
+  public static Choice00545979821 sourceUri(String s) {
+    return Choice00545979821.Choice00545979821UriStr(s);
+  }
+
+  public static Choice00545979821 targetCanonical(String s) {
+    return Choice00545979821.Choice00545979821Canonical(s);
+  }
+
+  public static Choice00545979821 targetUri(String s) {
+    return Choice00545979821.Choice00545979821UriStr(s);
   }
 
   /**
@@ -242,7 +257,8 @@ public class ConceptMapBuilder {
   /**
    * @param source - Identifier for the source value set that contains the concepts that are being
    *     mapped and provides context for the mappings. Field is a 'choice' field. Type should be one
-   *     of String.
+   *     of String. To pass the value in, wrap with one of the ConceptMapBuilder.source static
+   *     methods
    */
   public ConceptMapBuilder withSource(@NonNull Choice00545979821 source) {
     this.source = Optional.of(source);
@@ -252,7 +268,8 @@ public class ConceptMapBuilder {
    * @param target - The target value set provides context for the mappings. Note that the mapping
    *     is made between concepts, not between value sets, but the value set provides important
    *     context about how the concept mapping choices are made. Field is a 'choice' field. Type
-   *     should be one of String.
+   *     should be one of String. To pass the value in, wrap with one of the
+   *     ConceptMapBuilder.target static methods
    */
   public ConceptMapBuilder withTarget(@NonNull Choice00545979821 target) {
     this.target = Optional.of(target);

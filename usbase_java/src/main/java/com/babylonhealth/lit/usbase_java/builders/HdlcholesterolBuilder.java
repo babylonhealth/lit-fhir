@@ -41,7 +41,6 @@ import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -97,6 +96,22 @@ public class HdlcholesterolBuilder {
     this.code = code;
     this.status = status;
     this.referenceRange = referenceRange;
+  }
+
+  public static Choice01473702374 effective(FHIRDateTime f) {
+    return new Choice01473702374(f);
+  }
+
+  public static Choice01473702374 effective(Period p) {
+    return new Choice01473702374(p);
+  }
+
+  public static Choice01473702374 effective(Timing t) {
+    return new Choice01473702374(t);
+  }
+
+  public static Choice01473702374 effective(ZonedDateTime z) {
+    return new Choice01473702374(z);
   }
 
   /**
@@ -336,7 +351,8 @@ public class HdlcholesterolBuilder {
    *     biological subjects - e.g. human patients - this is usually called the "physiologically
    *     relevant time". This is usually either the time of the procedure or of specimen collection,
    *     but very often the source of the date/time is not known, only the date/time itself. Field
-   *     is a 'choice' field. Type should be one of FHIRDateTime, Period, Timing, ZonedDateTime.
+   *     is a 'choice' field. Type should be one of FHIRDateTime, Period, Timing, ZonedDateTime. To
+   *     pass the value in, wrap with one of the HdlcholesterolBuilder.effective static methods
    */
   public HdlcholesterolBuilder withEffective(@NonNull Choice01473702374 effective) {
     this.effective = Optional.of(effective);

@@ -34,7 +34,6 @@ import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.ALL_TYPES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -60,6 +59,14 @@ public class DataRequirementBuilder {
    */
   public DataRequirementBuilder(ALL_TYPES _type) {
     this._type = _type;
+  }
+
+  public static Choice01025009075 subject(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 subject(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -119,7 +126,8 @@ public class DataRequirementBuilder {
   /**
    * @param subject - The intended subjects of the data requirement. If this element is not
    *     provided, a Patient subject is assumed. Field is a 'choice' field. Type should be one of
-   *     CodeableConcept, Reference.
+   *     CodeableConcept, Reference. To pass the value in, wrap with one of the
+   *     DataRequirementBuilder.subject static methods
    */
   public DataRequirementBuilder withSubject(@NonNull Choice01025009075 subject) {
     this.subject = Optional.of(subject);

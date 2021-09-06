@@ -40,7 +40,6 @@ import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -102,6 +101,38 @@ public class ServiceRequestBuilder {
     this.status = status;
     this.intent = intent;
     this.subject = subject;
+  }
+
+  public static Choice_0575082635 quantity(Quantity q) {
+    return new Choice_0575082635(q);
+  }
+
+  public static Choice_0575082635 quantity(Range r) {
+    return new Choice_0575082635(r);
+  }
+
+  public static Choice_0575082635 quantity(Ratio r) {
+    return new Choice_0575082635(r);
+  }
+
+  public static Choice_1768247138 asNeeded(Boolean b) {
+    return new Choice_1768247138(b);
+  }
+
+  public static Choice_1768247138 asNeeded(CodeableConcept c) {
+    return new Choice_1768247138(c);
+  }
+
+  public static Choice00609373412 occurrence(FHIRDateTime f) {
+    return new Choice00609373412(f);
+  }
+
+  public static Choice00609373412 occurrence(Period p) {
+    return new Choice00609373412(p);
+  }
+
+  public static Choice00609373412 occurrence(Timing t) {
+    return new Choice00609373412(t);
   }
 
   /**
@@ -397,7 +428,8 @@ public class ServiceRequestBuilder {
    * @param quantity - An amount of service being requested which can be a quantity ( for example
    *     $1,500 home modification), a ratio ( for example, 20 half day visits per month), or a range
    *     (2.0 to 1.8 Gy per fraction). Field is a 'choice' field. Type should be one of Quantity,
-   *     Range, Ratio.
+   *     Range, Ratio. To pass the value in, wrap with one of the ServiceRequestBuilder.quantity
+   *     static methods
    */
   public ServiceRequestBuilder withQuantity(@NonNull Choice_0575082635 quantity) {
     this.quantity = Optional.of(quantity);
@@ -406,7 +438,8 @@ public class ServiceRequestBuilder {
   /**
    * @param asNeeded - If a CodeableConcept is present, it indicates the pre-condition for
    *     performing the service. For example "pain", "on flare-up", etc. Field is a 'choice' field.
-   *     Type should be one of Boolean, CodeableConcept.
+   *     Type should be one of Boolean, CodeableConcept. To pass the value in, wrap with one of the
+   *     ServiceRequestBuilder.asNeeded static methods
    */
   public ServiceRequestBuilder withAsNeeded(@NonNull Choice_1768247138 asNeeded) {
     this.asNeeded = Optional.of(asNeeded);
@@ -448,7 +481,8 @@ public class ServiceRequestBuilder {
   }
   /**
    * @param occurrence - The date/time at which the requested service should occur. Field is a
-   *     'choice' field. Type should be one of FHIRDateTime, Period, Timing.
+   *     'choice' field. Type should be one of FHIRDateTime, Period, Timing. To pass the value in,
+   *     wrap with one of the ServiceRequestBuilder.occurrence static methods
    */
   public ServiceRequestBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
     this.occurrence = Optional.of(occurrence);

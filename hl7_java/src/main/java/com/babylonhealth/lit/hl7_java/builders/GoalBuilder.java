@@ -38,7 +38,6 @@ import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.GOAL_STATUS;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -84,6 +83,14 @@ public class GoalBuilder {
     this.subject = subject;
     this.description = description;
     this.lifecycleStatus = lifecycleStatus;
+  }
+
+  public static Choice00078348305 start(CodeableConcept c) {
+    return new Choice00078348305(c);
+  }
+
+  public static Choice00078348305 start(FHIRDate f) {
+    return new Choice00078348305(f);
   }
 
   /**
@@ -149,7 +156,8 @@ public class GoalBuilder {
   }
   /**
    * @param start - The date or event after which the goal should begin being pursued. Field is a
-   *     'choice' field. Type should be one of CodeableConcept, FHIRDate.
+   *     'choice' field. Type should be one of CodeableConcept, FHIRDate. To pass the value in, wrap
+   *     with one of the GoalBuilder.start static methods
    */
   public GoalBuilder withStart(@NonNull Choice00078348305 start) {
     this.start = Optional.of(start);

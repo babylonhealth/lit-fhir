@@ -42,7 +42,6 @@ import com.babylonhealth.lit.hl7.ACTION_SELECTION_BEHAVIOR;
 import com.babylonhealth.lit.hl7.ACTION_CARDINALITY_BEHAVIOR;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -82,6 +81,46 @@ public class PlanDefinition_ActionBuilder {
 
   /** Required fields for {@link PlanDefinition.Action} */
   public PlanDefinition_ActionBuilder() {}
+
+  public static Choice_0181779868 timing(Age a) {
+    return new Choice_0181779868(a);
+  }
+
+  public static Choice_0181779868 timing(Duration d) {
+    return new Choice_0181779868(d);
+  }
+
+  public static Choice_0181779868 timing(FHIRDateTime f) {
+    return new Choice_0181779868(f);
+  }
+
+  public static Choice_0181779868 timing(Period p) {
+    return new Choice_0181779868(p);
+  }
+
+  public static Choice_0181779868 timing(Range r) {
+    return new Choice_0181779868(r);
+  }
+
+  public static Choice_0181779868 timing(Timing t) {
+    return new Choice_0181779868(t);
+  }
+
+  public static Choice01025009075 subject(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 subject(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice00545979821 definitionCanonical(String s) {
+    return Choice00545979821.Choice00545979821Canonical(s);
+  }
+
+  public static Choice00545979821 definitionUri(String s) {
+    return Choice00545979821.Choice00545979821UriStr(s);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -209,7 +248,8 @@ public class PlanDefinition_ActionBuilder {
   }
   /**
    * @param timing Field is a 'choice' field. Type should be one of Age, Duration, FHIRDateTime,
-   *     Period, Range, Timing.
+   *     Period, Range, Timing. To pass the value in, wrap with one of the
+   *     PlanDefinition_ActionBuilder.timing static methods
    */
   public PlanDefinition_ActionBuilder withTiming(@NonNull Choice_0181779868 timing) {
     this.timing = Optional.of(timing);
@@ -222,7 +262,8 @@ public class PlanDefinition_ActionBuilder {
   }
   /**
    * @param subject - A code or group definition that describes the intended subject of the plan
-   *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the PlanDefinition_ActionBuilder.subject static methods
    */
   public PlanDefinition_ActionBuilder withSubject(@NonNull Choice01025009075 subject) {
     this.subject = Optional.of(subject);
@@ -247,7 +288,10 @@ public class PlanDefinition_ActionBuilder {
     this.documentation = Collections.unmodifiableCollection(documentation);
     return this;
   }
-  /** @param definition Field is a 'choice' field. Type should be one of String. */
+  /**
+   * @param definition Field is a 'choice' field. Type should be one of String. To pass the value
+   *     in, wrap with one of the PlanDefinition_ActionBuilder.definition static methods
+   */
   public PlanDefinition_ActionBuilder withDefinition(@NonNull Choice00545979821 definition) {
     this.definition = Optional.of(definition);
     return this;

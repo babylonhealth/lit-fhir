@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -77,6 +76,46 @@ public class ConditionBuilder {
    */
   public ConditionBuilder(Reference subject) {
     this.subject = subject;
+  }
+
+  public static Choice01352864625 onset(Age a) {
+    return new Choice01352864625(a);
+  }
+
+  public static Choice01352864625 onset(FHIRDateTime f) {
+    return new Choice01352864625(f);
+  }
+
+  public static Choice01352864625 onset(Period p) {
+    return new Choice01352864625(p);
+  }
+
+  public static Choice01352864625 onset(Range r) {
+    return new Choice01352864625(r);
+  }
+
+  public static Choice01352864625 onset(String s) {
+    return new Choice01352864625(s);
+  }
+
+  public static Choice01352864625 abatement(Age a) {
+    return new Choice01352864625(a);
+  }
+
+  public static Choice01352864625 abatement(FHIRDateTime f) {
+    return new Choice01352864625(f);
+  }
+
+  public static Choice01352864625 abatement(Period p) {
+    return new Choice01352864625(p);
+  }
+
+  public static Choice01352864625 abatement(Range r) {
+    return new Choice01352864625(r);
+  }
+
+  public static Choice01352864625 abatement(String s) {
+    return new Choice01352864625(s);
   }
 
   /**
@@ -164,7 +203,8 @@ public class ConditionBuilder {
   /**
    * @param onset - Estimated or actual date or date-time the condition began, in the opinion of the
    *     clinician. Field is a 'choice' field. Type should be one of Age, FHIRDateTime, Period,
-   *     Range, String.
+   *     Range, String. To pass the value in, wrap with one of the ConditionBuilder.onset static
+   *     methods
    */
   public ConditionBuilder withOnset(@NonNull Choice01352864625 onset) {
     this.onset = Optional.of(onset);
@@ -253,7 +293,8 @@ public class ConditionBuilder {
    *     remission. This is called "abatement" because of the many overloaded connotations
    *     associated with "remission" or "resolution" - Conditions are never really resolved, but
    *     they can abate. Field is a 'choice' field. Type should be one of Age, FHIRDateTime, Period,
-   *     Range, String.
+   *     Range, String. To pass the value in, wrap with one of the ConditionBuilder.abatement static
+   *     methods
    */
   public ConditionBuilder withAbatement(@NonNull Choice01352864625 abatement) {
     this.abatement = Optional.of(abatement);

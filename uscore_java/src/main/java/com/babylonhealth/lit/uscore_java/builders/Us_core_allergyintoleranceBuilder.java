@@ -46,7 +46,6 @@ import com.babylonhealth.lit.hl7.ALLERGY_INTOLERANCE_CATEGORY;
 import com.babylonhealth.lit.hl7.ALLERGY_INTOLERANCE_CRITICALITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -104,6 +103,26 @@ public class Us_core_allergyintoleranceBuilder {
   public Us_core_allergyintoleranceBuilder(CodeableConcept code, Reference patient) {
     this.code = code;
     this.patient = patient;
+  }
+
+  public static Choice01352864625 onset(Age a) {
+    return new Choice01352864625(a);
+  }
+
+  public static Choice01352864625 onset(FHIRDateTime f) {
+    return new Choice01352864625(f);
+  }
+
+  public static Choice01352864625 onset(Period p) {
+    return new Choice01352864625(p);
+  }
+
+  public static Choice01352864625 onset(Range r) {
+    return new Choice01352864625(r);
+  }
+
+  public static Choice01352864625 onset(String s) {
+    return new Choice01352864625(s);
   }
 
   /**
@@ -177,7 +196,8 @@ public class Us_core_allergyintoleranceBuilder {
   /**
    * @param onset - Estimated or actual date, date-time, or age when allergy or intolerance was
    *     identified. Field is a 'choice' field. Type should be one of Age, FHIRDateTime, Period,
-   *     Range, String.
+   *     Range, String. To pass the value in, wrap with one of the
+   *     Us_core_allergyintoleranceBuilder.onset static methods
    */
   public Us_core_allergyintoleranceBuilder withOnset(@NonNull Choice01352864625 onset) {
     this.onset = Optional.of(onset);

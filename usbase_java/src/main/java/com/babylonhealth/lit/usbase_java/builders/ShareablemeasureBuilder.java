@@ -41,7 +41,6 @@ import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -145,6 +144,14 @@ public class ShareablemeasureBuilder {
     this.publisher = publisher;
     this.description = description;
     this.experimental = experimental;
+  }
+
+  public static Choice01025009075 subject(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 subject(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -441,7 +448,8 @@ public class ShareablemeasureBuilder {
   /**
    * @param subject - The intended subjects for the measure. If this element is not provided, a
    *     Patient subject is assumed, but the subject of the measure can be anything. Field is a
-   *     'choice' field. Type should be one of CodeableConcept, Reference.
+   *     'choice' field. Type should be one of CodeableConcept, Reference. To pass the value in,
+   *     wrap with one of the ShareablemeasureBuilder.subject static methods
    */
   public ShareablemeasureBuilder withSubject(@NonNull Choice01025009075 subject) {
     this.subject = Optional.of(subject);

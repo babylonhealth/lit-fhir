@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -57,6 +56,14 @@ public class MedicinalProduct_SpecialDesignationBuilder {
 
   /** Required fields for {@link MedicinalProduct.SpecialDesignation} */
   public MedicinalProduct_SpecialDesignationBuilder() {}
+
+  public static Choice01025009075 indication(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 indication(Reference r) {
+    return new Choice01025009075(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -129,6 +136,8 @@ public class MedicinalProduct_SpecialDesignationBuilder {
   }
   /**
    * @param indication Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     To pass the value in, wrap with one of the
+   *     MedicinalProduct_SpecialDesignationBuilder.indication static methods
    */
   public MedicinalProduct_SpecialDesignationBuilder withIndication(
       @NonNull Choice01025009075 indication) {

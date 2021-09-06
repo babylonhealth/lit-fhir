@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -60,6 +59,30 @@ public class CoverageEligibilityResponse_Insurance_Item_BenefitBuilder {
     this._type = _type;
   }
 
+  public static Choice_0040864668 used(Money m) {
+    return new Choice_0040864668(m);
+  }
+
+  public static Choice_0040864668 used(String s) {
+    return new Choice_0040864668(s);
+  }
+
+  public static Choice_0040864668 used(Integer i) {
+    return new Choice_0040864668(i);
+  }
+
+  public static Choice_0040864668 allowed(Money m) {
+    return new Choice_0040864668(m);
+  }
+
+  public static Choice_0040864668 allowed(String s) {
+    return new Choice_0040864668(s);
+  }
+
+  public static Choice_0040864668 allowed(Integer i) {
+    return new Choice_0040864668(i);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -68,7 +91,11 @@ public class CoverageEligibilityResponse_Insurance_Item_BenefitBuilder {
     this.id = Optional.of(id);
     return this;
   }
-  /** @param used Field is a 'choice' field. Type should be one of Money, String, Integer. */
+  /**
+   * @param used Field is a 'choice' field. Type should be one of Money, String, Integer. To pass
+   *     the value in, wrap with one of the
+   *     CoverageEligibilityResponse_Insurance_Item_BenefitBuilder.used static methods
+   */
   public CoverageEligibilityResponse_Insurance_Item_BenefitBuilder withUsed(
       @NonNull Choice_0040864668 used) {
     this.used = Optional.of(used);
@@ -98,7 +125,11 @@ public class CoverageEligibilityResponse_Insurance_Item_BenefitBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param allowed Field is a 'choice' field. Type should be one of Money, String, Integer. */
+  /**
+   * @param allowed Field is a 'choice' field. Type should be one of Money, String, Integer. To pass
+   *     the value in, wrap with one of the
+   *     CoverageEligibilityResponse_Insurance_Item_BenefitBuilder.allowed static methods
+   */
   public CoverageEligibilityResponse_Insurance_Item_BenefitBuilder withAllowed(
       @NonNull Choice_0040864668 allowed) {
     this.allowed = Optional.of(allowed);

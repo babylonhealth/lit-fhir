@@ -34,7 +34,6 @@ import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -60,6 +59,14 @@ public class DosageBuilder {
 
   /** Required fields for {@link Dosage} */
   public DosageBuilder() {}
+
+  public static Choice_1768247138 asNeeded(Boolean b) {
+    return new Choice_1768247138(b);
+  }
+
+  public static Choice_1768247138 asNeeded(CodeableConcept c) {
+    return new Choice_1768247138(c);
+  }
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -128,7 +135,8 @@ public class DosageBuilder {
    * @param asNeeded - Indicates whether the Medication is only taken when needed within a specific
    *     dosing schedule (Boolean option), or it indicates the precondition for taking the
    *     Medication (CodeableConcept). Field is a 'choice' field. Type should be one of Boolean,
-   *     CodeableConcept.
+   *     CodeableConcept. To pass the value in, wrap with one of the DosageBuilder.asNeeded static
+   *     methods
    */
   public DosageBuilder withAsNeeded(@NonNull Choice_1768247138 asNeeded) {
     this.asNeeded = Optional.of(asNeeded);

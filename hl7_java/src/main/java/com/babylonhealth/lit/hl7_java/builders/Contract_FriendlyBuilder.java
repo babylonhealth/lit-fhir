@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -52,10 +51,19 @@ public class Contract_FriendlyBuilder {
   /**
    * Required fields for {@link Contract.Friendly}
    *
-   * @param content Field is a 'choice' field. Type should be one of Attachment, Reference.
+   * @param content Field is a 'choice' field. Type should be one of Attachment, Reference. To pass
+   *     the value in, wrap with one of the Contract_FriendlyBuilder.content static methods
    */
   public Contract_FriendlyBuilder(@NonNull Choice_0340660840 content) {
     this.content = content;
+  }
+
+  public static Choice_0340660840 content(Attachment a) {
+    return new Choice_0340660840(a);
+  }
+
+  public static Choice_0340660840 content(Reference r) {
+    return new Choice_0340660840(r);
   }
 
   /**

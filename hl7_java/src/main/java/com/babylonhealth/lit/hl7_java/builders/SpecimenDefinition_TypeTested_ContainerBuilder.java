@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -59,6 +58,14 @@ public class SpecimenDefinition_TypeTested_ContainerBuilder {
 
   /** Required fields for {@link SpecimenDefinition$TypeTested$Container} */
   public SpecimenDefinition_TypeTested_ContainerBuilder() {}
+
+  public static Choice_2072987899 minimumVolume(Quantity q) {
+    return new Choice_2072987899(q);
+  }
+
+  public static Choice_2072987899 minimumVolume(String s) {
+    return new Choice_2072987899(s);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -125,7 +132,11 @@ public class SpecimenDefinition_TypeTested_ContainerBuilder {
     this.preparation = Optional.of(preparation);
     return this;
   }
-  /** @param minimumVolume Field is a 'choice' field. Type should be one of Quantity, String. */
+  /**
+   * @param minimumVolume Field is a 'choice' field. Type should be one of Quantity, String. To pass
+   *     the value in, wrap with one of the
+   *     SpecimenDefinition_TypeTested_ContainerBuilder.minimumVolume static methods
+   */
   public SpecimenDefinition_TypeTested_ContainerBuilder withMinimumVolume(
       @NonNull Choice_2072987899 minimumVolume) {
     this.minimumVolume = Optional.of(minimumVolume);

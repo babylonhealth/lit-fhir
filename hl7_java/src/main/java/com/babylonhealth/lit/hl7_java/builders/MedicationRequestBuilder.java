@@ -40,7 +40,6 @@ import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -99,7 +98,8 @@ public class MedicationRequestBuilder {
    * @param medication - Identifies the medication being requested. This is a link to a resource
    *     that represents the medication which may be the details of the medication or simply an
    *     attribute carrying a code that identifies the medication from a known list of medications.
-   *     Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To pass the
+   *     value in, wrap with one of the MedicationRequestBuilder.medication static methods
    */
   public MedicationRequestBuilder(
       MEDICATIONREQUEST_STATUS status,
@@ -110,6 +110,22 @@ public class MedicationRequestBuilder {
     this.intent = intent;
     this.subject = subject;
     this.medication = medication;
+  }
+
+  public static Choice_1524702593 reported(Boolean b) {
+    return new Choice_1524702593(b);
+  }
+
+  public static Choice_1524702593 reported(Reference r) {
+    return new Choice_1524702593(r);
+  }
+
+  public static Choice01025009075 medication(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 medication(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -336,7 +352,8 @@ public class MedicationRequestBuilder {
   /**
    * @param reported - Indicates if this record was captured as a secondary 'reported' record rather
    *     than as an original primary source-of-truth record. It may also indicate the source of the
-   *     report. Field is a 'choice' field. Type should be one of Boolean, Reference.
+   *     report. Field is a 'choice' field. Type should be one of Boolean, Reference. To pass the
+   *     value in, wrap with one of the MedicationRequestBuilder.reported static methods
    */
   public MedicationRequestBuilder withReported(@NonNull Choice_1524702593 reported) {
     this.reported = Optional.of(reported);

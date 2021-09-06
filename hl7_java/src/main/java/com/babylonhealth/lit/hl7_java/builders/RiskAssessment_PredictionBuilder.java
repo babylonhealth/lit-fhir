@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -57,6 +56,22 @@ public class RiskAssessment_PredictionBuilder {
   /** Required fields for {@link RiskAssessment.Prediction} */
   public RiskAssessment_PredictionBuilder() {}
 
+  public static Choice01200936722 when(Period p) {
+    return new Choice01200936722(p);
+  }
+
+  public static Choice01200936722 when(Range r) {
+    return new Choice01200936722(r);
+  }
+
+  public static Choice_0831630297 probability(BigDecimal b) {
+    return new Choice_0831630297(b);
+  }
+
+  public static Choice_0831630297 probability(Range r) {
+    return new Choice_0831630297(r);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -70,7 +85,10 @@ public class RiskAssessment_PredictionBuilder {
     this.outcome = Optional.of(outcome);
     return this;
   }
-  /** @param when Field is a 'choice' field. Type should be one of Period, Range. */
+  /**
+   * @param when Field is a 'choice' field. Type should be one of Period, Range. To pass the value
+   *     in, wrap with one of the RiskAssessment_PredictionBuilder.when static methods
+   */
   public RiskAssessment_PredictionBuilder withWhen(@NonNull Choice01200936722 when) {
     this.when = Optional.of(when);
     return this;
@@ -107,7 +125,11 @@ public class RiskAssessment_PredictionBuilder {
     this.relativeRisk = Optional.of(relativeRisk);
     return this;
   }
-  /** @param probability Field is a 'choice' field. Type should be one of BigDecimal, Range. */
+  /**
+   * @param probability Field is a 'choice' field. Type should be one of BigDecimal, Range. To pass
+   *     the value in, wrap with one of the RiskAssessment_PredictionBuilder.probability static
+   *     methods
+   */
   public RiskAssessment_PredictionBuilder withProbability(@NonNull Choice_0831630297 probability) {
     this.probability = Optional.of(probability);
     return this;

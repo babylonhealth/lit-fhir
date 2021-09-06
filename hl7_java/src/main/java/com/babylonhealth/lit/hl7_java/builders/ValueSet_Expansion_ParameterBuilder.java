@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -60,6 +59,34 @@ public class ValueSet_Expansion_ParameterBuilder {
     this.name = name;
   }
 
+  public static Choice_1427970408 value(BigDecimal b) {
+    return new Choice_1427970408(b);
+  }
+
+  public static Choice_1427970408 value(Boolean b) {
+    return new Choice_1427970408(b);
+  }
+
+  public static Choice_1427970408 value(FHIRDateTime f) {
+    return new Choice_1427970408(f);
+  }
+
+  public static Choice_1427970408 value(Integer i) {
+    return new Choice_1427970408(i);
+  }
+
+  public static Choice_1427970408 valueCode(String s) {
+    return Choice_1427970408.Choice_1427970408Code(s);
+  }
+
+  public static Choice_1427970408 valueString(String s) {
+    return Choice_1427970408.Choice_1427970408String(s);
+  }
+
+  public static Choice_1427970408 valueUri(String s) {
+    return Choice_1427970408.Choice_1427970408UriStr(s);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -70,7 +97,8 @@ public class ValueSet_Expansion_ParameterBuilder {
   }
   /**
    * @param value Field is a 'choice' field. Type should be one of BigDecimal, Boolean, String,
-   *     FHIRDateTime, Integer.
+   *     FHIRDateTime, Integer. To pass the value in, wrap with one of the
+   *     ValueSet_Expansion_ParameterBuilder.value static methods
    */
   public ValueSet_Expansion_ParameterBuilder withValue(@NonNull Choice_1427970408 value) {
     this.value = Optional.of(value);

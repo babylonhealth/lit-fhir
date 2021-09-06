@@ -41,7 +41,6 @@ import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -93,7 +92,8 @@ public class BpBuilder {
    *     the `focus` element or the `code` itself specifies the actual focus of the observation.
    * @param category - A code that classifies the general type of observation being made.
    * @param effective - Often just a dateTime for Vital Signs. Field is a 'choice' field. Type
-   *     should be one of FHIRDateTime, Period.
+   *     should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
+   *     BpBuilder.effective static methods
    * @param code - Blood Pressure.
    * @param component - Used when reporting systolic and diastolic blood pressure.
    */
@@ -110,6 +110,14 @@ public class BpBuilder {
     this.effective = effective;
     this.code = code;
     this.component = component;
+  }
+
+  public static Choice_0934386166 effective(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 effective(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**

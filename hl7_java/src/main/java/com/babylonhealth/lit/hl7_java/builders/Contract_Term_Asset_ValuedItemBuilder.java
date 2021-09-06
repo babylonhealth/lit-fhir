@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -64,6 +63,14 @@ public class Contract_Term_Asset_ValuedItemBuilder {
 
   /** Required fields for {@link Contract$Term$Asset$ValuedItem} */
   public Contract_Term_Asset_ValuedItemBuilder() {}
+
+  public static Choice01025009075 entity(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 entity(Reference r) {
+    return new Choice01025009075(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -131,7 +138,11 @@ public class Contract_Term_Asset_ValuedItemBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param entity Field is a 'choice' field. Type should be one of CodeableConcept, Reference. */
+  /**
+   * @param entity Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the Contract_Term_Asset_ValuedItemBuilder.entity static
+   *     methods
+   */
   public Contract_Term_Asset_ValuedItemBuilder withEntity(@NonNull Choice01025009075 entity) {
     this.entity = Optional.of(entity);
     return this;

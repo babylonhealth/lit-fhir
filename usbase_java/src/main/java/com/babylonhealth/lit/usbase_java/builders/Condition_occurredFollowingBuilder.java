@@ -40,7 +40,6 @@ import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -55,10 +54,19 @@ public class Condition_occurredFollowingBuilder {
    *
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of CodeableConcept, Reference.
+   *     field. Type should be one of CodeableConcept, Reference. To pass the value in, wrap with
+   *     one of the Condition_occurredFollowingBuilder.value static methods
    */
   public Condition_occurredFollowingBuilder(@NonNull Choice01025009075 value) {
     this.value = value;
+  }
+
+  public static Choice01025009075 value(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 value(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**

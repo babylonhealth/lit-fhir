@@ -37,7 +37,6 @@ import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -58,11 +57,20 @@ public class Claim_ProcedureBuilder {
    *
    * @param sequence
    * @param procedure - Procedures performed on the patient relevant to the billing items with the
-   *     claim. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     claim. Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To pass
+   *     the value in, wrap with one of the Claim_ProcedureBuilder.procedure static methods
    */
   public Claim_ProcedureBuilder(Integer sequence, @NonNull Choice01025009075 procedure) {
     this.sequence = sequence;
     this.procedure = procedure;
+  }
+
+  public static Choice01025009075 procedure(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 procedure(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
