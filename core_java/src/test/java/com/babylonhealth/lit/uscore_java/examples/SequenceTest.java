@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SequenceTest {
+public class SequenceTest {
   @Test
   public void varargsLitSeqConstructors() {
     NonEmptyLitSeq<String> l0 = new LitSeq(List.of("a", "b", "c")).asNonEmpty();
