@@ -7,7 +7,10 @@ import com.babylonhealth.lit.hl7.BINDING_STRENGTH
 import com.babylonhealth.lit.hl7.model.ElementDefinition
 
 object ElementTreee extends Commonish with Logging {
-  def hashForUnion(s: Seq[String]): String = "%011d".format(s.toSet.hashCode).replace('-', '_')
+  def hashForUnion(s: Seq[String]): String =
+    if (s.size == 50) "ChoiceAll"
+    else if (s.size <= 3) s.map(_.capitalize).mkString("Or")
+    else "%011d".format(s.toSet.hashCode).replace('-', '_')
 
   private val unionTypes                                     = TrieMap[String, (Seq[String], Seq[String])]()
   def getUnionTypes: Map[String, (Seq[String], Seq[String])] = unionTypes.toMap
