@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_inheritedExtensibleValueSet extends CompanionFor[Elementdefinition_inheritedExtensibleValueSet] {
-  implicit def summonObjectAndCompanionElementdefinition_inheritedExtensibleValueSet_1619388385(
+  implicit def summonObjectAndCompanionElementdefinition_inheritedExtensibleValueSet_968590189(
       o: Elementdefinition_inheritedExtensibleValueSet): ObjectAndCompanion[Elementdefinition_inheritedExtensibleValueSet, Elementdefinition_inheritedExtensibleValueSet.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
@@ -33,7 +33,7 @@ object Elementdefinition_inheritedExtensibleValueSet extends CompanionFor[Elemen
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some(
     "http://hl7.org/fhir/StructureDefinition/elementdefinition-inheritedExtensibleValueSet")
-  type ValueChoice = Choice[UnionCanonicalOrUriStr]
+  type ValueChoice = Choice[UnionCanonicalOrUri]
   def apply(
       id: Option[String] = None,
       value: Elementdefinition_inheritedExtensibleValueSet.ValueChoice,
@@ -50,7 +50,7 @@ object Elementdefinition_inheritedExtensibleValueSet extends CompanionFor[Elemen
       "value",
       lTagOf[Elementdefinition_inheritedExtensibleValueSet.ValueChoice],
       true,
-      lTagOf[UnionCanonicalOrUriStr])
+      lTagOf[UnionCanonicalOrUri])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -71,7 +71,7 @@ object Elementdefinition_inheritedExtensibleValueSet extends CompanionFor[Elemen
       Try(
         new Elementdefinition_inheritedExtensibleValueSet(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[UnionCanonicalOrUriStr]("value"),
+          cursor.decodeRef[UnionCanonicalOrUri]("value"),
           decodeAttributes(cursor)
         )
       ))

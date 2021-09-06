@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxValueSet] {
-  implicit def summonObjectAndCompanionElementdefinition_maxValueSet215922447(
+  implicit def summonObjectAndCompanionElementdefinition_maxValueSet1399841666(
       o: Elementdefinition_maxValueSet): ObjectAndCompanion[Elementdefinition_maxValueSet, Elementdefinition_maxValueSet.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
@@ -32,7 +32,7 @@ object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxV
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet")
-  type ValueChoice = Choice[UnionCanonicalOrUriStr]
+  type ValueChoice = Choice[UnionCanonicalOrUri]
   def apply(
       id: Option[String] = None,
       value: Elementdefinition_maxValueSet.ValueChoice,
@@ -45,7 +45,7 @@ object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxV
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Elementdefinition_maxValueSet.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_maxValueSet.ValueChoice], true, lTagOf[UnionCanonicalOrUriStr])
+    FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_maxValueSet.ValueChoice], true, lTagOf[UnionCanonicalOrUri])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -64,7 +64,7 @@ object Elementdefinition_maxValueSet extends CompanionFor[Elementdefinition_maxV
       Try(
         new Elementdefinition_maxValueSet(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[UnionCanonicalOrUriStr]("value"),
+          cursor.decodeRef[UnionCanonicalOrUri]("value"),
           decodeAttributes(cursor)
         )
       ))

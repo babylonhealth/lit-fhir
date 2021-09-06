@@ -29,7 +29,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
-  implicit def summonObjectAndCompanionAllergyIntolerance1280800257(
+  implicit def summonObjectAndCompanionAllergyIntolerance2129444253(
       o: AllergyIntolerance): ObjectAndCompanion[AllergyIntolerance, AllergyIntolerance.type] = ObjectAndCompanion(o, this)
   override type ResourceType = AllergyIntolerance
   override type ParentType   = AllergyIntolerance
@@ -37,7 +37,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
   override val parentType: CompanionFor[ParentType] = AllergyIntolerance
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/AllergyIntolerance")
   object Reaction extends CompanionFor[Reaction] {
-    implicit def summonObjectAndCompanionReaction_1152477549(o: Reaction): ObjectAndCompanion[Reaction, Reaction.type] =
+    implicit def summonObjectAndCompanionReaction_852207088(o: Reaction): ObjectAndCompanion[Reaction, Reaction.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Reaction
     override type ParentType   = Reaction
@@ -150,7 +150,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type OnsetChoice = Choice[UnionAllergyIntolerance_Onset]
+  type OnsetChoice = Choice[Union01946981731]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -223,7 +223,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
   val category: FHIRComponentFieldMeta[LitSeq[ALLERGY_INTOLERANCE_CATEGORY]] =
     FHIRComponentFieldMeta("category", lTagOf[LitSeq[ALLERGY_INTOLERANCE_CATEGORY]], false, lTagOf[ALLERGY_INTOLERANCE_CATEGORY])
   val onset: FHIRComponentFieldMeta[Option[AllergyIntolerance.OnsetChoice]] =
-    FHIRComponentFieldMeta("onset", lTagOf[Option[AllergyIntolerance.OnsetChoice]], true, lTagOf[UnionAllergyIntolerance_Onset])
+    FHIRComponentFieldMeta("onset", lTagOf[Option[AllergyIntolerance.OnsetChoice]], true, lTagOf[Union01946981731])
   val recorder: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("recorder", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val asserter: FHIRComponentFieldMeta[Option[Reference]] =
@@ -367,7 +367,7 @@ object AllergyIntolerance extends CompanionFor[AllergyIntolerance] {
           cursor.decodeAs[Reference]("patient", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[ALLERGY_INTOLERANCE_CATEGORY]]("category", Some(LitSeq.empty)),
-          cursor.decodeOptRef[UnionAllergyIntolerance_Onset]("onset"),
+          cursor.decodeOptRef[Union01946981731]("onset"),
           cursor.decodeAs[Option[Reference]]("recorder", Some(None)),
           cursor.decodeAs[Option[Reference]]("asserter", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Procedure extends CompanionFor[Procedure] {
-  implicit def summonObjectAndCompanionProcedure_1476162394(o: Procedure): ObjectAndCompanion[Procedure, Procedure.type] =
+  implicit def summonObjectAndCompanionProcedure865609342(o: Procedure): ObjectAndCompanion[Procedure, Procedure.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Procedure
   override type ParentType   = Procedure
@@ -32,8 +32,8 @@ object Procedure extends CompanionFor[Procedure] {
   override val parentType: CompanionFor[ParentType] = Procedure
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Procedure")
   object FocalDevice extends CompanionFor[FocalDevice] {
-    implicit def summonObjectAndCompanionFocalDevice387066849(o: FocalDevice): ObjectAndCompanion[FocalDevice, FocalDevice.type] =
-      ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionFocalDevice1817527654(
+        o: FocalDevice): ObjectAndCompanion[FocalDevice, FocalDevice.type] = ObjectAndCompanion(o, this)
     override type ResourceType = FocalDevice
     override type ParentType   = FocalDevice
     override val parentType: CompanionFor[ResourceType] = FocalDevice
@@ -99,7 +99,7 @@ object Procedure extends CompanionFor[Procedure] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Performer extends CompanionFor[Performer] {
-    implicit def summonObjectAndCompanionPerformer_379912351(o: Performer): ObjectAndCompanion[Performer, Performer.type] =
+    implicit def summonObjectAndCompanionPerformer1817527654(o: Performer): ObjectAndCompanion[Performer, Performer.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Performer
     override type ParentType   = Performer
@@ -172,7 +172,7 @@ object Procedure extends CompanionFor[Procedure] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type PerformedChoice = Choice[UnionAllergyIntolerance_Onset]
+  type PerformedChoice = Choice[Union01946981731]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -301,7 +301,7 @@ object Procedure extends CompanionFor[Procedure] {
   val statusReason: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val performed: FHIRComponentFieldMeta[Option[Procedure.PerformedChoice]] =
-    FHIRComponentFieldMeta("performed", lTagOf[Option[Procedure.PerformedChoice]], true, lTagOf[UnionAllergyIntolerance_Onset])
+    FHIRComponentFieldMeta("performed", lTagOf[Option[Procedure.PerformedChoice]], true, lTagOf[Union01946981731])
   val complication: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("complication", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -483,7 +483,7 @@ object Procedure extends CompanionFor[Procedure] {
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
-          cursor.decodeOptRef[UnionAllergyIntolerance_Onset]("performed"),
+          cursor.decodeOptRef[Union01946981731]("performed"),
           cursor.decodeAs[LitSeq[CodeableConcept]]("complication", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("usedReference", Some(LitSeq.empty)),

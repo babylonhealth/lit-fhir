@@ -26,15 +26,15 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_patient extends CompanionFor[Us_core_patient] {
-  implicit def summonObjectAndCompanionUs_core_patient_1938279562(
+  implicit def summonObjectAndCompanionUs_core_patient1483761426(
       o: Us_core_patient): ObjectAndCompanion[Us_core_patient, Us_core_patient.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Patient
   override type ParentType   = Patient
   override val baseType: CompanionFor[ResourceType] = Patient
   override val parentType: CompanionFor[ParentType] = Patient
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient")
-  type DeceasedChoice      = Choice[UnionBooleanOrFHIRDateTime]
-  type MultipleBirthChoice = Choice[UnionBooleanOrInt]
+  type DeceasedChoice      = Choice[UnionBooleanOrDateTime]
+  type MultipleBirthChoice = Choice[UnionBooleanOrInteger]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"))),
@@ -109,7 +109,7 @@ object Us_core_patient extends CompanionFor[Us_core_patient] {
   val birthDate: FHIRComponentFieldMeta[Option[FHIRDate]] =
     FHIRComponentFieldMeta("birthDate", lTagOf[Option[FHIRDate]], false, lTagOf[FHIRDate])
   val deceased: FHIRComponentFieldMeta[Option[Us_core_patient.DeceasedChoice]] =
-    FHIRComponentFieldMeta("deceased", lTagOf[Option[Us_core_patient.DeceasedChoice]], true, lTagOf[UnionBooleanOrFHIRDateTime])
+    FHIRComponentFieldMeta("deceased", lTagOf[Option[Us_core_patient.DeceasedChoice]], true, lTagOf[UnionBooleanOrDateTime])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val maritalStatus: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -117,7 +117,11 @@ object Us_core_patient extends CompanionFor[Us_core_patient] {
   val name: FHIRComponentFieldMeta[NonEmptyLitSeq[HumanName]] =
     FHIRComponentFieldMeta("name", lTagOf[NonEmptyLitSeq[HumanName]], false, lTagOf[HumanName])
   val multipleBirth: FHIRComponentFieldMeta[Option[Us_core_patient.MultipleBirthChoice]] =
-    FHIRComponentFieldMeta("multipleBirth", lTagOf[Option[Us_core_patient.MultipleBirthChoice]], true, lTagOf[UnionBooleanOrInt])
+    FHIRComponentFieldMeta(
+      "multipleBirth",
+      lTagOf[Option[Us_core_patient.MultipleBirthChoice]],
+      true,
+      lTagOf[UnionBooleanOrInteger])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val telecom: FHIRComponentFieldMeta[LitSeq[ContactPoint]] =
@@ -230,11 +234,11 @@ object Us_core_patient extends CompanionFor[Us_core_patient] {
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[FHIRDate]]("birthDate", Some(None)),
-          cursor.decodeOptRef[UnionBooleanOrFHIRDateTime]("deceased"),
+          cursor.decodeOptRef[UnionBooleanOrDateTime]("deceased"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("maritalStatus", Some(None)),
           cursor.decodeAs[NonEmptyLitSeq[HumanName]]("name", None),
-          cursor.decodeOptRef[UnionBooleanOrInt]("multipleBirth"),
+          cursor.decodeOptRef[UnionBooleanOrInteger]("multipleBirth"),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[ContactPoint]]("telecom", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Address]]("address", Some(LitSeq.empty)),

@@ -77,16 +77,16 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     return new ChoiceBooleanOrCodeableConcept(c);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(f);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriodOrTiming(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(p);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Period p) {
+    return new ChoiceDateTimeOrPeriodOrTiming(p);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Timing t) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(t);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Timing t) {
+    return new ChoiceDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements ServiceRequestBuilder {
@@ -121,7 +121,7 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
     private Optional<Boolean> doNotPerform = Optional.empty();
     private Collection<CodeableConcept> locationCode = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<ChoiceFHIRDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Optional<CodeableConcept> performerType = Optional.empty();
     private Collection<Reference> supportingInfo = Collections.emptyList();
     private Collection<String> instantiatesUri = Collections.emptyList();
@@ -604,7 +604,7 @@ public interface ServiceRequestBuilder extends DomainResourceBuilder {
      *     wrap with one of the ServiceRequestBuilder.occurrence static methods
      */
     public ServiceRequestBuilder.Impl withOccurrence(
-        @NonNull ChoiceFHIRDateTimeOrPeriodOrTiming occurrence) {
+        @NonNull ChoiceDateTimeOrPeriodOrTiming occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

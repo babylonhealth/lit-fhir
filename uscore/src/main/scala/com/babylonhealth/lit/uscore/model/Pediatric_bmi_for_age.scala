@@ -26,7 +26,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Pediatric_bmi_for_age extends CompanionFor[Pediatric_bmi_for_age] {
-  implicit def summonObjectAndCompanionPediatric_bmi_for_age_1902319809(
+  implicit def summonObjectAndCompanionPediatric_bmi_for_age_704050358(
       o: Pediatric_bmi_for_age): ObjectAndCompanion[Pediatric_bmi_for_age, Pediatric_bmi_for_age.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Observation
@@ -34,7 +34,7 @@ object Pediatric_bmi_for_age extends CompanionFor[Pediatric_bmi_for_age] {
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Vitalsigns
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/us/core/StructureDefinition/pediatric-bmi-for-age")
-  type EffectiveChoice = Choice[UnionFHIRDateTimeOrPeriod]
+  type EffectiveChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -156,7 +156,7 @@ object Pediatric_bmi_for_age extends CompanionFor[Pediatric_bmi_for_age] {
   val derivedFrom: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("derivedFrom", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val effective: FHIRComponentFieldMeta[Pediatric_bmi_for_age.EffectiveChoice] =
-    FHIRComponentFieldMeta("effective", lTagOf[Pediatric_bmi_for_age.EffectiveChoice], true, lTagOf[UnionFHIRDateTimeOrPeriod])
+    FHIRComponentFieldMeta("effective", lTagOf[Pediatric_bmi_for_age.EffectiveChoice], true, lTagOf[UnionDateTimeOrPeriod])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val interpretation: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -306,7 +306,7 @@ object Pediatric_bmi_for_age extends CompanionFor[Pediatric_bmi_for_age] {
           cursor.decodeAs[LitSeq[Reference]]("hasMember", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("derivedFrom", Some(LitSeq.empty)),
-          cursor.decodeRef[UnionFHIRDateTimeOrPeriod]("effective"),
+          cursor.decodeRef[UnionDateTimeOrPeriod]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("interpretation", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("dataAbsentReason", Some(None)),

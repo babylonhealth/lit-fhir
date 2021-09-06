@@ -53,54 +53,54 @@ public interface Observation_ComponentBuilder {
     return new Impl(code.build());
   }
 
-  public static ChoiceObservation_Value value(Boolean b) {
-    return new ChoiceObservation_Value(b);
+  public static Choice01239641171 value(Boolean b) {
+    return new Choice01239641171(b);
   }
 
-  public static ChoiceObservation_Value value(CodeableConcept c) {
-    return new ChoiceObservation_Value(c);
+  public static Choice01239641171 value(CodeableConcept c) {
+    return new Choice01239641171(c);
   }
 
-  public static ChoiceObservation_Value value(FHIRDateTime f) {
-    return new ChoiceObservation_Value(f);
+  public static Choice01239641171 value(FHIRDateTime f) {
+    return new Choice01239641171(f);
   }
 
-  public static ChoiceObservation_Value value(Integer i) {
-    return new ChoiceObservation_Value(i);
+  public static Choice01239641171 value(Integer i) {
+    return new Choice01239641171(i);
   }
 
-  public static ChoiceObservation_Value value(LocalTime l) {
-    return new ChoiceObservation_Value(l);
+  public static Choice01239641171 value(LocalTime l) {
+    return new Choice01239641171(l);
   }
 
-  public static ChoiceObservation_Value value(Period p) {
-    return new ChoiceObservation_Value(p);
+  public static Choice01239641171 value(Period p) {
+    return new Choice01239641171(p);
   }
 
-  public static ChoiceObservation_Value value(Quantity q) {
-    return new ChoiceObservation_Value(q);
+  public static Choice01239641171 value(Quantity q) {
+    return new Choice01239641171(q);
   }
 
-  public static ChoiceObservation_Value value(Range r) {
-    return new ChoiceObservation_Value(r);
+  public static Choice01239641171 value(Range r) {
+    return new Choice01239641171(r);
   }
 
-  public static ChoiceObservation_Value value(Ratio r) {
-    return new ChoiceObservation_Value(r);
+  public static Choice01239641171 value(Ratio r) {
+    return new Choice01239641171(r);
   }
 
-  public static ChoiceObservation_Value value(SampledData s) {
-    return new ChoiceObservation_Value(s);
+  public static Choice01239641171 value(SampledData s) {
+    return new Choice01239641171(s);
   }
 
-  public static ChoiceObservation_Value value(String s) {
-    return new ChoiceObservation_Value(s);
+  public static Choice01239641171 value(String s) {
+    return new Choice01239641171(s);
   }
 
   public class Impl implements Observation_ComponentBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept code;
-    private Optional<ChoiceObservation_Value> value = Optional.empty();
+    private Optional<Choice01239641171> value = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<CodeableConcept> interpretation = Collections.emptyList();
     private Collection<Observation.ReferenceRange> referenceRange = Collections.emptyList();
@@ -131,7 +131,7 @@ public interface Observation_ComponentBuilder {
      *     SampledData, String. To pass the value in, wrap with one of the
      *     Observation_ComponentBuilder.value static methods
      */
-    public Observation_ComponentBuilder.Impl withValue(@NonNull ChoiceObservation_Value value) {
+    public Observation_ComponentBuilder.Impl withValue(@NonNull Choice01239641171 value) {
       this.value = Optional.of(value);
       return this;
     }

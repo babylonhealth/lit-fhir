@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CommunicationRequest extends CompanionFor[CommunicationRequest] {
-  implicit def summonObjectAndCompanionCommunicationRequest_848340778(
+  implicit def summonObjectAndCompanionCommunicationRequest_566800050(
       o: CommunicationRequest): ObjectAndCompanion[CommunicationRequest, CommunicationRequest.type] = ObjectAndCompanion(o, this)
   override type ResourceType = CommunicationRequest
   override type ParentType   = CommunicationRequest
@@ -32,7 +32,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
   override val parentType: CompanionFor[ParentType] = CommunicationRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CommunicationRequest")
   object Payload extends CompanionFor[Payload] {
-    implicit def summonObjectAndCompanionPayload557528115(o: Payload): ObjectAndCompanion[Payload, Payload.type] =
+    implicit def summonObjectAndCompanionPayload546120690(o: Payload): ObjectAndCompanion[Payload, Payload.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Payload
     override type ParentType   = Payload
@@ -91,7 +91,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type OccurrenceChoice = Choice[UnionFHIRDateTimeOrPeriod]
+  type OccurrenceChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -212,7 +212,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
       "occurrence",
       lTagOf[Option[CommunicationRequest.OccurrenceChoice]],
       true,
-      lTagOf[UnionFHIRDateTimeOrPeriod])
+      lTagOf[UnionDateTimeOrPeriod])
   val groupIdentifier: FHIRComponentFieldMeta[Option[Identifier]] =
     FHIRComponentFieldMeta("groupIdentifier", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
   val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -364,7 +364,7 @@ object CommunicationRequest extends CompanionFor[CommunicationRequest] {
           cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
           cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("occurrence"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriod]("occurrence"),
           cursor.decodeAs[Option[Identifier]]("groupIdentifier", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),

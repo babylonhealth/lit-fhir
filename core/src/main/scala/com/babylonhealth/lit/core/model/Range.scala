@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Range extends CompanionFor[Range] {
-  implicit def summonObjectAndCompanionRange2016758689(o: Range): ObjectAndCompanion[Range, Range.type] =
+  implicit def summonObjectAndCompanionRange393636456(o: Range): ObjectAndCompanion[Range, Range.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Range
   override type ParentType   = Range

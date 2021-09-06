@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceProtein extends CompanionFor[SubstanceProtein] {
-  implicit def summonObjectAndCompanionSubstanceProtein_635315395(
+  implicit def summonObjectAndCompanionSubstanceProtein1755161064(
       o: SubstanceProtein): ObjectAndCompanion[SubstanceProtein, SubstanceProtein.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SubstanceProtein
   override type ParentType   = SubstanceProtein
@@ -32,7 +32,7 @@ object SubstanceProtein extends CompanionFor[SubstanceProtein] {
   override val parentType: CompanionFor[ParentType] = SubstanceProtein
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceProtein")
   object Subunit extends CompanionFor[Subunit] {
-    implicit def summonObjectAndCompanionSubunit_1773630862(o: Subunit): ObjectAndCompanion[Subunit, Subunit.type] =
+    implicit def summonObjectAndCompanionSubunit_1572085722(o: Subunit): ObjectAndCompanion[Subunit, Subunit.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Subunit
     override type ParentType   = Subunit

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Specimen_processingTime extends CompanionFor[Specimen_processingTime] {
-  implicit def summonObjectAndCompanionSpecimen_processingTime_524892123(
+  implicit def summonObjectAndCompanionSpecimen_processingTime1639117424(
       o: Specimen_processingTime): ObjectAndCompanion[Specimen_processingTime, Specimen_processingTime.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

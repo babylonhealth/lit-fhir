@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Basic extends CompanionFor[Basic] {
-  implicit def summonObjectAndCompanionBasic_1884164324(o: Basic): ObjectAndCompanion[Basic, Basic.type] =
+  implicit def summonObjectAndCompanionBasic378864985(o: Basic): ObjectAndCompanion[Basic, Basic.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Basic
   override type ParentType   = Basic

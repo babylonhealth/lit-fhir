@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Reference extends CompanionFor[Reference] {
-  implicit def summonObjectAndCompanionReference_27796748(o: Reference): ObjectAndCompanion[Reference, Reference.type] =
+  implicit def summonObjectAndCompanionReference1035657974(o: Reference): ObjectAndCompanion[Reference, Reference.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Reference
   override type ParentType   = Reference

@@ -63,16 +63,16 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
     return new ChoiceCodeableConceptOrReference(r);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(f);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriodOrTiming(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(p);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Period p) {
+    return new ChoiceDateTimeOrPeriodOrTiming(p);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Timing t) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(t);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Timing t) {
+    return new ChoiceDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements ChargeItemBuilder {
@@ -100,7 +100,7 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
     private Optional<FHIRDateTime> enteredDate = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<String> definitionUri = Collections.emptyList();
-    private Optional<ChoiceFHIRDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Optional<Money> priceOverride = Optional.empty();
     private Optional<BigDecimal> factorOverride = Optional.empty();
     private Optional<String> overrideReason = Optional.empty();
@@ -417,7 +417,7 @@ public interface ChargeItemBuilder extends DomainResourceBuilder {
      *     wrap with one of the ChargeItemBuilder.occurrence static methods
      */
     public ChargeItemBuilder.Impl withOccurrence(
-        @NonNull ChoiceFHIRDateTimeOrPeriodOrTiming occurrence) {
+        @NonNull ChoiceDateTimeOrPeriodOrTiming occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

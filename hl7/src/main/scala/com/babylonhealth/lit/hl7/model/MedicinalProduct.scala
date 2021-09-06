@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProduct extends CompanionFor[MedicinalProduct] {
-  implicit def summonObjectAndCompanionMedicinalProduct_2139172693(
+  implicit def summonObjectAndCompanionMedicinalProduct_955578098(
       o: MedicinalProduct): ObjectAndCompanion[MedicinalProduct, MedicinalProduct.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MedicinalProduct
   override type ParentType   = MedicinalProduct
@@ -31,7 +31,7 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
   override val parentType: CompanionFor[ParentType] = MedicinalProduct
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProduct")
   object ManufacturingBusinessOperation extends CompanionFor[ManufacturingBusinessOperation] {
-    implicit def summonObjectAndCompanionManufacturingBusinessOperation1738353525(
+    implicit def summonObjectAndCompanionManufacturingBusinessOperation1596370546(
         o: ManufacturingBusinessOperation): ObjectAndCompanion[ManufacturingBusinessOperation, ManufacturingBusinessOperation.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = ManufacturingBusinessOperation
@@ -146,12 +146,13 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Name extends CompanionFor[Name] {
-    implicit def summonObjectAndCompanionName700846909(o: Name): ObjectAndCompanion[Name, Name.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionName1596370546(o: Name): ObjectAndCompanion[Name, Name.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Name
     override type ParentType   = Name
     override val parentType: CompanionFor[ResourceType] = Name
     object NamePart extends CompanionFor[NamePart] {
-      implicit def summonObjectAndCompanionNamePart85319392(o: NamePart): ObjectAndCompanion[NamePart, NamePart.type] =
+      implicit def summonObjectAndCompanionNamePart_1344457585(o: NamePart): ObjectAndCompanion[NamePart, NamePart.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = NamePart
       override type ParentType   = NamePart
@@ -217,7 +218,7 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object CountryLanguage extends CompanionFor[CountryLanguage] {
-      implicit def summonObjectAndCompanionCountryLanguage1136853973(
+      implicit def summonObjectAndCompanionCountryLanguage_1344457585(
           o: CountryLanguage): ObjectAndCompanion[CountryLanguage, CountryLanguage.type] = ObjectAndCompanion(o, this)
       override type ResourceType = CountryLanguage
       override type ParentType   = CountryLanguage
@@ -359,7 +360,7 @@ object MedicinalProduct extends CompanionFor[MedicinalProduct] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SpecialDesignation extends CompanionFor[SpecialDesignation] {
-    implicit def summonObjectAndCompanionSpecialDesignation514366620(
+    implicit def summonObjectAndCompanionSpecialDesignation1596370546(
         o: SpecialDesignation): ObjectAndCompanion[SpecialDesignation, SpecialDesignation.type] = ObjectAndCompanion(o, this)
     override type ResourceType = SpecialDesignation
     override type ParentType   = SpecialDesignation

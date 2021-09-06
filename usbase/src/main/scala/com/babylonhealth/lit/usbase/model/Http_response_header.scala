@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Http_response_header extends CompanionFor[Http_response_header] {
-  implicit def summonObjectAndCompanionHttp_response_header1465345770(
+  implicit def summonObjectAndCompanionHttp_response_header1605883305(
       o: Http_response_header): ObjectAndCompanion[Http_response_header, Http_response_header.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ParameterDefinition extends CompanionFor[ParameterDefinition] {
-  implicit def summonObjectAndCompanionParameterDefinition_374680068(
+  implicit def summonObjectAndCompanionParameterDefinition436424647(
       o: ParameterDefinition): ObjectAndCompanion[ParameterDefinition, ParameterDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ParameterDefinition
   override type ParentType   = ParameterDefinition

@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Actualgroup extends CompanionFor[Actualgroup] {
-  implicit def summonObjectAndCompanionActualgroup1314383590(o: Actualgroup): ObjectAndCompanion[Actualgroup, Actualgroup.type] =
+  implicit def summonObjectAndCompanionActualgroup_1384197444(o: Actualgroup): ObjectAndCompanion[Actualgroup, Actualgroup.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Group
   override type ParentType   = Group

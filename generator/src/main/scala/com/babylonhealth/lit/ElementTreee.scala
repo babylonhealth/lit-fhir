@@ -10,11 +10,12 @@ object ElementTreee extends Commonish with Logging {
   private val unionDeclarations = TrieMap.empty[Seq[String], String]
   def hashForUnion(s: Seq[String], declaringClass: String, fieldName: String): String =
     if (s.size == 50) "All"
-    else if (s.size <= 3) s.map(_.capitalize).mkString("Or")
+    else if (s.size <= 3) s.map(typeLookdown).mkString("Or")
     // If no other good name, use the first declaration site
-    else unionDeclarations.getOrElseUpdate(s, declaringClass.capitalize + "_" + fieldName.capitalize.replace("[x]", ""))
+    // TODO: disabled because of type clashes, but some types would be clearer with this
+//    else unionDeclarations.getOrElseUpdate(s, declaringClass.capitalize + "_" + fieldName.capitalize.replace("[x]", ""))
     // If no good name, generate a stable hash, then left-pad with zeros just for neatness' sake
-//    else "%011d".format(s.to(LitSeq).hashCode).replace('-', '_')
+    else "%011d".format(s.to(LitSeq).hashCode).replace('-', '_')
 
   private val unionTypes                                     = TrieMap[String, (Seq[String], Seq[String])]()
   def getUnionTypes: Map[String, (Seq[String], Seq[String])] = unionTypes.toMap

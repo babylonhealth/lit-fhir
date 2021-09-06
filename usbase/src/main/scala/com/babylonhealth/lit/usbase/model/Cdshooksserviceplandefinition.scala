@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cdshooksserviceplandefinition extends CompanionFor[Cdshooksserviceplandefinition] {
-  implicit def summonObjectAndCompanionCdshooksserviceplandefinition1196543149(
+  implicit def summonObjectAndCompanionCdshooksserviceplandefinition_213550210(
       o: Cdshooksserviceplandefinition): ObjectAndCompanion[Cdshooksserviceplandefinition, Cdshooksserviceplandefinition.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = PlanDefinition

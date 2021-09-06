@@ -53,44 +53,44 @@ public interface ConditionBuilder extends DomainResourceBuilder {
     return new Impl(subject.build());
   }
 
-  public static ChoiceAllergyIntolerance_Onset onset(Age a) {
-    return new ChoiceAllergyIntolerance_Onset(a);
+  public static Choice01946981731 onset(Age a) {
+    return new Choice01946981731(a);
   }
 
-  public static ChoiceAllergyIntolerance_Onset onset(FHIRDateTime f) {
-    return new ChoiceAllergyIntolerance_Onset(f);
+  public static Choice01946981731 onset(FHIRDateTime f) {
+    return new Choice01946981731(f);
   }
 
-  public static ChoiceAllergyIntolerance_Onset onset(Period p) {
-    return new ChoiceAllergyIntolerance_Onset(p);
+  public static Choice01946981731 onset(Period p) {
+    return new Choice01946981731(p);
   }
 
-  public static ChoiceAllergyIntolerance_Onset onset(Range r) {
-    return new ChoiceAllergyIntolerance_Onset(r);
+  public static Choice01946981731 onset(Range r) {
+    return new Choice01946981731(r);
   }
 
-  public static ChoiceAllergyIntolerance_Onset onset(String s) {
-    return new ChoiceAllergyIntolerance_Onset(s);
+  public static Choice01946981731 onset(String s) {
+    return new Choice01946981731(s);
   }
 
-  public static ChoiceAllergyIntolerance_Onset abatement(Age a) {
-    return new ChoiceAllergyIntolerance_Onset(a);
+  public static Choice01946981731 abatement(Age a) {
+    return new Choice01946981731(a);
   }
 
-  public static ChoiceAllergyIntolerance_Onset abatement(FHIRDateTime f) {
-    return new ChoiceAllergyIntolerance_Onset(f);
+  public static Choice01946981731 abatement(FHIRDateTime f) {
+    return new Choice01946981731(f);
   }
 
-  public static ChoiceAllergyIntolerance_Onset abatement(Period p) {
-    return new ChoiceAllergyIntolerance_Onset(p);
+  public static Choice01946981731 abatement(Period p) {
+    return new Choice01946981731(p);
   }
 
-  public static ChoiceAllergyIntolerance_Onset abatement(Range r) {
-    return new ChoiceAllergyIntolerance_Onset(r);
+  public static Choice01946981731 abatement(Range r) {
+    return new Choice01946981731(r);
   }
 
-  public static ChoiceAllergyIntolerance_Onset abatement(String s) {
-    return new ChoiceAllergyIntolerance_Onset(s);
+  public static Choice01946981731 abatement(String s) {
+    return new Choice01946981731(s);
   }
 
   public class Impl implements ConditionBuilder {
@@ -104,14 +104,14 @@ public interface ConditionBuilder extends DomainResourceBuilder {
     private Collection<CodeableConcept> category = Collections.emptyList();
     private Optional<CodeableConcept> severity = Optional.empty();
     private Collection<CodeableConcept> bodySite = Collections.emptyList();
-    private Optional<ChoiceAllergyIntolerance_Onset> onset = Optional.empty();
+    private Optional<Choice01946981731> onset = Optional.empty();
     private Optional<Reference> recorder = Optional.empty();
     private Optional<Reference> asserter = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> encounter = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<ChoiceAllergyIntolerance_Onset> abatement = Optional.empty();
+    private Optional<Choice01946981731> abatement = Optional.empty();
     private Optional<FHIRDateTime> recordedDate = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Optional<CodeableConcept> clinicalStatus = Optional.empty();
@@ -252,7 +252,7 @@ public interface ConditionBuilder extends DomainResourceBuilder {
      *     Period, Range, String. To pass the value in, wrap with one of the ConditionBuilder.onset
      *     static methods
      */
-    public ConditionBuilder.Impl withOnset(@NonNull ChoiceAllergyIntolerance_Onset onset) {
+    public ConditionBuilder.Impl withOnset(@NonNull Choice01946981731 onset) {
       this.onset = Optional.of(onset);
       return this;
     }
@@ -373,7 +373,7 @@ public interface ConditionBuilder extends DomainResourceBuilder {
      *     Period, Range, String. To pass the value in, wrap with one of the
      *     ConditionBuilder.abatement static methods
      */
-    public ConditionBuilder.Impl withAbatement(@NonNull ChoiceAllergyIntolerance_Onset abatement) {
+    public ConditionBuilder.Impl withAbatement(@NonNull Choice01946981731 abatement) {
       this.abatement = Optional.of(abatement);
       return this;
     }

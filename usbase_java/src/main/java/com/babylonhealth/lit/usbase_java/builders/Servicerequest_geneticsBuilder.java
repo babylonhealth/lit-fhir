@@ -80,16 +80,16 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     return new ChoiceBooleanOrCodeableConcept(c);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(f);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriodOrTiming(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(p);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Period p) {
+    return new ChoiceDateTimeOrPeriodOrTiming(p);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Timing t) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(t);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Timing t) {
+    return new ChoiceDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements Servicerequest_geneticsBuilder {
@@ -128,7 +128,7 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     private Optional<Boolean> doNotPerform = Optional.empty();
     private Collection<CodeableConcept> locationCode = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<ChoiceFHIRDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Optional<CodeableConcept> performerType = Optional.empty();
     private Collection<Reference> supportingInfo = Collections.emptyList();
     private Collection<String> instantiatesUri = Collections.emptyList();
@@ -620,7 +620,7 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
      *     wrap with one of the Servicerequest_geneticsBuilder.occurrence static methods
      */
     public Servicerequest_geneticsBuilder.Impl withOccurrence(
-        @NonNull ChoiceFHIRDateTimeOrPeriodOrTiming occurrence) {
+        @NonNull ChoiceDateTimeOrPeriodOrTiming occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

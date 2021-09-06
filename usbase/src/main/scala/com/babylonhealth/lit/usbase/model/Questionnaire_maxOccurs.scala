@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire_maxOccurs extends CompanionFor[Questionnaire_maxOccurs] {
-  implicit def summonObjectAndCompanionQuestionnaire_maxOccurs2127197036(
+  implicit def summonObjectAndCompanionQuestionnaire_maxOccurs_225000084(
       o: Questionnaire_maxOccurs): ObjectAndCompanion[Questionnaire_maxOccurs, Questionnaire_maxOccurs.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

@@ -53,12 +53,12 @@ public interface Specimen_CollectionBuilder {
     return new Impl();
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod collected(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriod(f);
+  public static ChoiceDateTimeOrPeriod collected(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod collected(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriod(p);
+  public static ChoiceDateTimeOrPeriod collected(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public static ChoiceCodeableConceptOrDuration fastingStatus(CodeableConcept c) {
@@ -77,7 +77,7 @@ public interface Specimen_CollectionBuilder {
     private Optional<CodeableConcept> bodySite = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> collector = Optional.empty();
-    private Optional<ChoiceFHIRDateTimeOrPeriod> collected = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriod> collected = Optional.empty();
     private Optional<ChoiceCodeableConceptOrDuration> fastingStatus = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -175,7 +175,7 @@ public interface Specimen_CollectionBuilder {
      *     methods
      */
     public Specimen_CollectionBuilder.Impl withCollected(
-        @NonNull ChoiceFHIRDateTimeOrPeriod collected) {
+        @NonNull ChoiceDateTimeOrPeriod collected) {
       this.collected = Optional.of(collected);
       return this;
     }

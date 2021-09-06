@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Dosage extends CompanionFor[Dosage] {
-  implicit def summonObjectAndCompanionDosage_588073389(o: Dosage): ObjectAndCompanion[Dosage, Dosage.type] =
+  implicit def summonObjectAndCompanionDosage_1069907220(o: Dosage): ObjectAndCompanion[Dosage, Dosage.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Dosage
   override type ParentType   = Dosage
@@ -29,7 +29,7 @@ object Dosage extends CompanionFor[Dosage] {
   override val parentType: CompanionFor[ParentType] = Dosage
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Dosage")
   object DoseAndRate extends CompanionFor[DoseAndRate] {
-    implicit def summonObjectAndCompanionDoseAndRate_228242847(
+    implicit def summonObjectAndCompanionDoseAndRate_189336146(
         o: DoseAndRate): ObjectAndCompanion[DoseAndRate, DoseAndRate.type] = ObjectAndCompanion(o, this)
     override type ResourceType = DoseAndRate
     override type ParentType   = DoseAndRate

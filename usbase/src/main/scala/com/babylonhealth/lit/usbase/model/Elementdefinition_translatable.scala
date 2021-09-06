@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_translatable extends CompanionFor[Elementdefinition_translatable] {
-  implicit def summonObjectAndCompanionElementdefinition_translatable691229078(
+  implicit def summonObjectAndCompanionElementdefinition_translatable1408703652(
       o: Elementdefinition_translatable): ObjectAndCompanion[Elementdefinition_translatable, Elementdefinition_translatable.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

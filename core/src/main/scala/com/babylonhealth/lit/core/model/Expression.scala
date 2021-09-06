@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Expression extends CompanionFor[Expression] {
-  implicit def summonObjectAndCompanionExpression127883092(o: Expression): ObjectAndCompanion[Expression, Expression.type] =
+  implicit def summonObjectAndCompanionExpression_1139776435(o: Expression): ObjectAndCompanion[Expression, Expression.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Expression
   override type ParentType   = Expression

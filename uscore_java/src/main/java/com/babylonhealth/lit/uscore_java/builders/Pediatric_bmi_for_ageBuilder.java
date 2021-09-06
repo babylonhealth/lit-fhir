@@ -58,7 +58,7 @@ public interface Pediatric_bmi_for_ageBuilder extends VitalsignsBuilder {
       Reference subject,
       Collection<CodeableConcept> category,
       Quantity value,
-      @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
+      @NonNull ChoiceDateTimeOrPeriod effective) {
     return new Impl(code, status, subject, category, value, effective);
   }
 
@@ -68,7 +68,7 @@ public interface Pediatric_bmi_for_ageBuilder extends VitalsignsBuilder {
       ReferenceBuilder subject,
       Collection<CodeableConceptBuilder> category,
       QuantityBuilder value,
-      @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
+      @NonNull ChoiceDateTimeOrPeriod effective) {
     return new Impl(
         code.build(),
         status,
@@ -78,12 +78,12 @@ public interface Pediatric_bmi_for_ageBuilder extends VitalsignsBuilder {
         effective);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod effective(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriod(f);
+  public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod effective(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriod(p);
+  public static ChoiceDateTimeOrPeriod effective(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements Pediatric_bmi_for_ageBuilder {
@@ -117,7 +117,7 @@ public interface Pediatric_bmi_for_ageBuilder extends VitalsignsBuilder {
     private Collection<Reference> hasMember = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<Reference> derivedFrom = Collections.emptyList();
-    private ChoiceFHIRDateTimeOrPeriod effective;
+    private ChoiceDateTimeOrPeriod effective;
     private Optional<String> implicitRules = Optional.empty();
     private Collection<CodeableConcept> interpretation = Collections.emptyList();
     private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
@@ -148,7 +148,7 @@ public interface Pediatric_bmi_for_ageBuilder extends VitalsignsBuilder {
         Reference subject,
         Collection<CodeableConcept> category,
         Quantity value,
-        @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
+        @NonNull ChoiceDateTimeOrPeriod effective) {
       this.code = code;
       this.status = status;
       this.subject = subject;

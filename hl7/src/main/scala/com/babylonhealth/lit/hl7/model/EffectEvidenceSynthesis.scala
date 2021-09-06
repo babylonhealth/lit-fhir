@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
-  implicit def summonObjectAndCompanionEffectEvidenceSynthesis_1267781735(
+  implicit def summonObjectAndCompanionEffectEvidenceSynthesis2063117783(
       o: EffectEvidenceSynthesis): ObjectAndCompanion[EffectEvidenceSynthesis, EffectEvidenceSynthesis.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = EffectEvidenceSynthesis
@@ -33,13 +33,13 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
   override val parentType: CompanionFor[ParentType] = EffectEvidenceSynthesis
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/EffectEvidenceSynthesis")
   object EffectEstimate extends CompanionFor[EffectEstimate] {
-    implicit def summonObjectAndCompanionEffectEstimate_439246549(
+    implicit def summonObjectAndCompanionEffectEstimate_270642536(
         o: EffectEstimate): ObjectAndCompanion[EffectEstimate, EffectEstimate.type] = ObjectAndCompanion(o, this)
     override type ResourceType = EffectEstimate
     override type ParentType   = EffectEstimate
     override val parentType: CompanionFor[ResourceType] = EffectEstimate
     object PrecisionEstimate extends CompanionFor[PrecisionEstimate] {
-      implicit def summonObjectAndCompanionPrecisionEstimate717905465(
+      implicit def summonObjectAndCompanionPrecisionEstimate1423115582(
           o: PrecisionEstimate): ObjectAndCompanion[PrecisionEstimate, PrecisionEstimate.type] = ObjectAndCompanion(o, this)
       override type ResourceType = PrecisionEstimate
       override type ParentType   = PrecisionEstimate
@@ -224,13 +224,13 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Certainty extends CompanionFor[Certainty] {
-    implicit def summonObjectAndCompanionCertainty_250158880(o: Certainty): ObjectAndCompanion[Certainty, Certainty.type] =
+    implicit def summonObjectAndCompanionCertainty_270642536(o: Certainty): ObjectAndCompanion[Certainty, Certainty.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Certainty
     override type ParentType   = Certainty
     override val parentType: CompanionFor[ResourceType] = Certainty
     object CertaintySubcomponent extends CompanionFor[CertaintySubcomponent] {
-      implicit def summonObjectAndCompanionCertaintySubcomponent361276474(
+      implicit def summonObjectAndCompanionCertaintySubcomponent_1083154854(
           o: CertaintySubcomponent): ObjectAndCompanion[CertaintySubcomponent, CertaintySubcomponent.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = CertaintySubcomponent
@@ -377,7 +377,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ResultsByExposure extends CompanionFor[ResultsByExposure] {
-    implicit def summonObjectAndCompanionResultsByExposure190710627(
+    implicit def summonObjectAndCompanionResultsByExposure_270642536(
         o: ResultsByExposure): ObjectAndCompanion[ResultsByExposure, ResultsByExposure.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ResultsByExposure
     override type ParentType   = ResultsByExposure
@@ -459,7 +459,7 @@ object EffectEvidenceSynthesis extends CompanionFor[EffectEvidenceSynthesis] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SampleSize extends CompanionFor[SampleSize] {
-    implicit def summonObjectAndCompanionSampleSize_310099578(o: SampleSize): ObjectAndCompanion[SampleSize, SampleSize.type] =
+    implicit def summonObjectAndCompanionSampleSize_270642536(o: SampleSize): ObjectAndCompanion[SampleSize, SampleSize.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = SampleSize
     override type ParentType   = SampleSize

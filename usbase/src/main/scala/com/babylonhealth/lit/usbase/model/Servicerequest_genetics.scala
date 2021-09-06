@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Servicerequest_genetics extends CompanionFor[Servicerequest_genetics] {
-  implicit def summonObjectAndCompanionServicerequest_genetics_434917617(
+  implicit def summonObjectAndCompanionServicerequest_genetics_1317839624(
       o: Servicerequest_genetics): ObjectAndCompanion[Servicerequest_genetics, Servicerequest_genetics.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = ServiceRequest
@@ -35,7 +35,7 @@ object Servicerequest_genetics extends CompanionFor[Servicerequest_genetics] {
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/servicerequest-genetics")
   type QuantityChoice   = Choice[UnionQuantityOrRangeOrRatio]
   type AsNeededChoice   = Choice[UnionBooleanOrCodeableConcept]
-  type OccurrenceChoice = Choice[UnionFHIRDateTimeOrPeriodOrTiming]
+  type OccurrenceChoice = Choice[UnionDateTimeOrPeriodOrTiming]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/servicerequest-genetics"))),
@@ -198,7 +198,7 @@ object Servicerequest_genetics extends CompanionFor[Servicerequest_genetics] {
       "occurrence",
       lTagOf[Option[Servicerequest_genetics.OccurrenceChoice]],
       true,
-      lTagOf[UnionFHIRDateTimeOrPeriodOrTiming])
+      lTagOf[UnionDateTimeOrPeriodOrTiming])
   val performerType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("performerType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val supportingInfo: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -383,7 +383,7 @@ object Servicerequest_genetics extends CompanionFor[Servicerequest_genetics] {
           cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("locationCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriodOrTiming]("occurrence"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriodOrTiming]("occurrence"),
           cursor.decodeAs[Option[CodeableConcept]]("performerType", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("supportingInfo", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[UriStr]]("instantiatesUri", Some(LitSeq.empty)),

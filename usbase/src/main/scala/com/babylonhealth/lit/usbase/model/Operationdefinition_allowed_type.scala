@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Operationdefinition_allowed_type extends CompanionFor[Operationdefinition_allowed_type] {
-  implicit def summonObjectAndCompanionOperationdefinition_allowed_type1259105440(
+  implicit def summonObjectAndCompanionOperationdefinition_allowed_type1216369927(
       o: Operationdefinition_allowed_type): ObjectAndCompanion[Operationdefinition_allowed_type, Operationdefinition_allowed_type.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

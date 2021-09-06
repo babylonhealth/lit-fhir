@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Element extends CompanionFor[Element] {
-  implicit def summonObjectAndCompanionElement_131745784(o: Element): ObjectAndCompanion[Element, Element.type] =
+  implicit def summonObjectAndCompanionElement1981657447(o: Element): ObjectAndCompanion[Element, Element.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Element
   override type ParentType   = Element

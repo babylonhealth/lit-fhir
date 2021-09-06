@@ -60,12 +60,12 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
     return new Impl(status, subject.build(), medication);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod effective(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriod(f);
+  public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod effective(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriod(p);
+  public static ChoiceDateTimeOrPeriod effective(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public static ChoiceCodeableConceptOrReference medication(CodeableConcept c) {
@@ -95,7 +95,7 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Collection<Reference> derivedFrom = Collections.emptyList();
     private Collection<CodeableConcept> statusReason = Collections.emptyList();
-    private Optional<ChoiceFHIRDateTimeOrPeriod> effective = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriod> effective = Optional.empty();
     private Optional<FHIRDateTime> dateAsserted = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private ChoiceCodeableConceptOrReference medication;
@@ -416,7 +416,7 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
      *     MedicationStatementBuilder.effective static methods
      */
     public MedicationStatementBuilder.Impl withEffective(
-        @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
+        @NonNull ChoiceDateTimeOrPeriod effective) {
       this.effective = Optional.of(effective);
       return this;
     }

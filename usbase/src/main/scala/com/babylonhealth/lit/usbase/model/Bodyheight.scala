@@ -25,14 +25,14 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Bodyheight extends CompanionFor[Bodyheight] {
-  implicit def summonObjectAndCompanionBodyheight_2027949598(o: Bodyheight): ObjectAndCompanion[Bodyheight, Bodyheight.type] =
+  implicit def summonObjectAndCompanionBodyheight_905150754(o: Bodyheight): ObjectAndCompanion[Bodyheight, Bodyheight.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Observation
   override type ParentType   = Vitalsigns
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Vitalsigns
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/bodyheight")
-  type EffectiveChoice = Choice[UnionFHIRDateTimeOrPeriod]
+  type EffectiveChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/bodyheight"))),
@@ -151,7 +151,7 @@ object Bodyheight extends CompanionFor[Bodyheight] {
   val derivedFrom: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("derivedFrom", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val effective: FHIRComponentFieldMeta[Bodyheight.EffectiveChoice] =
-    FHIRComponentFieldMeta("effective", lTagOf[Bodyheight.EffectiveChoice], true, lTagOf[UnionFHIRDateTimeOrPeriod])
+    FHIRComponentFieldMeta("effective", lTagOf[Bodyheight.EffectiveChoice], true, lTagOf[UnionDateTimeOrPeriod])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val code: FHIRComponentFieldMeta[CodeableConcept] =
@@ -302,7 +302,7 @@ object Bodyheight extends CompanionFor[Bodyheight] {
           cursor.decodeAs[LitSeq[Reference]]("hasMember", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("derivedFrom", Some(LitSeq.empty)),
-          cursor.decodeRef[UnionFHIRDateTimeOrPeriod]("effective"),
+          cursor.decodeRef[UnionDateTimeOrPeriod]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[CodeableConcept]("code", None),
           cursor.decodeAs[LitSeq[CodeableConcept]]("interpretation", Some(LitSeq.empty)),

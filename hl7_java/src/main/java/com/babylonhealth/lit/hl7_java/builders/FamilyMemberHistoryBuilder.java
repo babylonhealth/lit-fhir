@@ -67,36 +67,36 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     return new ChoiceAgeOrRangeOrString(s);
   }
 
-  public static ChoiceFHIRDateOrPeriodOrString born(FHIRDate f) {
-    return new ChoiceFHIRDateOrPeriodOrString(f);
+  public static ChoiceDateOrPeriodOrString born(FHIRDate f) {
+    return new ChoiceDateOrPeriodOrString(f);
   }
 
-  public static ChoiceFHIRDateOrPeriodOrString born(Period p) {
-    return new ChoiceFHIRDateOrPeriodOrString(p);
+  public static ChoiceDateOrPeriodOrString born(Period p) {
+    return new ChoiceDateOrPeriodOrString(p);
   }
 
-  public static ChoiceFHIRDateOrPeriodOrString born(String s) {
-    return new ChoiceFHIRDateOrPeriodOrString(s);
+  public static ChoiceDateOrPeriodOrString born(String s) {
+    return new ChoiceDateOrPeriodOrString(s);
   }
 
-  public static ChoiceFamilyMemberHistory_Deceased deceased(Age a) {
-    return new ChoiceFamilyMemberHistory_Deceased(a);
+  public static Choice00515330545 deceased(Age a) {
+    return new Choice00515330545(a);
   }
 
-  public static ChoiceFamilyMemberHistory_Deceased deceased(Boolean b) {
-    return new ChoiceFamilyMemberHistory_Deceased(b);
+  public static Choice00515330545 deceased(Boolean b) {
+    return new Choice00515330545(b);
   }
 
-  public static ChoiceFamilyMemberHistory_Deceased deceased(FHIRDate f) {
-    return new ChoiceFamilyMemberHistory_Deceased(f);
+  public static Choice00515330545 deceased(FHIRDate f) {
+    return new Choice00515330545(f);
   }
 
-  public static ChoiceFamilyMemberHistory_Deceased deceased(Range r) {
-    return new ChoiceFamilyMemberHistory_Deceased(r);
+  public static Choice00515330545 deceased(Range r) {
+    return new Choice00515330545(r);
   }
 
-  public static ChoiceFamilyMemberHistory_Deceased deceased(String s) {
-    return new ChoiceFamilyMemberHistory_Deceased(s);
+  public static Choice00515330545 deceased(String s) {
+    return new Choice00515330545(s);
   }
 
   public class Impl implements FamilyMemberHistoryBuilder {
@@ -110,13 +110,13 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
     private HISTORY_STATUS status;
     private Optional<ChoiceAgeOrRangeOrString> age = Optional.empty();
     private Reference patient;
-    private Optional<ChoiceFHIRDateOrPeriodOrString> born = Optional.empty();
+    private Optional<ChoiceDateOrPeriodOrString> born = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
-    private Optional<ChoiceFamilyMemberHistory_Deceased> deceased = Optional.empty();
+    private Optional<Choice00515330545> deceased = Optional.empty();
     private CodeableConcept relationship;
     private Optional<Boolean> estimatedAge = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
@@ -243,7 +243,7 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
      *     field. Type should be one of FHIRDate, Period, String. To pass the value in, wrap with
      *     one of the FamilyMemberHistoryBuilder.born static methods
      */
-    public FamilyMemberHistoryBuilder.Impl withBorn(@NonNull ChoiceFHIRDateOrPeriodOrString born) {
+    public FamilyMemberHistoryBuilder.Impl withBorn(@NonNull ChoiceDateOrPeriodOrString born) {
       this.born = Optional.of(born);
       return this;
     }
@@ -356,8 +356,7 @@ public interface FamilyMemberHistoryBuilder extends DomainResourceBuilder {
      *     one of Age, Boolean, FHIRDate, Range, String. To pass the value in, wrap with one of the
      *     FamilyMemberHistoryBuilder.deceased static methods
      */
-    public FamilyMemberHistoryBuilder.Impl withDeceased(
-        @NonNull ChoiceFamilyMemberHistory_Deceased deceased) {
+    public FamilyMemberHistoryBuilder.Impl withDeceased(@NonNull Choice00515330545 deceased) {
       this.deceased = Optional.of(deceased);
       return this;
     }

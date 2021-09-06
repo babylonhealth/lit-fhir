@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MessageHeader extends CompanionFor[MessageHeader] {
-  implicit def summonObjectAndCompanionMessageHeader448846344(
+  implicit def summonObjectAndCompanionMessageHeader2135966623(
       o: MessageHeader): ObjectAndCompanion[MessageHeader, MessageHeader.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MessageHeader
   override type ParentType   = MessageHeader
@@ -32,7 +32,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
   override val parentType: CompanionFor[ParentType] = MessageHeader
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MessageHeader")
   object Destination extends CompanionFor[Destination] {
-    implicit def summonObjectAndCompanionDestination1146212849(
+    implicit def summonObjectAndCompanionDestination2120170152(
         o: Destination): ObjectAndCompanion[Destination, Destination.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Destination
     override type ParentType   = Destination
@@ -113,7 +113,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Response extends CompanionFor[Response] {
-    implicit def summonObjectAndCompanionResponse_173603133(o: Response): ObjectAndCompanion[Response, Response.type] =
+    implicit def summonObjectAndCompanionResponse2120170152(o: Response): ObjectAndCompanion[Response, Response.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Response
     override type ParentType   = Response
@@ -187,7 +187,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Source extends CompanionFor[Source] {
-    implicit def summonObjectAndCompanionSource_946251744(o: Source): ObjectAndCompanion[Source, Source.type] =
+    implicit def summonObjectAndCompanionSource2120170152(o: Source): ObjectAndCompanion[Source, Source.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Source
     override type ParentType   = Source
@@ -275,7 +275,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type EventChoice = Choice[UnionCodingOrUriStr]
+  type EventChoice = Choice[UnionCodingOrUri]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -338,7 +338,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val event: FHIRComponentFieldMeta[MessageHeader.EventChoice] =
-    FHIRComponentFieldMeta("event", lTagOf[MessageHeader.EventChoice], true, lTagOf[UnionCodingOrUriStr])
+    FHIRComponentFieldMeta("event", lTagOf[MessageHeader.EventChoice], true, lTagOf[UnionCodingOrUri])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -472,7 +472,7 @@ object MessageHeader extends CompanionFor[MessageHeader] {
           cursor.decodeAs[Option[CodeableConcept]]("reason", Some(None)),
           cursor.decodeAs[Option[Reference]]("enterer", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
-          cursor.decodeRef[UnionCodingOrUriStr]("event"),
+          cursor.decodeRef[UnionCodingOrUri]("event"),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Canonical]]("definition", Some(None)),

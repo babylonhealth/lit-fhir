@@ -25,14 +25,14 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Triglyceride extends CompanionFor[Triglyceride] {
-  implicit def summonObjectAndCompanionTriglyceride_1068226631(
+  implicit def summonObjectAndCompanionTriglyceride_773857128(
       o: Triglyceride): ObjectAndCompanion[Triglyceride, Triglyceride.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Observation
   override type ParentType   = Observation
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/triglyceride")
-  type EffectiveChoice = Choice[UnionObservation_Effective]
+  type EffectiveChoice = Choice[Union_1926447453]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/triglyceride"))),
@@ -145,7 +145,7 @@ object Triglyceride extends CompanionFor[Triglyceride] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val effective: FHIRComponentFieldMeta[Option[Triglyceride.EffectiveChoice]] =
-    FHIRComponentFieldMeta("effective", lTagOf[Option[Triglyceride.EffectiveChoice]], true, lTagOf[UnionObservation_Effective])
+    FHIRComponentFieldMeta("effective", lTagOf[Option[Triglyceride.EffectiveChoice]], true, lTagOf[Union_1926447453])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val interpretation: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -283,7 +283,7 @@ object Triglyceride extends CompanionFor[Triglyceride] {
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[UnionObservation_Effective]("effective"),
+          cursor.decodeOptRef[Union_1926447453]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeFromListAs[Option[CodeableConcept]]("interpretation", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("dataAbsentReason", Some(None)),

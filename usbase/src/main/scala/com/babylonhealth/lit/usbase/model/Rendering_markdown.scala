@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Rendering_markdown extends CompanionFor[Rendering_markdown] {
-  implicit def summonObjectAndCompanionRendering_markdown_866928663(
+  implicit def summonObjectAndCompanionRendering_markdown1475856293(
       o: Rendering_markdown): ObjectAndCompanion[Rendering_markdown, Rendering_markdown.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

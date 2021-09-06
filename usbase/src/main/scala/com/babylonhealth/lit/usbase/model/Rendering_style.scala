@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Rendering_style extends CompanionFor[Rendering_style] {
-  implicit def summonObjectAndCompanionRendering_style1518646711(
+  implicit def summonObjectAndCompanionRendering_style1848655547(
       o: Rendering_style): ObjectAndCompanion[Rendering_style, Rendering_style.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

@@ -62,24 +62,24 @@ public interface Us_core_allergyintoleranceBuilder extends AllergyIntoleranceBui
     return new Impl(code.build(), patient.build());
   }
 
-  public static ChoiceAllergyIntolerance_Onset onset(Age a) {
-    return new ChoiceAllergyIntolerance_Onset(a);
+  public static Choice01946981731 onset(Age a) {
+    return new Choice01946981731(a);
   }
 
-  public static ChoiceAllergyIntolerance_Onset onset(FHIRDateTime f) {
-    return new ChoiceAllergyIntolerance_Onset(f);
+  public static Choice01946981731 onset(FHIRDateTime f) {
+    return new Choice01946981731(f);
   }
 
-  public static ChoiceAllergyIntolerance_Onset onset(Period p) {
-    return new ChoiceAllergyIntolerance_Onset(p);
+  public static Choice01946981731 onset(Period p) {
+    return new Choice01946981731(p);
   }
 
-  public static ChoiceAllergyIntolerance_Onset onset(Range r) {
-    return new ChoiceAllergyIntolerance_Onset(r);
+  public static Choice01946981731 onset(Range r) {
+    return new Choice01946981731(r);
   }
 
-  public static ChoiceAllergyIntolerance_Onset onset(String s) {
-    return new ChoiceAllergyIntolerance_Onset(s);
+  public static Choice01946981731 onset(String s) {
+    return new Choice01946981731(s);
   }
 
   public class Impl implements Us_core_allergyintoleranceBuilder {
@@ -97,7 +97,7 @@ public interface Us_core_allergyintoleranceBuilder extends AllergyIntoleranceBui
     private Reference patient;
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<ALLERGY_INTOLERANCE_CATEGORY> category = Collections.emptyList();
-    private Optional<ChoiceAllergyIntolerance_Onset> onset = Optional.empty();
+    private Optional<Choice01946981731> onset = Optional.empty();
     private Optional<Reference> recorder = Optional.empty();
     private Optional<Reference> asserter = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
@@ -228,8 +228,7 @@ public interface Us_core_allergyintoleranceBuilder extends AllergyIntoleranceBui
      *     Range, String. To pass the value in, wrap with one of the
      *     Us_core_allergyintoleranceBuilder.onset static methods
      */
-    public Us_core_allergyintoleranceBuilder.Impl withOnset(
-        @NonNull ChoiceAllergyIntolerance_Onset onset) {
+    public Us_core_allergyintoleranceBuilder.Impl withOnset(@NonNull Choice01946981731 onset) {
       this.onset = Optional.of(onset);
       return this;
     }

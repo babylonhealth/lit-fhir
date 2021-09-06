@@ -56,7 +56,7 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       IMMUNIZATION_STATUS status,
       Reference patient,
       CodeableConcept vaccineCode,
-      @NonNull ChoiceFHIRDateTimeOrString occurrence,
+      @NonNull ChoiceDateTimeOrString occurrence,
       Boolean primarySource) {
     return new Impl(status, patient, vaccineCode, occurrence, primarySource);
   }
@@ -65,17 +65,17 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
       IMMUNIZATION_STATUS status,
       ReferenceBuilder patient,
       CodeableConceptBuilder vaccineCode,
-      @NonNull ChoiceFHIRDateTimeOrString occurrence,
+      @NonNull ChoiceDateTimeOrString occurrence,
       Boolean primarySource) {
     return new Impl(status, patient.build(), vaccineCode.build(), occurrence, primarySource);
   }
 
-  public static ChoiceFHIRDateTimeOrString occurrence(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrString(f);
+  public static ChoiceDateTimeOrString occurrence(FHIRDateTime f) {
+    return new ChoiceDateTimeOrString(f);
   }
 
-  public static ChoiceFHIRDateTimeOrString occurrence(String s) {
-    return new ChoiceFHIRDateTimeOrString(s);
+  public static ChoiceDateTimeOrString occurrence(String s) {
+    return new ChoiceDateTimeOrString(s);
   }
 
   public class Impl implements Us_core_immunizationBuilder {
@@ -107,7 +107,7 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
     private Optional<Reference> manufacturer = Optional.empty();
     private Optional<Quantity> doseQuantity = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private ChoiceFHIRDateTimeOrString occurrence;
+    private ChoiceDateTimeOrString occurrence;
     private Boolean primarySource;
     private Optional<CodeableConcept> fundingSource = Optional.empty();
     private Optional<FHIRDate> expirationDate = Optional.empty();
@@ -137,7 +137,7 @@ public interface Us_core_immunizationBuilder extends ImmunizationBuilder {
         IMMUNIZATION_STATUS status,
         Reference patient,
         CodeableConcept vaccineCode,
-        @NonNull ChoiceFHIRDateTimeOrString occurrence,
+        @NonNull ChoiceDateTimeOrString occurrence,
         Boolean primarySource) {
       this.status = status;
       this.patient = patient;

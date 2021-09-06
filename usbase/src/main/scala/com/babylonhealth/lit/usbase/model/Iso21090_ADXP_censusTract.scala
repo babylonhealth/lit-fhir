@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_ADXP_censusTract extends CompanionFor[Iso21090_ADXP_censusTract] {
-  implicit def summonObjectAndCompanionIso21090_ADXP_censusTract_11465532(
+  implicit def summonObjectAndCompanionIso21090_ADXP_censusTract_408776590(
       o: Iso21090_ADXP_censusTract): ObjectAndCompanion[Iso21090_ADXP_censusTract, Iso21090_ADXP_censusTract.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MinLength extends CompanionFor[MinLength] {
-  implicit def summonObjectAndCompanionMinLength765103090(o: MinLength): ObjectAndCompanion[MinLength, MinLength.type] =
+  implicit def summonObjectAndCompanionMinLength_62075997(o: MinLength): ObjectAndCompanion[MinLength, MinLength.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

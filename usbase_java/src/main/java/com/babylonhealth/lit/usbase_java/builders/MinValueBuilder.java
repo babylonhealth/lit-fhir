@@ -48,37 +48,37 @@ import static java.util.stream.Collectors.toList;
 public interface MinValueBuilder extends ExtensionBuilder {
   public MinValue build();
 
-  public static Impl init(@NonNull ChoiceMinValue_Value value) {
+  public static Impl init(@NonNull Choice_1391615921 value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull ChoiceMinValue_Value value) {
+  public static Impl builder(@NonNull Choice_1391615921 value) {
     return new Impl(value);
   }
 
-  public static ChoiceMinValue_Value value(BigDecimal b) {
-    return new ChoiceMinValue_Value(b);
+  public static Choice_1391615921 value(BigDecimal b) {
+    return new Choice_1391615921(b);
   }
 
-  public static ChoiceMinValue_Value value(FHIRDate f) {
-    return new ChoiceMinValue_Value(f);
+  public static Choice_1391615921 value(FHIRDate f) {
+    return new Choice_1391615921(f);
   }
 
-  public static ChoiceMinValue_Value value(FHIRDateTime f) {
-    return new ChoiceMinValue_Value(f);
+  public static Choice_1391615921 value(FHIRDateTime f) {
+    return new Choice_1391615921(f);
   }
 
-  public static ChoiceMinValue_Value value(Integer i) {
-    return new ChoiceMinValue_Value(i);
+  public static Choice_1391615921 value(Integer i) {
+    return new Choice_1391615921(i);
   }
 
-  public static ChoiceMinValue_Value value(LocalTime l) {
-    return new ChoiceMinValue_Value(l);
+  public static Choice_1391615921 value(LocalTime l) {
+    return new Choice_1391615921(l);
   }
 
   public class Impl implements MinValueBuilder {
     private Optional<String> id = Optional.empty();
-    private ChoiceMinValue_Value value;
+    private Choice_1391615921 value;
 
     /**
      * Required fields for {@link MinValue}
@@ -88,7 +88,7 @@ public interface MinValueBuilder extends ExtensionBuilder {
      *     field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer, LocalTime. To
      *     pass the value in, wrap with one of the MinValueBuilder.value static methods
      */
-    public Impl(@NonNull ChoiceMinValue_Value value) {
+    public Impl(@NonNull Choice_1391615921 value) {
       this.value = value;
     }
 

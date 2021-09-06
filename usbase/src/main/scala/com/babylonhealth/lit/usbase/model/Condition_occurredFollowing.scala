@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollowing] {
-  implicit def summonObjectAndCompanionCondition_occurredFollowing_627110841(
+  implicit def summonObjectAndCompanionCondition_occurredFollowing1672683973(
       o: Condition_occurredFollowing): ObjectAndCompanion[Condition_occurredFollowing, Condition_occurredFollowing.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

@@ -22,7 +22,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Extension extends CompanionFor[Extension] {
-  implicit def summonObjectAndCompanionExtension_512776784(o: Extension): ObjectAndCompanion[Extension, Extension.type] =
+  implicit def summonObjectAndCompanionExtension1348255722(o: Extension): ObjectAndCompanion[Extension, Extension.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

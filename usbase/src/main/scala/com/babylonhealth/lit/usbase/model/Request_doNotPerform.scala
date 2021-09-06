@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Request_doNotPerform extends CompanionFor[Request_doNotPerform] {
-  implicit def summonObjectAndCompanionRequest_doNotPerform_99070762(
+  implicit def summonObjectAndCompanionRequest_doNotPerform1900829132(
       o: Request_doNotPerform): ObjectAndCompanion[Request_doNotPerform, Request_doNotPerform.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

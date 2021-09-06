@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MaxSize extends CompanionFor[MaxSize] {
-  implicit def summonObjectAndCompanionMaxSize917339926(o: MaxSize): ObjectAndCompanion[MaxSize, MaxSize.type] =
+  implicit def summonObjectAndCompanionMaxSize_1471045104(o: MaxSize): ObjectAndCompanion[MaxSize, MaxSize.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

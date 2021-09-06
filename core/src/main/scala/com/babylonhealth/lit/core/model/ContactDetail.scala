@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ContactDetail extends CompanionFor[ContactDetail] {
-  implicit def summonObjectAndCompanionContactDetail_1828331805(
+  implicit def summonObjectAndCompanionContactDetail_98408772(
       o: ContactDetail): ObjectAndCompanion[ContactDetail, ContactDetail.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ContactDetail
   override type ParentType   = ContactDetail

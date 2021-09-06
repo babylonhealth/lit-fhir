@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendation] {
-  implicit def summonObjectAndCompanionImmunizationRecommendation2143694014(
+  implicit def summonObjectAndCompanionImmunizationRecommendation_677639664(
       o: ImmunizationRecommendation): ObjectAndCompanion[ImmunizationRecommendation, ImmunizationRecommendation.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = ImmunizationRecommendation
@@ -32,13 +32,13 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
   override val parentType: CompanionFor[ParentType] = ImmunizationRecommendation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation")
   object Recommendation extends CompanionFor[Recommendation] {
-    implicit def summonObjectAndCompanionRecommendation_1998039110(
+    implicit def summonObjectAndCompanionRecommendation_838222602(
         o: Recommendation): ObjectAndCompanion[Recommendation, Recommendation.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Recommendation
     override type ParentType   = Recommendation
     override val parentType: CompanionFor[ResourceType] = Recommendation
     object DateCriterion extends CompanionFor[DateCriterion] {
-      implicit def summonObjectAndCompanionDateCriterion_921913397(
+      implicit def summonObjectAndCompanionDateCriterion1962079789(
           o: DateCriterion): ObjectAndCompanion[DateCriterion, DateCriterion.type] = ObjectAndCompanion(o, this)
       override type ResourceType = DateCriterion
       override type ParentType   = DateCriterion

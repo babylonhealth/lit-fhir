@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_recipientLanguage extends CompanionFor[Cqf_recipientLanguage] {
-  implicit def summonObjectAndCompanionCqf_recipientLanguage_724764290(
+  implicit def summonObjectAndCompanionCqf_recipientLanguage1693495047(
       o: Cqf_recipientLanguage): ObjectAndCompanion[Cqf_recipientLanguage, Cqf_recipientLanguage.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

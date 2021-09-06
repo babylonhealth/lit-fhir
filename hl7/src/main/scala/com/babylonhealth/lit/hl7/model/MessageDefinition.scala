@@ -29,7 +29,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MessageDefinition extends CompanionFor[MessageDefinition] {
-  implicit def summonObjectAndCompanionMessageDefinition_638721944(
+  implicit def summonObjectAndCompanionMessageDefinition1577696613(
       o: MessageDefinition): ObjectAndCompanion[MessageDefinition, MessageDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MessageDefinition
   override type ParentType   = MessageDefinition
@@ -37,7 +37,7 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
   override val parentType: CompanionFor[ParentType] = MessageDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MessageDefinition")
   object AllowedResponse extends CompanionFor[AllowedResponse] {
-    implicit def summonObjectAndCompanionAllowedResponse807585912(
+    implicit def summonObjectAndCompanionAllowedResponse219572532(
         o: AllowedResponse): ObjectAndCompanion[AllowedResponse, AllowedResponse.type] = ObjectAndCompanion(o, this)
     override type ResourceType = AllowedResponse
     override type ParentType   = AllowedResponse
@@ -103,7 +103,7 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Focus extends CompanionFor[Focus] {
-    implicit def summonObjectAndCompanionFocus1852442267(o: Focus): ObjectAndCompanion[Focus, Focus.type] =
+    implicit def summonObjectAndCompanionFocus219572532(o: Focus): ObjectAndCompanion[Focus, Focus.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Focus
     override type ParentType   = Focus
@@ -183,7 +183,7 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type EventChoice = Choice[UnionCodingOrUriStr]
+  type EventChoice = Choice[UnionCodingOrUri]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -286,7 +286,7 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
   val replaces: FHIRComponentFieldMeta[LitSeq[Canonical]] =
     FHIRComponentFieldMeta("replaces", lTagOf[LitSeq[Canonical]], false, lTagOf[Canonical])
   val event: FHIRComponentFieldMeta[MessageDefinition.EventChoice] =
-    FHIRComponentFieldMeta("event", lTagOf[MessageDefinition.EventChoice], true, lTagOf[UnionCodingOrUriStr])
+    FHIRComponentFieldMeta("event", lTagOf[MessageDefinition.EventChoice], true, lTagOf[UnionCodingOrUri])
   val category: FHIRComponentFieldMeta[Option[MESSAGE_SIGNIFICANCE_CATEGORY]] =
     FHIRComponentFieldMeta(
       "category",
@@ -474,7 +474,7 @@ object MessageDefinition extends CompanionFor[MessageDefinition] {
           cursor.decodeAs[Option[Markdown]]("purpose", Some(None)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[Canonical]]("replaces", Some(LitSeq.empty)),
-          cursor.decodeRef[UnionCodingOrUriStr]("event"),
+          cursor.decodeRef[UnionCodingOrUri]("event"),
           cursor.decodeAs[Option[MESSAGE_SIGNIFICANCE_CATEGORY]]("category", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),

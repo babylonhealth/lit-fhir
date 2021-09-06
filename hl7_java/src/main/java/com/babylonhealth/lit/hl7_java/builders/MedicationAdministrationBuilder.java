@@ -49,7 +49,7 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
   public static Impl init(
       MEDICATION_ADMIN_STATUS status,
       Reference subject,
-      @NonNull ChoiceFHIRDateTimeOrPeriod effective,
+      @NonNull ChoiceDateTimeOrPeriod effective,
       @NonNull ChoiceCodeableConceptOrReference medication) {
     return new Impl(status, subject, effective, medication);
   }
@@ -57,17 +57,17 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
   public static Impl builder(
       MEDICATION_ADMIN_STATUS status,
       ReferenceBuilder subject,
-      @NonNull ChoiceFHIRDateTimeOrPeriod effective,
+      @NonNull ChoiceDateTimeOrPeriod effective,
       @NonNull ChoiceCodeableConceptOrReference medication) {
     return new Impl(status, subject.build(), effective, medication);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod effective(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriod(f);
+  public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod effective(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriod(p);
+  public static ChoiceDateTimeOrPeriod effective(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public static ChoiceCodeableConceptOrReference medication(CodeableConcept c) {
@@ -97,7 +97,7 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Collection<String> instantiates = Collections.emptyList();
     private Collection<CodeableConcept> statusReason = Collections.emptyList();
-    private ChoiceFHIRDateTimeOrPeriod effective;
+    private ChoiceDateTimeOrPeriod effective;
     private Collection<Reference> eventHistory = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private ChoiceCodeableConceptOrReference medication;
@@ -129,7 +129,7 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     public Impl(
         MEDICATION_ADMIN_STATUS status,
         Reference subject,
-        @NonNull ChoiceFHIRDateTimeOrPeriod effective,
+        @NonNull ChoiceDateTimeOrPeriod effective,
         @NonNull ChoiceCodeableConceptOrReference medication) {
       this.status = status;
       this.subject = subject;

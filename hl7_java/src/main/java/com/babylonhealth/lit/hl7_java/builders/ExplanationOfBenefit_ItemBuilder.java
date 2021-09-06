@@ -53,12 +53,12 @@ public interface ExplanationOfBenefit_ItemBuilder {
     return new Impl(sequence, productOrService.build());
   }
 
-  public static ChoiceFHIRDateOrPeriod serviced(FHIRDate f) {
-    return new ChoiceFHIRDateOrPeriod(f);
+  public static ChoiceDateOrPeriod serviced(FHIRDate f) {
+    return new ChoiceDateOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateOrPeriod serviced(Period p) {
-    return new ChoiceFHIRDateOrPeriod(p);
+  public static ChoiceDateOrPeriod serviced(Period p) {
+    return new ChoiceDateOrPeriod(p);
   }
 
   public static ChoiceAddressOrCodeableConceptOrReference location(Address a) {
@@ -90,7 +90,7 @@ public interface ExplanationOfBenefit_ItemBuilder {
     private Collection<Reference> encounter = Collections.emptyList();
     private Collection<Integer> noteNumber = Collections.emptyList();
     private Collection<CodeableConcept> programCode = Collections.emptyList();
-    private Optional<ChoiceFHIRDateOrPeriod> serviced = Optional.empty();
+    private Optional<ChoiceDateOrPeriod> serviced = Optional.empty();
     private Optional<ChoiceAddressOrCodeableConceptOrReference> location = Optional.empty();
     private Collection<Integer> careTeamSequence = Collections.emptyList();
     private CodeableConcept productOrService;
@@ -320,7 +320,7 @@ public interface ExplanationOfBenefit_ItemBuilder {
      *     methods
      */
     public ExplanationOfBenefit_ItemBuilder.Impl withServiced(
-        @NonNull ChoiceFHIRDateOrPeriod serviced) {
+        @NonNull ChoiceDateOrPeriod serviced) {
       this.serviced = Optional.of(serviced);
       return this;
     }

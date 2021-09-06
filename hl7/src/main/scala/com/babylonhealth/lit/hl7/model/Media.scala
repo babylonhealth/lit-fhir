@@ -24,14 +24,14 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Media extends CompanionFor[Media] {
-  implicit def summonObjectAndCompanionMedia_1579011941(o: Media): ObjectAndCompanion[Media, Media.type] =
+  implicit def summonObjectAndCompanionMedia389128463(o: Media): ObjectAndCompanion[Media, Media.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Media
   override type ParentType   = Media
   override val baseType: CompanionFor[ResourceType] = Media
   override val parentType: CompanionFor[ParentType] = Media
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Media")
-  type CreatedChoice = Choice[UnionFHIRDateTimeOrPeriod]
+  type CreatedChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -148,7 +148,7 @@ object Media extends CompanionFor[Media] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val created: FHIRComponentFieldMeta[Option[Media.CreatedChoice]] =
-    FHIRComponentFieldMeta("created", lTagOf[Option[Media.CreatedChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
+    FHIRComponentFieldMeta("created", lTagOf[Option[Media.CreatedChoice]], true, lTagOf[UnionDateTimeOrPeriod])
   val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val deviceName: FHIRComponentFieldMeta[Option[String]] =
@@ -297,7 +297,7 @@ object Media extends CompanionFor[Media] {
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("created"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriod]("created"),
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("deviceName", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),

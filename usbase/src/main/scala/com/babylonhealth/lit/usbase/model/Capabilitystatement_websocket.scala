@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Capabilitystatement_websocket extends CompanionFor[Capabilitystatement_websocket] {
-  implicit def summonObjectAndCompanionCapabilitystatement_websocket_1454234234(
+  implicit def summonObjectAndCompanionCapabilitystatement_websocket_2022576868(
       o: Capabilitystatement_websocket): ObjectAndCompanion[Capabilitystatement_websocket, Capabilitystatement_websocket.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

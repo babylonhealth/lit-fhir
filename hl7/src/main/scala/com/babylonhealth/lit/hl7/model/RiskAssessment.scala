@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RiskAssessment extends CompanionFor[RiskAssessment] {
-  implicit def summonObjectAndCompanionRiskAssessment_2084192793(
+  implicit def summonObjectAndCompanionRiskAssessment373650982(
       o: RiskAssessment): ObjectAndCompanion[RiskAssessment, RiskAssessment.type] = ObjectAndCompanion(o, this)
   override type ResourceType = RiskAssessment
   override type ParentType   = RiskAssessment
@@ -32,13 +32,13 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
   override val parentType: CompanionFor[ParentType] = RiskAssessment
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RiskAssessment")
   object Prediction extends CompanionFor[Prediction] {
-    implicit def summonObjectAndCompanionPrediction1468618818(o: Prediction): ObjectAndCompanion[Prediction, Prediction.type] =
+    implicit def summonObjectAndCompanionPrediction_1532844510(o: Prediction): ObjectAndCompanion[Prediction, Prediction.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Prediction
     override type ParentType   = Prediction
     override val parentType: CompanionFor[ResourceType] = Prediction
     type WhenChoice        = Choice[UnionPeriodOrRange]
-    type ProbabilityChoice = Choice[UnionBigDecimalOrRange]
+    type ProbabilityChoice = Choice[UnionDecimalOrRange]
     def apply(
         id: Option[String] = None,
         outcome: Option[CodeableConcept] = None,
@@ -88,7 +88,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
     val relativeRisk: FHIRComponentFieldMeta[Option[BigDecimal]] =
       FHIRComponentFieldMeta("relativeRisk", lTagOf[Option[BigDecimal]], false, lTagOf[BigDecimal])
     val probability: FHIRComponentFieldMeta[Option[Prediction.ProbabilityChoice]] =
-      FHIRComponentFieldMeta("probability", lTagOf[Option[Prediction.ProbabilityChoice]], true, lTagOf[UnionBigDecimalOrRange])
+      FHIRComponentFieldMeta("probability", lTagOf[Option[Prediction.ProbabilityChoice]], true, lTagOf[UnionDecimalOrRange])
     val qualitativeRisk: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("qualitativeRisk", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -119,7 +119,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[String]]("rationale", Some(None)),
             cursor.decodeAs[Option[BigDecimal]]("relativeRisk", Some(None)),
-            cursor.decodeOptRef[UnionBigDecimalOrRange]("probability"),
+            cursor.decodeOptRef[UnionDecimalOrRange]("probability"),
             cursor.decodeAs[Option[CodeableConcept]]("qualitativeRisk", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
@@ -139,7 +139,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type OccurrenceChoice = Choice[UnionFHIRDateTimeOrPeriod]
+  type OccurrenceChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -238,7 +238,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Option[RiskAssessment.OccurrenceChoice]] =
-    FHIRComponentFieldMeta("occurrence", lTagOf[Option[RiskAssessment.OccurrenceChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
+    FHIRComponentFieldMeta("occurrence", lTagOf[Option[RiskAssessment.OccurrenceChoice]], true, lTagOf[UnionDateTimeOrPeriod])
   val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -363,7 +363,7 @@ object RiskAssessment extends CompanionFor[RiskAssessment] {
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("mitigation", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("occurrence"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriod]("occurrence"),
           cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[RiskAssessment.Prediction]]("prediction", Some(LitSeq.empty)),

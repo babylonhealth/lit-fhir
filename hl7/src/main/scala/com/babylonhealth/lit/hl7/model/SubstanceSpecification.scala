@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
-  implicit def summonObjectAndCompanionSubstanceSpecification2060389965(
+  implicit def summonObjectAndCompanionSubstanceSpecification_326571096(
       o: SubstanceSpecification): ObjectAndCompanion[SubstanceSpecification, SubstanceSpecification.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = SubstanceSpecification
@@ -32,13 +32,13 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
   override val parentType: CompanionFor[ParentType] = SubstanceSpecification
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceSpecification")
   object Structure extends CompanionFor[Structure] {
-    implicit def summonObjectAndCompanionStructure570612851(o: Structure): ObjectAndCompanion[Structure, Structure.type] =
+    implicit def summonObjectAndCompanionStructure_1349166298(o: Structure): ObjectAndCompanion[Structure, Structure.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Structure
     override type ParentType   = Structure
     override val parentType: CompanionFor[ResourceType] = Structure
     object Representation extends CompanionFor[Representation] {
-      implicit def summonObjectAndCompanionRepresentation_1160518365(
+      implicit def summonObjectAndCompanionRepresentation1474906169(
           o: Representation): ObjectAndCompanion[Representation, Representation.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Representation
       override type ParentType   = Representation
@@ -112,13 +112,13 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Isotope extends CompanionFor[Isotope] {
-      implicit def summonObjectAndCompanionIsotope1548369058(o: Isotope): ObjectAndCompanion[Isotope, Isotope.type] =
+      implicit def summonObjectAndCompanionIsotope1474906169(o: Isotope): ObjectAndCompanion[Isotope, Isotope.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Isotope
       override type ParentType   = Isotope
       override val parentType: CompanionFor[ResourceType] = Isotope
       object MolecularWeight extends CompanionFor[MolecularWeight] {
-        implicit def summonObjectAndCompanionMolecularWeight_53633148(
+        implicit def summonObjectAndCompanionMolecularWeight_1740137968(
             o: MolecularWeight): ObjectAndCompanion[MolecularWeight, MolecularWeight.type] = ObjectAndCompanion(o, this)
         override type ResourceType = MolecularWeight
         override type ParentType   = MolecularWeight
@@ -407,12 +407,12 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Relationship extends CompanionFor[Relationship] {
-    implicit def summonObjectAndCompanionRelationship238006112(
+    implicit def summonObjectAndCompanionRelationship_1349166298(
         o: Relationship): ObjectAndCompanion[Relationship, Relationship.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Relationship
     override type ParentType   = Relationship
     override val parentType: CompanionFor[ResourceType] = Relationship
-    type AmountChoice    = Choice[UnionRelationship_Amount]
+    type AmountChoice    = Choice[Union01138203188]
     type SubstanceChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
@@ -460,7 +460,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val amount: FHIRComponentFieldMeta[Option[Relationship.AmountChoice]] =
-      FHIRComponentFieldMeta("amount", lTagOf[Option[Relationship.AmountChoice]], true, lTagOf[UnionRelationship_Amount])
+      FHIRComponentFieldMeta("amount", lTagOf[Option[Relationship.AmountChoice]], true, lTagOf[Union01138203188])
     val isDefining: FHIRComponentFieldMeta[Option[Boolean]] =
       FHIRComponentFieldMeta("isDefining", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
     val amountType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -501,7 +501,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Reference]]("source", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[UnionRelationship_Amount]("amount"),
+            cursor.decodeOptRef[Union01138203188]("amount"),
             cursor.decodeAs[Option[Boolean]]("isDefining", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("amountType", Some(None)),
             cursor.decodeOptRef[UnionCodeableConceptOrReference]("substance"),
@@ -527,12 +527,13 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Name extends CompanionFor[Name] {
-    implicit def summonObjectAndCompanionName20129648(o: Name): ObjectAndCompanion[Name, Name.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionName_1349166298(o: Name): ObjectAndCompanion[Name, Name.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Name
     override type ParentType   = Name
     override val parentType: CompanionFor[ResourceType] = Name
     object Official extends CompanionFor[Official] {
-      implicit def summonObjectAndCompanionOfficial858696425(o: Official): ObjectAndCompanion[Official, Official.type] =
+      implicit def summonObjectAndCompanionOfficial1477741289(o: Official): ObjectAndCompanion[Official, Official.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Official
       override type ParentType   = Official
@@ -763,7 +764,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Property extends CompanionFor[Property] {
-    implicit def summonObjectAndCompanionProperty117241197(o: Property): ObjectAndCompanion[Property, Property.type] =
+    implicit def summonObjectAndCompanionProperty_1349166298(o: Property): ObjectAndCompanion[Property, Property.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Property
     override type ParentType   = Property
@@ -858,7 +859,7 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Moiety extends CompanionFor[Moiety] {
-    implicit def summonObjectAndCompanionMoiety18841797(o: Moiety): ObjectAndCompanion[Moiety, Moiety.type] =
+    implicit def summonObjectAndCompanionMoiety_1349166298(o: Moiety): ObjectAndCompanion[Moiety, Moiety.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Moiety
     override type ParentType   = Moiety
@@ -973,7 +974,8 @@ object SubstanceSpecification extends CompanionFor[SubstanceSpecification] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Code extends CompanionFor[Code] {
-    implicit def summonObjectAndCompanionCode167919685(o: Code): ObjectAndCompanion[Code, Code.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionCode_1349166298(o: Code): ObjectAndCompanion[Code, Code.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Code
     override type ParentType   = Code
     override val parentType: CompanionFor[ResourceType] = Code

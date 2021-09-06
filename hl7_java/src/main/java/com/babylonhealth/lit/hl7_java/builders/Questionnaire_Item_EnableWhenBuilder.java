@@ -46,57 +46,53 @@ public interface Questionnaire_Item_EnableWhenBuilder {
   public Questionnaire$Item$EnableWhen build();
 
   public static Impl init(
-      String question,
-      QUESTIONNAIRE_ENABLE_OPERATOR operator,
-      @NonNull ChoiceEnableWhen_Answer answer) {
+      String question, QUESTIONNAIRE_ENABLE_OPERATOR operator, @NonNull Choice00304335386 answer) {
     return new Impl(question, operator, answer);
   }
 
   public static Impl builder(
-      String question,
-      QUESTIONNAIRE_ENABLE_OPERATOR operator,
-      @NonNull ChoiceEnableWhen_Answer answer) {
+      String question, QUESTIONNAIRE_ENABLE_OPERATOR operator, @NonNull Choice00304335386 answer) {
     return new Impl(question, operator, answer);
   }
 
-  public static ChoiceEnableWhen_Answer answer(BigDecimal b) {
-    return new ChoiceEnableWhen_Answer(b);
+  public static Choice00304335386 answer(BigDecimal b) {
+    return new Choice00304335386(b);
   }
 
-  public static ChoiceEnableWhen_Answer answer(Boolean b) {
-    return new ChoiceEnableWhen_Answer(b);
+  public static Choice00304335386 answer(Boolean b) {
+    return new Choice00304335386(b);
   }
 
-  public static ChoiceEnableWhen_Answer answer(Coding c) {
-    return new ChoiceEnableWhen_Answer(c);
+  public static Choice00304335386 answer(Coding c) {
+    return new Choice00304335386(c);
   }
 
-  public static ChoiceEnableWhen_Answer answer(FHIRDate f) {
-    return new ChoiceEnableWhen_Answer(f);
+  public static Choice00304335386 answer(FHIRDate f) {
+    return new Choice00304335386(f);
   }
 
-  public static ChoiceEnableWhen_Answer answer(FHIRDateTime f) {
-    return new ChoiceEnableWhen_Answer(f);
+  public static Choice00304335386 answer(FHIRDateTime f) {
+    return new Choice00304335386(f);
   }
 
-  public static ChoiceEnableWhen_Answer answer(Integer i) {
-    return new ChoiceEnableWhen_Answer(i);
+  public static Choice00304335386 answer(Integer i) {
+    return new Choice00304335386(i);
   }
 
-  public static ChoiceEnableWhen_Answer answer(LocalTime l) {
-    return new ChoiceEnableWhen_Answer(l);
+  public static Choice00304335386 answer(LocalTime l) {
+    return new Choice00304335386(l);
   }
 
-  public static ChoiceEnableWhen_Answer answer(Quantity q) {
-    return new ChoiceEnableWhen_Answer(q);
+  public static Choice00304335386 answer(Quantity q) {
+    return new Choice00304335386(q);
   }
 
-  public static ChoiceEnableWhen_Answer answer(Reference r) {
-    return new ChoiceEnableWhen_Answer(r);
+  public static Choice00304335386 answer(Reference r) {
+    return new Choice00304335386(r);
   }
 
-  public static ChoiceEnableWhen_Answer answer(String s) {
-    return new ChoiceEnableWhen_Answer(s);
+  public static Choice00304335386 answer(String s) {
+    return new Choice00304335386(s);
   }
 
   public class Impl implements Questionnaire_Item_EnableWhenBuilder {
@@ -104,7 +100,7 @@ public interface Questionnaire_Item_EnableWhenBuilder {
     private String question;
     private QUESTIONNAIRE_ENABLE_OPERATOR operator;
     private Collection<Extension> extension = Collections.emptyList();
-    private ChoiceEnableWhen_Answer answer;
+    private Choice00304335386 answer;
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -119,7 +115,7 @@ public interface Questionnaire_Item_EnableWhenBuilder {
     public Impl(
         String question,
         QUESTIONNAIRE_ENABLE_OPERATOR operator,
-        @NonNull ChoiceEnableWhen_Answer answer) {
+        @NonNull Choice00304335386 answer) {
       this.question = question;
       this.operator = operator;
       this.answer = answer;

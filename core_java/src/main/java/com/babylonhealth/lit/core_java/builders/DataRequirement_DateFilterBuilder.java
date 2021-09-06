@@ -50,22 +50,22 @@ public interface DataRequirement_DateFilterBuilder {
     return new Impl();
   }
 
-  public static ChoiceDurationOrFHIRDateTimeOrPeriod value(Duration d) {
-    return new ChoiceDurationOrFHIRDateTimeOrPeriod(d);
+  public static ChoiceDurationOrDateTimeOrPeriod value(Duration d) {
+    return new ChoiceDurationOrDateTimeOrPeriod(d);
   }
 
-  public static ChoiceDurationOrFHIRDateTimeOrPeriod value(FHIRDateTime f) {
-    return new ChoiceDurationOrFHIRDateTimeOrPeriod(f);
+  public static ChoiceDurationOrDateTimeOrPeriod value(FHIRDateTime f) {
+    return new ChoiceDurationOrDateTimeOrPeriod(f);
   }
 
-  public static ChoiceDurationOrFHIRDateTimeOrPeriod value(Period p) {
-    return new ChoiceDurationOrFHIRDateTimeOrPeriod(p);
+  public static ChoiceDurationOrDateTimeOrPeriod value(Period p) {
+    return new ChoiceDurationOrDateTimeOrPeriod(p);
   }
 
   public class Impl implements DataRequirement_DateFilterBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<String> path = Optional.empty();
-    private Optional<ChoiceDurationOrFHIRDateTimeOrPeriod> value = Optional.empty();
+    private Optional<ChoiceDurationOrDateTimeOrPeriod> value = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> searchParam = Optional.empty();
 
@@ -91,7 +91,7 @@ public interface DataRequirement_DateFilterBuilder {
      *     methods
      */
     public DataRequirement_DateFilterBuilder.Impl withValue(
-        @NonNull ChoiceDurationOrFHIRDateTimeOrPeriod value) {
+        @NonNull ChoiceDurationOrDateTimeOrPeriod value) {
       this.value = Optional.of(value);
       return this;
     }

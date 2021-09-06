@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ConceptMap extends CompanionFor[ConceptMap] {
-  implicit def summonObjectAndCompanionConceptMap_1559190174(o: ConceptMap): ObjectAndCompanion[ConceptMap, ConceptMap.type] =
+  implicit def summonObjectAndCompanionConceptMap_1280603255(o: ConceptMap): ObjectAndCompanion[ConceptMap, ConceptMap.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = ConceptMap
   override type ParentType   = ConceptMap
@@ -32,13 +32,13 @@ object ConceptMap extends CompanionFor[ConceptMap] {
   override val parentType: CompanionFor[ParentType] = ConceptMap
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ConceptMap")
   object Group extends CompanionFor[Group] {
-    implicit def summonObjectAndCompanionGroup_161404415(o: Group): ObjectAndCompanion[Group, Group.type] =
+    implicit def summonObjectAndCompanionGroup114371560(o: Group): ObjectAndCompanion[Group, Group.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Group
     override type ParentType   = Group
     override val parentType: CompanionFor[ResourceType] = Group
     object Unmapped extends CompanionFor[Unmapped] {
-      implicit def summonObjectAndCompanionUnmapped1729374182(o: Unmapped): ObjectAndCompanion[Unmapped, Unmapped.type] =
+      implicit def summonObjectAndCompanionUnmapped195338930(o: Unmapped): ObjectAndCompanion[Unmapped, Unmapped.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Unmapped
       override type ParentType   = Unmapped
@@ -119,19 +119,19 @@ object ConceptMap extends CompanionFor[ConceptMap] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Element extends CompanionFor[Element] {
-      implicit def summonObjectAndCompanionElement1701927640(o: Element): ObjectAndCompanion[Element, Element.type] =
+      implicit def summonObjectAndCompanionElement195338930(o: Element): ObjectAndCompanion[Element, Element.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Element
       override type ParentType   = Element
       override val parentType: CompanionFor[ResourceType] = Element
       object Target extends CompanionFor[Target] {
-        implicit def summonObjectAndCompanionTarget_1054624454(o: Target): ObjectAndCompanion[Target, Target.type] =
+        implicit def summonObjectAndCompanionTarget129894923(o: Target): ObjectAndCompanion[Target, Target.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = Target
         override type ParentType   = Target
         override val parentType: CompanionFor[ResourceType] = Target
         object DependsOn extends CompanionFor[DependsOn] {
-          implicit def summonObjectAndCompanionDependsOn_1655902441(o: DependsOn): ObjectAndCompanion[DependsOn, DependsOn.type] =
+          implicit def summonObjectAndCompanionDependsOn828968593(o: DependsOn): ObjectAndCompanion[DependsOn, DependsOn.type] =
             ObjectAndCompanion(o, this)
           override type ResourceType = DependsOn
           override type ParentType   = DependsOn
@@ -463,8 +463,8 @@ object ConceptMap extends CompanionFor[ConceptMap] {
       val element: NonEmptyLitSeq[Group.Element],
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type SourceChoice = Choice[UnionCanonicalOrUriStr]
-  type TargetChoice = Choice[UnionCanonicalOrUriStr]
+  type SourceChoice = Choice[UnionCanonicalOrUri]
+  type TargetChoice = Choice[UnionCanonicalOrUri]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -555,9 +555,9 @@ object ConceptMap extends CompanionFor[ConceptMap] {
   val copyright: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("copyright", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val source: FHIRComponentFieldMeta[Option[ConceptMap.SourceChoice]] =
-    FHIRComponentFieldMeta("source", lTagOf[Option[ConceptMap.SourceChoice]], true, lTagOf[UnionCanonicalOrUriStr])
+    FHIRComponentFieldMeta("source", lTagOf[Option[ConceptMap.SourceChoice]], true, lTagOf[UnionCanonicalOrUri])
   val target: FHIRComponentFieldMeta[Option[ConceptMap.TargetChoice]] =
-    FHIRComponentFieldMeta("target", lTagOf[Option[ConceptMap.TargetChoice]], true, lTagOf[UnionCanonicalOrUriStr])
+    FHIRComponentFieldMeta("target", lTagOf[Option[ConceptMap.TargetChoice]], true, lTagOf[UnionCanonicalOrUri])
   val identifier: FHIRComponentFieldMeta[Option[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[Option[Identifier]], false, lTagOf[Identifier])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
@@ -708,8 +708,8 @@ object ConceptMap extends CompanionFor[ConceptMap] {
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("publisher", Some(None)),
           cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
-          cursor.decodeOptRef[UnionCanonicalOrUriStr]("source"),
-          cursor.decodeOptRef[UnionCanonicalOrUriStr]("target"),
+          cursor.decodeOptRef[UnionCanonicalOrUri]("source"),
+          cursor.decodeOptRef[UnionCanonicalOrUri]("target"),
           cursor.decodeAs[Option[Identifier]]("identifier", Some(None)),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Markdown]]("description", Some(None)),

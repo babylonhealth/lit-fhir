@@ -49,21 +49,21 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
   public MessageDefinition build();
 
   public static Impl init(
-      FHIRDateTime date, PUBLICATION_STATUS status, @NonNull ChoiceCodingOrUriStr event) {
+      FHIRDateTime date, PUBLICATION_STATUS status, @NonNull ChoiceCodingOrUri event) {
     return new Impl(date, status, event);
   }
 
   public static Impl builder(
-      FHIRDateTime date, PUBLICATION_STATUS status, @NonNull ChoiceCodingOrUriStr event) {
+      FHIRDateTime date, PUBLICATION_STATUS status, @NonNull ChoiceCodingOrUri event) {
     return new Impl(date, status, event);
   }
 
-  public static ChoiceCodingOrUriStr event(Coding c) {
-    return new ChoiceCodingOrUriStr(c);
+  public static ChoiceCodingOrUri event(Coding c) {
+    return new ChoiceCodingOrUri(c);
   }
 
-  public static ChoiceCodingOrUriStr event(String s) {
-    return new ChoiceCodingOrUriStr(s);
+  public static ChoiceCodingOrUri event(String s) {
+    return new ChoiceCodingOrUri(s);
   }
 
   public class Impl implements MessageDefinitionBuilder {
@@ -83,7 +83,7 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
     private Optional<String> purpose = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<String> replaces = Collections.emptyList();
-    private ChoiceCodingOrUriStr event;
+    private ChoiceCodingOrUri event;
     private Optional<MESSAGE_SIGNIFICANCE_CATEGORY> category = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
@@ -113,7 +113,7 @@ public interface MessageDefinitionBuilder extends DomainResourceBuilder {
      *     should be one of Coding, String. To pass the value in, wrap with one of the
      *     MessageDefinitionBuilder.event static methods
      */
-    public Impl(FHIRDateTime date, PUBLICATION_STATUS status, @NonNull ChoiceCodingOrUriStr event) {
+    public Impl(FHIRDateTime date, PUBLICATION_STATUS status, @NonNull ChoiceCodingOrUri event) {
       this.date = date;
       this.status = status;
       this.event = event;

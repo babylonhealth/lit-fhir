@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_ADXP_postBox extends CompanionFor[Iso21090_ADXP_postBox] {
-  implicit def summonObjectAndCompanionIso21090_ADXP_postBox_746495996(
+  implicit def summonObjectAndCompanionIso21090_ADXP_postBox956989742(
       o: Iso21090_ADXP_postBox): ObjectAndCompanion[Iso21090_ADXP_postBox, Iso21090_ADXP_postBox.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

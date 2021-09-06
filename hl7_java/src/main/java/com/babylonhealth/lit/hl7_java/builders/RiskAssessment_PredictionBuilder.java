@@ -61,12 +61,12 @@ public interface RiskAssessment_PredictionBuilder {
     return new ChoicePeriodOrRange(r);
   }
 
-  public static ChoiceBigDecimalOrRange probability(BigDecimal b) {
-    return new ChoiceBigDecimalOrRange(b);
+  public static ChoiceDecimalOrRange probability(BigDecimal b) {
+    return new ChoiceDecimalOrRange(b);
   }
 
-  public static ChoiceBigDecimalOrRange probability(Range r) {
-    return new ChoiceBigDecimalOrRange(r);
+  public static ChoiceDecimalOrRange probability(Range r) {
+    return new ChoiceDecimalOrRange(r);
   }
 
   public class Impl implements RiskAssessment_PredictionBuilder {
@@ -76,7 +76,7 @@ public interface RiskAssessment_PredictionBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> rationale = Optional.empty();
     private Optional<BigDecimal> relativeRisk = Optional.empty();
-    private Optional<ChoiceBigDecimalOrRange> probability = Optional.empty();
+    private Optional<ChoiceDecimalOrRange> probability = Optional.empty();
     private Optional<CodeableConcept> qualitativeRisk = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -156,7 +156,7 @@ public interface RiskAssessment_PredictionBuilder {
      *     static methods
      */
     public RiskAssessment_PredictionBuilder.Impl withProbability(
-        @NonNull ChoiceBigDecimalOrRange probability) {
+        @NonNull ChoiceDecimalOrRange probability) {
       this.probability = Optional.of(probability);
       return this;
     }

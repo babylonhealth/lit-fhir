@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DesignNote extends CompanionFor[DesignNote] {
-  implicit def summonObjectAndCompanionDesignNote_1915315631(o: DesignNote): ObjectAndCompanion[DesignNote, DesignNote.type] =
+  implicit def summonObjectAndCompanionDesignNote_1367421851(o: DesignNote): ObjectAndCompanion[DesignNote, DesignNote.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

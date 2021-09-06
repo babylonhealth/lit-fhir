@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object _11179_permitted_value_valueset extends CompanionFor[_11179_permitted_value_valueset] {
-  implicit def summonObjectAndCompanion_11179_permitted_value_valueset_2048744922(
+  implicit def summonObjectAndCompanion_11179_permitted_value_valueset2052923249(
       o: _11179_permitted_value_valueset): ObjectAndCompanion[_11179_permitted_value_valueset, _11179_permitted_value_valueset.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

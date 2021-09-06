@@ -55,12 +55,12 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod occurrence(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriod(f);
+  public static ChoiceDateTimeOrPeriod occurrence(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod occurrence(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriod(p);
+  public static ChoiceDateTimeOrPeriod occurrence(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements CommunicationRequestBuilder {
@@ -89,7 +89,7 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
     private Optional<CodeableConcept> statusReason = Optional.empty();
     private Optional<Boolean> doNotPerform = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<ChoiceFHIRDateTimeOrPeriod> occurrence = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriod> occurrence = Optional.empty();
     private Optional<Identifier> groupIdentifier = Optional.empty();
     private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -486,7 +486,7 @@ public interface CommunicationRequestBuilder extends DomainResourceBuilder {
      *     CommunicationRequestBuilder.occurrence static methods
      */
     public CommunicationRequestBuilder.Impl withOccurrence(
-        @NonNull ChoiceFHIRDateTimeOrPeriod occurrence) {
+        @NonNull ChoiceDateTimeOrPeriod occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

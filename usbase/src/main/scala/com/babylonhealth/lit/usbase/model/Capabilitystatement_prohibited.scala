@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Capabilitystatement_prohibited extends CompanionFor[Capabilitystatement_prohibited] {
-  implicit def summonObjectAndCompanionCapabilitystatement_prohibited_1004767687(
+  implicit def summonObjectAndCompanionCapabilitystatement_prohibited914497545(
       o: Capabilitystatement_prohibited): ObjectAndCompanion[Capabilitystatement_prohibited, Capabilitystatement_prohibited.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

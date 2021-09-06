@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Period extends CompanionFor[Period] {
-  implicit def summonObjectAndCompanionPeriod_1226742709(o: Period): ObjectAndCompanion[Period, Period.type] =
+  implicit def summonObjectAndCompanionPeriod_735614474(o: Period): ObjectAndCompanion[Period, Period.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Period
   override type ParentType   = Period

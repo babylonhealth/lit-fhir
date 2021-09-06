@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_effectiveDate extends CompanionFor[Codesystem_effectiveDate] {
-  implicit def summonObjectAndCompanionCodesystem_effectiveDate1964822996(
+  implicit def summonObjectAndCompanionCodesystem_effectiveDate1578486041(
       o: Codesystem_effectiveDate): ObjectAndCompanion[Codesystem_effectiveDate, Codesystem_effectiveDate.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Bundle extends CompanionFor[Bundle] {
-  implicit def summonObjectAndCompanionBundle574509935(o: Bundle): ObjectAndCompanion[Bundle, Bundle.type] =
+  implicit def summonObjectAndCompanionBundle_1121770313(o: Bundle): ObjectAndCompanion[Bundle, Bundle.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Bundle
   override type ParentType   = Bundle
@@ -33,13 +33,13 @@ object Bundle extends CompanionFor[Bundle] {
   override val parentType: CompanionFor[ParentType] = Bundle
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Bundle")
   object Entry extends CompanionFor[Entry] {
-    implicit def summonObjectAndCompanionEntry_2091898238(o: Entry): ObjectAndCompanion[Entry, Entry.type] =
+    implicit def summonObjectAndCompanionEntry_293062332(o: Entry): ObjectAndCompanion[Entry, Entry.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Entry
     override type ParentType   = Entry
     override val parentType: CompanionFor[ResourceType] = Entry
     object Search extends CompanionFor[Search] {
-      implicit def summonObjectAndCompanionSearch_1063224013(o: Search): ObjectAndCompanion[Search, Search.type] =
+      implicit def summonObjectAndCompanionSearch2135182662(o: Search): ObjectAndCompanion[Search, Search.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Search
       override type ParentType   = Search
@@ -106,7 +106,7 @@ object Bundle extends CompanionFor[Bundle] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Request extends CompanionFor[Request] {
-      implicit def summonObjectAndCompanionRequest_1444875082(o: Request): ObjectAndCompanion[Request, Request.type] =
+      implicit def summonObjectAndCompanionRequest2135182662(o: Request): ObjectAndCompanion[Request, Request.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Request
       override type ParentType   = Request
@@ -203,7 +203,7 @@ object Bundle extends CompanionFor[Bundle] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Response extends CompanionFor[Response] {
-      implicit def summonObjectAndCompanionResponse1782391980(o: Response): ObjectAndCompanion[Response, Response.type] =
+      implicit def summonObjectAndCompanionResponse2135182662(o: Response): ObjectAndCompanion[Response, Response.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Response
       override type ParentType   = Response
@@ -382,7 +382,8 @@ object Bundle extends CompanionFor[Bundle] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Link extends CompanionFor[Link] {
-    implicit def summonObjectAndCompanionLink794110614(o: Link): ObjectAndCompanion[Link, Link.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionLink_293062332(o: Link): ObjectAndCompanion[Link, Link.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Link
     override type ParentType   = Link
     override val parentType: CompanionFor[ResourceType] = Link

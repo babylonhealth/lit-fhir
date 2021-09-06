@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object BodyStructure extends CompanionFor[BodyStructure] {
-  implicit def summonObjectAndCompanionBodyStructure_96377560(
+  implicit def summonObjectAndCompanionBodyStructure_1274372068(
       o: BodyStructure): ObjectAndCompanion[BodyStructure, BodyStructure.type] = ObjectAndCompanion(o, this)
   override type ResourceType = BodyStructure
   override type ParentType   = BodyStructure

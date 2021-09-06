@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstancePolymer extends CompanionFor[SubstancePolymer] {
-  implicit def summonObjectAndCompanionSubstancePolymer2023041766(
+  implicit def summonObjectAndCompanionSubstancePolymer1666659571(
       o: SubstancePolymer): ObjectAndCompanion[SubstancePolymer, SubstancePolymer.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SubstancePolymer
   override type ParentType   = SubstancePolymer
@@ -31,19 +31,19 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
   override val parentType: CompanionFor[ParentType] = SubstancePolymer
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstancePolymer")
   object Repeat extends CompanionFor[Repeat] {
-    implicit def summonObjectAndCompanionRepeat_339841079(o: Repeat): ObjectAndCompanion[Repeat, Repeat.type] =
+    implicit def summonObjectAndCompanionRepeat_1749088708(o: Repeat): ObjectAndCompanion[Repeat, Repeat.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Repeat
     override type ParentType   = Repeat
     override val parentType: CompanionFor[ResourceType] = Repeat
     object RepeatUnit extends CompanionFor[RepeatUnit] {
-      implicit def summonObjectAndCompanionRepeatUnit_694363022(o: RepeatUnit): ObjectAndCompanion[RepeatUnit, RepeatUnit.type] =
+      implicit def summonObjectAndCompanionRepeatUnit1866577556(o: RepeatUnit): ObjectAndCompanion[RepeatUnit, RepeatUnit.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = RepeatUnit
       override type ParentType   = RepeatUnit
       override val parentType: CompanionFor[ResourceType] = RepeatUnit
       object DegreeOfPolymerisation extends CompanionFor[DegreeOfPolymerisation] {
-        implicit def summonObjectAndCompanionDegreeOfPolymerisation73527350(
+        implicit def summonObjectAndCompanionDegreeOfPolymerisation1433452695(
             o: DegreeOfPolymerisation): ObjectAndCompanion[DegreeOfPolymerisation, DegreeOfPolymerisation.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = DegreeOfPolymerisation
@@ -111,7 +111,7 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
           override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object StructuralRepresentation extends CompanionFor[StructuralRepresentation] {
-        implicit def summonObjectAndCompanionStructuralRepresentation_535539170(
+        implicit def summonObjectAndCompanionStructuralRepresentation1433452695(
             o: StructuralRepresentation): ObjectAndCompanion[StructuralRepresentation, StructuralRepresentation.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = StructuralRepresentation
@@ -377,13 +377,13 @@ object SubstancePolymer extends CompanionFor[SubstancePolymer] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object MonomerSet extends CompanionFor[MonomerSet] {
-    implicit def summonObjectAndCompanionMonomerSet640177791(o: MonomerSet): ObjectAndCompanion[MonomerSet, MonomerSet.type] =
+    implicit def summonObjectAndCompanionMonomerSet_1749088708(o: MonomerSet): ObjectAndCompanion[MonomerSet, MonomerSet.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = MonomerSet
     override type ParentType   = MonomerSet
     override val parentType: CompanionFor[ResourceType] = MonomerSet
     object StartingMaterial extends CompanionFor[StartingMaterial] {
-      implicit def summonObjectAndCompanionStartingMaterial_339228462(
+      implicit def summonObjectAndCompanionStartingMaterial2014901492(
           o: StartingMaterial): ObjectAndCompanion[StartingMaterial, StartingMaterial.type] = ObjectAndCompanion(o, this)
       override type ResourceType = StartingMaterial
       override type ParentType   = StartingMaterial

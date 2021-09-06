@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_focusCode extends CompanionFor[Observation_focusCode] {
-  implicit def summonObjectAndCompanionObservation_focusCode290836931(
+  implicit def summonObjectAndCompanionObservation_focusCode1124526543(
       o: Observation_focusCode): ObjectAndCompanion[Observation_focusCode, Observation_focusCode.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

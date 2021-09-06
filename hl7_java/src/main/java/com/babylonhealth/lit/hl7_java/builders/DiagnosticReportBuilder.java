@@ -54,12 +54,12 @@ public interface DiagnosticReportBuilder extends DomainResourceBuilder {
     return new Impl(code.build(), status);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod effective(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriod(f);
+  public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod effective(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriod(p);
+  public static ChoiceDateTimeOrPeriod effective(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements DiagnosticReportBuilder {
@@ -81,7 +81,7 @@ public interface DiagnosticReportBuilder extends DomainResourceBuilder {
     private Collection<Reference> performer = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> conclusion = Optional.empty();
-    private Optional<ChoiceFHIRDateTimeOrPeriod> effective = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriod> effective = Optional.empty();
     private Collection<Reference> imagingStudy = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Attachment> presentedForm = Collections.emptyList();
@@ -348,8 +348,7 @@ public interface DiagnosticReportBuilder extends DomainResourceBuilder {
      *     Period. To pass the value in, wrap with one of the DiagnosticReportBuilder.effective
      *     static methods
      */
-    public DiagnosticReportBuilder.Impl withEffective(
-        @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
+    public DiagnosticReportBuilder.Impl withEffective(@NonNull ChoiceDateTimeOrPeriod effective) {
       this.effective = Optional.of(effective);
       return this;
     }

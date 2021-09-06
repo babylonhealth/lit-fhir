@@ -26,7 +26,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_smokingstatus extends CompanionFor[Us_core_smokingstatus] {
-  implicit def summonObjectAndCompanionUs_core_smokingstatus_595756081(
+  implicit def summonObjectAndCompanionUs_core_smokingstatus849220523(
       o: Us_core_smokingstatus): ObjectAndCompanion[Us_core_smokingstatus, Us_core_smokingstatus.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Observation
@@ -34,7 +34,7 @@ object Us_core_smokingstatus extends CompanionFor[Us_core_smokingstatus] {
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-smokingstatus")
-  type EffectiveChoice = Choice[UnionObservation_Effective]
+  type EffectiveChoice = Choice[Union_1926447453]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -156,11 +156,7 @@ object Us_core_smokingstatus extends CompanionFor[Us_core_smokingstatus] {
   val derivedFrom: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("derivedFrom", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val effective: FHIRComponentFieldMeta[Option[Us_core_smokingstatus.EffectiveChoice]] =
-    FHIRComponentFieldMeta(
-      "effective",
-      lTagOf[Option[Us_core_smokingstatus.EffectiveChoice]],
-      true,
-      lTagOf[UnionObservation_Effective])
+    FHIRComponentFieldMeta("effective", lTagOf[Option[Us_core_smokingstatus.EffectiveChoice]], true, lTagOf[Union_1926447453])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val interpretation: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -310,7 +306,7 @@ object Us_core_smokingstatus extends CompanionFor[Us_core_smokingstatus] {
           cursor.decodeAs[LitSeq[Reference]]("hasMember", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("derivedFrom", Some(LitSeq.empty)),
-          cursor.decodeOptRef[UnionObservation_Effective]("effective"),
+          cursor.decodeOptRef[Union_1926447453]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("interpretation", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("dataAbsentReason", Some(None)),

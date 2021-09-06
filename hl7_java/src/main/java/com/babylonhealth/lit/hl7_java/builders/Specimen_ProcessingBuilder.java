@@ -53,17 +53,17 @@ public interface Specimen_ProcessingBuilder {
     return new Impl();
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod time(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriod(f);
+  public static ChoiceDateTimeOrPeriod time(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod time(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriod(p);
+  public static ChoiceDateTimeOrPeriod time(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements Specimen_ProcessingBuilder {
     private Optional<String> id = Optional.empty();
-    private Optional<ChoiceFHIRDateTimeOrPeriod> time = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriod> time = Optional.empty();
     private Collection<Reference> additive = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<CodeableConcept> procedure = Optional.empty();
@@ -85,7 +85,7 @@ public interface Specimen_ProcessingBuilder {
      * @param time Field is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass
      *     the value in, wrap with one of the Specimen_ProcessingBuilder.time static methods
      */
-    public Specimen_ProcessingBuilder.Impl withTime(@NonNull ChoiceFHIRDateTimeOrPeriod time) {
+    public Specimen_ProcessingBuilder.Impl withTime(@NonNull ChoiceDateTimeOrPeriod time) {
       this.time = Optional.of(time);
       return this;
     }

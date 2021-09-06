@@ -26,14 +26,14 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_procedure extends CompanionFor[Us_core_procedure] {
-  implicit def summonObjectAndCompanionUs_core_procedure_1063734834(
+  implicit def summonObjectAndCompanionUs_core_procedure_786026592(
       o: Us_core_procedure): ObjectAndCompanion[Us_core_procedure, Us_core_procedure.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Procedure
   override type ParentType   = Procedure
   override val baseType: CompanionFor[ResourceType] = Procedure
   override val parentType: CompanionFor[ParentType] = Procedure
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure")
-  type PerformedChoice = Choice[UnionFHIRDateTimeOrPeriod]
+  type PerformedChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure"))),
@@ -162,7 +162,7 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
   val statusReason: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val performed: FHIRComponentFieldMeta[Us_core_procedure.PerformedChoice] =
-    FHIRComponentFieldMeta("performed", lTagOf[Us_core_procedure.PerformedChoice], true, lTagOf[UnionFHIRDateTimeOrPeriod])
+    FHIRComponentFieldMeta("performed", lTagOf[Us_core_procedure.PerformedChoice], true, lTagOf[UnionDateTimeOrPeriod])
   val complication: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("complication", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -328,7 +328,7 @@ object Us_core_procedure extends CompanionFor[Us_core_procedure] {
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
-          cursor.decodeRef[UnionFHIRDateTimeOrPeriod]("performed"),
+          cursor.decodeRef[UnionDateTimeOrPeriod]("performed"),
           cursor.decodeAs[LitSeq[CodeableConcept]]("complication", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("usedReference", Some(LitSeq.empty)),

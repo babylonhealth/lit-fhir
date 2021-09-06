@@ -48,25 +48,25 @@ import static java.util.stream.Collectors.toList;
 public interface Elementdefinition_minValueSetBuilder extends ExtensionBuilder {
   public Elementdefinition_minValueSet build();
 
-  public static Impl init(@NonNull ChoiceCanonicalOrUriStr value) {
+  public static Impl init(@NonNull ChoiceCanonicalOrUri value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull ChoiceCanonicalOrUriStr value) {
+  public static Impl builder(@NonNull ChoiceCanonicalOrUri value) {
     return new Impl(value);
   }
 
-  public static ChoiceCanonicalOrUriStr valueCanonical(String s) {
-    return ChoiceCanonicalOrUriStr.ChoiceCanonicalOrUriStrCanonical(s);
+  public static ChoiceCanonicalOrUri valueCanonical(String s) {
+    return ChoiceCanonicalOrUri.ChoiceCanonicalOrUriCanonical(s);
   }
 
-  public static ChoiceCanonicalOrUriStr valueUri(String s) {
-    return ChoiceCanonicalOrUriStr.ChoiceCanonicalOrUriStrUriStr(s);
+  public static ChoiceCanonicalOrUri valueUri(String s) {
+    return ChoiceCanonicalOrUri.ChoiceCanonicalOrUriUriStr(s);
   }
 
   public class Impl implements Elementdefinition_minValueSetBuilder {
     private Optional<String> id = Optional.empty();
-    private ChoiceCanonicalOrUriStr value;
+    private ChoiceCanonicalOrUri value;
 
     /**
      * Required fields for {@link Elementdefinition_minValueSet}
@@ -76,7 +76,7 @@ public interface Elementdefinition_minValueSetBuilder extends ExtensionBuilder {
      *     field. Type should be one of String. To pass the value in, wrap with one of the
      *     Elementdefinition_minValueSetBuilder.value static methods
      */
-    public Impl(@NonNull ChoiceCanonicalOrUriStr value) {
+    public Impl(@NonNull ChoiceCanonicalOrUri value) {
       this.value = value;
     }
 

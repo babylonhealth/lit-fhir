@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Condition_related extends CompanionFor[Condition_related] {
-  implicit def summonObjectAndCompanionCondition_related201690573(
+  implicit def summonObjectAndCompanionCondition_related892807748(
       o: Condition_related): ObjectAndCompanion[Condition_related, Condition_related.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

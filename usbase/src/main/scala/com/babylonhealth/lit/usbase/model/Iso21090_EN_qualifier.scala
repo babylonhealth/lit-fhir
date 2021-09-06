@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_EN_qualifier extends CompanionFor[Iso21090_EN_qualifier] {
-  implicit def summonObjectAndCompanionIso21090_EN_qualifier_154976623(
+  implicit def summonObjectAndCompanionIso21090_EN_qualifier1432503835(
       o: Iso21090_EN_qualifier): ObjectAndCompanion[Iso21090_EN_qualifier, Iso21090_EN_qualifier.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

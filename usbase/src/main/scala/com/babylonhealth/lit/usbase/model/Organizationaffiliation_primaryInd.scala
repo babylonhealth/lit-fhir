@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Organizationaffiliation_primaryInd extends CompanionFor[Organizationaffiliation_primaryInd] {
-  implicit def summonObjectAndCompanionOrganizationaffiliation_primaryInd_849763614(
+  implicit def summonObjectAndCompanionOrganizationaffiliation_primaryInd_179476222(
       o: Organizationaffiliation_primaryInd): ObjectAndCompanion[Organizationaffiliation_primaryInd, Organizationaffiliation_primaryInd.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

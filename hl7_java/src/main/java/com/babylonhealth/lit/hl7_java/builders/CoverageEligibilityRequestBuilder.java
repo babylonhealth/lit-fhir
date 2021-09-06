@@ -65,12 +65,12 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
     return new Impl(status, purpose, patient.build(), created, insurer.build());
   }
 
-  public static ChoiceFHIRDateOrPeriod serviced(FHIRDate f) {
-    return new ChoiceFHIRDateOrPeriod(f);
+  public static ChoiceDateOrPeriod serviced(FHIRDate f) {
+    return new ChoiceDateOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateOrPeriod serviced(Period p) {
-    return new ChoiceFHIRDateOrPeriod(p);
+  public static ChoiceDateOrPeriod serviced(Period p) {
+    return new ChoiceDateOrPeriod(p);
   }
 
   public class Impl implements CoverageEligibilityRequestBuilder {
@@ -90,7 +90,7 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<ChoiceFHIRDateOrPeriod> serviced = Optional.empty();
+    private Optional<ChoiceDateOrPeriod> serviced = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<CoverageEligibilityRequest.Insurance> insurance = Collections.emptyList();
@@ -287,7 +287,7 @@ public interface CoverageEligibilityRequestBuilder extends DomainResourceBuilder
      *     value in, wrap with one of the CoverageEligibilityRequestBuilder.serviced static methods
      */
     public CoverageEligibilityRequestBuilder.Impl withServiced(
-        @NonNull ChoiceFHIRDateOrPeriod serviced) {
+        @NonNull ChoiceDateOrPeriod serviced) {
       this.serviced = Optional.of(serviced);
       return this;
     }

@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Coding extends CompanionFor[Coding] {
-  implicit def summonObjectAndCompanionCoding_462683970(o: Coding): ObjectAndCompanion[Coding, Coding.type] =
+  implicit def summonObjectAndCompanionCoding_1098975329(o: Coding): ObjectAndCompanion[Coding, Coding.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Coding
   override type ParentType   = Coding

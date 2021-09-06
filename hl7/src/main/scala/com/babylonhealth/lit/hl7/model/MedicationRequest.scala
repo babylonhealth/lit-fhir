@@ -30,7 +30,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationRequest extends CompanionFor[MedicationRequest] {
-  implicit def summonObjectAndCompanionMedicationRequest_689209929(
+  implicit def summonObjectAndCompanionMedicationRequest947949931(
       o: MedicationRequest): ObjectAndCompanion[MedicationRequest, MedicationRequest.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MedicationRequest
   override type ParentType   = MedicationRequest
@@ -38,13 +38,13 @@ object MedicationRequest extends CompanionFor[MedicationRequest] {
   override val parentType: CompanionFor[ParentType] = MedicationRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicationRequest")
   object DispenseRequest extends CompanionFor[DispenseRequest] {
-    implicit def summonObjectAndCompanionDispenseRequest_167184552(
+    implicit def summonObjectAndCompanionDispenseRequest_1039920832(
         o: DispenseRequest): ObjectAndCompanion[DispenseRequest, DispenseRequest.type] = ObjectAndCompanion(o, this)
     override type ResourceType = DispenseRequest
     override type ParentType   = DispenseRequest
     override val parentType: CompanionFor[ResourceType] = DispenseRequest
     object InitialFill extends CompanionFor[InitialFill] {
-      implicit def summonObjectAndCompanionInitialFill440401631(
+      implicit def summonObjectAndCompanionInitialFill1282729284(
           o: InitialFill): ObjectAndCompanion[InitialFill, InitialFill.type] = ObjectAndCompanion(o, this)
       override type ResourceType = InitialFill
       override type ParentType   = InitialFill
@@ -232,7 +232,7 @@ object MedicationRequest extends CompanionFor[MedicationRequest] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Substitution extends CompanionFor[Substitution] {
-    implicit def summonObjectAndCompanionSubstitution_514322510(
+    implicit def summonObjectAndCompanionSubstitution_1039920832(
         o: Substitution): ObjectAndCompanion[Substitution, Substitution.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Substitution
     override type ParentType   = Substitution

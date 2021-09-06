@@ -1,0 +1,420 @@
+package com.babylonhealth.lit.hl7.model
+
+import java.time.{ LocalDate, LocalTime, ZonedDateTime }
+import java.util.UUID
+
+import scala.collection.immutable.TreeMap
+import scala.util.{ Success, Try }
+
+import io.circe.{ Decoder, HCursor }
+
+import com.babylonhealth.lit.core._
+import com.babylonhealth.lit.core.BaseFieldDecoders._
+import com.babylonhealth.lit.core.UnionAliases._
+import com.babylonhealth.lit.core.ChoiceImplicits._
+import com.babylonhealth.lit.core.TagSummoners.lTagOf
+import com.babylonhealth.lit.core.serdes.{ objectDecoder, objectEncoder }
+import com.babylonhealth.lit.core.model._
+import com.babylonhealth.lit.hl7.model._
+import com.babylonhealth.lit.core.UnionAliases._
+import com.babylonhealth.lit.hl7.UnionAliases._
+import com.babylonhealth.lit.hl7.PUBLICATION_STATUS
+import com.babylonhealth.lit.core.LANGUAGES
+import com.babylonhealth.lit.{ core, hl7 }
+import com.babylonhealth.lit.macros.POJOBoilerplate
+
+object Shareablevalueset extends CompanionFor[Shareablevalueset] {
+  implicit def summonObjectAndCompanionShareablevalueset_1787656491(
+      o: Shareablevalueset): ObjectAndCompanion[Shareablevalueset, Shareablevalueset.type] = ObjectAndCompanion(o, this)
+  override type ResourceType = ValueSet
+  override type ParentType   = ValueSet
+  override val baseType: CompanionFor[ResourceType] = ValueSet
+  override val parentType: CompanionFor[ParentType] = ValueSet
+  override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareablevalueset")
+  def apply(
+      id: Option[String] = None,
+      url: UriStr,
+      meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/shareablevalueset"))),
+      text: Option[Narrative] = None,
+      name: String,
+      date: Option[FHIRDateTime] = None,
+      title: Option[String] = None,
+      status: PUBLICATION_STATUS,
+      version: String,
+      contact: LitSeq[ContactDetail] = LitSeq.empty,
+      purpose: Option[Markdown] = None,
+      language: Option[LANGUAGES] = None,
+      contained: LitSeq[Resource] = LitSeq.empty,
+      extension: LitSeq[Extension] = LitSeq.empty,
+      publisher: String,
+      immutable: Option[Boolean] = None,
+      copyright: Option[Markdown] = None,
+      identifier: LitSeq[Identifier] = LitSeq.empty,
+      useContext: LitSeq[UsageContext] = LitSeq.empty,
+      description: Markdown,
+      experimental: Boolean,
+      jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+      implicitRules: Option[UriStr] = None,
+      modifierExtension: LitSeq[Extension] = LitSeq.empty,
+      expansion: Option[ValueSet.Expansion] = None,
+      compose: Option[ValueSet.Compose] = None,
+      primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
+  ): Shareablevalueset = new Shareablevalueset(
+    id,
+    url,
+    meta,
+    text,
+    name,
+    date,
+    title,
+    status,
+    version,
+    contact,
+    purpose,
+    language,
+    contained,
+    extension,
+    publisher,
+    immutable,
+    copyright,
+    identifier,
+    useContext,
+    description,
+    experimental,
+    jurisdiction,
+    implicitRules,
+    modifierExtension,
+    expansion,
+    compose,
+    primitiveAttributes = primitiveAttributes
+  )
+  val id: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
+  val url: FHIRComponentFieldMeta[UriStr] =
+    FHIRComponentFieldMeta("url", lTagOf[UriStr], false, lTagOf[UriStr])
+  val meta: FHIRComponentFieldMeta[Option[Meta]] =
+    FHIRComponentFieldMeta("meta", lTagOf[Option[Meta]], false, lTagOf[Meta])
+  val text: FHIRComponentFieldMeta[Option[Narrative]] =
+    FHIRComponentFieldMeta("text", lTagOf[Option[Narrative]], false, lTagOf[Narrative])
+  val name: FHIRComponentFieldMeta[String] =
+    FHIRComponentFieldMeta("name", lTagOf[String], false, lTagOf[String])
+  val date: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
+    FHIRComponentFieldMeta("date", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
+  val title: FHIRComponentFieldMeta[Option[String]] =
+    FHIRComponentFieldMeta("title", lTagOf[Option[String]], false, lTagOf[String])
+  val status: FHIRComponentFieldMeta[PUBLICATION_STATUS] =
+    FHIRComponentFieldMeta("status", lTagOf[PUBLICATION_STATUS], false, lTagOf[PUBLICATION_STATUS])
+  val version: FHIRComponentFieldMeta[String] =
+    FHIRComponentFieldMeta("version", lTagOf[String], false, lTagOf[String])
+  val contact: FHIRComponentFieldMeta[LitSeq[ContactDetail]] =
+    FHIRComponentFieldMeta("contact", lTagOf[LitSeq[ContactDetail]], false, lTagOf[ContactDetail])
+  val purpose: FHIRComponentFieldMeta[Option[Markdown]] =
+    FHIRComponentFieldMeta("purpose", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
+  val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
+    FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
+  val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
+    FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
+  val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+    FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  val publisher: FHIRComponentFieldMeta[String] =
+    FHIRComponentFieldMeta("publisher", lTagOf[String], false, lTagOf[String])
+  val immutable: FHIRComponentFieldMeta[Option[Boolean]] =
+    FHIRComponentFieldMeta("immutable", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
+  val copyright: FHIRComponentFieldMeta[Option[Markdown]] =
+    FHIRComponentFieldMeta("copyright", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
+  val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
+    FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
+  val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
+    FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
+  val description: FHIRComponentFieldMeta[Markdown] =
+    FHIRComponentFieldMeta("description", lTagOf[Markdown], false, lTagOf[Markdown])
+  val experimental: FHIRComponentFieldMeta[Boolean] =
+    FHIRComponentFieldMeta("experimental", lTagOf[Boolean], false, lTagOf[Boolean])
+  val jurisdiction: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
+    FHIRComponentFieldMeta("jurisdiction", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
+  val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
+    FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
+  val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
+    FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
+  val expansion: FHIRComponentFieldMeta[Option[ValueSet.Expansion]] =
+    FHIRComponentFieldMeta("expansion", lTagOf[Option[ValueSet.Expansion]], false, lTagOf[ValueSet.Expansion])
+  val compose: FHIRComponentFieldMeta[Option[ValueSet.Compose]] =
+    FHIRComponentFieldMeta("compose", lTagOf[Option[ValueSet.Compose]], false, lTagOf[ValueSet.Compose])
+  val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
+    id,
+    url,
+    meta,
+    text,
+    name,
+    date,
+    title,
+    status,
+    version,
+    contact,
+    purpose,
+    language,
+    contained,
+    extension,
+    publisher,
+    immutable,
+    copyright,
+    identifier,
+    useContext,
+    description,
+    experimental,
+    jurisdiction,
+    implicitRules,
+    modifierExtension,
+    expansion,
+    compose
+  )
+  override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
+    Seq(
+      FHIRComponentField[Option[String]](id, t.id),
+      FHIRComponentField[UriStr](url, t.url.get),
+      FHIRComponentField[Option[Meta]](meta, t.meta),
+      FHIRComponentField[Option[Narrative]](text, t.text),
+      FHIRComponentField[String](name, t.name.get),
+      FHIRComponentField[Option[FHIRDateTime]](date, t.date),
+      FHIRComponentField[Option[String]](title, t.title),
+      FHIRComponentField[PUBLICATION_STATUS](status, t.status),
+      FHIRComponentField[String](version, t.version.get),
+      FHIRComponentField[LitSeq[ContactDetail]](contact, t.contact),
+      FHIRComponentField[Option[Markdown]](purpose, t.purpose),
+      FHIRComponentField[Option[LANGUAGES]](language, t.language),
+      FHIRComponentField[LitSeq[Resource]](contained, t.contained),
+      FHIRComponentField[LitSeq[Extension]](extension, t.extension),
+      FHIRComponentField[String](publisher, t.publisher.get),
+      FHIRComponentField[Option[Boolean]](immutable, t.immutable),
+      FHIRComponentField[Option[Markdown]](copyright, t.copyright),
+      FHIRComponentField[LitSeq[Identifier]](identifier, t.identifier),
+      FHIRComponentField[LitSeq[UsageContext]](useContext, t.useContext),
+      FHIRComponentField[Markdown](description, t.description.get),
+      FHIRComponentField[Boolean](experimental, t.experimental.get),
+      FHIRComponentField[LitSeq[CodeableConcept]](jurisdiction, t.jurisdiction),
+      FHIRComponentField[Option[UriStr]](implicitRules, t.implicitRules),
+      FHIRComponentField[LitSeq[Extension]](modifierExtension, t.modifierExtension),
+      FHIRComponentField[Option[ValueSet.Expansion]](expansion, t.expansion),
+      FHIRComponentField[Option[ValueSet.Compose]](compose, t.compose)
+    ))
+  override def fields(t: Shareablevalueset): Seq[FHIRComponentField[_]]  = fieldsFromParent(t).get
+  def extractId(t: Shareablevalueset): Option[String]                    = t.id
+  def extractUrl(t: Shareablevalueset): UriStr                           = t.url.get
+  def extractMeta(t: Shareablevalueset): Option[Meta]                    = t.meta
+  def extractText(t: Shareablevalueset): Option[Narrative]               = t.text
+  def extractName(t: Shareablevalueset): String                          = t.name.get
+  def extractDate(t: Shareablevalueset): Option[FHIRDateTime]            = t.date
+  def extractTitle(t: Shareablevalueset): Option[String]                 = t.title
+  def extractStatus(t: Shareablevalueset): PUBLICATION_STATUS            = t.status
+  def extractVersion(t: Shareablevalueset): String                       = t.version.get
+  def extractContact(t: Shareablevalueset): LitSeq[ContactDetail]        = t.contact
+  def extractPurpose(t: Shareablevalueset): Option[Markdown]             = t.purpose
+  def extractLanguage(t: Shareablevalueset): Option[LANGUAGES]           = t.language
+  def extractContained(t: Shareablevalueset): LitSeq[Resource]           = t.contained
+  def extractExtension(t: Shareablevalueset): LitSeq[Extension]          = t.extension
+  def extractPublisher(t: Shareablevalueset): String                     = t.publisher.get
+  def extractImmutable(t: Shareablevalueset): Option[Boolean]            = t.immutable
+  def extractCopyright(t: Shareablevalueset): Option[Markdown]           = t.copyright
+  def extractIdentifier(t: Shareablevalueset): LitSeq[Identifier]        = t.identifier
+  def extractUseContext(t: Shareablevalueset): LitSeq[UsageContext]      = t.useContext
+  def extractDescription(t: Shareablevalueset): Markdown                 = t.description.get
+  def extractExperimental(t: Shareablevalueset): Boolean                 = t.experimental.get
+  def extractJurisdiction(t: Shareablevalueset): LitSeq[CodeableConcept] = t.jurisdiction
+  def extractImplicitRules(t: Shareablevalueset): Option[UriStr]         = t.implicitRules
+  def extractModifierExtension(t: Shareablevalueset): LitSeq[Extension]  = t.modifierExtension
+  def extractExpansion(t: Shareablevalueset): Option[ValueSet.Expansion] = t.expansion
+  def extractCompose(t: Shareablevalueset): Option[ValueSet.Compose]     = t.compose
+  override val thisName: String                                          = "Shareablevalueset"
+  override val searchParams: Map[String, Shareablevalueset => Seq[Any]]  = ValueSet.searchParams
+  def decodeThis(cursor: HCursor)(implicit params: DecoderParams): Try[Shareablevalueset] =
+    checkUnknownFields(cursor, otherMetas, refMetas) flatMap (_ =>
+      Try(
+        new Shareablevalueset(
+          cursor.decodeAs[Option[String]]("id", Some(None)),
+          cursor.decodeAs[UriStr]("url", None),
+          cursor.decodeAs[Option[Meta]]("meta", Some(None)),
+          cursor.decodeAs[Option[Narrative]]("text", Some(None)),
+          cursor.decodeAs[String]("name", None),
+          cursor.decodeAs[Option[FHIRDateTime]]("date", Some(None)),
+          cursor.decodeAs[Option[String]]("title", Some(None)),
+          cursor.decodeAs[PUBLICATION_STATUS]("status", None),
+          cursor.decodeAs[String]("version", None),
+          cursor.decodeAs[LitSeq[ContactDetail]]("contact", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[Markdown]]("purpose", Some(None)),
+          cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
+          cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
+          cursor.decodeAs[String]("publisher", None),
+          cursor.decodeAs[Option[Boolean]]("immutable", Some(None)),
+          cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
+          cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
+          cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
+          cursor.decodeAs[Markdown]("description", None),
+          cursor.decodeAs[Boolean]("experimental", None),
+          cursor.decodeAs[LitSeq[CodeableConcept]]("jurisdiction", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
+          cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
+          cursor.decodeAs[Option[ValueSet.Expansion]]("expansion", Some(None)),
+          cursor.decodeAs[Option[ValueSet.Compose]]("compose", Some(None)),
+          decodeAttributes(cursor)
+        )
+      ))
+}
+
+/** Enforces the minimum information set for the value set metadata required by HL7 and other organizations that share and publish
+  * value sets
+  *
+  * Subclass of [[hl7.model.ValueSet]] (A ValueSet resource instance specifies a set of codes drawn from one or more code systems,
+  * intended for use in a particular context. Value sets link between [[[CodeSystem]] ] definitions and their use in [coded
+  * elements](terminologies.html).)
+  *
+  * @constructor
+  *   Inherits all params from parent. Requires the following fields which were optional in the parent: url, name, version,
+  *   publisher, description, experimental.
+  * @param id
+  *   - The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.
+  * @param url
+  *   - An absolute URI that is used to identify this value set when it is referenced in a specification, model, design or an
+  *   instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at
+  *   which an authoritative instance of this value set is (or will be) published. This URL can be the target of a canonical
+  *   reference. It SHALL remain the same when the value set is stored on different servers.
+  * @param meta
+  *   - The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might
+  *   not always be associated with version changes to the resource.
+  * @param text
+  *   - A human-readable narrative that contains a summary of the resource and can be used to represent the content of the
+  *   resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to
+  *   make it "clinically safe" for a human to just read the narrative. Resource definitions may define what content should be
+  *   represented in the narrative to ensure clinical safety.
+  * @param name
+  *   - A natural language name identifying the value set. This name should be usable as an identifier for the module by machine
+  *   processing applications such as code generation.
+  * @param date
+  *   - The date (and optionally time) when the value set was created or revised (e.g. the 'content logical definition').
+  * @param title
+  *   - A short, descriptive, user-friendly title for the value set.
+  * @param status
+  *   - The status of this value set. Enables tracking the life-cycle of the content. The status of the value set applies to the
+  *   value set definition (ValueSet.compose) and the associated ValueSet metadata. Expansions do not have a state.
+  * @param version
+  *   - The identifier that is used to identify this version of the value set when it is referenced in a specification, model,
+  *   design or instance. This is an arbitrary value managed by the value set author and is not expected to be globally unique.
+  *   For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation
+  *   that versions can be placed in a lexicographical sequence.
+  * @param contact
+  *   - Contact details to assist a user in finding and communicating with the publisher.
+  * @param purpose
+  *   - Explanation of why this value set is needed and why it has been designed as it has.
+  * @param language
+  *   - The base language in which the resource is written.
+  * @param contained
+  *   - These resources do not have an independent existence apart from the resource that contains them - they cannot be
+  *   identified independently, and nor can they have their own independent transaction scope.
+  * @param extension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource. To make the use
+  *   of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions.
+  *   Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition
+  *   of the extension.
+  * @param publisher
+  *   - The name of the organization or individual that published the value set.
+  * @param immutable
+  *   - If this is set to 'true', then no new versions of the content logical definition can be created. Note: Other metadata
+  *   might still change.
+  * @param copyright
+  *   - A copyright statement relating to the value set and/or its contents. Copyright statements are generally legal restrictions
+  *   on the use and publishing of the value set.
+  * @param identifier
+  *   - A formal identifier that is used to identify this value set when it is represented in other formats, or referenced in a
+  *   specification, model, design or an instance.
+  * @param useContext
+  *   - The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be
+  *   general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be
+  *   used to assist with indexing and searching for appropriate value set instances.
+  * @param description
+  *   - A free text natural language description of the value set from a consumer's perspective. The textual description specifies
+  *   the span of meanings for concepts to be included within the Value Set Expansion, and also may specify the intended use and
+  *   limitations of the Value Set.
+  * @param experimental
+  *   - A Boolean value to indicate that this value set is authored for testing purposes (or education/evaluation/marketing) and
+  *   is not intended to be used for genuine usage.
+  * @param jurisdiction
+  *   - A legal or geographic region in which the value set is intended to be used.
+  * @param implicitRules
+  *   - A reference to a set of rules that were followed when the resource was constructed, and which must be understood when
+  *   processing the content. Often, this is a reference to an implementation guide that defines the special rules along with
+  *   other profiles etc.
+  * @param modifierExtension
+  *   - May be used to represent additional information that is not part of the basic definition of the resource and that modifies
+  *   the understanding of the element that contains it and/or the understanding of the containing element's descendants. Usually
+  *   modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict
+  *   set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension,
+  *   there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a
+  *   resource are required to check for modifier extensions. Modifier extensions SHALL NOT change the meaning of any elements on
+  *   Resource or DomainResource (including cannot change the meaning of modifierExtension itself).
+  * @param expansion
+  *   - A value set can also be "expanded", where the value set is turned into a simple collection of enumerated codes. This
+  *   element holds the expansion, if it has been performed.
+  * @param compose
+  *   - A set of criteria that define the contents of the value set by including or excluding codes selected from the specified
+  *   code system(s) that the value set draws from. This is also known as the Content Logical Definition (CLD).
+  */
+@POJOBoilerplate
+class Shareablevalueset(
+    override val id: Option[String] = None,
+    url: UriStr,
+    override val meta: Option[Meta] = Some(
+      new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/shareablevalueset"))),
+    override val text: Option[Narrative] = None,
+    name: String,
+    override val date: Option[FHIRDateTime] = None,
+    override val title: Option[String] = None,
+    override val status: PUBLICATION_STATUS,
+    version: String,
+    override val contact: LitSeq[ContactDetail] = LitSeq.empty,
+    override val purpose: Option[Markdown] = None,
+    override val language: Option[LANGUAGES] = None,
+    override val contained: LitSeq[Resource] = LitSeq.empty,
+    override val extension: LitSeq[Extension] = LitSeq.empty,
+    publisher: String,
+    override val immutable: Option[Boolean] = None,
+    override val copyright: Option[Markdown] = None,
+    override val identifier: LitSeq[Identifier] = LitSeq.empty,
+    override val useContext: LitSeq[UsageContext] = LitSeq.empty,
+    description: Markdown,
+    experimental: Boolean,
+    override val jurisdiction: LitSeq[CodeableConcept] = LitSeq.empty,
+    override val implicitRules: Option[UriStr] = None,
+    override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
+    override val expansion: Option[ValueSet.Expansion] = None,
+    override val compose: Option[ValueSet.Compose] = None,
+    override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts
+) extends ValueSet(
+      id = id,
+      url = Some(url),
+      meta = meta,
+      text = text,
+      name = Some(name),
+      date = date,
+      title = title,
+      status = status,
+      version = Some(version),
+      contact = contact,
+      purpose = purpose,
+      language = language,
+      contained = contained,
+      extension = extension,
+      publisher = Some(publisher),
+      immutable = immutable,
+      copyright = copyright,
+      identifier = identifier,
+      useContext = useContext,
+      description = Some(description),
+      experimental = Some(experimental),
+      jurisdiction = jurisdiction,
+      implicitRules = implicitRules,
+      modifierExtension = modifierExtension,
+      expansion = expansion,
+      compose = compose,
+      primitiveAttributes = primitiveAttributes) {
+  override val thisTypeName: String = "ValueSet"
+}

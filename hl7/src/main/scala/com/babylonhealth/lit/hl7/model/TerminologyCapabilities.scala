@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
-  implicit def summonObjectAndCompanionTerminologyCapabilities_1457363645(
+  implicit def summonObjectAndCompanionTerminologyCapabilities_498610572(
       o: TerminologyCapabilities): ObjectAndCompanion[TerminologyCapabilities, TerminologyCapabilities.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = TerminologyCapabilities
@@ -33,19 +33,19 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
   override val parentType: CompanionFor[ParentType] = TerminologyCapabilities
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/TerminologyCapabilities")
   object CodeSystem extends CompanionFor[CodeSystem] {
-    implicit def summonObjectAndCompanionCodeSystem1278204051(o: CodeSystem): ObjectAndCompanion[CodeSystem, CodeSystem.type] =
+    implicit def summonObjectAndCompanionCodeSystem_1099131950(o: CodeSystem): ObjectAndCompanion[CodeSystem, CodeSystem.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = CodeSystem
     override type ParentType   = CodeSystem
     override val parentType: CompanionFor[ResourceType] = CodeSystem
     object Version extends CompanionFor[Version] {
-      implicit def summonObjectAndCompanionVersion_1494674706(o: Version): ObjectAndCompanion[Version, Version.type] =
+      implicit def summonObjectAndCompanionVersion1604341537(o: Version): ObjectAndCompanion[Version, Version.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Version
       override type ParentType   = Version
       override val parentType: CompanionFor[ResourceType] = Version
       object Filter extends CompanionFor[Filter] {
-        implicit def summonObjectAndCompanionFilter_33477739(o: Filter): ObjectAndCompanion[Filter, Filter.type] =
+        implicit def summonObjectAndCompanionFilter264943093(o: Filter): ObjectAndCompanion[Filter, Filter.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = Filter
         override type ParentType   = Filter
@@ -269,13 +269,13 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Expansion extends CompanionFor[Expansion] {
-    implicit def summonObjectAndCompanionExpansion1317659069(o: Expansion): ObjectAndCompanion[Expansion, Expansion.type] =
+    implicit def summonObjectAndCompanionExpansion_1099131950(o: Expansion): ObjectAndCompanion[Expansion, Expansion.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Expansion
     override type ParentType   = Expansion
     override val parentType: CompanionFor[ResourceType] = Expansion
     object Parameter extends CompanionFor[Parameter] {
-      implicit def summonObjectAndCompanionParameter727731194(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
+      implicit def summonObjectAndCompanionParameter_800840921(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Parameter
       override type ParentType   = Parameter
@@ -424,7 +424,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Implementation extends CompanionFor[Implementation] {
-    implicit def summonObjectAndCompanionImplementation1964527366(
+    implicit def summonObjectAndCompanionImplementation_1099131950(
         o: Implementation): ObjectAndCompanion[Implementation, Implementation.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Implementation
     override type ParentType   = Implementation
@@ -490,7 +490,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ValidateCode extends CompanionFor[ValidateCode] {
-    implicit def summonObjectAndCompanionValidateCode868771246(
+    implicit def summonObjectAndCompanionValidateCode_1099131950(
         o: ValidateCode): ObjectAndCompanion[ValidateCode, ValidateCode.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ValidateCode
     override type ParentType   = ValidateCode
@@ -549,7 +549,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Translation extends CompanionFor[Translation] {
-    implicit def summonObjectAndCompanionTranslation_1164948214(
+    implicit def summonObjectAndCompanionTranslation_1099131950(
         o: Translation): ObjectAndCompanion[Translation, Translation.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Translation
     override type ParentType   = Translation
@@ -608,7 +608,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Software extends CompanionFor[Software] {
-    implicit def summonObjectAndCompanionSoftware_309870205(o: Software): ObjectAndCompanion[Software, Software.type] =
+    implicit def summonObjectAndCompanionSoftware_1099131950(o: Software): ObjectAndCompanion[Software, Software.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Software
     override type ParentType   = Software
@@ -674,7 +674,7 @@ object TerminologyCapabilities extends CompanionFor[TerminologyCapabilities] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Closure extends CompanionFor[Closure] {
-    implicit def summonObjectAndCompanionClosure_1723806924(o: Closure): ObjectAndCompanion[Closure, Closure.type] =
+    implicit def summonObjectAndCompanionClosure_1099131950(o: Closure): ObjectAndCompanion[Closure, Closure.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Closure
     override type ParentType   = Closure

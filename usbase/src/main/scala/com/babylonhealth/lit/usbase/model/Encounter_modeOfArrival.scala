@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Encounter_modeOfArrival extends CompanionFor[Encounter_modeOfArrival] {
-  implicit def summonObjectAndCompanionEncounter_modeOfArrival173243387(
+  implicit def summonObjectAndCompanionEncounter_modeOfArrival_409709264(
       o: Encounter_modeOfArrival): ObjectAndCompanion[Encounter_modeOfArrival, Encounter_modeOfArrival.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

@@ -54,16 +54,16 @@ public interface Contract_Term_ActionBuilder {
     return new Impl(_type.build(), intent.build(), status.build());
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(f);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriodOrTiming(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(p);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Period p) {
+    return new ChoiceDateTimeOrPeriodOrTiming(p);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Timing t) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(t);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Timing t) {
+    return new ChoiceDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements Contract_Term_ActionBuilder {
@@ -82,7 +82,7 @@ public interface Contract_Term_ActionBuilder {
     private Optional<Boolean> doNotPerform = Optional.empty();
     private Collection<String> reasonLinkId = Collections.emptyList();
     private Collection<String> contextLinkId = Collections.emptyList();
-    private Optional<ChoiceFHIRDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Collection<CodeableConcept> performerType = Collections.emptyList();
     private Optional<CodeableConcept> performerRole = Optional.empty();
     private Collection<String> requesterLinkId = Collections.emptyList();
@@ -265,7 +265,7 @@ public interface Contract_Term_ActionBuilder {
      *     static methods
      */
     public Contract_Term_ActionBuilder.Impl withOccurrence(
-        @NonNull ChoiceFHIRDateTimeOrPeriodOrTiming occurrence) {
+        @NonNull ChoiceDateTimeOrPeriodOrTiming occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

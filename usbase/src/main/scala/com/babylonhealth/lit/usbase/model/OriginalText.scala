@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object OriginalText extends CompanionFor[OriginalText] {
-  implicit def summonObjectAndCompanionOriginalText_826038711(
+  implicit def summonObjectAndCompanionOriginalText717936371(
       o: OriginalText): ObjectAndCompanion[OriginalText, OriginalText.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

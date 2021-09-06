@@ -58,28 +58,28 @@ public interface PlanDefinition_ActionBuilder {
     return new Impl();
   }
 
-  public static ChoiceAction_Timing timing(Age a) {
-    return new ChoiceAction_Timing(a);
+  public static Choice_0075792257 timing(Age a) {
+    return new Choice_0075792257(a);
   }
 
-  public static ChoiceAction_Timing timing(Duration d) {
-    return new ChoiceAction_Timing(d);
+  public static Choice_0075792257 timing(Duration d) {
+    return new Choice_0075792257(d);
   }
 
-  public static ChoiceAction_Timing timing(FHIRDateTime f) {
-    return new ChoiceAction_Timing(f);
+  public static Choice_0075792257 timing(FHIRDateTime f) {
+    return new Choice_0075792257(f);
   }
 
-  public static ChoiceAction_Timing timing(Period p) {
-    return new ChoiceAction_Timing(p);
+  public static Choice_0075792257 timing(Period p) {
+    return new Choice_0075792257(p);
   }
 
-  public static ChoiceAction_Timing timing(Range r) {
-    return new ChoiceAction_Timing(r);
+  public static Choice_0075792257 timing(Range r) {
+    return new Choice_0075792257(r);
   }
 
-  public static ChoiceAction_Timing timing(Timing t) {
-    return new ChoiceAction_Timing(t);
+  public static Choice_0075792257 timing(Timing t) {
+    return new Choice_0075792257(t);
   }
 
   public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
@@ -90,12 +90,12 @@ public interface PlanDefinition_ActionBuilder {
     return new ChoiceCodeableConceptOrReference(r);
   }
 
-  public static ChoiceCanonicalOrUriStr definitionCanonical(String s) {
-    return ChoiceCanonicalOrUriStr.ChoiceCanonicalOrUriStrCanonical(s);
+  public static ChoiceCanonicalOrUri definitionCanonical(String s) {
+    return ChoiceCanonicalOrUri.ChoiceCanonicalOrUriCanonical(s);
   }
 
-  public static ChoiceCanonicalOrUriStr definitionUri(String s) {
-    return ChoiceCanonicalOrUriStr.ChoiceCanonicalOrUriStrUriStr(s);
+  public static ChoiceCanonicalOrUri definitionUri(String s) {
+    return ChoiceCanonicalOrUri.ChoiceCanonicalOrUriUriStr(s);
   }
 
   public class Impl implements PlanDefinition_ActionBuilder {
@@ -112,12 +112,12 @@ public interface PlanDefinition_ActionBuilder {
     private Collection<TriggerDefinition> trigger = Collections.emptyList();
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<ChoiceAction_Timing> timing = Optional.empty();
+    private Optional<Choice_0075792257> timing = Optional.empty();
     private Optional<String> transform = Optional.empty();
     private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
     private Optional<String> description = Optional.empty();
     private Collection<RelatedArtifact> documentation = Collections.emptyList();
-    private Optional<ChoiceCanonicalOrUriStr> definition = Optional.empty();
+    private Optional<ChoiceCanonicalOrUri> definition = Optional.empty();
     private Optional<String> textEquivalent = Optional.empty();
     private Optional<ACTION_GROUPING_BEHAVIOR> groupingBehavior = Optional.empty();
     private Optional<ACTION_REQUIRED_BEHAVIOR> requiredBehavior = Optional.empty();
@@ -308,7 +308,7 @@ public interface PlanDefinition_ActionBuilder {
      *     Period, Range, Timing. To pass the value in, wrap with one of the
      *     PlanDefinition_ActionBuilder.timing static methods
      */
-    public PlanDefinition_ActionBuilder.Impl withTiming(@NonNull ChoiceAction_Timing timing) {
+    public PlanDefinition_ActionBuilder.Impl withTiming(@NonNull Choice_0075792257 timing) {
       this.timing = Optional.of(timing);
       return this;
     }
@@ -359,7 +359,7 @@ public interface PlanDefinition_ActionBuilder {
      *     in, wrap with one of the PlanDefinition_ActionBuilder.definition static methods
      */
     public PlanDefinition_ActionBuilder.Impl withDefinition(
-        @NonNull ChoiceCanonicalOrUriStr definition) {
+        @NonNull ChoiceCanonicalOrUri definition) {
       this.definition = Optional.of(definition);
       return this;
     }

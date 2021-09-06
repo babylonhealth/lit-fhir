@@ -47,27 +47,25 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
   public GuidanceResponse build();
 
   public static Impl init(
-      GUIDANCE_RESPONSE_STATUS status, @NonNull ChoiceCanonicalOrCodeableConceptOrUriStr module) {
+      GUIDANCE_RESPONSE_STATUS status, @NonNull ChoiceCanonicalOrCodeableConceptOrUri module) {
     return new Impl(status, module);
   }
 
   public static Impl builder(
-      GUIDANCE_RESPONSE_STATUS status, @NonNull ChoiceCanonicalOrCodeableConceptOrUriStr module) {
+      GUIDANCE_RESPONSE_STATUS status, @NonNull ChoiceCanonicalOrCodeableConceptOrUri module) {
     return new Impl(status, module);
   }
 
-  public static ChoiceCanonicalOrCodeableConceptOrUriStr module(CodeableConcept c) {
-    return new ChoiceCanonicalOrCodeableConceptOrUriStr(c);
+  public static ChoiceCanonicalOrCodeableConceptOrUri module(CodeableConcept c) {
+    return new ChoiceCanonicalOrCodeableConceptOrUri(c);
   }
 
-  public static ChoiceCanonicalOrCodeableConceptOrUriStr moduleCanonical(String s) {
-    return ChoiceCanonicalOrCodeableConceptOrUriStr
-        .ChoiceCanonicalOrCodeableConceptOrUriStrCanonical(s);
+  public static ChoiceCanonicalOrCodeableConceptOrUri moduleCanonical(String s) {
+    return ChoiceCanonicalOrCodeableConceptOrUri.ChoiceCanonicalOrCodeableConceptOrUriCanonical(s);
   }
 
-  public static ChoiceCanonicalOrCodeableConceptOrUriStr moduleUri(String s) {
-    return ChoiceCanonicalOrCodeableConceptOrUriStr.ChoiceCanonicalOrCodeableConceptOrUriStrUriStr(
-        s);
+  public static ChoiceCanonicalOrCodeableConceptOrUri moduleUri(String s) {
+    return ChoiceCanonicalOrCodeableConceptOrUri.ChoiceCanonicalOrCodeableConceptOrUriUriStr(s);
   }
 
   public class Impl implements GuidanceResponseBuilder {
@@ -81,7 +79,7 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private ChoiceCanonicalOrCodeableConceptOrUriStr module;
+    private ChoiceCanonicalOrCodeableConceptOrUri module;
     private Optional<Reference> encounter = Optional.empty();
     private Optional<Reference> performer = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
@@ -111,7 +109,7 @@ public interface GuidanceResponseBuilder extends DomainResourceBuilder {
      *     To pass the value in, wrap with one of the GuidanceResponseBuilder.module static methods
      */
     public Impl(
-        GUIDANCE_RESPONSE_STATUS status, @NonNull ChoiceCanonicalOrCodeableConceptOrUriStr module) {
+        GUIDANCE_RESPONSE_STATUS status, @NonNull ChoiceCanonicalOrCodeableConceptOrUri module) {
       this.status = status;
       this.module = module;
     }

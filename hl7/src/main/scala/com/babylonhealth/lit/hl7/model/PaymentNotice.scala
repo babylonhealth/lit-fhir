@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PaymentNotice extends CompanionFor[PaymentNotice] {
-  implicit def summonObjectAndCompanionPaymentNotice_2082603290(
+  implicit def summonObjectAndCompanionPaymentNotice1010855593(
       o: PaymentNotice): ObjectAndCompanion[PaymentNotice, PaymentNotice.type] = ObjectAndCompanion(o, this)
   override type ResourceType = PaymentNotice
   override type ParentType   = PaymentNotice

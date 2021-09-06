@@ -57,7 +57,7 @@ public interface Us_core_diagnosticreport_noteBuilder extends DiagnosticReportBu
       DIAGNOSTIC_REPORT_STATUS status,
       Reference subject,
       Collection<CodeableConcept> category,
-      @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
+      @NonNull ChoiceDateTimeOrPeriod effective) {
     return new Impl(code, status, subject, category, effective);
   }
 
@@ -66,7 +66,7 @@ public interface Us_core_diagnosticreport_noteBuilder extends DiagnosticReportBu
       DIAGNOSTIC_REPORT_STATUS status,
       ReferenceBuilder subject,
       Collection<CodeableConceptBuilder> category,
-      @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
+      @NonNull ChoiceDateTimeOrPeriod effective) {
     return new Impl(
         code.build(),
         status,
@@ -75,12 +75,12 @@ public interface Us_core_diagnosticreport_noteBuilder extends DiagnosticReportBu
         effective);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod effective(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriod(f);
+  public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod effective(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriod(p);
+  public static ChoiceDateTimeOrPeriod effective(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements Us_core_diagnosticreport_noteBuilder {
@@ -107,7 +107,7 @@ public interface Us_core_diagnosticreport_noteBuilder extends DiagnosticReportBu
     private Collection<Reference> performer = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> conclusion = Optional.empty();
-    private ChoiceFHIRDateTimeOrPeriod effective;
+    private ChoiceDateTimeOrPeriod effective;
     private Collection<Reference> imagingStudy = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Attachment> presentedForm = Collections.emptyList();
@@ -136,7 +136,7 @@ public interface Us_core_diagnosticreport_noteBuilder extends DiagnosticReportBu
         DIAGNOSTIC_REPORT_STATUS status,
         Reference subject,
         Collection<CodeableConcept> category,
-        @NonNull ChoiceFHIRDateTimeOrPeriod effective) {
+        @NonNull ChoiceDateTimeOrPeriod effective) {
       this.code = code;
       this.status = status;
       this.subject = subject;

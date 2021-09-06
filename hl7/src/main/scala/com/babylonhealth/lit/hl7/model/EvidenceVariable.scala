@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EvidenceVariable extends CompanionFor[EvidenceVariable] {
-  implicit def summonObjectAndCompanionEvidenceVariable_1881028948(
+  implicit def summonObjectAndCompanionEvidenceVariable_768441368(
       o: EvidenceVariable): ObjectAndCompanion[EvidenceVariable, EvidenceVariable.type] = ObjectAndCompanion(o, this)
   override type ResourceType = EvidenceVariable
   override type ParentType   = EvidenceVariable
@@ -32,13 +32,13 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
   override val parentType: CompanionFor[ParentType] = EvidenceVariable
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/EvidenceVariable")
   object Characteristic extends CompanionFor[Characteristic] {
-    implicit def summonObjectAndCompanionCharacteristic_1672518405(
+    implicit def summonObjectAndCompanionCharacteristic1970644006(
         o: Characteristic): ObjectAndCompanion[Characteristic, Characteristic.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Characteristic
     override type ParentType   = Characteristic
     override val parentType: CompanionFor[ResourceType] = Characteristic
-    type DefinitionChoice           = Choice[UnionCharacteristic_Definition]
-    type ParticipantEffectiveChoice = Choice[UnionCharacteristic_ParticipantEffective]
+    type DefinitionChoice           = Choice[Union01434501542]
+    type ParticipantEffectiveChoice = Choice[Union_1938137622]
     def apply(
         id: Option[String] = None,
         exclude: Option[Boolean] = None,
@@ -91,7 +91,7 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
     val groupMeasure: FHIRComponentFieldMeta[Option[GROUP_MEASURE]] =
       FHIRComponentFieldMeta("groupMeasure", lTagOf[Option[GROUP_MEASURE]], false, lTagOf[GROUP_MEASURE])
     val definition: FHIRComponentFieldMeta[Characteristic.DefinitionChoice] =
-      FHIRComponentFieldMeta("definition", lTagOf[Characteristic.DefinitionChoice], true, lTagOf[UnionCharacteristic_Definition])
+      FHIRComponentFieldMeta("definition", lTagOf[Characteristic.DefinitionChoice], true, lTagOf[Union01434501542])
     val timeFromStart: FHIRComponentFieldMeta[Option[Duration]] =
       FHIRComponentFieldMeta("timeFromStart", lTagOf[Option[Duration]], false, lTagOf[Duration])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -101,7 +101,7 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
         "participantEffective",
         lTagOf[Option[Characteristic.ParticipantEffectiveChoice]],
         true,
-        lTagOf[UnionCharacteristic_ParticipantEffective])
+        lTagOf[Union_1938137622])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(
       id,
       exclude,
@@ -138,10 +138,10 @@ object EvidenceVariable extends CompanionFor[EvidenceVariable] {
             cursor.decodeAs[Option[String]]("description", Some(None)),
             cursor.decodeAs[LitSeq[UsageContext]]("usageContext", Some(LitSeq.empty)),
             cursor.decodeAs[Option[GROUP_MEASURE]]("groupMeasure", Some(None)),
-            cursor.decodeRef[UnionCharacteristic_Definition]("definition"),
+            cursor.decodeRef[Union01434501542]("definition"),
             cursor.decodeAs[Option[Duration]]("timeFromStart", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[UnionCharacteristic_ParticipantEffective]("participantEffective"),
+            cursor.decodeOptRef[Union_1938137622]("participantEffective"),
             decodeAttributes(cursor)
           )
         ))

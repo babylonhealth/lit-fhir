@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinition] {
-  implicit def summonObjectAndCompanionShareableactivitydefinition_219438691(
+  implicit def summonObjectAndCompanionShareableactivitydefinition_1401722330(
       o: Shareableactivitydefinition): ObjectAndCompanion[Shareableactivitydefinition, Shareableactivitydefinition.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = ActivityDefinition
@@ -33,7 +33,7 @@ object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinit
   override val baseType: CompanionFor[ResourceType] = ActivityDefinition
   override val parentType: CompanionFor[ParentType] = ActivityDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareableactivitydefinition")
-  type TimingChoice  = Choice[UnionAction_Timing]
+  type TimingChoice  = Choice[Union_0075792257]
   type SubjectChoice = Choice[UnionCodeableConceptOrReference]
   type ProductChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
@@ -217,7 +217,7 @@ object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinit
   val copyright: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("copyright", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val timing: FHIRComponentFieldMeta[Option[Shareableactivitydefinition.TimingChoice]] =
-    FHIRComponentFieldMeta("timing", lTagOf[Option[Shareableactivitydefinition.TimingChoice]], true, lTagOf[UnionAction_Timing])
+    FHIRComponentFieldMeta("timing", lTagOf[Option[Shareableactivitydefinition.TimingChoice]], true, lTagOf[Union_0075792257])
   val transform: FHIRComponentFieldMeta[Option[Canonical]] =
     FHIRComponentFieldMeta("transform", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
@@ -481,7 +481,7 @@ object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinit
         cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
         cursor.decodeAs[String]("publisher", None),
         cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
-        cursor.decodeOptRef[UnionAction_Timing]("timing"),
+        cursor.decodeOptRef[Union_0075792257]("timing"),
         cursor.decodeAs[Option[Canonical]]("transform", Some(None)),
         cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
         cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),

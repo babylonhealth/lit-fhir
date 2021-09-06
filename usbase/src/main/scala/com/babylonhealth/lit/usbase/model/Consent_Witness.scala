@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Consent_Witness extends CompanionFor[Consent_Witness] {
-  implicit def summonObjectAndCompanionConsent_Witness945799121(
+  implicit def summonObjectAndCompanionConsent_Witness_1240443407(
       o: Consent_Witness): ObjectAndCompanion[Consent_Witness, Consent_Witness.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

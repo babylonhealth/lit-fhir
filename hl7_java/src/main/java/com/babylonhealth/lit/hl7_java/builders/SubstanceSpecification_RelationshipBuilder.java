@@ -53,20 +53,20 @@ public interface SubstanceSpecification_RelationshipBuilder {
     return new Impl();
   }
 
-  public static ChoiceRelationship_Amount amount(Quantity q) {
-    return new ChoiceRelationship_Amount(q);
+  public static Choice01138203188 amount(Quantity q) {
+    return new Choice01138203188(q);
   }
 
-  public static ChoiceRelationship_Amount amount(Range r) {
-    return new ChoiceRelationship_Amount(r);
+  public static Choice01138203188 amount(Range r) {
+    return new Choice01138203188(r);
   }
 
-  public static ChoiceRelationship_Amount amount(Ratio r) {
-    return new ChoiceRelationship_Amount(r);
+  public static Choice01138203188 amount(Ratio r) {
+    return new Choice01138203188(r);
   }
 
-  public static ChoiceRelationship_Amount amount(String s) {
-    return new ChoiceRelationship_Amount(s);
+  public static Choice01138203188 amount(String s) {
+    return new Choice01138203188(s);
   }
 
   public static ChoiceCodeableConceptOrReference substance(CodeableConcept c) {
@@ -81,7 +81,7 @@ public interface SubstanceSpecification_RelationshipBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Reference> source = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<ChoiceRelationship_Amount> amount = Optional.empty();
+    private Optional<Choice01138203188> amount = Optional.empty();
     private Optional<Boolean> isDefining = Optional.empty();
     private Optional<CodeableConcept> amountType = Optional.empty();
     private Optional<ChoiceCodeableConceptOrReference> substance = Optional.empty();
@@ -154,7 +154,7 @@ public interface SubstanceSpecification_RelationshipBuilder {
      *     SubstanceSpecification_RelationshipBuilder.amount static methods
      */
     public SubstanceSpecification_RelationshipBuilder.Impl withAmount(
-        @NonNull ChoiceRelationship_Amount amount) {
+        @NonNull Choice01138203188 amount) {
       this.amount = Optional.of(amount);
       return this;
     }

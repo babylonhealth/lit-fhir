@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_fmm_no_warnings extends CompanionFor[Structuredefinition_fmm_no_warnings] {
-  implicit def summonObjectAndCompanionStructuredefinition_fmm_no_warnings794312182(
+  implicit def summonObjectAndCompanionStructuredefinition_fmm_no_warnings_1700047008(
       o: Structuredefinition_fmm_no_warnings): ObjectAndCompanion[Structuredefinition_fmm_no_warnings, Structuredefinition_fmm_no_warnings.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

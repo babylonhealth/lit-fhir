@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_expirationDate extends CompanionFor[Valueset_expirationDate] {
-  implicit def summonObjectAndCompanionValueset_expirationDate_2122447446(
+  implicit def summonObjectAndCompanionValueset_expirationDate2057509764(
       o: Valueset_expirationDate): ObjectAndCompanion[Valueset_expirationDate, Valueset_expirationDate.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

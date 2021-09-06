@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SupplyDelivery extends CompanionFor[SupplyDelivery] {
-  implicit def summonObjectAndCompanionSupplyDelivery_1097491031(
+  implicit def summonObjectAndCompanionSupplyDelivery1523104056(
       o: SupplyDelivery): ObjectAndCompanion[SupplyDelivery, SupplyDelivery.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SupplyDelivery
   override type ParentType   = SupplyDelivery
@@ -32,7 +32,7 @@ object SupplyDelivery extends CompanionFor[SupplyDelivery] {
   override val parentType: CompanionFor[ParentType] = SupplyDelivery
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SupplyDelivery")
   object SuppliedItem extends CompanionFor[SuppliedItem] {
-    implicit def summonObjectAndCompanionSuppliedItem_2132972385(
+    implicit def summonObjectAndCompanionSuppliedItem766061638(
         o: SuppliedItem): ObjectAndCompanion[SuppliedItem, SuppliedItem.type] = ObjectAndCompanion(o, this)
     override type ResourceType = SuppliedItem
     override type ParentType   = SuppliedItem
@@ -99,7 +99,7 @@ object SupplyDelivery extends CompanionFor[SupplyDelivery] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type OccurrenceChoice = Choice[UnionFHIRDateTimeOrPeriodOrTiming]
+  type OccurrenceChoice = Choice[UnionDateTimeOrPeriodOrTiming]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -180,7 +180,7 @@ object SupplyDelivery extends CompanionFor[SupplyDelivery] {
       "occurrence",
       lTagOf[Option[SupplyDelivery.OccurrenceChoice]],
       true,
-      lTagOf[UnionFHIRDateTimeOrPeriodOrTiming])
+      lTagOf[UnionDateTimeOrPeriodOrTiming])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val suppliedItem: FHIRComponentFieldMeta[Option[SupplyDelivery.SuppliedItem]] =
@@ -302,7 +302,7 @@ object SupplyDelivery extends CompanionFor[SupplyDelivery] {
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("destination", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriodOrTiming]("occurrence"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriodOrTiming]("occurrence"),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[SupplyDelivery.SuppliedItem]]("suppliedItem", Some(None)),
           decodeAttributes(cursor)

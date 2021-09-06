@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SampledData extends CompanionFor[SampledData] {
-  implicit def summonObjectAndCompanionSampledData1351591863(o: SampledData): ObjectAndCompanion[SampledData, SampledData.type] =
+  implicit def summonObjectAndCompanionSampledData_992445521(o: SampledData): ObjectAndCompanion[SampledData, SampledData.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = SampledData
   override type ParentType   = SampledData

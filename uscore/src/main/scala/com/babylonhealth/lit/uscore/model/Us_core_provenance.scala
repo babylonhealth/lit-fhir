@@ -25,14 +25,14 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_provenance extends CompanionFor[Us_core_provenance] {
-  implicit def summonObjectAndCompanionUs_core_provenance_1966246864(
+  implicit def summonObjectAndCompanionUs_core_provenance1094315764(
       o: Us_core_provenance): ObjectAndCompanion[Us_core_provenance, Us_core_provenance.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Provenance
   override type ParentType   = Provenance
   override val baseType: CompanionFor[ResourceType] = Provenance
   override val parentType: CompanionFor[ParentType] = Provenance
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance")
-  type OccurredChoice = Choice[UnionFHIRDateTimeOrPeriod]
+  type OccurredChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/us/core/StructureDefinition/us-core-provenance"))),
@@ -101,7 +101,7 @@ object Us_core_provenance extends CompanionFor[Us_core_provenance] {
   val signature: FHIRComponentFieldMeta[LitSeq[Signature]] =
     FHIRComponentFieldMeta("signature", lTagOf[LitSeq[Signature]], false, lTagOf[Signature])
   val occurred: FHIRComponentFieldMeta[Option[Us_core_provenance.OccurredChoice]] =
-    FHIRComponentFieldMeta("occurred", lTagOf[Option[Us_core_provenance.OccurredChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
+    FHIRComponentFieldMeta("occurred", lTagOf[Option[Us_core_provenance.OccurredChoice]], true, lTagOf[UnionDateTimeOrPeriod])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -211,7 +211,7 @@ object Us_core_provenance extends CompanionFor[Us_core_provenance] {
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Signature]]("signature", Some(LitSeq.empty)),
-          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("occurred"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriod]("occurred"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[NonEmptyLitSeq[Provenance.Agent]]("agent", None),

@@ -53,32 +53,32 @@ public interface Claim_SupportingInfoBuilder {
     return new Impl(sequence, category.build());
   }
 
-  public static ChoiceSupportingInfo_Value value(Attachment a) {
-    return new ChoiceSupportingInfo_Value(a);
+  public static Choice_0861648458 value(Attachment a) {
+    return new Choice_0861648458(a);
   }
 
-  public static ChoiceSupportingInfo_Value value(Boolean b) {
-    return new ChoiceSupportingInfo_Value(b);
+  public static Choice_0861648458 value(Boolean b) {
+    return new Choice_0861648458(b);
   }
 
-  public static ChoiceSupportingInfo_Value value(Quantity q) {
-    return new ChoiceSupportingInfo_Value(q);
+  public static Choice_0861648458 value(Quantity q) {
+    return new Choice_0861648458(q);
   }
 
-  public static ChoiceSupportingInfo_Value value(Reference r) {
-    return new ChoiceSupportingInfo_Value(r);
+  public static Choice_0861648458 value(Reference r) {
+    return new Choice_0861648458(r);
   }
 
-  public static ChoiceSupportingInfo_Value value(String s) {
-    return new ChoiceSupportingInfo_Value(s);
+  public static Choice_0861648458 value(String s) {
+    return new Choice_0861648458(s);
   }
 
-  public static ChoiceFHIRDateOrPeriod timing(FHIRDate f) {
-    return new ChoiceFHIRDateOrPeriod(f);
+  public static ChoiceDateOrPeriod timing(FHIRDate f) {
+    return new ChoiceDateOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateOrPeriod timing(Period p) {
-    return new ChoiceFHIRDateOrPeriod(p);
+  public static ChoiceDateOrPeriod timing(Period p) {
+    return new ChoiceDateOrPeriod(p);
   }
 
   public class Impl implements Claim_SupportingInfoBuilder {
@@ -87,9 +87,9 @@ public interface Claim_SupportingInfoBuilder {
     private Optional<CodeableConcept> reason = Optional.empty();
     private Integer sequence;
     private CodeableConcept category;
-    private Optional<ChoiceSupportingInfo_Value> value = Optional.empty();
+    private Optional<Choice_0861648458> value = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<ChoiceFHIRDateOrPeriod> timing = Optional.empty();
+    private Optional<ChoiceDateOrPeriod> timing = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -136,7 +136,7 @@ public interface Claim_SupportingInfoBuilder {
      *     Reference, String. To pass the value in, wrap with one of the
      *     Claim_SupportingInfoBuilder.value static methods
      */
-    public Claim_SupportingInfoBuilder.Impl withValue(@NonNull ChoiceSupportingInfo_Value value) {
+    public Claim_SupportingInfoBuilder.Impl withValue(@NonNull Choice_0861648458 value) {
       this.value = Optional.of(value);
       return this;
     }
@@ -172,7 +172,7 @@ public interface Claim_SupportingInfoBuilder {
      * @param timing Field is a 'choice' field. Type should be one of FHIRDate, Period. To pass the
      *     value in, wrap with one of the Claim_SupportingInfoBuilder.timing static methods
      */
-    public Claim_SupportingInfoBuilder.Impl withTiming(@NonNull ChoiceFHIRDateOrPeriod timing) {
+    public Claim_SupportingInfoBuilder.Impl withTiming(@NonNull ChoiceDateOrPeriod timing) {
       this.timing = Optional.of(timing);
       return this;
     }

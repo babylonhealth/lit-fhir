@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Allergyintolerance_certainty extends CompanionFor[Allergyintolerance_certainty] {
-  implicit def summonObjectAndCompanionAllergyintolerance_certainty1049333426(
+  implicit def summonObjectAndCompanionAllergyintolerance_certainty983373431(
       o: Allergyintolerance_certainty): ObjectAndCompanion[Allergyintolerance_certainty, Allergyintolerance_certainty.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

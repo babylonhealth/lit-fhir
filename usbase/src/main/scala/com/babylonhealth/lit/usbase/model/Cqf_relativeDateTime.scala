@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_relativeDateTime extends CompanionFor[Cqf_relativeDateTime] {
-  implicit def summonObjectAndCompanionCqf_relativeDateTime1075936037(
+  implicit def summonObjectAndCompanionCqf_relativeDateTime_816845487(
       o: Cqf_relativeDateTime): ObjectAndCompanion[Cqf_relativeDateTime, Cqf_relativeDateTime.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_conceptOrder extends CompanionFor[Valueset_conceptOrder] {
-  implicit def summonObjectAndCompanionValueset_conceptOrder_1751395098(
+  implicit def summonObjectAndCompanionValueset_conceptOrder1075785741(
       o: Valueset_conceptOrder): ObjectAndCompanion[Valueset_conceptOrder, Valueset_conceptOrder.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

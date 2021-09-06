@@ -53,20 +53,20 @@ public interface FamilyMemberHistory_ConditionBuilder {
     return new Impl(code.build());
   }
 
-  public static ChoiceCondition_Onset onset(Age a) {
-    return new ChoiceCondition_Onset(a);
+  public static Choice00228735254 onset(Age a) {
+    return new Choice00228735254(a);
   }
 
-  public static ChoiceCondition_Onset onset(Period p) {
-    return new ChoiceCondition_Onset(p);
+  public static Choice00228735254 onset(Period p) {
+    return new Choice00228735254(p);
   }
 
-  public static ChoiceCondition_Onset onset(Range r) {
-    return new ChoiceCondition_Onset(r);
+  public static Choice00228735254 onset(Range r) {
+    return new Choice00228735254(r);
   }
 
-  public static ChoiceCondition_Onset onset(String s) {
-    return new ChoiceCondition_Onset(s);
+  public static Choice00228735254 onset(String s) {
+    return new Choice00228735254(s);
   }
 
   public class Impl implements FamilyMemberHistory_ConditionBuilder {
@@ -74,7 +74,7 @@ public interface FamilyMemberHistory_ConditionBuilder {
     private CodeableConcept code;
     private Collection<Annotation> note = Collections.emptyList();
     private Optional<CodeableConcept> outcome = Optional.empty();
-    private Optional<ChoiceCondition_Onset> onset = Optional.empty();
+    private Optional<Choice00228735254> onset = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<Boolean> contributedToDeath = Optional.empty();
@@ -136,8 +136,7 @@ public interface FamilyMemberHistory_ConditionBuilder {
      *     pass the value in, wrap with one of the FamilyMemberHistory_ConditionBuilder.onset static
      *     methods
      */
-    public FamilyMemberHistory_ConditionBuilder.Impl withOnset(
-        @NonNull ChoiceCondition_Onset onset) {
+    public FamilyMemberHistory_ConditionBuilder.Impl withOnset(@NonNull Choice00228735254 onset) {
       this.onset = Optional.of(onset);
       return this;
     }

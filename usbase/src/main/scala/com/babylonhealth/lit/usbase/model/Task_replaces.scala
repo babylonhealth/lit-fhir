@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Task_replaces extends CompanionFor[Task_replaces] {
-  implicit def summonObjectAndCompanionTask_replaces_1860417677(
+  implicit def summonObjectAndCompanionTask_replaces_1314980398(
       o: Task_replaces): ObjectAndCompanion[Task_replaces, Task_replaces.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

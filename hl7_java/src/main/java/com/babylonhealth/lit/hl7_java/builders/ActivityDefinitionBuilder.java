@@ -57,28 +57,28 @@ public interface ActivityDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
-  public static ChoiceAction_Timing timing(Age a) {
-    return new ChoiceAction_Timing(a);
+  public static Choice_0075792257 timing(Age a) {
+    return new Choice_0075792257(a);
   }
 
-  public static ChoiceAction_Timing timing(Duration d) {
-    return new ChoiceAction_Timing(d);
+  public static Choice_0075792257 timing(Duration d) {
+    return new Choice_0075792257(d);
   }
 
-  public static ChoiceAction_Timing timing(FHIRDateTime f) {
-    return new ChoiceAction_Timing(f);
+  public static Choice_0075792257 timing(FHIRDateTime f) {
+    return new Choice_0075792257(f);
   }
 
-  public static ChoiceAction_Timing timing(Period p) {
-    return new ChoiceAction_Timing(p);
+  public static Choice_0075792257 timing(Period p) {
+    return new Choice_0075792257(p);
   }
 
-  public static ChoiceAction_Timing timing(Range r) {
-    return new ChoiceAction_Timing(r);
+  public static Choice_0075792257 timing(Range r) {
+    return new Choice_0075792257(r);
   }
 
-  public static ChoiceAction_Timing timing(Timing t) {
-    return new ChoiceAction_Timing(t);
+  public static Choice_0075792257 timing(Timing t) {
+    return new Choice_0075792257(t);
   }
 
   public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
@@ -131,7 +131,7 @@ public interface ActivityDefinitionBuilder extends DomainResourceBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> publisher = Optional.empty();
     private Optional<String> copyright = Optional.empty();
-    private Optional<ChoiceAction_Timing> timing = Optional.empty();
+    private Optional<Choice_0075792257> timing = Optional.empty();
     private Optional<String> transform = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
@@ -614,7 +614,7 @@ public interface ActivityDefinitionBuilder extends DomainResourceBuilder {
      *     Period, Range, Timing. To pass the value in, wrap with one of the
      *     ActivityDefinitionBuilder.timing static methods
      */
-    public ActivityDefinitionBuilder.Impl withTiming(@NonNull ChoiceAction_Timing timing) {
+    public ActivityDefinitionBuilder.Impl withTiming(@NonNull Choice_0075792257 timing) {
       this.timing = Optional.of(timing);
       return this;
     }

@@ -24,14 +24,14 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object GuidanceResponse extends CompanionFor[GuidanceResponse] {
-  implicit def summonObjectAndCompanionGuidanceResponse2143279051(
+  implicit def summonObjectAndCompanionGuidanceResponse1390838190(
       o: GuidanceResponse): ObjectAndCompanion[GuidanceResponse, GuidanceResponse.type] = ObjectAndCompanion(o, this)
   override type ResourceType = GuidanceResponse
   override type ParentType   = GuidanceResponse
   override val baseType: CompanionFor[ResourceType] = GuidanceResponse
   override val parentType: CompanionFor[ParentType] = GuidanceResponse
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/GuidanceResponse")
-  type ModuleChoice = Choice[UnionCanonicalOrCodeableConceptOrUriStr]
+  type ModuleChoice = Choice[UnionCanonicalOrCodeableConceptOrUri]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -104,7 +104,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val module: FHIRComponentFieldMeta[GuidanceResponse.ModuleChoice] =
-    FHIRComponentFieldMeta("module", lTagOf[GuidanceResponse.ModuleChoice], true, lTagOf[UnionCanonicalOrCodeableConceptOrUriStr])
+    FHIRComponentFieldMeta("module", lTagOf[GuidanceResponse.ModuleChoice], true, lTagOf[UnionCanonicalOrCodeableConceptOrUri])
   val encounter: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("encounter", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val performer: FHIRComponentFieldMeta[Option[Reference]] =
@@ -224,7 +224,7 @@ object GuidanceResponse extends CompanionFor[GuidanceResponse] {
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          cursor.decodeRef[UnionCanonicalOrCodeableConceptOrUriStr]("module"),
+          cursor.decodeRef[UnionCanonicalOrCodeableConceptOrUri]("module"),
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[Option[Reference]]("performer", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),

@@ -53,17 +53,17 @@ public interface BiologicallyDerivedProduct_ManipulationBuilder {
     return new Impl();
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod time(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriod(f);
+  public static ChoiceDateTimeOrPeriod time(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod time(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriod(p);
+  public static ChoiceDateTimeOrPeriod time(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements BiologicallyDerivedProduct_ManipulationBuilder {
     private Optional<String> id = Optional.empty();
-    private Optional<ChoiceFHIRDateTimeOrPeriod> time = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriod> time = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -85,7 +85,7 @@ public interface BiologicallyDerivedProduct_ManipulationBuilder {
      *     static methods
      */
     public BiologicallyDerivedProduct_ManipulationBuilder.Impl withTime(
-        @NonNull ChoiceFHIRDateTimeOrPeriod time) {
+        @NonNull ChoiceDateTimeOrPeriod time) {
       this.time = Optional.of(time);
       return this;
     }

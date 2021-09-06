@@ -31,7 +31,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ActivityDefinition extends CompanionFor[ActivityDefinition] {
-  implicit def summonObjectAndCompanionActivityDefinition139805725(
+  implicit def summonObjectAndCompanionActivityDefinition1259342455(
       o: ActivityDefinition): ObjectAndCompanion[ActivityDefinition, ActivityDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ActivityDefinition
   override type ParentType   = ActivityDefinition
@@ -39,7 +39,7 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
   override val parentType: CompanionFor[ParentType] = ActivityDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ActivityDefinition")
   object DynamicValue extends CompanionFor[DynamicValue] {
-    implicit def summonObjectAndCompanionDynamicValue_1565170651(
+    implicit def summonObjectAndCompanionDynamicValue1702556612(
         o: DynamicValue): ObjectAndCompanion[DynamicValue, DynamicValue.type] = ObjectAndCompanion(o, this)
     override type ResourceType = DynamicValue
     override type ParentType   = DynamicValue
@@ -105,7 +105,7 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Participant extends CompanionFor[Participant] {
-    implicit def summonObjectAndCompanionParticipant1721954748(
+    implicit def summonObjectAndCompanionParticipant1702556612(
         o: Participant): ObjectAndCompanion[Participant, Participant.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Participant
     override type ParentType   = Participant
@@ -171,7 +171,7 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type TimingChoice  = Choice[UnionAction_Timing]
+  type TimingChoice  = Choice[Union_0075792257]
   type SubjectChoice = Choice[UnionCodeableConceptOrReference]
   type ProductChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
@@ -354,7 +354,7 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
   val copyright: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("copyright", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val timing: FHIRComponentFieldMeta[Option[ActivityDefinition.TimingChoice]] =
-    FHIRComponentFieldMeta("timing", lTagOf[Option[ActivityDefinition.TimingChoice]], true, lTagOf[UnionAction_Timing])
+    FHIRComponentFieldMeta("timing", lTagOf[Option[ActivityDefinition.TimingChoice]], true, lTagOf[Union_0075792257])
   val transform: FHIRComponentFieldMeta[Option[Canonical]] =
     FHIRComponentFieldMeta("transform", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
@@ -644,7 +644,7 @@ object ActivityDefinition extends CompanionFor[ActivityDefinition] {
         cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
         cursor.decodeAs[Option[String]]("publisher", Some(None)),
         cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
-        cursor.decodeOptRef[UnionAction_Timing]("timing"),
+        cursor.decodeOptRef[Union_0075792257]("timing"),
         cursor.decodeAs[Option[Canonical]]("transform", Some(None)),
         cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
         cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),

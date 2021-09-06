@@ -54,16 +54,16 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
     return new Impl();
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(f);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriodOrTiming(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(p);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Period p) {
+    return new ChoiceDateTimeOrPeriodOrTiming(p);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming occurrence(Timing t) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(t);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Timing t) {
+    return new ChoiceDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements SupplyDeliveryBuilder {
@@ -83,7 +83,7 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<Reference> destination = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<ChoiceFHIRDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<SupplyDelivery.SuppliedItem> suppliedItem = Optional.empty();
 
@@ -327,7 +327,7 @@ public interface SupplyDeliveryBuilder extends DomainResourceBuilder {
      *     of the SupplyDeliveryBuilder.occurrence static methods
      */
     public SupplyDeliveryBuilder.Impl withOccurrence(
-        @NonNull ChoiceFHIRDateTimeOrPeriodOrTiming occurrence) {
+        @NonNull ChoiceDateTimeOrPeriodOrTiming occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

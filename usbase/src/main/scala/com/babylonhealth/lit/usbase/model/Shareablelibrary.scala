@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablelibrary extends CompanionFor[Shareablelibrary] {
-  implicit def summonObjectAndCompanionShareablelibrary469518197(
+  implicit def summonObjectAndCompanionShareablelibrary1123862199(
       o: Shareablelibrary): ObjectAndCompanion[Shareablelibrary, Shareablelibrary.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Library
   override type ParentType   = Library

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Event_eventHistory extends CompanionFor[Event_eventHistory] {
-  implicit def summonObjectAndCompanionEvent_eventHistory1736503752(
+  implicit def summonObjectAndCompanionEvent_eventHistory569087362(
       o: Event_eventHistory): ObjectAndCompanion[Event_eventHistory, Event_eventHistory.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

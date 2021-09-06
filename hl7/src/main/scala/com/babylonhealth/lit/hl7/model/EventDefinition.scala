@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object EventDefinition extends CompanionFor[EventDefinition] {
-  implicit def summonObjectAndCompanionEventDefinition_893456405(
+  implicit def summonObjectAndCompanionEventDefinition_1460567304(
       o: EventDefinition): ObjectAndCompanion[EventDefinition, EventDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = EventDefinition
   override type ParentType   = EventDefinition

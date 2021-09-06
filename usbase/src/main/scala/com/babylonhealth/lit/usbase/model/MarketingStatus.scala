@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MarketingStatus extends CompanionFor[MarketingStatus] {
-  implicit def summonObjectAndCompanionMarketingStatus1012865389(
+  implicit def summonObjectAndCompanionMarketingStatus56281379(
       o: MarketingStatus): ObjectAndCompanion[MarketingStatus, MarketingStatus.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MarketingStatus
   override type ParentType   = MarketingStatus

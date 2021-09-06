@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Patient extends CompanionFor[Patient] {
-  implicit def summonObjectAndCompanionPatient_1573728148(o: Patient): ObjectAndCompanion[Patient, Patient.type] =
+  implicit def summonObjectAndCompanionPatient_1441890960(o: Patient): ObjectAndCompanion[Patient, Patient.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Patient
   override type ParentType   = Patient
@@ -32,7 +32,7 @@ object Patient extends CompanionFor[Patient] {
   override val parentType: CompanionFor[ParentType] = Patient
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Patient")
   object Communication extends CompanionFor[Communication] {
-    implicit def summonObjectAndCompanionCommunication_1663907715(
+    implicit def summonObjectAndCompanionCommunication1746470346(
         o: Communication): ObjectAndCompanion[Communication, Communication.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Communication
     override type ParentType   = Communication
@@ -99,7 +99,7 @@ object Patient extends CompanionFor[Patient] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Contact extends CompanionFor[Contact] {
-    implicit def summonObjectAndCompanionContact_554442437(o: Contact): ObjectAndCompanion[Contact, Contact.type] =
+    implicit def summonObjectAndCompanionContact1746470346(o: Contact): ObjectAndCompanion[Contact, Contact.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Contact
     override type ParentType   = Contact
@@ -213,7 +213,7 @@ object Patient extends CompanionFor[Patient] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Link extends CompanionFor[Link] {
-    implicit def summonObjectAndCompanionLink1963560012(o: Link): ObjectAndCompanion[Link, Link.type] =
+    implicit def summonObjectAndCompanionLink1746470346(o: Link): ObjectAndCompanion[Link, Link.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Link
     override type ParentType   = Link
@@ -278,8 +278,8 @@ object Patient extends CompanionFor[Patient] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type DeceasedChoice      = Choice[UnionBooleanOrFHIRDateTime]
-  type MultipleBirthChoice = Choice[UnionBooleanOrInt]
+  type DeceasedChoice      = Choice[UnionBooleanOrDateTime]
+  type MultipleBirthChoice = Choice[UnionBooleanOrInteger]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -362,13 +362,13 @@ object Patient extends CompanionFor[Patient] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val deceased: FHIRComponentFieldMeta[Option[Patient.DeceasedChoice]] =
-    FHIRComponentFieldMeta("deceased", lTagOf[Option[Patient.DeceasedChoice]], true, lTagOf[UnionBooleanOrFHIRDateTime])
+    FHIRComponentFieldMeta("deceased", lTagOf[Option[Patient.DeceasedChoice]], true, lTagOf[UnionBooleanOrDateTime])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val maritalStatus: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("maritalStatus", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val multipleBirth: FHIRComponentFieldMeta[Option[Patient.MultipleBirthChoice]] =
-    FHIRComponentFieldMeta("multipleBirth", lTagOf[Option[Patient.MultipleBirthChoice]], true, lTagOf[UnionBooleanOrInt])
+    FHIRComponentFieldMeta("multipleBirth", lTagOf[Option[Patient.MultipleBirthChoice]], true, lTagOf[UnionBooleanOrInteger])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val generalPractitioner: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -506,10 +506,10 @@ object Patient extends CompanionFor[Patient] {
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[FHIRDate]]("birthDate", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[UnionBooleanOrFHIRDateTime]("deceased"),
+          cursor.decodeOptRef[UnionBooleanOrDateTime]("deceased"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("maritalStatus", Some(None)),
-          cursor.decodeOptRef[UnionBooleanOrInt]("multipleBirth"),
+          cursor.decodeOptRef[UnionBooleanOrInteger]("multipleBirth"),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("generalPractitioner", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("managingOrganization", Some(None)),

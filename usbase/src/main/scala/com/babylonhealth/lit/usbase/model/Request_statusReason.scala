@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Request_statusReason extends CompanionFor[Request_statusReason] {
-  implicit def summonObjectAndCompanionRequest_statusReason_1412951788(
+  implicit def summonObjectAndCompanionRequest_statusReason1445716649(
       o: Request_statusReason): ObjectAndCompanion[Request_statusReason, Request_statusReason.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

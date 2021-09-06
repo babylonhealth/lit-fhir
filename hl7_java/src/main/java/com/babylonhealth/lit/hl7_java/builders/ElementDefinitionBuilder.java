@@ -453,76 +453,76 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
     return ChoiceAll.ChoiceAllUrlStr(s);
   }
 
-  public static ChoiceElementDefinition_MinValue minValue(BigDecimal b) {
-    return new ChoiceElementDefinition_MinValue(b);
+  public static Choice_0603252906 minValue(BigDecimal b) {
+    return new Choice_0603252906(b);
   }
 
-  public static ChoiceElementDefinition_MinValue minValue(FHIRDate f) {
-    return new ChoiceElementDefinition_MinValue(f);
+  public static Choice_0603252906 minValue(FHIRDate f) {
+    return new Choice_0603252906(f);
   }
 
-  public static ChoiceElementDefinition_MinValue minValue(FHIRDateTime f) {
-    return new ChoiceElementDefinition_MinValue(f);
+  public static Choice_0603252906 minValue(FHIRDateTime f) {
+    return new Choice_0603252906(f);
   }
 
-  public static ChoiceElementDefinition_MinValue minValue(LocalTime l) {
-    return new ChoiceElementDefinition_MinValue(l);
+  public static Choice_0603252906 minValue(LocalTime l) {
+    return new Choice_0603252906(l);
   }
 
-  public static ChoiceElementDefinition_MinValue minValue(Quantity q) {
-    return new ChoiceElementDefinition_MinValue(q);
+  public static Choice_0603252906 minValue(Quantity q) {
+    return new Choice_0603252906(q);
   }
 
-  public static ChoiceElementDefinition_MinValue minValue(ZonedDateTime z) {
-    return new ChoiceElementDefinition_MinValue(z);
+  public static Choice_0603252906 minValue(ZonedDateTime z) {
+    return new Choice_0603252906(z);
   }
 
-  public static ChoiceElementDefinition_MinValue minValueInteger(Integer i) {
-    return ChoiceElementDefinition_MinValue.ChoiceElementDefinition_MinValueInt(i);
+  public static Choice_0603252906 minValueInteger(Integer i) {
+    return Choice_0603252906.Choice_0603252906Int(i);
   }
 
-  public static ChoiceElementDefinition_MinValue minValuePositiveInt(Integer i) {
-    return ChoiceElementDefinition_MinValue.ChoiceElementDefinition_MinValuePositiveInt(i);
+  public static Choice_0603252906 minValuePositiveInt(Integer i) {
+    return Choice_0603252906.Choice_0603252906PositiveInt(i);
   }
 
-  public static ChoiceElementDefinition_MinValue minValueUnsignedInt(Integer i) {
-    return ChoiceElementDefinition_MinValue.ChoiceElementDefinition_MinValueUnsignedInt(i);
+  public static Choice_0603252906 minValueUnsignedInt(Integer i) {
+    return Choice_0603252906.Choice_0603252906UnsignedInt(i);
   }
 
-  public static ChoiceElementDefinition_MinValue maxValue(BigDecimal b) {
-    return new ChoiceElementDefinition_MinValue(b);
+  public static Choice_0603252906 maxValue(BigDecimal b) {
+    return new Choice_0603252906(b);
   }
 
-  public static ChoiceElementDefinition_MinValue maxValue(FHIRDate f) {
-    return new ChoiceElementDefinition_MinValue(f);
+  public static Choice_0603252906 maxValue(FHIRDate f) {
+    return new Choice_0603252906(f);
   }
 
-  public static ChoiceElementDefinition_MinValue maxValue(FHIRDateTime f) {
-    return new ChoiceElementDefinition_MinValue(f);
+  public static Choice_0603252906 maxValue(FHIRDateTime f) {
+    return new Choice_0603252906(f);
   }
 
-  public static ChoiceElementDefinition_MinValue maxValue(LocalTime l) {
-    return new ChoiceElementDefinition_MinValue(l);
+  public static Choice_0603252906 maxValue(LocalTime l) {
+    return new Choice_0603252906(l);
   }
 
-  public static ChoiceElementDefinition_MinValue maxValue(Quantity q) {
-    return new ChoiceElementDefinition_MinValue(q);
+  public static Choice_0603252906 maxValue(Quantity q) {
+    return new Choice_0603252906(q);
   }
 
-  public static ChoiceElementDefinition_MinValue maxValue(ZonedDateTime z) {
-    return new ChoiceElementDefinition_MinValue(z);
+  public static Choice_0603252906 maxValue(ZonedDateTime z) {
+    return new Choice_0603252906(z);
   }
 
-  public static ChoiceElementDefinition_MinValue maxValueInteger(Integer i) {
-    return ChoiceElementDefinition_MinValue.ChoiceElementDefinition_MinValueInt(i);
+  public static Choice_0603252906 maxValueInteger(Integer i) {
+    return Choice_0603252906.Choice_0603252906Int(i);
   }
 
-  public static ChoiceElementDefinition_MinValue maxValuePositiveInt(Integer i) {
-    return ChoiceElementDefinition_MinValue.ChoiceElementDefinition_MinValuePositiveInt(i);
+  public static Choice_0603252906 maxValuePositiveInt(Integer i) {
+    return Choice_0603252906.Choice_0603252906PositiveInt(i);
   }
 
-  public static ChoiceElementDefinition_MinValue maxValueUnsignedInt(Integer i) {
-    return ChoiceElementDefinition_MinValue.ChoiceElementDefinition_MinValueUnsignedInt(i);
+  public static Choice_0603252906 maxValueUnsignedInt(Integer i) {
+    return Choice_0603252906.Choice_0603252906UnsignedInt(i);
   }
 
   public static ChoiceAll defaultValue(Address a) {
@@ -744,8 +744,8 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
     private Optional<String> definition = Optional.empty();
     private Optional<ChoiceAll> pattern = Optional.empty();
     private Optional<Boolean> isModifier = Optional.empty();
-    private Optional<ChoiceElementDefinition_MinValue> minValue = Optional.empty();
-    private Optional<ChoiceElementDefinition_MinValue> maxValue = Optional.empty();
+    private Optional<Choice_0603252906> minValue = Optional.empty();
+    private Optional<Choice_0603252906> maxValue = Optional.empty();
     private Optional<Boolean> mustSupport = Optional.empty();
     private Optional<String> requirements = Optional.empty();
     private Optional<String> orderMeaning = Optional.empty();
@@ -992,8 +992,7 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      *     Integer, LocalTime, Quantity, ZonedDateTime. To pass the value in, wrap with one of the
      *     ElementDefinitionBuilder.minValue static methods
      */
-    public ElementDefinitionBuilder.Impl withMinValue(
-        @NonNull ChoiceElementDefinition_MinValue minValue) {
+    public ElementDefinitionBuilder.Impl withMinValue(@NonNull Choice_0603252906 minValue) {
       this.minValue = Optional.of(minValue);
       return this;
     }
@@ -1004,8 +1003,7 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      *     Integer, LocalTime, Quantity, ZonedDateTime. To pass the value in, wrap with one of the
      *     ElementDefinitionBuilder.maxValue static methods
      */
-    public ElementDefinitionBuilder.Impl withMaxValue(
-        @NonNull ChoiceElementDefinition_MinValue maxValue) {
+    public ElementDefinitionBuilder.Impl withMaxValue(@NonNull Choice_0603252906 maxValue) {
       this.maxValue = Optional.of(maxValue);
       return this;
     }

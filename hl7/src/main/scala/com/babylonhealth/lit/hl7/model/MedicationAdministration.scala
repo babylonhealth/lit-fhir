@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationAdministration extends CompanionFor[MedicationAdministration] {
-  implicit def summonObjectAndCompanionMedicationAdministration_941000860(
+  implicit def summonObjectAndCompanionMedicationAdministration1237037570(
       o: MedicationAdministration): ObjectAndCompanion[MedicationAdministration, MedicationAdministration.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = MedicationAdministration
@@ -33,7 +33,7 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
   override val parentType: CompanionFor[ParentType] = MedicationAdministration
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicationAdministration")
   object Performer extends CompanionFor[Performer] {
-    implicit def summonObjectAndCompanionPerformer_1388735003(o: Performer): ObjectAndCompanion[Performer, Performer.type] =
+    implicit def summonObjectAndCompanionPerformer_685159846(o: Performer): ObjectAndCompanion[Performer, Performer.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Performer
     override type ParentType   = Performer
@@ -100,7 +100,7 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Dosage extends CompanionFor[Dosage] {
-    implicit def summonObjectAndCompanionDosage_500320078(o: Dosage): ObjectAndCompanion[Dosage, Dosage.type] =
+    implicit def summonObjectAndCompanionDosage_685159846(o: Dosage): ObjectAndCompanion[Dosage, Dosage.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Dosage
     override type ParentType   = Dosage
@@ -195,7 +195,7 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type EffectiveChoice  = Choice[UnionFHIRDateTimeOrPeriod]
+  type EffectiveChoice  = Choice[UnionDateTimeOrPeriod]
   type MedicationChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
@@ -293,7 +293,7 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
   val statusReason: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val effective: FHIRComponentFieldMeta[MedicationAdministration.EffectiveChoice] =
-    FHIRComponentFieldMeta("effective", lTagOf[MedicationAdministration.EffectiveChoice], true, lTagOf[UnionFHIRDateTimeOrPeriod])
+    FHIRComponentFieldMeta("effective", lTagOf[MedicationAdministration.EffectiveChoice], true, lTagOf[UnionDateTimeOrPeriod])
   val eventHistory: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("eventHistory", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -446,7 +446,7 @@ object MedicationAdministration extends CompanionFor[MedicationAdministration] {
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[UriStr]]("instantiates", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("statusReason", Some(LitSeq.empty)),
-          cursor.decodeRef[UnionFHIRDateTimeOrPeriod]("effective"),
+          cursor.decodeRef[UnionDateTimeOrPeriod]("effective"),
           cursor.decodeAs[LitSeq[Reference]]("eventHistory", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeRef[UnionCodeableConceptOrReference]("medication"),

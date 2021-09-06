@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Nutritionorder_adaptiveFeedingDevice extends CompanionFor[Nutritionorder_adaptiveFeedingDevice] {
-  implicit def summonObjectAndCompanionNutritionorder_adaptiveFeedingDevice_297528352(
+  implicit def summonObjectAndCompanionNutritionorder_adaptiveFeedingDevice2018477986(
       o: Nutritionorder_adaptiveFeedingDevice): ObjectAndCompanion[Nutritionorder_adaptiveFeedingDevice, Nutritionorder_adaptiveFeedingDevice.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

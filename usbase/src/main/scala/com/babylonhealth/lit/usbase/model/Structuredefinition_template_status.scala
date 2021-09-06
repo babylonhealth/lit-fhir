@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_template_status extends CompanionFor[Structuredefinition_template_status] {
-  implicit def summonObjectAndCompanionStructuredefinition_template_status429697847(
+  implicit def summonObjectAndCompanionStructuredefinition_template_status131399657(
       o: Structuredefinition_template_status): ObjectAndCompanion[Structuredefinition_template_status, Structuredefinition_template_status.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

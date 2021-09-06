@@ -21,14 +21,14 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object UsageContext extends CompanionFor[UsageContext] {
-  implicit def summonObjectAndCompanionUsageContext2009442691(
+  implicit def summonObjectAndCompanionUsageContext_348708541(
       o: UsageContext): ObjectAndCompanion[UsageContext, UsageContext.type] = ObjectAndCompanion(o, this)
   override type ResourceType = UsageContext
   override type ParentType   = UsageContext
   override val baseType: CompanionFor[ResourceType] = UsageContext
   override val parentType: CompanionFor[ParentType] = UsageContext
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/UsageContext")
-  type ValueChoice = Choice[UnionUsageContext_Value]
+  type ValueChoice = Choice[Union00624997139]
   def apply(
       id: Option[String] = None,
       code: Coding,
@@ -47,7 +47,7 @@ object UsageContext extends CompanionFor[UsageContext] {
   val code: FHIRComponentFieldMeta[Coding] =
     FHIRComponentFieldMeta("code", lTagOf[Coding], false, lTagOf[Coding])
   val value: FHIRComponentFieldMeta[UsageContext.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[UsageContext.ValueChoice], true, lTagOf[UnionUsageContext_Value])
+    FHIRComponentFieldMeta("value", lTagOf[UsageContext.ValueChoice], true, lTagOf[Union00624997139])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, code, value, extension)
@@ -71,7 +71,7 @@ object UsageContext extends CompanionFor[UsageContext] {
         new UsageContext(
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Coding]("code", None),
-          cursor.decodeRef[UnionUsageContext_Value]("value"),
+          cursor.decodeRef[Union00624997139]("value"),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           decodeAttributes(cursor)
         )

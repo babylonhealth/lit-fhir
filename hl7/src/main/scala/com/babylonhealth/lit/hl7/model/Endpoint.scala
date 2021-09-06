@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Endpoint extends CompanionFor[Endpoint] {
-  implicit def summonObjectAndCompanionEndpoint1614158857(o: Endpoint): ObjectAndCompanion[Endpoint, Endpoint.type] =
+  implicit def summonObjectAndCompanionEndpoint_1243686774(o: Endpoint): ObjectAndCompanion[Endpoint, Endpoint.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Endpoint
   override type ParentType   = Endpoint

@@ -58,12 +58,12 @@ public interface ClaimResponse_AddItemBuilder {
         productOrService.build());
   }
 
-  public static ChoiceFHIRDateOrPeriod serviced(FHIRDate f) {
-    return new ChoiceFHIRDateOrPeriod(f);
+  public static ChoiceDateOrPeriod serviced(FHIRDate f) {
+    return new ChoiceDateOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateOrPeriod serviced(Period p) {
-    return new ChoiceFHIRDateOrPeriod(p);
+  public static ChoiceDateOrPeriod serviced(Period p) {
+    return new ChoiceDateOrPeriod(p);
   }
 
   public static ChoiceAddressOrCodeableConceptOrReference location(Address a) {
@@ -91,7 +91,7 @@ public interface ClaimResponse_AddItemBuilder {
     private Optional<Money> unitPrice = Optional.empty();
     private Collection<Integer> noteNumber = Collections.emptyList();
     private Collection<CodeableConcept> programCode = Collections.emptyList();
-    private Optional<ChoiceFHIRDateOrPeriod> serviced = Optional.empty();
+    private Optional<ChoiceDateOrPeriod> serviced = Optional.empty();
     private Optional<ChoiceAddressOrCodeableConceptOrReference> location = Optional.empty();
     private Collection<Integer> itemSequence = Collections.emptyList();
     private Collection<ClaimResponse$Item$Adjudication> adjudication;
@@ -279,8 +279,7 @@ public interface ClaimResponse_AddItemBuilder {
      * @param serviced Field is a 'choice' field. Type should be one of FHIRDate, Period. To pass
      *     the value in, wrap with one of the ClaimResponse_AddItemBuilder.serviced static methods
      */
-    public ClaimResponse_AddItemBuilder.Impl withServiced(
-        @NonNull ChoiceFHIRDateOrPeriod serviced) {
+    public ClaimResponse_AddItemBuilder.Impl withServiced(@NonNull ChoiceDateOrPeriod serviced) {
       this.serviced = Optional.of(serviced);
       return this;
     }

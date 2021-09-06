@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cdshooksrequestgroup extends CompanionFor[Cdshooksrequestgroup] {
-  implicit def summonObjectAndCompanionCdshooksrequestgroup1812111932(
+  implicit def summonObjectAndCompanionCdshooksrequestgroup_374385053(
       o: Cdshooksrequestgroup): ObjectAndCompanion[Cdshooksrequestgroup, Cdshooksrequestgroup.type] = ObjectAndCompanion(o, this)
   override type ResourceType = RequestGroup
   override type ParentType   = RequestGroup

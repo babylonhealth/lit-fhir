@@ -10,126 +10,130 @@ import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
 
 object UnionAliases {
-  type UnionAction_Timing                       = Age \/ Duration \/ FHIRDateTime \/ Period \/ Range \/ Timing
+  type Union00228735254 = Age \/ Period \/ Range \/ String
+  type Union00304335386 =
+    BigDecimal \/ Boolean \/ Coding \/ FHIRDate \/ FHIRDateTime \/ Int \/ LocalTime \/ Quantity \/ Reference \/ String
+  type Union00515330545 = Age \/ Boolean \/ FHIRDate \/ Range \/ String
+  type Union00566743606 = BigDecimal \/ Boolean \/ Code \/ Coding \/ FHIRDateTime \/ Int \/ String
+  type Union00836574492 = Canonical \/ CodeableConcept \/ DataRequirement \/ Expression
+  type Union01138203188 = Quantity \/ Range \/ Ratio \/ String
+  type Union01239641171 =
+    Boolean \/ CodeableConcept \/ FHIRDateTime \/ Int \/ LocalTime \/ Period \/ Quantity \/ Range \/ Ratio \/ SampledData \/ String
+  type Union01434501542 = Canonical \/ CodeableConcept \/ DataRequirement \/ Expression \/ Reference \/ TriggerDefinition
+  type Union01491947217 = BigDecimal \/ Boolean \/ Id \/ Int \/ String
+  type Union01554328235 = Coding \/ FHIRDate \/ Int \/ LocalTime \/ Reference \/ String
+  type Union01946981731 = Age \/ FHIRDateTime \/ Period \/ Range \/ String
+  type Union02135982830 =
+    Attachment \/ BigDecimal \/ Boolean \/ Coding \/ FHIRDate \/ FHIRDateTime \/ Int \/ LocalTime \/ Quantity \/ Reference \/ String \/ UriStr
   type UnionAddressOrCodeableConceptOrReference = Address \/ CodeableConcept \/ Reference
   type UnionAddressOrReference                  = Address \/ Reference
   type UnionAgeOrRangeOrString                  = Age \/ Range \/ String
-  type UnionAllergyIntolerance_Onset            = Age \/ FHIRDateTime \/ Period \/ Range \/ String
-  type UnionAnswerOption_Value                  = Coding \/ FHIRDate \/ Int \/ LocalTime \/ Reference \/ String
-  type UnionAnswer_Value =
-    Attachment \/ BigDecimal \/ Boolean \/ Coding \/ FHIRDate \/ FHIRDateTime \/ Int \/ LocalTime \/ Quantity \/ Reference \/ String \/ UriStr
-  type UnionAttachmentOrReference              = Attachment \/ Reference
-  type UnionAttachmentOrReferenceOrString      = Attachment \/ Reference \/ String
-  type UnionBase64BinaryOrString               = Base64Binary \/ String
-  type UnionBigDecimalOrRange                  = BigDecimal \/ Range
-  type UnionBooleanOrCanonical                 = Boolean \/ Canonical
-  type UnionBooleanOrFHIRDateTime              = Boolean \/ FHIRDateTime
-  type UnionBooleanOrInt                       = Boolean \/ Int
-  type UnionBooleanOrReference                 = Boolean \/ Reference
-  type UnionCanonicalOrCodeableConceptOrUriStr = Canonical \/ CodeableConcept \/ UriStr
-  type UnionCanonicalOrUriStr                  = Canonical \/ UriStr
-  type UnionCharacteristic_Definition =
-    Canonical \/ CodeableConcept \/ DataRequirement \/ Expression \/ Reference \/ TriggerDefinition
-  type UnionCharacteristic_ParticipantEffective = Duration \/ FHIRDateTime \/ Period \/ Timing
-  type UnionCharacteristic_Value                = Boolean \/ CodeableConcept \/ Quantity \/ Range \/ Reference
+  type UnionAttachmentOrReference               = Attachment \/ Reference
+  type UnionAttachmentOrReferenceOrString       = Attachment \/ Reference \/ String
+  type UnionBase64BinaryOrString                = Base64Binary \/ String
+  type UnionBooleanOrCanonical                  = Boolean \/ Canonical
+  type UnionBooleanOrDateTime                   = Boolean \/ FHIRDateTime
+  type UnionBooleanOrInteger                    = Boolean \/ Int
+  type UnionBooleanOrReference                  = Boolean \/ Reference
+  type UnionCanonicalOrCodeableConceptOrUri     = Canonical \/ CodeableConcept \/ UriStr
+  type UnionCanonicalOrUri                      = Canonical \/ UriStr
+  type UnionCodeableConceptOrDate               = CodeableConcept \/ FHIRDate
   type UnionCodeableConceptOrDuration           = CodeableConcept \/ Duration
-  type UnionCodeableConceptOrFHIRDate           = CodeableConcept \/ FHIRDate
   type UnionCodeableConceptOrQuantity           = CodeableConcept \/ Quantity
   type UnionCodeableConceptOrQuantityOrRange    = CodeableConcept \/ Quantity \/ Range
-  type UnionCodingOrUriStr                      = Coding \/ UriStr
-  type UnionCondition_Onset                     = Age \/ Period \/ Range \/ String
-  type UnionDrugCharacteristic_Value            = Base64Binary \/ CodeableConcept \/ Quantity \/ String
-  type UnionDurationOrFHIRDate                  = Duration \/ FHIRDate
+  type UnionCodingOrUri                         = Coding \/ UriStr
+  type UnionDateOrPeriod                        = FHIRDate \/ Period
+  type UnionDateOrPeriodOrString                = FHIRDate \/ Period \/ String
+  type UnionDateTimeOrPeriod                    = FHIRDateTime \/ Period
+  type UnionDateTimeOrPeriodOrTiming            = FHIRDateTime \/ Period \/ Timing
+  type UnionDateTimeOrString                    = FHIRDateTime \/ String
+  type UnionDecimalOrRange                      = BigDecimal \/ Range
+  type UnionDurationOrDate                      = Duration \/ FHIRDate
   type UnionDurationOrRange                     = Duration \/ Range
-  type UnionElementDefinition_MinValue =
+  type UnionIdentifierOrReference               = Identifier \/ Reference
+  type UnionMoneyOrQuantity                     = Money \/ Quantity
+  type UnionMoneyOrStringOrUnsignedInt          = Money \/ String \/ UnsignedInt
+  type UnionMoneyOrUnsignedInt                  = Money \/ UnsignedInt
+  type UnionPeriodOrRange                       = Period \/ Range
+  type UnionPeriodOrStringOrTiming              = Period \/ String \/ Timing
+  type UnionPositiveIntOrString                 = PositiveInt \/ String
+  type UnionQuantityOrRangeOrString             = Quantity \/ Range \/ String
+  type UnionQuantityOrRatio                     = Quantity \/ Ratio
+  type UnionQuantityOrString                    = Quantity \/ String
+  type UnionReferenceOrUrl                      = Reference \/ UrlStr
+  type Union_0075792257                         = Age \/ Duration \/ FHIRDateTime \/ Period \/ Range \/ Timing
+  type Union_0536852827                         = Boolean \/ CodeableConcept \/ Quantity \/ Range
+  type Union_0603252906 =
     BigDecimal \/ FHIRDate \/ FHIRDateTime \/ Int \/ LocalTime \/ PositiveInt \/ Quantity \/ UnsignedInt \/ ZonedDateTime
-  type UnionEnableWhen_Answer =
-    BigDecimal \/ Boolean \/ Coding \/ FHIRDate \/ FHIRDateTime \/ Int \/ LocalTime \/ Quantity \/ Reference \/ String
-  type UnionFHIRDateOrPeriod             = FHIRDate \/ Period
-  type UnionFHIRDateOrPeriodOrString     = FHIRDate \/ Period \/ String
-  type UnionFHIRDateTimeOrPeriod         = FHIRDateTime \/ Period
-  type UnionFHIRDateTimeOrPeriodOrTiming = FHIRDateTime \/ Period \/ Timing
-  type UnionFHIRDateTimeOrString         = FHIRDateTime \/ String
-  type UnionFamilyMemberHistory_Deceased = Age \/ Boolean \/ FHIRDate \/ Range \/ String
-  type UnionIdentifierOrReference        = Identifier \/ Reference
-  type UnionMoneyOrQuantity              = Money \/ Quantity
-  type UnionMoneyOrStringOrUnsignedInt   = Money \/ String \/ UnsignedInt
-  type UnionMoneyOrUnsignedInt           = Money \/ UnsignedInt
-  type UnionObservation_Effective        = FHIRDateTime \/ Period \/ Timing \/ ZonedDateTime
-  type UnionObservation_Value =
-    Boolean \/ CodeableConcept \/ FHIRDateTime \/ Int \/ LocalTime \/ Period \/ Quantity \/ Range \/ Ratio \/ SampledData \/ String
-  type UnionParameter_Value         = BigDecimal \/ Boolean \/ Id \/ Int \/ String
-  type UnionPeriodOrRange           = Period \/ Range
-  type UnionPeriodOrStringOrTiming  = Period \/ String \/ Timing
-  type UnionPositiveIntOrString     = PositiveInt \/ String
-  type UnionProperty_Value          = BigDecimal \/ Boolean \/ Code \/ Coding \/ FHIRDateTime \/ Int \/ String
-  type UnionQuantityOrRangeOrString = Quantity \/ Range \/ String
-  type UnionQuantityOrRatio         = Quantity \/ Ratio
-  type UnionQuantityOrString        = Quantity \/ String
-  type UnionReferenceOrUrlStr       = Reference \/ UrlStr
-  type UnionRelationship_Amount     = Quantity \/ Range \/ Ratio \/ String
-  type UnionSupportingInfo_Value    = Attachment \/ Boolean \/ Quantity \/ Reference \/ String
-  type UnionTarget_Detail           = Boolean \/ CodeableConcept \/ Int \/ Quantity \/ Range \/ Ratio \/ String
+  type Union_0861648458 = Attachment \/ Boolean \/ Quantity \/ Reference \/ String
+  type Union_0865080338 = BigDecimal \/ Boolean \/ Code \/ FHIRDateTime \/ Int \/ String \/ UriStr
+  type Union_1011524451 = Boolean \/ CodeableConcept \/ Int \/ Quantity \/ Range \/ Ratio \/ String
+  type Union_1213298663 = Boolean \/ CodeableConcept \/ Quantity \/ Range \/ Reference
+  type Union_1534826566 = Base64Binary \/ CodeableConcept \/ Quantity \/ String
+  type Union_1926447453 = FHIRDateTime \/ Period \/ Timing \/ ZonedDateTime
+  type Union_1938137622 = Duration \/ FHIRDateTime \/ Period \/ Timing
 
-  val UnionAction_TimingTag: LTag[UnionAction_Timing] = LTag[UnionAction_Timing]
+  val Union00228735254Tag: LTag[Union00228735254] = LTag[Union00228735254]
+  val Union00304335386Tag: LTag[Union00304335386] = LTag[Union00304335386]
+  val Union00515330545Tag: LTag[Union00515330545] = LTag[Union00515330545]
+  val Union00566743606Tag: LTag[Union00566743606] = LTag[Union00566743606]
+  val Union00836574492Tag: LTag[Union00836574492] = LTag[Union00836574492]
+  val Union01138203188Tag: LTag[Union01138203188] = LTag[Union01138203188]
+  val Union01239641171Tag: LTag[Union01239641171] = LTag[Union01239641171]
+  val Union01434501542Tag: LTag[Union01434501542] = LTag[Union01434501542]
+  val Union01491947217Tag: LTag[Union01491947217] = LTag[Union01491947217]
+  val Union01554328235Tag: LTag[Union01554328235] = LTag[Union01554328235]
+  val Union01946981731Tag: LTag[Union01946981731] = LTag[Union01946981731]
+  val Union02135982830Tag: LTag[Union02135982830] = LTag[Union02135982830]
   val UnionAddressOrCodeableConceptOrReferenceTag: LTag[UnionAddressOrCodeableConceptOrReference] =
     LTag[UnionAddressOrCodeableConceptOrReference]
   val UnionAddressOrReferenceTag: LTag[UnionAddressOrReference]                       = LTag[UnionAddressOrReference]
   val UnionAgeOrRangeOrStringTag: LTag[UnionAgeOrRangeOrString]                       = LTag[UnionAgeOrRangeOrString]
-  val UnionAllergyIntolerance_OnsetTag: LTag[UnionAllergyIntolerance_Onset]           = LTag[UnionAllergyIntolerance_Onset]
-  val UnionAnswerOption_ValueTag: LTag[UnionAnswerOption_Value]                       = LTag[UnionAnswerOption_Value]
-  val UnionAnswer_ValueTag: LTag[UnionAnswer_Value]                                   = LTag[UnionAnswer_Value]
   val UnionAttachmentOrReferenceOrStringTag: LTag[UnionAttachmentOrReferenceOrString] = LTag[UnionAttachmentOrReferenceOrString]
   val UnionAttachmentOrReferenceTag: LTag[UnionAttachmentOrReference]                 = LTag[UnionAttachmentOrReference]
   val UnionBase64BinaryOrStringTag: LTag[UnionBase64BinaryOrString]                   = LTag[UnionBase64BinaryOrString]
-  val UnionBigDecimalOrRangeTag: LTag[UnionBigDecimalOrRange]                         = LTag[UnionBigDecimalOrRange]
   val UnionBooleanOrCanonicalTag: LTag[UnionBooleanOrCanonical]                       = LTag[UnionBooleanOrCanonical]
-  val UnionBooleanOrFHIRDateTimeTag: LTag[UnionBooleanOrFHIRDateTime]                 = LTag[UnionBooleanOrFHIRDateTime]
-  val UnionBooleanOrIntTag: LTag[UnionBooleanOrInt]                                   = LTag[UnionBooleanOrInt]
+  val UnionBooleanOrDateTimeTag: LTag[UnionBooleanOrDateTime]                         = LTag[UnionBooleanOrDateTime]
+  val UnionBooleanOrIntegerTag: LTag[UnionBooleanOrInteger]                           = LTag[UnionBooleanOrInteger]
   val UnionBooleanOrReferenceTag: LTag[UnionBooleanOrReference]                       = LTag[UnionBooleanOrReference]
-  val UnionCanonicalOrCodeableConceptOrUriStrTag: LTag[UnionCanonicalOrCodeableConceptOrUriStr] =
-    LTag[UnionCanonicalOrCodeableConceptOrUriStr]
-  val UnionCanonicalOrUriStrTag: LTag[UnionCanonicalOrUriStr]                 = LTag[UnionCanonicalOrUriStr]
-  val UnionCharacteristic_DefinitionTag: LTag[UnionCharacteristic_Definition] = LTag[UnionCharacteristic_Definition]
-  val UnionCharacteristic_ParticipantEffectiveTag: LTag[UnionCharacteristic_ParticipantEffective] =
-    LTag[UnionCharacteristic_ParticipantEffective]
-  val UnionCharacteristic_ValueTag: LTag[UnionCharacteristic_Value]           = LTag[UnionCharacteristic_Value]
+  val UnionCanonicalOrCodeableConceptOrUriTag: LTag[UnionCanonicalOrCodeableConceptOrUri] =
+    LTag[UnionCanonicalOrCodeableConceptOrUri]
+  val UnionCanonicalOrUriTag: LTag[UnionCanonicalOrUri]                       = LTag[UnionCanonicalOrUri]
+  val UnionCodeableConceptOrDateTag: LTag[UnionCodeableConceptOrDate]         = LTag[UnionCodeableConceptOrDate]
   val UnionCodeableConceptOrDurationTag: LTag[UnionCodeableConceptOrDuration] = LTag[UnionCodeableConceptOrDuration]
-  val UnionCodeableConceptOrFHIRDateTag: LTag[UnionCodeableConceptOrFHIRDate] = LTag[UnionCodeableConceptOrFHIRDate]
   val UnionCodeableConceptOrQuantityOrRangeTag: LTag[UnionCodeableConceptOrQuantityOrRange] =
     LTag[UnionCodeableConceptOrQuantityOrRange]
-  val UnionCodeableConceptOrQuantityTag: LTag[UnionCodeableConceptOrQuantity]       = LTag[UnionCodeableConceptOrQuantity]
-  val UnionCodingOrUriStrTag: LTag[UnionCodingOrUriStr]                             = LTag[UnionCodingOrUriStr]
-  val UnionCondition_OnsetTag: LTag[UnionCondition_Onset]                           = LTag[UnionCondition_Onset]
-  val UnionDrugCharacteristic_ValueTag: LTag[UnionDrugCharacteristic_Value]         = LTag[UnionDrugCharacteristic_Value]
-  val UnionDurationOrFHIRDateTag: LTag[UnionDurationOrFHIRDate]                     = LTag[UnionDurationOrFHIRDate]
-  val UnionDurationOrRangeTag: LTag[UnionDurationOrRange]                           = LTag[UnionDurationOrRange]
-  val UnionElementDefinition_MinValueTag: LTag[UnionElementDefinition_MinValue]     = LTag[UnionElementDefinition_MinValue]
-  val UnionEnableWhen_AnswerTag: LTag[UnionEnableWhen_Answer]                       = LTag[UnionEnableWhen_Answer]
-  val UnionFHIRDateOrPeriodOrStringTag: LTag[UnionFHIRDateOrPeriodOrString]         = LTag[UnionFHIRDateOrPeriodOrString]
-  val UnionFHIRDateOrPeriodTag: LTag[UnionFHIRDateOrPeriod]                         = LTag[UnionFHIRDateOrPeriod]
-  val UnionFHIRDateTimeOrPeriodOrTimingTag: LTag[UnionFHIRDateTimeOrPeriodOrTiming] = LTag[UnionFHIRDateTimeOrPeriodOrTiming]
-  val UnionFHIRDateTimeOrPeriodTag: LTag[UnionFHIRDateTimeOrPeriod]                 = LTag[UnionFHIRDateTimeOrPeriod]
-  val UnionFHIRDateTimeOrStringTag: LTag[UnionFHIRDateTimeOrString]                 = LTag[UnionFHIRDateTimeOrString]
-  val UnionFamilyMemberHistory_DeceasedTag: LTag[UnionFamilyMemberHistory_Deceased] = LTag[UnionFamilyMemberHistory_Deceased]
-  val UnionIdentifierOrReferenceTag: LTag[UnionIdentifierOrReference]               = LTag[UnionIdentifierOrReference]
-  val UnionMoneyOrQuantityTag: LTag[UnionMoneyOrQuantity]                           = LTag[UnionMoneyOrQuantity]
-  val UnionMoneyOrStringOrUnsignedIntTag: LTag[UnionMoneyOrStringOrUnsignedInt]     = LTag[UnionMoneyOrStringOrUnsignedInt]
-  val UnionMoneyOrUnsignedIntTag: LTag[UnionMoneyOrUnsignedInt]                     = LTag[UnionMoneyOrUnsignedInt]
-  val UnionObservation_EffectiveTag: LTag[UnionObservation_Effective]               = LTag[UnionObservation_Effective]
-  val UnionObservation_ValueTag: LTag[UnionObservation_Value]                       = LTag[UnionObservation_Value]
-  val UnionParameter_ValueTag: LTag[UnionParameter_Value]                           = LTag[UnionParameter_Value]
-  val UnionPeriodOrRangeTag: LTag[UnionPeriodOrRange]                               = LTag[UnionPeriodOrRange]
-  val UnionPeriodOrStringOrTimingTag: LTag[UnionPeriodOrStringOrTiming]             = LTag[UnionPeriodOrStringOrTiming]
-  val UnionPositiveIntOrStringTag: LTag[UnionPositiveIntOrString]                   = LTag[UnionPositiveIntOrString]
-  val UnionProperty_ValueTag: LTag[UnionProperty_Value]                             = LTag[UnionProperty_Value]
-  val UnionQuantityOrRangeOrStringTag: LTag[UnionQuantityOrRangeOrString]           = LTag[UnionQuantityOrRangeOrString]
-  val UnionQuantityOrRatioTag: LTag[UnionQuantityOrRatio]                           = LTag[UnionQuantityOrRatio]
-  val UnionQuantityOrStringTag: LTag[UnionQuantityOrString]                         = LTag[UnionQuantityOrString]
-  val UnionReferenceOrUrlStrTag: LTag[UnionReferenceOrUrlStr]                       = LTag[UnionReferenceOrUrlStr]
-  val UnionRelationship_AmountTag: LTag[UnionRelationship_Amount]                   = LTag[UnionRelationship_Amount]
-  val UnionSupportingInfo_ValueTag: LTag[UnionSupportingInfo_Value]                 = LTag[UnionSupportingInfo_Value]
-  val UnionTarget_DetailTag: LTag[UnionTarget_Detail]                               = LTag[UnionTarget_Detail]
+  val UnionCodeableConceptOrQuantityTag: LTag[UnionCodeableConceptOrQuantity]   = LTag[UnionCodeableConceptOrQuantity]
+  val UnionCodingOrUriTag: LTag[UnionCodingOrUri]                               = LTag[UnionCodingOrUri]
+  val UnionDateOrPeriodOrStringTag: LTag[UnionDateOrPeriodOrString]             = LTag[UnionDateOrPeriodOrString]
+  val UnionDateOrPeriodTag: LTag[UnionDateOrPeriod]                             = LTag[UnionDateOrPeriod]
+  val UnionDateTimeOrPeriodOrTimingTag: LTag[UnionDateTimeOrPeriodOrTiming]     = LTag[UnionDateTimeOrPeriodOrTiming]
+  val UnionDateTimeOrPeriodTag: LTag[UnionDateTimeOrPeriod]                     = LTag[UnionDateTimeOrPeriod]
+  val UnionDateTimeOrStringTag: LTag[UnionDateTimeOrString]                     = LTag[UnionDateTimeOrString]
+  val UnionDecimalOrRangeTag: LTag[UnionDecimalOrRange]                         = LTag[UnionDecimalOrRange]
+  val UnionDurationOrDateTag: LTag[UnionDurationOrDate]                         = LTag[UnionDurationOrDate]
+  val UnionDurationOrRangeTag: LTag[UnionDurationOrRange]                       = LTag[UnionDurationOrRange]
+  val UnionIdentifierOrReferenceTag: LTag[UnionIdentifierOrReference]           = LTag[UnionIdentifierOrReference]
+  val UnionMoneyOrQuantityTag: LTag[UnionMoneyOrQuantity]                       = LTag[UnionMoneyOrQuantity]
+  val UnionMoneyOrStringOrUnsignedIntTag: LTag[UnionMoneyOrStringOrUnsignedInt] = LTag[UnionMoneyOrStringOrUnsignedInt]
+  val UnionMoneyOrUnsignedIntTag: LTag[UnionMoneyOrUnsignedInt]                 = LTag[UnionMoneyOrUnsignedInt]
+  val UnionPeriodOrRangeTag: LTag[UnionPeriodOrRange]                           = LTag[UnionPeriodOrRange]
+  val UnionPeriodOrStringOrTimingTag: LTag[UnionPeriodOrStringOrTiming]         = LTag[UnionPeriodOrStringOrTiming]
+  val UnionPositiveIntOrStringTag: LTag[UnionPositiveIntOrString]               = LTag[UnionPositiveIntOrString]
+  val UnionQuantityOrRangeOrStringTag: LTag[UnionQuantityOrRangeOrString]       = LTag[UnionQuantityOrRangeOrString]
+  val UnionQuantityOrRatioTag: LTag[UnionQuantityOrRatio]                       = LTag[UnionQuantityOrRatio]
+  val UnionQuantityOrStringTag: LTag[UnionQuantityOrString]                     = LTag[UnionQuantityOrString]
+  val UnionReferenceOrUrlTag: LTag[UnionReferenceOrUrl]                         = LTag[UnionReferenceOrUrl]
+  val Union_0075792257Tag: LTag[Union_0075792257]                               = LTag[Union_0075792257]
+  val Union_0536852827Tag: LTag[Union_0536852827]                               = LTag[Union_0536852827]
+  val Union_0603252906Tag: LTag[Union_0603252906]                               = LTag[Union_0603252906]
+  val Union_0861648458Tag: LTag[Union_0861648458]                               = LTag[Union_0861648458]
+  val Union_0865080338Tag: LTag[Union_0865080338]                               = LTag[Union_0865080338]
+  val Union_1011524451Tag: LTag[Union_1011524451]                               = LTag[Union_1011524451]
+  val Union_1213298663Tag: LTag[Union_1213298663]                               = LTag[Union_1213298663]
+  val Union_1534826566Tag: LTag[Union_1534826566]                               = LTag[Union_1534826566]
+  val Union_1926447453Tag: LTag[Union_1926447453]                               = LTag[Union_1926447453]
+  val Union_1938137622Tag: LTag[Union_1938137622]                               = LTag[Union_1938137622]
 }
 
 object Module
@@ -200,6 +204,7 @@ object Module
         "http://hl7.org/fhir/StructureDefinition/ChargeItem"                        -> ChargeItem,
         "http://hl7.org/fhir/StructureDefinition/Group"                             -> Group,
         "http://hl7.org/fhir/StructureDefinition/Communication"                     -> Communication,
+        "http://hl7.org/fhir/StructureDefinition/shareablevalueset"                 -> Shareablevalueset,
         "http://hl7.org/fhir/StructureDefinition/Library"                           -> Library,
         "http://hl7.org/fhir/StructureDefinition/TestScript"                        -> TestScript,
         "http://hl7.org/fhir/StructureDefinition/ClaimResponse"                     -> ClaimResponse,
@@ -210,16 +215,18 @@ object Module
         "http://hl7.org/fhir/StructureDefinition/Measure"                           -> Measure,
         "http://hl7.org/fhir/StructureDefinition/StructureMap"                      -> StructureMap,
         "http://hl7.org/fhir/StructureDefinition/RiskEvidenceSynthesis"             -> RiskEvidenceSynthesis,
-        "http://hl7.org/fhir/StructureDefinition/NutritionOrder"                    -> NutritionOrder,
         "http://hl7.org/fhir/StructureDefinition/MedicinalProductPharmaceutical"    -> MedicinalProductPharmaceutical,
         "http://hl7.org/fhir/StructureDefinition/MedicinalProductUndesirableEffect" -> MedicinalProductUndesirableEffect,
         "http://hl7.org/fhir/StructureDefinition/PractitionerRole"                  -> PractitionerRole,
         "http://hl7.org/fhir/StructureDefinition/Evidence"                          -> Evidence,
         "http://hl7.org/fhir/StructureDefinition/MedicationRequest"                 -> MedicationRequest,
+        "http://hl7.org/fhir/StructureDefinition/NutritionOrder"                    -> NutritionOrder,
+        "http://hl7.org/fhir/StructureDefinition/ResearchElementDefinition"         -> ResearchElementDefinition,
         "http://hl7.org/fhir/StructureDefinition/Specimen"                          -> Specimen,
         "http://hl7.org/fhir/StructureDefinition/MedicationStatement"               -> MedicationStatement,
         "http://hl7.org/fhir/StructureDefinition/ResearchSubject"                   -> ResearchSubject,
         "http://hl7.org/fhir/StructureDefinition/CareTeam"                          -> CareTeam,
+        "http://hl7.org/fhir/StructureDefinition/SupplyRequest"                     -> SupplyRequest,
         "http://hl7.org/fhir/StructureDefinition/RiskAssessment"                    -> RiskAssessment,
         "http://hl7.org/fhir/StructureDefinition/SearchParameter"                   -> SearchParameter,
         "http://hl7.org/fhir/StructureDefinition/CarePlan"                          -> CarePlan,
@@ -254,6 +261,7 @@ object Module
         "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"             -> QuestionnaireResponse,
         "http://hl7.org/fhir/StructureDefinition/Provenance"                        -> Provenance,
         "http://hl7.org/fhir/StructureDefinition/HealthcareService"                 -> HealthcareService,
+        "http://hl7.org/fhir/StructureDefinition/DeviceRequest"                     -> DeviceRequest,
         "http://hl7.org/fhir/StructureDefinition/StructureDefinition"               -> StructureDefinition,
         "http://hl7.org/fhir/StructureDefinition/MedicationAdministration"          -> MedicationAdministration,
         "http://hl7.org/fhir/StructureDefinition/Condition"                         -> Condition,
@@ -267,6 +275,7 @@ object Module
         "http://hl7.org/fhir/StructureDefinition/ConceptMap"                        -> ConceptMap,
         "http://hl7.org/fhir/StructureDefinition/Medication"                        -> Medication,
         "http://hl7.org/fhir/StructureDefinition/MedicinalProductIndication"        -> MedicinalProductIndication,
+        "http://hl7.org/fhir/StructureDefinition/ValueSet"                          -> ValueSet,
         "http://hl7.org/fhir/StructureDefinition/OperationDefinition"               -> OperationDefinition,
         "http://hl7.org/fhir/StructureDefinition/DeviceMetric"                      -> DeviceMetric,
         "http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory"               -> FamilyMemberHistory,

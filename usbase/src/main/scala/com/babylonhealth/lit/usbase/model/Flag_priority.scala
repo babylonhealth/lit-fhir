@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Flag_priority extends CompanionFor[Flag_priority] {
-  implicit def summonObjectAndCompanionFlag_priority_852889699(
+  implicit def summonObjectAndCompanionFlag_priority_2046083792(
       o: Flag_priority): ObjectAndCompanion[Flag_priority, Flag_priority.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

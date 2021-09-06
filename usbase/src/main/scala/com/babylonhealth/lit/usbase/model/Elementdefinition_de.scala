@@ -24,15 +24,15 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
-  implicit def summonObjectAndCompanionElementdefinition_de2079635633(
+  implicit def summonObjectAndCompanionElementdefinition_de167114004(
       o: Elementdefinition_de): ObjectAndCompanion[Elementdefinition_de, Elementdefinition_de.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ElementDefinition
   override type ParentType   = ElementDefinition
   override val baseType: CompanionFor[ResourceType] = ElementDefinition
   override val parentType: CompanionFor[ParentType] = ElementDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-de")
-  type MinValueChoice     = Choice[UnionElementDefinition_MinValue]
-  type MaxValueChoice     = Choice[UnionElementDefinition_MinValue]
+  type MinValueChoice     = Choice[Union_0603252906]
+  type MaxValueChoice     = Choice[Union_0603252906]
   type DefaultValueChoice = Choice[UnionAll]
   def apply(
       id: Option[String] = None,
@@ -124,17 +124,9 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
   val definition: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("definition", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val minValue: FHIRComponentFieldMeta[Option[Elementdefinition_de.MinValueChoice]] =
-    FHIRComponentFieldMeta(
-      "minValue",
-      lTagOf[Option[Elementdefinition_de.MinValueChoice]],
-      true,
-      lTagOf[UnionElementDefinition_MinValue])
+    FHIRComponentFieldMeta("minValue", lTagOf[Option[Elementdefinition_de.MinValueChoice]], true, lTagOf[Union_0603252906])
   val maxValue: FHIRComponentFieldMeta[Option[Elementdefinition_de.MaxValueChoice]] =
-    FHIRComponentFieldMeta(
-      "maxValue",
-      lTagOf[Option[Elementdefinition_de.MaxValueChoice]],
-      true,
-      lTagOf[UnionElementDefinition_MinValue])
+    FHIRComponentFieldMeta("maxValue", lTagOf[Option[Elementdefinition_de.MaxValueChoice]], true, lTagOf[Union_0603252906])
   val mustSupport: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("mustSupport", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val requirements: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -279,8 +271,8 @@ object Elementdefinition_de extends CompanionFor[Elementdefinition_de] {
           cursor.decodeAs[Option[Int]]("maxLength", Some(None)),
           cursor.decodeAs[LitSeq[Id]]("condition", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Markdown]]("definition", Some(None)),
-          cursor.decodeOptRef[UnionElementDefinition_MinValue]("minValue"),
-          cursor.decodeOptRef[UnionElementDefinition_MinValue]("maxValue"),
+          cursor.decodeOptRef[Union_0603252906]("minValue"),
+          cursor.decodeOptRef[Union_0603252906]("maxValue"),
           cursor.decodeAs[Option[Boolean]]("mustSupport", Some(None)),
           cursor.decodeAs[Option[Markdown]]("requirements", Some(None)),
           cursor.decodeAs[Option[String]]("orderMeaning", Some(None)),

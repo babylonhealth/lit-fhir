@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Workflow_instantiatesCanonical extends CompanionFor[Workflow_instantiatesCanonical] {
-  implicit def summonObjectAndCompanionWorkflow_instantiatesCanonical_772391660(
+  implicit def summonObjectAndCompanionWorkflow_instantiatesCanonical131666354(
       o: Workflow_instantiatesCanonical): ObjectAndCompanion[Workflow_instantiatesCanonical, Workflow_instantiatesCanonical.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

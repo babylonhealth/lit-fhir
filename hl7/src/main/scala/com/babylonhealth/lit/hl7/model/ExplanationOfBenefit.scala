@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
-  implicit def summonObjectAndCompanionExplanationOfBenefit1137222044(
+  implicit def summonObjectAndCompanionExplanationOfBenefit305946652(
       o: ExplanationOfBenefit): ObjectAndCompanion[ExplanationOfBenefit, ExplanationOfBenefit.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ExplanationOfBenefit
   override type ParentType   = ExplanationOfBenefit
@@ -32,13 +32,13 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
   override val parentType: CompanionFor[ParentType] = ExplanationOfBenefit
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit")
   object BenefitBalance extends CompanionFor[BenefitBalance] {
-    implicit def summonObjectAndCompanionBenefitBalance312840754(
+    implicit def summonObjectAndCompanionBenefitBalance_2003353202(
         o: BenefitBalance): ObjectAndCompanion[BenefitBalance, BenefitBalance.type] = ObjectAndCompanion(o, this)
     override type ResourceType = BenefitBalance
     override type ParentType   = BenefitBalance
     override val parentType: CompanionFor[ResourceType] = BenefitBalance
     object Financial extends CompanionFor[Financial] {
-      implicit def summonObjectAndCompanionFinancial256227458(o: Financial): ObjectAndCompanion[Financial, Financial.type] =
+      implicit def summonObjectAndCompanionFinancial_1813656175(o: Financial): ObjectAndCompanion[Financial, Financial.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Financial
       override type ParentType   = Financial
@@ -230,19 +230,19 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object AddItem extends CompanionFor[AddItem] {
-    implicit def summonObjectAndCompanionAddItem185559742(o: AddItem): ObjectAndCompanion[AddItem, AddItem.type] =
+    implicit def summonObjectAndCompanionAddItem_2003353202(o: AddItem): ObjectAndCompanion[AddItem, AddItem.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = AddItem
     override type ParentType   = AddItem
     override val parentType: CompanionFor[ResourceType] = AddItem
     object Detail extends CompanionFor[Detail] {
-      implicit def summonObjectAndCompanionDetail_774444433(o: Detail): ObjectAndCompanion[Detail, Detail.type] =
+      implicit def summonObjectAndCompanionDetail29830959(o: Detail): ObjectAndCompanion[Detail, Detail.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Detail
       override type ParentType   = Detail
       override val parentType: CompanionFor[ResourceType] = Detail
       object SubDetail extends CompanionFor[SubDetail] {
-        implicit def summonObjectAndCompanionSubDetail_612886513(o: SubDetail): ObjectAndCompanion[SubDetail, SubDetail.type] =
+        implicit def summonObjectAndCompanionSubDetail_693669667(o: SubDetail): ObjectAndCompanion[SubDetail, SubDetail.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = SubDetail
         override type ParentType   = SubDetail
@@ -516,7 +516,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
         val subDetail: LitSeq[Detail.SubDetail] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type ServicedChoice = Choice[UnionFHIRDateOrPeriod]
+    type ServicedChoice = Choice[UnionDateOrPeriod]
     type LocationChoice = Choice[UnionAddressOrCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
@@ -615,7 +615,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     val programCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
       FHIRComponentFieldMeta("programCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
     val serviced: FHIRComponentFieldMeta[Option[AddItem.ServicedChoice]] =
-      FHIRComponentFieldMeta("serviced", lTagOf[Option[AddItem.ServicedChoice]], true, lTagOf[UnionFHIRDateOrPeriod])
+      FHIRComponentFieldMeta("serviced", lTagOf[Option[AddItem.ServicedChoice]], true, lTagOf[UnionDateOrPeriod])
     val location: FHIRComponentFieldMeta[Option[AddItem.LocationChoice]] =
       FHIRComponentFieldMeta(
         "location",
@@ -705,7 +705,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
             cursor.decodeAs[Option[Money]]("unitPrice", Some(None)),
             cursor.decodeAs[LitSeq[PositiveInt]]("noteNumber", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[CodeableConcept]]("programCode", Some(LitSeq.empty)),
-            cursor.decodeOptRef[UnionFHIRDateOrPeriod]("serviced"),
+            cursor.decodeOptRef[UnionDateOrPeriod]("serviced"),
             cursor.decodeOptRef[UnionAddressOrCodeableConceptOrReference]("location"),
             cursor.decodeAs[LitSeq[PositiveInt]]("itemSequence", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[ExplanationOfBenefit.Item.Adjudication]]("adjudication", Some(LitSeq.empty)),
@@ -744,13 +744,13 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Item extends CompanionFor[Item] {
-    implicit def summonObjectAndCompanionItem_838112770(o: Item): ObjectAndCompanion[Item, Item.type] =
+    implicit def summonObjectAndCompanionItem_2003353202(o: Item): ObjectAndCompanion[Item, Item.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Item
     override type ParentType   = Item
     override val parentType: CompanionFor[ResourceType] = Item
     object Adjudication extends CompanionFor[Adjudication] {
-      implicit def summonObjectAndCompanionAdjudication_268714918(
+      implicit def summonObjectAndCompanionAdjudication_997097683(
           o: Adjudication): ObjectAndCompanion[Adjudication, Adjudication.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Adjudication
       override type ParentType   = Adjudication
@@ -831,13 +831,13 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Detail extends CompanionFor[Detail] {
-      implicit def summonObjectAndCompanionDetail530589620(o: Detail): ObjectAndCompanion[Detail, Detail.type] =
+      implicit def summonObjectAndCompanionDetail_997097683(o: Detail): ObjectAndCompanion[Detail, Detail.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Detail
       override type ParentType   = Detail
       override val parentType: CompanionFor[ResourceType] = Detail
       object SubDetail extends CompanionFor[SubDetail] {
-        implicit def summonObjectAndCompanionSubDetail9857119(o: SubDetail): ObjectAndCompanion[SubDetail, SubDetail.type] =
+        implicit def summonObjectAndCompanionSubDetail_1207133988(o: SubDetail): ObjectAndCompanion[SubDetail, SubDetail.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = SubDetail
         override type ParentType   = SubDetail
@@ -1203,7 +1203,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
         val subDetail: LitSeq[Detail.SubDetail] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type ServicedChoice = Choice[UnionFHIRDateOrPeriod]
+    type ServicedChoice = Choice[UnionDateOrPeriod]
     type LocationChoice = Choice[UnionAddressOrCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
@@ -1295,7 +1295,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     val programCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
       FHIRComponentFieldMeta("programCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
     val serviced: FHIRComponentFieldMeta[Option[Item.ServicedChoice]] =
-      FHIRComponentFieldMeta("serviced", lTagOf[Option[Item.ServicedChoice]], true, lTagOf[UnionFHIRDateOrPeriod])
+      FHIRComponentFieldMeta("serviced", lTagOf[Option[Item.ServicedChoice]], true, lTagOf[UnionDateOrPeriod])
     val location: FHIRComponentFieldMeta[Option[Item.LocationChoice]] =
       FHIRComponentFieldMeta(
         "location",
@@ -1397,7 +1397,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
             cursor.decodeAs[LitSeq[Reference]]("encounter", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[PositiveInt]]("noteNumber", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[CodeableConcept]]("programCode", Some(LitSeq.empty)),
-            cursor.decodeOptRef[UnionFHIRDateOrPeriod]("serviced"),
+            cursor.decodeOptRef[UnionDateOrPeriod]("serviced"),
             cursor.decodeOptRef[UnionAddressOrCodeableConceptOrReference]("location"),
             cursor.decodeAs[LitSeq[PositiveInt]]("careTeamSequence", Some(LitSeq.empty)),
             cursor.decodeAs[CodeableConcept]("productOrService", None),
@@ -1442,13 +1442,13 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SupportingInfo extends CompanionFor[SupportingInfo] {
-    implicit def summonObjectAndCompanionSupportingInfo1254070806(
+    implicit def summonObjectAndCompanionSupportingInfo_2003353202(
         o: SupportingInfo): ObjectAndCompanion[SupportingInfo, SupportingInfo.type] = ObjectAndCompanion(o, this)
     override type ResourceType = SupportingInfo
     override type ParentType   = SupportingInfo
     override val parentType: CompanionFor[ResourceType] = SupportingInfo
-    type ValueChoice  = Choice[UnionSupportingInfo_Value]
-    type TimingChoice = Choice[UnionFHIRDateOrPeriod]
+    type ValueChoice  = Choice[Union_0861648458]
+    type TimingChoice = Choice[UnionDateOrPeriod]
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,
@@ -1486,11 +1486,11 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
     val category: FHIRComponentFieldMeta[CodeableConcept] =
       FHIRComponentFieldMeta("category", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[Option[SupportingInfo.ValueChoice]] =
-      FHIRComponentFieldMeta("value", lTagOf[Option[SupportingInfo.ValueChoice]], true, lTagOf[UnionSupportingInfo_Value])
+      FHIRComponentFieldMeta("value", lTagOf[Option[SupportingInfo.ValueChoice]], true, lTagOf[Union_0861648458])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val timing: FHIRComponentFieldMeta[Option[SupportingInfo.TimingChoice]] =
-      FHIRComponentFieldMeta("timing", lTagOf[Option[SupportingInfo.TimingChoice]], true, lTagOf[UnionFHIRDateOrPeriod])
+      FHIRComponentFieldMeta("timing", lTagOf[Option[SupportingInfo.TimingChoice]], true, lTagOf[UnionDateOrPeriod])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
@@ -1518,9 +1518,9 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
             cursor.decodeAs[Option[Coding]]("reason", Some(None)),
             cursor.decodeAs[PositiveInt]("sequence", None),
             cursor.decodeAs[CodeableConcept]("category", None),
-            cursor.decodeOptRef[UnionSupportingInfo_Value]("value"),
+            cursor.decodeOptRef[Union_0861648458]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[UnionFHIRDateOrPeriod]("timing"),
+            cursor.decodeOptRef[UnionDateOrPeriod]("timing"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -1540,7 +1540,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ProcessNote extends CompanionFor[ProcessNote] {
-    implicit def summonObjectAndCompanionProcessNote_1230083581(
+    implicit def summonObjectAndCompanionProcessNote_2003353202(
         o: ProcessNote): ObjectAndCompanion[ProcessNote, ProcessNote.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ProcessNote
     override type ParentType   = ProcessNote
@@ -1621,7 +1621,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Insurance extends CompanionFor[Insurance] {
-    implicit def summonObjectAndCompanionInsurance1800608113(o: Insurance): ObjectAndCompanion[Insurance, Insurance.type] =
+    implicit def summonObjectAndCompanionInsurance_2003353202(o: Insurance): ObjectAndCompanion[Insurance, Insurance.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Insurance
     override type ParentType   = Insurance
@@ -1695,7 +1695,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Procedure extends CompanionFor[Procedure] {
-    implicit def summonObjectAndCompanionProcedure_1567965308(o: Procedure): ObjectAndCompanion[Procedure, Procedure.type] =
+    implicit def summonObjectAndCompanionProcedure_2003353202(o: Procedure): ObjectAndCompanion[Procedure, Procedure.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Procedure
     override type ParentType   = Procedure
@@ -1784,7 +1784,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Diagnosis extends CompanionFor[Diagnosis] {
-    implicit def summonObjectAndCompanionDiagnosis2136564251(o: Diagnosis): ObjectAndCompanion[Diagnosis, Diagnosis.type] =
+    implicit def summonObjectAndCompanionDiagnosis_2003353202(o: Diagnosis): ObjectAndCompanion[Diagnosis, Diagnosis.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Diagnosis
     override type ParentType   = Diagnosis
@@ -1874,7 +1874,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Accident extends CompanionFor[Accident] {
-    implicit def summonObjectAndCompanionAccident_2106681488(o: Accident): ObjectAndCompanion[Accident, Accident.type] =
+    implicit def summonObjectAndCompanionAccident_2003353202(o: Accident): ObjectAndCompanion[Accident, Accident.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Accident
     override type ParentType   = Accident
@@ -1949,7 +1949,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object CareTeam extends CompanionFor[CareTeam] {
-    implicit def summonObjectAndCompanionCareTeam_2048026547(o: CareTeam): ObjectAndCompanion[CareTeam, CareTeam.type] =
+    implicit def summonObjectAndCompanionCareTeam_2003353202(o: CareTeam): ObjectAndCompanion[CareTeam, CareTeam.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = CareTeam
     override type ParentType   = CareTeam
@@ -2038,7 +2038,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Payment extends CompanionFor[Payment] {
-    implicit def summonObjectAndCompanionPayment_72117980(o: Payment): ObjectAndCompanion[Payment, Payment.type] =
+    implicit def summonObjectAndCompanionPayment_2003353202(o: Payment): ObjectAndCompanion[Payment, Payment.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Payment
     override type ParentType   = Payment
@@ -2134,7 +2134,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Related extends CompanionFor[Related] {
-    implicit def summonObjectAndCompanionRelated_1273475572(o: Related): ObjectAndCompanion[Related, Related.type] =
+    implicit def summonObjectAndCompanionRelated_2003353202(o: Related): ObjectAndCompanion[Related, Related.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Related
     override type ParentType   = Related
@@ -2208,7 +2208,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Total extends CompanionFor[Total] {
-    implicit def summonObjectAndCompanionTotal333990106(o: Total): ObjectAndCompanion[Total, Total.type] =
+    implicit def summonObjectAndCompanionTotal_2003353202(o: Total): ObjectAndCompanion[Total, Total.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Total
     override type ParentType   = Total
@@ -2274,7 +2274,7 @@ object ExplanationOfBenefit extends CompanionFor[ExplanationOfBenefit] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Payee extends CompanionFor[Payee] {
-    implicit def summonObjectAndCompanionPayee1198750312(o: Payee): ObjectAndCompanion[Payee, Payee.type] =
+    implicit def summonObjectAndCompanionPayee_2003353202(o: Payee): ObjectAndCompanion[Payee, Payee.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Payee
     override type ParentType   = Payee

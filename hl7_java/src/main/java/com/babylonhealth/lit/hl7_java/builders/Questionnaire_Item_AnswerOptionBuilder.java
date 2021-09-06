@@ -45,41 +45,41 @@ import static java.util.stream.Collectors.toList;
 public interface Questionnaire_Item_AnswerOptionBuilder {
   public Questionnaire$Item$AnswerOption build();
 
-  public static Impl init(@NonNull ChoiceAnswerOption_Value value) {
+  public static Impl init(@NonNull Choice01554328235 value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull ChoiceAnswerOption_Value value) {
+  public static Impl builder(@NonNull Choice01554328235 value) {
     return new Impl(value);
   }
 
-  public static ChoiceAnswerOption_Value value(Coding c) {
-    return new ChoiceAnswerOption_Value(c);
+  public static Choice01554328235 value(Coding c) {
+    return new Choice01554328235(c);
   }
 
-  public static ChoiceAnswerOption_Value value(FHIRDate f) {
-    return new ChoiceAnswerOption_Value(f);
+  public static Choice01554328235 value(FHIRDate f) {
+    return new Choice01554328235(f);
   }
 
-  public static ChoiceAnswerOption_Value value(Integer i) {
-    return new ChoiceAnswerOption_Value(i);
+  public static Choice01554328235 value(Integer i) {
+    return new Choice01554328235(i);
   }
 
-  public static ChoiceAnswerOption_Value value(LocalTime l) {
-    return new ChoiceAnswerOption_Value(l);
+  public static Choice01554328235 value(LocalTime l) {
+    return new Choice01554328235(l);
   }
 
-  public static ChoiceAnswerOption_Value value(Reference r) {
-    return new ChoiceAnswerOption_Value(r);
+  public static Choice01554328235 value(Reference r) {
+    return new Choice01554328235(r);
   }
 
-  public static ChoiceAnswerOption_Value value(String s) {
-    return new ChoiceAnswerOption_Value(s);
+  public static Choice01554328235 value(String s) {
+    return new Choice01554328235(s);
   }
 
   public class Impl implements Questionnaire_Item_AnswerOptionBuilder {
     private Optional<String> id = Optional.empty();
-    private ChoiceAnswerOption_Value value;
+    private Choice01554328235 value;
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Boolean> initialSelected = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -91,7 +91,7 @@ public interface Questionnaire_Item_AnswerOptionBuilder {
      *     LocalTime, Reference, String. To pass the value in, wrap with one of the
      *     Questionnaire_Item_AnswerOptionBuilder.value static methods
      */
-    public Impl(@NonNull ChoiceAnswerOption_Value value) {
+    public Impl(@NonNull Choice01554328235 value) {
       this.value = value;
     }
 

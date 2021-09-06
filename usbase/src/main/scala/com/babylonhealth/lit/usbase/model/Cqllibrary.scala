@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqllibrary extends CompanionFor[Cqllibrary] {
-  implicit def summonObjectAndCompanionCqllibrary_1628055823(o: Cqllibrary): ObjectAndCompanion[Cqllibrary, Cqllibrary.type] =
+  implicit def summonObjectAndCompanionCqllibrary2009450194(o: Cqllibrary): ObjectAndCompanion[Cqllibrary, Cqllibrary.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Library
   override type ParentType   = Library

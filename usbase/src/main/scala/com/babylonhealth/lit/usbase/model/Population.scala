@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Population extends CompanionFor[Population] {
-  implicit def summonObjectAndCompanionPopulation_11499230(o: Population): ObjectAndCompanion[Population, Population.type] =
+  implicit def summonObjectAndCompanionPopulation_1367882494(o: Population): ObjectAndCompanion[Population, Population.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Population
   override type ParentType   = Population

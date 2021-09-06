@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Regex extends CompanionFor[Regex] {
-  implicit def summonObjectAndCompanionRegex_1543639735(o: Regex): ObjectAndCompanion[Regex, Regex.type] =
+  implicit def summonObjectAndCompanionRegex423301522(o: Regex): ObjectAndCompanion[Regex, Regex.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

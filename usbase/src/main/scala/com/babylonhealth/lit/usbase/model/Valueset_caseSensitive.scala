@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_caseSensitive extends CompanionFor[Valueset_caseSensitive] {
-  implicit def summonObjectAndCompanionValueset_caseSensitive760433266(
+  implicit def summonObjectAndCompanionValueset_caseSensitive1160708063(
       o: Valueset_caseSensitive): ObjectAndCompanion[Valueset_caseSensitive, Valueset_caseSensitive.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

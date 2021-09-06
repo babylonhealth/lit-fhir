@@ -54,20 +54,20 @@ public interface PatientBuilder extends DomainResourceBuilder {
     return new Impl();
   }
 
-  public static ChoiceBooleanOrFHIRDateTime deceased(Boolean b) {
-    return new ChoiceBooleanOrFHIRDateTime(b);
+  public static ChoiceBooleanOrDateTime deceased(Boolean b) {
+    return new ChoiceBooleanOrDateTime(b);
   }
 
-  public static ChoiceBooleanOrFHIRDateTime deceased(FHIRDateTime f) {
-    return new ChoiceBooleanOrFHIRDateTime(f);
+  public static ChoiceBooleanOrDateTime deceased(FHIRDateTime f) {
+    return new ChoiceBooleanOrDateTime(f);
   }
 
-  public static ChoiceBooleanOrInt multipleBirth(Boolean b) {
-    return new ChoiceBooleanOrInt(b);
+  public static ChoiceBooleanOrInteger multipleBirth(Boolean b) {
+    return new ChoiceBooleanOrInteger(b);
   }
 
-  public static ChoiceBooleanOrInt multipleBirth(Integer i) {
-    return new ChoiceBooleanOrInt(i);
+  public static ChoiceBooleanOrInteger multipleBirth(Integer i) {
+    return new ChoiceBooleanOrInteger(i);
   }
 
   public class Impl implements PatientBuilder {
@@ -85,10 +85,10 @@ public interface PatientBuilder extends DomainResourceBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<FHIRDate> birthDate = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<ChoiceBooleanOrFHIRDateTime> deceased = Optional.empty();
+    private Optional<ChoiceBooleanOrDateTime> deceased = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Optional<CodeableConcept> maritalStatus = Optional.empty();
-    private Optional<ChoiceBooleanOrInt> multipleBirth = Optional.empty();
+    private Optional<ChoiceBooleanOrInteger> multipleBirth = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Reference> generalPractitioner = Collections.emptyList();
     private Optional<Reference> managingOrganization = Optional.empty();
@@ -303,7 +303,7 @@ public interface PatientBuilder extends DomainResourceBuilder {
      *     Type should be one of Boolean, FHIRDateTime. To pass the value in, wrap with one of the
      *     PatientBuilder.deceased static methods
      */
-    public PatientBuilder.Impl withDeceased(@NonNull ChoiceBooleanOrFHIRDateTime deceased) {
+    public PatientBuilder.Impl withDeceased(@NonNull ChoiceBooleanOrDateTime deceased) {
       this.deceased = Optional.of(deceased);
       return this;
     }
@@ -335,7 +335,7 @@ public interface PatientBuilder extends DomainResourceBuilder {
      *     of Boolean, Integer. To pass the value in, wrap with one of the
      *     PatientBuilder.multipleBirth static methods
      */
-    public PatientBuilder.Impl withMultipleBirth(@NonNull ChoiceBooleanOrInt multipleBirth) {
+    public PatientBuilder.Impl withMultipleBirth(@NonNull ChoiceBooleanOrInteger multipleBirth) {
       this.multipleBirth = Optional.of(multipleBirth);
       return this;
     }

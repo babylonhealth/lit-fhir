@@ -54,7 +54,7 @@ public interface VitalspanelBuilder extends VitalsignsBuilder {
       Reference subject,
       Collection<CodeableConcept> category,
       Collection<Reference> hasMember,
-      @NonNull ChoiceFHIRDateTimeOrPeriod effective,
+      @NonNull ChoiceDateTimeOrPeriod effective,
       CodeableConcept code) {
     return new Impl(status, subject, category, hasMember, effective, code);
   }
@@ -64,7 +64,7 @@ public interface VitalspanelBuilder extends VitalsignsBuilder {
       ReferenceBuilder subject,
       Collection<CodeableConceptBuilder> category,
       Collection<ReferenceBuilder> hasMember,
-      @NonNull ChoiceFHIRDateTimeOrPeriod effective,
+      @NonNull ChoiceDateTimeOrPeriod effective,
       CodeableConceptBuilder code) {
     return new Impl(
         status,
@@ -75,56 +75,56 @@ public interface VitalspanelBuilder extends VitalsignsBuilder {
         code.build());
   }
 
-  public static ChoiceObservation_Value value(Boolean b) {
-    return new ChoiceObservation_Value(b);
+  public static Choice01239641171 value(Boolean b) {
+    return new Choice01239641171(b);
   }
 
-  public static ChoiceObservation_Value value(CodeableConcept c) {
-    return new ChoiceObservation_Value(c);
+  public static Choice01239641171 value(CodeableConcept c) {
+    return new Choice01239641171(c);
   }
 
-  public static ChoiceObservation_Value value(FHIRDateTime f) {
-    return new ChoiceObservation_Value(f);
+  public static Choice01239641171 value(FHIRDateTime f) {
+    return new Choice01239641171(f);
   }
 
-  public static ChoiceObservation_Value value(Integer i) {
-    return new ChoiceObservation_Value(i);
+  public static Choice01239641171 value(Integer i) {
+    return new Choice01239641171(i);
   }
 
-  public static ChoiceObservation_Value value(LocalTime l) {
-    return new ChoiceObservation_Value(l);
+  public static Choice01239641171 value(LocalTime l) {
+    return new Choice01239641171(l);
   }
 
-  public static ChoiceObservation_Value value(Period p) {
-    return new ChoiceObservation_Value(p);
+  public static Choice01239641171 value(Period p) {
+    return new Choice01239641171(p);
   }
 
-  public static ChoiceObservation_Value value(Quantity q) {
-    return new ChoiceObservation_Value(q);
+  public static Choice01239641171 value(Quantity q) {
+    return new Choice01239641171(q);
   }
 
-  public static ChoiceObservation_Value value(Range r) {
-    return new ChoiceObservation_Value(r);
+  public static Choice01239641171 value(Range r) {
+    return new Choice01239641171(r);
   }
 
-  public static ChoiceObservation_Value value(Ratio r) {
-    return new ChoiceObservation_Value(r);
+  public static Choice01239641171 value(Ratio r) {
+    return new Choice01239641171(r);
   }
 
-  public static ChoiceObservation_Value value(SampledData s) {
-    return new ChoiceObservation_Value(s);
+  public static Choice01239641171 value(SampledData s) {
+    return new Choice01239641171(s);
   }
 
-  public static ChoiceObservation_Value value(String s) {
-    return new ChoiceObservation_Value(s);
+  public static Choice01239641171 value(String s) {
+    return new Choice01239641171(s);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod effective(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriod(f);
+  public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod effective(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriod(p);
+  public static ChoiceDateTimeOrPeriod effective(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements VitalspanelBuilder {
@@ -155,7 +155,7 @@ public interface VitalspanelBuilder extends VitalsignsBuilder {
     private Collection<Reference> hasMember;
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<Reference> derivedFrom = Collections.emptyList();
-    private ChoiceFHIRDateTimeOrPeriod effective;
+    private ChoiceDateTimeOrPeriod effective;
     private Optional<String> implicitRules = Optional.empty();
     private CodeableConcept code;
     private Collection<CodeableConcept> interpretation = Collections.emptyList();
@@ -185,7 +185,7 @@ public interface VitalspanelBuilder extends VitalsignsBuilder {
         Reference subject,
         Collection<CodeableConcept> category,
         Collection<Reference> hasMember,
-        @NonNull ChoiceFHIRDateTimeOrPeriod effective,
+        @NonNull ChoiceDateTimeOrPeriod effective,
         CodeableConcept code) {
       this.status = status;
       this.subject = subject;

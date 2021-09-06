@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Goal_acceptance extends CompanionFor[Goal_acceptance] {
-  implicit def summonObjectAndCompanionGoal_acceptance299457481(
+  implicit def summonObjectAndCompanionGoal_acceptance_760167204(
       o: Goal_acceptance): ObjectAndCompanion[Goal_acceptance, Goal_acceptance.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

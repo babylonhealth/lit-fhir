@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MeasureReport extends CompanionFor[MeasureReport] {
-  implicit def summonObjectAndCompanionMeasureReport48126391(
+  implicit def summonObjectAndCompanionMeasureReport609795677(
       o: MeasureReport): ObjectAndCompanion[MeasureReport, MeasureReport.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MeasureReport
   override type ParentType   = MeasureReport
@@ -32,13 +32,13 @@ object MeasureReport extends CompanionFor[MeasureReport] {
   override val parentType: CompanionFor[ParentType] = MeasureReport
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MeasureReport")
   object Group extends CompanionFor[Group] {
-    implicit def summonObjectAndCompanionGroup186383179(o: Group): ObjectAndCompanion[Group, Group.type] =
+    implicit def summonObjectAndCompanionGroup_932171740(o: Group): ObjectAndCompanion[Group, Group.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Group
     override type ParentType   = Group
     override val parentType: CompanionFor[ResourceType] = Group
     object Population extends CompanionFor[Population] {
-      implicit def summonObjectAndCompanionPopulation904748036(o: Population): ObjectAndCompanion[Population, Population.type] =
+      implicit def summonObjectAndCompanionPopulation1819550928(o: Population): ObjectAndCompanion[Population, Population.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Population
       override type ParentType   = Population
@@ -112,19 +112,19 @@ object MeasureReport extends CompanionFor[MeasureReport] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Stratifier extends CompanionFor[Stratifier] {
-      implicit def summonObjectAndCompanionStratifier1250806685(o: Stratifier): ObjectAndCompanion[Stratifier, Stratifier.type] =
+      implicit def summonObjectAndCompanionStratifier1819550928(o: Stratifier): ObjectAndCompanion[Stratifier, Stratifier.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Stratifier
       override type ParentType   = Stratifier
       override val parentType: CompanionFor[ResourceType] = Stratifier
       object Stratum extends CompanionFor[Stratum] {
-        implicit def summonObjectAndCompanionStratum_1770889999(o: Stratum): ObjectAndCompanion[Stratum, Stratum.type] =
+        implicit def summonObjectAndCompanionStratum1624404123(o: Stratum): ObjectAndCompanion[Stratum, Stratum.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = Stratum
         override type ParentType   = Stratum
         override val parentType: CompanionFor[ResourceType] = Stratum
         object Component extends CompanionFor[Component] {
-          implicit def summonObjectAndCompanionComponent_798709688(o: Component): ObjectAndCompanion[Component, Component.type] =
+          implicit def summonObjectAndCompanionComponent_894720322(o: Component): ObjectAndCompanion[Component, Component.type] =
             ObjectAndCompanion(o, this)
           override type ResourceType = Component
           override type ParentType   = Component
@@ -191,7 +191,7 @@ object MeasureReport extends CompanionFor[MeasureReport] {
             override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
             extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
         object Population extends CompanionFor[Population] {
-          implicit def summonObjectAndCompanionPopulation394923995(
+          implicit def summonObjectAndCompanionPopulation_894720322(
               o: Population): ObjectAndCompanion[Population, Population.type] = ObjectAndCompanion(o, this)
           override type ResourceType = Population
           override type ParentType   = Population

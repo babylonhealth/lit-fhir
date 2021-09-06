@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object QuestionnaireResponse extends CompanionFor[QuestionnaireResponse] {
-  implicit def summonObjectAndCompanionQuestionnaireResponse927410431(
+  implicit def summonObjectAndCompanionQuestionnaireResponse_2144293329(
       o: QuestionnaireResponse): ObjectAndCompanion[QuestionnaireResponse, QuestionnaireResponse.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = QuestionnaireResponse
@@ -33,17 +33,17 @@ object QuestionnaireResponse extends CompanionFor[QuestionnaireResponse] {
   override val parentType: CompanionFor[ParentType] = QuestionnaireResponse
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse")
   object Item extends CompanionFor[Item] {
-    implicit def summonObjectAndCompanionItem373103816(o: Item): ObjectAndCompanion[Item, Item.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionItem538117576(o: Item): ObjectAndCompanion[Item, Item.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Item
     override type ParentType   = Item
     override val parentType: CompanionFor[ResourceType] = Item
     object Answer extends CompanionFor[Answer] {
-      implicit def summonObjectAndCompanionAnswer658046562(o: Answer): ObjectAndCompanion[Answer, Answer.type] =
+      implicit def summonObjectAndCompanionAnswer273637706(o: Answer): ObjectAndCompanion[Answer, Answer.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Answer
       override type ParentType   = Answer
       override val parentType: CompanionFor[ResourceType] = Answer
-      type ValueChoice = Choice[UnionAnswer_Value]
+      type ValueChoice = Choice[Union02135982830]
       def apply(
           id: Option[String] = None,
           item: LitSeq[QuestionnaireResponse.Item] = LitSeq.empty,
@@ -67,7 +67,7 @@ object QuestionnaireResponse extends CompanionFor[QuestionnaireResponse] {
       val item: FHIRComponentFieldMeta[LitSeq[QuestionnaireResponse.Item]] =
         FHIRComponentFieldMeta("item", lTagOf[LitSeq[QuestionnaireResponse.Item]], false, lTagOf[QuestionnaireResponse.Item])
       val value: FHIRComponentFieldMeta[Option[Answer.ValueChoice]] =
-        FHIRComponentFieldMeta("value", lTagOf[Option[Answer.ValueChoice]], true, lTagOf[UnionAnswer_Value])
+        FHIRComponentFieldMeta("value", lTagOf[Option[Answer.ValueChoice]], true, lTagOf[Union02135982830])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -89,7 +89,7 @@ object QuestionnaireResponse extends CompanionFor[QuestionnaireResponse] {
             new Answer(
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[LitSeq[QuestionnaireResponse.Item]]("item", Some(LitSeq.empty)),
-              cursor.decodeOptRef[UnionAnswer_Value]("value"),
+              cursor.decodeOptRef[Union02135982830]("value"),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               decodeAttributes(cursor)

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablecodesystem extends CompanionFor[Shareablecodesystem] {
-  implicit def summonObjectAndCompanionShareablecodesystem1633188691(
+  implicit def summonObjectAndCompanionShareablecodesystem_2012707104(
       o: Shareablecodesystem): ObjectAndCompanion[Shareablecodesystem, Shareablecodesystem.type] = ObjectAndCompanion(o, this)
   override type ResourceType = CodeSystem
   override type ParentType   = CodeSystem

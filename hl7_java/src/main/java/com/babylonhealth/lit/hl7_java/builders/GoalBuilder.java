@@ -56,12 +56,12 @@ public interface GoalBuilder extends DomainResourceBuilder {
     return new Impl(subject.build(), description.build(), lifecycleStatus);
   }
 
-  public static ChoiceCodeableConceptOrFHIRDate start(CodeableConcept c) {
-    return new ChoiceCodeableConceptOrFHIRDate(c);
+  public static ChoiceCodeableConceptOrDate start(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrDate(c);
   }
 
-  public static ChoiceCodeableConceptOrFHIRDate start(FHIRDate f) {
-    return new ChoiceCodeableConceptOrFHIRDate(f);
+  public static ChoiceCodeableConceptOrDate start(FHIRDate f) {
+    return new ChoiceCodeableConceptOrDate(f);
   }
 
   public class Impl implements GoalBuilder {
@@ -73,7 +73,7 @@ public interface GoalBuilder extends DomainResourceBuilder {
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category = Collections.emptyList();
     private Optional<CodeableConcept> priority = Optional.empty();
-    private Optional<ChoiceCodeableConceptOrFHIRDate> start = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrDate> start = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Reference> addresses = Collections.emptyList();
@@ -197,7 +197,7 @@ public interface GoalBuilder extends DomainResourceBuilder {
      *     'choice' field. Type should be one of CodeableConcept, FHIRDate. To pass the value in,
      *     wrap with one of the GoalBuilder.start static methods
      */
-    public GoalBuilder.Impl withStart(@NonNull ChoiceCodeableConceptOrFHIRDate start) {
+    public GoalBuilder.Impl withStart(@NonNull ChoiceCodeableConceptOrDate start) {
       this.start = Optional.of(start);
       return this;
     }

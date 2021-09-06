@@ -26,7 +26,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_diagnosticreport_lab extends CompanionFor[Us_core_diagnosticreport_lab] {
-  implicit def summonObjectAndCompanionUs_core_diagnosticreport_lab1192434913(
+  implicit def summonObjectAndCompanionUs_core_diagnosticreport_lab_38491794(
       o: Us_core_diagnosticreport_lab): ObjectAndCompanion[Us_core_diagnosticreport_lab, Us_core_diagnosticreport_lab.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = DiagnosticReport
@@ -34,7 +34,7 @@ object Us_core_diagnosticreport_lab extends CompanionFor[Us_core_diagnosticrepor
   override val baseType: CompanionFor[ResourceType] = DiagnosticReport
   override val parentType: CompanionFor[ParentType] = DiagnosticReport
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-diagnosticreport-lab")
-  type EffectiveChoice = Choice[UnionFHIRDateTimeOrPeriod]
+  type EffectiveChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -130,11 +130,7 @@ object Us_core_diagnosticreport_lab extends CompanionFor[Us_core_diagnosticrepor
   val conclusion: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("conclusion", lTagOf[Option[String]], false, lTagOf[String])
   val effective: FHIRComponentFieldMeta[Us_core_diagnosticreport_lab.EffectiveChoice] =
-    FHIRComponentFieldMeta(
-      "effective",
-      lTagOf[Us_core_diagnosticreport_lab.EffectiveChoice],
-      true,
-      lTagOf[UnionFHIRDateTimeOrPeriod])
+    FHIRComponentFieldMeta("effective", lTagOf[Us_core_diagnosticreport_lab.EffectiveChoice], true, lTagOf[UnionDateTimeOrPeriod])
   val imagingStudy: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("imagingStudy", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -257,7 +253,7 @@ object Us_core_diagnosticreport_lab extends CompanionFor[Us_core_diagnosticrepor
           cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("conclusion", Some(None)),
-          cursor.decodeRef[UnionFHIRDateTimeOrPeriod]("effective"),
+          cursor.decodeRef[UnionDateTimeOrPeriod]("effective"),
           cursor.decodeAs[LitSeq[Reference]]("imagingStudy", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Attachment]]("presentedForm", Some(LitSeq.empty)),

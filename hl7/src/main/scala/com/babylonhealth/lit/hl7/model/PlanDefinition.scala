@@ -35,7 +35,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object PlanDefinition extends CompanionFor[PlanDefinition] {
-  implicit def summonObjectAndCompanionPlanDefinition_709039026(
+  implicit def summonObjectAndCompanionPlanDefinition_1753650031(
       o: PlanDefinition): ObjectAndCompanion[PlanDefinition, PlanDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = PlanDefinition
   override type ParentType   = PlanDefinition
@@ -43,13 +43,13 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
   override val parentType: CompanionFor[ParentType] = PlanDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/PlanDefinition")
   object Action extends CompanionFor[Action] {
-    implicit def summonObjectAndCompanionAction413386604(o: Action): ObjectAndCompanion[Action, Action.type] =
+    implicit def summonObjectAndCompanionAction_1492479240(o: Action): ObjectAndCompanion[Action, Action.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Action
     override type ParentType   = Action
     override val parentType: CompanionFor[ResourceType] = Action
     object Condition extends CompanionFor[Condition] {
-      implicit def summonObjectAndCompanionCondition_687729530(o: Condition): ObjectAndCompanion[Condition, Condition.type] =
+      implicit def summonObjectAndCompanionCondition1018043944(o: Condition): ObjectAndCompanion[Condition, Condition.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Condition
       override type ParentType   = Condition
@@ -116,7 +116,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Participant extends CompanionFor[Participant] {
-      implicit def summonObjectAndCompanionParticipant701731347(
+      implicit def summonObjectAndCompanionParticipant1018043944(
           o: Participant): ObjectAndCompanion[Participant, Participant.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Participant
       override type ParentType   = Participant
@@ -183,7 +183,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object DynamicValue extends CompanionFor[DynamicValue] {
-      implicit def summonObjectAndCompanionDynamicValue1509964686(
+      implicit def summonObjectAndCompanionDynamicValue1018043944(
           o: DynamicValue): ObjectAndCompanion[DynamicValue, DynamicValue.type] = ObjectAndCompanion(o, this)
       override type ResourceType = DynamicValue
       override type ParentType   = DynamicValue
@@ -250,7 +250,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object RelatedAction extends CompanionFor[RelatedAction] {
-      implicit def summonObjectAndCompanionRelatedAction_1504318188(
+      implicit def summonObjectAndCompanionRelatedAction1018043944(
           o: RelatedAction): ObjectAndCompanion[RelatedAction, RelatedAction.type] = ObjectAndCompanion(o, this)
       override type ResourceType = RelatedAction
       override type ParentType   = RelatedAction
@@ -324,9 +324,9 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type TimingChoice     = Choice[UnionAction_Timing]
+    type TimingChoice     = Choice[Union_0075792257]
     type SubjectChoice    = Choice[UnionCodeableConceptOrReference]
-    type DefinitionChoice = Choice[UnionCanonicalOrUriStr]
+    type DefinitionChoice = Choice[UnionCanonicalOrUri]
     def apply(
         id: Option[String] = None,
         code: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -419,7 +419,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val timing: FHIRComponentFieldMeta[Option[Action.TimingChoice]] =
-      FHIRComponentFieldMeta("timing", lTagOf[Option[Action.TimingChoice]], true, lTagOf[UnionAction_Timing])
+      FHIRComponentFieldMeta("timing", lTagOf[Option[Action.TimingChoice]], true, lTagOf[Union_0075792257])
     val transform: FHIRComponentFieldMeta[Option[Canonical]] =
       FHIRComponentFieldMeta("transform", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
     val subject: FHIRComponentFieldMeta[Option[Action.SubjectChoice]] =
@@ -429,7 +429,7 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
     val documentation: FHIRComponentFieldMeta[LitSeq[RelatedArtifact]] =
       FHIRComponentFieldMeta("documentation", lTagOf[LitSeq[RelatedArtifact]], false, lTagOf[RelatedArtifact])
     val definition: FHIRComponentFieldMeta[Option[Action.DefinitionChoice]] =
-      FHIRComponentFieldMeta("definition", lTagOf[Option[Action.DefinitionChoice]], true, lTagOf[UnionCanonicalOrUriStr])
+      FHIRComponentFieldMeta("definition", lTagOf[Option[Action.DefinitionChoice]], true, lTagOf[UnionCanonicalOrUri])
     val textEquivalent: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("textEquivalent", lTagOf[Option[String]], false, lTagOf[String])
     val groupingBehavior: FHIRComponentFieldMeta[Option[ACTION_GROUPING_BEHAVIOR]] =
@@ -556,12 +556,12 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
             cursor.decodeAs[LitSeq[TriggerDefinition]]("trigger", Some(LitSeq.empty)),
             cursor.decodeAs[Option[REQUEST_PRIORITY]]("priority", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[UnionAction_Timing]("timing"),
+            cursor.decodeOptRef[Union_0075792257]("timing"),
             cursor.decodeAs[Option[Canonical]]("transform", Some(None)),
             cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
             cursor.decodeAs[Option[String]]("description", Some(None)),
             cursor.decodeAs[LitSeq[RelatedArtifact]]("documentation", Some(LitSeq.empty)),
-            cursor.decodeOptRef[UnionCanonicalOrUriStr]("definition"),
+            cursor.decodeOptRef[UnionCanonicalOrUri]("definition"),
             cursor.decodeAs[Option[String]]("textEquivalent", Some(None)),
             cursor.decodeAs[Option[ACTION_GROUPING_BEHAVIOR]]("groupingBehavior", Some(None)),
             cursor.decodeAs[Option[ACTION_REQUIRED_BEHAVIOR]]("requiredBehavior", Some(None)),
@@ -612,12 +612,13 @@ object PlanDefinition extends CompanionFor[PlanDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Goal extends CompanionFor[Goal] {
-    implicit def summonObjectAndCompanionGoal803525916(o: Goal): ObjectAndCompanion[Goal, Goal.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionGoal_1492479240(o: Goal): ObjectAndCompanion[Goal, Goal.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Goal
     override type ParentType   = Goal
     override val parentType: CompanionFor[ResourceType] = Goal
     object Target extends CompanionFor[Target] {
-      implicit def summonObjectAndCompanionTarget1182104882(o: Target): ObjectAndCompanion[Target, Target.type] =
+      implicit def summonObjectAndCompanionTarget1405693922(o: Target): ObjectAndCompanion[Target, Target.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Target
       override type ParentType   = Target

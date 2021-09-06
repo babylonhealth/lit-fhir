@@ -38,38 +38,43 @@ public class Unions {
     }
   }
 
-  public static class ChoiceUsageContext_Value
+  public static class Choice00624997139
       extends Choice<
           $bslash$div<$bslash$div<$bslash$div<CodeableConcept, Quantity>, Range>, Reference>> {
-    public ChoiceUsageContext_Value(CodeableConcept arg) {
-      super("CodeableConcept", arg, (LTag) UnionAliases.UnionUsageContext_ValueTag());
+    public Choice00624997139(CodeableConcept arg) {
+      super("CodeableConcept", arg, (LTag) UnionAliases.Union00624997139Tag());
     }
 
-    public ChoiceUsageContext_Value(Quantity arg) {
-      super("Quantity", arg, (LTag) UnionAliases.UnionUsageContext_ValueTag());
+    public Choice00624997139(Quantity arg) {
+      super("Quantity", arg, (LTag) UnionAliases.Union00624997139Tag());
     }
 
-    public ChoiceUsageContext_Value(Range arg) {
-      super("Range", arg, (LTag) UnionAliases.UnionUsageContext_ValueTag());
+    public Choice00624997139(Range arg) {
+      super("Range", arg, (LTag) UnionAliases.Union00624997139Tag());
     }
 
-    public ChoiceUsageContext_Value(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.UnionUsageContext_ValueTag());
+    public Choice00624997139(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.Union00624997139Tag());
     }
   }
 
-  public static class ChoiceDurationOrFHIRDateTimeOrPeriod
-      extends Choice<$bslash$div<$bslash$div<Duration, FHIRDateTime>, Period>> {
-    public ChoiceDurationOrFHIRDateTimeOrPeriod(Duration arg) {
-      super("Duration", arg, (LTag) UnionAliases.UnionDurationOrFHIRDateTimeOrPeriodTag());
+  public static class Choice01769853217
+      extends Choice<
+          $bslash$div<$bslash$div<$bslash$div<FHIRDate, FHIRDateTime>, Reference>, Timing>> {
+    public Choice01769853217(FHIRDate arg) {
+      super("Date", arg, (LTag) UnionAliases.Union01769853217Tag());
     }
 
-    public ChoiceDurationOrFHIRDateTimeOrPeriod(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.UnionDurationOrFHIRDateTimeOrPeriodTag());
+    public Choice01769853217(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.Union01769853217Tag());
     }
 
-    public ChoiceDurationOrFHIRDateTimeOrPeriod(Period arg) {
-      super("Period", arg, (LTag) UnionAliases.UnionDurationOrFHIRDateTimeOrPeriodTag());
+    public Choice01769853217(Reference arg) {
+      super("Reference", arg, (LTag) UnionAliases.Union01769853217Tag());
+    }
+
+    public Choice01769853217(Timing arg) {
+      super("Timing", arg, (LTag) UnionAliases.Union01769853217Tag());
     }
   }
 
@@ -84,23 +89,18 @@ public class Unions {
     }
   }
 
-  public static class ChoiceTriggerDefinition_Timing
-      extends Choice<
-          $bslash$div<$bslash$div<$bslash$div<FHIRDate, FHIRDateTime>, Reference>, Timing>> {
-    public ChoiceTriggerDefinition_Timing(FHIRDate arg) {
-      super("Date", arg, (LTag) UnionAliases.UnionTriggerDefinition_TimingTag());
+  public static class ChoiceDurationOrDateTimeOrPeriod
+      extends Choice<$bslash$div<$bslash$div<Duration, FHIRDateTime>, Period>> {
+    public ChoiceDurationOrDateTimeOrPeriod(Duration arg) {
+      super("Duration", arg, (LTag) UnionAliases.UnionDurationOrDateTimeOrPeriodTag());
     }
 
-    public ChoiceTriggerDefinition_Timing(FHIRDateTime arg) {
-      super("DateTime", arg, (LTag) UnionAliases.UnionTriggerDefinition_TimingTag());
+    public ChoiceDurationOrDateTimeOrPeriod(FHIRDateTime arg) {
+      super("DateTime", arg, (LTag) UnionAliases.UnionDurationOrDateTimeOrPeriodTag());
     }
 
-    public ChoiceTriggerDefinition_Timing(Reference arg) {
-      super("Reference", arg, (LTag) UnionAliases.UnionTriggerDefinition_TimingTag());
-    }
-
-    public ChoiceTriggerDefinition_Timing(Timing arg) {
-      super("Timing", arg, (LTag) UnionAliases.UnionTriggerDefinition_TimingTag());
+    public ChoiceDurationOrDateTimeOrPeriod(Period arg) {
+      super("Period", arg, (LTag) UnionAliases.UnionDurationOrDateTimeOrPeriodTag());
     }
   }
 

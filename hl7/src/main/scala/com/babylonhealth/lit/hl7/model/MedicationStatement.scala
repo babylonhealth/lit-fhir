@@ -24,14 +24,14 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationStatement extends CompanionFor[MedicationStatement] {
-  implicit def summonObjectAndCompanionMedicationStatement1780285890(
+  implicit def summonObjectAndCompanionMedicationStatement1962705227(
       o: MedicationStatement): ObjectAndCompanion[MedicationStatement, MedicationStatement.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MedicationStatement
   override type ParentType   = MedicationStatement
   override val baseType: CompanionFor[ResourceType] = MedicationStatement
   override val parentType: CompanionFor[ParentType] = MedicationStatement
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicationStatement")
-  type EffectiveChoice  = Choice[UnionFHIRDateTimeOrPeriod]
+  type EffectiveChoice  = Choice[UnionDateTimeOrPeriod]
   type MedicationChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
@@ -125,11 +125,7 @@ object MedicationStatement extends CompanionFor[MedicationStatement] {
   val statusReason: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val effective: FHIRComponentFieldMeta[Option[MedicationStatement.EffectiveChoice]] =
-    FHIRComponentFieldMeta(
-      "effective",
-      lTagOf[Option[MedicationStatement.EffectiveChoice]],
-      true,
-      lTagOf[UnionFHIRDateTimeOrPeriod])
+    FHIRComponentFieldMeta("effective", lTagOf[Option[MedicationStatement.EffectiveChoice]], true, lTagOf[UnionDateTimeOrPeriod])
   val dateAsserted: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("dateAsserted", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -262,7 +258,7 @@ object MedicationStatement extends CompanionFor[MedicationStatement] {
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("derivedFrom", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("statusReason", Some(LitSeq.empty)),
-          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("effective"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriod]("effective"),
           cursor.decodeAs[Option[FHIRDateTime]]("dateAsserted", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeRef[UnionCodeableConceptOrReference]("medication"),

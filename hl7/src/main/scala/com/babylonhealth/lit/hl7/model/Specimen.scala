@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Specimen extends CompanionFor[Specimen] {
-  implicit def summonObjectAndCompanionSpecimen290397770(o: Specimen): ObjectAndCompanion[Specimen, Specimen.type] =
+  implicit def summonObjectAndCompanionSpecimen_822690307(o: Specimen): ObjectAndCompanion[Specimen, Specimen.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Specimen
   override type ParentType   = Specimen
@@ -32,12 +32,12 @@ object Specimen extends CompanionFor[Specimen] {
   override val parentType: CompanionFor[ParentType] = Specimen
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Specimen")
   object Processing extends CompanionFor[Processing] {
-    implicit def summonObjectAndCompanionProcessing1789133824(o: Processing): ObjectAndCompanion[Processing, Processing.type] =
+    implicit def summonObjectAndCompanionProcessing158518864(o: Processing): ObjectAndCompanion[Processing, Processing.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Processing
     override type ParentType   = Processing
     override val parentType: CompanionFor[ResourceType] = Processing
-    type TimeChoice = Choice[UnionFHIRDateTimeOrPeriod]
+    type TimeChoice = Choice[UnionDateTimeOrPeriod]
     def apply(
         id: Option[String] = None,
         time: Option[Processing.TimeChoice] = None,
@@ -63,7 +63,7 @@ object Specimen extends CompanionFor[Specimen] {
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val time: FHIRComponentFieldMeta[Option[Processing.TimeChoice]] =
-      FHIRComponentFieldMeta("time", lTagOf[Option[Processing.TimeChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
+      FHIRComponentFieldMeta("time", lTagOf[Option[Processing.TimeChoice]], true, lTagOf[UnionDateTimeOrPeriod])
     val additive: FHIRComponentFieldMeta[LitSeq[Reference]] =
       FHIRComponentFieldMeta("additive", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -92,7 +92,7 @@ object Specimen extends CompanionFor[Specimen] {
         Try(
           new Processing(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("time"),
+            cursor.decodeOptRef[UnionDateTimeOrPeriod]("time"),
             cursor.decodeAs[LitSeq[Reference]]("additive", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[CodeableConcept]]("procedure", Some(None)),
@@ -114,12 +114,12 @@ object Specimen extends CompanionFor[Specimen] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Collection extends CompanionFor[Collection] {
-    implicit def summonObjectAndCompanionCollection1373723242(o: Collection): ObjectAndCompanion[Collection, Collection.type] =
+    implicit def summonObjectAndCompanionCollection158518864(o: Collection): ObjectAndCompanion[Collection, Collection.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Collection
     override type ParentType   = Collection
     override val parentType: CompanionFor[ResourceType] = Collection
-    type CollectedChoice     = Choice[UnionFHIRDateTimeOrPeriod]
+    type CollectedChoice     = Choice[UnionDateTimeOrPeriod]
     type FastingStatusChoice = Choice[UnionCodeableConceptOrDuration]
     def apply(
         id: Option[String] = None,
@@ -175,7 +175,7 @@ object Specimen extends CompanionFor[Specimen] {
     val collector: FHIRComponentFieldMeta[Option[Reference]] =
       FHIRComponentFieldMeta("collector", lTagOf[Option[Reference]], false, lTagOf[Reference])
     val collected: FHIRComponentFieldMeta[Option[Collection.CollectedChoice]] =
-      FHIRComponentFieldMeta("collected", lTagOf[Option[Collection.CollectedChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
+      FHIRComponentFieldMeta("collected", lTagOf[Option[Collection.CollectedChoice]], true, lTagOf[UnionDateTimeOrPeriod])
     val fastingStatus: FHIRComponentFieldMeta[Option[Collection.FastingStatusChoice]] =
       FHIRComponentFieldMeta(
         "fastingStatus",
@@ -212,7 +212,7 @@ object Specimen extends CompanionFor[Specimen] {
             cursor.decodeAs[Option[CodeableConcept]]("bodySite", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[Reference]]("collector", Some(None)),
-            cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("collected"),
+            cursor.decodeOptRef[UnionDateTimeOrPeriod]("collected"),
             cursor.decodeOptRef[UnionCodeableConceptOrDuration]("fastingStatus"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
@@ -234,7 +234,7 @@ object Specimen extends CompanionFor[Specimen] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Container extends CompanionFor[Container] {
-    implicit def summonObjectAndCompanionContainer1330076187(o: Container): ObjectAndCompanion[Container, Container.type] =
+    implicit def summonObjectAndCompanionContainer158518864(o: Container): ObjectAndCompanion[Container, Container.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Container
     override type ParentType   = Container

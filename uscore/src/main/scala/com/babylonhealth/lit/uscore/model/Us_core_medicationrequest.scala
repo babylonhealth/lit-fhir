@@ -32,7 +32,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_medicationrequest extends CompanionFor[Us_core_medicationrequest] {
-  implicit def summonObjectAndCompanionUs_core_medicationrequest_1407926957(
+  implicit def summonObjectAndCompanionUs_core_medicationrequest500416685(
       o: Us_core_medicationrequest): ObjectAndCompanion[Us_core_medicationrequest, Us_core_medicationrequest.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = MedicationRequest

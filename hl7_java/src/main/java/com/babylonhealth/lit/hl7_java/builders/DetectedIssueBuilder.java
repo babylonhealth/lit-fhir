@@ -55,12 +55,12 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod identified(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriod(f);
+  public static ChoiceDateTimeOrPeriod identified(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriod identified(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriod(p);
+  public static ChoiceDateTimeOrPeriod identified(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements DetectedIssueBuilder {
@@ -80,7 +80,7 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<Reference> implicated = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<ChoiceFHIRDateTimeOrPeriod> identified = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriod> identified = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<DetectedIssue.Evidence> evidence = Collections.emptyList();
     private Collection<DetectedIssue.Mitigation> mitigation = Collections.emptyList();
@@ -294,8 +294,7 @@ public interface DetectedIssueBuilder extends DomainResourceBuilder {
      *     Field is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the value
      *     in, wrap with one of the DetectedIssueBuilder.identified static methods
      */
-    public DetectedIssueBuilder.Impl withIdentified(
-        @NonNull ChoiceFHIRDateTimeOrPeriod identified) {
+    public DetectedIssueBuilder.Impl withIdentified(@NonNull ChoiceDateTimeOrPeriod identified) {
       this.identified = Optional.of(identified);
       return this;
     }

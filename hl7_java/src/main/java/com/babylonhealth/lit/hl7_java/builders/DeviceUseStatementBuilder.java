@@ -55,16 +55,16 @@ public interface DeviceUseStatementBuilder extends DomainResourceBuilder {
     return new Impl(status, device.build(), subject.build());
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming timing(FHIRDateTime f) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(f);
+  public static ChoiceDateTimeOrPeriodOrTiming timing(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriodOrTiming(f);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming timing(Period p) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(p);
+  public static ChoiceDateTimeOrPeriodOrTiming timing(Period p) {
+    return new ChoiceDateTimeOrPeriodOrTiming(p);
   }
 
-  public static ChoiceFHIRDateTimeOrPeriodOrTiming timing(Timing t) {
-    return new ChoiceFHIRDateTimeOrPeriodOrTiming(t);
+  public static ChoiceDateTimeOrPeriodOrTiming timing(Timing t) {
+    return new ChoiceDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements DeviceUseStatementBuilder {
@@ -81,7 +81,7 @@ public interface DeviceUseStatementBuilder extends DomainResourceBuilder {
     private Optional<CodeableConcept> bodySite = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<ChoiceFHIRDateTimeOrPeriodOrTiming> timing = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriodOrTiming> timing = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<FHIRDateTime> recordedOn = Optional.empty();
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
@@ -270,7 +270,7 @@ public interface DeviceUseStatementBuilder extends DomainResourceBuilder {
      *     DeviceUseStatementBuilder.timing static methods
      */
     public DeviceUseStatementBuilder.Impl withTiming(
-        @NonNull ChoiceFHIRDateTimeOrPeriodOrTiming timing) {
+        @NonNull ChoiceDateTimeOrPeriodOrTiming timing) {
       this.timing = Optional.of(timing);
       return this;
     }

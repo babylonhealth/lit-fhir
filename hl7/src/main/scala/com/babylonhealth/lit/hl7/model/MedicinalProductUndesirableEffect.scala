@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductUndesirableEffect extends CompanionFor[MedicinalProductUndesirableEffect] {
-  implicit def summonObjectAndCompanionMedicinalProductUndesirableEffect250809688(
+  implicit def summonObjectAndCompanionMedicinalProductUndesirableEffect_1232914593(
       o: MedicinalProductUndesirableEffect): ObjectAndCompanion[MedicinalProductUndesirableEffect, MedicinalProductUndesirableEffect.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = MedicinalProductUndesirableEffect

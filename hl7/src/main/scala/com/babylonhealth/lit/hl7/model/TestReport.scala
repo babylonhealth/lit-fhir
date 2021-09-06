@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object TestReport extends CompanionFor[TestReport] {
-  implicit def summonObjectAndCompanionTestReport_98608080(o: TestReport): ObjectAndCompanion[TestReport, TestReport.type] =
+  implicit def summonObjectAndCompanionTestReport_1954078181(o: TestReport): ObjectAndCompanion[TestReport, TestReport.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = TestReport
   override type ParentType   = TestReport
@@ -32,19 +32,19 @@ object TestReport extends CompanionFor[TestReport] {
   override val parentType: CompanionFor[ParentType] = TestReport
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/TestReport")
   object Setup extends CompanionFor[Setup] {
-    implicit def summonObjectAndCompanionSetup34275212(o: Setup): ObjectAndCompanion[Setup, Setup.type] =
+    implicit def summonObjectAndCompanionSetup_1232578292(o: Setup): ObjectAndCompanion[Setup, Setup.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Setup
     override type ParentType   = Setup
     override val parentType: CompanionFor[ResourceType] = Setup
     object Action extends CompanionFor[Action] {
-      implicit def summonObjectAndCompanionAction2116791357(o: Action): ObjectAndCompanion[Action, Action.type] =
+      implicit def summonObjectAndCompanionAction_456736448(o: Action): ObjectAndCompanion[Action, Action.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Action
       override type ParentType   = Action
       override val parentType: CompanionFor[ResourceType] = Action
       object Assert extends CompanionFor[Assert] {
-        implicit def summonObjectAndCompanionAssert_468949545(o: Assert): ObjectAndCompanion[Assert, Assert.type] =
+        implicit def summonObjectAndCompanionAssert_919712881(o: Assert): ObjectAndCompanion[Assert, Assert.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = Assert
         override type ParentType   = Assert
@@ -118,7 +118,7 @@ object TestReport extends CompanionFor[TestReport] {
           override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Operation extends CompanionFor[Operation] {
-        implicit def summonObjectAndCompanionOperation200368011(o: Operation): ObjectAndCompanion[Operation, Operation.type] =
+        implicit def summonObjectAndCompanionOperation_919712881(o: Operation): ObjectAndCompanion[Operation, Operation.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = Operation
         override type ParentType   = Operation
@@ -306,13 +306,13 @@ object TestReport extends CompanionFor[TestReport] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Teardown extends CompanionFor[Teardown] {
-    implicit def summonObjectAndCompanionTeardown_1062760602(o: Teardown): ObjectAndCompanion[Teardown, Teardown.type] =
+    implicit def summonObjectAndCompanionTeardown_1232578292(o: Teardown): ObjectAndCompanion[Teardown, Teardown.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Teardown
     override type ParentType   = Teardown
     override val parentType: CompanionFor[ResourceType] = Teardown
     object Action extends CompanionFor[Action] {
-      implicit def summonObjectAndCompanionAction_1934306687(o: Action): ObjectAndCompanion[Action, Action.type] =
+      implicit def summonObjectAndCompanionAction481018062(o: Action): ObjectAndCompanion[Action, Action.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Action
       override type ParentType   = Action
@@ -428,12 +428,13 @@ object TestReport extends CompanionFor[TestReport] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Test extends CompanionFor[Test] {
-    implicit def summonObjectAndCompanionTest360365918(o: Test): ObjectAndCompanion[Test, Test.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionTest_1232578292(o: Test): ObjectAndCompanion[Test, Test.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Test
     override type ParentType   = Test
     override val parentType: CompanionFor[ResourceType] = Test
     object Action extends CompanionFor[Action] {
-      implicit def summonObjectAndCompanionAction_1744325581(o: Action): ObjectAndCompanion[Action, Action.type] =
+      implicit def summonObjectAndCompanionAction_611082774(o: Action): ObjectAndCompanion[Action, Action.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Action
       override type ParentType   = Action
@@ -576,7 +577,7 @@ object TestReport extends CompanionFor[TestReport] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Participant extends CompanionFor[Participant] {
-    implicit def summonObjectAndCompanionParticipant1622099971(
+    implicit def summonObjectAndCompanionParticipant_1232578292(
         o: Participant): ObjectAndCompanion[Participant, Participant.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Participant
     override type ParentType   = Participant

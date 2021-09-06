@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Medication extends CompanionFor[Medication] {
-  implicit def summonObjectAndCompanionMedication1722591020(o: Medication): ObjectAndCompanion[Medication, Medication.type] =
+  implicit def summonObjectAndCompanionMedication_1640326012(o: Medication): ObjectAndCompanion[Medication, Medication.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Medication
   override type ParentType   = Medication
@@ -32,7 +32,7 @@ object Medication extends CompanionFor[Medication] {
   override val parentType: CompanionFor[ParentType] = Medication
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Medication")
   object Ingredient extends CompanionFor[Ingredient] {
-    implicit def summonObjectAndCompanionIngredient_207630995(o: Ingredient): ObjectAndCompanion[Ingredient, Ingredient.type] =
+    implicit def summonObjectAndCompanionIngredient_605073954(o: Ingredient): ObjectAndCompanion[Ingredient, Ingredient.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Ingredient
     override type ParentType   = Ingredient
@@ -107,7 +107,7 @@ object Medication extends CompanionFor[Medication] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Batch extends CompanionFor[Batch] {
-    implicit def summonObjectAndCompanionBatch324577145(o: Batch): ObjectAndCompanion[Batch, Batch.type] =
+    implicit def summonObjectAndCompanionBatch_605073954(o: Batch): ObjectAndCompanion[Batch, Batch.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Batch
     override type ParentType   = Batch

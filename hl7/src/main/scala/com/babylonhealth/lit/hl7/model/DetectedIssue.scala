@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DetectedIssue extends CompanionFor[DetectedIssue] {
-  implicit def summonObjectAndCompanionDetectedIssue_418892300(
+  implicit def summonObjectAndCompanionDetectedIssue_221038174(
       o: DetectedIssue): ObjectAndCompanion[DetectedIssue, DetectedIssue.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DetectedIssue
   override type ParentType   = DetectedIssue
@@ -32,7 +32,7 @@ object DetectedIssue extends CompanionFor[DetectedIssue] {
   override val parentType: CompanionFor[ParentType] = DetectedIssue
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DetectedIssue")
   object Mitigation extends CompanionFor[Mitigation] {
-    implicit def summonObjectAndCompanionMitigation1683094474(o: Mitigation): ObjectAndCompanion[Mitigation, Mitigation.type] =
+    implicit def summonObjectAndCompanionMitigation1701127854(o: Mitigation): ObjectAndCompanion[Mitigation, Mitigation.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Mitigation
     override type ParentType   = Mitigation
@@ -106,7 +106,7 @@ object DetectedIssue extends CompanionFor[DetectedIssue] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Evidence extends CompanionFor[Evidence] {
-    implicit def summonObjectAndCompanionEvidence73003771(o: Evidence): ObjectAndCompanion[Evidence, Evidence.type] =
+    implicit def summonObjectAndCompanionEvidence1701127854(o: Evidence): ObjectAndCompanion[Evidence, Evidence.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Evidence
     override type ParentType   = Evidence
@@ -172,7 +172,7 @@ object DetectedIssue extends CompanionFor[DetectedIssue] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type IdentifiedChoice = Choice[UnionFHIRDateTimeOrPeriod]
+  type IdentifiedChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -251,7 +251,7 @@ object DetectedIssue extends CompanionFor[DetectedIssue] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val identified: FHIRComponentFieldMeta[Option[DetectedIssue.IdentifiedChoice]] =
-    FHIRComponentFieldMeta("identified", lTagOf[Option[DetectedIssue.IdentifiedChoice]], true, lTagOf[UnionFHIRDateTimeOrPeriod])
+    FHIRComponentFieldMeta("identified", lTagOf[Option[DetectedIssue.IdentifiedChoice]], true, lTagOf[UnionDateTimeOrPeriod])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val evidence: FHIRComponentFieldMeta[LitSeq[DetectedIssue.Evidence]] =
@@ -376,7 +376,7 @@ object DetectedIssue extends CompanionFor[DetectedIssue] {
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("implicated", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[UnionFHIRDateTimeOrPeriod]("identified"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriod]("identified"),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[DetectedIssue.Evidence]]("evidence", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[DetectedIssue.Mitigation]]("mitigation", Some(LitSeq.empty)),

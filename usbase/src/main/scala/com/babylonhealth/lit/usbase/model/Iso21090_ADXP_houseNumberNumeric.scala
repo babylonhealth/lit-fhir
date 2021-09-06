@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_ADXP_houseNumberNumeric extends CompanionFor[Iso21090_ADXP_houseNumberNumeric] {
-  implicit def summonObjectAndCompanionIso21090_ADXP_houseNumberNumeric2027377419(
+  implicit def summonObjectAndCompanionIso21090_ADXP_houseNumberNumeric1774814273(
       o: Iso21090_ADXP_houseNumberNumeric): ObjectAndCompanion[Iso21090_ADXP_houseNumberNumeric, Iso21090_ADXP_houseNumberNumeric.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablemeasure extends CompanionFor[Shareablemeasure] {
-  implicit def summonObjectAndCompanionShareablemeasure_722106430(
+  implicit def summonObjectAndCompanionShareablemeasure1895974746(
       o: Shareablemeasure): ObjectAndCompanion[Shareablemeasure, Shareablemeasure.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Measure
   override type ParentType   = Measure

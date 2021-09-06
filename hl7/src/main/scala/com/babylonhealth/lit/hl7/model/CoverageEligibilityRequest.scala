@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CoverageEligibilityRequest extends CompanionFor[CoverageEligibilityRequest] {
-  implicit def summonObjectAndCompanionCoverageEligibilityRequest754335235(
+  implicit def summonObjectAndCompanionCoverageEligibilityRequest1748094463(
       o: CoverageEligibilityRequest): ObjectAndCompanion[CoverageEligibilityRequest, CoverageEligibilityRequest.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = CoverageEligibilityRequest
@@ -33,13 +33,13 @@ object CoverageEligibilityRequest extends CompanionFor[CoverageEligibilityReques
   override val parentType: CompanionFor[ParentType] = CoverageEligibilityRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CoverageEligibilityRequest")
   object Item extends CompanionFor[Item] {
-    implicit def summonObjectAndCompanionItem_2012205241(o: Item): ObjectAndCompanion[Item, Item.type] =
+    implicit def summonObjectAndCompanionItem_281721644(o: Item): ObjectAndCompanion[Item, Item.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Item
     override type ParentType   = Item
     override val parentType: CompanionFor[ResourceType] = Item
     object Diagnosis extends CompanionFor[Diagnosis] {
-      implicit def summonObjectAndCompanionDiagnosis_47587865(o: Diagnosis): ObjectAndCompanion[Diagnosis, Diagnosis.type] =
+      implicit def summonObjectAndCompanionDiagnosis_136281904(o: Diagnosis): ObjectAndCompanion[Diagnosis, Diagnosis.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Diagnosis
       override type ParentType   = Diagnosis
@@ -248,7 +248,7 @@ object CoverageEligibilityRequest extends CompanionFor[CoverageEligibilityReques
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SupportingInfo extends CompanionFor[SupportingInfo] {
-    implicit def summonObjectAndCompanionSupportingInfo369595429(
+    implicit def summonObjectAndCompanionSupportingInfo_281721644(
         o: SupportingInfo): ObjectAndCompanion[SupportingInfo, SupportingInfo.type] = ObjectAndCompanion(o, this)
     override type ResourceType = SupportingInfo
     override type ParentType   = SupportingInfo
@@ -322,7 +322,7 @@ object CoverageEligibilityRequest extends CompanionFor[CoverageEligibilityReques
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Insurance extends CompanionFor[Insurance] {
-    implicit def summonObjectAndCompanionInsurance550037473(o: Insurance): ObjectAndCompanion[Insurance, Insurance.type] =
+    implicit def summonObjectAndCompanionInsurance_281721644(o: Insurance): ObjectAndCompanion[Insurance, Insurance.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Insurance
     override type ParentType   = Insurance
@@ -395,7 +395,7 @@ object CoverageEligibilityRequest extends CompanionFor[CoverageEligibilityReques
       val businessArrangement: Option[String] = None,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type ServicedChoice = Choice[UnionFHIRDateOrPeriod]
+  type ServicedChoice = Choice[UnionDateOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -482,11 +482,7 @@ object CoverageEligibilityRequest extends CompanionFor[CoverageEligibilityReques
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val serviced: FHIRComponentFieldMeta[Option[CoverageEligibilityRequest.ServicedChoice]] =
-    FHIRComponentFieldMeta(
-      "serviced",
-      lTagOf[Option[CoverageEligibilityRequest.ServicedChoice]],
-      true,
-      lTagOf[UnionFHIRDateOrPeriod])
+    FHIRComponentFieldMeta("serviced", lTagOf[Option[CoverageEligibilityRequest.ServicedChoice]], true, lTagOf[UnionDateOrPeriod])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -636,7 +632,7 @@ object CoverageEligibilityRequest extends CompanionFor[CoverageEligibilityReques
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[UnionFHIRDateOrPeriod]("serviced"),
+          cursor.decodeOptRef[UnionDateOrPeriod]("serviced"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[CoverageEligibilityRequest.Insurance]]("insurance", Some(LitSeq.empty)),

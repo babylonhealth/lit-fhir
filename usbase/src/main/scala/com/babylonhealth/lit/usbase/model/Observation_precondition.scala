@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_precondition extends CompanionFor[Observation_precondition] {
-  implicit def summonObjectAndCompanionObservation_precondition269304072(
+  implicit def summonObjectAndCompanionObservation_precondition_1181416786(
       o: Observation_precondition): ObjectAndCompanion[Observation_precondition, Observation_precondition.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

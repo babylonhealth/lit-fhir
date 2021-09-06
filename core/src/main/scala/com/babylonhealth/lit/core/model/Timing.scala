@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Timing extends CompanionFor[Timing] {
-  implicit def summonObjectAndCompanionTiming_1598870660(o: Timing): ObjectAndCompanion[Timing, Timing.type] =
+  implicit def summonObjectAndCompanionTiming_617552769(o: Timing): ObjectAndCompanion[Timing, Timing.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Timing
   override type ParentType   = Timing
@@ -29,7 +29,7 @@ object Timing extends CompanionFor[Timing] {
   override val parentType: CompanionFor[ParentType] = Timing
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Timing")
   object Repeat extends CompanionFor[Repeat] {
-    implicit def summonObjectAndCompanionRepeat_442736056(o: Repeat): ObjectAndCompanion[Repeat, Repeat.type] =
+    implicit def summonObjectAndCompanionRepeat715372756(o: Repeat): ObjectAndCompanion[Repeat, Repeat.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Repeat
     override type ParentType   = Repeat
