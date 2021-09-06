@@ -32,9 +32,9 @@ public class Pulse_oximetryExampleTest {
           LitUtils.DateTimeSpecificity.Time);
 
   Us_core_pulse_oximetry example =
-      Us_core_pulse_oximetryBuilder.init(
+      Us_core_pulse_oximetryBuilder.builder(
               ObservationStatus.FINAL,
-              ReferenceBuilder.init().withReference("Patient/1234567890").build(),
+              ReferenceBuilder.init().withReference("Patient/1234567890"),
               List.of(
                   CodeableConceptBuilder.init()
                       .withCoding(
@@ -42,8 +42,7 @@ public class Pulse_oximetryExampleTest {
                               .withSystem(
                                   "http://terminology.hl7.org/CodeSystem/observation-category")
                               .withCode("vital-signs")
-                              .build())
-                      .build()),
+                              .build())),
               Us_core_pulse_oximetryBuilder.effective(time),
               CodeableConceptBuilder.init()
                   .withCoding(
@@ -54,8 +53,7 @@ public class Pulse_oximetryExampleTest {
                       CodingBuilder.init()
                           .withSystem("http://loinc.org")
                           .withCode("59408-5")
-                          .build())
-                  .build())
+                          .build()))
           .withValue(
               QuantityBuilder.init()
                   .withSystem("http://unitsofmeasure.org")

@@ -26,24 +26,22 @@ public class SmokingstatusExampleTest {
       ZonedDateTime.now(ZoneOffset.ofHours(5)).truncatedTo(ChronoUnit.MILLIS);
 
   Us_core_smokingstatus example =
-      Us_core_smokingstatusBuilder.init(
+      Us_core_smokingstatusBuilder.builder(
               CodeableConceptBuilder.init()
                   .withCoding(
                       CodingBuilder.init()
                           .withSystem("http://loinc.org")
                           .withCode("72166-2")
-                          .build())
-                  .build(),
+                          .build()),
               ObservationStatus.FINAL,
               time,
-              ReferenceBuilder.init().withReference("Patient/1234567890").build(),
+              ReferenceBuilder.init().withReference("Patient/1234567890"),
               CodeableConceptBuilder.init()
                   .withCoding(
                       CodingBuilder.init()
                           .withSystem("http://snomed.info/sct")
                           .withCode("266927001")
-                          .build())
-                  .build())
+                          .build()))
           .build();
 
   String jsonStr =

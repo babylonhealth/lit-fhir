@@ -63,12 +63,12 @@ public class JavaUsageOfLit {
     var issued = ZonedDateTime.now();
     var effective = new FHIRDateTime(ZonedDateTime.now(), LitUtils.DateTimeSpecificity.Time);
     var paedBMI =
-        Pediatric_bmi_for_ageBuilder.init(
-                CodeableConceptBuilder.init().withText("Dummy code").build(),
+        Pediatric_bmi_for_ageBuilder.builder(
+                CodeableConceptBuilder.init().withText("Dummy code"),
                 ObservationStatus.UNKNOWN,
-                ReferenceBuilder.init().withReference("Patient/reference-123").build(),
-                List.of(CodeableConceptBuilder.init().withText("Some dummy concept text").build()),
-                QuantityBuilder.init().withValue(BigDecimal.valueOf(12.3)).build(),
+                ReferenceBuilder.init().withReference("Patient/reference-123"),
+                List.of(CodeableConceptBuilder.init().withText("Some dummy concept text")),
+                QuantityBuilder.init().withValue(BigDecimal.valueOf(12.3)),
                 Pediatric_bmi_for_ageBuilder.effective(effective))
             .withIssued(issued)
             .withLanguage(Languages.EN_GB)
@@ -88,12 +88,12 @@ public class JavaUsageOfLit {
     var effective = new FHIRDateTime(ZonedDateTime.now(), LitUtils.DateTimeSpecificity.Time);
     // Check either list syntax produces the same results
     var paedBMI =
-        Pediatric_bmi_for_ageBuilder.init(
-                CodeableConceptBuilder.init().withText("Dummy code").build(),
+        Pediatric_bmi_for_ageBuilder.builder(
+                CodeableConceptBuilder.init().withText("Dummy code"),
                 ObservationStatus.UNKNOWN,
-                ReferenceBuilder.init().withReference("Patient/reference-123").build(),
-                List.of(CodeableConceptBuilder.init().withText("Some dummy concept text").build()),
-                QuantityBuilder.init().withValue(BigDecimal.valueOf(12.3)).build(),
+                ReferenceBuilder.init().withReference("Patient/reference-123"),
+                List.of(CodeableConceptBuilder.init().withText("Some dummy concept text")),
+                QuantityBuilder.init().withValue(BigDecimal.valueOf(12.3)),
                 Pediatric_bmi_for_ageBuilder.effective(effective))
             .withIssued(issued)
             .withLanguage(Languages.EN_GB)
@@ -104,12 +104,12 @@ public class JavaUsageOfLit {
             .build();
 
     var paedBMI2 =
-        Pediatric_bmi_for_ageBuilder.init(
-                CodeableConceptBuilder.init().withText("Dummy code").build(),
+        Pediatric_bmi_for_ageBuilder.builder(
+                CodeableConceptBuilder.init().withText("Dummy code"),
                 ObservationStatus.UNKNOWN,
-                ReferenceBuilder.init().withReference("Patient/reference-123").build(),
-                List.of(CodeableConceptBuilder.init().withText("Some dummy concept text").build()),
-                QuantityBuilder.init().withValue(BigDecimal.valueOf(12.3)).build(),
+                ReferenceBuilder.init().withReference("Patient/reference-123"),
+                List.of(CodeableConceptBuilder.init().withText("Some dummy concept text")),
+                QuantityBuilder.init().withValue(BigDecimal.valueOf(12.3)),
                 Pediatric_bmi_for_ageBuilder.effective(effective))
             .withIssued(issued)
             .withLanguage(Languages.EN_GB)
@@ -129,12 +129,12 @@ public class JavaUsageOfLit {
             ZonedDateTime.now(ZoneOffset.UTC).truncatedTo(ChronoUnit.MILLIS),
             LitUtils.DateTimeSpecificity.Time);
     var paedBMI =
-        Pediatric_bmi_for_ageBuilder.init(
-                CodeableConceptBuilder.init().withText("Dummy code").build(),
+        Pediatric_bmi_for_ageBuilder.builder(
+                CodeableConceptBuilder.init().withText("Dummy code"),
                 ObservationStatus.UNKNOWN,
-                ReferenceBuilder.init().withReference("Patient/reference-123").build(),
-                List.of(CodeableConceptBuilder.init().withText("A category concept").build()),
-                QuantityBuilder.init().withValue(BigDecimal.valueOf(12.3)).build(),
+                ReferenceBuilder.init().withReference("Patient/reference-123"),
+                List.of(CodeableConceptBuilder.init().withText("A category concept")),
+                QuantityBuilder.init().withValue(BigDecimal.valueOf(12.3)),
                 Pediatric_bmi_for_ageBuilder.effective(effective))
             .withIssued(issued)
             .withLanguage(Languages.EN_GB)
@@ -219,15 +219,10 @@ public class JavaUsageOfLit {
         Bundle_EntryBuilder.init()
             .withFullUrl("urn:uuid:patient")
             .withResource(
-                Us_core_patientBuilder.init(
+                Us_core_patientBuilder.builder(
                         AdministrativeGender.OTHER,
-                        List.of(
-                            HumanNameBuilder.init().withGiven("The").withFamily("Doctor").build()),
-                        List.of(
-                            IdentifierBuilder.init()
-                                .withSystem("tardis://")
-                                .withValue("213")
-                                .build()))
+                        List.of(HumanNameBuilder.init().withGiven("The").withFamily("Doctor")),
+                        List.of(IdentifierBuilder.init().withSystem("tardis://").withValue("213")))
                     .withLanguage(Languages.EN_GB)
                     .withManagingOrganization(
                         ReferenceBuilder.init().withReference("urn:uuid:organization").build())
@@ -243,22 +238,20 @@ public class JavaUsageOfLit {
         Bundle_EntryBuilder.init()
             .withFullUrl("urn:uuid:observation:bmi")
             .withResource(
-                BmiBuilder.init(
+                BmiBuilder.builder(
                         ObservationStatus.FINAL,
-                        ReferenceBuilder.init().withReference("urn:uuid:patient").build(),
+                        ReferenceBuilder.init().withReference("urn:uuid:patient"),
                         List.of(
                             CodeableConceptBuilder.init()
                                 .withCoding(
                                     CodingBuilder.init()
                                         .withSystem("http://terminology.system")
                                         .withCode("Vital signs")
-                                        .build())
-                                .build()),
+                                        .build())),
                         QuantityBuilder.init()
                             .withValue(BigDecimal.valueOf(1.23))
                             .withSystem("http://unitsofmeasure.org")
-                            .withCode("${unit}")
-                            .build(),
+                            .withCode("${unit}"),
                         BmiBuilder.effective(effective),
                         CodeableConceptBuilder.init()
                             .withCoding(
@@ -266,8 +259,7 @@ public class JavaUsageOfLit {
                                     .withSystem("http://terminology.system")
                                     .withCode("code-for-bmi")
                                     .withDisplay("BMI")
-                                    .build())
-                            .build())
+                                    .build()))
                     .withLanguage(Languages.EN_GB)
                     .build())
             .withRequest(Bundle_Entry_RequestBuilder.init("/Observation", HttpVerb.POST).build())
@@ -318,12 +310,12 @@ public class JavaUsageOfLit {
   }
 
   private Pediatric_bmi_for_age buildFromInstants(ZonedDateTime issued, ZonedDateTime effective) {
-    return Pediatric_bmi_for_ageBuilder.init(
-            CodeableConceptBuilder.init().withText("Dummy code").build(),
+    return Pediatric_bmi_for_ageBuilder.builder(
+            CodeableConceptBuilder.init().withText("Dummy code"),
             ObservationStatus.UNKNOWN,
-            ReferenceBuilder.init().withReference("Patient/reference-123").build(),
-            List.of(CodeableConceptBuilder.init().withText("Some dummy concept text").build()),
-            QuantityBuilder.init().withValue(BigDecimal.valueOf(12.3)).build(),
+            ReferenceBuilder.init().withReference("Patient/reference-123"),
+            List.of(CodeableConceptBuilder.init().withText("Some dummy concept text")),
+            QuantityBuilder.init().withValue(BigDecimal.valueOf(12.3)),
             Pediatric_bmi_for_ageBuilder.effective(
                 new FHIRDateTime(effective, LitUtils.DateTimeSpecificity.Time)))
         .withIssued(issued)

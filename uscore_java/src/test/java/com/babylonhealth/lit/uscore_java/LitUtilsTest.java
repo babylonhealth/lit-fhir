@@ -45,10 +45,10 @@ class LitUtilsTest {
             Us_core_patient.class,
             "{\"resourceType\": \"Patient\", \"gender\": \"other\", \"name\":[{\"given\":[\"The\"], \"family\":\"Doctor\"}], \"identifier\": [{\"system\":\"tardis://\", \"value\":\"213\"}]}");
     assertEquals(
-        Us_core_patientBuilder.init(
+        Us_core_patientBuilder.builder(
                 AdministrativeGender.OTHER,
-                List.of(HumanNameBuilder.init().withGiven("The").withFamily("Doctor").build()),
-                List.of(IdentifierBuilder.init().withSystem("tardis://").withValue("213").build()))
+                List.of(HumanNameBuilder.init().withGiven("The").withFamily("Doctor")),
+                List.of(IdentifierBuilder.init().withSystem("tardis://").withValue("213")))
             .withoutMeta()
             .build(),
         patient);
