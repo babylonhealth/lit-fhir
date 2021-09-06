@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_allowedUnits extends CompanionFor[Elementdefinition_allowedUnits] {
-  implicit def summonObjectAndCompanionElementdefinition_allowedUnits_839586408(
+  implicit def summonObjectAndCompanionElementdefinition_allowedUnits_2004829318(
       o: Elementdefinition_allowedUnits): ObjectAndCompanion[Elementdefinition_allowedUnits, Elementdefinition_allowedUnits.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
@@ -32,7 +32,7 @@ object Elementdefinition_allowedUnits extends CompanionFor[Elementdefinition_all
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-allowedUnits")
-  type ValueChoice = Choice[Union01054268719]
+  type ValueChoice = Choice[UnionCanonicalOrCodeableConcept]
   def apply(
       id: Option[String] = None,
       value: Elementdefinition_allowedUnits.ValueChoice,
@@ -45,7 +45,11 @@ object Elementdefinition_allowedUnits extends CompanionFor[Elementdefinition_all
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Elementdefinition_allowedUnits.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_allowedUnits.ValueChoice], true, lTagOf[Union01054268719])
+    FHIRComponentFieldMeta(
+      "value",
+      lTagOf[Elementdefinition_allowedUnits.ValueChoice],
+      true,
+      lTagOf[UnionCanonicalOrCodeableConcept])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -64,7 +68,7 @@ object Elementdefinition_allowedUnits extends CompanionFor[Elementdefinition_all
       Try(
         new Elementdefinition_allowedUnits(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[Union01054268719]("value"),
+          cursor.decodeRef[UnionCanonicalOrCodeableConcept]("value"),
           decodeAttributes(cursor)
         )
       ))

@@ -158,7 +158,7 @@ public class JavaUsageOfLit {
 
   @Test
   public void testRefs3() throws Exception {
-    Patient p = PatientBuilder.init().withMultipleBirth(new Choice02065782851(true)).build();
+    Patient p = PatientBuilder.init().withMultipleBirth(new ChoiceBooleanOrInteger(true)).build();
     System.out.println(p);
   }
 

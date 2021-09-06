@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Signature extends CompanionFor[Signature] {
-  implicit def summonObjectAndCompanionSignature842400190(o: Signature): ObjectAndCompanion[Signature, Signature.type] =
+  implicit def summonObjectAndCompanionSignature_1260569501(o: Signature): ObjectAndCompanion[Signature, Signature.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Signature
   override type ParentType   = Signature

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Contract extends CompanionFor[Contract] {
-  implicit def summonObjectAndCompanionContract_1551682331(o: Contract): ObjectAndCompanion[Contract, Contract.type] =
+  implicit def summonObjectAndCompanionContract743230471(o: Contract): ObjectAndCompanion[Contract, Contract.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Contract
   override type ParentType   = Contract
@@ -32,19 +32,19 @@ object Contract extends CompanionFor[Contract] {
   override val parentType: CompanionFor[ParentType] = Contract
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Contract")
   object Term extends CompanionFor[Term] {
-    implicit def summonObjectAndCompanionTerm_1772175115(o: Term): ObjectAndCompanion[Term, Term.type] =
+    implicit def summonObjectAndCompanionTerm_1004606876(o: Term): ObjectAndCompanion[Term, Term.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Term
     override type ParentType   = Term
     override val parentType: CompanionFor[ResourceType] = Term
     object Offer extends CompanionFor[Offer] {
-      implicit def summonObjectAndCompanionOffer_1083068915(o: Offer): ObjectAndCompanion[Offer, Offer.type] =
+      implicit def summonObjectAndCompanionOffer_497097142(o: Offer): ObjectAndCompanion[Offer, Offer.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Offer
       override type ParentType   = Offer
       override val parentType: CompanionFor[ResourceType] = Offer
       object Party extends CompanionFor[Party] {
-        implicit def summonObjectAndCompanionParty_470161312(o: Party): ObjectAndCompanion[Party, Party.type] =
+        implicit def summonObjectAndCompanionParty_347504074(o: Party): ObjectAndCompanion[Party, Party.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = Party
         override type ParentType   = Party
@@ -111,12 +111,12 @@ object Contract extends CompanionFor[Contract] {
           override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object Answer extends CompanionFor[Answer] {
-        implicit def summonObjectAndCompanionAnswer682527430(o: Answer): ObjectAndCompanion[Answer, Answer.type] =
+        implicit def summonObjectAndCompanionAnswer_347504074(o: Answer): ObjectAndCompanion[Answer, Answer.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = Answer
         override type ParentType   = Answer
         override val parentType: CompanionFor[ResourceType] = Answer
-        type ValueChoice = Choice[Union_2101127777]
+        type ValueChoice = Choice[Union02135982830]
         def apply(
             id: Option[String] = None,
             value: Answer.ValueChoice,
@@ -135,7 +135,7 @@ object Contract extends CompanionFor[Contract] {
         val id: FHIRComponentFieldMeta[Option[String]] =
           FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
         val value: FHIRComponentFieldMeta[Answer.ValueChoice] =
-          FHIRComponentFieldMeta("value", lTagOf[Answer.ValueChoice], true, lTagOf[Union_2101127777])
+          FHIRComponentFieldMeta("value", lTagOf[Answer.ValueChoice], true, lTagOf[Union02135982830])
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -155,7 +155,7 @@ object Contract extends CompanionFor[Contract] {
             Try(
               new Answer(
                 cursor.decodeAs[Option[String]]("id", Some(None)),
-                cursor.decodeRef[Union_2101127777]("value"),
+                cursor.decodeRef[Union02135982830]("value"),
                 cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
                 cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
                 decodeAttributes(cursor)
@@ -315,7 +315,7 @@ object Contract extends CompanionFor[Contract] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object SecurityLabel extends CompanionFor[SecurityLabel] {
-      implicit def summonObjectAndCompanionSecurityLabel776358644(
+      implicit def summonObjectAndCompanionSecurityLabel_497097142(
           o: SecurityLabel): ObjectAndCompanion[SecurityLabel, SecurityLabel.type] = ObjectAndCompanion(o, this)
       override type ResourceType = SecurityLabel
       override type ParentType   = SecurityLabel
@@ -397,13 +397,13 @@ object Contract extends CompanionFor[Contract] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Action extends CompanionFor[Action] {
-      implicit def summonObjectAndCompanionAction1630305455(o: Action): ObjectAndCompanion[Action, Action.type] =
+      implicit def summonObjectAndCompanionAction_497097142(o: Action): ObjectAndCompanion[Action, Action.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Action
       override type ParentType   = Action
       override val parentType: CompanionFor[ResourceType] = Action
       object Subject extends CompanionFor[Subject] {
-        implicit def summonObjectAndCompanionSubject_728199166(o: Subject): ObjectAndCompanion[Subject, Subject.type] =
+        implicit def summonObjectAndCompanionSubject_882900374(o: Subject): ObjectAndCompanion[Subject, Subject.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = Subject
         override type ParentType   = Subject
@@ -469,7 +469,7 @@ object Contract extends CompanionFor[Contract] {
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-      type OccurrenceChoice = Choice[Union00609373412]
+      type OccurrenceChoice = Choice[UnionDateTimeOrPeriodOrTiming]
       def apply(
           id: Option[String] = None,
           `type`: CodeableConcept,
@@ -554,7 +554,7 @@ object Contract extends CompanionFor[Contract] {
       val contextLinkId: FHIRComponentFieldMeta[LitSeq[String]] =
         FHIRComponentFieldMeta("contextLinkId", lTagOf[LitSeq[String]], false, lTagOf[String])
       val occurrence: FHIRComponentFieldMeta[Option[Action.OccurrenceChoice]] =
-        FHIRComponentFieldMeta("occurrence", lTagOf[Option[Action.OccurrenceChoice]], true, lTagOf[Union00609373412])
+        FHIRComponentFieldMeta("occurrence", lTagOf[Option[Action.OccurrenceChoice]], true, lTagOf[UnionDateTimeOrPeriodOrTiming])
       val performerType: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
         FHIRComponentFieldMeta("performerType", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
       val performerRole: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -645,7 +645,7 @@ object Contract extends CompanionFor[Contract] {
               cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
               cursor.decodeAs[LitSeq[String]]("reasonLinkId", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[String]]("contextLinkId", Some(LitSeq.empty)),
-              cursor.decodeOptRef[Union00609373412]("occurrence"),
+              cursor.decodeOptRef[UnionDateTimeOrPeriodOrTiming]("occurrence"),
               cursor.decodeAs[LitSeq[CodeableConcept]]("performerType", Some(LitSeq.empty)),
               cursor.decodeAs[Option[CodeableConcept]]("performerRole", Some(None)),
               cursor.decodeAs[LitSeq[String]]("requesterLinkId", Some(LitSeq.empty)),
@@ -687,13 +687,13 @@ object Contract extends CompanionFor[Contract] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Asset extends CompanionFor[Asset] {
-      implicit def summonObjectAndCompanionAsset_588043774(o: Asset): ObjectAndCompanion[Asset, Asset.type] =
+      implicit def summonObjectAndCompanionAsset_497097142(o: Asset): ObjectAndCompanion[Asset, Asset.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Asset
       override type ParentType   = Asset
       override val parentType: CompanionFor[ResourceType] = Asset
       object Context extends CompanionFor[Context] {
-        implicit def summonObjectAndCompanionContext826708725(o: Context): ObjectAndCompanion[Context, Context.type] =
+        implicit def summonObjectAndCompanionContext_372563106(o: Context): ObjectAndCompanion[Context, Context.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = Context
         override type ParentType   = Context
@@ -767,12 +767,12 @@ object Contract extends CompanionFor[Contract] {
           override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
       object ValuedItem extends CompanionFor[ValuedItem] {
-        implicit def summonObjectAndCompanionValuedItem_200397922(
+        implicit def summonObjectAndCompanionValuedItem_372563106(
             o: ValuedItem): ObjectAndCompanion[ValuedItem, ValuedItem.type] = ObjectAndCompanion(o, this)
         override type ResourceType = ValuedItem
         override type ParentType   = ValuedItem
         override val parentType: CompanionFor[ResourceType] = ValuedItem
-        type EntityChoice = Choice[Union01025009075]
+        type EntityChoice = Choice[UnionCodeableConceptOrReference]
         def apply(
             id: Option[String] = None,
             net: Option[Money] = None,
@@ -850,7 +850,7 @@ object Contract extends CompanionFor[Contract] {
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val entity: FHIRComponentFieldMeta[Option[ValuedItem.EntityChoice]] =
-          FHIRComponentFieldMeta("entity", lTagOf[Option[ValuedItem.EntityChoice]], true, lTagOf[Union01025009075])
+          FHIRComponentFieldMeta("entity", lTagOf[Option[ValuedItem.EntityChoice]], true, lTagOf[UnionCodeableConceptOrReference])
         val unitPrice: FHIRComponentFieldMeta[Option[Money]] =
           FHIRComponentFieldMeta("unitPrice", lTagOf[Option[Money]], false, lTagOf[Money])
         val recipient: FHIRComponentFieldMeta[Option[Reference]] =
@@ -920,7 +920,7 @@ object Contract extends CompanionFor[Contract] {
                 cursor.decodeAs[Option[String]]("payment", Some(None)),
                 cursor.decodeAs[Option[Quantity]]("quantity", Some(None)),
                 cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-                cursor.decodeOptRef[Union01025009075]("entity"),
+                cursor.decodeOptRef[UnionCodeableConceptOrReference]("entity"),
                 cursor.decodeAs[Option[Money]]("unitPrice", Some(None)),
                 cursor.decodeAs[Option[Reference]]("recipient", Some(None)),
                 cursor.decodeAs[Option[Identifier]]("identifier", Some(None)),
@@ -1144,7 +1144,7 @@ object Contract extends CompanionFor[Contract] {
         val valuedItem: LitSeq[Asset.ValuedItem] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type TopicChoice = Choice[Union01025009075]
+    type TopicChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,
@@ -1214,7 +1214,7 @@ object Contract extends CompanionFor[Contract] {
     val subType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("subType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val topic: FHIRComponentFieldMeta[Option[Term.TopicChoice]] =
-      FHIRComponentFieldMeta("topic", lTagOf[Option[Term.TopicChoice]], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("topic", lTagOf[Option[Term.TopicChoice]], true, lTagOf[UnionCodeableConceptOrReference])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val identifier: FHIRComponentFieldMeta[Option[Identifier]] =
@@ -1276,7 +1276,7 @@ object Contract extends CompanionFor[Contract] {
             cursor.decodeAs[Option[FHIRDateTime]]("issued", Some(None)),
             cursor.decodeAs[Option[Period]]("applies", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("subType", Some(None)),
-            cursor.decodeOptRef[Union01025009075]("topic"),
+            cursor.decodeOptRef[UnionCodeableConceptOrReference]("topic"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[Identifier]]("identifier", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -1308,7 +1308,7 @@ object Contract extends CompanionFor[Contract] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object ContentDefinition extends CompanionFor[ContentDefinition] {
-    implicit def summonObjectAndCompanionContentDefinition_1752291012(
+    implicit def summonObjectAndCompanionContentDefinition_1004606876(
         o: ContentDefinition): ObjectAndCompanion[ContentDefinition, ContentDefinition.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ContentDefinition
     override type ParentType   = ContentDefinition
@@ -1414,12 +1414,12 @@ object Contract extends CompanionFor[Contract] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Friendly extends CompanionFor[Friendly] {
-    implicit def summonObjectAndCompanionFriendly836904886(o: Friendly): ObjectAndCompanion[Friendly, Friendly.type] =
+    implicit def summonObjectAndCompanionFriendly_1004606876(o: Friendly): ObjectAndCompanion[Friendly, Friendly.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Friendly
     override type ParentType   = Friendly
     override val parentType: CompanionFor[ResourceType] = Friendly
-    type ContentChoice = Choice[Union_0340660840]
+    type ContentChoice = Choice[UnionAttachmentOrReference]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -1440,7 +1440,7 @@ object Contract extends CompanionFor[Contract] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val content: FHIRComponentFieldMeta[Friendly.ContentChoice] =
-      FHIRComponentFieldMeta("content", lTagOf[Friendly.ContentChoice], true, lTagOf[Union_0340660840])
+      FHIRComponentFieldMeta("content", lTagOf[Friendly.ContentChoice], true, lTagOf[UnionAttachmentOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
@@ -1459,7 +1459,7 @@ object Contract extends CompanionFor[Contract] {
           new Friendly(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_0340660840]("content"),
+            cursor.decodeRef[UnionAttachmentOrReference]("content"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -1474,7 +1474,7 @@ object Contract extends CompanionFor[Contract] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Signer extends CompanionFor[Signer] {
-    implicit def summonObjectAndCompanionSigner811023052(o: Signer): ObjectAndCompanion[Signer, Signer.type] =
+    implicit def summonObjectAndCompanionSigner_1004606876(o: Signer): ObjectAndCompanion[Signer, Signer.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Signer
     override type ParentType   = Signer
@@ -1548,12 +1548,12 @@ object Contract extends CompanionFor[Contract] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Legal extends CompanionFor[Legal] {
-    implicit def summonObjectAndCompanionLegal_1625184003(o: Legal): ObjectAndCompanion[Legal, Legal.type] =
+    implicit def summonObjectAndCompanionLegal_1004606876(o: Legal): ObjectAndCompanion[Legal, Legal.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Legal
     override type ParentType   = Legal
     override val parentType: CompanionFor[ResourceType] = Legal
-    type ContentChoice = Choice[Union_0340660840]
+    type ContentChoice = Choice[UnionAttachmentOrReference]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -1574,7 +1574,7 @@ object Contract extends CompanionFor[Contract] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val content: FHIRComponentFieldMeta[Legal.ContentChoice] =
-      FHIRComponentFieldMeta("content", lTagOf[Legal.ContentChoice], true, lTagOf[Union_0340660840])
+      FHIRComponentFieldMeta("content", lTagOf[Legal.ContentChoice], true, lTagOf[UnionAttachmentOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
@@ -1593,7 +1593,7 @@ object Contract extends CompanionFor[Contract] {
           new Legal(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_0340660840]("content"),
+            cursor.decodeRef[UnionAttachmentOrReference]("content"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -1608,12 +1608,12 @@ object Contract extends CompanionFor[Contract] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Rule extends CompanionFor[Rule] {
-    implicit def summonObjectAndCompanionRule_1277801210(o: Rule): ObjectAndCompanion[Rule, Rule.type] =
+    implicit def summonObjectAndCompanionRule_1004606876(o: Rule): ObjectAndCompanion[Rule, Rule.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Rule
     override type ParentType   = Rule
     override val parentType: CompanionFor[ResourceType] = Rule
-    type ContentChoice = Choice[Union_0340660840]
+    type ContentChoice = Choice[UnionAttachmentOrReference]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -1634,7 +1634,7 @@ object Contract extends CompanionFor[Contract] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val content: FHIRComponentFieldMeta[Rule.ContentChoice] =
-      FHIRComponentFieldMeta("content", lTagOf[Rule.ContentChoice], true, lTagOf[Union_0340660840])
+      FHIRComponentFieldMeta("content", lTagOf[Rule.ContentChoice], true, lTagOf[UnionAttachmentOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
@@ -1653,7 +1653,7 @@ object Contract extends CompanionFor[Contract] {
           new Rule(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_0340660840]("content"),
+            cursor.decodeRef[UnionAttachmentOrReference]("content"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -1667,8 +1667,8 @@ object Contract extends CompanionFor[Contract] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type TopicChoice          = Choice[Union01025009075]
-  type LegallyBindingChoice = Choice[Union_0340660840]
+  type TopicChoice          = Choice[UnionCodeableConceptOrReference]
+  type LegallyBindingChoice = Choice[UnionAttachmentOrReference]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -1797,7 +1797,7 @@ object Contract extends CompanionFor[Contract] {
   val subtitle: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("subtitle", lTagOf[Option[String]], false, lTagOf[String])
   val topic: FHIRComponentFieldMeta[Option[Contract.TopicChoice]] =
-    FHIRComponentFieldMeta("topic", lTagOf[Option[Contract.TopicChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta("topic", lTagOf[Option[Contract.TopicChoice]], true, lTagOf[UnionCodeableConceptOrReference])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -1823,7 +1823,11 @@ object Contract extends CompanionFor[Contract] {
   val contentDerivative: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("contentDerivative", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val legallyBinding: FHIRComponentFieldMeta[Option[Contract.LegallyBindingChoice]] =
-    FHIRComponentFieldMeta("legallyBinding", lTagOf[Option[Contract.LegallyBindingChoice]], true, lTagOf[Union_0340660840])
+    FHIRComponentFieldMeta(
+      "legallyBinding",
+      lTagOf[Option[Contract.LegallyBindingChoice]],
+      true,
+      lTagOf[UnionAttachmentOrReference])
   val instantiatesCanonical: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("instantiatesCanonical", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val rule: FHIRComponentFieldMeta[LitSeq[Contract.Rule]] =
@@ -2007,7 +2011,7 @@ object Contract extends CompanionFor[Contract] {
           cursor.decodeAs[LitSeq[CodeableConcept]]("subType", Some(LitSeq.empty)),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[Option[String]]("subtitle", Some(None)),
-          cursor.decodeOptRef[Union01025009075]("topic"),
+          cursor.decodeOptRef[UnionCodeableConceptOrReference]("topic"),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("authority", Some(LitSeq.empty)),
@@ -2020,7 +2024,7 @@ object Contract extends CompanionFor[Contract] {
           cursor.decodeAs[LitSeq[Reference]]("relevantHistory", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("contentDerivative", Some(None)),
-          cursor.decodeOptRef[Union_0340660840]("legallyBinding"),
+          cursor.decodeOptRef[UnionAttachmentOrReference]("legallyBinding"),
           cursor.decodeAs[Option[Reference]]("instantiatesCanonical", Some(None)),
           cursor.decodeAs[LitSeq[Contract.Rule]]("rule", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Contract.Legal]]("legal", Some(LitSeq.empty)),

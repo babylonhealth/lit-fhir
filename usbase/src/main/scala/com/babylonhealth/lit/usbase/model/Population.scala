@@ -24,14 +24,14 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Population extends CompanionFor[Population] {
-  implicit def summonObjectAndCompanionPopulation_11499230(o: Population): ObjectAndCompanion[Population, Population.type] =
+  implicit def summonObjectAndCompanionPopulation_1367882494(o: Population): ObjectAndCompanion[Population, Population.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Population
   override type ParentType   = Population
   override val baseType: CompanionFor[ResourceType] = Population
   override val parentType: CompanionFor[ParentType] = Population
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Population")
-  type AgeChoice = Choice[Union_1946587936]
+  type AgeChoice = Choice[UnionCodeableConceptOrRange]
   def apply(
       id: Option[String] = None,
       race: Option[CodeableConcept] = None,
@@ -56,7 +56,7 @@ object Population extends CompanionFor[Population] {
   val race: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("race", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val age: FHIRComponentFieldMeta[Option[Population.AgeChoice]] =
-    FHIRComponentFieldMeta("age", lTagOf[Option[Population.AgeChoice]], true, lTagOf[Union_1946587936])
+    FHIRComponentFieldMeta("age", lTagOf[Option[Population.AgeChoice]], true, lTagOf[UnionCodeableConceptOrRange])
   val gender: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("gender", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -94,7 +94,7 @@ object Population extends CompanionFor[Population] {
         new Population(
           cursor.decodeAs[Option[String]]("id", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("race", Some(None)),
-          cursor.decodeOptRef[Union_1946587936]("age"),
+          cursor.decodeOptRef[UnionCodeableConceptOrRange]("age"),
           cursor.decodeAs[Option[CodeableConcept]]("gender", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),

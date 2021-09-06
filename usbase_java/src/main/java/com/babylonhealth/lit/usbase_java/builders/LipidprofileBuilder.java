@@ -61,12 +61,12 @@ public interface LipidprofileBuilder extends DiagnosticReportBuilder {
     return new Impl(code.build(), status, new LitSeq<>(result).map(ReferenceBuilder::build));
   }
 
-  public static Choice_0934386166 effective(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 effective(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceDateTimeOrPeriod effective(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements LipidprofileBuilder {
@@ -92,7 +92,7 @@ public interface LipidprofileBuilder extends DiagnosticReportBuilder {
     private Collection<Reference> performer = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> conclusion = Optional.empty();
-    private Optional<Choice_0934386166> effective = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriod> effective = Optional.empty();
     private Collection<Reference> imagingStudy = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
     private Collection<Attachment> presentedForm = Collections.emptyList();
@@ -343,7 +343,7 @@ public interface LipidprofileBuilder extends DiagnosticReportBuilder {
      *     Period. To pass the value in, wrap with one of the LipidprofileBuilder.effective static
      *     methods
      */
-    public LipidprofileBuilder.Impl withEffective(@NonNull Choice_0934386166 effective) {
+    public LipidprofileBuilder.Impl withEffective(@NonNull ChoiceDateTimeOrPeriod effective) {
       this.effective = Optional.of(effective);
       return this;
     }

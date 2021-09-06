@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Ratio extends CompanionFor[Ratio] {
-  implicit def summonObjectAndCompanionRatio719608735(o: Ratio): ObjectAndCompanion[Ratio, Ratio.type] =
+  implicit def summonObjectAndCompanionRatio393642294(o: Ratio): ObjectAndCompanion[Ratio, Ratio.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Ratio
   override type ParentType   = Ratio

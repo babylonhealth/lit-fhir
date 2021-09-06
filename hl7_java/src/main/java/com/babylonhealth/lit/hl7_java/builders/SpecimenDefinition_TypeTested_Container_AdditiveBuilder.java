@@ -45,26 +45,26 @@ import static java.util.stream.Collectors.toList;
 public interface SpecimenDefinition_TypeTested_Container_AdditiveBuilder {
   public SpecimenDefinition$TypeTested$Container$Additive build();
 
-  public static Impl init(@NonNull Choice01025009075 additive) {
+  public static Impl init(@NonNull ChoiceCodeableConceptOrReference additive) {
     return new Impl(additive);
   }
 
-  public static Impl builder(@NonNull Choice01025009075 additive) {
+  public static Impl builder(@NonNull ChoiceCodeableConceptOrReference additive) {
     return new Impl(additive);
   }
 
-  public static Choice01025009075 additive(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference additive(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 additive(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference additive(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements SpecimenDefinition_TypeTested_Container_AdditiveBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Choice01025009075 additive;
+    private ChoiceCodeableConceptOrReference additive;
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -74,7 +74,7 @@ public interface SpecimenDefinition_TypeTested_Container_AdditiveBuilder {
      *     To pass the value in, wrap with one of the
      *     SpecimenDefinition_TypeTested_Container_AdditiveBuilder.additive static methods
      */
-    public Impl(@NonNull Choice01025009075 additive) {
+    public Impl(@NonNull ChoiceCodeableConceptOrReference additive) {
       this.additive = additive;
     }
 

@@ -25,14 +25,14 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Lipidprofile extends CompanionFor[Lipidprofile] {
-  implicit def summonObjectAndCompanionLipidprofile_1579300877(
+  implicit def summonObjectAndCompanionLipidprofile768741200(
       o: Lipidprofile): ObjectAndCompanion[Lipidprofile, Lipidprofile.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DiagnosticReport
   override type ParentType   = DiagnosticReport
   override val baseType: CompanionFor[ResourceType] = DiagnosticReport
   override val parentType: CompanionFor[ParentType] = DiagnosticReport
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/lipidprofile")
-  type EffectiveChoice = Choice[Union_0934386166]
+  type EffectiveChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/lipidprofile"))),
@@ -125,7 +125,7 @@ object Lipidprofile extends CompanionFor[Lipidprofile] {
   val conclusion: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("conclusion", lTagOf[Option[String]], false, lTagOf[String])
   val effective: FHIRComponentFieldMeta[Option[Lipidprofile.EffectiveChoice]] =
-    FHIRComponentFieldMeta("effective", lTagOf[Option[Lipidprofile.EffectiveChoice]], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("effective", lTagOf[Option[Lipidprofile.EffectiveChoice]], true, lTagOf[UnionDateTimeOrPeriod])
   val imagingStudy: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("imagingStudy", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -243,7 +243,7 @@ object Lipidprofile extends CompanionFor[Lipidprofile] {
           cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("conclusion", Some(None)),
-          cursor.decodeOptRef[Union_0934386166]("effective"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriod]("effective"),
           cursor.decodeAs[LitSeq[Reference]]("imagingStudy", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Attachment]]("presentedForm", Some(LitSeq.empty)),

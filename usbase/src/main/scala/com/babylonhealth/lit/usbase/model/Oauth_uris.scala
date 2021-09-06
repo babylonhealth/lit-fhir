@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Oauth_uris extends CompanionFor[Oauth_uris] {
-  implicit def summonObjectAndCompanionOauth_uris_2125163305(o: Oauth_uris): ObjectAndCompanion[Oauth_uris, Oauth_uris.type] =
+  implicit def summonObjectAndCompanionOauth_uris_342514480(o: Oauth_uris): ObjectAndCompanion[Oauth_uris, Oauth_uris.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

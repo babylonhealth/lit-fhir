@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinition] {
-  implicit def summonObjectAndCompanionShareableactivitydefinition_219438691(
+  implicit def summonObjectAndCompanionShareableactivitydefinition_1401722330(
       o: Shareableactivitydefinition): ObjectAndCompanion[Shareableactivitydefinition, Shareableactivitydefinition.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = ActivityDefinition
@@ -33,9 +33,9 @@ object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinit
   override val baseType: CompanionFor[ResourceType] = ActivityDefinition
   override val parentType: CompanionFor[ParentType] = ActivityDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareableactivitydefinition")
-  type TimingChoice  = Choice[Union_0181779868]
-  type SubjectChoice = Choice[Union01025009075]
-  type ProductChoice = Choice[Union01025009075]
+  type TimingChoice  = Choice[Union_0075792257]
+  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
+  type ProductChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       url: UriStr,
@@ -217,17 +217,25 @@ object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinit
   val copyright: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("copyright", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val timing: FHIRComponentFieldMeta[Option[Shareableactivitydefinition.TimingChoice]] =
-    FHIRComponentFieldMeta("timing", lTagOf[Option[Shareableactivitydefinition.TimingChoice]], true, lTagOf[Union_0181779868])
+    FHIRComponentFieldMeta("timing", lTagOf[Option[Shareableactivitydefinition.TimingChoice]], true, lTagOf[Union_0075792257])
   val transform: FHIRComponentFieldMeta[Option[Canonical]] =
     FHIRComponentFieldMeta("transform", lTagOf[Option[Canonical]], false, lTagOf[Canonical])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val subject: FHIRComponentFieldMeta[Option[Shareableactivitydefinition.SubjectChoice]] =
-    FHIRComponentFieldMeta("subject", lTagOf[Option[Shareableactivitydefinition.SubjectChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "subject",
+      lTagOf[Option[Shareableactivitydefinition.SubjectChoice]],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val product: FHIRComponentFieldMeta[Option[Shareableactivitydefinition.ProductChoice]] =
-    FHIRComponentFieldMeta("product", lTagOf[Option[Shareableactivitydefinition.ProductChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "product",
+      lTagOf[Option[Shareableactivitydefinition.ProductChoice]],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val description: FHIRComponentFieldMeta[Markdown] =
     FHIRComponentFieldMeta("description", lTagOf[Markdown], false, lTagOf[Markdown])
   val experimental: FHIRComponentFieldMeta[Boolean] =
@@ -473,12 +481,12 @@ object Shareableactivitydefinition extends CompanionFor[Shareableactivitydefinit
         cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
         cursor.decodeAs[String]("publisher", None),
         cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
-        cursor.decodeOptRef[Union_0181779868]("timing"),
+        cursor.decodeOptRef[Union_0075792257]("timing"),
         cursor.decodeAs[Option[Canonical]]("transform", Some(None)),
         cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-        cursor.decodeOptRef[Union01025009075]("subject"),
+        cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
         cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
-        cursor.decodeOptRef[Union01025009075]("product"),
+        cursor.decodeOptRef[UnionCodeableConceptOrReference]("product"),
         cursor.decodeAs[Markdown]("description", None),
         cursor.decodeAs[Boolean]("experimental", None),
         cursor.decodeAs[LitSeq[CodeableConcept]]("jurisdiction", Some(LitSeq.empty)),

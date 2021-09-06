@@ -24,14 +24,14 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MinValue extends CompanionFor[MinValue] {
-  implicit def summonObjectAndCompanionMinValue_1047861612(o: MinValue): ObjectAndCompanion[MinValue, MinValue.type] =
+  implicit def summonObjectAndCompanionMinValue_131435244(o: MinValue): ObjectAndCompanion[MinValue, MinValue.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/minValue")
-  type ValueChoice = Choice[Union01613806391]
+  type ValueChoice = Choice[Union_1391615921]
   def apply(
       id: Option[String] = None,
       value: MinValue.ValueChoice,
@@ -44,7 +44,7 @@ object MinValue extends CompanionFor[MinValue] {
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[MinValue.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[MinValue.ValueChoice], true, lTagOf[Union01613806391])
+    FHIRComponentFieldMeta("value", lTagOf[MinValue.ValueChoice], true, lTagOf[Union_1391615921])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -62,7 +62,7 @@ object MinValue extends CompanionFor[MinValue] {
       Try(
         new MinValue(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[Union01613806391]("value"),
+          cursor.decodeRef[Union_1391615921]("value"),
           decodeAttributes(cursor)
         )
       ))

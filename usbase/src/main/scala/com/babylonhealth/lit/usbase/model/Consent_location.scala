@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Consent_location extends CompanionFor[Consent_location] {
-  implicit def summonObjectAndCompanionConsent_location_1466284251(
+  implicit def summonObjectAndCompanionConsent_location_1322937891(
       o: Consent_location): ObjectAndCompanion[Consent_location, Consent_location.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

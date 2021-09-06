@@ -54,24 +54,24 @@ public interface CarePlan_Activity_DetailBuilder {
     return new Impl(status);
   }
 
-  public static Choice01025009075 product(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference product(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 product(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference product(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
-  public static Choice01726112534 scheduled(Period p) {
-    return new Choice01726112534(p);
+  public static ChoicePeriodOrStringOrTiming scheduled(Period p) {
+    return new ChoicePeriodOrStringOrTiming(p);
   }
 
-  public static Choice01726112534 scheduled(String s) {
-    return new Choice01726112534(s);
+  public static ChoicePeriodOrStringOrTiming scheduled(String s) {
+    return new ChoicePeriodOrStringOrTiming(s);
   }
 
-  public static Choice01726112534 scheduled(Timing t) {
-    return new Choice01726112534(t);
+  public static ChoicePeriodOrStringOrTiming scheduled(Timing t) {
+    return new ChoicePeriodOrStringOrTiming(t);
   }
 
   public class Impl implements CarePlan_Activity_DetailBuilder {
@@ -85,12 +85,12 @@ public interface CarePlan_Activity_DetailBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Reference> performer = Collections.emptyList();
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
-    private Optional<Choice01025009075> product = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> product = Optional.empty();
     private Optional<Quantity> dailyAmount = Optional.empty();
     private Optional<String> description = Optional.empty();
     private Optional<CodeableConcept> statusReason = Optional.empty();
     private Optional<Boolean> doNotPerform = Optional.empty();
-    private Optional<Choice01726112534> scheduled = Optional.empty();
+    private Optional<ChoicePeriodOrStringOrTiming> scheduled = Optional.empty();
     private Collection<String> instantiatesUri = Collections.emptyList();
     private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -233,7 +233,8 @@ public interface CarePlan_Activity_DetailBuilder {
      *     To pass the value in, wrap with one of the CarePlan_Activity_DetailBuilder.product static
      *     methods
      */
-    public CarePlan_Activity_DetailBuilder.Impl withProduct(@NonNull Choice01025009075 product) {
+    public CarePlan_Activity_DetailBuilder.Impl withProduct(
+        @NonNull ChoiceCodeableConceptOrReference product) {
       this.product = Optional.of(product);
       return this;
     }
@@ -276,7 +277,7 @@ public interface CarePlan_Activity_DetailBuilder {
      *     methods
      */
     public CarePlan_Activity_DetailBuilder.Impl withScheduled(
-        @NonNull Choice01726112534 scheduled) {
+        @NonNull ChoicePeriodOrStringOrTiming scheduled) {
       this.scheduled = Optional.of(scheduled);
       return this;
     }

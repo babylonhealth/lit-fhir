@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SupplyRequest extends CompanionFor[SupplyRequest] {
-  implicit def summonObjectAndCompanionSupplyRequest_2068515553(
+  implicit def summonObjectAndCompanionSupplyRequest_405758773(
       o: SupplyRequest): ObjectAndCompanion[SupplyRequest, SupplyRequest.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SupplyRequest
   override type ParentType   = SupplyRequest
@@ -32,12 +32,12 @@ object SupplyRequest extends CompanionFor[SupplyRequest] {
   override val parentType: CompanionFor[ParentType] = SupplyRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SupplyRequest")
   object Parameter extends CompanionFor[Parameter] {
-    implicit def summonObjectAndCompanionParameter734583021(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
+    implicit def summonObjectAndCompanionParameter1331686656(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Parameter
     override type ParentType   = Parameter
     override val parentType: CompanionFor[ResourceType] = Parameter
-    type ValueChoice = Choice[Union_1516277229]
+    type ValueChoice = Choice[Union_0536852827]
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,
@@ -61,7 +61,7 @@ object SupplyRequest extends CompanionFor[SupplyRequest] {
     val code: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("code", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[Option[Parameter.ValueChoice]] =
-      FHIRComponentFieldMeta("value", lTagOf[Option[Parameter.ValueChoice]], true, lTagOf[Union_1516277229])
+      FHIRComponentFieldMeta("value", lTagOf[Option[Parameter.ValueChoice]], true, lTagOf[Union_0536852827])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -83,7 +83,7 @@ object SupplyRequest extends CompanionFor[SupplyRequest] {
           new Parameter(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("code", Some(None)),
-            cursor.decodeOptRef[Union_1516277229]("value"),
+            cursor.decodeOptRef[Union_0536852827]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
@@ -99,8 +99,8 @@ object SupplyRequest extends CompanionFor[SupplyRequest] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type ItemChoice       = Choice[Union01025009075]
-  type OccurrenceChoice = Choice[Union00609373412]
+  type ItemChoice       = Choice[UnionCodeableConceptOrReference]
+  type OccurrenceChoice = Choice[UnionDateTimeOrPeriodOrTiming]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -161,7 +161,7 @@ object SupplyRequest extends CompanionFor[SupplyRequest] {
   val status: FHIRComponentFieldMeta[Option[SUPPLYREQUEST_STATUS]] =
     FHIRComponentFieldMeta("status", lTagOf[Option[SUPPLYREQUEST_STATUS]], false, lTagOf[SUPPLYREQUEST_STATUS])
   val item: FHIRComponentFieldMeta[SupplyRequest.ItemChoice] =
-    FHIRComponentFieldMeta("item", lTagOf[SupplyRequest.ItemChoice], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta("item", lTagOf[SupplyRequest.ItemChoice], true, lTagOf[UnionCodeableConceptOrReference])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
     FHIRComponentFieldMeta("language", lTagOf[Option[LANGUAGES]], false, lTagOf[LANGUAGES])
   val category: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -191,7 +191,11 @@ object SupplyRequest extends CompanionFor[SupplyRequest] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Option[SupplyRequest.OccurrenceChoice]] =
-    FHIRComponentFieldMeta("occurrence", lTagOf[Option[SupplyRequest.OccurrenceChoice]], true, lTagOf[Union00609373412])
+    FHIRComponentFieldMeta(
+      "occurrence",
+      lTagOf[Option[SupplyRequest.OccurrenceChoice]],
+      true,
+      lTagOf[UnionDateTimeOrPeriodOrTiming])
   val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("reasonReference", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -290,7 +294,7 @@ object SupplyRequest extends CompanionFor[SupplyRequest] {
           cursor.decodeAs[Option[Meta]]("meta", Some(None)),
           cursor.decodeAs[Option[Narrative]]("text", Some(None)),
           cursor.decodeAs[Option[SUPPLYREQUEST_STATUS]]("status", Some(None)),
-          cursor.decodeRef[Union01025009075]("item"),
+          cursor.decodeRef[UnionCodeableConceptOrReference]("item"),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("category", Some(None)),
           cursor.decodeAs[Option[REQUEST_PRIORITY]]("priority", Some(None)),
@@ -305,7 +309,7 @@ object SupplyRequest extends CompanionFor[SupplyRequest] {
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("deliverFrom", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[Union00609373412]("occurrence"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriodOrTiming]("occurrence"),
           cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[SupplyRequest.Parameter]]("parameter", Some(LitSeq.empty)),

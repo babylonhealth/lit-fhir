@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ClinicalImpression extends CompanionFor[ClinicalImpression] {
-  implicit def summonObjectAndCompanionClinicalImpression47404349(
+  implicit def summonObjectAndCompanionClinicalImpression_860436943(
       o: ClinicalImpression): ObjectAndCompanion[ClinicalImpression, ClinicalImpression.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ClinicalImpression
   override type ParentType   = ClinicalImpression
@@ -32,7 +32,7 @@ object ClinicalImpression extends CompanionFor[ClinicalImpression] {
   override val parentType: CompanionFor[ParentType] = ClinicalImpression
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ClinicalImpression")
   object Investigation extends CompanionFor[Investigation] {
-    implicit def summonObjectAndCompanionInvestigation_1628114612(
+    implicit def summonObjectAndCompanionInvestigation1757965112(
         o: Investigation): ObjectAndCompanion[Investigation, Investigation.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Investigation
     override type ParentType   = Investigation
@@ -99,7 +99,7 @@ object ClinicalImpression extends CompanionFor[ClinicalImpression] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Finding extends CompanionFor[Finding] {
-    implicit def summonObjectAndCompanionFinding_673310315(o: Finding): ObjectAndCompanion[Finding, Finding.type] =
+    implicit def summonObjectAndCompanionFinding1757965112(o: Finding): ObjectAndCompanion[Finding, Finding.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Finding
     override type ParentType   = Finding
@@ -173,7 +173,7 @@ object ClinicalImpression extends CompanionFor[ClinicalImpression] {
       val itemCodeableConcept: Option[CodeableConcept] = None,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type EffectiveChoice = Choice[Union_0934386166]
+  type EffectiveChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -276,7 +276,7 @@ object ClinicalImpression extends CompanionFor[ClinicalImpression] {
   val statusReason: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val effective: FHIRComponentFieldMeta[Option[ClinicalImpression.EffectiveChoice]] =
-    FHIRComponentFieldMeta("effective", lTagOf[Option[ClinicalImpression.EffectiveChoice]], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("effective", lTagOf[Option[ClinicalImpression.EffectiveChoice]], true, lTagOf[UnionDateTimeOrPeriod])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val supportingInfo: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -424,7 +424,7 @@ object ClinicalImpression extends CompanionFor[ClinicalImpression] {
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("description", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
-          cursor.decodeOptRef[Union_0934386166]("effective"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriod]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("supportingInfo", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),

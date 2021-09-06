@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object OpenEHR_administration extends CompanionFor[OpenEHR_administration] {
-  implicit def summonObjectAndCompanionOpenEHR_administration771782399(
+  implicit def summonObjectAndCompanionOpenEHR_administration804308923(
       o: OpenEHR_administration): ObjectAndCompanion[OpenEHR_administration, OpenEHR_administration.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

@@ -58,44 +58,44 @@ public interface PlanDefinition_ActionBuilder {
     return new Impl();
   }
 
-  public static Choice_0181779868 timing(Age a) {
-    return new Choice_0181779868(a);
+  public static Choice_0075792257 timing(Age a) {
+    return new Choice_0075792257(a);
   }
 
-  public static Choice_0181779868 timing(Duration d) {
-    return new Choice_0181779868(d);
+  public static Choice_0075792257 timing(Duration d) {
+    return new Choice_0075792257(d);
   }
 
-  public static Choice_0181779868 timing(FHIRDateTime f) {
-    return new Choice_0181779868(f);
+  public static Choice_0075792257 timing(FHIRDateTime f) {
+    return new Choice_0075792257(f);
   }
 
-  public static Choice_0181779868 timing(Period p) {
-    return new Choice_0181779868(p);
+  public static Choice_0075792257 timing(Period p) {
+    return new Choice_0075792257(p);
   }
 
-  public static Choice_0181779868 timing(Range r) {
-    return new Choice_0181779868(r);
+  public static Choice_0075792257 timing(Range r) {
+    return new Choice_0075792257(r);
   }
 
-  public static Choice_0181779868 timing(Timing t) {
-    return new Choice_0181779868(t);
+  public static Choice_0075792257 timing(Timing t) {
+    return new Choice_0075792257(t);
   }
 
-  public static Choice01025009075 subject(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 subject(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
-  public static Choice00545979821 definitionCanonical(String s) {
-    return Choice00545979821.Choice00545979821Canonical(s);
+  public static ChoiceCanonicalOrUri definitionCanonical(String s) {
+    return ChoiceCanonicalOrUri.ChoiceCanonicalOrUriCanonical(s);
   }
 
-  public static Choice00545979821 definitionUri(String s) {
-    return Choice00545979821.Choice00545979821UriStr(s);
+  public static ChoiceCanonicalOrUri definitionUri(String s) {
+    return ChoiceCanonicalOrUri.ChoiceCanonicalOrUriUriStr(s);
   }
 
   public class Impl implements PlanDefinition_ActionBuilder {
@@ -112,12 +112,12 @@ public interface PlanDefinition_ActionBuilder {
     private Collection<TriggerDefinition> trigger = Collections.emptyList();
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice_0181779868> timing = Optional.empty();
+    private Optional<Choice_0075792257> timing = Optional.empty();
     private Optional<String> transform = Optional.empty();
-    private Optional<Choice01025009075> subject = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
     private Optional<String> description = Optional.empty();
     private Collection<RelatedArtifact> documentation = Collections.emptyList();
-    private Optional<Choice00545979821> definition = Optional.empty();
+    private Optional<ChoiceCanonicalOrUri> definition = Optional.empty();
     private Optional<String> textEquivalent = Optional.empty();
     private Optional<ACTION_GROUPING_BEHAVIOR> groupingBehavior = Optional.empty();
     private Optional<ACTION_REQUIRED_BEHAVIOR> requiredBehavior = Optional.empty();
@@ -308,7 +308,7 @@ public interface PlanDefinition_ActionBuilder {
      *     Period, Range, Timing. To pass the value in, wrap with one of the
      *     PlanDefinition_ActionBuilder.timing static methods
      */
-    public PlanDefinition_ActionBuilder.Impl withTiming(@NonNull Choice_0181779868 timing) {
+    public PlanDefinition_ActionBuilder.Impl withTiming(@NonNull Choice_0075792257 timing) {
       this.timing = Optional.of(timing);
       return this;
     }
@@ -323,7 +323,8 @@ public interface PlanDefinition_ActionBuilder {
      *     To pass the value in, wrap with one of the PlanDefinition_ActionBuilder.subject static
      *     methods
      */
-    public PlanDefinition_ActionBuilder.Impl withSubject(@NonNull Choice01025009075 subject) {
+    public PlanDefinition_ActionBuilder.Impl withSubject(
+        @NonNull ChoiceCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }
@@ -357,7 +358,8 @@ public interface PlanDefinition_ActionBuilder {
      * @param definition Field is a 'choice' field. Type should be one of String. To pass the value
      *     in, wrap with one of the PlanDefinition_ActionBuilder.definition static methods
      */
-    public PlanDefinition_ActionBuilder.Impl withDefinition(@NonNull Choice00545979821 definition) {
+    public PlanDefinition_ActionBuilder.Impl withDefinition(
+        @NonNull ChoiceCanonicalOrUri definition) {
       this.definition = Optional.of(definition);
       return this;
     }

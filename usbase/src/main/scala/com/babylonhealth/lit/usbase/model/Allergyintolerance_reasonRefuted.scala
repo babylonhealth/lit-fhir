@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Allergyintolerance_reasonRefuted extends CompanionFor[Allergyintolerance_reasonRefuted] {
-  implicit def summonObjectAndCompanionAllergyintolerance_reasonRefuted2011517930(
+  implicit def summonObjectAndCompanionAllergyintolerance_reasonRefuted1114311549(
       o: Allergyintolerance_reasonRefuted): ObjectAndCompanion[Allergyintolerance_reasonRefuted, Allergyintolerance_reasonRefuted.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

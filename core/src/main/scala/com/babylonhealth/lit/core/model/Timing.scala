@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Timing extends CompanionFor[Timing] {
-  implicit def summonObjectAndCompanionTiming_1598870660(o: Timing): ObjectAndCompanion[Timing, Timing.type] =
+  implicit def summonObjectAndCompanionTiming_617552769(o: Timing): ObjectAndCompanion[Timing, Timing.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Timing
   override type ParentType   = Timing
@@ -29,12 +29,12 @@ object Timing extends CompanionFor[Timing] {
   override val parentType: CompanionFor[ParentType] = Timing
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Timing")
   object Repeat extends CompanionFor[Repeat] {
-    implicit def summonObjectAndCompanionRepeat_442736056(o: Repeat): ObjectAndCompanion[Repeat, Repeat.type] =
+    implicit def summonObjectAndCompanionRepeat715372756(o: Repeat): ObjectAndCompanion[Repeat, Repeat.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Repeat
     override type ParentType   = Repeat
     override val parentType: CompanionFor[ResourceType] = Repeat
-    type BoundsChoice = Choice[Union_0731860109]
+    type BoundsChoice = Choice[UnionDurationOrPeriodOrRange]
     def apply(
         id: Option[String] = None,
         when: LitSeq[EVENT_TIMING] = LitSeq.empty,
@@ -112,7 +112,7 @@ object Timing extends CompanionFor[Timing] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val bounds: FHIRComponentFieldMeta[Option[Repeat.BoundsChoice]] =
-      FHIRComponentFieldMeta("bounds", lTagOf[Option[Repeat.BoundsChoice]], true, lTagOf[Union_0731860109])
+      FHIRComponentFieldMeta("bounds", lTagOf[Option[Repeat.BoundsChoice]], true, lTagOf[UnionDurationOrPeriodOrRange])
     val frequency: FHIRComponentFieldMeta[Option[PositiveInt]] =
       FHIRComponentFieldMeta("frequency", lTagOf[Option[PositiveInt]], false, lTagOf[PositiveInt])
     val periodMax: FHIRComponentFieldMeta[Option[BigDecimal]] =
@@ -182,7 +182,7 @@ object Timing extends CompanionFor[Timing] {
             cursor.decodeAs[Option[PositiveInt]]("countMax", Some(None)),
             cursor.decodeAs[Option[BigDecimal]]("duration", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_0731860109]("bounds"),
+            cursor.decodeOptRef[UnionDurationOrPeriodOrRange]("bounds"),
             cursor.decodeAs[Option[PositiveInt]]("frequency", Some(None)),
             cursor.decodeAs[Option[BigDecimal]]("periodMax", Some(None)),
             cursor.decodeAs[LitSeq[DAYS_OF_WEEK]]("dayOfWeek", Some(LitSeq.empty)),

@@ -54,16 +54,16 @@ public interface Contract_Term_ActionBuilder {
     return new Impl(_type.build(), intent.build(), status.build());
   }
 
-  public static Choice00609373412 occurrence(FHIRDateTime f) {
-    return new Choice00609373412(f);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriodOrTiming(f);
   }
 
-  public static Choice00609373412 occurrence(Period p) {
-    return new Choice00609373412(p);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Period p) {
+    return new ChoiceDateTimeOrPeriodOrTiming(p);
   }
 
-  public static Choice00609373412 occurrence(Timing t) {
-    return new Choice00609373412(t);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Timing t) {
+    return new ChoiceDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements Contract_Term_ActionBuilder {
@@ -82,7 +82,7 @@ public interface Contract_Term_ActionBuilder {
     private Optional<Boolean> doNotPerform = Optional.empty();
     private Collection<String> reasonLinkId = Collections.emptyList();
     private Collection<String> contextLinkId = Collections.emptyList();
-    private Optional<Choice00609373412> occurrence = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Collection<CodeableConcept> performerType = Collections.emptyList();
     private Optional<CodeableConcept> performerRole = Optional.empty();
     private Collection<String> requesterLinkId = Collections.emptyList();
@@ -264,7 +264,8 @@ public interface Contract_Term_ActionBuilder {
      *     Timing. To pass the value in, wrap with one of the Contract_Term_ActionBuilder.occurrence
      *     static methods
      */
-    public Contract_Term_ActionBuilder.Impl withOccurrence(@NonNull Choice00609373412 occurrence) {
+    public Contract_Term_ActionBuilder.Impl withOccurrence(
+        @NonNull ChoiceDateTimeOrPeriodOrTiming occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

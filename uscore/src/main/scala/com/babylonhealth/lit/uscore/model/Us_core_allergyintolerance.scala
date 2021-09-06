@@ -26,7 +26,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_allergyintolerance extends CompanionFor[Us_core_allergyintolerance] {
-  implicit def summonObjectAndCompanionUs_core_allergyintolerance_775912631(
+  implicit def summonObjectAndCompanionUs_core_allergyintolerance_462408997(
       o: Us_core_allergyintolerance): ObjectAndCompanion[Us_core_allergyintolerance, Us_core_allergyintolerance.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = AllergyIntolerance
@@ -34,7 +34,7 @@ object Us_core_allergyintolerance extends CompanionFor[Us_core_allergyintoleranc
   override val baseType: CompanionFor[ResourceType] = AllergyIntolerance
   override val parentType: CompanionFor[ParentType] = AllergyIntolerance
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-allergyintolerance")
-  type OnsetChoice = Choice[Union01352864625]
+  type OnsetChoice = Choice[Union01946981731]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -108,7 +108,7 @@ object Us_core_allergyintolerance extends CompanionFor[Us_core_allergyintoleranc
   val category: FHIRComponentFieldMeta[LitSeq[ALLERGY_INTOLERANCE_CATEGORY]] =
     FHIRComponentFieldMeta("category", lTagOf[LitSeq[ALLERGY_INTOLERANCE_CATEGORY]], false, lTagOf[ALLERGY_INTOLERANCE_CATEGORY])
   val onset: FHIRComponentFieldMeta[Option[Us_core_allergyintolerance.OnsetChoice]] =
-    FHIRComponentFieldMeta("onset", lTagOf[Option[Us_core_allergyintolerance.OnsetChoice]], true, lTagOf[Union01352864625])
+    FHIRComponentFieldMeta("onset", lTagOf[Option[Us_core_allergyintolerance.OnsetChoice]], true, lTagOf[Union01946981731])
   val recorder: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("recorder", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val asserter: FHIRComponentFieldMeta[Option[Reference]] =
@@ -234,7 +234,7 @@ object Us_core_allergyintolerance extends CompanionFor[Us_core_allergyintoleranc
           cursor.decodeAs[Reference]("patient", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[ALLERGY_INTOLERANCE_CATEGORY]]("category", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01352864625]("onset"),
+          cursor.decodeOptRef[Union01946981731]("onset"),
           cursor.decodeAs[Option[Reference]]("recorder", Some(None)),
           cursor.decodeAs[Option[Reference]]("asserter", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),

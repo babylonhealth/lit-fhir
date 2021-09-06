@@ -53,32 +53,32 @@ public interface ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
     return new Impl(_type.build());
   }
 
-  public static Choice_1289000811 used(Money m) {
-    return new Choice_1289000811(m);
+  public static ChoiceMoneyOrUnsignedInt used(Money m) {
+    return new ChoiceMoneyOrUnsignedInt(m);
   }
 
-  public static Choice_1289000811 used(Integer i) {
-    return new Choice_1289000811(i);
+  public static ChoiceMoneyOrUnsignedInt used(Integer i) {
+    return new ChoiceMoneyOrUnsignedInt(i);
   }
 
-  public static Choice_0040864668 allowed(Money m) {
-    return new Choice_0040864668(m);
+  public static ChoiceMoneyOrStringOrUnsignedInt allowed(Money m) {
+    return new ChoiceMoneyOrStringOrUnsignedInt(m);
   }
 
-  public static Choice_0040864668 allowed(String s) {
-    return new Choice_0040864668(s);
+  public static ChoiceMoneyOrStringOrUnsignedInt allowed(String s) {
+    return new ChoiceMoneyOrStringOrUnsignedInt(s);
   }
 
-  public static Choice_0040864668 allowed(Integer i) {
-    return new Choice_0040864668(i);
+  public static ChoiceMoneyOrStringOrUnsignedInt allowed(Integer i) {
+    return new ChoiceMoneyOrStringOrUnsignedInt(i);
   }
 
   public class Impl implements ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;
-    private Optional<Choice_1289000811> used = Optional.empty();
+    private Optional<ChoiceMoneyOrUnsignedInt> used = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice_0040864668> allowed = Optional.empty();
+    private Optional<ChoiceMoneyOrStringOrUnsignedInt> allowed = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -105,7 +105,7 @@ public interface ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
      *     static methods
      */
     public ExplanationOfBenefit_BenefitBalance_FinancialBuilder.Impl withUsed(
-        @NonNull Choice_1289000811 used) {
+        @NonNull ChoiceMoneyOrUnsignedInt used) {
       this.used = Optional.of(used);
       return this;
     }
@@ -145,7 +145,7 @@ public interface ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
      *     ExplanationOfBenefit_BenefitBalance_FinancialBuilder.allowed static methods
      */
     public ExplanationOfBenefit_BenefitBalance_FinancialBuilder.Impl withAllowed(
-        @NonNull Choice_0040864668 allowed) {
+        @NonNull ChoiceMoneyOrStringOrUnsignedInt allowed) {
       this.allowed = Optional.of(allowed);
       return this;
     }

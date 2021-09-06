@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RelatedPerson extends CompanionFor[RelatedPerson] {
-  implicit def summonObjectAndCompanionRelatedPerson_98921282(
+  implicit def summonObjectAndCompanionRelatedPerson_225514101(
       o: RelatedPerson): ObjectAndCompanion[RelatedPerson, RelatedPerson.type] = ObjectAndCompanion(o, this)
   override type ResourceType = RelatedPerson
   override type ParentType   = RelatedPerson
@@ -32,7 +32,7 @@ object RelatedPerson extends CompanionFor[RelatedPerson] {
   override val parentType: CompanionFor[ParentType] = RelatedPerson
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RelatedPerson")
   object Communication extends CompanionFor[Communication] {
-    implicit def summonObjectAndCompanionCommunication_2141686372(
+    implicit def summonObjectAndCompanionCommunication1692176000(
         o: Communication): ObjectAndCompanion[Communication, Communication.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Communication
     override type ParentType   = Communication

@@ -53,18 +53,18 @@ public interface CoverageEligibilityRequest_Item_DiagnosisBuilder {
     return new Impl();
   }
 
-  public static Choice01025009075 diagnosis(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference diagnosis(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 diagnosis(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference diagnosis(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements CoverageEligibilityRequest_Item_DiagnosisBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice01025009075> diagnosis = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> diagnosis = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /** Required fields for {@link CoverageEligibilityRequest$Item$Diagnosis} */
@@ -114,7 +114,7 @@ public interface CoverageEligibilityRequest_Item_DiagnosisBuilder {
      *     CoverageEligibilityRequest_Item_DiagnosisBuilder.diagnosis static methods
      */
     public CoverageEligibilityRequest_Item_DiagnosisBuilder.Impl withDiagnosis(
-        @NonNull Choice01025009075 diagnosis) {
+        @NonNull ChoiceCodeableConceptOrReference diagnosis) {
       this.diagnosis = Optional.of(diagnosis);
       return this;
     }

@@ -53,16 +53,16 @@ public interface Timing_RepeatBuilder {
     return new Impl();
   }
 
-  public static Choice_0731860109 bounds(Duration d) {
-    return new Choice_0731860109(d);
+  public static ChoiceDurationOrPeriodOrRange bounds(Duration d) {
+    return new ChoiceDurationOrPeriodOrRange(d);
   }
 
-  public static Choice_0731860109 bounds(Period p) {
-    return new Choice_0731860109(p);
+  public static ChoiceDurationOrPeriodOrRange bounds(Period p) {
+    return new ChoiceDurationOrPeriodOrRange(p);
   }
 
-  public static Choice_0731860109 bounds(Range r) {
-    return new Choice_0731860109(r);
+  public static ChoiceDurationOrPeriodOrRange bounds(Range r) {
+    return new ChoiceDurationOrPeriodOrRange(r);
   }
 
   public class Impl implements Timing_RepeatBuilder {
@@ -74,7 +74,7 @@ public interface Timing_RepeatBuilder {
     private Optional<Integer> countMax = Optional.empty();
     private Optional<BigDecimal> duration = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice_0731860109> bounds = Optional.empty();
+    private Optional<ChoiceDurationOrPeriodOrRange> bounds = Optional.empty();
     private Optional<Integer> frequency = Optional.empty();
     private Optional<BigDecimal> periodMax = Optional.empty();
     private Collection<DAYS_OF_WEEK> dayOfWeek = Collections.emptyList();
@@ -161,7 +161,7 @@ public interface Timing_RepeatBuilder {
      * @param bounds Field is a 'choice' field. Type should be one of Duration, Period, Range. To
      *     pass the value in, wrap with one of the Timing_RepeatBuilder.bounds static methods
      */
-    public Timing_RepeatBuilder.Impl withBounds(@NonNull Choice_0731860109 bounds) {
+    public Timing_RepeatBuilder.Impl withBounds(@NonNull ChoiceDurationOrPeriodOrRange bounds) {
       this.bounds = Optional.of(bounds);
       return this;
     }

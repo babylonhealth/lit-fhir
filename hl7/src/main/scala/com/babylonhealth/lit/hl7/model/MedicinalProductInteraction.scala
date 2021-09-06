@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteraction] {
-  implicit def summonObjectAndCompanionMedicinalProductInteraction2637581(
+  implicit def summonObjectAndCompanionMedicinalProductInteraction1878054948(
       o: MedicinalProductInteraction): ObjectAndCompanion[MedicinalProductInteraction, MedicinalProductInteraction.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = MedicinalProductInteraction
@@ -32,12 +32,12 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
   override val parentType: CompanionFor[ParentType] = MedicinalProductInteraction
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductInteraction")
   object Interactant extends CompanionFor[Interactant] {
-    implicit def summonObjectAndCompanionInteractant2141115057(
+    implicit def summonObjectAndCompanionInteractant_1689968078(
         o: Interactant): ObjectAndCompanion[Interactant, Interactant.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Interactant
     override type ParentType   = Interactant
     override val parentType: CompanionFor[ResourceType] = Interactant
-    type ItemChoice = Choice[Union01025009075]
+    type ItemChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         item: Interactant.ItemChoice,
@@ -56,7 +56,7 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val item: FHIRComponentFieldMeta[Interactant.ItemChoice] =
-      FHIRComponentFieldMeta("item", lTagOf[Interactant.ItemChoice], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("item", lTagOf[Interactant.ItemChoice], true, lTagOf[UnionCodeableConceptOrReference])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -76,7 +76,7 @@ object MedicinalProductInteraction extends CompanionFor[MedicinalProductInteract
         Try(
           new Interactant(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeRef[Union01025009075]("item"),
+            cursor.decodeRef[UnionCodeableConceptOrReference]("item"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)

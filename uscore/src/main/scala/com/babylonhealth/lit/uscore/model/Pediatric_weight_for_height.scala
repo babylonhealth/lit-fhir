@@ -26,7 +26,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Pediatric_weight_for_height extends CompanionFor[Pediatric_weight_for_height] {
-  implicit def summonObjectAndCompanionPediatric_weight_for_height_492706044(
+  implicit def summonObjectAndCompanionPediatric_weight_for_height1434240318(
       o: Pediatric_weight_for_height): ObjectAndCompanion[Pediatric_weight_for_height, Pediatric_weight_for_height.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Observation
@@ -34,7 +34,7 @@ object Pediatric_weight_for_height extends CompanionFor[Pediatric_weight_for_hei
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Vitalsigns
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/us/core/StructureDefinition/pediatric-weight-for-height")
-  type EffectiveChoice = Choice[Union_0934386166]
+  type EffectiveChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(
@@ -156,7 +156,7 @@ object Pediatric_weight_for_height extends CompanionFor[Pediatric_weight_for_hei
   val derivedFrom: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("derivedFrom", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val effective: FHIRComponentFieldMeta[Pediatric_weight_for_height.EffectiveChoice] =
-    FHIRComponentFieldMeta("effective", lTagOf[Pediatric_weight_for_height.EffectiveChoice], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("effective", lTagOf[Pediatric_weight_for_height.EffectiveChoice], true, lTagOf[UnionDateTimeOrPeriod])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val interpretation: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -306,7 +306,7 @@ object Pediatric_weight_for_height extends CompanionFor[Pediatric_weight_for_hei
           cursor.decodeAs[LitSeq[Reference]]("hasMember", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("derivedFrom", Some(LitSeq.empty)),
-          cursor.decodeRef[Union_0934386166]("effective"),
+          cursor.decodeRef[UnionDateTimeOrPeriod]("effective"),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("interpretation", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("dataAbsentReason", Some(None)),

@@ -53,18 +53,18 @@ public interface MedicationKnowledge_AdministrationGuidelinesBuilder {
     return new Impl();
   }
 
-  public static Choice01025009075 indication(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference indication(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 indication(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference indication(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements MedicationKnowledge_AdministrationGuidelinesBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice01025009075> indication = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> indication = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<MedicationKnowledge$AdministrationGuidelines$Dosage> dosage =
         Collections.emptyList();
@@ -118,7 +118,7 @@ public interface MedicationKnowledge_AdministrationGuidelinesBuilder {
      *     MedicationKnowledge_AdministrationGuidelinesBuilder.indication static methods
      */
     public MedicationKnowledge_AdministrationGuidelinesBuilder.Impl withIndication(
-        @NonNull Choice01025009075 indication) {
+        @NonNull ChoiceCodeableConceptOrReference indication) {
       this.indication = Optional.of(indication);
       return this;
     }

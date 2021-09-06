@@ -62,12 +62,12 @@ public interface Us_core_goalBuilder extends GoalBuilder {
     return new Impl(subject.build(), description.build(), lifecycleStatus);
   }
 
-  public static Choice00078348305 start(CodeableConcept c) {
-    return new Choice00078348305(c);
+  public static ChoiceCodeableConceptOrDate start(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrDate(c);
   }
 
-  public static Choice00078348305 start(FHIRDate f) {
-    return new Choice00078348305(f);
+  public static ChoiceCodeableConceptOrDate start(FHIRDate f) {
+    return new ChoiceCodeableConceptOrDate(f);
   }
 
   public class Impl implements Us_core_goalBuilder {
@@ -83,7 +83,7 @@ public interface Us_core_goalBuilder extends GoalBuilder {
     private Optional<LANGUAGES> language = Optional.empty();
     private Collection<CodeableConcept> category = Collections.emptyList();
     private Optional<CodeableConcept> priority = Optional.empty();
-    private Optional<Choice00078348305> start = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrDate> start = Optional.empty();
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Reference> addresses = Collections.emptyList();
@@ -204,7 +204,7 @@ public interface Us_core_goalBuilder extends GoalBuilder {
      *     'choice' field. Type should be one of CodeableConcept, FHIRDate. To pass the value in,
      *     wrap with one of the Us_core_goalBuilder.start static methods
      */
-    public Us_core_goalBuilder.Impl withStart(@NonNull Choice00078348305 start) {
+    public Us_core_goalBuilder.Impl withStart(@NonNull ChoiceCodeableConceptOrDate start) {
       this.start = Optional.of(start);
       return this;
     }

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Contactpoint_local extends CompanionFor[Contactpoint_local] {
-  implicit def summonObjectAndCompanionContactpoint_local1498920535(
+  implicit def summonObjectAndCompanionContactpoint_local_693275293(
       o: Contactpoint_local): ObjectAndCompanion[Contactpoint_local, Contactpoint_local.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

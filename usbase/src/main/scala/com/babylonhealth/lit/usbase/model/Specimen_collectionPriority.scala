@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Specimen_collectionPriority extends CompanionFor[Specimen_collectionPriority] {
-  implicit def summonObjectAndCompanionSpecimen_collectionPriority_901750891(
+  implicit def summonObjectAndCompanionSpecimen_collectionPriority2145080402(
       o: Specimen_collectionPriority): ObjectAndCompanion[Specimen_collectionPriority, Specimen_collectionPriority.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

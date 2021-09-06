@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Location_distance extends CompanionFor[Location_distance] {
-  implicit def summonObjectAndCompanionLocation_distance1582404528(
+  implicit def summonObjectAndCompanionLocation_distance_445131816(
       o: Location_distance): ObjectAndCompanion[Location_distance, Location_distance.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

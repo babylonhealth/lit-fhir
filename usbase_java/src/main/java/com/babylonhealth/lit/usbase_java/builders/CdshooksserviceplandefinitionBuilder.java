@@ -57,12 +57,12 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
     return new Impl(status, new LitSeq<>(extension).map(ExtensionBuilder::build));
   }
 
-  public static Choice01025009075 subject(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 subject(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements CdshooksserviceplandefinitionBuilder {
@@ -97,7 +97,7 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
     private Optional<String> publisher = Optional.empty();
     private Optional<String> copyright = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<Choice01025009075> subject = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<Boolean> experimental = Optional.empty();
@@ -490,7 +490,7 @@ public interface CdshooksserviceplandefinitionBuilder extends PlanDefinitionBuil
      *     static methods
      */
     public CdshooksserviceplandefinitionBuilder.Impl withSubject(
-        @NonNull Choice01025009075 subject) {
+        @NonNull ChoiceCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }

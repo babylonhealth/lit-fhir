@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationDispense extends CompanionFor[MedicationDispense] {
-  implicit def summonObjectAndCompanionMedicationDispense345204291(
+  implicit def summonObjectAndCompanionMedicationDispense_180735(
       o: MedicationDispense): ObjectAndCompanion[MedicationDispense, MedicationDispense.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MedicationDispense
   override type ParentType   = MedicationDispense
@@ -32,7 +32,7 @@ object MedicationDispense extends CompanionFor[MedicationDispense] {
   override val parentType: CompanionFor[ParentType] = MedicationDispense
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicationDispense")
   object Substitution extends CompanionFor[Substitution] {
-    implicit def summonObjectAndCompanionSubstitution899943916(
+    implicit def summonObjectAndCompanionSubstitution_816489768(
         o: Substitution): ObjectAndCompanion[Substitution, Substitution.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Substitution
     override type ParentType   = Substitution
@@ -114,7 +114,7 @@ object MedicationDispense extends CompanionFor[MedicationDispense] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Performer extends CompanionFor[Performer] {
-    implicit def summonObjectAndCompanionPerformer_890094834(o: Performer): ObjectAndCompanion[Performer, Performer.type] =
+    implicit def summonObjectAndCompanionPerformer_816489768(o: Performer): ObjectAndCompanion[Performer, Performer.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Performer
     override type ParentType   = Performer
@@ -180,8 +180,8 @@ object MedicationDispense extends CompanionFor[MedicationDispense] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type MedicationChoice   = Choice[Union01025009075]
-  type StatusReasonChoice = Choice[Union01025009075]
+  type MedicationChoice   = Choice[UnionCodeableConceptOrReference]
+  type StatusReasonChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -296,13 +296,21 @@ object MedicationDispense extends CompanionFor[MedicationDispense] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val medication: FHIRComponentFieldMeta[MedicationDispense.MedicationChoice] =
-    FHIRComponentFieldMeta("medication", lTagOf[MedicationDispense.MedicationChoice], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "medication",
+      lTagOf[MedicationDispense.MedicationChoice],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val detectedIssue: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("detectedIssue", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val whenHandedOver: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("whenHandedOver", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val statusReason: FHIRComponentFieldMeta[Option[MedicationDispense.StatusReasonChoice]] =
-    FHIRComponentFieldMeta("statusReason", lTagOf[Option[MedicationDispense.StatusReasonChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "statusReason",
+      lTagOf[Option[MedicationDispense.StatusReasonChoice]],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val dosageInstruction: FHIRComponentFieldMeta[LitSeq[Dosage]] =
@@ -464,10 +472,10 @@ object MedicationDispense extends CompanionFor[MedicationDispense] {
           cursor.decodeAs[Option[FHIRDateTime]]("whenPrepared", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("eventHistory", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeRef[Union01025009075]("medication"),
+          cursor.decodeRef[UnionCodeableConceptOrReference]("medication"),
           cursor.decodeAs[LitSeq[Reference]]("detectedIssue", Some(LitSeq.empty)),
           cursor.decodeAs[Option[FHIRDateTime]]("whenHandedOver", Some(None)),
-          cursor.decodeOptRef[Union01025009075]("statusReason"),
+          cursor.decodeOptRef[UnionCodeableConceptOrReference]("statusReason"),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Dosage]]("dosageInstruction", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("supportingInformation", Some(LitSeq.empty)),

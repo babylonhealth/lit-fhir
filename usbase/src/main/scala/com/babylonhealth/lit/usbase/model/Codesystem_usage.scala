@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_usage extends CompanionFor[Codesystem_usage] {
-  implicit def summonObjectAndCompanionCodesystem_usage_344732324(
+  implicit def summonObjectAndCompanionCodesystem_usage864831685(
       o: Codesystem_usage): ObjectAndCompanion[Codesystem_usage, Codesystem_usage.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

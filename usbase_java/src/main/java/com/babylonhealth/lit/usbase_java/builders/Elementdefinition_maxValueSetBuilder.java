@@ -48,25 +48,25 @@ import static java.util.stream.Collectors.toList;
 public interface Elementdefinition_maxValueSetBuilder extends ExtensionBuilder {
   public Elementdefinition_maxValueSet build();
 
-  public static Impl init(@NonNull Choice00545979821 value) {
+  public static Impl init(@NonNull ChoiceCanonicalOrUri value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice00545979821 value) {
+  public static Impl builder(@NonNull ChoiceCanonicalOrUri value) {
     return new Impl(value);
   }
 
-  public static Choice00545979821 valueCanonical(String s) {
-    return Choice00545979821.Choice00545979821Canonical(s);
+  public static ChoiceCanonicalOrUri valueCanonical(String s) {
+    return ChoiceCanonicalOrUri.ChoiceCanonicalOrUriCanonical(s);
   }
 
-  public static Choice00545979821 valueUri(String s) {
-    return Choice00545979821.Choice00545979821UriStr(s);
+  public static ChoiceCanonicalOrUri valueUri(String s) {
+    return ChoiceCanonicalOrUri.ChoiceCanonicalOrUriUriStr(s);
   }
 
   public class Impl implements Elementdefinition_maxValueSetBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice00545979821 value;
+    private ChoiceCanonicalOrUri value;
 
     /**
      * Required fields for {@link Elementdefinition_maxValueSet}
@@ -76,7 +76,7 @@ public interface Elementdefinition_maxValueSetBuilder extends ExtensionBuilder {
      *     field. Type should be one of String. To pass the value in, wrap with one of the
      *     Elementdefinition_maxValueSetBuilder.value static methods
      */
-    public Impl(@NonNull Choice00545979821 value) {
+    public Impl(@NonNull ChoiceCanonicalOrUri value) {
       this.value = value;
     }
 

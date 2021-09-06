@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Clinicaldocument extends CompanionFor[Clinicaldocument] {
-  implicit def summonObjectAndCompanionClinicaldocument768971375(
+  implicit def summonObjectAndCompanionClinicaldocument1746093827(
       o: Clinicaldocument): ObjectAndCompanion[Clinicaldocument, Clinicaldocument.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Composition
   override type ParentType   = Composition

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DocumentManifest extends CompanionFor[DocumentManifest] {
-  implicit def summonObjectAndCompanionDocumentManifest493211883(
+  implicit def summonObjectAndCompanionDocumentManifest_1978462625(
       o: DocumentManifest): ObjectAndCompanion[DocumentManifest, DocumentManifest.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DocumentManifest
   override type ParentType   = DocumentManifest
@@ -32,7 +32,7 @@ object DocumentManifest extends CompanionFor[DocumentManifest] {
   override val parentType: CompanionFor[ParentType] = DocumentManifest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DocumentManifest")
   object Related extends CompanionFor[Related] {
-    implicit def summonObjectAndCompanionRelated1587414897(o: Related): ObjectAndCompanion[Related, Related.type] =
+    implicit def summonObjectAndCompanionRelated_449398508(o: Related): ObjectAndCompanion[Related, Related.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Related
     override type ParentType   = Related

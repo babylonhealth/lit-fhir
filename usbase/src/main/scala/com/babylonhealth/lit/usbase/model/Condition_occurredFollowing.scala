@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollowing] {
-  implicit def summonObjectAndCompanionCondition_occurredFollowing_627110841(
+  implicit def summonObjectAndCompanionCondition_occurredFollowing1672683973(
       o: Condition_occurredFollowing): ObjectAndCompanion[Condition_occurredFollowing, Condition_occurredFollowing.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
@@ -32,7 +32,7 @@ object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollow
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/condition-occurredFollowing")
-  type ValueChoice = Choice[Union01025009075]
+  type ValueChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       value: Condition_occurredFollowing.ValueChoice,
@@ -45,7 +45,11 @@ object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollow
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Condition_occurredFollowing.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[Condition_occurredFollowing.ValueChoice], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "value",
+      lTagOf[Condition_occurredFollowing.ValueChoice],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -64,7 +68,7 @@ object Condition_occurredFollowing extends CompanionFor[Condition_occurredFollow
       Try(
         new Condition_occurredFollowing(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[Union01025009075]("value"),
+          cursor.decodeRef[UnionCodeableConceptOrReference]("value"),
           decodeAttributes(cursor)
         )
       ))

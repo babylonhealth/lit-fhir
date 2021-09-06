@@ -61,20 +61,20 @@ public interface CholesterolBuilder extends ObservationBuilder {
     return new Impl(code.build(), status, referenceRange.build());
   }
 
-  public static Choice01473702374 effective(FHIRDateTime f) {
-    return new Choice01473702374(f);
+  public static Choice_1926447453 effective(FHIRDateTime f) {
+    return new Choice_1926447453(f);
   }
 
-  public static Choice01473702374 effective(Period p) {
-    return new Choice01473702374(p);
+  public static Choice_1926447453 effective(Period p) {
+    return new Choice_1926447453(p);
   }
 
-  public static Choice01473702374 effective(Timing t) {
-    return new Choice01473702374(t);
+  public static Choice_1926447453 effective(Timing t) {
+    return new Choice_1926447453(t);
   }
 
-  public static Choice01473702374 effective(ZonedDateTime z) {
-    return new Choice01473702374(z);
+  public static Choice_1926447453 effective(ZonedDateTime z) {
+    return new Choice_1926447453(z);
   }
 
   public class Impl implements CholesterolBuilder {
@@ -105,7 +105,7 @@ public interface CholesterolBuilder extends ObservationBuilder {
     private Optional<Reference> encounter = Optional.empty();
     private Collection<Reference> performer = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<Choice01473702374> effective = Optional.empty();
+    private Optional<Choice_1926447453> effective = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
     private Optional<CodeableConcept> interpretation = Optional.empty();
     private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
@@ -472,7 +472,7 @@ public interface CholesterolBuilder extends ObservationBuilder {
      *     ZonedDateTime. To pass the value in, wrap with one of the CholesterolBuilder.effective
      *     static methods
      */
-    public CholesterolBuilder.Impl withEffective(@NonNull Choice01473702374 effective) {
+    public CholesterolBuilder.Impl withEffective(@NonNull Choice_1926447453 effective) {
       this.effective = Optional.of(effective);
       return this;
     }

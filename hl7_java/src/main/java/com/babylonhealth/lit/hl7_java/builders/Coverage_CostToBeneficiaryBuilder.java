@@ -45,26 +45,26 @@ import static java.util.stream.Collectors.toList;
 public interface Coverage_CostToBeneficiaryBuilder {
   public Coverage.CostToBeneficiary build();
 
-  public static Impl init(@NonNull Choice_0221283134 value) {
+  public static Impl init(@NonNull ChoiceMoneyOrQuantity value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice_0221283134 value) {
+  public static Impl builder(@NonNull ChoiceMoneyOrQuantity value) {
     return new Impl(value);
   }
 
-  public static Choice_0221283134 value(Money m) {
-    return new Choice_0221283134(m);
+  public static ChoiceMoneyOrQuantity value(Money m) {
+    return new ChoiceMoneyOrQuantity(m);
   }
 
-  public static Choice_0221283134 value(Quantity q) {
-    return new Choice_0221283134(q);
+  public static ChoiceMoneyOrQuantity value(Quantity q) {
+    return new ChoiceMoneyOrQuantity(q);
   }
 
   public class Impl implements Coverage_CostToBeneficiaryBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();
-    private Choice_0221283134 value;
+    private ChoiceMoneyOrQuantity value;
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Coverage$CostToBeneficiary$Exception> exception = Collections.emptyList();
@@ -75,7 +75,7 @@ public interface Coverage_CostToBeneficiaryBuilder {
      * @param value Field is a 'choice' field. Type should be one of Money, Quantity. To pass the
      *     value in, wrap with one of the Coverage_CostToBeneficiaryBuilder.value static methods
      */
-    public Impl(@NonNull Choice_0221283134 value) {
+    public Impl(@NonNull ChoiceMoneyOrQuantity value) {
       this.value = value;
     }
 

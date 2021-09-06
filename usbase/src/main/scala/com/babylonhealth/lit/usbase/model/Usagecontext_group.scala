@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Usagecontext_group extends CompanionFor[Usagecontext_group] {
-  implicit def summonObjectAndCompanionUsagecontext_group293983857(
+  implicit def summonObjectAndCompanionUsagecontext_group_1591475851(
       o: Usagecontext_group): ObjectAndCompanion[Usagecontext_group, Usagecontext_group.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

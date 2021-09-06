@@ -49,31 +49,31 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
   public static Impl init(
       MEDICATION_STATEMENT_STATUS status,
       Reference subject,
-      @NonNull Choice01025009075 medication) {
+      @NonNull ChoiceCodeableConceptOrReference medication) {
     return new Impl(status, subject, medication);
   }
 
   public static Impl builder(
       MEDICATION_STATEMENT_STATUS status,
       ReferenceBuilder subject,
-      @NonNull Choice01025009075 medication) {
+      @NonNull ChoiceCodeableConceptOrReference medication) {
     return new Impl(status, subject.build(), medication);
   }
 
-  public static Choice_0934386166 effective(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 effective(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceDateTimeOrPeriod effective(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
-  public static Choice01025009075 medication(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference medication(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 medication(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference medication(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements MedicationStatementBuilder {
@@ -95,10 +95,10 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Collection<Reference> derivedFrom = Collections.emptyList();
     private Collection<CodeableConcept> statusReason = Collections.emptyList();
-    private Optional<Choice_0934386166> effective = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriod> effective = Optional.empty();
     private Optional<FHIRDateTime> dateAsserted = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Choice01025009075 medication;
+    private ChoiceCodeableConceptOrReference medication;
     private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Optional<Reference> informationSource = Optional.empty();
@@ -119,7 +119,7 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
     public Impl(
         MEDICATION_STATEMENT_STATUS status,
         Reference subject,
-        @NonNull Choice01025009075 medication) {
+        @NonNull ChoiceCodeableConceptOrReference medication) {
       this.status = status;
       this.subject = subject;
       this.medication = medication;
@@ -415,7 +415,8 @@ public interface MedicationStatementBuilder extends DomainResourceBuilder {
      *     of FHIRDateTime, Period. To pass the value in, wrap with one of the
      *     MedicationStatementBuilder.effective static methods
      */
-    public MedicationStatementBuilder.Impl withEffective(@NonNull Choice_0934386166 effective) {
+    public MedicationStatementBuilder.Impl withEffective(
+        @NonNull ChoiceDateTimeOrPeriod effective) {
       this.effective = Optional.of(effective);
       return this;
     }

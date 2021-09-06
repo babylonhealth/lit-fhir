@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Immunization extends CompanionFor[Immunization] {
-  implicit def summonObjectAndCompanionImmunization454761927(
+  implicit def summonObjectAndCompanionImmunization870062711(
       o: Immunization): ObjectAndCompanion[Immunization, Immunization.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Immunization
   override type ParentType   = Immunization
@@ -32,13 +32,13 @@ object Immunization extends CompanionFor[Immunization] {
   override val parentType: CompanionFor[ParentType] = Immunization
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Immunization")
   object ProtocolApplied extends CompanionFor[ProtocolApplied] {
-    implicit def summonObjectAndCompanionProtocolApplied_1294476948(
+    implicit def summonObjectAndCompanionProtocolApplied285240388(
         o: ProtocolApplied): ObjectAndCompanion[ProtocolApplied, ProtocolApplied.type] = ObjectAndCompanion(o, this)
     override type ResourceType = ProtocolApplied
     override type ParentType   = ProtocolApplied
     override val parentType: CompanionFor[ResourceType] = ProtocolApplied
-    type DoseNumberChoice  = Choice[Union_0839638734]
-    type SeriesDosesChoice = Choice[Union_0839638734]
+    type DoseNumberChoice  = Choice[UnionPositiveIntOrString]
+    type SeriesDosesChoice = Choice[UnionPositiveIntOrString]
     def apply(
         id: Option[String] = None,
         series: Option[String] = None,
@@ -74,9 +74,13 @@ object Immunization extends CompanionFor[Immunization] {
     val targetDisease: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
       FHIRComponentFieldMeta("targetDisease", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
     val doseNumber: FHIRComponentFieldMeta[ProtocolApplied.DoseNumberChoice] =
-      FHIRComponentFieldMeta("doseNumber", lTagOf[ProtocolApplied.DoseNumberChoice], true, lTagOf[Union_0839638734])
+      FHIRComponentFieldMeta("doseNumber", lTagOf[ProtocolApplied.DoseNumberChoice], true, lTagOf[UnionPositiveIntOrString])
     val seriesDoses: FHIRComponentFieldMeta[Option[ProtocolApplied.SeriesDosesChoice]] =
-      FHIRComponentFieldMeta("seriesDoses", lTagOf[Option[ProtocolApplied.SeriesDosesChoice]], true, lTagOf[Union_0839638734])
+      FHIRComponentFieldMeta(
+        "seriesDoses",
+        lTagOf[Option[ProtocolApplied.SeriesDosesChoice]],
+        true,
+        lTagOf[UnionPositiveIntOrString])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] =
@@ -103,8 +107,8 @@ object Immunization extends CompanionFor[Immunization] {
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[Reference]]("authority", Some(None)),
             cursor.decodeAs[LitSeq[CodeableConcept]]("targetDisease", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_0839638734]("doseNumber"),
-            cursor.decodeOptRef[Union_0839638734]("seriesDoses"),
+            cursor.decodeRef[UnionPositiveIntOrString]("doseNumber"),
+            cursor.decodeOptRef[UnionPositiveIntOrString]("seriesDoses"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -123,7 +127,7 @@ object Immunization extends CompanionFor[Immunization] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Education extends CompanionFor[Education] {
-    implicit def summonObjectAndCompanionEducation_1642300874(o: Education): ObjectAndCompanion[Education, Education.type] =
+    implicit def summonObjectAndCompanionEducation285240388(o: Education): ObjectAndCompanion[Education, Education.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Education
     override type ParentType   = Education
@@ -205,7 +209,7 @@ object Immunization extends CompanionFor[Immunization] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Performer extends CompanionFor[Performer] {
-    implicit def summonObjectAndCompanionPerformer419551073(o: Performer): ObjectAndCompanion[Performer, Performer.type] =
+    implicit def summonObjectAndCompanionPerformer285240388(o: Performer): ObjectAndCompanion[Performer, Performer.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Performer
     override type ParentType   = Performer
@@ -272,7 +276,7 @@ object Immunization extends CompanionFor[Immunization] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Reaction extends CompanionFor[Reaction] {
-    implicit def summonObjectAndCompanionReaction_2062931714(o: Reaction): ObjectAndCompanion[Reaction, Reaction.type] =
+    implicit def summonObjectAndCompanionReaction285240388(o: Reaction): ObjectAndCompanion[Reaction, Reaction.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Reaction
     override type ParentType   = Reaction
@@ -345,7 +349,7 @@ object Immunization extends CompanionFor[Immunization] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type OccurrenceChoice = Choice[Union_1715923163]
+  type OccurrenceChoice = Choice[UnionDateTimeOrString]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -472,7 +476,7 @@ object Immunization extends CompanionFor[Immunization] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Immunization.OccurrenceChoice] =
-    FHIRComponentFieldMeta("occurrence", lTagOf[Immunization.OccurrenceChoice], true, lTagOf[Union_1715923163])
+    FHIRComponentFieldMeta("occurrence", lTagOf[Immunization.OccurrenceChoice], true, lTagOf[UnionDateTimeOrString])
   val primarySource: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("primarySource", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val fundingSource: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -659,7 +663,7 @@ object Immunization extends CompanionFor[Immunization] {
           cursor.decodeAs[Option[Reference]]("manufacturer", Some(None)),
           cursor.decodeAs[Option[Quantity]]("doseQuantity", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeRef[Union_1715923163]("occurrence"),
+          cursor.decodeRef[UnionDateTimeOrString]("occurrence"),
           cursor.decodeAs[Option[Boolean]]("primarySource", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("fundingSource", Some(None)),
           cursor.decodeAs[Option[FHIRDate]]("expirationDate", Some(None)),

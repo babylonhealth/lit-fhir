@@ -45,27 +45,29 @@ import static java.util.stream.Collectors.toList;
 public interface Composition_RelatesToBuilder {
   public Composition.RelatesTo build();
 
-  public static Impl init(DOCUMENT_RELATIONSHIP_TYPE code, @NonNull Choice_0983418289 target) {
+  public static Impl init(
+      DOCUMENT_RELATIONSHIP_TYPE code, @NonNull ChoiceIdentifierOrReference target) {
     return new Impl(code, target);
   }
 
-  public static Impl builder(DOCUMENT_RELATIONSHIP_TYPE code, @NonNull Choice_0983418289 target) {
+  public static Impl builder(
+      DOCUMENT_RELATIONSHIP_TYPE code, @NonNull ChoiceIdentifierOrReference target) {
     return new Impl(code, target);
   }
 
-  public static Choice_0983418289 target(Identifier i) {
-    return new Choice_0983418289(i);
+  public static ChoiceIdentifierOrReference target(Identifier i) {
+    return new ChoiceIdentifierOrReference(i);
   }
 
-  public static Choice_0983418289 target(Reference r) {
-    return new Choice_0983418289(r);
+  public static ChoiceIdentifierOrReference target(Reference r) {
+    return new ChoiceIdentifierOrReference(r);
   }
 
   public class Impl implements Composition_RelatesToBuilder {
     private Optional<String> id = Optional.empty();
     private DOCUMENT_RELATIONSHIP_TYPE code;
     private Collection<Extension> extension = Collections.emptyList();
-    private Choice_0983418289 target;
+    private ChoiceIdentifierOrReference target;
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -75,7 +77,7 @@ public interface Composition_RelatesToBuilder {
      * @param target Field is a 'choice' field. Type should be one of Identifier, Reference. To pass
      *     the value in, wrap with one of the Composition_RelatesToBuilder.target static methods
      */
-    public Impl(DOCUMENT_RELATIONSHIP_TYPE code, @NonNull Choice_0983418289 target) {
+    public Impl(DOCUMENT_RELATIONSHIP_TYPE code, @NonNull ChoiceIdentifierOrReference target) {
       this.code = code;
       this.target = target;
     }

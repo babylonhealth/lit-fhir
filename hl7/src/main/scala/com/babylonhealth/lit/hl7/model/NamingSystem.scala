@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object NamingSystem extends CompanionFor[NamingSystem] {
-  implicit def summonObjectAndCompanionNamingSystem266677344(
+  implicit def summonObjectAndCompanionNamingSystem_1050726068(
       o: NamingSystem): ObjectAndCompanion[NamingSystem, NamingSystem.type] = ObjectAndCompanion(o, this)
   override type ResourceType = NamingSystem
   override type ParentType   = NamingSystem
@@ -32,7 +32,7 @@ object NamingSystem extends CompanionFor[NamingSystem] {
   override val parentType: CompanionFor[ParentType] = NamingSystem
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/NamingSystem")
   object UniqueId extends CompanionFor[UniqueId] {
-    implicit def summonObjectAndCompanionUniqueId1656135378(o: UniqueId): ObjectAndCompanion[UniqueId, UniqueId.type] =
+    implicit def summonObjectAndCompanionUniqueId738630126(o: UniqueId): ObjectAndCompanion[UniqueId, UniqueId.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = UniqueId
     override type ParentType   = UniqueId

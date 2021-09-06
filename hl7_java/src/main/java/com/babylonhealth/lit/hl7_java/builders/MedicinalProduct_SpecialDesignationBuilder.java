@@ -53,12 +53,12 @@ public interface MedicinalProduct_SpecialDesignationBuilder {
     return new Impl();
   }
 
-  public static Choice01025009075 indication(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference indication(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 indication(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference indication(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements MedicinalProduct_SpecialDesignationBuilder {
@@ -70,7 +70,7 @@ public interface MedicinalProduct_SpecialDesignationBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<CodeableConcept> intendedUse = Optional.empty();
-    private Optional<Choice01025009075> indication = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> indication = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /** Required fields for {@link MedicinalProduct.SpecialDesignation} */
@@ -191,7 +191,7 @@ public interface MedicinalProduct_SpecialDesignationBuilder {
      *     MedicinalProduct_SpecialDesignationBuilder.indication static methods
      */
     public MedicinalProduct_SpecialDesignationBuilder.Impl withIndication(
-        @NonNull Choice01025009075 indication) {
+        @NonNull ChoiceCodeableConceptOrReference indication) {
       this.indication = Optional.of(indication);
       return this;
     }

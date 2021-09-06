@@ -24,14 +24,14 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ResearchDefinition extends CompanionFor[ResearchDefinition] {
-  implicit def summonObjectAndCompanionResearchDefinition_296689742(
+  implicit def summonObjectAndCompanionResearchDefinition646060547(
       o: ResearchDefinition): ObjectAndCompanion[ResearchDefinition, ResearchDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ResearchDefinition
   override type ParentType   = ResearchDefinition
   override val baseType: CompanionFor[ResourceType] = ResearchDefinition
   override val parentType: CompanionFor[ParentType] = ResearchDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ResearchDefinition")
-  type SubjectChoice = Choice[Union01025009075]
+  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -180,7 +180,11 @@ object ResearchDefinition extends CompanionFor[ResearchDefinition] {
   val shortTitle: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("shortTitle", lTagOf[Option[String]], false, lTagOf[String])
   val subject: FHIRComponentFieldMeta[Option[ResearchDefinition.SubjectChoice]] =
-    FHIRComponentFieldMeta("subject", lTagOf[Option[ResearchDefinition.SubjectChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "subject",
+      lTagOf[Option[ResearchDefinition.SubjectChoice]],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val population: FHIRComponentFieldMeta[Reference] =
@@ -398,7 +402,7 @@ object ResearchDefinition extends CompanionFor[ResearchDefinition] {
           cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("shortTitle", Some(None)),
-          cursor.decodeOptRef[Union01025009075]("subject"),
+          cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
           cursor.decodeAs[Reference]("population", None),
           cursor.decodeAs[Option[Markdown]]("description", Some(None)),

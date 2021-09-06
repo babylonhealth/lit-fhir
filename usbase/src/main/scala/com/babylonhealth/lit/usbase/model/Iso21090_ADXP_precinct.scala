@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_ADXP_precinct extends CompanionFor[Iso21090_ADXP_precinct] {
-  implicit def summonObjectAndCompanionIso21090_ADXP_precinct_879531277(
+  implicit def summonObjectAndCompanionIso21090_ADXP_precinct1849074355(
       o: Iso21090_ADXP_precinct): ObjectAndCompanion[Iso21090_ADXP_precinct, Iso21090_ADXP_precinct.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

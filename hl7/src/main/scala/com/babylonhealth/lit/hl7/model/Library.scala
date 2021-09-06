@@ -24,14 +24,14 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Library extends CompanionFor[Library] {
-  implicit def summonObjectAndCompanionLibrary924236600(o: Library): ObjectAndCompanion[Library, Library.type] =
+  implicit def summonObjectAndCompanionLibrary_484264154(o: Library): ObjectAndCompanion[Library, Library.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Library
   override type ParentType   = Library
   override val baseType: CompanionFor[ResourceType] = Library
   override val parentType: CompanionFor[ParentType] = Library
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Library")
-  type SubjectChoice = Choice[Union01025009075]
+  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -170,7 +170,7 @@ object Library extends CompanionFor[Library] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val subject: FHIRComponentFieldMeta[Option[Library.SubjectChoice]] =
-    FHIRComponentFieldMeta("subject", lTagOf[Option[Library.SubjectChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta("subject", lTagOf[Option[Library.SubjectChoice]], true, lTagOf[UnionCodeableConceptOrReference])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val description: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -375,7 +375,7 @@ object Library extends CompanionFor[Library] {
           cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
           cursor.decodeAs[LitSeq[ParameterDefinition]]("parameter", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01025009075]("subject"),
+          cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Markdown]]("description", Some(None)),
           cursor.decodeAs[Option[Boolean]]("experimental", Some(None)),

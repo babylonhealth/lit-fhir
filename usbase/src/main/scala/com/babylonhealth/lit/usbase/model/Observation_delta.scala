@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_delta extends CompanionFor[Observation_delta] {
-  implicit def summonObjectAndCompanionObservation_delta_2050935817(
+  implicit def summonObjectAndCompanionObservation_delta1800691618(
       o: Observation_delta): ObjectAndCompanion[Observation_delta, Observation_delta.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

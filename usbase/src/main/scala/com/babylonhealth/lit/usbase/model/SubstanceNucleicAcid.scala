@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
-  implicit def summonObjectAndCompanionSubstanceNucleicAcid_1070163246(
+  implicit def summonObjectAndCompanionSubstanceNucleicAcid1006816017(
       o: SubstanceNucleicAcid): ObjectAndCompanion[SubstanceNucleicAcid, SubstanceNucleicAcid.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SubstanceNucleicAcid
   override type ParentType   = SubstanceNucleicAcid
@@ -32,13 +32,13 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
   override val parentType: CompanionFor[ParentType] = SubstanceNucleicAcid
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SubstanceNucleicAcid")
   object Subunit extends CompanionFor[Subunit] {
-    implicit def summonObjectAndCompanionSubunit_1897125276(o: Subunit): ObjectAndCompanion[Subunit, Subunit.type] =
+    implicit def summonObjectAndCompanionSubunit_601614472(o: Subunit): ObjectAndCompanion[Subunit, Subunit.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Subunit
     override type ParentType   = Subunit
     override val parentType: CompanionFor[ResourceType] = Subunit
     object Sugar extends CompanionFor[Sugar] {
-      implicit def summonObjectAndCompanionSugar981335356(o: Sugar): ObjectAndCompanion[Sugar, Sugar.type] =
+      implicit def summonObjectAndCompanionSugar_706598140(o: Sugar): ObjectAndCompanion[Sugar, Sugar.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Sugar
       override type ParentType   = Sugar
@@ -112,7 +112,7 @@ object SubstanceNucleicAcid extends CompanionFor[SubstanceNucleicAcid] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Linkage extends CompanionFor[Linkage] {
-      implicit def summonObjectAndCompanionLinkage_1469052777(o: Linkage): ObjectAndCompanion[Linkage, Linkage.type] =
+      implicit def summonObjectAndCompanionLinkage_706598140(o: Linkage): ObjectAndCompanion[Linkage, Linkage.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Linkage
       override type ParentType   = Linkage

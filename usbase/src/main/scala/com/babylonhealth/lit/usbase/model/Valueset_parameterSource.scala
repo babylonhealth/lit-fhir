@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_parameterSource extends CompanionFor[Valueset_parameterSource] {
-  implicit def summonObjectAndCompanionValueset_parameterSource237812707(
+  implicit def summonObjectAndCompanionValueset_parameterSource_957736579(
       o: Valueset_parameterSource): ObjectAndCompanion[Valueset_parameterSource, Valueset_parameterSource.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

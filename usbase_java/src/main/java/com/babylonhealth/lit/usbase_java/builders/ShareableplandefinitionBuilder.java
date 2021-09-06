@@ -71,12 +71,12 @@ public interface ShareableplandefinitionBuilder extends PlanDefinitionBuilder {
     return new Impl(url, name, status, version, publisher, description, experimental);
   }
 
-  public static Choice01025009075 subject(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 subject(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements ShareableplandefinitionBuilder {
@@ -110,7 +110,7 @@ public interface ShareableplandefinitionBuilder extends PlanDefinitionBuilder {
     private String publisher;
     private Optional<String> copyright = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<Choice01025009075> subject = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private String description;
     private Boolean experimental;
@@ -514,7 +514,8 @@ public interface ShareableplandefinitionBuilder extends PlanDefinitionBuilder {
      *     To pass the value in, wrap with one of the ShareableplandefinitionBuilder.subject static
      *     methods
      */
-    public ShareableplandefinitionBuilder.Impl withSubject(@NonNull Choice01025009075 subject) {
+    public ShareableplandefinitionBuilder.Impl withSubject(
+        @NonNull ChoiceCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }

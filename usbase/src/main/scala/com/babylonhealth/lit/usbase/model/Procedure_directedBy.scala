@@ -24,14 +24,14 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Procedure_directedBy extends CompanionFor[Procedure_directedBy] {
-  implicit def summonObjectAndCompanionProcedure_directedBy_1579942698(
+  implicit def summonObjectAndCompanionProcedure_directedBy1932566350(
       o: Procedure_directedBy): ObjectAndCompanion[Procedure_directedBy, Procedure_directedBy.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/procedure-directedBy")
-  type ValueChoice = Choice[Union01025009075]
+  type ValueChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       value: Procedure_directedBy.ValueChoice,
@@ -44,7 +44,7 @@ object Procedure_directedBy extends CompanionFor[Procedure_directedBy] {
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Procedure_directedBy.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[Procedure_directedBy.ValueChoice], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta("value", lTagOf[Procedure_directedBy.ValueChoice], true, lTagOf[UnionCodeableConceptOrReference])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -63,7 +63,7 @@ object Procedure_directedBy extends CompanionFor[Procedure_directedBy] {
       Try(
         new Procedure_directedBy(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[Union01025009075]("value"),
+          cursor.decodeRef[UnionCodeableConceptOrReference]("value"),
           decodeAttributes(cursor)
         )
       ))

@@ -74,44 +74,44 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     return new Impl(url, name, status, version, publisher, description, experimental);
   }
 
-  public static Choice_0181779868 timing(Age a) {
-    return new Choice_0181779868(a);
+  public static Choice_0075792257 timing(Age a) {
+    return new Choice_0075792257(a);
   }
 
-  public static Choice_0181779868 timing(Duration d) {
-    return new Choice_0181779868(d);
+  public static Choice_0075792257 timing(Duration d) {
+    return new Choice_0075792257(d);
   }
 
-  public static Choice_0181779868 timing(FHIRDateTime f) {
-    return new Choice_0181779868(f);
+  public static Choice_0075792257 timing(FHIRDateTime f) {
+    return new Choice_0075792257(f);
   }
 
-  public static Choice_0181779868 timing(Period p) {
-    return new Choice_0181779868(p);
+  public static Choice_0075792257 timing(Period p) {
+    return new Choice_0075792257(p);
   }
 
-  public static Choice_0181779868 timing(Range r) {
-    return new Choice_0181779868(r);
+  public static Choice_0075792257 timing(Range r) {
+    return new Choice_0075792257(r);
   }
 
-  public static Choice_0181779868 timing(Timing t) {
-    return new Choice_0181779868(t);
+  public static Choice_0075792257 timing(Timing t) {
+    return new Choice_0075792257(t);
   }
 
-  public static Choice01025009075 subject(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 subject(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
-  public static Choice01025009075 product(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference product(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 product(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference product(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements ShareableactivitydefinitionBuilder {
@@ -152,12 +152,12 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
     private Collection<Extension> extension = Collections.emptyList();
     private String publisher;
     private Optional<String> copyright = Optional.empty();
-    private Optional<Choice_0181779868> timing = Optional.empty();
+    private Optional<Choice_0075792257> timing = Optional.empty();
     private Optional<String> transform = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<Choice01025009075> subject = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
-    private Optional<Choice01025009075> product = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> product = Optional.empty();
     private String description;
     private Boolean experimental;
     private Collection<CodeableConcept> jurisdiction = Collections.emptyList();
@@ -649,7 +649,7 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
      *     Period, Range, Timing. To pass the value in, wrap with one of the
      *     ShareableactivitydefinitionBuilder.timing static methods
      */
-    public ShareableactivitydefinitionBuilder.Impl withTiming(@NonNull Choice_0181779868 timing) {
+    public ShareableactivitydefinitionBuilder.Impl withTiming(@NonNull Choice_0075792257 timing) {
       this.timing = Optional.of(timing);
       return this;
     }
@@ -694,7 +694,8 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
      *     Reference. To pass the value in, wrap with one of the
      *     ShareableactivitydefinitionBuilder.subject static methods
      */
-    public ShareableactivitydefinitionBuilder.Impl withSubject(@NonNull Choice01025009075 subject) {
+    public ShareableactivitydefinitionBuilder.Impl withSubject(
+        @NonNull ChoiceCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }
@@ -732,7 +733,8 @@ public interface ShareableactivitydefinitionBuilder extends ActivityDefinitionBu
      *     pass the value in, wrap with one of the ShareableactivitydefinitionBuilder.product static
      *     methods
      */
-    public ShareableactivitydefinitionBuilder.Impl withProduct(@NonNull Choice01025009075 product) {
+    public ShareableactivitydefinitionBuilder.Impl withProduct(
+        @NonNull ChoiceCodeableConceptOrReference product) {
       this.product = Optional.of(product);
       return this;
     }

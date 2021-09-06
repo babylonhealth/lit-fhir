@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Devicemetricobservation extends CompanionFor[Devicemetricobservation] {
-  implicit def summonObjectAndCompanionDevicemetricobservation742489131(
+  implicit def summonObjectAndCompanionDevicemetricobservation1867223409(
       o: Devicemetricobservation): ObjectAndCompanion[Devicemetricobservation, Devicemetricobservation.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Observation
@@ -33,7 +33,7 @@ object Devicemetricobservation extends CompanionFor[Devicemetricobservation] {
   override val baseType: CompanionFor[ResourceType] = Observation
   override val parentType: CompanionFor[ParentType] = Observation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/devicemetricobservation")
-  type ValueChoice = Choice[Union_1915626029]
+  type ValueChoice = Choice[Union00999522603]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/StructureDefinition/devicemetricobservation"))),
@@ -124,7 +124,7 @@ object Devicemetricobservation extends CompanionFor[Devicemetricobservation] {
   val category: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("category", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val value: FHIRComponentFieldMeta[Option[Devicemetricobservation.ValueChoice]] =
-    FHIRComponentFieldMeta("value", lTagOf[Option[Devicemetricobservation.ValueChoice]], true, lTagOf[Union_1915626029])
+    FHIRComponentFieldMeta("value", lTagOf[Option[Devicemetricobservation.ValueChoice]], true, lTagOf[Union00999522603])
   val bodySite: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("bodySite", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
@@ -265,7 +265,7 @@ object Devicemetricobservation extends CompanionFor[Devicemetricobservation] {
           cursor.decodeAs[Reference]("subject", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("category", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_1915626029]("value"),
+          cursor.decodeOptRef[Union00999522603]("value"),
           cursor.decodeAs[Option[CodeableConcept]]("bodySite", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),

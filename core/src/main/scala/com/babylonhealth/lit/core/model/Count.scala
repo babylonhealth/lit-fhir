@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Count extends CompanionFor[Count] {
-  implicit def summonObjectAndCompanionCount195454229(o: Count): ObjectAndCompanion[Count, Count.type] =
+  implicit def summonObjectAndCompanionCount380207674(o: Count): ObjectAndCompanion[Count, Count.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Count
   override type ParentType   = Count

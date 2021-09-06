@@ -46,28 +46,28 @@ public interface ImplementationGuide_Definition_PageBuilder {
   public ImplementationGuide$Definition$Page build();
 
   public static Impl init(
-      String title, @NonNull Choice01831019594 name, GUIDE_PAGE_GENERATION generation) {
+      String title, @NonNull ChoiceReferenceOrUrl name, GUIDE_PAGE_GENERATION generation) {
     return new Impl(title, name, generation);
   }
 
   public static Impl builder(
-      String title, @NonNull Choice01831019594 name, GUIDE_PAGE_GENERATION generation) {
+      String title, @NonNull ChoiceReferenceOrUrl name, GUIDE_PAGE_GENERATION generation) {
     return new Impl(title, name, generation);
   }
 
-  public static Choice01831019594 name(Reference r) {
-    return new Choice01831019594(r);
+  public static ChoiceReferenceOrUrl name(Reference r) {
+    return new ChoiceReferenceOrUrl(r);
   }
 
-  public static Choice01831019594 name(String s) {
-    return new Choice01831019594(s);
+  public static ChoiceReferenceOrUrl name(String s) {
+    return new ChoiceReferenceOrUrl(s);
   }
 
   public class Impl implements ImplementationGuide_Definition_PageBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<ImplementationGuide$Definition$Page> page = Collections.emptyList();
     private String title;
-    private Choice01831019594 name;
+    private ChoiceReferenceOrUrl name;
     private Collection<Extension> extension = Collections.emptyList();
     private GUIDE_PAGE_GENERATION generation;
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -83,7 +83,8 @@ public interface ImplementationGuide_Definition_PageBuilder {
      *     methods
      * @param generation
      */
-    public Impl(String title, @NonNull Choice01831019594 name, GUIDE_PAGE_GENERATION generation) {
+    public Impl(
+        String title, @NonNull ChoiceReferenceOrUrl name, GUIDE_PAGE_GENERATION generation) {
       this.title = title;
       this.name = name;
       this.generation = generation;

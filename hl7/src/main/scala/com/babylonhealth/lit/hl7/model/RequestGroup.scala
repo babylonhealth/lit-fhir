@@ -35,7 +35,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RequestGroup extends CompanionFor[RequestGroup] {
-  implicit def summonObjectAndCompanionRequestGroup238156400(
+  implicit def summonObjectAndCompanionRequestGroup25333157(
       o: RequestGroup): ObjectAndCompanion[RequestGroup, RequestGroup.type] = ObjectAndCompanion(o, this)
   override type ResourceType = RequestGroup
   override type ParentType   = RequestGroup
@@ -43,13 +43,13 @@ object RequestGroup extends CompanionFor[RequestGroup] {
   override val parentType: CompanionFor[ParentType] = RequestGroup
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/RequestGroup")
   object Action extends CompanionFor[Action] {
-    implicit def summonObjectAndCompanionAction1873784984(o: Action): ObjectAndCompanion[Action, Action.type] =
+    implicit def summonObjectAndCompanionAction_1404218720(o: Action): ObjectAndCompanion[Action, Action.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Action
     override type ParentType   = Action
     override val parentType: CompanionFor[ResourceType] = Action
     object Condition extends CompanionFor[Condition] {
-      implicit def summonObjectAndCompanionCondition_1424243673(o: Condition): ObjectAndCompanion[Condition, Condition.type] =
+      implicit def summonObjectAndCompanionCondition1062174204(o: Condition): ObjectAndCompanion[Condition, Condition.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Condition
       override type ParentType   = Condition
@@ -116,12 +116,12 @@ object RequestGroup extends CompanionFor[RequestGroup] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object RelatedAction extends CompanionFor[RelatedAction] {
-      implicit def summonObjectAndCompanionRelatedAction_355036975(
+      implicit def summonObjectAndCompanionRelatedAction1062174204(
           o: RelatedAction): ObjectAndCompanion[RelatedAction, RelatedAction.type] = ObjectAndCompanion(o, this)
       override type ResourceType = RelatedAction
       override type ParentType   = RelatedAction
       override val parentType: CompanionFor[ResourceType] = RelatedAction
-      type OffsetChoice = Choice[Union00801828838]
+      type OffsetChoice = Choice[UnionDurationOrRange]
       def apply(
           id: Option[String] = None,
           actionId: Id,
@@ -149,7 +149,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val offset: FHIRComponentFieldMeta[Option[RelatedAction.OffsetChoice]] =
-        FHIRComponentFieldMeta("offset", lTagOf[Option[RelatedAction.OffsetChoice]], true, lTagOf[Union00801828838])
+        FHIRComponentFieldMeta("offset", lTagOf[Option[RelatedAction.OffsetChoice]], true, lTagOf[UnionDurationOrRange])
       val relationship: FHIRComponentFieldMeta[ACTION_RELATIONSHIP_TYPE] =
         FHIRComponentFieldMeta("relationship", lTagOf[ACTION_RELATIONSHIP_TYPE], false, lTagOf[ACTION_RELATIONSHIP_TYPE])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -173,7 +173,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[Id]("actionId", None),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-              cursor.decodeOptRef[Union00801828838]("offset"),
+              cursor.decodeOptRef[UnionDurationOrRange]("offset"),
               cursor.decodeAs[ACTION_RELATIONSHIP_TYPE]("relationship", None),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               decodeAttributes(cursor)
@@ -190,7 +190,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type TimingChoice = Choice[Union_0181779868]
+    type TimingChoice = Choice[Union_0075792257]
     def apply(
         id: Option[String] = None,
         code: LitSeq[CodeableConcept] = LitSeq.empty,
@@ -285,7 +285,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val timing: FHIRComponentFieldMeta[Option[Action.TimingChoice]] =
-      FHIRComponentFieldMeta("timing", lTagOf[Option[Action.TimingChoice]], true, lTagOf[Union_0181779868])
+      FHIRComponentFieldMeta("timing", lTagOf[Option[Action.TimingChoice]], true, lTagOf[Union_0075792257])
     val description: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("description", lTagOf[Option[String]], false, lTagOf[String])
     val participant: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -394,7 +394,7 @@ object RequestGroup extends CompanionFor[RequestGroup] {
             cursor.decodeAs[Option[REQUEST_PRIORITY]]("priority", Some(None)),
             cursor.decodeAs[Option[Reference]]("resource", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_0181779868]("timing"),
+            cursor.decodeOptRef[Union_0075792257]("timing"),
             cursor.decodeAs[Option[String]]("description", Some(None)),
             cursor.decodeAs[LitSeq[Reference]]("participant", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[RelatedArtifact]]("documentation", Some(LitSeq.empty)),

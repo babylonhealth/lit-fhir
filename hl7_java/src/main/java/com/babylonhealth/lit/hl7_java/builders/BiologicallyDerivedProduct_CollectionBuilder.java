@@ -53,12 +53,12 @@ public interface BiologicallyDerivedProduct_CollectionBuilder {
     return new Impl();
   }
 
-  public static Choice_0934386166 collected(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceDateTimeOrPeriod collected(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 collected(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceDateTimeOrPeriod collected(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements BiologicallyDerivedProduct_CollectionBuilder {
@@ -66,7 +66,7 @@ public interface BiologicallyDerivedProduct_CollectionBuilder {
     private Optional<Reference> source = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> collector = Optional.empty();
-    private Optional<Choice_0934386166> collected = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriod> collected = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /** Required fields for {@link BiologicallyDerivedProduct.Collection} */
@@ -139,7 +139,7 @@ public interface BiologicallyDerivedProduct_CollectionBuilder {
      *     BiologicallyDerivedProduct_CollectionBuilder.collected static methods
      */
     public BiologicallyDerivedProduct_CollectionBuilder.Impl withCollected(
-        @NonNull Choice_0934386166 collected) {
+        @NonNull ChoiceDateTimeOrPeriod collected) {
       this.collected = Optional.of(collected);
       return this;
     }

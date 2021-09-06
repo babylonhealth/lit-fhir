@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object RelatedArtifact extends CompanionFor[RelatedArtifact] {
-  implicit def summonObjectAndCompanionRelatedArtifact917952826(
+  implicit def summonObjectAndCompanionRelatedArtifact652321416(
       o: RelatedArtifact): ObjectAndCompanion[RelatedArtifact, RelatedArtifact.type] = ObjectAndCompanion(o, this)
   override type ResourceType = RelatedArtifact
   override type ParentType   = RelatedArtifact

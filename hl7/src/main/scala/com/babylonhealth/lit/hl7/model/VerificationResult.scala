@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object VerificationResult extends CompanionFor[VerificationResult] {
-  implicit def summonObjectAndCompanionVerificationResult_176407057(
+  implicit def summonObjectAndCompanionVerificationResult1365153485(
       o: VerificationResult): ObjectAndCompanion[VerificationResult, VerificationResult.type] = ObjectAndCompanion(o, this)
   override type ResourceType = VerificationResult
   override type ParentType   = VerificationResult
@@ -32,8 +32,8 @@ object VerificationResult extends CompanionFor[VerificationResult] {
   override val parentType: CompanionFor[ParentType] = VerificationResult
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/VerificationResult")
   object Attestation extends CompanionFor[Attestation] {
-    implicit def summonObjectAndCompanionAttestation_12645433(o: Attestation): ObjectAndCompanion[Attestation, Attestation.type] =
-      ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionAttestation1914178672(
+        o: Attestation): ObjectAndCompanion[Attestation, Attestation.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Attestation
     override type ParentType   = Attestation
     override val parentType: CompanionFor[ResourceType] = Attestation
@@ -165,7 +165,7 @@ object VerificationResult extends CompanionFor[VerificationResult] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object PrimarySource extends CompanionFor[PrimarySource] {
-    implicit def summonObjectAndCompanionPrimarySource_1173960678(
+    implicit def summonObjectAndCompanionPrimarySource1914178672(
         o: PrimarySource): ObjectAndCompanion[PrimarySource, PrimarySource.type] = ObjectAndCompanion(o, this)
     override type ResourceType = PrimarySource
     override type ParentType   = PrimarySource
@@ -288,7 +288,7 @@ object VerificationResult extends CompanionFor[VerificationResult] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Validator extends CompanionFor[Validator] {
-    implicit def summonObjectAndCompanionValidator1995548628(o: Validator): ObjectAndCompanion[Validator, Validator.type] =
+    implicit def summonObjectAndCompanionValidator1914178672(o: Validator): ObjectAndCompanion[Validator, Validator.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Validator
     override type ParentType   = Validator

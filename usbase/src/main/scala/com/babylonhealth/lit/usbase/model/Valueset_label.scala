@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Valueset_label extends CompanionFor[Valueset_label] {
-  implicit def summonObjectAndCompanionValueset_label1001308403(
+  implicit def summonObjectAndCompanionValueset_label1310105229(
       o: Valueset_label): ObjectAndCompanion[Valueset_label, Valueset_label.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

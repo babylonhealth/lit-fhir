@@ -24,20 +24,20 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Goal extends CompanionFor[Goal] {
-  implicit def summonObjectAndCompanionGoal_1296351574(o: Goal): ObjectAndCompanion[Goal, Goal.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionGoal_2065826680(o: Goal): ObjectAndCompanion[Goal, Goal.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Goal
   override type ParentType   = Goal
   override val baseType: CompanionFor[ResourceType] = Goal
   override val parentType: CompanionFor[ParentType] = Goal
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Goal")
   object Target extends CompanionFor[Target] {
-    implicit def summonObjectAndCompanionTarget1285289013(o: Target): ObjectAndCompanion[Target, Target.type] =
+    implicit def summonObjectAndCompanionTarget4449894(o: Target): ObjectAndCompanion[Target, Target.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Target
     override type ParentType   = Target
     override val parentType: CompanionFor[ResourceType] = Target
-    type DueChoice    = Choice[Union01219602913]
-    type DetailChoice = Choice[Union01056080496]
+    type DueChoice    = Choice[UnionDurationOrDate]
+    type DetailChoice = Choice[Union_1011524451]
     def apply(
         id: Option[String] = None,
         due: Option[Target.DueChoice] = None,
@@ -61,13 +61,13 @@ object Goal extends CompanionFor[Goal] {
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val due: FHIRComponentFieldMeta[Option[Target.DueChoice]] =
-      FHIRComponentFieldMeta("due", lTagOf[Option[Target.DueChoice]], true, lTagOf[Union01219602913])
+      FHIRComponentFieldMeta("due", lTagOf[Option[Target.DueChoice]], true, lTagOf[UnionDurationOrDate])
     val measure: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("measure", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val detail: FHIRComponentFieldMeta[Option[Target.DetailChoice]] =
-      FHIRComponentFieldMeta("detail", lTagOf[Option[Target.DetailChoice]], true, lTagOf[Union01056080496])
+      FHIRComponentFieldMeta("detail", lTagOf[Option[Target.DetailChoice]], true, lTagOf[Union_1011524451])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, due, measure, extension, detail, modifierExtension)
@@ -87,10 +87,10 @@ object Goal extends CompanionFor[Goal] {
         Try(
           new Target(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeOptRef[Union01219602913]("due"),
+            cursor.decodeOptRef[UnionDurationOrDate]("due"),
             cursor.decodeAs[Option[CodeableConcept]]("measure", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union01056080496]("detail"),
+            cursor.decodeOptRef[Union_1011524451]("detail"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -106,7 +106,7 @@ object Goal extends CompanionFor[Goal] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type StartChoice = Choice[Union00078348305]
+  type StartChoice = Choice[UnionCodeableConceptOrDate]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -177,7 +177,7 @@ object Goal extends CompanionFor[Goal] {
   val priority: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("priority", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val start: FHIRComponentFieldMeta[Option[Goal.StartChoice]] =
-    FHIRComponentFieldMeta("start", lTagOf[Option[Goal.StartChoice]], true, lTagOf[Union00078348305])
+    FHIRComponentFieldMeta("start", lTagOf[Option[Goal.StartChoice]], true, lTagOf[UnionCodeableConceptOrDate])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -308,7 +308,7 @@ object Goal extends CompanionFor[Goal] {
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("category", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("priority", Some(None)),
-          cursor.decodeOptRef[Union00078348305]("start"),
+          cursor.decodeOptRef[UnionCodeableConceptOrDate]("start"),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("addresses", Some(LitSeq.empty)),

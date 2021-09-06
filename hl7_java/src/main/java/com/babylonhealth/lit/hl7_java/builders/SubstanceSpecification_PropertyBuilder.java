@@ -53,20 +53,20 @@ public interface SubstanceSpecification_PropertyBuilder {
     return new Impl();
   }
 
-  public static Choice_2072987899 amount(Quantity q) {
-    return new Choice_2072987899(q);
+  public static ChoiceQuantityOrString amount(Quantity q) {
+    return new ChoiceQuantityOrString(q);
   }
 
-  public static Choice_2072987899 amount(String s) {
-    return new Choice_2072987899(s);
+  public static ChoiceQuantityOrString amount(String s) {
+    return new ChoiceQuantityOrString(s);
   }
 
-  public static Choice01025009075 definingSubstance(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference definingSubstance(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 definingSubstance(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference definingSubstance(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements SubstanceSpecification_PropertyBuilder {
@@ -74,10 +74,10 @@ public interface SubstanceSpecification_PropertyBuilder {
     private Optional<CodeableConcept> code = Optional.empty();
     private Optional<CodeableConcept> category = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice_2072987899> amount = Optional.empty();
+    private Optional<ChoiceQuantityOrString> amount = Optional.empty();
     private Optional<String> parameters = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Optional<Choice01025009075> definingSubstance = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> definingSubstance = Optional.empty();
 
     /** Required fields for {@link SubstanceSpecification.Property} */
     public Impl() {}
@@ -149,7 +149,7 @@ public interface SubstanceSpecification_PropertyBuilder {
      *     methods
      */
     public SubstanceSpecification_PropertyBuilder.Impl withAmount(
-        @NonNull Choice_2072987899 amount) {
+        @NonNull ChoiceQuantityOrString amount) {
       this.amount = Optional.of(amount);
       return this;
     }
@@ -207,7 +207,7 @@ public interface SubstanceSpecification_PropertyBuilder {
      *     SubstanceSpecification_PropertyBuilder.definingSubstance static methods
      */
     public SubstanceSpecification_PropertyBuilder.Impl withDefiningSubstance(
-        @NonNull Choice01025009075 definingSubstance) {
+        @NonNull ChoiceCodeableConceptOrReference definingSubstance) {
       this.definingSubstance = Optional.of(definingSubstance);
       return this;
     }

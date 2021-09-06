@@ -25,15 +25,15 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_condition extends CompanionFor[Us_core_condition] {
-  implicit def summonObjectAndCompanionUs_core_condition705855872(
+  implicit def summonObjectAndCompanionUs_core_condition_552134168(
       o: Us_core_condition): ObjectAndCompanion[Us_core_condition, Us_core_condition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Condition
   override type ParentType   = Condition
   override val baseType: CompanionFor[ResourceType] = Condition
   override val parentType: CompanionFor[ParentType] = Condition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition")
-  type OnsetChoice     = Choice[Union01352864625]
-  type AbatementChoice = Choice[Union01352864625]
+  type OnsetChoice     = Choice[Union01946981731]
+  type AbatementChoice = Choice[Union01946981731]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"))),
@@ -110,7 +110,7 @@ object Us_core_condition extends CompanionFor[Us_core_condition] {
   val bodySite: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("bodySite", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val onset: FHIRComponentFieldMeta[Option[Us_core_condition.OnsetChoice]] =
-    FHIRComponentFieldMeta("onset", lTagOf[Option[Us_core_condition.OnsetChoice]], true, lTagOf[Union01352864625])
+    FHIRComponentFieldMeta("onset", lTagOf[Option[Us_core_condition.OnsetChoice]], true, lTagOf[Union01946981731])
   val recorder: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("recorder", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val asserter: FHIRComponentFieldMeta[Option[Reference]] =
@@ -124,7 +124,7 @@ object Us_core_condition extends CompanionFor[Us_core_condition] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val abatement: FHIRComponentFieldMeta[Option[Us_core_condition.AbatementChoice]] =
-    FHIRComponentFieldMeta("abatement", lTagOf[Option[Us_core_condition.AbatementChoice]], true, lTagOf[Union01352864625])
+    FHIRComponentFieldMeta("abatement", lTagOf[Option[Us_core_condition.AbatementChoice]], true, lTagOf[Union01946981731])
   val recordedDate: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("recordedDate", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -236,14 +236,14 @@ object Us_core_condition extends CompanionFor[Us_core_condition] {
           cursor.decodeAs[NonEmptyLitSeq[CodeableConcept]]("category", None),
           cursor.decodeAs[Option[CodeableConcept]]("severity", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("bodySite", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01352864625]("onset"),
+          cursor.decodeOptRef[Union01946981731]("onset"),
           cursor.decodeAs[Option[Reference]]("recorder", Some(None)),
           cursor.decodeAs[Option[Reference]]("asserter", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01352864625]("abatement"),
+          cursor.decodeOptRef[Union01946981731]("abatement"),
           cursor.decodeAs[Option[FHIRDateTime]]("recordedDate", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("clinicalStatus", Some(None)),

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Communicationrequest_initiatingLocation extends CompanionFor[Communicationrequest_initiatingLocation] {
-  implicit def summonObjectAndCompanionCommunicationrequest_initiatingLocation_587288170(
+  implicit def summonObjectAndCompanionCommunicationrequest_initiatingLocation_435759670(
       o: Communicationrequest_initiatingLocation): ObjectAndCompanion[Communicationrequest_initiatingLocation, Communicationrequest_initiatingLocation.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

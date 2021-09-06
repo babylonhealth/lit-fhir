@@ -49,33 +49,33 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
   public static Impl init(
       MEDICATION_ADMIN_STATUS status,
       Reference subject,
-      @NonNull Choice_0934386166 effective,
-      @NonNull Choice01025009075 medication) {
+      @NonNull ChoiceDateTimeOrPeriod effective,
+      @NonNull ChoiceCodeableConceptOrReference medication) {
     return new Impl(status, subject, effective, medication);
   }
 
   public static Impl builder(
       MEDICATION_ADMIN_STATUS status,
       ReferenceBuilder subject,
-      @NonNull Choice_0934386166 effective,
-      @NonNull Choice01025009075 medication) {
+      @NonNull ChoiceDateTimeOrPeriod effective,
+      @NonNull ChoiceCodeableConceptOrReference medication) {
     return new Impl(status, subject.build(), effective, medication);
   }
 
-  public static Choice_0934386166 effective(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 effective(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceDateTimeOrPeriod effective(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
-  public static Choice01025009075 medication(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference medication(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 medication(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference medication(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements MedicationAdministrationBuilder {
@@ -97,10 +97,10 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Collection<String> instantiates = Collections.emptyList();
     private Collection<CodeableConcept> statusReason = Collections.emptyList();
-    private Choice_0934386166 effective;
+    private ChoiceDateTimeOrPeriod effective;
     private Collection<Reference> eventHistory = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private Choice01025009075 medication;
+    private ChoiceCodeableConceptOrReference medication;
     private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Reference> supportingInformation = Collections.emptyList();
@@ -129,8 +129,8 @@ public interface MedicationAdministrationBuilder extends DomainResourceBuilder {
     public Impl(
         MEDICATION_ADMIN_STATUS status,
         Reference subject,
-        @NonNull Choice_0934386166 effective,
-        @NonNull Choice01025009075 medication) {
+        @NonNull ChoiceDateTimeOrPeriod effective,
+        @NonNull ChoiceCodeableConceptOrReference medication) {
       this.status = status;
       this.subject = subject;
       this.effective = effective;

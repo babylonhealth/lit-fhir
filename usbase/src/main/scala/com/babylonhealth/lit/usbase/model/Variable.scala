@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Variable extends CompanionFor[Variable] {
-  implicit def summonObjectAndCompanionVariable_166148348(o: Variable): ObjectAndCompanion[Variable, Variable.type] =
+  implicit def summonObjectAndCompanionVariable_4052655(o: Variable): ObjectAndCompanion[Variable, Variable.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

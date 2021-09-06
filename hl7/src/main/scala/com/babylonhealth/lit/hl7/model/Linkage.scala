@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Linkage extends CompanionFor[Linkage] {
-  implicit def summonObjectAndCompanionLinkage_1366444771(o: Linkage): ObjectAndCompanion[Linkage, Linkage.type] =
+  implicit def summonObjectAndCompanionLinkage_473390800(o: Linkage): ObjectAndCompanion[Linkage, Linkage.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Linkage
   override type ParentType   = Linkage
@@ -32,7 +32,7 @@ object Linkage extends CompanionFor[Linkage] {
   override val parentType: CompanionFor[ParentType] = Linkage
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Linkage")
   object Item extends CompanionFor[Item] {
-    implicit def summonObjectAndCompanionItem1209883951(o: Item): ObjectAndCompanion[Item, Item.type] =
+    implicit def summonObjectAndCompanionItem_611496630(o: Item): ObjectAndCompanion[Item, Item.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Item
     override type ParentType   = Item

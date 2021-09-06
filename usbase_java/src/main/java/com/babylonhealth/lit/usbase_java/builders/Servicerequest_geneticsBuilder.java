@@ -60,36 +60,36 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     return new Impl(status, intent, subject.build());
   }
 
-  public static Choice_0575082635 quantity(Quantity q) {
-    return new Choice_0575082635(q);
+  public static ChoiceQuantityOrRangeOrRatio quantity(Quantity q) {
+    return new ChoiceQuantityOrRangeOrRatio(q);
   }
 
-  public static Choice_0575082635 quantity(Range r) {
-    return new Choice_0575082635(r);
+  public static ChoiceQuantityOrRangeOrRatio quantity(Range r) {
+    return new ChoiceQuantityOrRangeOrRatio(r);
   }
 
-  public static Choice_0575082635 quantity(Ratio r) {
-    return new Choice_0575082635(r);
+  public static ChoiceQuantityOrRangeOrRatio quantity(Ratio r) {
+    return new ChoiceQuantityOrRangeOrRatio(r);
   }
 
-  public static Choice_1768247138 asNeeded(Boolean b) {
-    return new Choice_1768247138(b);
+  public static ChoiceBooleanOrCodeableConcept asNeeded(Boolean b) {
+    return new ChoiceBooleanOrCodeableConcept(b);
   }
 
-  public static Choice_1768247138 asNeeded(CodeableConcept c) {
-    return new Choice_1768247138(c);
+  public static ChoiceBooleanOrCodeableConcept asNeeded(CodeableConcept c) {
+    return new ChoiceBooleanOrCodeableConcept(c);
   }
 
-  public static Choice00609373412 occurrence(FHIRDateTime f) {
-    return new Choice00609373412(f);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriodOrTiming(f);
   }
 
-  public static Choice00609373412 occurrence(Period p) {
-    return new Choice00609373412(p);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Period p) {
+    return new ChoiceDateTimeOrPeriodOrTiming(p);
   }
 
-  public static Choice00609373412 occurrence(Timing t) {
-    return new Choice00609373412(t);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Timing t) {
+    return new ChoiceDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements Servicerequest_geneticsBuilder {
@@ -123,12 +123,12 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<Identifier> requisition = Optional.empty();
     private Collection<CodeableConcept> orderDetail = Collections.emptyList();
-    private Optional<Choice_0575082635> quantity = Optional.empty();
-    private Optional<Choice_1768247138> asNeeded = Optional.empty();
+    private Optional<ChoiceQuantityOrRangeOrRatio> quantity = Optional.empty();
+    private Optional<ChoiceBooleanOrCodeableConcept> asNeeded = Optional.empty();
     private Optional<Boolean> doNotPerform = Optional.empty();
     private Collection<CodeableConcept> locationCode = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<Choice00609373412> occurrence = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Optional<CodeableConcept> performerType = Optional.empty();
     private Collection<Reference> supportingInfo = Collections.emptyList();
     private Collection<String> instantiatesUri = Collections.emptyList();
@@ -556,7 +556,8 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
      *     Quantity, Range, Ratio. To pass the value in, wrap with one of the
      *     Servicerequest_geneticsBuilder.quantity static methods
      */
-    public Servicerequest_geneticsBuilder.Impl withQuantity(@NonNull Choice_0575082635 quantity) {
+    public Servicerequest_geneticsBuilder.Impl withQuantity(
+        @NonNull ChoiceQuantityOrRangeOrRatio quantity) {
       this.quantity = Optional.of(quantity);
       return this;
     }
@@ -566,7 +567,8 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
      *     field. Type should be one of Boolean, CodeableConcept. To pass the value in, wrap with
      *     one of the Servicerequest_geneticsBuilder.asNeeded static methods
      */
-    public Servicerequest_geneticsBuilder.Impl withAsNeeded(@NonNull Choice_1768247138 asNeeded) {
+    public Servicerequest_geneticsBuilder.Impl withAsNeeded(
+        @NonNull ChoiceBooleanOrCodeableConcept asNeeded) {
       this.asNeeded = Optional.of(asNeeded);
       return this;
     }
@@ -618,7 +620,7 @@ public interface Servicerequest_geneticsBuilder extends ServiceRequestBuilder {
      *     wrap with one of the Servicerequest_geneticsBuilder.occurrence static methods
      */
     public Servicerequest_geneticsBuilder.Impl withOccurrence(
-        @NonNull Choice00609373412 occurrence) {
+        @NonNull ChoiceDateTimeOrPeriodOrTiming occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

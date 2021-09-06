@@ -46,60 +46,60 @@ import static java.util.stream.Collectors.toList;
 public interface ResearchElementDefinition_CharacteristicBuilder {
   public ResearchElementDefinition.Characteristic build();
 
-  public static Impl init(@NonNull Choice_1750128470 definition) {
+  public static Impl init(@NonNull Choice00836574492 definition) {
     return new Impl(definition);
   }
 
-  public static Impl builder(@NonNull Choice_1750128470 definition) {
+  public static Impl builder(@NonNull Choice00836574492 definition) {
     return new Impl(definition);
   }
 
-  public static Choice_1750128470 definition(String s) {
-    return new Choice_1750128470(s);
+  public static Choice00836574492 definition(String s) {
+    return new Choice00836574492(s);
   }
 
-  public static Choice_1750128470 definition(CodeableConcept c) {
-    return new Choice_1750128470(c);
+  public static Choice00836574492 definition(CodeableConcept c) {
+    return new Choice00836574492(c);
   }
 
-  public static Choice_1750128470 definition(DataRequirement d) {
-    return new Choice_1750128470(d);
+  public static Choice00836574492 definition(DataRequirement d) {
+    return new Choice00836574492(d);
   }
 
-  public static Choice_1750128470 definition(Expression e) {
-    return new Choice_1750128470(e);
+  public static Choice00836574492 definition(Expression e) {
+    return new Choice00836574492(e);
   }
 
-  public static Choice00607514014 studyEffective(Duration d) {
-    return new Choice00607514014(d);
+  public static Choice_1938137622 studyEffective(Duration d) {
+    return new Choice_1938137622(d);
   }
 
-  public static Choice00607514014 studyEffective(FHIRDateTime f) {
-    return new Choice00607514014(f);
+  public static Choice_1938137622 studyEffective(FHIRDateTime f) {
+    return new Choice_1938137622(f);
   }
 
-  public static Choice00607514014 studyEffective(Period p) {
-    return new Choice00607514014(p);
+  public static Choice_1938137622 studyEffective(Period p) {
+    return new Choice_1938137622(p);
   }
 
-  public static Choice00607514014 studyEffective(Timing t) {
-    return new Choice00607514014(t);
+  public static Choice_1938137622 studyEffective(Timing t) {
+    return new Choice_1938137622(t);
   }
 
-  public static Choice00607514014 participantEffective(Duration d) {
-    return new Choice00607514014(d);
+  public static Choice_1938137622 participantEffective(Duration d) {
+    return new Choice_1938137622(d);
   }
 
-  public static Choice00607514014 participantEffective(FHIRDateTime f) {
-    return new Choice00607514014(f);
+  public static Choice_1938137622 participantEffective(FHIRDateTime f) {
+    return new Choice_1938137622(f);
   }
 
-  public static Choice00607514014 participantEffective(Period p) {
-    return new Choice00607514014(p);
+  public static Choice_1938137622 participantEffective(Period p) {
+    return new Choice_1938137622(p);
   }
 
-  public static Choice00607514014 participantEffective(Timing t) {
-    return new Choice00607514014(t);
+  public static Choice_1938137622 participantEffective(Timing t) {
+    return new Choice_1938137622(t);
   }
 
   public class Impl implements ResearchElementDefinition_CharacteristicBuilder {
@@ -107,11 +107,11 @@ public interface ResearchElementDefinition_CharacteristicBuilder {
     private Optional<Boolean> exclude = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<UsageContext> usageContext = Collections.emptyList();
-    private Choice_1750128470 definition;
+    private Choice00836574492 definition;
     private Optional<CodeableConcept> unitOfMeasure = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
-    private Optional<Choice00607514014> studyEffective = Optional.empty();
-    private Optional<Choice00607514014> participantEffective = Optional.empty();
+    private Optional<Choice_1938137622> studyEffective = Optional.empty();
+    private Optional<Choice_1938137622> participantEffective = Optional.empty();
     private Optional<String> studyEffectiveDescription = Optional.empty();
     private Optional<GROUP_MEASURE> studyEffectiveGroupMeasure = Optional.empty();
     private Optional<Duration> studyEffectiveTimeFromStart = Optional.empty();
@@ -126,7 +126,7 @@ public interface ResearchElementDefinition_CharacteristicBuilder {
      *     DataRequirement, Expression. To pass the value in, wrap with one of the
      *     ResearchElementDefinition_CharacteristicBuilder.definition static methods
      */
-    public Impl(@NonNull Choice_1750128470 definition) {
+    public Impl(@NonNull Choice00836574492 definition) {
       this.definition = definition;
     }
 
@@ -253,7 +253,7 @@ public interface ResearchElementDefinition_CharacteristicBuilder {
      *     ResearchElementDefinition_CharacteristicBuilder.studyEffective static methods
      */
     public ResearchElementDefinition_CharacteristicBuilder.Impl withStudyEffective(
-        @NonNull Choice00607514014 studyEffective) {
+        @NonNull Choice_1938137622 studyEffective) {
       this.studyEffective = Optional.of(studyEffective);
       return this;
     }
@@ -263,7 +263,7 @@ public interface ResearchElementDefinition_CharacteristicBuilder {
      *     ResearchElementDefinition_CharacteristicBuilder.participantEffective static methods
      */
     public ResearchElementDefinition_CharacteristicBuilder.Impl withParticipantEffective(
-        @NonNull Choice00607514014 participantEffective) {
+        @NonNull Choice_1938137622 participantEffective) {
       this.participantEffective = Optional.of(participantEffective);
       return this;
     }

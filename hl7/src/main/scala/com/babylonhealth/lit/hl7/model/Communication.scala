@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Communication extends CompanionFor[Communication] {
-  implicit def summonObjectAndCompanionCommunication_1920831717(
+  implicit def summonObjectAndCompanionCommunication_1307924991(
       o: Communication): ObjectAndCompanion[Communication, Communication.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Communication
   override type ParentType   = Communication
@@ -32,12 +32,12 @@ object Communication extends CompanionFor[Communication] {
   override val parentType: CompanionFor[ParentType] = Communication
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Communication")
   object Payload extends CompanionFor[Payload] {
-    implicit def summonObjectAndCompanionPayload_1495466400(o: Payload): ObjectAndCompanion[Payload, Payload.type] =
+    implicit def summonObjectAndCompanionPayload_472645780(o: Payload): ObjectAndCompanion[Payload, Payload.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Payload
     override type ParentType   = Payload
     override val parentType: CompanionFor[ResourceType] = Payload
-    type ContentChoice = Choice[Union_1750183386]
+    type ContentChoice = Choice[UnionAttachmentOrReferenceOrString]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -58,7 +58,7 @@ object Communication extends CompanionFor[Communication] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val content: FHIRComponentFieldMeta[Payload.ContentChoice] =
-      FHIRComponentFieldMeta("content", lTagOf[Payload.ContentChoice], true, lTagOf[Union_1750183386])
+      FHIRComponentFieldMeta("content", lTagOf[Payload.ContentChoice], true, lTagOf[UnionAttachmentOrReferenceOrString])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, content, modifierExtension)
@@ -77,7 +77,7 @@ object Communication extends CompanionFor[Communication] {
           new Payload(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_1750183386]("content"),
+            cursor.decodeRef[UnionAttachmentOrReferenceOrString]("content"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )

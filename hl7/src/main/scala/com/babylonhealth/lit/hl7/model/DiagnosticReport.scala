@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DiagnosticReport extends CompanionFor[DiagnosticReport] {
-  implicit def summonObjectAndCompanionDiagnosticReport_1757084483(
+  implicit def summonObjectAndCompanionDiagnosticReport_729122384(
       o: DiagnosticReport): ObjectAndCompanion[DiagnosticReport, DiagnosticReport.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DiagnosticReport
   override type ParentType   = DiagnosticReport
@@ -32,7 +32,7 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
   override val parentType: CompanionFor[ParentType] = DiagnosticReport
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DiagnosticReport")
   object Media extends CompanionFor[Media] {
-    implicit def summonObjectAndCompanionMedia_806074983(o: Media): ObjectAndCompanion[Media, Media.type] =
+    implicit def summonObjectAndCompanionMedia2049281974(o: Media): ObjectAndCompanion[Media, Media.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Media
     override type ParentType   = Media
@@ -97,7 +97,7 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type EffectiveChoice = Choice[Union_0934386166]
+  type EffectiveChoice = Choice[UnionDateTimeOrPeriod]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -192,7 +192,7 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
   val conclusion: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("conclusion", lTagOf[Option[String]], false, lTagOf[String])
   val effective: FHIRComponentFieldMeta[Option[DiagnosticReport.EffectiveChoice]] =
-    FHIRComponentFieldMeta("effective", lTagOf[Option[DiagnosticReport.EffectiveChoice]], true, lTagOf[Union_0934386166])
+    FHIRComponentFieldMeta("effective", lTagOf[Option[DiagnosticReport.EffectiveChoice]], true, lTagOf[UnionDateTimeOrPeriod])
   val imagingStudy: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("imagingStudy", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -333,7 +333,7 @@ object DiagnosticReport extends CompanionFor[DiagnosticReport] {
           cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("conclusion", Some(None)),
-          cursor.decodeOptRef[Union_0934386166]("effective"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriod]("effective"),
           cursor.decodeAs[LitSeq[Reference]]("imagingStudy", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[LitSeq[Attachment]]("presentedForm", Some(LitSeq.empty)),

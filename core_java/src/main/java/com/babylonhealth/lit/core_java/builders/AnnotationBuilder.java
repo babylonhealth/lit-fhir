@@ -50,12 +50,12 @@ public interface AnnotationBuilder extends ElementBuilder {
     return new Impl(text);
   }
 
-  public static Choice_1128709984 author(Reference r) {
-    return new Choice_1128709984(r);
+  public static ChoiceReferenceOrString author(Reference r) {
+    return new ChoiceReferenceOrString(r);
   }
 
-  public static Choice_1128709984 author(String s) {
-    return new Choice_1128709984(s);
+  public static ChoiceReferenceOrString author(String s) {
+    return new ChoiceReferenceOrString(s);
   }
 
   public class Impl implements AnnotationBuilder {
@@ -63,7 +63,7 @@ public interface AnnotationBuilder extends ElementBuilder {
     private Optional<FHIRDateTime> time = Optional.empty();
     private String text;
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice_1128709984> author = Optional.empty();
+    private Optional<ChoiceReferenceOrString> author = Optional.empty();
 
     /**
      * Required fields for {@link Annotation}
@@ -119,7 +119,7 @@ public interface AnnotationBuilder extends ElementBuilder {
      *     field. Type should be one of Reference, String. To pass the value in, wrap with one of
      *     the AnnotationBuilder.author static methods
      */
-    public AnnotationBuilder.Impl withAuthor(@NonNull Choice_1128709984 author) {
+    public AnnotationBuilder.Impl withAuthor(@NonNull ChoiceReferenceOrString author) {
       this.author = Optional.of(author);
       return this;
     }

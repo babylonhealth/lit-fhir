@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_bestpractice extends CompanionFor[Elementdefinition_bestpractice] {
-  implicit def summonObjectAndCompanionElementdefinition_bestpractice1416089088(
+  implicit def summonObjectAndCompanionElementdefinition_bestpractice_444858382(
       o: Elementdefinition_bestpractice): ObjectAndCompanion[Elementdefinition_bestpractice, Elementdefinition_bestpractice.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
@@ -32,7 +32,7 @@ object Elementdefinition_bestpractice extends CompanionFor[Elementdefinition_bes
   override val baseType: CompanionFor[ResourceType] = Extension
   override val parentType: CompanionFor[ParentType] = Extension
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/elementdefinition-bestpractice")
-  type ValueChoice = Choice[Union_1768247138]
+  type ValueChoice = Choice[UnionBooleanOrCodeableConcept]
   def apply(
       id: Option[String] = None,
       value: Elementdefinition_bestpractice.ValueChoice,
@@ -45,7 +45,11 @@ object Elementdefinition_bestpractice extends CompanionFor[Elementdefinition_bes
   val id: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
   val value: FHIRComponentFieldMeta[Elementdefinition_bestpractice.ValueChoice] =
-    FHIRComponentFieldMeta("value", lTagOf[Elementdefinition_bestpractice.ValueChoice], true, lTagOf[Union_1768247138])
+    FHIRComponentFieldMeta(
+      "value",
+      lTagOf[Elementdefinition_bestpractice.ValueChoice],
+      true,
+      lTagOf[UnionBooleanOrCodeableConcept])
   val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, value)
   override def fieldsFromParent(t: ResourceType): Try[Seq[FHIRComponentField[_]]] = Try(
     Seq(
@@ -64,7 +68,7 @@ object Elementdefinition_bestpractice extends CompanionFor[Elementdefinition_bes
       Try(
         new Elementdefinition_bestpractice(
           cursor.decodeAs[Option[String]]("id", Some(None)),
-          cursor.decodeRef[Union_1768247138]("value"),
+          cursor.decodeRef[UnionBooleanOrCodeableConcept]("value"),
           decodeAttributes(cursor)
         )
       ))

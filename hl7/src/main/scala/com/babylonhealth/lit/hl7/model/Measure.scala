@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Measure extends CompanionFor[Measure] {
-  implicit def summonObjectAndCompanionMeasure_1625971863(o: Measure): ObjectAndCompanion[Measure, Measure.type] =
+  implicit def summonObjectAndCompanionMeasure287848393(o: Measure): ObjectAndCompanion[Measure, Measure.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Measure
   override type ParentType   = Measure
@@ -32,13 +32,13 @@ object Measure extends CompanionFor[Measure] {
   override val parentType: CompanionFor[ParentType] = Measure
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Measure")
   object Group extends CompanionFor[Group] {
-    implicit def summonObjectAndCompanionGroup_1040402015(o: Group): ObjectAndCompanion[Group, Group.type] =
+    implicit def summonObjectAndCompanionGroup910981756(o: Group): ObjectAndCompanion[Group, Group.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Group
     override type ParentType   = Group
     override val parentType: CompanionFor[ResourceType] = Group
     object Population extends CompanionFor[Population] {
-      implicit def summonObjectAndCompanionPopulation859341301(o: Population): ObjectAndCompanion[Population, Population.type] =
+      implicit def summonObjectAndCompanionPopulation_1553839620(o: Population): ObjectAndCompanion[Population, Population.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Population
       override type ParentType   = Population
@@ -112,13 +112,13 @@ object Measure extends CompanionFor[Measure] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Stratifier extends CompanionFor[Stratifier] {
-      implicit def summonObjectAndCompanionStratifier_261112201(o: Stratifier): ObjectAndCompanion[Stratifier, Stratifier.type] =
+      implicit def summonObjectAndCompanionStratifier_1553839620(o: Stratifier): ObjectAndCompanion[Stratifier, Stratifier.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Stratifier
       override type ParentType   = Stratifier
       override val parentType: CompanionFor[ResourceType] = Stratifier
       object Component extends CompanionFor[Component] {
-        implicit def summonObjectAndCompanionComponent1007370965(o: Component): ObjectAndCompanion[Component, Component.type] =
+        implicit def summonObjectAndCompanionComponent_1748986425(o: Component): ObjectAndCompanion[Component, Component.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = Component
         override type ParentType   = Component
@@ -344,7 +344,7 @@ object Measure extends CompanionFor[Measure] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object SupplementalData extends CompanionFor[SupplementalData] {
-    implicit def summonObjectAndCompanionSupplementalData_1493230390(
+    implicit def summonObjectAndCompanionSupplementalData910981756(
         o: SupplementalData): ObjectAndCompanion[SupplementalData, SupplementalData.type] = ObjectAndCompanion(o, this)
     override type ResourceType = SupplementalData
     override type ParentType   = SupplementalData
@@ -424,7 +424,7 @@ object Measure extends CompanionFor[Measure] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type SubjectChoice = Choice[Union01025009075]
+  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -587,7 +587,7 @@ object Measure extends CompanionFor[Measure] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val subject: FHIRComponentFieldMeta[Option[Measure.SubjectChoice]] =
-    FHIRComponentFieldMeta("subject", lTagOf[Option[Measure.SubjectChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta("subject", lTagOf[Option[Measure.SubjectChoice]], true, lTagOf[UnionCodeableConceptOrReference])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val disclaimer: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -840,7 +840,7 @@ object Measure extends CompanionFor[Measure] {
         cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
         cursor.decodeAs[Option[Markdown]]("rationale", Some(None)),
         cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-        cursor.decodeOptRef[Union01025009075]("subject"),
+        cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
         cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
         cursor.decodeAs[Option[Markdown]]("disclaimer", Some(None)),
         cursor.decodeAs[LitSeq[Markdown]]("definition", Some(LitSeq.empty)),

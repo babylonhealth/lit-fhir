@@ -24,15 +24,15 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Task extends CompanionFor[Task] {
-  implicit def summonObjectAndCompanionTask1301031953(o: Task): ObjectAndCompanion[Task, Task.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionTask_2065452294(o: Task): ObjectAndCompanion[Task, Task.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Task
   override type ParentType   = Task
   override val baseType: CompanionFor[ResourceType] = Task
   override val parentType: CompanionFor[ParentType] = Task
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Task")
   object Restriction extends CompanionFor[Restriction] {
-    implicit def summonObjectAndCompanionRestriction1922801621(
-        o: Restriction): ObjectAndCompanion[Restriction, Restriction.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionRestriction5198666(o: Restriction): ObjectAndCompanion[Restriction, Restriction.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = Restriction
     override type ParentType   = Restriction
     override val parentType: CompanionFor[ResourceType] = Restriction
@@ -105,12 +105,12 @@ object Task extends CompanionFor[Task] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Output extends CompanionFor[Output] {
-    implicit def summonObjectAndCompanionOutput22298745(o: Output): ObjectAndCompanion[Output, Output.type] =
+    implicit def summonObjectAndCompanionOutput5198666(o: Output): ObjectAndCompanion[Output, Output.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Output
     override type ParentType   = Output
     override val parentType: CompanionFor[ResourceType] = Output
-    type ValueChoice = Choice[Union_1349125893]
+    type ValueChoice = Choice[UnionAll]
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -133,7 +133,7 @@ object Task extends CompanionFor[Task] {
     val `type`: FHIRComponentFieldMeta[CodeableConcept] =
       FHIRComponentFieldMeta("type", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[Output.ValueChoice] =
-      FHIRComponentFieldMeta("value", lTagOf[Output.ValueChoice], true, lTagOf[Union_1349125893])
+      FHIRComponentFieldMeta("value", lTagOf[Output.ValueChoice], true, lTagOf[UnionAll])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -155,7 +155,7 @@ object Task extends CompanionFor[Task] {
           new Output(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[CodeableConcept]("type", None),
-            cursor.decodeRef[Union_1349125893]("value"),
+            cursor.decodeRef[UnionAll]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
@@ -172,12 +172,12 @@ object Task extends CompanionFor[Task] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Input extends CompanionFor[Input] {
-    implicit def summonObjectAndCompanionInput2099773490(o: Input): ObjectAndCompanion[Input, Input.type] =
+    implicit def summonObjectAndCompanionInput5198666(o: Input): ObjectAndCompanion[Input, Input.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Input
     override type ParentType   = Input
     override val parentType: CompanionFor[ResourceType] = Input
-    type ValueChoice = Choice[Union_1349125893]
+    type ValueChoice = Choice[UnionAll]
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -200,7 +200,7 @@ object Task extends CompanionFor[Task] {
     val `type`: FHIRComponentFieldMeta[CodeableConcept] =
       FHIRComponentFieldMeta("type", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[Input.ValueChoice] =
-      FHIRComponentFieldMeta("value", lTagOf[Input.ValueChoice], true, lTagOf[Union_1349125893])
+      FHIRComponentFieldMeta("value", lTagOf[Input.ValueChoice], true, lTagOf[UnionAll])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -222,7 +222,7 @@ object Task extends CompanionFor[Task] {
           new Input(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[CodeableConcept]("type", None),
-            cursor.decodeRef[Union_1349125893]("value"),
+            cursor.decodeRef[UnionAll]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)

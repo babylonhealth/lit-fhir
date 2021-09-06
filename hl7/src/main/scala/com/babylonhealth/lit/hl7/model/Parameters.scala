@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Parameters extends CompanionFor[Parameters] {
-  implicit def summonObjectAndCompanionParameters313477919(o: Parameters): ObjectAndCompanion[Parameters, Parameters.type] =
+  implicit def summonObjectAndCompanionParameters1114411935(o: Parameters): ObjectAndCompanion[Parameters, Parameters.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Parameters
   override type ParentType   = Parameters
@@ -31,12 +31,12 @@ object Parameters extends CompanionFor[Parameters] {
   override val parentType: CompanionFor[ParentType] = Parameters
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Parameters")
   object Parameter extends CompanionFor[Parameter] {
-    implicit def summonObjectAndCompanionParameter581972308(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
+    implicit def summonObjectAndCompanionParameter609434644(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Parameter
     override type ParentType   = Parameter
     override val parentType: CompanionFor[ResourceType] = Parameter
-    type ValueChoice = Choice[Union_1349125893]
+    type ValueChoice = Choice[UnionAll]
     def apply(
         id: Option[String] = None,
         name: String,
@@ -66,7 +66,7 @@ object Parameters extends CompanionFor[Parameters] {
     val part: FHIRComponentFieldMeta[LitSeq[Parameters.Parameter]] =
       FHIRComponentFieldMeta("part", lTagOf[LitSeq[Parameters.Parameter]], false, lTagOf[Parameters.Parameter])
     val value: FHIRComponentFieldMeta[Option[Parameter.ValueChoice]] =
-      FHIRComponentFieldMeta("value", lTagOf[Option[Parameter.ValueChoice]], true, lTagOf[Union_1349125893])
+      FHIRComponentFieldMeta("value", lTagOf[Option[Parameter.ValueChoice]], true, lTagOf[UnionAll])
     val resource: FHIRComponentFieldMeta[Option[Resource]] =
       FHIRComponentFieldMeta("resource", lTagOf[Option[Resource]], false, lTagOf[Resource])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -93,7 +93,7 @@ object Parameters extends CompanionFor[Parameters] {
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[String]("name", None),
             cursor.decodeAs[LitSeq[Parameters.Parameter]]("part", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_1349125893]("value"),
+            cursor.decodeOptRef[UnionAll]("value"),
             cursor.decodeAs[Option[Resource]]("resource", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),

@@ -25,14 +25,14 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablemeasure extends CompanionFor[Shareablemeasure] {
-  implicit def summonObjectAndCompanionShareablemeasure_722106430(
+  implicit def summonObjectAndCompanionShareablemeasure1895974746(
       o: Shareablemeasure): ObjectAndCompanion[Shareablemeasure, Shareablemeasure.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Measure
   override type ParentType   = Measure
   override val baseType: CompanionFor[ResourceType] = Measure
   override val parentType: CompanionFor[ParentType] = Measure
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/shareablemeasure")
-  type SubjectChoice = Choice[Union01025009075]
+  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       url: UriStr,
@@ -195,7 +195,11 @@ object Shareablemeasure extends CompanionFor[Shareablemeasure] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val subject: FHIRComponentFieldMeta[Option[Shareablemeasure.SubjectChoice]] =
-    FHIRComponentFieldMeta("subject", lTagOf[Option[Shareablemeasure.SubjectChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "subject",
+      lTagOf[Option[Shareablemeasure.SubjectChoice]],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val disclaimer: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -422,7 +426,7 @@ object Shareablemeasure extends CompanionFor[Shareablemeasure] {
         cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
         cursor.decodeAs[Option[Markdown]]("rationale", Some(None)),
         cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-        cursor.decodeOptRef[Union01025009075]("subject"),
+        cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
         cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
         cursor.decodeAs[Option[Markdown]]("disclaimer", Some(None)),
         cursor.decodeAs[LitSeq[Markdown]]("definition", Some(LitSeq.empty)),

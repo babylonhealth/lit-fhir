@@ -54,12 +54,12 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
     return new Impl(status);
   }
 
-  public static Choice01025009075 subject(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 subject(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements PlanDefinitionBuilder {
@@ -89,7 +89,7 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
     private Optional<String> publisher = Optional.empty();
     private Optional<String> copyright = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<Choice01025009075> subject = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<Boolean> experimental = Optional.empty();
@@ -483,7 +483,8 @@ public interface PlanDefinitionBuilder extends DomainResourceBuilder {
      *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
      *     To pass the value in, wrap with one of the PlanDefinitionBuilder.subject static methods
      */
-    public PlanDefinitionBuilder.Impl withSubject(@NonNull Choice01025009075 subject) {
+    public PlanDefinitionBuilder.Impl withSubject(
+        @NonNull ChoiceCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }

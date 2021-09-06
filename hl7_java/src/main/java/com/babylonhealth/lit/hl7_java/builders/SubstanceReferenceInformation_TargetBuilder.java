@@ -53,16 +53,16 @@ public interface SubstanceReferenceInformation_TargetBuilder {
     return new Impl();
   }
 
-  public static Choice_1527751898 amount(Quantity q) {
-    return new Choice_1527751898(q);
+  public static ChoiceQuantityOrRangeOrString amount(Quantity q) {
+    return new ChoiceQuantityOrRangeOrString(q);
   }
 
-  public static Choice_1527751898 amount(Range r) {
-    return new Choice_1527751898(r);
+  public static ChoiceQuantityOrRangeOrString amount(Range r) {
+    return new ChoiceQuantityOrRangeOrString(r);
   }
 
-  public static Choice_1527751898 amount(String s) {
-    return new Choice_1527751898(s);
+  public static ChoiceQuantityOrRangeOrString amount(String s) {
+    return new ChoiceQuantityOrRangeOrString(s);
   }
 
   public class Impl implements SubstanceReferenceInformation_TargetBuilder {
@@ -72,7 +72,7 @@ public interface SubstanceReferenceInformation_TargetBuilder {
     private Collection<Reference> source = Collections.emptyList();
     private Optional<CodeableConcept> organism = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice_1527751898> amount = Optional.empty();
+    private Optional<ChoiceQuantityOrRangeOrString> amount = Optional.empty();
     private Optional<CodeableConcept> amountType = Optional.empty();
     private Optional<CodeableConcept> interaction = Optional.empty();
     private Optional<CodeableConcept> organismType = Optional.empty();
@@ -178,7 +178,7 @@ public interface SubstanceReferenceInformation_TargetBuilder {
      *     SubstanceReferenceInformation_TargetBuilder.amount static methods
      */
     public SubstanceReferenceInformation_TargetBuilder.Impl withAmount(
-        @NonNull Choice_1527751898 amount) {
+        @NonNull ChoiceQuantityOrRangeOrString amount) {
       this.amount = Optional.of(amount);
       return this;
     }

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceRequest extends CompanionFor[DeviceRequest] {
-  implicit def summonObjectAndCompanionDeviceRequest1575236692(
+  implicit def summonObjectAndCompanionDeviceRequest_295463548(
       o: DeviceRequest): ObjectAndCompanion[DeviceRequest, DeviceRequest.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DeviceRequest
   override type ParentType   = DeviceRequest
@@ -32,12 +32,12 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
   override val parentType: CompanionFor[ParentType] = DeviceRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceRequest")
   object Parameter extends CompanionFor[Parameter] {
-    implicit def summonObjectAndCompanionParameter_582978891(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
+    implicit def summonObjectAndCompanionParameter1552277106(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Parameter
     override type ParentType   = Parameter
     override val parentType: CompanionFor[ResourceType] = Parameter
-    type ValueChoice = Choice[Union_1516277229]
+    type ValueChoice = Choice[Union_0536852827]
     def apply(
         id: Option[String] = None,
         code: Option[CodeableConcept] = None,
@@ -61,7 +61,7 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
     val code: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("code", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val value: FHIRComponentFieldMeta[Option[Parameter.ValueChoice]] =
-      FHIRComponentFieldMeta("value", lTagOf[Option[Parameter.ValueChoice]], true, lTagOf[Union_1516277229])
+      FHIRComponentFieldMeta("value", lTagOf[Option[Parameter.ValueChoice]], true, lTagOf[Union_0536852827])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -83,7 +83,7 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
           new Parameter(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("code", Some(None)),
-            cursor.decodeOptRef[Union_1516277229]("value"),
+            cursor.decodeOptRef[Union_0536852827]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
@@ -99,8 +99,8 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type CodeChoice       = Choice[Union01025009075]
-  type OccurrenceChoice = Choice[Union00609373412]
+  type CodeChoice       = Choice[UnionCodeableConceptOrReference]
+  type OccurrenceChoice = Choice[UnionDateTimeOrPeriodOrTiming]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -185,7 +185,7 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
   val basedOn: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("basedOn", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val code: FHIRComponentFieldMeta[DeviceRequest.CodeChoice] =
-    FHIRComponentFieldMeta("code", lTagOf[DeviceRequest.CodeChoice], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta("code", lTagOf[DeviceRequest.CodeChoice], true, lTagOf[UnionCodeableConceptOrReference])
   val subject: FHIRComponentFieldMeta[Reference] =
     FHIRComponentFieldMeta("subject", lTagOf[Reference], false, lTagOf[Reference])
   val language: FHIRComponentFieldMeta[Option[LANGUAGES]] =
@@ -215,7 +215,11 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Option[DeviceRequest.OccurrenceChoice]] =
-    FHIRComponentFieldMeta("occurrence", lTagOf[Option[DeviceRequest.OccurrenceChoice]], true, lTagOf[Union00609373412])
+    FHIRComponentFieldMeta(
+      "occurrence",
+      lTagOf[Option[DeviceRequest.OccurrenceChoice]],
+      true,
+      lTagOf[UnionDateTimeOrPeriodOrTiming])
   val performerType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("performerType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val supportingInfo: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -369,7 +373,7 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
           cursor.decodeAs[Option[REQUEST_STATUS]]("status", Some(None)),
           cursor.decodeAs[REQUEST_INTENT]("intent", None),
           cursor.decodeAs[LitSeq[Reference]]("basedOn", Some(LitSeq.empty)),
-          cursor.decodeRef[Union01025009075]("code"),
+          cursor.decodeRef[UnionCodeableConceptOrReference]("code"),
           cursor.decodeAs[Reference]("subject", None),
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[Option[REQUEST_PRIORITY]]("priority", Some(None)),
@@ -384,7 +388,7 @@ object DeviceRequest extends CompanionFor[DeviceRequest] {
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("priorRequest", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[Union00609373412]("occurrence"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriodOrTiming]("occurrence"),
           cursor.decodeAs[Option[CodeableConcept]]("performerType", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("supportingInfo", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[UriStr]]("instantiatesUri", Some(LitSeq.empty)),

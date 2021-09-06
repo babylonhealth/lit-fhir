@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SupplyDelivery extends CompanionFor[SupplyDelivery] {
-  implicit def summonObjectAndCompanionSupplyDelivery_1097491031(
+  implicit def summonObjectAndCompanionSupplyDelivery1523104056(
       o: SupplyDelivery): ObjectAndCompanion[SupplyDelivery, SupplyDelivery.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SupplyDelivery
   override type ParentType   = SupplyDelivery
@@ -32,12 +32,12 @@ object SupplyDelivery extends CompanionFor[SupplyDelivery] {
   override val parentType: CompanionFor[ParentType] = SupplyDelivery
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SupplyDelivery")
   object SuppliedItem extends CompanionFor[SuppliedItem] {
-    implicit def summonObjectAndCompanionSuppliedItem_2132972385(
+    implicit def summonObjectAndCompanionSuppliedItem766061638(
         o: SuppliedItem): ObjectAndCompanion[SuppliedItem, SuppliedItem.type] = ObjectAndCompanion(o, this)
     override type ResourceType = SuppliedItem
     override type ParentType   = SuppliedItem
     override val parentType: CompanionFor[ResourceType] = SuppliedItem
-    type ItemChoice = Choice[Union01025009075]
+    type ItemChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         item: Option[SuppliedItem.ItemChoice] = None,
@@ -59,7 +59,7 @@ object SupplyDelivery extends CompanionFor[SupplyDelivery] {
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val item: FHIRComponentFieldMeta[Option[SuppliedItem.ItemChoice]] =
-      FHIRComponentFieldMeta("item", lTagOf[Option[SuppliedItem.ItemChoice]], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("item", lTagOf[Option[SuppliedItem.ItemChoice]], true, lTagOf[UnionCodeableConceptOrReference])
     val quantity: FHIRComponentFieldMeta[Option[Quantity]] =
       FHIRComponentFieldMeta("quantity", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -82,7 +82,7 @@ object SupplyDelivery extends CompanionFor[SupplyDelivery] {
         Try(
           new SuppliedItem(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeOptRef[Union01025009075]("item"),
+            cursor.decodeOptRef[UnionCodeableConceptOrReference]("item"),
             cursor.decodeAs[Option[Quantity]]("quantity", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -99,7 +99,7 @@ object SupplyDelivery extends CompanionFor[SupplyDelivery] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type OccurrenceChoice = Choice[Union00609373412]
+  type OccurrenceChoice = Choice[UnionDateTimeOrPeriodOrTiming]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -176,7 +176,11 @@ object SupplyDelivery extends CompanionFor[SupplyDelivery] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Option[SupplyDelivery.OccurrenceChoice]] =
-    FHIRComponentFieldMeta("occurrence", lTagOf[Option[SupplyDelivery.OccurrenceChoice]], true, lTagOf[Union00609373412])
+    FHIRComponentFieldMeta(
+      "occurrence",
+      lTagOf[Option[SupplyDelivery.OccurrenceChoice]],
+      true,
+      lTagOf[UnionDateTimeOrPeriodOrTiming])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val suppliedItem: FHIRComponentFieldMeta[Option[SupplyDelivery.SuppliedItem]] =
@@ -298,7 +302,7 @@ object SupplyDelivery extends CompanionFor[SupplyDelivery] {
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("destination", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[Union00609373412]("occurrence"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriodOrTiming]("occurrence"),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[SupplyDelivery.SuppliedItem]]("suppliedItem", Some(None)),
           decodeAttributes(cursor)

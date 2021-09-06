@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_geneticsAllele extends CompanionFor[Observation_geneticsAllele] {
-  implicit def summonObjectAndCompanionObservation_geneticsAllele882184321(
+  implicit def summonObjectAndCompanionObservation_geneticsAllele1011594637(
       o: Observation_geneticsAllele): ObjectAndCompanion[Observation_geneticsAllele, Observation_geneticsAllele.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

@@ -48,25 +48,25 @@ import static java.util.stream.Collectors.toList;
 public interface Elementdefinition_allowedUnitsBuilder extends ExtensionBuilder {
   public Elementdefinition_allowedUnits build();
 
-  public static Impl init(@NonNull Choice01054268719 value) {
+  public static Impl init(@NonNull ChoiceCanonicalOrCodeableConcept value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice01054268719 value) {
+  public static Impl builder(@NonNull ChoiceCanonicalOrCodeableConcept value) {
     return new Impl(value);
   }
 
-  public static Choice01054268719 value(String s) {
-    return new Choice01054268719(s);
+  public static ChoiceCanonicalOrCodeableConcept value(String s) {
+    return new ChoiceCanonicalOrCodeableConcept(s);
   }
 
-  public static Choice01054268719 value(CodeableConcept c) {
-    return new Choice01054268719(c);
+  public static ChoiceCanonicalOrCodeableConcept value(CodeableConcept c) {
+    return new ChoiceCanonicalOrCodeableConcept(c);
   }
 
   public class Impl implements Elementdefinition_allowedUnitsBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice01054268719 value;
+    private ChoiceCanonicalOrCodeableConcept value;
 
     /**
      * Required fields for {@link Elementdefinition_allowedUnits}
@@ -76,7 +76,7 @@ public interface Elementdefinition_allowedUnitsBuilder extends ExtensionBuilder 
      *     field. Type should be one of String, CodeableConcept. To pass the value in, wrap with one
      *     of the Elementdefinition_allowedUnitsBuilder.value static methods
      */
-    public Impl(@NonNull Choice01054268719 value) {
+    public Impl(@NonNull ChoiceCanonicalOrCodeableConcept value) {
       this.value = value;
     }
 

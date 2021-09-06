@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire_supportLink extends CompanionFor[Questionnaire_supportLink] {
-  implicit def summonObjectAndCompanionQuestionnaire_supportLink2016530120(
+  implicit def summonObjectAndCompanionQuestionnaire_supportLink_1858374390(
       o: Questionnaire_supportLink): ObjectAndCompanion[Questionnaire_supportLink, Questionnaire_supportLink.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

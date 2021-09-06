@@ -48,41 +48,41 @@ import static java.util.stream.Collectors.toList;
 public interface MaxValueBuilder extends ExtensionBuilder {
   public MaxValue build();
 
-  public static Impl init(@NonNull Choice00315627715 value) {
+  public static Impl init(@NonNull Choice00863392741 value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice00315627715 value) {
+  public static Impl builder(@NonNull Choice00863392741 value) {
     return new Impl(value);
   }
 
-  public static Choice00315627715 value(BigDecimal b) {
-    return new Choice00315627715(b);
+  public static Choice00863392741 value(BigDecimal b) {
+    return new Choice00863392741(b);
   }
 
-  public static Choice00315627715 value(FHIRDate f) {
-    return new Choice00315627715(f);
+  public static Choice00863392741 value(FHIRDate f) {
+    return new Choice00863392741(f);
   }
 
-  public static Choice00315627715 value(FHIRDateTime f) {
-    return new Choice00315627715(f);
+  public static Choice00863392741 value(FHIRDateTime f) {
+    return new Choice00863392741(f);
   }
 
-  public static Choice00315627715 value(Integer i) {
-    return new Choice00315627715(i);
+  public static Choice00863392741 value(Integer i) {
+    return new Choice00863392741(i);
   }
 
-  public static Choice00315627715 value(LocalTime l) {
-    return new Choice00315627715(l);
+  public static Choice00863392741 value(LocalTime l) {
+    return new Choice00863392741(l);
   }
 
-  public static Choice00315627715 value(ZonedDateTime z) {
-    return new Choice00315627715(z);
+  public static Choice00863392741 value(ZonedDateTime z) {
+    return new Choice00863392741(z);
   }
 
   public class Impl implements MaxValueBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice00315627715 value;
+    private Choice00863392741 value;
 
     /**
      * Required fields for {@link MaxValue}
@@ -93,7 +93,7 @@ public interface MaxValueBuilder extends ExtensionBuilder {
      *     ZonedDateTime. To pass the value in, wrap with one of the MaxValueBuilder.value static
      *     methods
      */
-    public Impl(@NonNull Choice00315627715 value) {
+    public Impl(@NonNull Choice00863392741 value) {
       this.value = value;
     }
 

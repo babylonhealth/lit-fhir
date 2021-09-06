@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_timeOffset extends CompanionFor[Observation_timeOffset] {
-  implicit def summonObjectAndCompanionObservation_timeOffset1344890958(
+  implicit def summonObjectAndCompanionObservation_timeOffset_2061315050(
       o: Observation_timeOffset): ObjectAndCompanion[Observation_timeOffset, Observation_timeOffset.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

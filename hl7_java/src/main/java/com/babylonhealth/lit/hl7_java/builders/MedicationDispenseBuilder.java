@@ -46,29 +46,30 @@ import static java.util.stream.Collectors.toList;
 public interface MedicationDispenseBuilder extends DomainResourceBuilder {
   public MedicationDispense build();
 
-  public static Impl init(MEDICATIONDISPENSE_STATUS status, @NonNull Choice01025009075 medication) {
+  public static Impl init(
+      MEDICATIONDISPENSE_STATUS status, @NonNull ChoiceCodeableConceptOrReference medication) {
     return new Impl(status, medication);
   }
 
   public static Impl builder(
-      MEDICATIONDISPENSE_STATUS status, @NonNull Choice01025009075 medication) {
+      MEDICATIONDISPENSE_STATUS status, @NonNull ChoiceCodeableConceptOrReference medication) {
     return new Impl(status, medication);
   }
 
-  public static Choice01025009075 medication(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference medication(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 medication(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference medication(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
-  public static Choice01025009075 statusReason(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference statusReason(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 statusReason(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference statusReason(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements MedicationDispenseBuilder {
@@ -94,10 +95,10 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
     private Optional<FHIRDateTime> whenPrepared = Optional.empty();
     private Collection<Reference> eventHistory = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private Choice01025009075 medication;
+    private ChoiceCodeableConceptOrReference medication;
     private Collection<Reference> detectedIssue = Collections.emptyList();
     private Optional<FHIRDateTime> whenHandedOver = Optional.empty();
-    private Optional<Choice01025009075> statusReason = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> statusReason = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Dosage> dosageInstruction = Collections.emptyList();
     private Collection<Reference> supportingInformation = Collections.emptyList();
@@ -115,7 +116,8 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
      *     field. Type should be one of CodeableConcept, Reference. To pass the value in, wrap with
      *     one of the MedicationDispenseBuilder.medication static methods
      */
-    public Impl(MEDICATIONDISPENSE_STATUS status, @NonNull Choice01025009075 medication) {
+    public Impl(
+        MEDICATIONDISPENSE_STATUS status, @NonNull ChoiceCodeableConceptOrReference medication) {
       this.status = status;
       this.medication = medication;
     }
@@ -474,7 +476,7 @@ public interface MedicationDispenseBuilder extends DomainResourceBuilder {
      *     wrap with one of the MedicationDispenseBuilder.statusReason static methods
      */
     public MedicationDispenseBuilder.Impl withStatusReason(
-        @NonNull Choice01025009075 statusReason) {
+        @NonNull ChoiceCodeableConceptOrReference statusReason) {
       this.statusReason = Optional.of(statusReason);
       return this;
     }

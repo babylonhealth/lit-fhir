@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Group extends CompanionFor[Group] {
-  implicit def summonObjectAndCompanionGroup_2001492341(o: Group): ObjectAndCompanion[Group, Group.type] =
+  implicit def summonObjectAndCompanionGroup383985578(o: Group): ObjectAndCompanion[Group, Group.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Group
   override type ParentType   = Group
@@ -32,12 +32,12 @@ object Group extends CompanionFor[Group] {
   override val parentType: CompanionFor[ParentType] = Group
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Group")
   object Characteristic extends CompanionFor[Characteristic] {
-    implicit def summonObjectAndCompanionCharacteristic_464339838(
+    implicit def summonObjectAndCompanionCharacteristic138153150(
         o: Characteristic): ObjectAndCompanion[Characteristic, Characteristic.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Characteristic
     override type ParentType   = Characteristic
     override val parentType: CompanionFor[ResourceType] = Characteristic
-    type ValueChoice = Choice[Union01646729908]
+    type ValueChoice = Choice[Union_1213298663]
     def apply(
         id: Option[String] = None,
         code: CodeableConcept,
@@ -69,7 +69,7 @@ object Group extends CompanionFor[Group] {
     val exclude: FHIRComponentFieldMeta[Boolean] =
       FHIRComponentFieldMeta("exclude", lTagOf[Boolean], false, lTagOf[Boolean])
     val value: FHIRComponentFieldMeta[Characteristic.ValueChoice] =
-      FHIRComponentFieldMeta("value", lTagOf[Characteristic.ValueChoice], true, lTagOf[Union01646729908])
+      FHIRComponentFieldMeta("value", lTagOf[Characteristic.ValueChoice], true, lTagOf[Union_1213298663])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -95,7 +95,7 @@ object Group extends CompanionFor[Group] {
             cursor.decodeAs[CodeableConcept]("code", None),
             cursor.decodeAs[Option[Period]]("period", Some(None)),
             cursor.decodeAs[Boolean]("exclude", None),
-            cursor.decodeRef[Union01646729908]("value"),
+            cursor.decodeRef[Union_1213298663]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
@@ -114,7 +114,7 @@ object Group extends CompanionFor[Group] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Member extends CompanionFor[Member] {
-    implicit def summonObjectAndCompanionMember2124034794(o: Member): ObjectAndCompanion[Member, Member.type] =
+    implicit def summonObjectAndCompanionMember138153150(o: Member): ObjectAndCompanion[Member, Member.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Member
     override type ParentType   = Member

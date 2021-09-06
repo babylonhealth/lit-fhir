@@ -53,204 +53,204 @@ public interface StructureMap_Group_Rule_SourceBuilder {
     return new Impl(context);
   }
 
-  public static Choice_1349125893 defaultValue(Address a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll defaultValue(Address a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 defaultValue(Age a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll defaultValue(Age a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 defaultValue(Annotation a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll defaultValue(Annotation a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 defaultValue(Attachment a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll defaultValue(Attachment a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 defaultValue(byte[] b) {
-    return new Choice_1349125893(b);
+  public static ChoiceAll defaultValue(byte[] b) {
+    return new ChoiceAll(b);
   }
 
-  public static Choice_1349125893 defaultValue(BigDecimal b) {
-    return new Choice_1349125893(b);
+  public static ChoiceAll defaultValue(BigDecimal b) {
+    return new ChoiceAll(b);
   }
 
-  public static Choice_1349125893 defaultValue(Boolean b) {
-    return new Choice_1349125893(b);
+  public static ChoiceAll defaultValue(Boolean b) {
+    return new ChoiceAll(b);
   }
 
-  public static Choice_1349125893 defaultValue(CodeableConcept c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll defaultValue(CodeableConcept c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 defaultValue(Coding c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll defaultValue(Coding c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 defaultValue(ContactDetail c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll defaultValue(ContactDetail c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 defaultValue(ContactPoint c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll defaultValue(ContactPoint c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 defaultValue(Contributor c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll defaultValue(Contributor c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 defaultValue(Count c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll defaultValue(Count c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 defaultValue(DataRequirement d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll defaultValue(DataRequirement d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 defaultValue(Distance d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll defaultValue(Distance d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 defaultValue(Dosage d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll defaultValue(Dosage d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 defaultValue(Duration d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll defaultValue(Duration d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 defaultValue(Expression e) {
-    return new Choice_1349125893(e);
+  public static ChoiceAll defaultValue(Expression e) {
+    return new ChoiceAll(e);
   }
 
-  public static Choice_1349125893 defaultValue(FHIRDate f) {
-    return new Choice_1349125893(f);
+  public static ChoiceAll defaultValue(FHIRDate f) {
+    return new ChoiceAll(f);
   }
 
-  public static Choice_1349125893 defaultValue(FHIRDateTime f) {
-    return new Choice_1349125893(f);
+  public static ChoiceAll defaultValue(FHIRDateTime f) {
+    return new ChoiceAll(f);
   }
 
-  public static Choice_1349125893 defaultValue(HumanName h) {
-    return new Choice_1349125893(h);
+  public static ChoiceAll defaultValue(HumanName h) {
+    return new ChoiceAll(h);
   }
 
-  public static Choice_1349125893 defaultValue(Identifier i) {
-    return new Choice_1349125893(i);
+  public static ChoiceAll defaultValue(Identifier i) {
+    return new ChoiceAll(i);
   }
 
-  public static Choice_1349125893 defaultValue(LocalTime l) {
-    return new Choice_1349125893(l);
+  public static ChoiceAll defaultValue(LocalTime l) {
+    return new ChoiceAll(l);
   }
 
-  public static Choice_1349125893 defaultValue(Meta m) {
-    return new Choice_1349125893(m);
+  public static ChoiceAll defaultValue(Meta m) {
+    return new ChoiceAll(m);
   }
 
-  public static Choice_1349125893 defaultValue(Money m) {
-    return new Choice_1349125893(m);
+  public static ChoiceAll defaultValue(Money m) {
+    return new ChoiceAll(m);
   }
 
-  public static Choice_1349125893 defaultValue(ParameterDefinition p) {
-    return new Choice_1349125893(p);
+  public static ChoiceAll defaultValue(ParameterDefinition p) {
+    return new ChoiceAll(p);
   }
 
-  public static Choice_1349125893 defaultValue(Period p) {
-    return new Choice_1349125893(p);
+  public static ChoiceAll defaultValue(Period p) {
+    return new ChoiceAll(p);
   }
 
-  public static Choice_1349125893 defaultValue(Quantity q) {
-    return new Choice_1349125893(q);
+  public static ChoiceAll defaultValue(Quantity q) {
+    return new ChoiceAll(q);
   }
 
-  public static Choice_1349125893 defaultValue(Range r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll defaultValue(Range r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 defaultValue(Ratio r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll defaultValue(Ratio r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 defaultValue(Reference r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll defaultValue(Reference r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 defaultValue(RelatedArtifact r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll defaultValue(RelatedArtifact r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 defaultValue(SampledData s) {
-    return new Choice_1349125893(s);
+  public static ChoiceAll defaultValue(SampledData s) {
+    return new ChoiceAll(s);
   }
 
-  public static Choice_1349125893 defaultValue(Signature s) {
-    return new Choice_1349125893(s);
+  public static ChoiceAll defaultValue(Signature s) {
+    return new ChoiceAll(s);
   }
 
-  public static Choice_1349125893 defaultValue(Timing t) {
-    return new Choice_1349125893(t);
+  public static ChoiceAll defaultValue(Timing t) {
+    return new ChoiceAll(t);
   }
 
-  public static Choice_1349125893 defaultValue(TriggerDefinition t) {
-    return new Choice_1349125893(t);
+  public static ChoiceAll defaultValue(TriggerDefinition t) {
+    return new ChoiceAll(t);
   }
 
-  public static Choice_1349125893 defaultValue(UUID u) {
-    return new Choice_1349125893(u);
+  public static ChoiceAll defaultValue(UUID u) {
+    return new ChoiceAll(u);
   }
 
-  public static Choice_1349125893 defaultValue(UsageContext u) {
-    return new Choice_1349125893(u);
+  public static ChoiceAll defaultValue(UsageContext u) {
+    return new ChoiceAll(u);
   }
 
-  public static Choice_1349125893 defaultValue(ZonedDateTime z) {
-    return new Choice_1349125893(z);
+  public static ChoiceAll defaultValue(ZonedDateTime z) {
+    return new ChoiceAll(z);
   }
 
-  public static Choice_1349125893 defaultValueCanonical(String s) {
-    return Choice_1349125893.Choice_1349125893Canonical(s);
+  public static ChoiceAll defaultValueCanonical(String s) {
+    return ChoiceAll.ChoiceAllCanonical(s);
   }
 
-  public static Choice_1349125893 defaultValueCode(String s) {
-    return Choice_1349125893.Choice_1349125893Code(s);
+  public static ChoiceAll defaultValueCode(String s) {
+    return ChoiceAll.ChoiceAllCode(s);
   }
 
-  public static Choice_1349125893 defaultValueId(String s) {
-    return Choice_1349125893.Choice_1349125893Id(s);
+  public static ChoiceAll defaultValueId(String s) {
+    return ChoiceAll.ChoiceAllId(s);
   }
 
-  public static Choice_1349125893 defaultValueInteger(Integer i) {
-    return Choice_1349125893.Choice_1349125893Int(i);
+  public static ChoiceAll defaultValueInteger(Integer i) {
+    return ChoiceAll.ChoiceAllInt(i);
   }
 
-  public static Choice_1349125893 defaultValueMarkdown(String s) {
-    return Choice_1349125893.Choice_1349125893Markdown(s);
+  public static ChoiceAll defaultValueMarkdown(String s) {
+    return ChoiceAll.ChoiceAllMarkdown(s);
   }
 
-  public static Choice_1349125893 defaultValueOid(String s) {
-    return Choice_1349125893.Choice_1349125893OID(s);
+  public static ChoiceAll defaultValueOid(String s) {
+    return ChoiceAll.ChoiceAllOID(s);
   }
 
-  public static Choice_1349125893 defaultValuePositiveInt(Integer i) {
-    return Choice_1349125893.Choice_1349125893PositiveInt(i);
+  public static ChoiceAll defaultValuePositiveInt(Integer i) {
+    return ChoiceAll.ChoiceAllPositiveInt(i);
   }
 
-  public static Choice_1349125893 defaultValueString(String s) {
-    return Choice_1349125893.Choice_1349125893String(s);
+  public static ChoiceAll defaultValueString(String s) {
+    return ChoiceAll.ChoiceAllString(s);
   }
 
-  public static Choice_1349125893 defaultValueUnsignedInt(Integer i) {
-    return Choice_1349125893.Choice_1349125893UnsignedInt(i);
+  public static ChoiceAll defaultValueUnsignedInt(Integer i) {
+    return ChoiceAll.ChoiceAllUnsignedInt(i);
   }
 
-  public static Choice_1349125893 defaultValueUri(String s) {
-    return Choice_1349125893.Choice_1349125893UriStr(s);
+  public static ChoiceAll defaultValueUri(String s) {
+    return ChoiceAll.ChoiceAllUriStr(s);
   }
 
-  public static Choice_1349125893 defaultValueUrl(String s) {
-    return Choice_1349125893.Choice_1349125893UrlStr(s);
+  public static ChoiceAll defaultValueUrl(String s) {
+    return ChoiceAll.ChoiceAllUrlStr(s);
   }
 
   public class Impl implements StructureMap_Group_Rule_SourceBuilder {
@@ -266,7 +266,7 @@ public interface StructureMap_Group_Rule_SourceBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> condition = Optional.empty();
     private Optional<String> logMessage = Optional.empty();
-    private Optional<Choice_1349125893> defaultValue = Optional.empty();
+    private Optional<ChoiceAll> defaultValue = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -373,7 +373,7 @@ public interface StructureMap_Group_Rule_SourceBuilder {
      *     StructureMap_Group_Rule_SourceBuilder.defaultValue static methods
      */
     public StructureMap_Group_Rule_SourceBuilder.Impl withDefaultValue(
-        @NonNull Choice_1349125893 defaultValue) {
+        @NonNull ChoiceAll defaultValue) {
       this.defaultValue = Optional.of(defaultValue);
       return this;
     }

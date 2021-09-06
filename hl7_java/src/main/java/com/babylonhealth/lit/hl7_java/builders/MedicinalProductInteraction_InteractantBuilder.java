@@ -45,25 +45,25 @@ import static java.util.stream.Collectors.toList;
 public interface MedicinalProductInteraction_InteractantBuilder {
   public MedicinalProductInteraction.Interactant build();
 
-  public static Impl init(@NonNull Choice01025009075 item) {
+  public static Impl init(@NonNull ChoiceCodeableConceptOrReference item) {
     return new Impl(item);
   }
 
-  public static Impl builder(@NonNull Choice01025009075 item) {
+  public static Impl builder(@NonNull ChoiceCodeableConceptOrReference item) {
     return new Impl(item);
   }
 
-  public static Choice01025009075 item(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference item(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 item(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference item(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements MedicinalProductInteraction_InteractantBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice01025009075 item;
+    private ChoiceCodeableConceptOrReference item;
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -74,7 +74,7 @@ public interface MedicinalProductInteraction_InteractantBuilder {
      *     pass the value in, wrap with one of the
      *     MedicinalProductInteraction_InteractantBuilder.item static methods
      */
-    public Impl(@NonNull Choice01025009075 item) {
+    public Impl(@NonNull ChoiceCodeableConceptOrReference item) {
       this.item = item;
     }
 

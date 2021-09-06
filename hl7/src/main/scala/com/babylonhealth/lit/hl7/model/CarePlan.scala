@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CarePlan extends CompanionFor[CarePlan] {
-  implicit def summonObjectAndCompanionCarePlan815654980(o: CarePlan): ObjectAndCompanion[CarePlan, CarePlan.type] =
+  implicit def summonObjectAndCompanionCarePlan1302742223(o: CarePlan): ObjectAndCompanion[CarePlan, CarePlan.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = CarePlan
   override type ParentType   = CarePlan
@@ -32,19 +32,19 @@ object CarePlan extends CompanionFor[CarePlan] {
   override val parentType: CompanionFor[ParentType] = CarePlan
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CarePlan")
   object Activity extends CompanionFor[Activity] {
-    implicit def summonObjectAndCompanionActivity_1253882045(o: Activity): ObjectAndCompanion[Activity, Activity.type] =
+    implicit def summonObjectAndCompanionActivity114416628(o: Activity): ObjectAndCompanion[Activity, Activity.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Activity
     override type ParentType   = Activity
     override val parentType: CompanionFor[ResourceType] = Activity
     object Detail extends CompanionFor[Detail] {
-      implicit def summonObjectAndCompanionDetail_1197382657(o: Detail): ObjectAndCompanion[Detail, Detail.type] =
+      implicit def summonObjectAndCompanionDetail1169529944(o: Detail): ObjectAndCompanion[Detail, Detail.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Detail
       override type ParentType   = Detail
       override val parentType: CompanionFor[ResourceType] = Detail
-      type ProductChoice   = Choice[Union01025009075]
-      type ScheduledChoice = Choice[Union01726112534]
+      type ProductChoice   = Choice[UnionCodeableConceptOrReference]
+      type ScheduledChoice = Choice[UnionPeriodOrStringOrTiming]
       def apply(
           id: Option[String] = None,
           kind: Option[CARE_PLAN_ACTIVITY_KIND] = None,
@@ -135,7 +135,7 @@ object CarePlan extends CompanionFor[CarePlan] {
       val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
         FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
       val product: FHIRComponentFieldMeta[Option[Detail.ProductChoice]] =
-        FHIRComponentFieldMeta("product", lTagOf[Option[Detail.ProductChoice]], true, lTagOf[Union01025009075])
+        FHIRComponentFieldMeta("product", lTagOf[Option[Detail.ProductChoice]], true, lTagOf[UnionCodeableConceptOrReference])
       val dailyAmount: FHIRComponentFieldMeta[Option[Quantity]] =
         FHIRComponentFieldMeta("dailyAmount", lTagOf[Option[Quantity]], false, lTagOf[Quantity])
       val description: FHIRComponentFieldMeta[Option[String]] =
@@ -145,7 +145,7 @@ object CarePlan extends CompanionFor[CarePlan] {
       val doNotPerform: FHIRComponentFieldMeta[Option[Boolean]] =
         FHIRComponentFieldMeta("doNotPerform", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
       val scheduled: FHIRComponentFieldMeta[Option[Detail.ScheduledChoice]] =
-        FHIRComponentFieldMeta("scheduled", lTagOf[Option[Detail.ScheduledChoice]], true, lTagOf[Union01726112534])
+        FHIRComponentFieldMeta("scheduled", lTagOf[Option[Detail.ScheduledChoice]], true, lTagOf[UnionPeriodOrStringOrTiming])
       val instantiatesUri: FHIRComponentFieldMeta[LitSeq[UriStr]] =
         FHIRComponentFieldMeta("instantiatesUri", lTagOf[LitSeq[UriStr]], false, lTagOf[UriStr])
       val reasonReference: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -215,12 +215,12 @@ object CarePlan extends CompanionFor[CarePlan] {
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
-              cursor.decodeOptRef[Union01025009075]("product"),
+              cursor.decodeOptRef[UnionCodeableConceptOrReference]("product"),
               cursor.decodeAs[Option[Quantity]]("dailyAmount", Some(None)),
               cursor.decodeAs[Option[String]]("description", Some(None)),
               cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
               cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
-              cursor.decodeOptRef[Union01726112534]("scheduled"),
+              cursor.decodeOptRef[UnionPeriodOrStringOrTiming]("scheduled"),
               cursor.decodeAs[LitSeq[UriStr]]("instantiatesUri", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),

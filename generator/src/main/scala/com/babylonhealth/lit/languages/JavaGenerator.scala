@@ -19,7 +19,7 @@ import com.babylonhealth.lit.{
 }
 
 trait JavaGenerator extends Commonish {
-  def choiceClassName(f: BaseField): String = "Choice" + ElementTreee.hashForUnion(f.types)
+  def choiceClassName(f: BaseField): String = "Choice" + ElementTreee.hashForUnion(f.types, "!!!ERROR!!!", "!!!ERROR!!!")
 
   def genTheJavaForClass(
       topLevelClass: TopLevelClass,

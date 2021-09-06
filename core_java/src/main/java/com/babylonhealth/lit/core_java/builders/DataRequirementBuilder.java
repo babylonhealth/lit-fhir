@@ -50,12 +50,12 @@ public interface DataRequirementBuilder extends ElementBuilder {
     return new Impl(_type);
   }
 
-  public static Choice01025009075 subject(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 subject(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements DataRequirementBuilder {
@@ -64,7 +64,7 @@ public interface DataRequirementBuilder extends ElementBuilder {
     private Optional<Integer> limit = Optional.empty();
     private Collection<String> profile = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice01025009075> subject = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
     private Collection<String> mustSupport = Collections.emptyList();
     private Collection<DataRequirement.Sort> sort = Collections.emptyList();
     private Collection<DataRequirement.CodeFilter> codeFilter = Collections.emptyList();
@@ -145,7 +145,8 @@ public interface DataRequirementBuilder extends ElementBuilder {
      *     CodeableConcept, Reference. To pass the value in, wrap with one of the
      *     DataRequirementBuilder.subject static methods
      */
-    public DataRequirementBuilder.Impl withSubject(@NonNull Choice01025009075 subject) {
+    public DataRequirementBuilder.Impl withSubject(
+        @NonNull ChoiceCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }

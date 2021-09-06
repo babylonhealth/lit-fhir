@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Address extends CompanionFor[Address] {
-  implicit def summonObjectAndCompanionAddress2002168585(o: Address): ObjectAndCompanion[Address, Address.type] =
+  implicit def summonObjectAndCompanionAddress_1798164897(o: Address): ObjectAndCompanion[Address, Address.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Address
   override type ParentType   = Address

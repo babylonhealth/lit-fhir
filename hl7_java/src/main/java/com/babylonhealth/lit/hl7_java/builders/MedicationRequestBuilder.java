@@ -52,7 +52,7 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
       MEDICATIONREQUEST_STATUS status,
       MEDICATIONREQUEST_INTENT intent,
       Reference subject,
-      @NonNull Choice01025009075 medication) {
+      @NonNull ChoiceCodeableConceptOrReference medication) {
     return new Impl(status, intent, subject, medication);
   }
 
@@ -60,24 +60,24 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
       MEDICATIONREQUEST_STATUS status,
       MEDICATIONREQUEST_INTENT intent,
       ReferenceBuilder subject,
-      @NonNull Choice01025009075 medication) {
+      @NonNull ChoiceCodeableConceptOrReference medication) {
     return new Impl(status, intent, subject.build(), medication);
   }
 
-  public static Choice_1524702593 reported(Boolean b) {
-    return new Choice_1524702593(b);
+  public static ChoiceBooleanOrReference reported(Boolean b) {
+    return new ChoiceBooleanOrReference(b);
   }
 
-  public static Choice_1524702593 reported(Reference r) {
-    return new Choice_1524702593(r);
+  public static ChoiceBooleanOrReference reported(Reference r) {
+    return new ChoiceBooleanOrReference(r);
   }
 
-  public static Choice01025009075 medication(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference medication(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 medication(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference medication(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements MedicationRequestBuilder {
@@ -102,12 +102,12 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<FHIRDateTime> authoredOn = Optional.empty();
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
-    private Optional<Choice_1524702593> reported = Optional.empty();
+    private Optional<ChoiceBooleanOrReference> reported = Optional.empty();
     private Optional<CodeableConcept> statusReason = Optional.empty();
     private Optional<Boolean> doNotPerform = Optional.empty();
     private Collection<Reference> eventHistory = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private Choice01025009075 medication;
+    private ChoiceCodeableConceptOrReference medication;
     private Optional<CodeableConcept> performerType = Optional.empty();
     private Collection<Reference> detectedIssue = Collections.emptyList();
     private Collection<Reference> reasonReference = Collections.emptyList();
@@ -141,7 +141,7 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
         MEDICATIONREQUEST_STATUS status,
         MEDICATIONREQUEST_INTENT intent,
         Reference subject,
-        @NonNull Choice01025009075 medication) {
+        @NonNull ChoiceCodeableConceptOrReference medication) {
       this.status = status;
       this.intent = intent;
       this.subject = subject;
@@ -450,7 +450,7 @@ public interface MedicationRequestBuilder extends DomainResourceBuilder {
      *     Reference. To pass the value in, wrap with one of the MedicationRequestBuilder.reported
      *     static methods
      */
-    public MedicationRequestBuilder.Impl withReported(@NonNull Choice_1524702593 reported) {
+    public MedicationRequestBuilder.Impl withReported(@NonNull ChoiceBooleanOrReference reported) {
       this.reported = Optional.of(reported);
       return this;
     }

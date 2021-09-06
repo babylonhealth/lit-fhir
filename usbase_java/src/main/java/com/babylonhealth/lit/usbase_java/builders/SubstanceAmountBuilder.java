@@ -56,22 +56,22 @@ public interface SubstanceAmountBuilder extends BackboneElementBuilder {
     return new Impl();
   }
 
-  public static Choice_1527751898 amount(Quantity q) {
-    return new Choice_1527751898(q);
+  public static ChoiceQuantityOrRangeOrString amount(Quantity q) {
+    return new ChoiceQuantityOrRangeOrString(q);
   }
 
-  public static Choice_1527751898 amount(Range r) {
-    return new Choice_1527751898(r);
+  public static ChoiceQuantityOrRangeOrString amount(Range r) {
+    return new ChoiceQuantityOrRangeOrString(r);
   }
 
-  public static Choice_1527751898 amount(String s) {
-    return new Choice_1527751898(s);
+  public static ChoiceQuantityOrRangeOrString amount(String s) {
+    return new ChoiceQuantityOrRangeOrString(s);
   }
 
   public class Impl implements SubstanceAmountBuilder {
     private Optional<String> id = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice_1527751898> amount = Optional.empty();
+    private Optional<ChoiceQuantityOrRangeOrString> amount = Optional.empty();
     private Optional<CodeableConcept> amountType = Optional.empty();
     private Optional<String> amountText = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -122,7 +122,7 @@ public interface SubstanceAmountBuilder extends BackboneElementBuilder {
      *     Type should be one of Quantity, Range, String. To pass the value in, wrap with one of the
      *     SubstanceAmountBuilder.amount static methods
      */
-    public SubstanceAmountBuilder.Impl withAmount(@NonNull Choice_1527751898 amount) {
+    public SubstanceAmountBuilder.Impl withAmount(@NonNull ChoiceQuantityOrRangeOrString amount) {
       this.amount = Optional.of(amount);
       return this;
     }

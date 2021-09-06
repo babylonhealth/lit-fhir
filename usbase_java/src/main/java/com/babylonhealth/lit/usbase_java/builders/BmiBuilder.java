@@ -54,7 +54,7 @@ public interface BmiBuilder extends VitalsignsBuilder {
       Reference subject,
       Collection<CodeableConcept> category,
       Quantity value,
-      @NonNull Choice_0934386166 effective,
+      @NonNull ChoiceDateTimeOrPeriod effective,
       CodeableConcept code) {
     return new Impl(status, subject, category, value, effective, code);
   }
@@ -64,7 +64,7 @@ public interface BmiBuilder extends VitalsignsBuilder {
       ReferenceBuilder subject,
       Collection<CodeableConceptBuilder> category,
       QuantityBuilder value,
-      @NonNull Choice_0934386166 effective,
+      @NonNull ChoiceDateTimeOrPeriod effective,
       CodeableConceptBuilder code) {
     return new Impl(
         status,
@@ -75,12 +75,12 @@ public interface BmiBuilder extends VitalsignsBuilder {
         code.build());
   }
 
-  public static Choice_0934386166 effective(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 effective(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceDateTimeOrPeriod effective(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements BmiBuilder {
@@ -110,7 +110,7 @@ public interface BmiBuilder extends VitalsignsBuilder {
     private Collection<Reference> hasMember = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<Reference> derivedFrom = Collections.emptyList();
-    private Choice_0934386166 effective;
+    private ChoiceDateTimeOrPeriod effective;
     private Optional<String> implicitRules = Optional.empty();
     private CodeableConcept code;
     private Collection<CodeableConcept> interpretation = Collections.emptyList();
@@ -141,7 +141,7 @@ public interface BmiBuilder extends VitalsignsBuilder {
         Reference subject,
         Collection<CodeableConcept> category,
         Quantity value,
-        @NonNull Choice_0934386166 effective,
+        @NonNull ChoiceDateTimeOrPeriod effective,
         CodeableConcept code) {
       this.status = status;
       this.subject = subject;

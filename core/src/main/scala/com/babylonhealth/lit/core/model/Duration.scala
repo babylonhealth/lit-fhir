@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Duration extends CompanionFor[Duration] {
-  implicit def summonObjectAndCompanionDuration1993583550(o: Duration): ObjectAndCompanion[Duration, Duration.type] =
+  implicit def summonObjectAndCompanionDuration_681834359(o: Duration): ObjectAndCompanion[Duration, Duration.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Duration
   override type ParentType   = Duration

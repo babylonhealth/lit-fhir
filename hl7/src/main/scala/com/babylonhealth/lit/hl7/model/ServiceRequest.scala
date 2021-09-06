@@ -24,16 +24,16 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ServiceRequest extends CompanionFor[ServiceRequest] {
-  implicit def summonObjectAndCompanionServiceRequest33710513(
+  implicit def summonObjectAndCompanionServiceRequest_804737713(
       o: ServiceRequest): ObjectAndCompanion[ServiceRequest, ServiceRequest.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ServiceRequest
   override type ParentType   = ServiceRequest
   override val baseType: CompanionFor[ResourceType] = ServiceRequest
   override val parentType: CompanionFor[ParentType] = ServiceRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ServiceRequest")
-  type QuantityChoice   = Choice[Union_0575082635]
-  type AsNeededChoice   = Choice[Union_1768247138]
-  type OccurrenceChoice = Choice[Union00609373412]
+  type QuantityChoice   = Choice[UnionQuantityOrRangeOrRatio]
+  type AsNeededChoice   = Choice[UnionBooleanOrCodeableConcept]
+  type OccurrenceChoice = Choice[UnionDateTimeOrPeriodOrTiming]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -174,9 +174,9 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
   val orderDetail: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("orderDetail", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val quantity: FHIRComponentFieldMeta[Option[ServiceRequest.QuantityChoice]] =
-    FHIRComponentFieldMeta("quantity", lTagOf[Option[ServiceRequest.QuantityChoice]], true, lTagOf[Union_0575082635])
+    FHIRComponentFieldMeta("quantity", lTagOf[Option[ServiceRequest.QuantityChoice]], true, lTagOf[UnionQuantityOrRangeOrRatio])
   val asNeeded: FHIRComponentFieldMeta[Option[ServiceRequest.AsNeededChoice]] =
-    FHIRComponentFieldMeta("asNeeded", lTagOf[Option[ServiceRequest.AsNeededChoice]], true, lTagOf[Union_1768247138])
+    FHIRComponentFieldMeta("asNeeded", lTagOf[Option[ServiceRequest.AsNeededChoice]], true, lTagOf[UnionBooleanOrCodeableConcept])
   val doNotPerform: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("doNotPerform", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val locationCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
@@ -184,7 +184,11 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val occurrence: FHIRComponentFieldMeta[Option[ServiceRequest.OccurrenceChoice]] =
-    FHIRComponentFieldMeta("occurrence", lTagOf[Option[ServiceRequest.OccurrenceChoice]], true, lTagOf[Union00609373412])
+    FHIRComponentFieldMeta(
+      "occurrence",
+      lTagOf[Option[ServiceRequest.OccurrenceChoice]],
+      true,
+      lTagOf[UnionDateTimeOrPeriodOrTiming])
   val performerType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("performerType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val supportingInfo: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -385,12 +389,12 @@ object ServiceRequest extends CompanionFor[ServiceRequest] {
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Identifier]]("requisition", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("orderDetail", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_0575082635]("quantity"),
-          cursor.decodeOptRef[Union_1768247138]("asNeeded"),
+          cursor.decodeOptRef[UnionQuantityOrRangeOrRatio]("quantity"),
+          cursor.decodeOptRef[UnionBooleanOrCodeableConcept]("asNeeded"),
           cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("locationCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[Union00609373412]("occurrence"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriodOrTiming]("occurrence"),
           cursor.decodeAs[Option[CodeableConcept]]("performerType", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("supportingInfo", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[UriStr]]("instantiatesUri", Some(LitSeq.empty)),

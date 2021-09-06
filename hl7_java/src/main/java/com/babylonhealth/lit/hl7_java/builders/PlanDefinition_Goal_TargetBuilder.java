@@ -53,16 +53,16 @@ public interface PlanDefinition_Goal_TargetBuilder {
     return new Impl();
   }
 
-  public static Choice01560785079 detail(CodeableConcept c) {
-    return new Choice01560785079(c);
+  public static ChoiceCodeableConceptOrQuantityOrRange detail(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrQuantityOrRange(c);
   }
 
-  public static Choice01560785079 detail(Quantity q) {
-    return new Choice01560785079(q);
+  public static ChoiceCodeableConceptOrQuantityOrRange detail(Quantity q) {
+    return new ChoiceCodeableConceptOrQuantityOrRange(q);
   }
 
-  public static Choice01560785079 detail(Range r) {
-    return new Choice01560785079(r);
+  public static ChoiceCodeableConceptOrQuantityOrRange detail(Range r) {
+    return new ChoiceCodeableConceptOrQuantityOrRange(r);
   }
 
   public class Impl implements PlanDefinition_Goal_TargetBuilder {
@@ -70,7 +70,7 @@ public interface PlanDefinition_Goal_TargetBuilder {
     private Optional<Duration> due = Optional.empty();
     private Optional<CodeableConcept> measure = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice01560785079> detail = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrQuantityOrRange> detail = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /** Required fields for {@link PlanDefinition$Goal$Target} */
@@ -139,7 +139,8 @@ public interface PlanDefinition_Goal_TargetBuilder {
      *     Range. To pass the value in, wrap with one of the
      *     PlanDefinition_Goal_TargetBuilder.detail static methods
      */
-    public PlanDefinition_Goal_TargetBuilder.Impl withDetail(@NonNull Choice01560785079 detail) {
+    public PlanDefinition_Goal_TargetBuilder.Impl withDetail(
+        @NonNull ChoiceCodeableConceptOrQuantityOrRange detail) {
       this.detail = Optional.of(detail);
       return this;
     }

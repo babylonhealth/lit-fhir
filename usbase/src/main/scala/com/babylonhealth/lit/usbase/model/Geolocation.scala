@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Geolocation extends CompanionFor[Geolocation] {
-  implicit def summonObjectAndCompanionGeolocation_1944580352(o: Geolocation): ObjectAndCompanion[Geolocation, Geolocation.type] =
+  implicit def summonObjectAndCompanionGeolocation1544882961(o: Geolocation): ObjectAndCompanion[Geolocation, Geolocation.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

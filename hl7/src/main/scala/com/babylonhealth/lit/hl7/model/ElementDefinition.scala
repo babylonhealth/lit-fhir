@@ -31,7 +31,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ElementDefinition extends CompanionFor[ElementDefinition] {
-  implicit def summonObjectAndCompanionElementDefinition_1313741034(
+  implicit def summonObjectAndCompanionElementDefinition2010344986(
       o: ElementDefinition): ObjectAndCompanion[ElementDefinition, ElementDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ElementDefinition
   override type ParentType   = ElementDefinition
@@ -39,13 +39,13 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
   override val parentType: CompanionFor[ParentType] = ElementDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ElementDefinition")
   object Slicing extends CompanionFor[Slicing] {
-    implicit def summonObjectAndCompanionSlicing_610753655(o: Slicing): ObjectAndCompanion[Slicing, Slicing.type] =
+    implicit def summonObjectAndCompanionSlicing1084869278(o: Slicing): ObjectAndCompanion[Slicing, Slicing.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Slicing
     override type ParentType   = Slicing
     override val parentType: CompanionFor[ResourceType] = Slicing
     object Discriminator extends CompanionFor[Discriminator] {
-      implicit def summonObjectAndCompanionDiscriminator_666719695(
+      implicit def summonObjectAndCompanionDiscriminator1780650157(
           o: Discriminator): ObjectAndCompanion[Discriminator, Discriminator.type] = ObjectAndCompanion(o, this)
       override type ResourceType = Discriminator
       override type ParentType   = Discriminator
@@ -172,7 +172,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Constraint extends CompanionFor[Constraint] {
-    implicit def summonObjectAndCompanionConstraint_1898286269(o: Constraint): ObjectAndCompanion[Constraint, Constraint.type] =
+    implicit def summonObjectAndCompanionConstraint1084869278(o: Constraint): ObjectAndCompanion[Constraint, Constraint.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Constraint
     override type ParentType   = Constraint
@@ -268,7 +268,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Binding extends CompanionFor[Binding] {
-    implicit def summonObjectAndCompanionBinding1283878123(o: Binding): ObjectAndCompanion[Binding, Binding.type] =
+    implicit def summonObjectAndCompanionBinding1084869278(o: Binding): ObjectAndCompanion[Binding, Binding.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Binding
     override type ParentType   = Binding
@@ -334,7 +334,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Type extends CompanionFor[Type] {
-    implicit def summonObjectAndCompanionType1912653087(o: Type): ObjectAndCompanion[Type, Type.type] =
+    implicit def summonObjectAndCompanionType1084869278(o: Type): ObjectAndCompanion[Type, Type.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Type
     override type ParentType   = Type
@@ -415,7 +415,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Mapping extends CompanionFor[Mapping] {
-    implicit def summonObjectAndCompanionMapping_2082133029(o: Mapping): ObjectAndCompanion[Mapping, Mapping.type] =
+    implicit def summonObjectAndCompanionMapping1084869278(o: Mapping): ObjectAndCompanion[Mapping, Mapping.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Mapping
     override type ParentType   = Mapping
@@ -488,12 +488,12 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Example extends CompanionFor[Example] {
-    implicit def summonObjectAndCompanionExample108344653(o: Example): ObjectAndCompanion[Example, Example.type] =
+    implicit def summonObjectAndCompanionExample1084869278(o: Example): ObjectAndCompanion[Example, Example.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Example
     override type ParentType   = Example
     override val parentType: CompanionFor[ResourceType] = Example
-    type ValueChoice = Choice[Union_1349125893]
+    type ValueChoice = Choice[UnionAll]
     def apply(
         id: Option[String] = None,
         label: String,
@@ -514,7 +514,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
     val label: FHIRComponentFieldMeta[String] =
       FHIRComponentFieldMeta("label", lTagOf[String], false, lTagOf[String])
     val value: FHIRComponentFieldMeta[Example.ValueChoice] =
-      FHIRComponentFieldMeta("value", lTagOf[Example.ValueChoice], true, lTagOf[Union_1349125893])
+      FHIRComponentFieldMeta("value", lTagOf[Example.ValueChoice], true, lTagOf[UnionAll])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]]                                  = Seq(id, label, value, extension)
@@ -533,7 +533,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
           new Example(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[String]("label", None),
-            cursor.decodeRef[Union_1349125893]("value"),
+            cursor.decodeRef[UnionAll]("value"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -548,7 +548,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
   object Base extends CompanionFor[Base] {
-    implicit def summonObjectAndCompanionBase1287525849(o: Base): ObjectAndCompanion[Base, Base.type] =
+    implicit def summonObjectAndCompanionBase1084869278(o: Base): ObjectAndCompanion[Base, Base.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Base
     override type ParentType   = Base
@@ -613,11 +613,11 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
       override val extension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends Element(id = id, extension = extension)
-  type FixedChoice        = Choice[Union_1349125893]
-  type PatternChoice      = Choice[Union_1349125893]
-  type MinValueChoice     = Choice[Union_0637176084]
-  type MaxValueChoice     = Choice[Union_0637176084]
-  type DefaultValueChoice = Choice[Union_1349125893]
+  type FixedChoice        = Choice[UnionAll]
+  type PatternChoice      = Choice[UnionAll]
+  type MinValueChoice     = Choice[Union_0603252906]
+  type MaxValueChoice     = Choice[Union_0603252906]
+  type DefaultValueChoice = Choice[UnionAll]
   def apply(
       id: Option[String] = None,
       min: Option[UnsignedInt] = None,
@@ -716,7 +716,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
   val comment: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("comment", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val fixed: FHIRComponentFieldMeta[Option[ElementDefinition.FixedChoice]] =
-    FHIRComponentFieldMeta("fixed", lTagOf[Option[ElementDefinition.FixedChoice]], true, lTagOf[Union_1349125893])
+    FHIRComponentFieldMeta("fixed", lTagOf[Option[ElementDefinition.FixedChoice]], true, lTagOf[UnionAll])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val sliceName: FHIRComponentFieldMeta[Option[String]] =
@@ -730,13 +730,13 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
   val definition: FHIRComponentFieldMeta[Option[Markdown]] =
     FHIRComponentFieldMeta("definition", lTagOf[Option[Markdown]], false, lTagOf[Markdown])
   val pattern: FHIRComponentFieldMeta[Option[ElementDefinition.PatternChoice]] =
-    FHIRComponentFieldMeta("pattern", lTagOf[Option[ElementDefinition.PatternChoice]], true, lTagOf[Union_1349125893])
+    FHIRComponentFieldMeta("pattern", lTagOf[Option[ElementDefinition.PatternChoice]], true, lTagOf[UnionAll])
   val isModifier: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("isModifier", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val minValue: FHIRComponentFieldMeta[Option[ElementDefinition.MinValueChoice]] =
-    FHIRComponentFieldMeta("minValue", lTagOf[Option[ElementDefinition.MinValueChoice]], true, lTagOf[Union_0637176084])
+    FHIRComponentFieldMeta("minValue", lTagOf[Option[ElementDefinition.MinValueChoice]], true, lTagOf[Union_0603252906])
   val maxValue: FHIRComponentFieldMeta[Option[ElementDefinition.MaxValueChoice]] =
-    FHIRComponentFieldMeta("maxValue", lTagOf[Option[ElementDefinition.MaxValueChoice]], true, lTagOf[Union_0637176084])
+    FHIRComponentFieldMeta("maxValue", lTagOf[Option[ElementDefinition.MaxValueChoice]], true, lTagOf[Union_0603252906])
   val mustSupport: FHIRComponentFieldMeta[Option[Boolean]] =
     FHIRComponentFieldMeta("mustSupport", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
   val requirements: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -748,7 +748,7 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
   val base: FHIRComponentFieldMeta[Option[ElementDefinition.Base]] =
     FHIRComponentFieldMeta("base", lTagOf[Option[ElementDefinition.Base]], false, lTagOf[ElementDefinition.Base])
   val defaultValue: FHIRComponentFieldMeta[Option[ElementDefinition.DefaultValueChoice]] =
-    FHIRComponentFieldMeta("defaultValue", lTagOf[Option[ElementDefinition.DefaultValueChoice]], true, lTagOf[Union_1349125893])
+    FHIRComponentFieldMeta("defaultValue", lTagOf[Option[ElementDefinition.DefaultValueChoice]], true, lTagOf[UnionAll])
   val contentReference: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("contentReference", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val isModifierReason: FHIRComponentFieldMeta[Option[String]] =
@@ -905,23 +905,23 @@ object ElementDefinition extends CompanionFor[ElementDefinition] {
           cursor.decodeAs[Option[String]]("short", Some(None)),
           cursor.decodeAs[LitSeq[String]]("alias", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Markdown]]("comment", Some(None)),
-          cursor.decodeOptRef[Union_1349125893]("fixed"),
+          cursor.decodeOptRef[UnionAll]("fixed"),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("sliceName", Some(None)),
           cursor.decodeAs[Option[Int]]("maxLength", Some(None)),
           cursor.decodeAs[LitSeq[Id]]("condition", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Boolean]]("isSummary", Some(None)),
           cursor.decodeAs[Option[Markdown]]("definition", Some(None)),
-          cursor.decodeOptRef[Union_1349125893]("pattern"),
+          cursor.decodeOptRef[UnionAll]("pattern"),
           cursor.decodeAs[Option[Boolean]]("isModifier", Some(None)),
-          cursor.decodeOptRef[Union_0637176084]("minValue"),
-          cursor.decodeOptRef[Union_0637176084]("maxValue"),
+          cursor.decodeOptRef[Union_0603252906]("minValue"),
+          cursor.decodeOptRef[Union_0603252906]("maxValue"),
           cursor.decodeAs[Option[Boolean]]("mustSupport", Some(None)),
           cursor.decodeAs[Option[Markdown]]("requirements", Some(None)),
           cursor.decodeAs[Option[String]]("orderMeaning", Some(None)),
           cursor.decodeAs[LitSeq[PROPERTY_REPRESENTATION]]("representation", Some(LitSeq.empty)),
           cursor.decodeAs[Option[ElementDefinition.Base]]("base", Some(None)),
-          cursor.decodeOptRef[Union_1349125893]("defaultValue"),
+          cursor.decodeOptRef[UnionAll]("defaultValue"),
           cursor.decodeAs[Option[UriStr]]("contentReference", Some(None)),
           cursor.decodeAs[Option[String]]("isModifierReason", Some(None)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),

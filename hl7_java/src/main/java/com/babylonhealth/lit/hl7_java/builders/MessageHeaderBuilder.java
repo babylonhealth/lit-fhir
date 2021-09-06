@@ -45,20 +45,20 @@ import static java.util.stream.Collectors.toList;
 public interface MessageHeaderBuilder extends DomainResourceBuilder {
   public MessageHeader build();
 
-  public static Impl init(@NonNull Choice01583485927 event, MessageHeader.Source source) {
+  public static Impl init(@NonNull ChoiceCodingOrUri event, MessageHeader.Source source) {
     return new Impl(event, source);
   }
 
-  public static Impl builder(@NonNull Choice01583485927 event, MessageHeader_SourceBuilder source) {
+  public static Impl builder(@NonNull ChoiceCodingOrUri event, MessageHeader_SourceBuilder source) {
     return new Impl(event, source.build());
   }
 
-  public static Choice01583485927 event(Coding c) {
-    return new Choice01583485927(c);
+  public static ChoiceCodingOrUri event(Coding c) {
+    return new ChoiceCodingOrUri(c);
   }
 
-  public static Choice01583485927 event(String s) {
-    return new Choice01583485927(s);
+  public static ChoiceCodingOrUri event(String s) {
+    return new ChoiceCodingOrUri(s);
   }
 
   public class Impl implements MessageHeaderBuilder {
@@ -71,7 +71,7 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
     private Optional<CodeableConcept> reason = Optional.empty();
     private Optional<Reference> enterer = Optional.empty();
     private Optional<LANGUAGES> language = Optional.empty();
-    private Choice01583485927 event;
+    private ChoiceCodingOrUri event;
     private Collection<Resource> contained = Collections.emptyList();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> definition = Optional.empty();
@@ -92,7 +92,7 @@ public interface MessageHeaderBuilder extends DomainResourceBuilder {
      *     the value in, wrap with one of the MessageHeaderBuilder.event static methods
      * @param source - The source application from which this message originated.
      */
-    public Impl(@NonNull Choice01583485927 event, MessageHeader.Source source) {
+    public Impl(@NonNull ChoiceCodingOrUri event, MessageHeader.Source source) {
       this.event = event;
       this.source = source;
     }

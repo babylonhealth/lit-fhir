@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Familymemberhistory_severity extends CompanionFor[Familymemberhistory_severity] {
-  implicit def summonObjectAndCompanionFamilymemberhistory_severity_1745695913(
+  implicit def summonObjectAndCompanionFamilymemberhistory_severity1418019177(
       o: Familymemberhistory_severity): ObjectAndCompanion[Familymemberhistory_severity, Familymemberhistory_severity.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

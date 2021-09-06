@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
-  implicit def summonObjectAndCompanionImmunizationEvaluation_1989695131(
+  implicit def summonObjectAndCompanionImmunizationEvaluation726701331(
       o: ImmunizationEvaluation): ObjectAndCompanion[ImmunizationEvaluation, ImmunizationEvaluation.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = ImmunizationEvaluation
@@ -32,8 +32,8 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
   override val baseType: CompanionFor[ResourceType] = ImmunizationEvaluation
   override val parentType: CompanionFor[ParentType] = ImmunizationEvaluation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImmunizationEvaluation")
-  type DoseNumberChoice  = Choice[Union_0839638734]
-  type SeriesDosesChoice = Choice[Union_0839638734]
+  type DoseNumberChoice  = Choice[UnionPositiveIntOrString]
+  type SeriesDosesChoice = Choice[UnionPositiveIntOrString]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -114,13 +114,17 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
   val targetDisease: FHIRComponentFieldMeta[CodeableConcept] =
     FHIRComponentFieldMeta("targetDisease", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
   val doseNumber: FHIRComponentFieldMeta[Option[ImmunizationEvaluation.DoseNumberChoice]] =
-    FHIRComponentFieldMeta("doseNumber", lTagOf[Option[ImmunizationEvaluation.DoseNumberChoice]], true, lTagOf[Union_0839638734])
+    FHIRComponentFieldMeta(
+      "doseNumber",
+      lTagOf[Option[ImmunizationEvaluation.DoseNumberChoice]],
+      true,
+      lTagOf[UnionPositiveIntOrString])
   val seriesDoses: FHIRComponentFieldMeta[Option[ImmunizationEvaluation.SeriesDosesChoice]] =
     FHIRComponentFieldMeta(
       "seriesDoses",
       lTagOf[Option[ImmunizationEvaluation.SeriesDosesChoice]],
       true,
-      lTagOf[Union_0839638734])
+      lTagOf[UnionPositiveIntOrString])
   val doseStatusReason: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("doseStatusReason", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -250,8 +254,8 @@ object ImmunizationEvaluation extends CompanionFor[ImmunizationEvaluation] {
           cursor.decodeAs[Option[String]]("description", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[CodeableConcept]("targetDisease", None),
-          cursor.decodeOptRef[Union_0839638734]("doseNumber"),
-          cursor.decodeOptRef[Union_0839638734]("seriesDoses"),
+          cursor.decodeOptRef[UnionPositiveIntOrString]("doseNumber"),
+          cursor.decodeOptRef[UnionPositiveIntOrString]("seriesDoses"),
           cursor.decodeAs[LitSeq[CodeableConcept]]("doseStatusReason", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Reference]("immunizationEvent", None),

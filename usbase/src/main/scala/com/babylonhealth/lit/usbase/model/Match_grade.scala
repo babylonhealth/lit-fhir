@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Match_grade extends CompanionFor[Match_grade] {
-  implicit def summonObjectAndCompanionMatch_grade_1900687245(o: Match_grade): ObjectAndCompanion[Match_grade, Match_grade.type] =
+  implicit def summonObjectAndCompanionMatch_grade2023310042(o: Match_grade): ObjectAndCompanion[Match_grade, Match_grade.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

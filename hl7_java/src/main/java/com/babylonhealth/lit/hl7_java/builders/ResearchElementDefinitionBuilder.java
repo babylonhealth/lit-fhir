@@ -65,12 +65,12 @@ public interface ResearchElementDefinitionBuilder extends DomainResourceBuilder 
         new LitSeq<>(characteristic).map(ResearchElementDefinition_CharacteristicBuilder::build));
   }
 
-  public static Choice01025009075 subject(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 subject(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements ResearchElementDefinitionBuilder {
@@ -102,7 +102,7 @@ public interface ResearchElementDefinitionBuilder extends DomainResourceBuilder 
     private Optional<String> copyright = Optional.empty();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Optional<String> shortTitle = Optional.empty();
-    private Optional<Choice01025009075> subject = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<Boolean> experimental = Optional.empty();
@@ -535,7 +535,8 @@ public interface ResearchElementDefinitionBuilder extends DomainResourceBuilder 
      *     of CodeableConcept, Reference. To pass the value in, wrap with one of the
      *     ResearchElementDefinitionBuilder.subject static methods
      */
-    public ResearchElementDefinitionBuilder.Impl withSubject(@NonNull Choice01025009075 subject) {
+    public ResearchElementDefinitionBuilder.Impl withSubject(
+        @NonNull ChoiceCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }

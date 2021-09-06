@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Questionnaire_referenceResource extends CompanionFor[Questionnaire_referenceResource] {
-  implicit def summonObjectAndCompanionQuestionnaire_referenceResource1281245227(
+  implicit def summonObjectAndCompanionQuestionnaire_referenceResource_563773350(
       o: Questionnaire_referenceResource): ObjectAndCompanion[Questionnaire_referenceResource, Questionnaire_referenceResource.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

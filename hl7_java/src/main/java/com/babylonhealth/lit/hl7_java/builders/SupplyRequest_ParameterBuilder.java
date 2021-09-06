@@ -53,26 +53,26 @@ public interface SupplyRequest_ParameterBuilder {
     return new Impl();
   }
 
-  public static Choice_1516277229 value(Boolean b) {
-    return new Choice_1516277229(b);
+  public static Choice_0536852827 value(Boolean b) {
+    return new Choice_0536852827(b);
   }
 
-  public static Choice_1516277229 value(CodeableConcept c) {
-    return new Choice_1516277229(c);
+  public static Choice_0536852827 value(CodeableConcept c) {
+    return new Choice_0536852827(c);
   }
 
-  public static Choice_1516277229 value(Quantity q) {
-    return new Choice_1516277229(q);
+  public static Choice_0536852827 value(Quantity q) {
+    return new Choice_0536852827(q);
   }
 
-  public static Choice_1516277229 value(Range r) {
-    return new Choice_1516277229(r);
+  public static Choice_0536852827 value(Range r) {
+    return new Choice_0536852827(r);
   }
 
   public class Impl implements SupplyRequest_ParameterBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<CodeableConcept> code = Optional.empty();
-    private Optional<Choice_1516277229> value = Optional.empty();
+    private Optional<Choice_0536852827> value = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -102,7 +102,7 @@ public interface SupplyRequest_ParameterBuilder {
      *     Quantity, Range. To pass the value in, wrap with one of the
      *     SupplyRequest_ParameterBuilder.value static methods
      */
-    public SupplyRequest_ParameterBuilder.Impl withValue(@NonNull Choice_1516277229 value) {
+    public SupplyRequest_ParameterBuilder.Impl withValue(@NonNull Choice_0536852827 value) {
       this.value = Optional.of(value);
       return this;
     }

@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendation] {
-  implicit def summonObjectAndCompanionImmunizationRecommendation2143694014(
+  implicit def summonObjectAndCompanionImmunizationRecommendation_677639664(
       o: ImmunizationRecommendation): ObjectAndCompanion[ImmunizationRecommendation, ImmunizationRecommendation.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = ImmunizationRecommendation
@@ -32,13 +32,13 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
   override val parentType: CompanionFor[ParentType] = ImmunizationRecommendation
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation")
   object Recommendation extends CompanionFor[Recommendation] {
-    implicit def summonObjectAndCompanionRecommendation_1998039110(
+    implicit def summonObjectAndCompanionRecommendation_838222602(
         o: Recommendation): ObjectAndCompanion[Recommendation, Recommendation.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Recommendation
     override type ParentType   = Recommendation
     override val parentType: CompanionFor[ResourceType] = Recommendation
     object DateCriterion extends CompanionFor[DateCriterion] {
-      implicit def summonObjectAndCompanionDateCriterion_921913397(
+      implicit def summonObjectAndCompanionDateCriterion1962079789(
           o: DateCriterion): ObjectAndCompanion[DateCriterion, DateCriterion.type] = ObjectAndCompanion(o, this)
       override type ResourceType = DateCriterion
       override type ParentType   = DateCriterion
@@ -104,8 +104,8 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
         override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-    type DoseNumberChoice  = Choice[Union_0839638734]
-    type SeriesDosesChoice = Choice[Union_0839638734]
+    type DoseNumberChoice  = Choice[UnionPositiveIntOrString]
+    type SeriesDosesChoice = Choice[UnionPositiveIntOrString]
     def apply(
         id: Option[String] = None,
         series: Option[String] = None,
@@ -173,13 +173,21 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
     val targetDisease: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("targetDisease", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val doseNumber: FHIRComponentFieldMeta[Option[Recommendation.DoseNumberChoice]] =
-      FHIRComponentFieldMeta("doseNumber", lTagOf[Option[Recommendation.DoseNumberChoice]], true, lTagOf[Union_0839638734])
+      FHIRComponentFieldMeta(
+        "doseNumber",
+        lTagOf[Option[Recommendation.DoseNumberChoice]],
+        true,
+        lTagOf[UnionPositiveIntOrString])
     val forecastStatus: FHIRComponentFieldMeta[CodeableConcept] =
       FHIRComponentFieldMeta("forecastStatus", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
     val forecastReason: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
       FHIRComponentFieldMeta("forecastReason", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
     val seriesDoses: FHIRComponentFieldMeta[Option[Recommendation.SeriesDosesChoice]] =
-      FHIRComponentFieldMeta("seriesDoses", lTagOf[Option[Recommendation.SeriesDosesChoice]], true, lTagOf[Union_0839638734])
+      FHIRComponentFieldMeta(
+        "seriesDoses",
+        lTagOf[Option[Recommendation.SeriesDosesChoice]],
+        true,
+        lTagOf[UnionPositiveIntOrString])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val supportingImmunization: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -241,10 +249,10 @@ object ImmunizationRecommendation extends CompanionFor[ImmunizationRecommendatio
             cursor.decodeAs[LitSeq[CodeableConcept]]("vaccineCode", Some(LitSeq.empty)),
             cursor.decodeAs[Option[String]]("description", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("targetDisease", Some(None)),
-            cursor.decodeOptRef[Union_0839638734]("doseNumber"),
+            cursor.decodeOptRef[UnionPositiveIntOrString]("doseNumber"),
             cursor.decodeAs[CodeableConcept]("forecastStatus", None),
             cursor.decodeAs[LitSeq[CodeableConcept]]("forecastReason", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_0839638734]("seriesDoses"),
+            cursor.decodeOptRef[UnionPositiveIntOrString]("seriesDoses"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[Reference]]("supportingImmunization", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[CodeableConcept]]("contraindicatedVaccineCode", Some(LitSeq.empty)),

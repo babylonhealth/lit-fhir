@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Picoelement extends CompanionFor[Picoelement] {
-  implicit def summonObjectAndCompanionPicoelement1450217956(o: Picoelement): ObjectAndCompanion[Picoelement, Picoelement.type] =
+  implicit def summonObjectAndCompanionPicoelement_1404708798(o: Picoelement): ObjectAndCompanion[Picoelement, Picoelement.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = EvidenceVariable
   override type ParentType   = EvidenceVariable

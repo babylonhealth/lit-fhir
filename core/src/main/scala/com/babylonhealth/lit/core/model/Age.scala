@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Age extends CompanionFor[Age] {
-  implicit def summonObjectAndCompanionAge_1092090844(o: Age): ObjectAndCompanion[Age, Age.type] = ObjectAndCompanion(o, this)
+  implicit def summonObjectAndCompanionAge1873017066(o: Age): ObjectAndCompanion[Age, Age.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Age
   override type ParentType   = Age
   override val baseType: CompanionFor[ResourceType] = Age

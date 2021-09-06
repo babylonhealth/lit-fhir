@@ -47,32 +47,33 @@ import static java.util.stream.Collectors.toList;
 public interface SupplyRequestBuilder extends DomainResourceBuilder {
   public SupplyRequest build();
 
-  public static Impl init(@NonNull Choice01025009075 item, Quantity quantity) {
+  public static Impl init(@NonNull ChoiceCodeableConceptOrReference item, Quantity quantity) {
     return new Impl(item, quantity);
   }
 
-  public static Impl builder(@NonNull Choice01025009075 item, QuantityBuilder quantity) {
+  public static Impl builder(
+      @NonNull ChoiceCodeableConceptOrReference item, QuantityBuilder quantity) {
     return new Impl(item, quantity.build());
   }
 
-  public static Choice01025009075 item(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference item(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 item(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference item(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
-  public static Choice00609373412 occurrence(FHIRDateTime f) {
-    return new Choice00609373412(f);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriodOrTiming(f);
   }
 
-  public static Choice00609373412 occurrence(Period p) {
-    return new Choice00609373412(p);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Period p) {
+    return new ChoiceDateTimeOrPeriodOrTiming(p);
   }
 
-  public static Choice00609373412 occurrence(Timing t) {
-    return new Choice00609373412(t);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Timing t) {
+    return new ChoiceDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements SupplyRequestBuilder {
@@ -80,7 +81,7 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
     private Optional<Meta> meta = Optional.empty();
     private Optional<Narrative> text = Optional.empty();
     private Optional<SUPPLYREQUEST_STATUS> status = Optional.empty();
-    private Choice01025009075 item;
+    private ChoiceCodeableConceptOrReference item;
     private Optional<LANGUAGES> language = Optional.empty();
     private Optional<CodeableConcept> category = Optional.empty();
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
@@ -95,7 +96,7 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Optional<Reference> deliverFrom = Optional.empty();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<Choice00609373412> occurrence = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Collection<Reference> reasonReference = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<SupplyRequest.Parameter> parameter = Collections.emptyList();
@@ -109,7 +110,7 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
      *     pass the value in, wrap with one of the SupplyRequestBuilder.item static methods
      * @param quantity - The amount that is being ordered of the indicated item.
      */
-    public Impl(@NonNull Choice01025009075 item, Quantity quantity) {
+    public Impl(@NonNull ChoiceCodeableConceptOrReference item, Quantity quantity) {
       this.item = item;
       this.quantity = quantity;
     }
@@ -337,7 +338,8 @@ public interface SupplyRequestBuilder extends DomainResourceBuilder {
      *     should be one of FHIRDateTime, Period, Timing. To pass the value in, wrap with one of the
      *     SupplyRequestBuilder.occurrence static methods
      */
-    public SupplyRequestBuilder.Impl withOccurrence(@NonNull Choice00609373412 occurrence) {
+    public SupplyRequestBuilder.Impl withOccurrence(
+        @NonNull ChoiceDateTimeOrPeriodOrTiming occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

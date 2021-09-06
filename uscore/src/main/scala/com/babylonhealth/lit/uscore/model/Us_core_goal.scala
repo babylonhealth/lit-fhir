@@ -26,14 +26,14 @@ import com.babylonhealth.lit.{ core, hl7, usbase, uscore }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Us_core_goal extends CompanionFor[Us_core_goal] {
-  implicit def summonObjectAndCompanionUs_core_goal_495757841(
+  implicit def summonObjectAndCompanionUs_core_goal399722022(
       o: Us_core_goal): ObjectAndCompanion[Us_core_goal, Us_core_goal.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Goal
   override type ParentType   = Goal
   override val baseType: CompanionFor[ResourceType] = Goal
   override val parentType: CompanionFor[ParentType] = Goal
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal")
-  type StartChoice = Choice[Union00078348305]
+  type StartChoice = Choice[UnionCodeableConceptOrDate]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = Some(new Meta(profile = LitSeq("http://hl7.org/fhir/us/core/StructureDefinition/us-core-goal"))),
@@ -104,7 +104,7 @@ object Us_core_goal extends CompanionFor[Us_core_goal] {
   val priority: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("priority", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val start: FHIRComponentFieldMeta[Option[Us_core_goal.StartChoice]] =
-    FHIRComponentFieldMeta("start", lTagOf[Option[Us_core_goal.StartChoice]], true, lTagOf[Union00078348305])
+    FHIRComponentFieldMeta("start", lTagOf[Option[Us_core_goal.StartChoice]], true, lTagOf[UnionCodeableConceptOrDate])
   val contained: FHIRComponentFieldMeta[LitSeq[Resource]] =
     FHIRComponentFieldMeta("contained", lTagOf[LitSeq[Resource]], false, lTagOf[Resource])
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -227,7 +227,7 @@ object Us_core_goal extends CompanionFor[Us_core_goal] {
           cursor.decodeAs[Option[LANGUAGES]]("language", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("category", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("priority", Some(None)),
-          cursor.decodeOptRef[Union00078348305]("start"),
+          cursor.decodeOptRef[UnionCodeableConceptOrDate]("start"),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("addresses", Some(LitSeq.empty)),

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceDefinition extends CompanionFor[DeviceDefinition] {
-  implicit def summonObjectAndCompanionDeviceDefinition_1871151862(
+  implicit def summonObjectAndCompanionDeviceDefinition1476964926(
       o: DeviceDefinition): ObjectAndCompanion[DeviceDefinition, DeviceDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DeviceDefinition
   override type ParentType   = DeviceDefinition
@@ -32,7 +32,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
   override val parentType: CompanionFor[ParentType] = DeviceDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceDefinition")
   object UdiDeviceIdentifier extends CompanionFor[UdiDeviceIdentifier] {
-    implicit def summonObjectAndCompanionUdiDeviceIdentifier_1199756772(
+    implicit def summonObjectAndCompanionUdiDeviceIdentifier_2128477998(
         o: UdiDeviceIdentifier): ObjectAndCompanion[UdiDeviceIdentifier, UdiDeviceIdentifier.type] = ObjectAndCompanion(o, this)
     override type ResourceType = UdiDeviceIdentifier
     override type ParentType   = UdiDeviceIdentifier
@@ -105,7 +105,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Specialization extends CompanionFor[Specialization] {
-    implicit def summonObjectAndCompanionSpecialization1512433167(
+    implicit def summonObjectAndCompanionSpecialization_2128477998(
         o: Specialization): ObjectAndCompanion[Specialization, Specialization.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Specialization
     override type ParentType   = Specialization
@@ -171,7 +171,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Material extends CompanionFor[Material] {
-    implicit def summonObjectAndCompanionMaterial_384429521(o: Material): ObjectAndCompanion[Material, Material.type] =
+    implicit def summonObjectAndCompanionMaterial_2128477998(o: Material): ObjectAndCompanion[Material, Material.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Material
     override type ParentType   = Material
@@ -246,7 +246,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Capability extends CompanionFor[Capability] {
-    implicit def summonObjectAndCompanionCapability_478250633(o: Capability): ObjectAndCompanion[Capability, Capability.type] =
+    implicit def summonObjectAndCompanionCapability_2128477998(o: Capability): ObjectAndCompanion[Capability, Capability.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Capability
     override type ParentType   = Capability
@@ -313,7 +313,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object DeviceName extends CompanionFor[DeviceName] {
-    implicit def summonObjectAndCompanionDeviceName1515491299(o: DeviceName): ObjectAndCompanion[DeviceName, DeviceName.type] =
+    implicit def summonObjectAndCompanionDeviceName_2128477998(o: DeviceName): ObjectAndCompanion[DeviceName, DeviceName.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = DeviceName
     override type ParentType   = DeviceName
@@ -379,7 +379,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Property extends CompanionFor[Property] {
-    implicit def summonObjectAndCompanionProperty113366995(o: Property): ObjectAndCompanion[Property, Property.type] =
+    implicit def summonObjectAndCompanionProperty_2128477998(o: Property): ObjectAndCompanion[Property, Property.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Property
     override type ParentType   = Property
@@ -452,7 +452,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type ManufacturerChoice = Choice[Union_1128709984]
+  type ManufacturerChoice = Choice[UnionReferenceOrString]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -557,7 +557,11 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val manufacturer: FHIRComponentFieldMeta[Option[DeviceDefinition.ManufacturerChoice]] =
-    FHIRComponentFieldMeta("manufacturer", lTagOf[Option[DeviceDefinition.ManufacturerChoice]], true, lTagOf[Union_1128709984])
+    FHIRComponentFieldMeta(
+      "manufacturer",
+      lTagOf[Option[DeviceDefinition.ManufacturerChoice]],
+      true,
+      lTagOf[UnionReferenceOrString])
   val shelfLifeStorage: FHIRComponentFieldMeta[LitSeq[Choice["ProductShelfLife"]]] =
     FHIRComponentFieldMeta(
       "shelfLifeStorage",
@@ -718,7 +722,7 @@ object DeviceDefinition extends CompanionFor[DeviceDefinition] {
           cursor.decodeAs[LitSeq[CodeableConcept]]("languageCode", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("parentDevice", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeOptRef[Union_1128709984]("manufacturer"),
+          cursor.decodeOptRef[UnionReferenceOrString]("manufacturer"),
           cursor.decodeAs[LitSeq[Choice["ProductShelfLife"]]]("shelfLifeStorage", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("onlineInformation", Some(None)),

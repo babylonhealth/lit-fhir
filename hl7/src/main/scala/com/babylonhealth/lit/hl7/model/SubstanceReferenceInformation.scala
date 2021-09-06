@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInformation] {
-  implicit def summonObjectAndCompanionSubstanceReferenceInformation251306033(
+  implicit def summonObjectAndCompanionSubstanceReferenceInformation1364390556(
       o: SubstanceReferenceInformation): ObjectAndCompanion[SubstanceReferenceInformation, SubstanceReferenceInformation.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = SubstanceReferenceInformation
@@ -32,7 +32,7 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
   override val parentType: CompanionFor[ParentType] = SubstanceReferenceInformation
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/SubstanceReferenceInformation")
   object Classification extends CompanionFor[Classification] {
-    implicit def summonObjectAndCompanionClassification_1332372813(
+    implicit def summonObjectAndCompanionClassification318014626(
         o: Classification): ObjectAndCompanion[Classification, Classification.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Classification
     override type ParentType   = Classification
@@ -114,8 +114,8 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object GeneElement extends CompanionFor[GeneElement] {
-    implicit def summonObjectAndCompanionGeneElement_1649721037(
-        o: GeneElement): ObjectAndCompanion[GeneElement, GeneElement.type] = ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionGeneElement318014626(o: GeneElement): ObjectAndCompanion[GeneElement, GeneElement.type] =
+      ObjectAndCompanion(o, this)
     override type ResourceType = GeneElement
     override type ParentType   = GeneElement
     override val parentType: CompanionFor[ResourceType] = GeneElement
@@ -188,12 +188,12 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Target extends CompanionFor[Target] {
-    implicit def summonObjectAndCompanionTarget565007489(o: Target): ObjectAndCompanion[Target, Target.type] =
+    implicit def summonObjectAndCompanionTarget318014626(o: Target): ObjectAndCompanion[Target, Target.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Target
     override type ParentType   = Target
     override val parentType: CompanionFor[ResourceType] = Target
-    type AmountChoice = Choice[Union_1527751898]
+    type AmountChoice = Choice[UnionQuantityOrRangeOrString]
     def apply(
         id: Option[String] = None,
         `type`: Option[CodeableConcept] = None,
@@ -249,7 +249,7 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val amount: FHIRComponentFieldMeta[Option[Target.AmountChoice]] =
-      FHIRComponentFieldMeta("amount", lTagOf[Option[Target.AmountChoice]], true, lTagOf[Union_1527751898])
+      FHIRComponentFieldMeta("amount", lTagOf[Option[Target.AmountChoice]], true, lTagOf[UnionQuantityOrRangeOrString])
     val amountType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("amountType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val interaction: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -286,7 +286,7 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
             cursor.decodeAs[LitSeq[Reference]]("source", Some(LitSeq.empty)),
             cursor.decodeAs[Option[CodeableConcept]]("organism", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union_1527751898]("amount"),
+            cursor.decodeOptRef[UnionQuantityOrRangeOrString]("amount"),
             cursor.decodeAs[Option[CodeableConcept]]("amountType", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("interaction", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("organismType", Some(None)),
@@ -311,8 +311,7 @@ object SubstanceReferenceInformation extends CompanionFor[SubstanceReferenceInfo
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Gene extends CompanionFor[Gene] {
-    implicit def summonObjectAndCompanionGene1954814794(o: Gene): ObjectAndCompanion[Gene, Gene.type] =
-      ObjectAndCompanion(o, this)
+    implicit def summonObjectAndCompanionGene318014626(o: Gene): ObjectAndCompanion[Gene, Gene.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Gene
     override type ParentType   = Gene
     override val parentType: CompanionFor[ResourceType] = Gene

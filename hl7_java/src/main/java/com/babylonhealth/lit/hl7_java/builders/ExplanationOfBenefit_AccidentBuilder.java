@@ -53,12 +53,12 @@ public interface ExplanationOfBenefit_AccidentBuilder {
     return new Impl();
   }
 
-  public static Choice00434638053 location(Address a) {
-    return new Choice00434638053(a);
+  public static ChoiceAddressOrReference location(Address a) {
+    return new ChoiceAddressOrReference(a);
   }
 
-  public static Choice00434638053 location(Reference r) {
-    return new Choice00434638053(r);
+  public static ChoiceAddressOrReference location(Reference r) {
+    return new ChoiceAddressOrReference(r);
   }
 
   public class Impl implements ExplanationOfBenefit_AccidentBuilder {
@@ -66,7 +66,7 @@ public interface ExplanationOfBenefit_AccidentBuilder {
     private Optional<FHIRDate> date = Optional.empty();
     private Optional<CodeableConcept> _type = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Optional<Choice00434638053> location = Optional.empty();
+    private Optional<ChoiceAddressOrReference> location = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /** Required fields for {@link ExplanationOfBenefit.Accident} */
@@ -135,7 +135,7 @@ public interface ExplanationOfBenefit_AccidentBuilder {
      *     methods
      */
     public ExplanationOfBenefit_AccidentBuilder.Impl withLocation(
-        @NonNull Choice00434638053 location) {
+        @NonNull ChoiceAddressOrReference location) {
       this.location = Optional.of(location);
       return this;
     }

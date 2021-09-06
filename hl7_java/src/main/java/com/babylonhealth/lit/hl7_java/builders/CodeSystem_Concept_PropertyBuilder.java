@@ -45,46 +45,46 @@ import static java.util.stream.Collectors.toList;
 public interface CodeSystem_Concept_PropertyBuilder {
   public CodeSystem$Concept$Property build();
 
-  public static Impl init(String code, @NonNull Choice_1489367071 value) {
+  public static Impl init(String code, @NonNull Choice00566743606 value) {
     return new Impl(code, value);
   }
 
-  public static Impl builder(String code, @NonNull Choice_1489367071 value) {
+  public static Impl builder(String code, @NonNull Choice00566743606 value) {
     return new Impl(code, value);
   }
 
-  public static Choice_1489367071 value(BigDecimal b) {
-    return new Choice_1489367071(b);
+  public static Choice00566743606 value(BigDecimal b) {
+    return new Choice00566743606(b);
   }
 
-  public static Choice_1489367071 value(Boolean b) {
-    return new Choice_1489367071(b);
+  public static Choice00566743606 value(Boolean b) {
+    return new Choice00566743606(b);
   }
 
-  public static Choice_1489367071 value(Coding c) {
-    return new Choice_1489367071(c);
+  public static Choice00566743606 value(Coding c) {
+    return new Choice00566743606(c);
   }
 
-  public static Choice_1489367071 value(FHIRDateTime f) {
-    return new Choice_1489367071(f);
+  public static Choice00566743606 value(FHIRDateTime f) {
+    return new Choice00566743606(f);
   }
 
-  public static Choice_1489367071 value(Integer i) {
-    return new Choice_1489367071(i);
+  public static Choice00566743606 value(Integer i) {
+    return new Choice00566743606(i);
   }
 
-  public static Choice_1489367071 valueCode(String s) {
-    return Choice_1489367071.Choice_1489367071Code(s);
+  public static Choice00566743606 valueCode(String s) {
+    return Choice00566743606.Choice00566743606Code(s);
   }
 
-  public static Choice_1489367071 valueString(String s) {
-    return Choice_1489367071.Choice_1489367071String(s);
+  public static Choice00566743606 valueString(String s) {
+    return Choice00566743606.Choice00566743606String(s);
   }
 
   public class Impl implements CodeSystem_Concept_PropertyBuilder {
     private Optional<String> id = Optional.empty();
     private String code;
-    private Choice_1489367071 value;
+    private Choice00566743606 value;
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -96,7 +96,7 @@ public interface CodeSystem_Concept_PropertyBuilder {
      *     Coding, FHIRDateTime, Integer. To pass the value in, wrap with one of the
      *     CodeSystem_Concept_PropertyBuilder.value static methods
      */
-    public Impl(String code, @NonNull Choice_1489367071 value) {
+    public Impl(String code, @NonNull Choice00566743606 value) {
       this.code = code;
       this.value = value;
     }

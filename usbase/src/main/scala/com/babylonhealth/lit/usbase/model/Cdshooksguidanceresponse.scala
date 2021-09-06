@@ -25,7 +25,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cdshooksguidanceresponse extends CompanionFor[Cdshooksguidanceresponse] {
-  implicit def summonObjectAndCompanionCdshooksguidanceresponse_1606919743(
+  implicit def summonObjectAndCompanionCdshooksguidanceresponse_981698772(
       o: Cdshooksguidanceresponse): ObjectAndCompanion[Cdshooksguidanceresponse, Cdshooksguidanceresponse.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = GuidanceResponse

@@ -53,17 +53,17 @@ public interface BiologicallyDerivedProduct_ProcessingBuilder {
     return new Impl();
   }
 
-  public static Choice_0934386166 time(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceDateTimeOrPeriod time(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 time(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceDateTimeOrPeriod time(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements BiologicallyDerivedProduct_ProcessingBuilder {
     private Optional<String> id = Optional.empty();
-    private Optional<Choice_0934386166> time = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriod> time = Optional.empty();
     private Optional<Reference> additive = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<CodeableConcept> procedure = Optional.empty();
@@ -87,7 +87,7 @@ public interface BiologicallyDerivedProduct_ProcessingBuilder {
      *     static methods
      */
     public BiologicallyDerivedProduct_ProcessingBuilder.Impl withTime(
-        @NonNull Choice_0934386166 time) {
+        @NonNull ChoiceDateTimeOrPeriod time) {
       this.time = Optional.of(time);
       return this;
     }

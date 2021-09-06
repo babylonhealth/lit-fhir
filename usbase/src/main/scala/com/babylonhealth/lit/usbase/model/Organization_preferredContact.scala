@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Organization_preferredContact extends CompanionFor[Organization_preferredContact] {
-  implicit def summonObjectAndCompanionOrganization_preferredContact_424332119(
+  implicit def summonObjectAndCompanionOrganization_preferredContact_568704508(
       o: Organization_preferredContact): ObjectAndCompanion[Organization_preferredContact, Organization_preferredContact.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

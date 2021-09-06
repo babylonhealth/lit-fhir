@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition] {
-  implicit def summonObjectAndCompanionResearchElementDefinition_462835577(
+  implicit def summonObjectAndCompanionResearchElementDefinition_2107761985(
       o: ResearchElementDefinition): ObjectAndCompanion[ResearchElementDefinition, ResearchElementDefinition.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = ResearchElementDefinition
@@ -33,14 +33,14 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
   override val parentType: CompanionFor[ParentType] = ResearchElementDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ResearchElementDefinition")
   object Characteristic extends CompanionFor[Characteristic] {
-    implicit def summonObjectAndCompanionCharacteristic2092607263(
+    implicit def summonObjectAndCompanionCharacteristic927406568(
         o: Characteristic): ObjectAndCompanion[Characteristic, Characteristic.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Characteristic
     override type ParentType   = Characteristic
     override val parentType: CompanionFor[ResourceType] = Characteristic
-    type DefinitionChoice           = Choice[Union_1750128470]
-    type StudyEffectiveChoice       = Choice[Union00607514014]
-    type ParticipantEffectiveChoice = Choice[Union00607514014]
+    type DefinitionChoice           = Choice[Union00836574492]
+    type StudyEffectiveChoice       = Choice[Union_1938137622]
+    type ParticipantEffectiveChoice = Choice[Union_1938137622]
     def apply(
         id: Option[String] = None,
         exclude: Option[Boolean] = None,
@@ -104,7 +104,7 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
     val usageContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
       FHIRComponentFieldMeta("usageContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
     val definition: FHIRComponentFieldMeta[Characteristic.DefinitionChoice] =
-      FHIRComponentFieldMeta("definition", lTagOf[Characteristic.DefinitionChoice], true, lTagOf[Union_1750128470])
+      FHIRComponentFieldMeta("definition", lTagOf[Characteristic.DefinitionChoice], true, lTagOf[Union00836574492])
     val unitOfMeasure: FHIRComponentFieldMeta[Option[CodeableConcept]] =
       FHIRComponentFieldMeta("unitOfMeasure", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -114,13 +114,13 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
         "studyEffective",
         lTagOf[Option[Characteristic.StudyEffectiveChoice]],
         true,
-        lTagOf[Union00607514014])
+        lTagOf[Union_1938137622])
     val participantEffective: FHIRComponentFieldMeta[Option[Characteristic.ParticipantEffectiveChoice]] =
       FHIRComponentFieldMeta(
         "participantEffective",
         lTagOf[Option[Characteristic.ParticipantEffectiveChoice]],
         true,
-        lTagOf[Union00607514014])
+        lTagOf[Union_1938137622])
     val studyEffectiveDescription: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("studyEffectiveDescription", lTagOf[Option[String]], false, lTagOf[String])
     val studyEffectiveGroupMeasure: FHIRComponentFieldMeta[Option[GROUP_MEASURE]] =
@@ -178,11 +178,11 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
             cursor.decodeAs[Option[Boolean]]("exclude", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[LitSeq[UsageContext]]("usageContext", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_1750128470]("definition"),
+            cursor.decodeRef[Union00836574492]("definition"),
             cursor.decodeAs[Option[CodeableConcept]]("unitOfMeasure", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
-            cursor.decodeOptRef[Union00607514014]("studyEffective"),
-            cursor.decodeOptRef[Union00607514014]("participantEffective"),
+            cursor.decodeOptRef[Union_1938137622]("studyEffective"),
+            cursor.decodeOptRef[Union_1938137622]("participantEffective"),
             cursor.decodeAs[Option[String]]("studyEffectiveDescription", Some(None)),
             cursor.decodeAs[Option[GROUP_MEASURE]]("studyEffectiveGroupMeasure", Some(None)),
             cursor.decodeAs[Option[Duration]]("studyEffectiveTimeFromStart", Some(None)),
@@ -212,7 +212,7 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
       val participantEffectiveTimeFromStart: Option[Duration] = None,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type SubjectChoice = Choice[Union01025009075]
+  type SubjectChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       url: Option[UriStr] = None,
@@ -357,7 +357,11 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
   val shortTitle: FHIRComponentFieldMeta[Option[String]] =
     FHIRComponentFieldMeta("shortTitle", lTagOf[Option[String]], false, lTagOf[String])
   val subject: FHIRComponentFieldMeta[Option[ResearchElementDefinition.SubjectChoice]] =
-    FHIRComponentFieldMeta("subject", lTagOf[Option[ResearchElementDefinition.SubjectChoice]], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "subject",
+      lTagOf[Option[ResearchElementDefinition.SubjectChoice]],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val useContext: FHIRComponentFieldMeta[LitSeq[UsageContext]] =
     FHIRComponentFieldMeta("useContext", lTagOf[LitSeq[UsageContext]], false, lTagOf[UsageContext])
   val description: FHIRComponentFieldMeta[Option[Markdown]] =
@@ -576,7 +580,7 @@ object ResearchElementDefinition extends CompanionFor[ResearchElementDefinition]
           cursor.decodeAs[Option[Markdown]]("copyright", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[String]]("shortTitle", Some(None)),
-          cursor.decodeOptRef[Union01025009075]("subject"),
+          cursor.decodeOptRef[UnionCodeableConceptOrReference]("subject"),
           cursor.decodeAs[LitSeq[UsageContext]]("useContext", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Markdown]]("description", Some(None)),
           cursor.decodeAs[Option[Boolean]]("experimental", Some(None)),

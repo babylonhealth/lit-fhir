@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Observation_bodyPosition extends CompanionFor[Observation_bodyPosition] {
-  implicit def summonObjectAndCompanionObservation_bodyPosition1965667786(
+  implicit def summonObjectAndCompanionObservation_bodyPosition318928321(
       o: Observation_bodyPosition): ObjectAndCompanion[Observation_bodyPosition, Observation_bodyPosition.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

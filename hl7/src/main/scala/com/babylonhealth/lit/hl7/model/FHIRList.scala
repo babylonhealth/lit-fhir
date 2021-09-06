@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object FHIRList extends CompanionFor[FHIRList] {
-  implicit def summonObjectAndCompanionFHIRList507329638(o: FHIRList): ObjectAndCompanion[FHIRList, FHIRList.type] =
+  implicit def summonObjectAndCompanionFHIRList_2065682925(o: FHIRList): ObjectAndCompanion[FHIRList, FHIRList.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = FHIRList
   override type ParentType   = FHIRList
@@ -32,7 +32,7 @@ object FHIRList extends CompanionFor[FHIRList] {
   override val parentType: CompanionFor[ParentType] = FHIRList
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/List")
   object Entry extends CompanionFor[Entry] {
-    implicit def summonObjectAndCompanionEntry237358674(o: Entry): ObjectAndCompanion[Entry, Entry.type] =
+    implicit def summonObjectAndCompanionEntry4737404(o: Entry): ObjectAndCompanion[Entry, Entry.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Entry
     override type ParentType   = Entry

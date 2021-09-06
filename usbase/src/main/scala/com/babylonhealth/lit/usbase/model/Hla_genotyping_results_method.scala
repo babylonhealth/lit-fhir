@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Hla_genotyping_results_method extends CompanionFor[Hla_genotyping_results_method] {
-  implicit def summonObjectAndCompanionHla_genotyping_results_method1579408986(
+  implicit def summonObjectAndCompanionHla_genotyping_results_method_1437016502(
       o: Hla_genotyping_results_method): ObjectAndCompanion[Hla_genotyping_results_method, Hla_genotyping_results_method.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

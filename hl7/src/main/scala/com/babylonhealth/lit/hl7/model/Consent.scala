@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Consent extends CompanionFor[Consent] {
-  implicit def summonObjectAndCompanionConsent2031953241(o: Consent): ObjectAndCompanion[Consent, Consent.type] =
+  implicit def summonObjectAndCompanionConsent301027973(o: Consent): ObjectAndCompanion[Consent, Consent.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Consent
   override type ParentType   = Consent
@@ -32,13 +32,13 @@ object Consent extends CompanionFor[Consent] {
   override val parentType: CompanionFor[ParentType] = Consent
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Consent")
   object Provision extends CompanionFor[Provision] {
-    implicit def summonObjectAndCompanionProvision_1997539014(o: Provision): ObjectAndCompanion[Provision, Provision.type] =
+    implicit def summonObjectAndCompanionProvision937340916(o: Provision): ObjectAndCompanion[Provision, Provision.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Provision
     override type ParentType   = Provision
     override val parentType: CompanionFor[ResourceType] = Provision
     object Data extends CompanionFor[Data] {
-      implicit def summonObjectAndCompanionData_1037210956(o: Data): ObjectAndCompanion[Data, Data.type] =
+      implicit def summonObjectAndCompanionData1234880868(o: Data): ObjectAndCompanion[Data, Data.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Data
       override type ParentType   = Data
@@ -104,7 +104,7 @@ object Consent extends CompanionFor[Consent] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Actor extends CompanionFor[Actor] {
-      implicit def summonObjectAndCompanionActor_1330133344(o: Actor): ObjectAndCompanion[Actor, Actor.type] =
+      implicit def summonObjectAndCompanionActor1234880868(o: Actor): ObjectAndCompanion[Actor, Actor.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Actor
       override type ParentType   = Actor
@@ -323,7 +323,7 @@ object Consent extends CompanionFor[Consent] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Verification extends CompanionFor[Verification] {
-    implicit def summonObjectAndCompanionVerification1486560618(
+    implicit def summonObjectAndCompanionVerification937340916(
         o: Verification): ObjectAndCompanion[Verification, Verification.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Verification
     override type ParentType   = Verification
@@ -398,7 +398,7 @@ object Consent extends CompanionFor[Consent] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Policy extends CompanionFor[Policy] {
-    implicit def summonObjectAndCompanionPolicy493133486(o: Policy): ObjectAndCompanion[Policy, Policy.type] =
+    implicit def summonObjectAndCompanionPolicy937340916(o: Policy): ObjectAndCompanion[Policy, Policy.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Policy
     override type ParentType   = Policy
@@ -463,7 +463,7 @@ object Consent extends CompanionFor[Consent] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type SourceChoice = Choice[Union_0340660840]
+  type SourceChoice = Choice[UnionAttachmentOrReference]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -536,7 +536,7 @@ object Consent extends CompanionFor[Consent] {
   val performer: FHIRComponentFieldMeta[LitSeq[Reference]] =
     FHIRComponentFieldMeta("performer", lTagOf[LitSeq[Reference]], false, lTagOf[Reference])
   val source: FHIRComponentFieldMeta[Option[Consent.SourceChoice]] =
-    FHIRComponentFieldMeta("source", lTagOf[Option[Consent.SourceChoice]], true, lTagOf[Union_0340660840])
+    FHIRComponentFieldMeta("source", lTagOf[Option[Consent.SourceChoice]], true, lTagOf[UnionAttachmentOrReference])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val policyRule: FHIRComponentFieldMeta[Option[CodeableConcept]] =
@@ -680,7 +680,7 @@ object Consent extends CompanionFor[Consent] {
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("performer", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_0340660840]("source"),
+          cursor.decodeOptRef[UnionAttachmentOrReference]("source"),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("policyRule", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("organization", Some(LitSeq.empty)),

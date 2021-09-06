@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Condition extends CompanionFor[Condition] {
-  implicit def summonObjectAndCompanionCondition_518072368(o: Condition): ObjectAndCompanion[Condition, Condition.type] =
+  implicit def summonObjectAndCompanionCondition1099501766(o: Condition): ObjectAndCompanion[Condition, Condition.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Condition
   override type ParentType   = Condition
@@ -31,7 +31,7 @@ object Condition extends CompanionFor[Condition] {
   override val parentType: CompanionFor[ParentType] = Condition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Condition")
   object Evidence extends CompanionFor[Evidence] {
-    implicit def summonObjectAndCompanionEvidence1517502428(o: Evidence): ObjectAndCompanion[Evidence, Evidence.type] =
+    implicit def summonObjectAndCompanionEvidence_2009654794(o: Evidence): ObjectAndCompanion[Evidence, Evidence.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Evidence
     override type ParentType   = Evidence
@@ -98,7 +98,7 @@ object Condition extends CompanionFor[Condition] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Stage extends CompanionFor[Stage] {
-    implicit def summonObjectAndCompanionStage1375737676(o: Stage): ObjectAndCompanion[Stage, Stage.type] =
+    implicit def summonObjectAndCompanionStage_2009654794(o: Stage): ObjectAndCompanion[Stage, Stage.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Stage
     override type ParentType   = Stage
@@ -171,8 +171,8 @@ object Condition extends CompanionFor[Condition] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type OnsetChoice     = Choice[Union01352864625]
-  type AbatementChoice = Choice[Union01352864625]
+  type OnsetChoice     = Choice[Union01946981731]
+  type AbatementChoice = Choice[Union01946981731]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -249,7 +249,7 @@ object Condition extends CompanionFor[Condition] {
   val bodySite: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("bodySite", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val onset: FHIRComponentFieldMeta[Option[Condition.OnsetChoice]] =
-    FHIRComponentFieldMeta("onset", lTagOf[Option[Condition.OnsetChoice]], true, lTagOf[Union01352864625])
+    FHIRComponentFieldMeta("onset", lTagOf[Option[Condition.OnsetChoice]], true, lTagOf[Union01946981731])
   val recorder: FHIRComponentFieldMeta[Option[Reference]] =
     FHIRComponentFieldMeta("recorder", lTagOf[Option[Reference]], false, lTagOf[Reference])
   val asserter: FHIRComponentFieldMeta[Option[Reference]] =
@@ -263,7 +263,7 @@ object Condition extends CompanionFor[Condition] {
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val abatement: FHIRComponentFieldMeta[Option[Condition.AbatementChoice]] =
-    FHIRComponentFieldMeta("abatement", lTagOf[Option[Condition.AbatementChoice]], true, lTagOf[Union01352864625])
+    FHIRComponentFieldMeta("abatement", lTagOf[Option[Condition.AbatementChoice]], true, lTagOf[Union01946981731])
   val recordedDate: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
     FHIRComponentFieldMeta("recordedDate", lTagOf[Option[FHIRDateTime]], false, lTagOf[FHIRDateTime])
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
@@ -405,14 +405,14 @@ object Condition extends CompanionFor[Condition] {
           cursor.decodeAs[LitSeq[CodeableConcept]]("category", Some(LitSeq.empty)),
           cursor.decodeAs[Option[CodeableConcept]]("severity", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("bodySite", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01352864625]("onset"),
+          cursor.decodeOptRef[Union01946981731]("onset"),
           cursor.decodeAs[Option[Reference]]("recorder", Some(None)),
           cursor.decodeAs[Option[Reference]]("asserter", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
           cursor.decodeAs[Option[Reference]]("encounter", Some(None)),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union01352864625]("abatement"),
+          cursor.decodeOptRef[Union01946981731]("abatement"),
           cursor.decodeAs[Option[FHIRDateTime]]("recordedDate", Some(None)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
           cursor.decodeAs[Option[CodeableConcept]]("clinicalStatus", Some(None)),

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Cqf_strengthOfRecommendation extends CompanionFor[Cqf_strengthOfRecommendation] {
-  implicit def summonObjectAndCompanionCqf_strengthOfRecommendation1925364602(
+  implicit def summonObjectAndCompanionCqf_strengthOfRecommendation_807728997(
       o: Cqf_strengthOfRecommendation): ObjectAndCompanion[Cqf_strengthOfRecommendation, Cqf_strengthOfRecommendation.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

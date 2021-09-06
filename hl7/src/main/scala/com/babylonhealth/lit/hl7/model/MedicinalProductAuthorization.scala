@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthorization] {
-  implicit def summonObjectAndCompanionMedicinalProductAuthorization742413989(
+  implicit def summonObjectAndCompanionMedicinalProductAuthorization1175825931(
       o: MedicinalProductAuthorization): ObjectAndCompanion[MedicinalProductAuthorization, MedicinalProductAuthorization.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = MedicinalProductAuthorization
@@ -32,7 +32,7 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
   override val parentType: CompanionFor[ParentType] = MedicinalProductAuthorization
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductAuthorization")
   object JurisdictionalAuthorization extends CompanionFor[JurisdictionalAuthorization] {
-    implicit def summonObjectAndCompanionJurisdictionalAuthorization118540538(
+    implicit def summonObjectAndCompanionJurisdictionalAuthorization_59114624(
         o: JurisdictionalAuthorization): ObjectAndCompanion[JurisdictionalAuthorization, JurisdictionalAuthorization.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = JurisdictionalAuthorization
@@ -131,12 +131,12 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Procedure extends CompanionFor[Procedure] {
-    implicit def summonObjectAndCompanionProcedure1298976855(o: Procedure): ObjectAndCompanion[Procedure, Procedure.type] =
+    implicit def summonObjectAndCompanionProcedure_59114624(o: Procedure): ObjectAndCompanion[Procedure, Procedure.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Procedure
     override type ParentType   = Procedure
     override val parentType: CompanionFor[ResourceType] = Procedure
-    type DateChoice = Choice[Union_0934386166]
+    type DateChoice = Choice[UnionDateTimeOrPeriod]
     def apply(
         id: Option[String] = None,
         `type`: CodeableConcept,
@@ -164,7 +164,7 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
     val `type`: FHIRComponentFieldMeta[CodeableConcept] =
       FHIRComponentFieldMeta("type", lTagOf[CodeableConcept], false, lTagOf[CodeableConcept])
     val date: FHIRComponentFieldMeta[Option[Procedure.DateChoice]] =
-      FHIRComponentFieldMeta("date", lTagOf[Option[Procedure.DateChoice]], true, lTagOf[Union_0934386166])
+      FHIRComponentFieldMeta("date", lTagOf[Option[Procedure.DateChoice]], true, lTagOf[UnionDateTimeOrPeriod])
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val identifier: FHIRComponentFieldMeta[Option[Identifier]] =
@@ -196,7 +196,7 @@ object MedicinalProductAuthorization extends CompanionFor[MedicinalProductAuthor
           new Procedure(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[CodeableConcept]("type", None),
-            cursor.decodeOptRef[Union_0934386166]("date"),
+            cursor.decodeOptRef[UnionDateTimeOrPeriod]("date"),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
             cursor.decodeAs[Option[Identifier]]("identifier", Some(None)),
             cursor.decodeAs[LitSeq[MedicinalProductAuthorization.Procedure]]("application", Some(LitSeq.empty)),

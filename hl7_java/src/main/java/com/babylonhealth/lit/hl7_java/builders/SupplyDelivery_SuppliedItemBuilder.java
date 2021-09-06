@@ -53,17 +53,17 @@ public interface SupplyDelivery_SuppliedItemBuilder {
     return new Impl();
   }
 
-  public static Choice01025009075 item(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference item(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 item(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference item(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements SupplyDelivery_SuppliedItemBuilder {
     private Optional<String> id = Optional.empty();
-    private Optional<Choice01025009075> item = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> item = Optional.empty();
     private Optional<Quantity> quantity = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -84,7 +84,8 @@ public interface SupplyDelivery_SuppliedItemBuilder {
      *     pass the value in, wrap with one of the SupplyDelivery_SuppliedItemBuilder.item static
      *     methods
      */
-    public SupplyDelivery_SuppliedItemBuilder.Impl withItem(@NonNull Choice01025009075 item) {
+    public SupplyDelivery_SuppliedItemBuilder.Impl withItem(
+        @NonNull ChoiceCodeableConceptOrReference item) {
       this.item = Optional.of(item);
       return this;
     }

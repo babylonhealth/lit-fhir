@@ -53,12 +53,12 @@ public interface ImplementationGuide_Definition_ResourceBuilder {
     return new Impl(reference.build());
   }
 
-  public static Choice00683246261 example(Boolean b) {
-    return new Choice00683246261(b);
+  public static ChoiceBooleanOrCanonical example(Boolean b) {
+    return new ChoiceBooleanOrCanonical(b);
   }
 
-  public static Choice00683246261 example(String s) {
-    return new Choice00683246261(s);
+  public static ChoiceBooleanOrCanonical example(String s) {
+    return new ChoiceBooleanOrCanonical(s);
   }
 
   public class Impl implements ImplementationGuide_Definition_ResourceBuilder {
@@ -66,7 +66,7 @@ public interface ImplementationGuide_Definition_ResourceBuilder {
     private Optional<String> name = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Reference reference;
-    private Optional<Choice00683246261> example = Optional.empty();
+    private Optional<ChoiceBooleanOrCanonical> example = Optional.empty();
     private Optional<String> groupingId = Optional.empty();
     private Collection<FHIR_VERSION> fhirVersion = Collections.emptyList();
     private Optional<String> description = Optional.empty();
@@ -134,7 +134,7 @@ public interface ImplementationGuide_Definition_ResourceBuilder {
      *     static methods
      */
     public ImplementationGuide_Definition_ResourceBuilder.Impl withExample(
-        @NonNull Choice00683246261 example) {
+        @NonNull ChoiceBooleanOrCanonical example) {
       this.example = Optional.of(example);
       return this;
     }

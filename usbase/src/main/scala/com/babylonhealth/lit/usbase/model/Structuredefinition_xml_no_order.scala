@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Structuredefinition_xml_no_order extends CompanionFor[Structuredefinition_xml_no_order] {
-  implicit def summonObjectAndCompanionStructuredefinition_xml_no_order1582880529(
+  implicit def summonObjectAndCompanionStructuredefinition_xml_no_order100509812(
       o: Structuredefinition_xml_no_order): ObjectAndCompanion[Structuredefinition_xml_no_order, Structuredefinition_xml_no_order.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

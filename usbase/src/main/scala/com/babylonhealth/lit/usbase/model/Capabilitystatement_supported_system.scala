@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Capabilitystatement_supported_system extends CompanionFor[Capabilitystatement_supported_system] {
-  implicit def summonObjectAndCompanionCapabilitystatement_supported_system1543589946(
+  implicit def summonObjectAndCompanionCapabilitystatement_supported_system_903938759(
       o: Capabilitystatement_supported_system): ObjectAndCompanion[Capabilitystatement_supported_system, Capabilitystatement_supported_system.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

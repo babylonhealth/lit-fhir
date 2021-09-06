@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Data_absent_reason extends CompanionFor[Data_absent_reason] {
-  implicit def summonObjectAndCompanionData_absent_reason_1845545037(
+  implicit def summonObjectAndCompanionData_absent_reason_647039222(
       o: Data_absent_reason): ObjectAndCompanion[Data_absent_reason, Data_absent_reason.type] = ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Medication extends CompanionFor[Medication] {
-  implicit def summonObjectAndCompanionMedication1722591020(o: Medication): ObjectAndCompanion[Medication, Medication.type] =
+  implicit def summonObjectAndCompanionMedication_1640326012(o: Medication): ObjectAndCompanion[Medication, Medication.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Medication
   override type ParentType   = Medication
@@ -32,12 +32,12 @@ object Medication extends CompanionFor[Medication] {
   override val parentType: CompanionFor[ParentType] = Medication
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/Medication")
   object Ingredient extends CompanionFor[Ingredient] {
-    implicit def summonObjectAndCompanionIngredient_207630995(o: Ingredient): ObjectAndCompanion[Ingredient, Ingredient.type] =
+    implicit def summonObjectAndCompanionIngredient_605073954(o: Ingredient): ObjectAndCompanion[Ingredient, Ingredient.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Ingredient
     override type ParentType   = Ingredient
     override val parentType: CompanionFor[ResourceType] = Ingredient
-    type ItemChoice = Choice[Union01025009075]
+    type ItemChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         item: Ingredient.ItemChoice,
@@ -61,7 +61,7 @@ object Medication extends CompanionFor[Medication] {
     val id: FHIRComponentFieldMeta[Option[String]] =
       FHIRComponentFieldMeta("id", lTagOf[Option[String]], false, lTagOf[String])
     val item: FHIRComponentFieldMeta[Ingredient.ItemChoice] =
-      FHIRComponentFieldMeta("item", lTagOf[Ingredient.ItemChoice], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("item", lTagOf[Ingredient.ItemChoice], true, lTagOf[UnionCodeableConceptOrReference])
     val isActive: FHIRComponentFieldMeta[Option[Boolean]] =
       FHIRComponentFieldMeta("isActive", lTagOf[Option[Boolean]], false, lTagOf[Boolean])
     val strength: FHIRComponentFieldMeta[Option[Ratio]] =
@@ -87,7 +87,7 @@ object Medication extends CompanionFor[Medication] {
         Try(
           new Ingredient(
             cursor.decodeAs[Option[String]]("id", Some(None)),
-            cursor.decodeRef[Union01025009075]("item"),
+            cursor.decodeRef[UnionCodeableConceptOrReference]("item"),
             cursor.decodeAs[Option[Boolean]]("isActive", Some(None)),
             cursor.decodeAs[Option[Ratio]]("strength", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
@@ -107,7 +107,7 @@ object Medication extends CompanionFor[Medication] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Batch extends CompanionFor[Batch] {
-    implicit def summonObjectAndCompanionBatch324577145(o: Batch): ObjectAndCompanion[Batch, Batch.type] =
+    implicit def summonObjectAndCompanionBatch_605073954(o: Batch): ObjectAndCompanion[Batch, Batch.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Batch
     override type ParentType   = Batch

@@ -45,65 +45,65 @@ import static java.util.stream.Collectors.toList;
 public interface Questionnaire_Item_InitialBuilder {
   public Questionnaire$Item$Initial build();
 
-  public static Impl init(@NonNull Choice_2101127777 value) {
+  public static Impl init(@NonNull Choice02135982830 value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice_2101127777 value) {
+  public static Impl builder(@NonNull Choice02135982830 value) {
     return new Impl(value);
   }
 
-  public static Choice_2101127777 value(Attachment a) {
-    return new Choice_2101127777(a);
+  public static Choice02135982830 value(Attachment a) {
+    return new Choice02135982830(a);
   }
 
-  public static Choice_2101127777 value(BigDecimal b) {
-    return new Choice_2101127777(b);
+  public static Choice02135982830 value(BigDecimal b) {
+    return new Choice02135982830(b);
   }
 
-  public static Choice_2101127777 value(Boolean b) {
-    return new Choice_2101127777(b);
+  public static Choice02135982830 value(Boolean b) {
+    return new Choice02135982830(b);
   }
 
-  public static Choice_2101127777 value(Coding c) {
-    return new Choice_2101127777(c);
+  public static Choice02135982830 value(Coding c) {
+    return new Choice02135982830(c);
   }
 
-  public static Choice_2101127777 value(FHIRDate f) {
-    return new Choice_2101127777(f);
+  public static Choice02135982830 value(FHIRDate f) {
+    return new Choice02135982830(f);
   }
 
-  public static Choice_2101127777 value(FHIRDateTime f) {
-    return new Choice_2101127777(f);
+  public static Choice02135982830 value(FHIRDateTime f) {
+    return new Choice02135982830(f);
   }
 
-  public static Choice_2101127777 value(Integer i) {
-    return new Choice_2101127777(i);
+  public static Choice02135982830 value(Integer i) {
+    return new Choice02135982830(i);
   }
 
-  public static Choice_2101127777 value(LocalTime l) {
-    return new Choice_2101127777(l);
+  public static Choice02135982830 value(LocalTime l) {
+    return new Choice02135982830(l);
   }
 
-  public static Choice_2101127777 value(Quantity q) {
-    return new Choice_2101127777(q);
+  public static Choice02135982830 value(Quantity q) {
+    return new Choice02135982830(q);
   }
 
-  public static Choice_2101127777 value(Reference r) {
-    return new Choice_2101127777(r);
+  public static Choice02135982830 value(Reference r) {
+    return new Choice02135982830(r);
   }
 
-  public static Choice_2101127777 valueString(String s) {
-    return Choice_2101127777.Choice_2101127777String(s);
+  public static Choice02135982830 valueString(String s) {
+    return Choice02135982830.Choice02135982830String(s);
   }
 
-  public static Choice_2101127777 valueUri(String s) {
-    return Choice_2101127777.Choice_2101127777UriStr(s);
+  public static Choice02135982830 valueUri(String s) {
+    return Choice02135982830.Choice02135982830UriStr(s);
   }
 
   public class Impl implements Questionnaire_Item_InitialBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice_2101127777 value;
+    private Choice02135982830 value;
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -115,7 +115,7 @@ public interface Questionnaire_Item_InitialBuilder {
      *     To pass the value in, wrap with one of the Questionnaire_Item_InitialBuilder.value static
      *     methods
      */
-    public Impl(@NonNull Choice_2101127777 value) {
+    public Impl(@NonNull Choice02135982830 value) {
       this.value = value;
     }
 

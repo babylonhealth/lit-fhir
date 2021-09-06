@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Codesystem_workflowStatus extends CompanionFor[Codesystem_workflowStatus] {
-  implicit def summonObjectAndCompanionCodesystem_workflowStatus742097278(
+  implicit def summonObjectAndCompanionCodesystem_workflowStatus1163527661(
       o: Codesystem_workflowStatus): ObjectAndCompanion[Codesystem_workflowStatus, Codesystem_workflowStatus.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

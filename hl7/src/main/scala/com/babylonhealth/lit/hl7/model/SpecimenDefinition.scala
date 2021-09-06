@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
-  implicit def summonObjectAndCompanionSpecimenDefinition186247417(
+  implicit def summonObjectAndCompanionSpecimenDefinition1271805744(
       o: SpecimenDefinition): ObjectAndCompanion[SpecimenDefinition, SpecimenDefinition.type] = ObjectAndCompanion(o, this)
   override type ResourceType = SpecimenDefinition
   override type ParentType   = SpecimenDefinition
@@ -32,13 +32,13 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
   override val parentType: CompanionFor[ParentType] = SpecimenDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/SpecimenDefinition")
   object TypeTested extends CompanionFor[TypeTested] {
-    implicit def summonObjectAndCompanionTypeTested1057667372(o: TypeTested): ObjectAndCompanion[TypeTested, TypeTested.type] =
+    implicit def summonObjectAndCompanionTypeTested1727483190(o: TypeTested): ObjectAndCompanion[TypeTested, TypeTested.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = TypeTested
     override type ParentType   = TypeTested
     override val parentType: CompanionFor[ResourceType] = TypeTested
     object Handling extends CompanionFor[Handling] {
-      implicit def summonObjectAndCompanionHandling_752463348(o: Handling): ObjectAndCompanion[Handling, Handling.type] =
+      implicit def summonObjectAndCompanionHandling2034866161(o: Handling): ObjectAndCompanion[Handling, Handling.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Handling
       override type ParentType   = Handling
@@ -120,18 +120,18 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Container extends CompanionFor[Container] {
-      implicit def summonObjectAndCompanionContainer_1458594556(o: Container): ObjectAndCompanion[Container, Container.type] =
+      implicit def summonObjectAndCompanionContainer2034866161(o: Container): ObjectAndCompanion[Container, Container.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Container
       override type ParentType   = Container
       override val parentType: CompanionFor[ResourceType] = Container
       object Additive extends CompanionFor[Additive] {
-        implicit def summonObjectAndCompanionAdditive_858674879(o: Additive): ObjectAndCompanion[Additive, Additive.type] =
+        implicit def summonObjectAndCompanionAdditive340359176(o: Additive): ObjectAndCompanion[Additive, Additive.type] =
           ObjectAndCompanion(o, this)
         override type ResourceType = Additive
         override type ParentType   = Additive
         override val parentType: CompanionFor[ResourceType] = Additive
-        type AdditiveChoice = Choice[Union01025009075]
+        type AdditiveChoice = Choice[UnionCodeableConceptOrReference]
         def apply(
             id: Option[String] = None,
             extension: LitSeq[Extension] = LitSeq.empty,
@@ -152,7 +152,7 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
         val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val additive: FHIRComponentFieldMeta[Additive.AdditiveChoice] =
-          FHIRComponentFieldMeta("additive", lTagOf[Additive.AdditiveChoice], true, lTagOf[Union01025009075])
+          FHIRComponentFieldMeta("additive", lTagOf[Additive.AdditiveChoice], true, lTagOf[UnionCodeableConceptOrReference])
         val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
           FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
         val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, extension, additive, modifierExtension)
@@ -171,7 +171,7 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
               new Additive(
                 cursor.decodeAs[Option[String]]("id", Some(None)),
                 cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-                cursor.decodeRef[Union01025009075]("additive"),
+                cursor.decodeRef[UnionCodeableConceptOrReference]("additive"),
                 cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
                 decodeAttributes(cursor)
               )
@@ -185,7 +185,7 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
           override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
           override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
           extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-      type MinimumVolumeChoice = Choice[Union_2072987899]
+      type MinimumVolumeChoice = Choice[UnionQuantityOrString]
       def apply(
           id: Option[String] = None,
           cap: Option[CodeableConcept] = None,
@@ -245,7 +245,11 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
       val preparation: FHIRComponentFieldMeta[Option[String]] =
         FHIRComponentFieldMeta("preparation", lTagOf[Option[String]], false, lTagOf[String])
       val minimumVolume: FHIRComponentFieldMeta[Option[Container.MinimumVolumeChoice]] =
-        FHIRComponentFieldMeta("minimumVolume", lTagOf[Option[Container.MinimumVolumeChoice]], true, lTagOf[Union_2072987899])
+        FHIRComponentFieldMeta(
+          "minimumVolume",
+          lTagOf[Option[Container.MinimumVolumeChoice]],
+          true,
+          lTagOf[UnionQuantityOrString])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val additive: FHIRComponentFieldMeta[LitSeq[Container.Additive]] =
@@ -280,7 +284,7 @@ object SpecimenDefinition extends CompanionFor[SpecimenDefinition] {
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[Option[String]]("description", Some(None)),
               cursor.decodeAs[Option[String]]("preparation", Some(None)),
-              cursor.decodeOptRef[Union_2072987899]("minimumVolume"),
+              cursor.decodeOptRef[UnionQuantityOrString]("minimumVolume"),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               cursor.decodeAs[LitSeq[Container.Additive]]("additive", Some(LitSeq.empty)),
               decodeAttributes(cursor)

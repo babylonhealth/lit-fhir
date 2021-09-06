@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Concept_bidirectional extends CompanionFor[Concept_bidirectional] {
-  implicit def summonObjectAndCompanionConcept_bidirectional_528455996(
+  implicit def summonObjectAndCompanionConcept_bidirectional622477801(
       o: Concept_bidirectional): ObjectAndCompanion[Concept_bidirectional, Concept_bidirectional.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

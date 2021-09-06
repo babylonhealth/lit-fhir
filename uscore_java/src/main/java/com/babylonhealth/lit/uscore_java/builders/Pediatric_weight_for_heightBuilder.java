@@ -58,7 +58,7 @@ public interface Pediatric_weight_for_heightBuilder extends VitalsignsBuilder {
       Reference subject,
       Collection<CodeableConcept> category,
       Quantity value,
-      @NonNull Choice_0934386166 effective) {
+      @NonNull ChoiceDateTimeOrPeriod effective) {
     return new Impl(code, status, subject, category, value, effective);
   }
 
@@ -68,7 +68,7 @@ public interface Pediatric_weight_for_heightBuilder extends VitalsignsBuilder {
       ReferenceBuilder subject,
       Collection<CodeableConceptBuilder> category,
       QuantityBuilder value,
-      @NonNull Choice_0934386166 effective) {
+      @NonNull ChoiceDateTimeOrPeriod effective) {
     return new Impl(
         code.build(),
         status,
@@ -78,12 +78,12 @@ public interface Pediatric_weight_for_heightBuilder extends VitalsignsBuilder {
         effective);
   }
 
-  public static Choice_0934386166 effective(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceDateTimeOrPeriod effective(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 effective(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceDateTimeOrPeriod effective(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements Pediatric_weight_for_heightBuilder {
@@ -117,7 +117,7 @@ public interface Pediatric_weight_for_heightBuilder extends VitalsignsBuilder {
     private Collection<Reference> hasMember = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
     private Collection<Reference> derivedFrom = Collections.emptyList();
-    private Choice_0934386166 effective;
+    private ChoiceDateTimeOrPeriod effective;
     private Optional<String> implicitRules = Optional.empty();
     private Collection<CodeableConcept> interpretation = Collections.emptyList();
     private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
@@ -148,7 +148,7 @@ public interface Pediatric_weight_for_heightBuilder extends VitalsignsBuilder {
         Reference subject,
         Collection<CodeableConcept> category,
         Quantity value,
-        @NonNull Choice_0934386166 effective) {
+        @NonNull ChoiceDateTimeOrPeriod effective) {
       this.code = code;
       this.status = status;
       this.subject = subject;

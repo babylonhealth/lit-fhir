@@ -53,676 +53,676 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
     return new Impl(path);
   }
 
-  public static Choice_1349125893 fixed(Address a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll fixed(Address a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 fixed(Age a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll fixed(Age a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 fixed(Annotation a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll fixed(Annotation a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 fixed(Attachment a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll fixed(Attachment a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 fixed(byte[] b) {
-    return new Choice_1349125893(b);
+  public static ChoiceAll fixed(byte[] b) {
+    return new ChoiceAll(b);
   }
 
-  public static Choice_1349125893 fixed(BigDecimal b) {
-    return new Choice_1349125893(b);
+  public static ChoiceAll fixed(BigDecimal b) {
+    return new ChoiceAll(b);
   }
 
-  public static Choice_1349125893 fixed(Boolean b) {
-    return new Choice_1349125893(b);
+  public static ChoiceAll fixed(Boolean b) {
+    return new ChoiceAll(b);
   }
 
-  public static Choice_1349125893 fixed(CodeableConcept c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll fixed(CodeableConcept c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 fixed(Coding c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll fixed(Coding c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 fixed(ContactDetail c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll fixed(ContactDetail c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 fixed(ContactPoint c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll fixed(ContactPoint c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 fixed(Contributor c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll fixed(Contributor c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 fixed(Count c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll fixed(Count c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 fixed(DataRequirement d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll fixed(DataRequirement d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 fixed(Distance d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll fixed(Distance d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 fixed(Dosage d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll fixed(Dosage d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 fixed(Duration d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll fixed(Duration d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 fixed(Expression e) {
-    return new Choice_1349125893(e);
+  public static ChoiceAll fixed(Expression e) {
+    return new ChoiceAll(e);
   }
 
-  public static Choice_1349125893 fixed(FHIRDate f) {
-    return new Choice_1349125893(f);
+  public static ChoiceAll fixed(FHIRDate f) {
+    return new ChoiceAll(f);
   }
 
-  public static Choice_1349125893 fixed(FHIRDateTime f) {
-    return new Choice_1349125893(f);
+  public static ChoiceAll fixed(FHIRDateTime f) {
+    return new ChoiceAll(f);
   }
 
-  public static Choice_1349125893 fixed(HumanName h) {
-    return new Choice_1349125893(h);
+  public static ChoiceAll fixed(HumanName h) {
+    return new ChoiceAll(h);
   }
 
-  public static Choice_1349125893 fixed(Identifier i) {
-    return new Choice_1349125893(i);
+  public static ChoiceAll fixed(Identifier i) {
+    return new ChoiceAll(i);
   }
 
-  public static Choice_1349125893 fixed(LocalTime l) {
-    return new Choice_1349125893(l);
+  public static ChoiceAll fixed(LocalTime l) {
+    return new ChoiceAll(l);
   }
 
-  public static Choice_1349125893 fixed(Meta m) {
-    return new Choice_1349125893(m);
+  public static ChoiceAll fixed(Meta m) {
+    return new ChoiceAll(m);
   }
 
-  public static Choice_1349125893 fixed(Money m) {
-    return new Choice_1349125893(m);
+  public static ChoiceAll fixed(Money m) {
+    return new ChoiceAll(m);
   }
 
-  public static Choice_1349125893 fixed(ParameterDefinition p) {
-    return new Choice_1349125893(p);
+  public static ChoiceAll fixed(ParameterDefinition p) {
+    return new ChoiceAll(p);
   }
 
-  public static Choice_1349125893 fixed(Period p) {
-    return new Choice_1349125893(p);
+  public static ChoiceAll fixed(Period p) {
+    return new ChoiceAll(p);
   }
 
-  public static Choice_1349125893 fixed(Quantity q) {
-    return new Choice_1349125893(q);
+  public static ChoiceAll fixed(Quantity q) {
+    return new ChoiceAll(q);
   }
 
-  public static Choice_1349125893 fixed(Range r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll fixed(Range r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 fixed(Ratio r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll fixed(Ratio r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 fixed(Reference r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll fixed(Reference r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 fixed(RelatedArtifact r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll fixed(RelatedArtifact r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 fixed(SampledData s) {
-    return new Choice_1349125893(s);
+  public static ChoiceAll fixed(SampledData s) {
+    return new ChoiceAll(s);
   }
 
-  public static Choice_1349125893 fixed(Signature s) {
-    return new Choice_1349125893(s);
+  public static ChoiceAll fixed(Signature s) {
+    return new ChoiceAll(s);
   }
 
-  public static Choice_1349125893 fixed(Timing t) {
-    return new Choice_1349125893(t);
+  public static ChoiceAll fixed(Timing t) {
+    return new ChoiceAll(t);
   }
 
-  public static Choice_1349125893 fixed(TriggerDefinition t) {
-    return new Choice_1349125893(t);
+  public static ChoiceAll fixed(TriggerDefinition t) {
+    return new ChoiceAll(t);
   }
 
-  public static Choice_1349125893 fixed(UUID u) {
-    return new Choice_1349125893(u);
+  public static ChoiceAll fixed(UUID u) {
+    return new ChoiceAll(u);
   }
 
-  public static Choice_1349125893 fixed(UsageContext u) {
-    return new Choice_1349125893(u);
+  public static ChoiceAll fixed(UsageContext u) {
+    return new ChoiceAll(u);
   }
 
-  public static Choice_1349125893 fixed(ZonedDateTime z) {
-    return new Choice_1349125893(z);
+  public static ChoiceAll fixed(ZonedDateTime z) {
+    return new ChoiceAll(z);
   }
 
-  public static Choice_1349125893 fixedCanonical(String s) {
-    return Choice_1349125893.Choice_1349125893Canonical(s);
+  public static ChoiceAll fixedCanonical(String s) {
+    return ChoiceAll.ChoiceAllCanonical(s);
   }
 
-  public static Choice_1349125893 fixedCode(String s) {
-    return Choice_1349125893.Choice_1349125893Code(s);
+  public static ChoiceAll fixedCode(String s) {
+    return ChoiceAll.ChoiceAllCode(s);
   }
 
-  public static Choice_1349125893 fixedId(String s) {
-    return Choice_1349125893.Choice_1349125893Id(s);
+  public static ChoiceAll fixedId(String s) {
+    return ChoiceAll.ChoiceAllId(s);
   }
 
-  public static Choice_1349125893 fixedInteger(Integer i) {
-    return Choice_1349125893.Choice_1349125893Int(i);
+  public static ChoiceAll fixedInteger(Integer i) {
+    return ChoiceAll.ChoiceAllInt(i);
   }
 
-  public static Choice_1349125893 fixedMarkdown(String s) {
-    return Choice_1349125893.Choice_1349125893Markdown(s);
+  public static ChoiceAll fixedMarkdown(String s) {
+    return ChoiceAll.ChoiceAllMarkdown(s);
   }
 
-  public static Choice_1349125893 fixedOid(String s) {
-    return Choice_1349125893.Choice_1349125893OID(s);
+  public static ChoiceAll fixedOid(String s) {
+    return ChoiceAll.ChoiceAllOID(s);
   }
 
-  public static Choice_1349125893 fixedPositiveInt(Integer i) {
-    return Choice_1349125893.Choice_1349125893PositiveInt(i);
+  public static ChoiceAll fixedPositiveInt(Integer i) {
+    return ChoiceAll.ChoiceAllPositiveInt(i);
   }
 
-  public static Choice_1349125893 fixedString(String s) {
-    return Choice_1349125893.Choice_1349125893String(s);
+  public static ChoiceAll fixedString(String s) {
+    return ChoiceAll.ChoiceAllString(s);
   }
 
-  public static Choice_1349125893 fixedUnsignedInt(Integer i) {
-    return Choice_1349125893.Choice_1349125893UnsignedInt(i);
+  public static ChoiceAll fixedUnsignedInt(Integer i) {
+    return ChoiceAll.ChoiceAllUnsignedInt(i);
   }
 
-  public static Choice_1349125893 fixedUri(String s) {
-    return Choice_1349125893.Choice_1349125893UriStr(s);
+  public static ChoiceAll fixedUri(String s) {
+    return ChoiceAll.ChoiceAllUriStr(s);
   }
 
-  public static Choice_1349125893 fixedUrl(String s) {
-    return Choice_1349125893.Choice_1349125893UrlStr(s);
+  public static ChoiceAll fixedUrl(String s) {
+    return ChoiceAll.ChoiceAllUrlStr(s);
   }
 
-  public static Choice_1349125893 pattern(Address a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll pattern(Address a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 pattern(Age a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll pattern(Age a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 pattern(Annotation a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll pattern(Annotation a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 pattern(Attachment a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll pattern(Attachment a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 pattern(byte[] b) {
-    return new Choice_1349125893(b);
+  public static ChoiceAll pattern(byte[] b) {
+    return new ChoiceAll(b);
   }
 
-  public static Choice_1349125893 pattern(BigDecimal b) {
-    return new Choice_1349125893(b);
+  public static ChoiceAll pattern(BigDecimal b) {
+    return new ChoiceAll(b);
   }
 
-  public static Choice_1349125893 pattern(Boolean b) {
-    return new Choice_1349125893(b);
+  public static ChoiceAll pattern(Boolean b) {
+    return new ChoiceAll(b);
   }
 
-  public static Choice_1349125893 pattern(CodeableConcept c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll pattern(CodeableConcept c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 pattern(Coding c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll pattern(Coding c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 pattern(ContactDetail c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll pattern(ContactDetail c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 pattern(ContactPoint c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll pattern(ContactPoint c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 pattern(Contributor c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll pattern(Contributor c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 pattern(Count c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll pattern(Count c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 pattern(DataRequirement d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll pattern(DataRequirement d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 pattern(Distance d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll pattern(Distance d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 pattern(Dosage d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll pattern(Dosage d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 pattern(Duration d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll pattern(Duration d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 pattern(Expression e) {
-    return new Choice_1349125893(e);
+  public static ChoiceAll pattern(Expression e) {
+    return new ChoiceAll(e);
   }
 
-  public static Choice_1349125893 pattern(FHIRDate f) {
-    return new Choice_1349125893(f);
+  public static ChoiceAll pattern(FHIRDate f) {
+    return new ChoiceAll(f);
   }
 
-  public static Choice_1349125893 pattern(FHIRDateTime f) {
-    return new Choice_1349125893(f);
+  public static ChoiceAll pattern(FHIRDateTime f) {
+    return new ChoiceAll(f);
   }
 
-  public static Choice_1349125893 pattern(HumanName h) {
-    return new Choice_1349125893(h);
+  public static ChoiceAll pattern(HumanName h) {
+    return new ChoiceAll(h);
   }
 
-  public static Choice_1349125893 pattern(Identifier i) {
-    return new Choice_1349125893(i);
+  public static ChoiceAll pattern(Identifier i) {
+    return new ChoiceAll(i);
   }
 
-  public static Choice_1349125893 pattern(LocalTime l) {
-    return new Choice_1349125893(l);
+  public static ChoiceAll pattern(LocalTime l) {
+    return new ChoiceAll(l);
   }
 
-  public static Choice_1349125893 pattern(Meta m) {
-    return new Choice_1349125893(m);
+  public static ChoiceAll pattern(Meta m) {
+    return new ChoiceAll(m);
   }
 
-  public static Choice_1349125893 pattern(Money m) {
-    return new Choice_1349125893(m);
+  public static ChoiceAll pattern(Money m) {
+    return new ChoiceAll(m);
   }
 
-  public static Choice_1349125893 pattern(ParameterDefinition p) {
-    return new Choice_1349125893(p);
+  public static ChoiceAll pattern(ParameterDefinition p) {
+    return new ChoiceAll(p);
   }
 
-  public static Choice_1349125893 pattern(Period p) {
-    return new Choice_1349125893(p);
+  public static ChoiceAll pattern(Period p) {
+    return new ChoiceAll(p);
   }
 
-  public static Choice_1349125893 pattern(Quantity q) {
-    return new Choice_1349125893(q);
+  public static ChoiceAll pattern(Quantity q) {
+    return new ChoiceAll(q);
   }
 
-  public static Choice_1349125893 pattern(Range r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll pattern(Range r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 pattern(Ratio r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll pattern(Ratio r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 pattern(Reference r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll pattern(Reference r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 pattern(RelatedArtifact r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll pattern(RelatedArtifact r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 pattern(SampledData s) {
-    return new Choice_1349125893(s);
+  public static ChoiceAll pattern(SampledData s) {
+    return new ChoiceAll(s);
   }
 
-  public static Choice_1349125893 pattern(Signature s) {
-    return new Choice_1349125893(s);
+  public static ChoiceAll pattern(Signature s) {
+    return new ChoiceAll(s);
   }
 
-  public static Choice_1349125893 pattern(Timing t) {
-    return new Choice_1349125893(t);
+  public static ChoiceAll pattern(Timing t) {
+    return new ChoiceAll(t);
   }
 
-  public static Choice_1349125893 pattern(TriggerDefinition t) {
-    return new Choice_1349125893(t);
+  public static ChoiceAll pattern(TriggerDefinition t) {
+    return new ChoiceAll(t);
   }
 
-  public static Choice_1349125893 pattern(UUID u) {
-    return new Choice_1349125893(u);
+  public static ChoiceAll pattern(UUID u) {
+    return new ChoiceAll(u);
   }
 
-  public static Choice_1349125893 pattern(UsageContext u) {
-    return new Choice_1349125893(u);
+  public static ChoiceAll pattern(UsageContext u) {
+    return new ChoiceAll(u);
   }
 
-  public static Choice_1349125893 pattern(ZonedDateTime z) {
-    return new Choice_1349125893(z);
+  public static ChoiceAll pattern(ZonedDateTime z) {
+    return new ChoiceAll(z);
   }
 
-  public static Choice_1349125893 patternCanonical(String s) {
-    return Choice_1349125893.Choice_1349125893Canonical(s);
+  public static ChoiceAll patternCanonical(String s) {
+    return ChoiceAll.ChoiceAllCanonical(s);
   }
 
-  public static Choice_1349125893 patternCode(String s) {
-    return Choice_1349125893.Choice_1349125893Code(s);
+  public static ChoiceAll patternCode(String s) {
+    return ChoiceAll.ChoiceAllCode(s);
   }
 
-  public static Choice_1349125893 patternId(String s) {
-    return Choice_1349125893.Choice_1349125893Id(s);
+  public static ChoiceAll patternId(String s) {
+    return ChoiceAll.ChoiceAllId(s);
   }
 
-  public static Choice_1349125893 patternInteger(Integer i) {
-    return Choice_1349125893.Choice_1349125893Int(i);
+  public static ChoiceAll patternInteger(Integer i) {
+    return ChoiceAll.ChoiceAllInt(i);
   }
 
-  public static Choice_1349125893 patternMarkdown(String s) {
-    return Choice_1349125893.Choice_1349125893Markdown(s);
+  public static ChoiceAll patternMarkdown(String s) {
+    return ChoiceAll.ChoiceAllMarkdown(s);
   }
 
-  public static Choice_1349125893 patternOid(String s) {
-    return Choice_1349125893.Choice_1349125893OID(s);
+  public static ChoiceAll patternOid(String s) {
+    return ChoiceAll.ChoiceAllOID(s);
   }
 
-  public static Choice_1349125893 patternPositiveInt(Integer i) {
-    return Choice_1349125893.Choice_1349125893PositiveInt(i);
+  public static ChoiceAll patternPositiveInt(Integer i) {
+    return ChoiceAll.ChoiceAllPositiveInt(i);
   }
 
-  public static Choice_1349125893 patternString(String s) {
-    return Choice_1349125893.Choice_1349125893String(s);
+  public static ChoiceAll patternString(String s) {
+    return ChoiceAll.ChoiceAllString(s);
   }
 
-  public static Choice_1349125893 patternUnsignedInt(Integer i) {
-    return Choice_1349125893.Choice_1349125893UnsignedInt(i);
+  public static ChoiceAll patternUnsignedInt(Integer i) {
+    return ChoiceAll.ChoiceAllUnsignedInt(i);
   }
 
-  public static Choice_1349125893 patternUri(String s) {
-    return Choice_1349125893.Choice_1349125893UriStr(s);
+  public static ChoiceAll patternUri(String s) {
+    return ChoiceAll.ChoiceAllUriStr(s);
   }
 
-  public static Choice_1349125893 patternUrl(String s) {
-    return Choice_1349125893.Choice_1349125893UrlStr(s);
+  public static ChoiceAll patternUrl(String s) {
+    return ChoiceAll.ChoiceAllUrlStr(s);
   }
 
-  public static Choice_0637176084 minValue(BigDecimal b) {
-    return new Choice_0637176084(b);
+  public static Choice_0603252906 minValue(BigDecimal b) {
+    return new Choice_0603252906(b);
   }
 
-  public static Choice_0637176084 minValue(FHIRDate f) {
-    return new Choice_0637176084(f);
+  public static Choice_0603252906 minValue(FHIRDate f) {
+    return new Choice_0603252906(f);
   }
 
-  public static Choice_0637176084 minValue(FHIRDateTime f) {
-    return new Choice_0637176084(f);
+  public static Choice_0603252906 minValue(FHIRDateTime f) {
+    return new Choice_0603252906(f);
   }
 
-  public static Choice_0637176084 minValue(LocalTime l) {
-    return new Choice_0637176084(l);
+  public static Choice_0603252906 minValue(LocalTime l) {
+    return new Choice_0603252906(l);
   }
 
-  public static Choice_0637176084 minValue(Quantity q) {
-    return new Choice_0637176084(q);
+  public static Choice_0603252906 minValue(Quantity q) {
+    return new Choice_0603252906(q);
   }
 
-  public static Choice_0637176084 minValue(ZonedDateTime z) {
-    return new Choice_0637176084(z);
+  public static Choice_0603252906 minValue(ZonedDateTime z) {
+    return new Choice_0603252906(z);
   }
 
-  public static Choice_0637176084 minValueInteger(Integer i) {
-    return Choice_0637176084.Choice_0637176084Int(i);
+  public static Choice_0603252906 minValueInteger(Integer i) {
+    return Choice_0603252906.Choice_0603252906Int(i);
   }
 
-  public static Choice_0637176084 minValuePositiveInt(Integer i) {
-    return Choice_0637176084.Choice_0637176084PositiveInt(i);
+  public static Choice_0603252906 minValuePositiveInt(Integer i) {
+    return Choice_0603252906.Choice_0603252906PositiveInt(i);
   }
 
-  public static Choice_0637176084 minValueUnsignedInt(Integer i) {
-    return Choice_0637176084.Choice_0637176084UnsignedInt(i);
+  public static Choice_0603252906 minValueUnsignedInt(Integer i) {
+    return Choice_0603252906.Choice_0603252906UnsignedInt(i);
   }
 
-  public static Choice_0637176084 maxValue(BigDecimal b) {
-    return new Choice_0637176084(b);
+  public static Choice_0603252906 maxValue(BigDecimal b) {
+    return new Choice_0603252906(b);
   }
 
-  public static Choice_0637176084 maxValue(FHIRDate f) {
-    return new Choice_0637176084(f);
+  public static Choice_0603252906 maxValue(FHIRDate f) {
+    return new Choice_0603252906(f);
   }
 
-  public static Choice_0637176084 maxValue(FHIRDateTime f) {
-    return new Choice_0637176084(f);
+  public static Choice_0603252906 maxValue(FHIRDateTime f) {
+    return new Choice_0603252906(f);
   }
 
-  public static Choice_0637176084 maxValue(LocalTime l) {
-    return new Choice_0637176084(l);
+  public static Choice_0603252906 maxValue(LocalTime l) {
+    return new Choice_0603252906(l);
   }
 
-  public static Choice_0637176084 maxValue(Quantity q) {
-    return new Choice_0637176084(q);
+  public static Choice_0603252906 maxValue(Quantity q) {
+    return new Choice_0603252906(q);
   }
 
-  public static Choice_0637176084 maxValue(ZonedDateTime z) {
-    return new Choice_0637176084(z);
+  public static Choice_0603252906 maxValue(ZonedDateTime z) {
+    return new Choice_0603252906(z);
   }
 
-  public static Choice_0637176084 maxValueInteger(Integer i) {
-    return Choice_0637176084.Choice_0637176084Int(i);
+  public static Choice_0603252906 maxValueInteger(Integer i) {
+    return Choice_0603252906.Choice_0603252906Int(i);
   }
 
-  public static Choice_0637176084 maxValuePositiveInt(Integer i) {
-    return Choice_0637176084.Choice_0637176084PositiveInt(i);
+  public static Choice_0603252906 maxValuePositiveInt(Integer i) {
+    return Choice_0603252906.Choice_0603252906PositiveInt(i);
   }
 
-  public static Choice_0637176084 maxValueUnsignedInt(Integer i) {
-    return Choice_0637176084.Choice_0637176084UnsignedInt(i);
+  public static Choice_0603252906 maxValueUnsignedInt(Integer i) {
+    return Choice_0603252906.Choice_0603252906UnsignedInt(i);
   }
 
-  public static Choice_1349125893 defaultValue(Address a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll defaultValue(Address a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 defaultValue(Age a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll defaultValue(Age a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 defaultValue(Annotation a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll defaultValue(Annotation a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 defaultValue(Attachment a) {
-    return new Choice_1349125893(a);
+  public static ChoiceAll defaultValue(Attachment a) {
+    return new ChoiceAll(a);
   }
 
-  public static Choice_1349125893 defaultValue(byte[] b) {
-    return new Choice_1349125893(b);
+  public static ChoiceAll defaultValue(byte[] b) {
+    return new ChoiceAll(b);
   }
 
-  public static Choice_1349125893 defaultValue(BigDecimal b) {
-    return new Choice_1349125893(b);
+  public static ChoiceAll defaultValue(BigDecimal b) {
+    return new ChoiceAll(b);
   }
 
-  public static Choice_1349125893 defaultValue(Boolean b) {
-    return new Choice_1349125893(b);
+  public static ChoiceAll defaultValue(Boolean b) {
+    return new ChoiceAll(b);
   }
 
-  public static Choice_1349125893 defaultValue(CodeableConcept c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll defaultValue(CodeableConcept c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 defaultValue(Coding c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll defaultValue(Coding c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 defaultValue(ContactDetail c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll defaultValue(ContactDetail c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 defaultValue(ContactPoint c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll defaultValue(ContactPoint c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 defaultValue(Contributor c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll defaultValue(Contributor c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 defaultValue(Count c) {
-    return new Choice_1349125893(c);
+  public static ChoiceAll defaultValue(Count c) {
+    return new ChoiceAll(c);
   }
 
-  public static Choice_1349125893 defaultValue(DataRequirement d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll defaultValue(DataRequirement d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 defaultValue(Distance d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll defaultValue(Distance d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 defaultValue(Dosage d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll defaultValue(Dosage d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 defaultValue(Duration d) {
-    return new Choice_1349125893(d);
+  public static ChoiceAll defaultValue(Duration d) {
+    return new ChoiceAll(d);
   }
 
-  public static Choice_1349125893 defaultValue(Expression e) {
-    return new Choice_1349125893(e);
+  public static ChoiceAll defaultValue(Expression e) {
+    return new ChoiceAll(e);
   }
 
-  public static Choice_1349125893 defaultValue(FHIRDate f) {
-    return new Choice_1349125893(f);
+  public static ChoiceAll defaultValue(FHIRDate f) {
+    return new ChoiceAll(f);
   }
 
-  public static Choice_1349125893 defaultValue(FHIRDateTime f) {
-    return new Choice_1349125893(f);
+  public static ChoiceAll defaultValue(FHIRDateTime f) {
+    return new ChoiceAll(f);
   }
 
-  public static Choice_1349125893 defaultValue(HumanName h) {
-    return new Choice_1349125893(h);
+  public static ChoiceAll defaultValue(HumanName h) {
+    return new ChoiceAll(h);
   }
 
-  public static Choice_1349125893 defaultValue(Identifier i) {
-    return new Choice_1349125893(i);
+  public static ChoiceAll defaultValue(Identifier i) {
+    return new ChoiceAll(i);
   }
 
-  public static Choice_1349125893 defaultValue(LocalTime l) {
-    return new Choice_1349125893(l);
+  public static ChoiceAll defaultValue(LocalTime l) {
+    return new ChoiceAll(l);
   }
 
-  public static Choice_1349125893 defaultValue(Meta m) {
-    return new Choice_1349125893(m);
+  public static ChoiceAll defaultValue(Meta m) {
+    return new ChoiceAll(m);
   }
 
-  public static Choice_1349125893 defaultValue(Money m) {
-    return new Choice_1349125893(m);
+  public static ChoiceAll defaultValue(Money m) {
+    return new ChoiceAll(m);
   }
 
-  public static Choice_1349125893 defaultValue(ParameterDefinition p) {
-    return new Choice_1349125893(p);
+  public static ChoiceAll defaultValue(ParameterDefinition p) {
+    return new ChoiceAll(p);
   }
 
-  public static Choice_1349125893 defaultValue(Period p) {
-    return new Choice_1349125893(p);
+  public static ChoiceAll defaultValue(Period p) {
+    return new ChoiceAll(p);
   }
 
-  public static Choice_1349125893 defaultValue(Quantity q) {
-    return new Choice_1349125893(q);
+  public static ChoiceAll defaultValue(Quantity q) {
+    return new ChoiceAll(q);
   }
 
-  public static Choice_1349125893 defaultValue(Range r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll defaultValue(Range r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 defaultValue(Ratio r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll defaultValue(Ratio r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 defaultValue(Reference r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll defaultValue(Reference r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 defaultValue(RelatedArtifact r) {
-    return new Choice_1349125893(r);
+  public static ChoiceAll defaultValue(RelatedArtifact r) {
+    return new ChoiceAll(r);
   }
 
-  public static Choice_1349125893 defaultValue(SampledData s) {
-    return new Choice_1349125893(s);
+  public static ChoiceAll defaultValue(SampledData s) {
+    return new ChoiceAll(s);
   }
 
-  public static Choice_1349125893 defaultValue(Signature s) {
-    return new Choice_1349125893(s);
+  public static ChoiceAll defaultValue(Signature s) {
+    return new ChoiceAll(s);
   }
 
-  public static Choice_1349125893 defaultValue(Timing t) {
-    return new Choice_1349125893(t);
+  public static ChoiceAll defaultValue(Timing t) {
+    return new ChoiceAll(t);
   }
 
-  public static Choice_1349125893 defaultValue(TriggerDefinition t) {
-    return new Choice_1349125893(t);
+  public static ChoiceAll defaultValue(TriggerDefinition t) {
+    return new ChoiceAll(t);
   }
 
-  public static Choice_1349125893 defaultValue(UUID u) {
-    return new Choice_1349125893(u);
+  public static ChoiceAll defaultValue(UUID u) {
+    return new ChoiceAll(u);
   }
 
-  public static Choice_1349125893 defaultValue(UsageContext u) {
-    return new Choice_1349125893(u);
+  public static ChoiceAll defaultValue(UsageContext u) {
+    return new ChoiceAll(u);
   }
 
-  public static Choice_1349125893 defaultValue(ZonedDateTime z) {
-    return new Choice_1349125893(z);
+  public static ChoiceAll defaultValue(ZonedDateTime z) {
+    return new ChoiceAll(z);
   }
 
-  public static Choice_1349125893 defaultValueCanonical(String s) {
-    return Choice_1349125893.Choice_1349125893Canonical(s);
+  public static ChoiceAll defaultValueCanonical(String s) {
+    return ChoiceAll.ChoiceAllCanonical(s);
   }
 
-  public static Choice_1349125893 defaultValueCode(String s) {
-    return Choice_1349125893.Choice_1349125893Code(s);
+  public static ChoiceAll defaultValueCode(String s) {
+    return ChoiceAll.ChoiceAllCode(s);
   }
 
-  public static Choice_1349125893 defaultValueId(String s) {
-    return Choice_1349125893.Choice_1349125893Id(s);
+  public static ChoiceAll defaultValueId(String s) {
+    return ChoiceAll.ChoiceAllId(s);
   }
 
-  public static Choice_1349125893 defaultValueInteger(Integer i) {
-    return Choice_1349125893.Choice_1349125893Int(i);
+  public static ChoiceAll defaultValueInteger(Integer i) {
+    return ChoiceAll.ChoiceAllInt(i);
   }
 
-  public static Choice_1349125893 defaultValueMarkdown(String s) {
-    return Choice_1349125893.Choice_1349125893Markdown(s);
+  public static ChoiceAll defaultValueMarkdown(String s) {
+    return ChoiceAll.ChoiceAllMarkdown(s);
   }
 
-  public static Choice_1349125893 defaultValueOid(String s) {
-    return Choice_1349125893.Choice_1349125893OID(s);
+  public static ChoiceAll defaultValueOid(String s) {
+    return ChoiceAll.ChoiceAllOID(s);
   }
 
-  public static Choice_1349125893 defaultValuePositiveInt(Integer i) {
-    return Choice_1349125893.Choice_1349125893PositiveInt(i);
+  public static ChoiceAll defaultValuePositiveInt(Integer i) {
+    return ChoiceAll.ChoiceAllPositiveInt(i);
   }
 
-  public static Choice_1349125893 defaultValueString(String s) {
-    return Choice_1349125893.Choice_1349125893String(s);
+  public static ChoiceAll defaultValueString(String s) {
+    return ChoiceAll.ChoiceAllString(s);
   }
 
-  public static Choice_1349125893 defaultValueUnsignedInt(Integer i) {
-    return Choice_1349125893.Choice_1349125893UnsignedInt(i);
+  public static ChoiceAll defaultValueUnsignedInt(Integer i) {
+    return ChoiceAll.ChoiceAllUnsignedInt(i);
   }
 
-  public static Choice_1349125893 defaultValueUri(String s) {
-    return Choice_1349125893.Choice_1349125893UriStr(s);
+  public static ChoiceAll defaultValueUri(String s) {
+    return ChoiceAll.ChoiceAllUriStr(s);
   }
 
-  public static Choice_1349125893 defaultValueUrl(String s) {
-    return Choice_1349125893.Choice_1349125893UrlStr(s);
+  public static ChoiceAll defaultValueUrl(String s) {
+    return ChoiceAll.ChoiceAllUrlStr(s);
   }
 
   public class Impl implements ElementDefinitionBuilder {
@@ -735,23 +735,23 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
     private Optional<String> _short = Optional.empty();
     private Collection<String> alias = Collections.emptyList();
     private Optional<String> comment = Optional.empty();
-    private Optional<Choice_1349125893> fixed = Optional.empty();
+    private Optional<ChoiceAll> fixed = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<String> sliceName = Optional.empty();
     private Optional<Integer> maxLength = Optional.empty();
     private Collection<String> condition = Collections.emptyList();
     private Optional<Boolean> isSummary = Optional.empty();
     private Optional<String> definition = Optional.empty();
-    private Optional<Choice_1349125893> pattern = Optional.empty();
+    private Optional<ChoiceAll> pattern = Optional.empty();
     private Optional<Boolean> isModifier = Optional.empty();
-    private Optional<Choice_0637176084> minValue = Optional.empty();
-    private Optional<Choice_0637176084> maxValue = Optional.empty();
+    private Optional<Choice_0603252906> minValue = Optional.empty();
+    private Optional<Choice_0603252906> maxValue = Optional.empty();
     private Optional<Boolean> mustSupport = Optional.empty();
     private Optional<String> requirements = Optional.empty();
     private Optional<String> orderMeaning = Optional.empty();
     private Collection<PROPERTY_REPRESENTATION> representation = Collections.emptyList();
     private Optional<ElementDefinition.Base> base = Optional.empty();
-    private Optional<Choice_1349125893> defaultValue = Optional.empty();
+    private Optional<ChoiceAll> defaultValue = Optional.empty();
     private Optional<String> contentReference = Optional.empty();
     private Optional<String> isModifierReason = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -861,7 +861,7 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      *     ZonedDateTime. To pass the value in, wrap with one of the ElementDefinitionBuilder.fixed
      *     static methods
      */
-    public ElementDefinitionBuilder.Impl withFixed(@NonNull Choice_1349125893 fixed) {
+    public ElementDefinitionBuilder.Impl withFixed(@NonNull ChoiceAll fixed) {
       this.fixed = Optional.of(fixed);
       return this;
     }
@@ -969,7 +969,7 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      *     ZonedDateTime. To pass the value in, wrap with one of the
      *     ElementDefinitionBuilder.pattern static methods
      */
-    public ElementDefinitionBuilder.Impl withPattern(@NonNull Choice_1349125893 pattern) {
+    public ElementDefinitionBuilder.Impl withPattern(@NonNull ChoiceAll pattern) {
       this.pattern = Optional.of(pattern);
       return this;
     }
@@ -992,7 +992,7 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      *     Integer, LocalTime, Quantity, ZonedDateTime. To pass the value in, wrap with one of the
      *     ElementDefinitionBuilder.minValue static methods
      */
-    public ElementDefinitionBuilder.Impl withMinValue(@NonNull Choice_0637176084 minValue) {
+    public ElementDefinitionBuilder.Impl withMinValue(@NonNull Choice_0603252906 minValue) {
       this.minValue = Optional.of(minValue);
       return this;
     }
@@ -1003,7 +1003,7 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      *     Integer, LocalTime, Quantity, ZonedDateTime. To pass the value in, wrap with one of the
      *     ElementDefinitionBuilder.maxValue static methods
      */
-    public ElementDefinitionBuilder.Impl withMaxValue(@NonNull Choice_0637176084 maxValue) {
+    public ElementDefinitionBuilder.Impl withMaxValue(@NonNull Choice_0603252906 maxValue) {
       this.maxValue = Optional.of(maxValue);
       return this;
     }
@@ -1082,7 +1082,7 @@ public interface ElementDefinitionBuilder extends BackboneElementBuilder {
      *     TriggerDefinition, UUID, UsageContext, ZonedDateTime. To pass the value in, wrap with one
      *     of the ElementDefinitionBuilder.defaultValue static methods
      */
-    public ElementDefinitionBuilder.Impl withDefaultValue(@NonNull Choice_1349125893 defaultValue) {
+    public ElementDefinitionBuilder.Impl withDefaultValue(@NonNull ChoiceAll defaultValue) {
       this.defaultValue = Optional.of(defaultValue);
       return this;
     }

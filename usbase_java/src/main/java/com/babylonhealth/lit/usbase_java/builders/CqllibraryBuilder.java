@@ -57,12 +57,12 @@ public interface CqllibraryBuilder extends LibraryBuilder {
     return new Impl(_type.build(), status);
   }
 
-  public static Choice01025009075 subject(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 subject(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements CqllibraryBuilder {
@@ -97,7 +97,7 @@ public interface CqllibraryBuilder extends LibraryBuilder {
     private Optional<String> copyright = Optional.empty();
     private Collection<ParameterDefinition> parameter = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<Choice01025009075> subject = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private Optional<String> description = Optional.empty();
     private Optional<Boolean> experimental = Optional.empty();
@@ -497,7 +497,7 @@ public interface CqllibraryBuilder extends LibraryBuilder {
      *     CodeableConcept, Reference. To pass the value in, wrap with one of the
      *     CqllibraryBuilder.subject static methods
      */
-    public CqllibraryBuilder.Impl withSubject(@NonNull Choice01025009075 subject) {
+    public CqllibraryBuilder.Impl withSubject(@NonNull ChoiceCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }

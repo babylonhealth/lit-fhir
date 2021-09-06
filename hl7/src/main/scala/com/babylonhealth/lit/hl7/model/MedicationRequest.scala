@@ -30,7 +30,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicationRequest extends CompanionFor[MedicationRequest] {
-  implicit def summonObjectAndCompanionMedicationRequest_689209929(
+  implicit def summonObjectAndCompanionMedicationRequest947949931(
       o: MedicationRequest): ObjectAndCompanion[MedicationRequest, MedicationRequest.type] = ObjectAndCompanion(o, this)
   override type ResourceType = MedicationRequest
   override type ParentType   = MedicationRequest
@@ -38,13 +38,13 @@ object MedicationRequest extends CompanionFor[MedicationRequest] {
   override val parentType: CompanionFor[ParentType] = MedicationRequest
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/MedicationRequest")
   object DispenseRequest extends CompanionFor[DispenseRequest] {
-    implicit def summonObjectAndCompanionDispenseRequest_167184552(
+    implicit def summonObjectAndCompanionDispenseRequest_1039920832(
         o: DispenseRequest): ObjectAndCompanion[DispenseRequest, DispenseRequest.type] = ObjectAndCompanion(o, this)
     override type ResourceType = DispenseRequest
     override type ParentType   = DispenseRequest
     override val parentType: CompanionFor[ResourceType] = DispenseRequest
     object InitialFill extends CompanionFor[InitialFill] {
-      implicit def summonObjectAndCompanionInitialFill440401631(
+      implicit def summonObjectAndCompanionInitialFill1282729284(
           o: InitialFill): ObjectAndCompanion[InitialFill, InitialFill.type] = ObjectAndCompanion(o, this)
       override type ResourceType = InitialFill
       override type ParentType   = InitialFill
@@ -232,12 +232,12 @@ object MedicationRequest extends CompanionFor[MedicationRequest] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Substitution extends CompanionFor[Substitution] {
-    implicit def summonObjectAndCompanionSubstitution_514322510(
+    implicit def summonObjectAndCompanionSubstitution_1039920832(
         o: Substitution): ObjectAndCompanion[Substitution, Substitution.type] = ObjectAndCompanion(o, this)
     override type ResourceType = Substitution
     override type ParentType   = Substitution
     override val parentType: CompanionFor[ResourceType] = Substitution
-    type AllowedChoice = Choice[Union_1768247138]
+    type AllowedChoice = Choice[UnionBooleanOrCodeableConcept]
     def apply(
         id: Option[String] = None,
         reason: Option[CodeableConcept] = None,
@@ -263,7 +263,7 @@ object MedicationRequest extends CompanionFor[MedicationRequest] {
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val allowed: FHIRComponentFieldMeta[Substitution.AllowedChoice] =
-      FHIRComponentFieldMeta("allowed", lTagOf[Substitution.AllowedChoice], true, lTagOf[Union_1768247138])
+      FHIRComponentFieldMeta("allowed", lTagOf[Substitution.AllowedChoice], true, lTagOf[UnionBooleanOrCodeableConcept])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val fieldsMeta: Seq[FHIRComponentFieldMeta[_]] = Seq(id, reason, extension, allowed, modifierExtension)
@@ -284,7 +284,7 @@ object MedicationRequest extends CompanionFor[MedicationRequest] {
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[Option[CodeableConcept]]("reason", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union_1768247138]("allowed"),
+            cursor.decodeRef[UnionBooleanOrCodeableConcept]("allowed"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             decodeAttributes(cursor)
           )
@@ -299,8 +299,8 @@ object MedicationRequest extends CompanionFor[MedicationRequest] {
       override val modifierExtension: LitSeq[Extension] = LitSeq.empty,
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
-  type ReportedChoice   = Choice[Union_1524702593]
-  type MedicationChoice = Choice[Union01025009075]
+  type ReportedChoice   = Choice[UnionBooleanOrReference]
+  type MedicationChoice = Choice[UnionCodeableConceptOrReference]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -429,7 +429,7 @@ object MedicationRequest extends CompanionFor[MedicationRequest] {
   val reasonCode: FHIRComponentFieldMeta[LitSeq[CodeableConcept]] =
     FHIRComponentFieldMeta("reasonCode", lTagOf[LitSeq[CodeableConcept]], false, lTagOf[CodeableConcept])
   val reported: FHIRComponentFieldMeta[Option[MedicationRequest.ReportedChoice]] =
-    FHIRComponentFieldMeta("reported", lTagOf[Option[MedicationRequest.ReportedChoice]], true, lTagOf[Union_1524702593])
+    FHIRComponentFieldMeta("reported", lTagOf[Option[MedicationRequest.ReportedChoice]], true, lTagOf[UnionBooleanOrReference])
   val statusReason: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("statusReason", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val doNotPerform: FHIRComponentFieldMeta[Option[Boolean]] =
@@ -439,7 +439,11 @@ object MedicationRequest extends CompanionFor[MedicationRequest] {
   val implicitRules: FHIRComponentFieldMeta[Option[UriStr]] =
     FHIRComponentFieldMeta("implicitRules", lTagOf[Option[UriStr]], false, lTagOf[UriStr])
   val medication: FHIRComponentFieldMeta[MedicationRequest.MedicationChoice] =
-    FHIRComponentFieldMeta("medication", lTagOf[MedicationRequest.MedicationChoice], true, lTagOf[Union01025009075])
+    FHIRComponentFieldMeta(
+      "medication",
+      lTagOf[MedicationRequest.MedicationChoice],
+      true,
+      lTagOf[UnionCodeableConceptOrReference])
   val performerType: FHIRComponentFieldMeta[Option[CodeableConcept]] =
     FHIRComponentFieldMeta("performerType", lTagOf[Option[CodeableConcept]], false, lTagOf[CodeableConcept])
   val detectedIssue: FHIRComponentFieldMeta[LitSeq[Reference]] =
@@ -643,12 +647,12 @@ object MedicationRequest extends CompanionFor[MedicationRequest] {
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[FHIRDateTime]]("authoredOn", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union_1524702593]("reported"),
+          cursor.decodeOptRef[UnionBooleanOrReference]("reported"),
           cursor.decodeAs[Option[CodeableConcept]]("statusReason", Some(None)),
           cursor.decodeAs[Option[Boolean]]("doNotPerform", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("eventHistory", Some(LitSeq.empty)),
           cursor.decodeAs[Option[UriStr]]("implicitRules", Some(None)),
-          cursor.decodeRef[Union01025009075]("medication"),
+          cursor.decodeRef[UnionCodeableConceptOrReference]("medication"),
           cursor.decodeAs[Option[CodeableConcept]]("performerType", Some(None)),
           cursor.decodeAs[LitSeq[Reference]]("detectedIssue", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Reference]]("reasonReference", Some(LitSeq.empty)),

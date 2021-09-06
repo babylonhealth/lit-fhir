@@ -53,38 +53,38 @@ public interface ValueSet_Expansion_ParameterBuilder {
     return new Impl(name);
   }
 
-  public static Choice_1427970408 value(BigDecimal b) {
-    return new Choice_1427970408(b);
+  public static Choice_0865080338 value(BigDecimal b) {
+    return new Choice_0865080338(b);
   }
 
-  public static Choice_1427970408 value(Boolean b) {
-    return new Choice_1427970408(b);
+  public static Choice_0865080338 value(Boolean b) {
+    return new Choice_0865080338(b);
   }
 
-  public static Choice_1427970408 value(FHIRDateTime f) {
-    return new Choice_1427970408(f);
+  public static Choice_0865080338 value(FHIRDateTime f) {
+    return new Choice_0865080338(f);
   }
 
-  public static Choice_1427970408 value(Integer i) {
-    return new Choice_1427970408(i);
+  public static Choice_0865080338 value(Integer i) {
+    return new Choice_0865080338(i);
   }
 
-  public static Choice_1427970408 valueCode(String s) {
-    return Choice_1427970408.Choice_1427970408Code(s);
+  public static Choice_0865080338 valueCode(String s) {
+    return Choice_0865080338.Choice_0865080338Code(s);
   }
 
-  public static Choice_1427970408 valueString(String s) {
-    return Choice_1427970408.Choice_1427970408String(s);
+  public static Choice_0865080338 valueString(String s) {
+    return Choice_0865080338.Choice_0865080338String(s);
   }
 
-  public static Choice_1427970408 valueUri(String s) {
-    return Choice_1427970408.Choice_1427970408UriStr(s);
+  public static Choice_0865080338 valueUri(String s) {
+    return Choice_0865080338.Choice_0865080338UriStr(s);
   }
 
   public class Impl implements ValueSet_Expansion_ParameterBuilder {
     private Optional<String> id = Optional.empty();
     private String name;
-    private Optional<Choice_1427970408> value = Optional.empty();
+    private Optional<Choice_0865080338> value = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -112,7 +112,7 @@ public interface ValueSet_Expansion_ParameterBuilder {
      *     FHIRDateTime, Integer. To pass the value in, wrap with one of the
      *     ValueSet_Expansion_ParameterBuilder.value static methods
      */
-    public ValueSet_Expansion_ParameterBuilder.Impl withValue(@NonNull Choice_1427970408 value) {
+    public ValueSet_Expansion_ParameterBuilder.Impl withValue(@NonNull Choice_0865080338 value) {
       this.value = Optional.of(value);
       return this;
     }

@@ -45,27 +45,27 @@ import static java.util.stream.Collectors.toList;
 public interface Substance_IngredientBuilder {
   public Substance.Ingredient build();
 
-  public static Impl init(@NonNull Choice01025009075 substance) {
+  public static Impl init(@NonNull ChoiceCodeableConceptOrReference substance) {
     return new Impl(substance);
   }
 
-  public static Impl builder(@NonNull Choice01025009075 substance) {
+  public static Impl builder(@NonNull ChoiceCodeableConceptOrReference substance) {
     return new Impl(substance);
   }
 
-  public static Choice01025009075 substance(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference substance(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 substance(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference substance(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements Substance_IngredientBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Ratio> quantity = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Choice01025009075 substance;
+    private ChoiceCodeableConceptOrReference substance;
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -75,7 +75,7 @@ public interface Substance_IngredientBuilder {
      *     To pass the value in, wrap with one of the Substance_IngredientBuilder.substance static
      *     methods
      */
-    public Impl(@NonNull Choice01025009075 substance) {
+    public Impl(@NonNull ChoiceCodeableConceptOrReference substance) {
       this.substance = substance;
     }
 

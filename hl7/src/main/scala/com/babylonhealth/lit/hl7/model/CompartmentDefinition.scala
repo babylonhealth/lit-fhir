@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
-  implicit def summonObjectAndCompanionCompartmentDefinition_1264563451(
+  implicit def summonObjectAndCompanionCompartmentDefinition_1125546384(
       o: CompartmentDefinition): ObjectAndCompanion[CompartmentDefinition, CompartmentDefinition.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = CompartmentDefinition
@@ -33,7 +33,7 @@ object CompartmentDefinition extends CompanionFor[CompartmentDefinition] {
   override val parentType: CompanionFor[ParentType] = CompartmentDefinition
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/CompartmentDefinition")
   object Resource extends CompanionFor[Resource] {
-    implicit def summonObjectAndCompanionResource24588714(o: Resource): ObjectAndCompanion[Resource, Resource.type] =
+    implicit def summonObjectAndCompanionResource_1719355830(o: Resource): ObjectAndCompanion[Resource, Resource.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Resource
     override type ParentType   = Resource

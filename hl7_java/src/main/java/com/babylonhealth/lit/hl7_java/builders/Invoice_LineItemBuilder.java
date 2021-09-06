@@ -45,27 +45,27 @@ import static java.util.stream.Collectors.toList;
 public interface Invoice_LineItemBuilder {
   public Invoice.LineItem build();
 
-  public static Impl init(@NonNull Choice01025009075 chargeItem) {
+  public static Impl init(@NonNull ChoiceCodeableConceptOrReference chargeItem) {
     return new Impl(chargeItem);
   }
 
-  public static Impl builder(@NonNull Choice01025009075 chargeItem) {
+  public static Impl builder(@NonNull ChoiceCodeableConceptOrReference chargeItem) {
     return new Impl(chargeItem);
   }
 
-  public static Choice01025009075 chargeItem(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference chargeItem(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 chargeItem(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference chargeItem(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements Invoice_LineItemBuilder {
     private Optional<String> id = Optional.empty();
     private Optional<Integer> sequence = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
-    private Choice01025009075 chargeItem;
+    private ChoiceCodeableConceptOrReference chargeItem;
     private Collection<Extension> modifierExtension = Collections.emptyList();
     private Collection<Invoice$LineItem$PriceComponent> priceComponent = Collections.emptyList();
 
@@ -76,7 +76,7 @@ public interface Invoice_LineItemBuilder {
      *     Reference. To pass the value in, wrap with one of the Invoice_LineItemBuilder.chargeItem
      *     static methods
      */
-    public Impl(@NonNull Choice01025009075 chargeItem) {
+    public Impl(@NonNull ChoiceCodeableConceptOrReference chargeItem) {
       this.chargeItem = chargeItem;
     }
 

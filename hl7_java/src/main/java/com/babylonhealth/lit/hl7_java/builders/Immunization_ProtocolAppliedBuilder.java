@@ -45,28 +45,28 @@ import static java.util.stream.Collectors.toList;
 public interface Immunization_ProtocolAppliedBuilder {
   public Immunization.ProtocolApplied build();
 
-  public static Impl init(@NonNull Choice_0839638734 doseNumber) {
+  public static Impl init(@NonNull ChoicePositiveIntOrString doseNumber) {
     return new Impl(doseNumber);
   }
 
-  public static Impl builder(@NonNull Choice_0839638734 doseNumber) {
+  public static Impl builder(@NonNull ChoicePositiveIntOrString doseNumber) {
     return new Impl(doseNumber);
   }
 
-  public static Choice_0839638734 doseNumber(Integer i) {
-    return new Choice_0839638734(i);
+  public static ChoicePositiveIntOrString doseNumber(Integer i) {
+    return new ChoicePositiveIntOrString(i);
   }
 
-  public static Choice_0839638734 doseNumber(String s) {
-    return new Choice_0839638734(s);
+  public static ChoicePositiveIntOrString doseNumber(String s) {
+    return new ChoicePositiveIntOrString(s);
   }
 
-  public static Choice_0839638734 seriesDoses(Integer i) {
-    return new Choice_0839638734(i);
+  public static ChoicePositiveIntOrString seriesDoses(Integer i) {
+    return new ChoicePositiveIntOrString(i);
   }
 
-  public static Choice_0839638734 seriesDoses(String s) {
-    return new Choice_0839638734(s);
+  public static ChoicePositiveIntOrString seriesDoses(String s) {
+    return new ChoicePositiveIntOrString(s);
   }
 
   public class Impl implements Immunization_ProtocolAppliedBuilder {
@@ -75,8 +75,8 @@ public interface Immunization_ProtocolAppliedBuilder {
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Reference> authority = Optional.empty();
     private Collection<CodeableConcept> targetDisease = Collections.emptyList();
-    private Choice_0839638734 doseNumber;
-    private Optional<Choice_0839638734> seriesDoses = Optional.empty();
+    private ChoicePositiveIntOrString doseNumber;
+    private Optional<ChoicePositiveIntOrString> seriesDoses = Optional.empty();
     private Collection<Extension> modifierExtension = Collections.emptyList();
 
     /**
@@ -86,7 +86,7 @@ public interface Immunization_ProtocolAppliedBuilder {
      *     the value in, wrap with one of the Immunization_ProtocolAppliedBuilder.doseNumber static
      *     methods
      */
-    public Impl(@NonNull Choice_0839638734 doseNumber) {
+    public Impl(@NonNull ChoicePositiveIntOrString doseNumber) {
       this.doseNumber = doseNumber;
     }
 
@@ -167,7 +167,7 @@ public interface Immunization_ProtocolAppliedBuilder {
      *     methods
      */
     public Immunization_ProtocolAppliedBuilder.Impl withSeriesDoses(
-        @NonNull Choice_0839638734 seriesDoses) {
+        @NonNull ChoicePositiveIntOrString seriesDoses) {
       this.seriesDoses = Optional.of(seriesDoses);
       return this;
     }

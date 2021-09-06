@@ -21,7 +21,7 @@ import com.babylonhealth.lit.{ core }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Distance extends CompanionFor[Distance] {
-  implicit def summonObjectAndCompanionDistance952422758(o: Distance): ObjectAndCompanion[Distance, Distance.type] =
+  implicit def summonObjectAndCompanionDistance1598637802(o: Distance): ObjectAndCompanion[Distance, Distance.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Distance
   override type ParentType   = Distance

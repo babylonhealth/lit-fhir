@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Shareablevalueset extends CompanionFor[Shareablevalueset] {
-  implicit def summonObjectAndCompanionShareablevalueset1109654801(
+  implicit def summonObjectAndCompanionShareablevalueset_1787656491(
       o: Shareablevalueset): ObjectAndCompanion[Shareablevalueset, Shareablevalueset.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ValueSet
   override type ParentType   = ValueSet

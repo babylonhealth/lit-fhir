@@ -74,12 +74,12 @@ public interface ShareablelibraryBuilder extends LibraryBuilder {
         url, name, _type.build(), status, version, publisher, description, experimental);
   }
 
-  public static Choice01025009075 subject(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference subject(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 subject(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference subject(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements ShareablelibraryBuilder {
@@ -114,7 +114,7 @@ public interface ShareablelibraryBuilder extends LibraryBuilder {
     private Optional<String> copyright = Optional.empty();
     private Collection<ParameterDefinition> parameter = Collections.emptyList();
     private Collection<Identifier> identifier = Collections.emptyList();
-    private Optional<Choice01025009075> subject = Optional.empty();
+    private Optional<ChoiceCodeableConceptOrReference> subject = Optional.empty();
     private Collection<UsageContext> useContext = Collections.emptyList();
     private String description;
     private Boolean experimental;
@@ -512,7 +512,8 @@ public interface ShareablelibraryBuilder extends LibraryBuilder {
      *     CodeableConcept, Reference. To pass the value in, wrap with one of the
      *     ShareablelibraryBuilder.subject static methods
      */
-    public ShareablelibraryBuilder.Impl withSubject(@NonNull Choice01025009075 subject) {
+    public ShareablelibraryBuilder.Impl withSubject(
+        @NonNull ChoiceCodeableConceptOrReference subject) {
       this.subject = Optional.of(subject);
       return this;
     }

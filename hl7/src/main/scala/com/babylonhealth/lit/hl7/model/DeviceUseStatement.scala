@@ -24,14 +24,14 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object DeviceUseStatement extends CompanionFor[DeviceUseStatement] {
-  implicit def summonObjectAndCompanionDeviceUseStatement_1788764606(
+  implicit def summonObjectAndCompanionDeviceUseStatement899922387(
       o: DeviceUseStatement): ObjectAndCompanion[DeviceUseStatement, DeviceUseStatement.type] = ObjectAndCompanion(o, this)
   override type ResourceType = DeviceUseStatement
   override type ParentType   = DeviceUseStatement
   override val baseType: CompanionFor[ResourceType] = DeviceUseStatement
   override val parentType: CompanionFor[ParentType] = DeviceUseStatement
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/DeviceUseStatement")
-  type TimingChoice = Choice[Union00609373412]
+  type TimingChoice = Choice[UnionDateTimeOrPeriodOrTiming]
   def apply(
       id: Option[String] = None,
       meta: Option[Meta] = None,
@@ -106,7 +106,7 @@ object DeviceUseStatement extends CompanionFor[DeviceUseStatement] {
   val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
     FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
   val timing: FHIRComponentFieldMeta[Option[DeviceUseStatement.TimingChoice]] =
-    FHIRComponentFieldMeta("timing", lTagOf[Option[DeviceUseStatement.TimingChoice]], true, lTagOf[Union00609373412])
+    FHIRComponentFieldMeta("timing", lTagOf[Option[DeviceUseStatement.TimingChoice]], true, lTagOf[UnionDateTimeOrPeriodOrTiming])
   val identifier: FHIRComponentFieldMeta[LitSeq[Identifier]] =
     FHIRComponentFieldMeta("identifier", lTagOf[LitSeq[Identifier]], false, lTagOf[Identifier])
   val recordedOn: FHIRComponentFieldMeta[Option[FHIRDateTime]] =
@@ -238,7 +238,7 @@ object DeviceUseStatement extends CompanionFor[DeviceUseStatement] {
           cursor.decodeAs[Option[CodeableConcept]]("bodySite", Some(None)),
           cursor.decodeAs[LitSeq[Resource]]("contained", Some(LitSeq.empty)),
           cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-          cursor.decodeOptRef[Union00609373412]("timing"),
+          cursor.decodeOptRef[UnionDateTimeOrPeriodOrTiming]("timing"),
           cursor.decodeAs[LitSeq[Identifier]]("identifier", Some(LitSeq.empty)),
           cursor.decodeAs[Option[FHIRDateTime]]("recordedOn", Some(None)),
           cursor.decodeAs[LitSeq[CodeableConcept]]("reasonCode", Some(LitSeq.empty)),

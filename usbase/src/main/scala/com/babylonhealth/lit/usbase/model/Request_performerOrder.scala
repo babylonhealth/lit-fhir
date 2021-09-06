@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Request_performerOrder extends CompanionFor[Request_performerOrder] {
-  implicit def summonObjectAndCompanionRequest_performerOrder2103105909(
+  implicit def summonObjectAndCompanionRequest_performerOrder_74690253(
       o: Request_performerOrder): ObjectAndCompanion[Request_performerOrder, Request_performerOrder.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

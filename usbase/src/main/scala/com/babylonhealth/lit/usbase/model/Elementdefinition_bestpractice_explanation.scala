@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_bestpractice_explanation extends CompanionFor[Elementdefinition_bestpractice_explanation] {
-  implicit def summonObjectAndCompanionElementdefinition_bestpractice_explanation175261633(
+  implicit def summonObjectAndCompanionElementdefinition_bestpractice_explanation_1734245186(
       o: Elementdefinition_bestpractice_explanation): ObjectAndCompanion[Elementdefinition_bestpractice_explanation, Elementdefinition_bestpractice_explanation.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Iso21090_ADXP_streetNameBase extends CompanionFor[Iso21090_ADXP_streetNameBase] {
-  implicit def summonObjectAndCompanionIso21090_ADXP_streetNameBase480330624(
+  implicit def summonObjectAndCompanionIso21090_ADXP_streetNameBase573801372(
       o: Iso21090_ADXP_streetNameBase): ObjectAndCompanion[Iso21090_ADXP_streetNameBase, Iso21090_ADXP_streetNameBase.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

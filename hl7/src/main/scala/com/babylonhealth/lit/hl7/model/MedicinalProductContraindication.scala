@@ -23,7 +23,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object MedicinalProductContraindication extends CompanionFor[MedicinalProductContraindication] {
-  implicit def summonObjectAndCompanionMedicinalProductContraindication_547818281(
+  implicit def summonObjectAndCompanionMedicinalProductContraindication_2025180629(
       o: MedicinalProductContraindication): ObjectAndCompanion[MedicinalProductContraindication, MedicinalProductContraindication.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = MedicinalProductContraindication
@@ -32,12 +32,12 @@ object MedicinalProductContraindication extends CompanionFor[MedicinalProductCon
   override val parentType: CompanionFor[ParentType] = MedicinalProductContraindication
   override val profileUrl: Option[String] = Some("http://hl7.org/fhir/StructureDefinition/MedicinalProductContraindication")
   object OtherTherapy extends CompanionFor[OtherTherapy] {
-    implicit def summonObjectAndCompanionOtherTherapy_1942171909(
+    implicit def summonObjectAndCompanionOtherTherapy1543345324(
         o: OtherTherapy): ObjectAndCompanion[OtherTherapy, OtherTherapy.type] = ObjectAndCompanion(o, this)
     override type ResourceType = OtherTherapy
     override type ParentType   = OtherTherapy
     override val parentType: CompanionFor[ResourceType] = OtherTherapy
-    type MedicationChoice = Choice[Union01025009075]
+    type MedicationChoice = Choice[UnionCodeableConceptOrReference]
     def apply(
         id: Option[String] = None,
         extension: LitSeq[Extension] = LitSeq.empty,
@@ -61,7 +61,7 @@ object MedicinalProductContraindication extends CompanionFor[MedicinalProductCon
     val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val medication: FHIRComponentFieldMeta[OtherTherapy.MedicationChoice] =
-      FHIRComponentFieldMeta("medication", lTagOf[OtherTherapy.MedicationChoice], true, lTagOf[Union01025009075])
+      FHIRComponentFieldMeta("medication", lTagOf[OtherTherapy.MedicationChoice], true, lTagOf[UnionCodeableConceptOrReference])
     val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
       FHIRComponentFieldMeta("modifierExtension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
     val therapyRelationshipType: FHIRComponentFieldMeta[CodeableConcept] =
@@ -83,7 +83,7 @@ object MedicinalProductContraindication extends CompanionFor[MedicinalProductCon
           new OtherTherapy(
             cursor.decodeAs[Option[String]]("id", Some(None)),
             cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
-            cursor.decodeRef[Union01025009075]("medication"),
+            cursor.decodeRef[UnionCodeableConceptOrReference]("medication"),
             cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
             cursor.decodeAs[CodeableConcept]("therapyRelationshipType", None),
             decodeAttributes(cursor)

@@ -49,33 +49,35 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
   public DeviceRequest build();
 
   public static Impl init(
-      REQUEST_INTENT intent, @NonNull Choice01025009075 code, Reference subject) {
+      REQUEST_INTENT intent, @NonNull ChoiceCodeableConceptOrReference code, Reference subject) {
     return new Impl(intent, code, subject);
   }
 
   public static Impl builder(
-      REQUEST_INTENT intent, @NonNull Choice01025009075 code, ReferenceBuilder subject) {
+      REQUEST_INTENT intent,
+      @NonNull ChoiceCodeableConceptOrReference code,
+      ReferenceBuilder subject) {
     return new Impl(intent, code, subject.build());
   }
 
-  public static Choice01025009075 code(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference code(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 code(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference code(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
-  public static Choice00609373412 occurrence(FHIRDateTime f) {
-    return new Choice00609373412(f);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriodOrTiming(f);
   }
 
-  public static Choice00609373412 occurrence(Period p) {
-    return new Choice00609373412(p);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Period p) {
+    return new ChoiceDateTimeOrPeriodOrTiming(p);
   }
 
-  public static Choice00609373412 occurrence(Timing t) {
-    return new Choice00609373412(t);
+  public static ChoiceDateTimeOrPeriodOrTiming occurrence(Timing t) {
+    return new ChoiceDateTimeOrPeriodOrTiming(t);
   }
 
   public class Impl implements DeviceRequestBuilder {
@@ -86,7 +88,7 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     private Optional<REQUEST_STATUS> status = Optional.empty();
     private REQUEST_INTENT intent;
     private Collection<Reference> basedOn = Collections.emptyList();
-    private Choice01025009075 code;
+    private ChoiceCodeableConceptOrReference code;
     private Reference subject;
     private Optional<LANGUAGES> language = Optional.empty();
     private Optional<REQUEST_PRIORITY> priority = Optional.empty();
@@ -101,7 +103,7 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
     private Collection<Reference> priorRequest = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private Optional<Choice00609373412> occurrence = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriodOrTiming> occurrence = Optional.empty();
     private Optional<CodeableConcept> performerType = Optional.empty();
     private Collection<Reference> supportingInfo = Collections.emptyList();
     private Collection<String> instantiatesUri = Collections.emptyList();
@@ -121,7 +123,8 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
      *     DeviceRequestBuilder.code static methods
      * @param subject - The patient who will use the device.
      */
-    public Impl(REQUEST_INTENT intent, @NonNull Choice01025009075 code, Reference subject) {
+    public Impl(
+        REQUEST_INTENT intent, @NonNull ChoiceCodeableConceptOrReference code, Reference subject) {
       this.intent = intent;
       this.code = code;
       this.subject = subject;
@@ -403,7 +406,8 @@ public interface DeviceRequestBuilder extends DomainResourceBuilder {
      *     Timing. To pass the value in, wrap with one of the DeviceRequestBuilder.occurrence static
      *     methods
      */
-    public DeviceRequestBuilder.Impl withOccurrence(@NonNull Choice00609373412 occurrence) {
+    public DeviceRequestBuilder.Impl withOccurrence(
+        @NonNull ChoiceDateTimeOrPeriodOrTiming occurrence) {
       this.occurrence = Optional.of(occurrence);
       return this;
     }

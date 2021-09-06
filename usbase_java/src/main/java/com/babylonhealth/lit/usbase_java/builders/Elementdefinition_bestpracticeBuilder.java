@@ -48,25 +48,25 @@ import static java.util.stream.Collectors.toList;
 public interface Elementdefinition_bestpracticeBuilder extends ExtensionBuilder {
   public Elementdefinition_bestpractice build();
 
-  public static Impl init(@NonNull Choice_1768247138 value) {
+  public static Impl init(@NonNull ChoiceBooleanOrCodeableConcept value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice_1768247138 value) {
+  public static Impl builder(@NonNull ChoiceBooleanOrCodeableConcept value) {
     return new Impl(value);
   }
 
-  public static Choice_1768247138 value(Boolean b) {
-    return new Choice_1768247138(b);
+  public static ChoiceBooleanOrCodeableConcept value(Boolean b) {
+    return new ChoiceBooleanOrCodeableConcept(b);
   }
 
-  public static Choice_1768247138 value(CodeableConcept c) {
-    return new Choice_1768247138(c);
+  public static ChoiceBooleanOrCodeableConcept value(CodeableConcept c) {
+    return new ChoiceBooleanOrCodeableConcept(c);
   }
 
   public class Impl implements Elementdefinition_bestpracticeBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice_1768247138 value;
+    private ChoiceBooleanOrCodeableConcept value;
 
     /**
      * Required fields for {@link Elementdefinition_bestpractice}
@@ -76,7 +76,7 @@ public interface Elementdefinition_bestpracticeBuilder extends ExtensionBuilder 
      *     field. Type should be one of Boolean, CodeableConcept. To pass the value in, wrap with
      *     one of the Elementdefinition_bestpracticeBuilder.value static methods
      */
-    public Impl(@NonNull Choice_1768247138 value) {
+    public Impl(@NonNull ChoiceBooleanOrCodeableConcept value) {
       this.value = value;
     }
 

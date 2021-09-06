@@ -31,7 +31,7 @@ import com.babylonhealth.lit.{ core, hl7 }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object ImplementationGuide extends CompanionFor[ImplementationGuide] {
-  implicit def summonObjectAndCompanionImplementationGuide_1287252645(
+  implicit def summonObjectAndCompanionImplementationGuide1175349333(
       o: ImplementationGuide): ObjectAndCompanion[ImplementationGuide, ImplementationGuide.type] = ObjectAndCompanion(o, this)
   override type ResourceType = ImplementationGuide
   override type ParentType   = ImplementationGuide
@@ -39,18 +39,18 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
   override val parentType: CompanionFor[ParentType] = ImplementationGuide
   override val profileUrl: Option[String]           = Some("http://hl7.org/fhir/StructureDefinition/ImplementationGuide")
   object Definition extends CompanionFor[Definition] {
-    implicit def summonObjectAndCompanionDefinition_24755189(o: Definition): ObjectAndCompanion[Definition, Definition.type] =
+    implicit def summonObjectAndCompanionDefinition_1474442092(o: Definition): ObjectAndCompanion[Definition, Definition.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Definition
     override type ParentType   = Definition
     override val parentType: CompanionFor[ResourceType] = Definition
     object Page extends CompanionFor[Page] {
-      implicit def summonObjectAndCompanionPage_1408835538(o: Page): ObjectAndCompanion[Page, Page.type] =
+      implicit def summonObjectAndCompanionPage_926611152(o: Page): ObjectAndCompanion[Page, Page.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Page
       override type ParentType   = Page
       override val parentType: CompanionFor[ResourceType] = Page
-      type NameChoice = Choice[Union01831019594]
+      type NameChoice = Choice[UnionReferenceOrUrl]
       def apply(
           id: Option[String] = None,
           page: LitSeq[ImplementationGuide.Definition.Page] = LitSeq.empty,
@@ -84,7 +84,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       val title: FHIRComponentFieldMeta[String] =
         FHIRComponentFieldMeta("title", lTagOf[String], false, lTagOf[String])
       val name: FHIRComponentFieldMeta[Page.NameChoice] =
-        FHIRComponentFieldMeta("name", lTagOf[Page.NameChoice], true, lTagOf[Union01831019594])
+        FHIRComponentFieldMeta("name", lTagOf[Page.NameChoice], true, lTagOf[UnionReferenceOrUrl])
       val extension: FHIRComponentFieldMeta[LitSeq[Extension]] =
         FHIRComponentFieldMeta("extension", lTagOf[LitSeq[Extension]], false, lTagOf[Extension])
       val generation: FHIRComponentFieldMeta[GUIDE_PAGE_GENERATION] =
@@ -111,7 +111,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[LitSeq[ImplementationGuide.Definition.Page]]("page", Some(LitSeq.empty)),
               cursor.decodeAs[String]("title", None),
-              cursor.decodeRef[Union01831019594]("name"),
+              cursor.decodeRef[UnionReferenceOrUrl]("name"),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[GUIDE_PAGE_GENERATION]("generation", None),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
@@ -131,7 +131,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Grouping extends CompanionFor[Grouping] {
-      implicit def summonObjectAndCompanionGrouping_1891537565(o: Grouping): ObjectAndCompanion[Grouping, Grouping.type] =
+      implicit def summonObjectAndCompanionGrouping_926611152(o: Grouping): ObjectAndCompanion[Grouping, Grouping.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Grouping
       override type ParentType   = Grouping
@@ -197,12 +197,12 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Resource extends CompanionFor[Resource] {
-      implicit def summonObjectAndCompanionResource_1972596763(o: Resource): ObjectAndCompanion[Resource, Resource.type] =
+      implicit def summonObjectAndCompanionResource_926611152(o: Resource): ObjectAndCompanion[Resource, Resource.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Resource
       override type ParentType   = Resource
       override val parentType: CompanionFor[ResourceType] = Resource
-      type ExampleChoice = Choice[Union00683246261]
+      type ExampleChoice = Choice[UnionBooleanOrCanonical]
       def apply(
           id: Option[String] = None,
           name: Option[String] = None,
@@ -238,7 +238,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       val reference: FHIRComponentFieldMeta[Reference] =
         FHIRComponentFieldMeta("reference", lTagOf[Reference], false, lTagOf[Reference])
       val example: FHIRComponentFieldMeta[Option[Resource.ExampleChoice]] =
-        FHIRComponentFieldMeta("example", lTagOf[Option[Resource.ExampleChoice]], true, lTagOf[Union00683246261])
+        FHIRComponentFieldMeta("example", lTagOf[Option[Resource.ExampleChoice]], true, lTagOf[UnionBooleanOrCanonical])
       val groupingId: FHIRComponentFieldMeta[Option[Id]] =
         FHIRComponentFieldMeta("groupingId", lTagOf[Option[Id]], false, lTagOf[Id])
       val fhirVersion: FHIRComponentFieldMeta[LitSeq[FHIR_VERSION]] =
@@ -271,7 +271,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
               cursor.decodeAs[Option[String]]("name", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[Reference]("reference", None),
-              cursor.decodeOptRef[Union00683246261]("example"),
+              cursor.decodeOptRef[UnionBooleanOrCanonical]("example"),
               cursor.decodeAs[Option[Id]]("groupingId", Some(None)),
               cursor.decodeAs[LitSeq[FHIR_VERSION]]("fhirVersion", Some(LitSeq.empty)),
               cursor.decodeAs[Option[String]]("description", Some(None)),
@@ -294,7 +294,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Template extends CompanionFor[Template] {
-      implicit def summonObjectAndCompanionTemplate_797767143(o: Template): ObjectAndCompanion[Template, Template.type] =
+      implicit def summonObjectAndCompanionTemplate_926611152(o: Template): ObjectAndCompanion[Template, Template.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Template
       override type ParentType   = Template
@@ -367,7 +367,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Parameter extends CompanionFor[Parameter] {
-      implicit def summonObjectAndCompanionParameter2003777080(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
+      implicit def summonObjectAndCompanionParameter_926611152(o: Parameter): ObjectAndCompanion[Parameter, Parameter.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Parameter
       override type ParentType   = Parameter
@@ -516,13 +516,13 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Manifest extends CompanionFor[Manifest] {
-    implicit def summonObjectAndCompanionManifest_1366406619(o: Manifest): ObjectAndCompanion[Manifest, Manifest.type] =
+    implicit def summonObjectAndCompanionManifest_1474442092(o: Manifest): ObjectAndCompanion[Manifest, Manifest.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Manifest
     override type ParentType   = Manifest
     override val parentType: CompanionFor[ResourceType] = Manifest
     object Page extends CompanionFor[Page] {
-      implicit def summonObjectAndCompanionPage322962451(o: Page): ObjectAndCompanion[Page, Page.type] =
+      implicit def summonObjectAndCompanionPage1800801000(o: Page): ObjectAndCompanion[Page, Page.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Page
       override type ParentType   = Page
@@ -596,12 +596,12 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
         override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
         extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
     object Resource extends CompanionFor[Resource] {
-      implicit def summonObjectAndCompanionResource695211414(o: Resource): ObjectAndCompanion[Resource, Resource.type] =
+      implicit def summonObjectAndCompanionResource1800801000(o: Resource): ObjectAndCompanion[Resource, Resource.type] =
         ObjectAndCompanion(o, this)
       override type ResourceType = Resource
       override type ParentType   = Resource
       override val parentType: CompanionFor[ResourceType] = Resource
-      type ExampleChoice = Choice[Union00683246261]
+      type ExampleChoice = Choice[UnionBooleanOrCanonical]
       def apply(
           id: Option[String] = None,
           extension: LitSeq[Extension] = LitSeq.empty,
@@ -629,7 +629,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       val reference: FHIRComponentFieldMeta[Reference] =
         FHIRComponentFieldMeta("reference", lTagOf[Reference], false, lTagOf[Reference])
       val example: FHIRComponentFieldMeta[Option[Resource.ExampleChoice]] =
-        FHIRComponentFieldMeta("example", lTagOf[Option[Resource.ExampleChoice]], true, lTagOf[Union00683246261])
+        FHIRComponentFieldMeta("example", lTagOf[Option[Resource.ExampleChoice]], true, lTagOf[UnionBooleanOrCanonical])
       val relativePath: FHIRComponentFieldMeta[Option[UrlStr]] =
         FHIRComponentFieldMeta("relativePath", lTagOf[Option[UrlStr]], false, lTagOf[UrlStr])
       val modifierExtension: FHIRComponentFieldMeta[LitSeq[Extension]] =
@@ -653,7 +653,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
               cursor.decodeAs[Option[String]]("id", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("extension", Some(LitSeq.empty)),
               cursor.decodeAs[Reference]("reference", None),
-              cursor.decodeOptRef[Union00683246261]("example"),
+              cursor.decodeOptRef[UnionBooleanOrCanonical]("example"),
               cursor.decodeAs[Option[UrlStr]]("relativePath", Some(None)),
               cursor.decodeAs[LitSeq[Extension]]("modifierExtension", Some(LitSeq.empty)),
               decodeAttributes(cursor)
@@ -754,7 +754,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object DependsOn extends CompanionFor[DependsOn] {
-    implicit def summonObjectAndCompanionDependsOn1096932494(o: DependsOn): ObjectAndCompanion[DependsOn, DependsOn.type] =
+    implicit def summonObjectAndCompanionDependsOn_1474442092(o: DependsOn): ObjectAndCompanion[DependsOn, DependsOn.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = DependsOn
     override type ParentType   = DependsOn
@@ -828,7 +828,7 @@ object ImplementationGuide extends CompanionFor[ImplementationGuide] {
       override val primitiveAttributes: TreeMap[FHIRComponentFieldMeta[_], PrimitiveElementInfo] = FHIRObject.emptyAtts)
       extends BackboneElement(id = id, extension = extension, modifierExtension = modifierExtension)
   object Global extends CompanionFor[Global] {
-    implicit def summonObjectAndCompanionGlobal_1143435986(o: Global): ObjectAndCompanion[Global, Global.type] =
+    implicit def summonObjectAndCompanionGlobal_1474442092(o: Global): ObjectAndCompanion[Global, Global.type] =
       ObjectAndCompanion(o, this)
     override type ResourceType = Global
     override type ParentType   = Global

@@ -53,18 +53,18 @@ public interface MedicinalProductAuthorization_ProcedureBuilder {
     return new Impl(_type.build());
   }
 
-  public static Choice_0934386166 date(FHIRDateTime f) {
-    return new Choice_0934386166(f);
+  public static ChoiceDateTimeOrPeriod date(FHIRDateTime f) {
+    return new ChoiceDateTimeOrPeriod(f);
   }
 
-  public static Choice_0934386166 date(Period p) {
-    return new Choice_0934386166(p);
+  public static ChoiceDateTimeOrPeriod date(Period p) {
+    return new ChoiceDateTimeOrPeriod(p);
   }
 
   public class Impl implements MedicinalProductAuthorization_ProcedureBuilder {
     private Optional<String> id = Optional.empty();
     private CodeableConcept _type;
-    private Optional<Choice_0934386166> date = Optional.empty();
+    private Optional<ChoiceDateTimeOrPeriod> date = Optional.empty();
     private Collection<Extension> extension = Collections.emptyList();
     private Optional<Identifier> identifier = Optional.empty();
     private Collection<MedicinalProductAuthorization.Procedure> application =
@@ -94,7 +94,7 @@ public interface MedicinalProductAuthorization_ProcedureBuilder {
      *     static methods
      */
     public MedicinalProductAuthorization_ProcedureBuilder.Impl withDate(
-        @NonNull Choice_0934386166 date) {
+        @NonNull ChoiceDateTimeOrPeriod date) {
       this.date = Optional.of(date);
       return this;
     }

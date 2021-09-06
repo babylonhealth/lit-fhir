@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Elementdefinition_isCommonBinding extends CompanionFor[Elementdefinition_isCommonBinding] {
-  implicit def summonObjectAndCompanionElementdefinition_isCommonBinding_114695149(
+  implicit def summonObjectAndCompanionElementdefinition_isCommonBinding50815837(
       o: Elementdefinition_isCommonBinding): ObjectAndCompanion[Elementdefinition_isCommonBinding, Elementdefinition_isCommonBinding.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension

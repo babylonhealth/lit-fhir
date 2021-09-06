@@ -48,25 +48,25 @@ import static java.util.stream.Collectors.toList;
 public interface Specimen_processingTimeBuilder extends ExtensionBuilder {
   public Specimen_processingTime build();
 
-  public static Impl init(@NonNull Choice00284192631 value) {
+  public static Impl init(@NonNull ChoiceDurationOrPeriod value) {
     return new Impl(value);
   }
 
-  public static Impl builder(@NonNull Choice00284192631 value) {
+  public static Impl builder(@NonNull ChoiceDurationOrPeriod value) {
     return new Impl(value);
   }
 
-  public static Choice00284192631 value(Duration d) {
-    return new Choice00284192631(d);
+  public static ChoiceDurationOrPeriod value(Duration d) {
+    return new ChoiceDurationOrPeriod(d);
   }
 
-  public static Choice00284192631 value(Period p) {
-    return new Choice00284192631(p);
+  public static ChoiceDurationOrPeriod value(Period p) {
+    return new ChoiceDurationOrPeriod(p);
   }
 
   public class Impl implements Specimen_processingTimeBuilder {
     private Optional<String> id = Optional.empty();
-    private Choice00284192631 value;
+    private ChoiceDurationOrPeriod value;
 
     /**
      * Required fields for {@link Specimen_processingTime}
@@ -76,7 +76,7 @@ public interface Specimen_processingTimeBuilder extends ExtensionBuilder {
      *     field. Type should be one of Duration, Period. To pass the value in, wrap with one of the
      *     Specimen_processingTimeBuilder.value static methods
      */
-    public Impl(@NonNull Choice00284192631 value) {
+    public Impl(@NonNull ChoiceDurationOrPeriod value) {
       this.value = value;
     }
 

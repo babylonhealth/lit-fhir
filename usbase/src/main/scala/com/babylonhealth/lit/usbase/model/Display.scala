@@ -24,7 +24,7 @@ import com.babylonhealth.lit.{ core, hl7, usbase }
 import com.babylonhealth.lit.macros.POJOBoilerplate
 
 object Display extends CompanionFor[Display] {
-  implicit def summonObjectAndCompanionDisplay787873180(o: Display): ObjectAndCompanion[Display, Display.type] =
+  implicit def summonObjectAndCompanionDisplay_643361971(o: Display): ObjectAndCompanion[Display, Display.type] =
     ObjectAndCompanion(o, this)
   override type ResourceType = Extension
   override type ParentType   = Extension

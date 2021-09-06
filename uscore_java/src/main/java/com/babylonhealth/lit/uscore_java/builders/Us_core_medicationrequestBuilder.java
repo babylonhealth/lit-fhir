@@ -60,7 +60,7 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       Reference subject,
       Reference requester,
       FHIRDateTime authoredOn,
-      @NonNull Choice01025009075 medication) {
+      @NonNull ChoiceCodeableConceptOrReference medication) {
     return new Impl(status, intent, subject, requester, authoredOn, medication);
   }
 
@@ -70,24 +70,24 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
       ReferenceBuilder subject,
       ReferenceBuilder requester,
       FHIRDateTime authoredOn,
-      @NonNull Choice01025009075 medication) {
+      @NonNull ChoiceCodeableConceptOrReference medication) {
     return new Impl(status, intent, subject.build(), requester.build(), authoredOn, medication);
   }
 
-  public static Choice_1524702593 reported(Boolean b) {
-    return new Choice_1524702593(b);
+  public static ChoiceBooleanOrReference reported(Boolean b) {
+    return new ChoiceBooleanOrReference(b);
   }
 
-  public static Choice_1524702593 reported(Reference r) {
-    return new Choice_1524702593(r);
+  public static ChoiceBooleanOrReference reported(Reference r) {
+    return new ChoiceBooleanOrReference(r);
   }
 
-  public static Choice01025009075 medication(CodeableConcept c) {
-    return new Choice01025009075(c);
+  public static ChoiceCodeableConceptOrReference medication(CodeableConcept c) {
+    return new ChoiceCodeableConceptOrReference(c);
   }
 
-  public static Choice01025009075 medication(Reference r) {
-    return new Choice01025009075(r);
+  public static ChoiceCodeableConceptOrReference medication(Reference r) {
+    return new ChoiceCodeableConceptOrReference(r);
   }
 
   public class Impl implements Us_core_medicationrequestBuilder {
@@ -117,12 +117,12 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
     private Collection<Identifier> identifier = Collections.emptyList();
     private FHIRDateTime authoredOn;
     private Collection<CodeableConcept> reasonCode = Collections.emptyList();
-    private Optional<Choice_1524702593> reported = Optional.empty();
+    private Optional<ChoiceBooleanOrReference> reported = Optional.empty();
     private Optional<CodeableConcept> statusReason = Optional.empty();
     private Optional<Boolean> doNotPerform = Optional.empty();
     private Collection<Reference> eventHistory = Collections.emptyList();
     private Optional<String> implicitRules = Optional.empty();
-    private Choice01025009075 medication;
+    private ChoiceCodeableConceptOrReference medication;
     private Optional<CodeableConcept> performerType = Optional.empty();
     private Collection<Reference> detectedIssue = Collections.emptyList();
     private Collection<Reference> reasonReference = Collections.emptyList();
@@ -162,7 +162,7 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
         Reference subject,
         Reference requester,
         FHIRDateTime authoredOn,
-        @NonNull Choice01025009075 medication) {
+        @NonNull ChoiceCodeableConceptOrReference medication) {
       this.status = status;
       this.intent = intent;
       this.subject = subject;
@@ -465,7 +465,8 @@ public interface Us_core_medicationrequestBuilder extends MedicationRequestBuild
      *     Reference. To pass the value in, wrap with one of the
      *     Us_core_medicationrequestBuilder.reported static methods
      */
-    public Us_core_medicationrequestBuilder.Impl withReported(@NonNull Choice_1524702593 reported) {
+    public Us_core_medicationrequestBuilder.Impl withReported(
+        @NonNull ChoiceBooleanOrReference reported) {
       this.reported = Optional.of(reported);
       return this;
     }
