@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -52,22 +53,14 @@ public class ConditionBuilder {
   private Collection<CodeableConcept> category = Collections.emptyList();
   private Optional<CodeableConcept> severity = Optional.empty();
   private Collection<CodeableConcept> bodySite = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<$bslash$div<$bslash$div<Age, FHIRDateTime>, Period>, Range>, String>>>
-      onset = Optional.empty();
+  private Optional<Choice01352864625> onset = Optional.empty();
   private Optional<Reference> recorder = Optional.empty();
   private Optional<Reference> asserter = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<Reference> encounter = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<$bslash$div<$bslash$div<Age, FHIRDateTime>, Period>, Range>, String>>>
-      abatement = Optional.empty();
+  private Optional<Choice01352864625> abatement = Optional.empty();
   private Optional<FHIRDateTime> recordedDate = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Optional<CodeableConcept> clinicalStatus = Optional.empty();
@@ -83,6 +76,46 @@ public class ConditionBuilder {
    */
   public ConditionBuilder(Reference subject) {
     this.subject = subject;
+  }
+
+  public static Choice01352864625 onset(Age a) {
+    return new Choice01352864625(a);
+  }
+
+  public static Choice01352864625 onset(FHIRDateTime f) {
+    return new Choice01352864625(f);
+  }
+
+  public static Choice01352864625 onset(Period p) {
+    return new Choice01352864625(p);
+  }
+
+  public static Choice01352864625 onset(Range r) {
+    return new Choice01352864625(r);
+  }
+
+  public static Choice01352864625 onset(String s) {
+    return new Choice01352864625(s);
+  }
+
+  public static Choice01352864625 abatement(Age a) {
+    return new Choice01352864625(a);
+  }
+
+  public static Choice01352864625 abatement(FHIRDateTime f) {
+    return new Choice01352864625(f);
+  }
+
+  public static Choice01352864625 abatement(Period p) {
+    return new Choice01352864625(p);
+  }
+
+  public static Choice01352864625 abatement(Range r) {
+    return new Choice01352864625(r);
+  }
+
+  public static Choice01352864625 abatement(String s) {
+    return new Choice01352864625(s);
   }
 
   /**
@@ -170,25 +203,11 @@ public class ConditionBuilder {
   /**
    * @param onset - Estimated or actual date or date-time the condition began, in the opinion of the
    *     clinician. Field is a 'choice' field. Type should be one of Age, FHIRDateTime, Period,
-   *     Range, String.
+   *     Range, String. To pass the value in, wrap with one of the ConditionBuilder.onset static
+   *     methods
    */
-  public <T> ConditionBuilder withOnset(@NonNull T onset) {
-    var guessedSuffix = autoSuffix(onset.getClass().getSimpleName(), Condition$.MODULE$.onset());
-    return withOnset(guessedSuffix, onset);
-  }
-
-  /**
-   * Alternative to the 'main' withOnset method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param onset - The value to be passed to the builder
-   */
-  public <T> ConditionBuilder withOnset(String suffix, @NonNull T onset) {
-    guard(onset.getClass().getSimpleName(), suffix, Condition$.MODULE$.onset());
-    this.onset =
-        Optional.of((Choice) Choice$.MODULE$.fromSuffix(suffix, onset, Condition$.MODULE$.onset()));
+  public ConditionBuilder withOnset(@NonNull Choice01352864625 onset) {
+    this.onset = Optional.of(onset);
     return this;
   }
   /**
@@ -274,27 +293,11 @@ public class ConditionBuilder {
    *     remission. This is called "abatement" because of the many overloaded connotations
    *     associated with "remission" or "resolution" - Conditions are never really resolved, but
    *     they can abate. Field is a 'choice' field. Type should be one of Age, FHIRDateTime, Period,
-   *     Range, String.
+   *     Range, String. To pass the value in, wrap with one of the ConditionBuilder.abatement static
+   *     methods
    */
-  public <T> ConditionBuilder withAbatement(@NonNull T abatement) {
-    var guessedSuffix =
-        autoSuffix(abatement.getClass().getSimpleName(), Condition$.MODULE$.abatement());
-    return withAbatement(guessedSuffix, abatement);
-  }
-
-  /**
-   * Alternative to the 'main' withAbatement method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param abatement - The value to be passed to the builder
-   */
-  public <T> ConditionBuilder withAbatement(String suffix, @NonNull T abatement) {
-    guard(abatement.getClass().getSimpleName(), suffix, Condition$.MODULE$.abatement());
-    this.abatement =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, abatement, Condition$.MODULE$.abatement()));
+  public ConditionBuilder withAbatement(@NonNull Choice01352864625 abatement) {
+    this.abatement = Optional.of(abatement);
     return this;
   }
   /**
@@ -408,14 +411,14 @@ public class ConditionBuilder {
         category.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(severity),
         bodySite.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(onset),
+        (Option) OptionConverters.toScala(onset),
         OptionConverters.toScala(recorder),
         OptionConverters.toScala(asserter),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(abatement),
+        (Option) OptionConverters.toScala(abatement),
         OptionConverters.toScala(recordedDate),
         OptionConverters.toScala(implicitRules),
         OptionConverters.toScala(clinicalStatus),

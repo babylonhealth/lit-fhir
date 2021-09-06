@@ -36,11 +36,14 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.IMMUNIZATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -75,7 +78,7 @@ public class Us_core_immunizationBuilder {
   private Optional<Reference> manufacturer = Optional.empty();
   private Optional<Quantity> doseQuantity = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Choice<$bslash$div<FHIRDateTime, String>> occurrence;
+  private Choice_1715923163 occurrence;
   private Boolean primarySource;
   private Optional<CodeableConcept> fundingSource = Optional.empty();
   private Optional<FHIRDate> expirationDate = Optional.empty();
@@ -95,7 +98,8 @@ public class Us_core_immunizationBuilder {
    * @param patient - The patient who either received or did not receive the immunization.
    * @param vaccineCode - Vaccine that was administered or was to be administered.
    * @param occurrence - Date vaccine administered or was to be administered. Field is a 'choice'
-   *     field. Type should be one of FHIRDateTime, String.
+   *     field. Type should be one of FHIRDateTime, String. To pass the value in, wrap with one of
+   *     the Us_core_immunizationBuilder.occurrence static methods
    * @param primarySource - An indication that the content of the record is based on information
    *     from the person who administered the vaccine. This reflects the context under which the
    *     data was originally recorded.
@@ -104,20 +108,21 @@ public class Us_core_immunizationBuilder {
       IMMUNIZATION_STATUS status,
       Reference patient,
       CodeableConcept vaccineCode,
-      @NonNull Object occurrence,
+      @NonNull Choice_1715923163 occurrence,
       Boolean primarySource) {
     this.status = status;
     this.patient = patient;
     this.vaccineCode = vaccineCode;
-    this.occurrence =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    occurrence.getClass().getSimpleName(),
-                    Us_core_immunization$.MODULE$.occurrence()),
-                occurrence,
-                Us_core_immunization$.MODULE$.occurrence());
+    this.occurrence = occurrence;
     this.primarySource = primarySource;
+  }
+
+  public static Choice_1715923163 occurrence(FHIRDateTime f) {
+    return new Choice_1715923163(f);
+  }
+
+  public static Choice_1715923163 occurrence(String s) {
+    return new Choice_1715923163(s);
   }
 
   /**

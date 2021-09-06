@@ -34,11 +34,13 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -63,23 +65,7 @@ public class DevicemetricobservationBuilder {
   private Reference subject;
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<CodeableConcept> category = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<
-                      $bslash$div<
-                          $bslash$div<
-                              $bslash$div<
-                                  $bslash$div<
-                                      $bslash$div<
-                                          $bslash$div<CodeableConcept, FHIRDateTime>, LocalTime>,
-                                      Period>,
-                                  Quantity>,
-                              Range>,
-                          Ratio>,
-                      SampledData>,
-                  String>>>
-      value = Optional.empty();
+  private Optional<Choice_1915626029> value = Optional.empty();
   private Optional<CodeableConcept> bodySite = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
@@ -120,6 +106,42 @@ public class DevicemetricobservationBuilder {
     this.device = device;
     this.subject = subject;
     this.effective = effective;
+  }
+
+  public static Choice_1915626029 value(CodeableConcept c) {
+    return new Choice_1915626029(c);
+  }
+
+  public static Choice_1915626029 value(FHIRDateTime f) {
+    return new Choice_1915626029(f);
+  }
+
+  public static Choice_1915626029 value(LocalTime l) {
+    return new Choice_1915626029(l);
+  }
+
+  public static Choice_1915626029 value(Period p) {
+    return new Choice_1915626029(p);
+  }
+
+  public static Choice_1915626029 value(Quantity q) {
+    return new Choice_1915626029(q);
+  }
+
+  public static Choice_1915626029 value(Range r) {
+    return new Choice_1915626029(r);
+  }
+
+  public static Choice_1915626029 value(Ratio r) {
+    return new Choice_1915626029(r);
+  }
+
+  public static Choice_1915626029 value(SampledData s) {
+    return new Choice_1915626029(s);
+  }
+
+  public static Choice_1915626029 value(String s) {
+    return new Choice_1915626029(s);
   }
 
   /**
@@ -247,29 +269,11 @@ public class DevicemetricobservationBuilder {
    * @param value - The information determined as a result of making the observation, if the
    *     information has a simple value. Field is a 'choice' field. Type should be one of
    *     CodeableConcept, FHIRDateTime, LocalTime, Period, Quantity, Range, Ratio, SampledData,
-   *     String.
+   *     String. To pass the value in, wrap with one of the DevicemetricobservationBuilder.value
+   *     static methods
    */
-  public <T> DevicemetricobservationBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), Devicemetricobservation$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> DevicemetricobservationBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, Devicemetricobservation$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, value, Devicemetricobservation$.MODULE$.value()));
+  public DevicemetricobservationBuilder withValue(@NonNull Choice_1915626029 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -481,7 +485,7 @@ public class DevicemetricobservationBuilder {
         subject,
         OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(value),
+        (Option) OptionConverters.toScala(value),
         OptionConverters.toScala(bodySite),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),

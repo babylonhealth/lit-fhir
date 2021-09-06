@@ -34,10 +34,12 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -46,7 +48,7 @@ import static java.util.stream.Collectors.toList;
 public class PopulationBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<CodeableConcept> race = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Range>>> age = Optional.empty();
+  private Optional<Choice_1946587936> age = Optional.empty();
   private Optional<CodeableConcept> gender = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -54,6 +56,14 @@ public class PopulationBuilder {
 
   /** Required fields for {@link Population} */
   public PopulationBuilder() {}
+
+  public static Choice_1946587936 age(CodeableConcept c) {
+    return new Choice_1946587936(c);
+  }
+
+  public static Choice_1946587936 age(Range r) {
+    return new Choice_1946587936(r);
+  }
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -70,25 +80,11 @@ public class PopulationBuilder {
   }
   /**
    * @param age - The age of the specific population. Field is a 'choice' field. Type should be one
-   *     of CodeableConcept, Range.
+   *     of CodeableConcept, Range. To pass the value in, wrap with one of the PopulationBuilder.age
+   *     static methods
    */
-  public <T> PopulationBuilder withAge(@NonNull T age) {
-    var guessedSuffix = autoSuffix(age.getClass().getSimpleName(), Population$.MODULE$.age());
-    return withAge(guessedSuffix, age);
-  }
-
-  /**
-   * Alternative to the 'main' withAge method. This will be marginally faster than the other method,
-   * but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param age - The value to be passed to the builder
-   */
-  public <T> PopulationBuilder withAge(String suffix, @NonNull T age) {
-    guard(age.getClass().getSimpleName(), suffix, Population$.MODULE$.age());
-    this.age =
-        Optional.of((Choice) Choice$.MODULE$.fromSuffix(suffix, age, Population$.MODULE$.age()));
+  public PopulationBuilder withAge(@NonNull Choice_1946587936 age) {
+    this.age = Optional.of(age);
     return this;
   }
   /** @param gender - The gender of the specific population. */
@@ -164,7 +160,7 @@ public class PopulationBuilder {
     return new Population(
         OptionConverters.toScala(id),
         OptionConverters.toScala(race),
-        OptionConverters.toScala(age),
+        (Option) OptionConverters.toScala(age),
         OptionConverters.toScala(gender),
         extension.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

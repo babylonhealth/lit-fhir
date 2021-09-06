@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.GROUP_MEASURE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -48,36 +49,60 @@ public class EvidenceVariable_CharacteristicBuilder {
   private Optional<String> description = Optional.empty();
   private Collection<UsageContext> usageContext = Collections.emptyList();
   private Optional<GROUP_MEASURE> groupMeasure = Optional.empty();
-  private Choice<
-          $bslash$div<
-              $bslash$div<
-                  $bslash$div<
-                      $bslash$div<$bslash$div<String, CodeableConcept>, DataRequirement>,
-                      Expression>,
-                  Reference>,
-              TriggerDefinition>>
-      definition;
+  private Choice_0358050020 definition;
   private Optional<Duration> timeFromStart = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
-  private Optional<
-          Choice<$bslash$div<$bslash$div<$bslash$div<Duration, FHIRDateTime>, Period>, Timing>>>
-      participantEffective = Optional.empty();
+  private Optional<Choice00607514014> participantEffective = Optional.empty();
 
   /**
    * Required fields for {@link EvidenceVariable.Characteristic}
    *
    * @param definition Field is a 'choice' field. Type should be one of String, CodeableConcept,
-   *     DataRequirement, Expression, Reference, TriggerDefinition.
+   *     DataRequirement, Expression, Reference, TriggerDefinition. To pass the value in, wrap with
+   *     one of the EvidenceVariable_CharacteristicBuilder.definition static methods
    */
-  public EvidenceVariable_CharacteristicBuilder(@NonNull Object definition) {
-    this.definition =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    definition.getClass().getSimpleName(),
-                    EvidenceVariable.Characteristic$.MODULE$.definition()),
-                definition,
-                EvidenceVariable.Characteristic$.MODULE$.definition());
+  public EvidenceVariable_CharacteristicBuilder(@NonNull Choice_0358050020 definition) {
+    this.definition = definition;
+  }
+
+  public static Choice_0358050020 definition(String s) {
+    return new Choice_0358050020(s);
+  }
+
+  public static Choice_0358050020 definition(CodeableConcept c) {
+    return new Choice_0358050020(c);
+  }
+
+  public static Choice_0358050020 definition(DataRequirement d) {
+    return new Choice_0358050020(d);
+  }
+
+  public static Choice_0358050020 definition(Expression e) {
+    return new Choice_0358050020(e);
+  }
+
+  public static Choice_0358050020 definition(Reference r) {
+    return new Choice_0358050020(r);
+  }
+
+  public static Choice_0358050020 definition(TriggerDefinition t) {
+    return new Choice_0358050020(t);
+  }
+
+  public static Choice00607514014 participantEffective(Duration d) {
+    return new Choice00607514014(d);
+  }
+
+  public static Choice00607514014 participantEffective(FHIRDateTime f) {
+    return new Choice00607514014(f);
+  }
+
+  public static Choice00607514014 participantEffective(Period p) {
+    return new Choice00607514014(p);
+  }
+
+  public static Choice00607514014 participantEffective(Timing t) {
+    return new Choice00607514014(t);
   }
 
   /**
@@ -183,38 +208,12 @@ public class EvidenceVariable_CharacteristicBuilder {
   }
   /**
    * @param participantEffective Field is a 'choice' field. Type should be one of Duration,
-   *     FHIRDateTime, Period, Timing.
+   *     FHIRDateTime, Period, Timing. To pass the value in, wrap with one of the
+   *     EvidenceVariable_CharacteristicBuilder.participantEffective static methods
    */
-  public <T> EvidenceVariable_CharacteristicBuilder withParticipantEffective(
-      @NonNull T participantEffective) {
-    var guessedSuffix =
-        autoSuffix(
-            participantEffective.getClass().getSimpleName(),
-            EvidenceVariable.Characteristic$.MODULE$.participantEffective());
-    return withParticipantEffective(guessedSuffix, participantEffective);
-  }
-
-  /**
-   * Alternative to the 'main' withParticipantEffective method. This will be marginally faster than
-   * the other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param participantEffective - The value to be passed to the builder
-   */
-  public <T> EvidenceVariable_CharacteristicBuilder withParticipantEffective(
-      String suffix, @NonNull T participantEffective) {
-    guard(
-        participantEffective.getClass().getSimpleName(),
-        suffix,
-        EvidenceVariable.Characteristic$.MODULE$.participantEffective());
-    this.participantEffective =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix,
-                    participantEffective,
-                    EvidenceVariable.Characteristic$.MODULE$.participantEffective()));
+  public EvidenceVariable_CharacteristicBuilder withParticipantEffective(
+      @NonNull Choice00607514014 participantEffective) {
+    this.participantEffective = Optional.of(participantEffective);
     return this;
   }
 
@@ -229,7 +228,7 @@ public class EvidenceVariable_CharacteristicBuilder {
         definition,
         OptionConverters.toScala(timeFromStart),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(participantEffective),
+        (Option) OptionConverters.toScala(participantEffective),
         LitUtils.emptyMetaElMap());
   }
 }

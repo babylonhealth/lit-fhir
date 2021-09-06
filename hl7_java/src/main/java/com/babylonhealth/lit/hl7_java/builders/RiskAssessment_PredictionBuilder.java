@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -44,16 +45,32 @@ import static java.util.stream.Collectors.toList;
 public class RiskAssessment_PredictionBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<CodeableConcept> outcome = Optional.empty();
-  private Optional<Choice<$bslash$div<Period, Range>>> when = Optional.empty();
+  private Optional<Choice01200936722> when = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<String> rationale = Optional.empty();
   private Optional<BigDecimal> relativeRisk = Optional.empty();
-  private Optional<Choice<$bslash$div<BigDecimal, Range>>> probability = Optional.empty();
+  private Optional<Choice_0831630297> probability = Optional.empty();
   private Optional<CodeableConcept> qualitativeRisk = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /** Required fields for {@link RiskAssessment.Prediction} */
   public RiskAssessment_PredictionBuilder() {}
+
+  public static Choice01200936722 when(Period p) {
+    return new Choice01200936722(p);
+  }
+
+  public static Choice01200936722 when(Range r) {
+    return new Choice01200936722(r);
+  }
+
+  public static Choice_0831630297 probability(BigDecimal b) {
+    return new Choice_0831630297(b);
+  }
+
+  public static Choice_0831630297 probability(Range r) {
+    return new Choice_0831630297(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -68,28 +85,12 @@ public class RiskAssessment_PredictionBuilder {
     this.outcome = Optional.of(outcome);
     return this;
   }
-  /** @param when Field is a 'choice' field. Type should be one of Period, Range. */
-  public <T> RiskAssessment_PredictionBuilder withWhen(@NonNull T when) {
-    var guessedSuffix =
-        autoSuffix(when.getClass().getSimpleName(), RiskAssessment.Prediction$.MODULE$.when());
-    return withWhen(guessedSuffix, when);
-  }
-
   /**
-   * Alternative to the 'main' withWhen method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param when - The value to be passed to the builder
+   * @param when Field is a 'choice' field. Type should be one of Period, Range. To pass the value
+   *     in, wrap with one of the RiskAssessment_PredictionBuilder.when static methods
    */
-  public <T> RiskAssessment_PredictionBuilder withWhen(String suffix, @NonNull T when) {
-    guard(when.getClass().getSimpleName(), suffix, RiskAssessment.Prediction$.MODULE$.when());
-    this.when =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, when, RiskAssessment.Prediction$.MODULE$.when()));
+  public RiskAssessment_PredictionBuilder withWhen(@NonNull Choice01200936722 when) {
+    this.when = Optional.of(when);
     return this;
   }
   /**
@@ -124,34 +125,13 @@ public class RiskAssessment_PredictionBuilder {
     this.relativeRisk = Optional.of(relativeRisk);
     return this;
   }
-  /** @param probability Field is a 'choice' field. Type should be one of BigDecimal, Range. */
-  public <T> RiskAssessment_PredictionBuilder withProbability(@NonNull T probability) {
-    var guessedSuffix =
-        autoSuffix(
-            probability.getClass().getSimpleName(),
-            RiskAssessment.Prediction$.MODULE$.probability());
-    return withProbability(guessedSuffix, probability);
-  }
-
   /**
-   * Alternative to the 'main' withProbability method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param probability - The value to be passed to the builder
+   * @param probability Field is a 'choice' field. Type should be one of BigDecimal, Range. To pass
+   *     the value in, wrap with one of the RiskAssessment_PredictionBuilder.probability static
+   *     methods
    */
-  public <T> RiskAssessment_PredictionBuilder withProbability(
-      String suffix, @NonNull T probability) {
-    guard(
-        probability.getClass().getSimpleName(),
-        suffix,
-        RiskAssessment.Prediction$.MODULE$.probability());
-    this.probability =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, probability, RiskAssessment.Prediction$.MODULE$.probability()));
+  public RiskAssessment_PredictionBuilder withProbability(@NonNull Choice_0831630297 probability) {
+    this.probability = Optional.of(probability);
     return this;
   }
   /** @param qualitativeRisk */
@@ -199,11 +179,11 @@ public class RiskAssessment_PredictionBuilder {
     return new RiskAssessment.Prediction(
         OptionConverters.toScala(id),
         OptionConverters.toScala(outcome),
-        OptionConverters.toScala(when),
+        (Option) OptionConverters.toScala(when),
         extension.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(rationale),
         OptionConverters.toScala(relativeRisk),
-        OptionConverters.toScala(probability),
+        (Option) OptionConverters.toScala(probability),
         OptionConverters.toScala(qualitativeRisk),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

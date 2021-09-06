@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.QUESTIONNAIRE_ENABLE_OPERATOR;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -46,7 +47,7 @@ public class Questionnaire_Item_EnableWhenBuilder {
   private String question;
   private QUESTIONNAIRE_ENABLE_OPERATOR operator;
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice answer;
+  private Choice_0388264667 answer;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -55,20 +56,54 @@ public class Questionnaire_Item_EnableWhenBuilder {
    * @param question
    * @param operator
    * @param answer Field is a 'choice' field. Type should be one of BigDecimal, Boolean, Coding,
-   *     FHIRDate, FHIRDateTime, Integer, LocalTime, Quantity, Reference, String.
+   *     FHIRDate, FHIRDateTime, Integer, LocalTime, Quantity, Reference, String. To pass the value
+   *     in, wrap with one of the Questionnaire_Item_EnableWhenBuilder.answer static methods
    */
   public Questionnaire_Item_EnableWhenBuilder(
-      String question, QUESTIONNAIRE_ENABLE_OPERATOR operator, @NonNull Object answer) {
+      String question, QUESTIONNAIRE_ENABLE_OPERATOR operator, @NonNull Choice_0388264667 answer) {
     this.question = question;
     this.operator = operator;
-    this.answer =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    answer.getClass().getSimpleName(),
-                    Questionnaire$Item$EnableWhen$.MODULE$.answer()),
-                answer,
-                Questionnaire$Item$EnableWhen$.MODULE$.answer());
+    this.answer = answer;
+  }
+
+  public static Choice_0388264667 answer(BigDecimal b) {
+    return new Choice_0388264667(b);
+  }
+
+  public static Choice_0388264667 answer(Boolean b) {
+    return new Choice_0388264667(b);
+  }
+
+  public static Choice_0388264667 answer(Coding c) {
+    return new Choice_0388264667(c);
+  }
+
+  public static Choice_0388264667 answer(FHIRDate f) {
+    return new Choice_0388264667(f);
+  }
+
+  public static Choice_0388264667 answer(FHIRDateTime f) {
+    return new Choice_0388264667(f);
+  }
+
+  public static Choice_0388264667 answer(Integer i) {
+    return new Choice_0388264667(i);
+  }
+
+  public static Choice_0388264667 answer(LocalTime l) {
+    return new Choice_0388264667(l);
+  }
+
+  public static Choice_0388264667 answer(Quantity q) {
+    return new Choice_0388264667(q);
+  }
+
+  public static Choice_0388264667 answer(Reference r) {
+    return new Choice_0388264667(r);
+  }
+
+  public static Choice_0388264667 answer(String s) {
+    return new Choice_0388264667(s);
   }
 
   /**

@@ -30,10 +30,10 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.TRIGGER_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,9 +45,7 @@ public class TriggerDefinitionBuilder {
   private Optional<String> name = Optional.empty();
   private Collection<DataRequirement> data = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<
-          Choice<$bslash$div<$bslash$div<$bslash$div<FHIRDate, FHIRDateTime>, Reference>, Timing>>>
-      timing = Optional.empty();
+  private Optional<Choice_1051729086> timing = Optional.empty();
   private Optional<Expression> condition = Optional.empty();
 
   /**
@@ -57,6 +55,22 @@ public class TriggerDefinitionBuilder {
    */
   public TriggerDefinitionBuilder(TRIGGER_TYPE _type) {
     this._type = _type;
+  }
+
+  public static Choice_1051729086 timing(FHIRDate f) {
+    return new Choice_1051729086(f);
+  }
+
+  public static Choice_1051729086 timing(FHIRDateTime f) {
+    return new Choice_1051729086(f);
+  }
+
+  public static Choice_1051729086 timing(Reference r) {
+    return new Choice_1051729086(r);
+  }
+
+  public static Choice_1051729086 timing(Timing t) {
+    return new Choice_1051729086(t);
   }
 
   /**
@@ -116,28 +130,11 @@ public class TriggerDefinitionBuilder {
   }
   /**
    * @param timing - The timing of the event (if this is a periodic trigger). Field is a 'choice'
-   *     field. Type should be one of FHIRDate, FHIRDateTime, Reference, Timing.
+   *     field. Type should be one of FHIRDate, FHIRDateTime, Reference, Timing. To pass the value
+   *     in, wrap with one of the TriggerDefinitionBuilder.timing static methods
    */
-  public <T> TriggerDefinitionBuilder withTiming(@NonNull T timing) {
-    var guessedSuffix =
-        autoSuffix(timing.getClass().getSimpleName(), TriggerDefinition$.MODULE$.timing());
-    return withTiming(guessedSuffix, timing);
-  }
-
-  /**
-   * Alternative to the 'main' withTiming method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param timing - The value to be passed to the builder
-   */
-  public <T> TriggerDefinitionBuilder withTiming(String suffix, @NonNull T timing) {
-    guard(timing.getClass().getSimpleName(), suffix, TriggerDefinition$.MODULE$.timing());
-    this.timing =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, timing, TriggerDefinition$.MODULE$.timing()));
+  public TriggerDefinitionBuilder withTiming(@NonNull Choice_1051729086 timing) {
+    this.timing = Optional.of(timing);
     return this;
   }
   /**
@@ -156,7 +153,7 @@ public class TriggerDefinitionBuilder {
         OptionConverters.toScala(name),
         data.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(timing),
+        (Option) OptionConverters.toScala(timing),
         OptionConverters.toScala(condition),
         LitUtils.emptyMetaElMap());
   }

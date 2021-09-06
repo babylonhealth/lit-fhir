@@ -32,12 +32,13 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.SUPPLYREQUEST_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -48,7 +49,7 @@ public class SupplyRequestBuilder {
   private Optional<Meta> meta = Optional.empty();
   private Optional<Narrative> text = Optional.empty();
   private Optional<SUPPLYREQUEST_STATUS> status = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> item;
+  private Choice01025009075 item;
   private Optional<LANGUAGES> language = Optional.empty();
   private Optional<CodeableConcept> category = Optional.empty();
   private Optional<REQUEST_PRIORITY> priority = Optional.empty();
@@ -63,8 +64,7 @@ public class SupplyRequestBuilder {
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Optional<Reference> deliverFrom = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>>> occurrence =
-      Optional.empty();
+  private Optional<Choice00609373412> occurrence = Optional.empty();
   private Collection<Reference> reasonReference = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<SupplyRequest.Parameter> parameter = Collections.emptyList();
@@ -74,17 +74,33 @@ public class SupplyRequestBuilder {
    *
    * @param item - The item that is requested to be supplied. This is either a link to a resource
    *     representing the details of the item or a code that identifies the item from a known list.
-   *     Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To pass the
+   *     value in, wrap with one of the SupplyRequestBuilder.item static methods
    * @param quantity - The amount that is being ordered of the indicated item.
    */
-  public SupplyRequestBuilder(@NonNull Object item, Quantity quantity) {
-    this.item =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(item.getClass().getSimpleName(), SupplyRequest$.MODULE$.item()),
-                item,
-                SupplyRequest$.MODULE$.item());
+  public SupplyRequestBuilder(@NonNull Choice01025009075 item, Quantity quantity) {
+    this.item = item;
     this.quantity = quantity;
+  }
+
+  public static Choice01025009075 item(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 item(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice00609373412 occurrence(FHIRDateTime f) {
+    return new Choice00609373412(f);
+  }
+
+  public static Choice00609373412 occurrence(Period p) {
+    return new Choice00609373412(p);
+  }
+
+  public static Choice00609373412 occurrence(Timing t) {
+    return new Choice00609373412(t);
   }
 
   /**
@@ -251,29 +267,11 @@ public class SupplyRequestBuilder {
   }
   /**
    * @param occurrence - When the request should be fulfilled. Field is a 'choice' field. Type
-   *     should be one of FHIRDateTime, Period, Timing.
+   *     should be one of FHIRDateTime, Period, Timing. To pass the value in, wrap with one of the
+   *     SupplyRequestBuilder.occurrence static methods
    */
-  public <T> SupplyRequestBuilder withOccurrence(@NonNull T occurrence) {
-    var guessedSuffix =
-        autoSuffix(occurrence.getClass().getSimpleName(), SupplyRequest$.MODULE$.occurrence());
-    return withOccurrence(guessedSuffix, occurrence);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurrence method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurrence - The value to be passed to the builder
-   */
-  public <T> SupplyRequestBuilder withOccurrence(String suffix, @NonNull T occurrence) {
-    guard(occurrence.getClass().getSimpleName(), suffix, SupplyRequest$.MODULE$.occurrence());
-    this.occurrence =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, occurrence, SupplyRequest$.MODULE$.occurrence()));
+  public SupplyRequestBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
+    this.occurrence = Optional.of(occurrence);
     return this;
   }
   /** @param reasonReference - The reason why the supply item was requested. */
@@ -363,7 +361,7 @@ public class SupplyRequestBuilder {
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(deliverFrom),
         OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(occurrence),
+        (Option) OptionConverters.toScala(occurrence),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         parameter.stream().collect(new LitSeqJCollector<>()),

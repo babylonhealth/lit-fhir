@@ -32,13 +32,14 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.FM_STATUS;
 import com.babylonhealth.lit.hl7.ELIGIBILITYRESPONSE_PURPOSE;
 import com.babylonhealth.lit.hl7.REMITTANCE_OUTCOME;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -62,7 +63,7 @@ public class CoverageEligibilityResponseBuilder {
   private Optional<Reference> requestor = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<String> preAuthRef = Optional.empty();
-  private Optional<Choice<$bslash$div<FHIRDate, Period>>> serviced = Optional.empty();
+  private Optional<Choice_0503196159> serviced = Optional.empty();
   private Optional<String> disposition = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -100,6 +101,14 @@ public class CoverageEligibilityResponseBuilder {
     this.request = request;
     this.outcome = outcome;
     this.insurer = insurer;
+  }
+
+  public static Choice_0503196159 serviced(FHIRDate f) {
+    return new Choice_0503196159(f);
+  }
+
+  public static Choice_0503196159 serviced(Period p) {
+    return new Choice_0503196159(p);
   }
 
   /**
@@ -207,33 +216,11 @@ public class CoverageEligibilityResponseBuilder {
   }
   /**
    * @param serviced - The date or dates when the enclosed suite of services were performed or
-   *     completed. Field is a 'choice' field. Type should be one of FHIRDate, Period.
+   *     completed. Field is a 'choice' field. Type should be one of FHIRDate, Period. To pass the
+   *     value in, wrap with one of the CoverageEligibilityResponseBuilder.serviced static methods
    */
-  public <T> CoverageEligibilityResponseBuilder withServiced(@NonNull T serviced) {
-    var guessedSuffix =
-        autoSuffix(
-            serviced.getClass().getSimpleName(), CoverageEligibilityResponse$.MODULE$.serviced());
-    return withServiced(guessedSuffix, serviced);
-  }
-
-  /**
-   * Alternative to the 'main' withServiced method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param serviced - The value to be passed to the builder
-   */
-  public <T> CoverageEligibilityResponseBuilder withServiced(String suffix, @NonNull T serviced) {
-    guard(
-        serviced.getClass().getSimpleName(),
-        suffix,
-        CoverageEligibilityResponse$.MODULE$.serviced());
-    this.serviced =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, serviced, CoverageEligibilityResponse$.MODULE$.serviced()));
+  public CoverageEligibilityResponseBuilder withServiced(@NonNull Choice_0503196159 serviced) {
+    this.serviced = Optional.of(serviced);
     return this;
   }
   /** @param disposition - A human readable description of the status of the adjudication. */
@@ -340,7 +327,7 @@ public class CoverageEligibilityResponseBuilder {
         OptionConverters.toScala(requestor),
         identifier.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(preAuthRef),
-        OptionConverters.toScala(serviced),
+        (Option) OptionConverters.toScala(serviced),
         OptionConverters.toScala(disposition),
         OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

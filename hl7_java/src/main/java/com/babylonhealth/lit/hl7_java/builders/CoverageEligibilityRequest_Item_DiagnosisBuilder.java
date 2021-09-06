@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -44,11 +45,19 @@ import static java.util.stream.Collectors.toList;
 public class CoverageEligibilityRequest_Item_DiagnosisBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> diagnosis = Optional.empty();
+  private Optional<Choice01025009075> diagnosis = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /** Required fields for {@link CoverageEligibilityRequest$Item$Diagnosis} */
   public CoverageEligibilityRequest_Item_DiagnosisBuilder() {}
+
+  public static Choice01025009075 diagnosis(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 diagnosis(Reference r) {
+    return new Choice01025009075(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -84,36 +93,12 @@ public class CoverageEligibilityRequest_Item_DiagnosisBuilder {
   }
   /**
    * @param diagnosis Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     To pass the value in, wrap with one of the
+   *     CoverageEligibilityRequest_Item_DiagnosisBuilder.diagnosis static methods
    */
-  public <T> CoverageEligibilityRequest_Item_DiagnosisBuilder withDiagnosis(@NonNull T diagnosis) {
-    var guessedSuffix =
-        autoSuffix(
-            diagnosis.getClass().getSimpleName(),
-            CoverageEligibilityRequest$Item$Diagnosis$.MODULE$.diagnosis());
-    return withDiagnosis(guessedSuffix, diagnosis);
-  }
-
-  /**
-   * Alternative to the 'main' withDiagnosis method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param diagnosis - The value to be passed to the builder
-   */
-  public <T> CoverageEligibilityRequest_Item_DiagnosisBuilder withDiagnosis(
-      String suffix, @NonNull T diagnosis) {
-    guard(
-        diagnosis.getClass().getSimpleName(),
-        suffix,
-        CoverageEligibilityRequest$Item$Diagnosis$.MODULE$.diagnosis());
-    this.diagnosis =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix,
-                    diagnosis,
-                    CoverageEligibilityRequest$Item$Diagnosis$.MODULE$.diagnosis()));
+  public CoverageEligibilityRequest_Item_DiagnosisBuilder withDiagnosis(
+      @NonNull Choice01025009075 diagnosis) {
+    this.diagnosis = Optional.of(diagnosis);
     return this;
   }
   /**
@@ -155,7 +140,7 @@ public class CoverageEligibilityRequest_Item_DiagnosisBuilder {
     return new CoverageEligibilityRequest$Item$Diagnosis(
         OptionConverters.toScala(id),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(diagnosis),
+        (Option) OptionConverters.toScala(diagnosis),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

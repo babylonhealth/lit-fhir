@@ -34,10 +34,12 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,23 +47,26 @@ import static java.util.stream.Collectors.toList;
 
 public class Elementdefinition_minValueSetBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice<$bslash$div<String, String>> value;
+  private Choice00545979821 value;
 
   /**
    * Required fields for {@link Elementdefinition_minValueSet}
    *
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of String. There are multiple valid json suffixes which
-   *     correspond to values of type String -- to distinguish between the specific subtype, pass
-   *     $value wrapped in ParamDistinguisher.choose("foo". $value), where foo is one of: Canonical,
-   *     Uri
+   *     field. Type should be one of String. To pass the value in, wrap with one of the
+   *     Elementdefinition_minValueSetBuilder.value static methods
    */
-  public Elementdefinition_minValueSetBuilder(@NonNull ParamDistinguisher value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                value.suffix, value.wrappedChoice, Elementdefinition_minValueSet$.MODULE$.value());
+  public Elementdefinition_minValueSetBuilder(@NonNull Choice00545979821 value) {
+    this.value = value;
+  }
+
+  public static Choice00545979821 valueCanonical(String s) {
+    return Choice00545979821.Choice00545979821Canonical(s);
+  }
+
+  public static Choice00545979821 valueUri(String s) {
+    return Choice00545979821.Choice00545979821UriStr(s);
   }
 
   /**

@@ -32,11 +32,12 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -72,7 +73,7 @@ public class MeasureBuilder {
   private Optional<String> copyright = Optional.empty();
   private Optional<String> rationale = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> subject = Optional.empty();
+  private Optional<Choice01025009075> subject = Optional.empty();
   private Collection<UsageContext> useContext = Collections.emptyList();
   private Optional<String> disclaimer = Optional.empty();
   private Collection<String> definition = Collections.emptyList();
@@ -100,6 +101,14 @@ public class MeasureBuilder {
    */
   public MeasureBuilder(PUBLICATION_STATUS status) {
     this.status = status;
+  }
+
+  public static Choice01025009075 subject(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 subject(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -436,26 +445,11 @@ public class MeasureBuilder {
   /**
    * @param subject - The intended subjects for the measure. If this element is not provided, a
    *     Patient subject is assumed, but the subject of the measure can be anything. Field is a
-   *     'choice' field. Type should be one of CodeableConcept, Reference.
+   *     'choice' field. Type should be one of CodeableConcept, Reference. To pass the value in,
+   *     wrap with one of the MeasureBuilder.subject static methods
    */
-  public <T> MeasureBuilder withSubject(@NonNull T subject) {
-    var guessedSuffix = autoSuffix(subject.getClass().getSimpleName(), Measure$.MODULE$.subject());
-    return withSubject(guessedSuffix, subject);
-  }
-
-  /**
-   * Alternative to the 'main' withSubject method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param subject - The value to be passed to the builder
-   */
-  public <T> MeasureBuilder withSubject(String suffix, @NonNull T subject) {
-    guard(subject.getClass().getSimpleName(), suffix, Measure$.MODULE$.subject());
-    this.subject =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, subject, Measure$.MODULE$.subject()));
+  public MeasureBuilder withSubject(@NonNull Choice01025009075 subject) {
+    this.subject = Optional.of(subject);
     return this;
   }
   /**
@@ -719,7 +713,7 @@ public class MeasureBuilder {
         OptionConverters.toScala(copyright),
         OptionConverters.toScala(rationale),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(subject),
         useContext.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(disclaimer),
         definition.stream().collect(new LitSeqJCollector<>()),

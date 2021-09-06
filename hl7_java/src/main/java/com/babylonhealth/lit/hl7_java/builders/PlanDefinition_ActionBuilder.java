@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.hl7.ACTION_GROUPING_BEHAVIOR;
 import com.babylonhealth.lit.hl7.ACTION_REQUIRED_BEHAVIOR;
@@ -40,7 +42,6 @@ import com.babylonhealth.lit.hl7.ACTION_SELECTION_BEHAVIOR;
 import com.babylonhealth.lit.hl7.ACTION_CARDINALITY_BEHAVIOR;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -60,19 +61,12 @@ public class PlanDefinition_ActionBuilder {
   private Collection<TriggerDefinition> trigger = Collections.emptyList();
   private Optional<REQUEST_PRIORITY> priority = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<
-                      $bslash$div<$bslash$div<$bslash$div<Age, Duration>, FHIRDateTime>, Period>,
-                      Range>,
-                  Timing>>>
-      timing = Optional.empty();
+  private Optional<Choice_0181779868> timing = Optional.empty();
   private Optional<String> transform = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> subject = Optional.empty();
+  private Optional<Choice01025009075> subject = Optional.empty();
   private Optional<String> description = Optional.empty();
   private Collection<RelatedArtifact> documentation = Collections.emptyList();
-  private Optional<Choice<$bslash$div<String, String>>> definition = Optional.empty();
+  private Optional<Choice00545979821> definition = Optional.empty();
   private Optional<String> textEquivalent = Optional.empty();
   private Optional<ACTION_GROUPING_BEHAVIOR> groupingBehavior = Optional.empty();
   private Optional<ACTION_REQUIRED_BEHAVIOR> requiredBehavior = Optional.empty();
@@ -87,6 +81,46 @@ public class PlanDefinition_ActionBuilder {
 
   /** Required fields for {@link PlanDefinition.Action} */
   public PlanDefinition_ActionBuilder() {}
+
+  public static Choice_0181779868 timing(Age a) {
+    return new Choice_0181779868(a);
+  }
+
+  public static Choice_0181779868 timing(Duration d) {
+    return new Choice_0181779868(d);
+  }
+
+  public static Choice_0181779868 timing(FHIRDateTime f) {
+    return new Choice_0181779868(f);
+  }
+
+  public static Choice_0181779868 timing(Period p) {
+    return new Choice_0181779868(p);
+  }
+
+  public static Choice_0181779868 timing(Range r) {
+    return new Choice_0181779868(r);
+  }
+
+  public static Choice_0181779868 timing(Timing t) {
+    return new Choice_0181779868(t);
+  }
+
+  public static Choice01025009075 subject(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 subject(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice00545979821 definitionCanonical(String s) {
+    return Choice00545979821.Choice00545979821Canonical(s);
+  }
+
+  public static Choice00545979821 definitionUri(String s) {
+    return Choice00545979821.Choice00545979821UriStr(s);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -214,29 +248,11 @@ public class PlanDefinition_ActionBuilder {
   }
   /**
    * @param timing Field is a 'choice' field. Type should be one of Age, Duration, FHIRDateTime,
-   *     Period, Range, Timing.
+   *     Period, Range, Timing. To pass the value in, wrap with one of the
+   *     PlanDefinition_ActionBuilder.timing static methods
    */
-  public <T> PlanDefinition_ActionBuilder withTiming(@NonNull T timing) {
-    var guessedSuffix =
-        autoSuffix(timing.getClass().getSimpleName(), PlanDefinition.Action$.MODULE$.timing());
-    return withTiming(guessedSuffix, timing);
-  }
-
-  /**
-   * Alternative to the 'main' withTiming method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param timing - The value to be passed to the builder
-   */
-  public <T> PlanDefinition_ActionBuilder withTiming(String suffix, @NonNull T timing) {
-    guard(timing.getClass().getSimpleName(), suffix, PlanDefinition.Action$.MODULE$.timing());
-    this.timing =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, timing, PlanDefinition.Action$.MODULE$.timing()));
+  public PlanDefinition_ActionBuilder withTiming(@NonNull Choice_0181779868 timing) {
+    this.timing = Optional.of(timing);
     return this;
   }
   /** @param transform */
@@ -246,29 +262,11 @@ public class PlanDefinition_ActionBuilder {
   }
   /**
    * @param subject - A code or group definition that describes the intended subject of the plan
-   *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     definition. Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the PlanDefinition_ActionBuilder.subject static methods
    */
-  public <T> PlanDefinition_ActionBuilder withSubject(@NonNull T subject) {
-    var guessedSuffix =
-        autoSuffix(subject.getClass().getSimpleName(), PlanDefinition.Action$.MODULE$.subject());
-    return withSubject(guessedSuffix, subject);
-  }
-
-  /**
-   * Alternative to the 'main' withSubject method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param subject - The value to be passed to the builder
-   */
-  public <T> PlanDefinition_ActionBuilder withSubject(String suffix, @NonNull T subject) {
-    guard(subject.getClass().getSimpleName(), suffix, PlanDefinition.Action$.MODULE$.subject());
-    this.subject =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, subject, PlanDefinition.Action$.MODULE$.subject()));
+  public PlanDefinition_ActionBuilder withSubject(@NonNull Choice01025009075 subject) {
+    this.subject = Optional.of(subject);
     return this;
   }
   /**
@@ -290,32 +288,12 @@ public class PlanDefinition_ActionBuilder {
     this.documentation = Collections.unmodifiableCollection(documentation);
     return this;
   }
-  /** @param definition Field is a 'choice' field. Type should be one of String. */
-  public <T> PlanDefinition_ActionBuilder withDefinition(@NonNull T definition) {
-    var guessedSuffix =
-        autoSuffix(
-            definition.getClass().getSimpleName(), PlanDefinition.Action$.MODULE$.definition());
-    return withDefinition(guessedSuffix, definition);
-  }
-
   /**
-   * Alternative to the 'main' withDefinition method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of String then there are multiple candidate 'types' for the FHIR object, and we are unable
-   * to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type String, the valid values are Canonical, Uri.
-   * @param definition - The value to be passed to the builder
+   * @param definition Field is a 'choice' field. Type should be one of String. To pass the value
+   *     in, wrap with one of the PlanDefinition_ActionBuilder.definition static methods
    */
-  public <T> PlanDefinition_ActionBuilder withDefinition(String suffix, @NonNull T definition) {
-    guard(
-        definition.getClass().getSimpleName(), suffix, PlanDefinition.Action$.MODULE$.definition());
-    this.definition =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, definition, PlanDefinition.Action$.MODULE$.definition()));
+  public PlanDefinition_ActionBuilder withDefinition(@NonNull Choice00545979821 definition) {
+    this.definition = Optional.of(definition);
     return this;
   }
   /** @param textEquivalent */
@@ -451,12 +429,12 @@ public class PlanDefinition_ActionBuilder {
         trigger.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(priority),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(timing),
+        (Option) OptionConverters.toScala(timing),
         OptionConverters.toScala(transform),
-        OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(subject),
         OptionConverters.toScala(description),
         documentation.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(definition),
+        (Option) OptionConverters.toScala(definition),
         OptionConverters.toScala(textEquivalent),
         OptionConverters.toScala(groupingBehavior),
         OptionConverters.toScala(requiredBehavior),

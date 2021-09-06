@@ -32,13 +32,14 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.MESSAGE_SIGNIFICANCE_CATEGORY;
 import com.babylonhealth.lit.hl7.MESSAGEHEADER_RESPONSE_REQUEST;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -61,7 +62,7 @@ public class MessageDefinitionBuilder {
   private Optional<String> purpose = Optional.empty();
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<String> replaces = Collections.emptyList();
-  private Choice<$bslash$div<Coding, String>> event;
+  private Choice01583485927 event;
   private Optional<MESSAGE_SIGNIFICANCE_CATEGORY> category = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
@@ -88,18 +89,22 @@ public class MessageDefinitionBuilder {
    * @param status - The status of this message definition. Enables tracking the life-cycle of the
    *     content.
    * @param event - Event code or link to the EventDefinition. Field is a 'choice' field. Type
-   *     should be one of Coding, String.
+   *     should be one of Coding, String. To pass the value in, wrap with one of the
+   *     MessageDefinitionBuilder.event static methods
    */
   public MessageDefinitionBuilder(
-      FHIRDateTime date, PUBLICATION_STATUS status, @NonNull Object event) {
+      FHIRDateTime date, PUBLICATION_STATUS status, @NonNull Choice01583485927 event) {
     this.date = date;
     this.status = status;
-    this.event =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(event.getClass().getSimpleName(), MessageDefinition$.MODULE$.event()),
-                event,
-                MessageDefinition$.MODULE$.event());
+    this.event = event;
+  }
+
+  public static Choice01583485927 event(Coding c) {
+    return new Choice01583485927(c);
+  }
+
+  public static Choice01583485927 event(String s) {
+    return new Choice01583485927(s);
   }
 
   /**

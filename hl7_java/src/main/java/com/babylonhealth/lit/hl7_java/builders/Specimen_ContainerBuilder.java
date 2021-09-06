@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -48,12 +49,20 @@ public class Specimen_ContainerBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<String> description = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> additive = Optional.empty();
+  private Optional<Choice01025009075> additive = Optional.empty();
   private Optional<Quantity> specimenQuantity = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /** Required fields for {@link Specimen.Container} */
   public Specimen_ContainerBuilder() {}
+
+  public static Choice01025009075 additive(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 additive(Reference r) {
+    return new Choice01025009075(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -111,29 +120,11 @@ public class Specimen_ContainerBuilder {
     return this;
   }
   /**
-   * @param additive Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   * @param additive Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the Specimen_ContainerBuilder.additive static methods
    */
-  public <T> Specimen_ContainerBuilder withAdditive(@NonNull T additive) {
-    var guessedSuffix =
-        autoSuffix(additive.getClass().getSimpleName(), Specimen.Container$.MODULE$.additive());
-    return withAdditive(guessedSuffix, additive);
-  }
-
-  /**
-   * Alternative to the 'main' withAdditive method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param additive - The value to be passed to the builder
-   */
-  public <T> Specimen_ContainerBuilder withAdditive(String suffix, @NonNull T additive) {
-    guard(additive.getClass().getSimpleName(), suffix, Specimen.Container$.MODULE$.additive());
-    this.additive =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, additive, Specimen.Container$.MODULE$.additive()));
+  public Specimen_ContainerBuilder withAdditive(@NonNull Choice01025009075 additive) {
+    this.additive = Optional.of(additive);
     return this;
   }
   /** @param specimenQuantity */
@@ -183,7 +174,7 @@ public class Specimen_ContainerBuilder {
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(description),
-        OptionConverters.toScala(additive),
+        (Option) OptionConverters.toScala(additive),
         OptionConverters.toScala(specimenQuantity),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

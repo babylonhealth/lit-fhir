@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.FHIR_VERSION;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -46,7 +47,7 @@ public class ImplementationGuide_Definition_ResourceBuilder {
   private Optional<String> name = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Reference reference;
-  private Optional<Choice> example = Optional.empty();
+  private Optional<Choice00683246261> example = Optional.empty();
   private Optional<String> groupingId = Optional.empty();
   private Collection<FHIR_VERSION> fhirVersion = Collections.emptyList();
   private Optional<String> description = Optional.empty();
@@ -59,6 +60,14 @@ public class ImplementationGuide_Definition_ResourceBuilder {
    */
   public ImplementationGuide_Definition_ResourceBuilder(Reference reference) {
     this.reference = reference;
+  }
+
+  public static Choice00683246261 example(Boolean b) {
+    return new Choice00683246261(b);
+  }
+
+  public static Choice00683246261 example(String s) {
+    return new Choice00683246261(s);
   }
 
   /**
@@ -102,34 +111,14 @@ public class ImplementationGuide_Definition_ResourceBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param example Field is a 'choice' field. Type should be one of Boolean, String. */
-  public <T> ImplementationGuide_Definition_ResourceBuilder withExample(@NonNull T example) {
-    var guessedSuffix =
-        autoSuffix(
-            example.getClass().getSimpleName(),
-            ImplementationGuide$Definition$Resource$.MODULE$.example());
-    return withExample(guessedSuffix, example);
-  }
-
   /**
-   * Alternative to the 'main' withExample method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param example - The value to be passed to the builder
+   * @param example Field is a 'choice' field. Type should be one of Boolean, String. To pass the
+   *     value in, wrap with one of the ImplementationGuide_Definition_ResourceBuilder.example
+   *     static methods
    */
-  public <T> ImplementationGuide_Definition_ResourceBuilder withExample(
-      String suffix, @NonNull T example) {
-    guard(
-        example.getClass().getSimpleName(),
-        suffix,
-        ImplementationGuide$Definition$Resource$.MODULE$.example());
-    this.example =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, example, ImplementationGuide$Definition$Resource$.MODULE$.example()));
+  public ImplementationGuide_Definition_ResourceBuilder withExample(
+      @NonNull Choice00683246261 example) {
+    this.example = Optional.of(example);
     return this;
   }
   /** @param groupingId */

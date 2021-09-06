@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -61,7 +62,7 @@ public class DeviceDefinitionBuilder {
   private Collection<CodeableConcept> languageCode = Collections.emptyList();
   private Optional<Reference> parentDevice = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<Reference, String>>> manufacturer = Optional.empty();
+  private Optional<Choice_1128709984> manufacturer = Optional.empty();
   private Collection<Choice> shelfLifeStorage = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Optional<String> onlineInformation = Optional.empty();
@@ -76,6 +77,14 @@ public class DeviceDefinitionBuilder {
 
   /** Required fields for {@link DeviceDefinition} */
   public DeviceDefinitionBuilder() {}
+
+  public static Choice_1128709984 manufacturer(Reference r) {
+    return new Choice_1128709984(r);
+  }
+
+  public static Choice_1128709984 manufacturer(String s) {
+    return new Choice_1128709984(s);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -284,31 +293,11 @@ public class DeviceDefinitionBuilder {
   }
   /**
    * @param manufacturer - A name of the manufacturer. Field is a 'choice' field. Type should be one
-   *     of Reference, String.
+   *     of Reference, String. To pass the value in, wrap with one of the
+   *     DeviceDefinitionBuilder.manufacturer static methods
    */
-  public <T> DeviceDefinitionBuilder withManufacturer(@NonNull T manufacturer) {
-    var guessedSuffix =
-        autoSuffix(
-            manufacturer.getClass().getSimpleName(), DeviceDefinition$.MODULE$.manufacturer());
-    return withManufacturer(guessedSuffix, manufacturer);
-  }
-
-  /**
-   * Alternative to the 'main' withManufacturer method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param manufacturer - The value to be passed to the builder
-   */
-  public <T> DeviceDefinitionBuilder withManufacturer(String suffix, @NonNull T manufacturer) {
-    guard(
-        manufacturer.getClass().getSimpleName(), suffix, DeviceDefinition$.MODULE$.manufacturer());
-    this.manufacturer =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, manufacturer, DeviceDefinition$.MODULE$.manufacturer()));
+  public DeviceDefinitionBuilder withManufacturer(@NonNull Choice_1128709984 manufacturer) {
+    this.manufacturer = Optional.of(manufacturer);
     return this;
   }
   /** @param shelfLifeStorage - Shelf Life and storage information. */
@@ -485,7 +474,7 @@ public class DeviceDefinitionBuilder {
         languageCode.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(parentDevice),
         OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(manufacturer),
+        (Option) OptionConverters.toScala(manufacturer),
         (LitSeq) shelfLifeStorage.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(onlineInformation),

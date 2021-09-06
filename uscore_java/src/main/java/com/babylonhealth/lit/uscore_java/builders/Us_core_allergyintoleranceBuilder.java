@@ -36,13 +36,16 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ALLERGY_INTOLERANCE_TYPE;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.ALLERGY_INTOLERANCE_CATEGORY;
 import com.babylonhealth.lit.hl7.ALLERGY_INTOLERANCE_CRITICALITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -63,11 +66,7 @@ public class Us_core_allergyintoleranceBuilder {
   private Reference patient;
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<ALLERGY_INTOLERANCE_CATEGORY> category = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<$bslash$div<$bslash$div<Age, FHIRDateTime>, Period>, Range>, String>>>
-      onset = Optional.empty();
+  private Optional<Choice01352864625> onset = Optional.empty();
   private Optional<Reference> recorder = Optional.empty();
   private Optional<Reference> asserter = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
@@ -104,6 +103,26 @@ public class Us_core_allergyintoleranceBuilder {
   public Us_core_allergyintoleranceBuilder(CodeableConcept code, Reference patient) {
     this.code = code;
     this.patient = patient;
+  }
+
+  public static Choice01352864625 onset(Age a) {
+    return new Choice01352864625(a);
+  }
+
+  public static Choice01352864625 onset(FHIRDateTime f) {
+    return new Choice01352864625(f);
+  }
+
+  public static Choice01352864625 onset(Period p) {
+    return new Choice01352864625(p);
+  }
+
+  public static Choice01352864625 onset(Range r) {
+    return new Choice01352864625(r);
+  }
+
+  public static Choice01352864625 onset(String s) {
+    return new Choice01352864625(s);
   }
 
   /**
@@ -177,29 +196,11 @@ public class Us_core_allergyintoleranceBuilder {
   /**
    * @param onset - Estimated or actual date, date-time, or age when allergy or intolerance was
    *     identified. Field is a 'choice' field. Type should be one of Age, FHIRDateTime, Period,
-   *     Range, String.
+   *     Range, String. To pass the value in, wrap with one of the
+   *     Us_core_allergyintoleranceBuilder.onset static methods
    */
-  public <T> Us_core_allergyintoleranceBuilder withOnset(@NonNull T onset) {
-    var guessedSuffix =
-        autoSuffix(onset.getClass().getSimpleName(), Us_core_allergyintolerance$.MODULE$.onset());
-    return withOnset(guessedSuffix, onset);
-  }
-
-  /**
-   * Alternative to the 'main' withOnset method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param onset - The value to be passed to the builder
-   */
-  public <T> Us_core_allergyintoleranceBuilder withOnset(String suffix, @NonNull T onset) {
-    guard(onset.getClass().getSimpleName(), suffix, Us_core_allergyintolerance$.MODULE$.onset());
-    this.onset =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, onset, Us_core_allergyintolerance$.MODULE$.onset()));
+  public Us_core_allergyintoleranceBuilder withOnset(@NonNull Choice01352864625 onset) {
+    this.onset = Optional.of(onset);
     return this;
   }
   /**
@@ -399,7 +400,7 @@ public class Us_core_allergyintoleranceBuilder {
         patient,
         OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(onset),
+        (Option) OptionConverters.toScala(onset),
         OptionConverters.toScala(recorder),
         OptionConverters.toScala(asserter),
         contained.stream().collect(new LitSeqJCollector<>()),

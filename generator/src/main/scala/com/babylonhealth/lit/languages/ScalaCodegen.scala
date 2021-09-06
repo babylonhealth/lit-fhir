@@ -904,6 +904,8 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
            |import java.time.{ LocalDate, LocalTime, ZonedDateTime }
            |import java.util.UUID
            |
+           |import izumi.reflect.macrortti.LTag
+           |
            |import com.babylonhealth.lit.core._
            |import com.babylonhealth.lit.core.model._
            |import com.babylonhealth.lit.$pkg.model._
@@ -914,10 +916,17 @@ object ScalaCodegen extends BaseFieldImplicits with Commonish {
         .map { case (a, t) => s"type $a = ${t.mkString(unionGlyph)}" }
         .sorted
         .mkString("\n  ")
+    val unionLTags =
+      _unionAliases.toSeq
+        .map { case (a, t) => s"val ${a}Tag: LTag[$a] = LTag[$a]" }
+        .sorted
+        .mkString("\n  ")
     s"""$head
        |
        |${if (unionAliases.nonEmpty) s"""object UnionAliases {
        |  $unionAliases
+       |
+       |  $unionLTags
        |}
        |""" else ""}
        |object Module extends ModuleDict(Map(${lookups

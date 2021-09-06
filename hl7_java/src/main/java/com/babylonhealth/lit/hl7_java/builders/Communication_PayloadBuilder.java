@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -44,22 +45,30 @@ import static java.util.stream.Collectors.toList;
 public class Communication_PayloadBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<$bslash$div<Attachment, Reference>, String>> content;
+  private Choice_1750183386 content;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
    * Required fields for {@link Communication.Payload}
    *
    * @param content Field is a 'choice' field. Type should be one of Attachment, Reference, String.
+   *     To pass the value in, wrap with one of the Communication_PayloadBuilder.content static
+   *     methods
    */
-  public Communication_PayloadBuilder(@NonNull Object content) {
-    this.content =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    content.getClass().getSimpleName(), Communication.Payload$.MODULE$.content()),
-                content,
-                Communication.Payload$.MODULE$.content());
+  public Communication_PayloadBuilder(@NonNull Choice_1750183386 content) {
+    this.content = content;
+  }
+
+  public static Choice_1750183386 content(Attachment a) {
+    return new Choice_1750183386(a);
+  }
+
+  public static Choice_1750183386 content(Reference r) {
+    return new Choice_1750183386(r);
+  }
+
+  public static Choice_1750183386 content(String s) {
+    return new Choice_1750183386(s);
   }
 
   /**

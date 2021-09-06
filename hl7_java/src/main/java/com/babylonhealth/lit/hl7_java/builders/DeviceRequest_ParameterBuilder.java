@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -44,12 +45,28 @@ import static java.util.stream.Collectors.toList;
 public class DeviceRequest_ParameterBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<CodeableConcept> code = Optional.empty();
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_1516277229> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /** Required fields for {@link DeviceRequest.Parameter} */
   public DeviceRequest_ParameterBuilder() {}
+
+  public static Choice_1516277229 value(Boolean b) {
+    return new Choice_1516277229(b);
+  }
+
+  public static Choice_1516277229 value(CodeableConcept c) {
+    return new Choice_1516277229(c);
+  }
+
+  public static Choice_1516277229 value(Quantity q) {
+    return new Choice_1516277229(q);
+  }
+
+  public static Choice_1516277229 value(Range r) {
+    return new Choice_1516277229(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -66,29 +83,11 @@ public class DeviceRequest_ParameterBuilder {
   }
   /**
    * @param value Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
-   *     Quantity, Range.
+   *     Quantity, Range. To pass the value in, wrap with one of the
+   *     DeviceRequest_ParameterBuilder.value static methods
    */
-  public <T> DeviceRequest_ParameterBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), DeviceRequest.Parameter$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> DeviceRequest_ParameterBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, DeviceRequest.Parameter$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, value, DeviceRequest.Parameter$.MODULE$.value()));
+  public DeviceRequest_ParameterBuilder withValue(@NonNull Choice_1516277229 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**

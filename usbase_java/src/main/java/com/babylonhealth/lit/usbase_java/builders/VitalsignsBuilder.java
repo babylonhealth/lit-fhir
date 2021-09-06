@@ -34,11 +34,13 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -64,7 +66,7 @@ public class VitalsignsBuilder {
   private Reference subject;
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<CodeableConcept> category;
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_0802685816> value = Optional.empty();
   private Optional<CodeableConcept> bodySite = Optional.empty();
   private Optional<Reference> specimen = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
@@ -74,7 +76,7 @@ public class VitalsignsBuilder {
   private Collection<Reference> hasMember = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<Reference> derivedFrom = Collections.emptyList();
-  private Choice<$bslash$div<FHIRDateTime, Period>> effective;
+  private Choice_0934386166 effective;
   private Optional<String> implicitRules = Optional.empty();
   private Collection<CodeableConcept> interpretation = Collections.emptyList();
   private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
@@ -93,24 +95,72 @@ public class VitalsignsBuilder {
    *     the `focus` element or the `code` itself specifies the actual focus of the observation.
    * @param category - A code that classifies the general type of observation being made.
    * @param effective - Often just a dateTime for Vital Signs. Field is a 'choice' field. Type
-   *     should be one of FHIRDateTime, Period.
+   *     should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
+   *     VitalsignsBuilder.effective static methods
    */
   public VitalsignsBuilder(
       CodeableConcept code,
       OBSERVATION_STATUS status,
       Reference subject,
       Collection<CodeableConcept> category,
-      @NonNull Object effective) {
+      @NonNull Choice_0934386166 effective) {
     this.code = code;
     this.status = status;
     this.subject = subject;
     this.category = category;
-    this.effective =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(effective.getClass().getSimpleName(), Vitalsigns$.MODULE$.effective()),
-                effective,
-                Vitalsigns$.MODULE$.effective());
+    this.effective = effective;
+  }
+
+  public static Choice_0802685816 value(Boolean b) {
+    return new Choice_0802685816(b);
+  }
+
+  public static Choice_0802685816 value(CodeableConcept c) {
+    return new Choice_0802685816(c);
+  }
+
+  public static Choice_0802685816 value(FHIRDateTime f) {
+    return new Choice_0802685816(f);
+  }
+
+  public static Choice_0802685816 value(Integer i) {
+    return new Choice_0802685816(i);
+  }
+
+  public static Choice_0802685816 value(LocalTime l) {
+    return new Choice_0802685816(l);
+  }
+
+  public static Choice_0802685816 value(Period p) {
+    return new Choice_0802685816(p);
+  }
+
+  public static Choice_0802685816 value(Quantity q) {
+    return new Choice_0802685816(q);
+  }
+
+  public static Choice_0802685816 value(Range r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(Ratio r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(SampledData s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice_0802685816 value(String s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice_0934386166 effective(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 effective(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -240,26 +290,11 @@ public class VitalsignsBuilder {
    * @param value - Vital Signs value are recorded using the Quantity data type. For supporting
    *     observations such as Cuff size could use other datatypes such as CodeableConcept. Field is
    *     a 'choice' field. Type should be one of Boolean, CodeableConcept, FHIRDateTime, Integer,
-   *     LocalTime, Period, Quantity, Range, Ratio, SampledData, String.
+   *     LocalTime, Period, Quantity, Range, Ratio, SampledData, String. To pass the value in, wrap
+   *     with one of the VitalsignsBuilder.value static methods
    */
-  public <T> VitalsignsBuilder withValue(@NonNull T value) {
-    var guessedSuffix = autoSuffix(value.getClass().getSimpleName(), Vitalsigns$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> VitalsignsBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, Vitalsigns$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, value, Vitalsigns$.MODULE$.value()));
+  public VitalsignsBuilder withValue(@NonNull Choice_0802685816 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**

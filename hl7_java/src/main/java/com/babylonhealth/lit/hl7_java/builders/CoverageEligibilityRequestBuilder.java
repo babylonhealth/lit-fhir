@@ -32,12 +32,13 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.FM_STATUS;
 import com.babylonhealth.lit.hl7.ELIGIBILITYREQUEST_PURPOSE;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -60,7 +61,7 @@ public class CoverageEligibilityRequestBuilder {
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<Choice<$bslash$div<FHIRDate, Period>>> serviced = Optional.empty();
+  private Optional<Choice_0503196159> serviced = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<CoverageEligibilityRequest.Insurance> insurance = Collections.emptyList();
@@ -93,6 +94,14 @@ public class CoverageEligibilityRequestBuilder {
     this.patient = patient;
     this.created = created;
     this.insurer = insurer;
+  }
+
+  public static Choice_0503196159 serviced(FHIRDate f) {
+    return new Choice_0503196159(f);
+  }
+
+  public static Choice_0503196159 serviced(Period p) {
+    return new Choice_0503196159(p);
   }
 
   /**
@@ -201,33 +210,11 @@ public class CoverageEligibilityRequestBuilder {
   }
   /**
    * @param serviced - The date or dates when the enclosed suite of services were performed or
-   *     completed. Field is a 'choice' field. Type should be one of FHIRDate, Period.
+   *     completed. Field is a 'choice' field. Type should be one of FHIRDate, Period. To pass the
+   *     value in, wrap with one of the CoverageEligibilityRequestBuilder.serviced static methods
    */
-  public <T> CoverageEligibilityRequestBuilder withServiced(@NonNull T serviced) {
-    var guessedSuffix =
-        autoSuffix(
-            serviced.getClass().getSimpleName(), CoverageEligibilityRequest$.MODULE$.serviced());
-    return withServiced(guessedSuffix, serviced);
-  }
-
-  /**
-   * Alternative to the 'main' withServiced method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param serviced - The value to be passed to the builder
-   */
-  public <T> CoverageEligibilityRequestBuilder withServiced(String suffix, @NonNull T serviced) {
-    guard(
-        serviced.getClass().getSimpleName(),
-        suffix,
-        CoverageEligibilityRequest$.MODULE$.serviced());
-    this.serviced =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, serviced, CoverageEligibilityRequest$.MODULE$.serviced()));
+  public CoverageEligibilityRequestBuilder withServiced(@NonNull Choice_0503196159 serviced) {
+    this.serviced = Optional.of(serviced);
     return this;
   }
   /**
@@ -352,7 +339,7 @@ public class CoverageEligibilityRequestBuilder {
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(serviced),
+        (Option) OptionConverters.toScala(serviced),
         OptionConverters.toScala(implicitRules),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         insurance.stream().collect(new LitSeqJCollector<>()),

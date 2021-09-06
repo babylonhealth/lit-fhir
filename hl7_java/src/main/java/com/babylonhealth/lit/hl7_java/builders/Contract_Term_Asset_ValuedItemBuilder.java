@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -50,7 +51,7 @@ public class Contract_Term_Asset_ValuedItemBuilder {
   private Optional<String> payment = Optional.empty();
   private Optional<Quantity> quantity = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> entity = Optional.empty();
+  private Optional<Choice01025009075> entity = Optional.empty();
   private Optional<Money> unitPrice = Optional.empty();
   private Optional<Reference> recipient = Optional.empty();
   private Optional<Identifier> identifier = Optional.empty();
@@ -62,6 +63,14 @@ public class Contract_Term_Asset_ValuedItemBuilder {
 
   /** Required fields for {@link Contract$Term$Asset$ValuedItem} */
   public Contract_Term_Asset_ValuedItemBuilder() {}
+
+  public static Choice01025009075 entity(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 entity(Reference r) {
+    return new Choice01025009075(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -129,32 +138,13 @@ public class Contract_Term_Asset_ValuedItemBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param entity Field is a 'choice' field. Type should be one of CodeableConcept, Reference. */
-  public <T> Contract_Term_Asset_ValuedItemBuilder withEntity(@NonNull T entity) {
-    var guessedSuffix =
-        autoSuffix(
-            entity.getClass().getSimpleName(), Contract$Term$Asset$ValuedItem$.MODULE$.entity());
-    return withEntity(guessedSuffix, entity);
-  }
-
   /**
-   * Alternative to the 'main' withEntity method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param entity - The value to be passed to the builder
+   * @param entity Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the Contract_Term_Asset_ValuedItemBuilder.entity static
+   *     methods
    */
-  public <T> Contract_Term_Asset_ValuedItemBuilder withEntity(String suffix, @NonNull T entity) {
-    guard(
-        entity.getClass().getSimpleName(),
-        suffix,
-        Contract$Term$Asset$ValuedItem$.MODULE$.entity());
-    this.entity =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, entity, Contract$Term$Asset$ValuedItem$.MODULE$.entity()));
+  public Contract_Term_Asset_ValuedItemBuilder withEntity(@NonNull Choice01025009075 entity) {
+    this.entity = Optional.of(entity);
     return this;
   }
   /** @param unitPrice */
@@ -248,7 +238,7 @@ public class Contract_Term_Asset_ValuedItemBuilder {
         OptionConverters.toScala(payment),
         OptionConverters.toScala(quantity),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(entity),
+        (Option) OptionConverters.toScala(entity),
         OptionConverters.toScala(unitPrice),
         OptionConverters.toScala(recipient),
         OptionConverters.toScala(identifier),

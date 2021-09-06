@@ -32,11 +32,12 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.IMMUNIZATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -67,7 +68,7 @@ public class ImmunizationBuilder {
   private Optional<Reference> manufacturer = Optional.empty();
   private Optional<Quantity> doseQuantity = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Choice<$bslash$div<FHIRDateTime, String>> occurrence;
+  private Choice_1715923163 occurrence;
   private Optional<Boolean> primarySource = Optional.empty();
   private Optional<CodeableConcept> fundingSource = Optional.empty();
   private Optional<FHIRDate> expirationDate = Optional.empty();
@@ -87,23 +88,26 @@ public class ImmunizationBuilder {
    * @param patient - The patient who either received or did not receive the immunization.
    * @param vaccineCode - Vaccine that was administered or was to be administered.
    * @param occurrence - Date vaccine administered or was to be administered. Field is a 'choice'
-   *     field. Type should be one of FHIRDateTime, String.
+   *     field. Type should be one of FHIRDateTime, String. To pass the value in, wrap with one of
+   *     the ImmunizationBuilder.occurrence static methods
    */
   public ImmunizationBuilder(
       IMMUNIZATION_STATUS status,
       Reference patient,
       CodeableConcept vaccineCode,
-      @NonNull Object occurrence) {
+      @NonNull Choice_1715923163 occurrence) {
     this.status = status;
     this.patient = patient;
     this.vaccineCode = vaccineCode;
-    this.occurrence =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    occurrence.getClass().getSimpleName(), Immunization$.MODULE$.occurrence()),
-                occurrence,
-                Immunization$.MODULE$.occurrence());
+    this.occurrence = occurrence;
+  }
+
+  public static Choice_1715923163 occurrence(FHIRDateTime f) {
+    return new Choice_1715923163(f);
+  }
+
+  public static Choice_1715923163 occurrence(String s) {
+    return new Choice_1715923163(s);
   }
 
   /**

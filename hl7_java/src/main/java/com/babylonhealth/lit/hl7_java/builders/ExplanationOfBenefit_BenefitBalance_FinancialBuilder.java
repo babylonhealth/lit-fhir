@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -44,9 +45,9 @@ import static java.util.stream.Collectors.toList;
 public class ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
   private Optional<String> id = Optional.empty();
   private CodeableConcept _type;
-  private Optional<Choice> used = Optional.empty();
+  private Optional<Choice_1289000811> used = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice> allowed = Optional.empty();
+  private Optional<Choice_0040864668> allowed = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -58,6 +59,26 @@ public class ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
     this._type = _type;
   }
 
+  public static Choice_1289000811 used(Money m) {
+    return new Choice_1289000811(m);
+  }
+
+  public static Choice_1289000811 used(Integer i) {
+    return new Choice_1289000811(i);
+  }
+
+  public static Choice_0040864668 allowed(Money m) {
+    return new Choice_0040864668(m);
+  }
+
+  public static Choice_0040864668 allowed(String s) {
+    return new Choice_0040864668(s);
+  }
+
+  public static Choice_0040864668 allowed(Integer i) {
+    return new Choice_0040864668(i);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -66,34 +87,14 @@ public class ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
     this.id = Optional.of(id);
     return this;
   }
-  /** @param used Field is a 'choice' field. Type should be one of Money, Integer. */
-  public <T> ExplanationOfBenefit_BenefitBalance_FinancialBuilder withUsed(@NonNull T used) {
-    var guessedSuffix =
-        autoSuffix(
-            used.getClass().getSimpleName(),
-            ExplanationOfBenefit$BenefitBalance$Financial$.MODULE$.used());
-    return withUsed(guessedSuffix, used);
-  }
-
   /**
-   * Alternative to the 'main' withUsed method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param used - The value to be passed to the builder
+   * @param used Field is a 'choice' field. Type should be one of Money, Integer. To pass the value
+   *     in, wrap with one of the ExplanationOfBenefit_BenefitBalance_FinancialBuilder.used static
+   *     methods
    */
-  public <T> ExplanationOfBenefit_BenefitBalance_FinancialBuilder withUsed(
-      String suffix, @NonNull T used) {
-    guard(
-        used.getClass().getSimpleName(),
-        suffix,
-        ExplanationOfBenefit$BenefitBalance$Financial$.MODULE$.used());
-    this.used =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, used, ExplanationOfBenefit$BenefitBalance$Financial$.MODULE$.used()));
+  public ExplanationOfBenefit_BenefitBalance_FinancialBuilder withUsed(
+      @NonNull Choice_1289000811 used) {
+    this.used = Optional.of(used);
     return this;
   }
   /**
@@ -120,36 +121,14 @@ public class ExplanationOfBenefit_BenefitBalance_FinancialBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param allowed Field is a 'choice' field. Type should be one of Money, String, Integer. */
-  public <T> ExplanationOfBenefit_BenefitBalance_FinancialBuilder withAllowed(@NonNull T allowed) {
-    var guessedSuffix =
-        autoSuffix(
-            allowed.getClass().getSimpleName(),
-            ExplanationOfBenefit$BenefitBalance$Financial$.MODULE$.allowed());
-    return withAllowed(guessedSuffix, allowed);
-  }
-
   /**
-   * Alternative to the 'main' withAllowed method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param allowed - The value to be passed to the builder
+   * @param allowed Field is a 'choice' field. Type should be one of Money, String, Integer. To pass
+   *     the value in, wrap with one of the
+   *     ExplanationOfBenefit_BenefitBalance_FinancialBuilder.allowed static methods
    */
-  public <T> ExplanationOfBenefit_BenefitBalance_FinancialBuilder withAllowed(
-      String suffix, @NonNull T allowed) {
-    guard(
-        allowed.getClass().getSimpleName(),
-        suffix,
-        ExplanationOfBenefit$BenefitBalance$Financial$.MODULE$.allowed());
-    this.allowed =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix,
-                    allowed,
-                    ExplanationOfBenefit$BenefitBalance$Financial$.MODULE$.allowed()));
+  public ExplanationOfBenefit_BenefitBalance_FinancialBuilder withAllowed(
+      @NonNull Choice_0040864668 allowed) {
+    this.allowed = Optional.of(allowed);
     return this;
   }
   /**

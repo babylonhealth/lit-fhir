@@ -32,11 +32,12 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.CLINICALIMPRESSION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -63,7 +64,7 @@ public class ClinicalImpressionBuilder {
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<String> description = Optional.empty();
   private Optional<CodeableConcept> statusReason = Optional.empty();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> effective = Optional.empty();
+  private Optional<Choice_0934386166> effective = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<Reference> supportingInfo = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -81,6 +82,14 @@ public class ClinicalImpressionBuilder {
   public ClinicalImpressionBuilder(CLINICALIMPRESSION_STATUS status, Reference subject) {
     this.status = status;
     this.subject = subject;
+  }
+
+  public static Choice_0934386166 effective(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 effective(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -269,29 +278,11 @@ public class ClinicalImpressionBuilder {
   }
   /**
    * @param effective - The point in time or period over which the subject was assessed. Field is a
-   *     'choice' field. Type should be one of FHIRDateTime, Period.
+   *     'choice' field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap with
+   *     one of the ClinicalImpressionBuilder.effective static methods
    */
-  public <T> ClinicalImpressionBuilder withEffective(@NonNull T effective) {
-    var guessedSuffix =
-        autoSuffix(effective.getClass().getSimpleName(), ClinicalImpression$.MODULE$.effective());
-    return withEffective(guessedSuffix, effective);
-  }
-
-  /**
-   * Alternative to the 'main' withEffective method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param effective - The value to be passed to the builder
-   */
-  public <T> ClinicalImpressionBuilder withEffective(String suffix, @NonNull T effective) {
-    guard(effective.getClass().getSimpleName(), suffix, ClinicalImpression$.MODULE$.effective());
-    this.effective =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, effective, ClinicalImpression$.MODULE$.effective()));
+  public ClinicalImpressionBuilder withEffective(@NonNull Choice_0934386166 effective) {
+    this.effective = Optional.of(effective);
     return this;
   }
   /**
@@ -439,7 +430,7 @@ public class ClinicalImpressionBuilder {
         identifier.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(description),
         OptionConverters.toScala(statusReason),
-        OptionConverters.toScala(effective),
+        (Option) OptionConverters.toScala(effective),
         OptionConverters.toScala(implicitRules),
         supportingInfo.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),

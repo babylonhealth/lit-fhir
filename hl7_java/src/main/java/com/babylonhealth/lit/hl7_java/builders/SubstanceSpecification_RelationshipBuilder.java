@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,17 +46,40 @@ public class SubstanceSpecification_RelationshipBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Reference> source = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<$bslash$div<$bslash$div<Quantity, Range>, Ratio>, String>>>
-      amount = Optional.empty();
+  private Optional<Choice00910671146> amount = Optional.empty();
   private Optional<Boolean> isDefining = Optional.empty();
   private Optional<CodeableConcept> amountType = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> substance = Optional.empty();
+  private Optional<Choice01025009075> substance = Optional.empty();
   private Optional<CodeableConcept> relationship = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Optional<Ratio> amountRatioLowLimit = Optional.empty();
 
   /** Required fields for {@link SubstanceSpecification.Relationship} */
   public SubstanceSpecification_RelationshipBuilder() {}
+
+  public static Choice00910671146 amount(Quantity q) {
+    return new Choice00910671146(q);
+  }
+
+  public static Choice00910671146 amount(Range r) {
+    return new Choice00910671146(r);
+  }
+
+  public static Choice00910671146 amount(Ratio r) {
+    return new Choice00910671146(r);
+  }
+
+  public static Choice00910671146 amount(String s) {
+    return new Choice00910671146(s);
+  }
+
+  public static Choice01025009075 substance(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 substance(Reference r) {
+    return new Choice01025009075(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -101,34 +125,11 @@ public class SubstanceSpecification_RelationshipBuilder {
   }
   /**
    * @param amount Field is a 'choice' field. Type should be one of Quantity, Range, Ratio, String.
+   *     To pass the value in, wrap with one of the
+   *     SubstanceSpecification_RelationshipBuilder.amount static methods
    */
-  public <T> SubstanceSpecification_RelationshipBuilder withAmount(@NonNull T amount) {
-    var guessedSuffix =
-        autoSuffix(
-            amount.getClass().getSimpleName(),
-            SubstanceSpecification.Relationship$.MODULE$.amount());
-    return withAmount(guessedSuffix, amount);
-  }
-
-  /**
-   * Alternative to the 'main' withAmount method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param amount - The value to be passed to the builder
-   */
-  public <T> SubstanceSpecification_RelationshipBuilder withAmount(
-      String suffix, @NonNull T amount) {
-    guard(
-        amount.getClass().getSimpleName(),
-        suffix,
-        SubstanceSpecification.Relationship$.MODULE$.amount());
-    this.amount =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, amount, SubstanceSpecification.Relationship$.MODULE$.amount()));
+  public SubstanceSpecification_RelationshipBuilder withAmount(@NonNull Choice00910671146 amount) {
+    this.amount = Optional.of(amount);
     return this;
   }
   /** @param isDefining */
@@ -144,34 +145,12 @@ public class SubstanceSpecification_RelationshipBuilder {
   }
   /**
    * @param substance Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     To pass the value in, wrap with one of the
+   *     SubstanceSpecification_RelationshipBuilder.substance static methods
    */
-  public <T> SubstanceSpecification_RelationshipBuilder withSubstance(@NonNull T substance) {
-    var guessedSuffix =
-        autoSuffix(
-            substance.getClass().getSimpleName(),
-            SubstanceSpecification.Relationship$.MODULE$.substance());
-    return withSubstance(guessedSuffix, substance);
-  }
-
-  /**
-   * Alternative to the 'main' withSubstance method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param substance - The value to be passed to the builder
-   */
-  public <T> SubstanceSpecification_RelationshipBuilder withSubstance(
-      String suffix, @NonNull T substance) {
-    guard(
-        substance.getClass().getSimpleName(),
-        suffix,
-        SubstanceSpecification.Relationship$.MODULE$.substance());
-    this.substance =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, substance, SubstanceSpecification.Relationship$.MODULE$.substance()));
+  public SubstanceSpecification_RelationshipBuilder withSubstance(
+      @NonNull Choice01025009075 substance) {
+    this.substance = Optional.of(substance);
     return this;
   }
   /**
@@ -229,10 +208,10 @@ public class SubstanceSpecification_RelationshipBuilder {
         OptionConverters.toScala(id),
         source.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(amount),
+        (Option) OptionConverters.toScala(amount),
         OptionConverters.toScala(isDefining.map(x -> (Object) x)),
         OptionConverters.toScala(amountType),
-        OptionConverters.toScala(substance),
+        (Option) OptionConverters.toScala(substance),
         OptionConverters.toScala(relationship),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(amountRatioLowLimit),

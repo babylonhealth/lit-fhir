@@ -32,11 +32,12 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -64,7 +65,7 @@ public class RiskAssessmentBuilder {
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Optional<String> mitigation = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> occurrence = Optional.empty();
+  private Optional<Choice_0934386166> occurrence = Optional.empty();
   private Collection<Reference> reasonReference = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<RiskAssessment.Prediction> prediction = Collections.emptyList();
@@ -78,6 +79,14 @@ public class RiskAssessmentBuilder {
   public RiskAssessmentBuilder(OBSERVATION_STATUS status, Reference subject) {
     this.status = status;
     this.subject = subject;
+  }
+
+  public static Choice_0934386166 occurrence(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 occurrence(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -260,29 +269,11 @@ public class RiskAssessmentBuilder {
   }
   /**
    * @param occurrence - The date (and possibly time) the risk assessment was performed. Field is a
-   *     'choice' field. Type should be one of FHIRDateTime, Period.
+   *     'choice' field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap with
+   *     one of the RiskAssessmentBuilder.occurrence static methods
    */
-  public <T> RiskAssessmentBuilder withOccurrence(@NonNull T occurrence) {
-    var guessedSuffix =
-        autoSuffix(occurrence.getClass().getSimpleName(), RiskAssessment$.MODULE$.occurrence());
-    return withOccurrence(guessedSuffix, occurrence);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurrence method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurrence - The value to be passed to the builder
-   */
-  public <T> RiskAssessmentBuilder withOccurrence(String suffix, @NonNull T occurrence) {
-    guard(occurrence.getClass().getSimpleName(), suffix, RiskAssessment$.MODULE$.occurrence());
-    this.occurrence =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, occurrence, RiskAssessment$.MODULE$.occurrence()));
+  public RiskAssessmentBuilder withOccurrence(@NonNull Choice_0934386166 occurrence) {
+    this.occurrence = Optional.of(occurrence);
     return this;
   }
   /** @param reasonReference - Resources supporting the reason the risk assessment was performed. */
@@ -368,7 +359,7 @@ public class RiskAssessmentBuilder {
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(mitigation),
         OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(occurrence),
+        (Option) OptionConverters.toScala(occurrence),
         reasonReference.stream().collect(new LitSeqJCollector<>()),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         prediction.stream().collect(new LitSeqJCollector<>()),

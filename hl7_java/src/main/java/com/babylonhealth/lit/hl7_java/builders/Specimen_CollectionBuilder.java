@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -49,12 +50,28 @@ public class Specimen_CollectionBuilder {
   private Optional<CodeableConcept> bodySite = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<Reference> collector = Optional.empty();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> collected = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, Duration>>> fastingStatus = Optional.empty();
+  private Optional<Choice_0934386166> collected = Optional.empty();
+  private Optional<Choice01243416269> fastingStatus = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /** Required fields for {@link Specimen.Collection} */
   public Specimen_CollectionBuilder() {}
+
+  public static Choice_0934386166 collected(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 collected(Period p) {
+    return new Choice_0934386166(p);
+  }
+
+  public static Choice01243416269 fastingStatus(CodeableConcept c) {
+    return new Choice01243416269(c);
+  }
+
+  public static Choice01243416269 fastingStatus(Duration d) {
+    return new Choice01243416269(d);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -111,59 +128,21 @@ public class Specimen_CollectionBuilder {
     this.collector = Optional.of(collector);
     return this;
   }
-  /** @param collected Field is a 'choice' field. Type should be one of FHIRDateTime, Period. */
-  public <T> Specimen_CollectionBuilder withCollected(@NonNull T collected) {
-    var guessedSuffix =
-        autoSuffix(collected.getClass().getSimpleName(), Specimen.Collection$.MODULE$.collected());
-    return withCollected(guessedSuffix, collected);
-  }
-
   /**
-   * Alternative to the 'main' withCollected method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param collected - The value to be passed to the builder
+   * @param collected Field is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass
+   *     the value in, wrap with one of the Specimen_CollectionBuilder.collected static methods
    */
-  public <T> Specimen_CollectionBuilder withCollected(String suffix, @NonNull T collected) {
-    guard(collected.getClass().getSimpleName(), suffix, Specimen.Collection$.MODULE$.collected());
-    this.collected =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, collected, Specimen.Collection$.MODULE$.collected()));
+  public Specimen_CollectionBuilder withCollected(@NonNull Choice_0934386166 collected) {
+    this.collected = Optional.of(collected);
     return this;
   }
   /**
    * @param fastingStatus Field is a 'choice' field. Type should be one of CodeableConcept,
-   *     Duration.
+   *     Duration. To pass the value in, wrap with one of the
+   *     Specimen_CollectionBuilder.fastingStatus static methods
    */
-  public <T> Specimen_CollectionBuilder withFastingStatus(@NonNull T fastingStatus) {
-    var guessedSuffix =
-        autoSuffix(
-            fastingStatus.getClass().getSimpleName(), Specimen.Collection$.MODULE$.fastingStatus());
-    return withFastingStatus(guessedSuffix, fastingStatus);
-  }
-
-  /**
-   * Alternative to the 'main' withFastingStatus method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param fastingStatus - The value to be passed to the builder
-   */
-  public <T> Specimen_CollectionBuilder withFastingStatus(String suffix, @NonNull T fastingStatus) {
-    guard(
-        fastingStatus.getClass().getSimpleName(),
-        suffix,
-        Specimen.Collection$.MODULE$.fastingStatus());
-    this.fastingStatus =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, fastingStatus, Specimen.Collection$.MODULE$.fastingStatus()));
+  public Specimen_CollectionBuilder withFastingStatus(@NonNull Choice01243416269 fastingStatus) {
+    this.fastingStatus = Optional.of(fastingStatus);
     return this;
   }
   /**
@@ -209,8 +188,8 @@ public class Specimen_CollectionBuilder {
         OptionConverters.toScala(bodySite),
         extension.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(collector),
-        OptionConverters.toScala(collected),
-        OptionConverters.toScala(fastingStatus),
+        (Option) OptionConverters.toScala(collected),
+        (Option) OptionConverters.toScala(fastingStatus),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

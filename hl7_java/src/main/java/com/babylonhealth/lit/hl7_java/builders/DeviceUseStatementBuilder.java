@@ -32,11 +32,12 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DEVICE_STATEMENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -56,8 +57,7 @@ public class DeviceUseStatementBuilder {
   private Optional<CodeableConcept> bodySite = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>>> timing =
-      Optional.empty();
+  private Optional<Choice00609373412> timing = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<FHIRDateTime> recordedOn = Optional.empty();
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
@@ -79,6 +79,18 @@ public class DeviceUseStatementBuilder {
     this.status = status;
     this.device = device;
     this.subject = subject;
+  }
+
+  public static Choice00609373412 timing(FHIRDateTime f) {
+    return new Choice00609373412(f);
+  }
+
+  public static Choice00609373412 timing(Period p) {
+    return new Choice00609373412(p);
+  }
+
+  public static Choice00609373412 timing(Timing t) {
+    return new Choice00609373412(t);
   }
 
   /**
@@ -203,28 +215,11 @@ public class DeviceUseStatementBuilder {
   }
   /**
    * @param timing - How often the device was used. Field is a 'choice' field. Type should be one of
-   *     FHIRDateTime, Period, Timing.
+   *     FHIRDateTime, Period, Timing. To pass the value in, wrap with one of the
+   *     DeviceUseStatementBuilder.timing static methods
    */
-  public <T> DeviceUseStatementBuilder withTiming(@NonNull T timing) {
-    var guessedSuffix =
-        autoSuffix(timing.getClass().getSimpleName(), DeviceUseStatement$.MODULE$.timing());
-    return withTiming(guessedSuffix, timing);
-  }
-
-  /**
-   * Alternative to the 'main' withTiming method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param timing - The value to be passed to the builder
-   */
-  public <T> DeviceUseStatementBuilder withTiming(String suffix, @NonNull T timing) {
-    guard(timing.getClass().getSimpleName(), suffix, DeviceUseStatement$.MODULE$.timing());
-    this.timing =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, timing, DeviceUseStatement$.MODULE$.timing()));
+  public DeviceUseStatementBuilder withTiming(@NonNull Choice00609373412 timing) {
+    this.timing = Optional.of(timing);
     return this;
   }
   /** @param identifier - An external identifier for this statement such as an IRI. */
@@ -349,7 +344,7 @@ public class DeviceUseStatementBuilder {
         OptionConverters.toScala(bodySite),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(timing),
+        (Option) OptionConverters.toScala(timing),
         identifier.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(recordedOn),
         reasonCode.stream().collect(new LitSeqJCollector<>()),

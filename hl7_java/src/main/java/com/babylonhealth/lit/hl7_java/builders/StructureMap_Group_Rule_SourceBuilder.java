@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MAP_SOURCE_LIST_MODE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -54,7 +55,7 @@ public class StructureMap_Group_Rule_SourceBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<String> condition = Optional.empty();
   private Optional<String> logMessage = Optional.empty();
-  private Optional<Choice> defaultValue = Optional.empty();
+  private Optional<Choice_1349125893> defaultValue = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -64,6 +65,206 @@ public class StructureMap_Group_Rule_SourceBuilder {
    */
   public StructureMap_Group_Rule_SourceBuilder(String context) {
     this.context = context;
+  }
+
+  public static Choice_1349125893 defaultValue(Address a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 defaultValue(Age a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 defaultValue(Annotation a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 defaultValue(Attachment a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 defaultValue(byte[] b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 defaultValue(BigDecimal b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 defaultValue(Boolean b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 defaultValue(CodeableConcept c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 defaultValue(Coding c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 defaultValue(ContactDetail c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 defaultValue(ContactPoint c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 defaultValue(Contributor c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 defaultValue(Count c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 defaultValue(DataRequirement d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 defaultValue(Distance d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 defaultValue(Dosage d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 defaultValue(Duration d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 defaultValue(Expression e) {
+    return new Choice_1349125893(e);
+  }
+
+  public static Choice_1349125893 defaultValue(FHIRDate f) {
+    return new Choice_1349125893(f);
+  }
+
+  public static Choice_1349125893 defaultValue(FHIRDateTime f) {
+    return new Choice_1349125893(f);
+  }
+
+  public static Choice_1349125893 defaultValue(HumanName h) {
+    return new Choice_1349125893(h);
+  }
+
+  public static Choice_1349125893 defaultValue(Identifier i) {
+    return new Choice_1349125893(i);
+  }
+
+  public static Choice_1349125893 defaultValue(LocalTime l) {
+    return new Choice_1349125893(l);
+  }
+
+  public static Choice_1349125893 defaultValue(Meta m) {
+    return new Choice_1349125893(m);
+  }
+
+  public static Choice_1349125893 defaultValue(Money m) {
+    return new Choice_1349125893(m);
+  }
+
+  public static Choice_1349125893 defaultValue(ParameterDefinition p) {
+    return new Choice_1349125893(p);
+  }
+
+  public static Choice_1349125893 defaultValue(Period p) {
+    return new Choice_1349125893(p);
+  }
+
+  public static Choice_1349125893 defaultValue(Quantity q) {
+    return new Choice_1349125893(q);
+  }
+
+  public static Choice_1349125893 defaultValue(Range r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 defaultValue(Ratio r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 defaultValue(Reference r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 defaultValue(RelatedArtifact r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 defaultValue(SampledData s) {
+    return new Choice_1349125893(s);
+  }
+
+  public static Choice_1349125893 defaultValue(Signature s) {
+    return new Choice_1349125893(s);
+  }
+
+  public static Choice_1349125893 defaultValue(Timing t) {
+    return new Choice_1349125893(t);
+  }
+
+  public static Choice_1349125893 defaultValue(TriggerDefinition t) {
+    return new Choice_1349125893(t);
+  }
+
+  public static Choice_1349125893 defaultValue(UUID u) {
+    return new Choice_1349125893(u);
+  }
+
+  public static Choice_1349125893 defaultValue(UsageContext u) {
+    return new Choice_1349125893(u);
+  }
+
+  public static Choice_1349125893 defaultValue(ZonedDateTime z) {
+    return new Choice_1349125893(z);
+  }
+
+  public static Choice_1349125893 defaultValueCanonical(String s) {
+    return Choice_1349125893.Choice_1349125893Canonical(s);
+  }
+
+  public static Choice_1349125893 defaultValueCode(String s) {
+    return Choice_1349125893.Choice_1349125893Code(s);
+  }
+
+  public static Choice_1349125893 defaultValueId(String s) {
+    return Choice_1349125893.Choice_1349125893Id(s);
+  }
+
+  public static Choice_1349125893 defaultValueInteger(Integer i) {
+    return Choice_1349125893.Choice_1349125893Int(i);
+  }
+
+  public static Choice_1349125893 defaultValueMarkdown(String s) {
+    return Choice_1349125893.Choice_1349125893Markdown(s);
+  }
+
+  public static Choice_1349125893 defaultValueOid(String s) {
+    return Choice_1349125893.Choice_1349125893OID(s);
+  }
+
+  public static Choice_1349125893 defaultValuePositiveInt(Integer i) {
+    return Choice_1349125893.Choice_1349125893PositiveInt(i);
+  }
+
+  public static Choice_1349125893 defaultValueString(String s) {
+    return Choice_1349125893.Choice_1349125893String(s);
+  }
+
+  public static Choice_1349125893 defaultValueUnsignedInt(Integer i) {
+    return Choice_1349125893.Choice_1349125893UnsignedInt(i);
+  }
+
+  public static Choice_1349125893 defaultValueUri(String s) {
+    return Choice_1349125893.Choice_1349125893UriStr(s);
+  }
+
+  public static Choice_1349125893 defaultValueUrl(String s) {
+    return Choice_1349125893.Choice_1349125893UrlStr(s);
   }
 
   /**
@@ -149,39 +350,13 @@ public class StructureMap_Group_Rule_SourceBuilder {
    *     ContactPoint, Contributor, Count, DataRequirement, Distance, Dosage, Duration, Expression,
    *     FHIRDate, FHIRDateTime, HumanName, Identifier, Integer, LocalTime, Meta, Money,
    *     ParameterDefinition, Period, Quantity, Range, Ratio, Reference, RelatedArtifact,
-   *     SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext, ZonedDateTime.
+   *     SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext, ZonedDateTime. To
+   *     pass the value in, wrap with one of the StructureMap_Group_Rule_SourceBuilder.defaultValue
+   *     static methods
    */
-  public <T> StructureMap_Group_Rule_SourceBuilder withDefaultValue(@NonNull T defaultValue) {
-    var guessedSuffix =
-        autoSuffix(
-            defaultValue.getClass().getSimpleName(),
-            StructureMap$Group$Rule$Source$.MODULE$.defaultValue());
-    return withDefaultValue(guessedSuffix, defaultValue);
-  }
-
-  /**
-   * Alternative to the 'main' withDefaultValue method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type. When the
-   * parameter is one of Integer or String then there are multiple candidate 'types' for the FHIR
-   * object, and we are unable to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type Integer, the valid values are Integer,
-   *     PositiveInt, UnsignedInt. For values of type String, the valid values are Canonical, Code,
-   *     Id, Markdown, Oid, String, Uri, Url.
-   * @param defaultValue - The value to be passed to the builder
-   */
-  public <T> StructureMap_Group_Rule_SourceBuilder withDefaultValue(
-      String suffix, @NonNull T defaultValue) {
-    guard(
-        defaultValue.getClass().getSimpleName(),
-        suffix,
-        StructureMap$Group$Rule$Source$.MODULE$.defaultValue());
-    this.defaultValue =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, defaultValue, StructureMap$Group$Rule$Source$.MODULE$.defaultValue()));
+  public StructureMap_Group_Rule_SourceBuilder withDefaultValue(
+      @NonNull Choice_1349125893 defaultValue) {
+    this.defaultValue = Optional.of(defaultValue);
     return this;
   }
   /**

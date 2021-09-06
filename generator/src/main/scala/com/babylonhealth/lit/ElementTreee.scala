@@ -7,6 +7,7 @@ import com.babylonhealth.lit.hl7.BINDING_STRENGTH
 import com.babylonhealth.lit.hl7.model.ElementDefinition
 
 object ElementTreee extends Commonish with Logging {
+  def hashForUnion(s: Seq[String]): String = "%011d".format(s.toSet.hashCode).replace('-', '_')
 
   private val unionTypes                                     = TrieMap[String, (Seq[String], Seq[String])]()
   def getUnionTypes: Map[String, (Seq[String], Seq[String])] = unionTypes.toMap
@@ -17,7 +18,7 @@ object ElementTreee extends Commonish with Logging {
       s.head
     } else {
       // Left-pad with zeros just for neatness' sake
-      val hashName = s"Union${"%011d".format(s.toSet.hashCode).replace('-', '_')}"
+      val hashName = s"Union${hashForUnion(s)}"
       unionTypes
         .updateWith(hashName) {
           case None              => Some(Seq(pkg), s)

@@ -36,11 +36,14 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.GOAL_STATUS;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -59,7 +62,7 @@ public class Us_core_goalBuilder {
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<CodeableConcept> category = Collections.emptyList();
   private Optional<CodeableConcept> priority = Optional.empty();
-  private Optional<Choice<$bslash$div<CodeableConcept, FHIRDate>>> start = Optional.empty();
+  private Optional<Choice00078348305> start = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Reference> addresses = Collections.emptyList();
@@ -88,6 +91,14 @@ public class Us_core_goalBuilder {
     this.subject = subject;
     this.description = description;
     this.lifecycleStatus = lifecycleStatus;
+  }
+
+  public static Choice00078348305 start(CodeableConcept c) {
+    return new Choice00078348305(c);
+  }
+
+  public static Choice00078348305 start(FHIRDate f) {
+    return new Choice00078348305(f);
   }
 
   /**
@@ -153,26 +164,11 @@ public class Us_core_goalBuilder {
   }
   /**
    * @param start - The date or event after which the goal should begin being pursued. Field is a
-   *     'choice' field. Type should be one of CodeableConcept, FHIRDate.
+   *     'choice' field. Type should be one of CodeableConcept, FHIRDate. To pass the value in, wrap
+   *     with one of the Us_core_goalBuilder.start static methods
    */
-  public <T> Us_core_goalBuilder withStart(@NonNull T start) {
-    var guessedSuffix = autoSuffix(start.getClass().getSimpleName(), Us_core_goal$.MODULE$.start());
-    return withStart(guessedSuffix, start);
-  }
-
-  /**
-   * Alternative to the 'main' withStart method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param start - The value to be passed to the builder
-   */
-  public <T> Us_core_goalBuilder withStart(String suffix, @NonNull T start) {
-    guard(start.getClass().getSimpleName(), suffix, Us_core_goal$.MODULE$.start());
-    this.start =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, start, Us_core_goal$.MODULE$.start()));
+  public Us_core_goalBuilder withStart(@NonNull Choice00078348305 start) {
+    this.start = Optional.of(start);
     return this;
   }
   /**
@@ -370,7 +366,7 @@ public class Us_core_goalBuilder {
         OptionConverters.toScala(language),
         category.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(priority),
-        OptionConverters.toScala(start),
+        (Option) OptionConverters.toScala(start),
         contained.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
         addresses.stream().collect(new LitSeqJCollector<>()),

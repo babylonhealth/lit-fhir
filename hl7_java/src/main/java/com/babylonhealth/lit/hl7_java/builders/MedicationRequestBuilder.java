@@ -32,13 +32,14 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.MEDICATIONREQUEST_STATUS;
 import com.babylonhealth.lit.hl7.MEDICATIONREQUEST_INTENT;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -66,12 +67,12 @@ public class MedicationRequestBuilder {
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<FHIRDateTime> authoredOn = Optional.empty();
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
-  private Optional<Choice> reported = Optional.empty();
+  private Optional<Choice_1524702593> reported = Optional.empty();
   private Optional<CodeableConcept> statusReason = Optional.empty();
   private Optional<Boolean> doNotPerform = Optional.empty();
   private Collection<Reference> eventHistory = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
-  private Choice<$bslash$div<CodeableConcept, Reference>> medication;
+  private Choice01025009075 medication;
   private Optional<CodeableConcept> performerType = Optional.empty();
   private Collection<Reference> detectedIssue = Collections.emptyList();
   private Collection<Reference> reasonReference = Collections.emptyList();
@@ -97,23 +98,34 @@ public class MedicationRequestBuilder {
    * @param medication - Identifies the medication being requested. This is a link to a resource
    *     that represents the medication which may be the details of the medication or simply an
    *     attribute carrying a code that identifies the medication from a known list of medications.
-   *     Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To pass the
+   *     value in, wrap with one of the MedicationRequestBuilder.medication static methods
    */
   public MedicationRequestBuilder(
       MEDICATIONREQUEST_STATUS status,
       MEDICATIONREQUEST_INTENT intent,
       Reference subject,
-      @NonNull Object medication) {
+      @NonNull Choice01025009075 medication) {
     this.status = status;
     this.intent = intent;
     this.subject = subject;
-    this.medication =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    medication.getClass().getSimpleName(), MedicationRequest$.MODULE$.medication()),
-                medication,
-                MedicationRequest$.MODULE$.medication());
+    this.medication = medication;
+  }
+
+  public static Choice_1524702593 reported(Boolean b) {
+    return new Choice_1524702593(b);
+  }
+
+  public static Choice_1524702593 reported(Reference r) {
+    return new Choice_1524702593(r);
+  }
+
+  public static Choice01025009075 medication(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 medication(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -340,29 +352,11 @@ public class MedicationRequestBuilder {
   /**
    * @param reported - Indicates if this record was captured as a secondary 'reported' record rather
    *     than as an original primary source-of-truth record. It may also indicate the source of the
-   *     report. Field is a 'choice' field. Type should be one of Boolean, Reference.
+   *     report. Field is a 'choice' field. Type should be one of Boolean, Reference. To pass the
+   *     value in, wrap with one of the MedicationRequestBuilder.reported static methods
    */
-  public <T> MedicationRequestBuilder withReported(@NonNull T reported) {
-    var guessedSuffix =
-        autoSuffix(reported.getClass().getSimpleName(), MedicationRequest$.MODULE$.reported());
-    return withReported(guessedSuffix, reported);
-  }
-
-  /**
-   * Alternative to the 'main' withReported method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param reported - The value to be passed to the builder
-   */
-  public <T> MedicationRequestBuilder withReported(String suffix, @NonNull T reported) {
-    guard(reported.getClass().getSimpleName(), suffix, MedicationRequest$.MODULE$.reported());
-    this.reported =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, reported, MedicationRequest$.MODULE$.reported()));
+  public MedicationRequestBuilder withReported(@NonNull Choice_1524702593 reported) {
+    this.reported = Optional.of(reported);
     return this;
   }
   /** @param statusReason - Captures the reason for the current state of the MedicationRequest. */

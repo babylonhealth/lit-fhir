@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DOCUMENT_RELATIONSHIP_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,24 +46,28 @@ public class Composition_RelatesToBuilder {
   private Optional<String> id = Optional.empty();
   private DOCUMENT_RELATIONSHIP_TYPE code;
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<Identifier, Reference>> target;
+  private Choice_0983418289 target;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
    * Required fields for {@link Composition.RelatesTo}
    *
    * @param code
-   * @param target Field is a 'choice' field. Type should be one of Identifier, Reference.
+   * @param target Field is a 'choice' field. Type should be one of Identifier, Reference. To pass
+   *     the value in, wrap with one of the Composition_RelatesToBuilder.target static methods
    */
-  public Composition_RelatesToBuilder(DOCUMENT_RELATIONSHIP_TYPE code, @NonNull Object target) {
+  public Composition_RelatesToBuilder(
+      DOCUMENT_RELATIONSHIP_TYPE code, @NonNull Choice_0983418289 target) {
     this.code = code;
-    this.target =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    target.getClass().getSimpleName(), Composition.RelatesTo$.MODULE$.target()),
-                target,
-                Composition.RelatesTo$.MODULE$.target());
+    this.target = target;
+  }
+
+  public static Choice_0983418289 target(Identifier i) {
+    return new Choice_0983418289(i);
+  }
+
+  public static Choice_0983418289 target(Reference r) {
+    return new Choice_0983418289(r);
   }
 
   /**
