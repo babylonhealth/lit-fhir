@@ -6,6 +6,7 @@ import java.util.stream.{ Collector => JCollector, Stream => JStream }
 import java.util.{ function, Collection => JCollection, List => JList, ListIterator => JListIterator, Set => JSet }
 
 import scala.annotation.unchecked.uncheckedVariance
+import scala.annotation.varargs
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.{ Iterable, IterableFactory, IterableOnce, Iterator, Seq, View, mutable }
 
@@ -55,7 +56,7 @@ class NonEmptyLitSeqJCollector[T]
 
 object LitSeq extends IterableFactory[LitSeq] {
   override def from[A](source: IterableOnce[A]): LitSeq[A] =
-    if (source.isEmpty) empty else new NonEmptyLitSeq(source.iterator.toSeq)
+    if (source.iterator.isEmpty) empty else new NonEmptyLitSeq(source.iterator.toSeq)
   val emptyInstance: LitSeq[Nothing]     = new LitSeq(Seq.empty)
   override final def empty[A]: LitSeq[A] = emptyInstance.asInstanceOf[LitSeq[A]]
 
@@ -63,9 +64,9 @@ object LitSeq extends IterableFactory[LitSeq] {
 //  implicit def _fromSeq[T](seq: Seq[T]): LitSeq[T]          = new LitSeq[T](seq)
 
   // specialised
-  def nonempty[A](head: A, rest: A*): NonEmptyLitSeq[A] = new NonEmptyLitSeq[A](head +: rest)
-  def apply[A](): LitSeq[A]                             = empty
-  def apply[A](head: A, rest: A*): NonEmptyLitSeq[A]    = nonempty(head, rest: _*)
+  @varargs def nonempty[A](head: A, rest: A*): NonEmptyLitSeq[A] = new NonEmptyLitSeq[A](head +: rest)
+  def apply[A](): LitSeq[A]                                      = empty
+  @varargs def apply[A](head: A, rest: A*): NonEmptyLitSeq[A]    = nonempty(head, rest: _*)
 }
 
 class LitSeqIterator[+T](private val xs: Array[_], initialIndex: Int = 0)
@@ -185,8 +186,7 @@ class LitSeq[+T] protected (protected val _contents: Array[Object])
   protected def coll: LitSeq[T] = this
   protected def fromSpecific(coll: scala.collection.IterableOnce[T @uncheckedVariance]): LitSeq[T] =
     if (coll.isEmpty) LitSeq.empty else new NonEmptyLitSeq[T](coll.iterator.toSeq)
-  def iterableFactory: scala.collection.IterableFactory[LitSeq] =
-    LitSeq
+  def iterableFactory: scala.collection.IterableFactory[LitSeq] = LitSeq
   protected def newSpecificBuilder: scala.collection.mutable.Builder[T @uncheckedVariance, LitSeq[T @uncheckedVariance]] =
     new LitSeqBuilder()
 
