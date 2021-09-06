@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class OpenEHR_exposureDescriptionBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface OpenEHR_exposureDescriptionBuilder extends ExtensionBuilder {
+  public OpenEHR_exposureDescription build();
 
-  /**
-   * Required fields for {@link OpenEHR_exposureDescription}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public OpenEHR_exposureDescriptionBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public OpenEHR_exposureDescriptionBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(String value) {
+    return new Impl(value);
   }
 
-  public OpenEHR_exposureDescription build() {
-    return new OpenEHR_exposureDescription(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements OpenEHR_exposureDescriptionBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
+
+    /**
+     * Required fields for {@link OpenEHR_exposureDescription}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public OpenEHR_exposureDescriptionBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public OpenEHR_exposureDescription build() {
+      return new OpenEHR_exposureDescription(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

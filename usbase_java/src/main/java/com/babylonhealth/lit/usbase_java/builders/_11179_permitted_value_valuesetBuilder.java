@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class _11179_permitted_value_valuesetBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface _11179_permitted_value_valuesetBuilder extends ExtensionBuilder {
+  public _11179_permitted_value_valueset build();
 
-  /**
-   * Required fields for {@link _11179_permitted_value_valueset}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public _11179_permitted_value_valuesetBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public _11179_permitted_value_valuesetBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(String value) {
+    return new Impl(value);
   }
 
-  public _11179_permitted_value_valueset build() {
-    return new _11179_permitted_value_valueset(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements _11179_permitted_value_valuesetBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
+
+    /**
+     * Required fields for {@link _11179_permitted_value_valueset}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public _11179_permitted_value_valuesetBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public _11179_permitted_value_valueset build() {
+      return new _11179_permitted_value_valueset(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

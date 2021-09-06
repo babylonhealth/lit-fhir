@@ -45,30 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class OpenEHR_exposureDateBuilder {
-  private Optional<String> id = Optional.empty();
-  private FHIRDateTime value;
+public interface OpenEHR_exposureDateBuilder extends ExtensionBuilder {
+  public OpenEHR_exposureDate build();
 
-  /**
-   * Required fields for {@link OpenEHR_exposureDate}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public OpenEHR_exposureDateBuilder(FHIRDateTime value) {
-    this.value = value;
+  public static Impl init(FHIRDateTime value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public OpenEHR_exposureDateBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(FHIRDateTime value) {
+    return new Impl(value);
   }
 
-  public OpenEHR_exposureDate build() {
-    return new OpenEHR_exposureDate(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements OpenEHR_exposureDateBuilder {
+    private Optional<String> id = Optional.empty();
+    private FHIRDateTime value;
+
+    /**
+     * Required fields for {@link OpenEHR_exposureDate}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(FHIRDateTime value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public OpenEHR_exposureDateBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public OpenEHR_exposureDate build() {
+      return new OpenEHR_exposureDate(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

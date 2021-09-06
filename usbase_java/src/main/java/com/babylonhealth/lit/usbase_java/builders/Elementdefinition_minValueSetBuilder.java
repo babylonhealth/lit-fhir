@@ -45,20 +45,15 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Elementdefinition_minValueSetBuilder {
-  private Optional<String> id = Optional.empty();
-  private Choice00545979821 value;
+public interface Elementdefinition_minValueSetBuilder extends ExtensionBuilder {
+  public Elementdefinition_minValueSet build();
 
-  /**
-   * Required fields for {@link Elementdefinition_minValueSet}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of String. To pass the value in, wrap with one of the
-   *     Elementdefinition_minValueSetBuilder.value static methods
-   */
-  public Elementdefinition_minValueSetBuilder(@NonNull Choice00545979821 value) {
-    this.value = value;
+  public static Impl init(@NonNull Choice00545979821 value) {
+    return new Impl(value);
+  }
+
+  public static Impl builder(@NonNull Choice00545979821 value) {
+    return new Impl(value);
   }
 
   public static Choice00545979821 valueCanonical(String s) {
@@ -69,17 +64,34 @@ public class Elementdefinition_minValueSetBuilder {
     return Choice00545979821.Choice00545979821UriStr(s);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Elementdefinition_minValueSetBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Elementdefinition_minValueSetBuilder {
+    private Optional<String> id = Optional.empty();
+    private Choice00545979821 value;
 
-  public Elementdefinition_minValueSet build() {
-    return new Elementdefinition_minValueSet(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Elementdefinition_minValueSet}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
+     *     field. Type should be one of String. To pass the value in, wrap with one of the
+     *     Elementdefinition_minValueSetBuilder.value static methods
+     */
+    public Impl(@NonNull Choice00545979821 value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Elementdefinition_minValueSetBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Elementdefinition_minValueSet build() {
+      return new Elementdefinition_minValueSet(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

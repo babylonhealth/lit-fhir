@@ -45,30 +45,42 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Request_insuranceBuilder {
-  private Optional<String> id = Optional.empty();
-  private Reference value;
+public interface Request_insuranceBuilder extends ExtensionBuilder {
+  public Request_insurance build();
 
-  /**
-   * Required fields for {@link Request_insurance}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Request_insuranceBuilder(Reference value) {
-    this.value = value;
+  public static Impl init(Reference value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Request_insuranceBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
   }
 
-  public Request_insurance build() {
-    return new Request_insurance(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Request_insuranceBuilder {
+    private Optional<String> id = Optional.empty();
+    private Reference value;
+
+    /**
+     * Required fields for {@link Request_insurance}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Reference value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Request_insuranceBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Request_insurance build() {
+      return new Request_insurance(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

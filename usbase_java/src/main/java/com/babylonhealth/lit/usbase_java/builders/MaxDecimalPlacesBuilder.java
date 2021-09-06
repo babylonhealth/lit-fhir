@@ -45,30 +45,42 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class MaxDecimalPlacesBuilder {
-  private Optional<String> id = Optional.empty();
-  private Integer value;
+public interface MaxDecimalPlacesBuilder extends ExtensionBuilder {
+  public MaxDecimalPlaces build();
 
-  /**
-   * Required fields for {@link MaxDecimalPlaces}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public MaxDecimalPlacesBuilder(Integer value) {
-    this.value = value;
+  public static Impl init(Integer value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public MaxDecimalPlacesBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(Integer value) {
+    return new Impl(value);
   }
 
-  public MaxDecimalPlaces build() {
-    return new MaxDecimalPlaces(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements MaxDecimalPlacesBuilder {
+    private Optional<String> id = Optional.empty();
+    private Integer value;
+
+    /**
+     * Required fields for {@link MaxDecimalPlaces}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Integer value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public MaxDecimalPlacesBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public MaxDecimalPlaces build() {
+      return new MaxDecimalPlaces(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

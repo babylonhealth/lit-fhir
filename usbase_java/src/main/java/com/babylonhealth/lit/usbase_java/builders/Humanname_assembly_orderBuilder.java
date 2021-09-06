@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Humanname_assembly_orderBuilder {
-  private Optional<String> id = Optional.empty();
-  private NAME_ASSEMBLY_ORDER value;
+public interface Humanname_assembly_orderBuilder extends ExtensionBuilder {
+  public Humanname_assembly_order build();
 
-  /**
-   * Required fields for {@link Humanname_assembly_order}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Humanname_assembly_orderBuilder(NAME_ASSEMBLY_ORDER value) {
-    this.value = value;
+  public static Impl init(NAME_ASSEMBLY_ORDER value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Humanname_assembly_orderBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(NAME_ASSEMBLY_ORDER value) {
+    return new Impl(value);
   }
 
-  public Humanname_assembly_order build() {
-    return new Humanname_assembly_order(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Humanname_assembly_orderBuilder {
+    private Optional<String> id = Optional.empty();
+    private NAME_ASSEMBLY_ORDER value;
+
+    /**
+     * Required fields for {@link Humanname_assembly_order}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(NAME_ASSEMBLY_ORDER value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Humanname_assembly_orderBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Humanname_assembly_order build() {
+      return new Humanname_assembly_order(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

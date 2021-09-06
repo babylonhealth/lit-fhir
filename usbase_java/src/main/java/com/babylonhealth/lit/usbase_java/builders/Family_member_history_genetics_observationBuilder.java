@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Family_member_history_genetics_observationBuilder {
-  private Optional<String> id = Optional.empty();
-  private Reference value;
+public interface Family_member_history_genetics_observationBuilder extends ExtensionBuilder {
+  public Family_member_history_genetics_observation build();
 
-  /**
-   * Required fields for {@link Family_member_history_genetics_observation}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Family_member_history_genetics_observationBuilder(Reference value) {
-    this.value = value;
+  public static Impl init(Reference value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Family_member_history_genetics_observationBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(ReferenceBuilder value) {
+    return new Impl(value.build());
   }
 
-  public Family_member_history_genetics_observation build() {
-    return new Family_member_history_genetics_observation(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Family_member_history_genetics_observationBuilder {
+    private Optional<String> id = Optional.empty();
+    private Reference value;
+
+    /**
+     * Required fields for {@link Family_member_history_genetics_observation}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Reference value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Family_member_history_genetics_observationBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Family_member_history_genetics_observation build() {
+      return new Family_member_history_genetics_observation(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

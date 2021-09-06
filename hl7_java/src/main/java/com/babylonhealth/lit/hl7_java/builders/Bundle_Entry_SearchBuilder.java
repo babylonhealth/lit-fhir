@@ -42,63 +42,88 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Bundle_Entry_SearchBuilder {
-  private Optional<String> id = Optional.empty();
-  private Optional<SEARCH_ENTRY_MODE> mode = Optional.empty();
-  private Optional<BigDecimal> score = Optional.empty();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
+public interface Bundle_Entry_SearchBuilder {
+  public Bundle$Entry$Search build();
 
-  /** Required fields for {@link Bundle$Entry$Search} */
-  public Bundle_Entry_SearchBuilder() {}
-
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public Bundle_Entry_SearchBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /** @param mode */
-  public Bundle_Entry_SearchBuilder withMode(@NonNull SEARCH_ENTRY_MODE mode) {
-    this.mode = Optional.of(mode);
-    return this;
-  }
-  /** @param score */
-  public Bundle_Entry_SearchBuilder withScore(@NonNull BigDecimal score) {
-    this.score = Optional.of(score);
-    return this;
-  }
-  /** @param extension */
-  public Bundle_Entry_SearchBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /** @param extension */
-  public Bundle_Entry_SearchBuilder withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /** @param modifierExtension */
-  public Bundle_Entry_SearchBuilder withModifierExtension(@NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /** @param modifierExtension */
-  public Bundle_Entry_SearchBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
+  public static Impl init() {
+    return new Impl();
   }
 
-  public Bundle$Entry$Search build() {
-    return new Bundle$Entry$Search(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(mode),
-        OptionConverters.toScala(score),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+  public static Impl builder() {
+    return new Impl();
+  }
+
+  public class Impl implements Bundle_Entry_SearchBuilder {
+    private Optional<String> id = Optional.empty();
+    private Optional<SEARCH_ENTRY_MODE> mode = Optional.empty();
+    private Optional<BigDecimal> score = Optional.empty();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
+
+    /** Required fields for {@link Bundle$Entry$Search} */
+    public Impl() {}
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public Bundle_Entry_SearchBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /** @param mode */
+    public Bundle_Entry_SearchBuilder.Impl withMode(@NonNull SEARCH_ENTRY_MODE mode) {
+      this.mode = Optional.of(mode);
+      return this;
+    }
+    /** @param score */
+    public Bundle_Entry_SearchBuilder.Impl withScore(@NonNull BigDecimal score) {
+      this.score = Optional.of(score);
+      return this;
+    }
+    /** @param extension */
+    public Bundle_Entry_SearchBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /** @param extension */
+    public Bundle_Entry_SearchBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public Bundle_Entry_SearchBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param modifierExtension */
+    public Bundle_Entry_SearchBuilder.Impl withModifierExtension(
+        @NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /** @param modifierExtension */
+    public Bundle_Entry_SearchBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public Bundle_Entry_SearchBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
+    public Bundle$Entry$Search build() {
+      return new Bundle$Entry$Search(
+          OptionConverters.toScala(id),
+          OptionConverters.toScala(mode),
+          OptionConverters.toScala(score),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Capabilitystatement_expectationBuilder {
-  private Optional<String> id = Optional.empty();
-  private CONFORMANCE_EXPECTATION value;
+public interface Capabilitystatement_expectationBuilder extends ExtensionBuilder {
+  public Capabilitystatement_expectation build();
 
-  /**
-   * Required fields for {@link Capabilitystatement_expectation}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Capabilitystatement_expectationBuilder(CONFORMANCE_EXPECTATION value) {
-    this.value = value;
+  public static Impl init(CONFORMANCE_EXPECTATION value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Capabilitystatement_expectationBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(CONFORMANCE_EXPECTATION value) {
+    return new Impl(value);
   }
 
-  public Capabilitystatement_expectation build() {
-    return new Capabilitystatement_expectation(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Capabilitystatement_expectationBuilder {
+    private Optional<String> id = Optional.empty();
+    private CONFORMANCE_EXPECTATION value;
+
+    /**
+     * Required fields for {@link Capabilitystatement_expectation}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(CONFORMANCE_EXPECTATION value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Capabilitystatement_expectationBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Capabilitystatement_expectation build() {
+      return new Capabilitystatement_expectation(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

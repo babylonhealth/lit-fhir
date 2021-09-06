@@ -45,30 +45,42 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Cqf_encounterClassBuilder {
-  private Optional<String> id = Optional.empty();
-  private CodeableConcept value;
+public interface Cqf_encounterClassBuilder extends ExtensionBuilder {
+  public Cqf_encounterClass build();
 
-  /**
-   * Required fields for {@link Cqf_encounterClass}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Cqf_encounterClassBuilder(CodeableConcept value) {
-    this.value = value;
+  public static Impl init(CodeableConcept value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Cqf_encounterClassBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(CodeableConceptBuilder value) {
+    return new Impl(value.build());
   }
 
-  public Cqf_encounterClass build() {
-    return new Cqf_encounterClass(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Cqf_encounterClassBuilder {
+    private Optional<String> id = Optional.empty();
+    private CodeableConcept value;
+
+    /**
+     * Required fields for {@link Cqf_encounterClass}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(CodeableConcept value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Cqf_encounterClassBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Cqf_encounterClass build() {
+      return new Cqf_encounterClass(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

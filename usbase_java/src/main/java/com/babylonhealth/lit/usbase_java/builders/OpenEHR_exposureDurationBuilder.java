@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class OpenEHR_exposureDurationBuilder {
-  private Optional<String> id = Optional.empty();
-  private Duration value;
+public interface OpenEHR_exposureDurationBuilder extends ExtensionBuilder {
+  public OpenEHR_exposureDuration build();
 
-  /**
-   * Required fields for {@link OpenEHR_exposureDuration}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public OpenEHR_exposureDurationBuilder(Duration value) {
-    this.value = value;
+  public static Impl init(Duration value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public OpenEHR_exposureDurationBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(DurationBuilder value) {
+    return new Impl(value.build());
   }
 
-  public OpenEHR_exposureDuration build() {
-    return new OpenEHR_exposureDuration(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements OpenEHR_exposureDurationBuilder {
+    private Optional<String> id = Optional.empty();
+    private Duration value;
+
+    /**
+     * Required fields for {@link OpenEHR_exposureDuration}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Duration value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public OpenEHR_exposureDurationBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public OpenEHR_exposureDuration build() {
+      return new OpenEHR_exposureDuration(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

@@ -45,30 +45,42 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Quantity_precisionBuilder {
-  private Optional<String> id = Optional.empty();
-  private Integer value;
+public interface Quantity_precisionBuilder extends ExtensionBuilder {
+  public Quantity_precision build();
 
-  /**
-   * Required fields for {@link Quantity_precision}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Quantity_precisionBuilder(Integer value) {
-    this.value = value;
+  public static Impl init(Integer value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Quantity_precisionBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(Integer value) {
+    return new Impl(value);
   }
 
-  public Quantity_precision build() {
-    return new Quantity_precision(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Quantity_precisionBuilder {
+    private Optional<String> id = Optional.empty();
+    private Integer value;
+
+    /**
+     * Required fields for {@link Quantity_precision}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Integer value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Quantity_precisionBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Quantity_precision build() {
+      return new Quantity_precision(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

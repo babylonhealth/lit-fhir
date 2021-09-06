@@ -45,30 +45,42 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Contactpoint_localBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface Contactpoint_localBuilder extends ExtensionBuilder {
+  public Contactpoint_local build();
 
-  /**
-   * Required fields for {@link Contactpoint_local}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Contactpoint_localBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Contactpoint_localBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(String value) {
+    return new Impl(value);
   }
 
-  public Contactpoint_local build() {
-    return new Contactpoint_local(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Contactpoint_localBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
+
+    /**
+     * Required fields for {@link Contactpoint_local}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Contactpoint_localBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Contactpoint_local build() {
+      return new Contactpoint_local(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

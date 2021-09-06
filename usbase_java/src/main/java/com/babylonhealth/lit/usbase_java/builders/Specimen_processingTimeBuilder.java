@@ -45,20 +45,15 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Specimen_processingTimeBuilder {
-  private Optional<String> id = Optional.empty();
-  private Choice00284192631 value;
+public interface Specimen_processingTimeBuilder extends ExtensionBuilder {
+  public Specimen_processingTime build();
 
-  /**
-   * Required fields for {@link Specimen_processingTime}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of Duration, Period. To pass the value in, wrap with one of the
-   *     Specimen_processingTimeBuilder.value static methods
-   */
-  public Specimen_processingTimeBuilder(@NonNull Choice00284192631 value) {
-    this.value = value;
+  public static Impl init(@NonNull Choice00284192631 value) {
+    return new Impl(value);
+  }
+
+  public static Impl builder(@NonNull Choice00284192631 value) {
+    return new Impl(value);
   }
 
   public static Choice00284192631 value(Duration d) {
@@ -69,17 +64,34 @@ public class Specimen_processingTimeBuilder {
     return new Choice00284192631(p);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Specimen_processingTimeBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
+  public class Impl implements Specimen_processingTimeBuilder {
+    private Optional<String> id = Optional.empty();
+    private Choice00284192631 value;
 
-  public Specimen_processingTime build() {
-    return new Specimen_processingTime(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Specimen_processingTime}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
+     *     field. Type should be one of Duration, Period. To pass the value in, wrap with one of the
+     *     Specimen_processingTimeBuilder.value static methods
+     */
+    public Impl(@NonNull Choice00284192631 value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Specimen_processingTimeBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Specimen_processingTime build() {
+      return new Specimen_processingTime(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

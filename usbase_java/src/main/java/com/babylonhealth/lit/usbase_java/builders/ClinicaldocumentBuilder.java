@@ -47,314 +47,418 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class ClinicaldocumentBuilder {
-  private Optional<String> id = Optional.empty();
-  private Optional<Meta> meta =
-      Optional.of(
-          new MetaBuilder()
-              .withProfile("http://hl7.org/fhir/StructureDefinition/clinicaldocument")
-              .build());
-  private Optional<Narrative> text = Optional.empty();
-  private CodeableConcept _type;
-  private FHIRDateTime date;
-  private String title;
-  private COMPOSITION_STATUS status;
-  private Collection<Reference> author;
-  private Optional<Reference> subject = Optional.empty();
-  private Optional<LANGUAGES> language = Optional.empty();
-  private Collection<CodeableConcept> category = Collections.emptyList();
-  private Collection<Resource> contained = Collections.emptyList();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Reference> encounter = Optional.empty();
-  private Optional<Reference> custodian = Optional.empty();
-  private Optional<Identifier> identifier = Optional.empty();
-  private Optional<String> implicitRules = Optional.empty();
-  private Optional<V3_CONFIDENTIALITYCLASSIFICATION> confidentiality = Optional.empty();
-  private Collection<Extension> modifierExtension = Collections.emptyList();
-  private Collection<Composition.Event> event = Collections.emptyList();
-  private Collection<Composition.Section> section = Collections.emptyList();
-  private Collection<Composition.Attester> attester = Collections.emptyList();
-  private Collection<Composition.RelatesTo> relatesTo = Collections.emptyList();
+public interface ClinicaldocumentBuilder extends CompositionBuilder {
+  public Clinicaldocument build();
 
-  /**
-   * Required fields for {@link Clinicaldocument}
-   *
-   * @param _type - Specifies the particular kind of composition (e.g. History and Physical,
-   *     Discharge Summary, Progress Note). This usually equates to the purpose of making the
-   *     composition.
-   * @param date - The composition editing time, when the composition was last logically changed by
-   *     the author.
-   * @param title - Official human-readable label for the composition.
-   * @param status - The workflow/clinical status of this composition. The status is a marker for
-   *     the clinical standing of the document.
-   * @param author - Identifies who is responsible for the information in the composition, not
-   *     necessarily who typed it in.
-   */
-  public ClinicaldocumentBuilder(
+  public static Impl init(
       CodeableConcept _type,
       FHIRDateTime date,
       String title,
       COMPOSITION_STATUS status,
       Collection<Reference> author) {
-    this._type = _type;
-    this.date = date;
-    this.title = title;
-    this.status = status;
-    this.author = author;
+    return new Impl(_type, date, title, status, author);
   }
 
-  /**
-   * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
-   *     this value never changes.
-   */
-  public ClinicaldocumentBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param meta - The metadata about the resource. This is content that is maintained by the
-   *     infrastructure. Changes to the content might not always be associated with version changes
-   *     to the resource.
-   */
-  public ClinicaldocumentBuilder withMeta(@NonNull Meta meta) {
-    this.meta = Optional.of(meta);
-    return this;
-  }
-  /**
-   * @param text - A human-readable narrative that contains a summary of the resource and can be
-   *     used to represent the content of the resource to a human. The narrative need not encode all
-   *     the structured data, but is required to contain sufficient detail to make it "clinically
-   *     safe" for a human to just read the narrative. Resource definitions may define what content
-   *     should be represented in the narrative to ensure clinical safety.
-   */
-  public ClinicaldocumentBuilder withText(@NonNull Narrative text) {
-    this.text = Optional.of(text);
-    return this;
-  }
-  /**
-   * @param subject - Who or what the composition is about. The composition can be about a person,
-   *     (patient or healthcare practitioner), a device (e.g. a machine) or even a group of subjects
-   *     (such as a document about a herd of livestock, or a set of patients that share a common
-   *     exposure).
-   */
-  public ClinicaldocumentBuilder withSubject(@NonNull Reference subject) {
-    this.subject = Optional.of(subject);
-    return this;
-  }
-  /** @param language - The base language in which the resource is written. */
-  public ClinicaldocumentBuilder withLanguage(@NonNull LANGUAGES language) {
-    this.language = Optional.of(language);
-    return this;
-  }
-  /**
-   * @param category - A categorization for the type of the composition - helps for indexing and
-   *     searching. This may be implied by or derived from the code specified in the Composition
-   *     Type.
-   */
-  public ClinicaldocumentBuilder withCategory(@NonNull CodeableConcept... category) {
-    this.category = Arrays.asList(category);
-    return this;
-  }
-  /**
-   * @param category - A categorization for the type of the composition - helps for indexing and
-   *     searching. This may be implied by or derived from the code specified in the Composition
-   *     Type.
-   */
-  public ClinicaldocumentBuilder withCategory(@NonNull Collection<CodeableConcept> category) {
-    this.category = Collections.unmodifiableCollection(category);
-    return this;
-  }
-  /**
-   * @param contained - These resources do not have an independent existence apart from the resource
-   *     that contains them - they cannot be identified independently, and nor can they have their
-   *     own independent transaction scope.
-   */
-  public ClinicaldocumentBuilder withContained(@NonNull Resource... contained) {
-    this.contained = Arrays.asList(contained);
-    return this;
-  }
-  /**
-   * @param contained - These resources do not have an independent existence apart from the resource
-   *     that contains them - they cannot be identified independently, and nor can they have their
-   *     own independent transaction scope.
-   */
-  public ClinicaldocumentBuilder withContained(@NonNull Collection<Resource> contained) {
-    this.contained = Collections.unmodifiableCollection(contained);
-    return this;
-  }
-  /** @param extension - An Extension */
-  public ClinicaldocumentBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /** @param extension - An Extension */
-  public ClinicaldocumentBuilder withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /**
-   * @param encounter - Describes the clinical encounter or type of care this documentation is
-   *     associated with.
-   */
-  public ClinicaldocumentBuilder withEncounter(@NonNull Reference encounter) {
-    this.encounter = Optional.of(encounter);
-    return this;
-  }
-  /**
-   * @param custodian - Identifies the organization or group who is responsible for ongoing
-   *     maintenance of and access to the composition/document information.
-   */
-  public ClinicaldocumentBuilder withCustodian(@NonNull Reference custodian) {
-    this.custodian = Optional.of(custodian);
-    return this;
-  }
-  /**
-   * @param identifier - A version-independent identifier for the Composition. This identifier stays
-   *     constant as the composition is changed over time.
-   */
-  public ClinicaldocumentBuilder withIdentifier(@NonNull Identifier identifier) {
-    this.identifier = Optional.of(identifier);
-    return this;
-  }
-  /**
-   * @param implicitRules - A reference to a set of rules that were followed when the resource was
-   *     constructed, and which must be understood when processing the content. Often, this is a
-   *     reference to an implementation guide that defines the special rules along with other
-   *     profiles etc.
-   */
-  public ClinicaldocumentBuilder withImplicitRules(@NonNull String implicitRules) {
-    this.implicitRules = Optional.of(implicitRules);
-    return this;
-  }
-  /**
-   * @param confidentiality - The code specifying the level of confidentiality of the Composition.
-   */
-  public ClinicaldocumentBuilder withConfidentiality(
-      @NonNull V3_CONFIDENTIALITYCLASSIFICATION confidentiality) {
-    this.confidentiality = Optional.of(confidentiality);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public ClinicaldocumentBuilder withModifierExtension(@NonNull Extension... modifierExtension) {
-    this.modifierExtension = Arrays.asList(modifierExtension);
-    return this;
-  }
-  /**
-   * @param modifierExtension - May be used to represent additional information that is not part of
-   *     the basic definition of the resource and that modifies the understanding of the element
-   *     that contains it and/or the understanding of the containing element's descendants. Usually
-   *     modifier elements provide negation or qualification. To make the use of extensions safe and
-   *     manageable, there is a strict set of governance applied to the definition and use of
-   *     extensions. Though any implementer is allowed to define an extension, there is a set of
-   *     requirements that SHALL be met as part of the definition of the extension. Applications
-   *     processing a resource are required to check for modifier extensions.
-   *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
-   *     DomainResource (including cannot change the meaning of modifierExtension itself).
-   */
-  public ClinicaldocumentBuilder withModifierExtension(
-      @NonNull Collection<Extension> modifierExtension) {
-    this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
-    return this;
-  }
-  /**
-   * @param event - The clinical service, such as a colonoscopy or an appendectomy, being
-   *     documented.
-   */
-  public ClinicaldocumentBuilder withEvent(@NonNull Composition.Event... event) {
-    this.event = Arrays.asList(event);
-    return this;
-  }
-  /**
-   * @param event - The clinical service, such as a colonoscopy or an appendectomy, being
-   *     documented.
-   */
-  public ClinicaldocumentBuilder withEvent(@NonNull Collection<Composition.Event> event) {
-    this.event = Collections.unmodifiableCollection(event);
-    return this;
-  }
-  /** @param section - The root of the sections that make up the composition. */
-  public ClinicaldocumentBuilder withSection(@NonNull Composition.Section... section) {
-    this.section = Arrays.asList(section);
-    return this;
-  }
-  /** @param section - The root of the sections that make up the composition. */
-  public ClinicaldocumentBuilder withSection(@NonNull Collection<Composition.Section> section) {
-    this.section = Collections.unmodifiableCollection(section);
-    return this;
-  }
-  /**
-   * @param attester - A participant who has attested to the accuracy of the composition/document.
-   */
-  public ClinicaldocumentBuilder withAttester(@NonNull Composition.Attester... attester) {
-    this.attester = Arrays.asList(attester);
-    return this;
-  }
-  /**
-   * @param attester - A participant who has attested to the accuracy of the composition/document.
-   */
-  public ClinicaldocumentBuilder withAttester(@NonNull Collection<Composition.Attester> attester) {
-    this.attester = Collections.unmodifiableCollection(attester);
-    return this;
-  }
-  /**
-   * @param relatesTo - Relationships that this composition has with other compositions or documents
-   *     that already exist.
-   */
-  public ClinicaldocumentBuilder withRelatesTo(@NonNull Composition.RelatesTo... relatesTo) {
-    this.relatesTo = Arrays.asList(relatesTo);
-    return this;
-  }
-  /**
-   * @param relatesTo - Relationships that this composition has with other compositions or documents
-   *     that already exist.
-   */
-  public ClinicaldocumentBuilder withRelatesTo(
-      @NonNull Collection<Composition.RelatesTo> relatesTo) {
-    this.relatesTo = Collections.unmodifiableCollection(relatesTo);
-    return this;
+  public static Impl builder(
+      CodeableConceptBuilder _type,
+      FHIRDateTime date,
+      String title,
+      COMPOSITION_STATUS status,
+      Collection<ReferenceBuilder> author) {
+    return new Impl(
+        _type.build(), date, title, status, new LitSeq<>(author).map(ReferenceBuilder::build));
   }
 
-  public ClinicaldocumentBuilder withoutMeta() {
-    this.meta = Optional.empty();
-    return this;
-  }
+  public class Impl implements ClinicaldocumentBuilder {
+    private Optional<String> id = Optional.empty();
+    private Optional<Meta> meta =
+        Optional.of(
+            MetaBuilder.init()
+                .withProfile("http://hl7.org/fhir/StructureDefinition/clinicaldocument")
+                .build());
+    private Optional<Narrative> text = Optional.empty();
+    private CodeableConcept _type;
+    private FHIRDateTime date;
+    private String title;
+    private COMPOSITION_STATUS status;
+    private Collection<Reference> author;
+    private Optional<Reference> subject = Optional.empty();
+    private Optional<LANGUAGES> language = Optional.empty();
+    private Collection<CodeableConcept> category = Collections.emptyList();
+    private Collection<Resource> contained = Collections.emptyList();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Optional<Reference> encounter = Optional.empty();
+    private Optional<Reference> custodian = Optional.empty();
+    private Optional<Identifier> identifier = Optional.empty();
+    private Optional<String> implicitRules = Optional.empty();
+    private Optional<V3_CONFIDENTIALITYCLASSIFICATION> confidentiality = Optional.empty();
+    private Collection<Extension> modifierExtension = Collections.emptyList();
+    private Collection<Composition.Event> event = Collections.emptyList();
+    private Collection<Composition.Section> section = Collections.emptyList();
+    private Collection<Composition.Attester> attester = Collections.emptyList();
+    private Collection<Composition.RelatesTo> relatesTo = Collections.emptyList();
 
-  public Clinicaldocument build() {
-    return new Clinicaldocument(
-        OptionConverters.toScala(id),
-        OptionConverters.toScala(meta),
-        OptionConverters.toScala(text),
-        _type,
-        date,
-        title,
-        status,
-        author.stream().collect(new NonEmptyLitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
-        OptionConverters.toScala(language),
-        category.stream().collect(new LitSeqJCollector<>()),
-        contained.stream().collect(new LitSeqJCollector<>()),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(encounter),
-        OptionConverters.toScala(custodian),
-        OptionConverters.toScala(identifier),
-        OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(confidentiality),
-        modifierExtension.stream().collect(new LitSeqJCollector<>()),
-        event.stream().collect(new LitSeqJCollector<>()),
-        section.stream().collect(new LitSeqJCollector<>()),
-        attester.stream().collect(new LitSeqJCollector<>()),
-        relatesTo.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link Clinicaldocument}
+     *
+     * @param _type - Specifies the particular kind of composition (e.g. History and Physical,
+     *     Discharge Summary, Progress Note). This usually equates to the purpose of making the
+     *     composition.
+     * @param date - The composition editing time, when the composition was last logically changed
+     *     by the author.
+     * @param title - Official human-readable label for the composition.
+     * @param status - The workflow/clinical status of this composition. The status is a marker for
+     *     the clinical standing of the document.
+     * @param author - Identifies who is responsible for the information in the composition, not
+     *     necessarily who typed it in.
+     */
+    public Impl(
+        CodeableConcept _type,
+        FHIRDateTime date,
+        String title,
+        COMPOSITION_STATUS status,
+        Collection<Reference> author) {
+      this._type = _type;
+      this.date = date;
+      this.title = title;
+      this.status = status;
+      this.author = author;
+    }
+
+    /**
+     * @param id - The logical id of the resource, as used in the URL for the resource. Once
+     *     assigned, this value never changes.
+     */
+    public ClinicaldocumentBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param meta - The metadata about the resource. This is content that is maintained by the
+     *     infrastructure. Changes to the content might not always be associated with version
+     *     changes to the resource.
+     */
+    public ClinicaldocumentBuilder.Impl withMeta(@NonNull Meta meta) {
+      this.meta = Optional.of(meta);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withMeta(@NonNull MetaBuilder meta) {
+      this.meta = Optional.of(meta.build());
+      return this;
+    }
+    /**
+     * @param text - A human-readable narrative that contains a summary of the resource and can be
+     *     used to represent the content of the resource to a human. The narrative need not encode
+     *     all the structured data, but is required to contain sufficient detail to make it
+     *     "clinically safe" for a human to just read the narrative. Resource definitions may define
+     *     what content should be represented in the narrative to ensure clinical safety.
+     */
+    public ClinicaldocumentBuilder.Impl withText(@NonNull Narrative text) {
+      this.text = Optional.of(text);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withText(@NonNull NarrativeBuilder text) {
+      this.text = Optional.of(text.build());
+      return this;
+    }
+    /**
+     * @param subject - Who or what the composition is about. The composition can be about a person,
+     *     (patient or healthcare practitioner), a device (e.g. a machine) or even a group of
+     *     subjects (such as a document about a herd of livestock, or a set of patients that share a
+     *     common exposure).
+     */
+    public ClinicaldocumentBuilder.Impl withSubject(@NonNull Reference subject) {
+      this.subject = Optional.of(subject);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withSubject(@NonNull ReferenceBuilder subject) {
+      this.subject = Optional.of(subject.build());
+      return this;
+    }
+    /** @param language - The base language in which the resource is written. */
+    public ClinicaldocumentBuilder.Impl withLanguage(@NonNull LANGUAGES language) {
+      this.language = Optional.of(language);
+      return this;
+    }
+    /**
+     * @param category - A categorization for the type of the composition - helps for indexing and
+     *     searching. This may be implied by or derived from the code specified in the Composition
+     *     Type.
+     */
+    public ClinicaldocumentBuilder.Impl withCategory(@NonNull CodeableConcept... category) {
+      this.category = Arrays.asList(category);
+      return this;
+    }
+    /**
+     * @param category - A categorization for the type of the composition - helps for indexing and
+     *     searching. This may be implied by or derived from the code specified in the Composition
+     *     Type.
+     */
+    public ClinicaldocumentBuilder.Impl withCategory(
+        @NonNull Collection<CodeableConcept> category) {
+      this.category = Collections.unmodifiableCollection(category);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withCategory(@NonNull CodeableConceptBuilder... category) {
+      this.category = Arrays.stream(category).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param contained - These resources do not have an independent existence apart from the
+     *     resource that contains them - they cannot be identified independently, and nor can they
+     *     have their own independent transaction scope.
+     */
+    public ClinicaldocumentBuilder.Impl withContained(@NonNull Resource... contained) {
+      this.contained = Arrays.asList(contained);
+      return this;
+    }
+    /**
+     * @param contained - These resources do not have an independent existence apart from the
+     *     resource that contains them - they cannot be identified independently, and nor can they
+     *     have their own independent transaction scope.
+     */
+    public ClinicaldocumentBuilder.Impl withContained(@NonNull Collection<Resource> contained) {
+      this.contained = Collections.unmodifiableCollection(contained);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withContained(@NonNull ResourceBuilder... contained) {
+      this.contained = Arrays.stream(contained).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param extension - An Extension */
+    public ClinicaldocumentBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /** @param extension - An Extension */
+    public ClinicaldocumentBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param encounter - Describes the clinical encounter or type of care this documentation is
+     *     associated with.
+     */
+    public ClinicaldocumentBuilder.Impl withEncounter(@NonNull Reference encounter) {
+      this.encounter = Optional.of(encounter);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withEncounter(@NonNull ReferenceBuilder encounter) {
+      this.encounter = Optional.of(encounter.build());
+      return this;
+    }
+    /**
+     * @param custodian - Identifies the organization or group who is responsible for ongoing
+     *     maintenance of and access to the composition/document information.
+     */
+    public ClinicaldocumentBuilder.Impl withCustodian(@NonNull Reference custodian) {
+      this.custodian = Optional.of(custodian);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withCustodian(@NonNull ReferenceBuilder custodian) {
+      this.custodian = Optional.of(custodian.build());
+      return this;
+    }
+    /**
+     * @param identifier - A version-independent identifier for the Composition. This identifier
+     *     stays constant as the composition is changed over time.
+     */
+    public ClinicaldocumentBuilder.Impl withIdentifier(@NonNull Identifier identifier) {
+      this.identifier = Optional.of(identifier);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withIdentifier(@NonNull IdentifierBuilder identifier) {
+      this.identifier = Optional.of(identifier.build());
+      return this;
+    }
+    /**
+     * @param implicitRules - A reference to a set of rules that were followed when the resource was
+     *     constructed, and which must be understood when processing the content. Often, this is a
+     *     reference to an implementation guide that defines the special rules along with other
+     *     profiles etc.
+     */
+    public ClinicaldocumentBuilder.Impl withImplicitRules(@NonNull String implicitRules) {
+      this.implicitRules = Optional.of(implicitRules);
+      return this;
+    }
+    /**
+     * @param confidentiality - The code specifying the level of confidentiality of the Composition.
+     */
+    public ClinicaldocumentBuilder.Impl withConfidentiality(
+        @NonNull V3_CONFIDENTIALITYCLASSIFICATION confidentiality) {
+      this.confidentiality = Optional.of(confidentiality);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public ClinicaldocumentBuilder.Impl withModifierExtension(
+        @NonNull Extension... modifierExtension) {
+      this.modifierExtension = Arrays.asList(modifierExtension);
+      return this;
+    }
+    /**
+     * @param modifierExtension - May be used to represent additional information that is not part
+     *     of the basic definition of the resource and that modifies the understanding of the
+     *     element that contains it and/or the understanding of the containing element's
+     *     descendants. Usually modifier elements provide negation or qualification. To make the use
+     *     of extensions safe and manageable, there is a strict set of governance applied to the
+     *     definition and use of extensions. Though any implementer is allowed to define an
+     *     extension, there is a set of requirements that SHALL be met as part of the definition of
+     *     the extension. Applications processing a resource are required to check for modifier
+     *     extensions.
+     *     <p>Modifier extensions SHALL NOT change the meaning of any elements on Resource or
+     *     DomainResource (including cannot change the meaning of modifierExtension itself).
+     */
+    public ClinicaldocumentBuilder.Impl withModifierExtension(
+        @NonNull Collection<Extension> modifierExtension) {
+      this.modifierExtension = Collections.unmodifiableCollection(modifierExtension);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withModifierExtension(
+        @NonNull ExtensionBuilder... modifierExtension) {
+      this.modifierExtension =
+          Arrays.stream(modifierExtension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param event - The clinical service, such as a colonoscopy or an appendectomy, being
+     *     documented.
+     */
+    public ClinicaldocumentBuilder.Impl withEvent(@NonNull Composition.Event... event) {
+      this.event = Arrays.asList(event);
+      return this;
+    }
+    /**
+     * @param event - The clinical service, such as a colonoscopy or an appendectomy, being
+     *     documented.
+     */
+    public ClinicaldocumentBuilder.Impl withEvent(@NonNull Collection<Composition.Event> event) {
+      this.event = Collections.unmodifiableCollection(event);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withEvent(@NonNull Composition_EventBuilder... event) {
+      this.event = Arrays.stream(event).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /** @param section - The root of the sections that make up the composition. */
+    public ClinicaldocumentBuilder.Impl withSection(@NonNull Composition.Section... section) {
+      this.section = Arrays.asList(section);
+      return this;
+    }
+    /** @param section - The root of the sections that make up the composition. */
+    public ClinicaldocumentBuilder.Impl withSection(
+        @NonNull Collection<Composition.Section> section) {
+      this.section = Collections.unmodifiableCollection(section);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withSection(
+        @NonNull Composition_SectionBuilder... section) {
+      this.section = Arrays.stream(section).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param attester - A participant who has attested to the accuracy of the composition/document.
+     */
+    public ClinicaldocumentBuilder.Impl withAttester(@NonNull Composition.Attester... attester) {
+      this.attester = Arrays.asList(attester);
+      return this;
+    }
+    /**
+     * @param attester - A participant who has attested to the accuracy of the composition/document.
+     */
+    public ClinicaldocumentBuilder.Impl withAttester(
+        @NonNull Collection<Composition.Attester> attester) {
+      this.attester = Collections.unmodifiableCollection(attester);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withAttester(
+        @NonNull Composition_AttesterBuilder... attester) {
+      this.attester = Arrays.stream(attester).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param relatesTo - Relationships that this composition has with other compositions or
+     *     documents that already exist.
+     */
+    public ClinicaldocumentBuilder.Impl withRelatesTo(@NonNull Composition.RelatesTo... relatesTo) {
+      this.relatesTo = Arrays.asList(relatesTo);
+      return this;
+    }
+    /**
+     * @param relatesTo - Relationships that this composition has with other compositions or
+     *     documents that already exist.
+     */
+    public ClinicaldocumentBuilder.Impl withRelatesTo(
+        @NonNull Collection<Composition.RelatesTo> relatesTo) {
+      this.relatesTo = Collections.unmodifiableCollection(relatesTo);
+      return this;
+    }
+
+    public ClinicaldocumentBuilder.Impl withRelatesTo(
+        @NonNull Composition_RelatesToBuilder... relatesTo) {
+      this.relatesTo = Arrays.stream(relatesTo).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
+    public ClinicaldocumentBuilder withoutMeta() {
+      this.meta = Optional.empty();
+      return this;
+    }
+
+    public Clinicaldocument build() {
+      return new Clinicaldocument(
+          OptionConverters.toScala(id),
+          OptionConverters.toScala(meta),
+          OptionConverters.toScala(text),
+          _type,
+          date,
+          title,
+          status,
+          author.stream().collect(new NonEmptyLitSeqJCollector<>()),
+          OptionConverters.toScala(subject),
+          OptionConverters.toScala(language),
+          category.stream().collect(new LitSeqJCollector<>()),
+          contained.stream().collect(new LitSeqJCollector<>()),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          OptionConverters.toScala(encounter),
+          OptionConverters.toScala(custodian),
+          OptionConverters.toScala(identifier),
+          OptionConverters.toScala(implicitRules),
+          OptionConverters.toScala(confidentiality),
+          modifierExtension.stream().collect(new LitSeqJCollector<>()),
+          event.stream().collect(new LitSeqJCollector<>()),
+          section.stream().collect(new LitSeqJCollector<>()),
+          attester.stream().collect(new LitSeqJCollector<>()),
+          relatesTo.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

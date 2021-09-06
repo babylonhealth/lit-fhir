@@ -1,7 +1,6 @@
 package com.babylonhealth.lit.uscore_java.examples;
 
 import com.babylonhealth.lit.core.FHIRDateTime;
-import com.babylonhealth.lit.core.FHIRDateTimeSpecificity;
 import com.babylonhealth.lit.core.model.Resource;
 import com.babylonhealth.lit.core_java.LitUtils;
 import com.babylonhealth.lit.core_java.builders.CodeableConceptBuilder;
@@ -9,7 +8,6 @@ import com.babylonhealth.lit.core_java.builders.CodingBuilder;
 import com.babylonhealth.lit.core_java.builders.QuantityBuilder;
 import com.babylonhealth.lit.core_java.builders.ReferenceBuilder;
 import com.babylonhealth.lit.hl7_java.codes.ObservationStatus;
-import com.babylonhealth.lit.hl7_java.model.Unions;
 import com.babylonhealth.lit.uscore.model.Us_core_pulse_oximetry;
 import com.babylonhealth.lit.uscore.model.Us_core_pulse_oximetry$;
 import com.babylonhealth.lit.uscore_java.builders.Us_core_pulse_oximetryBuilder;
@@ -32,34 +30,27 @@ public class Pulse_oximetryExampleTest {
           LitUtils.DateTimeSpecificity.Time);
 
   Us_core_pulse_oximetry example =
-      new Us_core_pulse_oximetryBuilder(
+      Us_core_pulse_oximetryBuilder.builder(
               ObservationStatus.FINAL,
-              new ReferenceBuilder().withReference("Patient/1234567890").build(),
+              ReferenceBuilder.init().withReference("Patient/1234567890"),
               List.of(
-                  new CodeableConceptBuilder()
+                  CodeableConceptBuilder.init()
                       .withCoding(
-                          new CodingBuilder()
+                          CodingBuilder.init()
                               .withSystem(
                                   "http://terminology.hl7.org/CodeSystem/observation-category")
-                              .withCode("vital-signs")
-                              .build())
-                      .build()),
+                              .withCode("vital-signs"))),
               Us_core_pulse_oximetryBuilder.effective(time),
-              new CodeableConceptBuilder()
+              CodeableConceptBuilder.init()
                   .withCoding(
-                      new CodingBuilder().withSystem("http://loinc.org").withCode("2708-6").build(),
-                      new CodingBuilder()
-                          .withSystem("http://loinc.org")
-                          .withCode("59408-5")
-                          .build())
-                  .build())
+                      CodingBuilder.init().withSystem("http://loinc.org").withCode("2708-6"),
+                      CodingBuilder.init().withSystem("http://loinc.org").withCode("59408-5")))
           .withValue(
-              new QuantityBuilder()
+              QuantityBuilder.init()
                   .withSystem("http://unitsofmeasure.org")
                   .withValue(BigDecimal.valueOf(94.3))
                   .withCode("%")
-                  .withUnit("%")
-                  .build())
+                  .withUnit("%"))
           .build();
 
   String jsonStr =

@@ -39,26 +39,15 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class DataRequirementBuilder {
-  private Optional<String> id = Optional.empty();
-  private ALL_TYPES _type;
-  private Optional<Integer> limit = Optional.empty();
-  private Collection<String> profile = Collections.emptyList();
-  private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice01025009075> subject = Optional.empty();
-  private Collection<String> mustSupport = Collections.emptyList();
-  private Collection<DataRequirement.Sort> sort = Collections.emptyList();
-  private Collection<DataRequirement.CodeFilter> codeFilter = Collections.emptyList();
-  private Collection<DataRequirement.DateFilter> dateFilter = Collections.emptyList();
+public interface DataRequirementBuilder extends ElementBuilder {
+  public DataRequirement build();
 
-  /**
-   * Required fields for {@link DataRequirement}
-   *
-   * @param _type - The type of the required data, specified as the type name of a resource. For
-   *     profiles, this value is set to the type of the base resource of the profile.
-   */
-  public DataRequirementBuilder(ALL_TYPES _type) {
-    this._type = _type;
+  public static Impl init(ALL_TYPES _type) {
+    return new Impl(_type);
+  }
+
+  public static Impl builder(ALL_TYPES _type) {
+    return new Impl(_type);
   }
 
   public static Choice01025009075 subject(CodeableConcept c) {
@@ -69,159 +58,206 @@ public class DataRequirementBuilder {
     return new Choice01025009075(r);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public DataRequirementBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
-  }
-  /**
-   * @param limit - Specifies a maximum number of results that are required (uses the _count search
-   *     parameter).
-   */
-  public DataRequirementBuilder withLimit(@NonNull Integer limit) {
-    this.limit = Optional.of(limit);
-    return this;
-  }
-  /**
-   * @param profile - The profile of the required data, specified as the uri of the profile
-   *     definition.
-   */
-  public DataRequirementBuilder withProfile(@NonNull String... profile) {
-    this.profile = Arrays.asList(profile);
-    return this;
-  }
-  /**
-   * @param profile - The profile of the required data, specified as the uri of the profile
-   *     definition.
-   */
-  public DataRequirementBuilder withProfile(@NonNull Collection<String> profile) {
-    this.profile = Collections.unmodifiableCollection(profile);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public DataRequirementBuilder withExtension(@NonNull Extension... extension) {
-    this.extension = Arrays.asList(extension);
-    return this;
-  }
-  /**
-   * @param extension - May be used to represent additional information that is not part of the
-   *     basic definition of the element. To make the use of extensions safe and manageable, there
-   *     is a strict set of governance applied to the definition and use of extensions. Though any
-   *     implementer can define an extension, there is a set of requirements that SHALL be met as
-   *     part of the definition of the extension.
-   */
-  public DataRequirementBuilder withExtension(@NonNull Collection<Extension> extension) {
-    this.extension = Collections.unmodifiableCollection(extension);
-    return this;
-  }
-  /**
-   * @param subject - The intended subjects of the data requirement. If this element is not
-   *     provided, a Patient subject is assumed. Field is a 'choice' field. Type should be one of
-   *     CodeableConcept, Reference. To pass the value in, wrap with one of the
-   *     DataRequirementBuilder.subject static methods
-   */
-  public DataRequirementBuilder withSubject(@NonNull Choice01025009075 subject) {
-    this.subject = Optional.of(subject);
-    return this;
-  }
-  /**
-   * @param mustSupport - Indicates that specific elements of the type are referenced by the
-   *     knowledge module and must be supported by the consumer in order to obtain an effective
-   *     evaluation. This does not mean that a value is required for this element, only that the
-   *     consuming system must understand the element and be able to provide values for it if they
-   *     are available.
-   *     <p>The value of mustSupport SHALL be a FHIRPath resolveable on the type of the
-   *     DataRequirement. The path SHALL consist only of identifiers, constant indexers, and
-   *     .resolve() (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).
-   */
-  public DataRequirementBuilder withMustSupport(@NonNull String... mustSupport) {
-    this.mustSupport = Arrays.asList(mustSupport);
-    return this;
-  }
-  /**
-   * @param mustSupport - Indicates that specific elements of the type are referenced by the
-   *     knowledge module and must be supported by the consumer in order to obtain an effective
-   *     evaluation. This does not mean that a value is required for this element, only that the
-   *     consuming system must understand the element and be able to provide values for it if they
-   *     are available.
-   *     <p>The value of mustSupport SHALL be a FHIRPath resolveable on the type of the
-   *     DataRequirement. The path SHALL consist only of identifiers, constant indexers, and
-   *     .resolve() (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).
-   */
-  public DataRequirementBuilder withMustSupport(@NonNull Collection<String> mustSupport) {
-    this.mustSupport = Collections.unmodifiableCollection(mustSupport);
-    return this;
-  }
-  /** @param sort - Specifies the order of the results to be returned. */
-  public DataRequirementBuilder withSort(@NonNull DataRequirement.Sort... sort) {
-    this.sort = Arrays.asList(sort);
-    return this;
-  }
-  /** @param sort - Specifies the order of the results to be returned. */
-  public DataRequirementBuilder withSort(@NonNull Collection<DataRequirement.Sort> sort) {
-    this.sort = Collections.unmodifiableCollection(sort);
-    return this;
-  }
-  /**
-   * @param codeFilter - Code filters specify additional constraints on the data, specifying the
-   *     value set of interest for a particular element of the data. Each code filter defines an
-   *     additional constraint on the data, i.e. code filters are AND'ed, not OR'ed.
-   */
-  public DataRequirementBuilder withCodeFilter(@NonNull DataRequirement.CodeFilter... codeFilter) {
-    this.codeFilter = Arrays.asList(codeFilter);
-    return this;
-  }
-  /**
-   * @param codeFilter - Code filters specify additional constraints on the data, specifying the
-   *     value set of interest for a particular element of the data. Each code filter defines an
-   *     additional constraint on the data, i.e. code filters are AND'ed, not OR'ed.
-   */
-  public DataRequirementBuilder withCodeFilter(
-      @NonNull Collection<DataRequirement.CodeFilter> codeFilter) {
-    this.codeFilter = Collections.unmodifiableCollection(codeFilter);
-    return this;
-  }
-  /**
-   * @param dateFilter - Date filters specify additional constraints on the data in terms of the
-   *     applicable date range for specific elements. Each date filter specifies an additional
-   *     constraint on the data, i.e. date filters are AND'ed, not OR'ed.
-   */
-  public DataRequirementBuilder withDateFilter(@NonNull DataRequirement.DateFilter... dateFilter) {
-    this.dateFilter = Arrays.asList(dateFilter);
-    return this;
-  }
-  /**
-   * @param dateFilter - Date filters specify additional constraints on the data in terms of the
-   *     applicable date range for specific elements. Each date filter specifies an additional
-   *     constraint on the data, i.e. date filters are AND'ed, not OR'ed.
-   */
-  public DataRequirementBuilder withDateFilter(
-      @NonNull Collection<DataRequirement.DateFilter> dateFilter) {
-    this.dateFilter = Collections.unmodifiableCollection(dateFilter);
-    return this;
-  }
+  public class Impl implements DataRequirementBuilder {
+    private Optional<String> id = Optional.empty();
+    private ALL_TYPES _type;
+    private Optional<Integer> limit = Optional.empty();
+    private Collection<String> profile = Collections.emptyList();
+    private Collection<Extension> extension = Collections.emptyList();
+    private Optional<Choice01025009075> subject = Optional.empty();
+    private Collection<String> mustSupport = Collections.emptyList();
+    private Collection<DataRequirement.Sort> sort = Collections.emptyList();
+    private Collection<DataRequirement.CodeFilter> codeFilter = Collections.emptyList();
+    private Collection<DataRequirement.DateFilter> dateFilter = Collections.emptyList();
 
-  public DataRequirement build() {
-    return new DataRequirement(
-        OptionConverters.toScala(id),
-        _type,
-        OptionConverters.toScala(limit.map(x -> (Object) x)),
-        profile.stream().collect(new LitSeqJCollector<>()),
-        extension.stream().collect(new LitSeqJCollector<>()),
-        (Option) OptionConverters.toScala(subject),
-        mustSupport.stream().collect(new LitSeqJCollector<>()),
-        sort.stream().collect(new LitSeqJCollector<>()),
-        codeFilter.stream().collect(new LitSeqJCollector<>()),
-        dateFilter.stream().collect(new LitSeqJCollector<>()),
-        LitUtils.emptyMetaElMap());
+    /**
+     * Required fields for {@link DataRequirement}
+     *
+     * @param _type - The type of the required data, specified as the type name of a resource. For
+     *     profiles, this value is set to the type of the base resource of the profile.
+     */
+    public Impl(ALL_TYPES _type) {
+      this._type = _type;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public DataRequirementBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+    /**
+     * @param limit - Specifies a maximum number of results that are required (uses the _count
+     *     search parameter).
+     */
+    public DataRequirementBuilder.Impl withLimit(@NonNull Integer limit) {
+      this.limit = Optional.of(limit);
+      return this;
+    }
+    /**
+     * @param profile - The profile of the required data, specified as the uri of the profile
+     *     definition.
+     */
+    public DataRequirementBuilder.Impl withProfile(@NonNull String... profile) {
+      this.profile = Arrays.asList(profile);
+      return this;
+    }
+    /**
+     * @param profile - The profile of the required data, specified as the uri of the profile
+     *     definition.
+     */
+    public DataRequirementBuilder.Impl withProfile(@NonNull Collection<String> profile) {
+      this.profile = Collections.unmodifiableCollection(profile);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public DataRequirementBuilder.Impl withExtension(@NonNull Extension... extension) {
+      this.extension = Arrays.asList(extension);
+      return this;
+    }
+    /**
+     * @param extension - May be used to represent additional information that is not part of the
+     *     basic definition of the element. To make the use of extensions safe and manageable, there
+     *     is a strict set of governance applied to the definition and use of extensions. Though any
+     *     implementer can define an extension, there is a set of requirements that SHALL be met as
+     *     part of the definition of the extension.
+     */
+    public DataRequirementBuilder.Impl withExtension(@NonNull Collection<Extension> extension) {
+      this.extension = Collections.unmodifiableCollection(extension);
+      return this;
+    }
+
+    public DataRequirementBuilder.Impl withExtension(@NonNull ExtensionBuilder... extension) {
+      this.extension = Arrays.stream(extension).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param subject - The intended subjects of the data requirement. If this element is not
+     *     provided, a Patient subject is assumed. Field is a 'choice' field. Type should be one of
+     *     CodeableConcept, Reference. To pass the value in, wrap with one of the
+     *     DataRequirementBuilder.subject static methods
+     */
+    public DataRequirementBuilder.Impl withSubject(@NonNull Choice01025009075 subject) {
+      this.subject = Optional.of(subject);
+      return this;
+    }
+    /**
+     * @param mustSupport - Indicates that specific elements of the type are referenced by the
+     *     knowledge module and must be supported by the consumer in order to obtain an effective
+     *     evaluation. This does not mean that a value is required for this element, only that the
+     *     consuming system must understand the element and be able to provide values for it if they
+     *     are available.
+     *     <p>The value of mustSupport SHALL be a FHIRPath resolveable on the type of the
+     *     DataRequirement. The path SHALL consist only of identifiers, constant indexers, and
+     *     .resolve() (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).
+     */
+    public DataRequirementBuilder.Impl withMustSupport(@NonNull String... mustSupport) {
+      this.mustSupport = Arrays.asList(mustSupport);
+      return this;
+    }
+    /**
+     * @param mustSupport - Indicates that specific elements of the type are referenced by the
+     *     knowledge module and must be supported by the consumer in order to obtain an effective
+     *     evaluation. This does not mean that a value is required for this element, only that the
+     *     consuming system must understand the element and be able to provide values for it if they
+     *     are available.
+     *     <p>The value of mustSupport SHALL be a FHIRPath resolveable on the type of the
+     *     DataRequirement. The path SHALL consist only of identifiers, constant indexers, and
+     *     .resolve() (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).
+     */
+    public DataRequirementBuilder.Impl withMustSupport(@NonNull Collection<String> mustSupport) {
+      this.mustSupport = Collections.unmodifiableCollection(mustSupport);
+      return this;
+    }
+    /** @param sort - Specifies the order of the results to be returned. */
+    public DataRequirementBuilder.Impl withSort(@NonNull DataRequirement.Sort... sort) {
+      this.sort = Arrays.asList(sort);
+      return this;
+    }
+    /** @param sort - Specifies the order of the results to be returned. */
+    public DataRequirementBuilder.Impl withSort(@NonNull Collection<DataRequirement.Sort> sort) {
+      this.sort = Collections.unmodifiableCollection(sort);
+      return this;
+    }
+
+    public DataRequirementBuilder.Impl withSort(@NonNull DataRequirement_SortBuilder... sort) {
+      this.sort = Arrays.stream(sort).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param codeFilter - Code filters specify additional constraints on the data, specifying the
+     *     value set of interest for a particular element of the data. Each code filter defines an
+     *     additional constraint on the data, i.e. code filters are AND'ed, not OR'ed.
+     */
+    public DataRequirementBuilder.Impl withCodeFilter(
+        @NonNull DataRequirement.CodeFilter... codeFilter) {
+      this.codeFilter = Arrays.asList(codeFilter);
+      return this;
+    }
+    /**
+     * @param codeFilter - Code filters specify additional constraints on the data, specifying the
+     *     value set of interest for a particular element of the data. Each code filter defines an
+     *     additional constraint on the data, i.e. code filters are AND'ed, not OR'ed.
+     */
+    public DataRequirementBuilder.Impl withCodeFilter(
+        @NonNull Collection<DataRequirement.CodeFilter> codeFilter) {
+      this.codeFilter = Collections.unmodifiableCollection(codeFilter);
+      return this;
+    }
+
+    public DataRequirementBuilder.Impl withCodeFilter(
+        @NonNull DataRequirement_CodeFilterBuilder... codeFilter) {
+      this.codeFilter = Arrays.stream(codeFilter).map(e -> e.build()).collect(toList());
+      return this;
+    }
+    /**
+     * @param dateFilter - Date filters specify additional constraints on the data in terms of the
+     *     applicable date range for specific elements. Each date filter specifies an additional
+     *     constraint on the data, i.e. date filters are AND'ed, not OR'ed.
+     */
+    public DataRequirementBuilder.Impl withDateFilter(
+        @NonNull DataRequirement.DateFilter... dateFilter) {
+      this.dateFilter = Arrays.asList(dateFilter);
+      return this;
+    }
+    /**
+     * @param dateFilter - Date filters specify additional constraints on the data in terms of the
+     *     applicable date range for specific elements. Each date filter specifies an additional
+     *     constraint on the data, i.e. date filters are AND'ed, not OR'ed.
+     */
+    public DataRequirementBuilder.Impl withDateFilter(
+        @NonNull Collection<DataRequirement.DateFilter> dateFilter) {
+      this.dateFilter = Collections.unmodifiableCollection(dateFilter);
+      return this;
+    }
+
+    public DataRequirementBuilder.Impl withDateFilter(
+        @NonNull DataRequirement_DateFilterBuilder... dateFilter) {
+      this.dateFilter = Arrays.stream(dateFilter).map(e -> e.build()).collect(toList());
+      return this;
+    }
+
+    public DataRequirement build() {
+      return new DataRequirement(
+          OptionConverters.toScala(id),
+          _type,
+          OptionConverters.toScala(limit.map(x -> (Object) x)),
+          profile.stream().collect(new LitSeqJCollector<>()),
+          extension.stream().collect(new LitSeqJCollector<>()),
+          (Option) OptionConverters.toScala(subject),
+          mustSupport.stream().collect(new LitSeqJCollector<>()),
+          sort.stream().collect(new LitSeqJCollector<>()),
+          codeFilter.stream().collect(new LitSeqJCollector<>()),
+          dateFilter.stream().collect(new LitSeqJCollector<>()),
+          LitUtils.emptyMetaElMap());
+    }
   }
 }

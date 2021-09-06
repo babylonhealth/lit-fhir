@@ -4,12 +4,9 @@ import com.babylonhealth.lit.core.model.Resource;
 import com.babylonhealth.lit.core_java.LitUtils;
 import com.babylonhealth.lit.core_java.builders.CodeableConceptBuilder;
 import com.babylonhealth.lit.core_java.builders.CodingBuilder;
-import com.babylonhealth.lit.core_java.builders.MetaBuilder;
 import com.babylonhealth.lit.core_java.builders.ReferenceBuilder;
-import com.babylonhealth.lit.hl7_java.builders.ObservationBuilder;
 import com.babylonhealth.lit.hl7_java.codes.ObservationStatus;
 import com.babylonhealth.lit.uscore.model.Us_core_smokingstatus;
-import com.babylonhealth.lit.uscore.model.Us_core_smokingstatus$;
 import com.babylonhealth.lit.uscore_java.builders.Us_core_smokingstatusBuilder;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -26,24 +23,18 @@ public class SmokingstatusExampleTest {
       ZonedDateTime.now(ZoneOffset.ofHours(5)).truncatedTo(ChronoUnit.MILLIS);
 
   Us_core_smokingstatus example =
-      new Us_core_smokingstatusBuilder(
-              new CodeableConceptBuilder()
+      Us_core_smokingstatusBuilder.builder(
+              CodeableConceptBuilder.init()
                   .withCoding(
-                      new CodingBuilder()
-                          .withSystem("http://loinc.org")
-                          .withCode("72166-2")
-                          .build())
-                  .build(),
+                      CodingBuilder.init().withSystem("http://loinc.org").withCode("72166-2")),
               ObservationStatus.FINAL,
               time,
-              new ReferenceBuilder().withReference("Patient/1234567890").build(),
-              new CodeableConceptBuilder()
+              ReferenceBuilder.init().withReference("Patient/1234567890"),
+              CodeableConceptBuilder.init()
                   .withCoding(
-                      new CodingBuilder()
+                      CodingBuilder.init()
                           .withSystem("http://snomed.info/sct")
-                          .withCode("266927001")
-                          .build())
-                  .build())
+                          .withCode("266927001")))
           .build();
 
   String jsonStr =

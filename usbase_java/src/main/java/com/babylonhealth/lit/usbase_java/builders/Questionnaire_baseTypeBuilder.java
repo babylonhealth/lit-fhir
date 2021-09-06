@@ -45,31 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Questionnaire_baseTypeBuilder {
-  private Optional<String> id = Optional.empty();
-  private DATA_TYPES value;
+public interface Questionnaire_baseTypeBuilder extends ExtensionBuilder {
+  public Questionnaire_baseType build();
 
-  /**
-   * Required fields for {@link Questionnaire_baseType}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Questionnaire_baseTypeBuilder(DATA_TYPES value) {
-    this.value = value;
+  public static Impl init(DATA_TYPES value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Questionnaire_baseTypeBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(DATA_TYPES value) {
+    return new Impl(value);
   }
 
-  public Questionnaire_baseType build() {
-    return new Questionnaire_baseType(
-        OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Questionnaire_baseTypeBuilder {
+    private Optional<String> id = Optional.empty();
+    private DATA_TYPES value;
+
+    /**
+     * Required fields for {@link Questionnaire_baseType}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(DATA_TYPES value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Questionnaire_baseTypeBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Questionnaire_baseType build() {
+      return new Questionnaire_baseType(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

@@ -45,30 +45,43 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Auditevent_InstanceBuilder {
-  private Optional<String> id = Optional.empty();
-  private Identifier value;
+public interface Auditevent_InstanceBuilder extends ExtensionBuilder {
+  public Auditevent_Instance build();
 
-  /**
-   * Required fields for {@link Auditevent_Instance}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Auditevent_InstanceBuilder(Identifier value) {
-    this.value = value;
+  public static Impl init(Identifier value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Auditevent_InstanceBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(IdentifierBuilder value) {
+    return new Impl(value.build());
   }
 
-  public Auditevent_Instance build() {
-    return new Auditevent_Instance(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Auditevent_InstanceBuilder {
+    private Optional<String> id = Optional.empty();
+    private Identifier value;
+
+    /**
+     * Required fields for {@link Auditevent_Instance}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(Identifier value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Auditevent_InstanceBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Auditevent_Instance build() {
+      return new Auditevent_Instance(
+          OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }

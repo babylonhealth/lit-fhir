@@ -45,30 +45,42 @@ import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
 import static java.util.stream.Collectors.toList;
 
-public class Contactpoint_areaBuilder {
-  private Optional<String> id = Optional.empty();
-  private String value;
+public interface Contactpoint_areaBuilder extends ExtensionBuilder {
+  public Contactpoint_area build();
 
-  /**
-   * Required fields for {@link Contactpoint_area}
-   *
-   * @param value - Value of extension - must be one of a constrained set of the data types (see
-   *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
-   */
-  public Contactpoint_areaBuilder(String value) {
-    this.value = value;
+  public static Impl init(String value) {
+    return new Impl(value);
   }
 
-  /**
-   * @param id - Unique id for the element within a resource (for internal references). This may be
-   *     any string value that does not contain spaces.
-   */
-  public Contactpoint_areaBuilder withId(@NonNull String id) {
-    this.id = Optional.of(id);
-    return this;
+  public static Impl builder(String value) {
+    return new Impl(value);
   }
 
-  public Contactpoint_area build() {
-    return new Contactpoint_area(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+  public class Impl implements Contactpoint_areaBuilder {
+    private Optional<String> id = Optional.empty();
+    private String value;
+
+    /**
+     * Required fields for {@link Contactpoint_area}
+     *
+     * @param value - Value of extension - must be one of a constrained set of the data types (see
+     *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list).
+     */
+    public Impl(String value) {
+      this.value = value;
+    }
+
+    /**
+     * @param id - Unique id for the element within a resource (for internal references). This may
+     *     be any string value that does not contain spaces.
+     */
+    public Contactpoint_areaBuilder.Impl withId(@NonNull String id) {
+      this.id = Optional.of(id);
+      return this;
+    }
+
+    public Contactpoint_area build() {
+      return new Contactpoint_area(OptionConverters.toScala(id), value, LitUtils.emptyMetaElMap());
+    }
   }
 }
