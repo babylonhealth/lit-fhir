@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -44,22 +45,25 @@ import static java.util.stream.Collectors.toList;
 public class Contract_FriendlyBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<Attachment, Reference>> content;
+  private Choice_0340660840 content;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
    * Required fields for {@link Contract.Friendly}
    *
-   * @param content Field is a 'choice' field. Type should be one of Attachment, Reference.
+   * @param content Field is a 'choice' field. Type should be one of Attachment, Reference. To pass
+   *     the value in, wrap with one of the Contract_FriendlyBuilder.content static methods
    */
-  public Contract_FriendlyBuilder(@NonNull Object content) {
-    this.content =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    content.getClass().getSimpleName(), Contract.Friendly$.MODULE$.content()),
-                content,
-                Contract.Friendly$.MODULE$.content());
+  public Contract_FriendlyBuilder(@NonNull Choice_0340660840 content) {
+    this.content = content;
+  }
+
+  public static Choice_0340660840 content(Attachment a) {
+    return new Choice_0340660840(a);
+  }
+
+  public static Choice_0340660840 content(Reference r) {
+    return new Choice_0340660840(r);
   }
 
   /**

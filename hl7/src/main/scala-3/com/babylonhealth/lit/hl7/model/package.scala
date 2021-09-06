@@ -3,6 +3,8 @@ package com.babylonhealth.lit.hl7
 import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
+import izumi.reflect.macrortti.LTag
+
 import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.hl7.model._
@@ -70,6 +72,65 @@ object UnionAliases {
   type Union_2101127777 = Attachment | BigDecimal | Boolean | Coding | FHIRDate | FHIRDateTime | Int | LocalTime | Quantity |
     Reference | String | UriStr
   type Union_2131715935 = Boolean | FHIRDateTime
+
+  val Union00078348305Tag: LTag[Union00078348305] = LTag[Union00078348305]
+  val Union00434638053Tag: LTag[Union00434638053] = LTag[Union00434638053]
+  val Union00483057553Tag: LTag[Union00483057553] = LTag[Union00483057553]
+  val Union00545979821Tag: LTag[Union00545979821] = LTag[Union00545979821]
+  val Union00600764285Tag: LTag[Union00600764285] = LTag[Union00600764285]
+  val Union00607514014Tag: LTag[Union00607514014] = LTag[Union00607514014]
+  val Union00609373412Tag: LTag[Union00609373412] = LTag[Union00609373412]
+  val Union00683246261Tag: LTag[Union00683246261] = LTag[Union00683246261]
+  val Union00801828838Tag: LTag[Union00801828838] = LTag[Union00801828838]
+  val Union00910671146Tag: LTag[Union00910671146] = LTag[Union00910671146]
+  val Union01056080496Tag: LTag[Union01056080496] = LTag[Union01056080496]
+  val Union01200936722Tag: LTag[Union01200936722] = LTag[Union01200936722]
+  val Union01219602913Tag: LTag[Union01219602913] = LTag[Union01219602913]
+  val Union01243416269Tag: LTag[Union01243416269] = LTag[Union01243416269]
+  val Union01352864625Tag: LTag[Union01352864625] = LTag[Union01352864625]
+  val Union01473702374Tag: LTag[Union01473702374] = LTag[Union01473702374]
+  val Union01486281057Tag: LTag[Union01486281057] = LTag[Union01486281057]
+  val Union01560785079Tag: LTag[Union01560785079] = LTag[Union01560785079]
+  val Union01583485927Tag: LTag[Union01583485927] = LTag[Union01583485927]
+  val Union01646729908Tag: LTag[Union01646729908] = LTag[Union01646729908]
+  val Union01726112534Tag: LTag[Union01726112534] = LTag[Union01726112534]
+  val Union01727798874Tag: LTag[Union01727798874] = LTag[Union01727798874]
+  val Union01831019594Tag: LTag[Union01831019594] = LTag[Union01831019594]
+  val Union02065782851Tag: LTag[Union02065782851] = LTag[Union02065782851]
+  val Union_0040864668Tag: LTag[Union_0040864668] = LTag[Union_0040864668]
+  val Union_0181779868Tag: LTag[Union_0181779868] = LTag[Union_0181779868]
+  val Union_0221283134Tag: LTag[Union_0221283134] = LTag[Union_0221283134]
+  val Union_0316522316Tag: LTag[Union_0316522316] = LTag[Union_0316522316]
+  val Union_0340660840Tag: LTag[Union_0340660840] = LTag[Union_0340660840]
+  val Union_0358050020Tag: LTag[Union_0358050020] = LTag[Union_0358050020]
+  val Union_0388264667Tag: LTag[Union_0388264667] = LTag[Union_0388264667]
+  val Union_0503196159Tag: LTag[Union_0503196159] = LTag[Union_0503196159]
+  val Union_0543144563Tag: LTag[Union_0543144563] = LTag[Union_0543144563]
+  val Union_0637176084Tag: LTag[Union_0637176084] = LTag[Union_0637176084]
+  val Union_0687680458Tag: LTag[Union_0687680458] = LTag[Union_0687680458]
+  val Union_0802685816Tag: LTag[Union_0802685816] = LTag[Union_0802685816]
+  val Union_0831630297Tag: LTag[Union_0831630297] = LTag[Union_0831630297]
+  val Union_0839638734Tag: LTag[Union_0839638734] = LTag[Union_0839638734]
+  val Union_0934386166Tag: LTag[Union_0934386166] = LTag[Union_0934386166]
+  val Union_0964108894Tag: LTag[Union_0964108894] = LTag[Union_0964108894]
+  val Union_0966801288Tag: LTag[Union_0966801288] = LTag[Union_0966801288]
+  val Union_0970951552Tag: LTag[Union_0970951552] = LTag[Union_0970951552]
+  val Union_0983418289Tag: LTag[Union_0983418289] = LTag[Union_0983418289]
+  val Union_1132894602Tag: LTag[Union_1132894602] = LTag[Union_1132894602]
+  val Union_1289000811Tag: LTag[Union_1289000811] = LTag[Union_1289000811]
+  val Union_1309404550Tag: LTag[Union_1309404550] = LTag[Union_1309404550]
+  val Union_1427970408Tag: LTag[Union_1427970408] = LTag[Union_1427970408]
+  val Union_1489367071Tag: LTag[Union_1489367071] = LTag[Union_1489367071]
+  val Union_1507098327Tag: LTag[Union_1507098327] = LTag[Union_1507098327]
+  val Union_1516277229Tag: LTag[Union_1516277229] = LTag[Union_1516277229]
+  val Union_1524702593Tag: LTag[Union_1524702593] = LTag[Union_1524702593]
+  val Union_1527751898Tag: LTag[Union_1527751898] = LTag[Union_1527751898]
+  val Union_1715923163Tag: LTag[Union_1715923163] = LTag[Union_1715923163]
+  val Union_1750128470Tag: LTag[Union_1750128470] = LTag[Union_1750128470]
+  val Union_1750183386Tag: LTag[Union_1750183386] = LTag[Union_1750183386]
+  val Union_2072987899Tag: LTag[Union_2072987899] = LTag[Union_2072987899]
+  val Union_2101127777Tag: LTag[Union_2101127777] = LTag[Union_2101127777]
+  val Union_2131715935Tag: LTag[Union_2131715935] = LTag[Union_2131715935]
 }
 
 object Module

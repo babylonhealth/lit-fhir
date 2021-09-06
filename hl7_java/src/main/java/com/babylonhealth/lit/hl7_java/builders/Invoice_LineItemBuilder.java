@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,7 +46,7 @@ public class Invoice_LineItemBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<Integer> sequence = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<CodeableConcept, Reference>> chargeItem;
+  private Choice01025009075 chargeItem;
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<Invoice$LineItem$PriceComponent> priceComponent = Collections.emptyList();
 
@@ -53,15 +54,19 @@ public class Invoice_LineItemBuilder {
    * Required fields for {@link Invoice.LineItem}
    *
    * @param chargeItem Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     To pass the value in, wrap with one of the Invoice_LineItemBuilder.chargeItem static
+   *     methods
    */
-  public Invoice_LineItemBuilder(@NonNull Object chargeItem) {
-    this.chargeItem =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    chargeItem.getClass().getSimpleName(), Invoice.LineItem$.MODULE$.chargeItem()),
-                chargeItem,
-                Invoice.LineItem$.MODULE$.chargeItem());
+  public Invoice_LineItemBuilder(@NonNull Choice01025009075 chargeItem) {
+    this.chargeItem = chargeItem;
+  }
+
+  public static Choice01025009075 chargeItem(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 chargeItem(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**

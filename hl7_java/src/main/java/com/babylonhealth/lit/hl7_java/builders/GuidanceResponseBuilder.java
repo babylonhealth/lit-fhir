@@ -32,11 +32,12 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.GUIDANCE_RESPONSE_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -53,7 +54,7 @@ public class GuidanceResponseBuilder {
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<$bslash$div<String, CodeableConcept>, String>> module;
+  private Choice_0687680458 module;
   private Optional<Reference> encounter = Optional.empty();
   private Optional<Reference> performer = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
@@ -78,18 +79,25 @@ public class GuidanceResponseBuilder {
    *     could be provided if more data was available, the status will be data-requested, and the
    *     response will contain a description of the additional requested information.
    * @param module - An identifier, CodeableConcept or canonical reference to the guidance that was
-   *     requested. Field is a 'choice' field. Type should be one of String, CodeableConcept. There
-   *     are multiple valid json suffixes which correspond to values of type String -- to
-   *     distinguish between the specific subtype, pass $value wrapped in
-   *     ParamDistinguisher.choose("foo". $value), where foo is one of: Canonical, Uri
+   *     requested. Field is a 'choice' field. Type should be one of String, CodeableConcept. To
+   *     pass the value in, wrap with one of the GuidanceResponseBuilder.module static methods
    */
   public GuidanceResponseBuilder(
-      GUIDANCE_RESPONSE_STATUS status, @NonNull ParamDistinguisher module) {
+      GUIDANCE_RESPONSE_STATUS status, @NonNull Choice_0687680458 module) {
     this.status = status;
-    this.module =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                module.suffix, module.wrappedChoice, GuidanceResponse$.MODULE$.module());
+    this.module = module;
+  }
+
+  public static Choice_0687680458 module(CodeableConcept c) {
+    return new Choice_0687680458(c);
+  }
+
+  public static Choice_0687680458 moduleCanonical(String s) {
+    return Choice_0687680458.Choice_0687680458Canonical(s);
+  }
+
+  public static Choice_0687680458 moduleUri(String s) {
+    return Choice_0687680458.Choice_0687680458UriStr(s);
   }
 
   /**

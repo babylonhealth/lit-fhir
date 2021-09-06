@@ -34,10 +34,12 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,7 +47,7 @@ import static java.util.stream.Collectors.toList;
 
 public class MaxValueBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice value;
+  private Choice00315627715 value;
 
   /**
    * Required fields for {@link MaxValue}
@@ -53,15 +55,35 @@ public class MaxValueBuilder {
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
    *     field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer, LocalTime,
-   *     ZonedDateTime.
+   *     ZonedDateTime. To pass the value in, wrap with one of the MaxValueBuilder.value static
+   *     methods
    */
-  public MaxValueBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(value.getClass().getSimpleName(), MaxValue$.MODULE$.value()),
-                value,
-                MaxValue$.MODULE$.value());
+  public MaxValueBuilder(@NonNull Choice00315627715 value) {
+    this.value = value;
+  }
+
+  public static Choice00315627715 value(BigDecimal b) {
+    return new Choice00315627715(b);
+  }
+
+  public static Choice00315627715 value(FHIRDate f) {
+    return new Choice00315627715(f);
+  }
+
+  public static Choice00315627715 value(FHIRDateTime f) {
+    return new Choice00315627715(f);
+  }
+
+  public static Choice00315627715 value(Integer i) {
+    return new Choice00315627715(i);
+  }
+
+  public static Choice00315627715 value(LocalTime l) {
+    return new Choice00315627715(l);
+  }
+
+  public static Choice00315627715 value(ZonedDateTime z) {
+    return new Choice00315627715(z);
   }
 
   /**

@@ -32,11 +32,12 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.EVENT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -68,7 +69,7 @@ public class MediaBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<Reference> encounter = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> created = Optional.empty();
+  private Optional<Choice_0934386166> created = Optional.empty();
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Optional<String> deviceName = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
@@ -84,6 +85,14 @@ public class MediaBuilder {
   public MediaBuilder(EVENT_STATUS status, Attachment content) {
     this.status = status;
     this.content = content;
+  }
+
+  public static Choice_0934386166 created(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 created(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -302,25 +311,11 @@ public class MediaBuilder {
   }
   /**
    * @param created - The date and time(s) at which the media was collected. Field is a 'choice'
-   *     field. Type should be one of FHIRDateTime, Period.
+   *     field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap with one of
+   *     the MediaBuilder.created static methods
    */
-  public <T> MediaBuilder withCreated(@NonNull T created) {
-    var guessedSuffix = autoSuffix(created.getClass().getSimpleName(), Media$.MODULE$.created());
-    return withCreated(guessedSuffix, created);
-  }
-
-  /**
-   * Alternative to the 'main' withCreated method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param created - The value to be passed to the builder
-   */
-  public <T> MediaBuilder withCreated(String suffix, @NonNull T created) {
-    guard(created.getClass().getSimpleName(), suffix, Media$.MODULE$.created());
-    this.created =
-        Optional.of((Choice) Choice$.MODULE$.fromSuffix(suffix, created, Media$.MODULE$.created()));
+  public MediaBuilder withCreated(@NonNull Choice_0934386166 created) {
+    this.created = Optional.of(created);
     return this;
   }
   /** @param reasonCode - Describes why the event occurred in coded or textual form. */
@@ -416,7 +411,7 @@ public class MediaBuilder {
         extension.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(encounter),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(created),
+        (Option) OptionConverters.toScala(created),
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(deviceName),
         OptionConverters.toScala(implicitRules),

@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -46,7 +47,7 @@ public class SubstanceSpecification_MoietyBuilder {
   private Optional<CodeableConcept> role = Optional.empty();
   private Optional<String> name = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<Quantity, String>>> amount = Optional.empty();
+  private Optional<Choice_2072987899> amount = Optional.empty();
   private Optional<Identifier> identifier = Optional.empty();
   private Optional<CodeableConcept> stereochemistry = Optional.empty();
   private Optional<CodeableConcept> opticalActivity = Optional.empty();
@@ -55,6 +56,14 @@ public class SubstanceSpecification_MoietyBuilder {
 
   /** Required fields for {@link SubstanceSpecification.Moiety} */
   public SubstanceSpecification_MoietyBuilder() {}
+
+  public static Choice_2072987899 amount(Quantity q) {
+    return new Choice_2072987899(q);
+  }
+
+  public static Choice_2072987899 amount(String s) {
+    return new Choice_2072987899(s);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -97,30 +106,12 @@ public class SubstanceSpecification_MoietyBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param amount Field is a 'choice' field. Type should be one of Quantity, String. */
-  public <T> SubstanceSpecification_MoietyBuilder withAmount(@NonNull T amount) {
-    var guessedSuffix =
-        autoSuffix(
-            amount.getClass().getSimpleName(), SubstanceSpecification.Moiety$.MODULE$.amount());
-    return withAmount(guessedSuffix, amount);
-  }
-
   /**
-   * Alternative to the 'main' withAmount method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param amount - The value to be passed to the builder
+   * @param amount Field is a 'choice' field. Type should be one of Quantity, String. To pass the
+   *     value in, wrap with one of the SubstanceSpecification_MoietyBuilder.amount static methods
    */
-  public <T> SubstanceSpecification_MoietyBuilder withAmount(String suffix, @NonNull T amount) {
-    guard(
-        amount.getClass().getSimpleName(), suffix, SubstanceSpecification.Moiety$.MODULE$.amount());
-    this.amount =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, amount, SubstanceSpecification.Moiety$.MODULE$.amount()));
+  public SubstanceSpecification_MoietyBuilder withAmount(@NonNull Choice_2072987899 amount) {
+    this.amount = Optional.of(amount);
     return this;
   }
   /** @param identifier - Identifier by which this substance is known. */
@@ -187,7 +178,7 @@ public class SubstanceSpecification_MoietyBuilder {
         OptionConverters.toScala(role),
         OptionConverters.toScala(name),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(amount),
+        (Option) OptionConverters.toScala(amount),
         OptionConverters.toScala(identifier),
         OptionConverters.toScala(stereochemistry),
         OptionConverters.toScala(opticalActivity),

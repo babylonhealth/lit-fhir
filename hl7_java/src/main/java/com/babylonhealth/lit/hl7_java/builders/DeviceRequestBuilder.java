@@ -32,13 +32,14 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_STATUS;
 import com.babylonhealth.lit.hl7.REQUEST_INTENT;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -52,7 +53,7 @@ public class DeviceRequestBuilder {
   private Optional<REQUEST_STATUS> status = Optional.empty();
   private REQUEST_INTENT intent;
   private Collection<Reference> basedOn = Collections.emptyList();
-  private Choice<$bslash$div<CodeableConcept, Reference>> code;
+  private Choice01025009075 code;
   private Reference subject;
   private Optional<LANGUAGES> language = Optional.empty();
   private Optional<REQUEST_PRIORITY> priority = Optional.empty();
@@ -67,8 +68,7 @@ public class DeviceRequestBuilder {
   private Collection<CodeableConcept> reasonCode = Collections.emptyList();
   private Collection<Reference> priorRequest = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>>> occurrence =
-      Optional.empty();
+  private Optional<Choice00609373412> occurrence = Optional.empty();
   private Optional<CodeableConcept> performerType = Optional.empty();
   private Collection<Reference> supportingInfo = Collections.emptyList();
   private Collection<String> instantiatesUri = Collections.emptyList();
@@ -84,18 +84,35 @@ public class DeviceRequestBuilder {
    *
    * @param intent - Whether the request is a proposal, plan, an original order or a reflex order.
    * @param code - The details of the device to be used. Field is a 'choice' field. Type should be
-   *     one of CodeableConcept, Reference.
+   *     one of CodeableConcept, Reference. To pass the value in, wrap with one of the
+   *     DeviceRequestBuilder.code static methods
    * @param subject - The patient who will use the device.
    */
-  public DeviceRequestBuilder(REQUEST_INTENT intent, @NonNull Object code, Reference subject) {
+  public DeviceRequestBuilder(
+      REQUEST_INTENT intent, @NonNull Choice01025009075 code, Reference subject) {
     this.intent = intent;
-    this.code =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(code.getClass().getSimpleName(), DeviceRequest$.MODULE$.code()),
-                code,
-                DeviceRequest$.MODULE$.code());
+    this.code = code;
     this.subject = subject;
+  }
+
+  public static Choice01025009075 code(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 code(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice00609373412 occurrence(FHIRDateTime f) {
+    return new Choice00609373412(f);
+  }
+
+  public static Choice00609373412 occurrence(Period p) {
+    return new Choice00609373412(p);
+  }
+
+  public static Choice00609373412 occurrence(Timing t) {
+    return new Choice00609373412(t);
   }
 
   /**
@@ -304,28 +321,10 @@ public class DeviceRequestBuilder {
    *     allows many different expressions, for example. "Every 8 hours"; "Three times a day"; "1/2
    *     an hour before breakfast for 10 days from 23-Dec 2011:"; "15 Oct 2013, 17 Oct 2013 and 1
    *     Nov 2013". Field is a 'choice' field. Type should be one of FHIRDateTime, Period, Timing.
+   *     To pass the value in, wrap with one of the DeviceRequestBuilder.occurrence static methods
    */
-  public <T> DeviceRequestBuilder withOccurrence(@NonNull T occurrence) {
-    var guessedSuffix =
-        autoSuffix(occurrence.getClass().getSimpleName(), DeviceRequest$.MODULE$.occurrence());
-    return withOccurrence(guessedSuffix, occurrence);
-  }
-
-  /**
-   * Alternative to the 'main' withOccurrence method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param occurrence - The value to be passed to the builder
-   */
-  public <T> DeviceRequestBuilder withOccurrence(String suffix, @NonNull T occurrence) {
-    guard(occurrence.getClass().getSimpleName(), suffix, DeviceRequest$.MODULE$.occurrence());
-    this.occurrence =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, occurrence, DeviceRequest$.MODULE$.occurrence()));
+  public DeviceRequestBuilder withOccurrence(@NonNull Choice00609373412 occurrence) {
+    this.occurrence = Optional.of(occurrence);
     return this;
   }
   /** @param performerType - Desired type of performer for doing the diagnostic testing. */
@@ -489,7 +488,7 @@ public class DeviceRequestBuilder {
         reasonCode.stream().collect(new LitSeqJCollector<>()),
         priorRequest.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(occurrence),
+        (Option) OptionConverters.toScala(occurrence),
         OptionConverters.toScala(performerType),
         supportingInfo.stream().collect(new LitSeqJCollector<>()),
         instantiatesUri.stream().collect(new LitSeqJCollector<>()),

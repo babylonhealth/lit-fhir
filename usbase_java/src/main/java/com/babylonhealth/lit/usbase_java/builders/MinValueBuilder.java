@@ -34,10 +34,12 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,22 +47,38 @@ import static java.util.stream.Collectors.toList;
 
 public class MinValueBuilder {
   private Optional<String> id = Optional.empty();
-  private Choice value;
+  private Choice01613806391 value;
 
   /**
    * Required fields for {@link MinValue}
    *
    * @param value - Value of extension - must be one of a constrained set of the data types (see
    *     [Extensibility](http://hl7.org/fhir/extensibility.html) for a list). Field is a 'choice'
-   *     field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer, LocalTime.
+   *     field. Type should be one of BigDecimal, FHIRDate, FHIRDateTime, Integer, LocalTime. To
+   *     pass the value in, wrap with one of the MinValueBuilder.value static methods
    */
-  public MinValueBuilder(@NonNull Object value) {
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(value.getClass().getSimpleName(), MinValue$.MODULE$.value()),
-                value,
-                MinValue$.MODULE$.value());
+  public MinValueBuilder(@NonNull Choice01613806391 value) {
+    this.value = value;
+  }
+
+  public static Choice01613806391 value(BigDecimal b) {
+    return new Choice01613806391(b);
+  }
+
+  public static Choice01613806391 value(FHIRDate f) {
+    return new Choice01613806391(f);
+  }
+
+  public static Choice01613806391 value(FHIRDateTime f) {
+    return new Choice01613806391(f);
+  }
+
+  public static Choice01613806391 value(Integer i) {
+    return new Choice01613806391(i);
+  }
+
+  public static Choice01613806391 value(LocalTime l) {
+    return new Choice01613806391(l);
   }
 
   /**

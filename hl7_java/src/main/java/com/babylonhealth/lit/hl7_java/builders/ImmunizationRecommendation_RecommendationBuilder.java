@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -48,10 +49,10 @@ public class ImmunizationRecommendation_RecommendationBuilder {
   private Collection<CodeableConcept> vaccineCode = Collections.emptyList();
   private Optional<String> description = Optional.empty();
   private Optional<CodeableConcept> targetDisease = Optional.empty();
-  private Optional<Choice> doseNumber = Optional.empty();
+  private Optional<Choice_0839638734> doseNumber = Optional.empty();
   private CodeableConcept forecastStatus;
   private Collection<CodeableConcept> forecastReason = Collections.emptyList();
-  private Optional<Choice> seriesDoses = Optional.empty();
+  private Optional<Choice_0839638734> seriesDoses = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<Reference> supportingImmunization = Collections.emptyList();
   private Collection<CodeableConcept> contraindicatedVaccineCode = Collections.emptyList();
@@ -66,6 +67,22 @@ public class ImmunizationRecommendation_RecommendationBuilder {
    */
   public ImmunizationRecommendation_RecommendationBuilder(CodeableConcept forecastStatus) {
     this.forecastStatus = forecastStatus;
+  }
+
+  public static Choice_0839638734 doseNumber(Integer i) {
+    return new Choice_0839638734(i);
+  }
+
+  public static Choice_0839638734 doseNumber(String s) {
+    return new Choice_0839638734(s);
+  }
+
+  public static Choice_0839638734 seriesDoses(Integer i) {
+    return new Choice_0839638734(i);
+  }
+
+  public static Choice_0839638734 seriesDoses(String s) {
+    return new Choice_0839638734(s);
   }
 
   /**
@@ -129,37 +146,14 @@ public class ImmunizationRecommendation_RecommendationBuilder {
     this.targetDisease = Optional.of(targetDisease);
     return this;
   }
-  /** @param doseNumber Field is a 'choice' field. Type should be one of Integer, String. */
-  public <T> ImmunizationRecommendation_RecommendationBuilder withDoseNumber(
-      @NonNull T doseNumber) {
-    var guessedSuffix =
-        autoSuffix(
-            doseNumber.getClass().getSimpleName(),
-            ImmunizationRecommendation.Recommendation$.MODULE$.doseNumber());
-    return withDoseNumber(guessedSuffix, doseNumber);
-  }
-
   /**
-   * Alternative to the 'main' withDoseNumber method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param doseNumber - The value to be passed to the builder
+   * @param doseNumber Field is a 'choice' field. Type should be one of Integer, String. To pass the
+   *     value in, wrap with one of the ImmunizationRecommendation_RecommendationBuilder.doseNumber
+   *     static methods
    */
-  public <T> ImmunizationRecommendation_RecommendationBuilder withDoseNumber(
-      String suffix, @NonNull T doseNumber) {
-    guard(
-        doseNumber.getClass().getSimpleName(),
-        suffix,
-        ImmunizationRecommendation.Recommendation$.MODULE$.doseNumber());
-    this.doseNumber =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix,
-                    doseNumber,
-                    ImmunizationRecommendation.Recommendation$.MODULE$.doseNumber()));
+  public ImmunizationRecommendation_RecommendationBuilder withDoseNumber(
+      @NonNull Choice_0839638734 doseNumber) {
+    this.doseNumber = Optional.of(doseNumber);
     return this;
   }
   /** @param forecastReason */
@@ -174,37 +168,14 @@ public class ImmunizationRecommendation_RecommendationBuilder {
     this.forecastReason = Collections.unmodifiableCollection(forecastReason);
     return this;
   }
-  /** @param seriesDoses Field is a 'choice' field. Type should be one of Integer, String. */
-  public <T> ImmunizationRecommendation_RecommendationBuilder withSeriesDoses(
-      @NonNull T seriesDoses) {
-    var guessedSuffix =
-        autoSuffix(
-            seriesDoses.getClass().getSimpleName(),
-            ImmunizationRecommendation.Recommendation$.MODULE$.seriesDoses());
-    return withSeriesDoses(guessedSuffix, seriesDoses);
-  }
-
   /**
-   * Alternative to the 'main' withSeriesDoses method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param seriesDoses - The value to be passed to the builder
+   * @param seriesDoses Field is a 'choice' field. Type should be one of Integer, String. To pass
+   *     the value in, wrap with one of the
+   *     ImmunizationRecommendation_RecommendationBuilder.seriesDoses static methods
    */
-  public <T> ImmunizationRecommendation_RecommendationBuilder withSeriesDoses(
-      String suffix, @NonNull T seriesDoses) {
-    guard(
-        seriesDoses.getClass().getSimpleName(),
-        suffix,
-        ImmunizationRecommendation.Recommendation$.MODULE$.seriesDoses());
-    this.seriesDoses =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix,
-                    seriesDoses,
-                    ImmunizationRecommendation.Recommendation$.MODULE$.seriesDoses()));
+  public ImmunizationRecommendation_RecommendationBuilder withSeriesDoses(
+      @NonNull Choice_0839638734 seriesDoses) {
+    this.seriesDoses = Optional.of(seriesDoses);
     return this;
   }
   /**

@@ -34,11 +34,13 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -76,7 +78,7 @@ public class CqllibraryBuilder {
   private Optional<String> copyright = Optional.empty();
   private Collection<ParameterDefinition> parameter = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> subject = Optional.empty();
+  private Optional<Choice01025009075> subject = Optional.empty();
   private Collection<UsageContext> useContext = Collections.emptyList();
   private Optional<String> description = Optional.empty();
   private Optional<Boolean> experimental = Optional.empty();
@@ -99,6 +101,14 @@ public class CqllibraryBuilder {
   public CqllibraryBuilder(CodeableConcept _type, PUBLICATION_STATUS status) {
     this._type = _type;
     this.status = status;
+  }
+
+  public static Choice01025009075 subject(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 subject(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -406,27 +416,11 @@ public class CqllibraryBuilder {
   /**
    * @param subject - A code or group definition that describes the intended subject of the contents
    *     of the library. Field is a 'choice' field. Type should be one of CodeableConcept,
-   *     Reference.
+   *     Reference. To pass the value in, wrap with one of the CqllibraryBuilder.subject static
+   *     methods
    */
-  public <T> CqllibraryBuilder withSubject(@NonNull T subject) {
-    var guessedSuffix =
-        autoSuffix(subject.getClass().getSimpleName(), Cqllibrary$.MODULE$.subject());
-    return withSubject(guessedSuffix, subject);
-  }
-
-  /**
-   * Alternative to the 'main' withSubject method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param subject - The value to be passed to the builder
-   */
-  public <T> CqllibraryBuilder withSubject(String suffix, @NonNull T subject) {
-    guard(subject.getClass().getSimpleName(), suffix, Cqllibrary$.MODULE$.subject());
-    this.subject =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, subject, Cqllibrary$.MODULE$.subject()));
+  public CqllibraryBuilder withSubject(@NonNull Choice01025009075 subject) {
+    this.subject = Optional.of(subject);
     return this;
   }
   /**
@@ -615,7 +609,7 @@ public class CqllibraryBuilder {
         OptionConverters.toScala(copyright),
         parameter.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(subject),
         useContext.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(description),
         OptionConverters.toScala(experimental.map(x -> (Object) x)),

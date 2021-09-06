@@ -95,6 +95,10 @@ case class BaseField(
   def getAllEnumerations: Map[String, CodeValueSet] =
     valueEnumeration.map(x => x.valueSet -> x).toMap ++ childFields.flatMap(_.getAllEnumerations)
 
+  // workaround for valuesets that aren't currently available in the generator's resources,  e.g. us-code-smokingstatus,
+  // which claims a binding of 'http://hl7.org/fhir/us/core/ValueSet/us-core-observation-smoking-status-status' for the status field
+  def nearestValueSet: Option[CodeValueSet] = valueEnumeration orElse parent.flatMap(_.valueEnumeration)
+
 }
 
 object EnumerationUtils {
@@ -194,7 +198,7 @@ object ScalaTarget extends Enumeration {
 
 case class ClassGenInfo(fileContents: String, fileName: String, pkg: String, target: Option[ScalaTarget.ScalaTarget] = None)
 
-case class JavaClassGenInfo(builders: Seq[ClassGenInfo], codes: Seq[ClassGenInfo])
+case class JavaClassGenInfo(builders: Seq[ClassGenInfo], codes: Seq[ClassGenInfo], model: Seq[ClassGenInfo])
 
 case class AllGeneratedFiles(
     scalaClassGenInfo: Seq[ClassGenInfo],

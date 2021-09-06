@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -44,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 public class MedicinalProductAuthorization_ProcedureBuilder {
   private Optional<String> id = Optional.empty();
   private CodeableConcept _type;
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> date = Optional.empty();
+  private Optional<Choice_0934386166> date = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<Identifier> identifier = Optional.empty();
   private Collection<MedicinalProductAuthorization.Procedure> application = Collections.emptyList();
@@ -59,6 +60,14 @@ public class MedicinalProductAuthorization_ProcedureBuilder {
     this._type = _type;
   }
 
+  public static Choice_0934386166 date(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 date(Period p) {
+    return new Choice_0934386166(p);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -67,34 +76,13 @@ public class MedicinalProductAuthorization_ProcedureBuilder {
     this.id = Optional.of(id);
     return this;
   }
-  /** @param date Field is a 'choice' field. Type should be one of FHIRDateTime, Period. */
-  public <T> MedicinalProductAuthorization_ProcedureBuilder withDate(@NonNull T date) {
-    var guessedSuffix =
-        autoSuffix(
-            date.getClass().getSimpleName(),
-            MedicinalProductAuthorization.Procedure$.MODULE$.date());
-    return withDate(guessedSuffix, date);
-  }
-
   /**
-   * Alternative to the 'main' withDate method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param date - The value to be passed to the builder
+   * @param date Field is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the
+   *     value in, wrap with one of the MedicinalProductAuthorization_ProcedureBuilder.date static
+   *     methods
    */
-  public <T> MedicinalProductAuthorization_ProcedureBuilder withDate(
-      String suffix, @NonNull T date) {
-    guard(
-        date.getClass().getSimpleName(),
-        suffix,
-        MedicinalProductAuthorization.Procedure$.MODULE$.date());
-    this.date =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, date, MedicinalProductAuthorization.Procedure$.MODULE$.date()));
+  public MedicinalProductAuthorization_ProcedureBuilder withDate(@NonNull Choice_0934386166 date) {
+    this.date = Optional.of(date);
     return this;
   }
   /**
@@ -181,7 +169,7 @@ public class MedicinalProductAuthorization_ProcedureBuilder {
     return new MedicinalProductAuthorization.Procedure(
         OptionConverters.toScala(id),
         _type,
-        OptionConverters.toScala(date),
+        (Option) OptionConverters.toScala(date),
         extension.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(identifier),
         application.stream().collect(new LitSeqJCollector<>()),

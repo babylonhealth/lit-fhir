@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -50,13 +51,21 @@ public class SpecimenDefinition_TypeTested_ContainerBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<String> description = Optional.empty();
   private Optional<String> preparation = Optional.empty();
-  private Optional<Choice<$bslash$div<Quantity, String>>> minimumVolume = Optional.empty();
+  private Optional<Choice_2072987899> minimumVolume = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<SpecimenDefinition$TypeTested$Container$Additive> additive =
       Collections.emptyList();
 
   /** Required fields for {@link SpecimenDefinition$TypeTested$Container} */
   public SpecimenDefinition_TypeTested_ContainerBuilder() {}
+
+  public static Choice_2072987899 minimumVolume(Quantity q) {
+    return new Choice_2072987899(q);
+  }
+
+  public static Choice_2072987899 minimumVolume(String s) {
+    return new Choice_2072987899(s);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -123,37 +132,14 @@ public class SpecimenDefinition_TypeTested_ContainerBuilder {
     this.preparation = Optional.of(preparation);
     return this;
   }
-  /** @param minimumVolume Field is a 'choice' field. Type should be one of Quantity, String. */
-  public <T> SpecimenDefinition_TypeTested_ContainerBuilder withMinimumVolume(
-      @NonNull T minimumVolume) {
-    var guessedSuffix =
-        autoSuffix(
-            minimumVolume.getClass().getSimpleName(),
-            SpecimenDefinition$TypeTested$Container$.MODULE$.minimumVolume());
-    return withMinimumVolume(guessedSuffix, minimumVolume);
-  }
-
   /**
-   * Alternative to the 'main' withMinimumVolume method. This will be marginally faster than the
-   * other method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param minimumVolume - The value to be passed to the builder
+   * @param minimumVolume Field is a 'choice' field. Type should be one of Quantity, String. To pass
+   *     the value in, wrap with one of the
+   *     SpecimenDefinition_TypeTested_ContainerBuilder.minimumVolume static methods
    */
-  public <T> SpecimenDefinition_TypeTested_ContainerBuilder withMinimumVolume(
-      String suffix, @NonNull T minimumVolume) {
-    guard(
-        minimumVolume.getClass().getSimpleName(),
-        suffix,
-        SpecimenDefinition$TypeTested$Container$.MODULE$.minimumVolume());
-    this.minimumVolume =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix,
-                    minimumVolume,
-                    SpecimenDefinition$TypeTested$Container$.MODULE$.minimumVolume()));
+  public SpecimenDefinition_TypeTested_ContainerBuilder withMinimumVolume(
+      @NonNull Choice_2072987899 minimumVolume) {
+    this.minimumVolume = Optional.of(minimumVolume);
     return this;
   }
   /**
@@ -213,7 +199,7 @@ public class SpecimenDefinition_TypeTested_ContainerBuilder {
         extension.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(description),
         OptionConverters.toScala(preparation),
-        OptionConverters.toScala(minimumVolume),
+        (Option) OptionConverters.toScala(minimumVolume),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         additive.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

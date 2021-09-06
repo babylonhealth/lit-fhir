@@ -32,11 +32,12 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -59,8 +60,8 @@ public class ConceptMapBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<String> publisher = Optional.empty();
   private Optional<String> copyright = Optional.empty();
-  private Optional<Choice<$bslash$div<String, String>>> source = Optional.empty();
-  private Optional<Choice<$bslash$div<String, String>>> target = Optional.empty();
+  private Optional<Choice00545979821> source = Optional.empty();
+  private Optional<Choice00545979821> target = Optional.empty();
   private Optional<Identifier> identifier = Optional.empty();
   private Collection<UsageContext> useContext = Collections.emptyList();
   private Optional<String> description = Optional.empty();
@@ -77,6 +78,22 @@ public class ConceptMapBuilder {
    */
   public ConceptMapBuilder(PUBLICATION_STATUS status) {
     this.status = status;
+  }
+
+  public static Choice00545979821 sourceCanonical(String s) {
+    return Choice00545979821.Choice00545979821Canonical(s);
+  }
+
+  public static Choice00545979821 sourceUri(String s) {
+    return Choice00545979821.Choice00545979821UriStr(s);
+  }
+
+  public static Choice00545979821 targetCanonical(String s) {
+    return Choice00545979821.Choice00545979821Canonical(s);
+  }
+
+  public static Choice00545979821 targetUri(String s) {
+    return Choice00545979821.Choice00545979821UriStr(s);
   }
 
   /**
@@ -240,56 +257,22 @@ public class ConceptMapBuilder {
   /**
    * @param source - Identifier for the source value set that contains the concepts that are being
    *     mapped and provides context for the mappings. Field is a 'choice' field. Type should be one
-   *     of String.
+   *     of String. To pass the value in, wrap with one of the ConceptMapBuilder.source static
+   *     methods
    */
-  public <T> ConceptMapBuilder withSource(@NonNull T source) {
-    var guessedSuffix = autoSuffix(source.getClass().getSimpleName(), ConceptMap$.MODULE$.source());
-    return withSource(guessedSuffix, source);
-  }
-
-  /**
-   * Alternative to the 'main' withSource method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of String then there are multiple candidate 'types' for the FHIR object, and we are unable
-   * to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type String, the valid values are Canonical, Uri.
-   * @param source - The value to be passed to the builder
-   */
-  public <T> ConceptMapBuilder withSource(String suffix, @NonNull T source) {
-    guard(source.getClass().getSimpleName(), suffix, ConceptMap$.MODULE$.source());
-    this.source =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, source, ConceptMap$.MODULE$.source()));
+  public ConceptMapBuilder withSource(@NonNull Choice00545979821 source) {
+    this.source = Optional.of(source);
     return this;
   }
   /**
    * @param target - The target value set provides context for the mappings. Note that the mapping
    *     is made between concepts, not between value sets, but the value set provides important
    *     context about how the concept mapping choices are made. Field is a 'choice' field. Type
-   *     should be one of String.
+   *     should be one of String. To pass the value in, wrap with one of the
+   *     ConceptMapBuilder.target static methods
    */
-  public <T> ConceptMapBuilder withTarget(@NonNull T target) {
-    var guessedSuffix = autoSuffix(target.getClass().getSimpleName(), ConceptMap$.MODULE$.target());
-    return withTarget(guessedSuffix, target);
-  }
-
-  /**
-   * Alternative to the 'main' withTarget method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of String then there are multiple candidate 'types' for the FHIR object, and we are unable
-   * to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type String, the valid values are Canonical, Uri.
-   * @param target - The value to be passed to the builder
-   */
-  public <T> ConceptMapBuilder withTarget(String suffix, @NonNull T target) {
-    guard(target.getClass().getSimpleName(), suffix, ConceptMap$.MODULE$.target());
-    this.target =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, target, ConceptMap$.MODULE$.target()));
+  public ConceptMapBuilder withTarget(@NonNull Choice00545979821 target) {
+    this.target = Optional.of(target);
     return this;
   }
   /**
@@ -430,8 +413,8 @@ public class ConceptMapBuilder {
         extension.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(publisher),
         OptionConverters.toScala(copyright),
-        OptionConverters.toScala(source),
-        OptionConverters.toScala(target),
+        (Option) OptionConverters.toScala(source),
+        (Option) OptionConverters.toScala(target),
         OptionConverters.toScala(identifier),
         useContext.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(description),

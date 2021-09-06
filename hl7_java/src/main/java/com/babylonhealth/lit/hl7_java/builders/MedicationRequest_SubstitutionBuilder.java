@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,23 +46,26 @@ public class MedicationRequest_SubstitutionBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<CodeableConcept> reason = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice allowed;
+  private Choice_1768247138 allowed;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
    * Required fields for {@link MedicationRequest.Substitution}
    *
-   * @param allowed Field is a 'choice' field. Type should be one of Boolean, CodeableConcept.
+   * @param allowed Field is a 'choice' field. Type should be one of Boolean, CodeableConcept. To
+   *     pass the value in, wrap with one of the MedicationRequest_SubstitutionBuilder.allowed
+   *     static methods
    */
-  public MedicationRequest_SubstitutionBuilder(@NonNull Object allowed) {
-    this.allowed =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    allowed.getClass().getSimpleName(),
-                    MedicationRequest.Substitution$.MODULE$.allowed()),
-                allowed,
-                MedicationRequest.Substitution$.MODULE$.allowed());
+  public MedicationRequest_SubstitutionBuilder(@NonNull Choice_1768247138 allowed) {
+    this.allowed = allowed;
+  }
+
+  public static Choice_1768247138 allowed(Boolean b) {
+    return new Choice_1768247138(b);
+  }
+
+  public static Choice_1768247138 allowed(CodeableConcept c) {
+    return new Choice_1768247138(c);
   }
 
   /**

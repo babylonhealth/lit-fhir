@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -44,7 +45,7 @@ import static java.util.stream.Collectors.toList;
 public class Observation_ComponentBuilder {
   private Optional<String> id = Optional.empty();
   private CodeableConcept code;
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_0802685816> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<CodeableConcept> interpretation = Collections.emptyList();
   private Collection<Observation.ReferenceRange> referenceRange = Collections.emptyList();
@@ -60,6 +61,50 @@ public class Observation_ComponentBuilder {
     this.code = code;
   }
 
+  public static Choice_0802685816 value(Boolean b) {
+    return new Choice_0802685816(b);
+  }
+
+  public static Choice_0802685816 value(CodeableConcept c) {
+    return new Choice_0802685816(c);
+  }
+
+  public static Choice_0802685816 value(FHIRDateTime f) {
+    return new Choice_0802685816(f);
+  }
+
+  public static Choice_0802685816 value(Integer i) {
+    return new Choice_0802685816(i);
+  }
+
+  public static Choice_0802685816 value(LocalTime l) {
+    return new Choice_0802685816(l);
+  }
+
+  public static Choice_0802685816 value(Period p) {
+    return new Choice_0802685816(p);
+  }
+
+  public static Choice_0802685816 value(Quantity q) {
+    return new Choice_0802685816(q);
+  }
+
+  public static Choice_0802685816 value(Range r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(Ratio r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(SampledData s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice_0802685816 value(String s) {
+    return new Choice_0802685816(s);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -72,28 +117,11 @@ public class Observation_ComponentBuilder {
    * @param value - The information determined as a result of making the observation, if the
    *     information has a simple value. Field is a 'choice' field. Type should be one of Boolean,
    *     CodeableConcept, FHIRDateTime, Integer, LocalTime, Period, Quantity, Range, Ratio,
-   *     SampledData, String.
+   *     SampledData, String. To pass the value in, wrap with one of the
+   *     Observation_ComponentBuilder.value static methods
    */
-  public <T> Observation_ComponentBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), Observation.Component$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> Observation_ComponentBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, Observation.Component$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, value, Observation.Component$.MODULE$.value()));
+  public Observation_ComponentBuilder withValue(@NonNull Choice_0802685816 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**

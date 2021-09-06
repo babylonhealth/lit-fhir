@@ -36,11 +36,14 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.DIAGNOSTIC_REPORT_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -70,7 +73,7 @@ public class Us_core_diagnosticreport_noteBuilder {
   private Collection<Reference> performer = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Optional<String> conclusion = Optional.empty();
-  private Choice<$bslash$div<FHIRDateTime, Period>> effective;
+  private Choice_0934386166 effective;
   private Collection<Reference> imagingStudy = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<Attachment> presentedForm = Collections.emptyList();
@@ -91,26 +94,28 @@ public class Us_core_diagnosticreport_noteBuilder {
    *     service that created the report (e.g. cardiology, biochemistry, hematology, MRI). This is
    *     used for searching, sorting and display purposes.
    * @param effective - This is the Datetime or Period when the report or note was written. Field is
-   *     a 'choice' field. Type should be one of FHIRDateTime, Period.
+   *     a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap
+   *     with one of the Us_core_diagnosticreport_noteBuilder.effective static methods
    */
   public Us_core_diagnosticreport_noteBuilder(
       CodeableConcept code,
       DIAGNOSTIC_REPORT_STATUS status,
       Reference subject,
       Collection<CodeableConcept> category,
-      @NonNull Object effective) {
+      @NonNull Choice_0934386166 effective) {
     this.code = code;
     this.status = status;
     this.subject = subject;
     this.category = category;
-    this.effective =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    effective.getClass().getSimpleName(),
-                    Us_core_diagnosticreport_note$.MODULE$.effective()),
-                effective,
-                Us_core_diagnosticreport_note$.MODULE$.effective());
+    this.effective = effective;
+  }
+
+  public static Choice_0934386166 effective(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 effective(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**

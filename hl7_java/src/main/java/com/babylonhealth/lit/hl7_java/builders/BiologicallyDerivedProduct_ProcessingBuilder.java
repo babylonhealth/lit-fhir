@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -43,7 +44,7 @@ import static java.util.stream.Collectors.toList;
 
 public class BiologicallyDerivedProduct_ProcessingBuilder {
   private Optional<String> id = Optional.empty();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> time = Optional.empty();
+  private Optional<Choice_0934386166> time = Optional.empty();
   private Optional<Reference> additive = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<CodeableConcept> procedure = Optional.empty();
@@ -53,6 +54,14 @@ public class BiologicallyDerivedProduct_ProcessingBuilder {
   /** Required fields for {@link BiologicallyDerivedProduct.Processing} */
   public BiologicallyDerivedProduct_ProcessingBuilder() {}
 
+  public static Choice_0934386166 time(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 time(Period p) {
+    return new Choice_0934386166(p);
+  }
+
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
    *     this value never changes.
@@ -61,32 +70,13 @@ public class BiologicallyDerivedProduct_ProcessingBuilder {
     this.id = Optional.of(id);
     return this;
   }
-  /** @param time Field is a 'choice' field. Type should be one of FHIRDateTime, Period. */
-  public <T> BiologicallyDerivedProduct_ProcessingBuilder withTime(@NonNull T time) {
-    var guessedSuffix =
-        autoSuffix(
-            time.getClass().getSimpleName(), BiologicallyDerivedProduct.Processing$.MODULE$.time());
-    return withTime(guessedSuffix, time);
-  }
-
   /**
-   * Alternative to the 'main' withTime method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param time - The value to be passed to the builder
+   * @param time Field is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the
+   *     value in, wrap with one of the BiologicallyDerivedProduct_ProcessingBuilder.time static
+   *     methods
    */
-  public <T> BiologicallyDerivedProduct_ProcessingBuilder withTime(String suffix, @NonNull T time) {
-    guard(
-        time.getClass().getSimpleName(),
-        suffix,
-        BiologicallyDerivedProduct.Processing$.MODULE$.time());
-    this.time =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, time, BiologicallyDerivedProduct.Processing$.MODULE$.time()));
+  public BiologicallyDerivedProduct_ProcessingBuilder withTime(@NonNull Choice_0934386166 time) {
+    this.time = Optional.of(time);
     return this;
   }
   /** @param additive */
@@ -167,7 +157,7 @@ public class BiologicallyDerivedProduct_ProcessingBuilder {
   public BiologicallyDerivedProduct.Processing build() {
     return new BiologicallyDerivedProduct.Processing(
         OptionConverters.toScala(id),
-        OptionConverters.toScala(time),
+        (Option) OptionConverters.toScala(time),
         OptionConverters.toScala(additive),
         extension.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(procedure),

@@ -34,11 +34,13 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -72,7 +74,7 @@ public class VitalspanelBuilder {
   private Collection<Reference> hasMember;
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<Reference> derivedFrom = Collections.emptyList();
-  private Choice<$bslash$div<FHIRDateTime, Period>> effective;
+  private Choice_0934386166 effective;
   private Optional<String> implicitRules = Optional.empty();
   private CodeableConcept code;
   private Collection<CodeableConcept> interpretation = Collections.emptyList();
@@ -92,7 +94,8 @@ public class VitalspanelBuilder {
    * @param category - A code that classifies the general type of observation being made.
    * @param hasMember - Used when reporting vital signs panel components.
    * @param effective - Often just a dateTime for Vital Signs. Field is a 'choice' field. Type
-   *     should be one of FHIRDateTime, Period.
+   *     should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
+   *     VitalspanelBuilder.effective static methods
    * @param code - Vital Signs Panel.
    */
   public VitalspanelBuilder(
@@ -100,19 +103,66 @@ public class VitalspanelBuilder {
       Reference subject,
       Collection<CodeableConcept> category,
       Collection<Reference> hasMember,
-      @NonNull Object effective,
+      @NonNull Choice_0934386166 effective,
       CodeableConcept code) {
     this.status = status;
     this.subject = subject;
     this.category = category;
     this.hasMember = hasMember;
-    this.effective =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(effective.getClass().getSimpleName(), Vitalspanel$.MODULE$.effective()),
-                effective,
-                Vitalspanel$.MODULE$.effective());
+    this.effective = effective;
     this.code = code;
+  }
+
+  public static Choice_0802685816 value(Boolean b) {
+    return new Choice_0802685816(b);
+  }
+
+  public static Choice_0802685816 value(CodeableConcept c) {
+    return new Choice_0802685816(c);
+  }
+
+  public static Choice_0802685816 value(FHIRDateTime f) {
+    return new Choice_0802685816(f);
+  }
+
+  public static Choice_0802685816 value(Integer i) {
+    return new Choice_0802685816(i);
+  }
+
+  public static Choice_0802685816 value(LocalTime l) {
+    return new Choice_0802685816(l);
+  }
+
+  public static Choice_0802685816 value(Period p) {
+    return new Choice_0802685816(p);
+  }
+
+  public static Choice_0802685816 value(Quantity q) {
+    return new Choice_0802685816(q);
+  }
+
+  public static Choice_0802685816 value(Range r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(Ratio r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(SampledData s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice_0802685816 value(String s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice_0934386166 effective(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 effective(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**

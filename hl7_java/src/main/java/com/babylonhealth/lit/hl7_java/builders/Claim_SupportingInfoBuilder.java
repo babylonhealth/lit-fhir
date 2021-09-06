@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -47,9 +48,9 @@ public class Claim_SupportingInfoBuilder {
   private Optional<CodeableConcept> reason = Optional.empty();
   private Integer sequence;
   private CodeableConcept category;
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_0543144563> value = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<FHIRDate, Period>>> timing = Optional.empty();
+  private Optional<Choice_0503196159> timing = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
@@ -61,6 +62,34 @@ public class Claim_SupportingInfoBuilder {
   public Claim_SupportingInfoBuilder(Integer sequence, CodeableConcept category) {
     this.sequence = sequence;
     this.category = category;
+  }
+
+  public static Choice_0543144563 value(Attachment a) {
+    return new Choice_0543144563(a);
+  }
+
+  public static Choice_0543144563 value(Boolean b) {
+    return new Choice_0543144563(b);
+  }
+
+  public static Choice_0543144563 value(Quantity q) {
+    return new Choice_0543144563(q);
+  }
+
+  public static Choice_0543144563 value(Reference r) {
+    return new Choice_0543144563(r);
+  }
+
+  public static Choice_0543144563 value(String s) {
+    return new Choice_0543144563(s);
+  }
+
+  public static Choice_0503196159 timing(FHIRDate f) {
+    return new Choice_0503196159(f);
+  }
+
+  public static Choice_0503196159 timing(Period p) {
+    return new Choice_0503196159(p);
   }
 
   /**
@@ -83,28 +112,11 @@ public class Claim_SupportingInfoBuilder {
   }
   /**
    * @param value Field is a 'choice' field. Type should be one of Attachment, Boolean, Quantity,
-   *     Reference, String.
+   *     Reference, String. To pass the value in, wrap with one of the
+   *     Claim_SupportingInfoBuilder.value static methods
    */
-  public <T> Claim_SupportingInfoBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), Claim.SupportingInfo$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> Claim_SupportingInfoBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, Claim.SupportingInfo$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, value, Claim.SupportingInfo$.MODULE$.value()));
+  public Claim_SupportingInfoBuilder withValue(@NonNull Choice_0543144563 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -129,27 +141,12 @@ public class Claim_SupportingInfoBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param timing Field is a 'choice' field. Type should be one of FHIRDate, Period. */
-  public <T> Claim_SupportingInfoBuilder withTiming(@NonNull T timing) {
-    var guessedSuffix =
-        autoSuffix(timing.getClass().getSimpleName(), Claim.SupportingInfo$.MODULE$.timing());
-    return withTiming(guessedSuffix, timing);
-  }
-
   /**
-   * Alternative to the 'main' withTiming method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param timing - The value to be passed to the builder
+   * @param timing Field is a 'choice' field. Type should be one of FHIRDate, Period. To pass the
+   *     value in, wrap with one of the Claim_SupportingInfoBuilder.timing static methods
    */
-  public <T> Claim_SupportingInfoBuilder withTiming(String suffix, @NonNull T timing) {
-    guard(timing.getClass().getSimpleName(), suffix, Claim.SupportingInfo$.MODULE$.timing());
-    this.timing =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, timing, Claim.SupportingInfo$.MODULE$.timing()));
+  public Claim_SupportingInfoBuilder withTiming(@NonNull Choice_0503196159 timing) {
+    this.timing = Optional.of(timing);
     return this;
   }
   /**
@@ -196,7 +193,7 @@ public class Claim_SupportingInfoBuilder {
         category,
         (Option) OptionConverters.toScala(value),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(timing),
+        (Option) OptionConverters.toScala(timing),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

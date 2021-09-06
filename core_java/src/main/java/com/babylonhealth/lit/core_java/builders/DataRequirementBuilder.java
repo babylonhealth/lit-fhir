@@ -30,10 +30,10 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 import com.babylonhealth.lit.core.ALL_TYPES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,7 +45,7 @@ public class DataRequirementBuilder {
   private Optional<Integer> limit = Optional.empty();
   private Collection<String> profile = Collections.emptyList();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> subject = Optional.empty();
+  private Optional<Choice01025009075> subject = Optional.empty();
   private Collection<String> mustSupport = Collections.emptyList();
   private Collection<DataRequirement.Sort> sort = Collections.emptyList();
   private Collection<DataRequirement.CodeFilter> codeFilter = Collections.emptyList();
@@ -59,6 +59,14 @@ public class DataRequirementBuilder {
    */
   public DataRequirementBuilder(ALL_TYPES _type) {
     this._type = _type;
+  }
+
+  public static Choice01025009075 subject(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 subject(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -118,28 +126,11 @@ public class DataRequirementBuilder {
   /**
    * @param subject - The intended subjects of the data requirement. If this element is not
    *     provided, a Patient subject is assumed. Field is a 'choice' field. Type should be one of
-   *     CodeableConcept, Reference.
+   *     CodeableConcept, Reference. To pass the value in, wrap with one of the
+   *     DataRequirementBuilder.subject static methods
    */
-  public <T> DataRequirementBuilder withSubject(@NonNull T subject) {
-    var guessedSuffix =
-        autoSuffix(subject.getClass().getSimpleName(), DataRequirement$.MODULE$.subject());
-    return withSubject(guessedSuffix, subject);
-  }
-
-  /**
-   * Alternative to the 'main' withSubject method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param subject - The value to be passed to the builder
-   */
-  public <T> DataRequirementBuilder withSubject(String suffix, @NonNull T subject) {
-    guard(subject.getClass().getSimpleName(), suffix, DataRequirement$.MODULE$.subject());
-    this.subject =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, subject, DataRequirement$.MODULE$.subject()));
+  public DataRequirementBuilder withSubject(@NonNull Choice01025009075 subject) {
+    this.subject = Optional.of(subject);
     return this;
   }
   /**
@@ -226,7 +217,7 @@ public class DataRequirementBuilder {
         OptionConverters.toScala(limit.map(x -> (Object) x)),
         profile.stream().collect(new LitSeqJCollector<>()),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(subject),
         mustSupport.stream().collect(new LitSeqJCollector<>()),
         sort.stream().collect(new LitSeqJCollector<>()),
         codeFilter.stream().collect(new LitSeqJCollector<>()),

@@ -30,10 +30,10 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -48,7 +48,7 @@ public class DosageBuilder {
   private Optional<CodeableConcept> method = Optional.empty();
   private Optional<Integer> sequence = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice> asNeeded = Optional.empty();
+  private Optional<Choice_1768247138> asNeeded = Optional.empty();
   private Optional<Ratio> maxDosePerPeriod = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Optional<String> patientInstruction = Optional.empty();
@@ -59,6 +59,14 @@ public class DosageBuilder {
 
   /** Required fields for {@link Dosage} */
   public DosageBuilder() {}
+
+  public static Choice_1768247138 asNeeded(Boolean b) {
+    return new Choice_1768247138(b);
+  }
+
+  public static Choice_1768247138 asNeeded(CodeableConcept c) {
+    return new Choice_1768247138(c);
+  }
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -127,26 +135,11 @@ public class DosageBuilder {
    * @param asNeeded - Indicates whether the Medication is only taken when needed within a specific
    *     dosing schedule (Boolean option), or it indicates the precondition for taking the
    *     Medication (CodeableConcept). Field is a 'choice' field. Type should be one of Boolean,
-   *     CodeableConcept.
+   *     CodeableConcept. To pass the value in, wrap with one of the DosageBuilder.asNeeded static
+   *     methods
    */
-  public <T> DosageBuilder withAsNeeded(@NonNull T asNeeded) {
-    var guessedSuffix = autoSuffix(asNeeded.getClass().getSimpleName(), Dosage$.MODULE$.asNeeded());
-    return withAsNeeded(guessedSuffix, asNeeded);
-  }
-
-  /**
-   * Alternative to the 'main' withAsNeeded method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param asNeeded - The value to be passed to the builder
-   */
-  public <T> DosageBuilder withAsNeeded(String suffix, @NonNull T asNeeded) {
-    guard(asNeeded.getClass().getSimpleName(), suffix, Dosage$.MODULE$.asNeeded());
-    this.asNeeded =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, asNeeded, Dosage$.MODULE$.asNeeded()));
+  public DosageBuilder withAsNeeded(@NonNull Choice_1768247138 asNeeded) {
+    this.asNeeded = Optional.of(asNeeded);
     return this;
   }
   /** @param maxDosePerPeriod - Upper limit on medication per unit of time. */

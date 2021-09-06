@@ -3,6 +3,8 @@ package com.babylonhealth.lit.uscore
 import java.time.{ LocalDate, LocalTime, ZonedDateTime }
 import java.util.UUID
 
+import izumi.reflect.macrortti.LTag
+
 import com.babylonhealth.lit.core._
 import com.babylonhealth.lit.core.model._
 import com.babylonhealth.lit.uscore.model._

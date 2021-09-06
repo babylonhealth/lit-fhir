@@ -36,11 +36,14 @@ import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
 import com.babylonhealth.lit.uscore_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
+import com.babylonhealth.lit.uscore_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -67,7 +70,7 @@ public class Us_core_observation_labBuilder {
   private Reference subject;
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<CodeableConcept> category;
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_0802685816> value = Optional.empty();
   private Optional<CodeableConcept> bodySite = Optional.empty();
   private Optional<Reference> specimen = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
@@ -77,7 +80,7 @@ public class Us_core_observation_labBuilder {
   private Collection<Reference> hasMember = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<Reference> derivedFrom = Collections.emptyList();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> effective = Optional.empty();
+  private Optional<Choice_0934386166> effective = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<CodeableConcept> interpretation = Collections.emptyList();
   private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
@@ -106,6 +109,58 @@ public class Us_core_observation_labBuilder {
     this.status = status;
     this.subject = subject;
     this.category = category;
+  }
+
+  public static Choice_0802685816 value(Boolean b) {
+    return new Choice_0802685816(b);
+  }
+
+  public static Choice_0802685816 value(CodeableConcept c) {
+    return new Choice_0802685816(c);
+  }
+
+  public static Choice_0802685816 value(FHIRDateTime f) {
+    return new Choice_0802685816(f);
+  }
+
+  public static Choice_0802685816 value(Integer i) {
+    return new Choice_0802685816(i);
+  }
+
+  public static Choice_0802685816 value(LocalTime l) {
+    return new Choice_0802685816(l);
+  }
+
+  public static Choice_0802685816 value(Period p) {
+    return new Choice_0802685816(p);
+  }
+
+  public static Choice_0802685816 value(Quantity q) {
+    return new Choice_0802685816(q);
+  }
+
+  public static Choice_0802685816 value(Range r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(Ratio r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(SampledData s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice_0802685816 value(String s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice_0934386166 effective(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 effective(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -239,29 +294,11 @@ public class Us_core_observation_labBuilder {
    *     [UCUM Codes value set](http://hl7.org/fhir/STU3/valueset-ucum-units.html) that defines all
    *     UCUM codes is in the FHIR specification. Field is a 'choice' field. Type should be one of
    *     Boolean, CodeableConcept, FHIRDateTime, Integer, LocalTime, Period, Quantity, Range, Ratio,
-   *     SampledData, String.
+   *     SampledData, String. To pass the value in, wrap with one of the
+   *     Us_core_observation_labBuilder.value static methods
    */
-  public <T> Us_core_observation_labBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), Us_core_observation_lab$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> Us_core_observation_labBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, Us_core_observation_lab$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, value, Us_core_observation_lab$.MODULE$.value()));
+  public Us_core_observation_labBuilder withValue(@NonNull Choice_0802685816 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -383,31 +420,11 @@ public class Us_core_observation_labBuilder {
   /**
    * @param effective - For lab tests this is the specimen collection date. For Ask at Order Entry
    *     Questions (AOE)'s this is the date the question was asked. Field is a 'choice' field. Type
-   *     should be one of FHIRDateTime, Period.
+   *     should be one of FHIRDateTime, Period. To pass the value in, wrap with one of the
+   *     Us_core_observation_labBuilder.effective static methods
    */
-  public <T> Us_core_observation_labBuilder withEffective(@NonNull T effective) {
-    var guessedSuffix =
-        autoSuffix(
-            effective.getClass().getSimpleName(), Us_core_observation_lab$.MODULE$.effective());
-    return withEffective(guessedSuffix, effective);
-  }
-
-  /**
-   * Alternative to the 'main' withEffective method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param effective - The value to be passed to the builder
-   */
-  public <T> Us_core_observation_labBuilder withEffective(String suffix, @NonNull T effective) {
-    guard(
-        effective.getClass().getSimpleName(), suffix, Us_core_observation_lab$.MODULE$.effective());
-    this.effective =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, effective, Us_core_observation_lab$.MODULE$.effective()));
+  public Us_core_observation_labBuilder withEffective(@NonNull Choice_0934386166 effective) {
+    this.effective = Optional.of(effective);
     return this;
   }
   /**
@@ -555,7 +572,7 @@ public class Us_core_observation_labBuilder {
         hasMember.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         derivedFrom.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(effective),
+        (Option) OptionConverters.toScala(effective),
         OptionConverters.toScala(implicitRules),
         interpretation.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(dataAbsentReason),

@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ACTION_RELATIONSHIP_TYPE;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,7 +46,7 @@ public class PlanDefinition_Action_RelatedActionBuilder {
   private Optional<String> id = Optional.empty();
   private String actionId;
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<Duration, Range>>> offset = Optional.empty();
+  private Optional<Choice00801828838> offset = Optional.empty();
   private ACTION_RELATIONSHIP_TYPE relationship;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -59,6 +60,14 @@ public class PlanDefinition_Action_RelatedActionBuilder {
       String actionId, ACTION_RELATIONSHIP_TYPE relationship) {
     this.actionId = actionId;
     this.relationship = relationship;
+  }
+
+  public static Choice00801828838 offset(Duration d) {
+    return new Choice00801828838(d);
+  }
+
+  public static Choice00801828838 offset(Range r) {
+    return new Choice00801828838(r);
   }
 
   /**
@@ -92,34 +101,13 @@ public class PlanDefinition_Action_RelatedActionBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param offset Field is a 'choice' field. Type should be one of Duration, Range. */
-  public <T> PlanDefinition_Action_RelatedActionBuilder withOffset(@NonNull T offset) {
-    var guessedSuffix =
-        autoSuffix(
-            offset.getClass().getSimpleName(),
-            PlanDefinition$Action$RelatedAction$.MODULE$.offset());
-    return withOffset(guessedSuffix, offset);
-  }
-
   /**
-   * Alternative to the 'main' withOffset method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param offset - The value to be passed to the builder
+   * @param offset Field is a 'choice' field. Type should be one of Duration, Range. To pass the
+   *     value in, wrap with one of the PlanDefinition_Action_RelatedActionBuilder.offset static
+   *     methods
    */
-  public <T> PlanDefinition_Action_RelatedActionBuilder withOffset(
-      String suffix, @NonNull T offset) {
-    guard(
-        offset.getClass().getSimpleName(),
-        suffix,
-        PlanDefinition$Action$RelatedAction$.MODULE$.offset());
-    this.offset =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, offset, PlanDefinition$Action$RelatedAction$.MODULE$.offset()));
+  public PlanDefinition_Action_RelatedActionBuilder withOffset(@NonNull Choice00801828838 offset) {
+    this.offset = Optional.of(offset);
     return this;
   }
   /**
@@ -162,7 +150,7 @@ public class PlanDefinition_Action_RelatedActionBuilder {
         OptionConverters.toScala(id),
         actionId,
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(offset),
+        (Option) OptionConverters.toScala(offset),
         relationship,
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());

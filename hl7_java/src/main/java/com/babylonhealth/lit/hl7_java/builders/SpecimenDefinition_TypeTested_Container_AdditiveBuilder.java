@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -44,23 +45,27 @@ import static java.util.stream.Collectors.toList;
 public class SpecimenDefinition_TypeTested_Container_AdditiveBuilder {
   private Optional<String> id = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<CodeableConcept, Reference>> additive;
+  private Choice01025009075 additive;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
    * Required fields for {@link SpecimenDefinition$TypeTested$Container$Additive}
    *
-   * @param additive Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   * @param additive Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the
+   *     SpecimenDefinition_TypeTested_Container_AdditiveBuilder.additive static methods
    */
-  public SpecimenDefinition_TypeTested_Container_AdditiveBuilder(@NonNull Object additive) {
-    this.additive =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    additive.getClass().getSimpleName(),
-                    SpecimenDefinition$TypeTested$Container$Additive$.MODULE$.additive()),
-                additive,
-                SpecimenDefinition$TypeTested$Container$Additive$.MODULE$.additive());
+  public SpecimenDefinition_TypeTested_Container_AdditiveBuilder(
+      @NonNull Choice01025009075 additive) {
+    this.additive = additive;
+  }
+
+  public static Choice01025009075 additive(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 additive(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**

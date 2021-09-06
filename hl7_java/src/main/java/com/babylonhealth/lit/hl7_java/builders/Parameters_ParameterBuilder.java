@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,7 +46,7 @@ public class Parameters_ParameterBuilder {
   private Optional<String> id = Optional.empty();
   private String name;
   private Collection<Parameters.Parameter> part = Collections.emptyList();
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_1349125893> value = Optional.empty();
   private Optional<Resource> resource = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
@@ -57,6 +58,206 @@ public class Parameters_ParameterBuilder {
    */
   public Parameters_ParameterBuilder(String name) {
     this.name = name;
+  }
+
+  public static Choice_1349125893 value(Address a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 value(Age a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 value(Annotation a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 value(Attachment a) {
+    return new Choice_1349125893(a);
+  }
+
+  public static Choice_1349125893 value(byte[] b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 value(BigDecimal b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 value(Boolean b) {
+    return new Choice_1349125893(b);
+  }
+
+  public static Choice_1349125893 value(CodeableConcept c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 value(Coding c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 value(ContactDetail c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 value(ContactPoint c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 value(Contributor c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 value(Count c) {
+    return new Choice_1349125893(c);
+  }
+
+  public static Choice_1349125893 value(DataRequirement d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 value(Distance d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 value(Dosage d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 value(Duration d) {
+    return new Choice_1349125893(d);
+  }
+
+  public static Choice_1349125893 value(Expression e) {
+    return new Choice_1349125893(e);
+  }
+
+  public static Choice_1349125893 value(FHIRDate f) {
+    return new Choice_1349125893(f);
+  }
+
+  public static Choice_1349125893 value(FHIRDateTime f) {
+    return new Choice_1349125893(f);
+  }
+
+  public static Choice_1349125893 value(HumanName h) {
+    return new Choice_1349125893(h);
+  }
+
+  public static Choice_1349125893 value(Identifier i) {
+    return new Choice_1349125893(i);
+  }
+
+  public static Choice_1349125893 value(LocalTime l) {
+    return new Choice_1349125893(l);
+  }
+
+  public static Choice_1349125893 value(Meta m) {
+    return new Choice_1349125893(m);
+  }
+
+  public static Choice_1349125893 value(Money m) {
+    return new Choice_1349125893(m);
+  }
+
+  public static Choice_1349125893 value(ParameterDefinition p) {
+    return new Choice_1349125893(p);
+  }
+
+  public static Choice_1349125893 value(Period p) {
+    return new Choice_1349125893(p);
+  }
+
+  public static Choice_1349125893 value(Quantity q) {
+    return new Choice_1349125893(q);
+  }
+
+  public static Choice_1349125893 value(Range r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 value(Ratio r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 value(Reference r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 value(RelatedArtifact r) {
+    return new Choice_1349125893(r);
+  }
+
+  public static Choice_1349125893 value(SampledData s) {
+    return new Choice_1349125893(s);
+  }
+
+  public static Choice_1349125893 value(Signature s) {
+    return new Choice_1349125893(s);
+  }
+
+  public static Choice_1349125893 value(Timing t) {
+    return new Choice_1349125893(t);
+  }
+
+  public static Choice_1349125893 value(TriggerDefinition t) {
+    return new Choice_1349125893(t);
+  }
+
+  public static Choice_1349125893 value(UUID u) {
+    return new Choice_1349125893(u);
+  }
+
+  public static Choice_1349125893 value(UsageContext u) {
+    return new Choice_1349125893(u);
+  }
+
+  public static Choice_1349125893 value(ZonedDateTime z) {
+    return new Choice_1349125893(z);
+  }
+
+  public static Choice_1349125893 valueCanonical(String s) {
+    return Choice_1349125893.Choice_1349125893Canonical(s);
+  }
+
+  public static Choice_1349125893 valueCode(String s) {
+    return Choice_1349125893.Choice_1349125893Code(s);
+  }
+
+  public static Choice_1349125893 valueId(String s) {
+    return Choice_1349125893.Choice_1349125893Id(s);
+  }
+
+  public static Choice_1349125893 valueInteger(Integer i) {
+    return Choice_1349125893.Choice_1349125893Int(i);
+  }
+
+  public static Choice_1349125893 valueMarkdown(String s) {
+    return Choice_1349125893.Choice_1349125893Markdown(s);
+  }
+
+  public static Choice_1349125893 valueOid(String s) {
+    return Choice_1349125893.Choice_1349125893OID(s);
+  }
+
+  public static Choice_1349125893 valuePositiveInt(Integer i) {
+    return Choice_1349125893.Choice_1349125893PositiveInt(i);
+  }
+
+  public static Choice_1349125893 valueString(String s) {
+    return Choice_1349125893.Choice_1349125893String(s);
+  }
+
+  public static Choice_1349125893 valueUnsignedInt(Integer i) {
+    return Choice_1349125893.Choice_1349125893UnsignedInt(i);
+  }
+
+  public static Choice_1349125893 valueUri(String s) {
+    return Choice_1349125893.Choice_1349125893UriStr(s);
+  }
+
+  public static Choice_1349125893 valueUrl(String s) {
+    return Choice_1349125893.Choice_1349125893UrlStr(s);
   }
 
   /**
@@ -83,32 +284,11 @@ public class Parameters_ParameterBuilder {
    *     ContactPoint, Contributor, Count, DataRequirement, Distance, Dosage, Duration, Expression,
    *     FHIRDate, FHIRDateTime, HumanName, Identifier, Integer, LocalTime, Meta, Money,
    *     ParameterDefinition, Period, Quantity, Range, Ratio, Reference, RelatedArtifact,
-   *     SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext, ZonedDateTime.
+   *     SampledData, Signature, Timing, TriggerDefinition, UUID, UsageContext, ZonedDateTime. To
+   *     pass the value in, wrap with one of the Parameters_ParameterBuilder.value static methods
    */
-  public <T> Parameters_ParameterBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), Parameters.Parameter$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type. When the parameter is
-   * one of Integer or String then there are multiple candidate 'types' for the FHIR object, and we
-   * are unable to automagically disambiguate
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types. For values of type Integer, the valid values are Integer,
-   *     PositiveInt, UnsignedInt. For values of type String, the valid values are Canonical, Code,
-   *     Id, Markdown, Oid, String, Uri, Url.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> Parameters_ParameterBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, Parameters.Parameter$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, value, Parameters.Parameter$.MODULE$.value()));
+  public Parameters_ParameterBuilder withValue(@NonNull Choice_1349125893 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /** @param resource */

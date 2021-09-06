@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -45,23 +46,26 @@ public class Substance_IngredientBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<Ratio> quantity = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Choice<$bslash$div<CodeableConcept, Reference>> substance;
+  private Choice01025009075 substance;
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /**
    * Required fields for {@link Substance.Ingredient}
    *
    * @param substance Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     To pass the value in, wrap with one of the Substance_IngredientBuilder.substance static
+   *     methods
    */
-  public Substance_IngredientBuilder(@NonNull Object substance) {
-    this.substance =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(
-                    substance.getClass().getSimpleName(),
-                    Substance.Ingredient$.MODULE$.substance()),
-                substance,
-                Substance.Ingredient$.MODULE$.substance());
+  public Substance_IngredientBuilder(@NonNull Choice01025009075 substance) {
+    this.substance = substance;
+  }
+
+  public static Choice01025009075 substance(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 substance(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**

@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -46,12 +47,23 @@ public class PlanDefinition_Goal_TargetBuilder {
   private Optional<Duration> due = Optional.empty();
   private Optional<CodeableConcept> measure = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<$bslash$div<CodeableConcept, Quantity>, Range>>> detail =
-      Optional.empty();
+  private Optional<Choice01560785079> detail = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
   /** Required fields for {@link PlanDefinition$Goal$Target} */
   public PlanDefinition_Goal_TargetBuilder() {}
+
+  public static Choice01560785079 detail(CodeableConcept c) {
+    return new Choice01560785079(c);
+  }
+
+  public static Choice01560785079 detail(Quantity q) {
+    return new Choice01560785079(q);
+  }
+
+  public static Choice01560785079 detail(Range r) {
+    return new Choice01560785079(r);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -95,29 +107,11 @@ public class PlanDefinition_Goal_TargetBuilder {
   }
   /**
    * @param detail Field is a 'choice' field. Type should be one of CodeableConcept, Quantity,
-   *     Range.
+   *     Range. To pass the value in, wrap with one of the PlanDefinition_Goal_TargetBuilder.detail
+   *     static methods
    */
-  public <T> PlanDefinition_Goal_TargetBuilder withDetail(@NonNull T detail) {
-    var guessedSuffix =
-        autoSuffix(detail.getClass().getSimpleName(), PlanDefinition$Goal$Target$.MODULE$.detail());
-    return withDetail(guessedSuffix, detail);
-  }
-
-  /**
-   * Alternative to the 'main' withDetail method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param detail - The value to be passed to the builder
-   */
-  public <T> PlanDefinition_Goal_TargetBuilder withDetail(String suffix, @NonNull T detail) {
-    guard(detail.getClass().getSimpleName(), suffix, PlanDefinition$Goal$Target$.MODULE$.detail());
-    this.detail =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, detail, PlanDefinition$Goal$Target$.MODULE$.detail()));
+  public PlanDefinition_Goal_TargetBuilder withDetail(@NonNull Choice01560785079 detail) {
+    this.detail = Optional.of(detail);
     return this;
   }
   /**
@@ -161,7 +155,7 @@ public class PlanDefinition_Goal_TargetBuilder {
         OptionConverters.toScala(due),
         OptionConverters.toScala(measure),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(detail),
+        (Option) OptionConverters.toScala(detail),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

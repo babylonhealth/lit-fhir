@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.REQUEST_RESOURCE_TYPES;
 import com.babylonhealth.lit.hl7.PUBLICATION_STATUS;
 import com.babylonhealth.lit.hl7.REQUEST_INTENT;
@@ -39,7 +41,6 @@ import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.REQUEST_PRIORITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -79,19 +80,12 @@ public class ActivityDefinitionBuilder {
   private Collection<Extension> extension = Collections.emptyList();
   private Optional<String> publisher = Optional.empty();
   private Optional<String> copyright = Optional.empty();
-  private Optional<
-          Choice<
-              $bslash$div<
-                  $bslash$div<
-                      $bslash$div<$bslash$div<$bslash$div<Age, Duration>, FHIRDateTime>, Period>,
-                      Range>,
-                  Timing>>>
-      timing = Optional.empty();
+  private Optional<Choice_0181779868> timing = Optional.empty();
   private Optional<String> transform = Optional.empty();
   private Collection<Identifier> identifier = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> subject = Optional.empty();
+  private Optional<Choice01025009075> subject = Optional.empty();
   private Collection<UsageContext> useContext = Collections.emptyList();
-  private Optional<Choice<$bslash$div<CodeableConcept, Reference>>> product = Optional.empty();
+  private Optional<Choice01025009075> product = Optional.empty();
   private Optional<String> description = Optional.empty();
   private Optional<Boolean> experimental = Optional.empty();
   private Collection<CodeableConcept> jurisdiction = Collections.emptyList();
@@ -116,6 +110,46 @@ public class ActivityDefinitionBuilder {
    */
   public ActivityDefinitionBuilder(PUBLICATION_STATUS status) {
     this.status = status;
+  }
+
+  public static Choice_0181779868 timing(Age a) {
+    return new Choice_0181779868(a);
+  }
+
+  public static Choice_0181779868 timing(Duration d) {
+    return new Choice_0181779868(d);
+  }
+
+  public static Choice_0181779868 timing(FHIRDateTime f) {
+    return new Choice_0181779868(f);
+  }
+
+  public static Choice_0181779868 timing(Period p) {
+    return new Choice_0181779868(p);
+  }
+
+  public static Choice_0181779868 timing(Range r) {
+    return new Choice_0181779868(r);
+  }
+
+  public static Choice_0181779868 timing(Timing t) {
+    return new Choice_0181779868(t);
+  }
+
+  public static Choice01025009075 subject(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 subject(Reference r) {
+    return new Choice01025009075(r);
+  }
+
+  public static Choice01025009075 product(CodeableConcept c) {
+    return new Choice01025009075(c);
+  }
+
+  public static Choice01025009075 product(Reference r) {
+    return new Choice01025009075(r);
   }
 
   /**
@@ -487,28 +521,11 @@ public class ActivityDefinitionBuilder {
   /**
    * @param timing - The period, timing or frequency upon which the described activity is to occur.
    *     Field is a 'choice' field. Type should be one of Age, Duration, FHIRDateTime, Period,
-   *     Range, Timing.
+   *     Range, Timing. To pass the value in, wrap with one of the ActivityDefinitionBuilder.timing
+   *     static methods
    */
-  public <T> ActivityDefinitionBuilder withTiming(@NonNull T timing) {
-    var guessedSuffix =
-        autoSuffix(timing.getClass().getSimpleName(), ActivityDefinition$.MODULE$.timing());
-    return withTiming(guessedSuffix, timing);
-  }
-
-  /**
-   * Alternative to the 'main' withTiming method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param timing - The value to be passed to the builder
-   */
-  public <T> ActivityDefinitionBuilder withTiming(String suffix, @NonNull T timing) {
-    guard(timing.getClass().getSimpleName(), suffix, ActivityDefinition$.MODULE$.timing());
-    this.timing =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, timing, ActivityDefinition$.MODULE$.timing()));
+  public ActivityDefinitionBuilder withTiming(@NonNull Choice_0181779868 timing) {
+    this.timing = Optional.of(timing);
     return this;
   }
   /**
@@ -540,27 +557,10 @@ public class ActivityDefinitionBuilder {
   /**
    * @param subject - A code or group definition that describes the intended subject of the activity
    *     being defined. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     To pass the value in, wrap with one of the ActivityDefinitionBuilder.subject static methods
    */
-  public <T> ActivityDefinitionBuilder withSubject(@NonNull T subject) {
-    var guessedSuffix =
-        autoSuffix(subject.getClass().getSimpleName(), ActivityDefinition$.MODULE$.subject());
-    return withSubject(guessedSuffix, subject);
-  }
-
-  /**
-   * Alternative to the 'main' withSubject method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param subject - The value to be passed to the builder
-   */
-  public <T> ActivityDefinitionBuilder withSubject(String suffix, @NonNull T subject) {
-    guard(subject.getClass().getSimpleName(), suffix, ActivityDefinition$.MODULE$.subject());
-    this.subject =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, subject, ActivityDefinition$.MODULE$.subject()));
+  public ActivityDefinitionBuilder withSubject(@NonNull Choice01025009075 subject) {
+    this.subject = Optional.of(subject);
     return this;
   }
   /**
@@ -585,28 +585,11 @@ public class ActivityDefinitionBuilder {
   }
   /**
    * @param product - Identifies the food, drug or other product being consumed or supplied in the
-   *     activity. Field is a 'choice' field. Type should be one of CodeableConcept, Reference.
+   *     activity. Field is a 'choice' field. Type should be one of CodeableConcept, Reference. To
+   *     pass the value in, wrap with one of the ActivityDefinitionBuilder.product static methods
    */
-  public <T> ActivityDefinitionBuilder withProduct(@NonNull T product) {
-    var guessedSuffix =
-        autoSuffix(product.getClass().getSimpleName(), ActivityDefinition$.MODULE$.product());
-    return withProduct(guessedSuffix, product);
-  }
-
-  /**
-   * Alternative to the 'main' withProduct method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param product - The value to be passed to the builder
-   */
-  public <T> ActivityDefinitionBuilder withProduct(String suffix, @NonNull T product) {
-    guard(product.getClass().getSimpleName(), suffix, ActivityDefinition$.MODULE$.product());
-    this.product =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, product, ActivityDefinition$.MODULE$.product()));
+  public ActivityDefinitionBuilder withProduct(@NonNull Choice01025009075 product) {
+    this.product = Optional.of(product);
     return this;
   }
   /**
@@ -868,12 +851,12 @@ public class ActivityDefinitionBuilder {
         extension.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(publisher),
         OptionConverters.toScala(copyright),
-        OptionConverters.toScala(timing),
+        (Option) OptionConverters.toScala(timing),
         OptionConverters.toScala(transform),
         identifier.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(subject),
+        (Option) OptionConverters.toScala(subject),
         useContext.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(product),
+        (Option) OptionConverters.toScala(product),
         OptionConverters.toScala(description),
         OptionConverters.toScala(experimental.map(x -> (Object) x)),
         jurisdiction.stream().collect(new LitSeqJCollector<>()),

@@ -30,10 +30,10 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -42,8 +42,7 @@ import static java.util.stream.Collectors.toList;
 public class UsageContextBuilder {
   private Optional<String> id = Optional.empty();
   private Coding code;
-  private Choice<$bslash$div<$bslash$div<$bslash$div<CodeableConcept, Quantity>, Range>, Reference>>
-      value;
+  private Choice_0119127717 value;
   private Collection<Extension> extension = Collections.emptyList();
 
   /**
@@ -52,16 +51,28 @@ public class UsageContextBuilder {
    * @param code - A code that identifies the type of context being specified by this usage context.
    * @param value - A value that defines the context specified in this context of use. The
    *     interpretation of the value is defined by the code. Field is a 'choice' field. Type should
-   *     be one of CodeableConcept, Quantity, Range, Reference.
+   *     be one of CodeableConcept, Quantity, Range, Reference. To pass the value in, wrap with one
+   *     of the UsageContextBuilder.value static methods
    */
-  public UsageContextBuilder(Coding code, @NonNull Object value) {
+  public UsageContextBuilder(Coding code, @NonNull Choice_0119127717 value) {
     this.code = code;
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(value.getClass().getSimpleName(), UsageContext$.MODULE$.value()),
-                value,
-                UsageContext$.MODULE$.value());
+    this.value = value;
+  }
+
+  public static Choice_0119127717 value(CodeableConcept c) {
+    return new Choice_0119127717(c);
+  }
+
+  public static Choice_0119127717 value(Quantity q) {
+    return new Choice_0119127717(q);
+  }
+
+  public static Choice_0119127717 value(Range r) {
+    return new Choice_0119127717(r);
+  }
+
+  public static Choice_0119127717 value(Reference r) {
+    return new Choice_0119127717(r);
   }
 
   /**

@@ -32,6 +32,8 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.ASSERT_OPERATOR_CODES;
 import com.babylonhealth.lit.hl7.DEFINED_TYPES;
 import com.babylonhealth.lit.hl7.ASSERT_RESPONSE_CODE_TYPES;
@@ -39,7 +41,6 @@ import com.babylonhealth.lit.hl7.ASSERT_DIRECTION_CODES;
 import com.babylonhealth.lit.hl7.HTTP_OPERATIONS;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;

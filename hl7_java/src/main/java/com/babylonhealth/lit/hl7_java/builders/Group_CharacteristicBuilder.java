@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -46,7 +47,7 @@ public class Group_CharacteristicBuilder {
   private CodeableConcept code;
   private Optional<Period> period = Optional.empty();
   private Boolean exclude;
-  private Choice value;
+  private Choice01646729908 value;
   private Collection<Extension> extension = Collections.emptyList();
   private Collection<Extension> modifierExtension = Collections.emptyList();
 
@@ -57,17 +58,34 @@ public class Group_CharacteristicBuilder {
    *     etc.
    * @param exclude
    * @param value Field is a 'choice' field. Type should be one of Boolean, CodeableConcept,
-   *     Quantity, Range, Reference.
+   *     Quantity, Range, Reference. To pass the value in, wrap with one of the
+   *     Group_CharacteristicBuilder.value static methods
    */
-  public Group_CharacteristicBuilder(CodeableConcept code, Boolean exclude, @NonNull Object value) {
+  public Group_CharacteristicBuilder(
+      CodeableConcept code, Boolean exclude, @NonNull Choice01646729908 value) {
     this.code = code;
     this.exclude = exclude;
-    this.value =
-        (Choice)
-            Choice$.MODULE$.fromSuffix(
-                autoSuffix(value.getClass().getSimpleName(), Group.Characteristic$.MODULE$.value()),
-                value,
-                Group.Characteristic$.MODULE$.value());
+    this.value = value;
+  }
+
+  public static Choice01646729908 value(Boolean b) {
+    return new Choice01646729908(b);
+  }
+
+  public static Choice01646729908 value(CodeableConcept c) {
+    return new Choice01646729908(c);
+  }
+
+  public static Choice01646729908 value(Quantity q) {
+    return new Choice01646729908(q);
+  }
+
+  public static Choice01646729908 value(Range r) {
+    return new Choice01646729908(r);
+  }
+
+  public static Choice01646729908 value(Reference r) {
+    return new Choice01646729908(r);
   }
 
   /**

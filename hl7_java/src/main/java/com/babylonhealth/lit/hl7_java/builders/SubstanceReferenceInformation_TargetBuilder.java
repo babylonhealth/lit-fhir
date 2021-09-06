@@ -32,10 +32,11 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -48,8 +49,7 @@ public class SubstanceReferenceInformation_TargetBuilder {
   private Collection<Reference> source = Collections.emptyList();
   private Optional<CodeableConcept> organism = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
-  private Optional<Choice<$bslash$div<$bslash$div<Quantity, Range>, String>>> amount =
-      Optional.empty();
+  private Optional<Choice_1527751898> amount = Optional.empty();
   private Optional<CodeableConcept> amountType = Optional.empty();
   private Optional<CodeableConcept> interaction = Optional.empty();
   private Optional<CodeableConcept> organismType = Optional.empty();
@@ -57,6 +57,18 @@ public class SubstanceReferenceInformation_TargetBuilder {
 
   /** Required fields for {@link SubstanceReferenceInformation.Target} */
   public SubstanceReferenceInformation_TargetBuilder() {}
+
+  public static Choice_1527751898 amount(Quantity q) {
+    return new Choice_1527751898(q);
+  }
+
+  public static Choice_1527751898 amount(Range r) {
+    return new Choice_1527751898(r);
+  }
+
+  public static Choice_1527751898 amount(String s) {
+    return new Choice_1527751898(s);
+  }
 
   /**
    * @param id - The logical id of the resource, as used in the URL for the resource. Once assigned,
@@ -117,34 +129,13 @@ public class SubstanceReferenceInformation_TargetBuilder {
     this.extension = Collections.unmodifiableCollection(extension);
     return this;
   }
-  /** @param amount Field is a 'choice' field. Type should be one of Quantity, Range, String. */
-  public <T> SubstanceReferenceInformation_TargetBuilder withAmount(@NonNull T amount) {
-    var guessedSuffix =
-        autoSuffix(
-            amount.getClass().getSimpleName(),
-            SubstanceReferenceInformation.Target$.MODULE$.amount());
-    return withAmount(guessedSuffix, amount);
-  }
-
   /**
-   * Alternative to the 'main' withAmount method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param amount - The value to be passed to the builder
+   * @param amount Field is a 'choice' field. Type should be one of Quantity, Range, String. To pass
+   *     the value in, wrap with one of the SubstanceReferenceInformation_TargetBuilder.amount
+   *     static methods
    */
-  public <T> SubstanceReferenceInformation_TargetBuilder withAmount(
-      String suffix, @NonNull T amount) {
-    guard(
-        amount.getClass().getSimpleName(),
-        suffix,
-        SubstanceReferenceInformation.Target$.MODULE$.amount());
-    this.amount =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, amount, SubstanceReferenceInformation.Target$.MODULE$.amount()));
+  public SubstanceReferenceInformation_TargetBuilder withAmount(@NonNull Choice_1527751898 amount) {
+    this.amount = Optional.of(amount);
     return this;
   }
   /** @param amountType */
@@ -208,7 +199,7 @@ public class SubstanceReferenceInformation_TargetBuilder {
         source.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(organism),
         extension.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(amount),
+        (Option) OptionConverters.toScala(amount),
         OptionConverters.toScala(amountType),
         OptionConverters.toScala(interaction),
         OptionConverters.toScala(organismType),

@@ -32,12 +32,13 @@ import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.hl7.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.hl7.DETECTEDISSUE_SEVERITY;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -60,7 +61,7 @@ public class DetectedIssueBuilder {
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<Reference> implicated = Collections.emptyList();
   private Optional<String> implicitRules = Optional.empty();
-  private Optional<Choice<$bslash$div<FHIRDateTime, Period>>> identified = Optional.empty();
+  private Optional<Choice_0934386166> identified = Optional.empty();
   private Collection<Extension> modifierExtension = Collections.emptyList();
   private Collection<DetectedIssue.Evidence> evidence = Collections.emptyList();
   private Collection<DetectedIssue.Mitigation> mitigation = Collections.emptyList();
@@ -72,6 +73,14 @@ public class DetectedIssueBuilder {
    */
   public DetectedIssueBuilder(OBSERVATION_STATUS status) {
     this.status = status;
+  }
+
+  public static Choice_0934386166 identified(FHIRDateTime f) {
+    return new Choice_0934386166(f);
+  }
+
+  public static Choice_0934386166 identified(Period p) {
+    return new Choice_0934386166(p);
   }
 
   /**
@@ -224,29 +233,11 @@ public class DetectedIssueBuilder {
   }
   /**
    * @param identified - The date or period when the detected issue was initially identified. Field
-   *     is a 'choice' field. Type should be one of FHIRDateTime, Period.
+   *     is a 'choice' field. Type should be one of FHIRDateTime, Period. To pass the value in, wrap
+   *     with one of the DetectedIssueBuilder.identified static methods
    */
-  public <T> DetectedIssueBuilder withIdentified(@NonNull T identified) {
-    var guessedSuffix =
-        autoSuffix(identified.getClass().getSimpleName(), DetectedIssue$.MODULE$.identified());
-    return withIdentified(guessedSuffix, identified);
-  }
-
-  /**
-   * Alternative to the 'main' withIdentified method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param identified - The value to be passed to the builder
-   */
-  public <T> DetectedIssueBuilder withIdentified(String suffix, @NonNull T identified) {
-    guard(identified.getClass().getSimpleName(), suffix, DetectedIssue$.MODULE$.identified());
-    this.identified =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, identified, DetectedIssue$.MODULE$.identified()));
+  public DetectedIssueBuilder withIdentified(@NonNull Choice_0934386166 identified) {
+    this.identified = Optional.of(identified);
     return this;
   }
   /**
@@ -343,7 +334,7 @@ public class DetectedIssueBuilder {
         identifier.stream().collect(new LitSeqJCollector<>()),
         implicated.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(implicitRules),
-        OptionConverters.toScala(identified),
+        (Option) OptionConverters.toScala(identified),
         modifierExtension.stream().collect(new LitSeqJCollector<>()),
         evidence.stream().collect(new LitSeqJCollector<>()),
         mitigation.stream().collect(new LitSeqJCollector<>()),

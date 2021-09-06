@@ -30,10 +30,10 @@ import com.babylonhealth.lit.core.Choice;
 import com.babylonhealth.lit.core.Choice$;
 import com.babylonhealth.lit.core.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
 
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -42,13 +42,32 @@ import static java.util.stream.Collectors.toList;
 public class Dosage_DoseAndRateBuilder {
   private Optional<String> id = Optional.empty();
   private Optional<CodeableConcept> _type = Optional.empty();
-  private Optional<Choice<$bslash$div<Quantity, Range>>> dose = Optional.empty();
-  private Optional<Choice<$bslash$div<$bslash$div<Quantity, Range>, Ratio>>> rate =
-      Optional.empty();
+  private Optional<Choice01639511888> dose = Optional.empty();
+  private Optional<Choice_0575082635> rate = Optional.empty();
   private Collection<Extension> extension = Collections.emptyList();
 
   /** Required fields for {@link Dosage.DoseAndRate} */
   public Dosage_DoseAndRateBuilder() {}
+
+  public static Choice01639511888 dose(Quantity q) {
+    return new Choice01639511888(q);
+  }
+
+  public static Choice01639511888 dose(Range r) {
+    return new Choice01639511888(r);
+  }
+
+  public static Choice_0575082635 rate(Quantity q) {
+    return new Choice_0575082635(q);
+  }
+
+  public static Choice_0575082635 rate(Range r) {
+    return new Choice_0575082635(r);
+  }
+
+  public static Choice_0575082635 rate(Ratio r) {
+    return new Choice_0575082635(r);
+  }
 
   /**
    * @param id - Unique id for the element within a resource (for internal references). This may be
@@ -63,48 +82,20 @@ public class Dosage_DoseAndRateBuilder {
     this._type = Optional.of(_type);
     return this;
   }
-  /** @param dose Field is a 'choice' field. Type should be one of Quantity, Range. */
-  public <T> Dosage_DoseAndRateBuilder withDose(@NonNull T dose) {
-    var guessedSuffix =
-        autoSuffix(dose.getClass().getSimpleName(), Dosage.DoseAndRate$.MODULE$.dose());
-    return withDose(guessedSuffix, dose);
-  }
-
   /**
-   * Alternative to the 'main' withDose method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param dose - The value to be passed to the builder
+   * @param dose Field is a 'choice' field. Type should be one of Quantity, Range. To pass the value
+   *     in, wrap with one of the Dosage_DoseAndRateBuilder.dose static methods
    */
-  public <T> Dosage_DoseAndRateBuilder withDose(String suffix, @NonNull T dose) {
-    guard(dose.getClass().getSimpleName(), suffix, Dosage.DoseAndRate$.MODULE$.dose());
-    this.dose =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, dose, Dosage.DoseAndRate$.MODULE$.dose()));
+  public Dosage_DoseAndRateBuilder withDose(@NonNull Choice01639511888 dose) {
+    this.dose = Optional.of(dose);
     return this;
   }
-  /** @param rate Field is a 'choice' field. Type should be one of Quantity, Range, Ratio. */
-  public <T> Dosage_DoseAndRateBuilder withRate(@NonNull T rate) {
-    var guessedSuffix =
-        autoSuffix(rate.getClass().getSimpleName(), Dosage.DoseAndRate$.MODULE$.rate());
-    return withRate(guessedSuffix, rate);
-  }
-
   /**
-   * Alternative to the 'main' withRate method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param rate - The value to be passed to the builder
+   * @param rate Field is a 'choice' field. Type should be one of Quantity, Range, Ratio. To pass
+   *     the value in, wrap with one of the Dosage_DoseAndRateBuilder.rate static methods
    */
-  public <T> Dosage_DoseAndRateBuilder withRate(String suffix, @NonNull T rate) {
-    guard(rate.getClass().getSimpleName(), suffix, Dosage.DoseAndRate$.MODULE$.rate());
-    this.rate =
-        Optional.of(
-            (Choice) Choice$.MODULE$.fromSuffix(suffix, rate, Dosage.DoseAndRate$.MODULE$.rate()));
+  public Dosage_DoseAndRateBuilder withRate(@NonNull Choice_0575082635 rate) {
+    this.rate = Optional.of(rate);
     return this;
   }
   /**
@@ -134,8 +125,8 @@ public class Dosage_DoseAndRateBuilder {
     return new Dosage.DoseAndRate(
         OptionConverters.toScala(id),
         OptionConverters.toScala(_type),
-        OptionConverters.toScala(dose),
-        OptionConverters.toScala(rate),
+        (Option) OptionConverters.toScala(dose),
+        (Option) OptionConverters.toScala(rate),
         extension.stream().collect(new LitSeqJCollector<>()),
         LitUtils.emptyMetaElMap());
   }

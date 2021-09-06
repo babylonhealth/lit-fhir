@@ -34,11 +34,13 @@ import com.babylonhealth.lit.usbase.model.*;
 import com.babylonhealth.lit.core_java.builders.*;
 import com.babylonhealth.lit.hl7_java.builders.*;
 import com.babylonhealth.lit.usbase_java.builders.*;
+import com.babylonhealth.lit.core_java.model.Unions.*;
+import com.babylonhealth.lit.hl7_java.model.Unions.*;
+import com.babylonhealth.lit.usbase_java.model.Unions.*;
 import com.babylonhealth.lit.hl7.OBSERVATION_STATUS;
 import com.babylonhealth.lit.core.LANGUAGES;
 import com.babylonhealth.lit.core.$bslash$div;
 import com.babylonhealth.lit.core_java.LitUtils;
-import com.babylonhealth.lit.core_java.ParamDistinguisher;
 
 import static com.babylonhealth.lit.core_java.LitUtils.autoSuffix;
 import static com.babylonhealth.lit.core_java.LitUtils.guard;
@@ -64,7 +66,7 @@ public class Observation_geneticsBuilder {
   private Optional<Reference> subject = Optional.empty();
   private Optional<LANGUAGES> language = Optional.empty();
   private Collection<CodeableConcept> category = Collections.emptyList();
-  private Optional<Choice> value = Optional.empty();
+  private Optional<Choice_0802685816> value = Optional.empty();
   private Optional<CodeableConcept> bodySite = Optional.empty();
   private Optional<Reference> specimen = Optional.empty();
   private Collection<Resource> contained = Collections.emptyList();
@@ -74,10 +76,7 @@ public class Observation_geneticsBuilder {
   private Collection<Reference> hasMember = Collections.emptyList();
   private Collection<Identifier> identifier = Collections.emptyList();
   private Collection<Reference> derivedFrom = Collections.emptyList();
-  private Optional<
-          Choice<
-              $bslash$div<$bslash$div<$bslash$div<FHIRDateTime, Period>, Timing>, ZonedDateTime>>>
-      effective = Optional.empty();
+  private Optional<Choice01473702374> effective = Optional.empty();
   private Optional<String> implicitRules = Optional.empty();
   private Collection<CodeableConcept> interpretation = Collections.emptyList();
   private Optional<CodeableConcept> dataAbsentReason = Optional.empty();
@@ -94,6 +93,66 @@ public class Observation_geneticsBuilder {
   public Observation_geneticsBuilder(CodeableConcept code, OBSERVATION_STATUS status) {
     this.code = code;
     this.status = status;
+  }
+
+  public static Choice_0802685816 value(Boolean b) {
+    return new Choice_0802685816(b);
+  }
+
+  public static Choice_0802685816 value(CodeableConcept c) {
+    return new Choice_0802685816(c);
+  }
+
+  public static Choice_0802685816 value(FHIRDateTime f) {
+    return new Choice_0802685816(f);
+  }
+
+  public static Choice_0802685816 value(Integer i) {
+    return new Choice_0802685816(i);
+  }
+
+  public static Choice_0802685816 value(LocalTime l) {
+    return new Choice_0802685816(l);
+  }
+
+  public static Choice_0802685816 value(Period p) {
+    return new Choice_0802685816(p);
+  }
+
+  public static Choice_0802685816 value(Quantity q) {
+    return new Choice_0802685816(q);
+  }
+
+  public static Choice_0802685816 value(Range r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(Ratio r) {
+    return new Choice_0802685816(r);
+  }
+
+  public static Choice_0802685816 value(SampledData s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice_0802685816 value(String s) {
+    return new Choice_0802685816(s);
+  }
+
+  public static Choice01473702374 effective(FHIRDateTime f) {
+    return new Choice01473702374(f);
+  }
+
+  public static Choice01473702374 effective(Period p) {
+    return new Choice01473702374(p);
+  }
+
+  public static Choice01473702374 effective(Timing t) {
+    return new Choice01473702374(t);
+  }
+
+  public static Choice01473702374 effective(ZonedDateTime z) {
+    return new Choice01473702374(z);
   }
 
   /**
@@ -243,28 +302,11 @@ public class Observation_geneticsBuilder {
    * @param value - The information determined as a result of making the observation, if the
    *     information has a simple value. Field is a 'choice' field. Type should be one of Boolean,
    *     CodeableConcept, FHIRDateTime, Integer, LocalTime, Period, Quantity, Range, Ratio,
-   *     SampledData, String.
+   *     SampledData, String. To pass the value in, wrap with one of the
+   *     Observation_geneticsBuilder.value static methods
    */
-  public <T> Observation_geneticsBuilder withValue(@NonNull T value) {
-    var guessedSuffix =
-        autoSuffix(value.getClass().getSimpleName(), Observation_genetics$.MODULE$.value());
-    return withValue(guessedSuffix, value);
-  }
-
-  /**
-   * Alternative to the 'main' withValue method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param value - The value to be passed to the builder
-   */
-  public <T> Observation_geneticsBuilder withValue(String suffix, @NonNull T value) {
-    guard(value.getClass().getSimpleName(), suffix, Observation_genetics$.MODULE$.value());
-    this.value =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(suffix, value, Observation_genetics$.MODULE$.value()));
+  public Observation_geneticsBuilder withValue(@NonNull Choice_0802685816 value) {
+    this.value = Optional.of(value);
     return this;
   }
   /**
@@ -375,29 +417,12 @@ public class Observation_geneticsBuilder {
    *     biological subjects - e.g. human patients - this is usually called the "physiologically
    *     relevant time". This is usually either the time of the procedure or of specimen collection,
    *     but very often the source of the date/time is not known, only the date/time itself. Field
-   *     is a 'choice' field. Type should be one of FHIRDateTime, Period, Timing, ZonedDateTime.
+   *     is a 'choice' field. Type should be one of FHIRDateTime, Period, Timing, ZonedDateTime. To
+   *     pass the value in, wrap with one of the Observation_geneticsBuilder.effective static
+   *     methods
    */
-  public <T> Observation_geneticsBuilder withEffective(@NonNull T effective) {
-    var guessedSuffix =
-        autoSuffix(effective.getClass().getSimpleName(), Observation_genetics$.MODULE$.effective());
-    return withEffective(guessedSuffix, effective);
-  }
-
-  /**
-   * Alternative to the 'main' withEffective method. This will be marginally faster than the other
-   * method, but requires that you know the correct suffix for your data type.
-   *
-   * @param suffix - The suffix of the produced FHIR json -- can be considered a string to
-   *     disambiguate between types.
-   * @param effective - The value to be passed to the builder
-   */
-  public <T> Observation_geneticsBuilder withEffective(String suffix, @NonNull T effective) {
-    guard(effective.getClass().getSimpleName(), suffix, Observation_genetics$.MODULE$.effective());
-    this.effective =
-        Optional.of(
-            (Choice)
-                Choice$.MODULE$.fromSuffix(
-                    suffix, effective, Observation_genetics$.MODULE$.effective()));
+  public Observation_geneticsBuilder withEffective(@NonNull Choice01473702374 effective) {
+    this.effective = Optional.of(effective);
     return this;
   }
   /**
@@ -545,7 +570,7 @@ public class Observation_geneticsBuilder {
         hasMember.stream().collect(new LitSeqJCollector<>()),
         identifier.stream().collect(new LitSeqJCollector<>()),
         derivedFrom.stream().collect(new LitSeqJCollector<>()),
-        OptionConverters.toScala(effective),
+        (Option) OptionConverters.toScala(effective),
         OptionConverters.toScala(implicitRules),
         interpretation.stream().collect(new LitSeqJCollector<>()),
         OptionConverters.toScala(dataAbsentReason),
